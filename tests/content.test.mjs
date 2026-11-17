@@ -35,6 +35,25 @@ const changed = (fn) => {
 
 test('le corpus livré passe les contrôles', () =>
   assert.deepEqual(validateDataset(original), []));
+test('les anciennes références et le périmètre de veille sont validés', () => {
+  assert.deepEqual(
+    changed((d) => {
+      d.sources[0].previousUrl = 'https://example.org/document';
+      d.sources[0].watchContentClass = 'ob-sections';
+    }),
+    [],
+  );
+  assert.ok(
+    changed((d) => {
+      d.sources[0].previousUrl = 'javascript:alert(1)';
+    }).length,
+  );
+  assert.ok(
+    changed((d) => {
+      d.sources[0].watchContentClass = 'x]script';
+    }).length,
+  );
+});
 test('les dates civiles impossibles sont refusées', () => {
   for (const value of ['2025-02-29', '2026-13-01', '2026-11-31', 'demain'])
     assert.equal(dateSchema.safeParse(value).success, false);
@@ -47,6 +66,10 @@ test('les URL actives, locales et authentifiées sont refusées', () => {
     'https://user:secret@example.org/',
     'https://127.0.0.1/',
     'https://app.local/',
+    'https://localhost./',
+    'https://app.internal./',
+    'https://example.org/\nheader',
+    'https://example.org\\@localhost/',
     'https://[::1]/',
     'https://example.org:8443/',
   ])
@@ -80,6 +103,23 @@ test('les unités et la cohérence des comptes sont contrôlées', () => {
     }).length,
   );
 });
+test('les mises à jour conservent des dates et des exercices annuels cohérents', () => {
+  assert.ok(
+    changed((d) => {
+      d.meta.corpusUpdated = '2099-01-01';
+    }).length,
+  );
+  assert.ok(
+    changed((d) => {
+      d.budget.year = new Date().getUTCFullYear();
+    }).length,
+  );
+  assert.ok(
+    changed((d) => {
+      d.budget.published = '2026-02-31';
+    }).length,
+  );
+});
 test('une enquête incohérente est refusée', () => {
   assert.ok(
     changed((d) =>
@@ -101,5 +141,42 @@ test('une enquête incohérente est refusée', () => {
         uncertainty: 'À documenter',
       }),
     ).length,
+  );
+});
+
+test('les mises à jour documentaires restent distinctes de la publication', () => {
+  assert.ok(
+    changed((d) => {
+      d.sources[0].updated = '2099-01-01';
+    }).length,
+  );
+  assert.ok(
+    changed((d) => {
+      d.sources[0].published = '2026-11-16';
+      d.sources[0].updated = '2026-11-15';
+    }).length,
+  );
+  assert.ok(
+    changed((d) => {
+      d.sources[0].watch = 'false';
+    }).length,
+  );
+});
+
+test('la chronologie distingue les dates et refuse les candidats inconnus ou les événements futurs', () => {
+  assert.ok(
+    changed((d) => {
+      d.events[0].dateKind = 'date-devinee';
+    }).length,
+  );
+  assert.ok(
+    changed((d) => {
+      d.events[0].candidates = ['inconnu'];
+    }).length,
+  );
+  assert.ok(
+    changed((d) => {
+      d.events[0].date = '2099-01-01';
+    }).length,
   );
 });

@@ -9,6 +9,8 @@ import {
   eventSchema,
   pollSchema,
   dateSchema,
+  measureSchema,
+  versionSchema,
 } from './lib/schema.mjs';
 import sources from './data/sources.json';
 import themes from './data/themes.json';
@@ -16,6 +18,14 @@ const knownSources = new Set(sources.map((source) => source.id));
 const knownThemes = new Set(themes.map((theme) => theme.id));
 
 export const collections = {
+  measures: defineCollection({
+    loader: file('src/data/measures.json'),
+    schema: measureSchema,
+  }),
+  versions: defineCollection({
+    loader: file('src/data/versions.json'),
+    schema: versionSchema,
+  }),
   candidates: defineCollection({
     loader: file('src/data/candidates.json'),
     schema: candidateSchema,

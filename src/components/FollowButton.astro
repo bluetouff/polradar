@@ -1,0 +1,22 @@
+---
+import Icon from './Icon.astro';
+interface Props {
+  kind: 'candidate' | 'theme';
+  id: string;
+  name: string;
+}
+const { kind, id, name } = Astro.props;
+---
+
+<button
+  class="button follow-button"
+  type="button"
+  data-follow-kind={kind}
+  data-follow-id={id}
+  data-follow-name={name}
+  aria-pressed="false"
+  disabled
+>
+  <Icon name="suivi" />
+  <span>Suivre {kind === 'candidate' ? 'ce candidat' : 'ce thème'}</span>
+</button>

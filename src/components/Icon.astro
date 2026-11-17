@@ -1,0 +1,25 @@
+---
+import { iconPaths } from '../lib/icons.mjs';
+interface Props {
+  name: string;
+  class?: string;
+  title?: string;
+}
+const { name, class: className = '', title } = Astro.props;
+const path = iconPaths[name as keyof typeof iconPaths] || iconPaths.source;
+---
+
+<svg
+  class:list={['icon', className]}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.65"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden={title ? undefined : 'true'}
+  role={title ? 'img' : undefined}
+  aria-label={title}
+>
+  <path d={path} />
+</svg>
