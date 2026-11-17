@@ -123,6 +123,19 @@
   }
   select {
     width: 100%;
+    appearance: none;
+    padding-inline: 0.9rem 2.8rem;
+    background-image: url('/icons/chevron-down.svg');
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    background-size: 14px 14px;
+  }
+  @media (forced-colors: active) {
+    select {
+      appearance: auto;
+      background-image: none;
+      padding-inline-end: 0.9rem;
+    }
   }
   hr {
     border: 0;
@@ -406,6 +419,31 @@
   .footer-links > span {
     margin-right: auto;
     font-weight: 650;
+  }
+  .footer-credit {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 0.4em;
+    row-gap: 2px;
+  }
+  .footer-credit a {
+    text-underline-offset: 3px;
+  }
+  .footer-credit .log-wordmark {
+    display: inline-flex;
+    align-items: baseline;
+    font: 700 17px/1 var(--mono);
+    letter-spacing: -0.04em;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .log-wordmark-zero {
+    color: #0b5f58;
+  }
+  .log-wordmark-cursor {
+    margin-left: 0.12em;
+    color: #a50f4d;
   }
   .site-footer > p {
     margin-top: 12px;
