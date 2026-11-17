@@ -1,0 +1,30 @@
+name: Veille des sources
+on:
+  schedule:
+    - cron: '23 5 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: source-watch
+  cancel-in-progress: false
+jobs:
+  watch:
+    # Federation republications time out from the Linux/Windows networks tested.
+    # macOS Intel reached the republication in one pass; later HTTP 429s stay reported.
+    runs-on: macos-15-intel
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - name: Relever les sources autorisées
+        run: python3 scripts/watch-sources.py
+      - name: Résumé de la veille
+        run: cat artifacts/watch-report.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: source-watch-review
+          path: artifacts/watch-report.*
+          if-no-files-found: error
+          retention-days: 14

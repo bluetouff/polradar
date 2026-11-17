@@ -1,0 +1,173 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { watch, sources, formatTimestamp, meta } from '../lib/data';
+const counts = {
+  accessible: watch.filter((row) => row.status === 'accessible').length,
+  modifie: watch.filter((row) => row.status === 'modifie').length,
+  indisponible: watch.filter(
+    (row) => row.status === 'indisponible' || row.status === 'bloque',
+  ).length,
+};
+const label: Record<string, string> = {
+  accessible: 'Accessible',
+  modifie: 'Contenu à examiner',
+  indisponible: 'Indisponible',
+  bloque: 'Accès non exploitable',
+};
+const checked = watch
+  .map((row) => row.checkedAt)
+  .sort()
+  .at(-1);
+const total = watch.length;
+const radius = 58,
+  circumference = 2 * Math.PI * radius;
+const segments = [
+  { key: 'accessible', value: counts.accessible },
+  { key: 'modifie', value: counts.modifie },
+  { key: 'indisponible', value: counts.indisponible },
+];
+let offset = 0;
+---
+
+<Base title="Veille des programmes" section="/veille/">
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="veille" />
+    </span>
+    <div>
+      <h1>Veille des programmes</h1>
+      <p>
+        Relevés d’accessibilité et détection des changements sur les sources
+        sélectionnées.
+      </p>
+    </div>
+    <a
+      class="button"
+      href={`${meta.repository}/actions/workflows/watch.yml`}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Icon name="clock" />
+      Dernières exécutions ↗
+    </a>
+  </header>
+  <div class="watch-overview">
+    <div class="watch-donut">
+      <svg
+        viewBox="0 0 160 160"
+        role="img"
+        aria-label={`${counts.accessible} sources accessibles, ${counts.modifie} contenus à examiner et ${counts.indisponible} accès non exploitables`}
+      >
+        <circle class="watch-ring" cx="80" cy="80" r={radius} />
+        {segments.map((segment) => {
+          const length = total ? (segment.value / total) * circumference : 0;
+          const dashOffset = -offset;
+          offset += length;
+          return (
+            <circle
+              class={`watch-ring watch-${segment.key}`}
+              cx="80"
+              cy="80"
+              r={radius}
+              stroke-dasharray={`${length} ${circumference - length}`}
+              stroke-dashoffset={dashOffset}
+              transform="rotate(-90 80 80)"
+            />
+          );
+        })}
+        <text x="80" y="79" text-anchor="middle" class="ring-value">
+          {total}
+        </text>
+        <text x="80" y="98" text-anchor="middle" class="ring-label">
+          sources suivies
+        </text>
+      </svg>
+    </div>
+    <div class="watch-summary">
+      <div>
+        <span class="status-dot status-accessible"></span>
+        <strong>{counts.accessible}</strong>
+        <span>accessibles</span>
+      </div>
+      <div>
+        <span class="status-dot status-modifie"></span>
+        <strong>{counts.modifie}</strong>
+        <span>contenus à examiner</span>
+      </div>
+      <div>
+        <span class="status-dot status-bloque"></span>
+        <strong>{counts.indisponible}</strong>
+        <span>accès non exploitables</span>
+      </div>
+      {checked && (
+        <p>Dernier relevé intégré : {formatTimestamp(checked)} (Paris).</p>
+      )}
+    </div>
+    <div class="watch-method">
+      <Icon name="source" />
+      <h2>Traitement des mises à jour</h2>
+      <p>
+        La veille quotidienne prépare un rapport à relire. Un changement de page
+        est signalé pour examen ; les fiches éditoriales sont mises à jour après
+        vérification.
+      </p>
+      <a
+        href={`${meta.repository}/actions/workflows/watch.yml`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Consulter les rapports ↗
+      </a>
+    </div>
+  </div>
+  <div class="register-heading section-space">
+    <h2>Sources surveillées</h2>
+    <span class="small muted">
+      La date du relevé est distincte de la consultation éditoriale.
+    </span>
+  </div>
+  <div class="watch-list">
+    {watch.map((row) => {
+      const source = sources.find((source) => source.id === row.sourceId)!;
+      return (
+        <article>
+          <span class={`watch-state status-${row.status}`}>
+            <Icon
+              name={
+                row.status === 'accessible'
+                  ? 'check'
+                  : row.status === 'modifie'
+                    ? 'historique'
+                    : 'warning'
+              }
+            />
+          </span>
+          <div>
+            <h3>
+              <a href={source.url} target="_blank" rel="noopener noreferrer">
+                {source.title} ↗
+              </a>
+            </h3>
+            <p>{row.message}</p>
+            {row.reviewNote && <p>{row.reviewNote}</p>}
+            {row.reviewedAt && (
+              <p>
+                Relecture du contenu : {formatTimestamp(row.reviewedAt)}{' '}
+                (Paris).
+              </p>
+            )}
+          </div>
+          <div>
+            <span class={`watch-label status-${row.status}`}>
+              {label[row.status]}
+            </span>
+            <time datetime={row.checkedAt}>
+              {formatTimestamp(row.checkedAt)}
+            </time>
+          </div>
+        </article>
+      );
+    })}
+  </div>
+</Base>

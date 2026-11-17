@@ -1,0 +1,100 @@
+---
+import { marketMidpoint, marketPercent } from '../lib/markets.mjs';
+import type { MarketContract } from '../lib/market-data';
+import { formatTimestamp } from '../lib/data';
+interface Props {
+  row: MarketContract;
+  rank: number;
+  volumeUnit: string;
+}
+const { row, rank, volumeUnit } = Astro.props;
+const value = marketMidpoint(row);
+const x = (number: number) => 6 + number * 288;
+---
+
+<li class="market-row" data-market-name={row.label}>
+  <div class="market-identity">
+    <span class="market-rank">{String(rank).padStart(2, '0')}</span>
+    <strong>{row.label}</strong>
+  </div>
+  <div class="market-price">
+    <strong>{marketPercent(value)}</strong>
+    <span>
+      {row.bid !== null && row.ask !== null
+        ? `${marketPercent(row.bid)} / ${marketPercent(row.ask)}`
+        : 'Carnet incomplet'}
+    </span>
+  </div>
+  <svg
+    class="market-range"
+    viewBox="0 0 300 16"
+    role="img"
+    aria-label={
+      value === null
+        ? 'Cotation à deux côtés indisponible'
+        : `Milieu du carnet : ${marketPercent(value)} ; achat ${marketPercent(row.bid)}, vente ${marketPercent(row.ask)}`
+    }
+  >
+    <line class="market-track" x1="6" x2="294" y1="8" y2="8" />
+    {[0.25, 0.5, 0.75].map((tick) => (
+      <line class="market-tick" x1={x(tick)} x2={x(tick)} y1="4" y2="12" />
+    ))}
+    {value !== null && row.bid !== null && row.ask !== null && (
+      <>
+        <line
+          class="market-spread"
+          x1={x(row.bid)}
+          x2={x(row.ask)}
+          y1="8"
+          y2="8"
+        />
+        <circle cx={x(value)} cy="8" r="4.5" class="market-point" />
+      </>
+    )}
+  </svg>
+  <details class="market-contract">
+    <summary>Contrat et règles</summary>
+    <p>{row.question}</p>
+    <dl>
+      <div>
+        <dt>Écart achat / vente</dt>
+        <dd>
+          {row.bid !== null && row.ask !== null
+            ? `${((row.ask - row.bid) * 100).toLocaleString('fr-FR', { maximumFractionDigits: 3 })} point(s)`
+            : 'Indisponible'}
+        </dd>
+      </div>
+      <div>
+        <dt>Volume cumulé du contrat</dt>
+        <dd>
+          {row.volume === null
+            ? 'Non fourni'
+            : `${row.volume.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} ${volumeUnit === 'dollars' ? '$' : 'contrats'}`}
+        </dd>
+      </div>
+      <div>
+        <dt>Dernier prix communiqué</dt>
+        <dd>
+          {marketPercent(row.lastPrice)} · horodatage de transaction non fourni
+          par ce flux
+        </dd>
+      </div>
+      <div>
+        <dt>Fiche du contrat modifiée</dt>
+        <dd>
+          {row.updatedAt
+            ? formatTimestamp(row.updatedAt)
+            : 'Horodatage non fourni'}
+        </dd>
+      </div>
+    </dl>
+    {row.rules && (
+      <p class="market-rules" lang="en">
+        {row.rules}
+      </p>
+    )}
+    <p class="small muted">
+      Identifiant : <code>{row.id}</code>
+    </p>
+  </details>
+</li>

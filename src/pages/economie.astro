@@ -1,43 +1,39 @@
 ---
 import Base from '../layouts/Base.astro';
-import EngagementCard from '../components/EngagementCard.astro';
+import MeasureCard from '../components/MeasureCard.astro';
 import SourceLinks from '../components/SourceLinks.astro';
-import { budget, engagements } from '../lib/data';
+import { budget, measures, formatDate } from '../lib/data';
+const number = (value: number) => value.toLocaleString('fr-FR');
+const budgetStatus: Record<string, string> = {
+  provisional: 'Données provisoires',
+  'semi-definitive': 'Données semi-définitives',
+  definitive: 'Données définitives',
+};
 const values = [
-  ['Déficit public', budget.values.deficit, 'Flux annuel · 2025'],
-  ['Dette publique', budget.values.debt, 'Stock à fin 2025'],
-  ['Dépenses', budget.values.spending, 'Flux annuel · 2025'],
-  ['Recettes', budget.values.revenue, 'Flux annuel · 2025'],
+  ['Déficit public', budget.values.deficit, `Flux annuel · ${budget.year}`],
+  ['Dette publique', budget.values.debt, `Stock à fin ${budget.year}`],
+  ['Dépenses', budget.values.spending, `Flux annuel · ${budget.year}`],
+  ['Recettes', budget.values.revenue, `Flux annuel · ${budget.year}`],
 ];
-const records = engagements.filter(
+const records = measures.filter(
   (e) => e.theme === 'fiscalite' && e.scope !== 'archive',
 );
 ---
 
-<Base title="Économie : les programmes et les comptes" section="/economie/">
+<Base title="Finances publiques et programmes" section="/economie/">
   <header class="page-title">
-    <p class="eyebrow">L’OBSERVATOIRE ÉCONOMIQUE</p>
-    <h1>
-      Les promesses.
-      <br />
-      <em>Et les comptes.</em>
-    </h1>
-    <p>
-      Lire les bénéficiaires, le calendrier et les financements annoncés.
-      Distinguer les estimations des campagnes des données publiques qui
-      décrivent le point de départ.
-    </p>
+    <h1>Finances publiques et programmes</h1>
+    <p>Comptes publics et propositions fiscales des candidats.</p>
   </header>
   <div class="section-heading">
     <div>
-      <p class="eyebrow">LE CADRE COMMUN</p>
-      <h2>Les finances publiques en 2025.</h2>
+      <h2>Finances publiques en {budget.year}</h2>
     </div>
-    <span class="tag">Données provisoires</span>
+    <span class="tag">{budgetStatus[budget.status]}</span>
   </div>
   <p class="section-description">
-    {budget.scope} Publication Insee du 28 août 2026. Ces données annuelles ne
-    sont pas un état en temps réel des comptes de 2026.
+    {budget.scope} Publication du {formatDate(budget.published)}. Ces données
+    annuelles décrivent l’exercice {budget.year}.
   </p>
   <div class="budget-kpis">
     {values.map(([label, value, note]) => (
@@ -52,10 +48,10 @@ const records = engagements.filter(
       </article>
     ))}
   </div>
-  <SourceLinks ids={['insee']} compact />
+  <SourceLinks ids={[budget.sourceId]} compact />
   <div class="two-col section-space">
     <article class="panel">
-      <h2>Lire les périmètres.</h2>
+      <h2>Périmètres des chiffrages</h2>
       <ul class="reading-list">
         <li>
           Un montant annuel et un investissement sur cinq ans conservent des
@@ -76,11 +72,13 @@ const records = engagements.filter(
       </ul>
     </article>
     <article class="panel dark-panel">
-      <p class="eyebrow">LE POINT DE DÉPART</p>
-      <h2>5,1 points de PIB</h2>
+      <h2>{number(budget.values.deficit)} points de PIB</h2>
       <p>
-        En 2025, 57,3 % de dépenses publiques et 52,2 % de recettes : l’écart
-        annuel représente 5,1 points de PIB.
+        En {budget.year}, {number(budget.values.spending)} % de dépenses
+        publiques et
+        {number(budget.values.revenue)} % de recettes : l’écart annuel
+        représente
+        {number(budget.values.deficit)} points de PIB.
       </p>
       <a href="/dossiers/lire-un-programme/" class="text-link">
         Comment lire un engagement économique ↗
@@ -89,16 +87,15 @@ const records = engagements.filter(
   </div>
   <div class="section-heading">
     <div>
-      <p class="eyebrow">FISCALITÉ & FINANCEMENT</p>
-      <h2>Les orientations documentées.</h2>
+      <h2>Propositions fiscales</h2>
     </div>
     <a href="/comparer/?theme=fiscalite" class="text-link">
       Comparer sur ce sujet ↗
     </a>
   </div>
-  <div class="engagement-grid three">
+  <div class="measure-list">
     {records.map((item) => (
-      <EngagementCard item={item} />
+      <MeasureCard measure={item} />
     ))}
   </div>
 </Base>

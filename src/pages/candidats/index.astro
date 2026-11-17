@@ -5,18 +5,12 @@ import Filter from '../../components/Filter.astro';
 import { candidates } from '../../lib/data';
 ---
 
-<Base title="Les candidatures et leurs projets" section="/candidats/">
+<Base title="Candidats" section="/candidats/">
   <header class="page-title">
-    <p class="eyebrow">LES DOSSIERS</p>
-    <h1>
-      Les candidatures.
-      <br />
-      <em>Au-delà des noms.</em>
-    </h1>
+    <h1>Candidats</h1>
     <p>
-      Parcours documentaire, propositions et sources : une structure commune
-      pour examiner les projets. Cette sélection de {candidates.length}{' '}
-      candidatures ne constitue pas la liste officielle du scrutin.
+      Statut des candidatures et propositions recensées. Cette sélection est non
+      exhaustive.
     </p>
   </header>
   <Filter

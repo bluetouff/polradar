@@ -17,7 +17,7 @@ L’opérateur vérifie la configuration Apache, le propriétaire des répertoir
 - Script, verrou et journaux : `~/.local/share/polradar/`, mode 0700.
 - Sauvegarde du site initial : `~/.local/share/polradar/original-document-root`.
 
-Le répertoire parent de la racine Apache doit être inscriptible par le compte de déploiement, sans être ouvert aux autres comptes. La sauvegarde et la racine doivent se trouver sur le même système de fichiers. Apache doit déjà autoriser le suivi des liens symboliques dans cette arborescence. L’installation ne modifie ni Apache, ni TLS, ni les permissions d’autres sites.
+Le répertoire parent de la racine Apache et le dossier initial lui-même doivent être inscriptibles par le compte de déploiement, sans être ouverts aux autres comptes. Si ce dossier appartient à root, l’opérateur doit d’abord en transférer la propriété au compte du site, sans modification récursive. La sauvegarde et la racine doivent se trouver sur le même système de fichiers. Apache doit déjà autoriser le suivi des liens symboliques dans cette arborescence. L’installation ne modifie ni Apache, ni TLS, ni les permissions d’autres sites.
 
 Copier `pull-release.py` et `install-user.py` dans un répertoire privé temporaire du compte de déploiement. Puis, après revue :
 

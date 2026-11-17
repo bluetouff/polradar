@@ -1,38 +1,39 @@
 ---
-import { byCandidate, initials, type Candidate } from '../lib/data';
+import { candidates, byCandidate, type Candidate } from '../lib/data';
 interface Props {
   candidate: Candidate;
 }
 const { candidate } = Astro.props;
 const count = byCandidate(candidate.id, false).length;
+const index = candidates.findIndex((item) => item.id === candidate.id) + 1;
 ---
 
 <article
   class="candidate-card"
   data-search={`${candidate.name} ${candidate.party}`}
 >
-  <div class="candidate-card-top">
-    <span class="candidate-avatar" aria-hidden="true">
-      {initials(candidate.name)}
-    </span>
+  <span class="candidate-index" aria-hidden="true">
+    {String(index).padStart(2, '0')}
+  </span>
+  <div class="candidate-identity">
+    <h3>
+      <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+    </h3>
+    <p class="party-label">{candidate.party}</p>
+    <p class="candidate-note">{candidate.note}</p>
+  </div>
+  <p class="candidate-status">
     <span class="tag">{candidate.status}</span>
-  </div>
-  <p class="party-label">{candidate.party}</p>
-  <h3>
-    <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
-  </h3>
-  <p class="candidate-note">{candidate.note}</p>
-  <div class="candidate-card-bottom">
-    <span>
-      {count} thème{count > 1 ? 's' : ''} documenté{count > 1 ? 's' : ''}
-      <small>dans notre corpus, hors archives</small>
-    </span>
-    <a
-      class="round-link"
-      href={`/candidats/${candidate.id}/`}
-      aria-label={`Lire le dossier de ${candidate.name}`}
-    >
-      ↗
-    </a>
-  </div>
+  </p>
+  <p class="candidate-coverage">
+    <strong>{count}</strong> thème{count > 1 ? 's' : ''}
+    <small>hors archives</small>
+  </p>
+  <a
+    class="candidate-open"
+    href={`/candidats/${candidate.id}/`}
+    aria-label={`Lire le dossier de ${candidate.name}`}
+  >
+    ↗
+  </a>
 </article>

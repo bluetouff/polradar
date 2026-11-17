@@ -1,11 +1,70 @@
 [
   {
+    "id": "branco-declaration",
+    "date": "2025-12-19",
+    "title": "Juan Branco annonce sa candidature",
+    "description": "Les Ruches datent du 19 décembre 2025 son annonce de candidature à la présidentielle de 2027.",
+    "kind": "past",
+    "category": "candidature",
+    "dateKind": "evenement",
+    "candidates": ["branco"],
+    "sources": ["branco-presentation"]
+  },
+  {
+    "id": "calendrier-annonce",
+    "date": "2026-07-01",
+    "title": "L’Élysée publie le calendrier présidentiel",
+    "description": "Le Conseil des ministres annonce les tours des 18 avril et 2 mai 2027.",
+    "kind": "past",
+    "category": "calendrier",
+    "dateKind": "publication",
+    "candidates": [],
+    "sources": ["calendar"]
+  },
+  {
     "id": "lepen-juillet",
     "date": "2026-07-07",
     "title": "Marine Le Pen confirme sa candidature",
     "description": "Confirmation rapportée par LCP dans son panorama du 14 octobre.",
     "kind": "past",
-    "sources": ["lcp"]
+    "sources": ["lcp"],
+    "category": "candidature",
+    "dateKind": "evenement",
+    "candidates": ["lepen"]
+  },
+  {
+    "id": "tondelier-discours-ete",
+    "date": "2026-08-21",
+    "title": "Marine Tondelier publie son discours des Journées d’été",
+    "description": "Le texte présente ses orientations sur le climat, les services publics, le travail et l’industrie.",
+    "kind": "past",
+    "category": "meeting",
+    "dateKind": "publication",
+    "candidates": ["tondelier"],
+    "sources": ["eco-speech"]
+  },
+  {
+    "id": "enquete-elabe-2026-08-29-philippe",
+    "date": "2026-08-29",
+    "title": "Publication de l’enquête Elabe",
+    "description": "Terrain du 26 août 2026 au 28 août 2026. 3 scénarios documentés ; résultats et méthode accessibles dans la rubrique sondages.",
+    "kind": "past",
+    "category": "sondage",
+    "dateKind": "publication",
+    "candidates": [
+      "arthaud",
+      "attal",
+      "dupont-aignan",
+      "glucksmann",
+      "lepen",
+      "melenchon",
+      "philippe",
+      "retailleau",
+      "roussel",
+      "tondelier",
+      "zemmour"
+    ],
+    "sources": ["notice-elabe-2026-08-29"]
   },
   {
     "id": "roussel-septembre",
@@ -13,7 +72,32 @@
     "title": "Le PCF désigne Fabien Roussel",
     "description": "La candidature est validée par un vote des adhérents.",
     "kind": "past",
-    "sources": ["pcf-status", "lcp"]
+    "sources": ["pcf-status", "lcp"],
+    "category": "candidature",
+    "dateKind": "evenement",
+    "candidates": ["roussel"]
+  },
+  {
+    "id": "roussel-fete-humanite",
+    "date": "2026-09-12",
+    "title": "Fabien Roussel en meeting à la Fête de l’Humanité",
+    "description": "Le discours aborde les salaires, les prix des carburants, le logement et les services publics. Le texte intégral est publié le 15 septembre.",
+    "kind": "past",
+    "category": "meeting",
+    "dateKind": "evenement",
+    "candidates": ["roussel"],
+    "sources": ["pcf-2026", "pcf-meeting-video"]
+  },
+  {
+    "id": "kazib-premieres-mesures",
+    "date": "2026-09-16",
+    "title": "Révolution Permanente présente les premières mesures d’Anasse Kazib",
+    "description": "Le compte rendu du lancement à la Fête de l’Humanité détaille les 28 heures de travail hebdomadaire, les retraites et l’expropriation de secteurs stratégiques.",
+    "kind": "past",
+    "category": "programme",
+    "dateKind": "publication",
+    "candidates": ["kazib"],
+    "sources": ["kazib-premieres-mesures-2027"]
   },
   {
     "id": "primaire-octobre",
@@ -21,7 +105,182 @@
     "title": "Glucksmann remporte la primaire social-démocrate",
     "description": "La désignation est annoncée par Place publique le 11 octobre.",
     "kind": "past",
-    "sources": ["pp-primary"]
+    "sources": ["pp-primary"],
+    "category": "candidature",
+    "dateKind": "evenement",
+    "candidates": ["glucksmann"]
+  },
+  {
+    "id": "enquete-odoxa-2026-10-14-philippe",
+    "date": "2026-10-14",
+    "title": "Publication de l’enquête Odoxa",
+    "description": "Terrain du 24 septembre 2026 au 7 octobre 2026. 4 scénarios documentés ; résultats et méthode accessibles dans la rubrique sondages.",
+    "kind": "past",
+    "category": "sondage",
+    "dateKind": "publication",
+    "candidates": [
+      "arthaud",
+      "attal",
+      "dupont-aignan",
+      "glucksmann",
+      "lepen",
+      "melenchon",
+      "philippe",
+      "retailleau",
+      "roussel",
+      "tondelier",
+      "zemmour"
+    ],
+    "sources": ["notice-odoxa-2026-10-14", "resultats-odoxa-2026-10-14"]
+  },
+  {
+    "id": "polony-declaration",
+    "date": "2026-10-14",
+    "title": "Natacha Polony déclare sa candidature",
+    "description": "La déclaration est publiée sur son site de campagne le 14 octobre 2026.",
+    "kind": "past",
+    "category": "candidature",
+    "dateKind": "evenement",
+    "candidates": ["polony"],
+    "sources": ["polony-declaration"]
+  },
+  {
+    "id": "ruffin-industrie-publication",
+    "date": "2026-10-15",
+    "title": "François Ruffin publie son cahier sur l’industrie",
+    "description": "Le cahier 7 propose de relocaliser la production de cent produits stratégiques et expose ses outils de politique industrielle.",
+    "kind": "past",
+    "category": "programme",
+    "dateKind": "publication",
+    "candidates": ["ruffin"],
+    "sources": ["ruffin-industrie"]
+  },
+  {
+    "id": "enquete-elabe-2026-10-17-philippe",
+    "date": "2026-10-17",
+    "title": "Publication de l’enquête Elabe",
+    "description": "Terrain du 14 octobre 2026 au 16 octobre 2026. 3 scénarios documentés ; résultats et méthode accessibles dans la rubrique sondages.",
+    "kind": "past",
+    "category": "sondage",
+    "dateKind": "publication",
+    "candidates": [
+      "arthaud",
+      "attal",
+      "dupont-aignan",
+      "glucksmann",
+      "lepen",
+      "melenchon",
+      "philippe",
+      "retailleau",
+      "roussel",
+      "tondelier",
+      "zemmour"
+    ],
+    "sources": ["notice-elabe-2026-10-17"]
+  },
+  {
+    "id": "enquete-ipsos-2026-10-24-attal-philippe",
+    "date": "2026-10-24",
+    "title": "Publication de l’enquête Ipsos BVA",
+    "description": "Terrain du 21 octobre 2026 au 22 octobre 2026. 4 scénarios documentés ; résultats et méthode accessibles dans la rubrique sondages.",
+    "kind": "past",
+    "category": "sondage",
+    "dateKind": "publication",
+    "candidates": [
+      "arthaud",
+      "attal",
+      "dupont-aignan",
+      "glucksmann",
+      "lepen",
+      "lisnard",
+      "melenchon",
+      "philippe",
+      "retailleau",
+      "roussel",
+      "tondelier",
+      "zemmour"
+    ],
+    "sources": ["notice-ipsos-2026-10-24"]
+  },
+  {
+    "id": "ruffin-education-publication",
+    "date": "2026-10-28",
+    "title": "François Ruffin publie son cahier sur l’école",
+    "description": "Le cahier 8 présente ses propositions sur les effectifs par classe, les enseignants et l’organisation de la scolarité.",
+    "kind": "past",
+    "category": "programme",
+    "dateKind": "publication",
+    "candidates": ["ruffin"],
+    "sources": ["ruffin-education"]
+  },
+  {
+    "id": "enquete-ifop-2026-11-03-tous",
+    "date": "2026-11-03",
+    "title": "Publication de l’enquête Ifop",
+    "description": "Terrain du 27 octobre 2026 au 29 octobre 2026. 4 scénarios documentés ; résultats et méthode accessibles dans la rubrique sondages.",
+    "kind": "past",
+    "category": "sondage",
+    "dateKind": "publication",
+    "candidates": [
+      "arthaud",
+      "attal",
+      "dupont-aignan",
+      "glucksmann",
+      "lepen",
+      "lisnard",
+      "melenchon",
+      "philippe",
+      "retailleau",
+      "roussel",
+      "tondelier",
+      "zemmour"
+    ],
+    "sources": ["notice-ifop-2026-11-03"]
+  },
+  {
+    "id": "ecologistes-travail-publication",
+    "date": "2026-11-04",
+    "title": "Les Écologistes publient leur livret sur le travail",
+    "description": "Le projet de parti propose notamment un SMIC à 2 000 euros brut dès 2027, un congé climatique et de nouveaux droits des salariés.",
+    "kind": "past",
+    "category": "programme",
+    "dateKind": "publication",
+    "candidates": ["tondelier"],
+    "sources": ["eco-work"]
+  },
+  {
+    "id": "ecologistes-culture-presentation",
+    "date": "2026-11-09",
+    "title": "Les Écologistes présentent leur livret sur la culture",
+    "description": "Présentation à Bagnolet avec Marine Tondelier, David Cormand, Antoinette Guhl et Anne Souyris.",
+    "kind": "past",
+    "category": "programme",
+    "dateKind": "evenement",
+    "candidates": ["tondelier"],
+    "sources": ["eco-culture"]
+  },
+  {
+    "id": "enquete-harris-2026-11-09-philippe",
+    "date": "2026-11-09",
+    "title": "Publication de l’enquête Toluna Harris Interactive",
+    "description": "Terrain du 3 novembre 2026 au 5 novembre 2026. 5 scénarios documentés ; résultats et méthode accessibles dans la rubrique sondages.",
+    "kind": "past",
+    "category": "sondage",
+    "dateKind": "publication",
+    "candidates": [
+      "arthaud",
+      "attal",
+      "dupont-aignan",
+      "glucksmann",
+      "lepen",
+      "melenchon",
+      "philippe",
+      "retailleau",
+      "roussel",
+      "tondelier",
+      "zemmour"
+    ],
+    "sources": ["notice-harris-2026-11-09"]
   },
   {
     "id": "glucks-livret",
@@ -29,15 +288,120 @@
     "title": "Un premier livret écologique pour Glucksmann",
     "description": "Publication d’un plan pour les premiers jours du mandat.",
     "kind": "past",
-    "sources": ["glucks-climate"]
+    "sources": ["glucks-climate"],
+    "category": "programme",
+    "dateKind": "publication",
+    "candidates": ["glucksmann"]
+  },
+  {
+    "id": "enquete-cluster17-2026-11-11-philippe",
+    "date": "2026-11-11",
+    "title": "Publication de l’enquête Cluster17",
+    "description": "Terrain du 9 novembre 2026 au 10 novembre 2026. 4 scénarios documentés ; résultats et méthode accessibles dans la rubrique sondages.",
+    "kind": "past",
+    "category": "sondage",
+    "dateKind": "publication",
+    "candidates": [
+      "arthaud",
+      "asselineau",
+      "attal",
+      "dupont-aignan",
+      "glucksmann",
+      "lepen",
+      "lisnard",
+      "melenchon",
+      "philippe",
+      "polony",
+      "retailleau",
+      "riner",
+      "roussel",
+      "ruffin",
+      "tondelier",
+      "zemmour"
+    ],
+    "sources": ["notice-cluster17-2026-11-11"]
   },
   {
     "id": "philippe-programme",
     "date": "2026-11-12",
-    "title": "Actualisation des volets du programme Philippe",
-    "description": "Retraites, entreprises et finances publiques figurent parmi les thèmes documentés.",
+    "title": "Édouard Philippe actualise les volets famille et sécurité",
+    "description": "Les pages famille et sécurité du programme portent une mise à jour au 12 novembre 2026.",
     "kind": "past",
-    "sources": ["philippe-index"]
+    "sources": ["philippe-famille", "philippe-securite"],
+    "category": "programme",
+    "dateKind": "mise-a-jour",
+    "candidates": ["philippe"]
+  },
+  {
+    "id": "enquete-opinionway-2026-11-13-attal-philippe",
+    "date": "2026-11-13",
+    "title": "Publication de l’enquête OpinionWay",
+    "description": "Terrain du 9 novembre 2026 au 10 novembre 2026. 3 scénarios documentés ; résultats et méthode accessibles dans la rubrique sondages.",
+    "kind": "past",
+    "category": "sondage",
+    "dateKind": "publication",
+    "candidates": [
+      "arthaud",
+      "attal",
+      "dupont-aignan",
+      "glucksmann",
+      "lepen",
+      "lisnard",
+      "melenchon",
+      "philippe",
+      "retailleau",
+      "roussel",
+      "tondelier",
+      "zemmour"
+    ],
+    "sources": ["notice-opinionway-2026-11-13"]
+  },
+  {
+    "id": "enquete-elabe-2026-11-14-philippe",
+    "date": "2026-11-14",
+    "title": "Publication de l’enquête Elabe",
+    "description": "Terrain du 12 novembre 2026 au 13 novembre 2026. 6 scénarios documentés ; résultats et méthode accessibles dans la rubrique sondages.",
+    "kind": "past",
+    "category": "sondage",
+    "dateKind": "publication",
+    "candidates": [
+      "arthaud",
+      "attal",
+      "dupont-aignan",
+      "glucksmann",
+      "lepen",
+      "lisnard",
+      "melenchon",
+      "philippe",
+      "retailleau",
+      "roussel",
+      "ruffin",
+      "tondelier",
+      "zemmour"
+    ],
+    "sources": ["notice-elabe-2026-11-14"]
+  },
+  {
+    "id": "ruffin-jeunesse-publication",
+    "date": "2026-11-17",
+    "title": "François Ruffin publie son cahier sur la jeunesse",
+    "description": "Le cahier 11 présente ses propositions sur le logement, les études, l’insertion professionnelle et la protection des jeunes.",
+    "kind": "past",
+    "category": "programme",
+    "dateKind": "publication",
+    "candidates": ["ruffin"],
+    "sources": ["ruffin-jeunesse"]
+  },
+  {
+    "id": "ruffin-numerique-publication",
+    "date": "2026-11-17",
+    "title": "François Ruffin publie son cahier sur le numérique",
+    "description": "Le cahier 10 détaille ses propositions sur les logiciels libres, les infrastructures, les données et l’intelligence artificielle.",
+    "kind": "past",
+    "category": "programme",
+    "dateKind": "publication",
+    "candidates": ["ruffin"],
+    "sources": ["ruffin-numerique"]
   },
   {
     "id": "premier-tour",
@@ -45,7 +409,10 @@
     "title": "Premier tour annoncé",
     "description": "Date annoncée par le gouvernement le 1er juillet 2026 ; consulter la source et les éventuelles évolutions du calendrier.",
     "kind": "announced",
-    "sources": ["calendar"]
+    "sources": ["calendar"],
+    "category": "calendrier",
+    "dateKind": "evenement",
+    "candidates": []
   },
   {
     "id": "second-tour",
@@ -53,6 +420,9 @@
     "title": "Second tour annoncé",
     "description": "Date annoncée par le gouvernement le 1er juillet 2026.",
     "kind": "announced",
-    "sources": ["calendar"]
+    "sources": ["calendar"],
+    "category": "calendrier",
+    "dateKind": "evenement",
+    "candidates": []
   }
 ]

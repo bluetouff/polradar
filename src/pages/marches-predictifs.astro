@@ -1,0 +1,246 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import MarketRow from '../components/MarketRow.astro';
+import { predictionMarkets } from '../lib/market-data';
+import { rankedContracts } from '../lib/markets.mjs';
+import { formatTimestamp } from '../lib/data';
+---
+
+<Base
+  title="Marchés prédictifs"
+  section="/marches-predictifs/"
+  description="Contrats sur la prochaine présidentielle française : relevés Polymarket et Kalshi, prix achat/vente, volumes et règles."
+>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="markets" />
+    </span>
+    <div>
+      <h1>Marchés prédictifs</h1>
+      <p>
+        Prix des contrats sur le vainqueur de la prochaine présidentielle
+        française. Probabilités implicites de marché, distinctes des intentions
+        de vote.
+      </p>
+    </div>
+  </header>
+  <nav class="section-switch" aria-label="Sondages et marchés">
+    <a href="/sondages/">Intentions de vote</a>
+    <a href="/marches-predictifs/" aria-current="page">
+      Marchés prédictifs
+    </a>
+  </nav>
+  <form id="market-filters" class="facet-filters" hidden>
+    <label class="wide-field">
+      Chercher un contrat
+      <input
+        type="search"
+        id="market-search"
+        placeholder="Nom de la personnalité"
+        autocomplete="off"
+      />
+    </label>
+    <label>
+      Plateforme
+      <select id="market-provider">
+        <option value="">Les deux plateformes</option>
+        <option value="polymarket">Polymarket</option>
+        <option value="kalshi">Kalshi</option>
+      </select>
+    </label>
+  </form>
+  <p
+    id="market-status"
+    role="status"
+    aria-live="polite"
+    class="results-meta"
+  ></p>
+  <div class="market-boards">
+    {predictionMarkets.providers.map((provider) => {
+      const rows = rankedContracts(provider.contracts);
+      const available = rows.filter(
+        (row) => row.bid !== null && row.ask !== null,
+      ).length;
+      return (
+        <section
+          class={`market-board venue-${provider.id}`}
+          data-provider={provider.id}
+          data-observed-at={provider.observedAt}
+          aria-labelledby={`venue-${provider.id}`}
+        >
+          <header class="market-board-header">
+            <span class="venue-mark" aria-hidden="true">
+              <Icon
+                name={provider.id === 'polymarket' ? 'markets' : 'exchange'}
+              />
+            </span>
+            <div>
+              <h2 id={`venue-${provider.id}`}>
+                {provider.id === 'polymarket' ? 'Polymarket' : 'Kalshi'}
+              </h2>
+              <p>{provider.title}</p>
+            </div>
+            <span class="market-snapshot-label">Relevé</span>
+          </header>
+          <p class="market-observed">
+            Observé le{' '}
+            <time datetime={provider.observedAt}>
+              {formatTimestamp(provider.observedAt)} (Paris)
+            </time>
+          </p>
+          <p class="market-freshness small" hidden></p>
+          {provider.status === 'unavailable' ? (
+            <p class="notice">
+              Flux indisponible lors de ce relevé. Aucune cotation affichée.
+            </p>
+          ) : (
+            <>
+              <dl class="market-stats">
+                <div>
+                  <dt>Carnets complets</dt>
+                  <dd>
+                    {available}
+                    <span> / {rows.length} contrats actifs</span>
+                  </dd>
+                </div>
+                <div>
+                  <dt>
+                    {provider.id === 'polymarket'
+                      ? 'Volume total de l’événement'
+                      : 'Volume des contrats actifs'}
+                  </dt>
+                  <dd>
+                    {provider.volume === null
+                      ? 'Non fourni'
+                      : provider.volume.toLocaleString('fr-FR', {
+                          maximumFractionDigits: 0,
+                        })}
+                    <span>
+                      {provider.volumeUnit === 'dollars' ? ' $' : ' contrats'}
+                    </span>
+                  </dd>
+                </div>
+              </dl>
+              <div class="market-list-heading">
+                <span>Contrat</span>
+                <span>Milieu · achat / vente</span>
+              </div>
+              <ol class="market-list">
+                {rows.slice(0, 10).map((row, index) => (
+                  <MarketRow
+                    row={row}
+                    rank={index + 1}
+                    volumeUnit={provider.volumeUnit}
+                  />
+                ))}
+              </ol>
+              {rows.length > 10 && (
+                <details class="market-more">
+                  <summary>Les {rows.length - 10} autres contrats</summary>
+                  <ol class="market-list" start="11">
+                    {rows.slice(10).map((row, index) => (
+                      <MarketRow
+                        row={row}
+                        rank={index + 11}
+                        volumeUnit={provider.volumeUnit}
+                      />
+                    ))}
+                  </ol>
+                </details>
+              )}
+              <p class="market-empty notice" hidden>
+                Aucun contrat correspondant à ce nom.
+              </p>
+            </>
+          )}
+          {provider.status === 'available' && (
+            <details class="market-common-rules">
+              <summary>
+                Règlement commun
+                {provider.id === 'polymarket' ? ' (texte original)' : ''}
+              </summary>
+              <p
+                class="market-rules"
+                lang={provider.id === 'polymarket' ? 'en' : 'fr'}
+              >
+                {provider.rules}
+              </p>
+            </details>
+          )}
+          <footer class="market-board-footer">
+            <a href={provider.url} target="_blank" rel="noopener noreferrer">
+              {provider.id === 'polymarket'
+                ? 'Marché et règles'
+                : 'Flux officiel et règles'}{' '}
+              ↗
+            </a>
+            <a href={provider.apiUrl} target="_blank" rel="noopener noreferrer">
+              API source ↗
+            </a>
+          </footer>
+        </section>
+      );
+    })}
+  </div>
+  <section class="poll-method section-space">
+    <div class="register-heading">
+      <h2>Lecture des prix</h2>
+      <Icon name="source" />
+    </div>
+    <p>
+      Le point indique le milieu entre le meilleur prix acheteur et le meilleur
+      prix vendeur du contrat « Oui ». L’échelle va de 0 à 100 % du
+      remboursement nominal de 1 $. Le segment représente l’écart achat / vente.
+      Un carnet incomplet reste indisponible. Les valeurs sont celles du relevé
+      horodaté, sans actualisation en direct dans votre navigateur.
+    </p>
+    <p>
+      Le prix d’un contrat ne mesure pas la part des électeurs soutenant une
+      candidature. Les volumes, la liquidité et les règles diffèrent selon la
+      plateforme ; les prix ne sont ni moyennés ni ramenés à un total de 100 %.
+      La présence d’un nom sur un marché n’établit pas sa candidature.
+    </p>
+    <details>
+      <summary>Règlement des contrats</summary>
+      <p>
+        Polymarket inclut un éventuel second tour et prévoit une résolution «
+        Other » si le résultat reste inconnu au 31 décembre 2027 à 23 h 59,
+        heure de l’Est des États-Unis. Sa règle renvoie au consensus de sources
+        crédibles, puis aux résultats du ministère de l’Intérieur en cas
+        d’ambiguïté. Kalshi règle chaque contrat sur la victoire de la
+        personnalité nommée. Les libellés originaux figurent dans chaque ligne.
+      </p>
+      <p>
+        Les volumes Polymarket sont exprimés en dollars par le fournisseur. Ceux
+        de Kalshi comptent des contrats et ne sont pas des montants investis. La
+        date de modification d’une fiche ne correspond pas nécessairement à sa
+        dernière transaction.
+      </p>
+    </details>
+    <p class="small">
+      <a href="/api/marches-predictifs.json" download>
+        Relevé JSON ↓
+      </a>{' '}
+      ·{' '}
+      <a
+        href="https://docs.polymarket.com/concepts/prices-orderbook"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Prix et carnets Polymarket ↗
+      </a>{' '}
+      ·{' '}
+      <a
+        href="https://docs.kalshi.com/getting_started/quick_start_market_data"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Données publiques Kalshi ↗
+      </a>
+    </p>
+  </section>
+</Base>
+<script>
+  import '../scripts/markets';
+</script>

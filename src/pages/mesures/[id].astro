@@ -1,0 +1,193 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import FollowButton from '../../components/FollowButton.astro';
+import {
+  measures,
+  measureVersions,
+  candidateById,
+  themeById,
+  sourceById,
+  formatDate,
+  scopes,
+} from '../../lib/data';
+export function getStaticPaths() {
+  return measures.map((measure) => ({
+    params: { id: measure.id },
+    props: { measure },
+  }));
+}
+const { measure } = Astro.props;
+const candidate = candidateById(measure.candidate),
+  theme = themeById(measure.theme),
+  versions = measureVersions(measure.id);
+---
+
+<Base title={`${measure.title} : ${candidate.name}`} section="/mesures/">
+  <div class="breadcrumbs">
+    <a href="/mesures/">Mesures</a>
+    <span>/</span>
+    <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+    <span>/</span>
+    <a href={`/themes/${theme.id}/`}>{theme.label}</a>
+  </div>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name={theme.id} />
+    </span>
+    <div>
+      <p class="measure-meta">
+        {candidate.name}{' '}
+        <span class:list={['tag', { archive: measure.scope === 'archive' }]}>
+          {scopes[measure.scope]}
+        </span>
+      </p>
+      <h1>{measure.title}</h1>
+      <p>
+        {measure.edition} · source consultée le {formatDate(measure.checked)}
+      </p>
+    </div>
+  </header>
+  <div class="measure-detail-layout">
+    <article>
+      <p class="measure-lead">{measure.description}</p>
+      {(measure.metrics.length > 0 || measure.amounts.length > 0) && (
+        <div class="measure-number-grid">
+          {measure.metrics.map((metric) => (
+            <div class:list={{ 'large-quantity': metric.value >= 100000 }}>
+              <Icon name="sondages" />
+              <span>{metric.label}</span>
+              <strong>
+                {metric.value.toLocaleString('fr-FR')}{' '}
+                <small>{metric.unit}</small>
+              </strong>
+            </div>
+          ))}
+          {measure.amounts.map((amount) => (
+            <div class:list={{ 'large-quantity': amount.value >= 100000 }}>
+              <Icon name="euro" />
+              <span>{amount.label}</span>
+              <strong>
+                {amount.value.toLocaleString('fr-FR')}{' '}
+                <small>
+                  {amount.unit} / {amount.period}
+                </small>
+              </strong>
+              <p>{amount.basis === 'non-applicable' ? '' : amount.basis}</p>
+            </div>
+          ))}
+        </div>
+      )}
+      <dl class="measure-fields">
+        <div>
+          <dt>
+            <Icon name="people" />
+            Bénéficiaires
+          </dt>
+          <dd>{measure.beneficiaries || 'Non renseignés dans cette fiche.'}</dd>
+        </div>
+        <div>
+          <dt>
+            <Icon name="clock" />
+            Calendrier annoncé
+          </dt>
+          <dd>{measure.timing || 'Non renseigné dans cette fiche.'}</dd>
+        </div>
+        <div>
+          <dt>
+            <Icon name="euro" />
+            Financement annoncé
+          </dt>
+          <dd>{measure.financing || 'Non renseigné dans cette fiche.'}</dd>
+        </div>
+      </dl>
+      {measure.scope === 'archive' && (
+        <p class="archive-warning">Archive du programme de 2022.</p>
+      )}
+      <section class="section-space">
+        <div class="register-heading">
+          <h2>Références</h2>
+          <Icon name="source" />
+        </div>
+        <ul class="precise-sources">
+          {measure.sourceRefs.map((ref) => {
+            const source = sourceById(ref.sourceId);
+            return (
+              <li>
+                <a href={source.url} target="_blank" rel="noopener noreferrer">
+                  {source.title}
+                  <Icon name="external" />
+                </a>
+                <p>{ref.locator}</p>
+                {source.published && (
+                  <span>Publication : {formatDate(source.published)}</span>
+                )}
+                {source.updated && (
+                  <span>
+                    Mise à jour du document : {formatDate(source.updated)}
+                  </span>
+                )}
+                <span>Consultation : {formatDate(source.checked)}</span>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+      <section class="section-space">
+        <div class="register-heading">
+          <h2>Versions de la fiche</h2>
+          <a href={`/historique/?mesure=${measure.id}`} class="inline-action">
+            Comparer les versions ↗
+          </a>
+        </div>
+        <ol class="version-timeline">
+          {versions.map((version) => (
+            <li id={`version-${version.number}`}>
+              <span class="version-node" aria-hidden="true"></span>
+              <div>
+                <time datetime={version.observedOn}>
+                  {formatDate(version.observedOn)}
+                </time>
+                <h3>
+                  Version {version.number} ·{' '}
+                  {version.kind === 'import'
+                    ? 'Reprise du corpus'
+                    : version.kind === 'enrichissement'
+                      ? 'Précisions éditoriales'
+                      : version.kind === 'correction'
+                        ? 'Correction'
+                        : 'Évolution du programme'}
+                </h3>
+                <p>{version.summary}</p>
+              </div>
+              <a
+                href={`/historique/?mesure=${measure.id}&apres=${version.number}`}
+                aria-label={`Voir la version ${version.number}`}
+              >
+                <Icon name="arrow" />
+              </a>
+            </li>
+          ))}
+        </ol>
+      </section>
+    </article>
+    <aside class="measure-side">
+      <FollowButton kind="candidate" id={candidate.id} name={candidate.name} />
+      <FollowButton kind="theme" id={theme.id} name={theme.label} />
+      <a
+        href={`/comparer/?theme=${theme.id}&c=${candidate.id},${candidate.id === 'melenchon' ? 'philippe' : 'melenchon'}`}
+      >
+        <Icon name="layers" />
+        Comparer sur ce thème
+      </a>
+      <a href={`/engagements/${measure.parentId}/`}>
+        <Icon name="source" />
+        Fiche thématique d’origine
+      </a>
+      <a href={`/rss/candidats/${candidate.id}.xml`}>
+        <Icon name="rss" />
+        Flux du candidat
+      </a>
+    </aside>
+  </div>
+</Base>
