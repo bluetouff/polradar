@@ -10,19 +10,23 @@ concurrency:
   cancel-in-progress: false
 jobs:
   watch:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.runner }}
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           persist-credentials: false
       - name: Relever les sources autorisées
-        run: python3 scripts/watch-sources.py
+        run: python3 scripts/watch-sources.py --source pcf-status --source pcf-work --source pcf-2026 --source retailleau-index --source ruffin-project
       - name: Résumé de la veille
         run: cat artifacts/watch-report.md >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: source-watch-review
+          name: source-watch-${{ matrix.runner }}
           path: artifacts/watch-report.*
           if-no-files-found: error
           retention-days: 14
