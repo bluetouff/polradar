@@ -72,6 +72,8 @@ Le rapport est écrit dans `artifacts/watch-report.json` et `artifacts/watch-rep
 
 Les trois références PCF utilisent deux PDF hébergés par le compte officiel du parti et sa vidéo officielle. La republication Haute-Savoie en HTTP 429 est remplacée. `previousUrl` conserve les anciennes adresses ; `watchContentClass` limite l’empreinte au texte de l’article pour exclure les autres billets et les éléments de page. Le tract de Selma Labib, de 6,9 Mo, reste consultable mais hors téléchargement automatique limité à 3 Mio.
 
+Pour les premières mesures d’Anasse Kazib, la veille compare le corps de l’article officiel (`parrafos`). Les articles associés et leur ordre sont exclus. L’ordre et le texte des paragraphes du programme restent comparés : une modification, un ajout ou un retrait produit un signalement. Si le conteneur attendu disparaît ou devient incomplet, la source est signalée comme non exploitable. La veille planifiée reste quotidienne ; aucun relevé complet n’est déclenché à chaque push.
+
 Pour intégrer un relevé : relire les liens et états du rapport, vérifier les changements dans les documents originaux, puis copier le JSON validé vers `src/data/watch.json`. Une indisponibilité reste affichée comme telle. Pour mettre à jour une mesure, conserver toutes les entrées de `versions.json`, ajouter la nouvelle version complète puis synchroniser `measures.json` et son numéro `revision`. La CI compare les anciennes versions avec la base Git et refuse leur réécriture. `node scripts/check-history.mjs` fait ce contrôle localement contre `HEAD`.
 
 ## Mettre à jour le site

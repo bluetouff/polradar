@@ -66,6 +66,64 @@ class WatchTests(unittest.TestCase):
             with self.subTest(scope=scope),self.assertRaises(ValueError):
                 watch.fingerprint('text/html',html,scope)
 
+    def programme_source(self):
+        sources=json.loads((Path(__file__).resolve().parents[2]/'src/data/sources.json').read_text())
+        source=next(row for row in sources if row['id']=='kazib-premieres-mesures-2027')
+        self.assertTrue(source['watch'])
+        self.assertEqual(source['watchContentClass'],'parrafos')
+        return source
+
+    programme_paragraphs=(
+        'Proposition de test A : valeur de référence 100. Ce paragraphe décrit les conditions et le calendrier de cette mesure fictive utilisée pour vérifier la veille.',
+        'Proposition de test B : le texte de cette mesure fictive reste dans le document surveillé. Ses modalités doivent continuer à déclencher un signalement si elles changent.',
+        'Proposition de test C : les paragraphes du programme sont comparés dans leur ordre initial, indépendamment des autres actualités affichées autour du document.',
+    )
+
+    def programme_page(self,paragraphs=None,associated=('Article associé A','Article associé B')):
+        if paragraphs is None:
+            paragraphs=self.programme_paragraphs
+        body=''.join(f'<div><p>{paragraph}</p></div>' for paragraph in paragraphs)
+        related=''.join(f'<div class="container-block-article"><a>{title}</a></div>' for title in associated)
+        return f'<div class="article"><div class="container-title-article container"><h2>Document de test</h2></div><article class="container-article"><div class="parrafos">{body}</div></article><div class="container-other">{related}</div></div>'.encode()
+
+    def test_programme_watch_ignores_related_article_changes_and_order(self):
+        source=self.programme_source()
+        baseline={'fingerprint':watch.fingerprint('text/html',self.programme_page(),'parrafos'),'reviewedAt':'2026-11-17T12:00:00Z','reviewNote':'Corps du document relu'}
+        for related in [('Article associé B','Article associé A'),('Nouvel article associé','Article associé A'),()]:
+            with self.subTest(related=related),patch.object(watch,'fetch_reliably',return_value=(200,'text/html',self.programme_page(associated=related))):
+                row=watch.inspect(source,baseline,{'www.revolutionpermanente.fr'})
+            self.assertEqual(row['status'],'accessible')
+            self.assertEqual(row['fingerprint'],baseline['fingerprint'])
+            self.assertEqual(row['reviewedAt'],baseline['reviewedAt'])
+
+    def test_programme_changes_still_trigger_review_including_paragraph_order(self):
+        source=self.programme_source()
+        body=self.programme_page()
+        baseline={'fingerprint':watch.fingerprint('text/html',body,'parrafos'),'reviewedAt':'2026-11-17T12:00:00Z','reviewNote':'Corps du document relu'}
+        variants=[
+            body.replace(b'100',b'101'),
+            self.programme_page([*self.programme_paragraphs,'Nouvelle mesure de test.']),
+            self.programme_page(self.programme_paragraphs[:-1]),
+            self.programme_page(reversed(self.programme_paragraphs)),
+        ]
+        for html in variants:
+            with self.subTest(html=html[:80]),patch.object(watch,'fetch_reliably',return_value=(200,'text/html',html)):
+                row=watch.inspect(source,baseline,{'www.revolutionpermanente.fr'})
+            self.assertEqual(row['status'],'modifie')
+            self.assertEqual(row['previousFingerprint'],baseline['fingerprint'])
+            self.assertNotIn('reviewedAt',row)
+
+    def test_programme_container_failure_never_falls_back_to_related_articles(self):
+        source=self.programme_source()
+        baseline={'fingerprint':watch.fingerprint('text/html',self.programme_page(),'parrafos')}
+        related='Actualité associée sans contenu de programme. '*20
+        for html in [f'<div class="container-other">{related}</div>',f'<div class="parrafos">{related}',f'<div class="parrafos"></div><div>{related}</div>']:
+            with self.subTest(html=html[:80]),patch.object(watch,'fetch_reliably',return_value=(200,'text/html',html.encode())):
+                row=watch.inspect(source,baseline,{'www.revolutionpermanente.fr'})
+            self.assertEqual(row['status'],'bloque')
+            self.assertIsNone(row['fingerprint'])
+            self.assertEqual(row['previousFingerprint'],baseline['fingerprint'])
+
     def test_failure_is_exposed_without_exception_details_or_fake_hash(self):
         source={'id':'source-test','url':'https://example.org/'}
         with patch.object(watch,'fetch',side_effect=OSError('private detail secret')):
