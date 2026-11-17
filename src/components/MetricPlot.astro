@@ -1,0 +1,51 @@
+---
+import { metricGroups } from '../lib/features.mjs';
+import { candidates, type Measure } from '../lib/data';
+import Icon from './Icon.astro';
+interface Props {
+  measures: Measure[];
+}
+const groups = metricGroups(Astro.props.measures, candidates);
+---
+
+<div class="metric-plots">
+  {groups.map((group) => {
+    const max =
+      Math.ceil(Math.max(...group.values.map((row) => row.value)) / 10) * 10 ||
+      1;
+    return (
+      <section class="metric-panel">
+        <header>
+          <Icon name="sondages" />
+          <h3>{group.label}</h3>
+          <span>{group.unit}</span>
+        </header>
+        <div class="metric-scale">
+          <span>0</span>
+          <span>
+            {max} {group.unit}
+          </span>
+        </div>
+        {group.values.map((row, index) => (
+          <a class="metric-row" href={`/mesures/${row.measureId}/`}>
+            <span>{row.name}</span>
+            <svg viewBox="0 0 320 28" aria-hidden="true">
+              <path class="metric-track" d="M5 14H315" />
+              <path
+                class={`metric-line series-${index % 8}`}
+                d={`M5 14H${5 + (row.value / max) * 310}`}
+              />
+              <circle
+                class={`metric-dot series-${index % 8}`}
+                cx={5 + (row.value / max) * 310}
+                cy="14"
+                r="4"
+              />
+            </svg>
+            <strong>{row.value.toLocaleString('fr-FR')}</strong>
+          </a>
+        ))}
+      </section>
+    );
+  })}
+</div>

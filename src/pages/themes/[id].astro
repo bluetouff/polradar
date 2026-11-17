@@ -1,7 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
-import EngagementCard from '../../components/EngagementCard.astro';
-import { themes, engagements } from '../../lib/data';
+import MeasureCard from '../../components/MeasureCard.astro';
+import MetricPlot from '../../components/MetricPlot.astro';
+import FollowButton from '../../components/FollowButton.astro';
+import Icon from '../../components/Icon.astro';
+import { themes, measures } from '../../lib/data';
 export function getStaticPaths() {
   return themes.map((theme) => ({
     params: { id: theme.id },
@@ -9,7 +12,7 @@ export function getStaticPaths() {
   }));
 }
 const { theme } = Astro.props;
-const records = engagements.filter(
+const records = measures.filter(
   (e) => e.theme === theme.id && e.scope !== 'archive',
 );
 ---
@@ -20,17 +23,25 @@ const records = engagements.filter(
     <span>/</span>
     <span>{theme.label}</span>
   </div>
-  <header class="page-title">
-    <p class="eyebrow">{theme.short}</p>
-    <h1>{theme.label}</h1>
-    <p>{theme.note}</p>
-    <a class="button primary" href={`/comparer/?theme=${theme.id}`}>
-      Comparer les candidatures sur ce sujet ↗
-    </a>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name={theme.id} />
+    </span>
+    <div>
+      <h1>{theme.label}</h1>
+      <p>{theme.note}</p>
+      <div class="feature-actions">
+        <a class="button primary" href={`/comparer/?theme=${theme.id}`}>
+          Comparer les candidatures sur ce sujet ↗
+        </a>
+        <FollowButton kind="theme" id={theme.id} name={theme.label} />
+      </div>
+    </div>
   </header>
-  <div class="engagement-grid three">
+  <MetricPlot measures={records} />
+  <div class="measure-list">
     {records.map((item) => (
-      <EngagementCard item={item} />
+      <MeasureCard measure={item} />
     ))}
   </div>
   <aside class="notice section-space">

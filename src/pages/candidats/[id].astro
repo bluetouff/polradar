@@ -1,8 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
-import EngagementCard from '../../components/EngagementCard.astro';
+import MeasureCard from '../../components/MeasureCard.astro';
+import FollowButton from '../../components/FollowButton.astro';
 import SourceLinks from '../../components/SourceLinks.astro';
-import { candidates, byCandidate, initials, themes } from '../../lib/data';
+import { candidates, measures, initials, themes } from '../../lib/data';
 export function getStaticPaths() {
   return candidates.map((candidate) => ({
     params: { id: candidate.id },
@@ -10,9 +11,12 @@ export function getStaticPaths() {
   }));
 }
 const { candidate } = Astro.props;
-const records = byCandidate(candidate.id);
+const records = measures.filter(
+  (measure) => measure.candidate === candidate.id,
+);
 const current = records.filter((record) => record.scope !== 'archive');
 const archives = records.filter((record) => record.scope === 'archive');
+const covered = new Set(current.map((measure) => measure.theme)).size;
 ---
 
 <Base
@@ -34,19 +38,26 @@ const archives = records.filter((record) => record.scope === 'archive');
       <h1>{candidate.name}</h1>
       <span class="tag">{candidate.status}</span>
       <p>{candidate.note}</p>
-      <a
-        class="button primary"
-        href={`/comparer/?c=${candidate.id},${candidate.id === 'melenchon' ? 'philippe' : 'melenchon'}&theme=retraites`}
-      >
-        Comparer ses propositions ↗
-      </a>
+      <div class="feature-actions">
+        <a
+          class="button primary"
+          href={`/comparer/?c=${candidate.id},${candidate.id === 'melenchon' ? 'philippe' : 'melenchon'}&theme=retraites`}
+        >
+          Comparer ses propositions ↗
+        </a>
+        <FollowButton
+          kind="candidate"
+          id={candidate.id}
+          name={candidate.name}
+        />
+      </div>
     </div>
   </header>
   <div class="profile-layout">
     <aside class="profile-aside">
       <p class="eyebrow">ÉTAT DU DOSSIER</p>
       <b>
-        {current.length}
+        {covered}
         <span> / {themes.length} thèmes</span>
       </b>
       <p>
@@ -63,13 +74,13 @@ const archives = records.filter((record) => record.scope === 'archive');
     <div>
       <div class="section-heading">
         <div>
-          <h2>Engagements et orientations</h2>
+          <h2>Mesures et orientations</h2>
         </div>
       </div>
       {current.length ? (
-        <div class="engagement-grid">
+        <div class="measure-list">
           {current.map((item) => (
-            <EngagementCard item={item} />
+            <MeasureCard measure={item} />
           ))}
         </div>
       ) : (
@@ -83,7 +94,7 @@ const archives = records.filter((record) => record.scope === 'archive');
       )}
       <details class="missing-themes">
         <summary>
-          Les thèmes restant à documenter ({themes.length - current.length})
+          Les thèmes restant à documenter ({themes.length - covered})
         </summary>
         <ul>
           {themes
@@ -104,9 +115,9 @@ const archives = records.filter((record) => record.scope === 'archive');
             La confirmation d’une candidature ne reconduit pas automatiquement
             son ancien programme.
           </p>
-          <div class="engagement-grid">
+          <div class="measure-list">
             {archives.map((item) => (
-              <EngagementCard item={item} />
+              <MeasureCard measure={item} />
             ))}
           </div>
         </section>

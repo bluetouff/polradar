@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises';
-import { validateDataset } from '../src/lib/schema.mjs';
+import { validateDataset, validateFeatures } from '../src/lib/schema.mjs';
 
 const names = [
   'candidates',
@@ -10,6 +10,9 @@ const names = [
   'polls',
   'budget',
   'meta',
+  'measures',
+  'versions',
+  'watch',
 ];
 const entries = await Promise.all(
   names.map(async (name) => [
@@ -22,7 +25,8 @@ const entries = await Promise.all(
     ),
   ]),
 );
-const errors = validateDataset(Object.fromEntries(entries));
+const dataset = Object.fromEntries(entries);
+const errors = [...validateDataset(dataset), ...validateFeatures(dataset)];
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);

@@ -1,13 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
-import SourceLinks from '../components/SourceLinks.astro';
-import {
-  candidates,
-  themes,
-  engagements,
-  scopes,
-  candidateById,
-} from '../lib/data';
+import MeasureCard from '../components/MeasureCard.astro';
+import MetricPlot from '../components/MetricPlot.astro';
+import { candidates, themes, measures, candidateById } from '../lib/data';
 const defaults = ['melenchon', 'philippe', 'retailleau'];
 ---
 
@@ -80,36 +75,36 @@ const defaults = ['melenchon', 'philippe', 'retailleau'];
     role="status"
     aria-live="polite"
   ></p>
+  <div id="comparison-metrics">
+    <MetricPlot
+      measures={measures.filter(
+        (measure) =>
+          defaults.includes(measure.candidate) && measure.theme === 'retraites',
+      )}
+    />
+  </div>
   <div id="comparison-cards" class="comparison-grid" data-count="3">
     {defaults.map((id) => {
-      const c = candidateById(id);
-      const e = engagements.find(
-        (e) => e.candidate === id && e.theme === 'retraites',
-      )!;
+      const candidate = candidateById(id);
+      const items = measures.filter(
+        (measure) =>
+          measure.candidate === id &&
+          measure.theme === 'retraites' &&
+          measure.scope !== 'archive',
+      );
       return (
         <article class="comparison-card">
           <header>
-            <p>{c.party}</p>
-            <h3>{c.name}</h3>
+            <p>{candidate.party}</p>
+            <h3>{candidate.name}</h3>
           </header>
           <div class="comparison-body">
-            <span class="tag">{scopes[e.scope]}</span>
-            <h4>{e.title}</h4>
-            <ul>
-              {e.bullets.map((b) => (
-                <li>{b}</li>
-              ))}
-            </ul>
-            {e.note && (
-              <details>
-                <summary>Contexte & précisions</summary>
-                <p>{e.note}</p>
-              </details>
-            )}
+            {items.map((measure) => (
+              <MeasureCard measure={measure} compact level="h4" />
+            ))}
           </div>
           <footer>
-            <a href={`/engagements/${e.id}/`}>Lire la fiche complète ↗</a>
-            <SourceLinks ids={e.sources} compact />
+            <a href={`/candidats/${candidate.id}/`}>Dossier du candidat ↗</a>
           </footer>
         </article>
       );

@@ -24,15 +24,29 @@ npm run security:audit
 
 ## Contenus
 
-- `src/data/` : candidatures, thèmes, engagements, sources, chronologie et chiffres publics.
+- `src/data/` : candidatures, thèmes, fiches thématiques initiales, mesures, versions intégrales, sondages, relevés de veille et chiffres publics.
 - `src/content/articles/` : décryptages Markdown avec métadonnées validées.
 - `src/pages/` : pages et routes statiques.
 - `src/lib/schema.mjs` : validation des types, références et invariants.
 - `deploy/` : récupération et activation des versions publiques sur le serveur.
 
-Le corpus initial comprend 12 candidatures sélectionnées, 12 thèmes et 69 fiches, archives 2022 comprises. Il ne représente pas une liste officielle exhaustive. Chaque référence conserve sa propre date de consultation. Une absence de fiche signifie que le sujet reste à documenter dans ce corpus.
+Le corpus comprend 12 candidatures sélectionnées, 12 thèmes et 99 fiches de mesures ou orientations, dont 9 archives de 2022. Les 69 fiches thématiques initiales conservent leurs adresses. Les 107 versions sont des états du contenu Polradar : les enrichissements éditoriaux sont distingués des évolutions de programme. Il ne s’agit pas d’une liste officielle exhaustive. Chaque référence conserve sa propre date de consultation.
 
-Les données d’opinion ne sont publiées qu’avec leurs notices, leurs scénarios et leurs dates de terrain. Le registre est initialement vide. Les fonctionnalités de temps de parole, de financement et de résultats territoriaux demandent encore leur intégration documentaire.
+Le registre de sondages contient trois vagues Elabe (août, octobre et novembre 2026), chacune avec trois scénarios, vérifiées dans les notices de la Commission des sondages. Chaque courbe conserve le même institut, tour, méthode et liste de candidatures. Les effectifs utiles inconnus restent nuls (`null`), sans fabrication. Le premier périmètre ne couvre qu’un institut. Le temps de parole, le financement et les résultats territoriaux restent à intégrer.
+
+La recherche à facettes et les exports CSV/JSON fonctionnent localement. Les paramètres de recherche sont dans le fragment de l’URL ; les termes ne partent pas dans les journaux HTTP. Le suivi facultatif utilise `localStorage`, sans compte ou synchronisation. Les flux `/rss/candidats/<id>.xml` et `/rss/themes/<id>.xml` restent utilisables indépendamment. Les dates connues seulement au jour ne reçoivent pas d’heure fictive dans le RSS.
+
+## Veille et historique
+
+Le workflow `watch.yml` est programmé chaque jour à 05:23 UTC (exécution pouvant être retardée par GitHub). Il produit un rapport à relire, conservé 14 jours, sans accès en écriture au dépôt. Il ne modifie pas les programmes. Le site affiche le dernier relevé intégré, avec sa date effective ; le lien vers Actions donne accès aux exécutions suivantes.
+
+```sh
+python3 scripts/watch-sources.py
+```
+
+Le rapport est écrit dans `artifacts/watch-report.json` et `artifacts/watch-report.md`. Le script limite les destinations aux hôtes des sources déclarées, contrôle les IP publiques à chaque redirection, conserve HTTPS et la validation des certificats, borne les téléchargements et n’exécute aucun contenu distant.
+
+Pour intégrer un relevé : relire les liens et états du rapport, vérifier les changements dans les documents originaux, puis copier le JSON validé vers `src/data/watch.json`. Une indisponibilité reste affichée comme telle. Pour mettre à jour une mesure, conserver toutes les entrées de `versions.json`, ajouter la nouvelle version complète puis synchroniser `measures.json` et son numéro `revision`. La CI compare les anciennes versions avec la base Git et refuse leur réécriture. `node scripts/check-history.mjs` fait ce contrôle localement contre `HEAD`.
 
 ## Mettre à jour le site
 

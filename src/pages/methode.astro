@@ -61,10 +61,45 @@ import Base from '../layouts/Base.astro';
       <p class="eyebrow">06 · HISTORIQUE</p>
       <h2>Historique des fiches</h2>
       <p>
-        Chaque fiche conserve sa première version intégrée. Les modifications
-        substantielles doivent ajouter une entrée d’historique. La disparition
-        d’un passage d’un document ne suffit pas à qualifier un retrait
-        politique.
+        Chaque mesure conserve ses versions complètes. L’historique distingue la
+        reprise du corpus initial, les précisions éditoriales, les corrections
+        et les évolutions de programme. Un ajout de métadonnées à une fiche est
+        identifié comme une précision éditoriale. Les contrôles Git refusent la
+        suppression ou la réécriture d’une version déjà intégrée.
+      </p>
+    </article>
+    <article class="panel">
+      <p class="eyebrow">07 · VEILLE</p>
+      <h2>Détection des changements</h2>
+      <p>
+        Un relevé quotidien compare le texte normalisé des pages de campagne et
+        de parti, ainsi que le catalogue des notices de sondages, à un relevé
+        validé dans Git. Le rapport signale aussi les accès indisponibles ou
+        bloqués. Les contenus signalés sont relus avant toute mise à jour des
+        fiches ; une différence technique ne suffit pas à qualifier un
+        changement politique.
+      </p>
+    </article>
+    <article class="panel">
+      <p class="eyebrow">08 · SONDAGES</p>
+      <h2>Scénarios et échantillons</h2>
+      <p>
+        Chaque enquête conserve son institut, son commanditaire, sa période de
+        terrain, son tour, les candidatures testées et la notice utilisée. Les
+        courbes relient uniquement les enquêtes partageant ce cadre et la même
+        méthode déclarée. Les résultats affichés ne sont ni moyennés ni
+        projetés. Les marges sont celles indiquées dans la notice ; un effectif
+        utile absent reste non renseigné.
+      </p>
+    </article>
+    <article class="panel">
+      <p class="eyebrow">09 · DATES</p>
+      <h2>Dates et flux RSS</h2>
+      <p>
+        Publication du document, consultation éditoriale, relevé technique et
+        enregistrement d’une version sont conservés séparément. Les heures
+        connues sont affichées à l’heure de Paris. Les sources datées au jour
+        restent datées au jour ; aucune heure n’est inventée pour les flux RSS.
       </p>
     </article>
   </div>

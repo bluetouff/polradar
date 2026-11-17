@@ -1,77 +1,245 @@
 ---
 import Base from '../layouts/Base.astro';
-import SourceLinks from '../components/SourceLinks.astro';
-import { polls } from '../lib/data';
-import { formatDate } from '../lib/data';
+import Icon from '../components/Icon.astro';
+import PollChart from '../components/PollChart.astro';
+import { polls, sourceById, formatDate, type Poll } from '../lib/data';
+import { pollSeries, pollColor } from '../lib/features.mjs';
+const groups = pollSeries(polls) as Poll[][];
+const initial = groups.find((rows) => rows[0].round === 'premier')!;
+const latest = initial.at(-1)!;
+const selected = [...latest.results]
+  .sort((a, b) => b.percentage - a.percentage)
+  .slice(0, 4)
+  .map((row) => row.id);
+const institutes = [...new Set(polls.map((poll) => poll.institute))];
+const notices = [...new Set(polls.map((poll) => poll.noticeSource))];
 ---
 
-<Base title="Sondages">
-  <header class="page-title">
-    <h1>Sondages</h1>
-    <p>Enquêtes, scénarios testés, dates de terrain et notices.</p>
-  </header>
-  {polls.length === 0 && (
-    <div class="empty-editorial">
-      <h2>Aucune enquête intégrée</h2>
+<Base title="Sondages" section="/sondages/">
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="sondages" />
+    </span>
+    <div>
+      <h1>Sondages</h1>
       <p>
-        Les enquêtes seront affichées après vérification de leurs notices,
-        résultats et scénarios.
+        {notices.length} vagues documentées · {groups.length} scénarios ·{' '}
+        {institutes.length} institut{institutes.length > 1 ? 's' : ''}. Les
+        points correspondent aux résultats publiés.
       </p>
+    </div>
+    <a class="button" href="/dossiers/sondages-les-scenarios-comptent/">
+      <Icon name="source" />
+      Méthode de lecture
+    </a>
+  </header>
+  <form id="poll-filters" class="facet-filters">
+    <label>
+      Tour
+      <select id="poll-round">
+        <option value="premier">Premier tour</option>
+        <option value="second">Second tour</option>
+      </select>
+    </label>
+    <label>
+      Institut
+      <select id="poll-institute">
+        <option value="">Tous les instituts</option>
+        {institutes.map((name) => (
+          <option value={name}>{name}</option>
+        ))}
+      </select>
+    </label>
+    <label class="wide-field">
+      Scénario
+      <select id="poll-scenario">
+        {groups
+          .filter((rows) => rows[0].round === 'premier')
+          .map((rows) => (
+            <option value={rows[0].id}>
+              {rows[0].institute} · {rows[0].scenario}
+            </option>
+          ))}
+      </select>
+    </label>
+  </form>
+  <section class="poll-workspace">
+    <div class="poll-trend">
+      <div class="register-heading">
+        <h2>Évolution dans le scénario sélectionné</h2>
+        <span id="poll-wave-total" class="small muted">
+          {initial.length} vagues
+        </span>
+      </div>
+      <div id="poll-plot">
+        <PollChart rows={initial} selected={selected} />
+      </div>
+      <div id="poll-legend" class="poll-legend">
+        {latest.results.map((result) => (
+          <label>
+            <input
+              type="checkbox"
+              value={result.id}
+              checked={selected.includes(result.id)}
+            />
+            <span class={`legend-color series-${pollColor(result.id)}`}></span>
+            <span>{result.name}</span>
+          </label>
+        ))}
+      </div>
+      <div class="poll-wave-picker">
+        <label for="poll-wave">
+          <Icon name="clock" />
+          Vague affichée :{' '}
+          <strong id="poll-selected-date">
+            {formatDate(latest.fieldworkEnd)}
+          </strong>
+        </label>
+        <input
+          id="poll-wave"
+          type="range"
+          min="0"
+          max={initial.length - 1}
+          value={initial.length - 1}
+          step="1"
+          aria-label="Choisir une vague de sondage"
+        />
+        <div>
+          <span id="poll-first-date">
+            {formatDate(initial[0].fieldworkEnd)}
+          </span>
+          <span id="poll-last-date">{formatDate(latest.fieldworkEnd)}</span>
+        </div>
+      </div>
+      <p class="chart-caption">
+        Les courbes relient les résultats d’un même institut, pour les mêmes
+        candidatures et le même tour. L’axe horizontal correspond à la fin du
+        terrain. Les marges publiées figurent dans la méthode ci-dessous.
+      </p>
+    </div>
+    <aside class="poll-breakdown">
+      <div class="register-heading">
+        <h2>Résultats de la vague</h2>
+        <button type="button" class="button small" id="poll-export">
+          <Icon name="download" />
+          CSV
+        </button>
+      </div>
+      <p id="poll-bar-date" class="results-meta">
+        {formatDate(latest.fieldworkEnd)}
+      </p>
+      <div id="poll-bars">
+        {[...latest.results]
+          .sort((a, b) => b.percentage - a.percentage)
+          .map((result) => (
+            <div class="poll-bar-row">
+              <span>{result.name}</span>
+              <strong>{result.percentage.toLocaleString('fr-FR')} %</strong>
+              <svg viewBox="0 0 300 8" aria-hidden="true">
+                <rect
+                  class="poll-bar-track"
+                  width="300"
+                  height="6"
+                  y="1"
+                  rx="3"
+                />
+                <rect
+                  class={`poll-bar-fill series-${pollColor(result.id)}`}
+                  width={(result.percentage / 100) * 300}
+                  height="6"
+                  y="1"
+                  rx="3"
+                />
+              </svg>
+            </div>
+          ))}
+      </div>
+      <p id="poll-no-intention" class="small muted">
+        Sans intention exprimée : {latest.noIntention?.toLocaleString('fr-FR')}{' '}
+        % (donnée distincte des pourcentages de candidats).
+      </p>
+    </aside>
+  </section>
+  <p id="poll-status" class="results-meta" role="status" aria-live="polite"></p>
+  <section id="poll-method" class="poll-method section-space">
+    <div class="register-heading">
+      <h2>Enquête et méthode</h2>
       <a
-        class="button primary"
-        href="/dossiers/sondages-les-scenarios-comptent/"
+        href={`${sourceById(latest.noticeSource).url}#page=${latest.noticePage}`}
+        target="_blank"
+        rel="noopener noreferrer"
       >
-        Comment lire un sondage ↗
+        Notice officielle, page {latest.noticePage} ↗
       </a>
     </div>
-  )}
-  {polls.length > 0 && (
-    <div class="two-col">
-      {polls.map((poll) => (
-        <article class="panel">
-          <p class="eyebrow">
-            {poll.institute} · {formatDate(poll.published)}
-          </p>
-          <h2>{poll.scenario}</h2>
-          <p>
-            Commanditaire : {poll.commissioner}. Terrain du{' '}
-            {formatDate(poll.fieldworkStart)} au {formatDate(poll.fieldworkEnd)}
-            .
-          </p>
-          <p>
-            Échantillon : {poll.sampleSize} personnes. Effectif utile :{' '}
-            {poll.usefulSample ?? 'non renseigné'}.
-          </p>
-          <ul class="reading-list">
-            {poll.results.map((result) => (
-              <li>
-                {result.name} : {result.percentage.toLocaleString('fr-FR')} %
-              </li>
-            ))}
-          </ul>
-          <p>{poll.uncertainty}</p>
-          <SourceLinks ids={[poll.noticeSource]} />
-        </article>
-      ))}
-    </div>
-  )}
-  <section class="section-space two-col">
-    <article class="panel">
-      <h2>Informations par enquête</h2>
-      <ul class="reading-list">
-        <li>Institut, commanditaire et dates de terrain.</li>
-        <li>Candidatures testées et formulation du scénario.</li>
-        <li>
-          Échantillon global, effectif utile disponible et non-réponses
-          documentées.
-        </li>
-        <li>Incertitudes publiées et lien vers la notice.</li>
-      </ul>
-    </article>
-    <article class="panel">
-      <h2>Notices des enquêtes</h2>
-      <p>La Commission des sondages publie les notices des enquêtes.</p>
-      <SourceLinks ids={['sondages']} />
-    </article>
+    <dl class="poll-method-grid">
+      <div>
+        <dt>Institut / commanditaire</dt>
+        <dd>
+          {latest.institute} / {latest.commissioner}
+        </dd>
+      </div>
+      <div>
+        <dt>Terrain</dt>
+        <dd>
+          Du {formatDate(latest.fieldworkStart)} au{' '}
+          {formatDate(latest.fieldworkEnd)}
+        </dd>
+      </div>
+      <div>
+        <dt>Première publication</dt>
+        <dd>{formatDate(latest.published)}</dd>
+      </div>
+      <div>
+        <dt>Échantillon global</dt>
+        <dd>
+          {latest.sampleSize.toLocaleString('fr-FR')} personnes, dont{' '}
+          {latest.registeredSample.toLocaleString('fr-FR')} inscrits
+        </dd>
+      </div>
+      <div>
+        <dt>Effectif utile exprimé</dt>
+        <dd>
+          {latest.usefulSample?.toLocaleString('fr-FR') ||
+            'Non précisé pour cette question'}
+        </dd>
+      </div>
+      <div>
+        <dt>Collecte et population</dt>
+        <dd>
+          {latest.method} {latest.population}
+        </dd>
+      </div>
+    </dl>
+    <p>
+      {latest.uncertainty} Niveau de confiance indiqué :{' '}
+      {latest.margin.confidence} %.
+    </p>
   </section>
+  <details class="poll-notices section-space">
+    <summary>Notices et scénarios intégrés</summary>
+    <ul>
+      {polls.map((poll) => (
+        <li id={`enquete-${poll.id}`}>
+          <span>
+            {poll.institute} · {formatDate(poll.published)} · {poll.scenario}
+          </span>
+          <a
+            href={`${sourceById(poll.noticeSource).url}#page=${poll.noticePage}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Notice, page {poll.noticePage} ↗
+          </a>
+        </li>
+      ))}
+    </ul>
+  </details>
+  <noscript>
+    <p class="notice">
+      Le graphique initial, les résultats et les notices restent lisibles. Les
+      filtres nécessitent JavaScript.
+    </p>
+  </noscript>
+  <script src="../scripts/polls.ts"></script>
 </Base>

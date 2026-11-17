@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import FollowButton from '../components/FollowButton.astro';
+import { candidates, themes } from '../lib/data';
+---
+
+<Base title="Mon suivi" section="/suivi/" noindex>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="suivi" />
+    </span>
+    <div>
+      <h1>Mon suivi</h1>
+      <p>
+        Choisissez les candidats et les thèmes à retrouver sur cette page. Votre
+        sélection reste dans ce navigateur.
+      </p>
+    </div>
+  </header>
+  <div id="follow-app">
+    <div class="follow-layout">
+      <section>
+        <div class="register-heading">
+          <h2>Candidats</h2>
+          <Icon name="people" />
+        </div>
+        <div class="follow-candidates">
+          {candidates.map((candidate) => (
+            <div>
+              <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+              <FollowButton
+                kind="candidate"
+                id={candidate.id}
+                name={candidate.name}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+      <section>
+        <div class="register-heading">
+          <h2>Thèmes</h2>
+          <Icon name="layers" />
+        </div>
+        <div class="follow-themes">
+          {themes.map((theme) => (
+            <div>
+              <Icon name={theme.id} />
+              <span>{theme.label}</span>
+              <FollowButton kind="theme" id={theme.id} name={theme.label} />
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+    <p id="follow-status" role="status" class="results-meta"></p>
+    <section class="section-space">
+      <div class="register-heading">
+        <h2>Fiches suivies</h2>
+        <button id="follow-clear" type="button" class="button small">
+          Effacer mon suivi
+        </button>
+      </div>
+      <div id="follow-results" class="measure-list">
+        <p class="notice">
+          Sélectionnez un candidat ou un thème pour afficher les fiches
+          correspondantes.
+        </p>
+      </div>
+    </section>
+    <section class="section-space">
+      <div class="register-heading">
+        <h2>Flux RSS sélectionnés</h2>
+        <Icon name="rss" />
+      </div>
+      <div id="follow-feeds" class="feed-list">
+        <p>Les flux apparaîtront selon votre sélection.</p>
+      </div>
+    </section>
+  </div>
+  <noscript>
+    <p class="notice">
+      Le suivi local nécessite JavaScript. Les flux ci-dessous restent
+      accessibles.
+    </p>
+  </noscript>
+  <details class="section-space">
+    <summary>Tous les flux disponibles</summary>
+    <div class="feed-list">
+      {candidates.map((candidate) => (
+        <a href={`/rss/candidats/${candidate.id}.xml`}>
+          <Icon name="rss" />
+          {candidate.name}
+        </a>
+      ))}
+      {themes.map((theme) => (
+        <a href={`/rss/themes/${theme.id}.xml`}>
+          <Icon name="rss" />
+          {theme.label}
+        </a>
+      ))}
+    </div>
+  </details>
+</Base>

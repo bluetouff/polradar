@@ -1,56 +1,157 @@
 ---
 import Base from '../layouts/Base.astro';
-import Filter from '../components/Filter.astro';
-import { getCollection } from 'astro:content';
-import { candidates, engagements, themes, candidateById } from '../lib/data';
-const articles = await getCollection('articles', ({ data }) => !data.draft);
-const entries = [
-  ...candidates.map((c) => ({
-    type: 'Candidature',
-    title: c.name,
-    description: c.party,
-    url: `/candidats/${c.id}/`,
-  })),
-  ...engagements.map((e) => ({
-    type: e.scope === 'archive' ? 'Archive 2022' : 'Engagement',
-    title: e.title,
-    description: `${candidateById(e.candidate).name} · ${e.bullets.join(' ')}`,
-    url: `/engagements/${e.id}/`,
-  })),
-  ...themes.map((t) => ({
-    type: 'Enjeu',
-    title: t.label,
-    description: t.short,
-    url: `/themes/${t.id}/`,
-  })),
-  ...articles.map((a) => ({
-    type: 'Décryptage',
-    title: a.data.title,
-    description: a.data.description,
-    url: `/dossiers/${a.id}/`,
-  })),
-];
+import Icon from '../components/Icon.astro';
+import { candidates, themes } from '../lib/data';
+import { searchEntries, searchKinds } from '../lib/search';
+const entries = await searchEntries();
+const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
+  .sort()
+  .reverse();
 ---
 
 <Base title="Recherche" noindex>
-  <header class="page-title">
-    <h1>Recherche</h1>
-    <p>Rechercher un candidat, un thème ou une proposition.</p>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="search" />
+    </span>
+    <div>
+      <h1>Recherche</h1>
+      <p>
+        Mesures, programmes, documents et sondages. Les filtres se combinent.
+      </p>
+    </div>
   </header>
-  <Filter
-    target="search-results"
-    label="Votre recherche"
-    placeholder="Retraites, salaire, une candidature…"
-  />
-  <div class="search-results" id="search-results">
-    {entries.map((entry) => (
-      <article data-search={`${entry.title} ${entry.description}`}>
-        <span class="eyebrow">{entry.type}</span>
-        <h2>
-          <a href={entry.url}>{entry.title} ↗</a>
-        </h2>
-        <p>{entry.description}</p>
-      </article>
-    ))}
+  <form id="search-form" class="search-workbench">
+    <label class="search-input">
+      <Icon name="search" />
+      <input
+        id="search-query"
+        maxlength="200"
+        type="search"
+        name="q"
+        placeholder="Retraites, SMIC, un candidat…"
+        aria-label="Votre recherche"
+        autocomplete="off"
+      />
+    </label>
+    <div class="facet-filters">
+      <label>
+        Candidat
+        <select name="candidate">
+          <option value="">Tous</option>
+          {candidates.map((candidate) => (
+            <option value={candidate.id}>{candidate.name}</option>
+          ))}
+        </select>
+      </label>
+      <label>
+        Thème
+        <select name="theme">
+          <option value="">Tous</option>
+          {themes.map((theme) => (
+            <option value={theme.id}>{theme.label}</option>
+          ))}
+        </select>
+      </label>
+      <label>
+        Type
+        <select name="type">
+          <option value="">Tous</option>
+          {Object.entries(searchKinds).map(([id, label]) => (
+            <option value={id}>{label}</option>
+          ))}
+        </select>
+      </label>
+      <label>
+        Publication
+        <select name="year">
+          <option value="">Toutes les années</option>
+          {years.map((year) => (
+            <option value={year}>{year}</option>
+          ))}
+        </select>
+      </label>
+      <label class="check-label">
+        <input type="checkbox" name="archives" value="1" />
+        Archives 2022
+      </label>
+      <button class="button" type="submit">
+        Rechercher
+      </button>
+      <button class="button small" type="reset">
+        Réinitialiser
+      </button>
+    </div>
+  </form>
+  <div class="search-toolbar">
+    <p id="search-count" class="results-meta" role="status" aria-live="polite">
+      {entries.length} entrées dans l’index
+    </p>
+    <div>
+      <button type="button" class="button small" id="export-csv">
+        <Icon name="download" />
+        CSV
+      </button>
+      <button type="button" class="button small" id="export-json">
+        <Icon name="download" />
+        JSON
+      </button>
+      <button type="button" class="button small" id="search-share">
+        Copier le lien
+      </button>
+    </div>
   </div>
+  <div id="search-results" class="advanced-results">
+    {entries
+      .filter((entry) => entry.scope !== 'archive')
+      .map((entry) => (
+        <article
+          class="advanced-result"
+          data-search={`${entry.title} ${entry.text}`}
+        >
+          <span class="result-symbol">
+            <Icon
+              name={
+                entry.type === 'mesure'
+                  ? entry.theme
+                  : entry.type === 'sondage'
+                    ? 'sondages'
+                    : entry.type === 'evenement'
+                      ? 'clock'
+                      : entry.type === 'candidat'
+                        ? 'people'
+                        : entry.type === 'source'
+                          ? 'source'
+                          : 'layers'
+              }
+            />
+          </span>
+          <div>
+            <p class="result-meta">
+              {searchKinds[entry.type]}
+              {entry.year && ` · ${entry.year}`}
+            </p>
+            <h2>
+              <a
+                href={entry.url}
+                target={entry.url.startsWith('https:') ? '_blank' : undefined}
+                rel={
+                  entry.url.startsWith('https:')
+                    ? 'noopener noreferrer'
+                    : undefined
+                }
+              >
+                {entry.title}
+              </a>
+            </h2>
+            <p>
+              {entry.text.slice(0, 220)}
+              {entry.text.length > 220 ? '…' : ''}
+            </p>
+          </div>
+          <span aria-hidden="true">↗</span>
+        </article>
+      ))}
+  </div>
+  <script src="../scripts/search.ts"></script>
 </Base>

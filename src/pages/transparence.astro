@@ -2,7 +2,10 @@
 import Base from '../layouts/Base.astro';
 import {
   candidates,
-  engagements,
+  measures,
+  polls,
+  versions,
+  watch,
   sources,
   themes,
   meta,
@@ -28,11 +31,11 @@ import {
         </li>
         <li>{themes.length} thèmes communs à chaque dossier.</li>
         <li>
-          {engagements.filter((e) => e.scope !== 'archive').length} fiches hors
+          {measures.filter((e) => e.scope !== 'archive').length} fiches hors
           archives, orientations incluses.
         </li>
         <li>
-          {engagements.filter((e) => e.scope === 'archive').length} fiches
+          {measures.filter((e) => e.scope === 'archive').length} fiches
           d’archives 2022.
         </li>
         <li>
@@ -41,8 +44,8 @@ import {
         </li>
       </ul>
       <p>
-        Le corpus programmatique est arrêté au {formatDate(meta.corpusUpdated)}.
-        Les dates de consultation figurent dans chaque source.
+        Dernière mise à jour du corpus : {formatDate(meta.corpusUpdated)}. Les
+        dates de consultation figurent dans chaque source.
       </p>
     </article>
     <article class="panel dark-panel">
@@ -65,17 +68,20 @@ import {
   <section class="prose section-space">
     <h2>Rubriques disponibles</h2>
     <p>
-      Les dossiers, le registre des engagements, le comparateur, les pages
-      thématiques, les décryptages, les références, les repères et la recherche
-      constituent le premier socle. Les comparaisons utilisent ce corpus commun.
+      Les mesures disposent de fiches distinctes, de références et d’un
+      historique avant/après ({versions.length} versions). La recherche combine
+      candidat, thème, type de contenu, année de publication connue et archives,
+      avec export CSV ou JSON. Le suivi par candidat ou thème reste dans le
+      navigateur et propose des flux RSS spécialisés. La veille couvre
+      {watch.length} sources sélectionnées.
     </p>
     <h2>Données restant à intégrer</h2>
     <p>
-      La rubrique sondages indique explicitement l’absence d’enquête intégrée
-      tant que les notices et scénarios n’ont pas été vérifiés. Les relevés de
-      temps de parole, les financements et les résultats territoriaux
-      demanderont chacun une intégration des données et de leur calendrier de
-      publication.
+      Le registre de sondages comprend {polls.length} résultats de scénarios
+      provenant de trois vagues Elabe, entre août et novembre 2026. Les autres
+      instituts restent à intégrer. Les relevés de temps de parole, les
+      financements et les résultats territoriaux demanderont chacun une
+      intégration des données et de leur calendrier de publication.
     </p>
     <h2>Contrôles de publication</h2>
     <p>

@@ -1,1 +1,605 @@
-[]
+[
+  {
+    "id": "elabe-2026-08-29-philippe",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-08-29",
+    "fieldworkStart": "2026-08-26",
+    "fieldworkEnd": "2026-08-28",
+    "sampleSize": 1501,
+    "registeredSample": 1378,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "scenario": "Premier tour · Philippe, Le Pen et Glucksmann",
+    "population": "France métropolitaine, 18 ans et plus ; intentions de vote parmi les inscrits déclarant vouloir voter.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "noticeSource": "notice-elabe-2026-08-29",
+    "noticePage": 7,
+    "noIntention": 14,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 14
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 17
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 2
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 6.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "La notice indique une plage de marges de 1,4 à 3,1 points selon les résultats et les effectifs. Cette plage globale n’est pas un intervalle propre à chaque point."
+  },
+  {
+    "id": "elabe-2026-08-29-attal",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-08-29",
+    "fieldworkStart": "2026-08-26",
+    "fieldworkEnd": "2026-08-28",
+    "sampleSize": 1501,
+    "registeredSample": 1378,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "scenario": "Premier tour · Attal, Le Pen et Glucksmann",
+    "population": "France métropolitaine, 18 ans et plus ; intentions de vote parmi les inscrits déclarant vouloir voter.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "noticeSource": "notice-elabe-2026-08-29",
+    "noticePage": 7,
+    "noIntention": 14,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 14
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 14
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 12
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 2.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "La notice indique une plage de marges de 1,4 à 3,1 points selon les résultats et les effectifs. Cette plage globale n’est pas un intervalle propre à chaque point."
+  },
+  {
+    "id": "elabe-2026-08-29-duel-glucksmann",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-08-29",
+    "fieldworkStart": "2026-08-26",
+    "fieldworkEnd": "2026-08-28",
+    "sampleSize": 1501,
+    "registeredSample": 1378,
+    "usefulSample": null,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "scenario": "Second tour · Glucksmann et Le Pen",
+    "population": "France métropolitaine, 18 ans et plus ; intentions de vote parmi les inscrits déclarant vouloir voter.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "noticeSource": "notice-elabe-2026-08-29",
+    "noticePage": 9,
+    "noIntention": 22,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "results": [
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 43
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 57
+      }
+    ],
+    "uncertainty": "La notice indique une plage de marges de 1,4 à 3,1 points selon les résultats et les effectifs. Cette plage globale n’est pas un intervalle propre à chaque point."
+  },
+  {
+    "id": "elabe-2026-10-17-philippe",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-10-17",
+    "fieldworkStart": "2026-10-14",
+    "fieldworkEnd": "2026-10-16",
+    "sampleSize": 1701,
+    "registeredSample": 1553,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "scenario": "Premier tour · Philippe, Le Pen et Glucksmann",
+    "population": "France métropolitaine, 18 ans et plus ; intentions de vote parmi les inscrits déclarant vouloir voter.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "noticeSource": "notice-elabe-2026-10-17",
+    "noticePage": 7,
+    "noIntention": 13,
+    "margin": {
+      "min": 1.2,
+      "max": 2.8,
+      "confidence": 95
+    },
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 1.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 15.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 16.5
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 2
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 7
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 32.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.5
+      }
+    ],
+    "uncertainty": "La notice indique une plage de marges de 1,2 à 2,8 points selon les résultats et les effectifs. Cette plage globale n’est pas un intervalle propre à chaque point."
+  },
+  {
+    "id": "elabe-2026-10-17-attal",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-10-17",
+    "fieldworkStart": "2026-10-14",
+    "fieldworkEnd": "2026-10-16",
+    "sampleSize": 1701,
+    "registeredSample": 1553,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "scenario": "Premier tour · Attal, Le Pen et Glucksmann",
+    "population": "France métropolitaine, 18 ans et plus ; intentions de vote parmi les inscrits déclarant vouloir voter.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "noticeSource": "notice-elabe-2026-10-17",
+    "noticePage": 7,
+    "noIntention": 13,
+    "margin": {
+      "min": 1.2,
+      "max": 2.8,
+      "confidence": 95
+    },
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 2.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 16.5
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 10.5
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 3
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 33.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.5
+      }
+    ],
+    "uncertainty": "La notice indique une plage de marges de 1,2 à 2,8 points selon les résultats et les effectifs. Cette plage globale n’est pas un intervalle propre à chaque point."
+  },
+  {
+    "id": "elabe-2026-10-17-duel-glucksmann",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-10-17",
+    "fieldworkStart": "2026-10-14",
+    "fieldworkEnd": "2026-10-16",
+    "sampleSize": 1701,
+    "registeredSample": 1553,
+    "usefulSample": null,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "scenario": "Second tour · Glucksmann et Le Pen",
+    "population": "France métropolitaine, 18 ans et plus ; intentions de vote parmi les inscrits déclarant vouloir voter.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "noticeSource": "notice-elabe-2026-10-17",
+    "noticePage": 9,
+    "noIntention": 19,
+    "margin": {
+      "min": 1.2,
+      "max": 2.8,
+      "confidence": 95
+    },
+    "results": [
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 46.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 53.5
+      }
+    ],
+    "uncertainty": "La notice indique une plage de marges de 1,2 à 2,8 points selon les résultats et les effectifs. Cette plage globale n’est pas un intervalle propre à chaque point."
+  },
+  {
+    "id": "elabe-2026-11-14-philippe",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-11-14",
+    "fieldworkStart": "2026-11-12",
+    "fieldworkEnd": "2026-11-13",
+    "sampleSize": 1500,
+    "registeredSample": 1391,
+    "usefulSample": 1050,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "scenario": "Premier tour · Philippe, Le Pen et Glucksmann",
+    "population": "France métropolitaine, 18 ans et plus ; intentions de vote parmi les inscrits déclarant vouloir voter.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "noticeSource": "notice-elabe-2026-11-14",
+    "noticePage": 7,
+    "noIntention": 11.5,
+    "margin": {
+      "min": 1.1,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 13.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 15
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 2.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 6
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 33
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4.5
+      }
+    ],
+    "uncertainty": "La notice indique une plage de marges de 1,1 à 3,5 points selon les résultats et les effectifs. Cette plage globale n’est pas un intervalle propre à chaque point."
+  },
+  {
+    "id": "elabe-2026-11-14-attal",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-11-14",
+    "fieldworkStart": "2026-11-12",
+    "fieldworkEnd": "2026-11-13",
+    "sampleSize": 1500,
+    "registeredSample": 1391,
+    "usefulSample": 1028,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "scenario": "Premier tour · Attal, Le Pen et Glucksmann",
+    "population": "France métropolitaine, 18 ans et plus ; intentions de vote parmi les inscrits déclarant vouloir voter.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "noticeSource": "notice-elabe-2026-11-14",
+    "noticePage": 7,
+    "noIntention": 14,
+    "margin": {
+      "min": 1.1,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 14
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 10
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 3
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 33
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4.5
+      }
+    ],
+    "uncertainty": "La notice indique une plage de marges de 1,1 à 3,5 points selon les résultats et les effectifs. Cette plage globale n’est pas un intervalle propre à chaque point."
+  },
+  {
+    "id": "elabe-2026-11-14-duel-glucksmann",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-11-14",
+    "fieldworkStart": "2026-11-12",
+    "fieldworkEnd": "2026-11-13",
+    "sampleSize": 1500,
+    "registeredSample": 1391,
+    "usefulSample": 952,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "scenario": "Second tour · Glucksmann et Le Pen",
+    "population": "France métropolitaine, 18 ans et plus ; intentions de vote parmi les inscrits déclarant vouloir voter.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "noticeSource": "notice-elabe-2026-11-14",
+    "noticePage": 10,
+    "noIntention": 20.5,
+    "margin": {
+      "min": 1.1,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "results": [
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 45
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 55
+      }
+    ],
+    "uncertainty": "La notice indique une plage de marges de 1,1 à 3,5 points selon les résultats et les effectifs. Cette plage globale n’est pas un intervalle propre à chaque point. Le questionnaire situe ce duel au second tour (Q10, page 4), alors que l’en-tête du tableau de la page 10 mentionne le premier tour."
+  }
+]

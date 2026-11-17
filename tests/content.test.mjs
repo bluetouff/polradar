@@ -47,6 +47,10 @@ test('les URL actives, locales et authentifiées sont refusées', () => {
     'https://user:secret@example.org/',
     'https://127.0.0.1/',
     'https://app.local/',
+    'https://localhost./',
+    'https://app.internal./',
+    'https://example.org/\nheader',
+    'https://example.org\\@localhost/',
     'https://[::1]/',
     'https://example.org:8443/',
   ])

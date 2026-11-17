@@ -1,8 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
 import SourceLinks from '../../components/SourceLinks.astro';
+import MeasureCard from '../../components/MeasureCard.astro';
 import {
   engagements,
+  measures,
   candidateById,
   themeById,
   scopes,
@@ -39,12 +41,14 @@ const theme = themeById(item.theme);
   </header>
   <div class="article-layout">
     <article class="prose">
-      <h2>Proposition</h2>
-      <ul>
-        {item.bullets.map((bullet) => (
-          <li>{bullet}</li>
-        ))}
-      </ul>
+      <h2>Mesures de cette fiche</h2>
+      <div class="measure-list">
+        {measures
+          .filter((measure) => measure.parentId === item.id)
+          .map((measure) => (
+            <MeasureCard measure={measure} />
+          ))}
+      </div>
       {item.note && (
         <aside class="notice">
           <strong>Précisions</strong>

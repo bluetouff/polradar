@@ -1,0 +1,2357 @@
+[
+  {
+    "id": "melenchon-retraites-1",
+    "parentId": "melenchon-retraites",
+    "candidate": "melenchon",
+    "theme": "retraites",
+    "revision": 2,
+    "title": "Retraite à 60 ans et 40 annuités",
+    "description": "Abroger la réforme de 2023, puis rétablir un départ à taux plein à 60 ans avec 40 annuités.",
+    "beneficiaries": "Assurés concernés par les règles générales de retraite.",
+    "timing": "Abrogation de la réforme de 2023, puis retour à la cible annoncée.",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "age-depart",
+        "label": "Âge de départ cible",
+        "value": 60,
+        "unit": "ans",
+        "sourceId": "lfi-social"
+      },
+      {
+        "key": "annuites",
+        "label": "Durée de cotisation",
+        "value": 40,
+        "unit": "annuités",
+        "sourceId": "lfi-social"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-social",
+        "locator": "Section Garantir une retraite digne, mesure clé"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
+    "checked": "2026-11-17"
+  },
+  {
+    "id": "melenchon-retraites-2",
+    "parentId": "melenchon-retraites",
+    "candidate": "melenchon",
+    "theme": "retraites",
+    "revision": 2,
+    "title": "Pension minimale au niveau du SMIC revalorisé",
+    "description": "Porter la pension d’une carrière complète au moins au SMIC revalorisé.",
+    "beneficiaries": "Salariés, indépendants et agriculteurs ayant une carrière complète.",
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-social",
+        "locator": "Section Garantir une retraite digne, premier point"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
+    "checked": "2026-11-17"
+  },
+  {
+    "id": "melenchon-travail-1",
+    "parentId": "melenchon-travail",
+    "candidate": "melenchon",
+    "theme": "travail",
+    "revision": 2,
+    "title": "SMIC mensuel à 1 700 € net",
+    "description": "Relever immédiatement le SMIC mensuel et indexer les salaires sur l’inflation.",
+    "beneficiaries": "Salariés rémunérés au salaire minimum ; indexation annoncée dans le privé et la fonction publique.",
+    "timing": "Application immédiate annoncée.",
+    "financing": null,
+    "metrics": [],
+    "amounts": [
+      {
+        "label": "SMIC mensuel annoncé",
+        "value": 1700,
+        "unit": "€",
+        "period": "mois",
+        "basis": "net",
+        "sourceId": "lfi-tax"
+      }
+    ],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-tax",
+        "locator": "Section Augmenter les salaires, mesure clé"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
+    "checked": "2026-11-17"
+  },
+  {
+    "id": "melenchon-travail-2",
+    "parentId": "melenchon-travail",
+    "candidate": "melenchon",
+    "theme": "travail",
+    "revision": 2,
+    "title": "32 heures pour les métiers pénibles ou de nuit",
+    "description": "Favoriser les 32 heures par négociation ; les appliquer aux métiers pénibles ou de nuit.",
+    "beneficiaries": "Salariés exerçant un métier pénible ou de nuit ; généralisation envisagée par négociation.",
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "heures-semaine",
+        "label": "Temps de travail hebdomadaire",
+        "value": 32,
+        "unit": "heures",
+        "sourceId": "lfi-social"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-social",
+        "locator": "Section Réduire le temps de travail, mesure clé"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
+    "checked": "2026-11-17"
+  },
+  {
+    "id": "melenchon-fiscalite-1",
+    "parentId": "melenchon-fiscalite",
+    "candidate": "melenchon",
+    "theme": "fiscalite",
+    "revision": 2,
+    "title": "Impôt sur le revenu à 14 tranches",
+    "description": "Passer l’impôt sur le revenu à 14 tranches.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "tranches-ir",
+        "label": "Tranches du barème proposé",
+        "value": 14,
+        "unit": "tranches",
+        "sourceId": "lfi-tax"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-tax",
+        "locator": "Section Faire la révolution fiscale, mesure clé"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
+    "checked": "2026-11-17"
+  },
+  {
+    "id": "melenchon-fiscalite-2",
+    "parentId": "melenchon-fiscalite",
+    "candidate": "melenchon",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Rétablir un ISF avec volet climatique et supprimer la flat tax",
+    "description": "Rétablir un ISF avec volet climatique et supprimer la flat tax.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-tax",
+        "locator": "Dossier initial : Accroître la progressivité"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "melenchon-climat-1",
+    "parentId": "melenchon-climat",
+    "candidate": "melenchon",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Inscrire une règle écologique de prélèvement des ressources dans la Constitution",
+    "description": "Inscrire une règle écologique de prélèvement des ressources dans la Constitution.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-climate",
+        "locator": "Dossier initial : Planifier la bifurcation"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "melenchon-climat-2",
+    "parentId": "melenchon-climat",
+    "candidate": "melenchon",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Organiser la transition par des lois-cadres nationales et locales",
+    "description": "Organiser la transition par des lois-cadres nationales et locales.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-climate",
+        "locator": "Dossier initial : Planifier la bifurcation"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "melenchon-sante-1",
+    "parentId": "melenchon-sante",
+    "candidate": "melenchon",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Reconstituer l’offre hospitalière et les soins de proximité",
+    "description": "Reconstituer l’offre hospitalière et les soins de proximité.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-health",
+        "locator": "Dossier initial : Renforcer le service public"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "melenchon-sante-2",
+    "parentId": "melenchon-sante",
+    "candidate": "melenchon",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Réguler l’installation médicale et recruter des médecins publics",
+    "description": "Réguler l’installation médicale et recruter des médecins publics.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-health",
+        "locator": "Dossier initial : Renforcer le service public"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "melenchon-education-1",
+    "parentId": "melenchon-education",
+    "candidate": "melenchon",
+    "theme": "education",
+    "revision": 1,
+    "title": "Inclure cantine, fournitures, transports et périscolaire dans la gratuité",
+    "description": "Inclure cantine, fournitures, transports et périscolaire dans la gratuité.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-school",
+        "locator": "Dossier initial : Étendre la gratuité scolaire"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "melenchon-education-2",
+    "parentId": "melenchon-education",
+    "candidate": "melenchon",
+    "theme": "education",
+    "revision": 1,
+    "title": "Réduire les effectifs et abroger le choc des savoirs",
+    "description": "Réduire les effectifs et abroger le choc des savoirs.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-school",
+        "locator": "Dossier initial : Étendre la gratuité scolaire"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "melenchon-institutions-1",
+    "parentId": "melenchon-institutions",
+    "candidate": "melenchon",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Élaborer une nouvelle Constitution par une Assemblée constituante",
+    "description": "Élaborer une nouvelle Constitution par une Assemblée constituante.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-democracy",
+        "locator": "Dossier initial : Une Constituante et le RIC"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "melenchon-institutions-2",
+    "parentId": "melenchon-institutions",
+    "candidate": "melenchon",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Créer un référendum d’initiative citoyenne, y compris révocatoire",
+    "description": "Créer un référendum d’initiative citoyenne, y compris révocatoire.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-democracy",
+        "locator": "Dossier initial : Une Constituante et le RIC"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "melenchon-social-1",
+    "parentId": "melenchon-social",
+    "candidate": "melenchon",
+    "theme": "social",
+    "revision": 1,
+    "title": "Construire une couverture de santé sans reste à charge",
+    "description": "Construire une couverture de santé sans reste à charge.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-social",
+        "locator": "Dossier initial : Une Sécurité sociale intégrale"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "tondelier-travail-1",
+    "parentId": "tondelier-travail",
+    "candidate": "tondelier",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Relever le salaire minimum dès 2027",
+    "description": "Relever le salaire minimum dès 2027.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "eco-work",
+        "locator": "Dossier initial : SMIC à 2 000 € brut"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Livret du 4 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "tondelier-travail-2",
+    "parentId": "tondelier-travail",
+    "candidate": "tondelier",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Créer un congé climatique et un veto écologique des salariés",
+    "description": "Créer un congé climatique et un veto écologique des salariés.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "eco-work",
+        "locator": "Dossier initial : SMIC à 2 000 € brut"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Livret du 4 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "tondelier-climat-1",
+    "parentId": "tondelier-climat",
+    "candidate": "tondelier",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Donner à l’État et aux services publics les moyens de prévoir, d’investir et de protéger face aux crises écologiques",
+    "description": "Donner à l’État et aux services publics les moyens de prévoir, d’investir et de protéger face aux crises écologiques.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "eco-speech",
+        "locator": "Dossier initial : Investir pour protéger"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Discours du 21 août 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "tondelier-sante-1",
+    "parentId": "tondelier-sante",
+    "candidate": "tondelier",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Des documents de campagne portent sur la santé environnementale et la santé reproductive",
+    "description": "Des documents de campagne portent sur la santé environnementale et la santé reproductive.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "eco-corpus",
+        "locator": "Dossier initial : Des livrets de santé thématiques"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Livrets de juin et septembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "tondelier-education-1",
+    "parentId": "tondelier-education",
+    "candidate": "tondelier",
+    "theme": "education",
+    "revision": 1,
+    "title": "Un livret consacré à l’enfance a été publié en septembre",
+    "description": "Un livret consacré à l’enfance a été publié en septembre.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "eco-corpus",
+        "locator": "Dossier initial : L’enfance comme priorité"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Livret du 17 septembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "glucksmann-climat-1",
+    "parentId": "glucksmann-climat",
+    "candidate": "glucksmann",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Accélérer les renouvelables et prolonger les réacteurs nucléaires existants",
+    "description": "Accélérer les renouvelables et prolonger les réacteurs nucléaires existants.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "glucks-climate",
+        "locator": "Dossier initial : Engager les 100 premiers jours"
+      },
+      {
+        "sourceId": "glucks-livret",
+        "locator": "Dossier initial : Engager les 100 premiers jours"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Livret du 9 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "glucksmann-climat-2",
+    "parentId": "glucksmann-climat",
+    "candidate": "glucksmann",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Protéger les ménages et adapter le pays aux chaleurs extrêmes",
+    "description": "Protéger les ménages et adapter le pays aux chaleurs extrêmes.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "glucks-climate",
+        "locator": "Dossier initial : Engager les 100 premiers jours"
+      },
+      {
+        "sourceId": "glucks-livret",
+        "locator": "Dossier initial : Engager les 100 premiers jours"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Livret du 9 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "glucksmann-fiscalite-1",
+    "parentId": "glucksmann-fiscalite",
+    "candidate": "glucksmann",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Financer des investissements de transition sur le quinquennat",
+    "description": "Financer des investissements de transition sur le quinquennat.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "glucks-livret",
+        "locator": "Dossier initial : 200 Md€ publics sur cinq ans"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Livret du 9 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "glucksmann-fiscalite-2",
+    "parentId": "glucksmann-fiscalite",
+    "candidate": "glucksmann",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Une contribution exceptionnelle sur les plus hauts patrimoines est annoncée pour rapporter 50 Md€ en une année",
+    "description": "Une contribution exceptionnelle sur les plus hauts patrimoines est annoncée pour rapporter 50 Md€ en une année.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "glucks-livret",
+        "locator": "Dossier initial : 200 Md€ publics sur cinq ans"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Livret du 9 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "glucksmann-logement-1",
+    "parentId": "glucksmann-logement",
+    "candidate": "glucksmann",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Déployer un million de pompes à chaleur avec une offre annoncée à 1 € par jour",
+    "description": "Déployer un million de pompes à chaleur avec une offre annoncée à 1 € par jour.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "glucks-livret",
+        "locator": "Dossier initial : Électrifier le chauffage"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Livret du 9 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "glucksmann-social-1",
+    "parentId": "glucksmann-social",
+    "candidate": "glucksmann",
+    "theme": "social",
+    "revision": 1,
+    "title": "Un chèque énergie renforcé",
+    "description": "Annoncer 500 € pour six millions de familles et 200 € pour dix millions de familles des classes moyennes.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "glucks-livret",
+        "locator": "Dossier initial : Un chèque énergie renforcé"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Livret du 9 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "glucksmann-europe-1",
+    "parentId": "glucksmann-europe",
+    "candidate": "glucksmann",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Le projet collectif de Place publique relie puissance française et souveraineté européenne",
+    "description": "Le projet collectif de Place publique relie puissance française et souveraineté européenne.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pp-project",
+        "locator": "Dossier initial : Une Europe souveraine"
+      }
+    ],
+    "scope": "parti",
+    "edition": "L’Acte I de Place publique",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "glucksmann-education-1",
+    "parentId": "glucksmann-education",
+    "candidate": "glucksmann",
+    "theme": "education",
+    "revision": 1,
+    "title": "L’Acte I inclut un chantier de reconstruction de l’École de la République",
+    "description": "L’Acte I inclut un chantier de reconstruction de l’École de la République.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pp-project",
+        "locator": "Dossier initial : Réinvestir dans l’école"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Projet collectif de Place publique",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "glucksmann-sante-1",
+    "parentId": "glucksmann-sante",
+    "candidate": "glucksmann",
+    "theme": "sante",
+    "revision": 1,
+    "title": "La garantie des droits à la santé figure parmi les chantiers du parti",
+    "description": "La garantie des droits à la santé figure parmi les chantiers du parti.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pp-project",
+        "locator": "Dossier initial : Garantir l’accès aux soins"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Projet collectif de Place publique",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "attal-retraites-1",
+    "parentId": "attal-retraites",
+    "candidate": "attal",
+    "theme": "retraites",
+    "revision": 1,
+    "title": "Fonder la réforme sur la durée de cotisation plutôt que sur le seul âge",
+    "description": "Fonder la réforme sur la durée de cotisation plutôt que sur le seul âge.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "attal-work",
+        "locator": "Dossier initial : Privilégier la durée travaillée"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "attal-travail-1",
+    "parentId": "attal-travail",
+    "candidate": "attal",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Réduire les cotisations salariales",
+    "description": "Réduire les cotisations salariales.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "attal-work",
+        "locator": "Dossier initial : Augmenter le salaire net"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "attal-travail-2",
+    "parentId": "attal-travail",
+    "candidate": "attal",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Refondre le Code du travail autour de principes et du dialogue social",
+    "description": "Refondre le Code du travail autour de principes et du dialogue social.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "attal-work",
+        "locator": "Dossier initial : Augmenter le salaire net"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "attal-fiscalite-1",
+    "parentId": "attal-fiscalite",
+    "candidate": "attal",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Viser la disparition du déficit dans un délai maximal de dix ans",
+    "description": "Viser la disparition du déficit dans un délai maximal de dix ans.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "attal-budget",
+        "locator": "Dossier initial : L’équilibre en dix ans"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "attal-fiscalite-2",
+    "parentId": "attal-fiscalite",
+    "candidate": "attal",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Faire porter prioritairement l’effort sur les dépenses sociales",
+    "description": "Faire porter prioritairement l’effort sur les dépenses sociales.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "attal-budget",
+        "locator": "Dossier initial : L’équilibre en dix ans"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "attal-immigration-1",
+    "parentId": "attal-immigration",
+    "candidate": "attal",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Privilégier l’immigration de travail selon des critères d’emploi, de logement et de langue",
+    "description": "Privilégier l’immigration de travail selon des critères d’emploi, de logement et de langue.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "attal-borders",
+        "locator": "Dossier initial : Une sélection par points"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "attal-immigration-2",
+    "parentId": "attal-immigration",
+    "candidate": "attal",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Durcir le regroupement familial",
+    "description": "Durcir le regroupement familial.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "attal-borders",
+        "locator": "Dossier initial : Une sélection par points"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "attal-education-1",
+    "parentId": "attal-education",
+    "candidate": "attal",
+    "theme": "education",
+    "revision": 1,
+    "title": "Utiliser la baisse démographique pour réduire la taille des classes",
+    "description": "Utiliser la baisse démographique pour réduire la taille des classes.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "attal-school",
+        "locator": "Dossier initial : Moins de 20 élèves en primaire"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "attal-education-2",
+    "parentId": "attal-education",
+    "candidate": "attal",
+    "theme": "education",
+    "revision": 1,
+    "title": "Revaloriser les professeurs et interdire les réseaux sociaux avant 15 ans",
+    "description": "Revaloriser les professeurs et interdire les réseaux sociaux avant 15 ans.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "attal-school",
+        "locator": "Dossier initial : Moins de 20 élèves en primaire"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "attal-climat-1",
+    "parentId": "attal-climat",
+    "candidate": "attal",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Accroître l’effort de baisse des émissions et l’adaptation aux chaleurs extrêmes",
+    "description": "Accroître l’effort de baisse des émissions et l’adaptation aux chaleurs extrêmes.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "attal-climate",
+        "locator": "Dossier initial : Accélérer la décarbonation"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "attal-institutions-1",
+    "parentId": "attal-institutions",
+    "candidate": "attal",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Organiser une journée nationale de référendums chaque année",
+    "description": "Organiser une journée nationale de référendums chaque année.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "attal-index",
+        "locator": "Dossier initial : Un rendez-vous référendaire annuel"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "attal-securite-1",
+    "parentId": "attal-securite",
+    "candidate": "attal",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Instaurer une procédure de comparution immédiate pour les mineurs",
+    "description": "Instaurer une procédure de comparution immédiate pour les mineurs.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "attal-index",
+        "locator": "Dossier initial : Agir sur la justice des mineurs"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "attal-securite-2",
+    "parentId": "attal-securite",
+    "candidate": "attal",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Créer un parquet national dédié à la pédocriminalité",
+    "description": "Créer un parquet national dédié à la pédocriminalité.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "attal-index",
+        "locator": "Dossier initial : Agir sur la justice des mineurs"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "attal-social-1",
+    "parentId": "attal-social",
+    "candidate": "attal",
+    "theme": "social",
+    "revision": 1,
+    "title": "Défiscaliser les pensions alimentaires reçues",
+    "description": "Défiscaliser les pensions alimentaires reçues.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "attal-index",
+        "locator": "Dossier initial : Soutenir les parents seuls"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "attal-social-2",
+    "parentId": "attal-social",
+    "candidate": "attal",
+    "theme": "social",
+    "revision": 1,
+    "title": "Créer une carte dédiée aux familles monoparentales",
+    "description": "Créer une carte dédiée aux familles monoparentales.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "attal-index",
+        "locator": "Dossier initial : Soutenir les parents seuls"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "philippe-retraites-1",
+    "parentId": "philippe-retraites",
+    "candidate": "philippe",
+    "theme": "retraites",
+    "revision": 2,
+    "title": "Retraite à 65 ans et 45 annuités",
+    "description": "Porter progressivement l’âge de départ à 65 ans et la durée de cotisation à 45 ans.",
+    "beneficiaries": "Assurés concernés par le relèvement, avec exceptions annoncées pour santé et carrières longues.",
+    "timing": "Progression annoncée sur moins de dix ans.",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "age-depart",
+        "label": "Âge de départ cible",
+        "value": 65,
+        "unit": "ans",
+        "sourceId": "philippe-pension"
+      },
+      {
+        "key": "annuites",
+        "label": "Durée de cotisation",
+        "value": 45,
+        "unit": "annuités",
+        "sourceId": "philippe-pension"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "philippe-pension",
+        "locator": "Propositions principales et réponses sur l’âge et les exceptions"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme du 12 novembre 2026",
+    "checked": "2026-11-17"
+  },
+  {
+    "id": "philippe-retraites-2",
+    "parentId": "philippe-retraites",
+    "candidate": "philippe",
+    "theme": "retraites",
+    "revision": 2,
+    "title": "Capitalisation collective et départs anticipés",
+    "description": "Maintenir des exceptions et ajouter une capitalisation collective.",
+    "beneficiaries": "Salariés pour la capitalisation ; situations de santé et carrières longues pour les départs anticipés.",
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "philippe-pension",
+        "locator": "Réponses sur les départs anticipés et la capitalisation"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme du 12 novembre 2026",
+    "checked": "2026-11-17"
+  },
+  {
+    "id": "philippe-travail-1",
+    "parentId": "philippe-travail",
+    "candidate": "philippe",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Permettre de fixer le temps de travail par accord d’entreprise",
+    "description": "Permettre de fixer le temps de travail par accord d’entreprise.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "philippe-business",
+        "locator": "Dossier initial : Négocier le temps de travail"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme du 12 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "philippe-travail-2",
+    "parentId": "philippe-travail",
+    "candidate": "philippe",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Alléger prélèvements et cotisations sur les heures supplémentaires",
+    "description": "Alléger prélèvements et cotisations sur les heures supplémentaires.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "philippe-business",
+        "locator": "Dossier initial : Négocier le temps de travail"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme du 12 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "philippe-fiscalite-1",
+    "parentId": "philippe-fiscalite",
+    "candidate": "philippe",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Viser un déficit de 2 % du PIB",
+    "description": "Fixer cet objectif à la fin du mandat.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "philippe-budget",
+        "locator": "Dossier initial : Viser un déficit de 2 % du PIB"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme du 12 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "philippe-fiscalite-2",
+    "parentId": "philippe-fiscalite",
+    "candidate": "philippe",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Inscrire une règle budgétaire dans la Constitution et ne créer aucun nouvel impôt",
+    "description": "Inscrire une règle budgétaire dans la Constitution et ne créer aucun nouvel impôt.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "philippe-budget",
+        "locator": "Dossier initial : Viser un déficit de 2 % du PIB"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme du 12 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "philippe-climat-1",
+    "parentId": "philippe-climat",
+    "candidate": "philippe",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Relancer la filière nucléaire",
+    "description": "Relancer la filière nucléaire.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "philippe-index",
+        "locator": "Dossier initial : Nucléaire et adaptation"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme du 12 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "philippe-climat-2",
+    "parentId": "philippe-climat",
+    "candidate": "philippe",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Adapter les bâtiments publics aux fortes chaleurs et accroître le stockage de l’eau",
+    "description": "Adapter les bâtiments publics aux fortes chaleurs et accroître le stockage de l’eau.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "philippe-index",
+        "locator": "Dossier initial : Nucléaire et adaptation"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme du 12 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "philippe-immigration-1",
+    "parentId": "philippe-immigration",
+    "candidate": "philippe",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Diviser les flux par deux",
+    "description": "Annoncer un moratoire sur le regroupement familial.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "philippe-index",
+        "locator": "Dossier initial : Diviser les flux par deux"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme du 12 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "philippe-immigration-2",
+    "parentId": "philippe-immigration",
+    "candidate": "philippe",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Dénoncer l’accord franco-algérien de 1968",
+    "description": "Dénoncer l’accord franco-algérien de 1968.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "philippe-index",
+        "locator": "Dossier initial : Diviser les flux par deux"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme du 12 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "philippe-securite-1",
+    "parentId": "philippe-securite",
+    "candidate": "philippe",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Rétablir des peines minimales",
+    "description": "Rétablir des peines minimales.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "philippe-index",
+        "locator": "Dossier initial : Peines planchers et prisons"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme du 12 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "philippe-securite-2",
+    "parentId": "philippe-securite",
+    "candidate": "philippe",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Accélérer la construction de places de prison",
+    "description": "Accélérer la construction de places de prison.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "philippe-index",
+        "locator": "Dossier initial : Peines planchers et prisons"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme du 12 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "philippe-education-1",
+    "parentId": "philippe-education",
+    "candidate": "philippe",
+    "theme": "education",
+    "revision": 1,
+    "title": "Revaloriser les enseignants",
+    "description": "Annoncer une hausse de salaire de 20 %.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "philippe-index",
+        "locator": "Dossier initial : Revaloriser les enseignants"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme du 12 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "philippe-education-2",
+    "parentId": "philippe-education",
+    "candidate": "philippe",
+    "theme": "education",
+    "revision": 1,
+    "title": "Accroître l’autonomie des établissements",
+    "description": "Accroître l’autonomie des établissements.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "philippe-index",
+        "locator": "Dossier initial : Revaloriser les enseignants"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme du 12 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "philippe-social-1",
+    "parentId": "philippe-social",
+    "candidate": "philippe",
+    "theme": "social",
+    "revision": 1,
+    "title": "Proposer une allocation familiale de 350 € dès le premier enfant",
+    "description": "Proposer une allocation familiale de 350 € dès le premier enfant.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "philippe-index",
+        "locator": "Dossier initial : Une allocation dès le premier enfant"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme du 12 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "retailleau-retraites-1",
+    "parentId": "retailleau-retraites",
+    "candidate": "retailleau",
+    "theme": "retraites",
+    "revision": 2,
+    "title": "Ouverture des droits à 63 ans, taux plein à 65 ans",
+    "description": "Distinguer l’âge d’ouverture des droits et celui du taux plein garanti.",
+    "beneficiaries": "Assurés concernés par le projet de réforme des retraites.",
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "age-depart",
+        "label": "Âge d’ouverture des droits",
+        "value": 63,
+        "unit": "ans",
+        "sourceId": "retailleau-pension"
+      },
+      {
+        "key": "age-taux-plein",
+        "label": "Âge du taux plein garanti",
+        "value": 65,
+        "unit": "ans",
+        "sourceId": "retailleau-pension"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "retailleau-pension",
+        "locator": "Mesure 108, ouverture des droits et taux plein garanti"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-17"
+  },
+  {
+    "id": "retailleau-retraites-2",
+    "parentId": "retailleau-retraites",
+    "candidate": "retailleau",
+    "theme": "retraites",
+    "revision": 1,
+    "title": "Introduire un capital retraite pour chaque salarié",
+    "description": "Introduire un capital retraite pour chaque salarié.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "retailleau-pension",
+        "locator": "Dossier initial : Départ dès 63 ans, taux plein à 65"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "retailleau-fiscalite-1",
+    "parentId": "retailleau-fiscalite",
+    "candidate": "retailleau",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Publier un volet consacré aux comptes publics et à une règle budgétaire",
+    "description": "Publier un volet consacré aux comptes publics et à une règle budgétaire.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "retailleau-budget",
+        "locator": "Dossier initial : Une trajectoire chiffrée de campagne"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "retailleau-fiscalite-2",
+    "parentId": "retailleau-fiscalite",
+    "candidate": "retailleau",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Réduire le périmètre et le coût de fonctionnement de l’État",
+    "description": "Réduire le périmètre et le coût de fonctionnement de l’État.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "retailleau-budget",
+        "locator": "Dossier initial : Une trajectoire chiffrée de campagne"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "retailleau-immigration-1",
+    "parentId": "retailleau-immigration",
+    "candidate": "retailleau",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Restreindre les aides accessibles aux étrangers et l’immigration familiale",
+    "description": "Restreindre les aides accessibles aux étrangers et l’immigration familiale.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "retailleau-borders",
+        "locator": "Dossier initial : Supprimer le droit du sol"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "retailleau-immigration-2",
+    "parentId": "retailleau-immigration",
+    "candidate": "retailleau",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Réduire l’immigration étudiante et de travail",
+    "description": "Réduire l’immigration étudiante et de travail.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "retailleau-borders",
+        "locator": "Dossier initial : Supprimer le droit du sol"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "retailleau-education-1",
+    "parentId": "retailleau-education",
+    "candidate": "retailleau",
+    "theme": "education",
+    "revision": 1,
+    "title": "Créer 1 000 écoles publiques autonomes",
+    "description": "Créer 1 000 écoles publiques autonomes.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "retailleau-school",
+        "locator": "Dossier initial : Autonomie et choix scolaire"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "retailleau-education-2",
+    "parentId": "retailleau-education",
+    "candidate": "retailleau",
+    "theme": "education",
+    "revision": 1,
+    "title": "Rétablir des notes chiffrées et développer des internats disciplinaires",
+    "description": "Rétablir des notes chiffrées et développer des internats disciplinaires.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "retailleau-school",
+        "locator": "Dossier initial : Autonomie et choix scolaire"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "retailleau-institutions-1",
+    "parentId": "retailleau-institutions",
+    "candidate": "retailleau",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Ouvrir le référendum à l’ensemble du champ législatif",
+    "description": "Ouvrir le référendum à l’ensemble du champ législatif.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "retailleau-index",
+        "locator": "Dossier initial : Étendre le référendum"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "retailleau-institutions-2",
+    "parentId": "retailleau-institutions",
+    "candidate": "retailleau",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Donner au peuple un pouvoir de décision après certaines censures d’une loi",
+    "description": "Donner au peuple un pouvoir de décision après certaines censures d’une loi.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "retailleau-index",
+        "locator": "Dossier initial : Étendre le référendum"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "lisnard-travail-1",
+    "parentId": "lisnard-travail",
+    "candidate": "lisnard",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Réduire la réglementation et décentraliser l’action publique",
+    "description": "Réduire la réglementation et décentraliser l’action publique.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-project",
+        "locator": "Dossier initial : Réformer le modèle économique"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Projet de Nouvelle Énergie",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "lisnard-retraites-1",
+    "parentId": "lisnard-retraites",
+    "candidate": "lisnard",
+    "theme": "retraites",
+    "revision": 1,
+    "title": "Permettre la constitution d’un capital pour compléter la retraite",
+    "description": "Permettre la constitution d’un capital pour compléter la retraite.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-project",
+        "locator": "Dossier initial : Développer la capitalisation"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Projet de Nouvelle Énergie",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "lisnard-education-1",
+    "parentId": "lisnard-education",
+    "candidate": "lisnard",
+    "theme": "education",
+    "revision": 1,
+    "title": "Donner aux familles davantage de choix de scolarisation",
+    "description": "Donner aux familles davantage de choix de scolarisation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-project",
+        "locator": "Dossier initial : Supprimer la carte scolaire"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Projet de Nouvelle Énergie",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "lisnard-sante-1",
+    "parentId": "lisnard-sante",
+    "candidate": "lisnard",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Maintenir la liberté des soignants et différencier le conventionnement selon les territoires",
+    "description": "Maintenir la liberté des soignants et différencier le conventionnement selon les territoires.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-health",
+        "locator": "Dossier initial : Liberté d’installation et proximité"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Projet de Nouvelle Énergie",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "lisnard-sante-2",
+    "parentId": "lisnard-sante",
+    "candidate": "lisnard",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Supprimer les ARS et doubler les étudiants en médecine d’ici 2030",
+    "description": "Supprimer les ARS et doubler les étudiants en médecine d’ici 2030.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-health",
+        "locator": "Dossier initial : Liberté d’installation et proximité"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Projet de Nouvelle Énergie",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "lisnard-immigration-1",
+    "parentId": "lisnard-immigration",
+    "candidate": "lisnard",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Réduire fortement les titres de séjour",
+    "description": "Diviser par huit leur délivrance et fixer des quotas de main-d’œuvre.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-borders",
+        "locator": "Dossier initial : Réduire fortement les titres de séjour"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Projet de Nouvelle Énergie",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "lisnard-immigration-2",
+    "parentId": "lisnard-immigration",
+    "candidate": "lisnard",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Remplacer l’AME par une aide d’urgence",
+    "description": "Remplacer l’AME par une aide d’urgence.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-borders",
+        "locator": "Dossier initial : Réduire fortement les titres de séjour"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Projet de Nouvelle Énergie",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "lisnard-fiscalite-1",
+    "parentId": "lisnard-fiscalite",
+    "candidate": "lisnard",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Réduire les interventions de l’État et décentraliser des responsabilités",
+    "description": "Réduire les interventions de l’État et décentraliser des responsabilités.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-project",
+        "locator": "Dossier initial : Diminuer la dépense publique"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Projet de Nouvelle Énergie",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "roussel-travail-1",
+    "parentId": "roussel-travail",
+    "candidate": "roussel",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Augmenter le SMIC et rétablir une indexation des salaires sur l’inflation",
+    "description": "Augmenter le SMIC et rétablir une indexation des salaires sur l’inflation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-work",
+        "locator": "Dossier initial : Revaloriser et indexer les salaires"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Discours du 23 novembre 2025",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "roussel-retraites-1",
+    "parentId": "roussel-retraites",
+    "candidate": "roussel",
+    "theme": "retraites",
+    "revision": 1,
+    "title": "Revenir sur le report de l’âge à 64 ans et relever les pensions modestes",
+    "description": "Revenir sur le report de l’âge à 64 ans et relever les pensions modestes.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-work",
+        "locator": "Dossier initial : Abroger la réforme de 2023"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Discours du 23 novembre 2025",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "roussel-social-1",
+    "parentId": "roussel-social",
+    "candidate": "roussel",
+    "theme": "social",
+    "revision": 1,
+    "title": "Porter une mobilisation pour la hausse des rémunérations et la baisse de la fiscalité sur les carburants",
+    "description": "Porter une mobilisation pour la hausse des rémunérations et la baisse de la fiscalité sur les carburants.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-2026",
+        "locator": "Dossier initial : Relever salaires et pensions"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Discours de septembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "ruffin-travail-1",
+    "parentId": "ruffin-travail",
+    "candidate": "ruffin",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Améliorer salaires, carrières, horaires et départs en retraite des métiers essentiels",
+    "description": "Améliorer salaires, carrières, horaires et départs en retraite des métiers essentiels.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "ruffin-project",
+        "locator": "Dossier initial : Un statut des métiers essentiels"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "ruffin-institutions-1",
+    "parentId": "ruffin-institutions",
+    "candidate": "ruffin",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Instaurer un RIC et des États généraux disposant d’un pouvoir de décision",
+    "description": "Instaurer un RIC et des États généraux disposant d’un pouvoir de décision.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "ruffin-project",
+        "locator": "Dossier initial : Faire décider les citoyens"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "ruffin-fiscalite-1",
+    "parentId": "ruffin-fiscalite",
+    "candidate": "ruffin",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Mobiliser une taxe sur les très hauts patrimoines et la fiscalité des grandes successions",
+    "description": "Mobiliser une taxe sur les très hauts patrimoines et la fiscalité des grandes successions.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "ruffin-budget",
+        "locator": "Dossier initial : Taxer patrimoines et successions"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "ruffin-climat-1",
+    "parentId": "ruffin-climat",
+    "candidate": "ruffin",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Renforcer les moyens de sécurité civile et accélérer la rénovation",
+    "description": "Renforcer les moyens de sécurité civile et accélérer la rénovation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "ruffin-plans",
+        "locator": "Dossier initial : Rénovation et sécurité climatique"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "ruffin-logement-1",
+    "parentId": "ruffin-logement",
+    "candidate": "ruffin",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Encadrer les loyers et développer une offre de logements abordables",
+    "description": "Encadrer les loyers et développer une offre de logements abordables.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "ruffin-project",
+        "locator": "Dossier initial : Réguler, construire et rénover"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "ruffin-education-1",
+    "parentId": "ruffin-education",
+    "candidate": "ruffin",
+    "theme": "education",
+    "revision": 1,
+    "title": "Renforcer la voie professionnelle et mettre fin à Parcoursup",
+    "description": "Renforcer la voie professionnelle et mettre fin à Parcoursup.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "ruffin-project",
+        "locator": "Dossier initial : Revaloriser les savoirs pratiques"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "asselineau-europe-1",
+    "parentId": "asselineau-europe",
+    "candidate": "asselineau",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Reprendre une souveraineté nationale hors de ces trois cadres",
+    "description": "Reprendre une souveraineté nationale hors de ces trois cadres.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "upr",
+        "locator": "Dossier initial : Quitter l’UE, l’euro et l’OTAN"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Engagements publics de l’UPR",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "asselineau-institutions-1",
+    "parentId": "asselineau-institutions",
+    "candidate": "asselineau",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Reconnaître le vote blanc et recourir au référendum sur de grands choix nationaux",
+    "description": "Reconnaître le vote blanc et recourir au référendum sur de grands choix nationaux.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "upr",
+        "locator": "Dossier initial : RIC et grands référendums"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Engagements publics de l’UPR",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "asselineau-social-1",
+    "parentId": "asselineau-social",
+    "candidate": "asselineau",
+    "theme": "social",
+    "revision": 1,
+    "title": "Inscrire le projet dans une référence au Conseil national de la Résistance",
+    "description": "Inscrire le projet dans une référence au Conseil national de la Résistance.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "upr",
+        "locator": "Dossier initial : Protéger les services publics"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Engagements publics de l’UPR",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "lepen-europe-1",
+    "parentId": "lepen-europe",
+    "candidate": "lepen",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Défendre l’arrêt du soutien français à l’Ukraine",
+    "description": "Défendre l’arrêt du soutien français à l’Ukraine.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "rn-ukraine",
+        "locator": "Dossier initial : Retirer le soutien à l’Ukraine"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Position rapportée le 16 novembre 2026",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "lepen-immigration-1",
+    "parentId": "lepen-immigration",
+    "candidate": "lepen",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Restreindre le regroupement familial et réserver certains droits aux Français",
+    "description": "Restreindre le regroupement familial et réserver certains droits aux Français.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "rn-2022",
+        "locator": "Dossier initial : Priorité nationale"
+      }
+    ],
+    "scope": "archive",
+    "edition": "Programme présidentiel 2022",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "lepen-securite-1",
+    "parentId": "lepen-securite",
+    "candidate": "lepen",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Rétablir des peines planchers et une perpétuité réelle",
+    "description": "Rétablir des peines planchers et une perpétuité réelle.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "rn-2022",
+        "locator": "Dossier initial : Durcir la réponse pénale"
+      }
+    ],
+    "scope": "archive",
+    "edition": "Programme présidentiel 2022",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "lepen-travail-1",
+    "parentId": "lepen-travail",
+    "candidate": "lepen",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Exonérer de cotisations patronales certaines augmentations salariales",
+    "description": "Exonérer de cotisations patronales certaines augmentations salariales.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "rn-2022",
+        "locator": "Dossier initial : Encourager les hausses de salaires"
+      }
+    ],
+    "scope": "archive",
+    "edition": "Programme présidentiel 2022",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "lepen-retraites-1",
+    "parentId": "lepen-retraites",
+    "candidate": "lepen",
+    "theme": "retraites",
+    "revision": 1,
+    "title": "Refuser le recul de l’âge",
+    "description": "Prévoir un départ à 60 ans pour certains débuts de carrière précoces.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "rn-2022",
+        "locator": "Dossier initial : Refuser le recul de l’âge"
+      }
+    ],
+    "scope": "archive",
+    "edition": "Programme présidentiel 2022",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "lepen-climat-1",
+    "parentId": "lepen-climat",
+    "candidate": "lepen",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Relancer le nucléaire et interrompre les projets éoliens",
+    "description": "Relancer le nucléaire et interrompre les projets éoliens.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "rn-2022",
+        "locator": "Dossier initial : Nucléaire et arrêt de l’éolien"
+      }
+    ],
+    "scope": "archive",
+    "edition": "Programme présidentiel 2022",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "lepen-institutions-1",
+    "parentId": "lepen-institutions",
+    "candidate": "lepen",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Instaurer un référendum d’initiative citoyenne et la proportionnelle",
+    "description": "Instaurer un référendum d’initiative citoyenne et la proportionnelle.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "rn-2022",
+        "locator": "Dossier initial : RIC et proportionnelle"
+      }
+    ],
+    "scope": "archive",
+    "edition": "Programme présidentiel 2022",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "zemmour-immigration-1",
+    "parentId": "zemmour-immigration",
+    "candidate": "zemmour",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Créer un ministère dédié et restreindre fortement les conditions d’accueil",
+    "description": "Créer un ministère dédié et restreindre fortement les conditions d’accueil.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "zemmour-2022",
+        "locator": "Dossier initial : Une politique de « remigration »"
+      }
+    ],
+    "scope": "archive",
+    "edition": "Programme présidentiel 2022",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "zemmour-fiscalite-1",
+    "parentId": "zemmour-fiscalite",
+    "candidate": "zemmour",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Alléger la fiscalité des entreprises et réindustrialiser",
+    "description": "Alléger la fiscalité des entreprises et réindustrialiser.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "zemmour-2022",
+        "locator": "Dossier initial : Baisser les impôts de production"
+      }
+    ],
+    "scope": "archive",
+    "edition": "Programme présidentiel 2022",
+    "checked": "2026-11-16"
+  },
+  {
+    "id": "zemmour-institutions-1",
+    "parentId": "zemmour-institutions",
+    "candidate": "zemmour",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Soumettre des choix d’immigration, de sécurité et de justice aux électeurs",
+    "description": "Soumettre des choix d’immigration, de sécurité et de justice aux électeurs.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "zemmour-2022",
+        "locator": "Dossier initial : Recourir au référendum"
+      }
+    ],
+    "scope": "archive",
+    "edition": "Programme présidentiel 2022",
+    "checked": "2026-11-16"
+  }
+]

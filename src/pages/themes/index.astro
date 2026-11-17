@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { themes, engagements } from '../../lib/data';
+import Icon from '../../components/Icon.astro';
+import { themes, measures } from '../../lib/data';
 ---
 
 <Base title="Programmes par thème">
@@ -9,15 +10,15 @@ import { themes, engagements } from '../../lib/data';
     <p>Retraites, travail, fiscalité, climat et autres thèmes du corpus.</p>
   </header>
   <div class="topic-grid">
-    {themes.map((theme, index) => (
+    {themes.map((theme) => (
       <a class="topic-card" href={`/themes/${theme.id}/`}>
-        <span class="topic-number">{String(index + 1).padStart(2, '0')}</span>
+        <Icon name={theme.id} />
         <div>
           <h2>{theme.label}</h2>
           <p>
             {theme.short} ·{' '}
             {
-              engagements.filter(
+              measures.filter(
                 (e) => e.theme === theme.id && e.scope !== 'archive',
               ).length
             }{' '}

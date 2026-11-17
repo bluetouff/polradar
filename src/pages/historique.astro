@@ -1,0 +1,119 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { measures, versions, candidates, formatDate } from '../lib/data';
+const updated = versions
+  .filter((version) => version.kind !== 'import')
+  .sort((a, b) => b.observedOn.localeCompare(a.observedOn));
+const initial = measures.find((measure) => measure.revision > 1) || measures[0];
+---
+
+<Base title="Historique des fiches" section="/historique/">
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="historique" />
+    </span>
+    <div>
+      <h1>Historique des fiches</h1>
+      <p>
+        {versions.length} versions conservées pour {measures.length} fiches. Les
+        précisions éditoriales sont distinguées des évolutions de programme.
+      </p>
+    </div>
+  </header>
+  <section class="version-workbench">
+    <div class="register-heading">
+      <h2>Comparer deux versions</h2>
+      <span class="small muted">Versions du contenu Polradar</span>
+    </div>
+    <form id="history-form" class="facet-filters">
+      <label>
+        Fiche
+        <select id="history-measure" name="mesure">
+          {measures.map((measure) => (
+            <option value={measure.id} selected={measure.id === initial.id}>
+              {
+                candidates.find(
+                  (candidate) => candidate.id === measure.candidate,
+                )!.name
+              }{' '}
+              · {measure.title}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label>
+        Avant
+        <select id="history-before" name="avant">
+          {Array.from({ length: initial.revision }, (_, i) => (
+            <option
+              value={i + 1}
+              selected={i === Math.max(0, initial.revision - 2)}
+            >
+              Version {i + 1}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label>
+        Après
+        <select id="history-after" name="apres">
+          {Array.from({ length: initial.revision }, (_, i) => (
+            <option value={i + 1} selected={i + 1 === initial.revision}>
+              Version {i + 1}
+            </option>
+          ))}
+        </select>
+      </label>
+      <button class="button" type="submit">
+        Comparer
+      </button>
+    </form>
+    <p id="history-status" class="results-meta" role="status"></p>
+    <div id="history-result">
+      <p class="notice">
+        Sélectionnez une fiche pour examiner ses versions. Les dates et
+        modifications récentes figurent ci-dessous.
+      </p>
+    </div>
+  </section>
+  <section class="section-space">
+    <div class="register-heading">
+      <h2>Dernières modifications éditoriales</h2>
+      <span class="index-total">{updated.length}</span>
+    </div>
+    <ol class="version-timeline">
+      {updated.map((version) => {
+        const measure = measures.find((item) => item.id === version.measureId)!;
+        return (
+          <li>
+            <span class="version-node" aria-hidden="true"></span>
+            <div>
+              <time datetime={version.observedOn}>
+                {formatDate(version.observedOn)}
+              </time>
+              <h3>
+                <a
+                  href={`/historique/?mesure=${measure.id}&apres=${version.number}`}
+                >
+                  {measure.title}
+                </a>
+              </h3>
+              <p>
+                {
+                  candidates.find(
+                    (candidate) => candidate.id === measure.candidate,
+                  )!.name
+                }{' '}
+                · version {version.number}
+              </p>
+              <p>{version.summary}</p>
+            </div>
+            <Icon name="historique" />
+          </li>
+        );
+      })}
+    </ol>
+  </section>
+  <script src="../scripts/history.ts"></script>
+</Base>
