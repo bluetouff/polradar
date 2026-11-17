@@ -1,0 +1,202 @@
+---
+import Icon from './Icon.astro';
+import { polls, formatDate, formatTimestamp } from '../lib/data';
+import { pollSeries, chartGeometry, pollColor } from '../lib/features.mjs';
+import { predictionMarkets } from '../lib/market-data';
+import {
+  rankedContracts,
+  marketMidpoint,
+  marketPercent,
+} from '../lib/markets.mjs';
+
+const pollRows = pollSeries(polls)[0];
+const latest = pollRows.at(-1)!;
+const leaders = [...latest.results]
+  .sort((a, b) => b.percentage - a.percentage)
+  .slice(0, 4);
+const trend = chartGeometry(
+  pollRows,
+  leaders.map((row) => row.id),
+  360,
+);
+const shortDate = (value: string) =>
+  new Intl.DateTimeFormat('fr-FR', {
+    day: 'numeric',
+    month: 'short',
+    timeZone: 'Europe/Paris',
+  }).format(new Date(`${value}T12:00:00Z`));
+---
+
+<aside class="home-signals" aria-label="Sondages et marchés prédictifs">
+  <section class="home-poll" aria-labelledby="home-poll-title">
+    <div class="register-heading">
+      <h2 id="home-poll-title">
+        <Icon name="sondages" /> Sondages
+      </h2>
+      <a class="inline-action" href="/sondages/">
+        {new Set(polls.map((row) => row.institute)).size} instituts ↗
+      </a>
+    </div>
+    <p class="home-signal-meta">
+      {latest.institute} · {pollRows.length} vagues · intentions de vote
+    </p>
+    <p class="home-poll-scenario">{latest.scenario}</p>
+    <svg
+      class="home-poll-mini"
+      viewBox="0 0 360 170"
+      role="img"
+      aria-label={`Quatre candidatures du même scénario ${latest.institute}, du ${formatDate(pollRows[0].fieldworkEnd)} au ${formatDate(latest.fieldworkEnd)}. Axe de 0 à ${trend.max} pour cent.`}
+    >
+      {[0, trend.max / 2, trend.max].map((value) => (
+        <g>
+          <path
+            class="mini-grid"
+            d={`M30 ${140 - (value / trend.max) * 114}H336`}
+          />
+          <text
+            x="24"
+            y={144 - (value / trend.max) * 114}
+            text-anchor="end"
+            class="home-chart-label"
+          >
+            {value}
+          </text>
+        </g>
+      ))}
+      <text x="10" y="13" class="home-chart-label">
+        %
+      </text>
+      {trend.lines.map((line) => {
+        const points = line.points.map((point) => ({
+          x: 30 + ((point.x - trend.left) / (trend.right - trend.left)) * 306,
+          y: 140 - (point.value / trend.max) * 114,
+          value: point.value,
+        }));
+        return (
+          <g class={`series-${line.color}`}>
+            <path
+              class="mini-line"
+              d={points
+                .map(
+                  (point, index) => `${index ? 'L' : 'M'}${point.x} ${point.y}`,
+                )
+                .join(' ')}
+            />
+            {points.map((point) => (
+              <circle class="mini-dot" cx={point.x} cy={point.y} r="3.5">
+                <title>{line.name} : {point.value.toLocaleString('fr-FR')} %</title>
+              </circle>
+            ))}
+          </g>
+        );
+      })}
+      {[pollRows[0], latest].map((row, index) => (
+        <text
+          x={index ? 336 : 30}
+          y="163"
+          text-anchor={index ? 'end' : 'start'}
+          class="home-chart-label"
+        >
+          {shortDate(row.fieldworkEnd)}
+        </text>
+      ))}
+    </svg>
+    <ul
+      class="home-poll-legend"
+      aria-label="Résultats du dernier terrain pour les quatre candidatures affichées"
+    >
+      {leaders.map((row) => (
+        <li>
+          <span
+            class={`legend-color series-${pollColor(row.id)}`}
+            aria-hidden="true"
+          ></span>
+          <span>{row.name}</span>
+          <b>{row.percentage.toLocaleString('fr-FR')} %</b>
+        </li>
+      ))}
+    </ul>
+    <p class="home-signal-meta">
+      Fin du dernier terrain : {formatDate(latest.fieldworkEnd)}
+    </p>
+    <a class="inline-action" href="/sondages/">
+      Scénarios et notices ↗
+    </a>
+  </section>
+  <section class="home-markets" aria-labelledby="home-markets-title">
+    <div class="register-heading">
+      <h2 id="home-markets-title">
+        <Icon name="markets" /> Marchés prédictifs
+      </h2>
+      <a class="inline-action" href="/marches-predictifs/">
+        Détail ↗
+      </a>
+    </div>
+    <p class="home-signal-meta">
+      Vainqueur de l’élection · probabilités implicites
+    </p>
+    {predictionMarkets.providers.map((provider) => (
+      <div class={`home-market-provider venue-${provider.id}`}>
+        <h3>{provider.id === 'polymarket' ? 'Polymarket' : 'Kalshi'}</h3>
+        {provider.status === 'unavailable' ? (
+          <p class="small muted">Relevé indisponible.</p>
+        ) : (
+          <ol>
+            {rankedContracts(provider.contracts)
+              .filter((row) => marketMidpoint(row) !== null)
+              .slice(0, 3)
+              .map((row) => {
+                const value = marketMidpoint(row)!;
+                return (
+                  <li>
+                    <span>{row.label}</span>
+                    <b>{marketPercent(value)}</b>
+                    <svg viewBox="0 0 300 12" aria-hidden="true">
+                      <line
+                        class="market-track"
+                        x1="5"
+                        x2="295"
+                        y1="6"
+                        y2="6"
+                      />
+                      {[0.25, 0.5, 0.75].map((tick) => (
+                        <line
+                          class="market-tick"
+                          x1={5 + tick * 290}
+                          x2={5 + tick * 290}
+                          y1="3"
+                          y2="9"
+                        />
+                      ))}
+                      <line
+                        class="market-spread"
+                        x1={5 + row.bid! * 290}
+                        x2={5 + row.ask! * 290}
+                        y1="6"
+                        y2="6"
+                      />
+                      <circle
+                        class="market-point"
+                        cx={5 + value * 290}
+                        cy="6"
+                        r="3.5"
+                      />
+                    </svg>
+                  </li>
+                );
+              })}
+          </ol>
+        )}
+        <p class="home-market-time">
+          Relevé du{' '}
+          <time datetime={provider.observedAt}>
+            {formatTimestamp(provider.observedAt)} (Paris)
+          </time>
+        </p>
+      </div>
+    ))}
+    <p class="home-signal-meta">
+      Milieux des carnets achat / vente. Distincts des intentions de vote.
+    </p>
+  </section>
+</aside>

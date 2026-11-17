@@ -12,6 +12,8 @@ test('les nouvelles vues restent lisibles de 320 à 1440 pixels', async ({
       '/mesures/',
       '/mesures/melenchon-retraites-1/',
       '/sondages/',
+      '/marches-predictifs/',
+      '/campagne/',
       '/veille/',
       '/historique/',
       '/suivi/',
@@ -369,4 +371,51 @@ test('les vues initiales et les notices restent disponibles sans JavaScript', as
   await expect(page.locator('.measure-number-grid')).toContainText('60');
   await expect(page.locator('.version-timeline li')).toHaveCount(2);
   await context.close();
+});
+
+test('les nouvelles fiches gardent les grands nombres lisibles', async ({
+  page,
+}) => {
+  for (const width of [320, 390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const route of [
+      '/mesures/ruffin-logement-renovations/',
+      '/mesures/melenchon-fiscalite-heritage-maximal/',
+      '/mesures/philippe-fiscalite-effectifs-publics/',
+    ]) {
+      await page.goto(route);
+      await expect(page.locator('.measure-number-grid')).toBeVisible();
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth > innerWidth + 1,
+        ),
+        `${route} à ${width}px`,
+      ).toBe(false);
+    }
+  }
+});
+
+test('le déficit corrigé conserve sa version précédente et ses dates', async ({
+  page,
+}) => {
+  await page.goto('/mesures/philippe-fiscalite-1/');
+  await expect(page.locator('h1')).toContainText('2,5 %');
+  await expect(page.locator('.page-title')).toContainText(
+    'Campagne présidentielle 2027',
+  );
+  await expect(page.locator('.page-title')).not.toContainText(
+    'Programme du 12',
+  );
+  await expect(page.locator('.precise-sources')).toContainText(
+    'Mise à jour du document : 16 novembre 2026',
+  );
+  await page.goto('/historique/?mesure=philippe-fiscalite-1&avant=1&apres=2');
+  await expect(page.locator('.diff-after').first()).toContainText('2,5 %');
+  await expect(page.locator('.diff-before').first()).toContainText('2 %');
+  await page.goto('/sources/');
+  const row = page.locator('.source-card').filter({
+    has: page.getByRole('link', { name: 'Édouard Philippe : école' }),
+  });
+  await expect(row).toContainText('Mise à jour du document');
+  await expect(row).toContainText('16 novembre 2026');
 });

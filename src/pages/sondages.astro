@@ -33,6 +33,14 @@ const notices = [...new Set(polls.map((poll) => poll.noticeSource))];
       Méthode de lecture
     </a>
   </header>
+  <nav class="section-switch" aria-label="Sondages et marchés">
+    <a href="/sondages/" aria-current="page">
+      Intentions de vote
+    </a>
+    <a href="/marches-predictifs/">
+      Marchés prédictifs <span aria-hidden="true">↗</span>
+    </a>
+  </nav>
   <form id="poll-filters" class="facet-filters">
     <label>
       Tour
@@ -156,7 +164,9 @@ const notices = [...new Set(polls.map((poll) => poll.noticeSource))];
       </div>
       <p id="poll-no-intention" class="small muted">
         Sans intention exprimée : {latest.noIntention?.toLocaleString('fr-FR')}{' '}
-        % (donnée distincte des pourcentages de candidats).
+        %{' '}
+        {latest.noIntentionNote ||
+          '(donnée distincte des pourcentages de candidats).'}
       </p>
     </aside>
   </section>
@@ -172,6 +182,17 @@ const notices = [...new Set(polls.map((poll) => poll.noticeSource))];
         Notice officielle, page {latest.noticePage} ↗
       </a>
     </div>
+    {latest.resultSource && (
+      <p>
+        <a
+          href={`${sourceById(latest.resultSource).url}#page=${latest.resultPage}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Résultats de l’institut, page {latest.resultPage} ↗
+        </a>
+      </p>
+    )}
     <dl class="poll-method-grid">
       <div>
         <dt>Institut / commanditaire</dt>
