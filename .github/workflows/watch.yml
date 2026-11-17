@@ -10,9 +10,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   watch:
-    # Federation republications time out from the Linux/Windows networks tested.
-    # macOS Intel reached the republication in one pass; later HTTP 429s stay reported.
-    runs-on: macos-15-intel
+    runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
