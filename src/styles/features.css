@@ -311,9 +311,9 @@
     text-wrap: pretty;
   }
   .theme-register .icon {
-    width: 32px;
-    height: 32px;
-    padding: 5px;
+    width: 30px;
+    height: 30px;
+    padding: 4px;
     color: var(--blue);
     background: #e2eae3;
     border: 1px solid #c6d3c9;
@@ -1718,9 +1718,6 @@
       gap: 5px;
       padding: 9px 3px;
       font-size: 10px;
-    }
-    .theme-register > a {
-      grid-template-columns: 20px minmax(0, 1fr) 10px;
     }
     .feature-title {
       gap: 12px;
