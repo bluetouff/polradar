@@ -18,7 +18,16 @@ const portrait = portraitFor(candidate.id);
     { 'portrait-unavailable': !portrait, 'portrait-compact': compact },
   ]}
 >
-  {portrait ? (
+  {portrait?.preserveOriginal ? (
+    <img
+      src={portrait.image.src}
+      width={portrait.image.width}
+      height={portrait.image.height}
+      alt=""
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+    />
+  ) : portrait ? (
     <Image
       src={portrait.image}
       alt=""

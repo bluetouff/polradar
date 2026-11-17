@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import { candidates } from '../lib/data';
 import { portraits, portraitFor } from '../lib/portraits';
+import { portraitPermissions } from '../lib/portrait-schema.mjs';
 import '../styles/candidates.css';
 ---
 
@@ -10,37 +11,54 @@ import '../styles/candidates.css';
   <header class="page-title">
     <h1>Crédits photographiques</h1>
     <p>
-      {portraits.length} portraits réutilisés avec leurs licences. La date
-      indiquée est celle du portrait, lorsqu’elle est renseignée par la source.
+      {portraits.length} portraits avec leurs crédits et conditions de
+      réutilisation. La date indiquée est celle du portrait, lorsqu’elle est
+      renseignée par la source.
     </p>
   </header>
   <p class="section-description">
     Les photographies sont servies depuis Polradar. Elles sont redimensionnées
-    et recadrées à l’affichage. Leurs licences s’appliquent aux images,
-    indépendamment de la licence MIT du code. Leur présence ne constitue pas un
-    soutien à Polradar.
+    et recadrées à l’affichage. Les licences ou autorisations indiquées
+    s’appliquent aux images, indépendamment de la licence MIT du code. Leur
+    présence ne constitue pas un soutien à Polradar.
   </p>
   <div class="photo-credit-list">
     {portraits.map((credit) => {
       const candidate = candidates.find((row) => row.id === credit.candidate)!;
       const portrait = portraitFor(candidate.id)!;
+      const permission = portraitPermissions.find(
+        (item) => item.candidate === candidate.id,
+      );
       return (
         <article class="photo-credit-row" id={candidate.id}>
           <a href={`/candidats/${candidate.id}/`} aria-label={candidate.name}>
-            <Image
-              src={portrait.image}
-              alt=""
-              width={130}
-              format="webp"
-              loading="lazy"
-            />
+            {portrait.preserveOriginal ? (
+              <img
+                src={portrait.image.src}
+                width={portrait.image.width}
+                height={portrait.image.height}
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <Image
+                src={portrait.image}
+                alt=""
+                width={130}
+                format="webp"
+                loading="lazy"
+              />
+            )}
           </a>
           <div>
             <h2>{candidate.name}</h2>
+            {credit.title && <p>{credit.title}</p>}
             <p>
               {credit.author}
               {credit.year && ` · ${credit.year}`}
             </p>
+            {permission && <p>{permission.note}</p>}
             <p>
               <a
                 href={credit.sourceUrl}
@@ -56,6 +74,15 @@ import '../styles/candidates.css';
               >
                 {credit.license} ↗
               </a>
+              {permission && (
+                <a
+                  href={permission.identityUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Fiche officielle ↗
+                </a>
+              )}
             </p>
           </div>
         </article>

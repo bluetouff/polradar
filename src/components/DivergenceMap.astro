@@ -18,19 +18,21 @@ const faces = new Map(
       const portrait = portraitFor(row.candidate);
       return [
         row.candidate,
-        portrait
-          ? (
-              await getImage({
-                src: portrait.image,
-                width: 112,
-                height: 112,
-                fit: 'cover',
-                position: 'north',
-                format: 'webp',
-                quality: 82,
-              })
-            ).src
-          : null,
+        portrait?.preserveOriginal
+          ? portrait.image.src
+          : portrait
+            ? (
+                await getImage({
+                  src: portrait.image,
+                  width: 112,
+                  height: 112,
+                  fit: 'cover',
+                  position: 'north',
+                  format: 'webp',
+                  quality: 82,
+                })
+              ).src
+            : null,
       ] as const;
     }),
   ),

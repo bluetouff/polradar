@@ -1,11 +1,16 @@
 import { test, expect } from '@playwright/test';
+import portraits from '../../src/data/portraits.json' with { type: 'json' };
+import reviewed from '../../src/data/portraits-reviewed.json' with { type: 'json' };
+import { createHash } from 'node:crypto';
 
 test('la galerie conserve toutes les candidatures et explore les fiches par thème', async ({
   page,
 }) => {
   await page.goto('/candidats/');
   await expect(page.locator('.candidate-gallery .person')).toHaveCount(33);
-  await expect(page.locator('.candidate-gallery img')).toHaveCount(23);
+  await expect(page.locator('.candidate-gallery img')).toHaveCount(
+    portraits.length,
+  );
   await page.locator('[data-candidate-theme]').selectOption('retraites');
   await expect(page).toHaveURL(/#theme=retraites/);
   await expect(page.locator('.person:visible')).toHaveCount(33);
@@ -40,7 +45,36 @@ test('les portraits, crédits et fiches restent disponibles sans JavaScript', as
   await expect(page.locator('.candidate-hero img')).toBeVisible();
   await expect(page.locator('#theme-retraites')).toBeVisible();
   await page.goto('/credits-photos/#philippe');
-  await expect(page.locator('#philippe')).toContainText('CC0');
+  await expect(page.locator('#philippe')).toContainText('Jacques Paquier');
+  await expect(page.locator('#philippe')).toContainText('CC BY 2.0');
+  await page.goto('/candidats/mathieu/');
+  await expect(page.locator('.candidate-hero img')).toBeVisible();
+  const original = await page
+    .locator('.candidate-hero img')
+    .getAttribute('src');
+  const response = await page.request.get(original!);
+  expect(response.ok()).toBeTruthy();
+  expect(
+    createHash('sha256')
+      .update(await response.body())
+      .digest('hex'),
+  ).toBe(
+    reviewed.portraits.find((photo) => photo.candidate === 'mathieu')!
+      .imageSha256,
+  );
+  await page.goto('/credits-photos/#mathieu');
+  await expect(page.locator('#mathieu')).toContainText('Delphine Herbin');
+  await expect(page.locator('#mathieu')).toContainText(
+    'Autorisation de campagne',
+  );
+  await expect(page.locator('#mathieu')).toContainText(
+    'toute autre modification est interdite',
+  );
+  await page.goto('/credits-photos/#glucksmann');
+  await expect(page.locator('#glucksmann')).toContainText(
+    'Union européenne 2024',
+  );
+  await expect(page.locator('#glucksmann')).not.toContainText('Xsolba');
   await context.close();
 });
 

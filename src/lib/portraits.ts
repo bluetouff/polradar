@@ -13,5 +13,11 @@ export const portraitByCandidate = new Map(
 );
 export function portraitFor(id: string) {
   const credit = portraitByCandidate.get(id);
-  return credit ? { credit, image: portraitAssets[credit.file] } : undefined;
+  return credit
+    ? {
+        credit,
+        image: portraitAssets[credit.file],
+        preserveOriginal: credit.license === 'Autorisation de campagne',
+      }
+    : undefined;
 }
