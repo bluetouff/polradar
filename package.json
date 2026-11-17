@@ -17,7 +17,7 @@
     "build": "astro build && node scripts/postbuild.mjs",
     "preview": "astro preview --host 127.0.0.1",
     "test:e2e": "playwright test",
-    "security:audit": "npm audit --audit-level=moderate",
+    "security:audit": "node scripts/audit-dependencies.mjs",
     "validate": "npm run check && npm test && npm run build"
   },
   "dependencies": {

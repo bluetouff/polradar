@@ -39,6 +39,7 @@ export const sourceSchema = z.object({
   title: text,
   url: publicUrlSchema,
   previousUrl: publicUrlSchema.optional(),
+  watchFormat: z.literal('youtube-oembed').optional(),
   watchContentClass: z
     .string()
     .regex(/^[A-Za-z][A-Za-z0-9_-]{0,59}$/)
@@ -374,6 +375,18 @@ export function validateDataset(dataset) {
   )
     errors.push('meta: dates de corpus ou d’édition incohérentes');
   for (const source of dataset.sources) {
+    if (source.watchFormat === 'youtube-oembed') {
+      const video = new URL(source.url);
+      if (
+        video.hostname !== 'www.youtube.com' ||
+        video.pathname !== '/watch' ||
+        video.hash ||
+        [...video.searchParams.keys()].join(',') !== 'v' ||
+        !/^[A-Za-z0-9_-]{11}$/.test(video.searchParams.get('v') || '') ||
+        source.watchContentClass
+      )
+        errors.push(`${source.id}: référence vidéo non canonique`);
+    }
     if (source.checked > today)
       errors.push(`${source.id}: consultation future`);
     if (source.published && source.published > source.checked)

@@ -196,5 +196,45 @@ class WatchTests(unittest.TestCase):
         self.assertEqual(connection.request.call_count,1)
 
 
+    def video_metadata(self):
+        return {'type':'video','provider_name':'YouTube','provider_url':'https://www.youtube.com/','title':'Discours officiel','author_name':'PCF','author_url':'https://www.youtube.com/@PCF','html':'<iframe src="https://www.youtube.com/embed/8p5_pfTtcck?feature=oembed"></iframe>'}
+
+    def test_video_metadata_endpoint_is_fixed_and_canonical(self):
+        source='https://www.youtube.com/watch?v=8p5_pfTtcck'
+        endpoint,video=watch.youtube_metadata_url(source,{'www.youtube.com'})
+        self.assertEqual(video,'8p5_pfTtcck')
+        self.assertEqual(watch.urllib.parse.urlsplit(endpoint).path,'/oembed')
+        self.assertEqual(watch.urllib.parse.parse_qs(watch.urllib.parse.urlsplit(endpoint).query),{'url':[source],'format':['json']})
+        for url in [source+'&v=abcdefghijk',source+'&next=https://example.org/',source+'#x','https://www.youtube.com/shorts/8p5_pfTtcck','https://example.org/watch?v=8p5_pfTtcck','https://www.youtube.com/watch?v=../private']:
+            with self.subTest(url=url),self.assertRaises(ValueError):watch.youtube_metadata_url(url,{'www.youtube.com','example.org'})
+
+    def test_video_fingerprint_only_compares_metadata_and_binds_the_video(self):
+        data=self.video_metadata()
+        digest=watch.youtube_metadata_fingerprint('application/json',json.dumps(data).encode(),'8p5_pfTtcck')
+        data['thumbnail_width']=480
+        self.assertEqual(digest,watch.youtube_metadata_fingerprint('application/json',json.dumps(data).encode(),'8p5_pfTtcck'))
+        data['title']='Nouveau titre'
+        self.assertNotEqual(digest,watch.youtube_metadata_fingerprint('application/json',json.dumps(data).encode(),'8p5_pfTtcck'))
+        for key,value in [('type','rich'),('provider_name','Autre'),('provider_url','https://example.org/'),('title',None),('author_url','https://www.youtube.com.evil.example/@PCF'),('author_url','https://user:secret@www.youtube.com/@PCF'),('author_url','https://www.youtube.com:8443/@PCF'),('html','<iframe src="https://www.youtube.com/embed/abcdefghijk"></iframe>'),('html','<iframe src="http://www.youtube.com/embed/8p5_pfTtcck"></iframe>'),('html','<iframe src="https://www.youtube.com/embed/8p5_pfTtcck"></iframe><iframe src="https://example.org/"></iframe>')]:
+            bad=self.video_metadata();bad[key]=value
+            with self.subTest(key=key,value=value),self.assertRaises(ValueError):watch.youtube_metadata_fingerprint('application/json',json.dumps(bad).encode(),'8p5_pfTtcck')
+        for kind,body in [('text/html',json.dumps(data).encode()),('application/json',b'[]'),('application/json',b'not-json')]:
+            with self.assertRaises(ValueError):watch.youtube_metadata_fingerprint(kind,body,'8p5_pfTtcck')
+
+    def test_video_availability_errors_remain_visible(self):
+        source={'id':'video','url':'https://www.youtube.com/watch?v=8p5_pfTtcck','watchFormat':'youtube-oembed'}
+        with patch.object(watch,'fetch_reliably',return_value=(200,'application/json',json.dumps(self.video_metadata()).encode())) as fetch:
+            row=watch.inspect(source,{}, {'www.youtube.com'})
+        self.assertEqual(row['status'],'accessible');self.assertIn('métadonnées',row['message'])
+        self.assertTrue(fetch.call_args.args[0].startswith('https://www.youtube.com/oembed?'))
+        with patch.object(watch,'fetch_reliably',return_value=(429,'text/html',b'')):
+            row=watch.inspect(source,{'fingerprint':'a'*64},{'www.youtube.com'})
+        self.assertEqual(row['status'],'bloque');self.assertIsNone(row['fingerprint']);self.assertEqual(row['previousFingerprint'],'a'*64)
+        source['watchContentClass']='article'
+        with patch.object(watch,'fetch_reliably') as fetch:
+            row=watch.inspect(source,{}, {'www.youtube.com'})
+        fetch.assert_not_called();self.assertEqual(row['status'],'bloque')
+
+
 if __name__=='__main__':
     unittest.main()

@@ -10,9 +10,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   watch:
-    # Federation republications time out from the Linux/Windows networks tested.
-    # macOS Intel reached the republication in one pass; later HTTP 429s stay reported.
-    runs-on: macos-15-intel
+    runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
@@ -22,7 +20,7 @@ jobs:
         run: python3 scripts/watch-sources.py
       - name: Résumé de la veille
         run: cat artifacts/watch-report.md >> "$GITHUB_STEP_SUMMARY"
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: source-watch-review
           path: artifacts/watch-report.*
