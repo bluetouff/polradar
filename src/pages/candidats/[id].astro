@@ -49,7 +49,7 @@ const archives = records.filter((record) => record.scope === 'archive');
       <p class="eyebrow">ÉTAT DU DOSSIER</p>
       <b>
         {current.length}
-        <span> / 12 thèmes</span>
+        <span> / {themes.length} thèmes</span>
       </b>
       <p>
         Renseignés dans ce corpus, orientations incluses. Les archives de 2022
@@ -86,7 +86,7 @@ const archives = records.filter((record) => record.scope === 'archive');
       )}
       <details class="missing-themes">
         <summary>
-          Les thèmes restant à documenter ({12 - current.length})
+          Les thèmes restant à documenter ({themes.length - current.length})
         </summary>
         <ul>
           {themes

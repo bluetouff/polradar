@@ -6,6 +6,7 @@ type Corpus = {
   themes: Theme[];
   sources: Source[];
   engagements: Engagement[];
+  meta: { corpusUpdated: string };
 };
 const form = document.querySelector<HTMLFormElement>('#compare-form')!;
 const themeSelect =
@@ -178,7 +179,11 @@ async function start() {
       card.append(body, footer);
       container.append(card);
     });
-    feedback.textContent = `${available} fiche${available > 1 ? 's' : ''} disponible${available > 1 ? 's' : ''} sur ${count()} · corpus du 16 novembre 2026`;
+    const corpusDate = new Intl.DateTimeFormat('fr-FR', {
+      dateStyle: 'long',
+      timeZone: 'Europe/Paris',
+    }).format(new Date(`${corpus.meta.corpusUpdated}T12:00:00Z`));
+    feedback.textContent = `${available} fiche${available > 1 ? 's' : ''} disponible${available > 1 ? 's' : ''} sur ${count()} · corpus du ${corpusDate}`;
     const url = new URL(location.href);
     url.search = new URLSearchParams({
       theme: theme.id,

@@ -128,6 +128,15 @@ export function validateDataset(dataset) {
   const themeIds = new Set(dataset.themes.map((t) => t.id));
   const pairs = new Set();
   const today = new Date().toISOString().slice(0, 10);
+  const metadata = z
+    .object({ edition: dateSchema, corpusUpdated: dateSchema })
+    .safeParse(dataset.meta);
+  if (!metadata.success) errors.push('meta: dates manquantes ou invalides');
+  else if (
+    metadata.data.edition > today ||
+    metadata.data.corpusUpdated > metadata.data.edition
+  )
+    errors.push('meta: dates de corpus ou d’édition incohérentes');
   for (const source of dataset.sources) {
     if (source.checked > today)
       errors.push(`${source.id}: consultation future`);
@@ -184,6 +193,21 @@ export function validateDataset(dataset) {
   }
   const budget = dataset.budget;
   if (budget) {
+    if (
+      !Number.isInteger(budget.year) ||
+      budget.year < 1900 ||
+      budget.year >= Number(today.slice(0, 4))
+    )
+      errors.push('budget: exercice annuel incomplet ou invalide');
+    if (
+      !dateSchema.safeParse(budget.published).success ||
+      budget.published > today
+    )
+      errors.push('budget: date de publication invalide');
+    if (
+      !['provisional', 'semi-definitive', 'definitive'].includes(budget.status)
+    )
+      errors.push('budget: statut de révision invalide');
     if (budget.unit !== '% du PIB' || !sourceIds.has(budget.sourceId))
       errors.push('budget: unité ou source invalide');
     const { spending, revenue, deficit, debt } = budget.values;

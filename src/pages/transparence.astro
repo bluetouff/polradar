@@ -1,6 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
-import { candidates, engagements, sources, themes, meta } from '../lib/data';
+import {
+  candidates,
+  engagements,
+  sources,
+  themes,
+  meta,
+  formatDate,
+} from '../lib/data';
 ---
 
 <Base title="Transparence du projet et du corpus">
@@ -40,8 +47,8 @@ import { candidates, engagements, sources, themes, meta } from '../lib/data';
         </li>
       </ul>
       <p>
-        Le corpus programmatique initial est arrêté au 16 novembre 2026. Les
-        dates de consultation figurent dans chaque source.
+        Le corpus programmatique est arrêté au {formatDate(meta.corpusUpdated)}.
+        Les dates de consultation figurent dans chaque source.
       </p>
     </article>
     <article class="panel dark-panel">

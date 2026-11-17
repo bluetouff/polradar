@@ -80,6 +80,23 @@ test('les unités et la cohérence des comptes sont contrôlées', () => {
     }).length,
   );
 });
+test('les mises à jour conservent des dates et des exercices annuels cohérents', () => {
+  assert.ok(
+    changed((d) => {
+      d.meta.corpusUpdated = '2099-01-01';
+    }).length,
+  );
+  assert.ok(
+    changed((d) => {
+      d.budget.year = new Date().getUTCFullYear();
+    }).length,
+  );
+  assert.ok(
+    changed((d) => {
+      d.budget.published = '2026-02-31';
+    }).length,
+  );
+});
 test('une enquête incohérente est refusée', () => {
   assert.ok(
     changed((d) =>

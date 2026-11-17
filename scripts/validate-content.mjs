@@ -9,6 +9,7 @@ const names = [
   'events',
   'polls',
   'budget',
+  'meta',
 ];
 const entries = await Promise.all(
   names.map(async (name) => [
