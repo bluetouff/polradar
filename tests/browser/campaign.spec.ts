@@ -71,3 +71,31 @@ test('le titre des courbes conserve un padding au-dessus et en dessous', async (
     expect(Math.min(...padding)).toBeGreaterThanOrEqual(14);
   }
 });
+
+test('les icônes et les compteurs de thèmes gardent leur taille et leur alignement', async ({
+  page,
+}) => {
+  for (const width of [320, 390, 768, 901, 1024, 1440]) {
+    await page.setViewportSize({ width, height: 1000 });
+    await page.goto('/');
+    await page.evaluate(() => document.fonts.ready);
+    const brand = (await page.locator('.wordmark').boundingBox())!;
+    const caption = (await page.locator('.rail-brand > p').boundingBox())!;
+    expect(
+      caption.x >= brand.x + brand.width + 8 ||
+        caption.y >= brand.y + brand.height + 8,
+      `signature à ${width}px`,
+    ).toBe(true);
+    for (const link of await page.locator('.theme-register > a').all()) {
+      const icon = (await link.locator(':scope > .icon').boundingBox())!;
+      const count = (await link.locator('.theme-count').boundingBox())!;
+      const bar = (await link.locator('.theme-entry svg').boundingBox())!;
+      expect(icon.width, `icône à ${width}px`).toBeGreaterThanOrEqual(29);
+      expect(
+        Math.abs(icon.y + icon.height / 2 - count.y - count.height / 2),
+        `alignement à ${width}px`,
+      ).toBeLessThanOrEqual(1);
+      expect(bar.width, `barre à ${width}px`).toBeGreaterThanOrEqual(20);
+    }
+  }
+});
