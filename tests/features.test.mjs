@@ -365,3 +365,17 @@ test('le suivi rejette les données corrompues et les identifiants inconnus', ()
     lastVisit: null,
   });
 });
+
+test('les recherches traitent les motifs extglob et regex comme du texte littéral', () => {
+  for (const query of ['+(*a)', '+(*)', '!(foo)', '@(a|b)', '(a+)+$']) {
+    const rows = [
+      { id: 'literal', title: query, text: '' },
+      { id: 'ordinary', title: 'Une proposition ordinaire', text: '' },
+    ];
+    assert.deepEqual(
+      filterEntries(rows, { q: query }).map((row) => row.id),
+      ['literal'],
+    );
+    assert.deepEqual(filterEntries([rows[1]], { q: query }), []);
+  }
+});

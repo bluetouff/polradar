@@ -1,7 +1,7 @@
 [
   {
     "sourceId": "pp-primary",
-    "checkedAt": "2026-11-17T16:13:20.580436Z",
+    "checkedAt": "2026-11-17T17:43:54.280986Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "0f1d1286de339db0987a5768dbdf840c97aa285d77fd61e562d6986778ac3444",
@@ -12,20 +12,20 @@
   },
   {
     "sourceId": "pcf-status",
-    "checkedAt": "2026-11-17T16:13:20.581406Z",
+    "checkedAt": "2026-11-17T17:43:54.281474Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "7213d379512757d677f0e53e3119d0a22a818b1de032e828997405fc0a495dd9",
-    "previousFingerprint": "3ef8442002eca3269249f3ee3276b63fe3f4e8c75293aa2fb14c3c75e32ffb0c",
+    "previousFingerprint": "7213d379512757d677f0e53e3119d0a22a818b1de032e828997405fc0a495dd9",
     "bytes": 1862139,
     "contentType": "application/pdf",
-    "message": "Document accessible ; remplacement officiel relu",
+    "message": "Document accessible lors du relevé",
     "reviewedAt": "2026-11-17T16:38:55.627468Z",
     "reviewNote": "Article original « Le plein de colère », CommunisteS 1100 du 16 septembre 2026, page 3. PDF officiel relu ; empreinte identique au fichier vérifié. Ancienne URL nationale conservée."
   },
   {
     "sourceId": "pcf-work",
-    "checkedAt": "2026-11-17T16:13:20.581868Z",
+    "checkedAt": "2026-11-17T17:43:54.281955Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "7d457b67ecc81a12fb335b8bfebcd9d405a5874191a832068ade912d5df8ba68",
@@ -38,18 +38,20 @@
   },
   {
     "sourceId": "pcf-2026",
-    "checkedAt": "2026-11-17T16:13:20.582514Z",
-    "status": "bloque",
-    "httpStatus": 429,
-    "fingerprint": null,
+    "checkedAt": "2026-11-17T17:43:54.282878Z",
+    "status": "accessible",
+    "httpStatus": 200,
+    "fingerprint": "bd773766e573092701d97c5ccf215281cf06414aae1355858e6abfa7588d7a87",
     "previousFingerprint": "4b11f03d36c792d43743546236c60ec01a709f06a259673ca7a08b09abf3dd28",
-    "bytes": 0,
-    "contentType": "text/html",
-    "message": "Réponse HTTP 429 depuis le runner de veille ; republication officielle accessible lors de lectures précédentes"
+    "bytes": 959,
+    "contentType": "application/json",
+    "message": "Vidéo officielle disponible : métadonnées YouTube accessibles",
+    "reviewedAt": "2026-11-17T18:11:36.695157Z",
+    "reviewNote": "Captation officielle PCF du meeting du 12 septembre 2026. Identité de la chaîne et vidéo vérifiées ; la page nationale du texte publié le 15 septembre reste en référence précédente. Le relevé compare uniquement les métadonnées, sans exécuter le lecteur."
   },
   {
     "sourceId": "lfi-book",
-    "checkedAt": "2026-11-17T16:13:21.147590Z",
+    "checkedAt": "2026-11-17T17:43:54.355512Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "e0a35367a3a9adfda846ad6284d87fc1cc8750d6175a31fda5ad8508487a0582",
@@ -62,7 +64,7 @@
   },
   {
     "sourceId": "lfi-tax",
-    "checkedAt": "2026-11-17T16:13:21.743858Z",
+    "checkedAt": "2026-11-17T17:43:54.760738Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "a62a08682c2c56a0989808d5cd6fe65aee3548d751949c57c4fce125280e6b0e",
@@ -73,7 +75,7 @@
   },
   {
     "sourceId": "lfi-social",
-    "checkedAt": "2026-11-17T16:13:21.950559Z",
+    "checkedAt": "2026-11-17T17:43:55.198509Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "c6d6119fd99f8dd7b3c3dd646df563c319d52e9b3b5b22e682585b60e21454c5",
@@ -84,7 +86,7 @@
   },
   {
     "sourceId": "lfi-climate",
-    "checkedAt": "2026-11-17T16:13:22.372689Z",
+    "checkedAt": "2026-11-17T17:43:56.017067Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "4afbc8d7a9d481b94ee12ae73ea775603fb0b1d67d456a218243b3dc95fec79a",
@@ -95,7 +97,7 @@
   },
   {
     "sourceId": "lfi-school",
-    "checkedAt": "2026-11-17T16:13:23.475926Z",
+    "checkedAt": "2026-11-17T17:43:56.903016Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "999816795f5fd81f588e50723fa03351f2b04926b16d87bc5b2393ae8934e5ca",
@@ -106,7 +108,7 @@
   },
   {
     "sourceId": "lfi-health",
-    "checkedAt": "2026-11-17T16:13:24.918034Z",
+    "checkedAt": "2026-11-17T17:43:57.104036Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "eba38dca19245d850950e0b42552197eda2801cbc4e30669a80642467e7c7b73",
@@ -117,7 +119,7 @@
   },
   {
     "sourceId": "lfi-democracy",
-    "checkedAt": "2026-11-17T16:13:25.135558Z",
+    "checkedAt": "2026-11-17T17:43:58.636609Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "7ed24a0e808aa44ae21951c8c571d5d0d9b8a4001057e9be983cf1e575015a39",
@@ -128,7 +130,7 @@
   },
   {
     "sourceId": "eco-work",
-    "checkedAt": "2026-11-17T16:13:27.034329Z",
+    "checkedAt": "2026-11-17T17:44:00.390525Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "69b360c59a4ef95655444722a857f77e8d172e26420df3df384adc29b235aba4",
@@ -139,7 +141,7 @@
   },
   {
     "sourceId": "eco-corpus",
-    "checkedAt": "2026-11-17T16:13:27.577914Z",
+    "checkedAt": "2026-11-17T17:44:02.181522Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "30f29165b7846a373c533f267583536125bfd29c5fb84a0faf4c1959d4f52b1e",
@@ -150,7 +152,7 @@
   },
   {
     "sourceId": "eco-speech",
-    "checkedAt": "2026-11-17T16:13:28.534142Z",
+    "checkedAt": "2026-11-17T17:44:02.635869Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "a7396ed72f1ada0b335a5cce97950f87751622d52461542ba7e99685a7091091",
@@ -161,7 +163,7 @@
   },
   {
     "sourceId": "eco-culture",
-    "checkedAt": "2026-11-17T16:13:29.574737Z",
+    "checkedAt": "2026-11-17T17:44:03.615818Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "360850da0a357c2465bec59340a23208e582d71e52dfebd341298b398efaf769",
@@ -172,7 +174,7 @@
   },
   {
     "sourceId": "glucks-climate",
-    "checkedAt": "2026-11-17T16:13:30.177068Z",
+    "checkedAt": "2026-11-17T17:44:05.043570Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "aa2b75acd69c0f3226cf3839c0c2376205ab4faa2c904390fd9ea144a7e6d55f",
@@ -183,7 +185,7 @@
   },
   {
     "sourceId": "glucks-livret",
-    "checkedAt": "2026-11-17T16:13:31.069538Z",
+    "checkedAt": "2026-11-17T17:44:05.754802Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "a54cc24b8819f2d8d41bbfa5d23e861e8cc7629801d805fe7632069ab096eae0",
@@ -194,7 +196,7 @@
   },
   {
     "sourceId": "pp-project",
-    "checkedAt": "2026-11-17T16:13:31.252857Z",
+    "checkedAt": "2026-11-17T17:44:06.022258Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "f553def8105c44923250f192411971f118d5adbc783bfbbbde2660f7a832020f",
@@ -205,7 +207,7 @@
   },
   {
     "sourceId": "pp-home",
-    "checkedAt": "2026-11-17T16:13:31.623278Z",
+    "checkedAt": "2026-11-17T17:44:07.637184Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "c5db8cbdca59f15ff9aec2e5320f31bf016b98b6ec591d31a72f36373ea8b181",
@@ -216,7 +218,7 @@
   },
   {
     "sourceId": "attal-index",
-    "checkedAt": "2026-11-17T16:13:32.252843Z",
+    "checkedAt": "2026-11-17T17:44:08.406201Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "7a2dc04a1e0741ef9d9d5f923d13bed4ee8de0cf484af3b53b73aca1633d4fd4",
@@ -227,7 +229,7 @@
   },
   {
     "sourceId": "attal-work",
-    "checkedAt": "2026-11-17T16:13:32.976094Z",
+    "checkedAt": "2026-11-17T17:44:08.902333Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "a09d355b51c7e268dfa5bbcb2550a1287c87c4e41aa662a1a2595e23534771c3",
@@ -238,7 +240,7 @@
   },
   {
     "sourceId": "attal-school",
-    "checkedAt": "2026-11-17T16:13:33.101235Z",
+    "checkedAt": "2026-11-17T17:44:09.309114Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "8f7281fdf66f04a3962ebfaa7125f35fd24982149420bdc8c75abd8d18f21c1b",
@@ -249,7 +251,7 @@
   },
   {
     "sourceId": "attal-borders",
-    "checkedAt": "2026-11-17T16:13:33.118508Z",
+    "checkedAt": "2026-11-17T17:44:10.264712Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "6c4370fd8d28832337b60e0e2bb7718703b9b2fdb574519208c468230d60e9a6",
@@ -260,7 +262,7 @@
   },
   {
     "sourceId": "attal-budget",
-    "checkedAt": "2026-11-17T16:13:34.015140Z",
+    "checkedAt": "2026-11-17T17:44:10.311186Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "ef75bbdf3afd9e5fe38e5ef9b482e39bdb22d0ca389f47aa6d86ba0fae45639b",
@@ -271,7 +273,7 @@
   },
   {
     "sourceId": "attal-climate",
-    "checkedAt": "2026-11-17T16:13:34.697808Z",
+    "checkedAt": "2026-11-17T17:44:11.684992Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "d3abd1abdee41b846817a4698bfd54ad9e31b59e8cf4bbd01ec5c475bdb57651",
@@ -282,7 +284,7 @@
   },
   {
     "sourceId": "philippe-index",
-    "checkedAt": "2026-11-17T16:13:36.618902Z",
+    "checkedAt": "2026-11-17T17:44:11.931141Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "ff1529c3d304f989ab489fb7523045ff35f0c9b4475939f11382ec5abb01cd83",
@@ -295,7 +297,7 @@
   },
   {
     "sourceId": "philippe-pension",
-    "checkedAt": "2026-11-17T16:13:38.048485Z",
+    "checkedAt": "2026-11-17T17:44:13.107903Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "0909c1df78e5f955b0bc6f43461fadfe7757fe794faee4aa46f0bfd27808f91e",
@@ -308,7 +310,7 @@
   },
   {
     "sourceId": "philippe-business",
-    "checkedAt": "2026-11-17T16:13:38.316980Z",
+    "checkedAt": "2026-11-17T17:44:13.154925Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "f3f36b48f8ccd28eb8bbba89ef612afbdc6c66eae188bb9b2b4bb4e0f3dea172",
@@ -321,7 +323,7 @@
   },
   {
     "sourceId": "philippe-budget",
-    "checkedAt": "2026-11-17T16:13:39.661163Z",
+    "checkedAt": "2026-11-17T17:44:14.533733Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "c08ac42797126e4e1872136178cc6f877e4c18691deddb576482fa728e40c760",
@@ -334,7 +336,7 @@
   },
   {
     "sourceId": "retailleau-index",
-    "checkedAt": "2026-11-17T16:13:40.005003Z",
+    "checkedAt": "2026-11-17T17:44:15.034060Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "ef73b4b24912c78a96d7d11770aa9fe0a6b022e36fdb546fd4c5977f7f80bd28",
@@ -345,7 +347,7 @@
   },
   {
     "sourceId": "retailleau-pension",
-    "checkedAt": "2026-11-17T16:13:41.139692Z",
+    "checkedAt": "2026-11-17T17:44:15.846202Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "6d8c2c443f73c4a97ba27198179892917a047b2ab084196c9f960739e197854f",
@@ -356,7 +358,7 @@
   },
   {
     "sourceId": "retailleau-borders",
-    "checkedAt": "2026-11-17T16:13:41.914889Z",
+    "checkedAt": "2026-11-17T17:44:17.285985Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "41d8502acf1cba82f5531e6b58aba26637d7d568c6b9bb64ae5bddca24751c40",
@@ -367,7 +369,7 @@
   },
   {
     "sourceId": "retailleau-budget",
-    "checkedAt": "2026-11-17T16:13:43.893381Z",
+    "checkedAt": "2026-11-17T17:44:19.239879Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "6cfed08f3c952d36d5fb478627a337d2254d73185f7c59266ce6bbece87a961c",
@@ -378,7 +380,7 @@
   },
   {
     "sourceId": "retailleau-school",
-    "checkedAt": "2026-11-17T16:14:17.035230Z",
+    "checkedAt": "2026-11-17T17:44:50.196860Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "52703cea15dd1fcf582fb1ceb3faf3f6d28061bb91415de91b66a9e17e6f302f",
@@ -389,7 +391,7 @@
   },
   {
     "sourceId": "lisnard-health",
-    "checkedAt": "2026-11-17T16:14:18.972535Z",
+    "checkedAt": "2026-11-17T17:44:52.569108Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "6a62c3dd3419adf35ec32f507da01d5e4f66a993a1aad24f0e5ca8141450704b",
@@ -400,7 +402,7 @@
   },
   {
     "sourceId": "lisnard-borders",
-    "checkedAt": "2026-11-17T16:14:19.902270Z",
+    "checkedAt": "2026-11-17T17:44:53.696890Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "b894f1c7f5905b058f693abfa43b5c25b86e2994ef4fbdf4e0de6641dc86b7f4",
@@ -411,7 +413,7 @@
   },
   {
     "sourceId": "ruffin-budget",
-    "checkedAt": "2026-11-17T16:14:21.293416Z",
+    "checkedAt": "2026-11-17T17:44:54.295889Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "cfc8033a03e39049803b0e386ab0fbac9d14af23094551314b0e952c345106b6",
@@ -422,7 +424,7 @@
   },
   {
     "sourceId": "ruffin-plans",
-    "checkedAt": "2026-11-17T16:14:21.747948Z",
+    "checkedAt": "2026-11-17T17:44:55.345699Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "ec538fb1ffee56105236b7f64570fa4ffb8675e4f0eab5bc181a454dc3b2c972",
@@ -433,20 +435,20 @@
   },
   {
     "sourceId": "upr",
-    "checkedAt": "2026-11-17T16:37:09.485359Z",
+    "checkedAt": "2026-11-17T17:44:55.387945Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "b17f872ef5befb4222aa9f7098679dd066f9bf2c8892615fd1f19a55a87b6e1f",
-    "previousFingerprint": "c02cbf4016dd8abf8d61dccc231179802933e3ebcab97b3e623a858cfe14c065",
+    "previousFingerprint": "b17f872ef5befb4222aa9f7098679dd066f9bf2c8892615fd1f19a55a87b6e1f",
     "bytes": 82977,
     "contentType": "text/html",
-    "message": "Document accessible ; contenu relu",
+    "message": "Document accessible lors du relevé",
     "reviewedAt": "2026-11-17T16:38:55.627468Z",
     "reviewNote": "Page relue : compteur de collecte à 18,6 % et actualités récentes. Les engagements UE, euro, OTAN, vote blanc, référendum et référence au CNR restent présents ; aucune nouvelle mesure déduite du compteur."
   },
   {
     "sourceId": "upr-program",
-    "checkedAt": "2026-11-17T16:14:22.964103Z",
+    "checkedAt": "2026-11-17T17:44:56.055009Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "fbe30d8509421156abcf706dce52c0046cf47ecac7dfb8634a55842a78bf88fb",
@@ -457,20 +459,20 @@
   },
   {
     "sourceId": "sondages",
-    "checkedAt": "2026-11-17T16:37:10.033175Z",
+    "checkedAt": "2026-11-17T17:44:56.108847Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "b4c1dd9c4eab7c01c96d61575415274a28726ef529b1e559714ad1a3ef4eb336",
-    "previousFingerprint": "13897b74fc5375854983d4eaa3917a44268efcd56068e0d141f06ff35942b373",
+    "previousFingerprint": "b4c1dd9c4eab7c01c96d61575415274a28726ef529b1e559714ad1a3ef4eb336",
     "bytes": 69152,
     "contentType": "text/html",
-    "message": "Document accessible ; contenu relu",
+    "message": "Document accessible lors du relevé",
     "reviewedAt": "2026-11-17T16:38:55.627468Z",
     "reviewNote": "Index relu, dont les notices 10379 sur Teddy Riner et 10380 sur le pouvoir d’achat. Les nouvelles vagues intégrées disposent de leurs propres notices. Les enquêtes de notoriété et les potentiels électoraux restent distincts des intentions de vote."
   },
   {
     "sourceId": "philippe-ecole",
-    "checkedAt": "2026-11-17T16:14:23.864900Z",
+    "checkedAt": "2026-11-17T17:44:56.919557Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "191e44cfe51c33aaa4789829096a078e33387aa9212f7dc256854f5262be65a9",
@@ -481,7 +483,7 @@
   },
   {
     "sourceId": "philippe-famille",
-    "checkedAt": "2026-11-17T16:14:24.377525Z",
+    "checkedAt": "2026-11-17T17:44:57.268411Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "6c0e35135084bfdf08ec32bbcfe7a38f5047178f3bf52a7fef5d9d030e594a33",
@@ -492,7 +494,7 @@
   },
   {
     "sourceId": "philippe-travail",
-    "checkedAt": "2026-11-17T16:14:24.692213Z",
+    "checkedAt": "2026-11-17T17:44:57.587273Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "e648863c6755a1e0dbc825c0677ec101f3dc27d757e51be36e242e7b3abc607e",
@@ -503,7 +505,7 @@
   },
   {
     "sourceId": "philippe-securite",
-    "checkedAt": "2026-11-17T16:14:24.858480Z",
+    "checkedAt": "2026-11-17T17:44:57.971626Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "8447fc06a09343d6c1a64ebc80fd60b89dd3f5fd1eaf20a9188eeabcff654293",
@@ -514,7 +516,7 @@
   },
   {
     "sourceId": "lisnard-ecole",
-    "checkedAt": "2026-11-17T16:14:26.750555Z",
+    "checkedAt": "2026-11-17T17:44:59.898331Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "787257e1c1f9d948a4293b2f0d7859698e37635ad25ffa9e81c60807db718a92",
@@ -525,7 +527,7 @@
   },
   {
     "sourceId": "lisnard-securite",
-    "checkedAt": "2026-11-17T16:14:27.476013Z",
+    "checkedAt": "2026-11-17T17:45:00.588124Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "85f9a612113afc5dc3235132c58ce4fbc46ae763018112d9c4dec4e0ad9c7986",
@@ -536,7 +538,7 @@
   },
   {
     "sourceId": "ruffin-cahiers",
-    "checkedAt": "2026-11-17T16:14:28.688336Z",
+    "checkedAt": "2026-11-17T17:45:02.222127Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "d61834b13169d04fee03ccb9d7c7c229846651a35792409ae1aecc6252361e5e",
@@ -549,7 +551,7 @@
   },
   {
     "sourceId": "ruffin-essentiels",
-    "checkedAt": "2026-11-17T16:14:29.244692Z",
+    "checkedAt": "2026-11-17T17:45:03.019385Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "1807f4d64e5a241f7a014808b71d7d3568d10e2c75bd3ba4ec8de67979e6bd77",
@@ -560,7 +562,7 @@
   },
   {
     "sourceId": "ruffin-logement",
-    "checkedAt": "2026-11-17T16:14:29.645802Z",
+    "checkedAt": "2026-11-17T17:45:03.228226Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "5b4aaf021b59e1e652a6f3387c6482d469e3c09fa2c8c53ab73049f341ef2833",
@@ -571,7 +573,7 @@
   },
   {
     "sourceId": "retailleau-logement",
-    "checkedAt": "2026-11-17T16:14:30.652311Z",
+    "checkedAt": "2026-11-17T17:45:05.163415Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "2c5166d6516cdd908497294f4e2ab2fa9fefbe44284b02e4c589ad16d2737abb",
@@ -582,7 +584,7 @@
   },
   {
     "sourceId": "retailleau-entreprises",
-    "checkedAt": "2026-11-17T16:14:31.721938Z",
+    "checkedAt": "2026-11-17T17:45:05.532883Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "0b846a487ea53eee8be3f04502edc5f18d893629d0165750d149de574cbeadf8",
@@ -593,7 +595,7 @@
   },
   {
     "sourceId": "eco-enfance-pdf",
-    "checkedAt": "2026-11-17T16:14:33.826819Z",
+    "checkedAt": "2026-11-17T17:45:07.166131Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "96e566cc7c3f00a4bdbbac8a0d7caf42aabb5372ce1272ab9f6511bbbe81da29",
@@ -604,7 +606,7 @@
   },
   {
     "sourceId": "eco-reproduction-pdf",
-    "checkedAt": "2026-11-17T16:14:35.076759Z",
+    "checkedAt": "2026-11-17T17:45:07.404984Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "3ffda107b92973503c1717209e32532193a8305e969c55d5122f00934f5bfa78",
@@ -615,7 +617,7 @@
   },
   {
     "sourceId": "polony-declaration",
-    "checkedAt": "2026-11-17T16:14:37.331238Z",
+    "checkedAt": "2026-11-17T17:45:08.562769Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "2f3999030dfcf7fe6dde1a96c4e415b335dc82783288eaace085a69f9f571959",
@@ -626,7 +628,7 @@
   },
   {
     "sourceId": "polony-vision",
-    "checkedAt": "2026-11-17T16:14:37.658520Z",
+    "checkedAt": "2026-11-17T17:45:08.760399Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "dda21a5d031c93bc5c08262d92944d38c604b3f130c815b6f19a4e23e005e993",
@@ -637,29 +639,29 @@
   },
   {
     "sourceId": "branco-presentation",
-    "checkedAt": "2026-11-17T16:14:38.509260Z",
+    "checkedAt": "2026-11-17T17:45:09.553827Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "afed10c2b9c2a0264cd6e13338845b518904201381c09412c27edcfb5c1bea8c",
     "previousFingerprint": "afed10c2b9c2a0264cd6e13338845b518904201381c09412c27edcfb5c1bea8c",
-    "bytes": 527747,
+    "bytes": 527803,
     "contentType": "text/html",
     "message": "Document accessible lors du relevé"
   },
   {
     "sourceId": "branco-projet",
-    "checkedAt": "2026-11-17T16:14:39.537094Z",
+    "checkedAt": "2026-11-17T17:45:10.675891Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "9c896b9817f429cb9533a0a3076e668d679242a71735057c2f3a488900ba1695",
     "previousFingerprint": "9c896b9817f429cb9533a0a3076e668d679242a71735057c2f3a488900ba1695",
-    "bytes": 558828,
+    "bytes": 558841,
     "contentType": "text/html",
     "message": "Document accessible lors du relevé"
   },
   {
     "sourceId": "equinoxe-programme-2027",
-    "checkedAt": "2026-11-17T16:14:41.467449Z",
+    "checkedAt": "2026-11-17T17:45:13.087681Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "ac7f25507afd46b65bc866b6b522b48f36e917cc9bbe677f44796802e67e301d",
@@ -670,7 +672,7 @@
   },
   {
     "sourceId": "dlf-economie-2026",
-    "checkedAt": "2026-11-17T16:14:42.680614Z",
+    "checkedAt": "2026-11-17T17:45:13.873511Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "7fde1f8a95a11a15d2c6cae2476865203d2fd5aee73059b9a562c80a4a81d9ed",
@@ -681,7 +683,7 @@
   },
   {
     "sourceId": "egger-programme-2027",
-    "checkedAt": "2026-11-17T16:14:43.711235Z",
+    "checkedAt": "2026-11-17T17:45:14.514734Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "4ba753e497f13851a0f14ee088e9da3fa212e461430cfa1aa461e56ca582928d",
@@ -692,7 +694,7 @@
   },
   {
     "sourceId": "patriotes-projet-2026-2027",
-    "checkedAt": "2026-11-17T16:14:44.843187Z",
+    "checkedAt": "2026-11-17T17:45:14.834064Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "90d0748445644a433b594864cf553a03245739e07cb65672f01c1c0b49be6f83",
@@ -703,55 +705,57 @@
   },
   {
     "sourceId": "kazib-premieres-mesures-2027",
-    "checkedAt": "2026-11-17T16:14:45.592847Z",
+    "checkedAt": "2026-11-17T17:45:15.154749Z",
     "status": "accessible",
     "httpStatus": 200,
-    "fingerprint": "8a69a6b142549afceae905262d22e6e394a0b27f1d70ce621c7ba36bad6620b8",
+    "fingerprint": "b470afea4801cb7d26d42399f23e2c1c372b216aa126ec1216dc5f166c1be05b",
     "previousFingerprint": "8a69a6b142549afceae905262d22e6e394a0b27f1d70ce621c7ba36bad6620b8",
-    "bytes": 62153,
+    "bytes": 62203,
     "contentType": "text/html",
-    "message": "Document accessible lors du relevé"
+    "message": "Document accessible ; changement de page relu",
+    "reviewedAt": "2026-11-17T18:11:36.695157Z",
+    "reviewNote": "Comparaison avec la page officielle consultée précédemment : les différences concernent les articles connexes et leur ordre. Le texte présentant les premières mesures est inchangé."
   },
   {
     "sourceId": "ruffin-jeunesse",
-    "checkedAt": "2026-11-17T16:14:45.824498Z",
+    "checkedAt": "2026-11-17T17:45:15.266975Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "7ec08ab392b3543a7fcfb808787225ea40dc8758bb5332b818cfdfb8ce7b7059",
-    "previousFingerprint": null,
+    "previousFingerprint": "7ec08ab392b3543a7fcfb808787225ea40dc8758bb5332b818cfdfb8ce7b7059",
     "bytes": 223886,
     "contentType": "text/html",
     "message": "Document accessible lors du relevé"
   },
   {
     "sourceId": "ruffin-numerique",
-    "checkedAt": "2026-11-17T16:14:46.993230Z",
+    "checkedAt": "2026-11-17T17:45:15.587578Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "3ec0605dc8542cbd01c18218b3e19bd03cb1965fa07c3c68b3bf304fd236f04a",
-    "previousFingerprint": null,
+    "previousFingerprint": "3ec0605dc8542cbd01c18218b3e19bd03cb1965fa07c3c68b3bf304fd236f04a",
     "bytes": 216934,
     "contentType": "text/html",
     "message": "Document accessible lors du relevé"
   },
   {
     "sourceId": "ruffin-education",
-    "checkedAt": "2026-11-17T16:14:49.150197Z",
+    "checkedAt": "2026-11-17T17:45:16.317891Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "b2c6d9481180bd17d7ccd81d5beb2c0cf8ee1caba7f974c96cba1a26b5e42b43",
-    "previousFingerprint": null,
+    "previousFingerprint": "b2c6d9481180bd17d7ccd81d5beb2c0cf8ee1caba7f974c96cba1a26b5e42b43",
     "bytes": 222315,
     "contentType": "text/html",
     "message": "Document accessible lors du relevé"
   },
   {
     "sourceId": "ruffin-industrie",
-    "checkedAt": "2026-11-17T16:14:51.353652Z",
+    "checkedAt": "2026-11-17T17:45:17.571403Z",
     "status": "accessible",
     "httpStatus": 200,
     "fingerprint": "51a88c551f81cfc56e428708d06a6b794b4ec25ad51297585ee40e2b20e1ae14",
-    "previousFingerprint": null,
+    "previousFingerprint": "51a88c551f81cfc56e428708d06a6b794b4ec25ad51297585ee40e2b20e1ae14",
     "bytes": 230550,
     "contentType": "text/html",
     "message": "Document accessible lors du relevé"
