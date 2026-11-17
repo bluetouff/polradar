@@ -1,4 +1,6 @@
 export const iconPaths = {
+  markets: 'M3 19V5m0 14h18M6 14l4-4 4 3 6-8m-5 0h5v5',
+  exchange: 'M3 8h17l-4-4M21 16H4l4 4M7 5v6m10 2v6',
   retraites: 'M12 3a9 9 0 1 0 9 9 9 9 0 0 0-9-9Zm0 4v5l3 2M4 4l2 2m12 12 2 2',
   travail: 'M3 8h18v12H3Zm5 0V5h8v3M3 13c5 3 13 3 18 0m-11 1h4',
   fiscalite: 'M5 3h14v18H5Zm3 4h8M8 11h2m4 0h2m-8 4h2m4 0h2m-8 3h2m4 0h2',

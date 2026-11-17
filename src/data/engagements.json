@@ -1276,9 +1276,21 @@
       "Relever les minima conventionnels au niveau du SMIC et redonner des possibilités de progression de carrière.",
       "Créer une catégorie d’horaires atypiques assortie d’une majoration pour limiter les journées morcelées.",
       "Systématiser une rémunération forfaitaire des longues coupures imposées par l’employeur.",
-      "Permettre d’acquérir le niveau bac après cinq ans dans un métier essentiel, avec maintien intégral de salaire."
+      "Permettre d’acquérir le niveau bac après cinq ans dans un métier essentiel, avec maintien intégral de salaire.",
+      "Une garantie d’emploi civique pour les jeunes volontaires.",
+      "Aligner la rémunération des stages sur l’apprentissage.",
+      "Renforcer les contrôles pour les jeunes dans les métiers dangereux.",
+      "Négocier les outils numériques avant leur déploiement au travail.",
+      "Un volontariat national de l’IA pour 5 000 jeunes ingénieurs.",
+      "Renforcer les conditions de production en France dans la commande publique."
     ],
-    "sources": ["ruffin-project", "ruffin-essentiels"],
+    "sources": [
+      "ruffin-project",
+      "ruffin-essentiels",
+      "ruffin-jeunesse",
+      "ruffin-numerique",
+      "ruffin-industrie"
+    ],
     "scope": "campagne",
     "edition": "Campagne 2027",
     "note": "",
@@ -1302,9 +1314,12 @@
     "theme": "institutions",
     "title": "Faire décider les citoyens",
     "bullets": [
-      "Instaurer un RIC et des États généraux disposant d’un pouvoir de décision."
+      "Instaurer un RIC et des États généraux disposant d’un pouvoir de décision.",
+      "Une Assemblée des jeunesses de 577 membres tirés au sort.",
+      "Rendre aux communes le pouvoir d’urbanisme sur les data centers.",
+      "Créer une Forge des communs numériques."
     ],
-    "sources": ["ruffin-project"],
+    "sources": ["ruffin-project", "ruffin-jeunesse", "ruffin-numerique"],
     "scope": "campagne",
     "edition": "Campagne 2027",
     "note": "",
@@ -1323,9 +1338,10 @@
     "theme": "fiscalite",
     "title": "Taxer patrimoines et successions",
     "bullets": [
-      "Mobiliser une taxe sur les très hauts patrimoines et la fiscalité des grandes successions."
+      "Mobiliser une taxe sur les très hauts patrimoines et la fiscalité des grandes successions.",
+      "Financer la protection sociale par une contribution sur l’usage des algorithmes."
     ],
-    "sources": ["ruffin-budget"],
+    "sources": ["ruffin-budget", "ruffin-numerique"],
     "scope": "campagne",
     "edition": "Campagne 2027",
     "note": "Un plan chiffré existe. Polradar n’en reprend pas le solde sans reconstruire ses hypothèses et son calendrier.",
@@ -1344,9 +1360,13 @@
     "theme": "climat",
     "title": "Rénovation et sécurité climatique",
     "bullets": [
-      "Renforcer les moyens de sécurité civile et accélérer la rénovation."
+      "Renforcer les moyens de sécurité civile et accélérer la rénovation.",
+      "Fixer une enveloppe électrique pour le numérique.",
+      "Imposer la récupération de chaleur des data centers.",
+      "Interrompre les tâches informatiques non critiques aux pointes électriques.",
+      "Plafonner l’électricité au coût de production national."
     ],
-    "sources": ["ruffin-plans"],
+    "sources": ["ruffin-plans", "ruffin-numerique", "ruffin-industrie"],
     "scope": "campagne",
     "edition": "Campagne 2027",
     "note": "",
@@ -1369,9 +1389,10 @@
       "Développer l’offre à loyer abordable, avec un effort particulier pour les jeunes.",
       "Viser un million de rénovations annuelles, dont 600 000 d’ampleur, en simplifiant et renforçant les aides.",
       "Imposer moins les locations pérennes que les logements destinés aux touristes.",
-      "Limiter les dérogations à certains logements performants et équipés contre la chaleur, avec un plafond spécifique."
+      "Limiter les dérogations à certains logements performants et équipés contre la chaleur, avec un plafond spécifique.",
+      "Viser 200 000 places pour les jeunes d’ici 2032."
     ],
-    "sources": ["ruffin-project", "ruffin-logement"],
+    "sources": ["ruffin-project", "ruffin-logement", "ruffin-jeunesse"],
     "scope": "campagne",
     "edition": "Campagne 2027",
     "note": "",
@@ -1395,9 +1416,23 @@
     "theme": "education",
     "title": "Revaloriser les savoirs pratiques",
     "bullets": [
-      "Renforcer la voie professionnelle et mettre fin à Parcoursup."
+      "Renforcer la voie professionnelle et mettre fin à Parcoursup.",
+      "Un ordinateur portable à l’entrée au lycée.",
+      "Un laboratoire public d’IA doté d’un milliard d’euros par an.",
+      "Créer un Conseil de pilotage éducatif dès 2027.",
+      "Enseigner les savoirs techniques et pratiques au collège.",
+      "Porter le CAP à trois ans et le bac professionnel à quatre ans.",
+      "Remplacer Parcoursup et donner priorité aux vœux des élèves.",
+      "Consacrer au moins la moitié de la formation enseignante à la pédagogie.",
+      "Revaloriser les enseignants sans contrepartie.",
+      "Intégrer les AESH à la fonction publique."
     ],
-    "sources": ["ruffin-project"],
+    "sources": [
+      "ruffin-project",
+      "ruffin-jeunesse",
+      "ruffin-numerique",
+      "ruffin-education"
+    ],
     "scope": "campagne",
     "edition": "Campagne 2027",
     "note": "",
@@ -2149,6 +2184,869 @@
         "date": "2026-11-17",
         "event": "Fiche intégrée",
         "summary": "Propositions relevées dans les documents cités."
+      }
+    ]
+  },
+  {
+    "id": "mikolajczak-institutions",
+    "candidate": "mikolajczak",
+    "theme": "institutions",
+    "title": "Proportionnelle mixte et Sénat tiré au sort parmi les élus locaux",
+    "bullets": [
+      "Proportionnelle mixte et Sénat tiré au sort parmi les élus locaux.",
+      "Remplacer départements et intercommunalités par 350 pays.",
+      "Limiter à deux les mandats dans une même fonction.",
+      "Un organisme unique pour les aides sociales."
+    ],
+    "sources": ["equinoxe-programme-2027"],
+    "scope": "campagne",
+    "edition": "Équinoxe, douze priorités pour 2027 ; programme complet et chiffrage annoncés en préparation",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "mikolajczak-travail",
+    "candidate": "mikolajczak",
+    "theme": "travail",
+    "title": "Orienter la commande publique vers les secteurs stratégiques",
+    "bullets": [
+      "Orienter la commande publique vers les secteurs stratégiques."
+    ],
+    "sources": ["equinoxe-programme-2027"],
+    "scope": "campagne",
+    "edition": "Équinoxe, douze priorités pour 2027 ; programme complet et chiffrage annoncés en préparation",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "mikolajczak-climat",
+    "candidate": "mikolajczak",
+    "theme": "climat",
+    "title": "Une chambre écologique de 150 citoyens tirés au sort",
+    "bullets": [
+      "Une chambre écologique de 150 citoyens tirés au sort.",
+      "Redistribuer 80 % de la taxe carbone aux ménages."
+    ],
+    "sources": ["equinoxe-programme-2027"],
+    "scope": "campagne",
+    "edition": "Équinoxe, douze priorités pour 2027 ; programme complet et chiffrage annoncés en préparation",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "mikolajczak-education",
+    "candidate": "mikolajczak",
+    "theme": "education",
+    "title": "Accroître les formations des secteurs stratégiques",
+    "bullets": ["Accroître les formations des secteurs stratégiques."],
+    "sources": ["equinoxe-programme-2027"],
+    "scope": "campagne",
+    "edition": "Équinoxe, douze priorités pour 2027 ; programme complet et chiffrage annoncés en préparation",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "mikolajczak-sante",
+    "candidate": "mikolajczak",
+    "theme": "sante",
+    "title": "Un Défenseur de la santé et un bilan de prévention pris en charge",
+    "bullets": [
+      "Un Défenseur de la santé et un bilan de prévention pris en charge.",
+      "Conditionner l’installation des médecins aux besoins territoriaux."
+    ],
+    "sources": ["equinoxe-programme-2027"],
+    "scope": "campagne",
+    "edition": "Équinoxe, douze priorités pour 2027 ; programme complet et chiffrage annoncés en préparation",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "mikolajczak-social",
+    "candidate": "mikolajczak",
+    "theme": "social",
+    "title": "Expérimenter une sécurité sociale de l’alimentation",
+    "bullets": [
+      "Expérimenter une sécurité sociale de l’alimentation.",
+      "Ouvrir des lieux publics gratuits contre l’isolement."
+    ],
+    "sources": ["equinoxe-programme-2027"],
+    "scope": "campagne",
+    "edition": "Équinoxe, douze priorités pour 2027 ; programme complet et chiffrage annoncés en préparation",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "dupont-aignan-climat",
+    "candidate": "dupont-aignan",
+    "theme": "climat",
+    "title": "Diviser par deux le prix de l’électricité dès la première année",
+    "bullets": [
+      "Diviser par deux le prix de l’électricité dès la première année.",
+      "Réduire de 20 % le prix du gaz.",
+      "Supprimer les aides aux installations éoliennes et solaires.",
+      "Accélérer les EPR2 et relancer Astrid."
+    ],
+    "sources": ["dlf-economie-2026"],
+    "scope": "parti",
+    "edition": "Projet économique de Debout la France, version consultée le 17 novembre 2026",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "dupont-aignan-fiscalite",
+    "candidate": "dupont-aignan",
+    "theme": "fiscalite",
+    "title": "Baisser le carburant de 40 centimes par litre",
+    "bullets": [
+      "Baisser le carburant de 40 centimes par litre.",
+      "Baisser les impôts de production.",
+      "Un crédit d’impôt pour les bénéfices réinvestis en France.",
+      "TVA nulle sur cinquante produits de première nécessité.",
+      "Exonérer la résidence principale des droits de succession.",
+      "Fixer le taux du Livret A au-dessus de l’inflation.",
+      "Imposer les multinationales selon leur chiffre d’affaires national."
+    ],
+    "sources": ["dlf-economie-2026"],
+    "scope": "parti",
+    "edition": "Projet économique de Debout la France, version consultée le 17 novembre 2026",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "dupont-aignan-travail",
+    "candidate": "dupont-aignan",
+    "theme": "travail",
+    "title": "Diviser par deux les normes administratives",
+    "bullets": [
+      "Diviser par deux les normes administratives.",
+      "Un fonds de relocalisation de 4 milliards d’euros par an.",
+      "Rendre obligatoire l’étiquetage du pays de fabrication.",
+      "Réserver la commande publique aux biens produits en France.",
+      "Étendre le contrôle des investissements étrangers.",
+      "Abroger la directive sur les travailleurs détachés.",
+      "Porter le SMIC à 1 600 € net par mois.",
+      "Exonérer temporairement certains CDI de cotisations patronales.",
+      "Exonérer de cotisations salariales jusqu’à 300 heures supplémentaires.",
+      "Favoriser l’actionnariat salarié et la cogestion."
+    ],
+    "sources": ["dlf-economie-2026"],
+    "scope": "parti",
+    "edition": "Projet économique de Debout la France, version consultée le 17 novembre 2026",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "dupont-aignan-europe",
+    "candidate": "dupont-aignan",
+    "theme": "europe",
+    "title": "Renégocier les accords de libre-échange après une sortie de l’UE",
+    "bullets": [
+      "Renégocier les accords de libre-échange après une sortie de l’UE.",
+      "Mettre fin aux aides à l’Ukraine.",
+      "Rétablir une monnaie nationale et le financement par la Banque de France."
+    ],
+    "sources": ["dlf-economie-2026"],
+    "scope": "parti",
+    "edition": "Projet économique de Debout la France, version consultée le 17 novembre 2026",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "dupont-aignan-retraites",
+    "candidate": "dupont-aignan",
+    "theme": "retraites",
+    "title": "Un capital retraite de 10 000 € à la naissance",
+    "bullets": [
+      "Un capital retraite de 10 000 € à la naissance.",
+      "Indexer pensions et traitements publics sur l’inflation."
+    ],
+    "sources": ["dlf-economie-2026"],
+    "scope": "parti",
+    "edition": "Projet économique de Debout la France, version consultée le 17 novembre 2026",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "dupont-aignan-education",
+    "candidate": "dupont-aignan",
+    "theme": "education",
+    "title": "Une formation qualifiante pour chaque jeune sans diplôme",
+    "bullets": [
+      "Une formation qualifiante pour chaque jeune sans diplôme.",
+      "Porter l’effort de recherche au-delà de 3 % du PIB en 2029."
+    ],
+    "sources": ["dlf-economie-2026"],
+    "scope": "parti",
+    "edition": "Projet économique de Debout la France, version consultée le 17 novembre 2026",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "dupont-aignan-immigration",
+    "candidate": "dupont-aignan",
+    "theme": "immigration",
+    "title": "Conditionner les aides non contributives à cinq ans de résidence",
+    "bullets": [
+      "Conditionner les aides non contributives à cinq ans de résidence."
+    ],
+    "sources": ["dlf-economie-2026"],
+    "scope": "parti",
+    "edition": "Projet économique de Debout la France, version consultée le 17 novembre 2026",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "dupont-aignan-institutions",
+    "candidate": "dupont-aignan",
+    "theme": "institutions",
+    "title": "Supprimer progressivement des agences de l’État",
+    "bullets": [
+      "Supprimer progressivement des agences de l’État.",
+      "Supprimer les régions et le CESE."
+    ],
+    "sources": ["dlf-economie-2026"],
+    "scope": "parti",
+    "edition": "Projet économique de Debout la France, version consultée le 17 novembre 2026",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "egger-institutions",
+    "candidate": "egger",
+    "theme": "institutions",
+    "title": "Un référendum constituant déclenché par 700 000 signatures",
+    "bullets": [
+      "Un référendum constituant déclenché par 700 000 signatures.",
+      "Refuser les ordonnances privant le Parlement d’un débat.",
+      "Limiter les motifs de dissolution de l’Assemblée.",
+      "Soumettre à référendum les lois sur le pouvoir judiciaire.",
+      "Trois cinquièmes de votes favorables pour les nominations au Conseil constitutionnel.",
+      "Un bilan public mensuel de l’action politique.",
+      "Associer les maires aux réformes territoriales."
+    ],
+    "sources": ["egger-programme-2027"],
+    "scope": "campagne",
+    "edition": "Programme présidentiel 2027 de Solution Démocratique ; initiatives citoyennes conditionnées à l’adoption de la réforme constitutionnelle",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "egger-fiscalite",
+    "candidate": "egger",
+    "theme": "fiscalite",
+    "title": "Soumettre chaque budget de l’État à référendum",
+    "bullets": ["Soumettre chaque budget de l’État à référendum."],
+    "sources": ["egger-programme-2027"],
+    "scope": "campagne",
+    "edition": "Programme présidentiel 2027 de Solution Démocratique ; initiatives citoyennes conditionnées à l’adoption de la réforme constitutionnelle",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "egger-europe",
+    "candidate": "egger",
+    "theme": "europe",
+    "title": "Conditionner les nouveaux traités au consentement des citoyens",
+    "bullets": [
+      "Conditionner les nouveaux traités au consentement des citoyens.",
+      "Soumettre les choix européens au contrôle des citoyens."
+    ],
+    "sources": ["egger-programme-2027"],
+    "scope": "campagne",
+    "edition": "Programme présidentiel 2027 de Solution Démocratique ; initiatives citoyennes conditionnées à l’adoption de la réforme constitutionnelle",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "egger-retraites",
+    "candidate": "egger",
+    "theme": "retraites",
+    "title": "Soumettre les principales réformes des retraites à référendum",
+    "bullets": [
+      "Soumettre les principales réformes des retraites à référendum."
+    ],
+    "sources": ["egger-programme-2027"],
+    "scope": "campagne",
+    "edition": "Programme présidentiel 2027 de Solution Démocratique ; initiatives citoyennes conditionnées à l’adoption de la réforme constitutionnelle",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "egger-climat",
+    "candidate": "egger",
+    "theme": "climat",
+    "title": "Faire trancher la place du nucléaire par référendum",
+    "bullets": ["Faire trancher la place du nucléaire par référendum."],
+    "sources": ["egger-programme-2027"],
+    "scope": "campagne",
+    "edition": "Programme présidentiel 2027 de Solution Démocratique ; initiatives citoyennes conditionnées à l’adoption de la réforme constitutionnelle",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "egger-sante",
+    "candidate": "egger",
+    "theme": "sante",
+    "title": "Publier des évaluations régulières du système de santé",
+    "bullets": ["Publier des évaluations régulières du système de santé."],
+    "sources": ["egger-programme-2027"],
+    "scope": "campagne",
+    "edition": "Programme présidentiel 2027 de Solution Démocratique ; initiatives citoyennes conditionnées à l’adoption de la réforme constitutionnelle",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "philippot-europe",
+    "candidate": "philippot",
+    "theme": "europe",
+    "title": "Quitter l’Union européenne et l’euro",
+    "bullets": [
+      "Quitter l’Union européenne et l’euro.",
+      "Quitter l’OTAN, l’OMS et la CEDH."
+    ],
+    "sources": ["patriotes-projet-2026-2027"],
+    "scope": "parti",
+    "edition": "Les Patriotes, orientations 2026-2027 conditionnées au Frexit",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "philippot-institutions",
+    "candidate": "philippot",
+    "theme": "institutions",
+    "title": "Inscrire un référendum d’initiative citoyenne sur tout sujet",
+    "bullets": [
+      "Inscrire un référendum d’initiative citoyenne sur tout sujet.",
+      "Inéligibilité à vie après une condamnation définitive pour corruption."
+    ],
+    "sources": ["patriotes-projet-2026-2027"],
+    "scope": "parti",
+    "edition": "Les Patriotes, orientations 2026-2027 conditionnées au Frexit",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "philippot-climat",
+    "candidate": "philippot",
+    "theme": "climat",
+    "title": "Rétablir un monopole public de l’électricité",
+    "bullets": [
+      "Rétablir un monopole public de l’électricité.",
+      "Maintenir la vente de voitures thermiques neuves après 2035."
+    ],
+    "sources": ["patriotes-projet-2026-2027"],
+    "scope": "parti",
+    "edition": "Les Patriotes, orientations 2026-2027 conditionnées au Frexit",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "philippot-travail",
+    "candidate": "philippot",
+    "theme": "travail",
+    "title": "Rétablir le monopole public du rail",
+    "bullets": [
+      "Rétablir le monopole public du rail.",
+      "Renationaliser les autoroutes."
+    ],
+    "sources": ["patriotes-projet-2026-2027"],
+    "scope": "parti",
+    "edition": "Les Patriotes, orientations 2026-2027 conditionnées au Frexit",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "philippot-retraites",
+    "candidate": "philippot",
+    "theme": "retraites",
+    "title": "Baisser l’âge de la retraite si les Français le souhaitent",
+    "bullets": ["Baisser l’âge de la retraite si les Français le souhaitent."],
+    "sources": ["patriotes-projet-2026-2027"],
+    "scope": "parti",
+    "edition": "Les Patriotes, orientations 2026-2027 conditionnées au Frexit",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "philippot-social",
+    "candidate": "philippot",
+    "theme": "social",
+    "title": "Remplacer la PAC par une politique agricole française",
+    "bullets": ["Remplacer la PAC par une politique agricole française."],
+    "sources": ["patriotes-projet-2026-2027"],
+    "scope": "parti",
+    "edition": "Les Patriotes, orientations 2026-2027 conditionnées au Frexit",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "philippot-immigration",
+    "candidate": "philippot",
+    "theme": "immigration",
+    "title": "Exécuter les OQTF et mettre fin à l’immigration de travail",
+    "bullets": ["Exécuter les OQTF et mettre fin à l’immigration de travail."],
+    "sources": ["patriotes-projet-2026-2027"],
+    "scope": "parti",
+    "edition": "Les Patriotes, orientations 2026-2027 conditionnées au Frexit",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "philippot-education",
+    "candidate": "philippot",
+    "theme": "education",
+    "title": "Consacrer la moitié du temps du primaire au français",
+    "bullets": [
+      "Consacrer la moitié du temps du primaire au français.",
+      "Des parcours différenciés dès 14 ans.",
+      "Assouplir les restrictions sur l’instruction en famille."
+    ],
+    "sources": ["patriotes-projet-2026-2027"],
+    "scope": "parti",
+    "edition": "Les Patriotes, orientations 2026-2027 conditionnées au Frexit",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "labib-travail",
+    "candidate": "labib",
+    "theme": "travail",
+    "title": "Augmenter les salaires et les indexer sur les prix",
+    "bullets": [
+      "Augmenter les salaires et les indexer sur les prix.",
+      "Interdire les licenciements et les suppressions d’emplois.",
+      "Réduire le temps de travail sans perte de salaire.",
+      "Faire chiffrer les besoins d’embauche par les salariés."
+    ],
+    "sources": ["labib-campagne-2027"],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "labib-climat",
+    "candidate": "labib",
+    "theme": "climat",
+    "title": "Exproprier les grandes entreprises pour décider de la production",
+    "bullets": [
+      "Exproprier les grandes entreprises pour décider de la production."
+    ],
+    "sources": ["labib-campagne-2027"],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "kazib-travail",
+    "candidate": "kazib",
+    "theme": "travail",
+    "title": "La semaine de 28 heures",
+    "bullets": [
+      "La semaine de 28 heures.",
+      "Porter le SMIC à 2 000 €.",
+      "Mettre fin à la sous-traitance et généraliser le CDI.",
+      "Exproprier sans indemnité les secteurs stratégiques.",
+      "Reconvertir l’industrie de l’armement sous contrôle des travailleurs."
+    ],
+    "sources": ["kazib-premieres-mesures-2027"],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "kazib-retraites",
+    "candidate": "kazib",
+    "theme": "retraites",
+    "title": "Retraite à 60 ans, 55 ans pour les métiers pénibles",
+    "bullets": ["Retraite à 60 ans, 55 ans pour les métiers pénibles."],
+    "sources": ["kazib-premieres-mesures-2027"],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "kazib-institutions",
+    "candidate": "kazib",
+    "theme": "institutions",
+    "title": "Abroger la loi de 2004 et la loi séparatisme",
+    "bullets": ["Abroger la loi de 2004 et la loi séparatisme."],
+    "sources": ["kazib-premieres-mesures-2027"],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "kazib-securite",
+    "candidate": "kazib",
+    "theme": "securite",
+    "title": "Dissoudre les corps spéciaux de police",
+    "bullets": ["Dissoudre les corps spéciaux de police."],
+    "sources": ["kazib-premieres-mesures-2027"],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "kazib-immigration",
+    "candidate": "kazib",
+    "theme": "immigration",
+    "title": "Régulariser tous les sans-papiers",
+    "bullets": ["Régulariser tous les sans-papiers."],
+    "sources": ["kazib-premieres-mesures-2027"],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "kazib-europe",
+    "candidate": "kazib",
+    "theme": "europe",
+    "title": "Fermer les bases militaires françaises à l’étranger",
+    "bullets": ["Fermer les bases militaires françaises à l’étranger."],
+    "sources": ["kazib-premieres-mesures-2027"],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "kazib-social",
+    "candidate": "kazib",
+    "theme": "social",
+    "title": "Socialiser le travail domestique",
+    "bullets": ["Socialiser le travail domestique."],
+    "sources": ["kazib-premieres-mesures-2027"],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "ruffin-social",
+    "candidate": "ruffin",
+    "theme": "social",
+    "title": "Verser les bourses étudiantes sur douze mois",
+    "bullets": [
+      "Verser les bourses étudiantes sur douze mois.",
+      "Une garantie jeunes universelle sans quotas.",
+      "Un droit à un interlocuteur humain dans les services publics."
+    ],
+    "sources": ["ruffin-jeunesse", "ruffin-numerique"],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "ruffin-europe",
+    "candidate": "ruffin",
+    "theme": "europe",
+    "title": "Arrêter les négociations de nouveaux accords de libre-échange",
+    "bullets": [
+      "Arrêter les négociations de nouveaux accords de libre-échange."
+    ],
+    "sources": ["ruffin-industrie"],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
+      }
+    ]
+  },
+  {
+    "id": "ruffin-sante",
+    "candidate": "ruffin",
+    "theme": "sante",
+    "title": "Un pôle public du médicament à deux étages",
+    "bullets": ["Un pôle public du médicament à deux étages."],
+    "sources": ["ruffin-industrie"],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027",
+    "note": "",
+    "checked": "2026-11-17",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "event": "Fiche intégrée",
+        "summary": "Propositions relevées dans les documents officiels cités."
       }
     ]
   }

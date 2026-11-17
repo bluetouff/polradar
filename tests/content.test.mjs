@@ -35,6 +35,25 @@ const changed = (fn) => {
 
 test('le corpus livré passe les contrôles', () =>
   assert.deepEqual(validateDataset(original), []));
+test('les anciennes références et le périmètre de veille sont validés', () => {
+  assert.deepEqual(
+    changed((d) => {
+      d.sources[0].previousUrl = 'https://example.org/document';
+      d.sources[0].watchContentClass = 'ob-sections';
+    }),
+    [],
+  );
+  assert.ok(
+    changed((d) => {
+      d.sources[0].previousUrl = 'javascript:alert(1)';
+    }).length,
+  );
+  assert.ok(
+    changed((d) => {
+      d.sources[0].watchContentClass = 'x]script';
+    }).length,
+  );
+});
 test('les dates civiles impossibles sont refusées', () => {
   for (const value of ['2025-02-29', '2026-13-01', '2026-11-31', 'demain'])
     assert.equal(dateSchema.safeParse(value).success, false);
@@ -140,6 +159,24 @@ test('les mises à jour documentaires restent distinctes de la publication', () 
   assert.ok(
     changed((d) => {
       d.sources[0].watch = 'false';
+    }).length,
+  );
+});
+
+test('la chronologie distingue les dates et refuse les candidats inconnus ou les événements futurs', () => {
+  assert.ok(
+    changed((d) => {
+      d.events[0].dateKind = 'date-devinee';
+    }).length,
+  );
+  assert.ok(
+    changed((d) => {
+      d.events[0].candidates = ['inconnu'];
+    }).length,
+  );
+  assert.ok(
+    changed((d) => {
+      d.events[0].date = '2099-01-01';
     }).length,
   );
 });

@@ -269,7 +269,7 @@ async function start() {
     document.querySelector('#poll-no-intention')!.textContent =
       poll.noIntention === null
         ? 'Part sans intention exprimée : non renseignée.'
-        : `Sans intention exprimée : ${number(poll.noIntention)} % (donnée distincte des pourcentages de candidats).`;
+        : `Sans intention exprimée : ${number(poll.noIntention)} % ${poll.noIntentionNote || '(donnée distincte des pourcentages de candidats).'}`;
     const heading = el('div', undefined, 'register-heading'),
       source = data.sources.find((source) => source.id === poll.noticeSource)!,
       link = anchor(
@@ -312,6 +312,20 @@ async function start() {
         `${poll.uncertainty} Niveau de confiance indiqué : ${poll.margin.confidence} %.`,
       ),
     );
+    if (poll.resultSource) {
+      const resultSource = data.sources.find(
+        (source) => source.id === poll.resultSource,
+      )!;
+      const resultLink = anchor(
+        `Résultats de l’institut, page ${poll.resultPage} ↗`,
+        `${resultSource.url}#page=${poll.resultPage}`,
+      );
+      resultLink.target = '_blank';
+      resultLink.rel = 'noopener noreferrer';
+      const paragraph = el('p');
+      paragraph.append(resultLink);
+      method.append(paragraph);
+    }
     status.textContent = `${poll.institute} · ${poll.scenario} · ${date(poll.fieldworkEnd)}`;
     history.replaceState(null, '', `/sondages/#enquete=${poll.id}`);
   }

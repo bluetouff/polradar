@@ -38,6 +38,11 @@ export const sourceSchema = z.object({
   id: idSchema,
   title: text,
   url: publicUrlSchema,
+  previousUrl: publicUrlSchema.optional(),
+  watchContentClass: z
+    .string()
+    .regex(/^[A-Za-z][A-Za-z0-9_-]{0,59}$/)
+    .optional(),
   kind: z.enum(['campagne', 'parti', 'institution', 'presse', 'archive']),
   published: dateSchema.nullable(),
   updated: dateSchema.nullable().optional(),
@@ -80,6 +85,15 @@ export const eventSchema = z.object({
   title: text,
   description: text,
   kind: z.enum(['past', 'announced']),
+  category: z.enum([
+    'candidature',
+    'programme',
+    'sondage',
+    'meeting',
+    'calendrier',
+  ]),
+  dateKind: z.enum(['evenement', 'publication', 'mise-a-jour']),
+  candidates: z.array(idSchema).max(40),
   sources: z.array(idSchema).min(1),
 });
 export const pollSchema = z.object({
@@ -98,6 +112,7 @@ export const pollSchema = z.object({
   method: text,
   noticePage: z.number().int().positive(),
   noIntention: z.number().min(0).max(100).nullable(),
+  noIntentionNote: text.optional(),
   margin: z.object({
     min: z.number().nonnegative().max(100),
     max: z.number().nonnegative().max(100),
@@ -105,6 +120,8 @@ export const pollSchema = z.object({
   }),
   scenario: text,
   noticeSource: idSchema,
+  resultSource: idSchema.optional(),
+  resultPage: z.number().int().positive().optional(),
   results: z
     .array(
       z.object({
@@ -393,10 +410,16 @@ export function validateDataset(dataset) {
       previous = version.date;
     }
   }
-  for (const event of dataset.events)
+  for (const event of dataset.events) {
+    if (event.kind === 'past' && event.date > today)
+      errors.push(`${event.id}: événement passé daté dans le futur`);
+    for (const id of event.candidates)
+      if (!candidateIds.has(id))
+        errors.push(`${event.id}: candidat inconnu ${id}`);
     for (const id of event.sources) {
       if (!sourceIds.has(id)) errors.push(`${event.id}: source inconnue ${id}`);
     }
+  }
   for (const poll of dataset.polls) {
     if (poll.registeredSample > poll.sampleSize)
       errors.push(`${poll.id}: inscrits supérieurs à l’échantillon`);
@@ -413,6 +436,10 @@ export function validateDataset(dataset) {
       errors.push(`${poll.id}: résultat dupliqué`);
     if (!sourceIds.has(poll.noticeSource))
       errors.push(`${poll.id}: notice inconnue`);
+    if (poll.resultSource && !sourceIds.has(poll.resultSource))
+      errors.push(`${poll.id}: source de résultats inconnue`);
+    if (Boolean(poll.resultSource) !== Boolean(poll.resultPage))
+      errors.push(`${poll.id}: référence de résultats incomplète`);
     if (
       poll.fieldworkEnd < poll.fieldworkStart ||
       poll.published < poll.fieldworkEnd

@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import '../styles/features.css';
 import Icon from '../components/Icon.astro';
+import archivoFont from '../assets/fonts/archivo-latin.woff2?url';
 import { meta, formatDate } from '../lib/data';
 interface Props {
   title?: string;
@@ -21,7 +22,9 @@ const nav = [
   ['/mesures/', 'Mesures', 'mesures'],
   ['/comparer/', 'Comparer', 'layers'],
   ['/candidats/', 'Candidats', 'people'],
+  ['/campagne/', 'Campagne', 'historique'],
   ['/sondages/', 'Sondages', 'sondages'],
+  ['/marches-predictifs/', 'Marchés', 'markets'],
   ['/veille/', 'Veille', 'veille'],
   ['/historique/', 'Historique', 'historique'],
   ['/suivi/', 'Mon suivi', 'suivi'],
@@ -39,6 +42,14 @@ const active = (url: string) =>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="referrer" content="no-referrer" />
     <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#173746" />
+    <link
+      rel="preload"
+      href={archivoFont}
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
     <title>{title} · Polradar</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex,follow" />}
@@ -64,7 +75,16 @@ const active = (url: string) =>
       <aside class="site-rail">
         <header class="rail-brand">
           <a href="/" class="wordmark" aria-label="Polradar, accueil">
-            polradar<span aria-hidden="true" class="wordmark-cursor"></span>
+            <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+              <path
+                d="M9 7v27m0-26h12a9 9 0 0 1 0 18H9"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="4"
+              />
+              <path d="M29 29h7v7h-7z" fill="#f2b39d" />
+            </svg>
+            polradar
           </a>
           <p>
             Présidentielle française<span>2027</span>
@@ -85,7 +105,6 @@ const active = (url: string) =>
           <a href="/themes/">Thèmes</a>
           <a href="/dossiers/">Dossiers</a>
           <a href="/economie/">Économie</a>
-          <a href="/campagne/">Chronologie</a>
           <a href="/sources/">Sources</a>
           <a href="/reperes/">Calendrier électoral</a>
           <a href="/methode/">Méthode</a>

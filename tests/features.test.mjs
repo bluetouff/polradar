@@ -180,8 +180,14 @@ test('le diff conserve chaque ligne et borne le calcul quadratique', () => {
 });
 test('les sondages restent séparés par institut, tour, méthode et candidatures', () => {
   const rows = pollSeries(original.polls);
-  assert.equal(rows.length, 3);
-  assert.ok(rows.every((group) => group.length === 3));
+  assert.equal(rows.flat().length, original.polls.length);
+  assert.ok(rows.some((group) => group.length >= 3));
+  assert.ok(
+    rows.every((group) =>
+      group.every((poll) => pollSignature(poll) === pollSignature(group[0])),
+    ),
+  );
+  assert.ok(new Set(original.polls.map((poll) => poll.institute)).size >= 7);
   const poll = original.polls[0];
   for (const update of [
     { institute: 'Autre institut' },

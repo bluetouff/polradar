@@ -137,11 +137,12 @@ export async function searchEntries(): Promise<SearchEntry[]> {
       type: 'evenement',
       title: event.title,
       text: `${event.date} ${event.description}`,
-      url: '/campagne/',
+      url: `/campagne/#${event.id}`,
       candidate: '',
+      candidates: event.candidates,
       theme: '',
-      // An event date is not a publication date.
-      year: '',
+      // Only document publication dates belong to the publication-year facet.
+      year: event.dateKind === 'publication' ? event.date.slice(0, 4) : '',
       scope: '',
       date: event.date,
     })),

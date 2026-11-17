@@ -53,6 +53,19 @@ class WatchTests(unittest.TestCase):
             with self.subTest(content_type=content_type), self.assertRaises(ValueError):
                 watch.fingerprint(content_type,body)
 
+    def test_document_scope_ignores_sidebars_and_following_posts(self):
+        body='Propositions politiques du document officiel. '*12
+        first=f'<aside>Actualite A</aside><div class="ob-sections"><div><p>{body}</p><script>hidden()</script></div></div><div class="ob-sections">autre billet A</div>'
+        second=first.replace('Actualite A','Actualite B').replace('autre billet A','autre billet B')
+        self.assertEqual(watch.fingerprint('text/html',first.encode(),'ob-sections'),watch.fingerprint('text/html',second.encode(),'ob-sections'))
+        self.assertNotEqual(watch.fingerprint('text/html',first.encode(),'ob-sections'),watch.fingerprint('text/html',first.replace(body,body+' Nouvelle proposition.').encode(),'ob-sections'))
+
+    def test_document_scope_fails_closed_when_missing_incomplete_or_invalid(self):
+        body=b'Programme officiel documente. '*20
+        for html,scope in [(body,'ob-sections'),(b'<div class="ob-sections">'+body,'ob-sections'),(body,'x]script'),(b'<div class="ob-sections"></div>'+body,'ob-sections'),(b'<div class>'+body+b'</div>','ob-sections')]:
+            with self.subTest(scope=scope),self.assertRaises(ValueError):
+                watch.fingerprint('text/html',html,scope)
+
     def test_failure_is_exposed_without_exception_details_or_fake_hash(self):
         source={'id':'source-test','url':'https://example.org/'}
         with patch.object(watch,'fetch',side_effect=OSError('private detail secret')):
@@ -124,6 +137,9 @@ class WatchTests(unittest.TestCase):
         with patch.object(watch,'fetch',return_value=(404,'text/html',b'')) as fetch:
             self.assertEqual(watch.fetch_reliably('https://example.org/',self.allowed)[0],404)
             self.assertEqual(fetch.call_count,1)
+        with patch.object(watch,'fetch',side_effect=[(526,'text/html',b''),(200,'text/html',b'ok')]) as fetch:
+            self.assertEqual(watch.fetch_reliably('https://example.org/',self.allowed)[0],200)
+            self.assertEqual(fetch.call_count,2)
 
     def test_tls_failures_do_not_trigger_availability_retries(self):
         with patch.object(watch,'fetch',side_effect=ssl.SSLError('certificate failed')) as fetch, self.assertRaises(ssl.SSLError):

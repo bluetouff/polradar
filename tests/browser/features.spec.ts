@@ -12,6 +12,8 @@ test('les nouvelles vues restent lisibles de 320 à 1440 pixels', async ({
       '/mesures/',
       '/mesures/melenchon-retraites-1/',
       '/sondages/',
+      '/marches-predictifs/',
+      '/campagne/',
       '/veille/',
       '/historique/',
       '/suivi/',

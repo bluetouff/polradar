@@ -7,14 +7,13 @@ import {
   candidates,
   themes,
   measures,
-  polls,
   versions,
   watch,
   sources,
   events,
   formatDate,
 } from '../lib/data';
-import { pollSeries, chartGeometry, pollColor } from '../lib/features.mjs';
+import HomeSignals from '../components/HomeSignals.astro';
 const articles = (
   await getCollection('articles', ({ data }) => !data.draft)
 ).sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
@@ -23,13 +22,12 @@ const recent = events
   .sort((a, b) => b.date.localeCompare(a.date))
   .slice(0, 3);
 const dates = events.filter((event) => event.kind === 'announced');
-const pollRows = pollSeries(polls)[0];
-const latestPoll = pollRows.at(-1)!;
-const top = [...latestPoll.results]
-  .sort((a, b) => b.percentage - a.percentage)
-  .slice(0, 4)
-  .map((result) => result.id);
-const trend = chartGeometry(pollRows, top, 180);
+const currentMeasures = measures.filter((item) => item.scope !== 'archive');
+const themeCounts = themes.map((theme) => ({
+  ...theme,
+  count: currentMeasures.filter((item) => item.theme === theme.id).length,
+}));
+const maxThemeCount = Math.max(1, ...themeCounts.map((theme) => theme.count));
 ---
 
 <Base>
@@ -38,187 +36,137 @@ const trend = chartGeometry(pollRows, top, 180);
     <p>Programmes, candidats et calendrier électoral.</p>
   </header>
   <div class="campaign-index">
-    <section class="programme-index" aria-labelledby="programme-index-title">
-      <div class="register-heading">
-        <h2 id="programme-index-title">Comparer les programmes</h2>
-        <a href="/comparer/" class="inline-action">
-          Ouvrir le comparateur ↗
-        </a>
-      </div>
-      <p class="register-note">
-        Un thème, deux ou trois candidats. Les archives de 2022 sont séparées.
-      </p>
-      <div class="theme-register">
-        {themes.map((theme) => (
-          <a href={`/comparer/?theme=${theme.id}`}>
-            <Icon name={theme.id} />
-            <span>{theme.label}</span>
-            <span aria-hidden="true">↗</span>
+    <div class="home-editorial">
+      <section class="programme-index" aria-labelledby="programme-index-title">
+        <div class="register-heading">
+          <h2 id="programme-index-title">Comparer les programmes</h2>
+          <a href="/comparer/" class="inline-action">
+            Ouvrir le comparateur ↗
           </a>
-        ))}
-      </div>
-      <div class="corpus-line">
-        <span>
-          {measures.filter((item) => item.scope !== 'archive').length} fiches
-          hors archives
-        </span>
-        <span>
-          {measures.filter((item) => item.scope === 'archive').length} archives
-          de 2022
-        </span>
-        <a href="/sources/">{sources.length} sources ↗</a>
-      </div>
-    </section>
-    <section
-      class="candidate-register"
-      aria-labelledby="candidate-register-title"
-    >
-      <div class="register-heading">
-        <h2 id="candidate-register-title">Candidats</h2>
-        <span class="index-total">
-          {String(candidates.length).padStart(2, '0')}
-        </span>
-      </div>
-      <p class="register-note">Sélection · ordre alphabétique</p>
-      <ol class="candidate-roster">
-        {candidates.map((candidate, index) => (
-          <li>
-            <a href={`/candidats/${candidate.id}/`}>
-              <span class="roster-number" aria-hidden="true">
-                {String(index + 1).padStart(2, '0')}
-              </span>
-              <span class="roster-person">
-                <strong>{candidate.name}</strong>
-                <span>{candidate.party}</span>
-              </span>
-              <span class="roster-arrow" aria-hidden="true">
-                ↗
-              </span>
-            </a>
-          </li>
-        ))}
-      </ol>
-      <a class="register-bottom" href="/candidats/">
-        Statuts et fiches des candidats <span aria-hidden="true">↗</span>
-      </a>
-    </section>
-    <section class="home-dossiers" aria-labelledby="home-dossiers-title">
-      <div class="register-heading">
-        <h2 id="home-dossiers-title">Dossiers</h2>
-        <a href="/dossiers/" class="inline-action">
-          Tous les dossiers ↗
-        </a>
-      </div>
-      <div class="article-grid">
-        {articles.slice(0, 3).map((article, index) => (
-          <ArticleCard article={article} index={index} />
-        ))}
-      </div>
-    </section>
-  </div>
-  <section class="home-observatory" aria-label="Sondages et outils de suivi">
-    <div class="home-poll">
-      <div>
-        <h2>Sondages</h2>
-        <p>
-          {latestPoll.institute} · {pollRows.length} vagues
-          <br />
-          {latestPoll.scenario}
+        </div>
+        <p class="register-note">
+          Nombre de fiches documentées par thème, hors archives de 2022.
         </p>
-        <p>Dernier terrain : {formatDate(latestPoll.fieldworkEnd)}</p>
-        <ul class="home-poll-legend" aria-label="Quatre candidatures affichées">
-          {[...latestPoll.results]
-            .sort((a, b) => b.percentage - a.percentage)
-            .slice(0, 4)
-            .map((result) => (
-              <li>
-                <span
-                  class={`legend-color series-${pollColor(result.id)}`}
+        <div class="theme-register">
+          {themeCounts.map((theme) => (
+            <a href={`/comparer/?theme=${theme.id}`}>
+              <Icon name={theme.id} />
+              <span class="theme-entry">
+                <span>{theme.label}</span>
+                <svg
+                  viewBox="0 0 100 5"
+                  preserveAspectRatio="none"
                   aria-hidden="true"
-                ></span>
-                <span>{result.name}</span>
-                <b>{result.percentage.toLocaleString('fr-FR')} %</b>
-              </li>
-            ))}
-        </ul>
-        <a href="/sondages/">Résultats et scénarios ↗</a>
-      </div>
-      <svg
-        class="home-poll-mini"
-        viewBox="0 0 180 140"
-        role="img"
-        aria-label={`Aperçu de quatre courbes Elabe du même scénario. Axe vertical de 0 à ${trend.max} %. Résultats détaillés dans la rubrique sondages.`}
-      >
-        {[20, 70, 120].map((y) => (
-          <path class="mini-grid" d={`M20 ${y}H170`} />
-        ))}
-        <text x="20" y="12" class="chart-tick">
-          {trend.max} %
-        </text>
-        <text x="20" y="137" class="chart-tick">
-          0 %
-        </text>
-        {trend.lines.map((line) => {
-          const points = line.points.map((point) => ({
-            x: 20 + ((point.x - trend.left) / (trend.right - trend.left)) * 150,
-            y: 120 - (point.value / trend.max) * 100,
-            value: point.value,
-          }));
-          return (
-            <g class={`series-${line.color}`}>
-              <path
-                class="mini-line"
-                d={points
-                  .map(
-                    (point, index) =>
-                      `${index ? 'L' : 'M'}${point.x} ${point.y}`,
-                  )
-                  .join(' ')}
-              />
-              {points.map((point) => (
-                <circle class="mini-dot" cx={point.x} cy={point.y} r="3">
-                  <title>{line.name} : {point.value.toLocaleString('fr-FR')} %</title>
-                </circle>
-              ))}
-            </g>
-          );
-        })}
-      </svg>
+                >
+                  <rect class="theme-track" width="100" height="5" />
+                  <rect
+                    class="theme-fill"
+                    width={(theme.count / maxThemeCount) * 100}
+                    height="5"
+                  />
+                </svg>
+              </span>
+              <span class="theme-count" aria-label={`${theme.count} fiches`}>
+                {theme.count}
+              </span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          ))}
+        </div>
+        <div class="corpus-line">
+          <span>
+            {measures.filter((item) => item.scope !== 'archive').length} fiches
+            hors archives
+          </span>
+          <span>
+            {measures.filter((item) => item.scope === 'archive').length}{' '}
+            archives de 2022
+          </span>
+          <a href="/sources/">{sources.length} sources ↗</a>
+        </div>
+      </section>
+      <section class="home-dossiers" aria-labelledby="home-dossiers-title">
+        <div class="register-heading">
+          <h2 id="home-dossiers-title">Dossiers</h2>
+          <a href="/dossiers/" class="inline-action">
+            Tous les dossiers ↗
+          </a>
+        </div>
+        <div class="article-grid">
+          {articles.slice(0, 3).map((article, index) => (
+            <ArticleCard article={article} index={index} />
+          ))}
+        </div>
+      </section>
     </div>
-    <div class="home-tools">
-      <a href="/mesures/">
-        <Icon name="mesures" />
-        <span>
-          <strong>{measures.length} mesures et orientations</strong>
-          <small>Paramètres, bénéficiaires et références</small>
-        </span>
-        <span aria-hidden="true">↗</span>
-      </a>
-      <a href="/historique/">
-        <Icon name="historique" />
-        <span>
-          <strong>{versions.length} versions de fiches</strong>
-          <small>Consulter les modifications avant / après</small>
-        </span>
-        <span aria-hidden="true">↗</span>
-      </a>
-      <a href="/veille/">
-        <Icon name="veille" />
-        <span>
-          <strong>{watch.length} sources en veille</strong>
-          <small>Relevés et rapports quotidiens</small>
-        </span>
-        <span aria-hidden="true">↗</span>
-      </a>
-      <a href="/suivi/">
-        <Icon name="suivi" />
-        <span>
-          <strong>Mon suivi</strong>
-          <small>Candidats, thèmes et flux RSS</small>
-        </span>
-        <span aria-hidden="true">↗</span>
-      </a>
+    <HomeSignals />
+  </div>
+  <section
+    class="candidate-register"
+    aria-labelledby="candidate-register-title"
+  >
+    <div class="register-heading">
+      <h2 id="candidate-register-title">Candidats</h2>
+      <span class="index-total">
+        {String(candidates.length).padStart(2, '0')}
+      </span>
     </div>
+    <p class="register-note">Profils suivis · ordre alphabétique</p>
+    <ol class="candidate-roster">
+      {candidates.map((candidate, index) => (
+        <li>
+          <a href={`/candidats/${candidate.id}/`}>
+            <span class="roster-number" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <span class="roster-person">
+              <strong>{candidate.name}</strong>
+            </span>
+            <span class="roster-arrow" aria-hidden="true">
+              ↗
+            </span>
+          </a>
+        </li>
+      ))}
+    </ol>
+    <a class="register-bottom" href="/candidats/">
+      Statuts et fiches des candidats <span aria-hidden="true">↗</span>
+    </a>
+  </section>
+
+  <section class="home-tools" aria-label="Outils de suivi">
+    <a href="/mesures/">
+      <Icon name="mesures" />
+      <span>
+        <strong>{measures.length} mesures et orientations</strong>
+        <small>Paramètres, bénéficiaires et références</small>
+      </span>
+      <span aria-hidden="true">↗</span>
+    </a>
+    <a href="/historique/">
+      <Icon name="historique" />
+      <span>
+        <strong>{versions.length} versions de fiches</strong>
+        <small>Consulter les modifications avant / après</small>
+      </span>
+      <span aria-hidden="true">↗</span>
+    </a>
+    <a href="/veille/">
+      <Icon name="veille" />
+      <span>
+        <strong>{watch.length} sources en veille</strong>
+        <small>Relevés et rapports quotidiens</small>
+      </span>
+      <span aria-hidden="true">↗</span>
+    </a>
+    <a href="/suivi/">
+      <Icon name="suivi" />
+      <span>
+        <strong>Mon suivi</strong>
+        <small>Candidats, thèmes et flux RSS</small>
+      </span>
+      <span aria-hidden="true">↗</span>
+    </a>
   </section>
   <div class="home-bottom">
     <section aria-labelledby="recent-title">
