@@ -20,7 +20,7 @@ import { sources, sourceKinds, formatDate } from '../lib/data';
     {sources.map((source) => (
       <article
         class="source-card"
-        data-search={`${source.title} ${source.url} ${sourceKinds[source.kind]}`}
+        data-search={`${source.title} ${source.url} ${source.previousUrl || ''} ${sourceKinds[source.kind]}`}
       >
         <span class:list={['tag', { archive: source.kind === 'archive' }]}>
           {sourceKinds[source.kind]}
@@ -40,7 +40,25 @@ import { sources, sourceKinds, formatDate } from '../lib/data';
             <dt>Consultation</dt>
             <dd>{formatDate(source.checked)}</dd>
           </div>
+          {source.updated && (
+            <div>
+              <dt>Mise à jour du document</dt>
+              <dd>{formatDate(source.updated)}</dd>
+            </div>
+          )}
         </dl>
+        {source.previousUrl && (
+          <details>
+            <summary>Référence précédente</summary>
+            <a
+              href={source.previousUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {new URL(source.previousUrl).hostname} ↗
+            </a>
+          </details>
+        )}
       </article>
     ))}
   </div>

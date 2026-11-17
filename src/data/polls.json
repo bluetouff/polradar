@@ -601,5 +601,2009 @@
       }
     ],
     "uncertainty": "La notice indique une plage de marges de 1,1 à 3,5 points selon les résultats et les effectifs. Cette plage globale n’est pas un intervalle propre à chaque point. Le questionnaire situe ce duel au second tour (Q10, page 4), alors que l’en-tête du tableau de la page 10 mentionne le premier tour."
+  },
+  {
+    "institute": "Ifop",
+    "commissioner": "LCI",
+    "published": "2026-11-03",
+    "fieldworkStart": "2026-10-27",
+    "fieldworkEnd": "2026-10-29",
+    "sampleSize": 1650,
+    "registeredSample": 1501,
+    "noticeSource": "notice-ifop-2026-11-03",
+    "population": "France, 18 ans et plus ; inscrits certains d’aller voter et exprimant une intention de vote.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 1.4,
+      "max": 3.3,
+      "confidence": 95
+    },
+    "uncertainty": "La notice donne des tableaux indicatifs à 95 %, sans intervalle propre à chaque résultat publié. Pour 900 personnes, le repère va de ±1,4 à ±3,3 points ; les effectifs exprimés des certains d’aller voter sont précisés pour chaque scénario. Les non-exprimés indiqués portent sur l’ensemble des inscrits, une base différente.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "ifop-2026-11-03-tous",
+    "noticePage": 9,
+    "scenario": "Premier tour · Attal, Philippe, Retailleau et Lisnard",
+    "round": "premier",
+    "usefulSample": 956,
+    "noIntention": 22.7,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 18
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 10
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 9.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 4
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 7
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 35
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4.5
+      }
+    ],
+    "noIntentionNote": "Part des inscrits sans intention exprimée, y compris ceux qui ne sont pas certains d’aller voter."
+  },
+  {
+    "institute": "Ifop",
+    "commissioner": "LCI",
+    "published": "2026-11-03",
+    "fieldworkStart": "2026-10-27",
+    "fieldworkEnd": "2026-10-29",
+    "sampleSize": 1650,
+    "registeredSample": 1501,
+    "noticeSource": "notice-ifop-2026-11-03",
+    "population": "France, 18 ans et plus ; inscrits certains d’aller voter et exprimant une intention de vote.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 1.4,
+      "max": 3.3,
+      "confidence": 95
+    },
+    "uncertainty": "La notice donne des tableaux indicatifs à 95 %, sans intervalle propre à chaque résultat publié. Pour 900 personnes, le repère va de ±1,4 à ±3,3 points ; les effectifs exprimés des certains d’aller voter sont précisés pour chaque scénario. Les non-exprimés indiqués portent sur l’ensemble des inscrits, une base différente.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "ifop-2026-11-03-attal-lisnard",
+    "noticePage": 10,
+    "scenario": "Premier tour · Attal, Retailleau et Lisnard",
+    "round": "premier",
+    "usefulSample": 943,
+    "noIntention": 24.2,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 13
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 9
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 5
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 7.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 36
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4.5
+      }
+    ],
+    "noIntentionNote": "Part des inscrits sans intention exprimée, y compris ceux qui ne sont pas certains d’aller voter."
+  },
+  {
+    "institute": "Ifop",
+    "commissioner": "LCI",
+    "published": "2026-11-03",
+    "fieldworkStart": "2026-10-27",
+    "fieldworkEnd": "2026-10-29",
+    "sampleSize": 1650,
+    "registeredSample": 1501,
+    "noticeSource": "notice-ifop-2026-11-03",
+    "population": "France, 18 ans et plus ; inscrits certains d’aller voter et exprimant une intention de vote.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 1.4,
+      "max": 3.3,
+      "confidence": 95
+    },
+    "uncertainty": "La notice donne des tableaux indicatifs à 95 %, sans intervalle propre à chaque résultat publié. Pour 900 personnes, le repère va de ±1,4 à ±3,3 points ; les effectifs exprimés des certains d’aller voter sont précisés pour chaque scénario. Les non-exprimés indiqués portent sur l’ensemble des inscrits, une base différente.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "ifop-2026-11-03-philippe-retailleau",
+    "noticePage": 11,
+    "scenario": "Premier tour · Philippe et Retailleau, sans Lisnard",
+    "round": "premier",
+    "usefulSample": 944,
+    "noIntention": 24.5,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 1.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 15
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 7
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 37
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "noIntentionNote": "Part des inscrits sans intention exprimée, y compris ceux qui ne sont pas certains d’aller voter."
+  },
+  {
+    "institute": "Ifop",
+    "commissioner": "LCI",
+    "published": "2026-11-03",
+    "fieldworkStart": "2026-10-27",
+    "fieldworkEnd": "2026-10-29",
+    "sampleSize": 1650,
+    "registeredSample": 1501,
+    "noticeSource": "notice-ifop-2026-11-03",
+    "population": "France, 18 ans et plus ; inscrits certains d’aller voter et exprimant une intention de vote.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 1.4,
+      "max": 3.3,
+      "confidence": 95
+    },
+    "uncertainty": "La notice donne des tableaux indicatifs à 95 %, sans intervalle propre à chaque résultat publié. Pour 900 personnes, le repère va de ±1,4 à ±3,3 points ; les effectifs exprimés des certains d’aller voter sont précisés pour chaque scénario. Les non-exprimés indiqués portent sur l’ensemble des inscrits, une base différente.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "ifop-2026-11-03-philippe-lisnard",
+    "noticePage": 12,
+    "scenario": "Premier tour · Philippe et Lisnard, sans Retailleau",
+    "round": "premier",
+    "usefulSample": 955,
+    "noIntention": 23.1,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 15
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 9
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 36
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "noIntentionNote": "Part des inscrits sans intention exprimée, y compris ceux qui ne sont pas certains d’aller voter."
+  },
+  {
+    "institute": "Cluster17",
+    "commissioner": "Politico",
+    "published": "2026-11-11",
+    "fieldworkStart": "2026-11-09",
+    "fieldworkEnd": "2026-11-10",
+    "sampleSize": 1242,
+    "registeredSample": 1164,
+    "noticeSource": "notice-cluster17-2026-11-11",
+    "population": "France ; inscrits, résultats pondérés selon la probabilité de vote.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 1.4,
+      "max": 3.3,
+      "confidence": 95
+    },
+    "uncertainty": "La notice fournit des effectifs utiles après redressement et pondération selon la probabilité de vote. Pour les effectifs de 883 à 899 personnes, les tableaux indiquent ±1,4 à ±3,3 points à 95 %. Notice enregistrée au 11 novembre ; la publication sur le site de l’institut est datée du 12 novembre.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "cluster17-2026-11-11-philippe",
+    "noticePage": 15,
+    "scenario": "Premier tour · Philippe, Lisnard et Retailleau",
+    "round": "premier",
+    "usefulSample": 899,
+    "noIntention": null,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 20
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 1.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 13.5
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 10
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 30.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ]
+  },
+  {
+    "institute": "Cluster17",
+    "commissioner": "Politico",
+    "published": "2026-11-11",
+    "fieldworkStart": "2026-11-09",
+    "fieldworkEnd": "2026-11-10",
+    "sampleSize": 1242,
+    "registeredSample": 1164,
+    "noticeSource": "notice-cluster17-2026-11-11",
+    "population": "France ; inscrits, résultats pondérés selon la probabilité de vote.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 1.4,
+      "max": 3.3,
+      "confidence": 95
+    },
+    "uncertainty": "La notice fournit des effectifs utiles après redressement et pondération selon la probabilité de vote. Pour les effectifs de 883 à 899 personnes, les tableaux indiquent ±1,4 à ±3,3 points à 95 %. Notice enregistrée au 11 novembre ; la publication sur le site de l’institut est datée du 12 novembre.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "cluster17-2026-11-11-attal",
+    "noticePage": 16,
+    "scenario": "Premier tour · Attal, Lisnard et Retailleau",
+    "round": "premier",
+    "usefulSample": 888,
+    "noIntention": null,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 20.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 1.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11.5
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 11
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 10
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 6
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 31
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ]
+  },
+  {
+    "institute": "Cluster17",
+    "commissioner": "Politico",
+    "published": "2026-11-11",
+    "fieldworkStart": "2026-11-09",
+    "fieldworkEnd": "2026-11-10",
+    "sampleSize": 1242,
+    "registeredSample": 1164,
+    "noticeSource": "notice-cluster17-2026-11-11",
+    "population": "France ; inscrits, résultats pondérés selon la probabilité de vote.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 1.4,
+      "max": 3.3,
+      "confidence": 95
+    },
+    "uncertainty": "La notice fournit des effectifs utiles après redressement et pondération selon la probabilité de vote. Pour les effectifs de 883 à 899 personnes, les tableaux indiquent ±1,4 à ±3,3 points à 95 %. Notice enregistrée au 11 novembre ; la publication sur le site de l’institut est datée du 12 novembre.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "cluster17-2026-11-11-lagarde",
+    "noticePage": 17,
+    "scenario": "Premier tour · Lagarde, Lisnard et Retailleau",
+    "round": "premier",
+    "usefulSample": 883,
+    "noIntention": null,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 20.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 1.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 10
+      },
+      {
+        "id": "lagarde",
+        "name": "Christine Lagarde",
+        "percentage": 14
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 10
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 5.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 30.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ]
+  },
+  {
+    "institute": "Cluster17",
+    "commissioner": "Politico",
+    "published": "2026-11-11",
+    "fieldworkStart": "2026-11-09",
+    "fieldworkEnd": "2026-11-10",
+    "sampleSize": 1242,
+    "registeredSample": 1164,
+    "noticeSource": "notice-cluster17-2026-11-11",
+    "population": "France ; inscrits, résultats pondérés selon la probabilité de vote.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 1.4,
+      "max": 3.3,
+      "confidence": 95
+    },
+    "uncertainty": "La notice fournit des effectifs utiles après redressement et pondération selon la probabilité de vote. Pour les effectifs de 883 à 899 personnes, les tableaux indiquent ±1,4 à ±3,3 points à 95 %. Notice enregistrée au 11 novembre ; la publication sur le site de l’institut est datée du 12 novembre.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "cluster17-2026-11-11-dix-huit",
+    "noticePage": 18,
+    "scenario": "Premier tour · 18 personnalités testées",
+    "round": "premier",
+    "usefulSample": 899,
+    "noIntention": null,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 19
+      },
+      {
+        "id": "ruffin",
+        "name": "François Ruffin",
+        "percentage": 1.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 1.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 1
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 8
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 1
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 8
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 2
+      },
+      {
+        "id": "lagarde",
+        "name": "Christine Lagarde",
+        "percentage": 8
+      },
+      {
+        "id": "polony",
+        "name": "Natacha Polony",
+        "percentage": 2.5
+      },
+      {
+        "id": "riner",
+        "name": "Teddy Riner",
+        "percentage": 2
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 8
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 5
+      },
+      {
+        "id": "asselineau",
+        "name": "François Asselineau",
+        "percentage": 1
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 27
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 2
+      }
+    ]
+  },
+  {
+    "institute": "Ipsos BVA",
+    "commissioner": "Le Parisien, avec CESI École d’ingénieurs",
+    "published": "2026-10-24",
+    "fieldworkStart": "2026-10-21",
+    "fieldworkEnd": "2026-10-22",
+    "sampleSize": 1500,
+    "registeredSample": 1500,
+    "noticeSource": "notice-ipsos-2026-10-24",
+    "population": "France, 18 ans et plus ; inscrits certains d’aller voter et exprimant une intention de vote.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 0.4,
+      "max": 2.8,
+      "confidence": 95
+    },
+    "uncertainty": "Les pages de résultats donnent une marge propre à chaque candidat, comprise ici entre ±0,4 et ±2,8 points à 95 %. La notice précise que le calcul est théorique pour un échantillon par quotas. Les non-exprimés portent sur les personnes certaines d’aller voter.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "ipsos-2026-10-24-attal-philippe",
+    "noticePage": 11,
+    "scenario": "Premier tour · Attal et Philippe",
+    "round": "premier",
+    "usefulSample": 1057,
+    "noIntention": 7,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 13
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 4
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 13
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 7.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 33.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4.5
+      }
+    ]
+  },
+  {
+    "institute": "Ipsos BVA",
+    "commissioner": "Le Parisien, avec CESI École d’ingénieurs",
+    "published": "2026-10-24",
+    "fieldworkStart": "2026-10-21",
+    "fieldworkEnd": "2026-10-22",
+    "sampleSize": 1500,
+    "registeredSample": 1500,
+    "noticeSource": "notice-ipsos-2026-10-24",
+    "population": "France, 18 ans et plus ; inscrits certains d’aller voter et exprimant une intention de vote.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 0.4,
+      "max": 2.8,
+      "confidence": 95
+    },
+    "uncertainty": "Les pages de résultats donnent une marge propre à chaque candidat, comprise ici entre ±0,4 et ±2,8 points à 95 %. La notice précise que le calcul est théorique pour un échantillon par quotas. Les non-exprimés portent sur les personnes certaines d’aller voter.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "ipsos-2026-10-24-philippe",
+    "noticePage": 13,
+    "scenario": "Premier tour · Philippe seul au centre",
+    "round": "premier",
+    "usefulSample": 1060,
+    "noIntention": 7,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 14
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 15
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 33.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4.5
+      }
+    ]
+  },
+  {
+    "institute": "Ipsos BVA",
+    "commissioner": "Le Parisien, avec CESI École d’ingénieurs",
+    "published": "2026-10-24",
+    "fieldworkStart": "2026-10-21",
+    "fieldworkEnd": "2026-10-22",
+    "sampleSize": 1500,
+    "registeredSample": 1500,
+    "noticeSource": "notice-ipsos-2026-10-24",
+    "population": "France, 18 ans et plus ; inscrits certains d’aller voter et exprimant une intention de vote.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 0.4,
+      "max": 2.8,
+      "confidence": 95
+    },
+    "uncertainty": "Les pages de résultats donnent une marge propre à chaque candidat, comprise ici entre ±0,4 et ±2,8 points à 95 %. La notice précise que le calcul est théorique pour un échantillon par quotas. Les non-exprimés portent sur les personnes certaines d’aller voter.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "ipsos-2026-10-24-attal",
+    "noticePage": 15,
+    "scenario": "Premier tour · Attal seul au centre",
+    "round": "premier",
+    "usefulSample": 1048,
+    "noIntention": 8,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 15.5
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 9.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 11.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 33.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4.5
+      }
+    ]
+  },
+  {
+    "institute": "Ipsos BVA",
+    "commissioner": "Le Parisien, avec CESI École d’ingénieurs",
+    "published": "2026-10-24",
+    "fieldworkStart": "2026-10-21",
+    "fieldworkEnd": "2026-10-22",
+    "sampleSize": 1500,
+    "registeredSample": 1500,
+    "noticeSource": "notice-ipsos-2026-10-24",
+    "population": "France, 18 ans et plus ; inscrits certains d’aller voter et exprimant une intention de vote.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 0.4,
+      "max": 2.8,
+      "confidence": 95
+    },
+    "uncertainty": "Les pages de résultats donnent une marge propre à chaque candidat, comprise ici entre ±0,4 et ±2,8 points à 95 %. La notice précise que le calcul est théorique pour un échantillon par quotas. Les non-exprimés portent sur les personnes certaines d’aller voter.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "ipsos-2026-10-24-philippe-lisnard",
+    "noticePage": 17,
+    "scenario": "Premier tour · Philippe et Lisnard",
+    "round": "premier",
+    "usefulSample": 1069,
+    "noIntention": 6,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 13
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 14
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 5.5
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 6.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 32
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ]
+  },
+  {
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-11-09",
+    "fieldworkStart": "2026-11-03",
+    "fieldworkEnd": "2026-11-05",
+    "sampleSize": 2436,
+    "registeredSample": 2101,
+    "noticeSource": "notice-harris-2026-11-09",
+    "population": "France, 18 ans et plus ; inscrits certains d’aller voter et exprimant une intention de vote.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "uncertainty": "La notice indique des marges selon le score de ±1,4 à ±2,9 points pour ces scénarios de premier tour. Les effectifs utiles sont ceux des inscrits certains d’aller voter ayant exprimé un choix. Niveau de confiance : 95 %.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "harris-2026-11-09-philippe",
+    "noticePage": 44,
+    "scenario": "Premier tour · Philippe seul au centre",
+    "round": "premier",
+    "usefulSample": 1339,
+    "noIntention": null,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 19
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 2
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 12
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 14
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 36
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ]
+  },
+  {
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-11-09",
+    "fieldworkStart": "2026-11-03",
+    "fieldworkEnd": "2026-11-05",
+    "sampleSize": 2436,
+    "registeredSample": 2101,
+    "noticeSource": "notice-harris-2026-11-09",
+    "population": "France, 18 ans et plus ; inscrits certains d’aller voter et exprimant une intention de vote.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "uncertainty": "La notice indique des marges selon le score de ±1,4 à ±2,9 points pour ces scénarios de premier tour. Les effectifs utiles sont ceux des inscrits certains d’aller voter ayant exprimé un choix. Niveau de confiance : 95 %.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "harris-2026-11-09-attal",
+    "noticePage": 47,
+    "scenario": "Premier tour · Attal seul au centre",
+    "round": "premier",
+    "usefulSample": 1336,
+    "noIntention": null,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 19
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 13
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 10
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 36
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ]
+  },
+  {
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-11-09",
+    "fieldworkStart": "2026-11-03",
+    "fieldworkEnd": "2026-11-05",
+    "sampleSize": 2436,
+    "registeredSample": 2101,
+    "noticeSource": "notice-harris-2026-11-09",
+    "population": "France, 18 ans et plus ; inscrits certains d’aller voter et exprimant une intention de vote.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 2.9,
+      "max": 3,
+      "confidence": 95
+    },
+    "uncertainty": "La page de ce duel indique une marge de ±2.9 à ±3 points selon le score, à 95 %. Aucun taux de non-exprimés n’est repris ici faute de valeur explicite sur cette page.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "harris-2026-11-09-duel-melenchon",
+    "noticePage": 54,
+    "scenario": "Second tour · Mélenchon et Le Pen",
+    "round": "second",
+    "usefulSample": 1171,
+    "noIntention": null,
+    "results": [
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 32
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 68
+      }
+    ]
+  },
+  {
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-11-09",
+    "fieldworkStart": "2026-11-03",
+    "fieldworkEnd": "2026-11-05",
+    "sampleSize": 2436,
+    "registeredSample": 2101,
+    "noticeSource": "notice-harris-2026-11-09",
+    "population": "France, 18 ans et plus ; inscrits certains d’aller voter et exprimant une intention de vote.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 3,
+      "max": 3,
+      "confidence": 95
+    },
+    "uncertainty": "La page de ce duel indique une marge de ±3 à ±3 points selon le score, à 95 %. Aucun taux de non-exprimés n’est repris ici faute de valeur explicite sur cette page.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "harris-2026-11-09-duel-glucksmann",
+    "noticePage": 57,
+    "scenario": "Second tour · Glucksmann et Le Pen",
+    "round": "second",
+    "usefulSample": 1237,
+    "noIntention": null,
+    "results": [
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 40
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 60
+      }
+    ]
+  },
+  {
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-11-09",
+    "fieldworkStart": "2026-11-03",
+    "fieldworkEnd": "2026-11-05",
+    "sampleSize": 2436,
+    "registeredSample": 2101,
+    "noticeSource": "notice-harris-2026-11-09",
+    "population": "France, 18 ans et plus ; inscrits certains d’aller voter et exprimant une intention de vote.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 3,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "uncertainty": "La page de ce duel indique une marge de ±3 à ±3.1 points selon le score, à 95 %. Aucun taux de non-exprimés n’est repris ici faute de valeur explicite sur cette page.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "harris-2026-11-09-duel-philippe",
+    "noticePage": 59,
+    "scenario": "Second tour · Philippe et Le Pen",
+    "round": "second",
+    "usefulSample": 1211,
+    "noIntention": null,
+    "results": [
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 42
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 58
+      }
+    ]
+  },
+  {
+    "institute": "OpinionWay",
+    "commissioner": "Les Echos et Radio Classique",
+    "published": "2026-11-13",
+    "fieldworkStart": "2026-11-09",
+    "fieldworkEnd": "2026-11-10",
+    "sampleSize": 1017,
+    "registeredSample": 982,
+    "noticeSource": "notice-opinionway-2026-11-13",
+    "population": "France, 18 ans et plus ; inscrits certains d’aller voter (notes 9 ou 10), intentions exprimées.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 1.7,
+      "max": 4,
+      "confidence": 95
+    },
+    "uncertainty": "Le tableau de la notice donne, pour 600 personnes, un repère de ±1,7 à ±4 points à 95 % ; les effectifs exprimés de ces questions sont de 650 à 680. Les résultats repris viennent de la colonne « Publié ». Les non-exprimés de cette colonne sont établis sur l’ensemble des répondants, pas uniquement les certains d’aller voter. Le document est daté du 12 novembre ; la publication de l’institut et le registre sont datés du 13.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "opinionway-2026-11-13-attal-philippe",
+    "noticePage": 13,
+    "scenario": "Premier tour · Attal et Philippe, avec Lisnard",
+    "round": "premier",
+    "usefulSample": 680,
+    "noIntention": 14,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 1
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 4
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 11
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 4
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 10
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34
+      }
+    ],
+    "noIntentionNote": "Colonne publiée : part des répondants sans intention exprimée ; base distincte des seuls certains d’aller voter."
+  },
+  {
+    "institute": "OpinionWay",
+    "commissioner": "Les Echos et Radio Classique",
+    "published": "2026-11-13",
+    "fieldworkStart": "2026-11-09",
+    "fieldworkEnd": "2026-11-10",
+    "sampleSize": 1017,
+    "registeredSample": 982,
+    "noticeSource": "notice-opinionway-2026-11-13",
+    "population": "France, 18 ans et plus ; inscrits certains d’aller voter (notes 9 ou 10), intentions exprimées.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 1.7,
+      "max": 4,
+      "confidence": 95
+    },
+    "uncertainty": "Le tableau de la notice donne, pour 600 personnes, un repère de ±1,7 à ±4 points à 95 % ; les effectifs exprimés de ces questions sont de 650 à 680. Les résultats repris viennent de la colonne « Publié ». Les non-exprimés de cette colonne sont établis sur l’ensemble des répondants, pas uniquement les certains d’aller voter. Le document est daté du 12 novembre ; la publication de l’institut et le registre sont datés du 13.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "opinionway-2026-11-13-attal",
+    "noticePage": 14,
+    "scenario": "Premier tour · Attal seul au centre, avec Lisnard",
+    "round": "premier",
+    "usefulSample": 657,
+    "noIntention": 17,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 1
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 13
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 10
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 6
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 12
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34
+      }
+    ],
+    "noIntentionNote": "Colonne publiée : part des répondants sans intention exprimée ; base distincte des seuls certains d’aller voter."
+  },
+  {
+    "institute": "OpinionWay",
+    "commissioner": "Les Echos et Radio Classique",
+    "published": "2026-11-13",
+    "fieldworkStart": "2026-11-09",
+    "fieldworkEnd": "2026-11-10",
+    "sampleSize": 1017,
+    "registeredSample": 982,
+    "noticeSource": "notice-opinionway-2026-11-13",
+    "population": "France, 18 ans et plus ; inscrits certains d’aller voter (notes 9 ou 10), intentions exprimées.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 1.7,
+      "max": 4,
+      "confidence": 95
+    },
+    "uncertainty": "Le tableau de la notice donne, pour 600 personnes, un repère de ±1,7 à ±4 points à 95 % ; les effectifs exprimés de ces questions sont de 650 à 680. Les résultats repris viennent de la colonne « Publié ». Les non-exprimés de cette colonne sont établis sur l’ensemble des répondants, pas uniquement les certains d’aller voter. Le document est daté du 12 novembre ; la publication de l’institut et le registre sont datés du 13.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "opinionway-2026-11-13-philippe",
+    "noticePage": 15,
+    "scenario": "Premier tour · Philippe seul au centre, avec Lisnard",
+    "round": "premier",
+    "usefulSample": 650,
+    "noIntention": 17,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 12
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 12
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 4
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 11
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34
+      }
+    ],
+    "noIntentionNote": "Colonne publiée : part des répondants sans intention exprimée ; base distincte des seuls certains d’aller voter."
+  },
+  {
+    "institute": "Odoxa",
+    "commissioner": "Backbone, Public Sénat, la Presse Régionale et Le Nouvel Obs",
+    "published": "2026-10-14",
+    "fieldworkStart": "2026-09-24",
+    "fieldworkEnd": "2026-10-07",
+    "sampleSize": 12005,
+    "registeredSample": 11103,
+    "noticeSource": "notice-odoxa-2026-10-14",
+    "population": "France métropolitaine, 18 ans et plus ; inscrits comptant aller voter et exprimant un choix.",
+    "method": "Internet ; quotas dans chaque région, puis pondération des régions selon leur poids national.",
+    "margin": {
+      "min": 0.6,
+      "max": 1.1,
+      "confidence": 95
+    },
+    "uncertainty": "La notice indique ±0,6 à ±1,1 point selon le score. Le rapport de résultats donne une plage allant jusqu’à ±1,2 point : les deux références sont liées. Première publication indiquée par la notice : 14 octobre 2026 à 18 h. Niveau de confiance : 95 %.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "odoxa-2026-10-14-philippe",
+    "noticePage": 1,
+    "scenario": "Premier tour · Philippe",
+    "round": "premier",
+    "usefulSample": 7599,
+    "noIntention": 28,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 18
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 9.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 17
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 6.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 37
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4.5
+      }
+    ],
+    "resultSource": "resultats-odoxa-2026-10-14",
+    "resultPage": 12
+  },
+  {
+    "institute": "Odoxa",
+    "commissioner": "Backbone, Public Sénat, la Presse Régionale et Le Nouvel Obs",
+    "published": "2026-10-14",
+    "fieldworkStart": "2026-09-24",
+    "fieldworkEnd": "2026-10-07",
+    "sampleSize": 12005,
+    "registeredSample": 11103,
+    "noticeSource": "notice-odoxa-2026-10-14",
+    "population": "France métropolitaine, 18 ans et plus ; inscrits comptant aller voter et exprimant un choix.",
+    "method": "Internet ; quotas dans chaque région, puis pondération des régions selon leur poids national.",
+    "margin": {
+      "min": 0.6,
+      "max": 1.1,
+      "confidence": 95
+    },
+    "uncertainty": "La notice indique ±0,6 à ±1,1 point selon le score. Le rapport de résultats donne une plage allant jusqu’à ±1,2 point : les deux références sont liées. Première publication indiquée par la notice : 14 octobre 2026 à 18 h. Niveau de confiance : 95 %.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "odoxa-2026-10-14-attal",
+    "noticePage": 1,
+    "scenario": "Premier tour · Attal",
+    "round": "premier",
+    "usefulSample": 7374,
+    "noIntention": 29,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 18.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 10.5
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 11
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 38
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4.5
+      }
+    ],
+    "resultSource": "resultats-odoxa-2026-10-14",
+    "resultPage": 20
+  },
+  {
+    "institute": "Odoxa",
+    "commissioner": "Backbone, Public Sénat, la Presse Régionale et Le Nouvel Obs",
+    "published": "2026-10-14",
+    "fieldworkStart": "2026-09-24",
+    "fieldworkEnd": "2026-10-07",
+    "sampleSize": 12005,
+    "registeredSample": 11103,
+    "noticeSource": "notice-odoxa-2026-10-14",
+    "population": "France métropolitaine, 18 ans et plus ; inscrits comptant aller voter et exprimant un choix.",
+    "method": "Internet ; quotas dans chaque région, puis pondération des régions selon leur poids national.",
+    "margin": {
+      "min": 0.6,
+      "max": 1.1,
+      "confidence": 95
+    },
+    "uncertainty": "La notice indique ±0,6 à ±1,1 point selon le score. Le rapport de résultats donne une plage allant jusqu’à ±1,2 point : les deux références sont liées. Première publication indiquée par la notice : 14 octobre 2026 à 18 h. Niveau de confiance : 95 %.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "odoxa-2026-10-14-duel-melenchon",
+    "noticePage": 1,
+    "scenario": "Second tour · Mélenchon et Le Pen",
+    "round": "second",
+    "usefulSample": 6634,
+    "noIntention": 37,
+    "results": [
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 32
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 68
+      }
+    ],
+    "resultSource": "resultats-odoxa-2026-10-14",
+    "resultPage": 22
+  },
+  {
+    "institute": "Odoxa",
+    "commissioner": "Backbone, Public Sénat, la Presse Régionale et Le Nouvel Obs",
+    "published": "2026-10-14",
+    "fieldworkStart": "2026-09-24",
+    "fieldworkEnd": "2026-10-07",
+    "sampleSize": 12005,
+    "registeredSample": 11103,
+    "noticeSource": "notice-odoxa-2026-10-14",
+    "population": "France métropolitaine, 18 ans et plus ; inscrits comptant aller voter et exprimant un choix.",
+    "method": "Internet ; quotas dans chaque région, puis pondération des régions selon leur poids national.",
+    "margin": {
+      "min": 0.6,
+      "max": 1.1,
+      "confidence": 95
+    },
+    "uncertainty": "La notice indique ±0,6 à ±1,1 point selon le score. Le rapport de résultats donne une plage allant jusqu’à ±1,2 point : les deux références sont liées. Première publication indiquée par la notice : 14 octobre 2026 à 18 h. Niveau de confiance : 95 %.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "odoxa-2026-10-14-duel-philippe",
+    "noticePage": 1,
+    "scenario": "Second tour · Philippe et Le Pen",
+    "round": "second",
+    "usefulSample": 7374,
+    "noIntention": 32,
+    "results": [
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 47
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 53
+      }
+    ],
+    "resultSource": "resultats-odoxa-2026-10-14",
+    "resultPage": 25
+  },
+  {
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-11-14",
+    "fieldworkStart": "2026-11-12",
+    "fieldworkEnd": "2026-11-13",
+    "sampleSize": 1500,
+    "registeredSample": 1391,
+    "noticeSource": "notice-elabe-2026-11-14",
+    "population": "France métropolitaine, 18 ans et plus ; intentions de vote parmi les inscrits déclarant vouloir voter.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 1.1,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "uncertainty": "La notice demande de mentionner une plage globale de ±1,1 à ±3,5 points selon les scores et les effectifs. Cette plage n’est pas un intervalle propre à chaque candidat. Première publication : 14 novembre à 20 h sur le site d’Elabe. Niveau de confiance : 95 %.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "elabe-2026-11-14-attal-philippe",
+    "noticePage": 8,
+    "scenario": "Premier tour · Attal et Philippe",
+    "round": "premier",
+    "usefulSample": 1046,
+    "noIntention": 12,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 13
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 12
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 5.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 6
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 33
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ]
+  },
+  {
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-11-14",
+    "fieldworkStart": "2026-11-12",
+    "fieldworkEnd": "2026-11-13",
+    "sampleSize": 1500,
+    "registeredSample": 1391,
+    "noticeSource": "notice-elabe-2026-11-14",
+    "population": "France métropolitaine, 18 ans et plus ; intentions de vote parmi les inscrits déclarant vouloir voter.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 1.1,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "uncertainty": "La notice demande de mentionner une plage globale de ±1,1 à ±3,5 points selon les scores et les effectifs. Cette plage n’est pas un intervalle propre à chaque candidat. Première publication : 14 novembre à 20 h sur le site d’Elabe. Niveau de confiance : 95 %.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "elabe-2026-11-14-attal-ruffin-lisnard",
+    "noticePage": 8,
+    "scenario": "Premier tour · Attal, Ruffin et Lisnard, sans Tondelier",
+    "round": "premier",
+    "usefulSample": 1046,
+    "noIntention": 12.5,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 1.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17.5
+      },
+      {
+        "id": "ruffin",
+        "name": "François Ruffin",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 14
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 8.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 6
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 10.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 32
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ]
+  },
+  {
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-11-14",
+    "fieldworkStart": "2026-11-12",
+    "fieldworkEnd": "2026-11-13",
+    "sampleSize": 1500,
+    "registeredSample": 1391,
+    "noticeSource": "notice-elabe-2026-11-14",
+    "population": "France métropolitaine, 18 ans et plus ; intentions de vote parmi les inscrits déclarant vouloir voter.",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "margin": {
+      "min": 1.1,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "uncertainty": "La notice demande de mentionner une plage globale de ±1,1 à ±3,5 points selon les scores et les effectifs. Cette plage n’est pas un intervalle propre à chaque candidat. Première publication : 14 novembre à 20 h sur le site d’Elabe. Niveau de confiance : 95 %.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "id": "elabe-2026-11-14-philippe-lisnard",
+    "noticePage": 9,
+    "scenario": "Premier tour · Philippe et Lisnard, sans Tondelier",
+    "round": "premier",
+    "usefulSample": 1048,
+    "noIntention": 12,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 18.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 13.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 13
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 4
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 9
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 32.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.5
+      }
+    ]
   }
 ]

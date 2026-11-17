@@ -21,6 +21,7 @@ const { ids, compact = false } = Astro.props;
             {source.published
               ? `Publié le ${formatDate(source.published)}`
               : 'Publication non datée'}{' '}
+            {source.updated && ` · mis à jour le ${formatDate(source.updated)}`}
             · consulté le {formatDate(source.checked)}
           </p>
         )}

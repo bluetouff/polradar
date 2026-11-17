@@ -1,6 +1,10 @@
 import importlib.util
 from pathlib import Path
 import socket
+import ssl
+import threading
+import tempfile
+import json
 import unittest
 from unittest.mock import Mock, patch
 
@@ -10,6 +14,13 @@ spec.loader.exec_module(watch)
 
 
 class WatchTests(unittest.TestCase):
+    def setUp(self):
+        self.sleep_patch=patch.object(watch.time,'sleep')
+        self.sleep_patch.start()
+        self.addCleanup(self.sleep_patch.stop)
+        watch.HOST_LAST.clear()
+        watch.HOST_LOCKS.clear()
+
     allowed={'example.org','other.example.org'}
 
     def test_only_declared_https_hosts_without_credentials_or_ports(self):
@@ -42,6 +53,19 @@ class WatchTests(unittest.TestCase):
             with self.subTest(content_type=content_type), self.assertRaises(ValueError):
                 watch.fingerprint(content_type,body)
 
+    def test_document_scope_ignores_sidebars_and_following_posts(self):
+        body='Propositions politiques du document officiel. '*12
+        first=f'<aside>Actualite A</aside><div class="ob-sections"><div><p>{body}</p><script>hidden()</script></div></div><div class="ob-sections">autre billet A</div>'
+        second=first.replace('Actualite A','Actualite B').replace('autre billet A','autre billet B')
+        self.assertEqual(watch.fingerprint('text/html',first.encode(),'ob-sections'),watch.fingerprint('text/html',second.encode(),'ob-sections'))
+        self.assertNotEqual(watch.fingerprint('text/html',first.encode(),'ob-sections'),watch.fingerprint('text/html',first.replace(body,body+' Nouvelle proposition.').encode(),'ob-sections'))
+
+    def test_document_scope_fails_closed_when_missing_incomplete_or_invalid(self):
+        body=b'Programme officiel documente. '*20
+        for html,scope in [(body,'ob-sections'),(b'<div class="ob-sections">'+body,'ob-sections'),(body,'x]script'),(b'<div class="ob-sections"></div>'+body,'ob-sections'),(b'<div class>'+body+b'</div>','ob-sections')]:
+            with self.subTest(scope=scope),self.assertRaises(ValueError):
+                watch.fingerprint('text/html',html,scope)
+
     def test_failure_is_exposed_without_exception_details_or_fake_hash(self):
         source={'id':'source-test','url':'https://example.org/'}
         with patch.object(watch,'fetch',side_effect=OSError('private detail secret')):
@@ -62,6 +86,18 @@ class WatchTests(unittest.TestCase):
         self.assertEqual(source['checked'],'2026-11-16')
         self.assertEqual(row['fingerprint'],watch.fingerprint('text/html',content))
 
+    def test_editorial_review_is_kept_only_for_the_same_fingerprint(self):
+        source={'id':'source-test','url':'https://example.org/'}
+        body=b'<main>'+b'Programme documente pour la consultation. '*12+b'</main>'
+        previous={'fingerprint':watch.fingerprint('text/html',body),'reviewedAt':'2026-11-17T12:00:00Z','reviewNote':'Document relu'}
+        with patch.object(watch,'fetch',return_value=(200,'text/html',body)):
+            row=watch.inspect(source,previous,self.allowed)
+        self.assertEqual(row['reviewedAt'],previous['reviewedAt'])
+        with patch.object(watch,'fetch',return_value=(200,'text/html',body+b' Nouveau contenu.')):
+            row=watch.inspect(source,previous,self.allowed)
+        self.assertEqual(row['status'],'modifie')
+        self.assertNotIn('reviewedAt',row)
+
     def fake_fetch(self,response):
         connection=Mock()
         connection.getresponse.return_value=response
@@ -73,7 +109,7 @@ class WatchTests(unittest.TestCase):
     def test_fetch_pins_validated_ip_and_keeps_tls_hostname_validation(self):
         response=Mock(status=200)
         response.getheader.side_effect=lambda name,default='': {'Content-Type':'text/html','Content-Length':'3'}.get(name,default)
-        response.read.side_effect=[b'abc',b'']
+        response.read1.side_effect=[b'abc',b'']
         connection,context,patches=self.fake_fetch(response)
         with patches[0],patches[1],patches[2],patches[3] as create:
             self.assertEqual(watch.fetch('https://example.org/source',self.allowed),(200,'text/html',b'abc'))
@@ -89,7 +125,50 @@ class WatchTests(unittest.TestCase):
             connection,context,patches=self.fake_fetch(response)
             with patches[0],patches[1],patches[2],patches[3],self.assertRaises(ValueError):
                 watch.fetch('https://example.org/source',self.allowed)
-            response.read.assert_not_called()
+            response.read1.assert_not_called()
+
+    def test_retries_are_bounded_and_errors_are_not_turned_into_success(self):
+        with patch.object(watch,'fetch',side_effect=[(403,'text/html',b''),(503,'text/html',b''),(200,'text/html',b'ok')]) as fetch:
+            self.assertEqual(watch.fetch_reliably('https://example.org/',self.allowed)[0],200)
+            self.assertEqual(fetch.call_count,3)
+        with patch.object(watch,'fetch',return_value=(403,'text/html',b'')) as fetch:
+            self.assertEqual(watch.fetch_reliably('https://example.org/',self.allowed)[0],403)
+            self.assertEqual(fetch.call_count,3)
+        with patch.object(watch,'fetch',return_value=(404,'text/html',b'')) as fetch:
+            self.assertEqual(watch.fetch_reliably('https://example.org/',self.allowed)[0],404)
+            self.assertEqual(fetch.call_count,1)
+        with patch.object(watch,'fetch',side_effect=[(526,'text/html',b''),(200,'text/html',b'ok')]) as fetch:
+            self.assertEqual(watch.fetch_reliably('https://example.org/',self.allowed)[0],200)
+            self.assertEqual(fetch.call_count,2)
+
+    def test_tls_failures_do_not_trigger_availability_retries(self):
+        with patch.object(watch,'fetch',side_effect=ssl.SSLError('certificate failed')) as fetch, self.assertRaises(ssl.SSLError):
+            watch.fetch_reliably('https://example.org/',self.allowed)
+        self.assertEqual(fetch.call_count,1)
+
+    def test_same_publisher_requests_are_serialized(self):
+        entered=threading.Event();release=threading.Event();second=threading.Event()
+        def fetch(url,hosts):
+            if url.endswith('/one'):
+                entered.set();release.wait(2)
+            else:second.set()
+            return (200,'text/html',b'ok')
+        with patch.object(watch,'fetch',side_effect=fetch):
+            a=threading.Thread(target=watch.fetch_reliably,args=('https://example.org/one',self.allowed))
+            b=threading.Thread(target=watch.fetch_reliably,args=('https://example.org/two',self.allowed))
+            a.start();self.assertTrue(entered.wait(2));b.start()
+            self.assertFalse(second.wait(.03));release.set();a.join(2);b.join(2)
+            self.assertTrue(second.is_set());self.assertFalse(a.is_alive() or b.is_alive())
+
+    def test_excluded_index_is_preserved_as_a_source_but_not_fetched(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);(root/'src/data').mkdir(parents=True)
+            sources=[{'id':'index','url':'https://example.org/','kind':'campagne','watch':False},{'id':'chapter','url':'https://example.org/chapter','kind':'campagne'}]
+            (root/'src/data/sources.json').write_text(json.dumps(sources))
+            with patch.object(watch,'ROOT',root),patch.object(watch,'inspect',return_value={'sourceId':'chapter','status':'accessible','checkedAt':'2026-11-17T12:00:00Z'}) as inspect:
+                watch.run(root/'report.json',root/'missing.json')
+            self.assertEqual(inspect.call_count,1)
+            self.assertEqual(inspect.call_args.args[0]['id'],'chapter')
 
     def test_a_source_has_a_total_deadline(self):
         with patch.object(watch.time,'monotonic',side_effect=[0,46]),patch.object(watch,'public_addresses',return_value=['1.1.1.1']),self.assertRaises(TimeoutError):
@@ -99,7 +178,7 @@ class WatchTests(unittest.TestCase):
     def test_chunked_downloads_are_also_bounded(self):
         response=Mock(status=200)
         response.getheader.side_effect=lambda name,default='':{'Content-Type':'text/html'}.get(name,default)
-        response.read.side_effect=[b'x'*(watch.LIMIT+1)]
+        response.read1.side_effect=[b'x'*(watch.LIMIT+1)]
         connection,context,patches=self.fake_fetch(response)
         with patches[0],patches[1],patches[2],patches[3],self.assertRaises(ValueError):
             watch.fetch('https://example.org/',self.allowed)

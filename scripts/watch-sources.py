@@ -13,10 +13,39 @@ import re
 import socket
 import ssl
 import time
+import threading
 import urllib.parse
 
 LIMIT = 3 * 1024 * 1024
 ROOT = Path(__file__).resolve().parents[1]
+HOST_LOCKS = {}
+HOST_LAST = {}
+HOST_LOCK = threading.Lock()
+RETRY_STATUSES = {403, 408, 429, 500, 502, 503, 504, 520, 521, 522, 523, 524, 525, 526, 527}
+
+
+def fetch_reliably(url, allowed_hosts):
+    """One request at a time per publisher, with bounded availability retries."""
+    host = checked_url(url, allowed_hosts).hostname
+    with HOST_LOCK:
+        lock = HOST_LOCKS.setdefault(host, threading.Lock())
+    with lock:
+        for attempt in range(3):
+            delay = max(0, HOST_LAST.get(host, 0) + 1 - time.monotonic())
+            if delay:
+                time.sleep(delay)
+            try:
+                result = fetch(url, allowed_hosts)
+                if result[0] not in RETRY_STATUSES or attempt == 2:
+                    return result
+            except ssl.SSLError:
+                raise  # Certificate failures are never worked around.
+            except OSError:
+                if attempt == 2:
+                    raise
+            finally:
+                HOST_LAST[host] = time.monotonic()
+            time.sleep(2 ** attempt)
 
 
 def checked_url(url, allowed_hosts):
@@ -89,7 +118,7 @@ def fetch(url, allowed_hosts):
                 chunks, size = [], 0
                 while True:
                     connection.sock.settimeout(remaining())
-                    chunk = response.read(min(65536, LIMIT + 1 - size))
+                    chunk = response.read1(min(65536, LIMIT + 1 - size))
                     if not chunk:
                         break
                     size += len(chunk)
@@ -111,31 +140,49 @@ def fetch(url, allowed_hosts):
 
 
 class Text(HTMLParser):
-    def __init__(self):
+    def __init__(self, content_class=None):
         super().__init__(convert_charrefs=True)
         self.ignored = 0
         self.parts = []
+        self.content_class = content_class
+        self.container_tag = None
+        self.container_depth = 0
+        self.container_closed = False
         self.skip = {'script','style','nav','header','footer','svg','noscript','form'}
     def handle_starttag(self, tag, attrs):
+        if self.content_class:
+            if self.container_tag is None and self.content_class in (dict(attrs).get('class') or '').split():
+                self.container_tag = tag
+                self.container_depth = 1
+            elif self.container_depth and tag == self.container_tag:
+                self.container_depth += 1
         if tag in self.skip:
             self.ignored += 1
     def handle_endtag(self, tag):
         if tag in self.skip and self.ignored:
             self.ignored -= 1
+        if self.content_class and self.container_depth and tag == self.container_tag:
+            self.container_depth -= 1
+            if not self.container_depth:
+                self.container_closed = True
     def handle_data(self, value):
-        if not self.ignored:
+        if not self.ignored and (not self.content_class or self.container_depth):
             self.parts.append(value)
 
 
-def fingerprint(content_type, body):
+def fingerprint(content_type, body, content_class=None):
     if content_type == 'application/pdf':
         if not body.startswith(b'%PDF-'):
             raise ValueError('Invalid PDF')
         return hashlib.sha256(body).hexdigest()
     if content_type not in ('text/html','application/xhtml+xml'):
         raise ValueError('Unsupported document')
-    parser = Text()
+    if content_class is not None and not re.fullmatch(r'[A-Za-z][A-Za-z0-9_-]{0,59}', content_class):
+        raise ValueError('Invalid content scope')
+    parser = Text(content_class)
     parser.feed(body.decode('utf-8', errors='replace'))
+    if content_class and not parser.container_closed:
+        raise ValueError('Missing or incomplete document container')
     text = re.sub(r'\s+', ' ', ' '.join(parser.parts)).strip()
     if len(text) < 180 or any(marker in text.lower() for marker in ('just a moment', 'verify you are human', 'enable javascript and cookies', 'access denied', 'vérifiez que vous êtes humain')):
         raise ValueError('Unusable document')
@@ -147,16 +194,22 @@ def inspect(source, previous, allowed_hosts):
     old = previous.get('fingerprint') or previous.get('previousFingerprint')
     row = {'sourceId':source['id'], 'checkedAt':now, 'status':'indisponible', 'httpStatus':None, 'fingerprint':None, 'previousFingerprint':old, 'bytes':0, 'contentType':'', 'message':'Connexion indisponible'}
     try:
-        status, content_type, body = fetch(source['url'], allowed_hosts)
+        status, content_type, body = fetch_reliably(source['url'], allowed_hosts)
         row.update(httpStatus=status,contentType=content_type,bytes=len(body))
         if status != 200:
             row.update(status='bloque' if status in (401,403,429) else 'indisponible',message=f'Réponse HTTP {status}')
         else:
-            digest = fingerprint(content_type, body)
+            digest = fingerprint(content_type, body, source.get('watchContentClass'))
             changed = old is not None and digest != old
             row.update(status='modifie' if changed else 'accessible',fingerprint=digest,message='Contenu différent du dernier relevé validé' if changed else 'Document accessible lors du relevé')
+            if not changed and previous.get('reviewedAt') and previous.get('reviewNote'):
+                row.update(reviewedAt=previous['reviewedAt'],reviewNote=previous['reviewNote'])
     except ValueError:
         row.update(status='bloque',message='Document ou destination non exploitable dans le périmètre autorisé')
+    except ssl.SSLError:
+        row.update(message='Échec de validation TLS')
+    except TimeoutError:
+        row.update(message='Délai de connexion ou de lecture dépassé après reprises bornées')
     except Exception:
         # Exception messages can contain URLs or server details. Never log them.
         pass
@@ -166,7 +219,7 @@ def inspect(source, previous, allowed_hosts):
 def run(output, baseline, selected=None):
     sources = json.loads((ROOT/'src/data/sources.json').read_text())
     allowed_hosts = {urllib.parse.urlsplit(source['url']).hostname for source in sources}
-    targets = [source for source in sources if source['kind'] in ('campagne','parti') or source['id']=='sondages']
+    targets = [source for source in sources if source.get('watch', True) and (source['kind'] in ('campagne','parti') or source['id']=='sondages')]
     if selected:
         if not set(selected).issubset({source['id'] for source in targets}):
             raise ValueError('Unknown source')
