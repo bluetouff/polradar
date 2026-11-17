@@ -1,0 +1,228 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import VisualFilters from '../components/VisualFilters.astro';
+import SourceLinks from '../components/SourceLinks.astro';
+import { candidates, candidateById, formatDate } from '../lib/data';
+import { airtime } from '../lib/visual-data';
+import { airtimeView, formatDuration } from '../lib/airtime-view.mjs';
+import '../styles/visuals.css';
+const monthLabel = (value: string) =>
+  new Intl.DateTimeFormat('fr-FR', {
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'Europe/Paris',
+  }).format(new Date(`${value}-01T12:00:00Z`));
+---
+
+<Base
+  title="Temps de parole"
+  description="Temps de parole politique par télévision et radio. Relevés mensuels de l’Arcom, durées publiées et détail par personnalité."
+>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="microphone" />
+    </span>
+    <div>
+      <h1>Temps de parole</h1>
+      <p>Les durées publiées par l’Arcom, média par média.</p>
+    </div>
+  </header>
+  <nav class="visual-tabs" aria-label="Explorer la campagne">
+    <a href="/temps-de-parole/" aria-current="page">
+      <Icon name="microphone" /> Médias
+    </a>
+    <a href="/budget-programmes/">
+      <Icon name="euro" /> Budgets
+    </a>
+    <a href="/agenda/">
+      <Icon name="map-pin" /> Agenda
+    </a>
+  </nav>
+  <div class="visual-intro airtime-intro">
+    <div>
+      <span class="visual-kicker">Dernier mois disponible</span>
+      <strong>{monthLabel(airtime.months[0].month)}</strong>
+      <p>
+        Hors période électorale · relevé consulté le{' '}
+        {formatDate(airtime.checked)}.
+      </p>
+    </div>
+    <p>
+      Ces relevés mesurent les interventions des personnalités politiques hors
+      période électorale. L’Arcom les publie avec un décalage.
+    </p>
+  </div>
+  <VisualFilters label="Mois, médias, personnalité">
+    <form id="airtime-filters" class="visual-filters" hidden>
+      <label>
+        Mois
+        <select id="airtime-month">
+          {airtime.months.map((m) => (
+            <option value={m.month}>{monthLabel(m.month)}</option>
+          ))}
+        </select>
+      </label>
+      <label>
+        Médias
+        <select id="airtime-kind">
+          <option value="television">Télévision</option>
+          <option value="radio">Radio</option>
+          <option value="">Télévision et radio</option>
+        </select>
+      </label>
+      <label>
+        Personnalité
+        <select id="airtime-candidate">
+          <option value="">Vue d’ensemble</option>
+          {candidates.map((c) => (
+            <option value={c.id}>{c.name}</option>
+          ))}
+        </select>
+      </label>
+      <button type="reset" class="button light">
+        Réinitialiser
+      </button>
+    </form>
+  </VisualFilters>
+  <p class="visual-status" id="airtime-status" role="status" aria-live="polite">
+    {airtime.months.length} relevés mensuels disponibles.
+  </p>
+  <p class="visual-caption">
+    Chaque bande représente 100 % des durées publiées pour ce média et ce mois.
+    Gris : toutes les autres personnalités. Les tirets du fichier source
+    signifient « non publié », jamais zéro.
+  </p>
+  <div id="airtime-legend" class="airtime-legend" hidden></div>
+  {airtime.months.map((month, index) => {
+    const view = airtimeView(airtime, month.month, '');
+    return (
+      <section class="airtime-month" data-airtime-month={month.month}>
+        <details open={index === 0} class="airtime-month-detail">
+          <summary>
+            <h2>{monthLabel(month.month)}</h2>
+            <span>{month.services.length} médias</span>
+          </summary>
+          <div class="airtime-legend airtime-static-legend">
+            {view.leaders.map((id, index) => (
+              <span>
+                <i class={`tone-${index}`} aria-hidden="true"></i>
+                {candidateById(id).name}
+              </span>
+            ))}
+            <span>
+              <i class="airtime-other" aria-hidden="true"></i>Autres
+              personnalités
+            </span>
+          </div>
+          <div class="airtime-board">
+            {view.rows.map((row) => (
+              <article
+                class="airtime-row"
+                data-service={row.name}
+                data-kind={row.kind}
+              >
+                <div class="airtime-service">
+                  <h3>{row.name}</h3>
+                  <span>{row.kind === 'radio' ? 'Radio' : 'Télévision'}</span>
+                </div>
+                <div class="airtime-chart">
+                  <svg
+                    viewBox="0 0 100 12"
+                    preserveAspectRatio="none"
+                    role="img"
+                    aria-label={`${row.name} : répartition des durées publiées, total ${formatDuration(row.totalSeconds)}`}
+                  >
+                    <rect
+                      class="airtime-track"
+                      width="100"
+                      height="12"
+                      rx="1"
+                    />
+                    {Array.from({ length: 5 }, (_, i) => {
+                      const part = row.segments[i];
+                      return (
+                        <rect
+                          class={`airtime-segment tone-${i}`}
+                          data-segment={i}
+                          x={part?.x ?? 0}
+                          width={part?.width ?? 0}
+                          height="12"
+                        >
+                          <title>{part?`${candidateById(part.id).name} : ${formatDuration(part.seconds)}`:''}</title>
+                        </rect>
+                      );
+                    })}
+                    <rect
+                      class="airtime-other"
+                      x={row.othersX}
+                      width={row.othersWidth}
+                      height="12"
+                    >
+                      <title>Autres personnalités : {formatDuration(row.others)}</title>
+                    </rect>
+                  </svg>
+                  <p class="airtime-focus"></p>
+                </div>
+                <div class="airtime-total">
+                  <strong>{formatDuration(row.totalSeconds)}</strong>
+                  <span>total publié</span>
+                </div>
+                <details class="airtime-detail">
+                  <summary>Durées par personnalité</summary>
+                  <ul>
+                    {candidates.map((c) => {
+                      const obs = row.observations.find(
+                        (o) => o.candidate === c.id,
+                      );
+                      return (
+                        <li data-airtime-person={c.id}>
+                          <a href={`/candidats/${c.id}/`}>{c.name}</a>
+                          <span>{formatDuration(obs?.seconds ?? null)}</span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                  <p class="visual-caption">
+                    Somme des cellules renseignées des journaux, magazines et
+                    autres programmes. Une durée publiée peut être partielle
+                    lorsque d’autres cellules portent un tiret.
+                  </p>
+                </details>
+              </article>
+            ))}
+          </div>
+          <p class="visual-download">
+            <a href={month.sourceUrl} rel="noopener noreferrer" target="_blank">
+              <Icon name="download" /> Fichier CSV original Arcom ·{' '}
+              {monthLabel(month.month)} ↗
+            </a>
+          </p>
+        </details>
+      </section>
+    );
+  })}
+  <details class="visual-method">
+    <summary>Lecture des relevés et méthode</summary>
+    <p>
+      Les fichiers de personnalités de l’Arcom sont regroupés par média,
+      personne et type d’émission : JTF, MAG et PROG. Polradar additionne les
+      durées renseignées de ces trois catégories. Il ne complète aucune case
+      manquante.
+    </p>
+    <p>
+      La vue d’ensemble colore les cinq profils suivis ayant le plus de durée
+      publiée dans la sélection. Toutes les autres personnes du fichier, suivies
+      ou non par Polradar, restent dans le total gris. Choisir une personnalité
+      l’isole dans les bandes ; son absence du fichier n’établit pas une absence
+      d’intervention.
+    </p>
+    <p>
+      Les relevés hors période électorale ne permettent pas de conclure au
+      respect ou au non-respect des règles de l’élection présidentielle. Aucun
+      seuil d’équité ou d’égalité n’est calculé ici.
+    </p>
+    <SourceLinks ids={['arcom-hors-elections']} />
+  </details>
+  <script src="../scripts/airtime.ts"></script>
+</Base>

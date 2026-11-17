@@ -1,0 +1,51 @@
+---
+import Icon from './Icon.astro';
+import { airtime, programmeBudgets, agenda } from '../lib/visual-data';
+import '../styles/visuals.css';
+const month = new Intl.DateTimeFormat('fr-FR', {
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'Europe/Paris',
+}).format(new Date(`${airtime.months[0].month}-01T12:00:00Z`));
+---
+
+<section class="home-explorers" aria-labelledby="explorers-title">
+  <header>
+    <h2 id="explorers-title">Médias, budgets et terrain</h2>
+    <span class="eyebrow">Trois vues de la campagne</span>
+  </header>
+  <div class="explorer-index">
+    <a href="/temps-de-parole/">
+      <Icon name="microphone" />
+      <div>
+        <h3>Temps de parole ↗</h3>
+        <p>Télévision et radio, répartition par personnalité.</p>
+        <strong>
+          {airtime.months[0].services.length} médias · {month}
+        </strong>
+      </div>
+    </a>
+    <a href="/budget-programmes/">
+      <Icon name="euro" />
+      <div>
+        <h3>Budgets des programmes ↗</h3>
+        <p>Montants, échéances et financements annoncés.</p>
+        <strong>
+          {programmeBudgets.profiles.length} profils ·{' '}
+          {programmeBudgets.profiles.flatMap((p) => p.entries).length} montants
+          sourcés
+        </strong>
+      </div>
+    </a>
+    <a href="/agenda/">
+      <Icon name="map-pin" />
+      <div>
+        <h3>Carte des rendez-vous ↗</h3>
+        <p>Meetings, réunions publiques, lieux et horaires.</p>
+        <strong>
+          {agenda.events.length} dates · {agenda.cities.length} communes
+        </strong>
+      </div>
+    </a>
+  </div>
+</section>

@@ -1,0 +1,147 @@
+{
+  "version": 1,
+  "checked": "2026-11-17",
+  "profiles": [
+    {
+      "candidate": "dupont-aignan",
+      "scope": "parti",
+      "note": "Deux mesures du projet de Debout la France. Les montants portent sur des dispositifs distincts ; ils ne constituent pas un budget complet.",
+      "entries": [
+        {
+          "id": "nda-fonds",
+          "label": "Fonds d’investissement et de relocalisation",
+          "euros": 4000000000.0,
+          "kind": "depense",
+          "period": "annuel",
+          "horizon": "Par an",
+          "approximate": false,
+          "funding": "Autofinancement à terme par les profits des investissements ; délai et dotation initiale non détaillés.",
+          "source": "dlf-economie-2026",
+          "locator": "10 mesures pour créer et relocaliser 2 millions d’emplois : fonds d’investissement",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "nda-capital",
+          "label": "Capital retraite attribué à la naissance",
+          "euros": 6000000000.0,
+          "kind": "depense",
+          "period": "annuel",
+          "horizon": "Par an",
+          "approximate": true,
+          "funding": "Financement propre à cette mesure non détaillé.",
+          "source": "dlf-economie-2026",
+          "locator": "Capital retraite de 10 000 € à la naissance : coût annoncé d’environ 6 milliards d’euros par an",
+          "allocationUnit": null,
+          "allocation": []
+        }
+      ]
+    },
+    {
+      "candidate": "glucksmann",
+      "scope": "campagne",
+      "note": "Une mesure chiffrée du livret écologique des premiers 100 jours.",
+      "entries": [
+        {
+          "id": "glucks-securite-civile",
+          "label": "Investissement dans la sécurité civile",
+          "euros": 1000000000.0,
+          "kind": "depense",
+          "period": "ponctuel",
+          "horizon": "Dès juin 2027 ; récurrence non précisée",
+          "approximate": false,
+          "funding": null,
+          "source": "glucks-livret",
+          "locator": "Livret de révolution écologique : adaptation au changement climatique, sécurité civile",
+          "allocationUnit": null,
+          "allocation": []
+        }
+      ]
+    },
+    {
+      "candidate": "philippe",
+      "scope": "campagne",
+      "note": "Objectif de redressement des comptes publics. La répartition est celle annoncée par la campagne ; le dernier quart repose sur une hypothèse de croissance.",
+      "entries": [
+        {
+          "id": "philippe-trajectoire",
+          "label": "Économies annoncées à la fin du quinquennat",
+          "euros": 150000000000.0,
+          "kind": "trajectoire",
+          "period": "horizon",
+          "horizon": "Fin du quinquennat ; montant non présenté comme un cumul",
+          "approximate": true,
+          "funding": null,
+          "source": "philippe-budget",
+          "locator": "Comment Édouard Philippe va-t-il rétablir les comptes publics ?",
+          "allocationUnit": "pourcentage",
+          "allocation": [
+            {
+              "label": "Dépenses sociales",
+              "value": 50
+            },
+            {
+              "label": "État et collectivités",
+              "value": 25
+            },
+            {
+              "label": "Croissance et emploi attendus",
+              "value": 25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "candidate": "retailleau",
+      "scope": "campagne",
+      "note": "Objectif d’économies à l’horizon 2032. Les deux affectations ci-dessous sont incluses dans les 197 milliards annoncés.",
+      "entries": [
+        {
+          "id": "retailleau-trajectoire",
+          "label": "Économies annoncées en 2032",
+          "euros": 197000000000.0,
+          "kind": "economie",
+          "period": "horizon",
+          "horizon": "En 2032 ; montant non présenté comme un cumul",
+          "approximate": false,
+          "funding": null,
+          "source": "retailleau-trajectoire",
+          "locator": "L’engagement et le financement",
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Réduction du déficit",
+              "value": 146000000000.0
+            },
+            {
+              "label": "Montant « rendu » annoncé",
+              "value": 51000000000.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "candidate": "ruffin",
+      "scope": "campagne",
+      "note": "Une mesure chiffrée du cahier consacré aux souverainetés numériques.",
+      "entries": [
+        {
+          "id": "ruffin-labo",
+          "label": "Laboratoire public d’intelligence artificielle",
+          "euros": 1000000000.0,
+          "kind": "depense",
+          "period": "annuel",
+          "horizon": "Par an",
+          "approximate": false,
+          "funding": "En partie sur les crédits de la défense ; quote-part non chiffrée.",
+          "source": "ruffin-numerique",
+          "locator": "Notre plan pour une intelligence artificielle souveraine : laboratoire public de recherche",
+          "allocationUnit": null,
+          "allocation": []
+        }
+      ]
+    }
+  ]
+}

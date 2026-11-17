@@ -1,0 +1,254 @@
+{
+  "version": 1,
+  "checked": "2026-11-17",
+  "cities": [
+    {
+      "id": "paris",
+      "name": "Paris",
+      "code": "75056",
+      "coordinates": [2.347, 48.8589],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/75056?fields=nom,code,centre"
+    },
+    {
+      "id": "arles",
+      "name": "Arles",
+      "code": "13004",
+      "coordinates": [4.6513, 43.5441],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/13004?fields=nom,code,centre"
+    },
+    {
+      "id": "nimes",
+      "name": "Nîmes",
+      "code": "30189",
+      "coordinates": [4.3429, 43.8322],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/30189?fields=nom,code,centre"
+    },
+    {
+      "id": "pau",
+      "name": "Pau",
+      "code": "64445",
+      "coordinates": [-0.3435, 43.3219],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/64445?fields=nom,code,centre"
+    },
+    {
+      "id": "toulouse",
+      "name": "Toulouse",
+      "code": "31555",
+      "coordinates": [1.4328, 43.6007],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/31555?fields=nom,code,centre"
+    },
+    {
+      "id": "kintzheim",
+      "name": "Kintzheim",
+      "code": "67239",
+      "coordinates": [7.3749, 48.2574],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/67239?fields=nom,code,centre"
+    },
+    {
+      "id": "perigueux",
+      "name": "Périgueux",
+      "code": "24322",
+      "coordinates": [0.7105, 45.1939],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/24322?fields=nom,code,centre"
+    },
+    {
+      "id": "quimper",
+      "name": "Quimper",
+      "code": "29232",
+      "coordinates": [-4.0972, 47.9982],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/29232?fields=nom,code,centre"
+    },
+    {
+      "id": "lanester",
+      "name": "Lanester",
+      "code": "56098",
+      "coordinates": [-3.326, 47.7686],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/56098?fields=nom,code,centre"
+    },
+    {
+      "id": "montpellier",
+      "name": "Montpellier",
+      "code": "34172",
+      "coordinates": [3.8742, 43.61],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/34172?fields=nom,code,centre"
+    },
+    {
+      "id": "ales",
+      "name": "Alès",
+      "code": "30007",
+      "coordinates": [4.0905, 44.125],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/30007?fields=nom,code,centre"
+    }
+  ],
+  "events": [
+    {
+      "id": "arthaud-montpellier-1117",
+      "candidate": "arthaud",
+      "date": "2026-11-17",
+      "time": "12:30",
+      "timezone": "Europe/Paris",
+      "city": "montpellier",
+      "title": "Réunion publique",
+      "venue": "Quartier Généreux, 2 quai des Tanneurs",
+      "note": "",
+      "source": "agenda-arthaud-novembre",
+      "status": "annonce"
+    },
+    {
+      "id": "arthaud-ales-1117",
+      "candidate": "arthaud",
+      "date": "2026-11-17",
+      "time": "17:30",
+      "timezone": "Europe/Paris",
+      "city": "ales",
+      "title": "Réunion publique",
+      "venue": "Hôtel Ibis en centre-ville",
+      "note": "",
+      "source": "agenda-arthaud-novembre",
+      "status": "annonce"
+    },
+    {
+      "id": "arthaud-arles-midi",
+      "candidate": "arthaud",
+      "date": "2026-11-18",
+      "time": "12:00",
+      "timezone": "Europe/Paris",
+      "city": "arles",
+      "title": "Réunion publique",
+      "venue": "Cabanon, zone industrielle Nord",
+      "note": "",
+      "source": "agenda-arthaud-arles",
+      "status": "annonce"
+    },
+    {
+      "id": "arthaud-arles-apres-midi",
+      "candidate": "arthaud",
+      "date": "2026-11-18",
+      "time": "14:30",
+      "timezone": "Europe/Paris",
+      "city": "arles",
+      "title": "Rencontre-débat",
+      "venue": "Salle Jean et Pons Dedieu, 62 rue du 4-Septembre",
+      "note": "",
+      "source": "agenda-arthaud-arles",
+      "status": "annonce"
+    },
+    {
+      "id": "arthaud-nimes-1118",
+      "candidate": "arthaud",
+      "date": "2026-11-18",
+      "time": "17:30",
+      "timezone": "Europe/Paris",
+      "city": "nimes",
+      "title": "Réunion publique",
+      "venue": "Bar du Midi",
+      "note": "",
+      "source": "agenda-arthaud-novembre",
+      "status": "annonce"
+    },
+    {
+      "id": "arthaud-pau-1124",
+      "candidate": "arthaud",
+      "date": "2026-11-24",
+      "time": "12:30",
+      "timezone": "Europe/Paris",
+      "city": "pau",
+      "title": "Réunion des jeunes",
+      "venue": "Salle Patie, 70 boulevard du Recteur Jean-Sarrailh",
+      "note": "",
+      "source": "agenda-arthaud-pau",
+      "status": "annonce"
+    },
+    {
+      "id": "arthaud-toulouse-1125",
+      "candidate": "arthaud",
+      "date": "2026-11-25",
+      "time": "12:30",
+      "timezone": "Europe/Paris",
+      "city": "toulouse",
+      "title": "Rencontre lycéens et étudiants",
+      "venue": "Salle Castelbou, 22 rue Léonce-Castelbou",
+      "note": "",
+      "source": "agenda-arthaud-toulouse",
+      "status": "annonce"
+    },
+    {
+      "id": "philippot-kintzheim-1125",
+      "candidate": "philippot",
+      "date": "2026-11-25",
+      "time": "19:00",
+      "timezone": "Europe/Paris",
+      "city": "kintzheim",
+      "title": "Réunion publique",
+      "venue": "Hôtel-restaurant Au Parc des Cigognes, 96 route de Sélestat",
+      "note": "Entrée gratuite ; inscription fortement recommandée par l’organisateur.",
+      "source": "agenda-philippot",
+      "status": "annonce"
+    },
+    {
+      "id": "labib-paris-1128",
+      "candidate": "labib",
+      "date": "2026-11-28",
+      "time": "17:30",
+      "timezone": "Europe/Paris",
+      "city": "paris",
+      "title": "Meeting de campagne",
+      "venue": "Espace Charenton, 327 rue de Charenton, Paris 12e",
+      "note": "Avec Selma Labib et Gaël Quirante.",
+      "source": "agenda-labib-paris",
+      "status": "annonce"
+    },
+    {
+      "id": "glucksmann-paris-1206",
+      "candidate": "glucksmann",
+      "date": "2026-12-06",
+      "time": "14:30",
+      "timezone": "Europe/Paris",
+      "city": "paris",
+      "title": "Meeting de campagne",
+      "venue": "Paris Event Center, 20 avenue de la Porte-de-la-Villette, Paris 19e",
+      "note": "Ouverture des portes à 12 h 30 ; réservation prioritaire proposée par l’organisateur.",
+      "source": "agenda-glucksmann-paris",
+      "status": "annonce"
+    },
+    {
+      "id": "miko-perigueux-1208",
+      "candidate": "mikolajczak",
+      "date": "2026-12-08",
+      "time": "18:00",
+      "timezone": "Europe/Paris",
+      "city": "perigueux",
+      "title": "Rencontre de campagne",
+      "venue": null,
+      "note": "Présence d’Antoine Miko annoncée. Adresse à venir sur le site d’Équinoxe.",
+      "source": "agenda-miko-perigueux",
+      "status": "annonce"
+    },
+    {
+      "id": "arthaud-quimper-1215",
+      "candidate": "arthaud",
+      "date": "2026-12-15",
+      "time": "19:00",
+      "timezone": "Europe/Paris",
+      "city": "quimper",
+      "title": "Réunion publique",
+      "venue": "Salle Odet, Espace de la Providence, 49 rue de la Providence",
+      "note": "",
+      "source": "agenda-arthaud-quimper",
+      "status": "annonce"
+    },
+    {
+      "id": "arthaud-lanester-1216",
+      "candidate": "arthaud",
+      "date": "2026-12-16",
+      "time": "18:00",
+      "timezone": "Europe/Paris",
+      "city": "lanester",
+      "title": "Réunion publique",
+      "venue": "Salle Tam-Tam, médiathèque, rue Jean-Paul-Sartre",
+      "note": "",
+      "source": "agenda-arthaud-lanester",
+      "status": "annonce"
+    }
+  ]
+}

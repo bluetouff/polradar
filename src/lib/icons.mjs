@@ -1,4 +1,8 @@
 export const iconPaths = {
+  microphone:
+    'M9 5a3 3 0 0 1 6 0v6a3 3 0 0 1-6 0Zm-3 5v1a6 6 0 0 0 12 0v-1M12 17v4m-4 0h8',
+  'map-pin':
+    'M12 22s8-8 8-13a8 8 0 0 0-16 0c0 5 8 13 8 13Zm0-10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z',
   markets: 'M3 19V5m0 14h18M6 14l4-4 4 3 6-8m-5 0h5v5',
   exchange: 'M3 8h17l-4-4M21 16H4l4 4M7 5v6m10 2v6',
   retraites: 'M12 3a9 9 0 1 0 9 9 9 9 0 0 0-9-9Zm0 4v5l3 2M4 4l2 2m12 12 2 2',

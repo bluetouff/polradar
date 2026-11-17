@@ -1,0 +1,275 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import VisualFilters from '../components/VisualFilters.astro';
+import CandidatePortrait from '../components/CandidatePortrait.astro';
+import SourceLinks from '../components/SourceLinks.astro';
+import { candidates, candidateById, formatDate, scopes } from '../lib/data';
+import { programmeBudgets } from '../lib/visual-data';
+import { formatMoney } from '../lib/campaign-visuals-view.mjs';
+import '../styles/visuals.css';
+const periods = {
+  annuel: 'Montant annuel',
+  ponctuel: 'Investissement annoncé',
+  horizon: 'Objectif à terme',
+};
+const kinds = {
+  depense: 'Dépense proposée',
+  economie: 'Économie annoncée',
+  recette: 'Recette annoncée',
+  trajectoire: 'Trajectoire annoncée',
+};
+const annualMax = Math.max(
+  ...programmeBudgets.profiles
+    .flatMap((p) => p.entries)
+    .filter((e) => e.period === 'annuel')
+    .map((e) => e.euros),
+);
+---
+
+<Base
+  title="Budgets des programmes"
+  description="Montants et financements annoncés par les candidats. Mesures annuelles, investissements et trajectoires de finances publiques avec leurs sources."
+>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="euro" />
+    </span>
+    <div>
+      <h1>Budgets des programmes</h1>
+      <p>Les montants annoncés et leur financement.</p>
+    </div>
+  </header>
+  <nav class="visual-tabs" aria-label="Explorer la campagne">
+    <a href="/temps-de-parole/">
+      <Icon name="microphone" /> Médias
+    </a>
+    <a href="/budget-programmes/" aria-current="page">
+      <Icon name="euro" /> Budgets
+    </a>
+    <a href="/agenda/">
+      <Icon name="map-pin" /> Agenda
+    </a>
+  </nav>
+  <div class="visual-intro budget-intro">
+    <div>
+      <span class="visual-kicker">Sélection documentée</span>
+      <strong>
+        {programmeBudgets.profiles.length} profils ·{' '}
+        {programmeBudgets.profiles.flatMap((p) => p.entries).length} montants
+      </strong>
+      <p>Sources consultées le {formatDate(programmeBudgets.checked)}.</p>
+    </div>
+    <p>
+      Sélection de montants annoncés. Chaque graphique conserve la période et le
+      périmètre de son document.
+    </p>
+  </div>
+  <VisualFilters label="Personnalité et période">
+    <form id="budget-filters" class="visual-filters" hidden>
+      <label>
+        Personnalité
+        <select id="budget-candidate">
+          <option value="">Tous les profils</option>
+          {candidates.map((c) => (
+            <option value={c.id}>{c.name}</option>
+          ))}
+        </select>
+      </label>
+      <label>
+        Période
+        <select id="budget-period">
+          <option value="">Toutes les périodes</option>
+          {Object.entries(periods).map(([id, label]) => (
+            <option value={id}>{label}</option>
+          ))}
+        </select>
+      </label>
+      <button type="reset" class="button light">
+        Réinitialiser
+      </button>
+    </form>
+  </VisualFilters>
+  <p class="visual-status" id="budget-status" role="status" aria-live="polite">
+    {programmeBudgets.profiles.length} profils, par ordre alphabétique.
+  </p>
+  <p class="visual-empty" id="budget-empty" hidden>
+    Aucun montant intégré pour cette sélection. Le comparateur donne accès aux
+    propositions et à leurs documents.
+  </p>
+  <div class="programme-ledger">
+    {programmeBudgets.profiles.map((profile) => {
+      const c = candidateById(profile.candidate);
+      return (
+        <section class="budget-profile" data-budget-candidate={c.id}>
+          <header class="budget-person">
+            <a href={`/candidats/${c.id}/`} class="budget-avatar">
+              <CandidatePortrait candidate={c} compact />
+            </a>
+            <div>
+              <span class="visual-kicker">{scopes[profile.scope]}</span>
+              <h2>
+                <a href={`/candidats/${c.id}/`}>{c.name}</a>
+              </h2>
+              <p>{c.party}</p>
+            </div>
+          </header>
+          <div class="budget-measures">
+            <p class="budget-profile-note">{profile.note}</p>
+            {profile.entries.map((entry) => {
+              let x = 0;
+              const total =
+                entry.allocationUnit === 'pourcentage' ? 100 : entry.euros;
+              return (
+                <article
+                  class="budget-entry"
+                  id={entry.id}
+                  data-budget-period={entry.period}
+                >
+                  <div class="budget-entry-head">
+                    <div>
+                      <span class="visual-kicker">{kinds[entry.kind]}</span>
+                      <h3>{entry.label}</h3>
+                    </div>
+                    <p class="budget-number">
+                      {formatMoney(entry.euros, entry.approximate)}
+                      <span>{periods[entry.period]}</span>
+                    </p>
+                  </div>
+                  <p class="budget-horizon">
+                    <Icon name="clock" />
+                    {entry.horizon}
+                  </p>
+                  {entry.allocation.length ? (
+                    <figure class="budget-allocation">
+                      <figcaption>
+                        Répartition annoncée
+                        {entry.allocationUnit === 'pourcentage'
+                          ? ' de l’effort'
+                          : ''}
+                      </figcaption>
+                      <svg
+                        viewBox="0 0 100 14"
+                        preserveAspectRatio="none"
+                        role="img"
+                        aria-label={`Répartition annoncée : ${entry.allocation.map((p) => `${p.label}, ${entry.allocationUnit === 'pourcentage' ? `${p.value} %` : formatMoney(p.value)}`).join(' ; ')}`}
+                      >
+                        {entry.allocation.map((part, i) => {
+                          const width = (part.value / total) * 100,
+                            start = x;
+                          x += width;
+                          return (
+                            <rect
+                              x={start}
+                              width={width}
+                              height="14"
+                              class={`tone-${i}`}
+                            >
+                              <title>{part.label} : {entry.allocationUnit==='pourcentage'?`${part.value} %`:formatMoney(part.value)}</title>
+                            </rect>
+                          );
+                        })}
+                      </svg>
+                      <ul class="budget-allocation-key">
+                        {entry.allocation.map((part, i) => (
+                          <li>
+                            <i class={`tone-${i}`} aria-hidden="true"></i>
+                            <span>{part.label}</span>
+                            <strong>
+                              {entry.allocationUnit === 'pourcentage'
+                                ? `${part.value} %`
+                                : formatMoney(part.value)}
+                            </strong>
+                          </li>
+                        ))}
+                      </ul>
+                    </figure>
+                  ) : (
+                    <figure class="budget-amount-chart">
+                      <figcaption>
+                        {entry.period === 'annuel'
+                          ? 'Montant annuel de la mesure'
+                          : 'Montant de l’investissement annoncé'}
+                      </figcaption>
+                      <svg
+                        viewBox="0 0 100 10"
+                        preserveAspectRatio="none"
+                        role="img"
+                        aria-label={`${entry.label} : ${formatMoney(entry.euros, entry.approximate)}, ${entry.horizon}`}
+                      >
+                        <rect class="budget-track" width="100" height="10" />
+                        <rect
+                          class="tone-0"
+                          width={
+                            (entry.euros /
+                              (entry.period === 'annuel'
+                                ? annualMax
+                                : entry.euros)) *
+                            100
+                          }
+                          height="10"
+                        />
+                      </svg>
+                      <div class="budget-axis">
+                        <span>0</span>
+                        <span>
+                          {formatMoney(
+                            entry.period === 'annuel' ? annualMax : entry.euros,
+                          )}
+                          {entry.period === 'annuel' ? ' / an' : ''}
+                        </span>
+                      </div>
+                    </figure>
+                  )}
+                  <div class="budget-funding">
+                    <Icon name="exchange" />
+                    <div>
+                      <h4>
+                        {entry.period === 'horizon'
+                          ? 'Lecture du montant'
+                          : 'Financement annoncé'}
+                      </h4>
+                      <p>
+                        {entry.funding ??
+                          (entry.period === 'horizon'
+                            ? 'Objectif de la campagne, dépendant de sa trajectoire et de ses hypothèses. Aucun solde complet du programme n’est calculé.'
+                            : 'Financement propre à cette mesure non détaillé dans la source citée.')}
+                      </p>
+                    </div>
+                  </div>
+                  <details class="budget-source">
+                    <summary>Document et emplacement</summary>
+                    <p>{entry.locator}</p>
+                    <SourceLinks ids={[entry.source]} />
+                  </details>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      );
+    })}
+  </div>
+  <details class="visual-method">
+    <summary>Périmètre et méthode</summary>
+    <p>
+      Les montants sont repris des documents cités. Un investissement sans
+      récurrence indiquée n’est pas annualisé ; un objectif à l’horizon du
+      mandat n’est pas multiplié par cinq. Les montants approximatifs gardent le
+      signe ≈. Les sommes versées à un bénéficiaire, comme un salaire ou une
+      allocation, ne deviennent pas un coût budgétaire global.
+    </p>
+    <p>
+      Les barres annuelles partagent une échelle de 0 à {formatMoney(annualMax)}{' '}
+      par an. Les répartitions portent sur le seul montant du profil concerné.
+      Cette sélection couvre des mesures chiffrées ; l’absence d’un candidat ne
+      signifie pas qu’il n’a publié aucun chiffrage.
+    </p>
+    <p>
+      <a href="/economie/">Comptes publics de référence</a> ·{' '}
+      <a href="/comparer/">Comparer les propositions</a> ·{' '}
+      <a href="/sources/">Documents</a>
+    </p>
+  </details>
+  <script src="../scripts/programme-budgets.ts"></script>
+</Base>

@@ -1,0 +1,16 @@
+---
+import Icon from './Icon.astro';
+interface Props {
+  label: string;
+}
+const { label } = Astro.props;
+---
+
+<details class="visual-controls" hidden open>
+  <summary>
+    <Icon name="filter" />
+    <strong>Filtres</strong>
+    <span>{label}</span>
+  </summary>
+  <slot />
+</details>

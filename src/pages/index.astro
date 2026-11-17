@@ -15,6 +15,7 @@ import {
 } from '../lib/data';
 import HomeSignals from '../components/HomeSignals.astro';
 import CandidatePortrait from '../components/CandidatePortrait.astro';
+import HomeExplorers from '../components/HomeExplorers.astro';
 const articles = (
   await getCollection('articles', ({ data }) => !data.draft)
 ).sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
@@ -36,6 +37,7 @@ const maxThemeCount = Math.max(1, ...themeCounts.map((theme) => theme.count));
     <h1>Présidentielle 2027</h1>
     <p>Programmes, candidats et calendrier électoral.</p>
   </header>
+  <HomeExplorers />
   <div class="campaign-index">
     <div class="home-editorial">
       <section class="programme-index" aria-labelledby="programme-index-title">

@@ -1,0 +1,295 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import VisualFilters from '../components/VisualFilters.astro';
+import CandidatePortrait from '../components/CandidatePortrait.astro';
+import SourceLinks from '../components/SourceLinks.astro';
+import { candidates, candidateById, formatDate } from '../lib/data';
+import { agenda, franceMap } from '../lib/visual-data';
+import {
+  weekStart,
+  francePath,
+  clusterCities,
+} from '../lib/campaign-visuals-view.mjs';
+import '../styles/visuals.css';
+const related = candidates.filter((c) =>
+  agenda.events.some((e) => e.candidate === c.id),
+);
+const weeks = [...new Set(agenda.events.map((e) => weekStart(e.date)))];
+const clusters = clusterCities(agenda.cities);
+const dateParts = (date: string) => ({
+  day: date.slice(8),
+  month: new Intl.DateTimeFormat('fr-FR', {
+    month: 'short',
+    timeZone: 'Europe/Paris',
+  }).format(new Date(`${date}T12:00:00Z`)),
+});
+---
+
+<Base
+  title="Agenda de campagne"
+  description="Carte des réunions publiques et meetings annoncés par les candidats et leurs partis, avec horaires, adresses et liens officiels."
+>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="map-pin" />
+    </span>
+    <div>
+      <h1>Agenda de campagne</h1>
+      <p>Meetings et rencontres annoncés par les organisateurs.</p>
+    </div>
+  </header>
+  <nav class="visual-tabs" aria-label="Explorer la campagne">
+    <a href="/temps-de-parole/">
+      <Icon name="microphone" /> Médias
+    </a>
+    <a href="/budget-programmes/">
+      <Icon name="euro" /> Budgets
+    </a>
+    <a href="/agenda/" aria-current="page">
+      <Icon name="map-pin" /> Agenda
+    </a>
+  </nav>
+  <VisualFilters label="Personnalité, ville, semaine">
+    <form id="agenda-filters" class="visual-filters agenda-filters" hidden>
+      <label>
+        Personnalité
+        <select id="agenda-candidate">
+          <option value="">Tous les profils présents</option>
+          {related.map((c) => (
+            <option value={c.id}>{c.name}</option>
+          ))}
+        </select>
+      </label>
+      <label>
+        Ville
+        <select id="agenda-city">
+          <option value="">Toutes les villes</option>
+          {[...agenda.cities]
+            .sort((a, b) => a.name.localeCompare(b.name, 'fr'))
+            .map((c) => (
+              <option value={c.id}>{c.name}</option>
+            ))}
+        </select>
+      </label>
+      <label>
+        Semaine
+        <select id="agenda-week">
+          <option value="">Toutes les semaines</option>
+          {weeks.map((w) => (
+            <option value={w}>Du {formatDate(w)}</option>
+          ))}
+        </select>
+      </label>
+      <label>
+        Période
+        <select id="agenda-period">
+          <option value="a-venir">À venir et aujourd’hui</option>
+          <option value="passes">Dates passées</option>
+          <option value="tous">Toutes les dates</option>
+        </select>
+      </label>
+      <button type="reset" class="button light">
+        Réinitialiser
+      </button>
+    </form>
+  </VisualFilters>
+  <div class="agenda-layout">
+    <aside class="agenda-geography">
+      <figure class="campaign-map">
+        <figcaption>
+          <Icon name="map-pin" />
+          <span>
+            France métropolitaine<small>Repères regroupés par proximité</small>
+          </span>
+        </figcaption>
+        <svg
+          viewBox="0 0 500 500"
+          class="agenda-map"
+          aria-label="Communes des rendez-vous intégrés à l’agenda"
+        >
+          <defs>
+            <pattern
+              id="map-grid"
+              width="25"
+              height="25"
+              patternUnits="userSpaceOnUse"
+            >
+              <circle cx="1" cy="1" r="0.7" />
+            </pattern>
+          </defs>
+          <rect width="500" height="500" fill="url(#map-grid)" />
+          <path class="map-land" d={francePath(franceMap.rings)} />
+          {clusters.map((cluster) => {
+            const ids = cluster.cities.map((c) => c.id),
+              count = agenda.events.filter((e) =>
+                ids.includes(e.city ?? ''),
+              ).length;
+            return (
+              <a
+                href="#agenda-events"
+                data-map-cities={ids.join(' ')}
+                aria-label={`${cluster.cities.map((c) => c.name).join(', ')} : ${count} rendez-vous intégrés`}
+              >
+                <circle class="map-hit" cx={cluster.x} cy={cluster.y} r="21" />
+                <circle class="map-halo" cx={cluster.x} cy={cluster.y} r="17" />
+                <circle
+                  class="map-marker"
+                  cx={cluster.x}
+                  cy={cluster.y}
+                  r="12"
+                />
+                <text
+                  class="map-count"
+                  x={cluster.x}
+                  y={cluster.y + 4}
+                  text-anchor="middle"
+                >
+                  {count}
+                </text>
+                <text
+                  class="map-label"
+                  x={cluster.x}
+                  y={cluster.y - 23}
+                  text-anchor="middle"
+                >
+                  {cluster.cities.length === 1
+                    ? cluster.cities[0].name
+                    : `${cluster.cities.length} villes`}
+                </text>
+                <title>{cluster.cities.map(c=>c.name).join(', ')}</title>
+              </a>
+            );
+          })}
+        </svg>
+        <p>
+          Les repères indiquent les centres de communes, regroupés lorsqu’ils
+          sont proches. L’adresse du rendez-vous figure dans sa fiche.
+        </p>
+        <div
+          id="map-city-choices"
+          class="map-city-choices"
+          hidden
+          role="group"
+          aria-label="Choisir une ville du repère"
+        ></div>
+      </figure>
+      <div class="agenda-coverage">
+        <strong>
+          {related.length} profils · {agenda.cities.length} communes
+        </strong>
+        <p>
+          Sélection non exhaustive. Annonces consultées le{' '}
+          {formatDate(agenda.checked)}.
+        </p>
+        <p>
+          <a href="/campagne/">Voir la chronologie de campagne ↗</a>
+        </p>
+      </div>
+    </aside>
+    <section
+      class="agenda-journal"
+      aria-labelledby="agenda-list-title"
+      id="agenda-events"
+    >
+      <div class="register-heading">
+        <h2 id="agenda-list-title">Les rendez-vous</h2>
+        <span id="agenda-status" role="status" aria-live="polite">
+          {agenda.events.length} dates intégrées
+        </span>
+      </div>
+      <p class="visual-caption">
+        Horaires en heure de Paris. Une date passée conserve son statut
+        d’annonce tant que sa tenue n’a pas été vérifiée.
+      </p>
+      <p id="agenda-empty" class="visual-empty" hidden>
+        Aucun rendez-vous dans cette sélection. Élargissez la période, la ville
+        ou la personnalité.
+      </p>
+      <ol class="agenda-events">
+        {agenda.events.map((event) => {
+          const c = candidateById(event.candidate),
+            city = agenda.cities.find((v) => v.id === event.city),
+            parts = dateParts(event.date);
+          return (
+            <li
+              class="agenda-event"
+              id={event.id}
+              data-agenda-id={event.id}
+              data-candidate={c.id}
+              data-city={event.city ?? ''}
+              data-date={event.date}
+              data-week={weekStart(event.date)}
+            >
+              <time
+                class="agenda-date"
+                datetime={`${event.date}${event.time ? `T${event.time}` : ''}`}
+              >
+                <b>{parts.day}</b>
+                <span>{parts.month}</span>
+                <small>{event.date.slice(0, 4)}</small>
+              </time>
+              <article>
+                <div class="agenda-event-meta">
+                  <span class="agenda-announcement">Annonce officielle</span>
+                  <span>
+                    {event.time?.replace(':', ' h ') ?? 'Horaire non précisé'}
+                  </span>
+                </div>
+                <h3>{event.title}</h3>
+                <a class="agenda-person" href={`/candidats/${c.id}/`}>
+                  <span class="agenda-avatar">
+                    <CandidatePortrait candidate={c} compact />
+                  </span>
+                  {c.name}
+                </a>
+                <p class="agenda-place">
+                  <Icon name="map-pin" />
+                  <strong>{city?.name ?? 'Lieu non précisé'}</strong>
+                </p>
+                <p>{event.venue ?? 'Adresse à venir'}</p>
+                {event.note && <p class="agenda-note">{event.note}</p>}
+                <details class="agenda-source">
+                  <summary>Annonce et source</summary>
+                  <SourceLinks ids={[event.source]} />
+                </details>
+              </article>
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+  </div>
+  <details class="visual-method">
+    <summary>Sources de l’agenda et de la carte</summary>
+    <p>
+      Seules des annonces où la présence de la personnalité est explicite sont
+      intégrées. Les dates d’événement sont séparées des dates de publication et
+      de consultation. Avant un déplacement, consultez l’annonce de
+      l’organisateur pour vérifier le lieu et les éventuels changements.
+    </p>
+    <p>
+      Fond cartographique :{' '}
+      <a href={franceMap.sourceUrl} target="_blank" rel="noopener noreferrer">
+        Natural Earth, pays au 1:50 millions
+      </a>
+      ,{' '}
+      <a href={franceMap.licenseUrl} target="_blank" rel="noopener noreferrer">
+        domaine public
+      </a>
+      . Le contour affiché est limité à la métropole. Centres des communes :{' '}
+      <a
+        href="https://geo.api.gouv.fr/decoupage-administratif/communes"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        API géographique de l’État
+      </a>
+      . Aucune géolocalisation du lecteur ni chargement de tuiles externes.
+    </p>
+    <p>
+      <a href="/api/agenda.json">Télécharger les rendez-vous intégrés (JSON)</a>
+    </p>
+  </details>
+  <script src="../scripts/agenda.ts"></script>
+</Base>
