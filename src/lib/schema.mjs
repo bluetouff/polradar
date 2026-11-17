@@ -40,6 +40,8 @@ export const sourceSchema = z.object({
   url: publicUrlSchema,
   kind: z.enum(['campagne', 'parti', 'institution', 'presse', 'archive']),
   published: dateSchema.nullable(),
+  updated: dateSchema.nullable().optional(),
+  watch: z.boolean().optional(),
   checked: dateSchema,
 });
 export const candidateSchema = z.object({
@@ -181,6 +183,8 @@ export const watchSchema = z.object({
   bytes: z.number().int().nonnegative(),
   contentType: z.string().max(200),
   message: z.string().max(500),
+  reviewedAt: z.iso.datetime({ offset: true }).optional(),
+  reviewNote: z.string().min(1).max(500).optional(),
 });
 
 /** Civil dates in the editorial timezone; ISO timestamps stay in their original offset. */
@@ -304,6 +308,8 @@ export function validateFeatures(dataset) {
       errors.push(`${row.sourceId}: source de veille inconnue`);
     if (Date.parse(row.checkedAt) > Date.now() + 60000)
       errors.push(`${row.sourceId}: veille future`);
+    if (row.reviewedAt && Date.parse(row.reviewedAt) > Date.now() + 60000)
+      errors.push(`${row.sourceId}: relecture future`);
   }
   return errors;
 }
@@ -355,6 +361,12 @@ export function validateDataset(dataset) {
       errors.push(`${source.id}: consultation future`);
     if (source.published && source.published > source.checked)
       errors.push(`${source.id}: publication après consultation`);
+    if (
+      source.updated &&
+      (source.updated > source.checked ||
+        (source.published && source.updated < source.published))
+    )
+      errors.push(`${source.id}: date de mise à jour incohérente`);
   }
   for (const candidate of dataset.candidates) {
     if (!sourceIds.has(candidate.statusSource))

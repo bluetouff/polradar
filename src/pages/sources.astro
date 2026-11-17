@@ -40,6 +40,12 @@ import { sources, sourceKinds, formatDate } from '../lib/data';
             <dt>Consultation</dt>
             <dd>{formatDate(source.checked)}</dd>
           </div>
+          {source.updated && (
+            <div>
+              <dt>Mise à jour du document</dt>
+              <dd>{formatDate(source.updated)}</dd>
+            </div>
+          )}
         </dl>
       </article>
     ))}

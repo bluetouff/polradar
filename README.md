@@ -30,11 +30,13 @@ npm run security:audit
 - `src/lib/schema.mjs` : validation des types, références et invariants.
 - `deploy/` : récupération et activation des versions publiques sur le serveur.
 
-Le corpus comprend 12 candidatures sélectionnées, 12 thèmes et 99 fiches de mesures ou orientations, dont 9 archives de 2022. Les 69 fiches thématiques initiales conservent leurs adresses. Les 107 versions sont des états du contenu Polradar : les enrichissements éditoriaux sont distingués des évolutions de programme. Il ne s’agit pas d’une liste officielle exhaustive. Chaque référence conserve sa propre date de consultation.
+Le corpus comprend 12 candidatures sélectionnées, 12 thèmes et 209 fiches de mesures ou orientations, dont 9 archives de 2022. Les 69 fiches thématiques initiales conservent leurs adresses ; le registre en comprend désormais 85. Les 221 versions sont des états du contenu Polradar : les enrichissements éditoriaux sont distingués des évolutions de programme. Il ne s’agit pas d’une liste officielle exhaustive. Chaque référence conserve sa propre date de consultation.
 
 Le registre de sondages contient trois vagues Elabe (août, octobre et novembre 2026), chacune avec trois scénarios, vérifiées dans les notices de la Commission des sondages. Chaque courbe conserve le même institut, tour, méthode et liste de candidatures. Les effectifs utiles inconnus restent nuls (`null`), sans fabrication. Le premier périmètre ne couvre qu’un institut. Le temps de parole, le financement et les résultats territoriaux restent à intégrer.
 
-La recherche à facettes et les exports CSV/JSON fonctionnent localement. Les paramètres de recherche sont dans le fragment de l’URL ; les termes ne partent pas dans les journaux HTTP. Le suivi facultatif utilise `localStorage`, sans compte ou synchronisation. Les flux `/rss/candidats/<id>.xml` et `/rss/themes/<id>.xml` restent utilisables indépendamment. Les dates connues seulement au jour ne reçoivent pas d’heure fictive dans le RSS.
+La recherche à facettes et les exports CSV/JSON fonctionnent localement. Les paramètres de recherche sont dans le fragment de l’URL ; les termes ne partent pas dans les journaux HTTP. Le suivi facultatif utilise `localStorage`, sans compte ou synchronisation. Les flux `/rss/candidats/<id>.xml` et `/rss/themes/<id>.xml` restent utilisables indépendamment. Les dates connues seulement au jour ne reçoivent pas d’heure fictive dans le RSS. Les dates de publication, de mise à jour du document et de consultation sont distinctes.
+
+La relecture du 17 novembre 2026 ajoute 110 fiches réparties sur neuf dossiers. Les discours de Roussel conservent leur millésime, les propositions de Nouvelle Énergie restent attribuées au parti et les déclarations récentes de Zemmour sont marquées comme orientations. Le programme 2027 de l’UPR est encore annoncé en préparation sur son site ; ses archives ne sont pas reconduites. Les anciens snapshots restent inchangés.
 
 ## Veille et historique
 
@@ -44,7 +46,7 @@ Le workflow `watch.yml` est programmé chaque jour à 05:23 UTC (exécution pouv
 python3 scripts/watch-sources.py
 ```
 
-Le rapport est écrit dans `artifacts/watch-report.json` et `artifacts/watch-report.md`. Le script limite les destinations aux hôtes des sources déclarées, contrôle les IP publiques à chaque redirection, conserve HTTPS et la validation des certificats, borne les téléchargements et n’exécute aucun contenu distant.
+Le rapport est écrit dans `artifacts/watch-report.json` et `artifacts/watch-report.md`. Le script limite les destinations aux hôtes des sources déclarées, contrôle les IP publiques à chaque redirection, conserve HTTPS et la validation des certificats, borne les téléchargements et n’exécute aucun contenu distant. Une requête à la fois est autorisée par hébergeur, avec une seconde d’espacement et trois tentatives au maximum pour les erreurs temporaires. Les échecs persistants restent visibles. Les pages de Ruffin et de Nouvelle Énergie contenant des compteurs de soutiens ou d’adhérents sont conservées comme références mais exclues de la veille (`watch: false`) ; les cahiers et les pages thématiques sont surveillés.
 
 Pour intégrer un relevé : relire les liens et états du rapport, vérifier les changements dans les documents originaux, puis copier le JSON validé vers `src/data/watch.json`. Une indisponibilité reste affichée comme telle. Pour mettre à jour une mesure, conserver toutes les entrées de `versions.json`, ajouter la nouvelle version complète puis synchroniser `measures.json` et son numéro `revision`. La CI compare les anciennes versions avec la base Git et refuse leur réécriture. `node scripts/check-history.mjs` fait ce contrôle localement contre `HEAD`.
 

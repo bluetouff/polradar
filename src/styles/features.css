@@ -1565,6 +1565,9 @@
     .measure-number-grid strong {
       font-size: 26px;
     }
+    .measure-number-grid > div.large-quantity {
+      flex-basis: 240px;
+    }
     #history-form > label:first-child {
       flex-basis: 100%;
     }

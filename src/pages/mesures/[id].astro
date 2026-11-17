@@ -54,7 +54,7 @@ const candidate = candidateById(measure.candidate),
       {(measure.metrics.length > 0 || measure.amounts.length > 0) && (
         <div class="measure-number-grid">
           {measure.metrics.map((metric) => (
-            <div>
+            <div class:list={{ 'large-quantity': metric.value >= 100000 }}>
               <Icon name="sondages" />
               <span>{metric.label}</span>
               <strong>
@@ -64,7 +64,7 @@ const candidate = candidateById(measure.candidate),
             </div>
           ))}
           {measure.amounts.map((amount) => (
-            <div>
+            <div class:list={{ 'large-quantity': amount.value >= 100000 }}>
               <Icon name="euro" />
               <span>{amount.label}</span>
               <strong>

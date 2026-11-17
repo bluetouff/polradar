@@ -150,6 +150,13 @@ let offset = 0;
               </a>
             </h3>
             <p>{row.message}</p>
+            {row.reviewNote && <p>{row.reviewNote}</p>}
+            {row.reviewedAt && (
+              <p>
+                Relecture du contenu : {formatTimestamp(row.reviewedAt)}{' '}
+                (Paris).
+              </p>
+            )}
           </div>
           <div>
             <span class={`watch-label status-${row.status}`}>

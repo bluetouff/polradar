@@ -2973,5 +2973,3317 @@
       "edition": "Campagne 2027",
       "checked": "2026-11-17"
     }
+  },
+  {
+    "id": "philippe-fiscalite-1-v2",
+    "measureId": "philippe-fiscalite-1",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Correction du seuil : la page consultée fixe un objectif inférieur à 2,5 %, et non 2 %.",
+    "snapshot": {
+      "title": "Déficit inférieur à 2,5 % en fin de quinquennat",
+      "description": "Ramener le déficit public sous 2,5 % de la richesse nationale à la fin du quinquennat.",
+      "beneficiaries": null,
+      "timing": "Fin du quinquennat.",
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-budget",
+          "locator": "Propositions phares et réponse sur le plan de réduction de la dette"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Programme du 12 novembre 2026",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-fiscalite-effectifs-publics-v1",
+    "measureId": "philippe-fiscalite-effectifs-publics",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Réduire de 250 000 les postes de fonctionnaires",
+      "description": "Réduire les effectifs sur le quinquennat par les départs à la retraite, sans licenciement, notamment dans les fonctions de bureau.",
+      "beneficiaries": null,
+      "timing": "Sur le quinquennat.",
+      "financing": null,
+      "metrics": [
+        {
+          "key": "postes-publics-supprimes",
+          "label": "Postes supprimés annoncés",
+          "value": 250000,
+          "unit": "postes",
+          "sourceId": "philippe-budget"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-budget",
+          "locator": "Réponse sur les postes de fonctionnaires"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-fiscalite-agences-v1",
+    "measureId": "philippe-fiscalite-agences",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Réorganiser une trentaine d’agences publiques",
+      "description": "Fusionner, supprimer ou privatiser les agences et opérateurs jugés redondants.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-budget",
+          "locator": "Réponse sur les agences de l’État"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-social-rsa-v1",
+    "measureId": "philippe-social-rsa",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Réduire de 30 % le nombre d’allocataires du RSA",
+      "description": "Renforcer le suivi individuel, l’insertion dans les métiers en tension et les contrôles.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "baisse-allocataires-rsa",
+          "label": "Réduction annoncée",
+          "value": 30,
+          "unit": "%",
+          "sourceId": "philippe-budget"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-budget",
+          "locator": "Réponse sur les aides sociales"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-travail-chomage-douze-mois-v1",
+    "measureId": "philippe-travail-chomage-douze-mois",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Limiter l’indemnisation chômage à 12 mois avant 50 ans",
+      "description": "Plafonner la durée d’indemnisation des moins de 50 ans ; les plus de 50 ans sont exclus de ce plafonnement annoncé.",
+      "beneficiaries": "Demandeurs d’emploi de moins de 50 ans.",
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "duree-indemnisation",
+          "label": "Durée maximale annoncée",
+          "value": 12,
+          "unit": "mois",
+          "sourceId": "philippe-travail"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-travail",
+          "locator": "Réponse sur la durée des allocations chômage"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-travail-carence-v1",
+    "measureId": "philippe-travail-carence",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Trois jours de carence dans le public et le privé",
+      "description": "Appliquer un délai de carence identique de trois jours pour les arrêts maladie.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "jours-carence",
+          "label": "Délai de carence",
+          "value": 3,
+          "unit": "jours",
+          "sourceId": "philippe-travail"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-travail",
+          "locator": "Réponse sur les jours d’arrêt maladie"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-travail-reconversion-ia-v1",
+    "measureId": "philippe-travail-reconversion-ia",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Un droit à la reconversion pour les métiers menacés par l’IA",
+      "description": "Adapter la formation continue et ouvrir un droit à la reconversion aux salariés concernés.",
+      "beneficiaries": "Salariés dont le métier est menacé par l’intelligence artificielle.",
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-travail",
+          "locator": "Réponse sur les salariés menacés par l’intelligence artificielle"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-travail-rupture-arret-v1",
+    "measureId": "philippe-travail-rupture-arret",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Espacer arrêt maladie et rupture conventionnelle",
+      "description": "Imposer un délai incompressible annoncé de trois à six mois entre un arrêt maladie et une rupture conventionnelle.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-travail",
+          "locator": "Réponse sur les ruptures conventionnelles"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-education-remuneration-v1",
+    "measureId": "philippe-education-remuneration",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Augmenter de 20 % le salaire moyen des enseignants",
+      "description": "Porter leur rémunération moyenne vers le niveau européen, particulièrement en milieu de carrière.",
+      "beneficiaries": "Enseignants.",
+      "timing": "Sur le quinquennat.",
+      "financing": null,
+      "metrics": [
+        {
+          "key": "hausse-remuneration-enseignants",
+          "label": "Hausse moyenne annoncée",
+          "value": 20,
+          "unit": "%",
+          "sourceId": "philippe-ecole"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-ecole",
+          "locator": "Réponse sur le salaire des professeurs"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-education-portable-v1",
+    "measureId": "philippe-education-portable",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Interdire le téléphone du primaire au lycée",
+      "description": "Confisquer le téléphone utilisé dans l’établissement et le restituer uniquement aux parents.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-ecole",
+          "locator": "Réponse sur le portable à l’école"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-education-soutien-v1",
+    "measureId": "philippe-education-soutien",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Créer un service public universel du soutien scolaire",
+      "description": "Associer anciens professeurs, étudiants volontaires et assistant personnalisé d’intelligence artificielle.",
+      "beneficiaries": "Tous les élèves.",
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-ecole",
+          "locator": "Réponse sur le soutien scolaire"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-education-ecoles-normales-v1",
+    "measureId": "philippe-education-ecoles-normales",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Recréer des écoles normales",
+      "description": "Renforcer la formation initiale des professeurs, notamment sur les savoirs fondamentaux.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-ecole",
+          "locator": "Réponse sur la formation des futurs professeurs"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-social-impot-jeunes-enfants-v1",
+    "measureId": "philippe-social-impot-jeunes-enfants",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Alléger l’impôt des parents de jeunes enfants",
+      "description": "Supprimer l’impôt sur le revenu des classes moyennes les trois premières années de l’enfant. Pour les familles plus aisées qui travaillent, proposer une réduction de 3 000 € par an.",
+      "beneficiaries": "Parents des classes moyennes.",
+      "timing": "Les trois premières années de l’enfant.",
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-famille",
+          "locator": "Réponse sur l’impôt des parents de jeunes enfants"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-social-pret-naissance-v1",
+    "measureId": "philippe-social-pret-naissance",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Un prêt à taux zéro à chaque naissance",
+      "description": "Accorder ce prêt aux familles, notamment pour faciliter un déménagement lorsque le foyer s’agrandit.",
+      "beneficiaries": "Familles accueillant un enfant.",
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-famille",
+          "locator": "Réponse sur le prêt à taux zéro"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-social-reprise-parentale-v1",
+    "measureId": "philippe-social-reprise-parentale",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Reprise parentale à 80 %, payée à 100 %",
+      "description": "Permettre une reprise à temps partiel après le congé parental pendant deux mois.",
+      "beneficiaries": null,
+      "timing": "Pendant deux mois après le congé parental.",
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-famille",
+          "locator": "Réponse sur le retour au travail après un congé parental"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-social-donations-v1",
+    "measureId": "philippe-social-donations",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Doubler temporairement les plafonds de donation",
+      "description": "Doubler les plafonds des donations du vivant aux enfants et petits-enfants pendant les trois premières années du quinquennat.",
+      "beneficiaries": null,
+      "timing": "Trois premières années du quinquennat.",
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-famille",
+          "locator": "Réponse sur les donations"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-securite-urgence-narco-v1",
+    "measureId": "philippe-securite-urgence-narco",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Un régime d’urgence contre le narcotrafic",
+      "description": "Autoriser dans certaines zones et pour une durée limitée des interpellations nocturnes, assignations à résidence et gardes à vue étendues.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-securite",
+          "locator": "Réponse sur l’état d’urgence narco"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-securite-reconnaissance-faciale-v1",
+    "measureId": "philippe-securite-reconnaissance-faciale",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Reconnaissance faciale ciblée",
+      "description": "Envisager son usage dans le régime d’urgence contre le narcotrafic et en cas d’émeutes, dans des zones et durées limitées.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-securite",
+          "locator": "Réponse sur la reconnaissance faciale"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-securite-amendes-prestations-v1",
+    "measureId": "philippe-securite-amendes-prestations",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Recouvrer les amendes sur les prestations sociales",
+      "description": "Prélever les amendes impayées sur les prestations sociales des personnes concernées.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-securite",
+          "locator": "Réponse sur les amendes et les allocations"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-securite-sanctions-maires-v1",
+    "measureId": "philippe-securite-sanctions-maires",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Donner aux maires un pouvoir de sanction",
+      "description": "Permettre des amendes rapides contre les incivilités et dégradations de l’espace public.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-securite",
+          "locator": "Réponse sur les pouvoirs des maires"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "lisnard-education-cheque-v1",
+    "measureId": "lisnard-education-cheque",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Un chèque-éducation progressif",
+      "description": "Financer à montant équivalent la scolarité choisie par les familles dans le public ou le privé.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lisnard-ecole",
+          "locator": "Partie I : libre choix de l’école"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Projet de Nouvelle Énergie pour 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "lisnard-education-certificat-v1",
+    "measureId": "lisnard-education-certificat",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Un certificat de fin de primaire",
+      "description": "Conditionner l’entrée au collège à la maîtrise des savoirs essentiels et prévoir un accompagnement spécifique.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lisnard-ecole",
+          "locator": "Partie II : recentrer l’école sur sa mission"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Projet de Nouvelle Énergie pour 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "lisnard-education-salaires-v1",
+    "measureId": "lisnard-education-salaires",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Augmenter de 20 % les rémunérations enseignantes",
+      "description": "Conditionner cette hausse à une réorganisation associant autonomie, présence accrue, formation continue et évaluation.",
+      "beneficiaries": null,
+      "timing": "En cinq ans.",
+      "financing": null,
+      "metrics": [
+        {
+          "key": "hausse-remuneration-enseignants-conditionnelle",
+          "label": "Hausse annoncée sous conditions",
+          "value": 20,
+          "unit": "%",
+          "sourceId": "lisnard-ecole"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lisnard-ecole",
+          "locator": "Partie III : métier d’enseignant"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Projet de Nouvelle Énergie pour 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "lisnard-education-recrutement-v1",
+    "measureId": "lisnard-education-recrutement",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Autonomie de recrutement des établissements",
+      "description": "Autoriser les chefs d’établissement à recruter leurs équipes, gérer leur budget et adapter les méthodes ; publier leurs résultats.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lisnard-ecole",
+          "locator": "Partie I : autonomie des établissements"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Projet de Nouvelle Énergie pour 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "lisnard-securite-terrain-v1",
+    "measureId": "lisnard-securite-terrain",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Au moins 50 % de présence policière sur le terrain",
+      "description": "Réduire les tâches administratives et donner aux préfets davantage de latitude sur les moyens locaux.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "presence-terrain",
+          "label": "Présence minimale annoncée",
+          "value": 50,
+          "unit": "%",
+          "sourceId": "lisnard-securite"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lisnard-securite",
+          "locator": "Partie 1 : organisation de la sécurité publique"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Projet de Nouvelle Énergie pour 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "lisnard-securite-police-municipale-v1",
+    "measureId": "lisnard-securite-police-municipale",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Renforcer les polices municipales volontaires",
+      "description": "Permettre l’armement, l’accès aux fichiers et une verbalisation renforcée aux communes qui le souhaitent.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lisnard-securite",
+          "locator": "Partie 2 : maires et polices municipales"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Projet de Nouvelle Énergie pour 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "lisnard-securite-majorite-penale-v1",
+    "measureId": "lisnard-securite-majorite-penale",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Majorité pénale à 16 ans",
+      "description": "Abaisser la majorité pénale et inverser le principe de l’excuse de minorité dès 13 ans.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "majorite-penale",
+          "label": "Âge annoncé",
+          "value": 16,
+          "unit": "ans",
+          "sourceId": "lisnard-securite"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lisnard-securite",
+          "locator": "Partie 4 : violence des mineurs"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Projet de Nouvelle Énergie pour 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "lisnard-securite-peines-recidive-v1",
+    "measureId": "lisnard-securite-peines-recidive",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Rétablir les peines planchers pour les récidivistes",
+      "description": "Supprimer les réductions automatiques de peine et accélérer les procédures correctionnelles.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lisnard-securite",
+          "locator": "Partie 4 : exécution des peines"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Projet de Nouvelle Énergie pour 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "lisnard-sante-acces-direct-v1",
+    "measureId": "lisnard-sante-acces-direct",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Accès direct aux professionnels paramédicaux",
+      "description": "Faciliter l’accès aux infirmiers, kinésithérapeutes et pharmaciens pour fluidifier les parcours.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lisnard-health",
+          "locator": "Partie 1 : accès aux soins"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Projet de Nouvelle Énergie pour 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "lisnard-sante-maisons-canton-v1",
+    "measureId": "lisnard-sante-maisons-canton",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Des maisons de santé dans chaque canton",
+      "description": "Généraliser les structures pluridisciplinaires à l’échelle cantonale.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lisnard-health",
+          "locator": "Partie 1 : accès aux soins"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Projet de Nouvelle Énergie pour 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "lisnard-sante-exercice-supervise-v1",
+    "measureId": "lisnard-sante-exercice-supervise",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Exercer sous supervision dès la cinquième année",
+      "description": "Autoriser l’exercice supervisé des étudiants en médecine et élargir les lieux de stage publics et privés.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "annee-supervision",
+          "label": "Année d’études minimale",
+          "value": 5,
+          "unit": "années",
+          "sourceId": "lisnard-health"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lisnard-health",
+          "locator": "Partie 3 : formation des soignants"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Projet de Nouvelle Énergie pour 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "lisnard-sante-consortium-v1",
+    "measureId": "lisnard-sante-consortium",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Un consortium pharmaceutique européen",
+      "description": "Mutualiser la demande et les prix pour relocaliser les chaînes de production de médicaments.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lisnard-health",
+          "locator": "Partie 4 : souveraineté sanitaire"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Projet de Nouvelle Énergie pour 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-fiscalite-patrimoine-centimillionaires-v1",
+    "measureId": "melenchon-fiscalite-patrimoine-centimillionaires",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Une garantie d’impôt de 2 % sur les très hauts patrimoines",
+      "description": "Introduire une garantie d’imposition du patrimoine des centimillionaires et renforcer l’exit tax.",
+      "beneficiaries": "Mesure portant sur le patrimoine des centimillionaires.",
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "taux-garantie-patrimoine",
+          "label": "Taux de garantie annoncé",
+          "value": 2,
+          "unit": "%",
+          "sourceId": "lfi-tax"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-tax",
+          "locator": "Faire la révolution fiscale : garantie d’impôt"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-fiscalite-heritage-maximal-v1",
+    "measureId": "melenchon-fiscalite-heritage-maximal",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Un héritage maximal de 12 millions d’euros",
+      "description": "Calculer les droits sur l’ensemble des dons et héritages reçus au cours de la vie.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "heritage-maximal",
+          "label": "Montant maximal d’héritage annoncé",
+          "value": 12000000,
+          "unit": "€",
+          "sourceId": "lfi-tax"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-tax",
+          "locator": "Faire la révolution fiscale : dons et héritages"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-fiscalite-petits-heritages-v1",
+    "measureId": "melenchon-fiscalite-petits-heritages",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Exonérer les héritages inférieurs à 150 000 €",
+      "description": "Supprimer les droits de succession sous ce seuil annoncé.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "seuil-exoneration-heritage",
+          "label": "Seuil d’exonération annoncé",
+          "value": 150000,
+          "unit": "€",
+          "sourceId": "lfi-tax"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-tax",
+          "locator": "Faire la révolution fiscale : exonération des héritages"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-fiscalite-societes-progressif-v1",
+    "measureId": "melenchon-fiscalite-societes-progressif",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Un impôt sur les sociétés progressif",
+      "description": "Moduler l’impôt selon l’usage des bénéfices pour favoriser leur réinvestissement plutôt que les dividendes.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-tax",
+          "locator": "Faire la révolution fiscale : impôt sur les sociétés"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-social-garantie-autonomie-v1",
+    "measureId": "melenchon-social-garantie-autonomie",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Créer une garantie d’autonomie",
+      "description": "Garantir un revenu mensuel atteignant le seuil de pauvreté, chiffré dans le programme à 1 337 € pour une personne seule.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [
+        {
+          "label": "Revenu mensuel de référence pour une personne seule",
+          "value": 1337,
+          "unit": "€",
+          "period": "mois",
+          "basis": "non-applicable",
+          "sourceId": "lfi-social"
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-social",
+          "locator": "Éradiquer la pauvreté : mesure clé"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-social-premiere-tranche-v1",
+    "measureId": "melenchon-social-premiere-tranche",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Une première tranche d’énergie et d’eau gratuite",
+      "description": "Instaurer une tranche gratuite de consommation d’électricité, de chaleur, d’eau et de gaz.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-social",
+          "locator": "Éradiquer la pauvreté : consommations essentielles"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-travail-garantie-emploi-v1",
+    "measureId": "melenchon-travail-garantie-emploi",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Une garantie d’emploi pour les chômeurs de longue durée",
+      "description": "Proposer, sur la base du volontariat, un emploi payé au moins au SMIC revalorisé dans un secteur d’urgence écologique ou sociale.",
+      "beneficiaries": "Chômeurs de longue durée volontaires.",
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-social",
+          "locator": "Établir la garantie d’emploi"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-travail-sixieme-semaine-v1",
+    "measureId": "melenchon-travail-sixieme-semaine",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Généraliser une sixième semaine de congés payés",
+      "description": "Étendre ce droit à l’ensemble des salariés.",
+      "beneficiaries": "Tous les salariés.",
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "semaines-conges",
+          "label": "Congés payés proposés",
+          "value": 6,
+          "unit": "semaines",
+          "sourceId": "lfi-social"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-social",
+          "locator": "Réduire le temps de travail : congés payés"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-climat-moratoire-projets-v1",
+    "measureId": "melenchon-climat-moratoire-projets",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Réévaluer les grands projets au regard de la règle verte",
+      "description": "Instaurer un moratoire sur les projets qualifiés d’inutiles et écocidaires, puis évaluer leur impact sur la biosphère.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-climate",
+          "locator": "Bifurcation écologique : moratoire sur les grands projets"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-climat-baisse-ges-v1",
+    "measureId": "melenchon-climat-baisse-ges",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Viser une baisse de 65 % des émissions d’ici 2033",
+      "description": "Relever l’ambition climatique et publier un bilan annuel incluant les émissions importées. L’année de référence n’est pas précisée dans ce passage.",
+      "beneficiaries": null,
+      "timing": "D’ici 2033.",
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-climate",
+          "locator": "Bifurcation écologique : engagements climatiques"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-climat-comptabilite-carbone-v1",
+    "measureId": "melenchon-climat-comptabilite-carbone",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Rendre obligatoire la comptabilité carbone des entreprises",
+      "description": "Certifier les émissions directes et indirectes par un organisme public agréé, en commençant par les secteurs les plus polluants.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-climate",
+          "locator": "Bifurcation écologique : comptabilité carbone"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-climat-outremer-energies-v1",
+    "measureId": "melenchon-climat-outremer-energies",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Des plans d’autonomie énergétique en outre-mer",
+      "description": "Faire des outre-mer des territoires pilotes avec des circuits courts et une trajectoire entièrement renouvelable.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-climate",
+          "locator": "Les Outre-mer, avant-postes de la planification écologique"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-sante-besoins-assurance-v1",
+    "measureId": "melenchon-sante-besoins-assurance",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Financer la santé selon les besoins",
+      "description": "Remplacer l’objectif national de dépenses d’assurance maladie par un objectif national des besoins d’assurance maladie.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-health",
+          "locator": "Reconstruire les établissements de santé : ONBAM"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-sante-financement-hopital-v1",
+    "measureId": "melenchon-sante-financement-hopital",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Sortir de la tarification à l’acte à l’hôpital",
+      "description": "Diversifier le financement hospitalier par dotations, critères de population et prix de journée.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-health",
+          "locator": "Reconstruire les établissements de santé : tarification hospitalière"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-sante-proximite-trente-minutes-v1",
+    "measureId": "melenchon-sante-proximite-trente-minutes",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Un service public de santé à moins de 30 minutes",
+      "description": "Rouvrir progressivement des urgences, maternités et EHPAD publics pour atteindre cet objectif de proximité.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "proximite-soins",
+          "label": "Distance temporelle maximale annoncée",
+          "value": 30,
+          "unit": "minutes",
+          "sourceId": "lfi-health"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-health",
+          "locator": "Reconstruire les établissements de santé : proximité"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-sante-cannabis-v1",
+    "measureId": "melenchon-sante-cannabis",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Légaliser le cannabis sous monopole d’État",
+      "description": "Encadrer les usages médicaux et récréatifs, la production et la vente ; affecter les taxes à la prévention et à la lutte contre les addictions.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": "Les recettes fiscales du cannabis seraient affectées à la prévention et à la lutte contre les addictions.",
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-health",
+          "locator": "Addictions et drogues : mesure clé"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-education-scolarite-dix-huit-v1",
+    "measureId": "melenchon-education-scolarite-dix-huit",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Étendre la scolarité obligatoire à 18 ans",
+      "description": "Prolonger l’obligation scolaire jusqu’à cet âge.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "scolarite-obligatoire",
+          "label": "Âge de fin proposé",
+          "value": 18,
+          "unit": "ans",
+          "sourceId": "lfi-school"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-school",
+          "locator": "Reconstruire une école globale : école publique"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-education-remplacants-v1",
+    "measureId": "melenchon-education-remplacants",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Reconstituer les viviers de professeurs remplaçants",
+      "description": "Recruter et mobiliser davantage de remplaçants pour assurer les cours des enseignants absents.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-school",
+          "locator": "Reconstruire une école globale : remplacements"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-education-periscolaire-v1",
+    "measureId": "melenchon-education-periscolaire",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Un service public national du périscolaire",
+      "description": "Organiser avec les communes un périscolaire gratuit animé par des personnels formés et titulaires.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-school",
+          "locator": "Reconstruire une école globale : périscolaire"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-education-alphabetisation-v1",
+    "measureId": "melenchon-education-alphabetisation",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Des formations gratuites contre l’illettrisme",
+      "description": "Créer un service public contre l’illettrisme et l’illectronisme, en soutenant aussi les associations.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-school",
+          "locator": "Éradiquer l’illettrisme et développer l’alphabétisation"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-institutions-vote-seize-v1",
+    "measureId": "melenchon-institutions-vote-seize",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Donner le droit de vote à 16 ans",
+      "description": "Abaisser à 16 ans l’âge du droit de vote.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "age-vote",
+          "label": "Âge du droit de vote proposé",
+          "value": 16,
+          "unit": "ans",
+          "sourceId": "lfi-democracy"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-democracy",
+          "locator": "Souveraineté populaire permanente : droit de vote"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-institutions-proportionnelle-v1",
+    "measureId": "melenchon-institutions-proportionnelle",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Élire l’Assemblée nationale à la proportionnelle",
+      "description": "Changer le mode de scrutin pour l’élection des députés.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-democracy",
+          "locator": "Abolir la monarchie présidentielle : par la loi"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-institutions-petitions-v1",
+    "measureId": "melenchon-institutions-petitions",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Débattre des pétitions de plus de 500 000 signatures",
+      "description": "Obliger l’Assemblée nationale à examiner ces pétitions citoyennes.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "seuil-petition",
+          "label": "Seuil de signatures mentionné",
+          "value": 500000,
+          "unit": "signatures",
+          "sourceId": "lfi-democracy"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-democracy",
+          "locator": "Souveraineté populaire permanente : pétitions"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-institutions-quarante-neuf-trois-v1",
+    "measureId": "melenchon-institutions-quarante-neuf-trois",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Abolir le 49.3 dans la nouvelle Constitution",
+      "description": "Supprimer les procédures de vote forcé dans le cadre des travaux de l’Assemblée constituante.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-democracy",
+          "locator": "Abolir la monarchie présidentielle : cadre constituant"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "attal-social-livret-creches-v1",
+    "measureId": "attal-social-livret-creches",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Un livret d’épargne pour financer les crèches",
+      "description": "Orienter l’épargne vers la création de places d’accueil, sur le modèle du livret A.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-work",
+          "locator": "Créer un livret garde d’enfant"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "attal-social-professionnels-enfance-v1",
+    "measureId": "attal-social-professionnels-enfance",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Former 200 000 professionnels de la petite enfance",
+      "description": "Augmenter le nombre de professionnels formés pour développer les solutions de garde.",
+      "beneficiaries": null,
+      "timing": "D’ici 2030.",
+      "financing": null,
+      "metrics": [
+        {
+          "key": "professionnels-enfance-formes",
+          "label": "Professionnels à former",
+          "value": 200000,
+          "unit": "personnes",
+          "sourceId": "attal-work"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-work",
+          "locator": "Créer un livret garde d’enfant"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "attal-travail-plafond-heures-supplementaires-v1",
+    "measureId": "attal-travail-plafond-heures-supplementaires",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Supprimer le plafond légal d’heures supplémentaires",
+      "description": "Permettre de dépasser le contingent annuel applicable en l’absence d’accord collectif.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-work",
+          "locator": "Repenser les retraites et libérer les forces du travail"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "attal-travail-quatre-jours-v1",
+    "measureId": "attal-travail-quatre-jours",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Favoriser la semaine en quatre jours",
+      "description": "Adapter l’organisation lorsqu’elle est possible, en maintenant le nombre d’heures mensuelles et le fonctionnement de l’entreprise.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-work",
+          "locator": "Travailler mieux : adapter les horaires"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "attal-education-brevet-v1",
+    "measureId": "attal-education-brevet",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Rendre le brevet obligatoire pour entrer au lycée",
+      "description": "Conditionner l’accès au lycée à l’obtention du brevet.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-school",
+          "locator": "Les mesures déjà annoncées : brevet"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "attal-education-hausse-salaire-v1",
+    "measureId": "attal-education-hausse-salaire",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Revaloriser les enseignants de 200 à 500 € net par mois",
+      "description": "La page annonce cette fourchette de hausse mensuelle des rémunérations.",
+      "beneficiaries": "Enseignants.",
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-school",
+          "locator": "Les mesures déjà annoncées : rémunérations"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "attal-europe-ukraine-v1",
+    "measureId": "attal-europe-ukraine",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Poursuivre le soutien à l’Ukraine",
+      "description": "Maintenir le soutien français et renforcer les capacités militaires, les réserves, l’industrie de défense et les alliances.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-borders",
+          "locator": "Faire le choix de la puissance dans un monde hostile"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "attal-europe-importations-chinoises-v1",
+    "measureId": "attal-europe-importations-chinoises",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Taxer certaines importations chinoises vendues à perte",
+      "description": "Cibler notamment l’acier, les voitures électriques et les panneaux solaires.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-borders",
+          "locator": "Souveraineté contre l’agressivité économique : se protéger"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "attal-europe-investissements-critiques-v1",
+    "measureId": "attal-europe-investissements-critiques",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Contrôler les investissements dans les infrastructures critiques",
+      "description": "Renforcer le contrôle des investissements chinois dans les ports, télécommunications et centres de données.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-borders",
+          "locator": "Souveraineté contre l’agressivité économique : infrastructures"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "attal-europe-commande-publique-v1",
+    "measureId": "attal-europe-commande-publique",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Étendre les exclusions de marchés publics à toute l’UE",
+      "description": "Rendre une exclusion visant une entreprise chinoise trop subventionnée applicable dans les autres États membres.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-borders",
+          "locator": "Souveraineté contre l’agressivité économique : marchés publics"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "ruffin-travail-indexation-v1",
+    "measureId": "ruffin-travail-indexation",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Indexer les salaires sur l’inflation",
+      "description": "Rétablir une indexation des rémunérations pour les protéger de la hausse des prix.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "ruffin-essentiels",
+          "locator": "Salaires : proposition 1"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "ruffin-travail-grilles-v1",
+    "measureId": "ruffin-travail-grilles",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Revaloriser les grilles salariales",
+      "description": "Relever les minima conventionnels au niveau du SMIC et redonner des possibilités de progression de carrière.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "ruffin-essentiels",
+          "locator": "Salaires : proposition 2"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "ruffin-travail-horaires-atypiques-v1",
+    "measureId": "ruffin-travail-horaires-atypiques",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Payer double avant 8 h et après 18 h",
+      "description": "Créer une catégorie d’horaires atypiques assortie d’une majoration pour limiter les journées morcelées.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "ruffin-essentiels",
+          "locator": "Horaires : proposition 1"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "ruffin-travail-coupures-v1",
+    "measureId": "ruffin-travail-coupures",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Rémunérer les coupures imposées de plus de deux heures",
+      "description": "Systématiser une rémunération forfaitaire des longues coupures imposées par l’employeur.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "ruffin-essentiels",
+          "locator": "Horaires : proposition 2"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "ruffin-retraites-penibilite-v1",
+    "measureId": "ruffin-retraites-penibilite",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Un trimestre supplémentaire pour quatre cotisés en métier pénible",
+      "description": "Remplacer le mécanisme individuel du compte de pénibilité par un octroi automatique de trimestres supplémentaires.",
+      "beneficiaries": "Travailleurs exerçant un métier exposé à la pénibilité.",
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "ruffin-essentiels",
+          "locator": "Pénibilité : proposition 1"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "ruffin-travail-formation-v1",
+    "measureId": "ruffin-travail-formation",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Un droit opposable à la formation avec salaire maintenu",
+      "description": "Permettre d’acquérir le niveau bac après cinq ans dans un métier essentiel, avec maintien intégral de salaire.",
+      "beneficiaries": "Travailleurs essentiels ayant cinq ans d’ancienneté dans ces métiers.",
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "ruffin-essentiels",
+          "locator": "Promotion interne : proposition 2"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "ruffin-logement-construction-publique-v1",
+    "measureId": "ruffin-logement-construction-publique",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Produire 200 000 logements publics abordables par an",
+      "description": "Développer l’offre à loyer abordable, avec un effort particulier pour les jeunes.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "logements-abordables-annuels",
+          "label": "Production annuelle annoncée",
+          "value": 200000,
+          "unit": "logements par an",
+          "sourceId": "ruffin-logement"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "ruffin-logement",
+          "locator": "Résumé des propositions : production de logement public"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "ruffin-logement-renovations-v1",
+    "measureId": "ruffin-logement-renovations",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Un million de rénovations par an",
+      "description": "Viser un million de rénovations annuelles, dont 600 000 d’ampleur, en simplifiant et renforçant les aides.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "renovations-annuelles",
+          "label": "Rénovations annuelles annoncées",
+          "value": 1000000,
+          "unit": "logements par an",
+          "sourceId": "ruffin-logement"
+        },
+        {
+          "key": "renovations-ampleur",
+          "label": "Dont rénovations d’ampleur",
+          "value": 600000,
+          "unit": "logements par an",
+          "sourceId": "ruffin-logement"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "ruffin-logement",
+          "locator": "Résumé des propositions : rénovation"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "ruffin-logement-location-durable-v1",
+    "measureId": "ruffin-logement-location-durable",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Avantager fiscalement la location durable",
+      "description": "Imposer moins les locations pérennes que les logements destinés aux touristes.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "ruffin-logement",
+          "locator": "Résumé des propositions : régulation des logements occasionnels"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "ruffin-logement-complements-loyer-v1",
+    "measureId": "ruffin-logement-complements-loyer",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Encadrer les compléments de loyer",
+      "description": "Limiter les dérogations à certains logements performants et équipés contre la chaleur, avec un plafond spécifique.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "ruffin-logement",
+          "locator": "Proposition 1 : compléments de loyer"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "roussel-securite-recrutements-v1",
+    "measureId": "roussel-securite-recrutements",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Recruter 60 000 agents pour la sécurité et la justice",
+      "description": "Renforcer les douanes, la police et la magistrature avec une enveloppe annoncée de 2,5 milliards d’euros, sans période budgétaire précisée dans le passage.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "recrutements-securite-justice",
+          "label": "Agents à recruter",
+          "value": 60000,
+          "unit": "agents",
+          "sourceId": "pcf-work"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "pcf-work",
+          "locator": "Discours : crédits et recrutements contre les trafics"
+        }
+      ],
+      "scope": "orientation",
+      "edition": "Discours de Marseille du 23 novembre 2025, publié le 26 novembre 2025",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "roussel-logement-construction-v1",
+    "measureId": "roussel-logement-construction",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Construire 200 000 logements par an",
+      "description": "Répondre aux besoins de logement des jeunes et des familles.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "construction-logements-annuelle",
+          "label": "Construction annuelle annoncée",
+          "value": 200000,
+          "unit": "logements par an",
+          "sourceId": "pcf-work"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "pcf-work",
+          "locator": "Discours : logement et services publics"
+        }
+      ],
+      "scope": "orientation",
+      "edition": "Discours de Marseille du 23 novembre 2025, publié le 26 novembre 2025",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "roussel-climat-nucleaire-v1",
+    "measureId": "roussel-climat-nucleaire",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Investir dans vingt centrales nucléaires",
+      "description": "Développer la production nucléaire pour l’objectif annoncé d’une énergie décarbonée en 2050.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "centrales-nucleaires",
+          "label": "Centrales mentionnées",
+          "value": 20,
+          "unit": "centrales",
+          "sourceId": "pcf-work"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "pcf-work",
+          "locator": "Discours : factures d’électricité et nucléaire"
+        }
+      ],
+      "scope": "orientation",
+      "edition": "Discours de Marseille du 23 novembre 2025, publié le 26 novembre 2025",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "roussel-travail-egalite-salariale-v1",
+    "measureId": "roussel-travail-egalite-salariale",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Imposer l’égalité salariale et professionnelle",
+      "description": "Obliger légalement les entreprises à garantir l’égalité entre femmes et hommes.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "pcf-work",
+          "locator": "Discours : égalité dans les entreprises"
+        }
+      ],
+      "scope": "orientation",
+      "edition": "Discours de Marseille du 23 novembre 2025, publié le 26 novembre 2025",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "roussel-fiscalite-isf-v1",
+    "measureId": "roussel-fiscalite-isf",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Rétablir l’impôt de solidarité sur la fortune",
+      "description": "Rétablir l’ISF et accroître la contribution des patrimoines les plus élevés.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "pcf-2026",
+          "locator": "Discours : impôt sur la fortune"
+        }
+      ],
+      "scope": "orientation",
+      "edition": "Discours à la Fête de l’Humanité, publié le 15 septembre 2026",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "roussel-social-cotisations-dividendes-v1",
+    "measureId": "roussel-social-cotisations-dividendes",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Faire cotiser les revenus financiers et les dividendes",
+      "description": "Financer la Sécurité sociale et les retraites par répartition avec ces nouvelles cotisations.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": "Cotisations sur les revenus financiers et les dividendes.",
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "pcf-2026",
+          "locator": "Discours : revenus financiers"
+        }
+      ],
+      "scope": "orientation",
+      "edition": "Discours à la Fête de l’Humanité, publié le 15 septembre 2026",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "roussel-fiscalite-heritages-v1",
+    "measureId": "roussel-fiscalite-heritages",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Exonérer les héritages sous 200 000 €",
+      "description": "Accroître la taxation des héritages les plus élevés et exonérer ceux inférieurs au seuil annoncé.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "seuil-exoneration-heritage",
+          "label": "Seuil d’exonération annoncé",
+          "value": 200000,
+          "unit": "€",
+          "sourceId": "pcf-2026"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "pcf-2026",
+          "locator": "Discours : héritage populaire et solidaire"
+        }
+      ],
+      "scope": "orientation",
+      "edition": "Discours à la Fête de l’Humanité, publié le 15 septembre 2026",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "roussel-institutions-candidatures-populaires-v1",
+    "measureId": "roussel-institutions-candidatures-populaires",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "50 % d’ouvriers et d’employés parmi les candidats aux législatives",
+      "description": "Imposer aux partis cette proportion dans les candidatures qu’ils présentent.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "candidatures-ouvriers-employes",
+          "label": "Part proposée",
+          "value": 50,
+          "unit": "%",
+          "sourceId": "pcf-2026"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "pcf-2026",
+          "locator": "Discours : parité sociale au Parlement"
+        }
+      ],
+      "scope": "orientation",
+      "edition": "Discours à la Fête de l’Humanité, publié le 15 septembre 2026",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "retailleau-logement-normes-v1",
+    "measureId": "retailleau-logement-normes",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Geler les normes de construction pendant dix ans",
+      "description": "Instaurer un gel décennal des normes pour les constructions.",
+      "beneficiaries": null,
+      "timing": "Pendant dix ans.",
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "retailleau-logement",
+          "locator": "Mesure 61 : normes de construction"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "retailleau-logement-bureaux-v1",
+    "measureId": "retailleau-logement-bureaux",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Transformer les bureaux vides en logements",
+      "description": "Faciliter le changement d’usage des bureaux inutilisés.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "retailleau-logement",
+          "locator": "Mesure 62 : foncier et bâti existant"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "retailleau-logement-dpe-v1",
+    "measureId": "retailleau-logement-dpe",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Lever les interdictions de location liées au DPE",
+      "description": "Supprimer les interdictions de louer fondées sur le diagnostic de performance énergétique.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "retailleau-logement",
+          "locator": "Mesure 67 : interdictions DPE"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "retailleau-logement-loyers-v1",
+    "measureId": "retailleau-logement-loyers",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Supprimer l’encadrement des loyers",
+      "description": "Mettre fin au dispositif d’encadrement des loyers.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "retailleau-logement",
+          "locator": "Mesure 68 : marché locatif"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "retailleau-travail-code-v1",
+    "measureId": "retailleau-travail-code",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Un Code du travail recentré sur cinquante principes",
+      "description": "Renvoyer les autres règles à la négociation collective.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "retailleau-entreprises",
+          "locator": "Mesure 31 : Code du travail"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "retailleau-fiscalite-cent-regles-v1",
+    "measureId": "retailleau-fiscalite-cent-regles",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Supprimer cent règles pénalisant les entreprises",
+      "description": "Abolir les cent règles présentées comme les plus pénalisantes pour les entreprises.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "retailleau-entreprises",
+          "locator": "Mesure 30 : règles applicables aux entreprises"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "retailleau-education-voie-pro-v1",
+    "measureId": "retailleau-education-voie-pro",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Confier la voie professionnelle aux régions et aux branches",
+      "description": "Transférer le pilotage de cette voie aux acteurs régionaux et professionnels.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "retailleau-entreprises",
+          "locator": "Mesure 35 : voie professionnelle"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "retailleau-travail-fonds-production-v1",
+    "measureId": "retailleau-travail-fonds-production",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Créer un Fonds France Production",
+      "description": "Mettre en place ce fonds pour moderniser les usines.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "retailleau-entreprises",
+          "locator": "Mesure 44 : outil de production"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "retailleau-education-choix-ecole-v1",
+    "measureId": "retailleau-education-choix-ecole",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Liberté de choix scolaire pour les familles",
+      "description": "Permettre aux familles de choisir l’école de leurs enfants.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "retailleau-school",
+          "locator": "Mesure 13 : choix scolaire"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "retailleau-education-reserve-sciences-v1",
+    "measureId": "retailleau-education-reserve-sciences",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Créer une Réserve nationale des sciences",
+      "description": "Constituer la réserve scientifique prévue dans le volet éducation.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "retailleau-school",
+          "locator": "Mesure 23 : sciences et mathématiques"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "retailleau-education-protection-adultes-v1",
+    "measureId": "retailleau-education-protection-adultes",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Contrôler les adultes intervenant auprès des enfants",
+      "description": "La mesure prévoit des contrôles des adultes et une priorité aux femmes dans le périscolaire.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "retailleau-school",
+          "locator": "Mesure 22 : protection des enfants"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "retailleau-immigration-regularisations-v1",
+    "measureId": "retailleau-immigration-regularisations",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Interdire les régularisations automatiques",
+      "description": "Supprimer les mécanismes de régularisation automatique visés par le projet.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "retailleau-borders",
+          "locator": "Mesure 131 : régularisations automatiques"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "retailleau-immigration-centres-retour-v1",
+    "measureId": "retailleau-immigration-centres-retour",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Ouvrir des centres de retour dans des pays tiers",
+      "description": "Créer des centres destinés au retour vers des pays tiers.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "retailleau-borders",
+          "locator": "Mesure 133 : centres de retour"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "retailleau-immigration-droit-sol-v1",
+    "measureId": "retailleau-immigration-droit-sol",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Supprimer le droit du sol",
+      "description": "Mettre fin à l’acquisition de nationalité par le droit du sol selon la mesure publiée.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "retailleau-borders",
+          "locator": "Mesure 121 : droit du sol"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "tondelier-securite-crimes-mineurs-v1",
+    "measureId": "tondelier-securite-crimes-mineurs",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Rendre imprescriptibles les crimes commis contre les mineurs",
+      "description": "Inscrire cette imprescriptibilité dans la loi.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "eco-enfance-pdf",
+          "locator": "PDF, p. 19 : contrôles et garanties institutionnelles"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "tondelier-social-ase-lucratif-v1",
+    "measureId": "tondelier-social-ase-lucratif",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Interdire le secteur lucratif dans la protection de l’enfance",
+      "description": "Exclure les opérateurs à but lucratif de la protection de l’enfance.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "eco-enfance-pdf",
+          "locator": "PDF, p. 15 : mesures clés"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "tondelier-logement-familles-enfants-v1",
+    "measureId": "tondelier-logement-familles-enfants",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Interdire la remise à la rue des familles avec enfants",
+      "description": "Empêcher ces remises à la rue dans le cadre de la protection des enfants.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "eco-enfance-pdf",
+          "locator": "PDF, p. 15 : mesures clés"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "tondelier-social-vacances-v1",
+    "measureId": "tondelier-social-vacances",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Au moins une semaine de vacances annuelle pour les enfants",
+      "description": "Soutenir les centres de vacances pour garantir ce droit aux enfants et aux jeunes.",
+      "beneficiaries": "Enfants et jeunes.",
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "eco-enfance-pdf",
+          "locator": "PDF, p. 28 : accès aux loisirs"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "tondelier-sante-ordonnance-verte-v1",
+    "measureId": "tondelier-sante-ordonnance-verte",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Généraliser l’ordonnance verte",
+      "description": "Offrir un accompagnement gratuit contre les expositions aux substances préoccupantes et des paniers biologiques pendant la grossesse et les mille premiers jours.",
+      "beneficiaries": "Parents et enfants pendant la grossesse et les mille premiers jours.",
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "eco-reproduction-pdf",
+          "locator": "PDF, p. 40 : grossesse et santé environnementale"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "tondelier-sante-post-partum-v1",
+    "measureId": "tondelier-sante-post-partum",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Un parcours de soins pendant l’année après l’accouchement",
+      "description": "Assurer le suivi physique et psychique du post-partum, avec dépistage de la dépression et orientation vers les soins.",
+      "beneficiaries": null,
+      "timing": "Première année après l’accouchement.",
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "eco-reproduction-pdf",
+          "locator": "PDF, p. 41 : après la naissance"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "tondelier-social-aide-naissance-v1",
+    "measureId": "tondelier-social-aide-naissance",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Un service public d’aide à domicile après la naissance",
+      "description": "Prendre en charge des heures d’aide pour les familles qui en ont besoin et renforcer l’aide dans les situations de vulnérabilité.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "eco-reproduction-pdf",
+          "locator": "PDF, p. 41 : accompagnement à domicile"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "tondelier-social-conge-parental-v1",
+    "measureId": "tondelier-social-conge-parental",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Un congé parental mieux rémunéré et partagé",
+      "description": "Prévoir une part individuelle non transférable pour chaque parent et un congé accessible aux familles modestes.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "eco-reproduction-pdf",
+          "locator": "PDF, p. 41 : congé après la naissance"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "tondelier-travail-1-v2",
+    "measureId": "tondelier-travail-1",
+    "number": 2,
+    "kind": "enrichissement",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Montant et base brute du SMIC précisés à partir du texte de campagne.",
+    "snapshot": {
+      "title": "SMIC mensuel à 2 000 € brut en 2027",
+      "description": "Porter le SMIC à 2 000 € brut dès 2027.",
+      "beneficiaries": null,
+      "timing": "Dès 2027.",
+      "financing": null,
+      "metrics": [],
+      "amounts": [
+        {
+          "label": "SMIC mensuel proposé",
+          "value": 2000,
+          "unit": "€",
+          "period": "mois",
+          "basis": "brut",
+          "sourceId": "eco-work"
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "eco-work",
+          "locator": "Article du 4 novembre 2026 : propositions concrètes"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Livret du 4 novembre 2026",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "tondelier-travail-2-v2",
+    "measureId": "tondelier-travail-2",
+    "number": 2,
+    "kind": "enrichissement",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Le congé climatique est séparé du droit de veto, qui dispose désormais de sa propre fiche.",
+    "snapshot": {
+      "title": "Créer un congé climatique",
+      "description": "Protéger les travailleurs face aux événements climatiques extrêmes par un congé spécifique.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "eco-work",
+          "locator": "Article du 4 novembre 2026 : congé climatique"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Livret du 4 novembre 2026",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "tondelier-travail-veto-ecologique-v1",
+    "measureId": "tondelier-travail-veto-ecologique",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Un droit de veto écologique des salariés",
+      "description": "Permettre aux salariés d’opposer un veto en cas d’atteinte significative à l’environnement par l’entreprise.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "eco-work",
+          "locator": "Article du 4 novembre 2026 : démocratie en entreprise"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "tondelier-travail-zero-mort-v1",
+    "measureId": "tondelier-travail-zero-mort",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Viser zéro mort au travail en 2032",
+      "description": "Fixer cet objectif de prévention des décès professionnels.",
+      "beneficiaries": null,
+      "timing": "D’ici 2032.",
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "eco-work",
+          "locator": "Article du 4 novembre 2026 : conditions de travail"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "zemmour-education-fondamentaux-v1",
+    "measureId": "zemmour-education-fondamentaux",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Rétablir dictée, calcul mental et récitation",
+      "description": "Réintroduire le par cœur, la dictée, le calcul mental et la récitation à l’école.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "reconquete-paroles",
+          "locator": "Fil Éric Zemmour : publication du 17 novembre 2026 sur l’école"
+        }
+      ],
+      "scope": "orientation",
+      "edition": "Déclarations des 16 et 17 novembre 2026 reprises sur le site de Reconquête",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "zemmour-sante-examen-medecine-v1",
+    "measureId": "zemmour-sante-examen-medecine",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Remplacer le concours médical par un examen",
+      "description": "Remplacer la sélection par concours visée dans la déclaration pour former davantage de médecins.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "reconquete-paroles",
+          "locator": "Fil Éric Zemmour : publication du 16 novembre 2026 sur les études médicales"
+        }
+      ],
+      "scope": "orientation",
+      "edition": "Déclarations des 16 et 17 novembre 2026 reprises sur le site de Reconquête",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "zemmour-securite-magistrats-v1",
+    "measureId": "zemmour-securite-magistrats",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Première fiche de cette mesure, relevée dans le document cité.",
+    "snapshot": {
+      "title": "Sanctionner les fautes des magistrats",
+      "description": "Prévoir une mise à pied et, dans les cas présentés comme les plus graves, un renvoi du magistrat.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "reconquete-paroles",
+          "locator": "Fil Éric Zemmour : publication du 16 novembre 2026 sur la responsabilité des magistrats"
+        }
+      ],
+      "scope": "orientation",
+      "edition": "Déclarations des 16 et 17 novembre 2026 reprises sur le site de Reconquête",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-social-1-v2",
+    "measureId": "philippe-social-1",
+    "number": 2,
+    "kind": "enrichissement",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T13:27:53.053730Z",
+    "summary": "Montant mensuel maximal et dégressivité avec le revenu ajoutés.",
+    "snapshot": {
+      "title": "Allocation familiale jusqu’à 350 € par mois dès le premier enfant",
+      "description": "Fusionner les aides dans une allocation versée dès le premier enfant, atteignant 350 € pour les plus modestes et dégressive avec le revenu.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [
+        {
+          "label": "Montant mensuel maximal annoncé",
+          "value": 350,
+          "unit": "€",
+          "period": "mois",
+          "basis": "non-applicable",
+          "sourceId": "philippe-famille"
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-famille",
+          "locator": "Réponses sur le montant, la dégressivité et la fusion des aides"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Programme du 12 novembre 2026",
+      "checked": "2026-11-17"
+    }
   }
 ]

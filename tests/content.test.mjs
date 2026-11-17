@@ -124,3 +124,22 @@ test('une enquête incohérente est refusée', () => {
     ).length,
   );
 });
+
+test('les mises à jour documentaires restent distinctes de la publication', () => {
+  assert.ok(
+    changed((d) => {
+      d.sources[0].updated = '2099-01-01';
+    }).length,
+  );
+  assert.ok(
+    changed((d) => {
+      d.sources[0].published = '2026-11-16';
+      d.sources[0].updated = '2026-11-15';
+    }).length,
+  );
+  assert.ok(
+    changed((d) => {
+      d.sources[0].watch = 'false';
+    }).length,
+  );
+});
