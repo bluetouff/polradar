@@ -1,0 +1,63 @@
+---
+import Icon from './Icon.astro';
+import { candidateById, themeById, scopes, type Measure } from '../lib/data';
+interface Props {
+  measure: Measure;
+  compact?: boolean;
+  level?: 'h3' | 'h4';
+}
+const { measure, compact = false, level = 'h3' } = Astro.props;
+const Heading = level;
+const candidate = candidateById(measure.candidate),
+  theme = themeById(measure.theme);
+---
+
+<article
+  class:list={['measure-row', { compact }]}
+  data-search={`${candidate.name} ${theme.label} ${measure.title} ${measure.description}`}
+>
+  <a
+    class="measure-symbol"
+    href={`/themes/${theme.id}/`}
+    aria-label={theme.label}
+  >
+    <Icon name={theme.id} />
+  </a>
+  <div class="measure-content">
+    <div class="measure-meta">
+      <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+      <span class:list={['tag', { archive: measure.scope === 'archive' }]}>
+        {scopes[measure.scope]}
+      </span>
+    </div>
+    <Heading>
+      <a href={`/mesures/${measure.id}/`}>{measure.title}</a>
+    </Heading>
+    {!compact && <p>{measure.description}</p>}
+    <div class="measure-quantities">
+      {measure.metrics.map((metric) => (
+        <span>
+          <b>{metric.value.toLocaleString('fr-FR')}</b> {metric.unit}
+        </span>
+      ))}
+      {measure.amounts.map((amount) => (
+        <span>
+          <b>
+            {amount.value.toLocaleString('fr-FR')} {amount.unit}
+          </b>{' '}
+          / {amount.period}{' '}
+          {amount.basis === 'non-applicable' ? '' : amount.basis}
+        </span>
+      ))}
+    </div>
+    <div class="measure-links">
+      <a href={`/mesures/${measure.id}/`}>
+        Détail de la mesure <Icon name="arrow" />
+      </a>
+      <a href={`/historique/?mesure=${measure.id}`}>
+        <Icon name="historique" />
+        {measure.revision} version{measure.revision > 1 ? 's' : ''}
+      </a>
+    </div>
+  </div>
+</article>

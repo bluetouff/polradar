@@ -1,86 +1,49 @@
-import type { Candidate, Engagement } from '../lib/data';
-type Theme = { id: string; label: string; note: string };
-type Source = { id: string; title: string; url: string };
-type Corpus = {
-  candidates: Candidate[];
-  themes: Theme[];
-  sources: Source[];
-  engagements: Engagement[];
-};
-const form = document.querySelector<HTMLFormElement>('#compare-form')!;
-const themeSelect =
-  document.querySelector<HTMLSelectElement>('#compare-theme')!;
-const archives = document.querySelector<HTMLInputElement>('#compare-archives')!;
-const feedback = document.querySelector<HTMLElement>('#comparison-feedback')!;
-const selects = [0, 1, 2].map((index) =>
-  document.querySelector<HTMLSelectElement>(`#compare-candidate-${index}`)!,
-);
+import { corpus, el, anchor, measureCard, renderMetricPlots, date } from './ui';
+import { metricGroups } from '../lib/features.mjs';
+const form = document.querySelector<HTMLFormElement>('#compare-form')!,
+  themeSelect = document.querySelector<HTMLSelectElement>('#compare-theme')!,
+  archives = document.querySelector<HTMLInputElement>('#compare-archives')!,
+  feedback = document.querySelector<HTMLElement>('#comparison-feedback')!,
+  selects = [0, 1, 2].map((index) =>
+    document.querySelector<HTMLSelectElement>(`#compare-candidate-${index}`)!,
+  );
 const defaults = ['melenchon', 'philippe', 'retailleau'];
-const scopeLabels: Record<string, string> = {
-  campagne: 'Campagne 2027',
-  parti: 'Projet de parti',
-  orientation: 'Orientation',
-  archive: 'Archive 2022',
-};
-function node<K extends keyof HTMLElementTagNameMap>(
-  tag: K,
-  text?: string,
-  className?: string,
-) {
-  const el = document.createElement(tag);
-  if (text !== undefined) el.textContent = text;
-  if (className) el.className = className;
-  return el;
-}
-function link(text: string, url: string) {
-  const el = node('a', text);
-  el.href = url;
-  return el;
-}
 async function start() {
-  const response = await fetch('/api/corpus.json', {
-    credentials: 'omit',
-    redirect: 'error',
-  });
-  if (!response.ok) throw new Error('corpus-unavailable');
-  const corpus: Corpus = await response.json();
-  const candidateIds = new Set(corpus.candidates.map((c) => c.id));
-  const params = new URLSearchParams(location.search);
+  const data = await corpus(),
+    valid = new Set(data.candidates.map((candidate) => candidate.id)),
+    params = new URLSearchParams(location.search);
   const requested = [
-    ...new Set(
-      (params.get('c') || '').split(',').filter((id) => candidateIds.has(id)),
-    ),
-  ].slice(0, 3);
-  const ids = requested.length >= 2 ? requested : defaults;
-  const rawTheme = params.get('theme');
-  if (corpus.themes.some((t) => t.id === rawTheme))
-    themeSelect.value = rawTheme!;
+      ...new Set(
+        (params.get('c') || '').split(',').filter((id) => valid.has(id)),
+      ),
+    ].slice(0, 3),
+    ids = requested.length >= 2 ? requested : defaults;
+  if (data.themes.some((theme) => theme.id === params.get('theme')))
+    themeSelect.value = params.get('theme')!;
   archives.checked = params.get('archives') === '1';
-  const radio = form.querySelector<HTMLInputElement>(
+  form.querySelector<HTMLInputElement>(
     `input[name=count][value="${ids.length}"]`,
-  )!;
-  radio.checked = true;
-  selects.forEach((select, i) => {
+  )!.checked = true;
+  selects.forEach((select, index) => {
     select.value =
-      ids[i] || corpus.candidates.find((c) => !ids.includes(c.id))!.id;
+      ids[index] ||
+      data.candidates.find((candidate) => !ids.includes(candidate.id))!.id;
   });
   const count = () =>
     form.querySelector<HTMLInputElement>('input[name=count]:checked')!.value ===
     '2'
       ? 2
       : 3;
-  const selected = () => selects.slice(0, count()).map((s) => s.value);
   function render() {
     if (
       count() === 3 &&
       selects.slice(0, 2).some((select) => select.value === selects[2].value)
-    ) {
-      selects[2].value = corpus.candidates.find(
+    )
+      selects[2].value = data.candidates.find(
         (candidate) =>
           !selects.slice(0, 2).some((select) => select.value === candidate.id),
       )!.id;
-    }
-    const active = selected();
+    const active = selects.slice(0, count()).map((select) => select.value);
     if (new Set(active).size !== active.length) {
       feedback.textContent = 'Choisissez des candidatures différentes.';
       return;
@@ -94,105 +57,76 @@ async function start() {
           select.value !== option.value;
       }),
     );
-    const theme = corpus.themes.find((t) => t.id === themeSelect.value)!;
+    const theme = data.themes.find((theme) => theme.id === themeSelect.value)!;
     document.querySelector('#comparison-theme-title')!.textContent =
       theme.label;
     document.querySelector('#comparison-note')!.textContent = theme.note;
+    const relevant = data.measures.filter(
+      (measure) =>
+        active.includes(measure.candidate) &&
+        measure.theme === theme.id &&
+        (measure.scope !== 'archive' || archives.checked),
+    );
     const container = document.querySelector<HTMLElement>('#comparison-cards')!;
     container.dataset.count = String(count());
     container.replaceChildren();
     let available = 0;
-    active.forEach((id) => {
-      const candidate = corpus.candidates.find((c) => c.id === id)!;
-      const raw = corpus.engagements.find(
-        (e) => e.candidate === id && e.theme === theme.id,
-      );
-      const item =
-        raw && (raw.scope !== 'archive' || archives.checked) ? raw : undefined;
-      const card = node('article', undefined, 'comparison-card');
-      const header = node('header');
-      header.append(node('p', candidate.party), node('h3', candidate.name));
-      card.append(header);
-      const body = node('div', undefined, 'comparison-body');
-      const footer = node('footer');
-      if (item) {
+    for (const id of active) {
+      const candidate = data.candidates.find(
+          (candidate) => candidate.id === id,
+        )!,
+        items = relevant.filter((measure) => measure.candidate === id);
+      const card = el('article', undefined, 'comparison-card'),
+        header = el('header');
+      header.append(el('p', candidate.party), el('h3', candidate.name));
+      const body = el('div', undefined, 'comparison-body');
+      if (items.length) {
         available++;
-        body.append(
-          node(
-            'span',
-            scopeLabels[item.scope],
-            item.scope === 'archive' ? 'tag archive' : 'tag',
-          ),
-          node('h4', item.title),
-        );
-        const ul = node('ul');
-        item.bullets.forEach((b) => ul.append(node('li', b)));
-        body.append(ul);
-        if (item.note) {
-          const details = node('details');
-          details.append(
-            node('summary', 'Contexte & précisions'),
-            node('p', item.note),
-          );
-          body.append(details);
-        }
-        footer.append(
-          link('Lire la fiche complète ↗', `/engagements/${item.id}/`),
-        );
-        const ulSources = node('ul', undefined, 'source-links compact');
-        item.sources.forEach((key) => {
-          const source = corpus.sources.find((s) => s.id === key);
-          if (!source) return;
-          const url = new URL(source.url);
-          if (url.protocol !== 'https:' || url.username || url.password) return;
-          const li = node('li');
-          const a = link(`${source.title} ↗`, url.href);
-          a.target = '_blank';
-          a.rel = 'noopener noreferrer';
-          li.append(a);
-          ulSources.append(li);
-        });
-        footer.append(
-          ulSources,
-          node(
-            'p',
-            `${item.edition} · consulté le ${item.checked}`,
-            'small muted',
-          ),
-        );
+        for (const measure of items)
+          body.append(measureCard(measure, data, true, 'h4'));
       } else {
-        body.append(
-          node('span', 'À documenter', 'tag'),
-          node('h4', raw ? 'Une référence ancienne' : 'Fiche à compléter'),
-          node(
-            'p',
-            raw
-              ? 'Une archive de 2022 est disponible. Activez les archives pour la consulter avec son millésime.'
-              : 'Notre corpus ne contient pas encore de fiche sur ce thème pour cette candidature. Cela ne démontre pas une absence de proposition.',
-          ),
+        const old = data.measures.some(
+          (measure) =>
+            measure.candidate === id &&
+            measure.theme === theme.id &&
+            measure.scope === 'archive',
         );
-        footer.append(
-          link('Consulter le dossier ↗', `/candidats/${candidate.id}/`),
+        body.append(
+          el('span', 'À renseigner', 'tag'),
+          el(
+            'h4',
+            old ? 'Archive de 2022 disponible' : 'Aucune fiche dans le corpus',
+          ),
+          el(
+            'p',
+            old
+              ? 'Activez les archives pour consulter ce document avec son millésime.'
+              : 'Le thème reste à renseigner pour ce candidat.',
+          ),
         );
       }
-      card.append(body, footer);
+      const footer = el('footer');
+      footer.append(anchor('Dossier du candidat ↗', `/candidats/${id}/`));
+      card.append(header, body, footer);
       container.append(card);
-    });
-    feedback.textContent = `${available} fiche${available > 1 ? 's' : ''} disponible${available > 1 ? 's' : ''} sur ${count()} · corpus du 16 novembre 2026`;
-    const url = new URL(location.href);
-    url.search = new URLSearchParams({
-      theme: theme.id,
-      c: active.join(','),
-      archives: archives.checked ? '1' : '0',
-    }).toString();
-    history.replaceState(null, '', url);
+    }
+    renderMetricPlots(
+      document.querySelector<HTMLElement>('#comparison-metrics')!,
+      metricGroups(relevant, data.candidates),
+    );
+    feedback.textContent = `${available} candidature${available > 1 ? 's' : ''} renseignée${available > 1 ? 's' : ''} sur ${count()} · ${relevant.length} fiche${relevant.length > 1 ? 's' : ''} · corpus du ${date(data.meta.corpusUpdated)}`;
+    history.replaceState(
+      null,
+      '',
+      `/comparer/?${new URLSearchParams({ theme: theme.id, c: active.join(','), archives: archives.checked ? '1' : '0' })}`,
+    );
   }
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     render();
   });
   form.addEventListener('change', render);
-  selects.forEach((s) => s.addEventListener('change', render));
+  selects.forEach((select) => select.addEventListener('change', render));
   document
     .querySelector('#comparison-share')!
     .addEventListener('click', async () => {
@@ -201,7 +135,7 @@ async function start() {
         feedback.textContent = 'Lien de comparaison copié.';
       } catch {
         feedback.textContent =
-          'Copiez l’adresse de cette page : elle conserve votre comparaison.';
+          'Copiez l’adresse pour partager cette comparaison.';
       }
     });
   document
@@ -211,5 +145,5 @@ async function start() {
 }
 start().catch(() => {
   feedback.textContent =
-    'Le corpus interactif n’a pas pu être chargé. La comparaison initiale et les liens vers les dossiers restent consultables.';
+    'Le corpus interactif n’a pas pu être chargé. La comparaison initiale reste consultable.';
 });

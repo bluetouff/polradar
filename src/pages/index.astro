@@ -1,187 +1,211 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import CandidateCard from '../components/CandidateCard.astro';
 import ArticleCard from '../components/ArticleCard.astro';
-import { candidates, themes, engagements, sources } from '../lib/data';
+import Icon from '../components/Icon.astro';
+import {
+  candidates,
+  themes,
+  measures,
+  versions,
+  watch,
+  sources,
+  events,
+  formatDate,
+} from '../lib/data';
+import HomeSignals from '../components/HomeSignals.astro';
 const articles = (
   await getCollection('articles', ({ data }) => !data.draft)
 ).sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
+const recent = events
+  .filter((event) => event.kind === 'past')
+  .sort((a, b) => b.date.localeCompare(a.date))
+  .slice(0, 3);
+const dates = events.filter((event) => event.kind === 'announced');
+const currentMeasures = measures.filter((item) => item.scope !== 'archive');
+const themeCounts = themes.map((theme) => ({
+  ...theme,
+  count: currentMeasures.filter((item) => item.theme === theme.id).length,
+}));
+const maxThemeCount = Math.max(1, ...themeCounts.map((theme) => theme.count));
 ---
 
 <Base>
-  <div class="page-dateline">
-    <span class="eyebrow">L’observatoire de la présidentielle</span>
-    <span>Édition du 17 novembre 2026</span>
+  <header class="page-title home-title">
+    <h1>Présidentielle 2027</h1>
+    <p>Programmes, candidats et calendrier électoral.</p>
+  </header>
+  <div class="campaign-index">
+    <div class="home-editorial">
+      <section class="programme-index" aria-labelledby="programme-index-title">
+        <div class="register-heading">
+          <h2 id="programme-index-title">Comparer les programmes</h2>
+          <a href="/comparer/" class="inline-action">
+            Ouvrir le comparateur ↗
+          </a>
+        </div>
+        <p class="register-note">
+          Nombre de fiches documentées par thème, hors archives de 2022.
+        </p>
+        <div class="theme-register">
+          {themeCounts.map((theme) => (
+            <a href={`/comparer/?theme=${theme.id}`}>
+              <Icon name={theme.id} />
+              <span class="theme-entry">
+                <span>{theme.label}</span>
+                <svg
+                  viewBox="0 0 100 5"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <rect class="theme-track" width="100" height="5" />
+                  <rect
+                    class="theme-fill"
+                    width={(theme.count / maxThemeCount) * 100}
+                    height="5"
+                  />
+                </svg>
+              </span>
+              <span class="theme-count" aria-label={`${theme.count} fiches`}>
+                {theme.count}
+              </span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          ))}
+        </div>
+        <div class="corpus-line">
+          <span>
+            {measures.filter((item) => item.scope !== 'archive').length} fiches
+            hors archives
+          </span>
+          <span>
+            {measures.filter((item) => item.scope === 'archive').length}{' '}
+            archives de 2022
+          </span>
+          <a href="/sources/">{sources.length} sources ↗</a>
+        </div>
+      </section>
+      <section class="home-dossiers" aria-labelledby="home-dossiers-title">
+        <div class="register-heading">
+          <h2 id="home-dossiers-title">Dossiers</h2>
+          <a href="/dossiers/" class="inline-action">
+            Tous les dossiers ↗
+          </a>
+        </div>
+        <div class="article-grid">
+          {articles.slice(0, 3).map((article, index) => (
+            <ArticleCard article={article} index={index} />
+          ))}
+        </div>
+      </section>
+    </div>
+    <HomeSignals />
   </div>
-  <section class="home-hero">
-    <div class="hero-editorial">
-      <p class="kicker">
-        <span></span>COMPRENDRE AVANT DE CHOISIR
-      </p>
-      <h1>
-        Une campagne.
-        <br />
-        Des choix
-        <br />
-        <em>à éclairer.</em>
-      </h1>
-      <p class="hero-description">
-        Ce qui est proposé. Ce que cela engage. Ce qui change.
-        <br class="desktop-break" /> Un regard indépendant, document après
-        document.
-      </p>
-      <div class="hero-actions">
-        <a class="button primary" href="/comparer/">
-          Comparer les propositions <span aria-hidden="true">↗</span>
-        </a>
-        <a class="text-link" href="/methode/">
-          Découvrir la méthode
-        </a>
-      </div>
+  <section
+    class="candidate-register"
+    aria-labelledby="candidate-register-title"
+  >
+    <div class="register-heading">
+      <h2 id="candidate-register-title">Candidats</h2>
+      <span class="index-total">
+        {String(candidates.length).padStart(2, '0')}
+      </span>
     </div>
-    <aside class="hero-feature">
-      <div class="feature-top">
-        <span class="eyebrow">À EXPLORER</span>
-        <span class="tag inverse">Le fond de la campagne</span>
-      </div>
-      <div class="feature-diagram" aria-hidden="true">
-        <svg viewBox="0 0 450 225">
-          <g fill="none" stroke="currentColor">
-            <circle cx="225" cy="112" r="93" />
-            <circle cx="225" cy="112" r="62" />
-            <circle cx="225" cy="112" r="31" />
-            <path d="M35 112h380M225 5v214M150 190 300 35" />
-            <path
-              class="diagram-accent"
-              d="M225 112 292 45A95 95 0 0 1 320 112Z"
-            />
-          </g>
-          <circle cx="270" cy="67" r="6" fill="currentColor" />
-        </svg>
-      </div>
-      <p class="eyebrow">LE COMPARATEUR</p>
-      <h2>
-        Un sujet.
-        <br />
-        Les différences.
-      </h2>
-      <p>
-        Retraites, salaires, énergie : confronter les engagements et retrouver
-        leurs sources.
-      </p>
-      <a class="feature-link" href="/comparer/">
-        Choisir mon sujet <span aria-hidden="true">↗</span>
-      </a>
-    </aside>
+    <p class="register-note">Profils suivis · ordre alphabétique</p>
+    <ol class="candidate-roster">
+      {candidates.map((candidate, index) => (
+        <li>
+          <a href={`/candidats/${candidate.id}/`}>
+            <span class="roster-number" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <span class="roster-person">
+              <strong>{candidate.name}</strong>
+            </span>
+            <span class="roster-arrow" aria-hidden="true">
+              ↗
+            </span>
+          </a>
+        </li>
+      ))}
+    </ol>
+    <a class="register-bottom" href="/candidats/">
+      Statuts et fiches des candidats <span aria-hidden="true">↗</span>
+    </a>
   </section>
-  <div class="evidence-strip">
-    <div>
-      <b>{candidates.length}</b>
+
+  <section class="home-tools" aria-label="Outils de suivi">
+    <a href="/mesures/">
+      <Icon name="mesures" />
       <span>
-        candidatures
-        <br />
-        dans le corpus
+        <strong>{measures.length} mesures et orientations</strong>
+        <small>Paramètres, bénéficiaires et références</small>
       </span>
-    </div>
-    <div>
-      <b>{themes.length}</b>
+      <span aria-hidden="true">↗</span>
+    </a>
+    <a href="/historique/">
+      <Icon name="historique" />
       <span>
-        enjeux
-        <br />à explorer
+        <strong>{versions.length} versions de fiches</strong>
+        <small>Consulter les modifications avant / après</small>
       </span>
-    </div>
-    <div>
-      <b>{engagements.length}</b>
+      <span aria-hidden="true">↗</span>
+    </a>
+    <a href="/veille/">
+      <Icon name="veille" />
       <span>
-        fiches
-        <br />
-        documentaires
+        <strong>{watch.length} sources en veille</strong>
+        <small>Relevés et rapports quotidiens</small>
       </span>
-    </div>
-    <div>
-      <b>{sources.length}</b>
+      <span aria-hidden="true">↗</span>
+    </a>
+    <a href="/suivi/">
+      <Icon name="suivi" />
       <span>
-        références
-        <br />
-        consultables
+        <strong>Mon suivi</strong>
+        <small>Candidats, thèmes et flux RSS</small>
       </span>
-    </div>
-    <a href="/transparence/">Ce que couvrent ces chiffres ↗</a>
+      <span aria-hidden="true">↗</span>
+    </a>
+  </section>
+  <div class="home-bottom">
+    <section aria-labelledby="recent-title">
+      <div class="register-heading">
+        <h2 id="recent-title">Chronologie de la campagne</h2>
+        <a href="/campagne/" class="inline-action">
+          Voir la chronologie ↗
+        </a>
+      </div>
+      <ol class="recent-list">
+        {recent.map((event) => (
+          <li>
+            <time datetime={event.date}>{formatDate(event.date)}</time>
+            <span>{event.title}</span>
+            <a href="/campagne/" aria-label={`Consulter : ${event.title}`}>
+              ↗
+            </a>
+          </li>
+        ))}
+      </ol>
+    </section>
+    <section
+      class="election-calendar"
+      aria-labelledby="election-calendar-title"
+    >
+      <div class="register-heading">
+        <h2 id="election-calendar-title">Dates du scrutin</h2>
+      </div>
+      {dates.map((event) => (
+        <div class="calendar-entry">
+          <time datetime={event.date}>{formatDate(event.date)}</time>
+          <span>
+            {event.id === 'premier-tour' ? 'Premier tour' : 'Second tour'}
+          </span>
+        </div>
+      ))}
+      <a class="inline-action" href="/reperes/">
+        Calendrier et sources ↗
+      </a>
+    </section>
   </div>
-  <section class="section-space">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">PRENDRE DU RECUL</p>
-        <h2>Les clés pour lire la campagne.</h2>
-      </div>
-      <a class="text-link" href="/dossiers/">
-        Tous les décryptages ↗
-      </a>
-    </div>
-    <div class="article-grid">
-      {articles.slice(0, 3).map((article, index) => (
-        <ArticleCard article={article} index={index} />
-      ))}
-    </div>
-  </section>
-  <section class="section-space themes-home">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">LES SUJETS QUI COMPTENT</p>
-        <h2>Entrer par les enjeux.</h2>
-      </div>
-      <a class="text-link" href="/themes/">
-        Les 12 thèmes ↗
-      </a>
-    </div>
-    <div class="topic-grid">
-      {themes.slice(0, 6).map((theme, index) => (
-        <a class="topic-card" href={`/themes/${theme.id}/`}>
-          <span class="topic-number">{String(index + 1).padStart(2, '0')}</span>
-          <div>
-            <h3>{theme.label}</h3>
-            <p>{theme.short}</p>
-          </div>
-          <span aria-hidden="true">↗</span>
-        </a>
-      ))}
-    </div>
-  </section>
-  <section class="section-space">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">LES PERSONNES ET LEURS PROJETS</p>
-        <h2>Ouvrir les dossiers.</h2>
-      </div>
-      <a class="text-link" href="/candidats/">
-        Toutes les candidatures ↗
-      </a>
-    </div>
-    <div class="candidate-grid">
-      {candidates.slice(0, 3).map((candidate) => (
-        <CandidateCard candidate={candidate} />
-      ))}
-    </div>
-  </section>
-  <section class="method-banner">
-    <div>
-      <p class="eyebrow">NOTRE ENGAGEMENT ÉDITORIAL</p>
-      <h2>
-        Une proposition mérite
-        <br />
-        mieux qu’une étiquette.
-      </h2>
-    </div>
-    <div>
-      <p>
-        Chaque fiche distingue les documents de campagne, les orientations de
-        parti et les archives. Les dates et les informations manquantes restent
-        visibles.
-      </p>
-      <a class="button light" href="/sources/">
-        Explorer les sources ↗
-      </a>
-    </div>
-  </section>
 </Base>

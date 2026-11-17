@@ -1,0 +1,118 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import MeasureCard from '../../components/MeasureCard.astro';
+import { measures, candidates, themes } from '../../lib/data';
+const current = measures.filter((measure) => measure.scope !== 'archive');
+const max = Math.max(
+  ...themes.map(
+    (theme) => current.filter((measure) => measure.theme === theme.id).length,
+  ),
+);
+---
+
+<Base title="Mesures et orientations" section="/mesures/">
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="mesures" />
+    </span>
+    <div>
+      <h1>Mesures et orientations</h1>
+      <p>
+        {current.length} fiches hors archives et{' '}
+        {measures.length - current.length} archives de 2022.
+      </p>
+    </div>
+    <a href="/recherche/#type=mesure" class="button">
+      <Icon name="filter" />
+      Recherche détaillée
+    </a>
+  </header>
+  <section class="coverage-panel" aria-labelledby="coverage-title">
+    <div class="register-heading">
+      <h2 id="coverage-title">Fiches par thème</h2>
+      <span class="small muted">Nombre de fiches présentes dans le corpus</span>
+    </div>
+    <div class="coverage-bars">
+      {themes.map((theme) => {
+        const count = current.filter(
+          (measure) => measure.theme === theme.id,
+        ).length;
+        return (
+          <a href={`/mesures/#theme=${theme.id}`} class="coverage-item">
+            <Icon name={theme.id} />
+            <span>{theme.label}</span>
+            <svg viewBox="0 0 180 10" aria-hidden="true">
+              <rect
+                class="coverage-track"
+                width="180"
+                height="6"
+                y="2"
+                rx="3"
+              />
+              <rect
+                class="coverage-fill"
+                width={(count / max) * 180}
+                height="6"
+                y="2"
+                rx="3"
+              />
+            </svg>
+            <b>{count}</b>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+  <form id="measure-filters" class="facet-filters">
+    <label>
+      Candidat
+      <select name="candidate">
+        <option value="">Tous les candidats</option>
+        {candidates.map((candidate) => (
+          <option value={candidate.id}>{candidate.name}</option>
+        ))}
+      </select>
+    </label>
+    <label>
+      Thème
+      <select name="theme">
+        <option value="">Tous les thèmes</option>
+        {themes.map((theme) => (
+          <option value={theme.id}>{theme.label}</option>
+        ))}
+      </select>
+    </label>
+    <label>
+      Rechercher
+      <input
+        name="q"
+        type="search"
+        maxlength="200"
+        placeholder="Une mesure, un chiffre…"
+      />
+    </label>
+    <label class="check-label">
+      <input type="checkbox" name="archives" value="1" />
+      Archives 2022
+    </label>
+    <button type="submit" class="button">
+      Filtrer
+    </button>
+  </form>
+  <p class="results-meta" id="measure-count" role="status">
+    {current.length} résultats
+  </p>
+  <div id="measure-results" class="measure-list">
+    {current.map((measure) => (
+      <MeasureCard measure={measure} />
+    ))}
+  </div>
+  <noscript>
+    <p class="notice">
+      Les fiches actuelles sont consultables ci-dessus. Les filtres nécessitent
+      JavaScript.
+    </p>
+  </noscript>
+  <script src="../../scripts/measures.ts"></script>
+</Base>

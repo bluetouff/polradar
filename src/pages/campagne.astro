@@ -1,46 +1,219 @@
 ---
 import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
 import SourceLinks from '../components/SourceLinks.astro';
-import { events, formatDate } from '../lib/data';
+import { events, candidates, formatDate } from '../lib/data';
+import '../styles/campaign.css';
+
+const categories: Record<string, { label: string; icon: string }> = {
+  candidature: { label: 'Candidature', icon: 'people' },
+  programme: { label: 'Programme', icon: 'source' },
+  sondage: { label: 'Sondage', icon: 'sondages' },
+  meeting: { label: 'Discours et meeting', icon: 'layers' },
+  calendrier: { label: 'Calendrier', icon: 'clock' },
+};
+const dateKinds: Record<string, string> = {
+  evenement: 'Événement',
+  publication: 'Publication',
+  'mise-a-jour': 'Document mis à jour',
+};
+const past = events
+  .filter((event) => event.kind === 'past')
+  .sort(
+    (a, b) =>
+      b.date.localeCompare(a.date) || a.title.localeCompare(b.title, 'fr'),
+  );
+const upcoming = events
+  .filter((event) => event.kind === 'announced')
+  .sort((a, b) => a.date.localeCompare(b.date));
+const months = [...new Set(past.map((event) => event.date.slice(0, 7)))].map(
+  (id) => ({
+    id,
+    rows: past.filter((event) => event.date.startsWith(id)),
+    label: new Intl.DateTimeFormat('fr-FR', {
+      month: 'long',
+      year: 'numeric',
+      timeZone: 'Europe/Paris',
+    }).format(new Date(`${id}-01T12:00:00Z`)),
+  }),
+);
+const maxCount = Math.max(1, ...months.map((month) => month.rows.length));
+const related = candidates.filter((candidate) =>
+  past.some((event) => event.candidates.includes(candidate.id)),
+);
 ---
 
-<Base title="La campagne : documents et étapes" section="/campagne/">
-  <header class="page-title">
-    <p class="eyebrow">LE SUIVI DOCUMENTAIRE</p>
-    <h1>
-      Ce qui change.
-      <br />
-      <em>Ce qui se précise.</em>
-    </h1>
-    <p>
-      Les annonces et publications intégrées au corpus, avec leur date et leur
-      source. Ce relevé est une sélection ; il ne prétend pas couvrir toute
-      l’actualité de la campagne.
-    </p>
+<Base
+  title="Chronologie de la campagne"
+  section="/campagne/"
+  description="Annonces de candidature, publications de programmes, meetings et enquêtes d’opinion, avec leurs dates et leurs sources."
+>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="historique" />
+    </span>
+    <div>
+      <h1>Chronologie de la campagne</h1>
+      <p>Candidatures, programmes, meetings et sondages.</p>
+    </div>
+    <span class="campaign-total">
+      {past.length}
+      <small>événements documentés</small>
+    </span>
   </header>
-  <div class="timeline">
-    {events
-      .filter((e) => e.kind === 'past')
-      .sort((a, b) => b.date.localeCompare(a.date))
-      .map((event) => (
-        <article>
-          <time datetime={event.date}>{formatDate(event.date)}</time>
-          <div>
-            <span class="tag">Documenté</span>
-            <h2>{event.title}</h2>
-            <p>{event.description}</p>
-            <SourceLinks ids={event.sources} compact />
-          </div>
-        </article>
+  <nav class="campaign-month-nav" aria-label="Aller à un mois">
+    <ol>
+      {months.map((month) => (
+        <li data-month-link={month.id}>
+          <a href={`#mois-${month.id}`}>
+            <span>{month.label}</span>
+            <b>{month.rows.length}</b>
+            <svg
+              viewBox="0 0 100 4"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <rect class="month-track" width="100" height="4" />
+              <rect
+                class="month-volume"
+                width={(month.rows.length / maxCount) * 100}
+                height="4"
+              />
+            </svg>
+          </a>
+        </li>
       ))}
+    </ol>
+  </nav>
+  <form id="campaign-filters" class="facet-filters" hidden>
+    <label class="wide-field">
+      Rechercher
+      <input
+        id="campaign-search"
+        type="search"
+        placeholder="Un nom, un sujet"
+        autocomplete="off"
+      />
+    </label>
+    <label>
+      Type d’annonce
+      <select id="campaign-category">
+        <option value="">Tous les événements</option>
+        {Object.entries(categories).map(([id, category]) => (
+          <option value={id}>{category.label}</option>
+        ))}
+      </select>
+    </label>
+    <label>
+      Personnalité
+      <select id="campaign-candidate">
+        <option value="">Toutes les personnalités</option>
+        {related.map((candidate) => (
+          <option value={candidate.id}>{candidate.name}</option>
+        ))}
+      </select>
+    </label>
+    <button class="button light" type="reset">
+      Réinitialiser
+    </button>
+  </form>
+  <p id="campaign-status" role="status" aria-live="polite" class="results-meta">
+    {past.length} événements
+  </p>
+  <div class="campaign-layout">
+    <div class="campaign-journal">
+      {months.map((month) => (
+        <section
+          class="campaign-month"
+          id={`mois-${month.id}`}
+          data-month={month.id}
+          aria-labelledby={`titre-${month.id}`}
+        >
+          <h2 id={`titre-${month.id}`}>
+            {month.label}
+            <span data-month-count>{month.rows.length}</span>
+          </h2>
+          <ol>
+            {month.rows.map((event) => (
+              <li
+                class={`campaign-entry event-${event.category}`}
+                id={event.id}
+                data-category={event.category}
+                data-candidates={event.candidates.join(' ')}
+                data-search={`${event.title} ${event.description} ${event.candidates.map((id) => candidates.find((row) => row.id === id)?.name || '').join(' ')}`}
+              >
+                <time
+                  class="campaign-day"
+                  datetime={event.date}
+                  aria-label={formatDate(event.date)}
+                >
+                  <b>{event.date.slice(-2)}</b>
+                  <span>
+                    {new Intl.DateTimeFormat('fr-FR', {
+                      weekday: 'short',
+                      timeZone: 'Europe/Paris',
+                    }).format(new Date(`${event.date}T12:00:00Z`))}
+                  </span>
+                </time>
+                <span class="campaign-event-symbol" aria-hidden="true">
+                  <Icon name={categories[event.category].icon} />
+                </span>
+                <article>
+                  <p class="campaign-entry-meta">
+                    <span>{categories[event.category].label}</span>
+                    <span>{dateKinds[event.dateKind]}</span>
+                  </p>
+                  <h3>{event.title}</h3>
+                  <p>{event.description}</p>
+                  <SourceLinks ids={event.sources} compact />
+                </article>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))}
+      <p id="campaign-empty" class="notice" hidden>
+        Aucun événement pour cette sélection.
+      </p>
+    </div>
+    <aside class="campaign-agenda" aria-labelledby="campaign-agenda-title">
+      <h2 id="campaign-agenda-title">
+        <Icon name="clock" /> Le scrutin
+      </h2>
+      {upcoming.map((event) => (
+        <div class="campaign-election">
+          <span>
+            {event.id === 'premier-tour' ? 'Premier tour' : 'Second tour'}
+          </span>
+          <time datetime={event.date}>
+            <b>{event.date.slice(-2)}</b>
+            <span>
+              {new Intl.DateTimeFormat('fr-FR', {
+                month: 'long',
+                year: 'numeric',
+                timeZone: 'Europe/Paris',
+              }).format(new Date(`${event.date}T12:00:00Z`))}
+            </span>
+          </time>
+        </div>
+      ))}
+      <p>Dates annoncées par le gouvernement.</p>
+      <SourceLinks ids={['calendar']} compact />
+      <a class="inline-action" href="/reperes/">
+        Calendrier électoral ↗
+      </a>
+      <div class="campaign-reading">
+        <Icon name="source" />
+        <h3>Lire les dates</h3>
+        <p>
+          Les publications et les mises à jour de documents sont identifiées
+          dans chaque entrée. La date d’un sondage est celle de sa publication ;
+          son terrain figure dans le descriptif.
+        </p>
+      </div>
+    </aside>
   </div>
-  <aside class="notice section-space">
-    <strong>La mémoire commence avec les documents conservés.</strong>
-    <p>
-      Les fiches d’engagement disposent d’un historique. Une première version
-      importée ne permet pas de déduire l’ensemble des prises de position
-      antérieures.
-    </p>
-    <a href="/engagements/">Ouvrir le registre des engagements ↗</a>
-  </aside>
+  <script>
+    import '../scripts/campaign';
+  </script>
 </Base>
