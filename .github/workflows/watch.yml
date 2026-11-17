@@ -10,24 +10,20 @@ concurrency:
   cancel-in-progress: false
 jobs:
   watch:
-    strategy:
-      fail-fast: false
-      matrix:
-        runner: [ubuntu-latest, macos-latest]
-    runs-on: ${{ matrix.runner }}
+    runs-on: macos-15
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           persist-credentials: false
       - name: Relever les sources autorisées
-        run: python3 scripts/watch-sources.py --source pcf-status --source pcf-2026 --source dlf-economie-2026
+        run: python3 scripts/watch-sources.py
       - name: Résumé de la veille
         shell: bash
         run: cat artifacts/watch-report.md >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: source-watch-retry-${{ matrix.runner }}
+          name: source-watch-release
           path: artifacts/watch-report.*
           if-no-files-found: error
           retention-days: 14

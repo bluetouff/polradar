@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 HOST_LOCKS = {}
 HOST_LAST = {}
 HOST_LOCK = threading.Lock()
-RETRY_STATUSES = {403, 408, 429, 500, 502, 503, 504}
+RETRY_STATUSES = {403, 408, 429, 500, 502, 503, 504, 520, 521, 522, 523, 524, 525, 526, 527}
 
 
 def fetch_reliably(url, allowed_hosts):
@@ -151,7 +151,7 @@ class Text(HTMLParser):
         self.skip = {'script','style','nav','header','footer','svg','noscript','form'}
     def handle_starttag(self, tag, attrs):
         if self.content_class:
-            if self.container_tag is None and self.content_class in dict(attrs).get('class', '').split():
+            if self.container_tag is None and self.content_class in (dict(attrs).get('class') or '').split():
                 self.container_tag = tag
                 self.container_depth = 1
             elif self.container_depth and tag == self.container_tag:
