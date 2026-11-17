@@ -140,31 +140,49 @@ def fetch(url, allowed_hosts):
 
 
 class Text(HTMLParser):
-    def __init__(self):
+    def __init__(self, content_class=None):
         super().__init__(convert_charrefs=True)
         self.ignored = 0
         self.parts = []
+        self.content_class = content_class
+        self.container_tag = None
+        self.container_depth = 0
+        self.container_closed = False
         self.skip = {'script','style','nav','header','footer','svg','noscript','form'}
     def handle_starttag(self, tag, attrs):
+        if self.content_class:
+            if self.container_tag is None and self.content_class in dict(attrs).get('class', '').split():
+                self.container_tag = tag
+                self.container_depth = 1
+            elif self.container_depth and tag == self.container_tag:
+                self.container_depth += 1
         if tag in self.skip:
             self.ignored += 1
     def handle_endtag(self, tag):
         if tag in self.skip and self.ignored:
             self.ignored -= 1
+        if self.content_class and self.container_depth and tag == self.container_tag:
+            self.container_depth -= 1
+            if not self.container_depth:
+                self.container_closed = True
     def handle_data(self, value):
-        if not self.ignored:
+        if not self.ignored and (not self.content_class or self.container_depth):
             self.parts.append(value)
 
 
-def fingerprint(content_type, body):
+def fingerprint(content_type, body, content_class=None):
     if content_type == 'application/pdf':
         if not body.startswith(b'%PDF-'):
             raise ValueError('Invalid PDF')
         return hashlib.sha256(body).hexdigest()
     if content_type not in ('text/html','application/xhtml+xml'):
         raise ValueError('Unsupported document')
-    parser = Text()
+    if content_class is not None and not re.fullmatch(r'[A-Za-z][A-Za-z0-9_-]{0,59}', content_class):
+        raise ValueError('Invalid content scope')
+    parser = Text(content_class)
     parser.feed(body.decode('utf-8', errors='replace'))
+    if content_class and not parser.container_closed:
+        raise ValueError('Missing or incomplete document container')
     text = re.sub(r'\s+', ' ', ' '.join(parser.parts)).strip()
     if len(text) < 180 or any(marker in text.lower() for marker in ('just a moment', 'verify you are human', 'enable javascript and cookies', 'access denied', 'vérifiez que vous êtes humain')):
         raise ValueError('Unusable document')
@@ -181,10 +199,10 @@ def inspect(source, previous, allowed_hosts):
         if status != 200:
             row.update(status='bloque' if status in (401,403,429) else 'indisponible',message=f'Réponse HTTP {status}')
         else:
-            digest = fingerprint(content_type, body)
+            digest = fingerprint(content_type, body, source.get('watchContentClass'))
             changed = old is not None and digest != old
             row.update(status='modifie' if changed else 'accessible',fingerprint=digest,message='Contenu différent du dernier relevé validé' if changed else 'Document accessible lors du relevé')
-            if not changed and previous.get('reviewedAt'):
+            if not changed and previous.get('reviewedAt') and previous.get('reviewNote'):
                 row.update(reviewedAt=previous['reviewedAt'],reviewNote=previous['reviewNote'])
     except ValueError:
         row.update(status='bloque',message='Document ou destination non exploitable dans le périmètre autorisé')

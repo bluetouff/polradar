@@ -21,7 +21,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Relever les sources autorisées
-        run: python scripts/watch-sources.py --source polony-declaration --source polony-vision --source branco-presentation --source branco-projet
+        run: python scripts/watch-sources.py --source pcf-status --source pcf-work --source pcf-2026
       - name: Résumé de la veille
         shell: bash
         run: cat artifacts/watch-report.md >> "$GITHUB_STEP_SUMMARY"
