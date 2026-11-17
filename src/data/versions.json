@@ -6285,5 +6285,434 @@
       "edition": "Programme du 12 novembre 2026",
       "checked": "2026-11-17"
     }
+  },
+  {
+    "id": "philippe-retraites-1-v3",
+    "measureId": "philippe-retraites-1",
+    "number": 3,
+    "kind": "correction",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T14:03:57.225004Z",
+    "summary": "Correction du libellé d’édition : le 12 novembre ne constitue pas une date de publication établie pour cette page. Les propositions restent inchangées.",
+    "snapshot": {
+      "title": "Retraite à 65 ans et 45 annuités",
+      "description": "Porter progressivement l’âge de départ à 65 ans et la durée de cotisation à 45 ans.",
+      "beneficiaries": "Assurés concernés par le relèvement, avec exceptions annoncées pour santé et carrières longues.",
+      "timing": "Progression annoncée sur moins de dix ans.",
+      "financing": null,
+      "metrics": [
+        {
+          "key": "age-depart",
+          "label": "Âge de départ cible",
+          "value": 65,
+          "unit": "ans",
+          "sourceId": "philippe-pension"
+        },
+        {
+          "key": "annuites",
+          "label": "Durée de cotisation",
+          "value": 45,
+          "unit": "annuités",
+          "sourceId": "philippe-pension"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-pension",
+          "locator": "Propositions principales et réponses sur l’âge et les exceptions"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-retraites-2-v3",
+    "measureId": "philippe-retraites-2",
+    "number": 3,
+    "kind": "correction",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T14:03:57.225004Z",
+    "summary": "Correction du libellé d’édition : le 12 novembre ne constitue pas une date de publication établie pour cette page. Les propositions restent inchangées.",
+    "snapshot": {
+      "title": "Capitalisation collective et départs anticipés",
+      "description": "Maintenir des exceptions et ajouter une capitalisation collective.",
+      "beneficiaries": "Salariés pour la capitalisation ; situations de santé et carrières longues pour les départs anticipés.",
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-pension",
+          "locator": "Réponses sur les départs anticipés et la capitalisation"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-travail-1-v2",
+    "measureId": "philippe-travail-1",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T14:03:57.225004Z",
+    "summary": "Correction du libellé d’édition : le 12 novembre ne constitue pas une date de publication établie pour cette page. Les propositions restent inchangées.",
+    "snapshot": {
+      "title": "Permettre de fixer le temps de travail par accord d’entreprise",
+      "description": "Permettre de fixer le temps de travail par accord d’entreprise.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-business",
+          "locator": "Dossier initial : Négocier le temps de travail"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-16"
+    }
+  },
+  {
+    "id": "philippe-travail-2-v2",
+    "measureId": "philippe-travail-2",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T14:03:57.225004Z",
+    "summary": "Correction du libellé d’édition : le 12 novembre ne constitue pas une date de publication établie pour cette page. Les propositions restent inchangées.",
+    "snapshot": {
+      "title": "Alléger prélèvements et cotisations sur les heures supplémentaires",
+      "description": "Alléger prélèvements et cotisations sur les heures supplémentaires.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-business",
+          "locator": "Dossier initial : Négocier le temps de travail"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-16"
+    }
+  },
+  {
+    "id": "philippe-fiscalite-1-v3",
+    "measureId": "philippe-fiscalite-1",
+    "number": 3,
+    "kind": "correction",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T14:03:57.225004Z",
+    "summary": "Correction du libellé d’édition : le 12 novembre ne constitue pas une date de publication établie pour cette page. Les propositions restent inchangées.",
+    "snapshot": {
+      "title": "Déficit inférieur à 2,5 % en fin de quinquennat",
+      "description": "Ramener le déficit public sous 2,5 % de la richesse nationale à la fin du quinquennat.",
+      "beneficiaries": null,
+      "timing": "Fin du quinquennat.",
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-budget",
+          "locator": "Propositions phares et réponse sur le plan de réduction de la dette"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-fiscalite-2-v2",
+    "measureId": "philippe-fiscalite-2",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T14:03:57.225004Z",
+    "summary": "Correction du libellé d’édition : le 12 novembre ne constitue pas une date de publication établie pour cette page. Les propositions restent inchangées.",
+    "snapshot": {
+      "title": "Inscrire une règle budgétaire dans la Constitution et ne créer aucun nouvel impôt",
+      "description": "Inscrire une règle budgétaire dans la Constitution et ne créer aucun nouvel impôt.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-budget",
+          "locator": "Dossier initial : Viser un déficit de 2 % du PIB"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-16"
+    }
+  },
+  {
+    "id": "philippe-climat-1-v2",
+    "measureId": "philippe-climat-1",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T14:03:57.225004Z",
+    "summary": "Correction du libellé d’édition : le 12 novembre ne constitue pas une date de publication établie pour cette page. Les propositions restent inchangées.",
+    "snapshot": {
+      "title": "Relancer la filière nucléaire",
+      "description": "Relancer la filière nucléaire.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-index",
+          "locator": "Dossier initial : Nucléaire et adaptation"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-16"
+    }
+  },
+  {
+    "id": "philippe-climat-2-v2",
+    "measureId": "philippe-climat-2",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T14:03:57.225004Z",
+    "summary": "Correction du libellé d’édition : le 12 novembre ne constitue pas une date de publication établie pour cette page. Les propositions restent inchangées.",
+    "snapshot": {
+      "title": "Adapter les bâtiments publics aux fortes chaleurs et accroître le stockage de l’eau",
+      "description": "Adapter les bâtiments publics aux fortes chaleurs et accroître le stockage de l’eau.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-index",
+          "locator": "Dossier initial : Nucléaire et adaptation"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-16"
+    }
+  },
+  {
+    "id": "philippe-immigration-1-v2",
+    "measureId": "philippe-immigration-1",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T14:03:57.225004Z",
+    "summary": "Correction du libellé d’édition : le 12 novembre ne constitue pas une date de publication établie pour cette page. Les propositions restent inchangées.",
+    "snapshot": {
+      "title": "Diviser les flux par deux",
+      "description": "Annoncer un moratoire sur le regroupement familial.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-index",
+          "locator": "Dossier initial : Diviser les flux par deux"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-16"
+    }
+  },
+  {
+    "id": "philippe-immigration-2-v2",
+    "measureId": "philippe-immigration-2",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T14:03:57.225004Z",
+    "summary": "Correction du libellé d’édition : le 12 novembre ne constitue pas une date de publication établie pour cette page. Les propositions restent inchangées.",
+    "snapshot": {
+      "title": "Dénoncer l’accord franco-algérien de 1968",
+      "description": "Dénoncer l’accord franco-algérien de 1968.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-index",
+          "locator": "Dossier initial : Diviser les flux par deux"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-16"
+    }
+  },
+  {
+    "id": "philippe-securite-1-v2",
+    "measureId": "philippe-securite-1",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T14:03:57.225004Z",
+    "summary": "Correction du libellé d’édition : le 12 novembre ne constitue pas une date de publication établie pour cette page. Les propositions restent inchangées.",
+    "snapshot": {
+      "title": "Rétablir des peines minimales",
+      "description": "Rétablir des peines minimales.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-index",
+          "locator": "Dossier initial : Peines planchers et prisons"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-16"
+    }
+  },
+  {
+    "id": "philippe-securite-2-v2",
+    "measureId": "philippe-securite-2",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T14:03:57.225004Z",
+    "summary": "Correction du libellé d’édition : le 12 novembre ne constitue pas une date de publication établie pour cette page. Les propositions restent inchangées.",
+    "snapshot": {
+      "title": "Accélérer la construction de places de prison",
+      "description": "Accélérer la construction de places de prison.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-index",
+          "locator": "Dossier initial : Peines planchers et prisons"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-16"
+    }
+  },
+  {
+    "id": "philippe-education-1-v2",
+    "measureId": "philippe-education-1",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T14:03:57.225004Z",
+    "summary": "Correction du libellé d’édition : le 12 novembre ne constitue pas une date de publication établie pour cette page. Les propositions restent inchangées.",
+    "snapshot": {
+      "title": "Revaloriser les enseignants",
+      "description": "Annoncer une hausse de salaire de 20 %.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-index",
+          "locator": "Dossier initial : Revaloriser les enseignants"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-16"
+    }
+  },
+  {
+    "id": "philippe-education-2-v2",
+    "measureId": "philippe-education-2",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T14:03:57.225004Z",
+    "summary": "Correction du libellé d’édition : le 12 novembre ne constitue pas une date de publication établie pour cette page. Les propositions restent inchangées.",
+    "snapshot": {
+      "title": "Accroître l’autonomie des établissements",
+      "description": "Accroître l’autonomie des établissements.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-index",
+          "locator": "Dossier initial : Revaloriser les enseignants"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-16"
+    }
+  },
+  {
+    "id": "philippe-social-1-v3",
+    "measureId": "philippe-social-1",
+    "number": 3,
+    "kind": "correction",
+    "observedOn": "2026-11-17",
+    "recordedAt": "2026-11-17T14:03:57.225004Z",
+    "summary": "Correction du libellé d’édition : le 12 novembre ne constitue pas une date de publication établie pour cette page. Les propositions restent inchangées.",
+    "snapshot": {
+      "title": "Allocation familiale jusqu’à 350 € par mois dès le premier enfant",
+      "description": "Fusionner les aides dans une allocation versée dès le premier enfant, atteignant 350 € pour les plus modestes et dégressive avec le revenu.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [
+        {
+          "label": "Montant mensuel maximal annoncé",
+          "value": 350,
+          "unit": "€",
+          "period": "mois",
+          "basis": "non-applicable",
+          "sourceId": "philippe-famille"
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-famille",
+          "locator": "Réponses sur le montant, la dégressivité et la fusion des aides"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-17"
+    }
   }
 ]

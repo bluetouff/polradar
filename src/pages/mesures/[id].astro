@@ -119,6 +119,14 @@ const candidate = candidateById(measure.candidate),
                   <Icon name="external" />
                 </a>
                 <p>{ref.locator}</p>
+                {source.published && (
+                  <span>Publication : {formatDate(source.published)}</span>
+                )}
+                {source.updated && (
+                  <span>
+                    Mise à jour du document : {formatDate(source.updated)}
+                  </span>
+                )}
                 <span>Consultation : {formatDate(source.checked)}</span>
               </li>
             );

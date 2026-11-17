@@ -30,7 +30,7 @@ npm run security:audit
 - `src/lib/schema.mjs` : validation des types, références et invariants.
 - `deploy/` : récupération et activation des versions publiques sur le serveur.
 
-Le corpus comprend 12 candidatures sélectionnées, 12 thèmes et 209 fiches de mesures ou orientations, dont 9 archives de 2022. Les 69 fiches thématiques initiales conservent leurs adresses ; le registre en comprend désormais 85. Les 221 versions sont des états du contenu Polradar : les enrichissements éditoriaux sont distingués des évolutions de programme. Il ne s’agit pas d’une liste officielle exhaustive. Chaque référence conserve sa propre date de consultation.
+Le corpus comprend 12 candidatures sélectionnées, 12 thèmes et 209 fiches de mesures ou orientations, dont 9 archives de 2022. Les 69 fiches thématiques initiales conservent leurs adresses ; le registre en comprend désormais 85. Les 236 versions sont des états du contenu Polradar : les enrichissements éditoriaux sont distingués des évolutions de programme. Il ne s’agit pas d’une liste officielle exhaustive. Chaque référence conserve sa propre date de consultation.
 
 Le registre de sondages contient trois vagues Elabe (août, octobre et novembre 2026), chacune avec trois scénarios, vérifiées dans les notices de la Commission des sondages. Chaque courbe conserve le même institut, tour, méthode et liste de candidatures. Les effectifs utiles inconnus restent nuls (`null`), sans fabrication. Le premier périmètre ne couvre qu’un institut. Le temps de parole, le financement et les résultats territoriaux restent à intégrer.
 

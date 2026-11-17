@@ -398,6 +398,15 @@ test('le déficit corrigé conserve sa version précédente et ses dates', async
 }) => {
   await page.goto('/mesures/philippe-fiscalite-1/');
   await expect(page.locator('h1')).toContainText('2,5 %');
+  await expect(page.locator('.page-title')).toContainText(
+    'Campagne présidentielle 2027',
+  );
+  await expect(page.locator('.page-title')).not.toContainText(
+    'Programme du 12',
+  );
+  await expect(page.locator('.precise-sources')).toContainText(
+    'Mise à jour du document : 16 novembre 2026',
+  );
   await page.goto('/historique/?mesure=philippe-fiscalite-1&avant=1&apres=2');
   await expect(page.locator('.diff-after').first()).toContainText('2,5 %');
   await expect(page.locator('.diff-before').first()).toContainText('2 %');
