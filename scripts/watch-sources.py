@@ -189,19 +189,69 @@ def fingerprint(content_type, body, content_class=None):
     return hashlib.sha256(text.encode()).hexdigest()
 
 
+def youtube_metadata_url(url, allowed_hosts):
+    parts = checked_url(url, allowed_hosts)
+    query = urllib.parse.parse_qs(parts.query, keep_blank_values=True)
+    video = query.get('v', [''])[0]
+    if parts.hostname != 'www.youtube.com' or parts.path != '/watch' or parts.fragment or set(query) != {'v'} or len(query['v']) != 1 or not re.fullmatch(r'[A-Za-z0-9_-]{11}', video):
+        raise ValueError('Invalid canonical video URL')
+    return 'https://www.youtube.com/oembed?' + urllib.parse.urlencode({'url':url, 'format':'json'}), video
+
+
+def youtube_metadata_fingerprint(content_type, body, video):
+    if content_type != 'application/json':
+        raise ValueError('Unsupported video metadata')
+    data = json.loads(body.decode('utf-8'))
+    if not isinstance(data, dict) or data.get('type') != 'video' or data.get('provider_name') != 'YouTube' or data.get('provider_url') != 'https://www.youtube.com/':
+        raise ValueError('Invalid video provider')
+    values = {key:data.get(key) for key in ('title','author_name','author_url')}
+    if any(not isinstance(value,str) or not value.strip() or len(value)>1000 or '\x00' in value for value in values.values()):
+        raise ValueError('Invalid video metadata')
+    author = urllib.parse.urlsplit(values['author_url'])
+    if author.scheme != 'https' or author.hostname != 'www.youtube.com' or author.username is not None or author.password is not None or author.port is not None or not (author.path.startswith('/@') or author.path.startswith('/channel/')) or author.query or author.fragment:
+        raise ValueError('Invalid video author URL')
+    # Only inspect the frame URL to bind the metadata to the requested video.
+    # No embedded markup or remote JavaScript is executed, stored or published.
+    class Frames(HTMLParser):
+        def __init__(self):
+            super().__init__(); self.urls = []
+        def handle_starttag(self, tag, attrs):
+            if tag == 'iframe': self.urls.append(dict(attrs).get('src'))
+    markup = data.get('html')
+    if not isinstance(markup,str) or len(markup)>10000:
+        raise ValueError('Invalid video frame')
+    frames = Frames(); frames.feed(markup)
+    if len(frames.urls) != 1 or not isinstance(frames.urls[0],str):
+        raise ValueError('Missing video frame')
+    frame = checked_url(frames.urls[0], {'www.youtube.com'})
+    if frame.path != '/embed/' + video:
+        raise ValueError('Mismatched video')
+    values.update(videoId=video)
+    return hashlib.sha256(json.dumps(values,sort_keys=True,ensure_ascii=False,separators=(',',':')).encode()).hexdigest()
+
+
 def inspect(source, previous, allowed_hosts):
     now = datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
     old = previous.get('fingerprint') or previous.get('previousFingerprint')
     row = {'sourceId':source['id'], 'checkedAt':now, 'status':'indisponible', 'httpStatus':None, 'fingerprint':None, 'previousFingerprint':old, 'bytes':0, 'contentType':'', 'message':'Connexion indisponible'}
     try:
-        status, content_type, body = fetch_reliably(source['url'], allowed_hosts)
+        video = None
+        url = source['url']
+        if source.get('watchFormat') == 'youtube-oembed':
+            if source.get('watchContentClass') is not None:
+                raise ValueError('Conflicting source formats')
+            url, video = youtube_metadata_url(url, allowed_hosts)
+        elif source.get('watchFormat') is not None:
+            raise ValueError('Unsupported source format')
+        status, content_type, body = fetch_reliably(url, allowed_hosts)
         row.update(httpStatus=status,contentType=content_type,bytes=len(body))
         if status != 200:
             row.update(status='bloque' if status in (401,403,429) else 'indisponible',message=f'Réponse HTTP {status}')
         else:
-            digest = fingerprint(content_type, body, source.get('watchContentClass'))
+            digest = youtube_metadata_fingerprint(content_type, body, video) if video else fingerprint(content_type, body, source.get('watchContentClass'))
             changed = old is not None and digest != old
-            row.update(status='modifie' if changed else 'accessible',fingerprint=digest,message='Contenu différent du dernier relevé validé' if changed else 'Document accessible lors du relevé')
+            message = 'Métadonnées de la vidéo modifiées' if changed else 'Vidéo disponible : métadonnées YouTube accessibles'
+            row.update(status='modifie' if changed else 'accessible',fingerprint=digest,message=message if video else ('Contenu différent du dernier relevé validé' if changed else 'Document accessible lors du relevé'))
             if not changed and previous.get('reviewedAt') and previous.get('reviewNote'):
                 row.update(reviewedAt=previous['reviewedAt'],reviewNote=previous['reviewNote'])
     except ValueError:

@@ -4,25 +4,20 @@ on:
 permissions:
   contents: read
 jobs:
-  probe:
-    runs-on: ubuntu-latest
-    timeout-minutes: 4
+  watch:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-15-intel]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
         with:
           persist-credentials: false
-      - name: Vérifier la captation officielle PCF
-        run: |
-          python3 - <<'PYCODE'
-          import importlib.util, json, urllib.parse
-          spec=importlib.util.spec_from_file_location('watch','scripts/watch-sources.py')
-          m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
-          url='https://www.youtube.com/oembed?'+urllib.parse.urlencode({'url':'https://www.youtube.com/watch?v=8p5_pfTtcck','format':'json'})
-          for attempt in range(2):
-              status, kind, body=m.fetch_reliably(url,{'www.youtube.com'})
-              assert status==200,(status,kind)
-              data=json.loads(body)
-              assert data['type']=='video' and data['provider_name']=='YouTube'
-              assert '8p5_pfTtcck' in data['html']
-              print(json.dumps({'pass':attempt+1,'httpStatus':status,'bytes':len(body),'title':data['title'],'author':data['author_name']},ensure_ascii=False))
-          PYCODE
+      - run: python3 scripts/watch-sources.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: source-watch-pcf-${{ matrix.os }}
+          path: artifacts/watch-report.*
+          if-no-files-found: error
