@@ -1,0 +1,83 @@
+---
+import { Image } from 'astro:assets';
+import { portraitFor } from '../lib/portraits';
+import { initials, type Candidate } from '../lib/data';
+interface Props {
+  candidate: Candidate;
+  eager?: boolean;
+  compact?: boolean;
+}
+const { candidate, eager = false, compact = false } = Astro.props;
+const portrait = portraitFor(candidate.id);
+---
+
+<div
+  class:list={[
+    'portrait',
+    `portrait-${candidate.id}`,
+    { 'portrait-unavailable': !portrait, 'portrait-compact': compact },
+  ]}
+>
+  {portrait ? (
+    <Image
+      src={portrait.image}
+      alt=""
+      widths={compact ? [64, 128] : [240, 480, 720]}
+      sizes={compact ? '44px' : '(max-width: 650px) 45vw, 240px'}
+      format="webp"
+      quality={82}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+    />
+  ) : (
+    <>
+      <span class="portrait-initials" aria-hidden="true">
+        {initials(candidate.name)}
+      </span>
+      <span class="portrait-pending">Portrait à documenter</span>
+    </>
+  )}
+</div>
+
+<style>
+  .portrait {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #e5e9e2;
+  }
+  .portrait :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 25%;
+  }
+  .portrait-unavailable {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 18px;
+    background: #dde5dd;
+    color: #36525a;
+  }
+  .portrait-initials {
+    font: 650 clamp(32px, 6vw, 70px)/1 var(--sans);
+    letter-spacing: -0.07em;
+  }
+  .portrait-pending {
+    max-width: 13ch;
+    font: 11px/1.4 var(--sans);
+  }
+  .portrait-compact.portrait-unavailable {
+    padding: 4px;
+    justify-content: center;
+    align-items: center;
+  }
+  .portrait-compact .portrait-initials {
+    font-size: 13px;
+    letter-spacing: 0;
+  }
+  .portrait-compact .portrait-pending {
+    display: none;
+  }
+</style>

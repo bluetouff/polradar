@@ -1,0 +1,444 @@
+.registry-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 4px 0 28px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--line);
+}
+.registry-kicker {
+  font: 10px/1.5 var(--mono);
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 13px;
+}
+.registry-heading h1 {
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.registry-heading h1 > span {
+  font: 12px var(--mono);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 7px 10px;
+  border-radius: 50%;
+}
+.registry-heading > div > p:last-child {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 10px;
+}
+.divergence-invite {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  padding: 17px 20px;
+  background: #e5ebe2;
+  text-decoration: none;
+  flex-shrink: 0;
+  border-left: 3px solid #bf432d;
+}
+.divergence-invite > .icon {
+  width: 32px;
+  height: 32px;
+  color: var(--accent);
+}
+.divergence-invite strong {
+  display: block;
+  font-size: 14px;
+}
+.divergence-invite small {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.registry-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 12px 22px;
+  margin-bottom: 18px;
+}
+.registry-controls label {
+  display: grid;
+  gap: 6px;
+  font-size: 11px;
+}
+.registry-controls input,
+.registry-controls select {
+  width: 100%;
+  min-width: 0;
+  background: white;
+  border-color: #a8b4b1;
+}
+.registry-controls > p {
+  grid-column: 1/-1;
+  font: 11px/1.5 var(--mono);
+  color: var(--muted);
+}
+.registry-legend {
+  display: flex;
+  gap: 12px 24px;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 16px 0;
+  font: 10px/1.5 var(--mono);
+  color: var(--muted);
+}
+.registry-legend > p {
+  font-family: var(--sans);
+  font-size: 11px;
+  flex: 1;
+}
+.registry-legend > a {
+  flex-shrink: 0;
+}
+.candidate-gallery {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 26px 19px;
+}
+.person {
+  min-width: 0;
+  padding-bottom: 13px;
+  border-bottom: 1px solid #c5cdc7;
+  position: relative;
+}
+.person-link {
+  display: block;
+  text-decoration: none;
+  color: var(--ink);
+}
+.person-visual {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: #dfe6df;
+}
+.person .portrait {
+  transition: transform 0.25s ease;
+}
+.person-link:hover .portrait {
+  transform: scale(1.035);
+}
+.person-number {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  min-width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  color: var(--ink);
+  font: 10px var(--mono);
+}
+.person-open {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 4px 11px;
+  background: var(--paper);
+  font-size: 20px;
+  line-height: 1.5;
+}
+.person-title {
+  padding-top: 12px;
+  min-height: 76px;
+}
+.person-title h2 {
+  font-size: 17px;
+  font-weight: 650;
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+  text-wrap: initial;
+}
+.person-party {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--muted);
+  margin-top: 6px;
+  min-height: 30px;
+}
+.person-status {
+  font-size: 9px;
+  line-height: 1.45;
+  color: var(--muted);
+  margin-top: 4px;
+  min-height: 27px;
+}
+.person-topics {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 3px;
+  margin: 9px 0 7px;
+}
+.person-topics > span {
+  display: block;
+  height: 5px;
+  background: #d8ded5;
+}
+.person-topics > [data-covered='yes'] {
+  background: #557c72;
+}
+.person-topics > [data-active='yes'] {
+  height: 8px;
+  outline: 1px solid var(--ink);
+  outline-offset: 2px;
+  background: white;
+}
+.person-topics > [data-active='yes'][data-covered='yes'] {
+  background: var(--accent);
+}
+.person-count {
+  font: 10px/1.5 var(--mono);
+  color: var(--muted);
+  min-height: 15px;
+}
+.person[data-theme-match='yes'] {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 11px;
+}
+.person[data-theme-match='yes'] .person-count {
+  color: var(--accent);
+}
+.candidate-hero {
+  display: grid;
+  grid-template-columns: minmax(140px, 210px) minmax(0, 1fr);
+  gap: 32px;
+  margin: 24px 0 28px;
+  align-items: start;
+}
+.candidate-hero figure {
+  min-width: 0;
+}
+.candidate-hero .profile-portrait {
+  aspect-ratio: 4/5;
+}
+.candidate-hero figcaption {
+  font-size: 10px;
+  margin-top: 8px;
+  color: var(--muted);
+}
+.candidate-hero h1 {
+  font-size: 28px;
+  margin: 8px 0 14px;
+}
+.candidate-hero .candidate-summary {
+  font-size: 13px;
+  color: var(--muted);
+  max-width: 72ch;
+  margin: 15px 0;
+}
+.profile-theme-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+.profile-theme-nav > a {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  font-size: 11px;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  padding: 7px 10px;
+  background: #fff9;
+}
+.profile-theme-nav .icon {
+  width: 16px;
+  height: 16px;
+}
+.candidate-theme {
+  scroll-margin-top: 24px;
+  padding-top: 5px;
+  margin: 28px 0;
+}
+.candidate-theme-heading {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 13px 0;
+  border-top: 2px solid var(--ink);
+  margin-bottom: 14px;
+}
+.candidate-theme-heading .icon {
+  color: var(--accent);
+}
+.candidate-theme-heading h3 {
+  font-size: 18px;
+}
+.candidate-theme-heading span {
+  margin-left: auto;
+  font: 11px var(--mono);
+  color: var(--muted);
+}
+.photo-credit-list {
+  display: grid;
+  gap: 20px;
+}
+.photo-credit-row {
+  display: grid;
+  grid-template-columns: 65px minmax(0, 1fr);
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 24px;
+}
+.photo-credit-row img {
+  width: 65px;
+  height: 80px;
+  object-fit: cover;
+}
+.photo-credit-row h2 {
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+.photo-credit-row p {
+  font-size: 12px;
+  color: var(--muted);
+}
+.photo-credit-row a {
+  margin-right: 12px;
+}
+@media (max-width: 1250px) {
+  .candidate-gallery {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .registry-heading {
+    align-items: start;
+  }
+  .divergence-invite {
+    max-width: 260px;
+    padding: 14px;
+    gap: 12px;
+  }
+  .divergence-invite small {
+    max-width: 20ch;
+  }
+}
+@media (max-width: 900px) {
+  .candidate-gallery {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px 16px;
+  }
+}
+@media (max-width: 650px) {
+  .registry-heading {
+    display: block;
+    margin-bottom: 20px;
+    padding-bottom: 18px;
+  }
+  .registry-heading h1 {
+    font-size: 26px;
+  }
+  .divergence-invite {
+    max-width: 100%;
+    margin-top: 18px;
+    gap: 12px;
+    padding: 10px 12px;
+  }
+  .divergence-invite strong {
+    font-size: 12px;
+  }
+  .divergence-invite small {
+    max-width: none;
+    font-size: 10px;
+  }
+  .divergence-invite > .icon {
+    width: 24px;
+    height: 24px;
+  }
+  .divergence-invite > span:last-child {
+    margin-left: auto;
+  }
+  .registry-controls {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .registry-controls input,
+  .registry-controls select {
+    min-height: 44px;
+  }
+  .registry-controls > p {
+    font-size: 10px;
+  }
+  .registry-legend {
+    font-size: 9px;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+  }
+  .registry-legend > p {
+    order: 3;
+    flex-basis: 100%;
+  }
+  .candidate-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 14px;
+  }
+  .person-title h2 {
+    font-size: 17px;
+  }
+  .person-title {
+    min-height: 78px;
+  }
+  .person-party {
+    font-size: 10px;
+  }
+  .person-status {
+    font-size: 9px;
+  }
+  .person-count {
+    font-size: 9px;
+  }
+  .person-number {
+    top: 8px;
+    left: 8px;
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    font-size: 9px;
+  }
+  .candidate-hero {
+    grid-template-columns: 105px minmax(0, 1fr);
+    gap: 18px;
+  }
+  .candidate-hero h1 {
+    font-size: 24px;
+  }
+  .candidate-hero .feature-actions {
+    grid-column: 1/-1;
+  }
+  .candidate-hero .candidate-summary {
+    font-size: 12px;
+  }
+  .candidate-hero .eyebrow {
+    font-size: 10px;
+  }
+  .profile-theme-nav {
+    grid-column: 1/-1;
+  }
+  .profile-theme-nav > a {
+    padding: 6px 8px;
+  }
+  .photo-credit-row {
+    grid-template-columns: 50px minmax(0, 1fr);
+    gap: 14px;
+  }
+  .photo-credit-row img {
+    width: 50px;
+    height: 65px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .person .portrait {
+    transition: none;
+  }
+  .person-link:hover .portrait {
+    transform: none;
+  }
+}

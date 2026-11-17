@@ -14,6 +14,7 @@ import {
   formatDate,
 } from '../lib/data';
 import HomeSignals from '../components/HomeSignals.astro';
+import CandidatePortrait from '../components/CandidatePortrait.astro';
 const articles = (
   await getCollection('articles', ({ data }) => !data.draft)
 ).sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
@@ -113,11 +114,11 @@ const maxThemeCount = Math.max(1, ...themeCounts.map((theme) => theme.count));
     </div>
     <p class="register-note">Profils suivis · ordre alphabétique</p>
     <ol class="candidate-roster">
-      {candidates.map((candidate, index) => (
+      {candidates.map((candidate) => (
         <li>
           <a href={`/candidats/${candidate.id}/`}>
-            <span class="roster-number" aria-hidden="true">
-              {String(index + 1).padStart(2, '0')}
+            <span class="roster-portrait">
+              <CandidatePortrait candidate={candidate} compact />
             </span>
             <span class="roster-person">
               <strong>{candidate.name}</strong>
@@ -209,3 +210,17 @@ const maxThemeCount = Math.max(1, ...themeCounts.map((theme) => theme.count));
     </section>
   </div>
 </Base>
+
+<style>
+  .candidate-roster a {
+    grid-template-columns: 44px minmax(0, 1fr) 14px;
+    align-items: center;
+    padding-block: 10px;
+  }
+  .roster-portrait {
+    display: block;
+    width: 44px;
+    height: 50px;
+    overflow: hidden;
+  }
+</style>

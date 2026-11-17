@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import DivergenceMap from '../components/DivergenceMap.astro';
+import Icon from '../components/Icon.astro';
+import { candidates, measures, themes } from '../lib/data';
+import { divergenceGroups } from '../lib/divergences.mjs';
+import '../styles/divergences.css';
+const groups = divergenceGroups(measures, candidates, themes);
+---
+
+<Base title="Carte des divergences" section="/divergences/">
+  <header class="divergence-heading">
+    <div>
+      <p class="divergence-kicker">PROPOSITIONS / COMPARAISONS</p>
+      <h1>Carte des divergences</h1>
+      <p>
+        Les écarts entre des cibles précises, avec leurs conditions et leurs
+        sources.
+      </p>
+    </div>
+    <div class="divergence-count">
+      <strong>{groups.length}</strong>
+      <span>
+        paramètres
+        <br />
+        comparables
+      </span>
+    </div>
+  </header>
+  <div class="divergence-toolbar" data-divergence-controls hidden>
+    <button type="button" class="button" data-divergence-share>
+      <Icon name="external" />
+      Copier le lien
+    </button>
+    <p role="status" aria-live="polite" data-divergence-status></p>
+  </div>
+  <nav class="divergence-tabs" aria-label="Paramètres comparés">
+    {groups.map((group) => (
+      <a href={`#${group.id}`} data-axis-link={group.id}>
+        <Icon name={group.theme} />
+        <span>{group.label}</span>
+        <small>{group.values.length}</small>
+      </a>
+    ))}
+  </nav>
+  <div class="divergence-panels">
+    {groups.map((group) => (
+      <DivergenceMap group={group} />
+    ))}
+  </div>
+  <aside class="divergence-method">
+    <h2>Lire cette carte</h2>
+    <p>
+      Chaque axe rapproche des valeurs exprimées dans la même unité pour un même
+      paramètre. Les projets de parti et les orientations sont identifiés dans
+      les fiches. Les archives de 2022 sont exclues de cette vue.
+    </p>
+    <p>
+      La carte porte sur les valeurs comparables du corpus actuel. Les dossiers
+      candidats permettent de lire les autres propositions.
+    </p>
+    <a href="/candidats/">Explorer les candidatures ↗</a>
+    <a href="/comparer/">Comparateur par thème ↗</a>
+    <a href="/methode/">Méthode ↗</a>
+  </aside>
+  <script src="../scripts/divergences.ts"></script>
+</Base>

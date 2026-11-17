@@ -42,6 +42,10 @@ La chronologie rassemble 26 événements datés, avec des catégories, une reche
 
 La présentation utilise la police Archivo, servie localement depuis `src/assets/fonts/` sous licence SIL OFL 1.1. Le reste du projet conserve sa licence MIT. La home présente les volumes de fiches par thème, une série de sondages compatible et les relevés distincts des deux marchés ; l’annuaire des 33 profils est disposé en colonnes sans étirer les autres blocs.
 
+La galerie des candidatures présente 23 portraits réels avec attribution et licence sur `/credits-photos/`. Les images sont conservées localement et optimisées par Astro ; aucun hébergeur d’images n’est appelé par le navigateur. Les portraits plus anciens conservent leur année. Les candidatures sans portrait qualifié restent affichées avec leur nom. Le filtre par thème indique les fiches disponibles dans le corpus, sans supprimer les dossiers encore à documenter.
+
+La carte `/divergences/` rapproche quatre paramètres chiffrés du corpus : âge général de départ, durée de cotisation, SMIC mensuel net et seuil d’exonération annoncé pour les héritages. Les conditions et sources restent visibles sous chaque graphique. Les clés `age-depart` et `age-retraite` désignent la cible générale ; l’âge de pénibilité et celui du taux plein restent séparés. Le SMIC compare uniquement les montants mensuels nets renseignés dans les données structurées, sans convertir les montants bruts. Les graphiques excluent les archives et refusent les unités ou valeurs contradictoires. Ils ne produisent pas de score politique. Les thèmes, fiches et sources restent consultables sans JavaScript.
+
 ## Marchés prédictifs
 
 La page `/marches-predictifs/` présente les contrats actifs sur le vainqueur de la prochaine présidentielle française, depuis les API publiques Polymarket et Kalshi. Les données sont des relevés statiques datés, sans appel à ces plateformes dans le navigateur, sans clé et sans fonction de transaction. Les noms des contrats ne constituent pas une liste de candidatures déclarées.

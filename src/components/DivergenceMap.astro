@@ -1,0 +1,214 @@
+---
+import { getImage } from 'astro:assets';
+import { divergenceLayout, formatMetricValue } from '../lib/divergences.mjs';
+import { candidates, initials, scopes } from '../lib/data';
+import { portraitFor } from '../lib/portraits';
+import SourceLinks from './SourceLinks.astro';
+import Icon from './Icon.astro';
+interface Props {
+  group: ReturnType<
+    typeof import('../lib/divergences.mjs').divergenceGroups
+  >[number];
+}
+const { group } = Astro.props;
+const layout = divergenceLayout(group.values, 720);
+const faces = new Map(
+  await Promise.all(
+    group.values.map(async (row) => {
+      const portrait = portraitFor(row.candidate);
+      return [
+        row.candidate,
+        portrait
+          ? (
+              await getImage({
+                src: portrait.image,
+                width: 112,
+                height: 112,
+                fit: 'cover',
+                position: 'north',
+                format: 'webp',
+                quality: 82,
+              })
+            ).src
+          : null,
+      ] as const;
+    }),
+  ),
+);
+const format = (value: number) => formatMetricValue(value);
+---
+
+<section
+  class="divergence-panel"
+  id={group.id}
+  data-divergence-panel
+  data-axis-label={group.label}
+>
+  <header class="divergence-panel-heading">
+    <p>{group.themeLabel}</p>
+    <h2>{group.label}</h2>
+    <span>
+      {group.values.length} candidatures · {group.unit}
+    </span>
+  </header>
+  <figure class="divergence-figure">
+    <svg
+      class="divergence-svg"
+      width={layout.width}
+      height={layout.height}
+      viewBox={`0 0 ${layout.width} ${layout.height}`}
+      role="img"
+      aria-label={`${group.label} en ${group.unit}. ${group.values.map((row) => `${row.name} : ${format(row.value)}`).join('. ')}`}
+    >
+      <g data-axis-ticks>
+        {layout.ticks.map((tick, index) => (
+          <g>
+            <line
+              x1={tick.x}
+              x2={tick.x}
+              y1={layout.axisY - 4}
+              y2={layout.axisY + 5}
+            />
+            <text
+              x={tick.x}
+              y={layout.axisY + 25}
+              text-anchor={
+                index === 0
+                  ? 'start'
+                  : index === layout.ticks.length - 1
+                    ? 'end'
+                    : 'middle'
+              }
+            >
+              {format(tick.value)}
+            </text>
+          </g>
+        ))}
+      </g>
+      <line
+        data-axis-line
+        class="divergence-axis"
+        x1="38"
+        x2={layout.width - 38}
+        y1={layout.axisY}
+        y2={layout.axisY}
+      />
+      {group.values.map((row, index) => {
+        const point = layout.points[index],
+          face = faces.get(row.candidate);
+        const candidate = candidates.find(
+          (candidate) => candidate.id === row.candidate,
+        )!;
+        return (
+          <g
+            data-divergence-point
+            data-candidate={row.candidate}
+            data-value={row.value}
+          >
+            <line
+              data-leader
+              x1={point.x}
+              x2={point.x}
+              y1={point.y + 54}
+              y2={layout.axisY}
+            />
+            <a
+              href={`/mesures/${row.measureId}/`}
+              aria-label={`${row.name}, ${format(row.value)} ${group.unit} : lire la proposition`}
+            >
+              <title>{row.name} : {format(row.value)} {group.unit}</title>
+              <circle
+                data-halo
+                class="divergence-halo"
+                cx={point.x}
+                cy={point.y}
+                r="29"
+              />
+              {face ? (
+                <svg
+                  data-face
+                  x={point.x - 25}
+                  y={point.y - 25}
+                  width="50"
+                  height="50"
+                  viewBox="0 0 50 50"
+                >
+                  <defs>
+                    <clipPath id={`face-${group.id}-${row.candidate}`}>
+                      <circle cx="25" cy="25" r="25" />
+                    </clipPath>
+                  </defs>
+                  <image
+                    href={face}
+                    width="50"
+                    height="50"
+                    clip-path={`url(#face-${group.id}-${row.candidate})`}
+                  />
+                </svg>
+              ) : (
+                <text
+                  data-initials
+                  x={point.x}
+                  y={point.y + 4}
+                  text-anchor="middle"
+                >
+                  {initials(candidate.name)}
+                </text>
+              )}
+              <text
+                data-point-value
+                class="divergence-value"
+                x={point.x}
+                y={point.y + 46}
+                text-anchor="middle"
+              >
+                {format(row.value)}
+              </text>
+            </a>
+          </g>
+        );
+      })}
+    </svg>
+    <figcaption>
+      Cibles annoncées en {group.unit}. Les modalités de chaque proposition
+      figurent ci-dessous.
+      {group.key === 'smic-mensuel-net' &&
+        ' Cet axe compare les montants mensuels nets. Les annonces brutes ou sans base précisée figurent dans les dossiers.'}
+    </figcaption>
+  </figure>
+  <div class="divergence-records">
+    {group.values.map((row) => {
+      const candidate = candidates.find(
+        (candidate) => candidate.id === row.candidate,
+      )!;
+      const measure = row.measure!;
+      return (
+        <article class="divergence-record" data-focus-candidate={candidate.id}>
+          <header>
+            <span class="divergence-record-name">{candidate.name}</span>
+            <strong>
+              {format(row.value)} <small>{group.unit}</small>
+            </strong>
+          </header>
+          <p class="divergence-scope">
+            {scopes[measure.scope]} · {measure.edition}
+          </p>
+          <h3>
+            <a href={`/mesures/${measure.id}/`}>{measure.title} ↗</a>
+          </h3>
+          <p>{measure.description}</p>
+          {measure.timing && (
+            <p class="divergence-detail">
+              <Icon name="clock" />
+              <span>{measure.timing}</span>
+            </p>
+          )}
+          <SourceLinks
+            ids={[...new Set(measure.sourceRefs.map((ref) => ref.sourceId))]}
+            compact
+          />
+        </article>
+      );
+    })}
+  </div>
+</section>

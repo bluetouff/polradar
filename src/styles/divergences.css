@@ -1,0 +1,342 @@
+.divergence-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  align-items: center;
+  padding-bottom: 27px;
+  margin: 5px 0 22px;
+  border-bottom: 1px solid var(--line);
+}
+.divergence-kicker {
+  font: 10px var(--mono);
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 13px;
+}
+.divergence-heading h1 {
+  font-size: 28px;
+}
+.divergence-heading > div > p:last-child {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 10px;
+  max-width: 65ch;
+}
+.divergence-count {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 22px;
+  border-left: 1px solid var(--line);
+}
+.divergence-count strong {
+  font: 650 44px/1 var(--sans);
+  letter-spacing: -0.07em;
+  color: var(--accent);
+}
+.divergence-count span {
+  font: 10px/1.5 var(--mono);
+  color: var(--muted);
+}
+.divergence-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  align-items: end;
+  justify-content: flex-end;
+  margin: 24px 0;
+}
+.divergence-toolbar label {
+  display: grid;
+  gap: 6px;
+  font-size: 11px;
+  flex: 1;
+  min-width: min(100%, 260px);
+}
+.divergence-toolbar select {
+  width: 100%;
+  background: white;
+}
+.divergence-toolbar > p {
+  flex-basis: 100%;
+  font-size: 11px;
+  color: var(--muted);
+}
+.divergence-toolbar .button {
+  min-height: 44px;
+  font-size: 12px;
+}
+.divergence-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.divergence-tabs > a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  text-decoration: none;
+  border: 1px solid #b8c6bd;
+  font-size: 12px;
+}
+.divergence-tabs .icon {
+  width: 18px;
+  height: 18px;
+}
+.divergence-tabs small {
+  font: 10px var(--mono);
+  background: #e3e8df;
+  padding: 2px 6px;
+}
+.divergence-tabs > a[aria-current='true'] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.divergence-tabs > a[aria-current='true'] small {
+  background: #40616a;
+  color: white;
+}
+.divergence-panel {
+  padding: 28px;
+  background: #fffdf7;
+  border: 1px solid #c6d0c6;
+  margin-bottom: 25px;
+  scroll-margin-top: 25px;
+}
+.divergence-panel-heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  align-items: baseline;
+}
+.divergence-panel-heading > p {
+  flex-basis: 100%;
+  font: 10px var(--mono);
+  text-transform: uppercase;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+}
+.divergence-panel-heading h2 {
+  font-size: 23px;
+  line-height: 1.3;
+}
+.divergence-panel-heading > span {
+  margin-left: auto;
+  font: 11px var(--mono);
+  color: var(--muted);
+}
+.divergence-figure {
+  margin: 20px 0 30px;
+  padding: 14px 0 0;
+  background: #eff2e9;
+  border-top: 1px solid #dbe1d4;
+  border-bottom: 1px solid #dbe1d4;
+}
+.divergence-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+.divergence-svg line {
+  stroke: #8a9d92;
+  stroke-width: 1;
+}
+.divergence-svg text {
+  fill: var(--ink);
+  font: 11px var(--mono);
+}
+.divergence-svg .divergence-value {
+  font: 650 15px var(--sans);
+}
+.divergence-svg [data-leader] {
+  stroke: #94aa9b;
+  stroke-dasharray: 3 3;
+}
+.divergence-svg .divergence-halo {
+  fill: #e0e8dc;
+  stroke: #fffdf7;
+  stroke-width: 3;
+}
+.divergence-svg .is-focused .divergence-halo,
+.divergence-svg a:hover .divergence-halo,
+.divergence-svg a:focus-visible .divergence-halo {
+  stroke: var(--accent);
+  stroke-width: 4;
+}
+.divergence-figure figcaption {
+  padding: 13px 18px;
+  font-size: 11px;
+  color: var(--muted);
+  border-top: 1px solid #dbe1d4;
+}
+.divergence-records {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 22px;
+}
+.divergence-record {
+  padding-top: 15px;
+  border-top: 3px solid var(--ink);
+  min-width: 0;
+}
+.divergence-record > header {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.divergence-record-name {
+  font-size: 13px;
+  font-weight: 650;
+}
+.divergence-record strong {
+  font: 650 29px/1.2 var(--sans);
+  letter-spacing: -0.04em;
+}
+.divergence-record strong small {
+  font: 11px var(--mono);
+  letter-spacing: 0;
+}
+.divergence-record h3 {
+  font-size: 16px;
+  line-height: 1.3;
+  margin: 16px 0 10px;
+}
+.divergence-record h3 a {
+  text-decoration: none;
+}
+.divergence-record > p {
+  font-size: 12px;
+  line-height: 1.65;
+}
+.divergence-record .divergence-scope {
+  font: 10px/1.6 var(--mono);
+  color: var(--muted);
+  margin-top: 8px;
+}
+.divergence-record .source-links {
+  font-size: 11px;
+  margin-top: 14px;
+}
+.divergence-detail {
+  display: flex;
+  gap: 7px;
+  align-items: start;
+  color: var(--muted);
+}
+.divergence-detail .icon {
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
+  margin-top: 3px;
+}
+.divergence-method {
+  border-top: 2px solid var(--ink);
+  padding-top: 20px;
+  margin-top: 32px;
+  max-width: 90ch;
+}
+.divergence-method h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+.divergence-method p {
+  font-size: 12px;
+  color: var(--muted);
+}
+.divergence-method > a {
+  display: inline-block;
+  margin: 16px 22px 0 0;
+  font-size: 12px;
+}
+@media (max-width: 650px) {
+  .divergence-heading {
+    gap: 14px;
+    align-items: start;
+  }
+  .divergence-heading h1 {
+    font-size: 26px;
+  }
+  .divergence-count {
+    display: none;
+  }
+  .divergence-heading > div > p:last-child {
+    font-size: 12px;
+  }
+  .divergence-toolbar {
+    margin: 18px 0;
+    gap: 10px;
+  }
+  .divergence-toolbar label {
+    min-width: 100%;
+  }
+  .divergence-toolbar select {
+    font-size: 13px;
+  }
+  .divergence-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .divergence-tabs > a {
+    padding: 9px 12px;
+    font-size: 11px;
+    min-width: 0;
+    gap: 6px;
+    padding: 10px 8px;
+  }
+  .divergence-tabs > a > span {
+    min-width: 0;
+    font-size: 10px;
+    line-height: 1.4;
+  }
+  .divergence-tabs .icon {
+    width: 14px;
+    height: 14px;
+    min-width: 14px;
+  }
+  .divergence-tabs small {
+    margin-left: auto;
+  }
+  .divergence-panel {
+    padding: 18px 13px;
+  }
+  .divergence-panel-heading h2 {
+    font-size: 21px;
+  }
+  .divergence-panel-heading > span {
+    margin-left: 0;
+    flex-basis: 100%;
+    font-size: 10px;
+  }
+  .divergence-records {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .divergence-record > header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .divergence-record strong {
+    font-size: 27px;
+    white-space: nowrap;
+  }
+  .divergence-record-name {
+    max-width: 17ch;
+  }
+  .divergence-record .divergence-scope {
+    font-size: 9px;
+  }
+  .divergence-figure {
+    margin-top: 18px;
+  }
+  .divergence-figure figcaption {
+    padding: 12px;
+    font-size: 10px;
+  }
+}

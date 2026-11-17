@@ -1,24 +1,56 @@
 ---
 import Base from '../../layouts/Base.astro';
 import CandidateCard from '../../components/CandidateCard.astro';
-import Filter from '../../components/Filter.astro';
-import { candidates } from '../../lib/data';
+import Icon from '../../components/Icon.astro';
+import { candidates, themes } from '../../lib/data';
+import '../../styles/candidates.css';
 ---
 
 <Base title="Candidats" section="/candidats/">
-  <header class="page-title">
-    <h1>Candidats</h1>
-    <p>
-      Statut des candidatures et propositions recensées. Cette sélection est non
-      exhaustive.
-    </p>
+  <header class="registry-heading">
+    <div>
+      <p class="registry-kicker">PRÉSIDENTIELLE 2027 / LES DOSSIERS</p>
+      <h1>
+        Candidats <span>{candidates.length}</span>
+      </h1>
+      <p>Les personnalités, leurs propositions et les textes consultés.</p>
+    </div>
+    <a class="divergence-invite" href="/divergences/">
+      <Icon name="exchange" />
+      <span>
+        <strong>Carte des divergences</strong>
+        <small>Comparer les propositions chiffrées</small>
+      </span>
+      <span aria-hidden="true">↗</span>
+    </a>
   </header>
-  <Filter
-    target="candidate-list"
-    label="Rechercher une candidature ou un parti"
-    placeholder="Un nom ou une formation politique…"
-  />
-  <div class="candidate-grid" id="candidate-list">
+  <div class="registry-controls" data-candidate-controls hidden>
+    <label>
+      <span>Nom ou formation politique</span>
+      <input
+        type="search"
+        data-candidate-query
+        placeholder="Rechercher une candidature…"
+        autocomplete="off"
+      />
+    </label>
+    <label>
+      <span>Explorer les fiches par thème</span>
+      <select data-candidate-theme>
+        <option value="">Tous les thèmes</option>
+        {themes.map((theme) => (
+          <option value={theme.id}>{theme.label}</option>
+        ))}
+      </select>
+    </label>
+    <p role="status" data-candidate-status aria-live="polite"></p>
+  </div>
+  <div class="registry-legend">
+    <span>Ordre alphabétique</span>
+    <p>Les repères colorés indiquent les thèmes documentés dans Polradar.</p>
+    <a href="/credits-photos/">Crédits photos ↗</a>
+  </div>
+  <div class="candidate-gallery" id="candidate-list">
     {candidates.map((candidate) => (
       <CandidateCard candidate={candidate} />
     ))}
@@ -34,4 +66,5 @@ import { candidates } from '../../lib/data';
     </p>
     <a href="/reperes/">Comprendre les étapes ↗</a>
   </aside>
+  <script src="../../scripts/candidates.ts"></script>
 </Base>

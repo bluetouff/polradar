@@ -1,39 +1,69 @@
 ---
-import { candidates, byCandidate, type Candidate } from '../lib/data';
+import { candidates, measures, themes, type Candidate } from '../lib/data';
+import CandidatePortrait from './CandidatePortrait.astro';
 interface Props {
   candidate: Candidate;
 }
 const { candidate } = Astro.props;
-const count = byCandidate(candidate.id, false).length;
+const records = measures.filter(
+  (row) => row.candidate === candidate.id && row.scope !== 'archive',
+);
+const counts = Object.fromEntries(
+  themes.map((theme) => [
+    theme.id,
+    records.filter((row) => row.theme === theme.id).length,
+  ]),
+);
+const covered = Object.values(counts).filter((count) => count > 0).length;
 const index = candidates.findIndex((item) => item.id === candidate.id) + 1;
 ---
 
 <article
-  class="candidate-card"
+  class="person"
   data-search={`${candidate.name} ${candidate.party}`}
+  data-theme-counts={JSON.stringify(counts)}
 >
-  <span class="candidate-index" aria-hidden="true">
-    {String(index).padStart(2, '0')}
-  </span>
-  <div class="candidate-identity">
-    <h3>
-      <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
-    </h3>
-    <p class="party-label">{candidate.party}</p>
-    <p class="candidate-note">{candidate.note}</p>
-  </div>
-  <p class="candidate-status">
-    <span class="tag">{candidate.status}</span>
-  </p>
-  <p class="candidate-coverage">
-    <strong>{count}</strong> thème{count > 1 ? 's' : ''}
-    <small>hors archives</small>
-  </p>
   <a
-    class="candidate-open"
+    class="person-link"
     href={`/candidats/${candidate.id}/`}
-    aria-label={`Lire le dossier de ${candidate.name}`}
+    data-person-link
+    data-base-url={`/candidats/${candidate.id}/`}
   >
-    ↗
+    <div class="person-visual">
+      <CandidatePortrait candidate={candidate} eager={index <= 5} />
+      <span class="person-number" aria-hidden="true">
+        {String(index).padStart(2, '0')}
+      </span>
+      <span class="person-open" aria-hidden="true">
+        ↗
+      </span>
+    </div>
+    <div class="person-title">
+      <h2>{candidate.name}</h2>
+      <p class="person-party">{candidate.party}</p>
+    </div>
   </a>
+  <p class="person-status">{candidate.status}</p>
+  <div class="person-topics" aria-hidden="true">
+    {themes.map((theme) => (
+      <span
+        data-theme-cell={theme.id}
+        data-covered={counts[theme.id] > 0 ? 'yes' : 'no'}
+        title={`${theme.label} : ${counts[theme.id]} fiche${counts[theme.id] > 1 ? 's' : ''}`}
+      />
+    ))}
+  </div>
+  <p
+    class="person-count"
+    data-person-count
+    data-default-label={
+      records.length
+        ? `${records.length} fiches · ${covered} thèmes`
+        : 'Dossier à documenter'
+    }
+  >
+    {records.length
+      ? `${records.length} fiches · ${covered} thèmes`
+      : 'Dossier à documenter'}
+  </p>
 </article>

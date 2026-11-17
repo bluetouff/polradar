@@ -3,7 +3,11 @@ import Base from '../../layouts/Base.astro';
 import MeasureCard from '../../components/MeasureCard.astro';
 import FollowButton from '../../components/FollowButton.astro';
 import SourceLinks from '../../components/SourceLinks.astro';
-import { candidates, measures, initials, themes } from '../../lib/data';
+import CandidatePortrait from '../../components/CandidatePortrait.astro';
+import Icon from '../../components/Icon.astro';
+import { candidates, measures, themes } from '../../lib/data';
+import { portraitFor } from '../../lib/portraits';
+import '../../styles/candidates.css';
 export function getStaticPaths() {
   return candidates.map((candidate) => ({
     params: { id: candidate.id },
@@ -17,6 +21,7 @@ const records = measures.filter(
 const current = records.filter((record) => record.scope !== 'archive');
 const archives = records.filter((record) => record.scope === 'archive');
 const covered = new Set(current.map((measure) => measure.theme)).size;
+const portrait = portraitFor(candidate.id);
 ---
 
 <Base
@@ -29,15 +34,24 @@ const covered = new Set(current.map((measure) => measure.theme)).size;
     <span>/</span>
     <span>{candidate.name}</span>
   </div>
-  <header class="candidate-profile">
-    <div class="profile-avatar" aria-hidden="true">
-      {initials(candidate.name)}
-    </div>
+  <header class="candidate-hero">
+    <figure>
+      <div class="profile-portrait">
+        <CandidatePortrait candidate={candidate} eager />
+      </div>
+      {portrait && (
+        <figcaption>
+          <a href={`/credits-photos/#${candidate.id}`}>
+            Photo {portrait.credit.year} · crédits ↗
+          </a>
+        </figcaption>
+      )}
+    </figure>
     <div>
       <p class="eyebrow">{candidate.party}</p>
       <h1>{candidate.name}</h1>
       <span class="tag">{candidate.status}</span>
-      <p>{candidate.note}</p>
+      <p class="candidate-summary">{candidate.note}</p>
       <div class="feature-actions">
         <a
           class="button primary"
@@ -51,6 +65,18 @@ const covered = new Set(current.map((measure) => measure.theme)).size;
           name={candidate.name}
         />
       </div>
+      {covered > 0 && (
+        <nav class="profile-theme-nav" aria-label="Thèmes documentés">
+          {themes
+            .filter((theme) => current.some((row) => row.theme === theme.id))
+            .map((theme) => (
+              <a href={`#theme-${theme.id}`}>
+                <Icon name={theme.id} />
+                {theme.label}
+              </a>
+            ))}
+        </nav>
+      )}
     </div>
   </header>
   <div class="profile-layout">
@@ -78,11 +104,27 @@ const covered = new Set(current.map((measure) => measure.theme)).size;
         </div>
       </div>
       {current.length ? (
-        <div class="measure-list">
-          {current.map((item) => (
-            <MeasureCard measure={item} />
-          ))}
-        </div>
+        themes.map((theme) => {
+          const items = current.filter((item) => item.theme === theme.id);
+          return (
+            items.length > 0 && (
+              <section class="candidate-theme" id={`theme-${theme.id}`}>
+                <header class="candidate-theme-heading">
+                  <Icon name={theme.id} />
+                  <h3>{theme.label}</h3>
+                  <span>
+                    {items.length} fiche{items.length > 1 ? 's' : ''}
+                  </span>
+                </header>
+                <div class="measure-list">
+                  {items.map((item) => (
+                    <MeasureCard measure={item} level="h4" />
+                  ))}
+                </div>
+              </section>
+            )
+          );
+        })
       ) : (
         <div class="notice">
           <h3>Aucune fiche de campagne 2027</h3>

@@ -1,0 +1,74 @@
+.mobile-navigation {
+  display: none;
+}
+@media (max-width: 900px) {
+  .rail-brand {
+    position: relative;
+  }
+  .mobile-navigation {
+    display: block;
+    align-self: center;
+    font: 12px var(--sans);
+  }
+  .mobile-navigation summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0 10px 12px;
+    list-style: none;
+    cursor: pointer;
+  }
+  .mobile-navigation summary::-webkit-details-marker {
+    display: none;
+  }
+  .mobile-navigation summary .icon {
+    width: 18px;
+    height: 18px;
+  }
+  .mobile-navigation nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--ink);
+    color: var(--paper);
+    z-index: 10;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px;
+    padding: 15px;
+    border: 1px solid #59717a;
+    max-height: 70svh;
+    overflow: auto;
+    box-shadow: 0 12px 20px #17374622;
+  }
+  .mobile-navigation nav a {
+    display: block;
+    padding: 12px;
+    min-height: 44px;
+    text-decoration: none;
+    border-bottom: 1px solid #59717a;
+    overflow-wrap: break-word;
+  }
+  .mobile-navigation nav a:hover,
+  .mobile-navigation nav a[aria-current] {
+    color: #fff;
+    background: #31515e;
+  }
+  .site-rail .main-nav {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .site-rail .main-nav > a:nth-child(n + 6) {
+    display: none;
+  }
+}
+@media (max-width: 650px) {
+  .rail-brand > p > .election-context {
+    display: none;
+  }
+  .site-rail .main-nav > a {
+    font-size: clamp(9px, 2.4vw, 11px);
+    letter-spacing: -0.02em;
+    min-width: 0;
+  }
+}
