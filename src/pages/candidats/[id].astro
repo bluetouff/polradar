@@ -32,9 +32,7 @@ const archives = records.filter((record) => record.scope === 'archive');
     <div>
       <p class="eyebrow">{candidate.party}</p>
       <h1>{candidate.name}</h1>
-      <span class="tag">
-        Candidature {candidate.status.toLocaleLowerCase('fr')}
-      </span>
+      <span class="tag">{candidate.status}</span>
       <p>{candidate.note}</p>
       <a
         class="button primary"
@@ -65,8 +63,7 @@ const archives = records.filter((record) => record.scope === 'archive');
     <div>
       <div class="section-heading">
         <div>
-          <p class="eyebrow">LES DOCUMENTS DISPONIBLES</p>
-          <h2>Les engagements et orientations.</h2>
+          <h2>Engagements et orientations</h2>
         </div>
       </div>
       {current.length ? (
@@ -77,7 +74,7 @@ const archives = records.filter((record) => record.scope === 'archive');
         </div>
       ) : (
         <div class="notice">
-          <h3>Le dossier 2027 reste à compléter</h3>
+          <h3>Aucune fiche de campagne 2027</h3>
           <p>
             Le corpus actuel ne contient pas encore de fiche de campagne récente
             pour cette candidature. Les archives sont séparées ci-dessous.
@@ -100,8 +97,7 @@ const archives = records.filter((record) => record.scope === 'archive');
         <section class="section-space">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">MILLÉSIME DISTINCT</p>
-              <h2>Archives de 2022.</h2>
+              <h2>Archives de 2022</h2>
             </div>
           </div>
           <p class="section-description">

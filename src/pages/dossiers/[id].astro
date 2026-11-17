@@ -42,7 +42,7 @@ const { Content } = await render(article);
       </p>
     </article>
     <aside class="article-aside">
-      <p class="eyebrow">POURSUIVRE LA LECTURE</p>
+      <p class="eyebrow">Pages associées</p>
       {article.data.themes.map((id) => (
         <a href={`/themes/${id}/`}>
           {themeById(id).label} : les propositions ↗

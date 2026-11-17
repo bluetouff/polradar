@@ -4,18 +4,12 @@ import Filter from '../components/Filter.astro';
 import { sources, sourceKinds, formatDate } from '../lib/data';
 ---
 
-<Base title="Le registre des sources">
+<Base title="Sources">
   <header class="page-title">
-    <p class="eyebrow">LE REGISTRE DOCUMENTAIRE</p>
-    <h1>
-      Revenir
-      <br />
-      <em>aux sources.</em>
-    </h1>
+    <h1>Sources</h1>
     <p>
-      Documents de campagne, textes de parti, données institutionnelles et
-      presse : {sources.length} références avec leur attribution et leur date de
-      consultation.
+      Documents de campagne, publications des partis, données publiques et
+      presse.
     </p>
   </header>
   <Filter

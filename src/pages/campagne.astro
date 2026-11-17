@@ -4,19 +4,10 @@ import SourceLinks from '../components/SourceLinks.astro';
 import { events, formatDate } from '../lib/data';
 ---
 
-<Base title="La campagne : documents et étapes" section="/campagne/">
+<Base title="Chronologie de la campagne" section="/campagne/">
   <header class="page-title">
-    <p class="eyebrow">LE SUIVI DOCUMENTAIRE</p>
-    <h1>
-      Ce qui change.
-      <br />
-      <em>Ce qui se précise.</em>
-    </h1>
-    <p>
-      Les annonces et publications intégrées au corpus, avec leur date et leur
-      source. Ce relevé est une sélection ; il ne prétend pas couvrir toute
-      l’actualité de la campagne.
-    </p>
+    <h1>Chronologie de la campagne</h1>
+    <p>Annonces et publications présentes dans le corpus, classées par date.</p>
   </header>
   <div class="timeline">
     {events
@@ -26,7 +17,6 @@ import { events, formatDate } from '../lib/data';
         <article>
           <time datetime={event.date}>{formatDate(event.date)}</time>
           <div>
-            <span class="tag">Documenté</span>
             <h2>{event.title}</h2>
             <p>{event.description}</p>
             <SourceLinks ids={event.sources} compact />
@@ -35,11 +25,10 @@ import { events, formatDate } from '../lib/data';
       ))}
   </div>
   <aside class="notice section-space">
-    <strong>La mémoire commence avec les documents conservés.</strong>
+    <strong>Historique des engagements</strong>
     <p>
-      Les fiches d’engagement disposent d’un historique. Une première version
-      importée ne permet pas de déduire l’ensemble des prises de position
-      antérieures.
+      L’historique de chaque fiche commence avec sa première version intégrée au
+      site.
     </p>
     <a href="/engagements/">Ouvrir le registre des engagements ↗</a>
   </aside>

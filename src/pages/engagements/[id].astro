@@ -39,7 +39,7 @@ const theme = themeById(item.theme);
   </header>
   <div class="article-layout">
     <article class="prose">
-      <h2>Ce qui est proposé</h2>
+      <h2>Proposition</h2>
       <ul>
         {item.bullets.map((bullet) => (
           <li>{bullet}</li>
@@ -47,7 +47,7 @@ const theme = themeById(item.theme);
       </ul>
       {item.note && (
         <aside class="notice">
-          <strong>Contexte de lecture</strong>
+          <strong>Précisions</strong>
           <p>{item.note}</p>
         </aside>
       )}
@@ -57,9 +57,9 @@ const theme = themeById(item.theme);
           confirmation d’un engagement pour 2027.
         </p>
       )}
-      <h2>Les documents</h2>
+      <h2>Sources</h2>
       <SourceLinks ids={item.sources} />
-      <h2>Historique de cette fiche</h2>
+      <h2>Historique</h2>
       <ol class="version-list">
         {item.history.map((version) => (
           <li>
@@ -69,13 +69,9 @@ const theme = themeById(item.theme);
           </li>
         ))}
       </ol>
-      <p class="editorial-note">
-        Une proposition publiée est une déclaration attribuée à son auteur.
-        Cette fiche ne valide ni son chiffrage ni les effets attendus.
-      </p>
     </article>
     <aside class="article-aside">
-      <p class="eyebrow">POUR APPROFONDIR</p>
+      <p class="eyebrow">Pages associées</p>
       <a href={`/candidats/${candidate.id}/`}>
         Le dossier de {candidate.name} ↗
       </a>

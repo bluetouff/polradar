@@ -11,18 +11,10 @@ import {
 const defaults = ['melenchon', 'philippe', 'retailleau'];
 ---
 
-<Base title="Comparer les propositions" section="/comparer/">
-  <header class="page-title compact">
-    <p class="eyebrow">LE COMPARATEUR</p>
-    <h1>
-      Un sujet.
-      <br />
-      <em>Les différences.</em>
-    </h1>
-    <p>
-      Choisissez un thème, puis deux ou trois candidatures. Les propositions
-      restent attachées à leur contexte et à leurs sources.
-    </p>
+<Base title="Comparateur de programmes" section="/comparer/">
+  <header class="page-title">
+    <h1>Comparateur de programmes</h1>
+    <p>Sélectionnez un thème et deux ou trois candidats.</p>
   </header>
   <form id="compare-form" class="compare-form" action="/comparer/" method="get">
     <label>
@@ -70,7 +62,6 @@ const defaults = ['melenchon', 'philippe', 'retailleau'];
   </div>
   <div class="comparison-title">
     <div>
-      <p class="eyebrow">FACE À FACE</p>
       <h2 id="comparison-theme-title">Retraites</h2>
       <p id="comparison-note">{themes[0].note}</p>
     </div>
@@ -132,11 +123,10 @@ const defaults = ['melenchon', 'philippe', 'retailleau'];
     </p>
   </noscript>
   <aside class="notice section-space">
-    <strong>Une absence de fiche reste une information limitée.</strong>
+    <strong>Thèmes non renseignés</strong>
     <p>
-      Elle signifie que notre corpus ne documente pas encore ce thème pour cette
-      candidature. Les orientations générales sont distinguées des mesures
-      détaillées. Les montants bruts et nets conservent leurs unités.
+      Une fiche absente signifie que le thème reste à renseigner dans le corpus
+      Polradar pour ce candidat.
     </p>
     <a href="/methode/">Lire notre méthode ↗</a>
   </aside>

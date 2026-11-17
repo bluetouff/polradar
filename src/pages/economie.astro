@@ -20,24 +20,14 @@ const records = engagements.filter(
 );
 ---
 
-<Base title="Économie : les programmes et les comptes" section="/economie/">
+<Base title="Finances publiques et programmes" section="/economie/">
   <header class="page-title">
-    <p class="eyebrow">L’OBSERVATOIRE ÉCONOMIQUE</p>
-    <h1>
-      Les promesses.
-      <br />
-      <em>Et les comptes.</em>
-    </h1>
-    <p>
-      Lire les bénéficiaires, le calendrier et les financements annoncés.
-      Distinguer les estimations des campagnes des données publiques qui
-      décrivent le point de départ.
-    </p>
+    <h1>Finances publiques et programmes</h1>
+    <p>Comptes publics et propositions fiscales des candidats.</p>
   </header>
   <div class="section-heading">
     <div>
-      <p class="eyebrow">LE CADRE COMMUN</p>
-      <h2>Les finances publiques en {budget.year}.</h2>
+      <h2>Finances publiques en {budget.year}</h2>
     </div>
     <span class="tag">{budgetStatus[budget.status]}</span>
   </div>
@@ -61,7 +51,7 @@ const records = engagements.filter(
   <SourceLinks ids={[budget.sourceId]} compact />
   <div class="two-col section-space">
     <article class="panel">
-      <h2>Lire les périmètres.</h2>
+      <h2>Périmètres des chiffrages</h2>
       <ul class="reading-list">
         <li>
           Un montant annuel et un investissement sur cinq ans conservent des
@@ -82,7 +72,6 @@ const records = engagements.filter(
       </ul>
     </article>
     <article class="panel dark-panel">
-      <p class="eyebrow">LE POINT DE DÉPART</p>
       <h2>{number(budget.values.deficit)} points de PIB</h2>
       <p>
         En {budget.year}, {number(budget.values.spending)} % de dépenses
@@ -98,8 +87,7 @@ const records = engagements.filter(
   </div>
   <div class="section-heading">
     <div>
-      <p class="eyebrow">FISCALITÉ & FINANCEMENT</p>
-      <h2>Les orientations documentées.</h2>
+      <h2>Propositions fiscales</h2>
     </div>
     <a href="/comparer/?theme=fiscalite" class="text-link">
       Comparer sur ce sujet ↗
