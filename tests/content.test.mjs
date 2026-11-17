@@ -180,3 +180,25 @@ test('la chronologie distingue les dates et refuse les candidats inconnus ou les
     }).length,
   );
 });
+
+test('le suivi vidéo impose une URL YouTube canonique', () => {
+  assert.deepEqual(
+    changed((d) => {
+      d.sources[0].url = 'https://www.youtube.com/watch?v=8p5_pfTtcck';
+      d.sources[0].watchFormat = 'youtube-oembed';
+    }),
+    [],
+  );
+  for (const url of [
+    'https://example.org/watch?v=8p5_pfTtcck',
+    'https://www.youtube.com/watch?v=8p5_pfTtcck&v=abcdefghijk',
+    'https://www.youtube.com/watch?v=8p5_pfTtcck#x',
+  ]) {
+    assert.ok(
+      changed((d) => {
+        d.sources[0].url = url;
+        d.sources[0].watchFormat = 'youtube-oembed';
+      }).length,
+    );
+  }
+});

@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 1,
+  "advisory": "https://github.com/advisories/GHSA-fc5q-39xc-vjpf",
+  "source": 1247710,
+  "disposition": "not-applicable-to-public-inputs",
+  "reviewedAt": "2026-11-17T18:02:04.088Z",
+  "expiresAt": "2026-12-01T18:02:04.088Z",
+  "files": {
+    "astro.config.mjs": "76abac0274c53ec19f0782c6a706f83138738f173bdca2f8d635155404033a33",
+    "package-lock.json": "6e81487df1c48b2433b3eab691163afa68404f33381d11c9e905a473de6d3722",
+    "package.json": "80d7560f6cebbee5808317a59944b5deb1869afe622cdb2a6d914919229b0250",
+    "playwright.config.ts": "0e54a6005c5132d6ce01b8218695d7fb9b487868a7c434975509d40d1f73d662",
+    "scripts/audit-dependencies.mjs": "6663956cc287325544245cb86a86528e329559fa72a2522e0a49b2305bbe80c6",
+    "scripts/check-history.mjs": "4f2e99ece6797a884e9f164ff86498474ab02a82da0f4dc4d9d34607d7c76646",
+    "scripts/collect-markets.py": "12b92effa4a18c0008206e34a255c1bd75ad7e46db0fbb82709e30f51c2a1b1f",
+    "scripts/migrate-measures.mjs": "9f87a8f7ef802e66fcaff028dc711cb413c8a579d97481335b8a9e5173ad86b7",
+    "scripts/package-release.py": "deb8908890c3beba66c09c0c82b9a23c1660cdea0da70d95adb12d79655641d8",
+    "scripts/postbuild.mjs": "bc31504e2149fbea174254449b61d2549054785021f1b0c3710b2cad178a082b",
+    "scripts/validate-content.mjs": "3bb65731324eee7e4348eb5f516f52eb5e93fdc73a04ffb51a54d7055dd3c36e",
+    "scripts/watch-sources.py": "da3c8daed549a0f712c36424682443e85d4c6d6ad60406cc68afe18743cf4805",
+    "src/components/ArticleCard.astro": "6a82f16b70fdd0f4f0d361c014c0a1614a5d6fbd00412c6d2153ff4baf33bd54",
+    "src/components/CandidateCard.astro": "9507c7103823dd28b6da295fba37260093a3aab3b7384613f14030967aab9793",
+    "src/components/EngagementCard.astro": "3b3e5bca60866559b9383338cb8ae92b69667de437c864ab76aecc86fad72582",
+    "src/components/Filter.astro": "8336c5c970c27cffb9fac1a752b5342990e93335014a8fd62176138f02dac0c5",
+    "src/components/FollowButton.astro": "db8592023d9de0175719798d63beac089ffb44486562ed1531d609ed9c491485",
+    "src/components/HomeSignals.astro": "bde77b1c3fe83f92304ecf7a611f7254871085c7de01b6410664535f44ceb8a8",
+    "src/components/Icon.astro": "189f56de7937dd3896471e73a62b1108e3af895c9fe8c2d885ec4adfc781382b",
+    "src/components/MarketRow.astro": "0661def1a6ea54c4a99e390e3fe319ca20735755de861acfc71679668c8fe7f0",
+    "src/components/MeasureCard.astro": "586645fc8dd61b973b381e88d32abdfa652e642128f65c7024b335d90517d1fb",
+    "src/components/MetricPlot.astro": "5d78aa687bf74f57b7391b90bb46a6f2634ab4455a118476466353490e87d61a",
+    "src/components/PollChart.astro": "b98f17dff391e1ad405d6e91035ce0d67bdbb286aec56bab311f2212bba7d08d",
+    "src/components/SourceLinks.astro": "d1a9be6035b902c0d1b9f67ffdba4e7d084d8b0aedee320292a3753babc78ddc",
+    "src/content.config.ts": "734ec52f5d821896d4892a0468734fedb178e2a1a6c20dfbbe1f06b6a2e49fd1",
+    "src/layouts/Base.astro": "7289c19ddc0445d488a113e94bc772bd28c9f71e8de291f1c82f9172aff6b83f",
+    "src/lib/data.ts": "f24c74713af841ce4f9050728b3eb3a3b70ecd94fe44f82783536d895ed361e5",
+    "src/lib/features.mjs": "1621aaac96c9fdbb81aac144853123d7477dc2b8fc4a1dea8912f5f087a50cd9",
+    "src/lib/history.mjs": "f4dd689d316aa121e7cc0e35f4378bf997d04dd5ac010c04be25718f049e750a",
+    "src/lib/icons.mjs": "ed1ebc9dfa3f336333942d3f4dc2dc0790de3d0e97c9d86f09c9ca381b871001",
+    "src/lib/market-data.ts": "a5fe87b5debb47f92f5329c32eeaf629f884cc2866a1998f7ceb5b6bc393b978",
+    "src/lib/markets.mjs": "6f850b531dc94a48b0ca082cc8ac50d3279d0ccb9a3dd0e950b5c408c3cc85b9",
+    "src/lib/rss.ts": "1dff55550c8f50177555eebb53eead6af4028dd84bdbfb61729af22153e15543",
+    "src/lib/schema.mjs": "38457b1c25b65730a12567a0a0a33ba61d30143545b0e9252391d44e5438a2a0",
+    "src/lib/search.ts": "3fead6770d28bae1d67436264ecac3684fff8e4c58e5bc7b108e623ee0364254",
+    "src/pages/404.astro": "18997741be8b69f4d2a4b488b44f7ecb237644a5dc7c01f0aa796a58c67e8c3b",
+    "src/pages/api/corpus.json.ts": "5956d55a69c6a2cba633c0261c2f11d1b2044940302c66d67b5ceede5158858c",
+    "src/pages/api/marches-predictifs.json.ts": "5e8f7ffeb3a78c722da308b6ac828d217a8e22ee1fe540bb80501474a368c717",
+    "src/pages/api/recherche.json.ts": "853a5f7fe6634aaad949ab99b1937bb826b6e6173325275077b97f7ed17c56c0",
+    "src/pages/campagne.astro": "bbe826e2731ee7745265225185c6549f6528e0be165a9fdb2a5e0105670876b2",
+    "src/pages/candidats/[id].astro": "610118e5de645709fc9f23805edefbfd3e4711b2a5462f8e13a940f60a8dd110",
+    "src/pages/candidats/index.astro": "d6aa4ce84357dac4d194e2aae9e84d9a4ad7877f3a99cd92fbf682ae1e749444",
+    "src/pages/comparer.astro": "d85119b43cd8ef36d327e1e81113f0f0392fafb83d71fbc3d6ac672986a889a7",
+    "src/pages/dossiers/[id].astro": "b4c9f15feb8b93c43656d2c8ee5392beac95a900551add5d30a8cf54432425df",
+    "src/pages/dossiers/index.astro": "e2cee212fd7b7ddee58c2fc248c7c4f60656c88397d4d4c8269453231891a805",
+    "src/pages/economie.astro": "dc249af2e0388ef4d743f4fcc5d19914a9b498c871bb8f7e96934f9129ead11e",
+    "src/pages/engagements/[id].astro": "2fc4bb2a0c12d3968c83d79816fbabf57721244052c2a572f0622ba8c8817b2c",
+    "src/pages/engagements/index.astro": "0a1bcdf560bbf4eab7d59aa851126e52673951fae3794307233bf45c5130f352",
+    "src/pages/historique.astro": "ba4f18a983aadf3c622065ed73e0191666462ce260ed74cce9eba335ccf44fc0",
+    "src/pages/index.astro": "48c86662b8ed3c0a5ca0f18fe490647a9b86f88b81308b71dfe61b16f503bb5c",
+    "src/pages/marches-predictifs.astro": "df961e2dc1b26b312098b2666192e9b789240f30ebe9a3603d57f793818c87b7",
+    "src/pages/mentions.astro": "a9544605c3df4cf792e0d3c713147caf35890d7e288c768ece5241ef6e765caf",
+    "src/pages/mesures/[id].astro": "b5414c52c035dacb67ae84bfba6b42cf9a4f64cbf26c3b110727dc12ddccad4f",
+    "src/pages/mesures/index.astro": "259ec59794b10518130806f70f5b7e8b946b5106e09d4266469467f61bd7458a",
+    "src/pages/methode.astro": "2abb8795edf60d648d89db8773b5430b54d46630d0051799297604551661e2b3",
+    "src/pages/recherche.astro": "dbbd7ff7f6f0b74a34383dfc7e923e0058adfcc6faaa34f1d7086abe5cf6d1d2",
+    "src/pages/reperes.astro": "89078b982e68d0b59fe6e07f7e7b3f544f05e8e2f70a736528a854002723af1a",
+    "src/pages/robots.txt.ts": "9bbf4d388dc81253d9454704607a91e3f1aaaa43f0e3a2ff3ce49382fa351a83",
+    "src/pages/rss.xml.ts": "28613353d192dae272460d33d6fee4e19d0470bdc8c86d210472ea13ac978e42",
+    "src/pages/rss/candidats/[id].xml.ts": "1e38b8dd33a1bc7d81174a4a5ad7ca7b66eede5f571c46ca3e4924d3d9ffcdbd",
+    "src/pages/rss/themes/[id].xml.ts": "fdfd887c8447a5cdc372b875c03268c3d3684e648599bfbae9960f1082b47a90",
+    "src/pages/sondages.astro": "ed75e511df589761ea775869ba4fc8e6afec8079cf3305b3136c609c2ffeddd6",
+    "src/pages/sources.astro": "28cdc73432a534d8477a914c7dd1960776599d2b5c6cfc2e23ff6a84d8bd7b59",
+    "src/pages/suivi.astro": "30bf79f6b5dbcc8a6ad6bd50b98d680e09eecf405577cf26c504a9c291dc5bf1",
+    "src/pages/themes/[id].astro": "ba08277d6d9e79d8219fb7d79a2834e89ad0dcdcc3dbc9d371f423836c28dc87",
+    "src/pages/themes/index.astro": "28118869aed5339db0a6c5306439c748523d12e4f404e3ed8b97ad671e2df4e6",
+    "src/pages/transparence.astro": "b93c3ed778b7fcf6c8db03ad4fdacb400668b27817c51402240c8283b008d4ff",
+    "src/pages/veille.astro": "84d6bd413b85d1f85071fe563b75afc1a3ee42ac300aca4f95383dc64be86710",
+    "src/scripts/campaign.ts": "bf0fd9aa1eb22e39966cf520b0c944453b8d38037ec983aeee8a13c436710c98",
+    "src/scripts/compare.ts": "f8107eac799390c3a47db3564c42bd97a5fc5c158ef06f9a8b3d6f6d02902410",
+    "src/scripts/follow.ts": "9ceeec28b7f61a4b1ec5926e968b74f79f1b9ea8fe648ee8eb1f4588919c0121",
+    "src/scripts/history.ts": "15ed6d2509276f7ffc1d2efa39cf7efc1f9fbdc008432be931f6c32d4a21f661",
+    "src/scripts/markets.ts": "dfc64f1bbab155988e8b562bc46213faac4559aa77a28b24b33b941dcd52663b",
+    "src/scripts/measures.ts": "887afe45f0a1c3079cb72d1178c6d05ef8f2a068e90b133110c4e7d6be31d548",
+    "src/scripts/polls.ts": "81894ae0301a72e03b015fa9a6980596537c31b47a636f325604e1d7f3fe9a59",
+    "src/scripts/search.ts": "442a859738dc59af08ffbecd6124a69c91948df6703df344fdb0e4915d92c7b3",
+    "src/scripts/ui.ts": "6b12d250fd8989a5ac71858bb2385899e48fc0154cc97381243c9c79425d1b61"
+  },
+  "dependencies": [
+    {
+      "path": "node_modules/anymatch/node_modules/picomatch",
+      "version": "2.3.2",
+      "resolved": "https://registry.npmjs.org/picomatch/-/picomatch-2.3.2.tgz",
+      "integrity": "sha512-V7+vQEJ06Z+c5tSye8S+nHUfI51xoXIXjHQ99cQtKUkQqqO1kO/KCJUfZXuB47h/YBlDhah2H3hdUGXn8ie0oA=="
+    },
+    {
+      "path": "node_modules/picomatch",
+      "version": "4.0.7",
+      "resolved": "https://registry.npmjs.org/picomatch/-/picomatch-4.0.7.tgz",
+      "integrity": "sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA=="
+    }
+  ],
+  "baseline": {
+    "@astrojs/check": {
+      "name": "@astrojs/check",
+      "severity": "high",
+      "isDirect": true,
+      "via": ["@astrojs/language-server"],
+      "effects": [],
+      "range": ">=0.9.8",
+      "nodes": ["node_modules/@astrojs/check"],
+      "fixAvailable": {
+        "name": "@astrojs/check",
+        "version": "0.9.7",
+        "isSemVerMajor": true
+      }
+    },
+    "@astrojs/internal-helpers": {
+      "name": "@astrojs/internal-helpers",
+      "severity": "high",
+      "isDirect": false,
+      "via": ["picomatch"],
+      "effects": [
+        "@astrojs/markdown-satteri",
+        "@astrojs/vite-plugin-astro",
+        "astro"
+      ],
+      "range": ">=0.8.0-beta.0",
+      "nodes": ["node_modules/@astrojs/internal-helpers"],
+      "fixAvailable": {
+        "name": "astro",
+        "version": "5.3.0",
+        "isSemVerMajor": true
+      }
+    },
+    "@astrojs/language-server": {
+      "name": "@astrojs/language-server",
+      "severity": "high",
+      "isDirect": false,
+      "via": ["tinyglobby"],
+      "effects": ["@astrojs/check"],
+      "range": "2.16.1-alpha.0 - 2.16.1-beta.1 || >=2.16.3",
+      "nodes": ["node_modules/@astrojs/language-server"],
+      "fixAvailable": {
+        "name": "@astrojs/check",
+        "version": "0.9.7",
+        "isSemVerMajor": true
+      }
+    },
+    "@astrojs/markdown-satteri": {
+      "name": "@astrojs/markdown-satteri",
+      "severity": "high",
+      "isDirect": false,
+      "via": ["@astrojs/internal-helpers"],
+      "effects": ["astro"],
+      "range": "*",
+      "nodes": ["node_modules/@astrojs/markdown-satteri"],
+      "fixAvailable": {
+        "name": "astro",
+        "version": "5.3.0",
+        "isSemVerMajor": true
+      }
+    },
+    "@astrojs/vite-plugin-astro": {
+      "name": "@astrojs/vite-plugin-astro",
+      "severity": "high",
+      "isDirect": false,
+      "via": ["@astrojs/internal-helpers", "vite"],
+      "effects": ["astro"],
+      "range": ">=0.1.0",
+      "nodes": ["node_modules/@astrojs/vite-plugin-astro"],
+      "fixAvailable": {
+        "name": "astro",
+        "version": "5.3.0",
+        "isSemVerMajor": true
+      }
+    },
+    "anymatch": {
+      "name": "anymatch",
+      "severity": "high",
+      "isDirect": false,
+      "via": ["picomatch"],
+      "effects": ["unstorage"],
+      "range": ">=3.0.0",
+      "nodes": ["node_modules/anymatch"],
+      "fixAvailable": {
+        "name": "astro",
+        "version": "5.3.0",
+        "isSemVerMajor": true
+      }
+    },
+    "astro": {
+      "name": "astro",
+      "severity": "high",
+      "isDirect": true,
+      "via": [
+        "@astrojs/internal-helpers",
+        "@astrojs/markdown-satteri",
+        "@astrojs/vite-plugin-astro",
+        "picomatch",
+        "tinyglobby",
+        "unstorage",
+        "vite"
+      ],
+      "effects": [],
+      "range": "<=0.0.0-xray-20231129021231 || 0.0.6 - 0.0.12 || 0.10.0 - 0.20.12 || >=5.1.0",
+      "nodes": ["node_modules/astro"],
+      "fixAvailable": {
+        "name": "astro",
+        "version": "5.3.0",
+        "isSemVerMajor": true
+      }
+    },
+    "fdir": {
+      "name": "fdir",
+      "severity": "high",
+      "isDirect": false,
+      "via": ["picomatch"],
+      "effects": ["tinyglobby"],
+      "range": ">=5.2.1",
+      "nodes": ["node_modules/fdir"],
+      "fixAvailable": {
+        "name": "astro",
+        "version": "5.3.0",
+        "isSemVerMajor": true
+      }
+    },
+    "picomatch": {
+      "name": "picomatch",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1247710,
+          "name": "picomatch",
+          "dependency": "picomatch",
+          "title": "picomatch vulnerable to ReDoS through single-branch repeated extglobs",
+          "url": "https://github.com/advisories/GHSA-fc5q-39xc-vjpf",
+          "severity": "high",
+          "cwe": ["CWE-1333"],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<=4.0.7"
+        }
+      ],
+      "effects": [
+        "@astrojs/internal-helpers",
+        "anymatch",
+        "astro",
+        "fdir",
+        "tinyglobby",
+        "vite"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/anymatch/node_modules/picomatch",
+        "node_modules/picomatch"
+      ],
+      "fixAvailable": {
+        "name": "astro",
+        "version": "5.3.0",
+        "isSemVerMajor": true
+      }
+    },
+    "tinyglobby": {
+      "name": "tinyglobby",
+      "severity": "high",
+      "isDirect": false,
+      "via": ["fdir", "picomatch"],
+      "effects": ["@astrojs/language-server", "astro", "vite"],
+      "range": "*",
+      "nodes": ["node_modules/tinyglobby"],
+      "fixAvailable": {
+        "name": "astro",
+        "version": "5.3.0",
+        "isSemVerMajor": true
+      }
+    },
+    "unstorage": {
+      "name": "unstorage",
+      "severity": "high",
+      "isDirect": false,
+      "via": ["anymatch"],
+      "effects": ["astro"],
+      "range": "0.0.3 - 1.17.6",
+      "nodes": ["node_modules/unstorage"],
+      "fixAvailable": {
+        "name": "astro",
+        "version": "5.3.0",
+        "isSemVerMajor": true
+      }
+    },
+    "vite": {
+      "name": "vite",
+      "severity": "high",
+      "isDirect": false,
+      "via": ["picomatch", "tinyglobby"],
+      "effects": ["@astrojs/vite-plugin-astro", "astro"],
+      "range": ">=6.3.0-beta.0",
+      "nodes": ["node_modules/vite"],
+      "fixAvailable": {
+        "name": "astro",
+        "version": "5.3.0",
+        "isSemVerMajor": true
+      }
+    }
+  }
+}
