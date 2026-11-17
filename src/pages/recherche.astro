@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+import Filter from '../components/Filter.astro';
+import { getCollection } from 'astro:content';
+import { candidates, engagements, themes, candidateById } from '../lib/data';
+const articles = await getCollection('articles', ({ data }) => !data.draft);
+const entries = [
+  ...candidates.map((c) => ({
+    type: 'Candidature',
+    title: c.name,
+    description: c.party,
+    url: `/candidats/${c.id}/`,
+  })),
+  ...engagements.map((e) => ({
+    type: e.scope === 'archive' ? 'Archive 2022' : 'Engagement',
+    title: e.title,
+    description: `${candidateById(e.candidate).name} · ${e.bullets.join(' ')}`,
+    url: `/engagements/${e.id}/`,
+  })),
+  ...themes.map((t) => ({
+    type: 'Enjeu',
+    title: t.label,
+    description: t.short,
+    url: `/themes/${t.id}/`,
+  })),
+  ...articles.map((a) => ({
+    type: 'Décryptage',
+    title: a.data.title,
+    description: a.data.description,
+    url: `/dossiers/${a.id}/`,
+  })),
+];
+---
+
+<Base title="Rechercher dans Polradar" noindex>
+  <header class="page-title compact">
+    <p class="eyebrow">LE MOTEUR DOCUMENTAIRE</p>
+    <h1>
+      Retrouver
+      <br />
+      <em>une idée, une source.</em>
+    </h1>
+    <p>
+      Rechercher dans les candidatures, les propositions, les thèmes et les
+      décryptages. Les termes saisis restent dans votre navigateur.
+    </p>
+  </header>
+  <Filter
+    target="search-results"
+    label="Votre recherche"
+    placeholder="Retraites, salaire, une candidature…"
+  />
+  <div class="search-results" id="search-results">
+    {entries.map((entry) => (
+      <article data-search={`${entry.title} ${entry.description}`}>
+        <span class="eyebrow">{entry.type}</span>
+        <h2>
+          <a href={entry.url}>{entry.title} ↗</a>
+        </h2>
+        <p>{entry.description}</p>
+      </article>
+    ))}
+  </div>
+</Base>

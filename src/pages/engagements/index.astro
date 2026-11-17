@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import EngagementCard from '../../components/EngagementCard.astro';
+import Filter from '../../components/Filter.astro';
+import { engagements } from '../../lib/data';
+const current = engagements.filter((item) => item.scope !== 'archive');
+const archives = engagements.filter((item) => item.scope === 'archive');
+---
+
+<Base title="Le registre des engagements">
+  <header class="page-title">
+    <p class="eyebrow">LE REGISTRE DOCUMENTAIRE</p>
+    <h1>
+      Une proposition.
+      <br />
+      <em>Une fiche pour la lire.</em>
+    </h1>
+    <p>
+      Retrouver les formulations, leur contexte, leur millésime et les documents
+      qui les attestent. Chaque fiche dispose d’une adresse permanente et d’un
+      historique.
+    </p>
+  </header>
+  <Filter
+    target="engagement-list"
+    label="Rechercher une mesure, un sujet ou une candidature"
+  />
+  <div class="engagement-grid three" id="engagement-list">
+    {current.map((item) => (
+      <EngagementCard item={item} />
+    ))}
+  </div>
+  <details class="archive-folder section-space">
+    <summary>
+      Consulter séparément les {archives.length} fiches d’archives 2022
+    </summary>
+    <div class="engagement-grid three">
+      {archives.map((item) => (
+        <EngagementCard item={item} />
+      ))}
+    </div>
+  </details>
+</Base>

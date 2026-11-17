@@ -1,0 +1,55 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import SourceLinks from '../../components/SourceLinks.astro';
+import { formatDate, themeById } from '../../lib/data';
+export async function getStaticPaths() {
+  return (await getCollection('articles', ({ data }) => !data.draft)).map(
+    (article) => ({ params: { id: article.id }, props: { article } }),
+  );
+}
+const { article } = Astro.props;
+const { Content } = await render(article);
+---
+
+<Base
+  title={article.data.title}
+  description={article.data.description}
+  section="/dossiers/"
+>
+  <div class="breadcrumbs">
+    <a href="/dossiers/">Décryptages</a>
+    <span>/</span>
+    <span>{article.data.category}</span>
+  </div>
+  <header class="page-title article-title">
+    <p class="eyebrow">
+      {article.data.category} · {formatDate(article.data.published)}
+    </p>
+    <h1>{article.data.title}</h1>
+    <p>{article.data.description}</p>
+  </header>
+  <div class="article-layout">
+    <article class="prose">
+      <Content />
+      <section class="article-sources">
+        <h2>Sources & documents</h2>
+        <SourceLinks ids={article.data.sources} />
+      </section>
+      <p class="editorial-note">
+        Dernière modification : {formatDate(article.data.updated)}. Rédaction
+        Polradar.
+      </p>
+    </article>
+    <aside class="article-aside">
+      <p class="eyebrow">POURSUIVRE LA LECTURE</p>
+      {article.data.themes.map((id) => (
+        <a href={`/themes/${id}/`}>
+          {themeById(id).label} : les propositions ↗
+        </a>
+      ))}
+      <a href="/comparer/">Le comparateur ↗</a>
+      <a href="/methode/">Notre méthode ↗</a>
+    </aside>
+  </div>
+</Base>

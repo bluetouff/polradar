@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+import EngagementCard from '../../components/EngagementCard.astro';
+import { themes, engagements } from '../../lib/data';
+export function getStaticPaths() {
+  return themes.map((theme) => ({
+    params: { id: theme.id },
+    props: { theme },
+  }));
+}
+const { theme } = Astro.props;
+const records = engagements.filter(
+  (e) => e.theme === theme.id && e.scope !== 'archive',
+);
+---
+
+<Base title={`${theme.label} : les propositions`} description={theme.note}>
+  <div class="breadcrumbs">
+    <a href="/themes/">Enjeux</a>
+    <span>/</span>
+    <span>{theme.label}</span>
+  </div>
+  <header class="page-title">
+    <p class="eyebrow">{theme.short}</p>
+    <h1>{theme.label}</h1>
+    <p>{theme.note}</p>
+    <a class="button primary" href={`/comparer/?theme=${theme.id}`}>
+      Comparer les candidatures sur ce sujet ↗
+    </a>
+  </header>
+  <div class="engagement-grid three">
+    {records.map((item) => (
+      <EngagementCard item={item} />
+    ))}
+  </div>
+  <aside class="notice section-space">
+    <p>
+      Ces fiches reflètent les documents intégrés au corpus. L’absence d’une
+      candidature sur cette page ne signifie pas qu’elle n’a pas de proposition
+      sur ce sujet.
+    </p>
+    <a href="/candidats/">Consulter tous les dossiers ↗</a>
+  </aside>
+</Base>

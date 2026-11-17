@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import SourceLinks from '../components/SourceLinks.astro';
+import { events, formatDate } from '../lib/data';
+---
+
+<Base title="Calendrier et repères du scrutin">
+  <header class="page-title">
+    <p class="eyebrow">COMPRENDRE LES ÉTAPES</p>
+    <h1>
+      Du projet
+      <br />
+      <em>au scrutin.</em>
+    </h1>
+    <p>
+      La déclaration d’une candidature, son investiture et son admission
+      officielle répondent à des étapes différentes.
+    </p>
+  </header>
+  <div class="three-col">
+    <article class="panel">
+      <p class="eyebrow">01</p>
+      <h2>Se déclarer</h2>
+      <p>
+        Une personne annonce son intention de concourir. La déclaration lance
+        une campagne ; elle ne constitue pas une admission au scrutin.
+      </p>
+    </article>
+    <article class="panel">
+      <p class="eyebrow">02</p>
+      <h2>Être investi</h2>
+      <p>
+        Un parti ou une primaire désigne la personne qui portera ses couleurs.
+        Cette étape doit être distinguée de la validation de la candidature.
+      </p>
+    </article>
+    <article class="panel">
+      <p class="eyebrow">03</p>
+      <h2>Être admis</h2>
+      <p>
+        Le Conseil constitutionnel établit la liste officielle des candidatures.
+        Les conditions de présentation relèvent du cadre électoral.
+      </p>
+      <SourceLinks ids={['cc']} compact />
+    </article>
+  </div>
+  <section class="section-space">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">LES ÉCHÉANCES</p>
+        <h2>Le calendrier annoncé.</h2>
+      </div>
+    </div>
+    <div class="two-col">
+      {events
+        .filter((e) => e.kind === 'announced')
+        .map((event) => (
+          <article class="panel">
+            <time class="eyebrow" datetime={event.date}>
+              {formatDate(event.date)}
+            </time>
+            <h3>{event.title}</h3>
+            <p>{event.description}</p>
+            <SourceLinks ids={event.sources} compact />
+          </article>
+        ))}
+    </div>
+  </section>
+</Base>

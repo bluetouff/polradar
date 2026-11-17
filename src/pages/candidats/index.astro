@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import CandidateCard from '../../components/CandidateCard.astro';
+import Filter from '../../components/Filter.astro';
+import { candidates } from '../../lib/data';
+---
+
+<Base title="Les candidatures et leurs projets" section="/candidats/">
+  <header class="page-title">
+    <p class="eyebrow">LES DOSSIERS</p>
+    <h1>
+      Les candidatures.
+      <br />
+      <em>Au-delà des noms.</em>
+    </h1>
+    <p>
+      Parcours documentaire, propositions et sources : une structure commune
+      pour examiner les projets. Cette sélection de {candidates.length}{' '}
+      candidatures ne constitue pas la liste officielle du scrutin.
+    </p>
+  </header>
+  <Filter
+    target="candidate-list"
+    label="Rechercher une candidature ou un parti"
+    placeholder="Un nom ou une formation politique…"
+  />
+  <div class="candidate-grid" id="candidate-list">
+    {candidates.map((candidate) => (
+      <CandidateCard candidate={candidate} />
+    ))}
+  </div>
+  <aside class="notice section-space">
+    <strong>
+      Déclaration, investiture et validation sont des étapes distinctes.
+    </strong>
+    <p>
+      Chaque dossier cite la source de son statut. L’admission au scrutin relève
+      du Conseil constitutionnel. Une fiche peu renseignée reflète le périmètre
+      du corpus et ne démontre pas l’absence de propositions.
+    </p>
+    <a href="/reperes/">Comprendre les étapes ↗</a>
+  </aside>
+</Base>

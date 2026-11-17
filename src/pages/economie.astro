@@ -1,0 +1,104 @@
+---
+import Base from '../layouts/Base.astro';
+import EngagementCard from '../components/EngagementCard.astro';
+import SourceLinks from '../components/SourceLinks.astro';
+import { budget, engagements } from '../lib/data';
+const values = [
+  ['Déficit public', budget.values.deficit, 'Flux annuel · 2025'],
+  ['Dette publique', budget.values.debt, 'Stock à fin 2025'],
+  ['Dépenses', budget.values.spending, 'Flux annuel · 2025'],
+  ['Recettes', budget.values.revenue, 'Flux annuel · 2025'],
+];
+const records = engagements.filter(
+  (e) => e.theme === 'fiscalite' && e.scope !== 'archive',
+);
+---
+
+<Base title="Économie : les programmes et les comptes" section="/economie/">
+  <header class="page-title">
+    <p class="eyebrow">L’OBSERVATOIRE ÉCONOMIQUE</p>
+    <h1>
+      Les promesses.
+      <br />
+      <em>Et les comptes.</em>
+    </h1>
+    <p>
+      Lire les bénéficiaires, le calendrier et les financements annoncés.
+      Distinguer les estimations des campagnes des données publiques qui
+      décrivent le point de départ.
+    </p>
+  </header>
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">LE CADRE COMMUN</p>
+      <h2>Les finances publiques en 2025.</h2>
+    </div>
+    <span class="tag">Données provisoires</span>
+  </div>
+  <p class="section-description">
+    {budget.scope} Publication Insee du 28 août 2026. Ces données annuelles ne
+    sont pas un état en temps réel des comptes de 2026.
+  </p>
+  <div class="budget-kpis">
+    {values.map(([label, value, note]) => (
+      <article>
+        <p>{label}</p>
+        <strong>
+          {Number(value).toLocaleString('fr-FR')}
+          <span> %</span>
+        </strong>
+        <p>du PIB</p>
+        <small>{note}</small>
+      </article>
+    ))}
+  </div>
+  <SourceLinks ids={['insee']} compact />
+  <div class="two-col section-space">
+    <article class="panel">
+      <h2>Lire les périmètres.</h2>
+      <ul class="reading-list">
+        <li>
+          Un montant annuel et un investissement sur cinq ans conservent des
+          calendriers distincts.
+        </li>
+        <li>
+          Une baisse d’impôt doit être lue avec son assiette et le financement
+          annoncé.
+        </li>
+        <li>
+          Un chiffrage de campagne atteste une estimation attribuée à son
+          auteur.
+        </li>
+        <li>
+          Dette et déficit décrivent un stock et un flux. Leurs ratios ne
+          s’additionnent pas.
+        </li>
+      </ul>
+    </article>
+    <article class="panel dark-panel">
+      <p class="eyebrow">LE POINT DE DÉPART</p>
+      <h2>5,1 points de PIB</h2>
+      <p>
+        En 2025, 57,3 % de dépenses publiques et 52,2 % de recettes : l’écart
+        annuel représente 5,1 points de PIB.
+      </p>
+      <a href="/dossiers/lire-un-programme/" class="text-link">
+        Comment lire un engagement économique ↗
+      </a>
+    </article>
+  </div>
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">FISCALITÉ & FINANCEMENT</p>
+      <h2>Les orientations documentées.</h2>
+    </div>
+    <a href="/comparer/?theme=fiscalite" class="text-link">
+      Comparer sur ce sujet ↗
+    </a>
+  </div>
+  <div class="engagement-grid three">
+    {records.map((item) => (
+      <EngagementCard item={item} />
+    ))}
+  </div>
+</Base>

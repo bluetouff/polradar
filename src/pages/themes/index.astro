@@ -1,0 +1,39 @@
+---
+import Base from '../../layouts/Base.astro';
+import { themes, engagements } from '../../lib/data';
+---
+
+<Base title="Les enjeux de la présidentielle">
+  <header class="page-title">
+    <p class="eyebrow">ENTRER PAR LES SUJETS</p>
+    <h1>
+      Ce qui se joue.
+      <br />
+      <em>Thème par thème.</em>
+    </h1>
+    <p>
+      Des portes d’entrée communes pour examiner les différences entre les
+      candidatures.
+    </p>
+  </header>
+  <div class="topic-grid">
+    {themes.map((theme, index) => (
+      <a class="topic-card" href={`/themes/${theme.id}/`}>
+        <span class="topic-number">{String(index + 1).padStart(2, '0')}</span>
+        <div>
+          <h2>{theme.label}</h2>
+          <p>
+            {theme.short} ·{' '}
+            {
+              engagements.filter(
+                (e) => e.theme === theme.id && e.scope !== 'archive',
+              ).length
+            }{' '}
+            fiches hors archives
+          </p>
+        </div>
+        <span aria-hidden="true">↗</span>
+      </a>
+    ))}
+  </div>
+</Base>

@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import Filter from '../components/Filter.astro';
+import { sources, sourceKinds, formatDate } from '../lib/data';
+---
+
+<Base title="Le registre des sources">
+  <header class="page-title">
+    <p class="eyebrow">LE REGISTRE DOCUMENTAIRE</p>
+    <h1>
+      Revenir
+      <br />
+      <em>aux sources.</em>
+    </h1>
+    <p>
+      Documents de campagne, textes de parti, données institutionnelles et
+      presse : {sources.length} références avec leur attribution et leur date de
+      consultation.
+    </p>
+  </header>
+  <Filter
+    target="sources-list"
+    label="Rechercher un document, un auteur ou un domaine"
+  />
+  <div class="sources-grid" id="sources-list">
+    {sources.map((source) => (
+      <article
+        class="source-card"
+        data-search={`${source.title} ${source.url} ${sourceKinds[source.kind]}`}
+      >
+        <span class:list={['tag', { archive: source.kind === 'archive' }]}>
+          {sourceKinds[source.kind]}
+        </span>
+        <h2>
+          <a href={source.url} target="_blank" rel="noopener noreferrer">
+            {source.title} ↗
+          </a>
+        </h2>
+        <p>{new URL(source.url).hostname}</p>
+        <dl>
+          <div>
+            <dt>Publication</dt>
+            <dd>{formatDate(source.published)}</dd>
+          </div>
+          <div>
+            <dt>Consultation</dt>
+            <dd>{formatDate(source.checked)}</dd>
+          </div>
+        </dl>
+      </article>
+    ))}
+  </div>
+</Base>

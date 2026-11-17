@@ -1,0 +1,88 @@
+---
+import Base from '../layouts/Base.astro';
+import { candidates, engagements, sources, themes, meta } from '../lib/data';
+---
+
+<Base title="Transparence du projet et du corpus">
+  <header class="page-title">
+    <p class="eyebrow">UN PROJET OUVERT</p>
+    <h1>
+      Montrer
+      <br />
+      <em>ce que l’on sait.</em>
+    </h1>
+    <p>
+      Polradar est une initiative personnelle de bluetouff. Son code et son
+      corpus original sont publiés dans un dépôt public sous licence MIT, avec
+      leur historique de modifications.
+    </p>
+  </header>
+  <div class="two-col">
+    <article class="panel">
+      <h2>Le périmètre actuel.</h2>
+      <ul class="reading-list">
+        <li>
+          {candidates.length} candidatures sélectionnées, sans prétention à
+          l’exhaustivité.
+        </li>
+        <li>{themes.length} thèmes communs à chaque dossier.</li>
+        <li>
+          {engagements.filter((e) => e.scope !== 'archive').length} fiches hors
+          archives, orientations incluses.
+        </li>
+        <li>
+          {engagements.filter((e) => e.scope === 'archive').length} fiches
+          d’archives 2022.
+        </li>
+        <li>
+          {sources.length} références, dont certaines servent de repères
+          institutionnels.
+        </li>
+      </ul>
+      <p>
+        Le corpus programmatique initial est arrêté au 16 novembre 2026. Les
+        dates de consultation figurent dans chaque source.
+      </p>
+    </article>
+    <article class="panel dark-panel">
+      <p class="eyebrow">L’HISTORIQUE PUBLIC</p>
+      <h2>Le dépôt fait foi pour les versions.</h2>
+      <p>
+        Le code, les fichiers de contenu et les modifications sont consultables.
+        Les documents de tiers restent attribués à leurs auteurs et ne sont pas
+        relicenciés par le dépôt.
+      </p>
+      <a
+        class="button light"
+        href={meta.repository}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Ouvrir le dépôt GitHub ↗
+      </a>
+    </article>
+  </div>
+  <section class="prose section-space">
+    <h2>Ce qui est disponible au lancement</h2>
+    <p>
+      Les dossiers, le registre des engagements, le comparateur, les pages
+      thématiques, les décryptages, les références, les repères et la recherche
+      constituent le premier socle. Les comparaisons utilisent ce corpus commun.
+    </p>
+    <h2>Ce qui demande encore un relevé documentaire</h2>
+    <p>
+      La rubrique sondages indique explicitement l’absence d’enquête intégrée
+      tant que les notices et scénarios n’ont pas été vérifiés. Les relevés de
+      temps de parole, les financements et les résultats territoriaux
+      demanderont chacun une intégration des données et de leur calendrier de
+      publication.
+    </p>
+    <h2>Des contrôles avant publication</h2>
+    <p>
+      La construction vérifie les identifiants, les références, les dates, la
+      séparation des archives et la cohérence des chiffres budgétaires du cadre
+      commun. Ces contrôles techniques accompagnent la vérification éditoriale
+      des documents ; ils ne la remplacent pas.
+    </p>
+  </section>
+</Base>

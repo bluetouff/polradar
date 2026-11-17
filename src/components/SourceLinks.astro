@@ -1,0 +1,30 @@
+---
+import { sourceById, formatDate, sourceKinds } from '../lib/data';
+interface Props {
+  ids: string[];
+  compact?: boolean;
+}
+const { ids, compact = false } = Astro.props;
+---
+
+<ul class:list={['source-links', { compact }]}>
+  {ids.map((id) => {
+    const source = sourceById(id);
+    return (
+      <li>
+        <a href={source.url} target="_blank" rel="noopener noreferrer">
+          {source.title} <span aria-hidden="true">↗</span>
+        </a>
+        {!compact && (
+          <p>
+            {sourceKinds[source.kind]} ·{' '}
+            {source.published
+              ? `Publié le ${formatDate(source.published)}`
+              : 'Publication non datée'}{' '}
+            · consulté le {formatDate(source.checked)}
+          </p>
+        )}
+      </li>
+    );
+  })}
+</ul>

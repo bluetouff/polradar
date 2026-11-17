@@ -1,0 +1,44 @@
+---
+interface Props {
+  target: string;
+  label?: string;
+  placeholder?: string;
+}
+const {
+  target,
+  label = 'Rechercher',
+  placeholder = 'Un mot-clé, un nom, un sujet…',
+} = Astro.props;
+---
+
+<div class="filter-bar" data-filter data-target={target}>
+  <label>
+    {label}
+    <input type="search" placeholder={placeholder} autocomplete="off" />
+  </label>
+  <p class="filter-count" aria-live="polite" role="status"></p>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-filter]').forEach((bar) => {
+    const input = bar.querySelector<HTMLInputElement>('input')!;
+    const count = bar.querySelector<HTMLElement>('[role=status]')!;
+    const target = document.getElementById(bar.dataset.target!);
+    const normalized = (value: string) =>
+      value
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLocaleLowerCase('fr');
+    const filter = () => {
+      let visible = 0;
+      target?.querySelectorAll<HTMLElement>('[data-search]').forEach((item) => {
+        item.hidden = !normalized(item.dataset.search || '').includes(
+          normalized(input.value.trim()),
+        );
+        if (!item.hidden) visible++;
+      });
+      count.textContent = `${visible} résultat${visible > 1 ? 's' : ''}`;
+    };
+    input.addEventListener('input', filter);
+    filter();
+  });
+</script>

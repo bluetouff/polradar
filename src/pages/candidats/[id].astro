@@ -1,0 +1,120 @@
+---
+import Base from '../../layouts/Base.astro';
+import EngagementCard from '../../components/EngagementCard.astro';
+import SourceLinks from '../../components/SourceLinks.astro';
+import { candidates, byCandidate, initials, themes } from '../../lib/data';
+export function getStaticPaths() {
+  return candidates.map((candidate) => ({
+    params: { id: candidate.id },
+    props: { candidate },
+  }));
+}
+const { candidate } = Astro.props;
+const records = byCandidate(candidate.id);
+const current = records.filter((record) => record.scope !== 'archive');
+const archives = records.filter((record) => record.scope === 'archive');
+---
+
+<Base
+  title={candidate.name}
+  description={`${candidate.party} : engagements documentés, textes consultés et sources pour la présidentielle 2027.`}
+  section="/candidats/"
+>
+  <div class="breadcrumbs">
+    <a href="/candidats/">Candidatures</a>
+    <span>/</span>
+    <span>{candidate.name}</span>
+  </div>
+  <header class="candidate-profile">
+    <div class="profile-avatar" aria-hidden="true">
+      {initials(candidate.name)}
+    </div>
+    <div>
+      <p class="eyebrow">{candidate.party}</p>
+      <h1>{candidate.name}</h1>
+      <span class="tag">
+        Candidature {candidate.status.toLocaleLowerCase('fr')}
+      </span>
+      <p>{candidate.note}</p>
+      <a
+        class="button primary"
+        href={`/comparer/?c=${candidate.id},${candidate.id === 'melenchon' ? 'philippe' : 'melenchon'}&theme=retraites`}
+      >
+        Comparer ses propositions ↗
+      </a>
+    </div>
+  </header>
+  <div class="profile-layout">
+    <aside class="profile-aside">
+      <p class="eyebrow">ÉTAT DU DOSSIER</p>
+      <b>
+        {current.length}
+        <span> / 12 thèmes</span>
+      </b>
+      <p>
+        Renseignés dans ce corpus, orientations incluses. Les archives de 2022
+        sont comptées à part.
+      </p>
+      <hr />
+      <p class="eyebrow">SOURCE DU STATUT</p>
+      <SourceLinks ids={[candidate.statusSource]} />
+      <a href="/transparence/" class="text-link">
+        Périmètre du suivi ↗
+      </a>
+    </aside>
+    <div>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">LES DOCUMENTS DISPONIBLES</p>
+          <h2>Les engagements et orientations.</h2>
+        </div>
+      </div>
+      {current.length ? (
+        <div class="engagement-grid">
+          {current.map((item) => (
+            <EngagementCard item={item} />
+          ))}
+        </div>
+      ) : (
+        <div class="notice">
+          <h3>Le dossier 2027 reste à compléter</h3>
+          <p>
+            Le corpus actuel ne contient pas encore de fiche de campagne récente
+            pour cette candidature. Les archives sont séparées ci-dessous.
+          </p>
+        </div>
+      )}
+      <details class="missing-themes">
+        <summary>
+          Les thèmes restant à documenter ({12 - current.length})
+        </summary>
+        <ul>
+          {themes
+            .filter((t) => !current.some((e) => e.theme === t.id))
+            .map((t) => (
+              <li>{t.label}</li>
+            ))}
+        </ul>
+      </details>
+      {archives.length > 0 && (
+        <section class="section-space">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">MILLÉSIME DISTINCT</p>
+              <h2>Archives de 2022.</h2>
+            </div>
+          </div>
+          <p class="section-description">
+            La confirmation d’une candidature ne reconduit pas automatiquement
+            son ancien programme.
+          </p>
+          <div class="engagement-grid">
+            {archives.map((item) => (
+              <EngagementCard item={item} />
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  </div>
+</Base>

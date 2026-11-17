@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import SourceLinks from '../components/SourceLinks.astro';
+import { polls } from '../lib/data';
+import { formatDate } from '../lib/data';
+---
+
+<Base title="Sondages : les résultats avec leur méthode">
+  <header class="page-title">
+    <p class="eyebrow">LES ENQUÊTES D’OPINION</p>
+    <h1>
+      Les pourcentages.
+      <br />
+      <em>Avec leur méthode.</em>
+    </h1>
+    <p>
+      Scénario testé, dates de terrain, effectifs utiles et notice : les
+      paramètres nécessaires pour lire une enquête.
+    </p>
+  </header>
+  {polls.length === 0 && (
+    <div class="empty-editorial">
+      <span class="eyebrow">ÉTAT DU RELEVÉ</span>
+      <h2>Aucune enquête intégrée pour le moment.</h2>
+      <p>
+        Le registre est prêt à accueillir des enquêtes documentées. Une série
+        sera publiée lorsque sa notice, ses résultats et son scénario auront été
+        vérifiés. Aucun chiffre de substitution n’est affiché.
+      </p>
+      <a
+        class="button primary"
+        href="/dossiers/sondages-les-scenarios-comptent/"
+      >
+        Comment lire un sondage ↗
+      </a>
+    </div>
+  )}
+  {polls.length > 0 && (
+    <div class="two-col">
+      {polls.map((poll) => (
+        <article class="panel">
+          <p class="eyebrow">
+            {poll.institute} · {formatDate(poll.published)}
+          </p>
+          <h2>{poll.scenario}</h2>
+          <p>
+            Commanditaire : {poll.commissioner}. Terrain du{' '}
+            {formatDate(poll.fieldworkStart)} au {formatDate(poll.fieldworkEnd)}
+            .
+          </p>
+          <p>
+            Échantillon : {poll.sampleSize} personnes. Effectif utile :{' '}
+            {poll.usefulSample ?? 'non renseigné'}.
+          </p>
+          <ul class="reading-list">
+            {poll.results.map((result) => (
+              <li>
+                {result.name} : {result.percentage.toLocaleString('fr-FR')} %
+              </li>
+            ))}
+          </ul>
+          <p>{poll.uncertainty}</p>
+          <SourceLinks ids={[poll.noticeSource]} />
+        </article>
+      ))}
+    </div>
+  )}
+  <section class="section-space two-col">
+    <article class="panel">
+      <h2>Ce que chaque fiche conservera.</h2>
+      <ul class="reading-list">
+        <li>Institut, commanditaire et dates de terrain.</li>
+        <li>Candidatures testées et formulation du scénario.</li>
+        <li>
+          Échantillon global, effectif utile disponible et non-réponses
+          documentées.
+        </li>
+        <li>Incertitudes publiées et lien vers la notice.</li>
+      </ul>
+    </article>
+    <article class="panel">
+      <h2>La référence documentaire.</h2>
+      <p>
+        La Commission des sondages publie les notices des enquêtes. Le registre
+        Polradar doit permettre d’y revenir directement.
+      </p>
+      <SourceLinks ids={['sondages']} />
+    </article>
+  </section>
+</Base>

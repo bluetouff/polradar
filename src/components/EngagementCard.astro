@@ -1,0 +1,33 @@
+---
+import { candidateById, themeById, scopes, type Engagement } from '../lib/data';
+interface Props {
+  item: Engagement;
+}
+const { item } = Astro.props;
+const candidate = candidateById(item.candidate);
+---
+
+<article
+  class="engagement-card"
+  data-search={`${candidate.name} ${themeById(item.theme).label} ${item.title} ${item.bullets.join(' ')}`}
+>
+  <div class="card-meta">
+    <a href={`/themes/${item.theme}/`}>{themeById(item.theme).label}</a>
+    <span class:list={['tag', { archive: item.scope === 'archive' }]}>
+      {scopes[item.scope]}
+    </span>
+  </div>
+  <h3>
+    <a href={`/engagements/${item.id}/`}>{item.title}</a>
+  </h3>
+  <p>{item.bullets[0]}</p>
+  <div class="engagement-author">
+    <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+    <a
+      href={`/engagements/${item.id}/`}
+      aria-label={`Lire la fiche ${item.title}`}
+    >
+      Lire la fiche ↗
+    </a>
+  </div>
+</article>

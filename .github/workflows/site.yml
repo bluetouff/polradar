@@ -1,0 +1,74 @@
+name: Site
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions: {}
+concurrency:
+  group: site-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run format:check
+      - run: npm run security:audit
+      - run: npm run validate
+      - run: npx --no-install playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - name: Package validated main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: python3 scripts/package-release.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        with:
+          name: validated-site
+          path: artifacts/
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    name: Publish static release
+    needs: validate
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: validated-site
+          path: artifacts
+      - name: Publish once per commit
+        working-directory: artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          sha256sum --check site.sha256
+          tag="site-${SOURCE_SHA}"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo 'This commit already has a release; no asset is overwritten.'
+            exit 0
+          fi
+          gh release create "$tag" site.tar.gz site.sha256 \
+            --target "$SOURCE_SHA" --title "Site ${SOURCE_SHA:0:12}" \
+            --notes "Static site built and checked from commit ${SOURCE_SHA}." --latest

@@ -1,0 +1,102 @@
+---
+import Base from '../../layouts/Base.astro';
+import SourceLinks from '../../components/SourceLinks.astro';
+import {
+  engagements,
+  candidateById,
+  themeById,
+  scopes,
+  formatDate,
+} from '../../lib/data';
+export function getStaticPaths() {
+  return engagements.map((item) => ({
+    params: { id: item.id },
+    props: { item },
+  }));
+}
+const { item } = Astro.props;
+const candidate = candidateById(item.candidate);
+const theme = themeById(item.theme);
+---
+
+<Base title={`${item.title} : ${candidate.name}`} description={item.bullets[0]}>
+  <div class="breadcrumbs">
+    <a href="/engagements/">Engagements</a>
+    <span>/</span>
+    <a href={`/themes/${theme.id}/`}>{theme.label}</a>
+  </div>
+  <header class="page-title article-title">
+    <div class="card-meta">
+      <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+      <span class:list={['tag', { archive: item.scope === 'archive' }]}>
+        {scopes[item.scope]}
+      </span>
+    </div>
+    <h1>{item.title}</h1>
+    <p>
+      {item.edition} · document consulté le {formatDate(item.checked)}
+    </p>
+  </header>
+  <div class="article-layout">
+    <article class="prose">
+      <h2>Ce qui est proposé</h2>
+      <ul>
+        {item.bullets.map((bullet) => (
+          <li>{bullet}</li>
+        ))}
+      </ul>
+      {item.note && (
+        <aside class="notice">
+          <strong>Contexte de lecture</strong>
+          <p>{item.note}</p>
+        </aside>
+      )}
+      {item.scope === 'archive' && (
+        <p class="archive-warning">
+          Cette fiche décrit un programme de 2022. Elle ne constitue pas la
+          confirmation d’un engagement pour 2027.
+        </p>
+      )}
+      <h2>Les documents</h2>
+      <SourceLinks ids={item.sources} />
+      <h2>Historique de cette fiche</h2>
+      <ol class="version-list">
+        {item.history.map((version) => (
+          <li>
+            <time datetime={version.date}>{formatDate(version.date)}</time>
+            <h3>{version.event}</h3>
+            <p>{version.summary}</p>
+          </li>
+        ))}
+      </ol>
+      <p class="editorial-note">
+        Une proposition publiée est une déclaration attribuée à son auteur.
+        Cette fiche ne valide ni son chiffrage ni les effets attendus.
+      </p>
+    </article>
+    <aside class="article-aside">
+      <p class="eyebrow">POUR APPROFONDIR</p>
+      <a href={`/candidats/${candidate.id}/`}>
+        Le dossier de {candidate.name} ↗
+      </a>
+      <a href={`/themes/${theme.id}/`}>
+        Les propositions sur {theme.label.toLocaleLowerCase('fr')} ↗
+      </a>
+      <a
+        href={`/comparer/?theme=${theme.id}&c=${candidate.id},${candidate.id === 'melenchon' ? 'philippe' : 'melenchon'}`}
+      >
+        Comparer sur ce sujet ↗
+      </a>
+      <hr />
+      <p>
+        Une erreur à signaler ? Indiquez la fiche et le document qui permet de
+        la corriger.
+      </p>
+      <a
+        href={`mailto:admin@toonux.com?subject=${encodeURIComponent(`Correction Polradar : ${item.id}`)}`}
+      >
+        Signaler une correction ↗
+      </a>
+    </aside>
+  </div>
+</Base>

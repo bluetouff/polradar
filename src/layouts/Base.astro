@@ -1,0 +1,142 @@
+---
+import '../styles/global.css';
+import { meta } from '../lib/data';
+interface Props {
+  title?: string;
+  description?: string;
+  section?: string;
+  noindex?: boolean;
+}
+const {
+  title = 'La campagne, au fond des idées.',
+  description = 'Comprendre les enjeux, comparer les engagements et suivre les documents de la présidentielle française de 2027.',
+  section = '',
+  noindex = false,
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const nav = [
+  ['/campagne/', 'La campagne'],
+  ['/candidats/', 'Candidats'],
+  ['/comparer/', 'Comparer'],
+  ['/economie/', 'Économie'],
+  ['/dossiers/', 'Décryptages'],
+];
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="color-scheme" content="light" />
+    <title>{title} · Polradar</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,follow" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Les décryptages de Polradar"
+      href="/rss.xml"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:title" content={`${title} · Polradar`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenu">
+      Aller au contenu
+    </a>
+    <div class="edition-bar">
+      <div class="container edition-inner">
+        <span>INDÉPENDANT · DOCUMENTÉ · PUBLIC</span>
+        <a href="/methode/">
+          Notre méthode <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="/" class="wordmark" aria-label="Polradar, accueil">
+          <svg aria-hidden="true" viewBox="0 0 36 36">
+            <circle cx="18" cy="18" r="15" />
+            <circle cx="18" cy="18" r="8" />
+            <path d="M18 3v30M3 18h30M18 18 28 8" />
+            <circle class="mark-dot" cx="24" cy="12" r="2.5" />
+          </svg>
+          polradar<span class="wordmark-dot">.</span>
+        </a>
+        <span class="header-election">
+          FRANCE
+          <br />
+          <strong>PRÉSIDENTIELLE 2027</strong>
+        </span>
+        <a
+          class="header-search"
+          href="/recherche/"
+          aria-label="Rechercher dans Polradar"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10" cy="10" r="6.5" />
+            <path d="m15 15 6 6" />
+          </svg>
+          <span>Rechercher</span>
+        </a>
+      </div>
+      <div class="container nav-wrap">
+        <nav class="main-nav" aria-label="Navigation principale">
+          {nav.map(([url, label]) => (
+            <a href={url} aria-current={section === url ? 'page' : undefined}>
+              {label}
+            </a>
+          ))}
+        </nav>
+        <a href="/sondages/" class="nav-extra">
+          Les sondages <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </header>
+    <main id="contenu" class="container" tabindex="-1">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-top">
+        <div>
+          <a href="/" class="footer-brand">
+            polradar.
+          </a>
+          <p>
+            Les propositions passent.
+            <br />
+            Les sources restent.
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow">Explorer</p>
+          <a href="/engagements/">Tous les engagements</a>
+          <a href="/themes/">Les enjeux</a>
+          <a href="/reperes/">Calendrier & repères</a>
+          <a href="/sources/">Registre des sources</a>
+        </div>
+        <div>
+          <p class="eyebrow">Le projet</p>
+          <a href="/methode/">Méthode éditoriale</a>
+          <a href="/transparence/">Transparence</a>
+          <a href={meta.repository} target="_blank" rel="noopener noreferrer">
+            Code public · MIT ↗
+          </a>
+          <a href="/rss.xml">Flux RSS</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>Une initiative de bluetouff · Sans publicité ni traceur</span>
+        <a href="/mentions/">Mentions & confidentialité</a>
+        <span>Corpus du 16 novembre 2026</span>
+      </div>
+    </footer>
+  </body>
+</html>
