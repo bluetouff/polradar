@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        runner: [ubuntu-latest, macos-latest]
+        runner: [ubuntu-latest]
     runs-on: ${{ matrix.runner }}
     timeout-minutes: 12
     steps:
@@ -21,7 +21,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Relever les sources autorisées
-        run: python3 scripts/watch-sources.py --source pcf-status --source pcf-work --source pcf-2026 --source retailleau-index --source ruffin-project
+        run: python3 scripts/watch-sources.py
       - name: Résumé de la veille
         run: cat artifacts/watch-report.md >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
