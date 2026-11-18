@@ -61,6 +61,9 @@ class GoAccessTests(unittest.TestCase):
         self.assertNotIn('unsafe-inline',installer.CSP);self.assertNotIn('unsafe-eval',installer.CSP)
         self.assertIn('%m %U %H',installer.APACHE)
         self.assertIn('env=!polradar_stats_request',installer.APACHE)
+        self.assertIn('AddType text/javascript .mjs',installer.APACHE)
+        self.assertIn('AddType text/css .css',installer.APACHE)
+        self.assertIn('AddType application/json .json',installer.APACHE)
 
     def test_manifest_rejects_extra_paths_or_mismatched_script(self):
         import hashlib

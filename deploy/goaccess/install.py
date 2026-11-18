@@ -28,11 +28,16 @@ Alias /stats/ /usr/local/share/polradar-stats/
 <Directory /usr/local/share/polradar-stats>
     Options -Indexes -ExecCGI
     AllowOverride None
+    DirectoryIndex index.html
+    AddType text/javascript .mjs
+    AddType text/css .css
+    AddType text/html .html
     Require all denied
 </Directory>
 <Directory /var/lib/polradar-stats>
     Options -Indexes -ExecCGI
     AllowOverride None
+    AddType application/json .json
     Require all denied
 </Directory>
 <LocationMatch "^/stats(?:/|$)">
@@ -113,7 +118,7 @@ def install(directory):
     if 'GoAccess - 1.12.' not in run(['/usr/bin/goaccess', '--version']):
         raise ValueError('This bundle was validated for GoAccess 1.12')
     modules = run(['/usr/sbin/apache2ctl', '-M'])
-    if not all(module in modules for module in ['alias_module', 'auth_basic_module', 'authn_file_module', 'authz_user_module', 'headers_module', 'setenvif_module']):
+    if not all(module in modules for module in ['alias_module', 'auth_basic_module', 'authn_file_module', 'authz_user_module', 'headers_module', 'setenvif_module', 'mime_module', 'dir_module']):
         raise ValueError('Required Apache modules unavailable')
     original = VHOST.read_text()
     replacement = patched_vhost(original)
