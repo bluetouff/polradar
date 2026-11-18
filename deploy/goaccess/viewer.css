@@ -1,0 +1,280 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: #f5f4ee;
+  color: #1c343e;
+  font:
+    15px/1.6 system-ui,
+    sans-serif;
+}
+header {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 24px max(24px, calc((100vw - 1350px) / 2));
+  border-top: 4px solid #1c343e;
+  border-bottom: 1px solid #cbd5cf;
+  background: #fffdf8;
+}
+header > a {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.065em;
+  color: inherit;
+  text-decoration: none;
+}
+header > a > span {
+  color: #bf432d;
+}
+header > p {
+  font-size: 12px;
+  margin: 0;
+}
+header small {
+  color: #52646b;
+}
+main {
+  max-width: 1398px;
+  padding: 32px 24px;
+  margin: auto;
+}
+h1 {
+  font-size: 28px;
+  letter-spacing: -0.035em;
+  margin: 4px 0 8px;
+}
+h2 {
+  font-size: 17px;
+  margin: 0 0 20px;
+}
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.kicker {
+  font: 11px monospace;
+  color: #52646b;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+#coverage {
+  font-size: 12px;
+  color: #52646b;
+}
+button,
+select {
+  font: inherit;
+  border: 1px solid #8daba9;
+  border-radius: 6px;
+  background: #fffdf8;
+  color: inherit;
+  padding: 10px 14px;
+  min-height: 44px;
+  max-width: 100%;
+}
+button {
+  cursor: pointer;
+  font-size: 12px;
+}
+button:disabled {
+  opacity: 0.5;
+}
+.toolbar {
+  display: flex;
+  align-items: end;
+  gap: 24px;
+  margin: 24px 0;
+}
+.toolbar label {
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 270px;
+}
+.toolbar select {
+  display: block;
+  margin-top: 7px;
+  font-size: 12px;
+}
+.toolbar p {
+  font-size: 12px;
+  color: #52646b;
+  max-width: 60ch;
+}
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin: 24px 0;
+}
+.metrics article {
+  background: #1c343e;
+  color: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  display: grid;
+  gap: 10px;
+}
+.metrics span {
+  font-size: 13px;
+}
+.metrics strong {
+  font-size: 36px;
+  font-weight: 750;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+.metrics small {
+  font-size: 11px;
+  color: #bfd6cd;
+}
+.chart-panel {
+  padding: 24px;
+  background: #fffdf8;
+  border: 1px solid #d7dfd9;
+  border-radius: 12px;
+  min-width: 0;
+  margin-bottom: 18px;
+}
+.panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 18px;
+}
+.ranked {
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+.ranked li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 3px 18px;
+  align-items: center;
+  font-size: 12px;
+}
+.ranked span {
+  overflow-wrap: anywhere;
+}
+.ranked strong {
+  font-variant-numeric: tabular-nums;
+}
+meter {
+  height: 8px;
+  border: 0;
+  accent-color: #397d76;
+  width: 100%;
+}
+meter::-webkit-meter-bar {
+  background: #e6ece5;
+  border: 0;
+}
+meter::-webkit-meter-optimum-value {
+  background: #397d76;
+}
+.ranked meter {
+  grid-column: 1/-1;
+}
+.daily-bars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(78px, 1fr));
+  gap: 14px;
+}
+.day {
+  display: grid;
+  gap: 10px;
+  font-size: 11px;
+  min-width: 0;
+}
+.day strong {
+  font-size: 17px;
+}
+.day span {
+  color: #52646b;
+}
+.day meter {
+  height: 18px;
+}
+.day meter::-webkit-meter-optimum-value {
+  background: #bf6548;
+}
+#feedback:not(:empty) {
+  padding: 14px 18px;
+  border-left: 3px solid #bd653f;
+  background: #fbecda;
+  font-size: 13px;
+}
+aside {
+  margin-top: 28px;
+  border-top: 1px solid #cbd5cf;
+  padding-top: 24px;
+  font-size: 12px;
+  color: #52646b;
+}
+aside h2 {
+  color: #1c343e;
+}
+aside p {
+  max-width: 110ch;
+}
+footer {
+  padding: 24px;
+  background: #1c343e;
+  color: #bfd0cc;
+  font-size: 11px;
+  text-align: center;
+}
+[hidden] {
+  display: none !important;
+}
+:focus-visible {
+  outline: 3px solid #bf432d;
+  outline-offset: 4px;
+}
+@media (max-width: 650px) {
+  .heading {
+    align-items: start;
+    gap: 10px;
+  }
+  h1 {
+    font-size: 24px;
+  }
+  .metrics {
+    grid-template-columns: 1fr;
+  }
+  .metrics article {
+    padding: 20px;
+  }
+  .panels {
+    grid-template-columns: 1fr;
+  }
+  .toolbar {
+    display: block;
+  }
+  .toolbar label {
+    display: block;
+    min-width: 0;
+  }
+  .toolbar select {
+    width: 100%;
+  }
+  .chart-panel {
+    padding: 18px;
+  }
+  main {
+    padding: 24px 18px;
+  }
+  header {
+    padding: 18px;
+  }
+  header > a {
+    font-size: 27px;
+  }
+  header {
+    gap: 18px;
+  }
+}

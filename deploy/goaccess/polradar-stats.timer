@@ -1,0 +1,9 @@
+[Unit]
+Description=Refresh Polradar GoAccess every 15 minutes
+[Timer]
+OnBootSec=3min
+OnUnitActiveSec=15min
+Persistent=true
+Unit=polradar-stats.service
+[Install]
+WantedBy=timers.target

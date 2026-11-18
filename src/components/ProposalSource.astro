@@ -1,0 +1,38 @@
+---
+import { formatDate } from '../lib/data';
+import type { evolution } from '../lib/proposal-data';
+interface Props {
+  state: (typeof evolution.states)[number];
+}
+const { state } = Astro.props;
+---
+
+<details class="proposal-source">
+  <summary>
+    Document officiel <span aria-hidden="true">↗</span>
+  </summary>
+  <div>
+    <a href={state.source.url} target="_blank" rel="noopener noreferrer">
+      {state.source.title} ↗
+    </a>
+    <blockquote>« {state.source.quote} »</blockquote>
+    <p>{state.source.locator}</p>
+    <p class="small muted">
+      Consulté le {formatDate(state.observedOn)}
+      {state.source.published
+        ? ` · Publication : ${formatDate(state.source.published)}`
+        : ''}
+      {state.source.updated
+        ? ` · Mise à jour : ${formatDate(state.source.updated)}`
+        : ''}
+    </p>
+    <details class="snapshot-hash">
+      <summary>Référence de la capture</summary>
+      <p>
+        Document reçu le {formatDate(state.observedOn)}. Empreinte SHA-256 du
+        fichier consulté :
+      </p>
+      <code>{state.source.sha256}</code>
+    </details>
+  </div>
+</details>

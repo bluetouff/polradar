@@ -2,6 +2,8 @@
 import '../styles/global.css';
 import '../styles/features.css';
 import '../styles/mobile-nav.css';
+import '../styles/editorial.css';
+import SiteFooter from '../components/SiteFooter.astro';
 import Icon from '../components/Icon.astro';
 import archivoFont from '../assets/fonts/archivo-latin.woff2?url';
 import { meta, formatDate } from '../lib/data';
@@ -24,6 +26,8 @@ const nav = [
   ['/comparer/', 'Comparer', 'layers'],
   ['/divergences/', 'Divergences', 'exchange'],
   ['/candidats/', 'Candidats', 'people'],
+  ['/evolution/', 'Évolution', 'historique'],
+  ['/financements/', 'Financements', 'exchange'],
   ['/campagne/', 'Campagne', 'historique'],
   ['/sondages/', 'Sondages', 'sondages'],
   ['/marches-predictifs/', 'Marchés', 'markets'],
@@ -33,6 +37,16 @@ const nav = [
   ['/veille/', 'Veille', 'veille'],
   ['/historique/', 'Historique', 'historique'],
   ['/suivi/', 'Mon suivi', 'suivi'],
+];
+const primaryUrls = [
+  '/',
+  '/mesures/',
+  '/comparer/',
+  '/divergences/',
+  '/candidats/',
+  '/evolution/',
+  '/financements/',
+  '/campagne/',
 ];
 const active = (url: string) =>
   url === '/'
@@ -77,123 +91,104 @@ const active = (url: string) =>
       Aller au contenu
     </a>
     <div class="app-frame">
-      <aside class="site-rail">
-        <header class="rail-brand">
-          <a href="/" class="wordmark" aria-label="Polradar, accueil">
-            <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
-              <path
-                d="M9 7v27m0-26h12a9 9 0 0 1 0 18H9"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="4"
-              />
-              <path d="M29 29h7v7h-7z" fill="#f2b39d" />
-            </svg>
-            polradar
-          </a>
-          <p>
-            <span class="election-context">Présidentielle française</span>
-            <span class="election-year">2027</span>
-          </p>
-          <details class="mobile-navigation">
-            <summary>
-              Menu <Icon name="filter" />
-            </summary>
-            <nav aria-label="Navigation complète">
-              {nav.map(([url, label]) => (
+      <header class="publication-header">
+        <div class="masthead">
+          <div class="rail-brand">
+            <a href="/" class="wordmark" aria-label="Polradar, accueil">
+              <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+                <path
+                  d="M9 7v27m0-26h12a9 9 0 0 1 0 18H9"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="4"
+                />
+                <path d="M29 29h7v7h-7z" fill="currentColor" />
+              </svg>
+              polradar
+            </a>
+            <p>
+              <span class="election-context">Présidentielle française</span>
+              <span class="election-year">2027</span>
+            </p>
+            <details class="mobile-navigation">
+              <summary>
+                Menu <Icon name="filter" />
+              </summary>
+              <nav aria-label="Navigation complète">
+                {nav.map(([url, label]) => (
+                  <a href={url} aria-current={active(url) ? 'page' : undefined}>
+                    {label}
+                  </a>
+                ))}
+                <a href="/themes/">Thèmes</a>
+                <a href="/dossiers/">Dossiers</a>
+                <a href="/sources/">Sources</a>
+                <a href="/reperes/">Calendrier électoral</a>
+                <a href="/recherche/">Rechercher</a>
+              </nav>
+            </details>
+          </div>
+          <div class="masthead-actions">
+            <time datetime={meta.edition}>
+              Édition du
+              <br />
+              {formatDate(meta.edition)}
+            </time>
+            <a href="/recherche/">
+              <Icon name="search" />
+              Rechercher
+            </a>
+          </div>
+        </div>
+        <div class="publication-nav">
+          <nav class="main-nav" aria-label="Navigation principale">
+            {nav
+              .filter(([url]) => primaryUrls.includes(url))
+              .map(([url, label, icon]) => (
                 <a href={url} aria-current={active(url) ? 'page' : undefined}>
-                  {label}
+                  <Icon name={icon} />
+                  <span>{label}</span>
                 </a>
               ))}
-              <a href="/themes/">Thèmes</a>
-              <a href="/dossiers/">Dossiers</a>
-              <a href="/sources/">Sources</a>
-              <a href="/reperes/">Calendrier électoral</a>
+          </nav>
+          <details class="publication-nav-more">
+            <summary>
+              Explorer <Icon name="filter" />
+            </summary>
+            <nav aria-label="Autres rubriques">
+              {nav
+                .filter(([url]) => !primaryUrls.includes(url))
+                .map(([url, label, icon]) => (
+                  <a href={url} aria-current={active(url) ? 'page' : undefined}>
+                    <Icon name={icon} />
+                    {label}
+                  </a>
+                ))}
+              <a href="/themes/">
+                <Icon name="layers" />
+                Thèmes
+              </a>
+              <a href="/dossiers/">
+                <Icon name="source" />
+                Dossiers
+              </a>
+              <a href="/sources/">
+                <Icon name="source" />
+                Sources
+              </a>
+              <a href="/methode/">
+                <Icon name="check" />
+                Méthode
+              </a>
             </nav>
           </details>
-        </header>
-        <nav class="main-nav" aria-label="Navigation principale">
-          {nav.map(([url, label, icon]) => (
-            <a href={url} aria-current={active(url) ? 'page' : undefined}>
-              <Icon name={icon} />
-              <span>{label}</span>
-              <span class="nav-marker" aria-hidden="true">
-                ↗
-              </span>
-            </a>
-          ))}
-        </nav>
-        <nav class="rail-utility" aria-label="Informations">
-          <a href="/themes/">Thèmes</a>
-          <a href="/dossiers/">Dossiers</a>
-          <a href="/economie/">Économie</a>
-          <a href="/sources/">Sources</a>
-          <a href="/reperes/">Calendrier électoral</a>
-          <a href="/methode/">Méthode</a>
-        </nav>
-        <div class="rail-note">
-          <span class="registration-mark" aria-hidden="true">
-            +
-          </span>
-          <span>
-            France
-            <br />
-            Scrutin présidentiel
-          </span>
         </div>
-      </aside>
+      </header>
       <div class="page-column">
-        <header class="site-bar">
-          <span>FRANCE / PRÉSIDENTIELLE 2027</span>
-          <time datetime={meta.edition}>
-            Édition du {formatDate(meta.edition)}
-          </time>
-          <a href="/recherche/">
-            <Icon name="search" />
-            Rechercher
-          </a>
-        </header>
         <main id="contenu" class="container" tabindex="-1">
           <slot />
         </main>
-        <footer class="site-footer">
-          <div class="footer-links">
-            <span class="footer-credit">
-              <span>Polradar · a</span>
-              <a href="https://l0g.fr/" class="log-wordmark" aria-label="l0g_">
-                <span aria-hidden="true">l</span>
-                <span class="log-wordmark-zero" aria-hidden="true">
-                  0
-                </span>
-                <span aria-hidden="true">g</span>
-                <span class="log-wordmark-cursor" aria-hidden="true">
-                  _
-                </span>
-              </a>
-              <span>website by</span>
-              <a href="https://bluetouff.com/">bluetouff</a>
-            </span>
-            <a href="/transparence/">À propos</a>
-            <a href="/methode/">Méthode</a>
-            <a href="/sources/">Sources</a>
-            <a href="/credits-photos/">Crédits photos</a>
-            <a href="/themes/">Thèmes</a>
-            <a href="/dossiers/">Dossiers</a>
-            <a href="/economie/">Économie</a>
-            <a href="/campagne/">Chronologie</a>
-            <a href="/reperes/">Calendrier</a>
-            <a href="/engagements/">Engagements</a>
-            <a href="/mentions/">Mentions & confidentialité</a>
-            <a href={meta.repository} target="_blank" rel="noopener noreferrer">
-              GitHub · MIT ↗
-            </a>
-            <a href="/rss.xml">RSS</a>
-          </div>
-          <p>
-            Corpus mis à jour le {formatDate(meta.corpusUpdated)} · Sélection
-            non exhaustive
-          </p>
-        </footer>
+        <SiteFooter />
       </div>
     </div>
     <script src="../scripts/follow.ts"></script>

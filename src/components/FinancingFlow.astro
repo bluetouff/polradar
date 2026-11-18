@@ -1,0 +1,172 @@
+---
+import type { financingMaps } from '../lib/proposal-data';
+import { financingLayout, wrapLabel } from '../lib/proposal-view.mjs';
+import { formatBudgetAmount } from '../lib/campaign-visuals-view.mjs';
+interface Props {
+  map: (typeof financingMaps)[number];
+}
+const { map } = Astro.props;
+const { entry } = map;
+const flow = financingLayout(map, entry);
+const rootLines = wrapLabel(entry.label, 28);
+const sourceId = `finance-source-${map.id}`;
+---
+
+<figure class="financing-figure">
+  <svg
+    class="financing-flow"
+    viewBox={`0 0 ${flow.width} ${flow.height}`}
+    aria-labelledby={`flow-title-${map.id} flow-desc-${map.id}`}
+    role="img"
+  >
+    <title id={`flow-title-${map.id}`}>{map.title}</title>
+    <desc id={`flow-desc-${map.id}`}>
+      {entry.horizon}.{' '}
+      {map.relation === 'non-chiffree'
+        ? 'La liaison en pointillés représente une contribution dont le montant n’est pas précisé.'
+        : `L’épaisseur des liens représente ${flow.percent ? 'les pourcentages publiés' : 'les montants annoncés'} dans ce seul schéma.`}
+    </desc>
+    {flow.leaves.map((leaf) => (
+      <a
+        href={`#${sourceId}`}
+        data-flow-node={leaf.i}
+        aria-label={`${leaf.label} : ${leaf.amount}. Consulter la source`}
+      >
+        <path
+          d={leaf.path}
+          class:list={[
+            'flow-band',
+            `flow-color-${leaf.i % 4}`,
+            {
+              'flow-unquantified': leaf.value === null,
+              'flow-assumed': leaf.assumed,
+            },
+          ]}
+        />
+      </a>
+    ))}
+    <a
+      href={`#${sourceId}`}
+      aria-label={`${entry.label} : ${formatBudgetAmount(entry)}. Consulter la source`}
+    >
+      <rect
+        x={flow.root.x}
+        y={flow.root.y}
+        width={flow.root.width}
+        height={flow.root.height}
+        rx="14"
+        class="flow-root"
+      />
+      <text x={flow.root.x + 24} y={flow.root.y + 42} class="flow-root-kicker">
+        {flow.percent ? 'CIBLE APPROXIMATIVE' : 'MONTANT ANNONCÉ'}
+      </text>
+      <text x={flow.root.x + 24} y={flow.root.y + 90} class="flow-total">
+        {formatBudgetAmount(entry)}
+      </text>
+      <text x={flow.root.x + 24} y={flow.root.y + 126} class="flow-root-label">
+        {rootLines.map((line, i) => (
+          <tspan x={flow.root.x + 24} dy={i ? 21 : 0}>
+            {line}
+          </tspan>
+        ))}
+      </text>
+      <text x={flow.root.x + 24} y={flow.root.y + 201} class="flow-root-kicker">
+        {
+          {
+            annuel: 'PAR AN',
+            pluriannuel: 'MONTANT PLURIANNUEL',
+            horizon: 'À L’HORIZON ANNONCÉ',
+            ponctuel: 'PONCTUEL',
+            'non-precise': 'PÉRIODE NON PRÉCISÉE',
+          }[entry.period]
+        }
+      </text>
+    </a>
+    {flow.leaves.map((leaf) => (
+      <a
+        href={`#${sourceId}`}
+        data-flow-node={leaf.i}
+        aria-label={`${leaf.label} : ${leaf.amount}. Consulter la source`}
+      >
+        <rect
+          x={leaf.x}
+          y={leaf.y}
+          width={leaf.width}
+          height={leaf.height}
+          rx="10"
+          class:list={[
+            'flow-leaf',
+            `flow-color-${leaf.i % 4}`,
+            { 'flow-assumed': leaf.assumed },
+          ]}
+        />
+        <text x={leaf.x + 20} y={leaf.y + 30} class="flow-leaf-label">
+          {leaf.lines.map((line, i) => (
+            <tspan x={leaf.x + 20} dy={i ? 20 : 0}>
+              {line}
+            </tspan>
+          ))}
+        </text>
+        <text
+          x={leaf.x + 20}
+          y={leaf.y + leaf.height - 20}
+          class:list={[
+            'flow-leaf-amount',
+            { 'flow-unknown-label': leaf.value === null },
+          ]}
+        >
+          {leaf.amount}
+          {leaf.assumed ? ' · hypothèse' : ''}
+        </text>
+      </a>
+    ))}
+  </svg>
+  <div class:list={['flow-mobile', { 'flow-mobile-reverse': flow.reverse }]}>
+    <div class="flow-mobile-total">
+      <span>{entry.label}</span>
+      <strong>{formatBudgetAmount(entry)}</strong>
+      <small>{entry.horizon}</small>
+    </div>
+    <p class="flow-mobile-direction">
+      {flow.reverse ? 'Origines annoncées' : 'Affectations annoncées'}{' '}
+      <span aria-hidden="true">↓</span>
+    </p>
+    <ol>
+      {flow.leaves.map((leaf) => (
+        <li
+          class:list={[
+            `flow-color-${leaf.i % 4}`,
+            {
+              'flow-mobile-unknown': leaf.value === null,
+              'flow-assumed': leaf.assumed,
+            },
+          ]}
+        >
+          <a href={`#${sourceId}`} data-flow-node={leaf.i}>
+            <span>{leaf.label}</span>
+            <strong>{leaf.amount}</strong>
+            {leaf.assumed && <small>Hypothèse du projet</small>}
+            {leaf.value !== null && (
+              <svg viewBox="0 0 240 6" aria-hidden="true">
+                <rect width="240" height="6" rx="3" class="flow-track" />
+                <rect
+                  width={
+                    (leaf.value / (flow.percent ? 100 : entry.euros)) * 240
+                  }
+                  height="6"
+                  rx="3"
+                  class="flow-mobile-bar"
+                />
+              </svg>
+            )}
+          </a>
+        </li>
+      ))}
+    </ol>
+  </div>
+  <figcaption>
+    {map.relation === 'non-chiffree'
+      ? 'Pointillés : montant du financement non précisé. Le coût du dispositif reste affiché séparément.'
+      : `Échelle propre à cette enveloppe · ${flow.percent ? 'parts publiées en pourcentage' : 'liens proportionnels aux montants annoncés'}.`}
+  </figcaption>
+</figure>

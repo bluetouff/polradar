@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import FollowButton from '../../components/FollowButton.astro';
+import { proposalTracks } from '../../lib/proposal-data';
 import {
   measures,
   measureVersions,
@@ -50,6 +51,15 @@ const candidate = candidateById(measure.candidate),
   </header>
   <div class="measure-detail-layout">
     <article>
+      {proposalTracks
+        .filter((t) => t.measureIds.includes(measure.id))
+        .map((t) => (
+          <p class="notice">
+            <a href={`/evolution/#dossier=${t.id}`}>
+              Évolution de cette proposition dans les documents officiels ↗
+            </a>
+          </p>
+        ))}
       <p class="measure-lead">{measure.description}</p>
       {(measure.metrics.length > 0 || measure.amounts.length > 0) && (
         <div class="measure-number-grid">

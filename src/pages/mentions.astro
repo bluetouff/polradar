@@ -21,11 +21,11 @@ import Base from '../layouts/Base.astro';
     </p>
     <h2>Navigation et données</h2>
     <p>
-      Polradar ne contient ni publicité, ni mesure d’audience, ni pixel de
-      suivi. La police Archivo est hébergée sur ce même site. Les recherches et
-      les filtres fonctionnent dans le navigateur. Le comparateur charge son
-      corpus depuis ce même site ; il ne transmet pas la sélection à un service
-      tiers.
+      Polradar ne contient ni publicité, ni pixel ou script de mesure
+      d’audience. La police Archivo est hébergée sur ce même site. Les
+      recherches et les filtres fonctionnent dans le navigateur. Le comparateur
+      charge son corpus depuis ce même site ; il ne transmet pas la sélection à
+      un service tiers.
     </p>
     <p>
       La recherche générale conserve ses filtres après le caractère « # » de
@@ -48,8 +48,12 @@ import Base from '../layouts/Base.astro';
     </p>
     <p>
       Les liens externes ne sont suivis que sur votre clic. Le site applique une
-      politique de référent restrictive. L’existence et la conservation des
-      journaux techniques dépendent de l’hébergement.
+      politique de référent restrictive. Les journaux techniques du serveur
+      peuvent contenir l’adresse IP, l’agent utilisateur, la date et le chemin
+      demandé. Ils peuvent être analysés côté serveur avec GoAccess. Le rapport
+      d’audience est privé ; il exclut les IP, les agents utilisateurs bruts et
+      les paramètres d’URL. Cette analyse n’ajoute aucun cookie ni appel vers un
+      service tiers dans les pages publiques.
     </p>
     <h2>Licences et sources</h2>
     <p>

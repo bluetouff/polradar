@@ -1,0 +1,229 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import CandidatePortrait from '../components/CandidatePortrait.astro';
+import ProposalSource from '../components/ProposalSource.astro';
+import { candidateById, themeById } from '../lib/data';
+import { proposalTracks, evolution } from '../lib/proposal-data';
+import {
+  evolutionKinds,
+  evidenceDate,
+  stateValue,
+  stateUnit,
+  proposalComparison,
+} from '../lib/proposal-view.mjs';
+import '../styles/proposals.css';
+---
+
+<Base
+  title="Évolution des propositions"
+  section="/evolution/"
+  description="Comparer les versions datées de propositions dans les documents officiels : montants, conditions et périmètres."
+>
+  <header class="page-title evidence-page-title">
+    <div>
+      <span class="eyebrow">PROGRAMMES / DOCUMENTS DATÉS</span>
+      <h1>Évolution des propositions</h1>
+      <p>Comparer ce qui était annoncé, à quelle date et pour qui.</p>
+    </div>
+    <a class="button" href="/financements/">
+      <Icon name="exchange" />
+      Carte des financements
+    </a>
+  </header>
+  <div class="evidence-overview">
+    <span>
+      <strong>{proposalTracks.length}</strong> dossiers documentés
+    </span>
+    <span>
+      <strong>{evolution.states.length}</strong> états de proposition
+    </span>
+    <span>
+      <strong>{new Set(proposalTracks.map((t) => t.candidate)).size}</strong>{' '}
+      candidats couverts
+    </span>
+    <a href="#evolution-method">
+      Comment lire ces comparaisons <Icon name="arrow" />
+    </a>
+  </div>
+  <div class="evidence-workspace" data-evolution>
+    <nav class="evidence-picker" aria-label="Dossiers de propositions">
+      {proposalTracks.map((track, i) => (
+        <a href={`#dossier=${track.id}`} data-evidence-tab={track.id}>
+          <span class="picker-portrait">
+            <CandidatePortrait
+              candidate={candidateById(track.candidate)}
+              compact
+            />
+          </span>
+          <span>
+            <small>{candidateById(track.candidate).name}</small>
+            <strong>{track.title}</strong>
+            <em>
+              {track.states.length} documents · {themeById(track.theme).short}
+            </em>
+          </span>
+          <span class="picker-number">0{i + 1}</span>
+        </a>
+      ))}
+    </nav>
+    <div class="evidence-stage">
+      {proposalTracks.map((track) => (
+        <section
+          class="evolution-dossier"
+          id={`dossier=${track.id}`}
+          data-evolution-dossier={track.id}
+          data-kind={track.kind}
+          aria-labelledby={`title-${track.id}`}
+        >
+          <header class="dossier-heading">
+            <span class="dossier-symbol">
+              <Icon name={track.theme} />
+            </span>
+            <div>
+              <p class="eyebrow">
+                {candidateById(track.candidate).name} ·{' '}
+                {themeById(track.theme).label}
+              </p>
+              <h2 id={`title-${track.id}`}>{track.title}</h2>
+            </div>
+            <span class={`evolution-badge badge-${track.kind}`}>
+              {evolutionKinds[track.kind]}
+            </span>
+          </header>
+          <ol class="proposal-timeline">
+            {track.states.map((state, i) => (
+              <li>
+                <a href={`#etat-${state.id}`} data-state-jump={state.id}>
+                  <span class="timeline-date">{evidenceDate(state)}</span>
+                  <span class="timeline-point" aria-hidden="true">
+                    {i + 1}
+                  </span>
+                  <strong>{stateValue(state)}</strong>
+                  <small>{state.edition}</small>
+                </a>
+              </li>
+            ))}
+          </ol>
+          <div class="evolution-compare-controls js-evidence-control">
+            <label>
+              Document de départ
+              <select data-state-from>
+                {track.states.map((s, i) => (
+                  <option value={s.id} selected={i === 0}>
+                    {evidenceDate(s)} · {stateValue(s)}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <Icon name="exchange" />
+            <label>
+              Document comparé
+              <select data-state-to>
+                {track.states.map((s, i) => (
+                  <option value={s.id} selected={i === track.states.length - 1}>
+                    {evidenceDate(s)} · {stateValue(s)}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <div class="comparison-reading">
+            <span data-comparison-label>
+              {
+                proposalComparison(track, track.states[0], track.states.at(-1))
+                  .label
+              }
+            </span>
+            <p>{track.note}</p>
+          </div>
+          <div class="proposal-state-grid">
+            {track.states.map((state) => (
+              <article
+                id={`etat-${state.id}`}
+                class="proposal-state"
+                data-proposal-state={state.id}
+                data-value={state.value}
+                data-unit={state.unit}
+                data-basis={state.basisKey}
+              >
+                <header>
+                  <span>{state.edition}</span>
+                  <time
+                    datetime={
+                      state.date.value.length === 10
+                        ? state.date.value
+                        : undefined
+                    }
+                  >
+                    {evidenceDate(state)}
+                  </time>
+                </header>
+                <p class="state-amount">{stateValue(state)}</p>
+                <p class="state-unit">{stateUnit(state)}</p>
+                <p class="state-statement">{state.statement}</p>
+                <dl>
+                  <div>
+                    <dt>Champ d’application</dt>
+                    <dd>{state.population}</dd>
+                  </div>
+                  {state.parameters.map((p) => (
+                    <div>
+                      <dt>{p.label}</dt>
+                      <dd>{p.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                {state.reported && (
+                  <p class="reported-note">
+                    <Icon name="clock" />
+                    Annonce antérieure reprise par le parti dans une page mise à
+                    jour le 17 novembre 2026.
+                  </p>
+                )}
+                <ProposalSource state={state} />
+              </article>
+            ))}
+          </div>
+          {track.measureIds.length > 0 && (
+            <p class="evidence-related">
+              Dans le programme actuel :{' '}
+              {track.measureIds.map((id) => (
+                <a href={`/mesures/${id}/`}>
+                  fiche de la proposition <Icon name="arrow" />
+                </a>
+              ))}
+            </p>
+          )}
+        </section>
+      ))}
+    </div>
+  </div>
+  <aside id="evolution-method" class="evidence-method">
+    <Icon name="source" />
+    <div>
+      <h2>Dates, documents et périmètres</h2>
+      <p>
+        Une date de consultation indique ce que la page affiche au moment du
+        relevé. Elle ne date pas le changement de position. Une édition annuelle
+        garde cette précision lorsqu’aucun jour n’est établi.
+      </p>
+      <p>
+        Les comparaisons chiffrées portent sur une même unité et un même champ.
+        Les programmes collectifs, les conditions d’éligibilité et les
+        changements de périmètre restent indiqués. Les captures déjà intégrées
+        sont conservées ; une correction nécessite un nouvel état.
+      </p>
+      <a href="/historique/">
+        Voir les révisions éditoriales des fiches <Icon name="arrow" />
+      </a>
+    </div>
+  </aside>
+  <noscript>
+    <p>
+      Tous les dossiers et documents sont affichés. Les sélections de
+      comparaison demandent JavaScript.
+    </p>
+  </noscript>
+</Base>
+<script src="../scripts/proposals.ts"></script>

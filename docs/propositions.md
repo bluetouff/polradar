@@ -1,0 +1,9 @@
+# Évolution des propositions et financements
+
+`proposal-evolution.json` conserve des états de documents officiels séparés des révisions éditoriales de `versions.json`. Une capture fixe la référence, l’URL, un extrait court, son emplacement, la date de consultation et l’empreinte SHA-256 du document reçu. `recordedAt` date l’intégration technique ; il ne date pas une déclaration politique. La CI empêche de modifier ou retirer les états déjà publiés. Une correction s’ajoute dans un nouvel état.
+
+Une édition 2022 ou 2024 conserve cette précision annuelle. Une consultation n’établit pas la date d’un changement de programme. L’annonce Lisnard d’avril 2026 est une reprise rétrospective par son parti, signalée comme telle. Le programme collectif du NFP reste distinct des campagnes présidentielles. Les seules différences numériques affichées utilisent une même base : le SMIC mensuel net nominal. Aucun montant n’est corrigé de l’inflation.
+
+`financing-maps.json` ne contient aucun montant : ses relations renvoient aux entrées validées de `programme-budgets.json`. Les montants et répartitions n’ont qu’une seule définition. Les parts de l’effort annoncé par Édouard Philippe restent 50 %, 25 %, 25 % ; elles ne deviennent pas des euros exacts à partir d’une cible approximative. L’emprunt PCF de 500 milliards reste un financement sur cinq ans. Les liens défense/IA et profits/fonds de relocalisation n’encodent aucun montant, car leur quote-part est inconnue. Aucun total entre candidats ou entre horizons différents n’est calculé.
+
+Les pages sont statiques et lisibles sans JavaScript. Les contrôles n’affichent que les identifiants connus du corpus ; les données externes passent par les schémas et sont rendues comme texte. Les graphiques ont une échelle propre à chaque enveloppe et une présentation adaptée aux petites largeurs.

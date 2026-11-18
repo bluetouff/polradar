@@ -38,7 +38,9 @@ jobs:
       - run: npm run test:e2e
       - name: Package validated main
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: python3 scripts/package-release.py
+        run: |
+          python3 scripts/package-release.py
+          python3 scripts/package-stats.py
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         with:
@@ -69,11 +71,12 @@ jobs:
         run: |
           set -euo pipefail
           sha256sum --check site.sha256
+          sha256sum --check polradar-goaccess.sha256
           tag="site-${SOURCE_SHA}"
           if gh release view "$tag" >/dev/null 2>&1; then
             echo 'This commit already has a release; no asset is overwritten.'
             exit 0
           fi
-          gh release create "$tag" site.tar.gz site.sha256 \
+          gh release create "$tag" site.tar.gz site.sha256 polradar-goaccess.tar.gz polradar-goaccess.sha256 \
             --target "$SOURCE_SHA" --title "Site ${SOURCE_SHA:0:12}" \
             --notes "Static site built and checked from commit ${SOURCE_SHA}." --latest

@@ -1,0 +1,83 @@
+---
+import Icon from './Icon.astro';
+import { proposalTracks, financingMaps } from '../lib/proposal-data';
+import { stateValue } from '../lib/proposal-view.mjs';
+import { formatMoney } from '../lib/campaign-visuals-view.mjs';
+const track = proposalTracks.find((t) => t.id === 'melenchon-smic')!;
+const map = financingMaps.find((m) => m.id === 'lisnard-affectations')!;
+const colors = ['#75b5a0', '#f3b295', '#99aad2'];
+---
+
+<section
+  class="home-evidence"
+  aria-label="Explorer les propositions et les financements"
+>
+  <a href="/evolution/#dossier=melenchon-smic" class="home-evolution-preview">
+    <div class="evidence-preview-heading">
+      <span>
+        <Icon name="historique" />
+        Évolution des propositions
+      </span>
+      <Icon name="arrow" />
+    </div>
+    <h2>Le SMIC dans les programmes soutenus par Jean-Luc Mélenchon</h2>
+    <ol>
+      {track.states.map((s) => (
+        <li>
+          <small>
+            {s.date.value.length === 4 ? s.date.value : 'Campagne 2027'}
+          </small>
+          <strong>{stateValue(s)}</strong>
+          <span>
+            {s.scope === 'archive' && s.date.value === '2024'
+              ? 'Programme collectif NFP'
+              : 'Programme présidentiel'}
+          </span>
+        </li>
+      ))}
+    </ol>
+    <p>Montants nets mensuels annoncés · documents officiels</p>
+  </a>
+  <a
+    href="/financements/#carte=lisnard-affectations"
+    class="home-finance-preview"
+  >
+    <div class="evidence-preview-heading">
+      <span>
+        <Icon name="exchange" />
+        Carte des financements
+      </span>
+      <Icon name="arrow" />
+    </div>
+    <h2>Où David Lisnard affecterait ses économies annoncées</h2>
+    <div class="preview-finance">
+      <strong>
+        {formatMoney(map.entry.euros)}
+        <small>par an à terme</small>
+      </strong>
+      <svg viewBox="0 0 250 104" aria-hidden="true">
+        {map.entry.allocation.map((a, i) => (
+          <path
+            d={`M0,52 C110,52 130,${18 + i * 34} 250,${18 + i * 34}`}
+            stroke={colors[i]}
+            stroke-width={(a.value / map.entry.euros) * 56}
+            fill="none"
+          />
+        ))}
+      </svg>
+      <ol>
+        {map.entry.allocation.map((a, i) => (
+          <li>
+            <span
+              class={`preview-dot preview-dot-${i}`}
+              aria-hidden="true"
+            ></span>
+            <strong>{formatMoney(a.value)}</strong>
+            <span>{a.label}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+    <p>Répartition publiée par Nouvelle Énergie · rythme de croisière</p>
+  </a>
+</section>

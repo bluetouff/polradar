@@ -1,0 +1,172 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import CandidatePortrait from '../components/CandidatePortrait.astro';
+import FinancingFlow from '../components/FinancingFlow.astro';
+import { financingMaps } from '../lib/proposal-data';
+import { candidateById, sourceById, formatDate } from '../lib/data';
+import { relationKinds } from '../lib/proposal-view.mjs';
+import { formatBudgetAmount } from '../lib/campaign-visuals-view.mjs';
+import '../styles/proposals.css';
+---
+
+<Base
+  title="Carte des financements"
+  section="/financements/"
+  description="Voir les origines, les affectations et les hypothèses des chiffrages annoncés dans les documents officiels des candidats et partis."
+>
+  <header class="page-title evidence-page-title">
+    <div>
+      <span class="eyebrow">PROGRAMMES / CHIFFRAGES ANNONCÉS</span>
+      <h1>Carte des financements</h1>
+      <p>
+        Les montants, leurs origines et leurs affectations dans les projets
+        publiés.
+      </p>
+    </div>
+    <a class="button" href="/budget-programmes/">
+      <Icon name="euro" />
+      Tous les chiffrages
+    </a>
+  </header>
+  <div class="evidence-overview">
+    <span>
+      <strong>{financingMaps.length}</strong> schémas documentés
+    </span>
+    <span>
+      <strong>{new Set(financingMaps.map((m) => m.candidate)).size}</strong>{' '}
+      candidats couverts
+    </span>
+    <span class="flow-legend">
+      <i aria-hidden="true"></i> montant annoncé{' '}
+      <i class="dashed" aria-hidden="true"></i> part non chiffrée
+    </span>
+    <a href="#financing-method">
+      Lire les flux <Icon name="arrow" />
+    </a>
+  </div>
+  <div class="evidence-workspace" data-financing>
+    <nav class="evidence-picker" aria-label="Schémas de financement">
+      {financingMaps.map((map) => (
+        <a href={`#carte=${map.id}`} data-evidence-tab={map.id}>
+          <span class="picker-portrait">
+            <CandidatePortrait
+              candidate={candidateById(map.candidate)}
+              compact
+            />
+          </span>
+          <span>
+            <small>{candidateById(map.candidate).name}</small>
+            <strong>{map.title}</strong>
+            <em>
+              {formatBudgetAmount(map.entry)} ·{' '}
+              {map.scope === 'parti' ? 'Projet de parti' : 'Campagne 2027'}
+            </em>
+          </span>
+        </a>
+      ))}
+    </nav>
+    <div class="evidence-stage">
+      {financingMaps.map((map) => (
+        <section
+          data-financing-map={map.id}
+          id={`carte=${map.id}`}
+          class="financing-dossier"
+          aria-labelledby={`title-${map.id}`}
+        >
+          <header class="dossier-heading">
+            <span class="dossier-symbol">
+              <Icon name="euro" />
+            </span>
+            <div>
+              <p class="eyebrow">
+                {candidateById(map.candidate).name} ·{' '}
+                {map.scope === 'parti' ? 'Projet de parti' : 'Campagne 2027'}
+              </p>
+              <h2 id={`title-${map.id}`}>{map.title}</h2>
+            </div>
+          </header>
+          <div class="financing-context">
+            <span class="evolution-badge">{relationKinds[map.relation]}</span>
+            <p>{map.entry.horizon}</p>
+          </div>
+          <FinancingFlow map={map} />
+          <div class="flow-reading">
+            <Icon
+              name={map.relation === 'non-chiffree' ? 'warning' : 'source'}
+            />
+            <p>{map.note}</p>
+          </div>
+          <details
+            id={`finance-source-${map.id}`}
+            class="proposal-source finance-source"
+          >
+            <summary>
+              Documents et détail des montants <Icon name="source" />
+            </summary>
+            <div>
+              <p data-flow-selection aria-live="polite">
+                {map.entry.label}
+              </p>
+              <p>{map.entry.locator}</p>
+              {map.entry.funding && <p>{map.entry.funding}</p>}
+              <ul>
+                {[map.entry.source, ...(map.entry.additionalSources ?? [])].map(
+                  (id) => {
+                    const source = sourceById(id);
+                    return (
+                      <li>
+                        <a
+                          href={source.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {source.title} ↗
+                        </a>
+                        <small>Consulté le {formatDate(source.checked)}</small>
+                      </li>
+                    );
+                  },
+                )}
+              </ul>
+            </div>
+          </details>
+          <p class="evidence-related">
+            <a href={`/candidats/${map.candidate}/`}>
+              Programme de {candidateById(map.candidate).name}{' '}
+              <Icon name="arrow" />
+            </a>
+          </p>
+        </section>
+      ))}
+    </div>
+  </div>
+  <aside id="financing-method" class="evidence-method">
+    <Icon name="layers" />
+    <div>
+      <h2>Ce que représente chaque schéma</h2>
+      <p>
+        Les liens reprennent les chiffrages et affectations des candidats ou de
+        leurs partis. Les parts reposant sur une hypothèse sont signalées. Une
+        contribution sans montant reste en pointillés.
+      </p>
+      <p>
+        Chaque enveloppe garde son unité et son horizon : montant annuel,
+        financement sur cinq ans ou objectif à terme. Les parts en pourcentage
+        restent en pourcentage. Les schémas présentent des annonces, sans
+        constituer une évaluation indépendante de leur rendement ni un solde
+        complet des programmes.
+      </p>
+      <a href="/evolution/">
+        Comparer les propositions dans le temps <Icon name="arrow" />
+      </a>
+    </div>
+  </aside>
+  <noscript>
+    <p>
+      Tous les schémas sont affichés. Chaque nœud renvoie aux documents
+      officiels.
+    </p>
+  </noscript>
+</Base>
+<script src="../scripts/proposals.ts"></script>

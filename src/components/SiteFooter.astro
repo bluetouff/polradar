@@ -1,0 +1,124 @@
+---
+import Icon from './Icon.astro';
+import { meta, formatDate } from '../lib/data';
+const columns = [
+  {
+    title: 'Explorer',
+    icon: 'people',
+    links: [
+      ['/candidats/', 'Candidats'],
+      ['/mesures/', 'Mesures et orientations'],
+      ['/themes/', 'Thèmes'],
+      ['/dossiers/', 'Dossiers'],
+    ],
+  },
+  {
+    title: 'Comparer',
+    icon: 'exchange',
+    links: [
+      ['/comparer/', 'Programmes'],
+      ['/divergences/', 'Divergences'],
+      ['/evolution/', 'Évolution des propositions'],
+      ['/financements/', 'Carte des financements'],
+      ['/budget-programmes/', 'Budgets annoncés'],
+    ],
+  },
+  {
+    title: 'Suivre la campagne',
+    icon: 'historique',
+    links: [
+      ['/campagne/', 'Chronologie'],
+      ['/agenda/', 'Carte des rendez-vous'],
+      ['/sondages/', 'Sondages'],
+      ['/marches-predictifs/', 'Marchés prédictifs'],
+      ['/temps-de-parole/', 'Temps de parole'],
+      ['/veille/', 'Veille quotidienne'],
+    ],
+  },
+  {
+    title: 'Le projet',
+    icon: 'source',
+    links: [
+      ['/transparence/', 'À propos de Polradar'],
+      ['/methode/', 'Méthode'],
+      ['/sources/', 'Catalogue des sources'],
+      ['/credits-photos/', 'Crédits photos'],
+      ['/mentions/', 'Mentions et confidentialité'],
+      ['/rss.xml', 'Flux RSS'],
+    ],
+  },
+];
+---
+
+<footer class="publication-footer">
+  <div class="footer-inner">
+    <div class="footer-intro">
+      <div>
+        <a href="/" class="footer-brand">
+          polradar<span aria-hidden="true">.</span>
+        </a>
+        <p>
+          Présidentielle française 2027
+          <br />
+          Programmes, candidatures et campagne.
+        </p>
+      </div>
+      <a href="/suivi/" class="footer-follow">
+        <Icon name="suivi" />
+        <span>
+          Mon suivi<small>Choisir mes candidats et mes thèmes</small>
+        </span>
+        <Icon name="arrow" />
+      </a>
+    </div>
+    <nav class="footer-columns" aria-label="Plan du site">
+      {columns.map((column) => (
+        <div>
+          <h2>
+            <Icon name={column.icon} />
+            {column.title}
+          </h2>
+          <ul>
+            {column.links.map(([url, label]) => (
+              <li>
+                <a href={url}>{label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </nav>
+    <div class="footer-meta">
+      <p>
+        Corpus mis à jour le{' '}
+        <time datetime={meta.corpusUpdated}>
+          {formatDate(meta.corpusUpdated)}
+        </time>
+        <span> · Sélection non exhaustive</span>
+      </p>
+      <a href={meta.repository} target="_blank" rel="noopener noreferrer">
+        GitHub · Licence MIT <Icon name="external" />
+      </a>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-credit">
+        <span>Polradar · a</span>
+        <a href="https://l0g.fr/" class="log-wordmark" aria-label="l0g_">
+          <span aria-hidden="true">l</span>
+          <span class="log-wordmark-zero" aria-hidden="true">
+            0
+          </span>
+          <span aria-hidden="true">g</span>
+          <span class="log-wordmark-cursor" aria-hidden="true">
+            _
+          </span>
+        </a>
+        <span>website by</span>
+        <a href="https://bluetouff.com/">bluetouff</a>
+      </span>
+      <a href="/reperes/">
+        Calendrier électoral <Icon name="arrow" />
+      </a>
+    </div>
+  </div>
+</footer>

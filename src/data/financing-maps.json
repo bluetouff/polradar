@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "checked": "2026-11-18",
+  "maps": [
+    {
+      "id": "lisnard-affectations",
+      "candidate": "lisnard",
+      "budgetEntry": "lisnard-economies",
+      "relation": "affectation",
+      "title": "Affectation des économies annoncées",
+      "note": "Répartition en rythme de croisière. La montée en charge est progressive.",
+      "origin": null,
+      "assumptions": []
+    },
+    {
+      "id": "retailleau-affectations",
+      "candidate": "retailleau",
+      "budgetEntry": "retailleau-trajectoire",
+      "relation": "affectation",
+      "title": "Déficit et montants rendus",
+      "note": "Affectations incluses dans les 197 milliards annoncés en 2032. Ce montant n’est pas présenté comme un cumul quinquennal.",
+      "origin": null,
+      "assumptions": []
+    },
+    {
+      "id": "philippe-effort",
+      "candidate": "philippe",
+      "budgetEntry": "philippe-trajectoire",
+      "relation": "composition",
+      "title": "Origines de l’effort de redressement",
+      "note": "Les parts sont publiées en pourcentage. Elles ne sont pas converties en montants exacts à partir de la cible proche de 150 milliards.",
+      "origin": null,
+      "assumptions": ["Croissance et emploi attendus"]
+    },
+    {
+      "id": "philippot-economies",
+      "candidate": "philippot",
+      "budgetEntry": "philippot-economies",
+      "relation": "composition",
+      "title": "Économies visées par les Patriotes",
+      "note": "Le tableau retient 15 milliards pour la contribution nette à l’UE ; le texte introductif en évoque 20. Le schéma conserve le tableau.",
+      "origin": null,
+      "assumptions": []
+    },
+    {
+      "id": "philippot-recettes",
+      "candidate": "philippot",
+      "budgetEntry": "philippot-recettes",
+      "relation": "composition",
+      "title": "Recettes et gains budgétaires projetés",
+      "note": "Le tableau associe recettes fiscales et gains liés aux dépenses sociales. Ses postes sont conditionnés aux hypothèses du projet et ne sont pas additionnés au tableau des économies.",
+      "origin": null,
+      "assumptions": ["Croissance supposée de 3 %"]
+    },
+    {
+      "id": "roussel-emprunt",
+      "candidate": "roussel",
+      "budgetEntry": "roussel-pacte-investissement",
+      "relation": "financement",
+      "title": "Emprunt pour le pacte d’investissement",
+      "note": "Financement par emprunt proposé sur cinq ans, distinct d’un coût budgétaire net.",
+      "origin": {
+        "label": "Emprunt via le pôle public bancaire",
+        "detail": "Caisse des dépôts et Bpifrance",
+        "qualifier": null
+      },
+      "assumptions": []
+    },
+    {
+      "id": "ruffin-defense-ia",
+      "candidate": "ruffin",
+      "budgetEntry": "ruffin-labo",
+      "relation": "non-chiffree",
+      "title": "Crédits de défense et laboratoire d’IA",
+      "note": "Le laboratoire est chiffré à un milliard par an. La campagne ne chiffre pas la part des crédits de défense qui le financerait.",
+      "origin": {
+        "label": "Crédits de la défense",
+        "detail": "Contribution partielle annoncée",
+        "qualifier": "Quote-part non chiffrée"
+      },
+      "assumptions": []
+    },
+    {
+      "id": "nda-profits-fonds",
+      "candidate": "dupont-aignan",
+      "budgetEntry": "nda-fonds",
+      "relation": "non-chiffree",
+      "title": "Profits et fonds de relocalisation",
+      "note": "Le projet vise un autofinancement à terme par les profits des investissements. Le montant des profits affectés et le financement initial ne sont pas précisés.",
+      "origin": {
+        "label": "Profits des investissements",
+        "detail": "Autofinancement visé à terme",
+        "qualifier": "Montant non chiffré"
+      },
+      "assumptions": []
+    }
+  ]
+}

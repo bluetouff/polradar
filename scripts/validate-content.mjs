@@ -3,6 +3,11 @@ import { validateDataset, validateFeatures } from '../src/lib/schema.mjs';
 import { marketSnapshotSchema } from '../src/lib/markets.mjs';
 import { airtimeSchema } from '../src/lib/airtime.mjs';
 import {
+  evolutionSchema,
+  financingSchema,
+  validateProposalReferences,
+} from '../src/lib/proposal-evidence.mjs';
+import {
   programmeBudgetSchema,
   agendaSchema,
   mapSchema,
@@ -71,6 +76,24 @@ const errors = [
   ...validateFeatures(dataset),
   ...visualErrors,
 ];
+const evidence = await Promise.all(
+  ['proposal-evolution', 'financing-maps'].map(async (name) =>
+    JSON.parse(
+      await readFile(
+        new URL(`../src/data/${name}.json`, import.meta.url),
+        'utf8',
+      ),
+    ),
+  ),
+);
+errors.push(
+  ...validateProposalReferences(
+    evolutionSchema.parse(evidence[0]),
+    financingSchema.parse(evidence[1]),
+    dataset,
+    visualDatasets[0],
+  ),
+);
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);

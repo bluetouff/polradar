@@ -7,6 +7,7 @@ import CandidatePortrait from '../../components/CandidatePortrait.astro';
 import Icon from '../../components/Icon.astro';
 import { candidates, measures, themes } from '../../lib/data';
 import { portraitFor } from '../../lib/portraits';
+import { proposalTracks, financingMaps } from '../../lib/proposal-data';
 import '../../styles/candidates.css';
 export function getStaticPaths() {
   return candidates.map((candidate) => ({
@@ -22,6 +23,8 @@ const current = records.filter((record) => record.scope !== 'archive');
 const archives = records.filter((record) => record.scope === 'archive');
 const covered = new Set(current.map((measure) => measure.theme)).size;
 const portrait = portraitFor(candidate.id);
+const evolutionLink = proposalTracks.find((t) => t.candidate === candidate.id);
+const financingLink = financingMaps.find((m) => m.candidate === candidate.id);
 ---
 
 <Base
@@ -65,6 +68,22 @@ const portrait = portraitFor(candidate.id);
           name={candidate.name}
         />
       </div>
+      {(evolutionLink || financingLink) && (
+        <nav class="profile-evidence-links" aria-label="Analyses du programme">
+          {evolutionLink && (
+            <a href={`/evolution/#dossier=${evolutionLink.id}`}>
+              <Icon name="historique" />
+              Évolution des propositions
+            </a>
+          )}
+          {financingLink && (
+            <a href={`/financements/#carte=${financingLink.id}`}>
+              <Icon name="exchange" />
+              Carte des financements
+            </a>
+          )}
+        </nav>
+      )}
       {covered > 0 && (
         <nav class="profile-theme-nav" aria-label="Thèmes documentés">
           {themes

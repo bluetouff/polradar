@@ -1,0 +1,346 @@
+{
+  "version": 1,
+  "checked": "2026-11-18",
+  "tracks": [
+    {
+      "id": "melenchon-smic",
+      "candidate": "melenchon",
+      "theme": "travail",
+      "title": "SMIC mensuel net",
+      "kind": "montant",
+      "note": "Les montants sont des annonces nominales. L’étape 2024 correspond au programme collectif du NFP, distinct des deux campagnes présidentielles.",
+      "stateIds": [
+        "melenchon-smic-2022",
+        "melenchon-smic-nfp-2024",
+        "melenchon-smic-2026"
+      ],
+      "measureIds": ["melenchon-travail-1"]
+    },
+    {
+      "id": "melenchon-autonomie",
+      "candidate": "melenchon",
+      "theme": "social",
+      "title": "Garantie d’autonomie",
+      "kind": "conditions",
+      "note": "Le programme abrégé de 2022 mentionne les personnes de 18 ans à la retraite ; le chapitre actuel parle de chaque personne et chiffre le seuil pour une personne seule. Les deux formulations sont présentées avec leurs conditions.",
+      "stateIds": ["melenchon-autonomie-2022", "melenchon-autonomie-2026"],
+      "measureIds": ["melenchon-social-garantie-autonomie"]
+    },
+    {
+      "id": "lisnard-perimetres",
+      "candidate": "lisnard",
+      "theme": "fiscalite",
+      "title": "Périmètres des économies annoncées",
+      "kind": "perimetre",
+      "note": "Le chiffre d’avril concerne le train de vie de l’État. Celui d’octobre porte sur les dépenses publiques en rythme de croisière. Ils ne sont pas traités comme un doublement du même objectif.",
+      "stateIds": [
+        "lisnard-economies-avril-2026",
+        "lisnard-economies-octobre-2026"
+      ],
+      "measureIds": []
+    },
+    {
+      "id": "philippe-retraites",
+      "candidate": "philippe",
+      "theme": "retraites",
+      "title": "Âge légal cible et durée de cotisation",
+      "kind": "maintien",
+      "note": "Les deux publications reprennent un âge général de 65 ans et 45 années de cotisation. Cette comparaison porte sur ces paramètres, avec les exceptions de chaque document.",
+      "stateIds": [
+        "philippe-retraites-septembre-2026",
+        "philippe-retraites-novembre-2026"
+      ],
+      "measureIds": ["philippe-retraites-1"]
+    }
+  ],
+  "states": [
+    {
+      "id": "melenchon-smic-2022",
+      "trackId": "melenchon-smic",
+      "date": {
+        "value": "2022",
+        "kind": "edition"
+      },
+      "edition": "Présidentielle 2022",
+      "scope": "archive",
+      "observedOn": "2026-11-18",
+      "recordedAt": "2026-11-18T15:13:05.482938Z",
+      "value": 1400,
+      "unit": "euros-net-mois",
+      "basisKey": "smic-mensuel-net",
+      "population": "Salariés au SMIC",
+      "statement": "Porter le SMIC à 1 400 euros net par mois.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "melenchon-2022-declaration",
+        "title": "Jean-Luc Mélenchon : déclaration du premier tour de 2022, archive CNCCEP",
+        "url": "https://www.cnccep.fr/pdfs/Candidat-08-Jean-Luc-Melenchon-Declaration-accessible.pdf",
+        "authority": "institution",
+        "published": null,
+        "updated": null,
+        "sha256": "2dc0d46164c48c165950bd3a75c7777a8538ac24d3c1989c52922629c4bc0f49",
+        "quote": "Porter immédiatement le SMIC à 1400 euros net par mois",
+        "locator": "PDF, page 4 : Augmenter les salaires et les pensions"
+      }
+    },
+    {
+      "id": "melenchon-smic-nfp-2024",
+      "trackId": "melenchon-smic",
+      "date": {
+        "value": "2024",
+        "kind": "edition"
+      },
+      "edition": "Programme collectif du NFP, législatives 2024",
+      "scope": "archive",
+      "observedOn": "2026-11-18",
+      "recordedAt": "2026-11-18T15:13:05.482938Z",
+      "value": 1600,
+      "unit": "euros-net-mois",
+      "basisKey": "smic-mensuel-net",
+      "population": "Salariés au SMIC",
+      "statement": "Le programme collectif du Nouveau Front populaire fixe le SMIC à 1 600 euros net.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "nfp-2024-contrat",
+        "title": "Nouveau Front populaire : contrat de législature de 2024 (PDF)",
+        "url": "https://melenchon2027.fr/wp-content/uploads/2026/04/PROGRAMME-FRONT-POPULAIRE.pdf",
+        "authority": "parti",
+        "published": null,
+        "updated": null,
+        "sha256": "e6dd6fbd6c4315fbee86c2fcf4d7d008dfd2783d5a5ec1052fd0240c217a6cd3",
+        "quote": "Augmenter les salaires par le passage du SMIC à 1600€ net",
+        "locator": "PDF, page 4 : urgence sociale, bloc sur les salaires"
+      }
+    },
+    {
+      "id": "melenchon-smic-2026",
+      "trackId": "melenchon-smic",
+      "date": {
+        "value": "2026-11-18",
+        "kind": "consultation"
+      },
+      "edition": "Présidentielle 2027",
+      "scope": "campagne",
+      "observedOn": "2026-11-18",
+      "recordedAt": "2026-11-18T15:13:05.482938Z",
+      "value": 1700,
+      "unit": "euros-net-mois",
+      "basisKey": "smic-mensuel-net",
+      "population": "Salariés au SMIC",
+      "statement": "Porter le SMIC mensuel à 1 700 euros net et indexer les salaires sur l’inflation.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "lfi-tax",
+        "title": "L’Avenir en commun : partager les richesses",
+        "url": "https://melenchon2027.fr/programme/livre/une-economie-au-service-des-besoins/chapitre2",
+        "authority": "campagne",
+        "published": null,
+        "updated": null,
+        "sha256": "0d4b7e717b0902d8bb4dde956db65bd0ae17e0a7b190ed8627fb254154a9128c",
+        "quote": "Porter immédiatement le SMIC mensuel à 1 700 euros net",
+        "locator": "Partager les richesses : Augmenter les salaires, mesure clé"
+      }
+    },
+    {
+      "id": "melenchon-autonomie-2022",
+      "trackId": "melenchon-autonomie",
+      "date": {
+        "value": "2022",
+        "kind": "edition"
+      },
+      "edition": "Présidentielle 2022",
+      "scope": "archive",
+      "observedOn": "2026-11-18",
+      "recordedAt": "2026-11-18T15:13:05.482938Z",
+      "value": 1063,
+      "unit": "euros-mois",
+      "basisKey": "garantie-18-ans-retraite",
+      "population": "De 18 ans à la retraite, selon le programme abrégé",
+      "statement": "Garantir un revenu au moins égal au seuil de pauvreté cité dans le programme : 1 063 euros par mois.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "melenchon-2022-declaration",
+        "title": "Jean-Luc Mélenchon : déclaration du premier tour de 2022, archive CNCCEP",
+        "url": "https://www.cnccep.fr/pdfs/Candidat-08-Jean-Luc-Melenchon-Declaration-accessible.pdf",
+        "authority": "institution",
+        "published": null,
+        "updated": null,
+        "sha256": "2dc0d46164c48c165950bd3a75c7777a8538ac24d3c1989c52922629c4bc0f49",
+        "quote": "Créer la garantie d’autonomie",
+        "locator": "PDF, page 4 : garantie de revenu de 18 ans à la retraite"
+      }
+    },
+    {
+      "id": "melenchon-autonomie-2026",
+      "trackId": "melenchon-autonomie",
+      "date": {
+        "value": "2026-11-18",
+        "kind": "consultation"
+      },
+      "edition": "Présidentielle 2027",
+      "scope": "campagne",
+      "observedOn": "2026-11-18",
+      "recordedAt": "2026-11-18T15:13:05.482938Z",
+      "value": 1337,
+      "unit": "euros-mois",
+      "basisKey": "garantie-chaque-personne-seuil-personne-seule",
+      "population": "Chaque personne ; montant cité pour une personne seule",
+      "statement": "La garantie vise le seuil de pauvreté, chiffré à 1 337 euros par mois pour une personne seule.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "lfi-social",
+        "title": "L’Avenir en commun : à chacun selon ses besoins",
+        "url": "https://melenchon2027.fr/programme/livre/mettre-en-securite-sociale/chapitre1",
+        "authority": "campagne",
+        "published": null,
+        "updated": null,
+        "sha256": "736f89bd08054f0c1c8fccdef64ceb67a1f321d41ba4520dfa7c72ec327cf5a3",
+        "quote": "le revenu mensuel de chaque personne atteindra le seuil de pauvreté",
+        "locator": "À chacun selon ses besoins : Éradiquer la pauvreté, mesure clé"
+      }
+    },
+    {
+      "id": "lisnard-economies-avril-2026",
+      "trackId": "lisnard-perimetres",
+      "date": {
+        "value": "2026-04-23",
+        "kind": "declaration"
+      },
+      "edition": "Annonce du 23 avril reprise par Nouvelle Énergie",
+      "scope": "parti",
+      "observedOn": "2026-11-18",
+      "recordedAt": "2026-11-18T15:13:05.482938Z",
+      "value": 100000000000.0,
+      "unit": "euros",
+      "basisKey": "train-vie-etat-periode-non-precisee",
+      "population": "Train de vie de l’État ; période non précisée dans cette reprise",
+      "statement": "La publication du 23 avril est présentée par le parti comme un objectif de 100 milliards sur le train de vie de l’État.",
+      "parameters": [],
+      "reported": true,
+      "source": {
+        "id": "lisnard-chiffrage-2026",
+        "title": "Nouvelle Énergie : périmètres et chiffrages annoncés par David Lisnard",
+        "url": "https://www.unenouvelleenergie.fr/questions/le-programme-de-david-lisnard-est-il-chiffre/",
+        "authority": "parti",
+        "published": null,
+        "updated": "2026-11-17",
+        "sha256": "77f67db0bae023badf0619bdfb023b8ef359bfc75ba9b175817b7028807a107e",
+        "quote": "sur le train de vie de l’État",
+        "locator": "Ses chiffres varient-ils ? Reprise de la publication du 23 avril 2026"
+      }
+    },
+    {
+      "id": "lisnard-economies-octobre-2026",
+      "trackId": "lisnard-perimetres",
+      "date": {
+        "value": "2026-10-15",
+        "kind": "publication"
+      },
+      "edition": "Présentation au Crayon",
+      "scope": "parti",
+      "observedOn": "2026-11-18",
+      "recordedAt": "2026-11-18T15:13:05.482938Z",
+      "value": 200000000000.0,
+      "unit": "euros",
+      "basisKey": "depenses-publiques-annuelles-a-terme",
+      "population": "Dépense publique ; montant annuel en rythme de croisière",
+      "statement": "Annoncer 200 milliards d’économies en rythme de croisière, avec une ambition de 300 milliards à terme.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "lisnard-crayon-2026",
+        "title": "David Lisnard : trajectoire budgétaire présentée au Crayon",
+        "url": "https://www.unenouvelleenergie.fr/david-lisnard-au-crayon-letat-providence-est-mort-il-faut-inventer-un-nouveau-modele/",
+        "authority": "parti",
+        "published": "2026-10-15",
+        "updated": null,
+        "sha256": "35f4f4856bff8226619604fb00d57699ea76ae9758b1db7d205a473a2c5b5066",
+        "quote": "200 milliards en rythme de croisière",
+        "locator": "200 milliards d’économies pour rendre du pouvoir d’achat aux Français"
+      }
+    },
+    {
+      "id": "philippe-retraites-septembre-2026",
+      "trackId": "philippe-retraites",
+      "date": {
+        "value": "2026-09-29",
+        "kind": "publication"
+      },
+      "edition": "Assises de l’AFER",
+      "scope": "campagne",
+      "observedOn": "2026-11-18",
+      "recordedAt": "2026-11-18T15:13:05.482938Z",
+      "value": 65,
+      "unit": "ans",
+      "basisKey": "age-legal-general",
+      "population": "Âge légal général ; départs anticipés maintenus",
+      "statement": "Porter l’âge légal à 65 ans et la durée de cotisation à 45 ans.",
+      "parameters": [
+        {
+          "label": "Cotisation annoncée",
+          "value": "45 années"
+        },
+        {
+          "label": "Départs anticipés",
+          "value": "Entre 60 et 64 ans pour les carrières longues et métiers pénibles"
+        }
+      ],
+      "reported": false,
+      "source": {
+        "id": "philippe-afer-2026",
+        "title": "Édouard Philippe : réforme des retraites présentée aux Assises de l’AFER",
+        "url": "https://www.edouardphilippe.fr/actualites/assises-de-l-afer-sauver-nos-retraites",
+        "authority": "campagne",
+        "published": "2026-09-29",
+        "updated": null,
+        "sha256": "9a41216309f476bfbde831ea657a5674685ad5dd60979e741764747f9295ab5e",
+        "quote": "Un âge légal porté à 65 ans",
+        "locator": "Liste des propositions : âge légal, cotisations et départs anticipés"
+      }
+    },
+    {
+      "id": "philippe-retraites-novembre-2026",
+      "trackId": "philippe-retraites",
+      "date": {
+        "value": "2026-11-18",
+        "kind": "mise-a-jour"
+      },
+      "edition": "Page de programme mise à jour le 18 novembre",
+      "scope": "campagne",
+      "observedOn": "2026-11-18",
+      "recordedAt": "2026-11-18T15:13:05.482938Z",
+      "value": 65,
+      "unit": "ans",
+      "basisKey": "age-legal-general",
+      "population": "Âge légal général ; départs anticipés maintenus",
+      "statement": "La page de programme reprend l’objectif de 65 ans et 45 années de cotisation, avec une montée en charge en moins de dix ans.",
+      "parameters": [
+        {
+          "label": "Cotisation annoncée",
+          "value": "45 années"
+        },
+        {
+          "label": "Calendrier annoncé",
+          "value": "En moins de dix ans"
+        }
+      ],
+      "reported": false,
+      "source": {
+        "id": "philippe-pension",
+        "title": "Édouard Philippe : retraites",
+        "url": "https://www.edouardphilippe.fr/programme/retraites",
+        "authority": "campagne",
+        "published": null,
+        "updated": "2026-11-18",
+        "sha256": "756aefa924e8fca67e36e927f6fd4594baee1560a2ca0fd4c54769a353b1722f",
+        "quote": "Porter progressivement l’âge de départ à 65 ans",
+        "locator": "Nos propositions phares : âge, cotisation et exceptions"
+      }
+    }
+  ]
+}
