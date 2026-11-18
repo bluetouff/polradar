@@ -3,9 +3,13 @@ import Icon from './Icon.astro';
 import { proposalTracks, financingMaps } from '../lib/proposal-data';
 import { stateValue } from '../lib/proposal-view.mjs';
 import { formatMoney } from '../lib/campaign-visuals-view.mjs';
+import { voteCases } from '../lib/votes-data';
+import { ballotDots, positionLabel } from '../lib/legislative-votes.mjs';
 const track = proposalTracks.find((t) => t.id === 'melenchon-smic')!;
 const map = financingMaps.find((m) => m.id === 'lisnard-affectations')!;
 const colors = ['#75b5a0', '#f3b295', '#99aad2'];
+const voteCase = voteCases.find((c) => c.id === 'melenchon-isf')!;
+const voteChart = ballotDots(voteCase.ballots[0]);
 ---
 
 <section
@@ -80,4 +84,151 @@ const colors = ['#75b5a0', '#f3b295', '#99aad2'];
     </div>
     <p>Répartition publiée par Nouvelle Énergie · rythme de croisière</p>
   </a>
+  <a href="/votes/#dossier=melenchon-isf" class="home-votes-preview">
+    <div>
+      <div class="evidence-preview-heading">
+        <span>
+          <Icon name="vote" />
+          Propositions et votes passés
+        </span>
+        <Icon name="arrow" />
+      </div>
+      <h2>Jean-Luc Mélenchon et l’ISF</h2>
+      <p>
+        Votes nominatifs de l’Assemblée nationale et proposition documentée.
+      </p>
+    </div>
+    <ol>
+      {voteCase.ballots.map((b) => (
+        <li>
+          <small>{b.date.slice(0, 4)}</small>
+          <strong>{positionLabel(b.position, b)}</strong>
+          <span>
+            {b.id === 'an15-169'
+              ? 'ISF remplacé par l’IFI'
+              : 'Rejet du texte sur l’ISF'}
+          </span>
+        </li>
+      ))}
+      <li>
+        <small>Campagne 2027</small>
+        <strong>ISF climatique</strong>
+        <span>Proposition actuelle</span>
+      </li>
+    </ol>
+    <div class="home-vote-points">
+      <svg
+        viewBox={`0 0 ${voteChart.width} ${voteChart.height}`}
+        aria-hidden="true"
+      >
+        {voteChart.dots.map((d) => (
+          <circle
+            cx={d.x}
+            cy={d.y}
+            r="2.9"
+            class={`preview-voice-${d.choice}`}
+          />
+        ))}
+      </svg>
+      <span>
+        Article 12 · 20 octobre 2017
+        <br />1 point = 1 voix ou abstention
+      </span>
+    </div>
+  </a>
 </section>
+
+<style>
+  .home-votes-preview {
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr) minmax(
+        130px,
+        0.5fr
+      );
+    align-items: center;
+    gap: 28px;
+    background: #eee8dc;
+  }
+  .home-votes-preview ol {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    list-style: none;
+    padding: 0;
+    gap: 16px;
+  }
+  .home-votes-preview li {
+    display: grid;
+    gap: 7px;
+    position: relative;
+    padding-top: 18px;
+    border-top: 1px solid #b6c4ba;
+  }
+  .home-votes-preview li::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    width: 7px;
+    height: 7px;
+    background: #a86349;
+    border-radius: 50%;
+  }
+  .home-votes-preview small {
+    font-size: 10px;
+    color: var(--muted);
+  }
+  .home-votes-preview li strong {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .home-votes-preview li span {
+    font-size: 10px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+  .home-vote-points svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .home-vote-points > span {
+    display: block;
+    font-size: 9px;
+    line-height: 1.6;
+    margin-top: 10px;
+    color: var(--muted);
+  }
+  .preview-voice-pour {
+    fill: #6b8f74;
+  }
+  .preview-voice-contre {
+    fill: #b76d53;
+  }
+  .preview-voice-abstention {
+    fill: #8999af;
+  }
+  @media (max-width: 1050px) {
+    .home-votes-preview {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
+      gap: 22px;
+    }
+    .home-vote-points {
+      display: none;
+    }
+  }
+  @media (max-width: 650px) {
+    .home-votes-preview {
+      display: block;
+    }
+    .home-votes-preview ol {
+      margin-top: 22px;
+      gap: 12px;
+    }
+    .home-votes-preview li strong {
+      font-size: 12px;
+    }
+    .home-votes-preview li span {
+      font-size: 9px;
+    }
+  }
+</style>

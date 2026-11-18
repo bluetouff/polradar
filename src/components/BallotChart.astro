@@ -1,0 +1,65 @@
+---
+import { ballotDots } from '../lib/legislative-votes.mjs';
+interface Props {
+  ballot: {
+    id: string;
+    kind: string;
+    tally: {
+      voters: number;
+      expressed: number;
+      for: number;
+      against: number | null;
+      abstained: number | null;
+      majority: number | null;
+      nonVoters: number | null;
+    };
+  };
+}
+const { ballot } = Astro.props;
+const chart = ballotDots(ballot);
+const censure = ballot.kind === 'motion-censure';
+const label = censure
+  ? `${ballot.tally.for} voix pour la motion. Majorité requise : ${ballot.tally.majority}.`
+  : `${ballot.tally.for} pour, ${ballot.tally.against} contre et ${ballot.tally.abstained} abstentions.`;
+---
+
+<div class="ballot-chart">
+  <svg
+    viewBox={`0 0 ${chart.width} ${chart.height}`}
+    role="img"
+    aria-label={label}
+  >
+    {chart.dots.map((dot) => (
+      <circle
+        cx={dot.x}
+        cy={dot.y}
+        r="2.9"
+        class={`ballot-dot-${dot.choice}`}
+      />
+    ))}
+  </svg>
+  <div class="ballot-tally">
+    <span class="tally-pour">
+      <strong>{ballot.tally.for}</strong>pour{censure && ' la motion'}
+    </span>
+    {!censure && (
+      <>
+        <span class="tally-contre">
+          <strong>{ballot.tally.against}</strong>contre
+        </span>
+        <span class="tally-abstention">
+          <strong>{ballot.tally.abstained}</strong>abstentions
+        </span>
+      </>
+    )}
+  </div>
+  <p class="ballot-chart-key">
+    1 point = 1 voix{censure ? ' favorable recensée' : ' ou abstention'}
+  </p>
+  {censure && (
+    <p class="ballot-censure-note">
+      Majorité requise : {ballot.tally.majority}. Les autres positions ne sont
+      pas recensées.
+    </p>
+  )}
+</div>

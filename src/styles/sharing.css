@@ -1,0 +1,70 @@
+@layer components {
+  .page-share {
+    display: flex;
+    align-items: center;
+    gap: 16px 24px;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--line);
+    margin-top: 32px;
+    padding: 20px 0 2px;
+  }
+  .page-share-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .page-share-label .icon {
+    width: 18px;
+    height: 18px;
+  }
+  .page-share ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .page-share a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 44px;
+    padding: 9px 13px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    background: var(--white);
+  }
+  .page-share a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .page-share a .icon {
+    width: 14px;
+    height: 14px;
+    color: var(--muted);
+  }
+}
+@layer responsive {
+  @media (max-width: 550px) {
+    .page-share {
+      display: block;
+    }
+    .page-share-label {
+      margin-bottom: 12px;
+    }
+    .page-share ul {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .page-share a {
+      display: flex;
+    }
+  }
+}

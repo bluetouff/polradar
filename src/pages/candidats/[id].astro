@@ -8,6 +8,7 @@ import Icon from '../../components/Icon.astro';
 import { candidates, measures, themes } from '../../lib/data';
 import { portraitFor } from '../../lib/portraits';
 import { proposalTracks, financingMaps } from '../../lib/proposal-data';
+import { voteCases } from '../../lib/votes-data';
 import '../../styles/candidates.css';
 export function getStaticPaths() {
   return candidates.map((candidate) => ({
@@ -25,6 +26,7 @@ const covered = new Set(current.map((measure) => measure.theme)).size;
 const portrait = portraitFor(candidate.id);
 const evolutionLink = proposalTracks.find((t) => t.candidate === candidate.id);
 const financingLink = financingMaps.find((m) => m.candidate === candidate.id);
+const votesLink = voteCases.find((v) => v.candidate === candidate.id);
 ---
 
 <Base
@@ -68,8 +70,14 @@ const financingLink = financingMaps.find((m) => m.candidate === candidate.id);
           name={candidate.name}
         />
       </div>
-      {(evolutionLink || financingLink) && (
+      {(evolutionLink || financingLink || votesLink) && (
         <nav class="profile-evidence-links" aria-label="Analyses du programme">
+          {votesLink && (
+            <a href={`/votes/#dossier=${votesLink.id}`}>
+              <Icon name="vote" />
+              Propositions et votes passés
+            </a>
+          )}
           {evolutionLink && (
             <a href={`/evolution/#dossier=${evolutionLink.id}`}>
               <Icon name="historique" />

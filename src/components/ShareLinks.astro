@@ -1,0 +1,39 @@
+---
+import Icon from './Icon.astro';
+import { shareLinks } from '../lib/sharing.mjs';
+import '../styles/sharing.css';
+interface Props {
+  title: string;
+  canonical: URL;
+}
+const { title, canonical } = Astro.props;
+const links = shareLinks(title, canonical);
+---
+
+<nav class="page-share" aria-label="Partager cette page">
+  <span class="page-share-label">
+    <Icon name="share" />
+    Partager
+  </span>
+  <ul>
+    {links.map((link) => (
+      <li>
+        <a
+          href={link.href}
+          data-share-platform={link.id}
+          target={link.id === 'mail' ? undefined : '_blank'}
+          rel="noopener noreferrer"
+          referrerpolicy="no-referrer"
+          aria-label={
+            link.id === 'mail'
+              ? 'Partager cette page par e-mail'
+              : `Partager cette page sur ${link.label} (nouvel onglet)`
+          }
+        >
+          <span>{link.label}</span>
+          <Icon name={link.id === 'mail' ? 'mail' : 'external'} />
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>

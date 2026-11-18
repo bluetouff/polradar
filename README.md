@@ -10,12 +10,12 @@ Node 24 LTS et Python 3.10 ou supérieur. Les versions npm sont figées dans le 
 
 ```sh
 npm ci --ignore-scripts
+npx --no-install playwright install chromium
 npm run dev
 ```
 
 ```sh
 npm run validate
-npx --no-install playwright install chromium
 npm run test:e2e
 npm run security:audit
 ```
@@ -30,13 +30,13 @@ npm run security:audit
 - `src/lib/schema.mjs` : validation des types, références et invariants.
 - `deploy/` : récupération et activation des versions publiques sur le serveur.
 
-Le corpus comprend 33 candidatures recensées, 12 thèmes et 335 fiches de mesures ou orientations, dont 9 archives de 2022. Les 69 fiches thématiques initiales conservent leurs adresses ; le registre en comprend désormais 131. Les 362 versions sont des états du contenu Polradar : les enrichissements éditoriaux sont distingués des évolutions de programme. Il ne s’agit pas d’une liste officielle exhaustive. Chaque référence conserve sa propre date de consultation.
+Le corpus comprend 33 candidatures recensées, 12 thèmes et 354 fiches de mesures ou orientations, dont 9 archives de 2022. Les 69 fiches thématiques initiales conservent leurs adresses ; le registre en comprend désormais 131. Les 382 versions sont des états du contenu Polradar : les enrichissements éditoriaux sont distingués des évolutions de programme. Il ne s’agit pas d’une liste officielle exhaustive. Chaque référence conserve sa propre date de consultation.
 
 Le registre de sondages contient 36 relevés de scénarios, regroupés en 30 séries compatibles sur neuf vagues, provenant de sept instituts : Elabe, Ifop, Ipsos BVA, Odoxa, Cluster17, OpinionWay et Toluna Harris Interactive. Les notices de la Commission des sondages documentent les terrains, échantillons et méthodes. Pour Odoxa, les résultats sont liés séparément à la publication de l’institut. Chaque courbe conserve le même institut, tour, méthode et liste de candidatures. Les effectifs utiles inconnus restent à `null`. Les bases des non-exprimés et les marges indicatives sont précisées dans chaque fiche. Les comptes de campagne et les résultats territoriaux restent à intégrer.
 
-Les vues `/temps-de-parole/`, `/budget-programmes/` et `/agenda/` proposent les relevés Arcom de juillet à septembre 2026 (24 médias), 26 montants annoncés pour 13 profils et 25 rendez-vous officiels couvrant 15 profils dans 19 communes. Elles conservent les périodes, les données absentes et les sources. La collecte Arcom accompagne la veille quotidienne et produit un artefact à examiner ; elle ne publie pas de données automatiquement. Voir [la méthode et les commandes de mise à jour](docs/visualisations.md).
+Les vues `/temps-de-parole/`, `/budget-programmes/` et `/agenda/` proposent les relevés Arcom de juillet à septembre 2026 (24 médias), 37 montants annoncés pour 14 profils et 28 rendez-vous officiels dans 21 communes. Elles conservent les périodes, les données absentes et les sources. La collecte Arcom accompagne la veille quotidienne et produit un artefact à examiner ; elle ne publie pas de données automatiquement. Voir [la méthode et les commandes de mise à jour](docs/visualisations.md).
 
-Les nouvelles vues `/evolution/` et `/financements/` ajoutent quatre dossiers datés (neuf états de proposition pour trois candidats) et huit schémas financiers concernant sept candidats. Les documents historiques sont conservés séparément des révisions éditoriales ; les liens financiers reprennent uniquement les relations documentées. Voir [leurs règles de comparaison](docs/propositions.md). L’accueil propose deux aperçus fondés sur ces données, avec une navigation horizontale et un footer structuré.
+Les nouvelles vues `/evolution/` et `/financements/` ajoutent six dossiers datés (quatorze états de proposition pour cinq candidats) et seize schémas financiers concernant neuf candidats. Les documents historiques sont conservés séparément des révisions éditoriales ; les liens financiers reprennent uniquement les relations documentées. Voir [leurs règles de comparaison](docs/propositions.md). L’accueil propose deux aperçus fondés sur ces données, avec une navigation horizontale et un footer structuré.
 
 L’audience utilise un [paquet GoAccess privé](deploy/goaccess/README.md), distinct du site statique et activé par l’opérateur. Aucun script de mesure n’est ajouté aux pages publiques. Le lecteur garde une CSP stricte ; il utilise des agrégats du moteur GoAccess sans IP ni agents utilisateurs bruts. La disponibilité du paquet dans une version GitHub ne prouve pas son activation sur le serveur.
 
@@ -51,6 +51,14 @@ La présentation utilise la police Archivo, servie localement depuis `src/assets
 La galerie des candidatures présente 24 portraits réels avec attribution et conditions de réutilisation sur `/credits-photos/`. Les images sont conservées localement et optimisées par Astro lorsque leurs conditions le permettent. Le JPEG de campagne de Benoît Mathieu est servi sans réencodage ; aucun hébergeur d’images n’est appelé par le navigateur. Les portraits plus anciens conservent leur année. Les autorisations propres au Parlement européen et au portrait officiel de Benoît Mathieu sont distinguées des licences Creative Commons ; elles sont limitées aux fichiers vérifiés. Les candidatures sans portrait qualifié restent affichées avec leur nom. Le filtre par thème indique les fiches disponibles dans le corpus, sans supprimer les dossiers encore à documenter.
 
 La carte `/divergences/` rapproche quatre paramètres chiffrés du corpus : âge général de départ, durée de cotisation, SMIC mensuel net et seuil d’exonération annoncé pour les héritages. Les conditions et sources restent visibles sous chaque graphique. Les clés `age-depart` et `age-retraite` désignent la cible générale ; l’âge de pénibilité et celui du taux plein restent séparés. Le SMIC compare uniquement les montants mensuels nets renseignés dans les données structurées, sans convertir les montants bruts. Les graphiques excluent les archives et refusent les unités ou valeurs contradictoires. Ils ne produisent pas de score politique. Les thèmes, fiches et sources restent consultables sans JavaScript.
+
+## Propositions, votes et partage
+
+La frise `/votes/` relie six propositions à six scrutins nominatifs de l’Assemblée nationale et du Sénat. Les objets des votes, les groupes à l’époque et les sources sont conservés. Les motions restent distinctes des votes sur une mesure. Voir [la méthode de sélection](docs/votes.md).
+
+L’accueil et chaque rubrique disposent d’une image OG PNG de 1200 × 630, générée à la construction avec Chromium et la police locale. Les graphiques reprennent les données du corpus, sans requête distante ni photographie synthétique. Les noms de fichiers changent avec le contenu et le rendu. Les pages détaillées héritent du visuel de leur rubrique. `npm run og:render` permet de les régénérer ; Chromium doit être installé avant `build` ou `dev`. Les PNG générés sont ignorés par Git et intégrés à la livraison statique.
+
+Les liens de partage X, Bluesky, LinkedIn, Facebook et e-mail utilisent l’adresse canonique, sans fragment, recherche, SDK, pixel ou paramètre de suivi ajouté. Aucune plateforme n’est appelée au chargement ; le clic ouvre sa page de composition.
 
 ## Marchés prédictifs
 

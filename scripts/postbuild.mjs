@@ -1,6 +1,7 @@
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
+import { socialImageFor } from '../src/lib/social-images.mjs';
 
 const root = path.resolve('dist');
 async function walk(dir) {
@@ -20,12 +21,38 @@ const known = new Set(files);
 const pages = files.filter((file) => file.endsWith('.html'));
 const errors = [];
 const sitemap = [];
+const verifiedImages = new Set();
 for (const file of pages) {
   const html = await readFile(file, 'utf8');
   const route = `/${path
     .relative(root, file)
     .replaceAll(path.sep, '/')
     .replace(/index\.html$/, '')}`;
+  const expectedImage = new URL(
+    socialImageFor(route).url,
+    'https://polradar.fr',
+  );
+  const image = html.match(/<meta property="og:image" content="([^"]+)"/);
+  const twitter = html.match(/<meta name="twitter:image" content="([^"]+)"/);
+  if (
+    image?.[1] !== expectedImage.href ||
+    twitter?.[1] !== expectedImage.href ||
+    !html.includes('name="twitter:card" content="summary_large_image"')
+  )
+    errors.push(`${route}: métadonnées OG incohérentes`);
+  const imagePath = path.join(root, expectedImage.pathname);
+  if (!verifiedImages.has(imagePath)) {
+    const png = await readFile(imagePath);
+    if (
+      png.length > 1024 * 1024 ||
+      png.length < 24 ||
+      png.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a' ||
+      png.readUInt32BE(16) !== 1200 ||
+      png.readUInt32BE(20) !== 630
+    )
+      errors.push(`${route}: PNG OG invalide`);
+    verifiedImages.add(imagePath);
+  }
   if (!/http-equiv="content-security-policy"/i.test(html))
     errors.push(`${route}: CSP manquante`);
   if (

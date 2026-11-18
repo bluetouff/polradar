@@ -3,6 +3,10 @@ import { validateDataset, validateFeatures } from '../src/lib/schema.mjs';
 import { marketSnapshotSchema } from '../src/lib/markets.mjs';
 import { airtimeSchema } from '../src/lib/airtime.mjs';
 import {
+  legislativeVotesSchema,
+  validateLegislativeReferences,
+} from '../src/lib/legislative-votes.mjs';
+import {
   evolutionSchema,
   financingSchema,
   validateProposalReferences,
@@ -76,6 +80,19 @@ const errors = [
   ...validateFeatures(dataset),
   ...visualErrors,
 ];
+errors.push(
+  ...validateLegislativeReferences(
+    legislativeVotesSchema.parse(
+      JSON.parse(
+        await readFile(
+          new URL('../src/data/legislative-votes.json', import.meta.url),
+          'utf8',
+        ),
+      ),
+    ),
+    dataset,
+  ),
+);
 const evidence = await Promise.all(
   ['proposal-evolution', 'financing-maps'].map(async (name) =>
     JSON.parse(

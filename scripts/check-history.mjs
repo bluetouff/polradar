@@ -13,6 +13,7 @@ if (/^0{40}$/.test(base)) {
 for (const [file, key] of [
   ['src/data/versions.json', null],
   ['src/data/proposal-evolution.json', 'states'],
+  ['src/data/legislative-votes.json', 'ballots'],
 ]) {
   const files = execFileSync(
     'git',

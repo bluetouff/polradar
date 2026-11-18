@@ -1,0 +1,555 @@
+import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { resolve } from 'node:path';
+import { francePath, projectFrance } from './campaign-visuals-view.mjs';
+const read = (name) =>
+  JSON.parse(readFileSync(resolve('src/data', `${name}.json`), 'utf8'));
+// Astro executes a bundled copy in dist/.prerender. Build inputs stay in the
+// project root, where the documented npm commands and CI run.
+if (
+  JSON.parse(readFileSync(resolve('package.json'), 'utf8')).name !== 'polradar'
+)
+  throw Error('Exécuter la génération OG depuis la racine de Polradar');
+const measures = read('measures'),
+  candidates = read('candidates'),
+  themes = read('themes');
+const current = measures.filter((m) => m.scope !== 'archive');
+const sources = read('sources'),
+  versions = read('versions'),
+  evolution = read('proposal-evolution');
+const finance = read('financing-maps'),
+  budgets = read('programme-budgets'),
+  agenda = read('campaign-agenda');
+const votes = read('legislative-votes'),
+  polls = read('polls'),
+  markets = read('prediction-markets');
+const watch = read('watch'),
+  events = read('events'),
+  airtime = read('airtime');
+const edition = read('meta').edition;
+const number = (n) => n.toLocaleString('fr-FR');
+const counts = (rows, key) =>
+  [...new Set(rows.map((r) => r[key]))].map((label) => ({
+    label,
+    value: rows.filter((r) => r[key] === label).length,
+  }));
+const themeBars = themes
+  .map((t) => ({
+    label: t.label,
+    value: current.filter((m) => m.theme === t.id).length,
+  }))
+  .sort((a, b) => b.value - a.value);
+const instituts = counts(polls, 'institute').sort((a, b) => b.value - a.value);
+const programme = budgets.profiles
+  .find((p) => p.candidate === 'lisnard')
+  .entries.find((e) => e.id === 'lisnard-economies');
+const smic = evolution.tracks
+  .find((t) => t.id === 'melenchon-smic')
+  .stateIds.map((id) => evolution.states.find((s) => s.id === id));
+const communeIds = new Set(agenda.events.map((e) => e.city).filter(Boolean));
+const chartMap = {
+  path: francePath(read('france-map').rings),
+  points: agenda.cities
+    .filter((c) => communeIds.has(c.id))
+    .map((c) => ({ ...projectFrance(c.coordinates), name: c.name })),
+};
+const functions = [
+  ['mesures', 'Mesures', current.length],
+  ['candidats', 'Candidats', candidates.length],
+  ['evolution', 'États datés', evolution.states.length],
+  ['financements', 'Cartes financières', finance.maps.length],
+];
+const bars = (rows, unit = 'fiches dans le corpus') => ({
+  kind: 'bars',
+  rows,
+  unit,
+});
+const tiles = (rows, label) => ({
+  kind: 'tiles',
+  rows: rows.map(([label, value]) => ({ label, value: number(value) })),
+  label,
+});
+/** @type {Array<[string, string, string, string, string, string, Record<string, any>]>} */
+const defs = [
+  [
+    'accueil',
+    '/',
+    'Présidentielle française',
+    'Présidentielle\n2027',
+    'Programmes, candidatures et campagne.',
+    'navy',
+    {
+      kind: 'home',
+      rows: themeBars.slice(0, 5),
+      total: current.length,
+      candidates: candidates.length,
+      themes: themes.length,
+    },
+  ],
+  [
+    'candidats',
+    '/candidats/',
+    'Les candidatures',
+    'Candidats',
+    'Profils, programmes et sources.',
+    'sage',
+    {
+      kind: 'people',
+      names: candidates.slice(0, 9).map((c) => c.name),
+      total: candidates.length,
+    },
+  ],
+  [
+    'mesures',
+    '/mesures/',
+    'Les programmes',
+    'Mesures et\norientations',
+    `${number(current.length)} fiches hors archives.`,
+    'ivory',
+    bars(themeBars.slice(0, 6)),
+  ],
+  [
+    'engagements',
+    '/engagements/',
+    'Le corpus thématique',
+    'Engagements',
+    'Les propositions regroupées par thème.',
+    'clay',
+    bars(themeBars.slice(3, 9)),
+  ],
+  [
+    'themes',
+    '/themes/',
+    'Les programmes',
+    'Programmes\npar thème',
+    `${themes.length} thèmes pour explorer les propositions.`,
+    'sage',
+    bars(themeBars.slice(0, 6)),
+  ],
+  [
+    'comparer',
+    '/comparer/',
+    'Comparer les programmes',
+    'Comparer les\npropositions',
+    'Candidats, thèmes, mesures et sources.',
+    'ivory',
+    tiles(
+      [
+        ['Thèmes', themes.length],
+        ['Candidats', candidates.length],
+        ['Fiches actuelles', current.length],
+        ['Archives 2022', measures.length - current.length],
+      ],
+      'Périmètre du corpus',
+    ),
+  ],
+  [
+    'divergences',
+    '/divergences/',
+    'Paramètres des propositions',
+    'Carte des\ndivergences',
+    'Lire les montants et leurs conditions.',
+    'clay',
+    {
+      kind: 'divergences',
+      rows: current
+        .filter((m) => m.theme === 'retraites')
+        .flatMap((m) =>
+          m.metrics
+            .filter((p) => p.key === 'age-depart' && p.unit === 'ans')
+            .map((p) => ({
+              label: candidates.find((c) => c.id === m.candidate).name,
+              value: p.value,
+            })),
+        )
+        .slice(0, 5),
+    },
+  ],
+  [
+    'evolution',
+    '/evolution/',
+    'Documents datés',
+    'Évolution des\npropositions',
+    `${evolution.tracks.length} dossiers · ${evolution.states.length} états documentés.`,
+    'navy',
+    {
+      kind: 'timeline',
+      label: 'SMIC mensuel net · programmes soutenus par J.-L. Mélenchon',
+      rows: smic.map((s) => ({
+        value: number(s.value) + ' €',
+        label: s.date.kind === 'consultation' ? 'Campagne 2027' : s.date.value,
+        detail:
+          s.date.value === '2024'
+            ? 'Programme collectif NFP'
+            : 'Programme présidentiel',
+      })),
+    },
+  ],
+  [
+    'votes',
+    '/votes/',
+    'Programmes et Parlement',
+    'Propositions et\nvotes passés',
+    `${votes.cases.length} dossiers · listes nominatives officielles.`,
+    'navy',
+    { kind: 'vote', ballot: votes.ballots.find((b) => b.id === 'an15-169') },
+  ],
+  [
+    'financements',
+    '/financements/',
+    'Financements annoncés',
+    'Carte des\nfinancements',
+    `${finance.maps.length} cartes · montants et affectations sourcés.`,
+    'sage',
+    { kind: 'finance', total: programme.euros, rows: programme.allocation },
+  ],
+  [
+    'campagne',
+    '/campagne/',
+    'La campagne présidentielle',
+    'Chronologie\nde la campagne',
+    `${events.length} événements datés dans le corpus.`,
+    'ivory',
+    {
+      kind: 'timeline',
+      label: 'Événements et publications documentés',
+      rows: [...events]
+        .sort((a, b) => a.date.localeCompare(b.date))
+        .slice(-3)
+        .map((e) => ({
+          value: e.date.split('-').reverse().join('.'),
+          label: e.title,
+          detail:
+            {
+              evenement: 'Événement',
+              publication: 'Publication',
+              mise_a_jour: 'Mise à jour',
+            }[e.dateKind] || 'Date documentée',
+        })),
+    },
+  ],
+  [
+    'sondages',
+    '/sondages/',
+    'Intentions de vote',
+    'Sondages',
+    'Scénarios, terrains et notices officielles.',
+    'sage',
+    bars(instituts, 'scénarios documentés par institut'),
+  ],
+  [
+    'marches-predictifs',
+    '/marches-predictifs/',
+    'Relevés des plateformes',
+    'Marchés\nprédictifs',
+    'Polymarket et Kalshi, relevés séparés.',
+    'navy',
+    bars(
+      markets.providers.map((p) => ({
+        label: p.id === 'kalshi' ? 'Kalshi' : 'Polymarket',
+        value: p.contracts.length,
+      })),
+      'contrats recensés · pas des intentions de vote',
+    ),
+  ],
+  [
+    'temps-de-parole',
+    '/temps-de-parole/',
+    'Relevés Arcom',
+    'Temps de\nparole',
+    'Télévision et radio · juillet à septembre 2026.',
+    'ivory',
+    tiles(
+      [
+        ['Mois', airtime.months.length],
+        [
+          'Médias',
+          new Set(airtime.months.flatMap((m) => m.services.map((s) => s.name)))
+            .size,
+        ],
+      ],
+      'Données publiées par l’Arcom',
+    ),
+  ],
+  [
+    'budget-programmes',
+    '/budget-programmes/',
+    'Chiffrages des programmes',
+    'Budgets\nannoncés',
+    'Périodes, hypothèses et sources.',
+    'clay',
+    bars(
+      counts(
+        budgets.profiles.flatMap((p) => p.entries),
+        'period',
+      ).map((r) => ({
+        ...r,
+        label:
+          {
+            annuel: 'Annuels',
+            pluriannuel: 'Pluriannuels',
+            'non-precise': 'Période non précisée',
+            ponctuel: 'Ponctuels',
+            horizon: 'Objectifs à terme',
+          }[r.label] || r.label,
+      })),
+      'montants recensés · sans addition des périodes',
+    ),
+  ],
+  [
+    'agenda',
+    '/agenda/',
+    'Rendez-vous de campagne',
+    'Agenda\nde campagne',
+    `${agenda.events.length} rendez-vous · ${communeIds.size} communes.`,
+    'sage',
+    { kind: 'map', ...chartMap },
+  ],
+  [
+    'veille',
+    '/veille/',
+    'Sources et documents',
+    'Veille des\nprogrammes',
+    'Une collecte quotidienne, relue avant publication.',
+    'navy',
+    {
+      kind: 'watch',
+      states: watch.map((r) => r.status),
+      total: watch.length,
+      observed: [
+        ...new Set(
+          watch.map((r) =>
+            new Intl.DateTimeFormat('fr-FR', {
+              dateStyle: 'short',
+              timeZone: 'Europe/Paris',
+            }).format(new Date(r.checkedAt)),
+          ),
+        ),
+      ].join(' · '),
+    },
+  ],
+  [
+    'historique',
+    '/historique/',
+    'Révisions éditoriales',
+    'Historique\ndes fiches',
+    'Les versions du contenu Polradar.',
+    'ivory',
+    bars(
+      counts(versions, 'kind').map((r) => ({
+        ...r,
+        label:
+          {
+            import: 'Premières fiches',
+            enrichissement: 'Enrichissements',
+            correction: 'Corrections',
+            evolution: 'Évolutions signalées',
+          }[r.label] || r.label,
+      })),
+      'versions éditoriales · pas des changements de programme',
+    ),
+  ],
+  [
+    'suivi',
+    '/suivi/',
+    'Votre sélection locale',
+    'Mon suivi',
+    'Choisir ses candidats et ses thèmes.',
+    'sage',
+    tiles(
+      [
+        ['Candidats', candidates.length],
+        ['Thèmes', themes.length],
+      ],
+      'Préférences conservées dans votre navigateur',
+    ),
+  ],
+  [
+    'dossiers',
+    '/dossiers/',
+    'Dossiers thématiques',
+    'Les dossiers\nPolradar',
+    'Programmes, chiffrages et méthode.',
+    'clay',
+    tiles(
+      functions.map(([, label, n]) => [label, n]),
+      'Explorer le corpus',
+    ),
+  ],
+  [
+    'sources',
+    '/sources/',
+    'Documents de référence',
+    'Catalogue\ndes sources',
+    'Retrouver les documents cités.',
+    'sage',
+    bars(
+      counts(sources, 'kind').map((r) => ({
+        ...r,
+        label:
+          {
+            campagne: 'Campagnes',
+            parti: 'Partis',
+            institution: 'Institutions',
+            presse: 'Presse',
+            archive: 'Archives',
+          }[r.label] || r.label,
+      })),
+      'sources référencées',
+    ),
+  ],
+  [
+    'methode',
+    '/methode/',
+    'Méthode éditoriale',
+    'Comment lire\nPolradar',
+    'Attributions, dates, périmètres et archives.',
+    'ivory',
+    {
+      kind: 'document',
+      rows: [
+        'Identifier la proposition',
+        'Lire le document officiel',
+        'Distinguer les dates',
+        'Conserver les versions',
+      ],
+    },
+  ],
+  [
+    'reperes',
+    '/reperes/',
+    'L’élection présidentielle',
+    'Calendrier\nélectoral',
+    'Candidatures, scrutin et règles électorales.',
+    'clay',
+    {
+      kind: 'document',
+      rows: [
+        'Candidatures',
+        'Parrainages',
+        'Deux tours de scrutin',
+        'Résultats officiels',
+      ],
+    },
+  ],
+  [
+    'economie',
+    '/economie/',
+    'Contexte des programmes',
+    'Repères\néconomiques',
+    'Les données publiques et leurs sources.',
+    'sage',
+    {
+      kind: 'document',
+      rows: [
+        'Unités et périodes',
+        'Sources institutionnelles',
+        'Montants datés',
+        'Contexte des propositions',
+      ],
+    },
+  ],
+  [
+    'recherche',
+    '/recherche/',
+    'Explorer le corpus',
+    'Rechercher\nune proposition',
+    'Candidats, thèmes et textes documentés.',
+    'ivory',
+    bars(themeBars.slice(-6)),
+  ],
+  [
+    'transparence',
+    '/transparence/',
+    'Le projet',
+    'À propos\nde Polradar',
+    'Un site indépendant consacré à la présidentielle.',
+    'navy',
+    tiles(
+      [
+        ['Candidatures', candidates.length],
+        ['Thèmes', themes.length],
+        ['Fiches actuelles', current.length],
+        ['Scrutins documentés', votes.ballots.length],
+      ],
+      'Le corpus Polradar',
+    ),
+  ],
+  [
+    'mentions',
+    '/mentions/',
+    'Informations du site',
+    'Mentions et\nconfidentialité',
+    'Édition, données et hébergement.',
+    'ivory',
+    {
+      kind: 'document',
+      rows: [
+        'Édition du site',
+        'Données personnelles',
+        'Hébergement',
+        'Licence du projet',
+      ],
+    },
+  ],
+  [
+    'credits-photos',
+    '/credits-photos/',
+    'Photographies',
+    'Crédits\nphotographiques',
+    'Auteurs, licences et conditions de réutilisation.',
+    'clay',
+    {
+      kind: 'document',
+      rows: [
+        'Auteur identifié',
+        'Source du fichier',
+        'Licence vérifiée',
+        'Conditions de réutilisation',
+      ],
+    },
+  ],
+];
+const rendererFiles = [
+  '../lib/social-images.mjs',
+  '../lib/social-image-view.mjs',
+  '../styles/social-images.css',
+  '../assets/fonts/archivo-latin.woff2',
+  '../../scripts/render-social-images.mjs',
+];
+const rendererDigest = createHash('sha256');
+for (const file of rendererFiles)
+  rendererDigest.update(readFileSync(resolve('src/lib', file)));
+const salt = rendererDigest.digest('hex');
+export const socialImages = defs.map(
+  ([id, path, kicker, title, description, palette, graphic]) => {
+    const spec = {
+      id,
+      path,
+      kicker,
+      title,
+      description,
+      palette,
+      graphic,
+      edition,
+    };
+    const hash = createHash('sha256')
+      .update(salt)
+      .update(JSON.stringify(spec))
+      .digest('hex')
+      .slice(0, 20);
+    return {
+      ...spec,
+      file: `${id}-${hash}.png`,
+      url: `/og/${id}-${hash}.png`,
+      alt: `Polradar · ${title.replaceAll('\n', ' ')}. ${description}`,
+    };
+  },
+);
+export function socialImageFor(pathname) {
+  const root = `/${pathname.split('/').filter(Boolean)[0] || ''}/`.replace(
+    '//',
+    '/',
+  );
+  return socialImages.find((image) => image.path === root) || socialImages[0];
+}

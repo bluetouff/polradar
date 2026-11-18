@@ -29,12 +29,12 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run format:check
       - run: npm run security:audit
+      - run: npx --no-install playwright install --with-deps chromium
       - run: npm run validate
       - name: Preserve published history
         env:
           HISTORY_BASE: ${{ github.event.pull_request.base.sha || github.event.before || github.sha }}
         run: node scripts/check-history.mjs
-      - run: npx --no-install playwright install --with-deps chromium
       - run: npm run test:e2e
       - name: Package validated main
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'

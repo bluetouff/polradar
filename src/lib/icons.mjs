@@ -1,4 +1,9 @@
 export const iconPaths = {
+  chevron: 'm6 9 6 6 6-6',
+  share:
+    'M15 5a3 3 0 1 0 6 0 3 3 0 0 0-6 0ZM3 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0Zm12 7a3 3 0 1 0 6 0 3 3 0 0 0-6 0ZM9 10l6-4M9 14l6 4',
+  mail: 'M3 5h18v14H3Zm0 0 9 7 9-7',
+  vote: 'm8 3 10 7-7 8-8-7Zm-4 9H2v9h20v-9h-5M8 16h8',
   microphone:
     'M9 5a3 3 0 0 1 6 0v6a3 3 0 0 1-6 0Zm-3 5v1a6 6 0 0 0 12 0v-1M12 17v4m-4 0h8',
   'map-pin':
