@@ -7,18 +7,40 @@ const entry = z
     id: idSchema,
     label: text,
     euros: money,
-    kind: z.enum(['depense', 'economie', 'recette', 'trajectoire']),
-    period: z.enum(['annuel', 'ponctuel', 'horizon']),
+    eurosMax: money.optional(),
+    kind: z.enum([
+      'depense',
+      'economie',
+      'recette',
+      'baisse-recette',
+      'financement',
+      'trajectoire',
+    ]),
+    period: z.enum([
+      'annuel',
+      'ponctuel',
+      'pluriannuel',
+      'horizon',
+      'non-precise',
+    ]),
     horizon: text,
     approximate: z.boolean(),
     funding: text.nullable(),
     source: idSchema,
+    additionalSources: z.array(idSchema).min(1).max(5).optional(),
     locator: text,
     allocationUnit: z.enum(['euros', 'pourcentage']).nullable(),
     allocation: z.array(z.object({ label: text, value: money })).max(8),
   })
   .superRefine((row, ctx) => {
     const fail = (message) => ctx.addIssue({ code: 'custom', message });
+    if (
+      row.eurosMax !== undefined &&
+      (row.eurosMax <= row.euros || row.allocation.length)
+    )
+      fail('Fourchette incohérente ou répartition non déterminée');
+    const refs = [row.source, ...(row.additionalSources ?? [])];
+    if (new Set(refs).size !== refs.length) fail('Source dupliquée');
     if (Boolean(row.allocation.length) !== (row.allocationUnit !== null))
       fail('Unité de répartition manquante');
     if (row.allocation.length) {
@@ -116,8 +138,8 @@ export function validateVisualReferences(budgets, agenda, candidates, sources) {
     if (!people.has(p.candidate))
       errors.push(`Budget : candidat inconnu ${p.candidate}`);
     for (const e of p.entries)
-      if (!refs.has(e.source))
-        errors.push(`Budget : source inconnue ${e.source}`);
+      for (const ref of [e.source, ...(e.additionalSources ?? [])])
+        if (!refs.has(ref)) errors.push(`Budget : source inconnue ${ref}`);
   }
   for (const e of agenda.events) {
     if (!people.has(e.candidate))

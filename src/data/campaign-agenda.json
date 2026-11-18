@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checked": "2026-11-17",
+  "checked": "2026-11-18",
   "cities": [
     {
       "id": "paris",
@@ -78,9 +78,117 @@
       "code": "30007",
       "coordinates": [4.0905, 44.125],
       "sourceUrl": "https://geo.api.gouv.fr/communes/30007?fields=nom,code,centre"
+    },
+    {
+      "id": "carros",
+      "name": "Carros",
+      "code": "06033",
+      "coordinates": [7.1798, 43.785],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/06033?fields=nom,code,centre"
+    },
+    {
+      "id": "chassieu",
+      "name": "Chassieu",
+      "code": "69271",
+      "coordinates": [4.9638, 45.7366],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/69271?fields=nom,code,centre"
+    },
+    {
+      "id": "le-havre",
+      "name": "Le Havre",
+      "code": "76351",
+      "coordinates": [0.1312, 49.4958],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/76351?fields=nom,code,centre"
+    },
+    {
+      "id": "toulon",
+      "name": "Toulon",
+      "code": "83137",
+      "coordinates": [5.9334, 43.1364],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/83137?fields=nom,code,centre"
+    },
+    {
+      "id": "ivry-sur-seine",
+      "name": "Ivry-sur-Seine",
+      "code": "94041",
+      "coordinates": [2.3872, 48.8125],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/94041?fields=nom,code,centre"
+    },
+    {
+      "id": "gradignan",
+      "name": "Gradignan",
+      "code": "33192",
+      "coordinates": [-0.6163, 44.7681],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/33192?fields=nom,code,centre"
+    },
+    {
+      "id": "lyon",
+      "name": "Lyon",
+      "code": "69123",
+      "coordinates": [4.8351, 45.758],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/69123?fields=nom,code,centre"
+    },
+    {
+      "id": "arcueil",
+      "name": "Arcueil",
+      "code": "94003",
+      "coordinates": [2.3328, 48.8053],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/94003?fields=nom,code,centre"
     }
   ],
   "events": [
+    {
+      "id": "ruffin-lyon-0425",
+      "candidate": "ruffin",
+      "date": "2026-04-25",
+      "time": "16:00",
+      "timezone": "Europe/Paris",
+      "city": "lyon",
+      "title": "Meeting du travail",
+      "venue": "Place Louis-Pradel, Lyon 1er",
+      "note": "Ouverture des portes annoncée à 15 h ; début du meeting à 16 h. La fiche officielle indique l’événement terminé.",
+      "source": "agenda-ruffin-lyon",
+      "status": "annonce"
+    },
+    {
+      "id": "tondelier-arcueil-0917",
+      "candidate": "tondelier",
+      "date": "2026-09-17",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": "arcueil",
+      "title": "Présentation du livret sur l’enfance",
+      "venue": null,
+      "note": "Présentation avec Marine Tondelier. L’article ne précise ni salle ni horaire.",
+      "source": "agenda-tondelier-arcueil",
+      "status": "annonce"
+    },
+    {
+      "id": "attal-lyon-1010",
+      "candidate": "attal",
+      "date": "2026-10-10",
+      "time": "14:00",
+      "timezone": "Europe/Paris",
+      "city": "lyon",
+      "title": "Meeting de campagne",
+      "venue": null,
+      "note": "Rendez-vous annoncé à partir de 14 h. La page citée ne précise pas la salle.",
+      "source": "agenda-attal-lyon",
+      "status": "annonce"
+    },
+    {
+      "id": "egger-gradignan-1024",
+      "candidate": "egger",
+      "date": "2026-10-24",
+      "time": "09:00",
+      "timezone": "Europe/Paris",
+      "city": "gradignan",
+      "title": "Journée de débats sur la démocratie",
+      "venue": "Salle Espace Rencontre, 139–141 rue de la Croix-de-Monjous",
+      "note": "Journée annoncée de 9 h à 18 h avec Clara Egger ; inscription obligatoire selon l’organisateur.",
+      "source": "agenda-egger-gradignan",
+      "status": "annonce"
+    },
     {
       "id": "arthaud-montpellier-1117",
       "candidate": "arthaud",
@@ -105,6 +213,19 @@
       "venue": "Hôtel Ibis en centre-ville",
       "note": "",
       "source": "agenda-arthaud-novembre",
+      "status": "annonce"
+    },
+    {
+      "id": "philippe-programme-1118",
+      "candidate": "philippe",
+      "date": "2026-11-18",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": null,
+      "title": "Présentation du premier volume du programme",
+      "venue": null,
+      "note": "Conférence de presse annoncée pour le 18 novembre. Horaire, lieu et conditions d’accès non précisés dans la page citée.",
+      "source": "agenda-philippe-programme",
       "status": "annonce"
     },
     {
@@ -147,6 +268,58 @@
       "status": "annonce"
     },
     {
+      "id": "miko-ivry-1118",
+      "candidate": "mikolajczak",
+      "date": "2026-11-18",
+      "time": "18:30",
+      "timezone": "Europe/Paris",
+      "city": "ivry-sur-seine",
+      "title": "Présentation du contre-budget 2027",
+      "venue": "Le Bercail, 99 rue Molière, Ivry-sur-Seine",
+      "note": "Discours d’Antoine Mikolajczak annoncé. Entrée libre sur inscription ; le lieu est à Ivry-sur-Seine, malgré le titre « Paris » de l’annonce.",
+      "source": "agenda-equinoxe-ivry",
+      "status": "annonce"
+    },
+    {
+      "id": "melenchon-paris-1119",
+      "candidate": "melenchon",
+      "date": "2026-11-19",
+      "time": "19:00",
+      "timezone": "Europe/Paris",
+      "city": "paris",
+      "title": "Conférence sur l’enfance",
+      "venue": "Espace conférences, 2 bis rue Mercœur, Paris 11e",
+      "note": "Conférence de l’Institut La Boétie avec Jean-Luc Mélenchon.",
+      "source": "agenda-melenchon-paris",
+      "status": "annonce"
+    },
+    {
+      "id": "zemmour-toulon-1121",
+      "candidate": "zemmour",
+      "date": "2026-11-21",
+      "time": "15:30",
+      "timezone": "Europe/Paris",
+      "city": "toulon",
+      "title": "Meeting de campagne",
+      "venue": "Zénith de Toulon, boulevard du Commandant-Nicolas",
+      "note": "Avec Sarah Knafo. Ouverture des portes à 13 h 15 ; inscription obligatoire et pièce d’identité demandée par l’organisateur.",
+      "source": "agenda-zemmour-toulon",
+      "status": "annonce"
+    },
+    {
+      "id": "kazib-paris-1121",
+      "candidate": "kazib",
+      "date": "2026-11-21",
+      "time": "18:00",
+      "timezone": "Europe/Paris",
+      "city": "paris",
+      "title": "Meeting de campagne",
+      "venue": "Espace Charenton, Paris",
+      "note": "Meeting autour de la candidature d’Anasse Kazib.",
+      "source": "agenda-kazib-paris",
+      "status": "annonce"
+    },
+    {
       "id": "arthaud-pau-1124",
       "candidate": "arthaud",
       "date": "2026-11-24",
@@ -186,6 +359,19 @@
       "status": "annonce"
     },
     {
+      "id": "asselineau-carros-1128",
+      "candidate": "asselineau",
+      "date": "2026-11-28",
+      "time": "16:00",
+      "timezone": "Europe/Paris",
+      "city": "carros",
+      "title": "Réunion publique",
+      "venue": "Salle Écovie, route de la zone d’activité de la Grave",
+      "note": "Ouverture au public à 15 h ; conférence à 16 h.",
+      "source": "agenda-asselineau-carros",
+      "status": "annonce"
+    },
+    {
       "id": "labib-paris-1128",
       "candidate": "labib",
       "date": "2026-11-28",
@@ -196,6 +382,19 @@
       "venue": "Espace Charenton, 327 rue de Charenton, Paris 12e",
       "note": "Avec Selma Labib et Gaël Quirante.",
       "source": "agenda-labib-paris",
+      "status": "annonce"
+    },
+    {
+      "id": "melenchon-havre-1205",
+      "candidate": "melenchon",
+      "date": "2026-12-05",
+      "time": "15:00",
+      "timezone": "Europe/Paris",
+      "city": "le-havre",
+      "title": "Meeting de campagne",
+      "venue": "Docks Océane, quai Frissard, Le Havre",
+      "note": "",
+      "source": "agenda-melenchon-havre",
       "status": "annonce"
     },
     {
@@ -222,6 +421,19 @@
       "venue": null,
       "note": "Présence d’Antoine Miko annoncée. Adresse à venir sur le site d’Équinoxe.",
       "source": "agenda-miko-perigueux",
+      "status": "annonce"
+    },
+    {
+      "id": "lisnard-chassieu-1213",
+      "candidate": "lisnard",
+      "date": "2026-12-13",
+      "time": "15:00",
+      "timezone": "Europe/Paris",
+      "city": "chassieu",
+      "title": "Meeting de campagne",
+      "venue": "Eurexpo Lyon, Chassieu",
+      "note": "Entrée gratuite sur inscription obligatoire. Le meeting annoncé « à Lyon » se tient à Chassieu.",
+      "source": "agenda-lisnard-chassieu",
       "status": "annonce"
     },
     {

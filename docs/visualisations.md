@@ -42,15 +42,19 @@ Le push suit le processus habituel du dépôt ; aucune de ces commandes ne pouss
 
 ## Budgets
 
-Les montants sont des annonces attribuées, pas des évaluations indépendantes. La sélection initiale contient cinq profils et six montants. Le projet de Debout la France conserve le périmètre « parti ». Les autres entrées relèvent des documents de campagne cités.
+Les montants sont des annonces attribuées, pas des évaluations indépendantes. Au 18 novembre 2026, la sélection contient treize profils et vingt-six montants. Les projets de Debout la France, Nouvelle Énergie, des Patriotes et du PCF conservent le périmètre « parti ». Les autres entrées relèvent des documents de campagne cités.
 
-Les montants annuels partagent une échelle commune. Les investissements sans récurrence indiquée et les objectifs à terme gardent leur propre période. Un montant approximatif reste marqué `≈`. La répartition de Philippe reste en pourcentage : le montant proche de 150 milliards ne justifie pas une conversion en montants exacts. Pour Retailleau, 146 et 51 milliards sont deux affectations incluses dans 197 milliards, pas trois postes à additionner.
+Les barres de montants annuels partagent une échelle par nature de montant (dépense, économie ou recette). Les répartitions utilisent leur propre dénominateur et ne modifient pas ces échelles. Les investissements sans récurrence indiquée et les objectifs à terme gardent leur propre période. Un montant approximatif reste marqué `≈`. La répartition de Philippe reste en pourcentage : le montant proche de 150 milliards ne justifie pas une conversion en montants exacts. Pour Retailleau, 146 et 51 milliards sont deux affectations incluses dans 197 milliards, pas trois postes à additionner.
 
 Les répartitions doivent se réconcilier avec le montant annoncé ou 100 %. Aucun budget complet, solde général, cumul quinquennal ou financement manquant n’est calculé. Une allocation individuelle n’est pas transformée en coût global. Toute nouvelle entrée doit avoir une référence existante, un emplacement dans le document, une période et un périmètre explicites.
 
+Les fourchettes sont enregistrées avec leur borne basse et leur borne haute (`euros`, `eurosMax`), jamais remplacées par une moyenne. Les montants en millions restent lisibles sans arrondi au milliard. Les montants sur plusieurs années, les objectifs à terme et les périodes non précisées ont des catégories distinctes. Un financement par emprunt, comme le pacte du PCF, reste identifié comme financement et non comme coût budgétaire net. Les sources supplémentaires d’une entrée sont validées et affichées avec la référence principale.
+
+L’actualisation du 18 novembre conserve notamment les 8 à 12 milliards sur cinq ans du logement des jeunes chez Ruffin, les 240 millions annuels de part de l’État dans le plan textile de Mélenchon, et les périodes non précisées chez Asselineau et pour la loi contre les violences de Tondelier. Le tableau des Patriotes retient 15 milliards pour la contribution nette à l’UE, contre 20 dans son texte introductif : cette différence est signalée dans la fiche. Aucun de ces postes n’est additionné à un autre programme.
+
 ## Agenda et carte
 
-La sélection initiale contient treize annonces officielles, cinq profils et onze communes. La présence de la personnalité doit être explicite dans l’annonce. Les dates de publication et de consultation figurent dans la source ; la fiche porte la date de l’événement. Une date passée ne suffit pas à déclarer que le rendez-vous a eu lieu.
+Au 18 novembre 2026, la sélection contient vingt-cinq annonces officielles, quinze profils et dix-neuf communes. La présence de la personnalité doit être explicite dans l’annonce. Les dates de publication et de consultation figurent dans la source ; la fiche porte la date de l’événement. Une date passée ne suffit pas à déclarer que le rendez-vous a eu lieu.
 
 Les filtres à venir/passés utilisent le jour civil à Paris, y compris lorsque le lecteur se trouve dans un autre fuseau. Les horaires sont locaux, en heure de Paris. Les centres des communes proviennent de l’API géographique de l’État ; ils ne représentent pas des coordonnées de salles. Les points proches sont regroupés et donnent accès à un choix de communes. Une adresse absente est signalée comme telle.
 

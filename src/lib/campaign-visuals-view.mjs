@@ -1,5 +1,35 @@
 export function formatMoney(euros, approximate = false) {
-  return `${approximate ? '≈ ' : ''}${(euros / 1e9).toLocaleString('fr-FR', { maximumFractionDigits: 2 })} Md€`;
+  const scale = euros >= 1e9 ? 1e9 : euros >= 1e6 ? 1e6 : 1;
+  const unit = scale === 1e9 ? 'Md€' : scale === 1e6 ? 'M€' : '€';
+  return `${approximate ? '≈ ' : ''}${(euros / scale).toLocaleString('fr-FR', { maximumFractionDigits: 9 })} ${unit}`;
+}
+/** @param {{euros:number,eurosMax?:number,approximate:boolean}} entry */
+export function formatBudgetAmount(entry) {
+  if (entry.eurosMax === undefined)
+    return formatMoney(entry.euros, entry.approximate);
+  const unit = entry.euros >= 1e9 ? 1e9 : entry.euros >= 1e6 ? 1e6 : 1;
+  const label = unit === 1e9 ? 'Md€' : unit === 1e6 ? 'M€' : '€';
+  const number = (value) =>
+    (value / unit).toLocaleString('fr-FR', { maximumFractionDigits: 9 });
+  return `${entry.approximate ? '≈ ' : ''}${number(entry.euros)} à ${number(entry.eurosMax)} ${label}`;
+}
+/**
+ * Allocations have their own denominator. Annual amounts share a scale only
+ * within the same budget category; a revenue projection is not a new expense.
+ * @param {{entries:{period:string,kind:string,euros:number,eurosMax?:number,allocation:unknown[]}[]}[]} profiles
+ * @returns {Record<string,number>}
+ */
+export function budgetAnnualScales(profiles) {
+  const scales = Object.create(null);
+  for (const profile of profiles)
+    for (const entry of profile.entries) {
+      if (entry.period === 'annuel' && !entry.allocation.length)
+        scales[entry.kind] = Math.max(
+          scales[entry.kind] ?? 0,
+          entry.eurosMax ?? entry.euros,
+        );
+    }
+  return scales;
 }
 export function parisToday(now = new Date()) {
   return new Intl.DateTimeFormat('en-CA', {

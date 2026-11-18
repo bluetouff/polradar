@@ -151,6 +151,21 @@
   fill: #aa681f;
   background: #aa681f;
 }
+.tone-5 {
+  fill: #447c78;
+  background: #447c78;
+}
+.tone-6 {
+  fill: #806f44;
+  background: #806f44;
+}
+.budget-range {
+  fill: #bf432d;
+  fill-opacity: 0.32;
+  stroke: #bf432d;
+  stroke-width: 0.25;
+  stroke-dasharray: 1 1;
+}
 .airtime-legend {
   display: flex;
   gap: 9px 18px;

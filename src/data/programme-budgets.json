@@ -1,7 +1,127 @@
 {
   "version": 1,
-  "checked": "2026-11-17",
+  "checked": "2026-11-18",
   "profiles": [
+    {
+      "candidate": "asselineau",
+      "scope": "campagne",
+      "note": "Chiffrage annoncé dans le discours de rentrée 2026. La synthèse officielle ne précise pas la période de réalisation.",
+      "entries": [
+        {
+          "id": "asselineau-regions",
+          "label": "Suppression des régions",
+          "euros": 6000000000.0,
+          "kind": "economie",
+          "period": "non-precise",
+          "horizon": "Période non précisée dans la synthèse du discours",
+          "approximate": false,
+          "funding": null,
+          "source": "asselineau-discours-rentree-2026",
+          "locator": "Réforme des institutions : suppression des régions",
+          "allocationUnit": null,
+          "allocation": []
+        }
+      ]
+    },
+    {
+      "candidate": "attal",
+      "scope": "campagne",
+      "note": "La lettre d’octobre 2026 annonce 150 milliards d’économies sur le quinquennat, dont deux tiers sur les dépenses sociales.",
+      "entries": [
+        {
+          "id": "attal-economies-quinquennat",
+          "label": "Économies sur le quinquennat",
+          "euros": 150000000000.0,
+          "kind": "economie",
+          "period": "pluriannuel",
+          "horizon": "Sur le quinquennat selon la campagne ; détail annuel non précisé",
+          "approximate": false,
+          "funding": null,
+          "source": "attal-finances-lettre-2026",
+          "locator": "Un plan de 150 milliards d’euros d’économies sur cinq ans",
+          "allocationUnit": null,
+          "allocation": []
+        }
+      ]
+    },
+    {
+      "candidate": "branco",
+      "scope": "campagne",
+      "note": "Sélection des chiffrages de La Voie. Les économies et les recettes supplémentaires sont celles estimées dans le projet.",
+      "entries": [
+        {
+          "id": "branco-niches-travail",
+          "label": "Suppression de niches fiscales liées au travail",
+          "euros": 5000000000.0,
+          "kind": "economie",
+          "period": "annuel",
+          "horizon": "Par an",
+          "approximate": true,
+          "funding": null,
+          "source": "branco-voie-pdf",
+          "locator": "PDF, page 28 : niches liées au travail (titres-restaurant, chèques-vacances, chèques-cadeaux)",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "branco-allocations-ciblees",
+          "label": "Suppression des allocations scolaires et du chèque énergie",
+          "euros": 3000000000.0,
+          "kind": "economie",
+          "period": "annuel",
+          "horizon": "Par an",
+          "approximate": false,
+          "funding": "Le même passage propose de fournir des fournitures scolaires de base via une manufacture nationale ; leur coût n’est pas isolé.",
+          "source": "branco-voie-pdf",
+          "locator": "PDF, page 28 : allocations scolaires, chèque énergie et fournitures scolaires",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "branco-foncier",
+          "label": "Modulation de la taxe foncière selon le patrimoine immobilier",
+          "euros": 2000000000.0,
+          "kind": "economie",
+          "period": "annuel",
+          "horizon": "Par an ; montant qualifié d’économie par le projet",
+          "approximate": true,
+          "funding": null,
+          "source": "branco-voie-pdf",
+          "locator": "PDF, page 28 : coefficient de taxe foncière et déclaration des détentions foncières",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "branco-ppv",
+          "label": "Suppression de la prime de partage de la valeur",
+          "euros": 5000000000.0,
+          "kind": "recette",
+          "period": "annuel",
+          "horizon": "Recettes budgétaires supplémentaires annuelles annoncées",
+          "approximate": false,
+          "funding": null,
+          "source": "branco-voie-pdf",
+          "locator": "PDF, page 28 : suppression de la PPV",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "branco-petites-taxes",
+          "label": "Suppression de taxes à faible rendement",
+          "euros": 3000000000.0,
+          "kind": "baisse-recette",
+          "period": "non-precise",
+          "horizon": "Coût budgétaire estimé ; période non précisée",
+          "approximate": false,
+          "funding": null,
+          "source": "branco-voie-pdf",
+          "locator": "PDF, pages 27–28 : suppression et fusion de taxes à faible rendement",
+          "allocationUnit": null,
+          "allocation": [],
+          "eurosMax": 4000000000.0
+        }
+      ]
+    },
     {
       "candidate": "dupont-aignan",
       "scope": "parti",
@@ -59,6 +179,93 @@
       ]
     },
     {
+      "candidate": "lisnard",
+      "scope": "parti",
+      "note": "Chiffrages présentés par David Lisnard et Nouvelle Énergie en 2026. L’objectif porte sur un rythme annuel d’économies, atteint progressivement.",
+      "entries": [
+        {
+          "id": "lisnard-economies",
+          "label": "Économies en rythme de croisière",
+          "euros": 200000000000.0,
+          "kind": "economie",
+          "period": "annuel",
+          "horizon": "Par an à terme ; montée en charge progressive",
+          "approximate": false,
+          "funding": null,
+          "source": "lisnard-repartition-2026",
+          "locator": "Répartition des 200 milliards ; entretien au Crayon pour le rythme de croisière",
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Baisse des cotisations des actifs",
+              "value": 120000000000.0
+            },
+            {
+              "label": "Baisse des impôts de production",
+              "value": 40000000000.0
+            },
+            {
+              "label": "Désendettement de l’État",
+              "value": 40000000000.0
+            }
+          ],
+          "additionalSources": [
+            "lisnard-crayon-2026",
+            "lisnard-economies-annuelles-2026"
+          ]
+        }
+      ]
+    },
+    {
+      "candidate": "melenchon",
+      "scope": "campagne",
+      "note": "Investissements supplémentaires de l’État annoncés dans les plans sectoriels. Les financements du pôle public bancaire et des autres acteurs restent dans des colonnes distinctes des documents.",
+      "entries": [
+        {
+          "id": "melenchon-investissement-btp",
+          "label": "Plan BTP et logement : part de l’État",
+          "euros": 12000000000.0,
+          "kind": "depense",
+          "period": "annuel",
+          "horizon": "Investissements supplémentaires par an",
+          "approximate": false,
+          "funding": null,
+          "source": "lfi-investissement-btp-2026",
+          "locator": "Tableau « EN MILLIARDS D’EUROS PAR AN », total de la colonne État",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "melenchon-investissement-auto",
+          "label": "Plan automobile : part de l’État",
+          "euros": 1400000000.0,
+          "kind": "depense",
+          "period": "annuel",
+          "horizon": "Investissements supplémentaires par an",
+          "approximate": false,
+          "funding": null,
+          "source": "lfi-investissement-auto-2026",
+          "locator": "Tableau « En millions d’euros par an », total de la colonne État",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "melenchon-investissement-textile",
+          "label": "Plan textile : part de l’État",
+          "euros": 240000000.0,
+          "kind": "depense",
+          "period": "annuel",
+          "horizon": "Investissements supplémentaires par an",
+          "approximate": false,
+          "funding": null,
+          "source": "lfi-investissement-textile-2026",
+          "locator": "Tableau « en millions d’euros par an », total de la colonne État",
+          "allocationUnit": null,
+          "allocation": []
+        }
+      ]
+    },
+    {
       "candidate": "philippe",
       "scope": "campagne",
       "note": "Objectif de redressement des comptes publics. La répartition est celle annoncée par la campagne ; le dernier quart repose sur une hypothèse de croissance.",
@@ -87,6 +294,87 @@
             {
               "label": "Croissance et emploi attendus",
               "value": 25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "candidate": "philippot",
+      "scope": "parti",
+      "note": "Tableaux budgétaires de l’édition 2026–2027 des Patriotes. Le récapitulatif retient 15 milliards pour la contribution nette à l’UE, tandis que le texte introductif évoque 20 milliards.",
+      "entries": [
+        {
+          "id": "philippot-economies",
+          "label": "Économies annuelles visées dans le tableau",
+          "euros": 60000000000.0,
+          "kind": "economie",
+          "period": "annuel",
+          "horizon": "Par an selon le tableau budgétaire",
+          "approximate": false,
+          "funding": null,
+          "source": "patriotes-projet-2026-2027",
+          "locator": "PDF, page 9 (pages imprimées 15–16) : tableau des économies annuelles visées",
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Contribution nette à l’UE",
+              "value": 15000000000.0
+            },
+            {
+              "label": "Doublons dans la fonction publique territoriale",
+              "value": 30000000000.0
+            },
+            {
+              "label": "Dépenses liées à l’immigration",
+              "value": 10000000000.0
+            },
+            {
+              "label": "Soutien énergétique et bouclier",
+              "value": 5000000000.0
+            }
+          ]
+        },
+        {
+          "id": "philippot-recettes",
+          "label": "Recettes et gains budgétaires projetés",
+          "euros": 74800000000.0,
+          "kind": "recette",
+          "period": "annuel",
+          "horizon": "Par an ; projections conditionnées aux hypothèses du projet",
+          "approximate": false,
+          "funding": "Le tableau associe recettes fiscales et gains liés à une baisse des dépenses sociales. Le poste croissance suppose 3 % de croissance.",
+          "source": "patriotes-projet-2026-2027",
+          "locator": "PDF, page 9 (pages imprimées 15–16) : tableau des recettes annuelles visées",
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Récupération de droits de douane",
+              "value": 3500000000.0
+            },
+            {
+              "label": "Droits de douane supplémentaires",
+              "value": 7000000000.0
+            },
+            {
+              "label": "Croissance supposée de 3 %",
+              "value": 30000000000.0
+            },
+            {
+              "label": "Baisse du chômage",
+              "value": 5000000000.0
+            },
+            {
+              "label": "Impôt sur les sociétés et coûts énergétiques",
+              "value": 4300000000.0
+            },
+            {
+              "label": "Lutte contre la fraude fiscale",
+              "value": 20000000000.0
+            },
+            {
+              "label": "Lutte contre la fraude sociale",
+              "value": 5000000000.0
             }
           ]
         }
@@ -123,9 +411,30 @@
       ]
     },
     {
+      "candidate": "roussel",
+      "scope": "parti",
+      "note": "Pacte d’investissement du PCF présenté par Fabien Roussel en juin 2026.",
+      "entries": [
+        {
+          "id": "roussel-pacte-investissement",
+          "label": "Financement du pacte d’investissement",
+          "euros": 500000000000.0,
+          "kind": "financement",
+          "period": "pluriannuel",
+          "horizon": "Sur cinq ans",
+          "approximate": false,
+          "funding": "Emprunt mobilisé via le pôle public bancaire, notamment la Caisse des dépôts et Bpifrance.",
+          "source": "roussel-pacte-2026",
+          "locator": "Passage sur le pacte d’avenir et de confiance : emprunt de 500 milliards sur cinq ans",
+          "allocationUnit": null,
+          "allocation": []
+        }
+      ]
+    },
+    {
       "candidate": "ruffin",
       "scope": "campagne",
-      "note": "Une mesure chiffrée du cahier consacré aux souverainetés numériques.",
+      "note": "Mesures du plan de redressement et des cahiers de campagne. Chaque montant conserve sa période et son document de référence.",
       "entries": [
         {
           "id": "ruffin-labo",
@@ -138,6 +447,98 @@
           "funding": "En partie sur les crédits de la défense ; quote-part non chiffrée.",
           "source": "ruffin-numerique",
           "locator": "Notre plan pour une intelligence artificielle souveraine : laboratoire public de recherche",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "ruffin-taxe-patrimoines",
+          "label": "Taxe sur les très hauts patrimoines",
+          "euros": 18500000000.0,
+          "kind": "recette",
+          "period": "annuel",
+          "horizon": "Montant annuel estimé",
+          "approximate": true,
+          "funding": null,
+          "source": "ruffin-budget",
+          "locator": "Annexe 1 : taxe sur les très hauts patrimoines, dite taxe Zucman",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "ruffin-dividende-climatique",
+          "label": "Contribution climatique sur les dividendes",
+          "euros": 6000000000.0,
+          "kind": "recette",
+          "period": "annuel",
+          "horizon": "Recettes estimées avec un taux de 2 % sur les dividendes",
+          "approximate": true,
+          "funding": null,
+          "source": "ruffin-budget",
+          "locator": "Annexe 1 : dividende climatique sur les distributions de dividendes",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "ruffin-investissements-2027",
+          "label": "Investissements supplémentaires prévus en 2027",
+          "euros": 5700000000.0,
+          "kind": "depense",
+          "period": "annuel",
+          "horizon": "Coût supplémentaire pour l’exercice 2027",
+          "approximate": false,
+          "funding": "Le plan propose des recettes supplémentaires et une révision des aides publiques. La taxe sur les successions y figure comme une option.",
+          "source": "ruffin-budget",
+          "locator": "Annexe 2 : total du coût budgétaire supplémentaire en 2027",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "ruffin-logements-jeunes",
+          "label": "Construction de logements étudiants et de jeunes actifs",
+          "euros": 8000000000.0,
+          "kind": "depense",
+          "period": "pluriannuel",
+          "horizon": "Investissement additionnel total sur cinq ans",
+          "approximate": false,
+          "funding": "Mobilisation du foncier public, notamment universitaire, et des friches privées.",
+          "source": "ruffin-logement",
+          "locator": "Un choc de construction grâce à la mobilisation du foncier public et des friches privées",
+          "allocationUnit": null,
+          "allocation": [],
+          "eurosMax": 12000000000.0
+        }
+      ]
+    },
+    {
+      "candidate": "tondelier",
+      "scope": "campagne",
+      "note": "Deux chiffrages du livret enfance de la campagne de Marine Tondelier, présenté en septembre 2026.",
+      "entries": [
+        {
+          "id": "tondelier-violences",
+          "label": "Loi intégrale contre les violences sexistes et sexuelles",
+          "euros": 3000000000.0,
+          "kind": "depense",
+          "period": "non-precise",
+          "horizon": "Enveloppe annoncée ; période non précisée",
+          "approximate": false,
+          "funding": null,
+          "source": "eco-enfance-pdf",
+          "locator": "PDF, page 18 : loi intégrale incluant les violences sexuelles sur mineurs",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "tondelier-fonds-ecoles",
+          "label": "Fonds vert pour rénover les écoles",
+          "euros": 2000000000.0,
+          "kind": "depense",
+          "period": "annuel",
+          "horizon": "Par an, pour les écoles, collèges et lycées",
+          "approximate": false,
+          "funding": null,
+          "source": "eco-enfance-pdf",
+          "locator": "PDF, page 29 : fonds vert pour l’école",
           "allocationUnit": null,
           "allocation": []
         }

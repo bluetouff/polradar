@@ -6,25 +6,28 @@ import CandidatePortrait from '../components/CandidatePortrait.astro';
 import SourceLinks from '../components/SourceLinks.astro';
 import { candidates, candidateById, formatDate, scopes } from '../lib/data';
 import { programmeBudgets } from '../lib/visual-data';
-import { formatMoney } from '../lib/campaign-visuals-view.mjs';
+import {
+  formatMoney,
+  formatBudgetAmount,
+  budgetAnnualScales,
+} from '../lib/campaign-visuals-view.mjs';
 import '../styles/visuals.css';
 const periods = {
   annuel: 'Montant annuel',
   ponctuel: 'Investissement annoncé',
+  pluriannuel: 'Montant pluriannuel',
   horizon: 'Objectif à terme',
+  'non-precise': 'Période non précisée',
 };
 const kinds = {
   depense: 'Dépense proposée',
   economie: 'Économie annoncée',
   recette: 'Recette annoncée',
+  'baisse-recette': 'Baisse de recettes annoncée',
+  financement: 'Financement proposé',
   trajectoire: 'Trajectoire annoncée',
 };
-const annualMax = Math.max(
-  ...programmeBudgets.profiles
-    .flatMap((p) => p.entries)
-    .filter((e) => e.period === 'annuel')
-    .map((e) => e.euros),
-);
+const annualScales = budgetAnnualScales(programmeBudgets.profiles);
 ---
 
 <Base
@@ -58,7 +61,7 @@ const annualMax = Math.max(
         {programmeBudgets.profiles.length} profils ·{' '}
         {programmeBudgets.profiles.flatMap((p) => p.entries).length} montants
       </strong>
-      <p>Sources consultées le {formatDate(programmeBudgets.checked)}.</p>
+      <p>Sélection mise à jour le {formatDate(programmeBudgets.checked)}.</p>
     </div>
     <p>
       Sélection de montants annoncés. Chaque graphique conserve la période et le
@@ -120,6 +123,10 @@ const annualMax = Math.max(
               let x = 0;
               const total =
                 entry.allocationUnit === 'pourcentage' ? 100 : entry.euros;
+              const ceiling =
+                entry.period === 'annuel'
+                  ? annualScales[entry.kind]
+                  : (entry.eurosMax ?? entry.euros);
               return (
                 <article
                   class="budget-entry"
@@ -132,7 +139,7 @@ const annualMax = Math.max(
                       <h3>{entry.label}</h3>
                     </div>
                     <p class="budget-number">
-                      {formatMoney(entry.euros, entry.approximate)}
+                      {formatBudgetAmount(entry)}
                       <span>{periods[entry.period]}</span>
                     </p>
                   </div>
@@ -187,60 +194,71 @@ const annualMax = Math.max(
                   ) : (
                     <figure class="budget-amount-chart">
                       <figcaption>
-                        {entry.period === 'annuel'
-                          ? 'Montant annuel de la mesure'
-                          : 'Montant de l’investissement annoncé'}
+                        {entry.eurosMax !== undefined
+                          ? 'Fourchette annoncée'
+                          : entry.period === 'annuel'
+                            ? 'Montant annuel de la mesure'
+                            : 'Montant annoncé pour la période indiquée'}
                       </figcaption>
                       <svg
                         viewBox="0 0 100 10"
                         preserveAspectRatio="none"
                         role="img"
-                        aria-label={`${entry.label} : ${formatMoney(entry.euros, entry.approximate)}, ${entry.horizon}`}
+                        aria-label={`${entry.label} : ${formatBudgetAmount(entry)}, ${entry.horizon}`}
                       >
                         <rect class="budget-track" width="100" height="10" />
                         <rect
                           class="tone-0"
-                          width={
-                            (entry.euros /
-                              (entry.period === 'annuel'
-                                ? annualMax
-                                : entry.euros)) *
-                            100
-                          }
+                          width={(entry.euros / ceiling) * 100}
                           height="10"
                         />
+                        {entry.eurosMax !== undefined && (
+                          <rect
+                            class="budget-range"
+                            x={(entry.euros / ceiling) * 100}
+                            width={
+                              ((entry.eurosMax - entry.euros) / ceiling) * 100
+                            }
+                            height="10"
+                          />
+                        )}
                       </svg>
                       <div class="budget-axis">
                         <span>0</span>
                         <span>
-                          {formatMoney(
-                            entry.period === 'annuel' ? annualMax : entry.euros,
-                          )}
+                          {formatMoney(ceiling)}
                           {entry.period === 'annuel' ? ' / an' : ''}
                         </span>
                       </div>
                     </figure>
                   )}
-                  <div class="budget-funding">
-                    <Icon name="exchange" />
-                    <div>
-                      <h4>
-                        {entry.period === 'horizon'
-                          ? 'Lecture du montant'
-                          : 'Financement annoncé'}
-                      </h4>
-                      <p>
-                        {entry.funding ??
-                          (entry.period === 'horizon'
-                            ? 'Objectif de la campagne, dépendant de sa trajectoire et de ses hypothèses. Aucun solde complet du programme n’est calculé.'
-                            : 'Financement propre à cette mesure non détaillé dans la source citée.')}
-                      </p>
+                  {(entry.funding ||
+                    ['depense', 'financement'].includes(entry.kind)) && (
+                    <div class="budget-funding">
+                      <Icon name="exchange" />
+                      <div>
+                        <h4>
+                          {['recette', 'economie', 'baisse-recette'].includes(
+                            entry.kind,
+                          )
+                            ? 'Hypothèses annoncées'
+                            : entry.kind === 'financement'
+                              ? 'Modalités annoncées'
+                              : 'Financement annoncé'}
+                        </h4>
+                        <p>
+                          {entry.funding ??
+                            'Financement propre à cette mesure non détaillé dans la source citée.'}
+                        </p>
+                      </div>
                     </div>
-                  </div>
+                  )}
                   <details class="budget-source">
                     <summary>Document et emplacement</summary>
                     <p>{entry.locator}</p>
-                    <SourceLinks ids={[entry.source]} />
+                    <SourceLinks
+                      ids={[entry.source, ...(entry.additionalSources ?? [])]}
+                    />
                   </details>
                 </article>
               );
@@ -260,11 +278,21 @@ const annualMax = Math.max(
       allocation, ne deviennent pas un coût budgétaire global.
     </p>
     <p>
-      Les barres annuelles partagent une échelle de 0 à {formatMoney(annualMax)}{' '}
-      par an. Les répartitions portent sur le seul montant du profil concerné.
-      Cette sélection couvre des mesures chiffrées ; l’absence d’un candidat ne
-      signifie pas qu’il n’a publié aucun chiffrage.
+      Les barres annuelles partagent une échelle par nature de montant :
+      dépenses, économies ou recettes. Les fourchettes gardent leurs deux
+      bornes, sans valeur intermédiaire calculée. Les répartitions portent sur
+      le seul montant du profil concerné. Cette sélection couvre des mesures
+      chiffrées ; l’absence d’un candidat ne signifie pas qu’il n’a publié aucun
+      chiffrage.
     </p>
+    <ul>
+      {Object.entries(annualScales).map(([kind, max]) => (
+        <li>
+          {kinds[kind as keyof typeof kinds]} : échelle de 0 à{' '}
+          {formatMoney(max)} par an.
+        </li>
+      ))}
+    </ul>
     <p>
       <a href="/economie/">Comptes publics de référence</a> ·{' '}
       <a href="/comparer/">Comparer les propositions</a> ·{' '}

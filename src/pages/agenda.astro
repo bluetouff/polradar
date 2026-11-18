@@ -179,7 +179,7 @@ const dateParts = (date: string) => ({
           {related.length} profils · {agenda.cities.length} communes
         </strong>
         <p>
-          Sélection non exhaustive. Annonces consultées le{' '}
+          Sélection non exhaustive. Agenda mis à jour le{' '}
           {formatDate(agenda.checked)}.
         </p>
         <p>
@@ -247,7 +247,7 @@ const dateParts = (date: string) => ({
                   <Icon name="map-pin" />
                   <strong>{city?.name ?? 'Lieu non précisé'}</strong>
                 </p>
-                <p>{event.venue ?? 'Adresse à venir'}</p>
+                <p>{event.venue ?? 'Adresse non précisée dans l’annonce'}</p>
                 {event.note && <p class="agenda-note">{event.note}</p>}
                 <details class="agenda-source">
                   <summary>Annonce et source</summary>

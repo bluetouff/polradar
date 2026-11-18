@@ -20,6 +20,9 @@ import {
   weekStart,
   projectFrance,
   clusterCities,
+  formatMoney,
+  formatBudgetAmount,
+  budgetAnnualScales,
 } from '../src/lib/campaign-visuals-view.mjs';
 const data = (name) =>
   JSON.parse(
@@ -45,6 +48,99 @@ test('les quatre jeux de données et leurs références sont qualifiés', () => 
     ),
     [],
   );
+});
+
+test('les petits montants et les fourchettes gardent leur précision et leur unité', () => {
+  assert.equal(formatMoney(240e6), '240 M€');
+  assert.equal(formatMoney(1.025e9), '1,025 Md€');
+  assert.equal(
+    formatBudgetAmount({ euros: 8e9, eurosMax: 12e9, approximate: false }),
+    '8 à 12 Md€',
+  );
+  assert.equal(
+    formatBudgetAmount({ euros: 18.5e9, approximate: true }),
+    '≈ 18,5 Md€',
+  );
+  for (const maximum of [3e9, 2e9, Infinity, NaN]) {
+    const copy = structuredClone(budgets);
+    const range = copy.profiles
+      .find((p) => p.candidate === 'branco')
+      .entries.find((e) => e.eurosMax !== undefined);
+    range.eurosMax = maximum;
+    assert.equal(programmeBudgetSchema.safeParse(copy).success, false);
+  }
+  const copy = structuredClone(budgets),
+    row = copy.profiles.find((p) => p.candidate === 'lisnard').entries[0];
+  row.eurosMax = row.euros + 1;
+  assert.equal(programmeBudgetSchema.safeParse(copy).success, false);
+});
+
+test('les échelles annuelles séparent dépenses et recettes, sans inclure les enveloppes sur cinq ans', () => {
+  const scales = budgetAnnualScales([
+    {
+      entries: [
+        { period: 'annuel', kind: 'depense', euros: 1e9, allocation: [] },
+        {
+          period: 'annuel',
+          kind: 'depense',
+          euros: 3e9,
+          eurosMax: 4e9,
+          allocation: [],
+        },
+        {
+          period: 'pluriannuel',
+          kind: 'depense',
+          euros: 500e9,
+          allocation: [],
+        },
+        { period: 'annuel', kind: 'economie', euros: 200e9, allocation: [{}] },
+        { period: 'annuel', kind: 'economie', euros: 5e9, allocation: [] },
+        { period: 'annuel', kind: 'recette', euros: 20e9, allocation: [] },
+        { period: 'non-precise', kind: 'recette', euros: 60e9, allocation: [] },
+      ],
+    },
+  ]);
+  assert.equal(scales.depense, 4e9);
+  assert.equal(scales.economie, 5e9);
+  assert.equal(scales.recette, 20e9);
+});
+
+test('les nouveaux chiffrages conservent la période et le périmètre de leurs documents', () => {
+  const rows = budgets.profiles.flatMap((p) => p.entries);
+  const entry = (id) => rows.find((e) => e.id === id);
+  assert.equal(entry('asselineau-regions').period, 'non-precise');
+  assert.equal(entry('tondelier-violences').period, 'non-precise');
+  assert.equal(entry('attal-economies-quinquennat').period, 'pluriannuel');
+  assert.equal(entry('roussel-pacte-investissement').kind, 'financement');
+  assert.deepEqual(
+    [
+      entry('ruffin-logements-jeunes').euros,
+      entry('ruffin-logements-jeunes').eurosMax,
+    ],
+    [8e9, 12e9],
+  );
+  assert.equal(entry('melenchon-investissement-textile').euros, 240e6);
+  assert.equal(
+    entry('philippot-recettes').allocation.reduce((sum, p) => sum + p.value, 0),
+    74.8e9,
+  );
+  const copy = structuredClone(budgets),
+    lisnard = copy.profiles.find((p) => p.candidate === 'lisnard').entries[0];
+  lisnard.additionalSources.push('inconnue');
+  assert.ok(
+    validateVisualReferences(copy, agenda, data('candidates'), data('sources'))
+      .length,
+  );
+});
+
+test('les rendez-vous conservent les communes réelles et les horaires inconnus', () => {
+  const event = (id) => agenda.events.find((e) => e.id === id);
+  assert.equal(event('lisnard-chassieu-1213').city, 'chassieu');
+  assert.equal(event('miko-ivry-1118').city, 'ivry-sur-seine');
+  assert.equal(event('philippe-programme-1118').city, null);
+  assert.equal(event('philippe-programme-1118').time, null);
+  assert.equal(event('tondelier-arcueil-0917').time, null);
+  assert.equal(event('ruffin-lyon-0425').time, '16:00');
 });
 test('le lecteur CSV refuse un grain modifié et préserve les valeurs absentes', () => {
   const [service] = compileArcom(csv);
