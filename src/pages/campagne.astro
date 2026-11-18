@@ -2,7 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import SourceLinks from '../components/SourceLinks.astro';
-import { events, candidates, formatDate } from '../lib/data';
+import CandidatePortrait from '../components/CandidatePortrait.astro';
+import { events, candidates, candidateById, formatDate } from '../lib/data';
 import '../styles/campaign.css';
 
 const categories: Record<string, { label: string; icon: string }> = {
@@ -41,6 +42,12 @@ const maxCount = Math.max(1, ...months.map((month) => month.rows.length));
 const related = candidates.filter((candidate) =>
   past.some((event) => event.candidates.includes(candidate.id)),
 );
+const categoryCounts = Object.entries(categories).map(([id, category]) => ({
+  id,
+  ...category,
+  count: past.filter((event) => event.category === id).length,
+}));
+let categoryOffset = 0;
 ---
 
 <Base
@@ -59,11 +66,93 @@ const related = candidates.filter((candidate) =>
         Carte et agenda des rendez-vous ↗
       </a>
     </div>
-    <span class="campaign-total">
-      {past.length}
-      <small>événements documentés</small>
-    </span>
   </header>
+  <div class="campaign-overview">
+    <section
+      class="campaign-activity"
+      aria-labelledby="campaign-activity-title"
+    >
+      <div class="campaign-activity-heading">
+        <span class="campaign-overline">Événements du corpus</span>
+        <Icon name="layers" />
+      </div>
+      <h2 id="campaign-activity-title">
+        <strong>{past.length}</strong>
+        <span>événements documentés</span>
+      </h2>
+      {past.length > 0 && (
+        <p>
+          Du {formatDate(past.at(-1)!.date)} au {formatDate(past[0].date)}
+        </p>
+      )}
+      <svg
+        class="campaign-distribution"
+        viewBox="0 0 100 8"
+        preserveAspectRatio="none"
+        role="img"
+        aria-label={categoryCounts
+          .map((category) => `${category.label} : ${category.count}`)
+          .join(' ; ')}
+      >
+        {categoryCounts.map((category) => {
+          const start = categoryOffset;
+          const width = past.length ? (category.count / past.length) * 100 : 0;
+          categoryOffset += width;
+          return (
+            <rect
+              class={`event-${category.id}`}
+              x={start}
+              width={width}
+              height="8"
+            />
+          );
+        })}
+      </svg>
+      <ul class="campaign-category-key">
+        {categoryCounts.map((category) => (
+          <li class={`event-${category.id}`}>
+            <span class="campaign-key-icon">
+              <Icon name={category.icon} />
+            </span>
+            <span>{category.label}</span>
+            <b>{category.count}</b>
+          </li>
+        ))}
+      </ul>
+    </section>
+    <aside class="campaign-agenda" aria-labelledby="campaign-agenda-title">
+      <h2 id="campaign-agenda-title">
+        <Icon name="institutions" /> Le scrutin de 2027
+      </h2>
+      <div class="campaign-election-pair">
+        {upcoming.map((event) => (
+          <div class="campaign-election">
+            <span>
+              {event.id === 'premier-tour' ? 'Premier tour' : 'Second tour'}
+            </span>
+            <time datetime={event.date}>
+              <b>{event.date.slice(-2)}</b>
+              <span>
+                {new Intl.DateTimeFormat('fr-FR', {
+                  month: 'long',
+                  year: 'numeric',
+                  timeZone: 'Europe/Paris',
+                }).format(new Date(`${event.date}T12:00:00Z`))}
+              </span>
+            </time>
+          </div>
+        ))}
+      </div>
+      <details class="campaign-calendar-source">
+        <summary>Dates annoncées par le gouvernement</summary>
+        <SourceLinks ids={['calendar']} compact />
+      </details>
+      <a class="campaign-agenda-link" href="/agenda/">
+        <Icon name="map-pin" /> Carte et agenda des rendez-vous{' '}
+        <Icon name="arrow" />
+      </a>
+    </aside>
+  </div>
   <nav class="campaign-month-nav" aria-label="Aller à un mois">
     <ol>
       {months.map((month) => (
@@ -136,7 +225,7 @@ const related = candidates.filter((candidate) =>
             {month.label}
             <span data-month-count>{month.rows.length}</span>
           </h2>
-          <ol>
+          <ol class="campaign-event-grid">
             {month.rows.map((event) => (
               <li
                 class={`campaign-entry event-${event.category}`}
@@ -145,31 +234,69 @@ const related = candidates.filter((candidate) =>
                 data-candidates={event.candidates.join(' ')}
                 data-search={`${event.title} ${event.description} ${event.candidates.map((id) => candidates.find((row) => row.id === id)?.name || '').join(' ')}`}
               >
-                <time
-                  class="campaign-day"
-                  datetime={event.date}
-                  aria-label={formatDate(event.date)}
-                >
-                  <b>{event.date.slice(-2)}</b>
-                  <span>
-                    {new Intl.DateTimeFormat('fr-FR', {
-                      weekday: 'short',
-                      timeZone: 'Europe/Paris',
-                    }).format(new Date(`${event.date}T12:00:00Z`))}
-                  </span>
-                </time>
-                <span class="campaign-event-symbol" aria-hidden="true">
-                  <Icon name={categories[event.category].icon} />
-                </span>
-                <article>
-                  <p class="campaign-entry-meta">
-                    <span>{categories[event.category].label}</span>
+                <div class="campaign-card-heading">
+                  <time
+                    class="campaign-day"
+                    datetime={event.date}
+                    aria-label={formatDate(event.date)}
+                  >
+                    <b>{event.date.slice(-2)}</b>
+                    <span>
+                      {new Intl.DateTimeFormat('fr-FR', {
+                        weekday: 'short',
+                        timeZone: 'Europe/Paris',
+                      }).format(new Date(`${event.date}T12:00:00Z`))}
+                    </span>
+                  </time>
+                  <div class="campaign-entry-meta">
+                    <span class="campaign-category-label">
+                      <Icon name={categories[event.category].icon} />
+                      {categories[event.category].label}
+                    </span>
                     <span>{dateKinds[event.dateKind]}</span>
-                  </p>
+                  </div>
+                </div>
+                <article>
                   <h3>{event.title}</h3>
                   <p>{event.description}</p>
-                  <SourceLinks ids={event.sources} compact />
                 </article>
+                <div class="campaign-card-footer">
+                  {event.candidates.length === 1 ? (
+                    <a
+                      class="campaign-person"
+                      href={`/candidats/${event.candidates[0]}/`}
+                    >
+                      <span class="campaign-person-portrait">
+                        <CandidatePortrait
+                          candidate={candidateById(event.candidates[0])}
+                          compact
+                        />
+                      </span>
+                      <span>{candidateById(event.candidates[0]).name}</span>
+                    </a>
+                  ) : (
+                    <a
+                      class="campaign-section-link"
+                      href={
+                        event.category === 'sondage'
+                          ? '/sondages/'
+                          : '/reperes/'
+                      }
+                    >
+                      <Icon name={categories[event.category].icon} />
+                      {event.category === 'sondage'
+                        ? 'Consulter les sondages'
+                        : 'Calendrier électoral'}
+                      <Icon name="arrow" />
+                    </a>
+                  )}
+                  <details class="campaign-entry-sources">
+                    <summary>
+                      <Icon name="source" /> Sources · {event.sources.length}
+                    </summary>
+                    <SourceLinks ids={event.sources} compact />
+                  </details>
+                </div>
               </li>
             ))}
           </ol>
@@ -179,43 +306,17 @@ const related = candidates.filter((candidate) =>
         Aucun événement pour cette sélection.
       </p>
     </div>
-    <aside class="campaign-agenda" aria-labelledby="campaign-agenda-title">
-      <h2 id="campaign-agenda-title">
-        <Icon name="clock" /> Le scrutin
-      </h2>
-      {upcoming.map((event) => (
-        <div class="campaign-election">
-          <span>
-            {event.id === 'premier-tour' ? 'Premier tour' : 'Second tour'}
-          </span>
-          <time datetime={event.date}>
-            <b>{event.date.slice(-2)}</b>
-            <span>
-              {new Intl.DateTimeFormat('fr-FR', {
-                month: 'long',
-                year: 'numeric',
-                timeZone: 'Europe/Paris',
-              }).format(new Date(`${event.date}T12:00:00Z`))}
-            </span>
-          </time>
-        </div>
-      ))}
-      <p>Dates annoncées par le gouvernement.</p>
-      <SourceLinks ids={['calendar']} compact />
-      <a class="inline-action" href="/reperes/">
-        Calendrier électoral ↗
-      </a>
-      <div class="campaign-reading">
-        <Icon name="source" />
-        <h3>Lire les dates</h3>
-        <p>
-          Les publications et les mises à jour de documents sont identifiées
-          dans chaque entrée. La date d’un sondage est celle de sa publication ;
-          son terrain figure dans le descriptif.
-        </p>
-      </div>
-    </aside>
   </div>
+  <details class="campaign-reading">
+    <summary>
+      <Icon name="clock" /> Lire les dates
+    </summary>
+    <p>
+      Les publications et les mises à jour de documents sont identifiées dans
+      chaque entrée. La date d’un sondage est celle de sa publication ; son
+      terrain figure dans le descriptif.
+    </p>
+  </details>
   <script>
     import '../scripts/campaign';
   </script>

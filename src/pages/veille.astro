@@ -1,33 +1,78 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import { watch, sources, formatTimestamp, meta } from '../lib/data';
-const counts = {
-  accessible: watch.filter((row) => row.status === 'accessible').length,
-  modifie: watch.filter((row) => row.status === 'modifie').length,
-  indisponible: watch.filter(
-    (row) => row.status === 'indisponible' || row.status === 'bloque',
-  ).length,
-};
-const label: Record<string, string> = {
+import {
+  watch,
+  sources,
+  sourceKinds,
+  formatTimestamp,
+  meta,
+} from '../lib/data';
+import '../styles/watch.css';
+
+const labels: Record<string, string> = {
   accessible: 'Accessible',
   modifie: 'Contenu à examiner',
   indisponible: 'Indisponible',
   bloque: 'Accès non exploitable',
 };
-const checked = watch
+const formats: Record<string, string> = {
+  web: 'Web',
+  pdf: 'PDF',
+  video: 'Vidéo',
+  autre: 'Autre',
+};
+const rows = watch.map((row) => {
+  const source = sources.find((source) => source.id === row.sourceId)!;
+  const format =
+    source.watchFormat === 'youtube-oembed'
+      ? 'video'
+      : row.contentType.includes('pdf')
+        ? 'pdf'
+        : row.contentType.includes('html')
+          ? 'web'
+          : 'autre';
+  return {
+    ...row,
+    source,
+    format,
+    host: new URL(source.url).hostname.replace(/^www\./, ''),
+  };
+});
+const states = [
+  {
+    id: 'accessible',
+    label: 'Accessibles',
+    icon: 'check',
+    count: rows.filter((row) => row.status === 'accessible').length,
+  },
+  {
+    id: 'modifie',
+    label: 'À examiner',
+    icon: 'historique',
+    count: rows.filter((row) => row.status === 'modifie').length,
+  },
+  {
+    id: 'indisponible',
+    label: 'Accès non exploitables',
+    icon: 'warning',
+    count: rows.filter(
+      (row) => row.status === 'indisponible' || row.status === 'bloque',
+    ).length,
+  },
+];
+const formatCounts = Object.entries(formats)
+  .map(([id, label]) => ({
+    id,
+    label,
+    count: rows.filter((row) => row.format === id).length,
+  }))
+  .filter((format) => format.count > 0);
+const checked = rows
   .map((row) => row.checkedAt)
   .sort()
   .at(-1);
-const total = watch.length;
-const radius = 58,
-  circumference = 2 * Math.PI * radius;
-const segments = [
-  { key: 'accessible', value: counts.accessible },
-  { key: 'modifie', value: counts.modifie },
-  { key: 'indisponible', value: counts.indisponible },
-];
-let offset = 0;
+let stateOffset = 0;
 ---
 
 <Base title="Veille des programmes" section="/veille/">
@@ -37,10 +82,7 @@ let offset = 0;
     </span>
     <div>
       <h1>Veille des programmes</h1>
-      <p>
-        Relevés d’accessibilité et détection des changements sur les sources
-        sélectionnées.
-      </p>
+      <p>Accessibilité des sources et changements à examiner.</p>
     </div>
     <a
       class="button"
@@ -48,95 +90,164 @@ let offset = 0;
       target="_blank"
       rel="noopener noreferrer"
     >
-      <Icon name="clock" />
-      Dernières exécutions ↗
+      <Icon name="clock" /> Dernières exécutions ↗
     </a>
   </header>
-  <div class="watch-overview">
-    <div class="watch-donut">
+
+  <div class="watch-dashboard">
+    <section class="watch-health" aria-labelledby="watch-health-title">
+      <div class="watch-health-heading">
+        <span>Relevé intégré</span>
+        <Icon name="veille" />
+      </div>
+      <h2 id="watch-health-title">
+        <strong>{rows.length}</strong>
+        <span>sources contrôlées</span>
+      </h2>
+      {checked && (
+        <p class="watch-checked">
+          Dernier contrôle intégré :{' '}
+          <time datetime={checked}>{formatTimestamp(checked)} (Paris)</time>
+        </p>
+      )}
       <svg
-        viewBox="0 0 160 160"
+        class="watch-state-bar"
+        viewBox="0 0 100 8"
+        preserveAspectRatio="none"
         role="img"
-        aria-label={`${counts.accessible} sources accessibles, ${counts.modifie} contenus à examiner et ${counts.indisponible} accès non exploitables`}
+        aria-label={states
+          .map((state) => `${state.label} : ${state.count}`)
+          .join(' ; ')}
       >
-        <circle class="watch-ring" cx="80" cy="80" r={radius} />
-        {segments.map((segment) => {
-          const length = total ? (segment.value / total) * circumference : 0;
-          const dashOffset = -offset;
-          offset += length;
+        {states.map((state) => {
+          const start = stateOffset;
+          const width = rows.length ? (state.count / rows.length) * 100 : 0;
+          stateOffset += width;
           return (
-            <circle
-              class={`watch-ring watch-${segment.key}`}
-              cx="80"
-              cy="80"
-              r={radius}
-              stroke-dasharray={`${length} ${circumference - length}`}
-              stroke-dashoffset={dashOffset}
-              transform="rotate(-90 80 80)"
+            <rect
+              class={`watch-bar-${state.id}`}
+              x={start}
+              width={width}
+              height="8"
             />
           );
         })}
-        <text x="80" y="79" text-anchor="middle" class="ring-value">
-          {total}
-        </text>
-        <text x="80" y="98" text-anchor="middle" class="ring-label">
-          sources suivies
-        </text>
       </svg>
-    </div>
-    <div class="watch-summary">
-      <div>
-        <span class="status-dot status-accessible"></span>
-        <strong>{counts.accessible}</strong>
-        <span>accessibles</span>
+      <div class="watch-state-totals">
+        {states.map((state) => (
+          <div class={`watch-total-${state.id}`}>
+            <Icon name={state.icon} />
+            <strong>{state.count}</strong>
+            <span>{state.label}</span>
+          </div>
+        ))}
       </div>
-      <div>
-        <span class="status-dot status-modifie"></span>
-        <strong>{counts.modifie}</strong>
-        <span>contenus à examiner</span>
+    </section>
+    <section class="watch-source-map" aria-labelledby="watch-map-title">
+      <div class="watch-map-heading">
+        <h2 id="watch-map-title">Accès aux fiches</h2>
+        <span id="watch-map-count">{rows.length} sources</span>
       </div>
-      <div>
-        <span class="status-dot status-bloque"></span>
-        <strong>{counts.indisponible}</strong>
-        <span>accès non exploitables</span>
+      <p>Chaque case ouvre la fiche de sa source.</p>
+      <div class="watch-matrix">
+        {rows.map((row, index) => (
+          <a
+            href={`#watch-${row.sourceId}`}
+            class={`watch-cell watch-cell-${row.status}`}
+            data-watch-cell={row.sourceId}
+            title={`${row.source.title} · ${labels[row.status]}`}
+            aria-label={`${row.source.title} : ${labels[row.status]}`}
+          >
+            {String(index + 1).padStart(2, '0')}
+          </a>
+        ))}
       </div>
-      {checked && (
-        <p>Dernier relevé intégré : {formatTimestamp(checked)} (Paris).</p>
-      )}
-    </div>
-    <div class="watch-method">
-      <Icon name="source" />
-      <h2>Traitement des mises à jour</h2>
-      <p>
-        La veille quotidienne prépare un rapport à relire. Un changement de page
-        est signalé pour examen ; les fiches éditoriales sont mises à jour après
-        vérification.
-      </p>
-      <p>
-        Pour une vidéo, le relevé vérifie sa disponibilité et ses métadonnées.
-        Le son et les images ne sont pas comparés.
-      </p>
-      <a
-        href={`${meta.repository}/actions/workflows/watch.yml`}
-        target="_blank"
-        rel="noopener noreferrer"
+      <div class="watch-format-totals">
+        {formatCounts.map((format) => (
+          <span>
+            <b>{format.count}</b> {format.label}
+          </span>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <div class="watch-register-heading">
+    <h2>Sources du relevé</h2>
+    <span>Les dates de contrôle figurent dans chaque fiche.</span>
+  </div>
+  <form id="watch-filters" class="watch-filters" hidden>
+    <label>
+      Rechercher
+      <input
+        id="watch-search"
+        type="search"
+        maxlength="200"
+        placeholder="Une source, un domaine…"
+        autocomplete="off"
+      />
+    </label>
+    <label>
+      État
+      <select id="watch-state">
+        <option value="">Tous les états</option>
+        {Object.entries(labels).map(([id, label]) => (
+          <option value={id}>{label}</option>
+        ))}
+      </select>
+    </label>
+    <label>
+      Format
+      <select id="watch-format">
+        <option value="">Tous les formats</option>
+        {formatCounts.map((format) => (
+          <option value={format.id}>{format.label}</option>
+        ))}
+      </select>
+    </label>
+    <button type="reset" class="button">
+      Réinitialiser
+    </button>
+  </form>
+  <p
+    class="results-meta"
+    id="watch-filter-status"
+    role="status"
+    aria-live="polite"
+  >
+    {rows.length} sources
+  </p>
+  <div class="watch-source-grid">
+    {rows.map((row, index) => (
+      <article
+        class={`watch-card watch-card-${row.status}`}
+        id={`watch-${row.sourceId}`}
+        data-watch-source={row.sourceId}
+        data-watch-status={row.status}
+        data-watch-format={row.format}
+        data-watch-search={`${row.source.title} ${row.host}`}
       >
-        Consulter les rapports ↗
-      </a>
-    </div>
-  </div>
-  <div class="register-heading section-space">
-    <h2>Sources surveillées</h2>
-    <span class="small muted">
-      La date du relevé est distincte de la consultation éditoriale.
-    </span>
-  </div>
-  <div class="watch-list">
-    {watch.map((row) => {
-      const source = sources.find((source) => source.id === row.sourceId)!;
-      return (
-        <article>
-          <span class={`watch-state status-${row.status}`}>
+        <div class="watch-card-heading">
+          <span class="watch-document-icon">
+            <Icon name={row.format === 'video' ? 'veille' : 'source'} />
+          </span>
+          <span class="watch-document-format">
+            {formats[row.format]}
+            <small>{sourceKinds[row.source.kind]}</small>
+          </span>
+          <span class="watch-source-number">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+        </div>
+        <h3>
+          <a href={row.source.url} target="_blank" rel="noopener noreferrer">
+            {row.source.title}
+            <Icon name="external" />
+          </a>
+        </h3>
+        <p class="watch-source-host">{row.host}</p>
+        <div class="watch-card-footer">
+          <span class={`watch-card-status status-${row.status}`}>
             <Icon
               name={
                 row.status === 'accessible'
@@ -146,14 +257,18 @@ let offset = 0;
                     : 'warning'
               }
             />
+            {labels[row.status]}
           </span>
-          <div>
-            <h3>
-              <a href={source.url} target="_blank" rel="noopener noreferrer">
-                {source.title} ↗
-              </a>
-            </h3>
+          <p class="watch-card-time">
+            <Icon name="clock" />
+            <time datetime={row.checkedAt}>
+              {formatTimestamp(row.checkedAt)} (Paris)
+            </time>
+          </p>
+          <details class="watch-card-details">
+            <summary>Détail du contrôle</summary>
             <p>{row.message}</p>
+            {row.httpStatus !== null && <p>Réponse HTTP : {row.httpStatus}.</p>}
             {row.reviewNote && <p>{row.reviewNote}</p>}
             {row.reviewedAt && (
               <p>
@@ -161,17 +276,45 @@ let offset = 0;
                 (Paris).
               </p>
             )}
-          </div>
-          <div>
-            <span class={`watch-label status-${row.status}`}>
-              {label[row.status]}
-            </span>
-            <time datetime={row.checkedAt}>
-              {formatTimestamp(row.checkedAt)}
-            </time>
-          </div>
-        </article>
-      );
-    })}
+          </details>
+        </div>
+      </article>
+    ))}
   </div>
+  <p class="notice" id="watch-empty" hidden>
+    Aucune source pour cette sélection.
+  </p>
+  <details class="watch-process">
+    <summary>
+      <Icon name="layers" /> Fonctionnement de la veille
+    </summary>
+    <ol>
+      <li>
+        <b>01</b> Collecte quotidienne
+      </li>
+      <li>
+        <b>02</b> Relecture du rapport
+      </li>
+      <li>
+        <b>03</b> Mise à jour des fiches
+      </li>
+    </ol>
+    <p>
+      Un changement de page est signalé pour examen. Les fiches éditoriales sont
+      mises à jour après vérification. La date du contrôle est distincte de la
+      consultation éditoriale.
+    </p>
+    <p>
+      Pour une vidéo, le relevé vérifie sa disponibilité et ses métadonnées. Le
+      son et les images ne sont pas comparés.
+    </p>
+    <a
+      href={`${meta.repository}/actions/workflows/watch.yml`}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Consulter les rapports ↗
+    </a>
+  </details>
+  <script src="../scripts/watch.ts"></script>
 </Base>

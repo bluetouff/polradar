@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import watch from '../../src/data/watch.json' with { type: 'json' };
 
 test('la chronologie combine les filtres, gère une recherche vide et se réinitialise', async ({
   page,
@@ -36,6 +37,63 @@ test('la chronologie et les sources restent accessibles sans JavaScript', async 
   ).toHaveAttribute(
     'href',
     'https://nouspresident.fr/redonner-aux-jeunes-les-clefs-de-leur-avenir/',
+  );
+  await context.close();
+});
+
+test('la veille filtre les formats et les états en gardant sa matrice cohérente', async ({
+  page,
+}) => {
+  await page.goto('/veille/');
+  await expect(page.locator('.watch-card:visible')).toHaveCount(watch.length);
+  await expect(page.locator('.watch-cell:visible')).toHaveCount(watch.length);
+  await page.locator('#watch-format').selectOption('pdf');
+  const pdfCount = watch.filter((row) =>
+    row.contentType.includes('pdf'),
+  ).length;
+  await expect(page.locator('.watch-card:visible')).toHaveCount(pdfCount);
+  await expect(page.locator('.watch-cell:visible')).toHaveCount(pdfCount);
+  await page.locator('#watch-search').fill('CommunisteS');
+  await expect(page.locator('.watch-card:visible')).toHaveCount(1);
+  await page.locator('.watch-cell:visible').click();
+  await expect(page).toHaveURL(/#watch-pcf-status$/);
+  await expect(page.locator('#watch-pcf-status')).toBeInViewport();
+  await page.locator('#watch-search').fill('<img src=x onerror=alert(1)>');
+  await expect(page.locator('#watch-empty')).toBeVisible();
+  await expect(page.locator('.watch-cell:visible')).toHaveCount(0);
+  expect(await page.locator('img[src=x]').count()).toBe(0);
+  await page.getByRole('button', { name: 'Réinitialiser' }).click();
+  await expect(page.locator('.watch-card:visible')).toHaveCount(watch.length);
+  await page.locator('#watch-state').selectOption('modifie');
+  await expect(page.locator('.watch-card:visible')).toHaveCount(
+    watch.filter((row) => row.status === 'modifie').length,
+  );
+  await expect(page.locator('.watch-cell:visible')).toHaveCount(
+    watch.filter((row) => row.status === 'modifie').length,
+  );
+  await expect(page.locator('.watch-checked time')).toHaveAttribute(
+    'datetime',
+    watch
+      .map((row) => row.checkedAt)
+      .sort()
+      .at(-1)!,
+  );
+});
+
+test('les fiches et la matrice de veille restent consultables sans JavaScript', async ({
+  browser,
+}) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  await page.goto('http://127.0.0.1:4321/veille/');
+  await expect(page.locator('#watch-filters')).toBeHidden();
+  await expect(page.locator('.watch-card:visible')).toHaveCount(watch.length);
+  await expect(page.locator('.watch-cell:visible')).toHaveCount(watch.length);
+  await page.locator('[data-watch-cell="pcf-status"]').click();
+  await expect(page.locator('#watch-pcf-status')).toBeInViewport();
+  await page.locator('#watch-pcf-status summary').click();
+  await expect(page.locator('#watch-pcf-status details')).toContainText(
+    'PDF officiel relu',
   );
   await context.close();
 });
