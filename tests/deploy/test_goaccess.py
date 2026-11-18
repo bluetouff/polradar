@@ -69,6 +69,8 @@ class GoAccessTests(unittest.TestCase):
         for text in [changed,original.replace('polradar.fr','example.org'),original+original,original.replace('</VirtualHost>','CustomLog /other combined\n</VirtualHost>')]:
             with self.assertRaises(ValueError):installer.patched_vhost(text)
         self.assertIn('Require valid-user',installer.APACHE)
+        self.assertIn('AuthUserFile /etc/apache2/polradar-stats.htpasswd',installer.APACHE)
+        self.assertNotIn('l0g-stats.htpasswd',installer.APACHE)
         self.assertNotIn('unsafe-inline',installer.CSP);self.assertNotIn('unsafe-eval',installer.CSP)
         self.assertIn('%m %U %H',installer.APACHE)
         self.assertIn('env=!polradar_stats_request',installer.APACHE)

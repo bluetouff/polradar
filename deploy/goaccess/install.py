@@ -14,7 +14,7 @@ import subprocess
 BUNDLE = ('generate.py', 'index.html', 'viewer.mjs', 'viewer.css', 'polradar-stats.service', 'polradar-stats.timer', 'install.py')
 VHOST = Path('/etc/apache2/sites-available/polradar-le-ssl.conf')
 INCLUDE = Path('/etc/apache2/polradar-stats.conf')
-AUTH = Path('/etc/apache2/l0g-stats.htpasswd')
+AUTH = Path('/etc/apache2/polradar-stats.htpasswd')
 STATE = Path('/var/lib/polradar-stats')
 SHARE = Path('/usr/local/share/polradar-stats')
 LIB = Path('/usr/local/lib/polradar-stats')
@@ -43,7 +43,7 @@ Alias /stats/ /usr/local/share/polradar-stats/
 <LocationMatch "^/stats(?:/|$)">
     AuthType Basic
     AuthName "Polradar - GoAccess"
-    AuthUserFile /etc/apache2/l0g-stats.htpasswd
+    AuthUserFile /etc/apache2/polradar-stats.htpasswd
     Require valid-user
     Header always set Cache-Control "private, no-store, max-age=0"
     Header always set X-Robots-Tag "noindex, nofollow, noarchive"
@@ -106,7 +106,7 @@ def install(directory):
         raise ValueError('Run this reviewed installer as the operator with sudo')
     manifest = verify_bundle(directory)
     if not VHOST.is_file() or VHOST.is_symlink() or not AUTH.is_file() or AUTH.is_symlink():
-        raise ValueError('Expected Apache vhost and existing stats authentication file')
+        raise ValueError('Expected Apache vhost and dedicated Polradar authentication file')
     for path in (VHOST, AUTH):
         if path.stat().st_uid != 0 or path.stat().st_mode & 0o022:
             raise ValueError('Apache configuration or authentication permissions require review')
