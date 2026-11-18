@@ -88,6 +88,19 @@ test('plusieurs mesures restent consultables pour un candidat et un thème', asy
   );
 });
 
+test('une mesure s’ouvre au premier clic après une recherche', async ({
+  page,
+}) => {
+  await page.goto('/mesures/#candidate=philippe&theme=retraites');
+  await page.getByRole('searchbox').fill('capitalisation');
+  await expect(page.locator('#measure-results .measure-row')).toHaveCount(1);
+  await page.locator('#measure-results h3 a').click();
+  await expect(page).toHaveURL(/\/mesures\/philippe-retraites-2\/$/);
+  await expect(page.locator('h1')).toHaveText(
+    'Capitalisation collective et départs anticipés',
+  );
+});
+
 test('la recherche combine les facettes et exporte la sélection', async ({
   page,
 }) => {

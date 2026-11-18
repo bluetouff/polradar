@@ -45,7 +45,9 @@ async function start() {
     event.preventDefault();
     render();
   });
-  form.addEventListener('change', render);
+  form.addEventListener('change', (event) => {
+    if (event.target instanceof HTMLSelectElement) render();
+  });
   form.addEventListener('input', (event) => {
     if ((event.target as HTMLElement).tagName === 'INPUT') render();
   });
