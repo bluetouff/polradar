@@ -29,10 +29,24 @@ const valid = (e = evolution, f = financing, b = budgets) =>
     b,
     new Date('2026-11-19T12:00:00Z'),
   );
-test('les documents officiels datés et les huit relations financières sont qualifiés', () => {
+test('les documents officiels datés et les relations financières sont qualifiés', () => {
   assert.deepEqual(valid(), []);
-  assert.equal(evolution.states.length, 9);
-  assert.equal(financing.maps.length, 8);
+  assert.equal(evolution.states.length, 14);
+  assert.equal(financing.maps.length, 16);
+});
+test('les revenus de 2022 ne deviennent pas un SMIC comparable et un âge maintenu reste une position de parti', () => {
+  const track = evolution.tracks.find((t) => t.id === 'arthaud-revenus');
+  const states = track.stateIds.map((id) =>
+    evolution.states.find((s) => s.id === id),
+  );
+  assert.notEqual(states[0].basisKey, states[1].basisKey);
+  assert.equal(proposalComparison(track, states[0], states[2]).delta, null);
+  assert.equal(states[0].scope, 'archive');
+  const current = evolution.states.find(
+    (s) => s.id === 'roussel-retraites-juin-2026',
+  );
+  assert.equal(current.scope, 'parti');
+  assert.equal(current.value, 60);
 });
 test('seules les mêmes bases autorisent une différence nominale, les conditions et périmètres restent distincts', () => {
   const from = evolution.states[0],
@@ -94,6 +108,10 @@ test('les flux réconcilient leurs seuls montants, conservent les pourcentages e
       .flatMap((p) => p.entries)
       .find((e) => e.id === map.budgetEntry);
     const layout = financingLayout(map, entry);
+    if (entry.allocation.length)
+      assert.ok(
+        Math.abs(layout.leaves.reduce((n, l) => n + l.band, 0) - 176) < 0.00001,
+      );
     for (const leaf of layout.leaves) {
       assert.ok(leaf.x >= 0 && leaf.x + leaf.width <= layout.width);
       assert.ok(leaf.y >= 0 && leaf.y + leaf.height <= layout.height);

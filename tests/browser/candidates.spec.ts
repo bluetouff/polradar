@@ -84,7 +84,7 @@ test('la carte distingue les conditions et conserve les chiffres lors des change
   await page.goto('/divergences/');
   const age = page.locator('#retraites-age-depart');
   await expect(age).toBeVisible();
-  await expect(age.locator('[data-divergence-point]')).toHaveCount(4);
+  await expect(age.locator('[data-divergence-point]')).toHaveCount(5);
   await expect(age.locator('[data-candidate="kazib"]')).toHaveAttribute(
     'data-value',
     '60',

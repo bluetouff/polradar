@@ -175,6 +175,8 @@ export function validateProposalReferences(
         'melenchon2027.fr',
         'www.edouardphilippe.fr',
         'www.unenouvelleenergie.fr',
+        'www.lutte-ouvriere.org',
+        'www.pcf.fr',
       ].includes(new URL(s.source.url).hostname)
     )
       fail(`${s.id} : domaine historique non qualifié`);

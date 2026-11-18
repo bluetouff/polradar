@@ -51,6 +51,30 @@
         "philippe-retraites-novembre-2026"
       ],
       "measureIds": ["philippe-retraites-1"]
+    },
+    {
+      "id": "arthaud-revenus",
+      "candidate": "arthaud",
+      "theme": "travail",
+      "title": "Minimum de revenu et SMIC",
+      "kind": "conditions",
+      "note": "En 2022, le plancher vise plusieurs revenus ; les documents de 2026 précisent le SMIC. Ces champs différents restent visibles, sans calcul de hausse entre les deux.",
+      "stateIds": [
+        "arthaud-revenus-2022",
+        "arthaud-smic-septembre-2026",
+        "arthaud-smic-novembre-2026"
+      ],
+      "measureIds": ["arthaud-travail-smic"]
+    },
+    {
+      "id": "roussel-retraites",
+      "candidate": "roussel",
+      "theme": "retraites",
+      "title": "Objectif de retraite à 60 ans",
+      "kind": "maintien",
+      "note": "Le même âge cible figure dans la profession de foi 2022 et le discours de 2026. Ce dernier est une position du parti ; les conditions de cotisation ne sont pas chiffrées dans ce passage.",
+      "stateIds": ["roussel-retraites-2022", "roussel-retraites-juin-2026"],
+      "measureIds": ["roussel-retraites-1"]
     }
   ],
   "states": [
@@ -340,6 +364,161 @@
         "sha256": "756aefa924e8fca67e36e927f6fd4594baee1560a2ca0fd4c54769a353b1722f",
         "quote": "Porter progressivement l’âge de départ à 65 ans",
         "locator": "Nos propositions phares : âge, cotisation et exceptions"
+      }
+    },
+    {
+      "id": "arthaud-revenus-2022",
+      "trackId": "arthaud-revenus",
+      "date": {
+        "value": "2022",
+        "kind": "edition"
+      },
+      "edition": "Profession de foi 2022",
+      "scope": "archive",
+      "observedOn": "2026-11-18",
+      "recordedAt": "2026-11-18T18:04:18.945643Z",
+      "value": 2000,
+      "unit": "euros-net-mois",
+      "basisKey": "plancher-revenus",
+      "population": "Salaires, pensions et allocations chômage ou handicap",
+      "statement": "Le document revendique un minimum de 2 000 € net pour plusieurs types de revenus.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "cnc-arthaud-2022",
+        "title": "CNCCEP : profession de foi de Nathalie Arthaud, premier tour 2022",
+        "url": "https://www.cnccep.fr/pdfs/Candidat-01-Nathalie-Arthaud-Declaration.pdf",
+        "authority": "institution",
+        "published": null,
+        "updated": null,
+        "sha256": "3f15e26228232909dc4745cd883fb952734407eb58e96414098e7d1a34a35c45",
+        "quote": "2 000 euros net au minimum !",
+        "locator": "PDF, page 2 : augmentation des salaires et des pensions"
+      }
+    },
+    {
+      "id": "arthaud-smic-septembre-2026",
+      "trackId": "arthaud-revenus",
+      "date": {
+        "value": "2026-09-26",
+        "kind": "declaration"
+      },
+      "edition": "Discours du 26 septembre 2026",
+      "scope": "campagne",
+      "observedOn": "2026-11-18",
+      "recordedAt": "2026-11-18T18:04:18.945643Z",
+      "value": 2200,
+      "unit": "euros-net-mois",
+      "basisKey": "smic-mensuel-net",
+      "population": "Salariés rémunérés au SMIC",
+      "statement": "Le discours précise un SMIC de 2 200 € net.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "arthaud-discours-2026",
+        "title": "Nathalie Arthaud : discours du meeting du 26 septembre 2026",
+        "url": "https://www.lutte-ouvriere.org/portail/brochures/meeting-26-septembre-2026-discours-nathalie-arthaud-197446.html",
+        "authority": "parti",
+        "published": null,
+        "updated": null,
+        "sha256": "4342e8275ee31398b3ea8df28d3dbd1d4a612df485285f785bc380af45c13efa",
+        "quote": "Nous défendrons le SMIC à 2 200 € nets.",
+        "locator": "Discours : montant du SMIC"
+      }
+    },
+    {
+      "id": "arthaud-smic-novembre-2026",
+      "trackId": "arthaud-revenus",
+      "date": {
+        "value": "2026-11-03",
+        "kind": "declaration"
+      },
+      "edition": "Dépliant daté du 3 novembre 2026",
+      "scope": "campagne",
+      "observedOn": "2026-11-18",
+      "recordedAt": "2026-11-18T18:04:18.945643Z",
+      "value": 2200,
+      "unit": "euros-net-mois",
+      "basisKey": "smic-mensuel-net",
+      "population": "Salariés rémunérés au SMIC",
+      "statement": "Le dépliant reprend le SMIC à 2 200 € ; le passage voisin précise le net et défend l’indexation des rémunérations.",
+      "parameters": [
+        {
+          "label": "Indexation",
+          "value": "Salaires et pensions indexés sur l’inflation"
+        }
+      ],
+      "reported": false,
+      "source": {
+        "id": "arthaud-depliant-2026-pdf",
+        "title": "Nathalie Arthaud : dépliant du 3 novembre 2026 (PDF)",
+        "url": "https://www.lutte-ouvriere.org/medias/document/fichiers/2026/11/Depliant-NA-3nov.pdf",
+        "authority": "parti",
+        "published": null,
+        "updated": null,
+        "sha256": "bb7c928b5fb8e5d9e01ebc17e8700f6ade2ab2ec24418115b00a57160ac4365e",
+        "quote": "le SMIC à 2 200 €",
+        "locator": "PDF, page 2 : objectifs de lutte"
+      }
+    },
+    {
+      "id": "roussel-retraites-2022",
+      "trackId": "roussel-retraites",
+      "date": {
+        "value": "2022",
+        "kind": "edition"
+      },
+      "edition": "Profession de foi 2022",
+      "scope": "archive",
+      "observedOn": "2026-11-18",
+      "recordedAt": "2026-11-18T18:04:18.945643Z",
+      "value": 60,
+      "unit": "ans",
+      "basisKey": "age-legal-general",
+      "population": "Âge de départ à la retraite cible",
+      "statement": "La profession de foi fixe l’objectif de retraite à 60 ans.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "cnc-roussel-2022",
+        "title": "CNCCEP : profession de foi de Fabien Roussel, premier tour 2022",
+        "url": "https://www.cnccep.fr/pdfs/Candidat-11-Fabien-Roussel-Declaration-accessible.pdf",
+        "authority": "institution",
+        "published": null,
+        "updated": null,
+        "sha256": "c37cd69cef21e85c4a1401d71c6d50d6f4a81c87350a5e5efe08d95b26632751",
+        "quote": "Retraite à 60 ans.",
+        "locator": "PDF, page 2 : émancipation par le travail"
+      }
+    },
+    {
+      "id": "roussel-retraites-juin-2026",
+      "trackId": "roussel-retraites",
+      "date": {
+        "value": "2026-06-02",
+        "kind": "publication"
+      },
+      "edition": "Discours publié le 2 juin 2026",
+      "scope": "parti",
+      "observedOn": "2026-11-18",
+      "recordedAt": "2026-11-18T18:04:18.945643Z",
+      "value": 60,
+      "unit": "ans",
+      "basisKey": "age-legal-general",
+      "population": "Âge de départ à la retraite cible",
+      "statement": "Fabien Roussel réaffirme une retraite à 60 ans dans un discours publié par le PCF.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "roussel-pacte-2026",
+        "title": "Fabien Roussel : pacte d’investissement présenté à la Fête de l’Huma 31",
+        "url": "https://www.pcf.fr/discours_de_fabien_roussel_fete_huma_31",
+        "authority": "parti",
+        "published": "2026-06-02",
+        "updated": null,
+        "sha256": "463fc9118f4ddbe53011977cab3703f2b9b2dfde4f999c6864b011149122c553",
+        "quote": "la retraite à 60 ans",
+        "locator": "Discours : produire, cotiser et retraite à 60 ans"
       }
     }
   ]

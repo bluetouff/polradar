@@ -67,3 +67,11 @@ Les annonces officielles ajoutées sont incluses dans la veille quotidienne. Une
 Les schémas des relevés, montants, coordonnées et références sont exécutés par `npm run check` et lors de la construction. Les tests couvrent les cellules absentes, les noms ambigus, le dénominateur des bandes, les répartitions non réconciliées, les périodes, le changement de jour à Paris, le viewBox, les filtres, la réinitialisation, les liens de sélection, les petites largeurs et le rendu sans JavaScript.
 
 Les scripts de recherche et les fichiers téléchargés dans `artifacts/` sont exclus du contrôle TypeScript ; les sources et les tests du site restent contrôlés. Aucune dépendance ou permission de publication n’a été ajoutée.
+
+## Complément du 18 novembre 2026
+
+Les budgets couvrent 14 profils et 37 entrées. Le contre-budget Équinoxe porte uniquement sur 2027. Les montants administratifs DLF au terme de trois ou cinq ans restent des objectifs annuels à ces horizons, pas des économies immédiates. Les postes pouvant se recouvrir ne sont pas additionnés.
+
+L’agenda compte 28 rendez-vous et 21 communes. Le dépliant Arthaud du 3 novembre (page 4) annonce Paris le 24 janvier 2027, Vénissieux le 30 janvier et Nantes le 6 février, à 15 h. Le meeting annoncé pour Lyon se situe à Vénissieux : le marqueur utilise cette commune, vérifiée avec `geo.api.gouv.fr`.
+
+Le contrôle Arcom du 18 novembre a renvoyé une page de maintenance. Le dernier relevé validé de juillet à septembre est conservé ; aucun mois vide ou zéro artificiel n’a été ajouté. Le relevé manuel des marchés prédictifs du 18 novembre à 17:43 UTC contient 46 contrats Polymarket et 31 Kalshi, avec les dates d’observation de chaque fournisseur.

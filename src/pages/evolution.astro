@@ -46,7 +46,13 @@ import '../styles/proposals.css';
       Comment lire ces comparaisons <Icon name="arrow" />
     </a>
   </div>
-  <div class="evidence-workspace" data-evolution>
+  <div
+    class:list={[
+      'evidence-workspace',
+      { 'evidence-workspace-full': proposalTracks.length > 5 },
+    ]}
+    data-evolution
+  >
     <nav class="evidence-picker" aria-label="Dossiers de propositions">
       {proposalTracks.map((track, i) => (
         <a href={`#dossier=${track.id}`} data-evidence-tab={track.id}>

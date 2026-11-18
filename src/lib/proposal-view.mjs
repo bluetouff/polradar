@@ -1,4 +1,7 @@
-import { formatMoney } from './campaign-visuals-view.mjs';
+import {
+  formatMoney,
+  budgetAllocationTotal,
+} from './campaign-visuals-view.mjs';
 export const evolutionKinds = {
   montant: 'Montant révisé',
   conditions: 'Conditions à comparer',
@@ -81,7 +84,7 @@ export function wrapLabel(label, limit = 29) {
  */
 export function financingLayout(map, entry) {
   const percent = entry.allocationUnit === 'pourcentage';
-  const denominator = percent ? 100 : entry.euros;
+  const denominator = budgetAllocationTotal(entry);
   const allocations = entry.allocation.length
     ? entry.allocation
     : [
@@ -141,5 +144,5 @@ export function financingLayout(map, entry) {
         : `M${x1},${ay - band / 2} ${curve(ay - band / 2, by - band / 2)} L${x2},${by + band / 2} C${cx},${by + band / 2} ${cx},${ay + band / 2} ${x1},${ay + band / 2} Z`;
     if (band !== null) offset += band;
   }
-  return { width: 940, height, root, leaves, percent, reverse };
+  return { width: 940, height, root, leaves, percent, reverse, denominator };
 }

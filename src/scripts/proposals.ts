@@ -13,6 +13,9 @@ if (root) {
   const tabs = [
     ...root.querySelectorAll<HTMLAnchorElement>('[data-evidence-tab]'),
   ];
+  const chooser = root.querySelector<HTMLSelectElement>(
+    '[data-evidence-select]',
+  );
   const idOf = (section: HTMLElement) =>
     section.dataset.evolutionDossier || section.dataset.financingMap || '';
   const update = () => {
@@ -20,6 +23,7 @@ if (root) {
     const selected =
       sections.find((s) => idOf(s) === params.get(key)) || sections[0];
     sections.forEach((s) => (s.hidden = s !== selected));
+    if (chooser) chooser.value = idOf(selected);
     tabs.forEach((t) => {
       if (t.dataset.evidenceTab === idOf(selected))
         t.setAttribute('aria-current', 'true');
@@ -80,6 +84,10 @@ if (root) {
   root.addEventListener('change', (event) => {
     const control = event.target;
     if (!(control instanceof HTMLSelectElement)) return;
+    if (control === chooser) {
+      navigate(new URLSearchParams({ [key]: control.value }));
+      return;
+    }
     const section = control.closest<HTMLElement>('[data-evolution-dossier]');
     if (!section) return;
     navigate(

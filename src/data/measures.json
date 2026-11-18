@@ -1894,23 +1894,35 @@
     "parentId": "roussel-retraites",
     "candidate": "roussel",
     "theme": "retraites",
-    "revision": 1,
-    "title": "Revenir sur le report de l’âge à 64 ans et relever les pensions modestes",
-    "description": "Revenir sur le report de l’âge à 64 ans et relever les pensions modestes.",
+    "revision": 2,
+    "title": "Retraite à 60 ans",
+    "description": "Fabien Roussel défend une retraite à 60 ans dans son discours de juin 2026.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
-    "metrics": [],
+    "metrics": [
+      {
+        "key": "age-depart",
+        "label": "Âge de départ cible",
+        "value": 60,
+        "unit": "ans",
+        "sourceId": "roussel-pacte-2026"
+      }
+    ],
     "amounts": [],
     "sourceRefs": [
       {
         "sourceId": "pcf-work",
         "locator": "Dossier initial : Abroger la réforme de 2023"
+      },
+      {
+        "sourceId": "roussel-pacte-2026",
+        "locator": "Discours : produire, cotiser à la sécurité sociale et retraite à 60 ans"
       }
     ],
-    "scope": "orientation",
-    "edition": "Discours du 23 novembre 2025",
-    "checked": "2026-11-16"
+    "scope": "parti",
+    "edition": "Positions du PCF en 2026",
+    "checked": "2026-11-18"
   },
   {
     "id": "roussel-social-1",
@@ -8186,5 +8198,583 @@
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
     "checked": "2026-11-17"
+  },
+  {
+    "id": "arthaud-travail-smic",
+    "parentId": "arthaud-travail",
+    "candidate": "arthaud",
+    "theme": "travail",
+    "revision": 1,
+    "title": "SMIC à 2 200 € net",
+    "description": "Porter le SMIC mensuel à 2 200 € net.",
+    "beneficiaries": "Salariés rémunérés au SMIC",
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [
+      {
+        "label": "SMIC mensuel proposé",
+        "value": 2200,
+        "unit": "€",
+        "period": "mois",
+        "basis": "net",
+        "sourceId": "arthaud-discours-2026"
+      }
+    ],
+    "sourceRefs": [
+      {
+        "sourceId": "arthaud-discours-2026",
+        "locator": "Discours : revendication sur le SMIC, confirmée dans le dépliant de novembre, page 2"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-18"
+  },
+  {
+    "id": "arthaud-travail-indexation",
+    "parentId": "arthaud-travail",
+    "candidate": "arthaud",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Indexer salaires et pensions sur l’inflation",
+    "description": "Augmenter les salaires et les pensions et les indexer sur l’inflation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "arthaud-depliant-2026-pdf",
+        "locator": "PDF, page 2 : objectifs de lutte"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Dépliant du 3 novembre 2026",
+    "checked": "2026-11-18"
+  },
+  {
+    "id": "arthaud-travail-partage",
+    "parentId": "arthaud-travail",
+    "candidate": "arthaud",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Répartir le travail sans baisse de salaire",
+    "description": "Répartir le travail entre tous sans baisse de salaire ; réduire les horaires plutôt que licencier lorsque l’IA remplace des tâches.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "arthaud-discours-2026",
+        "locator": "Discours : partage du travail et intelligence artificielle ; dépliant de novembre, page 2"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne 2027",
+    "checked": "2026-11-18"
+  },
+  {
+    "id": "arthaud-institutions-comptes-publics",
+    "parentId": "arthaud-institutions",
+    "candidate": "arthaud",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Supprimer le secret commercial et bancaire",
+    "description": "Rendre publiques les comptabilités des entreprises et des fortunes privées pour permettre leur contrôle par les travailleurs.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "arthaud-depliant-2026-pdf",
+        "locator": "PDF, page 2 : contrôle de l’économie"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Dépliant du 3 novembre 2026",
+    "checked": "2026-11-18"
+  },
+  {
+    "id": "arthaud-travail-expropriation",
+    "parentId": "arthaud-travail",
+    "candidate": "arthaud",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Exproprier les grands moyens de production",
+    "description": "Mettre fin à la propriété capitaliste des grands moyens de production, sous la direction des travailleurs.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "arthaud-discours-2026",
+        "locator": "Discours : expropriation et planification"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Discours du 26 septembre 2026",
+    "checked": "2026-11-18"
+  },
+  {
+    "id": "arthaud-climat-carburant-coutant",
+    "parentId": "arthaud-climat",
+    "candidate": "arthaud",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Imposer à Total la vente de carburant à prix coûtant",
+    "description": "Contraindre Total à vendre son carburant à prix coûtant.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "arthaud-discours-2026",
+        "locator": "Discours : revendications face au grand patronat"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Discours du 26 septembre 2026",
+    "checked": "2026-11-18"
+  },
+  {
+    "id": "arthaud-immigration-logement",
+    "parentId": "arthaud-immigration",
+    "candidate": "arthaud",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Refuser la préférence nationale pour le logement",
+    "description": "S’opposer à l’exclusion des travailleurs immigrés du logement au nom de la préférence nationale.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "arthaud-depliant-2026-pdf",
+        "locator": "PDF, page 4 : travailleurs français et immigrés"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Dépliant du 3 novembre 2026",
+    "checked": "2026-11-18"
+  },
+  {
+    "id": "mikolajczak-fiscalite-cir",
+    "parentId": "mikolajczak-fiscalite",
+    "candidate": "mikolajczak",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Recentrer le crédit d’impôt recherche",
+    "description": "Appliquer des taux de 30 %, 20 %, 5 % puis 0 % selon les tranches de dépenses de recherche, avec des seuils à 2, 10 et 100 millions d’euros.",
+    "beneficiaries": null,
+    "timing": "Année 2027 uniquement",
+    "financing": null,
+    "metrics": [],
+    "amounts": [
+      {
+        "label": "Recette supplémentaire annoncée pour 2027",
+        "value": 3000000000.0,
+        "unit": "€",
+        "period": "an",
+        "basis": "non-applicable",
+        "sourceId": "equinoxe-contre-budget-2027"
+      }
+    ],
+    "sourceRefs": [
+      {
+        "sourceId": "equinoxe-contre-budget-2027",
+        "locator": "Contre-budget 2027 : Recentrer le crédit d’impôt recherche"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 d’Équinoxe",
+    "checked": "2026-11-18"
+  },
+  {
+    "id": "mikolajczak-social-allocation-chomage",
+    "parentId": "mikolajczak-social",
+    "candidate": "mikolajczak",
+    "theme": "social",
+    "revision": 1,
+    "title": "Plafonner l’allocation chômage maximale à 5 600 €",
+    "description": "Ramener l’allocation maximale à 5 600 € par mois, en limitant le salaire de référence à environ 2,5 plafonds de la Sécurité sociale.",
+    "beneficiaries": null,
+    "timing": "Année 2027 uniquement",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "allocation-maximale",
+        "label": "Allocation maximale annoncée",
+        "value": 5600,
+        "unit": "€ / mois",
+        "sourceId": "equinoxe-contre-budget-2027"
+      }
+    ],
+    "amounts": [
+      {
+        "label": "Économie annoncée pour 2027",
+        "value": 300000000.0,
+        "unit": "€",
+        "period": "an",
+        "basis": "non-applicable",
+        "sourceId": "equinoxe-contre-budget-2027"
+      }
+    ],
+    "sourceRefs": [
+      {
+        "sourceId": "equinoxe-contre-budget-2027",
+        "locator": "Contre-budget 2027 : Plafonner les grandes allocations chômage"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 d’Équinoxe",
+    "checked": "2026-11-18"
+  },
+  {
+    "id": "mikolajczak-climat-adaptation-ecoles",
+    "parentId": "mikolajczak-climat",
+    "candidate": "mikolajczak",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Adapter écoles, mairies et espaces publics à la chaleur",
+    "description": "Financer protections solaires, brasseurs d’air, végétalisation des cours et accès élargi aux lieux frais.",
+    "beneficiaries": null,
+    "timing": "Année 2027 uniquement",
+    "financing": null,
+    "metrics": [],
+    "amounts": [
+      {
+        "label": "Enveloppe annoncée pour 2027",
+        "value": 3500000000.0,
+        "unit": "€",
+        "period": "an",
+        "basis": "non-applicable",
+        "sourceId": "equinoxe-contre-budget-2027"
+      }
+    ],
+    "sourceRefs": [
+      {
+        "sourceId": "equinoxe-contre-budget-2027",
+        "locator": "Contre-budget 2027 : Adapter les écoles et les espaces publics"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 d’Équinoxe",
+    "checked": "2026-11-18"
+  },
+  {
+    "id": "mikolajczak-travail-chaleur",
+    "parentId": "mikolajczak-travail",
+    "candidate": "mikolajczak",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Indemniser les interruptions de travail liées aux canicules",
+    "description": "Adapter les horaires et arrêter les chantiers en vigilance rouge, avec activité partielle pour les salariés et les parents lors des fermetures d’école.",
+    "beneficiaries": null,
+    "timing": "Année 2027 uniquement",
+    "financing": null,
+    "metrics": [],
+    "amounts": [
+      {
+        "label": "Enveloppe annoncée pour 2027",
+        "value": 1200000000.0,
+        "unit": "€",
+        "period": "an",
+        "basis": "non-applicable",
+        "sourceId": "equinoxe-contre-budget-2027"
+      }
+    ],
+    "sourceRefs": [
+      {
+        "sourceId": "equinoxe-contre-budget-2027",
+        "locator": "Contre-budget 2027 : Protéger les travailleurs par forte chaleur"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 d’Équinoxe",
+    "checked": "2026-11-18"
+  },
+  {
+    "id": "mikolajczak-securite-pompiers",
+    "parentId": "mikolajczak-securite",
+    "candidate": "mikolajczak",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Recruter 5 000 sapeurs-pompiers professionnels",
+    "description": "Renforcer les effectifs professionnels de la Sécurité civile dans un plan comprenant aussi véhicules, avions et prévention des incendies.",
+    "beneficiaries": null,
+    "timing": "Année 2027 uniquement",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "pompiers-recrutements",
+        "label": "Recrutements professionnels annoncés",
+        "value": 5000,
+        "unit": "postes",
+        "sourceId": "equinoxe-contre-budget-2027"
+      }
+    ],
+    "amounts": [
+      {
+        "label": "Part recrutement annoncée pour 2027",
+        "value": 200000000.0,
+        "unit": "€",
+        "period": "an",
+        "basis": "non-applicable",
+        "sourceId": "equinoxe-contre-budget-2027"
+      }
+    ],
+    "sourceRefs": [
+      {
+        "sourceId": "equinoxe-contre-budget-2027",
+        "locator": "Contre-budget 2027 : Renforcer notre Sécurité civile"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 d’Équinoxe",
+    "checked": "2026-11-18"
+  },
+  {
+    "id": "mikolajczak-climat-train",
+    "parentId": "mikolajczak-climat",
+    "candidate": "mikolajczak",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Investir dans le train, les petites lignes et le fret",
+    "description": "Financer les lignes de desserte fine, les nœuds ferroviaires, les RER métropolitains, le projet Nouveau Corail et le fret.",
+    "beneficiaries": null,
+    "timing": "Année 2027 uniquement",
+    "financing": null,
+    "metrics": [],
+    "amounts": [
+      {
+        "label": "Enveloppe annoncée pour 2027",
+        "value": 1000000000.0,
+        "unit": "€",
+        "period": "an",
+        "basis": "non-applicable",
+        "sourceId": "equinoxe-contre-budget-2027"
+      }
+    ],
+    "sourceRefs": [
+      {
+        "sourceId": "equinoxe-contre-budget-2027",
+        "locator": "Contre-budget 2027 : Relancer le train et le rendre abordable"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 d’Équinoxe",
+    "checked": "2026-11-18"
+  },
+  {
+    "id": "mikolajczak-logement-renovation",
+    "parentId": "mikolajczak-logement",
+    "candidate": "mikolajczak",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Renforcer MaPrimeRénov’ et la rénovation du parc social",
+    "description": "Consacrer 600 M€ à MaPrimeRénov’, 200 M€ au parc social et 200 M€ au contrôle des travaux ; les prêts restent distincts.",
+    "beneficiaries": null,
+    "timing": "Année 2027 uniquement",
+    "financing": null,
+    "metrics": [],
+    "amounts": [
+      {
+        "label": "Budget annoncé pour 2027, hors prêts",
+        "value": 1000000000.0,
+        "unit": "€",
+        "period": "an",
+        "basis": "non-applicable",
+        "sourceId": "equinoxe-contre-budget-2027"
+      }
+    ],
+    "sourceRefs": [
+      {
+        "sourceId": "equinoxe-contre-budget-2027",
+        "locator": "Contre-budget 2027 : Rendre nos logements confortables"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 d’Équinoxe",
+    "checked": "2026-11-18"
+  },
+  {
+    "id": "mikolajczak-climat-biodiversite",
+    "parentId": "mikolajczak-climat",
+    "candidate": "mikolajczak",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Financer un plan de restauration de la nature",
+    "description": "Restaurer zones humides, haies, tourbières et forêts ; renforcer les espaces protégés et la renaturation des villes.",
+    "beneficiaries": null,
+    "timing": "Année 2027 uniquement",
+    "financing": null,
+    "metrics": [],
+    "amounts": [
+      {
+        "label": "Enveloppe annoncée pour 2027",
+        "value": 1000000000.0,
+        "unit": "€",
+        "period": "an",
+        "basis": "non-applicable",
+        "sourceId": "equinoxe-contre-budget-2027"
+      }
+    ],
+    "sourceRefs": [
+      {
+        "sourceId": "equinoxe-contre-budget-2027",
+        "locator": "Contre-budget 2027 : Renouer avec le vivant"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 d’Équinoxe",
+    "checked": "2026-11-18"
+  },
+  {
+    "id": "mikolajczak-travail-ia-numerique",
+    "parentId": "mikolajczak-travail",
+    "candidate": "mikolajczak",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Investir dans l’IA, la recherche et la cybersécurité",
+    "description": "Financer les infrastructures de calcul et de données, la recherche, la cybersécurité et le déploiement de l’IA dans les services publics.",
+    "beneficiaries": null,
+    "timing": "Année 2027 uniquement",
+    "financing": null,
+    "metrics": [],
+    "amounts": [
+      {
+        "label": "Enveloppe annoncée pour 2027",
+        "value": 700000000.0,
+        "unit": "€",
+        "period": "an",
+        "basis": "non-applicable",
+        "sourceId": "equinoxe-contre-budget-2027"
+      }
+    ],
+    "sourceRefs": [
+      {
+        "sourceId": "equinoxe-contre-budget-2027",
+        "locator": "Contre-budget 2027 : Investir dans l’IA et le numérique"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 d’Équinoxe",
+    "checked": "2026-11-18"
+  },
+  {
+    "id": "mikolajczak-fiscalite-accise-electricite",
+    "parentId": "mikolajczak-fiscalite",
+    "candidate": "mikolajczak",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Baisser l’accise sur l’électricité",
+    "description": "Ramener l’accise à 12,04 €/MWh pour les ménages et 15,70 €/MWh pour les entreprises.",
+    "beneficiaries": null,
+    "timing": "Année 2027 uniquement",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "accise-electricite-menages",
+        "label": "Accise pour les ménages",
+        "value": 12.04,
+        "unit": "€ / MWh",
+        "sourceId": "equinoxe-contre-budget-2027"
+      }
+    ],
+    "amounts": [
+      {
+        "label": "Baisse de recettes annoncée pour 2027",
+        "value": 4600000000.0,
+        "unit": "€",
+        "period": "an",
+        "basis": "non-applicable",
+        "sourceId": "equinoxe-contre-budget-2027"
+      }
+    ],
+    "sourceRefs": [
+      {
+        "sourceId": "equinoxe-contre-budget-2027",
+        "locator": "Contre-budget 2027 : Baisser l’accise sur l’électricité"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 d’Équinoxe",
+    "checked": "2026-11-18"
+  },
+  {
+    "id": "mikolajczak-social-cheque-energie",
+    "parentId": "mikolajczak-social",
+    "candidate": "mikolajczak",
+    "theme": "social",
+    "revision": 1,
+    "title": "Élargir et revaloriser le chèque énergie",
+    "description": "Étendre le chèque à environ sept millions de ménages et porter son montant moyen à environ 285 €.",
+    "beneficiaries": null,
+    "timing": "Année 2027 uniquement",
+    "financing": null,
+    "metrics": [],
+    "amounts": [
+      {
+        "label": "Enveloppe annoncée pour 2027",
+        "value": 1400000000.0,
+        "unit": "€",
+        "period": "an",
+        "basis": "non-applicable",
+        "sourceId": "equinoxe-contre-budget-2027"
+      }
+    ],
+    "sourceRefs": [
+      {
+        "sourceId": "equinoxe-contre-budget-2027",
+        "locator": "Contre-budget 2027 : Élargir et revaloriser le chèque énergie"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 d’Équinoxe",
+    "checked": "2026-11-18"
+  },
+  {
+    "id": "mikolajczak-climat-leasing-electrique",
+    "parentId": "mikolajczak-climat",
+    "candidate": "mikolajczak",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Étendre le leasing social électrique",
+    "description": "Ajouter entre 75 000 et 120 000 voitures en location aidée aux véhicules déjà financés par les certificats d’économies d’énergie.",
+    "beneficiaries": null,
+    "timing": "Année 2027 uniquement",
+    "financing": null,
+    "metrics": [],
+    "amounts": [
+      {
+        "label": "Enveloppe annoncée pour 2027",
+        "value": 1000000000.0,
+        "unit": "€",
+        "period": "an",
+        "basis": "non-applicable",
+        "sourceId": "equinoxe-contre-budget-2027"
+      }
+    ],
+    "sourceRefs": [
+      {
+        "sourceId": "equinoxe-contre-budget-2027",
+        "locator": "Contre-budget 2027 : Rendre les voitures électriques abordables"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 d’Équinoxe",
+    "checked": "2026-11-18"
   }
 ]

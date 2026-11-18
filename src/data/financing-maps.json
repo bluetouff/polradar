@@ -93,6 +93,86 @@
         "qualifier": "Montant non chiffré"
       },
       "assumptions": []
+    },
+    {
+      "id": "melenchon-investissement-btp",
+      "candidate": "melenchon",
+      "budgetEntry": "melenchon-investissement-btp",
+      "relation": "affectation",
+      "title": "BTP et logement : dépenses de l’État",
+      "note": "Le graphique reprend la colonne État. Le pôle public bancaire et les autres acteurs sont détaillés séparément dans le document.",
+      "origin": null,
+      "assumptions": []
+    },
+    {
+      "id": "melenchon-investissement-auto",
+      "candidate": "melenchon",
+      "budgetEntry": "melenchon-investissement-auto",
+      "relation": "affectation",
+      "title": "Automobile : dépenses de l’État",
+      "note": "Le graphique reprend la colonne État. Le pôle public bancaire et les autres acteurs sont détaillés séparément dans le document.",
+      "origin": null,
+      "assumptions": []
+    },
+    {
+      "id": "melenchon-investissement-textile",
+      "candidate": "melenchon",
+      "budgetEntry": "melenchon-investissement-textile",
+      "relation": "affectation",
+      "title": "Textile : dépenses de l’État",
+      "note": "Les sous-lignes « dont » détaillent la relocalisation. Le graphique reprend les six axes principaux de la colonne État.",
+      "origin": null,
+      "assumptions": []
+    },
+    {
+      "id": "mikolajczak-economies",
+      "candidate": "mikolajczak",
+      "budgetEntry": "mikolajczak-economies",
+      "relation": "composition",
+      "title": "Économies du contre-budget",
+      "note": "La baisse de charge de la dette est une hypothèse liée au déficit et aux taux ; elle est estimée par le parti.",
+      "origin": null,
+      "assumptions": ["Charge de la dette"]
+    },
+    {
+      "id": "mikolajczak-recettes",
+      "candidate": "mikolajczak",
+      "budgetEntry": "mikolajczak-recettes",
+      "relation": "composition",
+      "title": "Recettes supplémentaires",
+      "note": "Les rendements sont ceux du contre-budget pour 2027, sans validation indépendante de leur réalisation.",
+      "origin": null,
+      "assumptions": []
+    },
+    {
+      "id": "mikolajczak-transition",
+      "candidate": "mikolajczak",
+      "budgetEntry": "mikolajczak-transition",
+      "relation": "affectation",
+      "title": "Transition écologique",
+      "note": "Les prêts et apports de fonds propres restent distincts : seule leur bonification entre dans cette enveloppe de dépenses.",
+      "origin": null,
+      "assumptions": []
+    },
+    {
+      "id": "mikolajczak-canicules",
+      "candidate": "mikolajczak",
+      "budgetEntry": "mikolajczak-canicules",
+      "relation": "affectation",
+      "title": "Adaptation aux canicules",
+      "note": "Les montants reprennent les cinq postes publiés du plan d’adaptation pour 2027.",
+      "origin": null,
+      "assumptions": []
+    },
+    {
+      "id": "mikolajczak-pouvoir-achat",
+      "candidate": "mikolajczak",
+      "budgetEntry": "mikolajczak-pouvoir-achat",
+      "relation": "affectation",
+      "title": "Mesures de pouvoir d’achat",
+      "note": "L’enveloppe associe une baisse de recettes fiscales et deux mesures de soutien. La source la finance par les recettes sur le patrimoine et les hauts revenus, sans quote-part précise.",
+      "origin": null,
+      "assumptions": []
     }
   ]
 }

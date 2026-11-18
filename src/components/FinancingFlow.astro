@@ -1,7 +1,10 @@
 ---
 import type { financingMaps } from '../lib/proposal-data';
 import { financingLayout, wrapLabel } from '../lib/proposal-view.mjs';
-import { formatBudgetAmount } from '../lib/campaign-visuals-view.mjs';
+import {
+  formatBudgetAmount,
+  formatMoney,
+} from '../lib/campaign-visuals-view.mjs';
 interface Props {
   map: (typeof financingMaps)[number];
 }
@@ -10,6 +13,9 @@ const { entry } = map;
 const flow = financingLayout(map, entry);
 const rootLines = wrapLabel(entry.label, 28);
 const sourceId = `finance-source-${map.id}`;
+const rootAmount = entry.allocationDifference
+  ? formatMoney(flow.denominator)
+  : formatBudgetAmount(entry);
 ---
 
 <figure class="financing-figure">
@@ -23,6 +29,8 @@ const sourceId = `finance-source-${map.id}`;
     <title id={`flow-title-${map.id}`}>{map.title}</title>
     <desc id={`flow-desc-${map.id}`}>
       Montant annoncé : {formatBudgetAmount(entry)}. {entry.horizon}.{' '}
+      {entry.allocationDifference &&
+        `Somme des postes : ${rootAmount}. ${entry.allocationDifference.note}`}
       {map.relation === 'non-chiffree'
         ? 'La liaison en pointillés représente une contribution dont le montant n’est pas précisé.'
         : `L’épaisseur des liens représente ${flow.percent ? 'les pourcentages publiés' : 'les montants annoncés'} dans ce seul schéma.`}
@@ -55,7 +63,7 @@ const sourceId = `finance-source-${map.id}`;
     ))}
     <a
       href={`#${sourceId}`}
-      aria-label={`${entry.label} : ${formatBudgetAmount(entry)}. Consulter la source`}
+      aria-label={`${entry.label} : ${rootAmount}${entry.allocationDifference ? ', somme des postes' : ''}. Consulter la source`}
     >
       <rect
         x={flow.root.x}
@@ -66,10 +74,14 @@ const sourceId = `finance-source-${map.id}`;
         class="flow-root"
       />
       <text x={flow.root.x + 24} y={flow.root.y + 42} class="flow-root-kicker">
-        {flow.percent ? 'CIBLE APPROXIMATIVE' : 'MONTANT ANNONCÉ'}
+        {entry.allocationDifference
+          ? 'SOMME DES POSTES'
+          : flow.percent
+            ? 'CIBLE APPROXIMATIVE'
+            : 'MONTANT ANNONCÉ'}
       </text>
       <text x={flow.root.x + 24} y={flow.root.y + 90} class="flow-total">
-        {formatBudgetAmount(entry)}
+        {rootAmount}
       </text>
       <text x={flow.root.x + 24} y={flow.root.y + 126} class="flow-root-label">
         {rootLines.map((line, i) => (
@@ -132,7 +144,8 @@ const sourceId = `finance-source-${map.id}`;
   <div class:list={['flow-mobile', { 'flow-mobile-reverse': flow.reverse }]}>
     <div class="flow-mobile-total">
       <span>{entry.label}</span>
-      <strong>{formatBudgetAmount(entry)}</strong>
+      {entry.allocationDifference && <small>Somme des postes</small>}
+      <strong>{rootAmount}</strong>
       <small>{entry.horizon}</small>
     </div>
     <p class="flow-mobile-direction">
@@ -158,9 +171,7 @@ const sourceId = `finance-source-${map.id}`;
               <svg viewBox="0 0 240 6" aria-hidden="true">
                 <rect width="240" height="6" rx="3" class="flow-track" />
                 <rect
-                  width={
-                    (leaf.value / (flow.percent ? 100 : entry.euros)) * 240
-                  }
+                  width={(leaf.value / flow.denominator) * 240}
                   height="6"
                   rx="3"
                   class="flow-mobile-bar"
@@ -173,6 +184,12 @@ const sourceId = `finance-source-${map.id}`;
     </ol>
   </div>
   <figcaption>
+    {entry.allocationDifference && (
+      <p class="flow-source-difference">
+        Total publié : {formatBudgetAmount(entry)}. Somme des postes :{' '}
+        {rootAmount}. {entry.allocationDifference.note}
+      </p>
+    )}
     {map.relation === 'non-chiffree'
       ? 'Pointillés : montant du financement non précisé. Le coût du dispositif reste affiché séparément.'
       : `Échelle propre à cette enveloppe · ${flow.percent ? 'parts publiées en pourcentage' : 'liens proportionnels aux montants annoncés'}.`}

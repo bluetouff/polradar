@@ -120,6 +120,13 @@ test('la carte et les fiches partagent les filtres et le jour civil de Paris', a
     String(parisEvents.length),
   );
   await page.locator('#agenda-candidate').selectOption('arthaud');
+  await expect(page.locator('.agenda-event:visible')).toHaveCount(1);
+  await expect(page.locator('.agenda-event:visible')).toHaveAttribute(
+    'data-date',
+    '2027-01-24',
+  );
+  // The Lyon-labelled meeting is actually in Vénissieux; these communes stay distinct.
+  await page.locator('#agenda-city').selectOption('lyon');
   await expect(page.locator('#agenda-empty')).toBeVisible();
   await expect(page.locator('.map-count:visible')).toHaveCount(0);
   await page.getByRole('button', { name: 'Réinitialiser' }).click();

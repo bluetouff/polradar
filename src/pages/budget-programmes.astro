@@ -10,6 +10,7 @@ import {
   formatMoney,
   formatBudgetAmount,
   budgetAnnualScales,
+  budgetAllocationTotal,
 } from '../lib/campaign-visuals-view.mjs';
 import '../styles/visuals.css';
 const periods = {
@@ -127,8 +128,7 @@ const annualScales = budgetAnnualScales(programmeBudgets.profiles);
             <p class="budget-profile-note">{profile.note}</p>
             {profile.entries.map((entry) => {
               let x = 0;
-              const total =
-                entry.allocationUnit === 'pourcentage' ? 100 : entry.euros;
+              const total = budgetAllocationTotal(entry);
               const ceiling =
                 entry.period === 'annuel'
                   ? annualScales[entry.kind]
@@ -161,6 +161,13 @@ const annualScales = budgetAnnualScales(programmeBudgets.profiles);
                           ? ' de l’effort'
                           : ''}
                       </figcaption>
+                      {entry.allocationDifference && (
+                        <p class="budget-horizon">
+                          Somme des postes : {formatMoney(total)}. Total publié
+                          : {formatBudgetAmount(entry)}.{' '}
+                          {entry.allocationDifference.note}
+                        </p>
+                      )}
                       <svg
                         viewBox="0 0 100 14"
                         preserveAspectRatio="none"
@@ -176,7 +183,7 @@ const annualScales = budgetAnnualScales(programmeBudgets.profiles);
                               x={start}
                               width={width}
                               height="14"
-                              class={`tone-${i}`}
+                              class={`tone-${i % 7}`}
                             >
                               <title>{part.label} : {entry.allocationUnit==='pourcentage'?`${part.value} %`:formatMoney(part.value)}</title>
                             </rect>
@@ -186,7 +193,7 @@ const annualScales = budgetAnnualScales(programmeBudgets.profiles);
                       <ul class="budget-allocation-key">
                         {entry.allocation.map((part, i) => (
                           <li>
-                            <i class={`tone-${i}`} aria-hidden="true"></i>
+                            <i class={`tone-${i % 7}`} aria-hidden="true"></i>
                             <span>{part.label}</span>
                             <strong>
                               {entry.allocationUnit === 'pourcentage'

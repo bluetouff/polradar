@@ -23,6 +23,7 @@ import {
   formatMoney,
   formatBudgetAmount,
   budgetAnnualScales,
+  budgetAllocationTotal,
 } from '../src/lib/campaign-visuals-view.mjs';
 const data = (name) =>
   JSON.parse(
@@ -72,6 +73,39 @@ test('les petits montants et les fourchettes gardent leur précision et leur uni
   const copy = structuredClone(budgets),
     row = copy.profiles.find((p) => p.candidate === 'lisnard').entries[0];
   row.eurosMax = row.euros + 1;
+  assert.equal(programmeBudgetSchema.safeParse(copy).success, false);
+});
+test('un écart publié reste explicite, signé et contrôlé sans poste de compensation', () => {
+  const rows = budgets.profiles.flatMap((p) => p.entries);
+  for (const [id, sum, difference] of [
+    ['melenchon-investissement-btp', 12.01e9, 10e6],
+    ['melenchon-investissement-auto', 1.37e9, -30e6],
+    ['mikolajczak-canicules', 9.45e9, -50e6],
+  ]) {
+    const entry = rows.find((e) => e.id === id);
+    assert.equal(budgetAllocationTotal(entry), sum);
+    assert.equal(entry.allocationDifference.euros, difference);
+    for (const mutate of [
+      (e) => delete e.allocationDifference,
+      (e) => (e.allocationDifference.euros *= -1),
+      (e) => (e.allocationDifference.note = ''),
+      (e) => (e.allocation = []),
+      (e) => (e.allocationUnit = 'pourcentage'),
+      (e) => (e.approximate = true),
+      (e) => (e.allocation[0].value += 1e6),
+    ]) {
+      const copy = structuredClone(budgets);
+      mutate(copy.profiles.flatMap((p) => p.entries).find((e) => e.id === id));
+      assert.equal(programmeBudgetSchema.safeParse(copy).success, false);
+    }
+  }
+  const textile = rows.find((e) => e.id === 'melenchon-investissement-textile');
+  assert.equal(textile.allocation.length, 6); // Top-level axes; “dont” is not counted twice.
+  assert.equal(budgetAllocationTotal(textile), 240e6);
+  const copy = structuredClone(budgets);
+  copy.profiles.find(
+    (p) => p.candidate === 'lisnard',
+  ).entries[0].allocationDifference = { euros: 1, note: 'Écart' };
   assert.equal(programmeBudgetSchema.safeParse(copy).success, false);
 });
 

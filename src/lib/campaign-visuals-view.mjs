@@ -13,6 +13,13 @@ export function formatBudgetAmount(entry) {
     (value / unit).toLocaleString('fr-FR', { maximumFractionDigits: 9 });
   return `${entry.approximate ? '≈ ' : ''}${number(entry.euros)} à ${number(entry.eurosMax)} ${label}`;
 }
+/** The source's line items define the graphic scale, even if its printed total differs. */
+export function budgetAllocationTotal(entry) {
+  if (entry.allocationUnit === 'pourcentage') return 100;
+  return entry.allocation.length
+    ? entry.allocation.reduce((sum, part) => sum + part.value, 0)
+    : entry.euros;
+}
 /**
  * Allocations have their own denominator. Annual amounts share a scale only
  * within the same budget category; a revenue projection is not a new expense.

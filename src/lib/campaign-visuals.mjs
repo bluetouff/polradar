@@ -30,7 +30,18 @@ const entry = z
     additionalSources: z.array(idSchema).min(1).max(5).optional(),
     locator: text,
     allocationUnit: z.enum(['euros', 'pourcentage']).nullable(),
-    allocation: z.array(z.object({ label: text, value: money })).max(8),
+    allocation: z.array(z.object({ label: text, value: money })).max(12),
+    // An explicitly reviewed difference in the source is never a balancing item.
+    allocationDifference: z
+      .strictObject({
+        euros: z
+          .number()
+          .min(-1e13)
+          .max(1e13)
+          .refine((n) => n !== 0),
+        note: text,
+      })
+      .optional(),
   })
   .superRefine((row, ctx) => {
     const fail = (message) => ctx.addIssue({ code: 'custom', message });
@@ -46,10 +57,19 @@ const entry = z
     if (row.allocation.length) {
       const sum = row.allocation.reduce((n, p) => n + p.value, 0);
       const total = row.allocationUnit === 'euros' ? row.euros : 100;
-      if (Math.abs(sum - total) > 0.001) fail('Répartition non réconciliée');
+      const difference = sum - total;
+      if (row.allocationDifference) {
+        if (
+          row.allocationUnit !== 'euros' ||
+          Math.abs(difference) <= 0.001 ||
+          Math.abs(difference - row.allocationDifference.euros) > 0.001
+        )
+          fail('Écart de source incohérent');
+      } else if (Math.abs(difference) > 0.001)
+        fail('Répartition non réconciliée');
       if (row.approximate && row.allocationUnit === 'euros')
         fail('Ne pas donner une précision absente de la source');
-    }
+    } else if (row.allocationDifference) fail('Écart sans répartition');
   });
 export const programmeBudgetSchema = z
   .object({

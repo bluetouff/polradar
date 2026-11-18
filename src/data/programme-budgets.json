@@ -125,7 +125,7 @@
     {
       "candidate": "dupont-aignan",
       "scope": "parti",
-      "note": "Deux mesures du projet de Debout la France. Les montants portent sur des dispositifs distincts ; ils ne constituent pas un budget complet.",
+      "note": "Chiffrages publiés dans le projet économique de Debout la France. Les postes restent distincts ; certains peuvent se recouvrir et ne sont pas additionnés. Les périodes non précisées restent indiquées comme telles.",
       "entries": [
         {
           "id": "nda-fonds",
@@ -152,6 +152,76 @@
           "funding": "Financement propre à cette mesure non détaillé.",
           "source": "dlf-economie-2026",
           "locator": "Capital retraite de 10 000 € à la naissance : coût annoncé d’environ 6 milliards d’euros par an",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "dupont-aignan-aides-ukraine",
+          "label": "Fin des aides à l’Ukraine",
+          "euros": 7000000000.0,
+          "kind": "economie",
+          "period": "annuel",
+          "horizon": "Par an ; aides françaises et quote-part des aides de l’UE",
+          "approximate": false,
+          "funding": null,
+          "source": "dlf-economie-2026",
+          "locator": "Mettre fin aux aides à l’Ukraine",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "dupont-aignan-administration",
+          "label": "Réduction du coût administratif",
+          "euros": 40000000000.0,
+          "kind": "economie",
+          "period": "horizon",
+          "horizon": "Économie par an au terme de cinq ans",
+          "approximate": false,
+          "funding": null,
+          "source": "dlf-economie-2026",
+          "locator": "Supprimer le millefeuille administratif et les agences d’État inutiles",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "dupont-aignan-agences",
+          "label": "Suppression progressive d’agences",
+          "euros": 20000000000.0,
+          "kind": "economie",
+          "period": "horizon",
+          "horizon": "Économie par an au terme de trois ans ; sous-ensemble de la réforme administrative",
+          "approximate": false,
+          "funding": null,
+          "source": "dlf-economie-2026",
+          "locator": "Suppression progressive des agences d’État",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "dupont-aignan-fraude-sociale",
+          "label": "Lutte contre la fraude sociale",
+          "euros": 20000000000.0,
+          "kind": "economie",
+          "period": "non-precise",
+          "horizon": "Période non précisée dans ce passage",
+          "approximate": false,
+          "funding": null,
+          "source": "dlf-economie-2026",
+          "locator": "Mettre fin au scandale de la fraude sociale",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "dupont-aignan-participation",
+          "label": "Allègements liés à l’actionnariat salarié",
+          "euros": 1000000000.0,
+          "kind": "baisse-recette",
+          "period": "non-precise",
+          "horizon": "Période non précisée dans ce passage",
+          "approximate": false,
+          "funding": null,
+          "source": "dlf-economie-2026",
+          "locator": "Favoriser l’actionnariat salarié : coût de la mesure",
           "allocationUnit": null,
           "allocation": []
         }
@@ -232,8 +302,49 @@
           "funding": null,
           "source": "lfi-investissement-btp-2026",
           "locator": "Tableau « EN MILLIARDS D’EUROS PAR AN », total de la colonne État",
-          "allocationUnit": null,
-          "allocation": []
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Nouveaux logements publics",
+              "value": 3100000000.0
+            },
+            {
+              "label": "Rénovation des logements sociaux",
+              "value": 250000000.0
+            },
+            {
+              "label": "Isolation des logements",
+              "value": 5300000000.0
+            },
+            {
+              "label": "Confort d’été",
+              "value": 500000000.0
+            },
+            {
+              "label": "Rénovation des autres bâtiments",
+              "value": 1000000000.0
+            },
+            {
+              "label": "Sortie du fioul et réduction du gaz",
+              "value": 1000000000.0
+            },
+            {
+              "label": "Formation des professionnels",
+              "value": 60000000.0
+            },
+            {
+              "label": "Déchets et réemploi",
+              "value": 200000000.0
+            },
+            {
+              "label": "Patrimoine",
+              "value": 600000000.0
+            }
+          ],
+          "allocationDifference": {
+            "euros": 10000000.0,
+            "note": "Le détail porte sur les neuf postes renseignés de la colonne État."
+          }
         },
         {
           "id": "melenchon-investissement-auto",
@@ -246,8 +357,41 @@
           "funding": null,
           "source": "lfi-investissement-auto-2026",
           "locator": "Tableau « En millions d’euros par an », total de la colonne État",
-          "allocationUnit": null,
-          "allocation": []
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Nouvelles lignes de production",
+              "value": 100000000.0
+            },
+            {
+              "label": "Location automobile abordable",
+              "value": 300000000.0
+            },
+            {
+              "label": "Aides à l’achat",
+              "value": 200000000.0
+            },
+            {
+              "label": "Sous-traitants et équipementiers",
+              "value": 200000000.0
+            },
+            {
+              "label": "Production de batteries",
+              "value": 500000000.0
+            },
+            {
+              "label": "Réparation et recyclage",
+              "value": 50000000.0
+            },
+            {
+              "label": "Recherche sur les minibus",
+              "value": 20000000.0
+            }
+          ],
+          "allocationDifference": {
+            "euros": -30000000.0,
+            "note": "Le détail porte sur les sept postes renseignés de la colonne État."
+          }
         },
         {
           "id": "melenchon-investissement-textile",
@@ -260,8 +404,33 @@
           "funding": null,
           "source": "lfi-investissement-textile-2026",
           "locator": "Tableau « en millions d’euros par an », total de la colonne État",
-          "allocationUnit": null,
-          "allocation": []
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Relocalisation de la filière grand public",
+              "value": 110000000.0
+            },
+            {
+              "label": "Économie circulaire",
+              "value": 20000000.0
+            },
+            {
+              "label": "Textiles professionnels",
+              "value": 70000000.0
+            },
+            {
+              "label": "Textiles techniques",
+              "value": 10000000.0
+            },
+            {
+              "label": "Recherche et nouvelles frontières",
+              "value": 20000000.0
+            },
+            {
+              "label": "Formation",
+              "value": 10000000.0
+            }
+          ]
         }
       ]
     },
@@ -539,6 +708,194 @@
           "funding": null,
           "source": "eco-enfance-pdf",
           "locator": "PDF, page 29 : fonds vert pour l’école",
+          "allocationUnit": null,
+          "allocation": []
+        }
+      ]
+    },
+    {
+      "candidate": "mikolajczak",
+      "scope": "parti",
+      "note": "Contre-budget d’urgence limité à 2027, distinct du programme structurel sur cinq ans. Les montants sont des estimations du parti. Plusieurs postes reprennent des mesures gouvernementales ou de la CNAM, signalées dans le document.",
+      "entries": [
+        {
+          "id": "mikolajczak-economies",
+          "label": "Économies du contre-budget",
+          "euros": 46400000000.0,
+          "kind": "economie",
+          "period": "annuel",
+          "horizon": "Année 2027 uniquement",
+          "approximate": false,
+          "funding": null,
+          "source": "equinoxe-contre-budget-2027",
+          "locator": "Contre-budget 2027 : Économies du contre-budget",
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Pensions de retraite",
+              "value": 25000000000.0
+            },
+            {
+              "label": "État et collectivités",
+              "value": 14000000000.0
+            },
+            {
+              "label": "Santé et protection sociale",
+              "value": 6600000000.0
+            },
+            {
+              "label": "Charge de la dette",
+              "value": 800000000.0
+            }
+          ]
+        },
+        {
+          "id": "mikolajczak-recettes",
+          "label": "Recettes supplémentaires",
+          "euros": 59000000000.0,
+          "kind": "recette",
+          "period": "annuel",
+          "horizon": "Année 2027 uniquement",
+          "approximate": false,
+          "funding": null,
+          "source": "equinoxe-contre-budget-2027",
+          "locator": "Contre-budget 2027 : Recettes supplémentaires",
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Entreprises",
+              "value": 15000000000.0
+            },
+            {
+              "label": "Ménages et patrimoine",
+              "value": 31800000000.0
+            },
+            {
+              "label": "Fiscalité des retraites",
+              "value": 5900000000.0
+            },
+            {
+              "label": "Fiscalité écologique et santé",
+              "value": 6300000000.0
+            }
+          ]
+        },
+        {
+          "id": "mikolajczak-transition",
+          "label": "Transition écologique",
+          "euros": 5800000000.0,
+          "kind": "depense",
+          "period": "annuel",
+          "horizon": "Année 2027 uniquement",
+          "approximate": false,
+          "funding": null,
+          "source": "equinoxe-contre-budget-2027",
+          "locator": "Contre-budget 2027 : Transition écologique",
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Train et fret",
+              "value": 1000000000.0
+            },
+            {
+              "label": "Rénovation des logements",
+              "value": 1000000000.0
+            },
+            {
+              "label": "Restauration de la nature",
+              "value": 1000000000.0
+            },
+            {
+              "label": "Transition agricole",
+              "value": 700000000.0
+            },
+            {
+              "label": "Électricité bas carbone",
+              "value": 2000000000.0
+            },
+            {
+              "label": "Bonification des prêts",
+              "value": 100000000.0
+            }
+          ]
+        },
+        {
+          "id": "mikolajczak-canicules",
+          "label": "Adaptation aux canicules",
+          "euros": 9500000000.0,
+          "kind": "depense",
+          "period": "annuel",
+          "horizon": "Année 2027 uniquement",
+          "approximate": false,
+          "funding": null,
+          "source": "equinoxe-contre-budget-2027",
+          "locator": "Contre-budget 2027 : Adaptation aux canicules",
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Écoles et espaces publics",
+              "value": 3500000000.0
+            },
+            {
+              "label": "Climatisation des lieux sensibles",
+              "value": 2000000000.0
+            },
+            {
+              "label": "Protection des travailleurs",
+              "value": 1200000000.0
+            },
+            {
+              "label": "Personnes et lieux vulnérables",
+              "value": 1750000000.0
+            },
+            {
+              "label": "Sécurité civile",
+              "value": 1000000000.0
+            }
+          ],
+          "allocationDifference": {
+            "euros": -50000000.0,
+            "note": "Le plan d’adaptation détaille cinq postes."
+          }
+        },
+        {
+          "id": "mikolajczak-pouvoir-achat",
+          "label": "Mesures de pouvoir d’achat",
+          "euros": 7000000000.0,
+          "kind": "trajectoire",
+          "period": "annuel",
+          "horizon": "Année 2027 uniquement",
+          "approximate": false,
+          "funding": null,
+          "source": "equinoxe-contre-budget-2027",
+          "locator": "Contre-budget 2027 : Mesures de pouvoir d’achat",
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Baisse de l’accise sur l’électricité",
+              "value": 4600000000.0
+            },
+            {
+              "label": "Chèque énergie",
+              "value": 1400000000.0
+            },
+            {
+              "label": "Leasing social électrique",
+              "value": 1000000000.0
+            }
+          ]
+        },
+        {
+          "id": "mikolajczak-prets",
+          "label": "Prêts et apports de fonds propres",
+          "euros": 5000000000.0,
+          "kind": "financement",
+          "period": "annuel",
+          "horizon": "Année 2027 uniquement",
+          "approximate": false,
+          "funding": "Prêts et apports de fonds propres annoncés par le parti, dont 3,8 Md€ liés à la transition. Ils restent distincts des dépenses ; la bonification de 100 M€ est déjà comptée dans la transition.",
+          "source": "equinoxe-contre-budget-2027",
+          "locator": "Encadré « Les prêts publics »",
           "allocationUnit": null,
           "allocation": []
         }

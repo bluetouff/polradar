@@ -5,7 +5,7 @@ test('la chronologie combine les filtres, gère une recherche vide et se réinit
   page,
 }) => {
   await page.goto('/campagne/');
-  await expect(page.locator('#campaign-status')).toContainText('26 événements');
+  await expect(page.locator('#campaign-status')).toContainText('27 événements');
   await page.locator('#campaign-category').selectOption('programme');
   await page.locator('#campaign-candidate').selectOption('ruffin');
   await expect(page.locator('.campaign-entry:visible')).toHaveCount(4);
@@ -17,7 +17,7 @@ test('la chronologie combine les filtres, gère une recherche vide et se réinit
   await expect(page.locator('#campaign-empty')).toBeVisible();
   expect(await page.locator('img[src=x]').count()).toBe(0);
   await page.getByRole('button', { name: 'Réinitialiser' }).click();
-  await expect(page.locator('.campaign-entry:visible')).toHaveCount(26);
+  await expect(page.locator('.campaign-entry:visible')).toHaveCount(27);
   await expect(page.locator('#campaign-empty')).toBeHidden();
 });
 
@@ -27,7 +27,7 @@ test('la chronologie et les sources restent accessibles sans JavaScript', async 
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto('http://127.0.0.1:4321/campagne/');
-  await expect(page.locator('.campaign-entry')).toHaveCount(26);
+  await expect(page.locator('.campaign-entry')).toHaveCount(27);
   await expect(page.locator('#campaign-filters')).toBeHidden();
   await expect(page.locator('#branco-declaration')).toContainText(
     'Juan Branco',

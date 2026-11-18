@@ -134,6 +134,20 @@
       "code": "94003",
       "coordinates": [2.3328, 48.8053],
       "sourceUrl": "https://geo.api.gouv.fr/communes/94003?fields=nom,code,centre"
+    },
+    {
+      "id": "venissieux",
+      "name": "Vénissieux",
+      "code": "69259",
+      "coordinates": [4.8805, 45.7012],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/69259?fields=nom,code,centre"
+    },
+    {
+      "id": "nantes",
+      "name": "Nantes",
+      "code": "44109",
+      "coordinates": [-1.5603, 47.2382],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/44109?fields=nom,code,centre"
     }
   ],
   "events": [
@@ -460,6 +474,45 @@
       "venue": "Salle Tam-Tam, médiathèque, rue Jean-Paul-Sartre",
       "note": "",
       "source": "agenda-arthaud-lanester",
+      "status": "annonce"
+    },
+    {
+      "id": "arthaud-paris-2027-01-24",
+      "candidate": "arthaud",
+      "date": "2027-01-24",
+      "time": "15:00",
+      "timezone": "Europe/Paris",
+      "city": "paris",
+      "title": "Meeting de Nathalie Arthaud",
+      "venue": "Salle de la Mutualité",
+      "note": " Dépliant du 3 novembre 2026, page 4.",
+      "source": "arthaud-depliant-2026-pdf",
+      "status": "annonce"
+    },
+    {
+      "id": "arthaud-venissieux-2027-01-30",
+      "candidate": "arthaud",
+      "date": "2027-01-30",
+      "time": "15:00",
+      "timezone": "Europe/Paris",
+      "city": "venissieux",
+      "title": "Meeting de Nathalie Arthaud",
+      "venue": "Salle Joliot-Curie",
+      "note": "Meeting annoncé pour Lyon, dans une salle située à Vénissieux. Dépliant du 3 novembre 2026, page 4.",
+      "source": "arthaud-depliant-2026-pdf",
+      "status": "annonce"
+    },
+    {
+      "id": "arthaud-nantes-2027-02-06",
+      "candidate": "arthaud",
+      "date": "2027-02-06",
+      "time": "15:00",
+      "timezone": "Europe/Paris",
+      "city": "nantes",
+      "title": "Meeting de Nathalie Arthaud",
+      "venue": "Salle Canopée, Parc des Expositions de la Beaujoire",
+      "note": " Dépliant du 3 novembre 2026, page 4.",
+      "source": "arthaud-depliant-2026-pdf",
       "status": "annonce"
     }
   ]

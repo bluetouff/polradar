@@ -111,14 +111,57 @@ test('tous les dossiers et les documents sont lisibles sans JavaScript', async (
   });
   const page = await context.newPage();
   await page.goto('http://127.0.0.1:4321/evolution/');
-  await expect(page.locator('[data-evolution-dossier]:visible')).toHaveCount(4);
-  await expect(page.locator('[data-proposal-state]:visible')).toHaveCount(9);
+  await expect(page.locator('[data-evolution-dossier]:visible')).toHaveCount(6);
+  await expect(page.locator('[data-proposal-state]:visible')).toHaveCount(14);
   await page.goto('http://127.0.0.1:4321/financements/');
-  await expect(page.locator('[data-financing-map]:visible')).toHaveCount(8);
+  await expect(page.locator('[data-financing-map]:visible')).toHaveCount(16);
   await page.locator('.finance-source summary').first().click();
   await expect(page.locator('.finance-source[open] a').first()).toHaveAttribute(
     'href',
     /^https:\/\//,
   );
   await context.close();
+});
+test('les nouveaux flux distinguent le total publié et la somme des postes sur mobile et desktop', async ({
+  page,
+}) => {
+  for (const width of [390, 1440]) {
+    await page.setViewportSize({ width, height: 1000 });
+    for (const [id, total, sum] of [
+      ['melenchon-investissement-btp', '12 Md€', '12,01 Md€'],
+      ['melenchon-investissement-auto', '1,4 Md€', '1,37 Md€'],
+      ['mikolajczak-canicules', '9,5 Md€', '9,45 Md€'],
+    ]) {
+      await page.goto(`/financements/#carte=${id}`);
+      const figure = page.locator(
+        '[data-financing-map]:visible .financing-figure',
+      );
+      await expect(figure.locator('.flow-source-difference')).toContainText(
+        `Total publié : ${total}`,
+      );
+      await expect(figure.locator('.flow-source-difference')).toContainText(
+        `Somme des postes : ${sum}`,
+      );
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth + 1,
+        ),
+      ).toBe(true);
+    }
+  }
+});
+test('le choix compact sur mobile conserve le lien partagé sans imposer seize cartes avant le graphique', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 900 });
+  await page.goto('/financements/');
+  const chooser = page.locator('[data-evidence-select]');
+  await expect(chooser).toBeVisible();
+  await chooser.selectOption('mikolajczak-transition');
+  await expect(page.locator('[data-financing-map]:visible')).toHaveAttribute(
+    'data-financing-map',
+    'mikolajczak-transition',
+  );
+  await page.reload();
+  await expect(chooser).toHaveValue('mikolajczak-transition');
 });

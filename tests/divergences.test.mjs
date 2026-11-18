@@ -17,7 +17,8 @@ test('les axes reprennent les chiffres et leurs fiches, sans archives ni mélang
   const groups = divergenceGroups(measures, candidates, themes);
   assert.equal(groups.length, 4);
   const age = groups.find((group) => group.id === 'retraites-age-depart');
-  assert.equal(age.values.length, 4);
+  assert.equal(age.values.length, 5);
+  assert.equal(age.values.find((row) => row.candidate === 'roussel').value, 60);
   assert.equal(age.values.find((row) => row.candidate === 'kazib').value, 60);
   assert.equal(
     age.values.find((row) => row.candidate === 'retailleau').value,
