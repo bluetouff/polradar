@@ -73,6 +73,13 @@ def run(args):
     return subprocess.run(args, check=True, capture_output=True, text=True, timeout=320).stdout
 
 
+def make_directory(path, mode):
+    # The operator's restrictive umask also applies through sudo. Apply the
+    # reviewed traversal permissions explicitly after creation.
+    path.mkdir(mode=mode)
+    path.chmod(mode)
+
+
 def patched_vhost(text):
     if len(re.findall(r'<VirtualHost\b', text, re.I)) != 1 or len(re.findall(r'</VirtualHost>', text, re.I)) != 1:
         raise ValueError('Expected one HTTPS vhost; manual review required')
@@ -123,7 +130,7 @@ def install(directory):
     original = VHOST.read_text()
     replacement = patched_vhost(original)
     backup = Path('/var/backups') / ('polradar-stats-' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'))
-    backup.mkdir(mode=0o700)
+    make_directory(backup, 0o700)
     (backup / 'vhost.conf').write_text(original)
     (backup / 'manifest.json').write_text(json.dumps(manifest, indent=2))
     rollback = f'''#!/bin/sh
@@ -141,10 +148,10 @@ systemctl reload apache2
     www = grp.getgrnam('www-data').gr_gid
     log_group = grp.getgrnam('polradarstats').gr_gid
     for path in [STATE, SHARE, LIB]:
-        path.mkdir(mode=0o750 if path == STATE else 0o755)
+        make_directory(path, 0o750 if path == STATE else 0o755)
     os.chown(STATE, uid, www)
-    logdir = Path('/var/log/polradar'); logdir.mkdir(mode=0o750); os.chown(logdir, 0, log_group)
-    logfile = logdir / 'access.log'; logfile.touch(mode=0o640); os.chown(logfile, 0, log_group)
+    logdir = Path('/var/log/polradar'); make_directory(logdir, 0o750); os.chown(logdir, 0, log_group)
+    logfile = logdir / 'access.log'; logfile.touch(mode=0o640); logfile.chmod(0o640); os.chown(logfile, 0, log_group)
     for name in ['index.html', 'viewer.mjs', 'viewer.css']:
         shutil.copyfile(directory / name, SHARE / name); (SHARE / name).chmod(0o644)
     shutil.copyfile(directory / 'generate.py', LIB / 'generate.py'); (LIB / 'generate.py').chmod(0o644)

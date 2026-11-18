@@ -11,6 +11,17 @@ def module(name):
 generator=module('generate');installer=module('install')
 
 class GoAccessTests(unittest.TestCase):
+    def test_restrictive_operator_umask_preserves_service_and_apache_traversal(self):
+        import os,stat
+        with tempfile.TemporaryDirectory() as temp:
+            previous=os.umask(0o077)
+            try:
+                for name,mode in [('code',0o755),('static',0o755),('state',0o750),('logs',0o750),('backup',0o700)]:
+                    path=Path(temp)/name;installer.make_directory(path,mode)
+                    self.assertEqual(stat.S_IMODE(path.stat().st_mode),mode)
+            finally:
+                os.umask(previous)
+
     def row(self,label,hits=2):
         return {'data':label,'hits':{'count':hits},'visitors':{'count':1},'bytes':{'count':120}}
 
