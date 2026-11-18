@@ -16,15 +16,23 @@ const sourceId = `finance-source-${map.id}`;
   <svg
     class="financing-flow"
     viewBox={`0 0 ${flow.width} ${flow.height}`}
-    aria-labelledby={`flow-title-${map.id} flow-desc-${map.id}`}
+    aria-labelledby={`flow-title-${map.id}`}
+    aria-describedby={`flow-desc-${map.id}`}
     role="img"
   >
     <title id={`flow-title-${map.id}`}>{map.title}</title>
     <desc id={`flow-desc-${map.id}`}>
-      {entry.horizon}.{' '}
+      Montant annoncé : {formatBudgetAmount(entry)}. {entry.horizon}.{' '}
       {map.relation === 'non-chiffree'
         ? 'La liaison en pointillés représente une contribution dont le montant n’est pas précisé.'
         : `L’épaisseur des liens représente ${flow.percent ? 'les pourcentages publiés' : 'les montants annoncés'} dans ce seul schéma.`}
+      {flow.leaves
+        .map(
+          (leaf) =>
+            `${leaf.label} : ${leaf.amount}${leaf.assumed ? ', hypothèse du projet' : ''}`,
+        )
+        .join(' ; ')}
+      .
     </desc>
     {flow.leaves.map((leaf) => (
       <a
