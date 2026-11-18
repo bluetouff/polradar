@@ -1,4 +1,9 @@
 const number = new Intl.NumberFormat('fr-FR');
+const dateLabel = (value) =>
+  new Intl.DateTimeFormat('fr-FR', {
+    dateStyle: 'short',
+    timeZone: 'Europe/Paris',
+  }).format(new Date(`${value}T12:00:00Z`));
 const make = (tag, text, className) => {
   const el = document.createElement(tag);
   if (text !== undefined) el.textContent = text;
@@ -6,9 +11,15 @@ const make = (tag, text, className) => {
   return el;
 };
 let snapshot = null;
+let referralLimit = 20;
 const feedback = document.querySelector('#feedback');
 const report = document.querySelector('#report');
 const validCount = (v) => Number.isSafeInteger(v) && v >= 0;
+const validDate = (v) =>
+  typeof v === 'string' &&
+  /^\d{4}-\d{2}-\d{2}$/.test(v) &&
+  Number.isFinite(Date.parse(`${v}T12:00:00Z`)) &&
+  new Date(`${v}T12:00:00Z`).toISOString().slice(0, 10) === v;
 function validate(data) {
   if (
     data?.schemaVersion !== 1 ||
@@ -17,6 +28,12 @@ function validate(data) {
   )
     throw Error('Format du rapport invalide.');
   if (data.status === 'waiting') return data;
+  if (
+    !validDate(data.firstDate) ||
+    !validDate(data.lastDate) ||
+    data.firstDate > data.lastDate
+  )
+    throw Error('Période GoAccess invalide.');
   for (const view of [data.all, data.withoutKnownBots]) {
     if (
       !view ||
@@ -40,22 +57,119 @@ function validate(data) {
           (r) =>
             typeof r.label !== 'string' ||
             r.label.length > 500 ||
-            !['hits', 'profiles', 'bytes'].every((k) => validCount(r[k])),
+            !['hits', 'profiles', 'bytes'].every((k) => validCount(r[k])) ||
+            r.profiles > r.hits,
         )
       )
         throw Error('Détail GoAccess invalide.');
     }
+    const daily = view.panels.visitors;
     if (
-      view.panels.visitors.reduce((sum, r) => sum + r.hits, 0) !== view.requests
+      new Set(daily.map((r) => r.label)).size !== daily.length ||
+      daily.some(
+        (r) =>
+          !validDate(r.label) ||
+          r.label < data.firstDate ||
+          r.label > data.lastDate,
+      )
+    )
+      throw Error('Dates quotidiennes incohérentes.');
+    if (
+      daily.reduce((sum, r) => sum + r.hits, 0) !== view.requests ||
+      daily.reduce((sum, r) => sum + r.profiles, 0) !== view.dailyProfiles ||
+      daily.reduce((sum, r) => sum + r.bytes, 0) !== view.bytes
     )
       throw Error('Total quotidien incohérent.');
   }
+  if (
+    data.withoutKnownBots.requests > data.all.requests ||
+    data.withoutKnownBots.dailyProfiles > data.all.dailyProfiles
+  )
+    throw Error('Filtre robots incohérent.');
   return data;
 }
 function byteLabel(bytes) {
   if (bytes < 1000) return `${number.format(bytes)} octets`;
   const scale = bytes >= 1e9 ? 1e9 : bytes >= 1e6 ? 1e6 : 1e3;
   return `${number.format(Math.round((bytes / scale) * 100) / 100)} ${scale === 1e9 ? 'Go' : scale === 1e6 ? 'Mo' : 'ko'}`;
+}
+const isDomain = (label) =>
+  label.length <= 253 &&
+  /^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$/i.test(label);
+const isInternal = (label) =>
+  ['polradar.fr', 'www.polradar.fr'].includes(label.toLowerCase());
+function meter(value, max, label) {
+  const el = make('meter');
+  el.min = 0;
+  el.max = Math.max(1, max);
+  el.value = value;
+  el.setAttribute('aria-label', label);
+  return el;
+}
+function referralTable(rows) {
+  const table = make('table', undefined, 'referral-table');
+  const head = make('thead'),
+    line = make('tr');
+  for (const label of ['Site', 'Requêtes', 'Uniques']) {
+    const th = make('th', label);
+    th.scope = 'col';
+    line.append(th);
+  }
+  head.append(line);
+  table.append(head);
+  const body = make('tbody'),
+    max = Math.max(1, ...rows.map((r) => r.hits));
+  for (const row of rows) {
+    const line = make('tr'),
+      site = make('th');
+    site.scope = 'row';
+    site.append(
+      make('span', row.label),
+      meter(
+        row.hits,
+        max,
+        `${row.label} : ${number.format(row.hits)} requêtes`,
+      ),
+    );
+    line.append(
+      site,
+      make('td', number.format(row.hits)),
+      make('td', number.format(row.profiles)),
+    );
+    body.append(line);
+  }
+  table.append(body);
+  return table;
+}
+function renderReferrals(view) {
+  const external = view.panels.referring_sites
+    .filter((r) => isDomain(r.label) && !isInternal(r.label))
+    .sort((a, b) => b.hits - a.hits || a.label.localeCompare(b.label));
+  const other = view.panels.referring_sites
+    .filter((r) => !isDomain(r.label) || isInternal(r.label))
+    .sort((a, b) => b.hits - a.hits);
+  const distinct = new Set(external.map((r) => r.label.toLowerCase())).size;
+  const summary = document.querySelector('#referral-summary');
+  summary.textContent = `${number.format(distinct)} ${distinct === 1 ? 'domaine externe recensé' : 'domaines externes recensés'} · uniques journaliers par site, sans les additionner entre sites.`;
+  const target = document.querySelector('#referral-table');
+  target.replaceChildren();
+  if (external.length)
+    target.append(referralTable(external.slice(0, referralLimit)));
+  else target.append(make('p', 'Aucun site externe recensé dans ce filtre.'));
+  const more = document.querySelector('#referral-more');
+  more.hidden = external.length <= referralLimit;
+  more.textContent = `Voir les ${number.format(Math.min(20, Math.max(0, external.length - referralLimit)))} lignes suivantes`;
+  const internal = document.querySelector('#referral-other');
+  internal.replaceChildren();
+  if (other.length) {
+    const details = make('details');
+    details.append(
+      make('summary', 'Navigation interne et référents non retenus'),
+      referralTable(other),
+    );
+    internal.append(details);
+  }
+  return distinct;
 }
 function render() {
   const data = snapshot;
@@ -66,23 +180,27 @@ function render() {
       ? 'Collecte active : aucune requête analysable dans le journal dédié pour le moment.'
       : '';
   document.querySelector('#coverage').textContent =
-    `${data.firstDate ? `Du ${data.firstDate} au ${data.lastDate} · ` : ''}Généré le ${new Date(data.generatedAt).toLocaleString('fr-FR', { timeZone: 'Europe/Paris' })} (Paris)`;
+    `${data.firstDate ? `Du ${dateLabel(data.firstDate)} au ${dateLabel(data.lastDate)} · ` : ''}Généré le ${new Date(data.generatedAt).toLocaleString('fr-FR', { timeZone: 'Europe/Paris' })} (Paris)`;
   report.hidden = data.status !== 'ready';
   if (report.hidden) return;
   const view = data[document.querySelector('#scope').value];
+  const sites = renderReferrals(view);
   const metrics = document.querySelector('#metrics');
   metrics.replaceChildren();
   for (const [label, value, note] of [
+    [
+      'Visiteurs uniques',
+      number.format(view.dailyProfiles),
+      data.firstDate === data.lastDate
+        ? `Uniques GoAccess du ${dateLabel(data.firstDate)}`
+        : 'Cumul des uniques journaliers sur la période',
+    ],
     [
       'Requêtes analysées',
       number.format(view.requests),
       'Ressources et erreurs incluses',
     ],
-    [
-      'Profils quotidiens cumulés',
-      number.format(view.dailyProfiles),
-      'Comptages GoAccess, pas des personnes',
-    ],
+    ['Sites référents', number.format(sites), 'Domaines externes recensés'],
     [
       'Données transférées',
       byteLabel(view.bytes),
@@ -99,26 +217,28 @@ function render() {
   }
   const chart = document.querySelector('#daily-chart');
   chart.replaceChildren();
-  const daily = view.panels.visitors;
+  const daily = [...view.panels.visitors].sort((a, b) =>
+    a.label.localeCompare(b.label),
+  );
+  const metric = document.querySelector('#daily-metric').value;
+  const unit = metric === 'profiles' ? 'visiteurs uniques' : 'requêtes';
+  document.querySelector('#daily-title').textContent =
+    metric === 'profiles' ? 'Visiteurs uniques par jour' : 'Requêtes par jour';
   if (!daily.length)
     chart.append(make('p', 'Aucune observation dans ce filtre.'));
   else {
-    const max = Math.max(1, ...daily.map((r) => r.hits));
+    const max = Math.max(1, ...daily.map((r) => r[metric]));
     const grid = make('div', undefined, 'daily-bars');
     daily.forEach((row) => {
       const bar = make('div', undefined, 'day');
-      const meter = make('meter');
-      meter.min = 0;
-      meter.max = max;
-      meter.value = row.hits;
-      meter.setAttribute(
-        'aria-label',
-        `${row.label} : ${number.format(row.hits)} requêtes`,
-      );
       bar.append(
-        make('strong', number.format(row.hits)),
-        meter,
-        make('span', row.label),
+        make('strong', number.format(row[metric])),
+        meter(
+          row[metric],
+          max,
+          `${dateLabel(row.label)} : ${number.format(row[metric])} ${unit}`,
+        ),
+        make('span', dateLabel(row.label)),
       );
       grid.append(bar);
     });
@@ -128,7 +248,6 @@ function render() {
   panels.replaceChildren();
   for (const [key, title] of [
     ['requests', 'Pages et chemins demandés'],
-    ['referring_sites', 'Domaines référents'],
     ['visit_time', 'Heures observées'],
     ['browsers', 'Navigateurs et robots'],
     ['status_codes', 'Codes HTTP'],
@@ -144,23 +263,19 @@ function render() {
     if (!rows.length)
       section.append(make('p', 'Aucune observation dans ce filtre.'));
     else {
-      const list = make('ol', undefined, 'ranked');
-      const max = Math.max(1, ...rows.map((r) => r.hits));
+      const list = make('ol', undefined, 'ranked'),
+        max = Math.max(1, ...rows.map((r) => r.hits));
       rows.forEach((row) => {
         const li = make('li');
         li.append(
           make('span', row.label),
           make('strong', number.format(row.hits)),
+          meter(
+            row.hits,
+            max,
+            `${row.label} : ${number.format(row.hits)} requêtes`,
+          ),
         );
-        const meter = make('meter');
-        meter.min = 0;
-        meter.max = max;
-        meter.value = row.hits;
-        meter.setAttribute(
-          'aria-label',
-          `${row.label} : ${number.format(row.hits)} requêtes`,
-        );
-        li.append(meter);
         list.append(li);
       });
       section.append(list);
@@ -184,6 +299,7 @@ async function load() {
     const text = await response.text();
     if (text.length > 20 * 1024 * 1024) throw Error('Rapport trop volumineux.');
     snapshot = validate(JSON.parse(text));
+    referralLimit = 20;
     render();
   } catch (error) {
     feedback.textContent =
@@ -195,6 +311,16 @@ async function load() {
 }
 document.querySelector('#refresh').addEventListener('click', load);
 document.querySelector('#scope').addEventListener('change', () => {
+  if (snapshot) {
+    referralLimit = 20;
+    render();
+  }
+});
+document.querySelector('#daily-metric').addEventListener('change', () => {
+  if (snapshot) render();
+});
+document.querySelector('#referral-more').addEventListener('click', () => {
+  referralLimit += 20;
   if (snapshot) render();
 });
 load();

@@ -24,7 +24,7 @@
       <div class="heading">
         <div>
           <p class="kicker">EXPLOITATION / AUDIENCE</p>
-          <h1>Activité du site</h1>
+          <h1>Audience du site</h1>
           <p id="coverage">Chargement des observations…</p>
         </div>
         <button type="button" id="refresh">Actualiser</button>
@@ -40,8 +40,8 @@
           </select></label
         >
         <p>
-          Les robots non reconnus restent inclus. Les profils GoAccess ne sont
-          pas des personnes.
+          Le filtre s’applique aux visiteurs, aux requêtes et aux sites
+          référents.
         </p>
       </div>
       <div id="report" hidden>
@@ -50,10 +50,31 @@
           class="metrics"
           aria-label="Indicateurs"
         ></section>
-        <section class="chart-panel">
-          <h2>Requêtes par jour</h2>
-          <div id="daily-chart"></div>
-        </section>
+        <div class="audience-grid">
+          <section class="chart-panel">
+            <div class="panel-heading">
+              <h2 id="daily-title">Visiteurs uniques par jour</h2>
+              <label class="chart-control"
+                >Mesure<select id="daily-metric">
+                  <option value="profiles">Visiteurs uniques</option>
+                  <option value="hits">Requêtes</option>
+                </select></label
+              >
+            </div>
+            <div id="daily-chart"></div>
+          </section>
+          <section class="chart-panel" id="referents">
+            <h2>Sites référents</h2>
+            <p id="referral-summary" class="panel-note"></p>
+            <div id="referral-table"></div>
+            <button type="button" id="referral-more" hidden>Voir plus</button>
+            <div id="referral-other"></div>
+            <p class="panel-note">
+              Une visite sans référent transmis ne permet pas d’identifier un
+              site d’origine.
+            </p>
+          </section>
+        </div>
         <div class="panels" id="panels"></div>
       </div>
       <noscript
@@ -72,11 +93,13 @@
         </p>
         <p>
           Les requêtes incluent les ressources, les erreurs et les passages
-          automatisés. Les comptages de profils quotidiens GoAccess reposent sur
-          l’adresse, l’agent utilisateur et le jour ; un même client peut être
-          compté plusieurs jours. Les IP, les agents utilisateurs bruts et les
-          paramètres d’URL ne sont pas publiés dans ce rapport. Les visites de
-          cette interface sont exclues du journal dédié.
+          automatisés. Les visiteurs uniques GoAccess sont dédupliqués par
+          adresse IP, agent utilisateur et jour. Le total sur plusieurs jours
+          cumule les uniques journaliers ; il ne compte pas des personnes
+          distinctes. Le filtre « hors robots reconnus » conserve les robots non
+          identifiés. Les IP, les agents utilisateurs bruts et les paramètres
+          d’URL ne sont pas publiés dans ce rapport. Les visites de cette
+          interface sont exclues du journal dédié.
         </p>
       </aside>
     </main>

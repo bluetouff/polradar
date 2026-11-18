@@ -6,13 +6,31 @@ Le diagnostic du 18 novembre 2026 a trouvé GoAccess 1.12. Le vhost HTTPS Polrad
 
 ## Paquet et activation par l’opérateur
 
-La version GitHub `site-<commit complet>` contient `polradar-goaccess.tar.gz` et son SHA-256. Le manifeste embarqué référence ce commit et les empreintes des sept fichiers installés. Télécharger le paquet de la version vérifiée, comparer son SHA-256, l’extraire dans un répertoire temporaire neuf, puis examiner `install.py`, `generate.py` et les unités. L’opérateur exécute lui-même :
+La version GitHub `site-<commit complet>` contient `polradar-goaccess.tar.gz` et son SHA-256. Le manifeste embarqué référence ce commit et les empreintes des sept fichiers du paquet. Télécharger le paquet de la version vérifiée, comparer son SHA-256, l’extraire dans un répertoire temporaire neuf, puis examiner `install.py`, `generate.py` et les unités. L’opérateur exécute lui-même :
 
 ```sh
 sudo python3 -I ./install.py
 ```
 
-Première installation seulement : les fichiers, l’identité et les dossiers préexistants provoquent un arrêt. L’installateur vérifie le vhost, GoAccess, l’authentification et les modules Apache avant modification. Il garde la configuration et une commande de retour arrière dans un dossier privé de `/var/backups/`. Il ajoute un seul `Include` au vhost HTTPS Polradar, teste Apache, génère le rapport, recharge Apache et active le timer. Un échec de configuration ou de lancement restaure le vhost d’origine. Les autres sites restent inchangés.
+Sans option, première installation seulement : les fichiers, l’identité et les dossiers préexistants provoquent un arrêt. L’installateur vérifie le vhost, GoAccess, l’authentification et les modules Apache avant modification. Il garde la configuration et une commande de retour arrière dans un dossier privé de `/var/backups/`. Il ajoute un seul `Include` au vhost HTTPS Polradar, teste Apache, génère le rapport, recharge Apache et active le timer. Un échec de configuration ou de lancement restaure le vhost d’origine. Les autres sites restent inchangés.
+
+## Mise à jour d’une installation existante
+
+Après téléchargement du paquet publié et vérification de son SHA-256, l’opérateur exécute :
+
+```sh
+sudo python3 -I ./install.py --update
+```
+
+Cette option remplace uniquement le lecteur HTML/CSS/JS et le collecteur Python. Elle vérifie les propriétaires, permissions, unités et empreintes, sauvegarde les fichiers et le rapport dans un répertoire privé, puis relance la génération. Le timer est suspendu pendant l’opération et retrouve son état actif ou inactif. En cas d’échec, les fichiers précédents et le rapport sont restaurés. Si la restauration échoue, le timer reste arrêté et le dossier de sauvegarde est signalé. Les journaux, les identifiants, la configuration Apache, la CSP, les unités et la rotation ne sont pas modifiés. Le déploiement du site Astro publie le paquet ; il n’exécute jamais cette opération privilégiée.
+
+## Indicateurs et référents
+
+Le premier indicateur affiche les visiteurs uniques GoAccess. Le graphique quotidien permet de choisir entre uniques et requêtes. GoAccess déduplique par IP, agent utilisateur et date ; un total sur plusieurs jours cumule les uniques journaliers. Le total est réconcilié avec `general.unique_visitors`, et les requêtes avec `general.valid_requests`. Les métriques absentes ou incohérentes provoquent un arrêt, sans chiffre de remplacement.
+
+Le tableau des sites référents affiche les domaines externes, avec les requêtes et les uniques journaliers propres à chaque site. Les uniques des domaines ne sont pas additionnés entre eux. Les liens de navigation interne et les référents non retenus sont regroupés dans un détail séparé. Toutes les lignes disponibles dans le relevé sont consultables par tranches de vingt. Un accès sans référent transmis ne permet pas de nommer un site d’origine.
+
+La date Apache complète et son décalage UTC sont lus avec `%x` et `--datetime-format`, puis convertis vers `Europe/Paris`. L’ancien assemblage date/heure séparées décalait les heures observées ; la régénération relit les mêmes journaux avec le fuseau correct. Voir le [manuel officiel GoAccess](https://goaccess.io/man).
 
 ## Accès, confidentialité et périmètre
 

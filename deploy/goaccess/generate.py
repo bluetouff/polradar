@@ -13,6 +13,7 @@ import tempfile
 LOG_DIR = Path('/var/log/polradar')
 REPORT = Path('/var/lib/polradar-stats/report.json')
 RUNTIME = Path('/run/polradar-stats')
+GOACCESS = '/usr/bin/goaccess'
 MAX_BYTES = 512 * 1024 * 1024
 PANELS = ('visitors', 'requests', 'static_requests', 'not_found', 'visit_time', 'referring_sites', 'browsers', 'status_codes')
 
@@ -58,11 +59,17 @@ def qualify(raw):
         raise ValueError('No daily observations from GoAccess')
     panels['visitors'].sort(key=lambda row: row['label'])
     panels['visit_time'].sort(key=lambda row: row['label'])
-    return {'requests': sum(r['hits'] for r in panels['visitors']), 'dailyProfiles': sum(r['profiles'] for r in panels['visitors']), 'bytes': sum(r['bytes'] for r in panels['visitors']), 'panels': panels}
+    if len({r['label'] for r in panels['visitors']}) != len(panels['visitors']):
+        raise ValueError('Duplicate daily observations')
+    requests = sum(r['hits'] for r in panels['visitors'])
+    profiles = sum(r['profiles'] for r in panels['visitors'])
+    if requests != count(raw['general']['valid_requests']) or profiles != count(raw['general']['unique_visitors']):
+        raise ValueError('Daily metrics disagree with GoAccess summary')
+    return {'requests': requests, 'dailyProfiles': profiles, 'bytes': sum(r['bytes'] for r in panels['visitors']), 'panels': panels}
 
 
 def aggregate(spool, output, without_bots):
-    command = ['/usr/bin/goaccess', '-', '--no-global-config', '--log-format=COMBINED', '--date-format=%d/%b/%Y', '--time-format=%H:%M:%S', '--no-query-string', '--anonymize-ip', '--max-items=10000', '--tz=Europe/Paris', f'--output={output}']
+    command = [GOACCESS, '-', '--no-global-config', '--log-format=%h %^[%x] "%r" %s %b "%R" "%u"', '--datetime-format=%d/%b/%Y:%H:%M:%S %z', '--no-query-string', '--anonymize-ip', '--max-items=10000', '--tz=Europe/Paris', f'--output={output}']
     for panel in ('HOSTS', 'REFERRERS', 'REMOTE_USER', 'GEO_LOCATION', 'ASN'):
         command.append(f'--ignore-panel={panel}')
     if without_bots:
@@ -76,6 +83,8 @@ def aggregate(spool, output, without_bots):
     if without_bots and not raw.get('visitors', {}).get('data'):
         if not isinstance(raw.get('general'), dict):
             raise ValueError('Invalid filtered summary')
+        if count(raw['general']['valid_requests']) or count(raw['general']['unique_visitors']):
+            raise ValueError('Missing filtered observations')
         return {'requests': 0, 'dailyProfiles': 0, 'bytes': 0, 'panels': {panel: [] for panel in PANELS}}
     return qualify(raw)
 
