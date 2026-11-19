@@ -26,7 +26,10 @@ test('les séries économiques et leurs valeurs restent lisibles sans JavaScript
   const response = await request.get('/api/economie.json');
   expect(response.ok()).toBe(true);
   expect((await response.json()).series).toHaveLength(18);
-  const csv = await request.get('/api/economie.csv');
+  const downloading = page.waitForEvent('download');
+  await page.getByRole('link', { name: 'Données CSV' }).click();
+  expect((await downloading).suggestedFilename()).toBe('polradar-economie.csv');
+  const csv = await request.get('/api/economie-csv.txt');
   expect(csv.ok()).toBe(true);
   expect(await csv.text()).toContain('inflation;FR;M;2026-10;3.7;%;');
 });

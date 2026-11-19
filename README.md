@@ -122,3 +122,7 @@ Pour intégrer ses observations, lancer `python3 scripts/collect-economy.py --wr
 puis valider et publier le diff par le flux Git habituel. Une collecte incomplète
 conserve le relevé publié. Les vérifications de déclarations citent le millésime de la
 publication de référence pour rester lisibles après révision des séries.
+
+Le tableau de bord propose un téléchargement `polradar-economie.csv` et un export
+JSON. Le CSV est servi sous une URL texte statique. La CI contrôle l’archive
+avec les mêmes règles que le serveur avant de publier une release.
