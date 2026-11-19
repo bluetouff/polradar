@@ -1,0 +1,77 @@
+---
+import { candidates, measures, events, themes } from '../lib/data';
+import { legislativeVotes } from '../lib/votes-data';
+import { agenda } from '../lib/visual-data';
+const rows = candidates.map((person) => {
+  const records = measures.filter(
+    (m) => m.candidate === person.id && m.scope !== 'archive',
+  );
+  return {
+    person,
+    own: records.filter((m) => m.scope !== 'parti').length,
+    party: records.filter((m) => m.scope === 'parti').length,
+    themes: new Set(records.map((m) => m.theme)).size,
+    ballots: legislativeVotes.ballots.filter((b) =>
+      b.positions.some((p) => p.candidate === person.id),
+    ).length,
+    dates: agenda.events.filter((e) => e.candidate === person.id).length,
+    timeline: events.filter(
+      (e) =>
+        e.candidates.includes(person.id) &&
+        e.kind === 'past' &&
+        e.category !== 'sondage',
+    ).length,
+  };
+});
+---
+
+<section class="sheet-atlas" aria-labelledby="sheets-title">
+  <header class="issue-head">
+    <div>
+      <p class="atlas-kicker">Couverture de Polradar</p>
+      <h2 id="sheets-title">Les données par candidature</h2>
+    </div>
+    <span>{rows.length} profils</span>
+  </header>
+  <p>
+    Le nombre indique les éléments recensés dans Polradar. Un tiret signale une
+    donnée encore absente du corpus.
+  </p>
+  <details>
+    <summary>Consulter les {rows.length} profils</summary>
+    <div class="sheet-grid">
+      {rows.map((r) => (
+        <article>
+          <h3>
+            <a href={`/candidats/${r.person.id}/`}>{r.person.name} ↗</a>
+          </h3>
+          <div class="theme-meter">
+            <meter
+              value={r.themes}
+              min="0"
+              max={themes.length}
+              aria-label={`${r.themes} thèmes sur ${themes.length}`}
+            ></meter>
+            <span>
+              {r.themes}/{themes.length} thèmes
+            </span>
+          </div>
+          <dl>
+            {[
+              [r.own, 'Propositions personnelles'],
+              [r.party, 'Fiches de parti'],
+              [r.ballots, 'Scrutins nominatifs'],
+              [r.dates, 'Rendez-vous'],
+              [r.timeline, 'Repères de campagne'],
+            ].map(([v, label]) => (
+              <div>
+                <dt>{label}</dt>
+                <dd>{v || '–'}</dd>
+              </div>
+            ))}
+          </dl>
+        </article>
+      ))}
+    </div>
+  </details>
+</section>

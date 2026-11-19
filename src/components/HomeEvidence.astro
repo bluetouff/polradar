@@ -5,7 +5,15 @@ import { voteCases } from '../lib/votes-data';
 import law from '../data/digital-law.json';
 import { statements } from '../lib/economy-data';
 
+import ches from '../data/ches-france-2024.json';
 const tools = [
+  {
+    title: 'Échiquier politique',
+    href: '/echiquier/',
+    icon: 'sondages',
+    count: ches.parties.length,
+    unit: 'partis dans l’enquête CHES',
+  },
   {
     title: 'Numérique et droit en vigueur',
     href: '/numerique/ce-qui-changerait/',
@@ -49,7 +57,30 @@ const tools = [
   <div>
     {tools.map((tool) => (
       <a href={tool.href}>
-        <Icon name={tool.icon} />
+        {tool.href === '/echiquier/' ? (
+          <svg
+            class="home-party-preview"
+            viewBox="0 0 110 35"
+            aria-hidden="true"
+          >
+            <path
+              d="M3 31h104 M55 3v28 M3 17h104"
+              fill="none"
+              stroke="#91adb3"
+              stroke-width=".7"
+            />
+            {ches.parties.map((p) => (
+              <circle
+                cx={4 + 10 * p.lrecon}
+                cy={31 - 2.7 * p.galtan}
+                r="2.3"
+                fill="#236779"
+              />
+            ))}
+          </svg>
+        ) : (
+          <Icon name={tool.icon} />
+        )}
         <span>
           <strong>{tool.title}</strong>
           <small>
@@ -63,6 +94,11 @@ const tools = [
 </section>
 
 <style>
+  .home-party-preview {
+    width: 6.5rem;
+    height: 1.6rem;
+    display: block;
+  }
   .home-comparison-index h2 {
     margin: 0 0 0.65rem;
     font-size: 1.2rem;

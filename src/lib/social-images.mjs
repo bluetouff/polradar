@@ -28,6 +28,7 @@ const watch = read('watch'),
   events = read('events'),
   airtime = read('airtime');
 const edition = read('meta').edition;
+const ches = read('ches-france-2024');
 const curatedComparisons = read('divergence-positions');
 const quantitativeComparisons = divergenceGroups(measures, candidates, themes);
 const number = (n) => n.toLocaleString('fr-FR');
@@ -84,6 +85,22 @@ const generation1969 = retirement.cohorts.find(
 );
 /** @type {Array<[string, string, string, string, string, string, Record<string, any>]>} */
 const defs = [
+  [
+    'echiquier',
+    '/echiquier/',
+    'France · Chapel Hill Expert Survey',
+    'Échiquier\npolitique',
+    'Les partis en 2024 et les positions publiées pour 2027.',
+    'navy',
+    {
+      kind: 'party-plane',
+      parties: ches.parties.map((p) => ({
+        name: p.label,
+        x: p.lrecon,
+        y: p.galtan,
+      })),
+    },
+  ],
   [
     'retraites-droit',
     '/comparer/retraites/',

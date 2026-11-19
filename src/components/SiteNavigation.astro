@@ -34,6 +34,7 @@ const path = Astro.url.pathname;
           <li>
             <a
               href={url}
+              class={`menu-${icon}`}
               aria-current={
                 current === url
                   ? path === url
@@ -42,8 +43,7 @@ const path = Astro.url.pathname;
                   : undefined
               }
             >
-              <Icon name={icon} />
-              <span>{label}</span>
+              {label}
             </a>
           </li>
         ))}

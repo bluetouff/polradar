@@ -1,0 +1,121 @@
+---
+import { candidates } from '../lib/data';
+import { positionDivergences } from '../lib/divergence-data';
+---
+
+<section class="issue-atlas" aria-labelledby="issues-title">
+  <header class="issue-head">
+    <div>
+      <p class="atlas-kicker">Présidentielle 2027</p>
+      <h2 id="issues-title">Les positions par question</h2>
+    </div>
+    <span>{positionDivergences.length} questions</span>
+  </header>
+  <p>
+    Pour chaque question, les textes sont regroupés par choix proposé. Ouvrir un
+    nom donne accès à la mesure et à sa source.
+  </p>
+  <div class="issue-selectors" hidden>
+    <label>
+      Question
+      <select id="issue-choice">
+        {positionDivergences.map((t) => (
+          <option value={t.id}>{t.label}</option>
+        ))}
+      </select>
+    </label>
+    <label>
+      Candidature
+      <select id="profile-choice">
+        <option value="">Toutes les candidatures</option>
+        {candidates.map((c) => (
+          <option value={c.id}>{c.name}</option>
+        ))}
+      </select>
+    </label>
+  </div>
+  <div class="issue-key">
+    <span>
+      <b aria-hidden="true">●</b> Déclaration personnelle
+    </span>
+    <span>
+      <b aria-hidden="true">◇</b> Texte du parti
+    </span>
+  </div>
+  {positionDivergences.map((topic, i) => (
+    <details
+      class="issue-panel"
+      id={`question-${topic.id}`}
+      name="question-campagne"
+      open={i === 0}
+      data-issue={topic.id}
+    >
+      <summary>{topic.label}</summary>
+      <figure class="issue-balance" data-issue-balance>
+        <figcaption>
+          {topic.total} auteurs documentés sur cette question
+        </figcaption>
+        <svg
+          viewBox={`0 0 ${topic.total} 1`}
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          {topic.positions.map((position, index) => (
+            <rect
+              x={topic.positions
+                .slice(0, index)
+                .reduce((sum, p) => sum + p.entries.length, 0)}
+              width={position.entries.length}
+              height="1"
+            />
+          ))}
+        </svg>
+      </figure>
+      <div class="issue-columns">
+        {topic.positions.map((position) => (
+          <div class="issue-lane">
+            <h3>
+              {position.label}{' '}
+              <span
+                data-lane-count
+                aria-label={`${position.entries.length} auteurs`}
+              >
+                {position.entries.length}
+              </span>
+            </h3>
+            <div>
+              {position.entries.map(
+                ({ candidate, measure, version, author }) => (
+                  <a
+                    data-issue-person={candidate.id}
+                    data-author={
+                      version.snapshot.scope === 'parti' ? 'parti' : 'personne'
+                    }
+                    href={`/mesures/${measure.id}/#version-${version.number}`}
+                    title={version.snapshot.title}
+                  >
+                    <span aria-hidden="true">
+                      {version.snapshot.scope === 'parti' ? '◇' : '●'}
+                    </span>
+                    <span>
+                      {author}
+                      <small>
+                        {version.snapshot.scope === 'parti'
+                          ? 'Texte du parti'
+                          : ''}
+                      </small>
+                    </span>
+                  </a>
+                ),
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="issue-remaining" data-issue-missing hidden></p>
+      <a class="issue-detail" href={`/divergences/#${topic.id}`}>
+        Lire les propositions sur cette question ↗
+      </a>
+    </details>
+  ))}
+</section>

@@ -15384,5 +15384,836 @@
     "scope": "orientation",
     "edition": "Entretien sur le parrainage présidentiel · novembre 2026",
     "checked": "2026-11-19"
+  },
+  {
+    "id": "legendre-consultations-tirage",
+    "parentId": "legendre-institutions",
+    "candidate": "legendre",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Trois formats de consultation à l’initiative du gouvernement",
+    "description": "Selon le sujet, une instance choisirait entre un échantillon tiré au sort de 1 million ou de 10 millions de personnes et un référendum général. Un référendum d’initiative citoyenne s’adresserait à tout le corps électoral.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "legendre-manifeste-64",
+        "locator": "Chapitre sur la démocratie, passage sur les trois niveaux de RIG."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "64 %, manifeste signé de Jean-François Legendre",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "legendre-creation-entreprise",
+    "parentId": "legendre-fiscalite",
+    "candidate": "legendre",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Alléger les prélèvements des entreprises en création",
+    "description": "Pendant les trois premières années d’activité, les nouvelles entreprises seraient exonérées d’impôts et verseraient des cotisations sociales symboliques.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "exoneration-creation",
+        "label": "Durée annoncée",
+        "value": 3,
+        "unit": "ans",
+        "sourceId": "legendre-manifeste-64"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "legendre-manifeste-64",
+        "locator": "Passage sur la création d’activité et les trois premières années."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "64 %, manifeste signé de Jean-François Legendre",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "legendre-remboursement-soins",
+    "parentId": "legendre-sante-soins",
+    "candidate": "legendre",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Réduire les remboursements des actes médicaux et des médicaments",
+    "description": "Le candidat inclut la baisse des remboursements de soins et de médicaments dans son plan d’équilibre budgétaire. Le manifeste ne fixe pas de taux.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "legendre-manifeste-64",
+        "locator": "Chapitre « Construire solide en brisant la dette », passage sur les versements de l’État."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "64 %, manifeste signé de Jean-François Legendre",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "legendre-entreprises-difficulte",
+    "parentId": "legendre-travail-difficulte",
+    "candidate": "legendre",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Organiser une alerte régionale pour les entreprises en difficulté",
+    "description": "Les chambres de commerce repéreraient et accompagneraient les entreprises menacées. Des professionnels expérimentés seraient sollicités pour les conseiller.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "legendre-manifeste-64",
+        "locator": "Passage sur les procédures d’alerte et le rôle des chambres de commerce."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "64 %, manifeste signé de Jean-François Legendre",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "legendre-aide-agriculteurs",
+    "parentId": "legendre-sante-soins",
+    "candidate": "legendre",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Ouvrir un numéro d’urgence pour les agriculteurs en détresse",
+    "description": "Les chambres d’agriculture organiseraient des visites sur place et la recherche de solutions après les appels.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "legendre-manifeste-64",
+        "locator": "Passage sur la situation des agriculteurs, paragraphe consacré au numéro d’urgence."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "64 %, manifeste signé de Jean-François Legendre",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "legendre-hauts-revenus",
+    "parentId": "legendre-fiscalite",
+    "candidate": "legendre",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Réserver les hausses d’impôt aux hauts revenus",
+    "description": "Le manifeste prévoit de concentrer les hausses d’impôt sur les hauts revenus et de réduire les possibilités d’optimisation fiscale. Aucun barème n’est publié dans ce passage.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "legendre-manifeste-64",
+        "locator": "Chapitre « Construire solide en brisant la dette », paragraphe sur les hauts revenus."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "64 %, manifeste signé de Jean-François Legendre",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "cheve-controle-citoyen",
+    "parentId": "cheve-institutions",
+    "candidate": "cheve",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Permettre de contester la manière dont une décision est appliquée",
+    "description": "Un citoyen pourrait signaler une décision restée inappliquée ou un excès dans son application, en joignant la règle concernée et des éléments à l’appui.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "cheve-remontee-citoyenne",
+        "locator": "PDF, p. 21, « Contre-pouvoir argumenté »."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "La France Adulte, ébauche de projet signée par Joël Chevé",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "mathieu-indemnites-convention",
+    "parentId": "mathieu-institutions",
+    "candidate": "mathieu",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Indemniser les citoyens tirés au sort",
+    "description": "La convention prendrait en charge le transport, l’hébergement et les repas. Des indemnités, des solutions de garde et des aménagements d’accessibilité sont prévus.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mathieu-projet-2027",
+        "locator": "Cinq étapes, point 3 sur la participation."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Benoît Mathieu, programme de présidence de transition",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "mathieu-consultations-territoires",
+    "parentId": "mathieu-institutions",
+    "candidate": "mathieu",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Ouvrir les travaux constituants aux contributions du public",
+    "description": "Le candidat prévoit des consultations et des rencontres territoriales. Le traitement des contributions reçues serait rendu public.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mathieu-projet-2027",
+        "locator": "Cinq étapes, point 3, et section sur les neuf mois de travaux."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Benoît Mathieu, programme de présidence de transition",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "mlekuz-etats-generaux",
+    "parentId": "mlekuz-institutions",
+    "candidate": "mlekuz",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Organiser des États généraux de la démocratie",
+    "description": "Le calendrier proposé ouvre un débat dans les territoires à partir de septembre 2027. Ses conclusions seraient remises à l’assemblée constituante en janvier 2028.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mlekuz-programme-2027",
+        "locator": "Calendrier conditionnel, étapes 3 et 5."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Trajectoire, calendrier du processus constituant",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "mlekuz-depart-presidence",
+    "parentId": "mlekuz-institutions",
+    "candidate": "mlekuz",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Quitter la présidence à l’issue du processus constituant",
+    "description": "Manolo Mlekuz s’engage à quitter la présidence une fois le processus terminé, que le projet de Constitution soit adopté ou rejeté.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mlekuz-programme-2027",
+        "locator": "Calendrier, étape 11, engagement final sur la présidence."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Trajectoire, calendrier du processus constituant",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "lisnard-etage-capitalisation",
+    "parentId": "lisnard-retraites-capitalisation",
+    "candidate": "lisnard",
+    "theme": "retraites",
+    "revision": 1,
+    "title": "Rendre obligatoire un complément de retraite par capitalisation",
+    "description": "Le candidat veut ajouter aux retraites un étage obligatoire qui permette aussi aux salariés modestes d’accumuler une épargne.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-crayon-2026",
+        "locator": "Section consacrée au travail, aux retraites et à l’école."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Entretien de David Lisnard au Crayon, octobre 2026",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "lisnard-carte-scolaire-financement",
+    "parentId": "lisnard-education-financement",
+    "candidate": "lisnard",
+    "theme": "education",
+    "revision": 1,
+    "title": "Supprimer la carte scolaire et financer l’établissement choisi",
+    "description": "Le financement public suivrait le choix des familles. Les établissements gagneraient en autonomie.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-crayon-2026",
+        "locator": "Section consacrée au travail, aux retraites et à l’école, passage sur la carte scolaire."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Entretien de David Lisnard au Crayon, octobre 2026",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "lisnard-philosophie-primaire",
+    "parentId": "lisnard-education-financement",
+    "candidate": "lisnard",
+    "theme": "education",
+    "revision": 1,
+    "title": "Développer la philosophie dès l’école primaire",
+    "description": "David Lisnard propose de commencer l’enseignement de la philosophie dans le primaire pour travailler le raisonnement des élèves.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-crayon-2026",
+        "locator": "Passage sur les apprentissages fondamentaux et la philosophie."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Entretien de David Lisnard au Crayon, octobre 2026",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "lisnard-places-prison",
+    "parentId": "lisnard-securite-prison",
+    "candidate": "lisnard",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Construire 20 000 places de prison",
+    "description": "Le candidat annonce un programme de construction de places de prison. L’entretien ne fixe pas d’échéance de livraison.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "places-prison",
+        "label": "Places à construire",
+        "value": 20000,
+        "unit": "places",
+        "sourceId": "lisnard-crayon-2026"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-crayon-2026",
+        "locator": "Section sur la sécurité, programme de construction."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Entretien de David Lisnard au Crayon, octobre 2026",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "lisnard-allocation-unique",
+    "parentId": "lisnard-social-unique",
+    "candidate": "lisnard",
+    "theme": "social",
+    "revision": 1,
+    "title": "Créer une allocation sociale unique",
+    "description": "Lisnard veut garantir un écart de revenu d’au moins 500 euros en faveur de la personne qui travaille. Le compte rendu ne précise pas la période de référence.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "ecart-revenu",
+        "label": "Écart minimal annoncé",
+        "value": 500,
+        "unit": "€",
+        "sourceId": "lisnard-crayon-2026"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-crayon-2026",
+        "locator": "Paragraphe sur le différentiel de revenu de l’allocation unique."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Entretien de David Lisnard au Crayon, octobre 2026",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "lisnard-nucleaire-hydraulique",
+    "parentId": "lisnard-climat-hydraulique",
+    "candidate": "lisnard",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Donner la priorité au nucléaire et à l’hydroélectricité",
+    "description": "Le candidat place ces deux sources au premier rang de sa stratégie et prévoit des projets locaux dans les autres énergies renouvelables.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-crayon-2026",
+        "locator": "Section sur les choix énergétiques à l’horizon 2050."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Entretien de David Lisnard au Crayon, octobre 2026",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "markovic-statut-animal",
+    "parentId": "markovic-securite-animal",
+    "candidate": "markovic",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Créer un statut juridique de personne non humaine pour les animaux",
+    "description": "La candidate veut sortir les animaux du régime des biens et leur reconnaître un statut propre.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "markovic-entretien-tf1-2026",
+        "locator": "Réponse sur les changements de la cause animale en dix ans."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Entretien de Mira Markovic à TF1 INFO, novembre 2026",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "markovic-ministere-condition-animale",
+    "parentId": "markovic-institutions-animale",
+    "candidate": "markovic",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Créer un ministère de la Condition animale avec son propre budget",
+    "description": "La candidate veut confier à ce ministère les arbitrages sur les animaux qui relèvent aujourd’hui du ministère de l’Agriculture.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "markovic-entretien-tf1-2026",
+        "locator": "Réponse sur les mesures incontournables, premier point."
+      },
+      {
+        "sourceId": "animaliste-markovic-2026",
+        "locator": "Communiqué du 2 octobre, proposition de ministère indépendant."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Entretien de Mira Markovic à TF1 INFO, novembre 2026",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "markovic-chasse-corrida",
+    "parentId": "markovic-climat-corrida",
+    "candidate": "markovic",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Interdire la chasse et la corrida",
+    "description": "Mira Markovic cite ces deux interdictions parmi ses priorités pour la condition animale.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "markovic-entretien-tf1-2026",
+        "locator": "Réponse sur les mesures incontournables, dernière phrase."
+      },
+      {
+        "sourceId": "animaliste-markovic-2026",
+        "locator": "Communiqué du 2 octobre, passage sur la chasse et la corrida."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Entretien de Mira Markovic à TF1 INFO, novembre 2026",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "polony-proteger-lanceurs-alerte",
+    "parentId": "polony-institutions",
+    "candidate": "polony",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Renforcer la protection des lanceurs d’alerte",
+    "description": "Natacha Polony rattache la protection des lanceurs d’alerte à son projet de lutte contre la corruption. Elle ne précise pas de dispositif juridique dans ce texte.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "polony-vision",
+        "locator": "Ma vision pour la France, passage sur la lutte contre les conflits d’intérêts."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Orientations de campagne 2027",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "polony-commande-production",
+    "parentId": "polony-travail",
+    "candidate": "polony",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Donner la priorité à la production française dans la commande publique",
+    "description": "Polony veut prendre l’origine de la production en compte dans les achats publics et y donner la priorité aux biens produits en France.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "polony-inter-production-octobre",
+        "locator": "Compte rendu de l’entretien à France Inter, mesures sur la production."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Entretien de candidature du 14 octobre 2026",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "polony-aides-production",
+    "parentId": "polony-fiscalite-production",
+    "candidate": "polony",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Conditionner les aides aux entreprises à une production en France",
+    "description": "La candidate propose de supprimer les aides aux entreprises dont le versement n’est pas lié à une production sur le territoire français.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "polony-inter-production-octobre",
+        "locator": "Compte rendu de l’entretien à France Inter, passage sur les aides aux entreprises."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Entretien de candidature du 14 octobre 2026",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "zemmour-csg-activite",
+    "parentId": "zemmour-fiscalite-activite",
+    "candidate": "zemmour",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Supprimer la CSG sur les revenus d’activité",
+    "description": "Éric Zemmour propose de supprimer la contribution sociale généralisée sur les revenus d’activité dans son plan de baisse des prélèvements.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "zemmour-entretien-jdd-novembre",
+        "locator": "Réponse sur la trajectoire des dépenses et les baisses d’impôts."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Entretien présidentiel du 15 novembre 2026 au JDD",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "zemmour-taxes-carburants",
+    "parentId": "zemmour-fiscalite-activite",
+    "candidate": "zemmour",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Réduire les taxes sur les carburants de 40 centimes par litre",
+    "description": "Le candidat annonce une baisse de fiscalité par litre de carburant.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "carburant-baisse",
+        "label": "Baisse de taxes annoncée",
+        "value": 40,
+        "unit": "centimes/litre",
+        "sourceId": "zemmour-entretien-jdd-novembre"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "zemmour-entretien-jdd-novembre",
+        "locator": "Réponse sur les baisses d’impôts, passage sur les carburants."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Entretien présidentiel du 15 novembre 2026 au JDD",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "zemmour-successions-directes",
+    "parentId": "zemmour-fiscalite-activite",
+    "candidate": "zemmour",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Supprimer les droits de succession en ligne directe",
+    "description": "Le candidat inclut la suppression de ces droits dans sa liste de baisses d’impôts.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "zemmour-entretien-jdd-novembre",
+        "locator": "Réponse sur les baisses d’impôts, passage sur les successions."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Entretien présidentiel du 15 novembre 2026 au JDD",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "zemmour-rsa-trois-ans",
+    "parentId": "zemmour-social-ans",
+    "candidate": "zemmour",
+    "theme": "social",
+    "revision": 1,
+    "title": "Limiter le versement du RSA à trois ans",
+    "description": "Éric Zemmour propose une durée maximale de trois ans pour le revenu de solidarité active.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "duree-rsa",
+        "label": "Durée maximale proposée",
+        "value": 3,
+        "unit": "ans",
+        "sourceId": "zemmour-entretien-jdd-novembre"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "zemmour-entretien-jdd-novembre",
+        "locator": "Réponse sur les postes d’économies, passage sur le RSA."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Entretien présidentiel du 15 novembre 2026 au JDD",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "zemmour-referendum-immigration",
+    "parentId": "zemmour-immigration-immigration",
+    "candidate": "zemmour",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Soumettre la politique migratoire à référendum",
+    "description": "Interrogé sur la mise en œuvre de ses mesures sur l’immigration, le candidat dit vouloir recourir à un référendum.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "zemmour-entretien-jdd-novembre",
+        "locator": "Réponse à la question sur le recours au référendum en matière d’immigration."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Entretien présidentiel du 15 novembre 2026 au JDD",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "philippot-sortie-ue-euro",
+    "parentId": "philippot-europe-euro",
+    "candidate": "philippot",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Sortir de l’Union européenne et de la zone euro",
+    "description": "Florian Philippot fixe la sortie de l’Union européenne et de la monnaie unique parmi les objectifs de sa candidature.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "philippot-candidature-mai",
+        "locator": "Déclaration à France 2 du 9 mai, reprise au discours direct."
+      },
+      {
+        "sourceId": "patriotes-projet-2026-2027",
+        "locator": "Projet de parti concordant, p. 2 et 3, organisations supranationales et monnaie."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Déclaration de candidature sur France 2, mai 2026",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "philippot-sortie-otan",
+    "parentId": "philippot-europe-euro",
+    "candidate": "philippot",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Retirer la France de l’OTAN",
+    "description": "Le candidat annonce vouloir quitter l’Alliance atlantique dans sa déclaration de candidature du 9 mai.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "philippot-candidature-mai",
+        "locator": "Déclaration à France 2 du 9 mai, passage sur l’OTAN."
+      },
+      {
+        "sourceId": "patriotes-projet-2026-2027",
+        "locator": "Projet de parti concordant, p. 2 et 3, organisations supranationales et monnaie."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Déclaration de candidature sur France 2, mai 2026",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "dupont-aignan-credit-production-france",
+    "parentId": "dupont-aignan-fiscalite-presidentielle",
+    "candidate": "dupont-aignan",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Créer un crédit d’impôt pour les bénéfices réinvestis en France",
+    "description": "Le crédit d’impôt « production » s’adresserait aux entreprises qui réinvestissent leurs bénéfices sur le territoire français.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "nda-cahier-rouge-novembre",
+        "locator": "PDF, p. 7, ligne sur le crédit d’impôt production."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Projet économique présidentiel du 12 novembre 2026",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "dupont-aignan-cotisations-premier-cdi",
+    "parentId": "dupont-aignan-travail-presidentielle",
+    "candidate": "dupont-aignan",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Exonérer de cotisations patronales le premier CDI des moins de 26 ans",
+    "description": "L’exonération durerait trois mois. Le cahier prévoit aussi une exonération de deux ans pour le CDI d’une personne au chômage depuis cinq ans.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "duree-premier-cdi",
+        "label": "Exonération pour un premier CDI",
+        "value": 3,
+        "unit": "mois",
+        "sourceId": "nda-cahier-rouge-novembre"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "nda-cahier-rouge-novembre",
+        "locator": "PDF, p. 7, rubrique sur les exonérations de charges patronales."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Projet économique présidentiel du 12 novembre 2026",
+    "checked": "2026-11-19"
+  },
+  {
+    "id": "dupont-aignan-donation-succession-terres",
+    "parentId": "dupont-aignan-fiscalite-presidentielle",
+    "candidate": "dupont-aignan",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Exonérer les premiers hectares transmis par donation ou succession",
+    "description": "Le projet prévoit de supprimer les droits de donation et de succession sur les 100 premiers hectares de terres agricoles et viticoles.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "terres-transmises",
+        "label": "Surface concernée",
+        "value": 100,
+        "unit": "hectares",
+        "sourceId": "nda-cahier-rouge-novembre"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "nda-cahier-rouge-novembre",
+        "locator": "PDF, p. 7, ligne consacrée aux transmissions d’entreprises et de terres."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Projet économique présidentiel du 12 novembre 2026",
+    "checked": "2026-11-19"
   }
 ]

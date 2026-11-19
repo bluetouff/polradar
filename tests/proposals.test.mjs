@@ -36,7 +36,21 @@ test('les documents officiels datés et les relations financières sont qualifi�
     new Set(evolution.tracks.flatMap((t) => t.stateIds)).size,
     evolution.states.length,
   );
-  assert.equal(financing.maps.length, 19);
+  assert.equal(financing.maps.length, 20);
+  const plan = budgets.profiles
+    .find((p) => p.candidate === 'dupont-aignan')
+    .entries.find((e) => e.id === 'nda-plan-2031-2032');
+  assert.equal(plan.scope, 'campagne');
+  assert.equal(plan.period, 'annuel');
+  assert.equal(plan.euros, 140e9);
+  assert.deepEqual(
+    plan.allocation.map((a) => a.value),
+    [100e9, 40e9],
+  );
+  assert.equal(
+    financing.maps.find((m) => m.budgetEntry === plan.id).relation,
+    'composition',
+  );
   const lepen = budgets.profiles.find(({ candidate }) => candidate === 'lepen');
   assert.equal(
     lepen.entries.find(({ id }) => id === 'lepen-retraites-cout-brut').euros,

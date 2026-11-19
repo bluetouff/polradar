@@ -1,0 +1,263 @@
+---
+import rows from '../data/ches-france-2024.json';
+import { chesFranceSchema, families } from '../lib/ches.mjs';
+const survey = chesFranceSchema.parse(rows);
+const parties = [...survey.parties].sort((a, b) =>
+  a.name.localeCompare(b.name, 'fr'),
+);
+const axes = [
+  {
+    id: 'societe',
+    key: 'galtan' as const,
+    title: 'Valeurs de société',
+    top: 'Ordre et tradition',
+    bottom: 'Libertés individuelles',
+    min: 0,
+    max: 10,
+    ticks: [0, 2.5, 5, 7.5, 10],
+  },
+  {
+    id: 'europe',
+    key: 'eu_position' as const,
+    title: 'Intégration européenne',
+    top: 'Favorable à l’intégration',
+    bottom: 'Opposition à l’intégration',
+    min: 1,
+    max: 7,
+    ticks: [1, 2.5, 4, 5.5, 7],
+  },
+];
+const format = (n: number) =>
+  n.toLocaleString('fr-FR', {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  });
+// Only the text moves to avoid collisions. Point centres always use the source values.
+const labels: Record<string, Record<number, [number, number]>> = {
+  societe: {
+    613: [-5, -12],
+    626: [1, 18],
+    631: [5, -11],
+    630: [4, -11],
+    610: [-4, -12],
+  },
+  europe: {
+    613: [-9, -12],
+    626: [0, 18],
+    631: [17, -9],
+    602: [12, 16],
+    605: [-3, -12],
+    627: [1, 17],
+    601: [8, -11],
+  },
+};
+---
+
+<section class="party-atlas" aria-labelledby="atlas-title">
+  <header class="atlas-head">
+    <div>
+      <p class="atlas-kicker">France · enquête CHES 2024</p>
+      <h2 id="atlas-title">Où se situent les partis ?</h2>
+    </div>
+    <strong>{parties.length} partis</strong>
+  </header>
+  <p class="atlas-intro">
+    Chaque point situe la direction d’un parti selon les politistes interrogés.
+    L’axe horizontal mesure le rôle qu’il souhaite donner à l’État dans
+    l’économie.
+  </p>
+  <fieldset class="axis-switch">
+    <legend>Axe vertical</legend>
+    <label>
+      <input type="radio" name="axe" id="axe-societe" checked /> Valeurs de
+      société
+    </label>
+    <label>
+      <input type="radio" name="axe" id="axe-europe" /> Intégration européenne
+    </label>
+  </fieldset>
+  <div class="atlas-body">
+    <div class="plot-area">
+      {axes.map((axis) => {
+        const x = (value: number) => 23 + 35 * value;
+        const y = (value: number) =>
+          207 - (170 * (value - axis.min)) / (axis.max - axis.min);
+        return (
+          <figure class={`party-plot plot-${axis.id}`}>
+            <figcaption>
+              <strong>{axis.title}</strong>
+              <span>
+                {axis.min} à {axis.max}
+              </span>
+            </figcaption>
+            <svg
+              viewBox="0 0 400 246"
+              class="party-plane"
+              aria-labelledby={`graph-${axis.id}`}
+              role="group"
+            >
+              <title
+                id={`graph-${axis.id}`}
+              >Économie et {axis.title.toLowerCase()}. Coordonnées disponibles dans le tableau des partis.</title>
+              <text x="22" y="14" class="end-label">
+                ↑ {axis.top}
+              </text>
+              {Array.from({ length: 11 }, (_, i) => (
+                <line
+                  class={i === 5 ? 'midline' : 'gridline'}
+                  x1={x(i)}
+                  x2={x(i)}
+                  y1="37"
+                  y2="207"
+                />
+              ))}
+              {axis.ticks.map((t) => (
+                <g>
+                  <line
+                    class={
+                      t === (axis.min + axis.max) / 2 ? 'midline' : 'gridline'
+                    }
+                    x1="23"
+                    x2="373"
+                    y1={y(t)}
+                    y2={y(t)}
+                  />
+                  <text x="15" y={y(t) + 3} text-anchor="end" class="tick">
+                    {t.toLocaleString('fr-FR')}
+                  </text>
+                </g>
+              ))}
+              {[0, 5, 10].map((t) => (
+                <text x={x(t)} y="221" text-anchor="middle" class="tick">
+                  {t}
+                </text>
+              ))}
+              <text x="22" y="240" class="end-label">
+                ↓ {axis.bottom}
+              </text>
+              {parties.map((p) => {
+                const [dx, dy] = labels[axis.id][p.party_id] ?? [1, -11];
+                return (
+                  <a
+                    href={`#parti-${p.party_id}`}
+                    class="map-point"
+                    data-party={p.party_id}
+                    data-family={p.family}
+                    aria-label={`${p.name}, économie ${format(p.lrecon)} sur 10, ${axis.title} ${format(p[axis.key])} sur ${axis.max}`}
+                  >
+                    <title>{p.name} · {families[p.family]} · {format(p.lrecon)} / {format(p[axis.key])}</title>
+                    <circle
+                      class="hit"
+                      cx={x(p.lrecon)}
+                      cy={y(p[axis.key])}
+                      r="10"
+                    />
+                    <circle
+                      class="ring"
+                      cx={x(p.lrecon)}
+                      cy={y(p[axis.key])}
+                      r="5"
+                    />
+                    <text
+                      x={x(p.lrecon) + dx}
+                      y={y(p[axis.key]) + dy}
+                      text-anchor="middle"
+                      class="point-name"
+                    >
+                      {p.label}
+                    </text>
+                  </a>
+                );
+              })}
+            </svg>
+            <div class="economic-axis">
+              <span>0 · Rôle accru de l’État</span>
+              <span>10 · Rôle réduit de l’État</span>
+            </div>
+          </figure>
+        );
+      })}
+      <p
+        class="atlas-selection"
+        role="status"
+        aria-live="polite"
+        data-party-selection
+        hidden
+      ></p>
+    </div>
+    <div class="atlas-table">
+      <table>
+        <caption>Positions moyennes des directions de parti</caption>
+        <thead>
+          <tr>
+            <th scope="col">Parti</th>
+            <th scope="col">
+              <abbr title="Économie, de 0 à 10">Éco.</abbr>
+            </th>
+            <th scope="col">
+              <abbr title="Valeurs de société, de 0 à 10">Soc.</abbr>
+            </th>
+            <th scope="col">
+              <abbr title="Intégration européenne, de 1 à 7">UE</abbr>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {parties.map((p) => (
+            <tr
+              id={`parti-${p.party_id}`}
+              data-family={p.family}
+              data-party-row={p.party_id}
+            >
+              <th scope="row">
+                <a href={`#parti-${p.party_id}`} data-choose-party={p.party_id}>
+                  <i aria-hidden="true"></i>
+                  <span>
+                    {p.name}
+                    <small>{families[p.family]}</small>
+                  </span>
+                </a>
+              </th>
+              <td>{format(p.lrecon)}</td>
+              <td>{format(p.galtan)}</td>
+              <td>{format(p.eu_position)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <details class="atlas-method">
+    <summary>Sources et lecture des axes</summary>
+    <div>
+      <p>
+        Les spécialistes de la France ont été interrogés du 10 octobre au 20
+        novembre 2024. Les points représentent la moyenne de leurs réponses sur
+        chaque direction de parti. Les familles politiques reprennent la
+        classification CHES. Les coordonnées à l’écran sont arrondies au
+        dixième.
+      </p>
+      <p>
+        Économie et société vont de 0 à 10. Sur l’axe de société, le
+        questionnaire oppose l’extension des libertés individuelles à l’accent
+        mis sur l’ordre et la tradition. Sur l’Europe, 1 marque une forte
+        opposition à l’intégration, 4 une position neutre et 7 un fort soutien.
+        L’enquête porte sur dix partis français. Les candidatures individuelles
+        de 2027 sont traitées dans la comparaison suivante.
+      </p>
+      <p>
+        Jan Rovny, Jonathan Polk, Ryan Bakker, Liesbet Hooghe, Seth Jolly, Gary
+        Marks, Marco Steenbergen et Milada Anna Vachudova,{' '}
+        <cite>Electoral Studies</cite>, 2025.{' '}
+        <a href={survey.publication}>Article de recherche</a> ·{' '}
+        <a href={survey.source}>Enquête CHES</a> ·{' '}
+        <a href={survey.codebook}>Questionnaire et définitions (PDF)</a> ·{' '}
+        <a href={survey.csv}>Données originales (CSV)</a> ·{' '}
+        <a href="/api/echiquier.json" download="ches-france-2024.json">
+          Extrait France (JSON)
+        </a>
+        .
+      </p>
+    </div>
+  </details>
+</section>

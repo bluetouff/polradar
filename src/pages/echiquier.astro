@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import PartyMap from '../components/PartyMap.astro';
+import CampaignPositions from '../components/CampaignPositions.astro';
+import CandidateCoverage from '../components/CandidateCoverage.astro';
+import '../styles/echiquier.css';
+---
+
+<Base
+  title="Échiquier politique"
+  description="Les positions de dix partis français sur l’économie, la société et l’Europe dans l’enquête CHES 2024, puis les positions documentées des candidatures pour 2027."
+  section="/echiquier/"
+>
+  <div class="echiquier-content">
+    <header class="atlas-title">
+      <h1>Échiquier politique</h1>
+      <nav aria-label="Sur cette page">
+        <a href="#atlas-title">Partis en 2024</a>
+        <a href="#issues-title">Positions en 2027</a>
+        <a href="#sheets-title">Données par candidature</a>
+      </nav>
+    </header>
+    <PartyMap />
+    <CampaignPositions />
+    <CandidateCoverage />
+  </div>
+  <script src="../scripts/echiquier.ts"></script>
+</Base>

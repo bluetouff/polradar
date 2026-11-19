@@ -44,7 +44,7 @@ const { topic } = Astro.props;
             >
               <header class="position-byline">
                 <div class="position-portrait">
-                  {version.snapshot.partyAuthor ? (
+                  {version.snapshot.scope === 'parti' ? (
                     <span class="position-party" aria-hidden="true">
                       {initials(author)}
                     </span>
@@ -53,7 +53,7 @@ const { topic } = Astro.props;
                   )}
                 </div>
                 <div>
-                  {version.snapshot.partyAuthor ? (
+                  {version.snapshot.scope === 'parti' ? (
                     <strong>{author}</strong>
                   ) : (
                     <a href={`/candidats/${candidate.id}/`}>{author}</a>

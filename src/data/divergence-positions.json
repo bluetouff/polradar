@@ -75,8 +75,8 @@
           "lepen-retraites-capitalisation-v1",
           "philippe-retraites-2-v3",
           "retailleau-retraites-2-v1",
-          "lisnard-retraites-1-v1",
-          "dupont-aignan-retraites-capital-naissance-v1"
+          "dupont-aignan-retraites-capital-naissance-v1",
+          "lisnard-etage-capitalisation-v1"
         ]
       },
       {
@@ -228,6 +228,11 @@
         "id": "surete",
         "label": "Admettre une contribution sous condition de sûreté",
         "versions": ["rohou-climat-nucleaire-surete-v1"]
+      },
+      {
+        "id": "priorite-mix",
+        "label": "Donner la priorité au nucléaire et à l’hydraulique",
+        "versions": ["lisnard-nucleaire-hydraulique-v1"]
       }
     ]
   },
@@ -456,6 +461,42 @@
           "egger-institutions-ric-v1",
           "philippot-institutions-ric-v1"
         ]
+      }
+    ]
+  },
+  {
+    "id": "europe-participation-union",
+    "theme": "europe",
+    "label": "Europe · place de la France dans l’Union",
+    "context": "Les textes précisent qui déciderait d’une sortie, proposent de suspendre des traités ou défendent une souveraineté exercée à l’échelle européenne.",
+    "positions": [
+      {
+        "id": "sortie",
+        "label": "Engager la sortie de l’Union",
+        "versions": [
+          "asselineau-europe-article-50-v1",
+          "lalanne-europe-sortie-ue-v1",
+          "philippot-sortie-ue-euro-v1",
+          "dupont-aignan-europe-commerce-v1"
+        ]
+      },
+      {
+        "id": "consulter",
+        "label": "Soumettre la sortie au vote des citoyens",
+        "versions": [
+          "branco-europe-sorties-referendum-v1",
+          "egger-europe-union-v1"
+        ]
+      },
+      {
+        "id": "suspension",
+        "label": "Suspendre l’application des traités",
+        "versions": ["collovati-europe-suspension-traites-v1"]
+      },
+      {
+        "id": "souverainete",
+        "label": "Renforcer la souveraineté européenne",
+        "versions": ["glucksmann-europe-1-v1"]
       }
     ]
   }

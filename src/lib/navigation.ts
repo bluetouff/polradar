@@ -23,6 +23,7 @@ export const groups = [
     icon: 'people',
     links: [
       ['/candidats/', 'Fiches des candidats', 'people'],
+      ['/echiquier/', 'Échiquier politique', 'sondages'],
       ['/votes/', 'Propositions et votes passés', 'vote'],
       ['/evolution/', 'Évolution des propositions', 'historique'],
       ['/suivi/', 'Mon suivi', 'suivi'],

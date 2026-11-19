@@ -16,6 +16,11 @@ const bars = (g) => {
 };
 function graphic(g) {
   switch (g.kind) {
+    case 'party-plane': {
+      const x = (value) => 30 + 37 * value;
+      const y = (value) => 218 - 18 * value;
+      return `<div class="og-chart-heading">Économie × valeurs de société · CHES 2024</div><svg class="og-party-plane" viewBox="0 0 430 254" aria-hidden="true"><g fill="none" stroke="currentColor" opacity=".28">${[0, 2.5, 5, 7.5, 10].map((n) => `<path d="M${x(n)} 38V218 M30 ${y(n)}H400"/>`).join('')}</g>${g.parties.map((p) => `<g><circle cx="${x(p.x)}" cy="${y(p.y)}" r="5" fill="currentColor"/><text x="${x(p.x)}" y="${y(p.y) + (p.name === 'RE' ? 19 : -10)}" text-anchor="middle" fill="currentColor" font-size="13">${e(p.name)}</text></g>`).join('')}<text x="30" y="246" fill="currentColor" font-size="12">Gauche économique</text><text x="400" y="246" text-anchor="end" fill="currentColor" font-size="12">Droite économique</text></svg>`;
+    }
     case 'bars':
       return bars(g);
     case 'home':

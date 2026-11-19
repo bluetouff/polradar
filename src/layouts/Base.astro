@@ -7,6 +7,7 @@ import { navigationFor } from '../lib/navigation';
 import SiteFooter from '../components/SiteFooter.astro';
 import BrandLogo from '../components/BrandLogo.astro';
 import SiteNavigation from '../components/SiteNavigation.astro';
+import { menuStyle } from '../lib/menu-sprite';
 import Icon from '../components/Icon.astro';
 import ShareLinks from '../components/ShareLinks.astro';
 import { socialImageFor } from '../lib/social-images.mjs';
@@ -45,6 +46,7 @@ const socialImageUrl = new URL(social.url, Astro.site);
       type="font/woff2"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href={menuStyle} />
     <title>{title} · Polradar</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex,follow" />}

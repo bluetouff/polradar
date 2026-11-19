@@ -26,9 +26,6 @@ export const financingMaps = financing.maps.map((map) => {
   const profile = programmeBudgets.profiles.find(
     (p) => p.candidate === map.candidate,
   )!;
-  return {
-    ...map,
-    scope: profile.scope,
-    entry: profile.entries.find((e) => e.id === map.budgetEntry)!,
-  };
+  const entry = profile.entries.find((e) => e.id === map.budgetEntry)!;
+  return { ...map, scope: entry.scope ?? profile.scope, entry };
 });

@@ -3,6 +3,7 @@ import { test, expect } from '@playwright/test';
 import portraits from '../../src/data/portraits.json' with { type: 'json' };
 import reviewed from '../../src/data/portraits-reviewed.json' with { type: 'json' };
 import { createHash } from 'node:crypto';
+import positions from '../../src/data/divergence-positions.json' with { type: 'json' };
 
 test('la galerie conserve toutes les candidatures et explore les fiches par thème', async ({
   page,
@@ -222,7 +223,12 @@ test('les cartes et leurs sources restent lisibles sans JavaScript', async ({
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto('/divergences/');
-  await expect(page.locator('.divergence-panel:visible')).toHaveCount(20);
+  await expect(page.locator('.divergence-positions:visible')).toHaveCount(
+    positions.length,
+  );
+  await expect(page.locator('.divergence-panel:visible')).toHaveCount(
+    await page.locator('[data-axis-link]').count(),
+  );
   await page
     .locator('[data-axis-link="institutions-ecrire-constitution"]')
     .click();

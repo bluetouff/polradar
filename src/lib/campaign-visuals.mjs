@@ -7,6 +7,7 @@ const entry = z
     id: idSchema,
     label: text,
     euros: money,
+    scope: z.enum(['campagne', 'parti']).optional(),
     eurosMax: money.optional(),
     kind: z.enum([
       'depense',

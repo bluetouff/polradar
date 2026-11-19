@@ -35,7 +35,18 @@ export const positionDivergences = topics.map((topic) => ({
         const version = versionById.get(id)!;
         const measure = measureById(version.measureId);
         const candidate = candidateById(measure.candidate);
-        const author = version.snapshot.partyAuthor ?? candidate.name;
+        const author =
+          version.snapshot.scope === 'parti'
+            ? (version.snapshot.partyAuthor ??
+              version.snapshot.sourceRefs
+                .map(
+                  (ref) =>
+                    dataset.sources.find((s) => s.id === ref.sourceId)
+                      ?.publisher,
+                )
+                .find(Boolean) ??
+              `Document de parti (dossier ${candidate.name})`)
+            : candidate.name;
         return { candidate, measure, version, author };
       })
       .sort((left, right) => left.author.localeCompare(right.author, 'fr')),

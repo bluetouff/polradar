@@ -125,7 +125,7 @@
     {
       "candidate": "dupont-aignan",
       "scope": "parti",
-      "note": "Chiffrages publiés dans le projet économique de Debout la France. Les postes restent distincts ; certains peuvent se recouvrir et ne sont pas additionnés. Les périodes non précisées restent indiquées comme telles.",
+      "note": "Le projet de Debout la France détaille plusieurs postes. Le cahier présidentiel du 12 novembre présente aussi le plan global de Nicolas Dupont-Aignan. Plusieurs de ces montants se recouvrent.",
       "entries": [
         {
           "id": "nda-fonds",
@@ -224,6 +224,31 @@
           "locator": "Favoriser l’actionnariat salarié : coût de la mesure",
           "allocationUnit": null,
           "allocation": []
+        },
+        {
+          "id": "nda-plan-2031-2032",
+          "label": "Économies et recettes nouvelles en 2031-2032",
+          "scope": "campagne",
+          "euros": 140000000000,
+          "kind": "trajectoire",
+          "period": "annuel",
+          "horizon": "Exercice 2031-2032, hors recettes attendues de la relance",
+          "approximate": false,
+          "funding": null,
+          "source": "nda-conference-economie-2027",
+          "additionalSources": ["nda-cahier-rouge-novembre"],
+          "locator": "Conférence, présentation du plan de redressement. Cahier PDF, p. 4 et 5, colonne 2031-2032.",
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Économies de dépenses",
+              "value": 100000000000
+            },
+            {
+              "label": "Recettes supplémentaires",
+              "value": 40000000000
+            }
+          ]
         }
       ]
     },
@@ -316,6 +341,21 @@
             "lisnard-crayon-2026",
             "lisnard-economies-annuelles-2026"
           ]
+        },
+        {
+          "id": "lisnard-premiere-annee",
+          "label": "Économies visées la première année",
+          "euros": 80000000000,
+          "kind": "economie",
+          "period": "horizon",
+          "horizon": "Première année, avant la cible annuelle de 200 milliards",
+          "approximate": false,
+          "funding": null,
+          "source": "lisnard-crayon-2026",
+          "locator": "Entretien au Crayon, première étape de la trajectoire budgétaire.",
+          "allocationUnit": null,
+          "allocation": [],
+          "scope": "campagne"
         }
       ]
     },
@@ -1058,6 +1098,73 @@
           "locator": "Annexe chiffrée, p. 12 du PDF, Favoriser le cumul-emploi retraite du personnel soignant",
           "allocationUnit": null,
           "allocation": []
+        }
+      ]
+    },
+    {
+      "candidate": "mathieu",
+      "scope": "campagne",
+      "note": "Estimations publiées par le candidat. La fourchette de référendum concerne un seul scrutin. Le programme prévoit deux consultations.",
+      "entries": [
+        {
+          "id": "mathieu-convention",
+          "label": "Organisation de la convention constituante",
+          "euros": 17000000,
+          "kind": "depense",
+          "period": "ponctuel",
+          "horizon": "Une convention de neuf mois",
+          "approximate": false,
+          "funding": null,
+          "source": "mathieu-projet-2027",
+          "locator": "Programme, section sur le financement de la convention.",
+          "allocationUnit": null,
+          "allocation": [],
+          "eurosMax": 33000000
+        },
+        {
+          "id": "mathieu-scrutin",
+          "label": "Organisation d’un référendum national",
+          "euros": 150000000,
+          "kind": "depense",
+          "period": "ponctuel",
+          "horizon": "Coût annoncé pour un seul référendum",
+          "approximate": false,
+          "funding": null,
+          "source": "mathieu-projet-2027",
+          "locator": "Programme, section sur le financement, estimation par référendum.",
+          "allocationUnit": null,
+          "allocation": [],
+          "eurosMax": 220000000
+        }
+      ]
+    },
+    {
+      "candidate": "zemmour",
+      "scope": "campagne",
+      "note": "Répartition annoncée par Éric Zemmour dans ses réponses au JDD le 15 novembre. Les montants correspondent à son objectif annuel en 2032.",
+      "entries": [
+        {
+          "id": "zemmour-economies-2032",
+          "label": "Réduction annuelle des dépenses publiques",
+          "euros": 280000000000,
+          "kind": "economie",
+          "period": "annuel",
+          "horizon": "Objectif annuel à partir de 2032",
+          "approximate": false,
+          "funding": null,
+          "source": "zemmour-entretien-jdd-novembre",
+          "locator": "Réponses sur la trajectoire budgétaire, 140 milliards pour chacune des deux affectations.",
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Baisses d’impôts",
+              "value": 140000000000
+            },
+            {
+              "label": "Réduction du déficit",
+              "value": 140000000000
+            }
+          ]
         }
       ]
     }

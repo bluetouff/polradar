@@ -6,6 +6,7 @@ import {
   positionsSchema,
   validateDivergencePositions,
 } from '../src/lib/divergence-positions.mjs';
+import { chesFranceSchema } from '../src/lib/ches.mjs';
 import { airtimeSchema } from '../src/lib/airtime.mjs';
 import {
   economySchema,
@@ -68,6 +69,7 @@ for (const [name, schema] of [
   ['campaign-agenda', agendaSchema],
   ['france-map', mapSchema],
   ['airtime', airtimeSchema],
+  ['ches-france-2024', chesFranceSchema],
 ]) {
   visualDatasets.push(
     schema.parse(

@@ -1,3 +1,4 @@
+import financing from '../../src/data/financing-maps.json' with { type: 'json' };
 import { test, expect } from '@playwright/test';
 import evolution from '../../src/data/proposal-evolution.json' with { type: 'json' };
 test('les sélecteurs mobiles ouvrent les nouveaux dossiers et conservent le choix au retour', async ({
@@ -178,7 +179,9 @@ test('tous les dossiers et les documents sont lisibles sans JavaScript', async (
     evolution.states.length,
   );
   await page.goto('http://127.0.0.1:4321/financements/');
-  await expect(page.locator('[data-financing-map]:visible')).toHaveCount(19);
+  await expect(page.locator('[data-financing-map]:visible')).toHaveCount(
+    financing.maps.length,
+  );
   await page.locator('.finance-source summary').first().click();
   await expect(page.locator('.finance-source[open] a').first()).toHaveAttribute(
     'href',

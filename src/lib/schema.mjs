@@ -40,6 +40,7 @@ export const sourceSchema = z.object({
   title: text,
   url: publicUrlSchema,
   previousUrl: publicUrlSchema.optional(),
+  publisher: z.string().trim().min(1).max(160).optional(),
   watchFormat: z.literal('youtube-oembed').optional(),
   watchContentClass: z
     .string()

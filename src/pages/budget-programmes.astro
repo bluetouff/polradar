@@ -16,7 +16,7 @@ import {
 import '../styles/visuals.css';
 const periods = {
   annuel: 'Montant annuel',
-  ponctuel: 'Investissement annoncé',
+  ponctuel: 'Montant ponctuel',
   pluriannuel: 'Montant pluriannuel',
   horizon: 'Objectif à terme',
   'non-precise': 'Période non précisée',
@@ -114,6 +114,9 @@ const annualScales = budgetAnnualScales(programmeBudgets.profiles);
     <div class="programme-ledger">
       {programmeBudgets.profiles.map((profile) => {
         const c = candidateById(profile.candidate);
+        const mixedSources = profile.entries.some(
+          (e) => e.scope && e.scope !== profile.scope,
+        );
         return (
           <section class="budget-profile" data-budget-candidate={c.id}>
             <header class="budget-person">
@@ -121,7 +124,11 @@ const annualScales = budgetAnnualScales(programmeBudgets.profiles);
                 <CandidatePortrait candidate={c} compact />
               </a>
               <div>
-                <span class="visual-kicker">{scopes[profile.scope]}</span>
+                <span class="visual-kicker">
+                  {mixedSources
+                    ? 'Documents de campagne et de parti'
+                    : scopes[profile.scope]}
+                </span>
                 <h2>
                   <a href={`/candidats/${c.id}/`}>{c.name}</a>
                 </h2>
@@ -145,7 +152,12 @@ const annualScales = budgetAnnualScales(programmeBudgets.profiles);
                   >
                     <div class="budget-entry-head">
                       <div>
-                        <span class="visual-kicker">{kinds[entry.kind]}</span>
+                        <span class="visual-kicker">
+                          {kinds[entry.kind]}
+                          {mixedSources
+                            ? ' · ' + scopes[entry.scope ?? profile.scope]
+                            : ''}
+                        </span>
                         <h3>{entry.label}</h3>
                       </div>
                       <p class="budget-number">

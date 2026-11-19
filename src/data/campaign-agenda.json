@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checked": "2026-11-18",
+  "checked": "2026-11-19",
   "cities": [
     {
       "id": "paris",
@@ -148,6 +148,13 @@
       "code": "44109",
       "coordinates": [-1.5603, 47.2382],
       "sourceUrl": "https://geo.api.gouv.fr/communes/44109?fields=nom,code,centre"
+    },
+    {
+      "id": "montauban",
+      "name": "Montauban",
+      "code": "82121",
+      "coordinates": [1.3646, 44.0217],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/82121?fields=nom,code,centre"
     }
   ],
   "events": [
@@ -513,6 +520,32 @@
       "venue": "Salle Canopée, Parc des Expositions de la Beaujoire",
       "note": " Dépliant du 3 novembre 2026, page 4.",
       "source": "arthaud-depliant-2026-pdf",
+      "status": "annonce"
+    },
+    {
+      "id": "markovic-paris-novembre",
+      "candidate": "markovic",
+      "date": "2026-11-14",
+      "time": "18:00",
+      "timezone": "Europe/Paris",
+      "city": "paris",
+      "title": "Discours de campagne au congrès du Parti animaliste",
+      "venue": "La Fabrique République, 52 ter rue des Vinaigriers",
+      "note": "Le congrès ouvre à 14 heures. Le programme fixe à 18 heures le discours de la candidate.",
+      "source": "animaliste-congres-2026",
+      "status": "annonce"
+    },
+    {
+      "id": "durif-montauban-novembre",
+      "candidate": "durif",
+      "date": "2026-11-18",
+      "time": "19:00",
+      "timezone": "Europe/Paris",
+      "city": "montauban",
+      "title": "Meeting de Sylvain-Pierre Durif à Montauban",
+      "venue": "Le Boil’R",
+      "note": "Horaire publié par ELVITA. Le site de campagne annonce également Francis Lalanne et Dieudonné.",
+      "source": "durif-elvita-programme-2027",
       "status": "annonce"
     }
   ]

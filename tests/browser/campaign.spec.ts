@@ -1,12 +1,16 @@
 import { pageSize } from '../../src/lib/pagination';
 import { test, expect } from '@playwright/test';
+import campaignEvents from '../../src/data/events.json' with { type: 'json' };
+const pastCount = campaignEvents.filter((e) => e.kind === 'past').length;
 import watch from '../../src/data/watch.json' with { type: 'json' };
 
 test('la chronologie combine les filtres, gère une recherche vide et se réinitialise', async ({
   page,
 }) => {
   await page.goto('/campagne/');
-  await expect(page.locator('#campaign-status')).toContainText('31 événements');
+  await expect(page.locator('#campaign-status')).toContainText(
+    `${pastCount} événements`,
+  );
   await page.locator('#campaign-category').selectOption('programme');
   await page.locator('#campaign-candidate').selectOption('ruffin');
   await expect(page.locator('.campaign-entry:visible')).toHaveCount(4);
@@ -28,7 +32,7 @@ test('la chronologie et les sources restent accessibles sans JavaScript', async 
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto('http://127.0.0.1:4321/campagne/');
-  await expect(page.locator('.campaign-entry')).toHaveCount(31);
+  await expect(page.locator('.campaign-entry')).toHaveCount(pastCount);
   await expect(page.locator('#campaign-filters')).toBeHidden();
   await expect(page.locator('#lepen-retraites-2026-11-17')).toContainText(
     'pilier de capitalisation',

@@ -1,0 +1,609 @@
+.echiquier-content {
+  --atlas-deep: #102b39;
+  --atlas-ink: #193a48;
+  --atlas-muted: #456471;
+  color: var(--atlas-ink);
+}
+.atlas-title,
+.atlas-head,
+.issue-head,
+.economic-axis,
+.party-plot figcaption,
+.theme-meter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+.atlas-title {
+  margin-bottom: 1rem;
+}
+.atlas-title h1 {
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
+  margin: 0;
+}
+.atlas-title nav {
+  display: flex;
+  gap: 0.45rem 1rem;
+  flex-wrap: wrap;
+}
+.atlas-title a,
+.issue-detail {
+  font-size: 0.85rem;
+  text-underline-offset: 0.2em;
+}
+.party-atlas {
+  border: 1px solid #355e70;
+  background:
+    radial-gradient(ellipse at 16% 12%, #204c59 0%, transparent 53%),
+    linear-gradient(125deg, #122f40, #111f2e 78%);
+  color: #e8f7fa;
+  border-radius: 1rem;
+  padding: clamp(0.85rem, 2.3vw, 2rem);
+  box-shadow: 0 7px 20px #16384714;
+}
+.atlas-kicker {
+  font-size: 0.72rem;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 650;
+  margin: 0 0 0.25rem;
+}
+.party-atlas .atlas-kicker {
+  color: #a4d7d6;
+}
+.party-atlas h2,
+.issue-atlas h2,
+.sheet-atlas h2 {
+  margin: 0;
+  color: inherit;
+  font-size: clamp(1.22rem, 2.6vw, 1.58rem);
+  letter-spacing: -0.028em;
+}
+.atlas-head > strong,
+.issue-head > span {
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  border: 1px solid #668594;
+  border-radius: 2rem;
+  padding: 0.3rem 0.7rem;
+  white-space: nowrap;
+}
+.atlas-intro {
+  max-width: 78ch;
+  margin: 0.6rem 0 1.1rem;
+  color: #d0e4e9;
+  line-height: 1.5;
+}
+.axis-switch {
+  display: flex;
+  gap: 0.3rem 0.6rem;
+  align-items: center;
+  flex-wrap: wrap;
+  border: 0;
+  margin: 0 0 0.8rem;
+  padding: 0;
+  min-width: 0;
+}
+.axis-switch legend {
+  float: left;
+  padding: 0 0.5rem 0 0;
+  font-size: 0.82rem;
+  color: #c4dce1;
+}
+.axis-switch label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid #6b8594;
+  border-radius: 0.4rem;
+  font-size: 0.84rem;
+  color: #d9e9ec;
+}
+.axis-switch label:has(:checked) {
+  color: #102b39;
+  background: #c8e8e3;
+  border-color: #c8e8e3;
+}
+.axis-switch input {
+  width: 0.9rem;
+  height: 0.9rem;
+  margin: 0;
+  accent-color: #165e6b;
+}
+.axis-switch label:focus-within {
+  outline: 2px solid #e2ad72;
+  outline-offset: 2px;
+}
+.atlas-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.38fr) minmax(15.3rem, 1fr);
+  gap: clamp(0.7rem, 1.5vw, 1.3rem);
+  align-items: start;
+}
+.plot-area {
+  align-self: stretch;
+  display: grid;
+  align-content: center;
+  background: linear-gradient(150deg, #163644a6, #0a1b2ab5);
+  border: 1px solid #456674;
+  border-radius: 0.65rem;
+  min-width: 0;
+  padding: 0.6rem clamp(0.25rem, 1vw, 1rem);
+}
+.party-plot {
+  margin: 0;
+}
+.party-plot figcaption {
+  padding: 0.18rem 0.45rem 0.4rem;
+  font-size: 0.92rem;
+  color: #e3eff2;
+}
+.party-plot figcaption span {
+  color: #b8ced5;
+  font-size: 0.78rem;
+}
+.party-plane {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.gridline,
+.midline {
+  stroke: #496670;
+  stroke-width: 0.65;
+}
+.midline {
+  stroke: #95b7c2;
+  stroke-dasharray: 3 3;
+}
+.tick,
+.end-label,
+.point-name {
+  font-family: inherit;
+}
+.tick {
+  font-size: 8px;
+  fill: #c5d6dc;
+}
+.end-label {
+  font-size: 9.3px;
+  fill: #cadfe3;
+}
+.point-name {
+  font-size: 9.3px;
+  font-weight: 650;
+  fill: #fff;
+  paint-order: stroke;
+  stroke: #162e3c;
+  stroke-width: 2.8px;
+  stroke-linejoin: round;
+}
+[data-family='1'] {
+  --point: #f4a875;
+}
+[data-family='2'] {
+  --point: #94b3ff;
+}
+[data-family='3'] {
+  --point: #e3c687;
+}
+[data-family='5'] {
+  --point: #f2a7ba;
+}
+[data-family='6'] {
+  --point: #e6898c;
+}
+[data-family='7'] {
+  --point: #7bd7b6;
+}
+.map-point .hit {
+  fill: transparent;
+}
+.map-point .ring {
+  fill: var(--point);
+  stroke: #102835;
+  stroke-width: 1.6;
+}
+.map-point:is(:hover, :focus-visible, .selected) .ring {
+  stroke: #fff;
+  stroke-width: 2.5;
+}
+.map-point:is(:hover, :focus-visible, .selected) .hit {
+  fill: #c1e6e630;
+}
+.economic-axis {
+  margin-top: 0.2rem;
+  color: #d7e7e9;
+  font-size: 0.79rem;
+  padding: 0.45rem 0.3rem 0;
+  border-top: 1px solid #496672;
+}
+.plot-europe,
+.party-atlas:has(#axe-europe:checked) .plot-societe {
+  display: none;
+}
+.party-atlas:has(#axe-europe:checked) .plot-europe {
+  display: block;
+}
+.atlas-table table {
+  width: 100%;
+  border-collapse: collapse;
+  color: inherit;
+  font-size: 0.87rem;
+  background: transparent;
+}
+.atlas-table caption {
+  text-align: left;
+  color: #b6d2d9;
+  font-size: 0.78rem;
+  padding: 0 0 0.4rem;
+}
+.atlas-table :is(th, td) {
+  background: transparent;
+  border: 0;
+  text-align: right;
+  color: inherit;
+  padding: 0.22rem 0.28rem;
+}
+.atlas-table thead th {
+  color: #bdd6de;
+  font-size: 0.73rem;
+  border-bottom: 1px solid #536f7a;
+}
+.atlas-table th:first-child {
+  text-align: left;
+}
+.atlas-table tbody tr + tr {
+  border-top: 1px solid #34505d;
+}
+.atlas-table td {
+  font-variant-numeric: tabular-nums;
+}
+.atlas-table th a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: inherit;
+  text-decoration: none;
+  line-height: 1.14;
+  min-height: 2rem;
+}
+.atlas-table th a:hover span {
+  text-decoration: underline;
+}
+.atlas-table th i {
+  background: var(--point);
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  flex: none;
+}
+.atlas-table small {
+  display: block;
+  font-size: 0.68rem;
+  color: #bdd2d9;
+  font-weight: 400;
+  padding-top: 0.14rem;
+}
+.atlas-table tr:is(.selected, :target) {
+  background: #335564;
+}
+.atlas-table abbr {
+  text-decoration: none;
+}
+.atlas-method {
+  margin: 0.9rem 0 0;
+  border-top: 1px solid #496470;
+  padding: 0.6rem 0 0;
+}
+.atlas-method summary,
+.sheet-atlas summary,
+.issue-panel summary {
+  cursor: pointer;
+  font-weight: 650;
+}
+.atlas-method summary {
+  font-size: 0.83rem;
+  color: #d2e5e9;
+}
+.atlas-method p {
+  font-size: 0.86rem;
+  max-width: 100ch;
+}
+.atlas-method a {
+  color: #c4f0ec;
+}
+.issue-atlas,
+.sheet-atlas {
+  margin-top: clamp(1rem, 3vw, 2.2rem);
+  padding: clamp(0.9rem, 2vw, 1.65rem);
+  border: 1px solid #9eb3bb;
+  border-radius: 0.85rem;
+  background: linear-gradient(115deg, #ecf3f4, #f7f7f2 86%);
+}
+.issue-atlas > p,
+.sheet-atlas > p {
+  color: var(--atlas-muted);
+  margin: 0.55rem 0 1rem;
+  max-width: 88ch;
+}
+.issue-atlas .atlas-kicker,
+.sheet-atlas .atlas-kicker {
+  color: #326775;
+}
+.issue-selectors {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 0.7rem;
+}
+.issue-selectors label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 630;
+}
+.issue-selectors select {
+  min-width: 0;
+  width: 100%;
+  padding-inline-start: 0.7rem;
+  padding-inline-end: 2rem;
+}
+.issue-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1rem;
+  color: #335b6b;
+  font-size: 0.8rem;
+  margin: 0.75rem 0;
+}
+.issue-key b {
+  color: #166968;
+}
+.issue-panel {
+  border-top: 1px solid #a8bdc4;
+  padding: 0.6rem 0;
+}
+.issue-panel summary {
+  font-size: 0.94rem;
+}
+.issue-atlas.enhanced .issue-panel > summary {
+  display: none;
+}
+.issue-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11.5rem), 1fr));
+  gap: 0.55rem;
+  margin: 0.65rem 0;
+}
+.issue-lane {
+  padding: 0.68rem 0.68rem 0.55rem;
+  border-radius: 0.45rem;
+  background: #f9fcfc;
+  border: 1px solid #b3c6ca;
+  border-top: 3px solid #367782;
+}
+.issue-lane h3 {
+  margin: 0 0 0.55rem;
+  font-size: 0.92rem;
+  color: #173a46;
+  line-height: 1.25;
+}
+.issue-lane a {
+  display: flex;
+  gap: 0.35rem;
+  align-items: baseline;
+  padding: 0.27rem 0;
+  color: #204c5b;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  text-decoration: none;
+}
+.issue-lane a:hover {
+  text-decoration: underline;
+}
+.issue-lane a > span:first-child {
+  font-size: 0.7rem;
+  color: #0e655e;
+}
+.issue-lane a[data-author='parti'] > span:first-child {
+  font-size: 0.9rem;
+}
+.issue-lane small {
+  display: block;
+  font-size: 0.67rem;
+  color: #52707a;
+}
+.issue-detail {
+  color: #18485a;
+}
+.issue-remaining {
+  background: #e4edef;
+  padding: 0.6rem 0.7rem;
+}
+.echiquier-content [hidden] {
+  display: none !important;
+}
+.sheet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+}
+.sheet-grid article {
+  padding: 0.8rem;
+  background: #fafdfd;
+  border: 1px solid #b3c7cb;
+  border-radius: 0.5rem;
+}
+.sheet-grid h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+.sheet-grid a {
+  color: var(--atlas-ink);
+}
+.theme-meter {
+  font-size: 0.72rem;
+  gap: 0.2rem;
+  line-height: 1.4;
+}
+.theme-meter meter {
+  min-width: 0;
+  width: 40%;
+  accent-color: #367a80;
+}
+.sheet-grid dl {
+  margin: 0.45rem 0 0;
+  font-size: 0.81rem;
+}
+.sheet-grid dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.4rem;
+  border-top: 1px solid #d4dfe0;
+  padding: 0.16rem 0;
+}
+.sheet-grid dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+@media (max-width: 780px) {
+  .atlas-body {
+    grid-template-columns: 1fr;
+  }
+  .atlas-table tbody th a {
+    min-height: 1.85rem;
+  }
+  .atlas-table th small {
+    display: inline;
+    margin-inline-start: 0.4rem;
+  }
+  .plot-area {
+    max-width: 100%;
+  }
+}
+@media (max-width: 530px) {
+  .issue-selectors {
+    grid-template-columns: 1fr;
+  }
+  .economic-axis {
+    font-size: 0.7rem;
+  }
+  .axis-switch legend {
+    float: none;
+    margin-bottom: 0.25rem;
+  }
+  .atlas-table th small {
+    display: block;
+    margin-inline-start: 0;
+  }
+  .atlas-head,
+  .issue-head {
+    align-items: flex-start;
+  }
+  .atlas-title nav {
+    font-size: 0.8rem;
+  }
+  .atlas-title {
+    gap: 0.45rem;
+  }
+  .issue-head > span,
+  .atlas-head > strong {
+    font-size: 0.7rem;
+  }
+}
+.atlas-selection {
+  font-size: 0.83rem;
+  line-height: 1.4;
+  margin: 0.6rem 0.3rem 0;
+  padding: 0.45rem 0.6rem;
+  border-left: 2px solid #82c4c1;
+  background: #294958;
+  color: #f0f8f9;
+}
+.issue-balance {
+  margin: 0.55rem 0 0.85rem;
+}
+.issue-balance figcaption {
+  font-size: 0.77rem;
+  color: var(--atlas-muted);
+  margin-bottom: 0.35rem;
+}
+.issue-balance svg {
+  display: block;
+  height: 0.63rem;
+  width: 100%;
+  border-radius: 0.2rem;
+  overflow: hidden;
+}
+.issue-balance rect {
+  fill: var(--lane, #337079);
+  stroke: #eff5f4;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+.issue-lane {
+  border-top-color: var(--lane, #337079);
+}
+.issue-balance rect:nth-child(2),
+.issue-lane:nth-child(2) {
+  --lane: #617eb0;
+}
+.issue-balance rect:nth-child(3),
+.issue-lane:nth-child(3) {
+  --lane: #9c6f48;
+}
+.issue-balance rect:nth-child(4),
+.issue-lane:nth-child(4) {
+  --lane: #647660;
+}
+.issue-balance rect:nth-child(5),
+.issue-lane:nth-child(5) {
+  --lane: #94627b;
+}
+.issue-balance rect:nth-child(6),
+.issue-lane:nth-child(6) {
+  --lane: #536477;
+}
+.issue-balance rect:nth-child(7),
+.issue-lane:nth-child(7) {
+  --lane: #766644;
+}
+.issue-lane h3 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+.issue-lane h3 span {
+  border: 1px solid #b2c2c7;
+  min-width: 1.45em;
+  text-align: center;
+  border-radius: 0.25rem;
+  font-size: 0.78em;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 530px) {
+  .party-plane .point-name {
+    font-size: 12.4px;
+  }
+  .party-plane .tick {
+    font-size: 10px;
+  }
+  .party-plane .end-label {
+    font-size: 11.7px;
+  }
+  .plot-area {
+    padding-inline: 0.15rem;
+  }
+  .atlas-selection {
+    font-size: 0.8rem;
+  }
+}
