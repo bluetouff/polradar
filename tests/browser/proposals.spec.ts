@@ -114,7 +114,7 @@ test('tous les dossiers et les documents sont lisibles sans JavaScript', async (
   await expect(page.locator('[data-evolution-dossier]:visible')).toHaveCount(6);
   await expect(page.locator('[data-proposal-state]:visible')).toHaveCount(14);
   await page.goto('http://127.0.0.1:4321/financements/');
-  await expect(page.locator('[data-financing-map]:visible')).toHaveCount(16);
+  await expect(page.locator('[data-financing-map]:visible')).toHaveCount(19);
   await page.locator('.finance-source summary').first().click();
   await expect(page.locator('.finance-source[open] a').first()).toHaveAttribute(
     'href',

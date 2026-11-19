@@ -1,6 +1,11 @@
 import { readFile } from 'node:fs/promises';
 import { validateDataset, validateFeatures } from '../src/lib/schema.mjs';
 import { marketSnapshotSchema } from '../src/lib/markets.mjs';
+import { divergenceGroups } from '../src/lib/divergences.mjs';
+import {
+  positionsSchema,
+  validateDivergencePositions,
+} from '../src/lib/divergence-positions.mjs';
 import { airtimeSchema } from '../src/lib/airtime.mjs';
 import {
   economySchema,
@@ -109,6 +114,21 @@ const errors = [
   ...validateFeatures(dataset),
   ...visualErrors,
 ];
+const positions = JSON.parse(
+  await readFile(
+    new URL('../src/data/divergence-positions.json', import.meta.url),
+    'utf8',
+  ),
+);
+errors.push(
+  ...validateDivergencePositions(
+    positionsSchema.parse(positions),
+    dataset,
+    divergenceGroups(dataset.measures, dataset.candidates, dataset.themes).map(
+      ({ id }) => id,
+    ),
+  ),
+);
 errors.push(
   ...validateDigitalComparison(
     digitalComparisonSchema.parse(

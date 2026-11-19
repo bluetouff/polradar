@@ -81,31 +81,45 @@ test('les portraits, crédits et fiches restent disponibles sans JavaScript', as
 test('la carte distingue les conditions et conserve les chiffres lors des changements d’axe', async ({
   page,
 }) => {
-  await page.goto('/divergences/');
+  await page.goto('/divergences/#retraites-age-depart');
   const age = page.locator('#retraites-age-depart');
   await expect(age).toBeVisible();
-  await expect(age.locator('[data-divergence-point]')).toHaveCount(5);
+  await expect(age.locator('[data-divergence-point]')).toHaveCount(7);
+  await expect(age).toContainText('62 ans et 9 mois');
   await expect(age.locator('[data-candidate="kazib"]')).toHaveAttribute(
     'data-value',
     '60',
   );
   await expect(age).toContainText('55 ans pour les métiers pénibles');
-  await page.locator('[data-axis-link="retraites-annuites"]').click();
+  const topics = page.getByRole('combobox', { name: 'Sujet à comparer' });
+  await topics.selectOption('retraites-annuites');
   await expect(page).toHaveURL(/#retraites-annuites/);
   await expect(age).toBeHidden();
   await expect(
     page.locator('#retraites-annuites .divergence-record'),
-  ).toHaveCount(2);
+  ).toHaveCount(3);
   await page.reload();
   await expect(page.locator('#retraites-annuites')).toBeVisible();
-  await page
-    .locator('[data-axis-link="fiscalite-seuil-exoneration-heritage"]')
-    .click();
+  await topics.selectOption('fiscalite-seuil-exoneration-heritage');
   await expect(
     page.locator('#fiscalite-seuil-exoneration-heritage'),
   ).toContainText('150 000');
   await page.goto('/divergences/#inconnu');
-  await expect(age).toBeVisible();
+  const conditions = page.locator('#retraites-conditions-depart');
+  await expect(conditions).toBeVisible();
+  await expect(conditions.locator('[data-position-profile]')).toHaveCount(14);
+  await expect(conditions).toContainText('Marine Le Pen');
+  await expect(conditions).toContainText('Parti socialiste');
+  await topics.selectOption('climat-prix-energie');
+  const energy = page.locator('#climat-prix-energie');
+  await expect(
+    energy.getByRole('link', { name: 'Raphaël Glucksmann', exact: true }),
+  ).toBeVisible();
+  const ps = energy.getByText('Parti socialiste', { exact: true });
+  await expect(ps).toBeVisible();
+  await expect(
+    energy.getByRole('link', { name: /Étendre les tarifs réglementés/ }),
+  ).toHaveAttribute('href', '/mesures/ps-climat-tarifs-reglementes/#version-1');
 });
 
 test('les nouveaux parcours restent lisibles à 320 pixels et ne chargent aucun tiers', async ({
@@ -135,13 +149,15 @@ test('les nouveaux parcours restent lisibles à 320 pixels et ne chargent aucun 
       ).toBe(false);
     }
     await page.goto('/divergences/');
+    const selection = page.getByRole('combobox', { name: 'Sujet à comparer' });
     for (const axis of [
       'retraites-age-depart',
       'retraites-annuites',
       'travail-smic-mensuel-net',
       'fiscalite-seuil-exoneration-heritage',
+      'climat-nouveaux-epr2',
     ]) {
-      await page.locator(`[data-axis-link="${axis}"]`).click();
+      await selection.selectOption(axis);
       await page.evaluate(() => document.fonts.ready);
       const outside = await page
         .locator(`#${axis} .divergence-svg`)
@@ -196,13 +212,20 @@ test('le menu mobile donne accès aux sous-rubriques et ferme le menu précéden
   await expect(page).toHaveURL(/\/campagne\//);
 });
 
-test('les quatre cartes et leurs sources restent lisibles sans JavaScript', async ({
+test('les cartes et leurs sources restent lisibles sans JavaScript', async ({
   browser,
 }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto('/divergences/');
-  await expect(page.locator('.divergence-panel:visible')).toHaveCount(4);
+  await expect(page.locator('.divergence-panel:visible')).toHaveCount(20);
+  await page
+    .locator('[data-axis-link="institutions-ecrire-constitution"]')
+    .click();
+  await expect(page).toHaveURL(/#institutions-ecrire-constitution$/);
+  await expect(page.locator('#institutions-ecrire-constitution')).toContainText(
+    'Benoît Mathieu',
+  );
   await expect(
     page.locator('.divergence-record .source-links a').first(),
   ).toBeVisible();

@@ -1,7 +1,7 @@
 import candidates from '../data/candidates.json';
 import themes from '../data/themes.json';
 import sourceRows from '../data/sources.json';
-import engagements from '../data/engagements.json';
+import engagementRows from '../data/engagements.json';
 import events from '../data/events.json';
 import pollRows from '../data/polls.json';
 import budget from '../data/budget.json';
@@ -15,10 +15,12 @@ import {
   versionSchema,
   watchSchema,
   pollSchema,
+  engagementSchema,
   validateDataset,
   validateFeatures,
 } from './schema.mjs';
 const sources = sourceSchema.array().parse(sourceRows);
+const engagements = engagementSchema.array().parse(engagementRows);
 const polls = pollSchema.array().parse(pollRows);
 const measures = measureSchema.array().parse(measureRows);
 const versions = versionSchema.array().parse(versionRows);

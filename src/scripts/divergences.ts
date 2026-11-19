@@ -7,13 +7,15 @@ const panelById = new Map(panels.map((panel) => [panel.id, panel]));
 const controls = document.querySelector<HTMLElement>(
   '[data-divergence-controls]',
 );
+const select = document.querySelector<HTMLSelectElement>(
+  '[data-divergence-select]',
+);
+const index = document.querySelector<HTMLElement>('[data-divergence-index]');
 const status = document.querySelector<HTMLElement>('[data-divergence-status]');
-const links = [
-  ...document.querySelectorAll<HTMLAnchorElement>('[data-axis-link]'),
-];
 const widths = new WeakMap<SVGSVGElement, number>();
 function draw(panel: HTMLElement) {
-  const chart = panel.querySelector<SVGSVGElement>('.divergence-svg')!;
+  const chart = panel.querySelector<SVGSVGElement>('.divergence-svg');
+  if (!chart) return;
   const width = Math.floor(chart.getBoundingClientRect().width);
   if (width < 180 || widths.get(chart) === width) return;
   const points = [
@@ -97,23 +99,20 @@ function activate(id: string, write = true) {
   const chosen = panelById.has(id) ? id : panels[0]?.id;
   if (!chosen) return;
   for (const panel of panels) panel.hidden = panel.id !== chosen;
-  links.forEach((link) =>
-    link.setAttribute(
-      'aria-current',
-      link.dataset.axisLink === chosen ? 'true' : 'false',
-    ),
-  );
+  if (select) select.value = chosen;
+  if (status) status.textContent = '';
   draw(panelById.get(chosen)!);
-  if (write) history.replaceState(null, '', location.pathname + '#' + chosen);
+  if (write)
+    history.replaceState(
+      null,
+      '',
+      location.pathname + location.search + '#' + chosen,
+    );
 }
-if (controls && panels.length) {
+if (controls && select && panels.length) {
   controls.hidden = false;
-  links.forEach((link) =>
-    link.addEventListener('click', (event) => {
-      event.preventDefault();
-      activate(link.dataset.axisLink || '');
-    }),
-  );
+  if (index) index.hidden = true;
+  select.addEventListener('change', () => activate(select.value));
   window.addEventListener('hashchange', () =>
     activate(location.hash.slice(1), false),
   );
@@ -126,7 +125,9 @@ if (controls && panels.length) {
     .querySelector('[data-divergence-share]')
     ?.addEventListener('click', async () => {
       try {
-        await navigator.clipboard.writeText(location.href);
+        const url = new URL(location.href);
+        url.hash = select.value;
+        await navigator.clipboard.writeText(url.href);
         if (status) status.textContent = 'Lien de la carte copié.';
       } catch {
         if (status)

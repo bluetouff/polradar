@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checked": "2026-11-18",
+  "checked": "2026-11-19",
   "profiles": [
     {
       "candidate": "asselineau",
@@ -10,7 +10,7 @@
         {
           "id": "asselineau-regions",
           "label": "Suppression des régions",
-          "euros": 6000000000.0,
+          "euros": 6000000000,
           "kind": "economie",
           "period": "non-precise",
           "horizon": "Période non précisée dans la synthèse du discours",
@@ -31,7 +31,7 @@
         {
           "id": "attal-economies-quinquennat",
           "label": "Économies sur le quinquennat",
-          "euros": 150000000000.0,
+          "euros": 150000000000,
           "kind": "economie",
           "period": "pluriannuel",
           "horizon": "Sur le quinquennat selon la campagne ; détail annuel non précisé",
@@ -52,7 +52,7 @@
         {
           "id": "branco-niches-travail",
           "label": "Suppression de niches fiscales liées au travail",
-          "euros": 5000000000.0,
+          "euros": 5000000000,
           "kind": "economie",
           "period": "annuel",
           "horizon": "Par an",
@@ -66,7 +66,7 @@
         {
           "id": "branco-allocations-ciblees",
           "label": "Suppression des allocations scolaires et du chèque énergie",
-          "euros": 3000000000.0,
+          "euros": 3000000000,
           "kind": "economie",
           "period": "annuel",
           "horizon": "Par an",
@@ -80,7 +80,7 @@
         {
           "id": "branco-foncier",
           "label": "Modulation de la taxe foncière selon le patrimoine immobilier",
-          "euros": 2000000000.0,
+          "euros": 2000000000,
           "kind": "economie",
           "period": "annuel",
           "horizon": "Par an ; montant qualifié d’économie par le projet",
@@ -94,7 +94,7 @@
         {
           "id": "branco-ppv",
           "label": "Suppression de la prime de partage de la valeur",
-          "euros": 5000000000.0,
+          "euros": 5000000000,
           "kind": "recette",
           "period": "annuel",
           "horizon": "Recettes budgétaires supplémentaires annuelles annoncées",
@@ -108,7 +108,7 @@
         {
           "id": "branco-petites-taxes",
           "label": "Suppression de taxes à faible rendement",
-          "euros": 3000000000.0,
+          "euros": 3000000000,
           "kind": "baisse-recette",
           "period": "non-precise",
           "horizon": "Coût budgétaire estimé ; période non précisée",
@@ -118,7 +118,7 @@
           "locator": "PDF, pages 27–28 : suppression et fusion de taxes à faible rendement",
           "allocationUnit": null,
           "allocation": [],
-          "eurosMax": 4000000000.0
+          "eurosMax": 4000000000
         }
       ]
     },
@@ -130,7 +130,7 @@
         {
           "id": "nda-fonds",
           "label": "Fonds d’investissement et de relocalisation",
-          "euros": 4000000000.0,
+          "euros": 4000000000,
           "kind": "depense",
           "period": "annuel",
           "horizon": "Par an",
@@ -144,7 +144,7 @@
         {
           "id": "nda-capital",
           "label": "Capital retraite attribué à la naissance",
-          "euros": 6000000000.0,
+          "euros": 6000000000,
           "kind": "depense",
           "period": "annuel",
           "horizon": "Par an",
@@ -158,7 +158,7 @@
         {
           "id": "dupont-aignan-aides-ukraine",
           "label": "Fin des aides à l’Ukraine",
-          "euros": 7000000000.0,
+          "euros": 7000000000,
           "kind": "economie",
           "period": "annuel",
           "horizon": "Par an ; aides françaises et quote-part des aides de l’UE",
@@ -172,7 +172,7 @@
         {
           "id": "dupont-aignan-administration",
           "label": "Réduction du coût administratif",
-          "euros": 40000000000.0,
+          "euros": 40000000000,
           "kind": "economie",
           "period": "horizon",
           "horizon": "Économie par an au terme de cinq ans",
@@ -186,7 +186,7 @@
         {
           "id": "dupont-aignan-agences",
           "label": "Suppression progressive d’agences",
-          "euros": 20000000000.0,
+          "euros": 20000000000,
           "kind": "economie",
           "period": "horizon",
           "horizon": "Économie par an au terme de trois ans ; sous-ensemble de la réforme administrative",
@@ -200,7 +200,7 @@
         {
           "id": "dupont-aignan-fraude-sociale",
           "label": "Lutte contre la fraude sociale",
-          "euros": 20000000000.0,
+          "euros": 20000000000,
           "kind": "economie",
           "period": "non-precise",
           "horizon": "Période non précisée dans ce passage",
@@ -214,7 +214,7 @@
         {
           "id": "dupont-aignan-participation",
           "label": "Allègements liés à l’actionnariat salarié",
-          "euros": 1000000000.0,
+          "euros": 1000000000,
           "kind": "baisse-recette",
           "period": "non-precise",
           "horizon": "Période non précisée dans ce passage",
@@ -235,7 +235,7 @@
         {
           "id": "glucks-securite-civile",
           "label": "Investissement dans la sécurité civile",
-          "euros": 1000000000.0,
+          "euros": 1000000000,
           "kind": "depense",
           "period": "ponctuel",
           "horizon": "Dès juin 2027 ; récurrence non précisée",
@@ -245,6 +245,39 @@
           "locator": "Livret de révolution écologique : adaptation au changement climatique, sécurité civile",
           "allocationUnit": null,
           "allocation": []
+        },
+        {
+          "id": "glucks-investissement-climatique",
+          "label": "Investissement public dans la transition",
+          "euros": 200000000000,
+          "kind": "depense",
+          "period": "pluriannuel",
+          "horizon": "Sur cinq ans, montant total annoncé",
+          "approximate": false,
+          "funding": "Contribution exceptionnelle sur les hauts patrimoines et autres leviers de financement détaillés aux pages 8 et 9 du livret.",
+          "source": "glucksmann-100-jours-accessible",
+          "locator": "Les premiers 100 jours, p. 7",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "glucks-contribution-climatique",
+          "label": "Contribution exceptionnelle sur les hauts patrimoines",
+          "euros": 50000000000,
+          "kind": "recette",
+          "period": "ponctuel",
+          "horizon": "Prélèvement annoncé sur une seule année",
+          "approximate": false,
+          "funding": null,
+          "source": "glucksmann-100-jours-accessible",
+          "locator": "Les premiers 100 jours, p. 8",
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Fonds d’investissement pour la transition climatique",
+              "value": 50000000000
+            }
+          ]
         }
       ]
     },
@@ -256,7 +289,7 @@
         {
           "id": "lisnard-economies",
           "label": "Économies en rythme de croisière",
-          "euros": 200000000000.0,
+          "euros": 200000000000,
           "kind": "economie",
           "period": "annuel",
           "horizon": "Par an à terme ; montée en charge progressive",
@@ -268,15 +301,15 @@
           "allocation": [
             {
               "label": "Baisse des cotisations des actifs",
-              "value": 120000000000.0
+              "value": 120000000000
             },
             {
               "label": "Baisse des impôts de production",
-              "value": 40000000000.0
+              "value": 40000000000
             },
             {
               "label": "Désendettement de l’État",
-              "value": 40000000000.0
+              "value": 40000000000
             }
           ],
           "additionalSources": [
@@ -294,7 +327,7 @@
         {
           "id": "melenchon-investissement-btp",
           "label": "Plan BTP et logement : part de l’État",
-          "euros": 12000000000.0,
+          "euros": 12000000000,
           "kind": "depense",
           "period": "annuel",
           "horizon": "Investissements supplémentaires par an",
@@ -306,50 +339,50 @@
           "allocation": [
             {
               "label": "Nouveaux logements publics",
-              "value": 3100000000.0
+              "value": 3100000000
             },
             {
               "label": "Rénovation des logements sociaux",
-              "value": 250000000.0
+              "value": 250000000
             },
             {
               "label": "Isolation des logements",
-              "value": 5300000000.0
+              "value": 5300000000
             },
             {
               "label": "Confort d’été",
-              "value": 500000000.0
+              "value": 500000000
             },
             {
               "label": "Rénovation des autres bâtiments",
-              "value": 1000000000.0
+              "value": 1000000000
             },
             {
               "label": "Sortie du fioul et réduction du gaz",
-              "value": 1000000000.0
+              "value": 1000000000
             },
             {
               "label": "Formation des professionnels",
-              "value": 60000000.0
+              "value": 60000000
             },
             {
               "label": "Déchets et réemploi",
-              "value": 200000000.0
+              "value": 200000000
             },
             {
               "label": "Patrimoine",
-              "value": 600000000.0
+              "value": 600000000
             }
           ],
           "allocationDifference": {
-            "euros": 10000000.0,
+            "euros": 10000000,
             "note": "Le détail porte sur les neuf postes renseignés de la colonne État."
           }
         },
         {
           "id": "melenchon-investissement-auto",
           "label": "Plan automobile : part de l’État",
-          "euros": 1400000000.0,
+          "euros": 1400000000,
           "kind": "depense",
           "period": "annuel",
           "horizon": "Investissements supplémentaires par an",
@@ -361,42 +394,42 @@
           "allocation": [
             {
               "label": "Nouvelles lignes de production",
-              "value": 100000000.0
+              "value": 100000000
             },
             {
               "label": "Location automobile abordable",
-              "value": 300000000.0
+              "value": 300000000
             },
             {
               "label": "Aides à l’achat",
-              "value": 200000000.0
+              "value": 200000000
             },
             {
               "label": "Sous-traitants et équipementiers",
-              "value": 200000000.0
+              "value": 200000000
             },
             {
               "label": "Production de batteries",
-              "value": 500000000.0
+              "value": 500000000
             },
             {
               "label": "Réparation et recyclage",
-              "value": 50000000.0
+              "value": 50000000
             },
             {
               "label": "Recherche sur les minibus",
-              "value": 20000000.0
+              "value": 20000000
             }
           ],
           "allocationDifference": {
-            "euros": -30000000.0,
+            "euros": -30000000,
             "note": "Le détail porte sur les sept postes renseignés de la colonne État."
           }
         },
         {
           "id": "melenchon-investissement-textile",
           "label": "Plan textile : part de l’État",
-          "euros": 240000000.0,
+          "euros": 240000000,
           "kind": "depense",
           "period": "annuel",
           "horizon": "Investissements supplémentaires par an",
@@ -408,27 +441,27 @@
           "allocation": [
             {
               "label": "Relocalisation de la filière grand public",
-              "value": 110000000.0
+              "value": 110000000
             },
             {
               "label": "Économie circulaire",
-              "value": 20000000.0
+              "value": 20000000
             },
             {
               "label": "Textiles professionnels",
-              "value": 70000000.0
+              "value": 70000000
             },
             {
               "label": "Textiles techniques",
-              "value": 10000000.0
+              "value": 10000000
             },
             {
               "label": "Recherche et nouvelles frontières",
-              "value": 20000000.0
+              "value": 20000000
             },
             {
               "label": "Formation",
-              "value": 10000000.0
+              "value": 10000000
             }
           ]
         }
@@ -442,7 +475,7 @@
         {
           "id": "philippe-trajectoire",
           "label": "Économies annoncées à la fin du quinquennat",
-          "euros": 150000000000.0,
+          "euros": 150000000000,
           "kind": "trajectoire",
           "period": "horizon",
           "horizon": "Fin du quinquennat ; montant non présenté comme un cumul",
@@ -476,7 +509,7 @@
         {
           "id": "philippot-economies",
           "label": "Économies annuelles visées dans le tableau",
-          "euros": 60000000000.0,
+          "euros": 60000000000,
           "kind": "economie",
           "period": "annuel",
           "horizon": "Par an selon le tableau budgétaire",
@@ -488,26 +521,26 @@
           "allocation": [
             {
               "label": "Contribution nette à l’UE",
-              "value": 15000000000.0
+              "value": 15000000000
             },
             {
               "label": "Doublons dans la fonction publique territoriale",
-              "value": 30000000000.0
+              "value": 30000000000
             },
             {
               "label": "Dépenses liées à l’immigration",
-              "value": 10000000000.0
+              "value": 10000000000
             },
             {
               "label": "Soutien énergétique et bouclier",
-              "value": 5000000000.0
+              "value": 5000000000
             }
           ]
         },
         {
           "id": "philippot-recettes",
           "label": "Recettes et gains budgétaires projetés",
-          "euros": 74800000000.0,
+          "euros": 74800000000,
           "kind": "recette",
           "period": "annuel",
           "horizon": "Par an ; projections conditionnées aux hypothèses du projet",
@@ -519,31 +552,31 @@
           "allocation": [
             {
               "label": "Récupération de droits de douane",
-              "value": 3500000000.0
+              "value": 3500000000
             },
             {
               "label": "Droits de douane supplémentaires",
-              "value": 7000000000.0
+              "value": 7000000000
             },
             {
               "label": "Croissance supposée de 3 %",
-              "value": 30000000000.0
+              "value": 30000000000
             },
             {
               "label": "Baisse du chômage",
-              "value": 5000000000.0
+              "value": 5000000000
             },
             {
               "label": "Impôt sur les sociétés et coûts énergétiques",
-              "value": 4300000000.0
+              "value": 4300000000
             },
             {
               "label": "Lutte contre la fraude fiscale",
-              "value": 20000000000.0
+              "value": 20000000000
             },
             {
               "label": "Lutte contre la fraude sociale",
-              "value": 5000000000.0
+              "value": 5000000000
             }
           ]
         }
@@ -557,7 +590,7 @@
         {
           "id": "retailleau-trajectoire",
           "label": "Économies annoncées en 2032",
-          "euros": 197000000000.0,
+          "euros": 197000000000,
           "kind": "economie",
           "period": "horizon",
           "horizon": "En 2032 ; montant non présenté comme un cumul",
@@ -569,11 +602,38 @@
           "allocation": [
             {
               "label": "Réduction du déficit",
-              "value": 146000000000.0
+              "value": 146000000000
             },
             {
               "label": "Montant « rendu » annoncé",
-              "value": 51000000000.0
+              "value": 51000000000
+            }
+          ]
+        },
+        {
+          "id": "retailleau-depenses-perimetre",
+          "label": "Révision du périmètre des dépenses publiques",
+          "euros": 32000000000,
+          "kind": "economie",
+          "period": "non-precise",
+          "horizon": "Mesure 119 du plan de finances publiques",
+          "approximate": false,
+          "funding": null,
+          "source": "retailleau-32-md-economies",
+          "locator": "Le financement, mesure 119, mise à jour du 12 novembre",
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Transferts au secteur privé",
+              "value": 5000000000
+            },
+            {
+              "label": "Réexamen de trois politiques",
+              "value": 13000000000
+            },
+            {
+              "label": "Suppression de dispositifs",
+              "value": 14000000000
             }
           ]
         }
@@ -587,7 +647,7 @@
         {
           "id": "roussel-pacte-investissement",
           "label": "Financement du pacte d’investissement",
-          "euros": 500000000000.0,
+          "euros": 500000000000,
           "kind": "financement",
           "period": "pluriannuel",
           "horizon": "Sur cinq ans",
@@ -622,7 +682,7 @@
         {
           "id": "ruffin-labo",
           "label": "Laboratoire public d’intelligence artificielle",
-          "euros": 1000000000.0,
+          "euros": 1000000000,
           "kind": "depense",
           "period": "annuel",
           "horizon": "Par an",
@@ -636,7 +696,7 @@
         {
           "id": "ruffin-taxe-patrimoines",
           "label": "Taxe sur les très hauts patrimoines",
-          "euros": 18500000000.0,
+          "euros": 18500000000,
           "kind": "recette",
           "period": "annuel",
           "horizon": "Montant annuel estimé",
@@ -650,7 +710,7 @@
         {
           "id": "ruffin-dividende-climatique",
           "label": "Contribution climatique sur les dividendes",
-          "euros": 6000000000.0,
+          "euros": 6000000000,
           "kind": "recette",
           "period": "annuel",
           "horizon": "Recettes estimées avec un taux de 2 % sur les dividendes",
@@ -664,7 +724,7 @@
         {
           "id": "ruffin-investissements-2027",
           "label": "Investissements supplémentaires prévus en 2027",
-          "euros": 5700000000.0,
+          "euros": 5700000000,
           "kind": "depense",
           "period": "annuel",
           "horizon": "Coût supplémentaire pour l’exercice 2027",
@@ -678,7 +738,7 @@
         {
           "id": "ruffin-logements-jeunes",
           "label": "Construction de logements étudiants et de jeunes actifs",
-          "euros": 8000000000.0,
+          "euros": 8000000000,
           "kind": "depense",
           "period": "pluriannuel",
           "horizon": "Investissement additionnel total sur cinq ans",
@@ -688,7 +748,7 @@
           "locator": "Un choc de construction grâce à la mobilisation du foncier public et des friches privées",
           "allocationUnit": null,
           "allocation": [],
-          "eurosMax": 12000000000.0
+          "eurosMax": 12000000000
         }
       ]
     },
@@ -700,7 +760,7 @@
         {
           "id": "tondelier-violences",
           "label": "Loi intégrale contre les violences sexistes et sexuelles",
-          "euros": 3000000000.0,
+          "euros": 3000000000,
           "kind": "depense",
           "period": "non-precise",
           "horizon": "Enveloppe annoncée ; période non précisée",
@@ -714,7 +774,7 @@
         {
           "id": "tondelier-fonds-ecoles",
           "label": "Fonds vert pour rénover les écoles",
-          "euros": 2000000000.0,
+          "euros": 2000000000,
           "kind": "depense",
           "period": "annuel",
           "horizon": "Par an, pour les écoles, collèges et lycées",
@@ -735,7 +795,7 @@
         {
           "id": "mikolajczak-economies",
           "label": "Économies du contre-budget",
-          "euros": 46400000000.0,
+          "euros": 46400000000,
           "kind": "economie",
           "period": "annuel",
           "horizon": "Année 2027 uniquement",
@@ -747,26 +807,26 @@
           "allocation": [
             {
               "label": "Pensions de retraite",
-              "value": 25000000000.0
+              "value": 25000000000
             },
             {
               "label": "État et collectivités",
-              "value": 14000000000.0
+              "value": 14000000000
             },
             {
               "label": "Santé et protection sociale",
-              "value": 6600000000.0
+              "value": 6600000000
             },
             {
               "label": "Charge de la dette",
-              "value": 800000000.0
+              "value": 800000000
             }
           ]
         },
         {
           "id": "mikolajczak-recettes",
           "label": "Recettes supplémentaires",
-          "euros": 59000000000.0,
+          "euros": 59000000000,
           "kind": "recette",
           "period": "annuel",
           "horizon": "Année 2027 uniquement",
@@ -778,26 +838,26 @@
           "allocation": [
             {
               "label": "Entreprises",
-              "value": 15000000000.0
+              "value": 15000000000
             },
             {
               "label": "Ménages et patrimoine",
-              "value": 31800000000.0
+              "value": 31800000000
             },
             {
               "label": "Fiscalité des retraites",
-              "value": 5900000000.0
+              "value": 5900000000
             },
             {
               "label": "Fiscalité écologique et santé",
-              "value": 6300000000.0
+              "value": 6300000000
             }
           ]
         },
         {
           "id": "mikolajczak-transition",
           "label": "Transition écologique",
-          "euros": 5800000000.0,
+          "euros": 5800000000,
           "kind": "depense",
           "period": "annuel",
           "horizon": "Année 2027 uniquement",
@@ -809,34 +869,34 @@
           "allocation": [
             {
               "label": "Train et fret",
-              "value": 1000000000.0
+              "value": 1000000000
             },
             {
               "label": "Rénovation des logements",
-              "value": 1000000000.0
+              "value": 1000000000
             },
             {
               "label": "Restauration de la nature",
-              "value": 1000000000.0
+              "value": 1000000000
             },
             {
               "label": "Transition agricole",
-              "value": 700000000.0
+              "value": 700000000
             },
             {
               "label": "Électricité bas carbone",
-              "value": 2000000000.0
+              "value": 2000000000
             },
             {
               "label": "Bonification des prêts",
-              "value": 100000000.0
+              "value": 100000000
             }
           ]
         },
         {
           "id": "mikolajczak-canicules",
           "label": "Adaptation aux canicules",
-          "euros": 9500000000.0,
+          "euros": 9500000000,
           "kind": "depense",
           "period": "annuel",
           "horizon": "Année 2027 uniquement",
@@ -848,34 +908,34 @@
           "allocation": [
             {
               "label": "Écoles et espaces publics",
-              "value": 3500000000.0
+              "value": 3500000000
             },
             {
               "label": "Climatisation des lieux sensibles",
-              "value": 2000000000.0
+              "value": 2000000000
             },
             {
               "label": "Protection des travailleurs",
-              "value": 1200000000.0
+              "value": 1200000000
             },
             {
               "label": "Personnes et lieux vulnérables",
-              "value": 1750000000.0
+              "value": 1750000000
             },
             {
               "label": "Sécurité civile",
-              "value": 1000000000.0
+              "value": 1000000000
             }
           ],
           "allocationDifference": {
-            "euros": -50000000.0,
+            "euros": -50000000,
             "note": "Le plan d’adaptation détaille cinq postes."
           }
         },
         {
           "id": "mikolajczak-pouvoir-achat",
           "label": "Mesures de pouvoir d’achat",
-          "euros": 7000000000.0,
+          "euros": 7000000000,
           "kind": "trajectoire",
           "period": "annuel",
           "horizon": "Année 2027 uniquement",
@@ -887,22 +947,22 @@
           "allocation": [
             {
               "label": "Baisse de l’accise sur l’électricité",
-              "value": 4600000000.0
+              "value": 4600000000
             },
             {
               "label": "Chèque énergie",
-              "value": 1400000000.0
+              "value": 1400000000
             },
             {
               "label": "Leasing social électrique",
-              "value": 1000000000.0
+              "value": 1000000000
             }
           ]
         },
         {
           "id": "mikolajczak-prets",
           "label": "Prêts et apports de fonds propres",
-          "euros": 5000000000.0,
+          "euros": 5000000000,
           "kind": "financement",
           "period": "annuel",
           "horizon": "Année 2027 uniquement",
@@ -910,6 +970,92 @@
           "funding": "Prêts et apports de fonds propres annoncés par le parti, dont 3,8 Md€ liés à la transition. Ils restent distincts des dépenses ; la bonification de 100 M€ est déjà comptée dans la transition.",
           "source": "equinoxe-contre-budget-2027",
           "locator": "Encadré « Les prêts publics »",
+          "allocationUnit": null,
+          "allocation": []
+        }
+      ]
+    },
+    {
+      "candidate": "lepen",
+      "scope": "campagne",
+      "note": "Présentation des retraites du 17 novembre et montants pour 2027 tirés du contre-budget parlementaire du groupe RN, publié en octobre. Chaque montant conserve le périmètre du document cité.",
+      "entries": [
+        {
+          "id": "lepen-retraites-cout-brut",
+          "label": "Coût brut annoncé des mesures d’âge et de droits",
+          "euros": 18600000000,
+          "kind": "depense",
+          "period": "horizon",
+          "horizon": "Chiffrage du RN pour 2032",
+          "approximate": false,
+          "funding": null,
+          "source": "rn-retraites-17-novembre-2026",
+          "locator": "Conférence du 17 novembre, chapitre Chiffrage à 31:34",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "lepen-retraites-parametres",
+          "label": "Gains attribués aux paramètres de la réforme",
+          "euros": 8500000000,
+          "kind": "economie",
+          "period": "horizon",
+          "horizon": "Pour 2032, somme des deux postes explicités dans le chiffrage",
+          "approximate": false,
+          "funding": null,
+          "source": "rn-retraites-17-novembre-2026",
+          "locator": "Conférence du 17 novembre, chapitre Chiffrage à 31:34",
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Plancher de 160 trimestres",
+              "value": 5800000000
+            },
+            {
+              "label": "Modification de la décote",
+              "value": 2700000000
+            }
+          ]
+        },
+        {
+          "id": "groupe-rn-iff-2027",
+          "label": "Impôt sur la fortune financière en remplacement de l’IFI",
+          "euros": 5000000000,
+          "kind": "recette",
+          "period": "horizon",
+          "horizon": "Année 2027, contre-budget du groupe RN",
+          "approximate": false,
+          "funding": null,
+          "source": "groupe-rn-contre-budget-2027",
+          "locator": "Annexe chiffrée, p. 12 du PDF, IFF en remplacement de l’IFI",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "groupe-rn-100-renov-2027",
+          "label": "Remplacement de MaPrimeRénov’ par 100 % Renov’, montant annoncé",
+          "euros": 5100000000,
+          "kind": "recette",
+          "period": "horizon",
+          "horizon": "Année 2027, poste classé dans les nouvelles recettes par le groupe RN",
+          "approximate": false,
+          "funding": null,
+          "source": "groupe-rn-contre-budget-2027",
+          "locator": "Annexe chiffrée, p. 12 du PDF, Remplacement de MaPrimeRenov",
+          "allocationUnit": null,
+          "allocation": []
+        },
+        {
+          "id": "groupe-rn-cumul-soignants-2027",
+          "label": "Cumul emploi-retraite des soignants, baisse chiffrée de prélèvements",
+          "euros": 200000000,
+          "kind": "baisse-recette",
+          "period": "horizon",
+          "horizon": "Année 2027, contre-budget du groupe RN",
+          "approximate": false,
+          "funding": null,
+          "source": "groupe-rn-contre-budget-2027",
+          "locator": "Annexe chiffrée, p. 12 du PDF, Favoriser le cumul-emploi retraite du personnel soignant",
           "allocationUnit": null,
           "allocation": []
         }

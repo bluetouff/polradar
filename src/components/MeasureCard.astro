@@ -14,7 +14,7 @@ const candidate = candidateById(measure.candidate),
 
 <article
   class:list={['measure-row', { compact }]}
-  data-search={`${candidate.name} ${theme.label} ${measure.title} ${measure.description}`}
+  data-search={`${measure.partyAuthor ?? candidate.name} ${theme.label} ${measure.title} ${measure.description}`}
 >
   <a
     class="measure-symbol"
@@ -25,7 +25,11 @@ const candidate = candidateById(measure.candidate),
   </a>
   <div class="measure-content">
     <div class="measure-meta">
-      <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+      {measure.partyAuthor ? (
+        <strong>{measure.partyAuthor}</strong>
+      ) : (
+        <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+      )}
       <span class:list={['tag', { archive: measure.scope === 'archive' }]}>
         {scopes[measure.scope]}
       </span>

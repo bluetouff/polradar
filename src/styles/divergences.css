@@ -7,12 +7,6 @@
   margin: 5px 0 22px;
   border-bottom: 1px solid var(--line);
 }
-.divergence-kicker {
-  font: 10px var(--mono);
-  letter-spacing: 0.08em;
-  color: var(--accent);
-  margin-bottom: 13px;
-}
 .divergence-heading h1 {
   font-size: 28px;
 }
@@ -55,7 +49,11 @@
 }
 .divergence-toolbar select {
   width: 100%;
-  background: white;
+  min-width: 0;
+  min-height: 44px;
+}
+.divergence-toolbar > p:empty {
+  display: none;
 }
 .divergence-toolbar > p {
   flex-basis: 100%;
@@ -90,15 +88,6 @@
   background: #e3e8df;
   padding: 2px 6px;
 }
-.divergence-tabs > a[aria-current='true'] {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--paper);
-}
-.divergence-tabs > a[aria-current='true'] small {
-  background: #40616a;
-  color: white;
-}
 .divergence-panel {
   padding: 28px;
   background: #fffdf7;
@@ -127,6 +116,123 @@
   margin-left: auto;
   font: 11px var(--mono);
   color: var(--muted);
+}
+.divergence-context {
+  max-width: 86ch;
+  margin: 12px 0 22px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.divergence-position-grid {
+  display: grid;
+  gap: 10px;
+}
+.divergence-position {
+  display: grid;
+  grid-template-columns: minmax(142px, 0.22fr) minmax(0, 1fr);
+  border: 1px solid #d6ddd3;
+  border-left: 3px solid #587868;
+  background: #f5f6ee;
+}
+.divergence-position > header {
+  align-content: start;
+  justify-items: start;
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  border-right: 1px solid #d6ddd3;
+}
+.divergence-position h3 {
+  font-size: 14px;
+  line-height: 1.35;
+}
+.divergence-position > header > span {
+  padding: 3px 7px;
+  background: #e3e9df;
+  color: var(--ink);
+  font: 11px/1.4 var(--mono);
+}
+.divergence-position-records {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 188px), 1fr));
+  gap: 1px;
+  background: #d6ddd3;
+}
+.divergence-position-record {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 15px;
+  background: #fffdf7;
+  overflow-wrap: anywhere;
+}
+.position-byline {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.25;
+}
+.position-byline a {
+  text-decoration: none;
+}
+.position-byline p {
+  font: 10px/1.4 var(--mono);
+  color: var(--muted);
+}
+.position-portrait {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+}
+.position-party {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  background: #e3e9df;
+  font: 11px var(--mono);
+}
+.divergence-position-record h4 {
+  font-size: 14px;
+  line-height: 1.35;
+}
+.divergence-position-record h4 a {
+  text-decoration: none;
+}
+.divergence-position-record a:hover {
+  text-decoration: underline;
+}
+.divergence-position-record h4 .icon {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  vertical-align: -2px;
+}
+.divergence-position-record > p {
+  font-size: 12px;
+  line-height: 1.55;
+}
+.divergence-position-record .source-links {
+  margin-top: auto;
+  padding-top: 5px;
+  font-size: 11px;
+  line-height: 1.45;
+}
+.divergence-related {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.divergence-related .icon {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
 }
 .divergence-figure {
   margin: 20px 0 30px;
@@ -252,6 +358,18 @@
   margin: 16px 22px 0 0;
   font-size: 12px;
 }
+@media (max-width: 900px) {
+  .divergence-position {
+    grid-template-columns: 1fr;
+  }
+  .divergence-position > header {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    padding: 10px 12px;
+    border-right: 0;
+    border-bottom: 1px solid #d6ddd3;
+  }
+}
 @media (max-width: 650px) {
   .divergence-heading {
     gap: 14px;
@@ -261,7 +379,15 @@
     font-size: 26px;
   }
   .divergence-count {
-    display: none;
+    gap: 8px;
+    padding-left: 12px;
+  }
+  .divergence-count strong {
+    font-size: 26px;
+  }
+  .divergence-count span {
+    font-size: 9px;
+    line-height: 1.5;
   }
   .divergence-heading > div > p:last-child {
     font-size: 12px;
@@ -324,7 +450,7 @@
   }
   .divergence-record strong {
     font-size: 27px;
-    white-space: nowrap;
+    text-align: right;
   }
   .divergence-record-name {
     max-width: 17ch;

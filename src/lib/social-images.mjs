@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
 import { francePath, projectFrance } from './campaign-visuals-view.mjs';
+import { divergenceGroups } from './divergences.mjs';
 const read = (name) =>
   JSON.parse(readFileSync(resolve('src/data', `${name}.json`), 'utf8'));
 // Astro executes a bundled copy in dist/.prerender. Build inputs stay in the
@@ -27,6 +28,8 @@ const watch = read('watch'),
   events = read('events'),
   airtime = read('airtime');
 const edition = read('meta').edition;
+const curatedComparisons = read('divergence-positions');
+const quantitativeComparisons = divergenceGroups(measures, candidates, themes);
 const number = (n) => n.toLocaleString('fr-FR');
 const counts = (rows, key) =>
   [...new Set(rows.map((r) => r[key]))].map((label) => ({
@@ -269,24 +272,29 @@ const defs = [
   [
     'divergences',
     '/divergences/',
-    'Paramètres des propositions',
+    'Comparaisons des programmes',
     'Carte des\ndivergences',
-    'Lire les montants et leurs conditions.',
+    'Comparez les mesures, les montants et leurs conditions.',
     'clay',
-    {
-      kind: 'divergences',
-      rows: current
-        .filter((m) => m.theme === 'retraites')
-        .flatMap((m) =>
-          m.metrics
-            .filter((p) => p.key === 'age-depart' && p.unit === 'ans')
-            .map((p) => ({
-              label: candidates.find((c) => c.id === m.candidate).name,
-              value: p.value,
-            })),
-        )
-        .slice(0, 5),
-    },
+    tiles(
+      [
+        [
+          'Sujets documentés',
+          curatedComparisons.length + quantitativeComparisons.length,
+        ],
+        ['Comparaisons par mesure', curatedComparisons.length],
+        ['Axes chiffrés', quantitativeComparisons.length],
+        [
+          'Thèmes',
+          new Set(
+            [...curatedComparisons, ...quantitativeComparisons].map(
+              (row) => row.theme,
+            ),
+          ).size,
+        ],
+      ],
+      'Comparaisons du corpus',
+    ),
   ],
   [
     'evolution',

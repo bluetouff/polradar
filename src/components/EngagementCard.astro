@@ -9,7 +9,7 @@ const candidate = candidateById(item.candidate);
 
 <article
   class="engagement-card"
-  data-search={`${candidate.name} ${themeById(item.theme).label} ${item.title} ${item.bullets.join(' ')}`}
+  data-search={`${item.partyAuthor ?? candidate.name} ${themeById(item.theme).label} ${item.title} ${item.bullets.join(' ')}`}
 >
   <div class="card-meta">
     <a href={`/themes/${item.theme}/`}>{themeById(item.theme).label}</a>
@@ -22,7 +22,11 @@ const candidate = candidateById(item.candidate);
   </h3>
   <p>{item.bullets[0]}</p>
   <div class="engagement-author">
-    <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+    {item.partyAuthor ? (
+      <strong>{item.partyAuthor}</strong>
+    ) : (
+      <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+    )}
     <a
       href={`/engagements/${item.id}/`}
       aria-label={`Lire la fiche ${item.title}`}

@@ -154,7 +154,11 @@ const maxCount = Math.max(
             ({ measure, candidate, source }) => (
               <article class="digital-card">
                 <div class="digital-byline">
-                  <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+                  {measure.partyAuthor ? (
+                    <strong>{measure.partyAuthor}</strong>
+                  ) : (
+                    <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+                  )}
                   <span>{scopes[measure.scope]}</span>
                 </div>
                 <h3>

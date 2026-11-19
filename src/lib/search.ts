@@ -48,7 +48,7 @@ export async function searchEntries(): Promise<SearchEntry[]> {
       id: `mesure-${measure.id}`,
       type: 'mesure',
       title: measure.title,
-      text: `${candidates.find((c) => c.id === measure.candidate)!.name} ${themes.find((t) => t.id === measure.theme)!.label} ${measure.description} ${measure.beneficiaries || ''} ${measure.timing || ''} ${measure.financing || ''} ${engagements.find((e) => e.id === measure.parentId)!.title}`,
+      text: `${measure.partyAuthor ?? candidates.find((c) => c.id === measure.candidate)!.name} ${themes.find((t) => t.id === measure.theme)!.label} ${measure.description} ${measure.beneficiaries || ''} ${measure.timing || ''} ${measure.financing || ''} ${engagements.find((e) => e.id === measure.parentId)!.title}`,
       url: `/mesures/${measure.id}/`,
       candidate: measure.candidate,
       theme: measure.theme,

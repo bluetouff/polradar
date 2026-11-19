@@ -21,7 +21,10 @@ const candidate = candidateById(item.candidate);
 const theme = themeById(item.theme);
 ---
 
-<Base title={`${item.title} : ${candidate.name}`} description={item.bullets[0]}>
+<Base
+  title={`${item.title} : ${item.partyAuthor ?? candidate.name}`}
+  description={item.bullets[0]}
+>
   <div class="breadcrumbs">
     <a href="/engagements/">Engagements</a>
     <span>/</span>
@@ -29,7 +32,11 @@ const theme = themeById(item.theme);
   </div>
   <header class="page-title article-title">
     <div class="card-meta">
-      <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+      {item.partyAuthor ? (
+        <strong>{item.partyAuthor}</strong>
+      ) : (
+        <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+      )}
       <span class:list={['tag', { archive: item.scope === 'archive' }]}>
         {scopes[item.scope]}
       </span>

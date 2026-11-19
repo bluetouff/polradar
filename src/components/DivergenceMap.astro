@@ -1,7 +1,11 @@
 ---
 import { getImage } from 'astro:assets';
-import { divergenceLayout, formatMetricValue } from '../lib/divergences.mjs';
-import { candidates, initials, scopes } from '../lib/data';
+import {
+  divergenceLayout,
+  formatDivergenceValue,
+  formatMetricValue,
+} from '../lib/divergences.mjs';
+import { initials, scopes } from '../lib/data';
 import { portraitFor } from '../lib/portraits';
 import SourceLinks from './SourceLinks.astro';
 import Icon from './Icon.astro';
@@ -9,15 +13,18 @@ interface Props {
   group: ReturnType<
     typeof import('../lib/divergences.mjs').divergenceGroups
   >[number];
+  related?: { id: string; label: string; total: number };
 }
-const { group } = Astro.props;
+const { group, related } = Astro.props;
 const layout = divergenceLayout(group.values, 720);
 const faces = new Map(
   await Promise.all(
     group.values.map(async (row) => {
-      const portrait = portraitFor(row.candidate);
+      const portrait = row.measure.partyAuthor
+        ? null
+        : portraitFor(row.candidate);
       return [
-        row.candidate,
+        row.measureId,
         portrait?.preserveOriginal
           ? portrait.image.src
           : portrait
@@ -38,6 +45,7 @@ const faces = new Map(
   ),
 );
 const format = (value: number) => formatMetricValue(value);
+const exact = (value: number) => formatDivergenceValue(value, group.unit);
 ---
 
 <section
@@ -50,9 +58,14 @@ const format = (value: number) => formatMetricValue(value);
     <p>{group.themeLabel}</p>
     <h2>{group.label}</h2>
     <span>
-      {group.values.length} candidatures · {group.unit}
+      {group.values.length} profils et partis · {group.unit}
     </span>
   </header>
+  {related && (
+    <a class="divergence-related" href={`#${related.id}`}>
+      {related.label} · {related.total} profils et partis <Icon name="arrow" />
+    </a>
+  )}
   <figure class="divergence-figure">
     <svg
       class="divergence-svg"
@@ -60,7 +73,7 @@ const format = (value: number) => formatMetricValue(value);
       height={layout.height}
       viewBox={`0 0 ${layout.width} ${layout.height}`}
       role="img"
-      aria-label={`${group.label} en ${group.unit}. ${group.values.map((row) => `${row.name} : ${format(row.value)}`).join('. ')}`}
+      aria-label={`${group.label} en ${group.unit}. ${group.values.map((row) => `${row.name} : ${exact(row.value)}`).join('. ')}`}
     >
       <g data-axis-ticks>
         {layout.ticks.map((tick, index) => (
@@ -97,14 +110,13 @@ const format = (value: number) => formatMetricValue(value);
       />
       {group.values.map((row, index) => {
         const point = layout.points[index],
-          face = faces.get(row.candidate);
-        const candidate = candidates.find(
-          (candidate) => candidate.id === row.candidate,
-        )!;
+          face = faces.get(row.measureId);
         return (
           <g
             data-divergence-point
-            data-candidate={row.candidate}
+            data-candidate={
+              row.measure.partyAuthor ? row.measureId : row.candidate
+            }
             data-value={row.value}
           >
             <line
@@ -116,9 +128,9 @@ const format = (value: number) => formatMetricValue(value);
             />
             <a
               href={`/mesures/${row.measureId}/`}
-              aria-label={`${row.name}, ${format(row.value)} ${group.unit} : lire la proposition`}
+              aria-label={`${row.name}, ${exact(row.value)} : lire la proposition`}
             >
-              <title>{row.name} : {format(row.value)} {group.unit}</title>
+              <title>{row.name} : {exact(row.value)}</title>
               <circle
                 data-halo
                 class="divergence-halo"
@@ -136,7 +148,7 @@ const format = (value: number) => formatMetricValue(value);
                   viewBox="0 0 50 50"
                 >
                   <defs>
-                    <clipPath id={`face-${group.id}-${row.candidate}`}>
+                    <clipPath id={`face-${group.id}-${row.measureId}`}>
                       <circle cx="25" cy="25" r="25" />
                     </clipPath>
                   </defs>
@@ -144,7 +156,7 @@ const format = (value: number) => formatMetricValue(value);
                     href={face}
                     width="50"
                     height="50"
-                    clip-path={`url(#face-${group.id}-${row.candidate})`}
+                    clip-path={`url(#face-${group.id}-${row.measureId})`}
                   />
                 </svg>
               ) : (
@@ -154,7 +166,7 @@ const format = (value: number) => formatMetricValue(value);
                   y={point.y + 4}
                   text-anchor="middle"
                 >
-                  {initials(candidate.name)}
+                  {initials(row.name)}
                 </text>
               )}
               <text
@@ -180,16 +192,26 @@ const format = (value: number) => formatMetricValue(value);
   </figure>
   <div class="divergence-records">
     {group.values.map((row) => {
-      const candidate = candidates.find(
-        (candidate) => candidate.id === row.candidate,
-      )!;
-      const measure = row.measure!;
+      const { measure } = row;
       return (
-        <article class="divergence-record" data-focus-candidate={candidate.id}>
+        <article
+          class="divergence-record"
+          data-focus-candidate={
+            measure.partyAuthor ? row.measureId : row.candidate
+          }
+        >
           <header>
-            <span class="divergence-record-name">{candidate.name}</span>
+            <span class="divergence-record-name">{row.name}</span>
             <strong>
-              {format(row.value)} <small>{group.unit}</small>
+              {group.unit === 'ans' &&
+              !Number.isInteger(row.value) &&
+              Number.isInteger(row.value * 12) ? (
+                exact(row.value)
+              ) : (
+                <>
+                  {format(row.value)} <small>{group.unit}</small>
+                </>
+              )}
             </strong>
           </header>
           <p class="divergence-scope">

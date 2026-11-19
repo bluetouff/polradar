@@ -1,63 +1,119 @@
 ---
 import Base from '../layouts/Base.astro';
 import DivergenceMap from '../components/DivergenceMap.astro';
+import DivergencePositions from '../components/DivergencePositions.astro';
 import Icon from '../components/Icon.astro';
-import { candidates, measures, themes } from '../lib/data';
-import { divergenceGroups } from '../lib/divergences.mjs';
+import { themes } from '../lib/data';
+import {
+  numericDivergences,
+  positionDivergences,
+} from '../lib/divergence-data';
 import '../styles/divergences.css';
-const groups = divergenceGroups(measures, candidates, themes);
+
+const topics = themes.flatMap((theme) => {
+  const comparisons = [
+    ...positionDivergences.filter((topic) => topic.theme === theme.id),
+    ...numericDivergences
+      .filter((group) => group.theme === theme.id)
+      .map((group) => ({ ...group, total: group.values.length })),
+  ];
+  return comparisons.length ? [{ label: theme.label, comparisons }] : [];
+});
+const total = numericDivergences.length + positionDivergences.length;
+const relatedTopics: Record<string, string> = {
+  'retraites-age-depart': 'retraites-conditions-depart',
+  'retraites-annuites': 'retraites-conditions-depart',
+  'travail-smic-mensuel-net': 'travail-salaire-minimum',
+  'fiscalite-seuil-exoneration-heritage': 'fiscalite-transmission-patrimoine',
+  'climat-nouveaux-epr2': 'climat-production-nucleaire',
+};
+const profiles = new Set([
+  ...numericDivergences.flatMap((group) =>
+    group.values.map(({ name }) => name),
+  ),
+  ...positionDivergences.flatMap((topic) =>
+    topic.positions.flatMap((position) =>
+      position.entries.map(({ author }) => author),
+    ),
+  ),
+]).size;
 ---
 
 <Base title="Carte des divergences" section="/divergences/">
   <header class="divergence-heading">
     <div>
-      <p class="divergence-kicker">PROPOSITIONS / COMPARAISONS</p>
       <h1>Carte des divergences</h1>
       <p>
-        Les écarts entre des cibles précises, avec leurs conditions et leurs
-        sources.
+        Comparez les règles proposées, les montants annoncés et leurs
+        conditions.
       </p>
     </div>
     <div class="divergence-count">
-      <strong>{groups.length}</strong>
+      <strong>{total}</strong>
       <span>
-        paramètres
+        sujets
         <br />
-        comparables
+        {profiles} profils et partis
       </span>
     </div>
   </header>
   <div class="divergence-toolbar" data-divergence-controls hidden>
+    <label>
+      Sujet à comparer
+      <select data-divergence-select>
+        {topics.map(({ label, comparisons }) => (
+          <optgroup label={label}>
+            {comparisons.map((topic) => (
+              <option value={topic.id}>
+                {topic.label} ({topic.total})
+              </option>
+            ))}
+          </optgroup>
+        ))}
+      </select>
+    </label>
     <button type="button" class="button" data-divergence-share>
       <Icon name="external" />
       Copier le lien
     </button>
-    <p role="status" aria-live="polite" data-divergence-status></p>
+    <p role="status" data-divergence-status></p>
   </div>
-  <nav class="divergence-tabs" aria-label="Paramètres comparés">
-    {groups.map((group) => (
-      <a href={`#${group.id}`} data-axis-link={group.id}>
-        <Icon name={group.theme} />
-        <span>{group.label}</span>
-        <small>{group.values.length}</small>
-      </a>
-    ))}
+  <nav
+    class="divergence-tabs"
+    aria-label="Sujets comparés"
+    data-divergence-index
+  >
+    {topics
+      .flatMap(({ comparisons }) => comparisons)
+      .map((topic) => (
+        <a href={`#${topic.id}`} data-axis-link={topic.id}>
+          <Icon name={topic.theme} />
+          <span>{topic.label}</span>
+          <small>{topic.total}</small>
+        </a>
+      ))}
   </nav>
   <div class="divergence-panels">
-    {groups.map((group) => (
-      <DivergenceMap group={group} />
+    {positionDivergences.map((topic) => (
+      <DivergencePositions topic={topic} />
+    ))}
+    {numericDivergences.map((group) => (
+      <DivergenceMap
+        group={group}
+        related={positionDivergences.find(
+          (topic) => topic.id === relatedTopics[group.id],
+        )}
+      />
     ))}
   </div>
   <aside class="divergence-method">
     <h2>Lire cette carte</h2>
     <p>
-      Chaque axe rapproche des valeurs exprimées dans la même unité pour un même
-      paramètre. Les projets de parti et les orientations sont identifiés dans
-      les fiches. Les archives de 2022 sont exclues de cette vue.
-    </p>
-    <p>
-      La carte porte sur les valeurs comparables du corpus actuel. Les dossiers
-      candidats permettent de lire les autres propositions.
+      Les cartes regroupent les propositions par mesure ou mode d’application.
+      Les axes chiffrés rapprochent les valeurs d’un même paramètre exprimées
+      dans la même unité. Chaque fiche précise la source et le contexte de
+      l’annonce. Le corpus couvre la campagne 2027 et les orientations
+      documentées pour cette échéance.
     </p>
     <a href="/candidats/">Explorer les candidatures ↗</a>
     <a href="/comparer/">Comparateur par thème ↗</a>

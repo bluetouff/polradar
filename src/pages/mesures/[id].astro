@@ -24,11 +24,18 @@ const candidate = candidateById(measure.candidate),
   versions = measureVersions(measure.id);
 ---
 
-<Base title={`${measure.title} : ${candidate.name}`} section="/mesures/">
+<Base
+  title={`${measure.title} : ${measure.partyAuthor ?? candidate.name}`}
+  section="/mesures/"
+>
   <div class="breadcrumbs">
     <a href="/mesures/">Mesures</a>
     <span>/</span>
-    <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+    {measure.partyAuthor ? (
+      <span>{measure.partyAuthor}</span>
+    ) : (
+      <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+    )}
     <span>/</span>
     <a href={`/themes/${theme.id}/`}>{theme.label}</a>
   </div>
@@ -38,7 +45,7 @@ const candidate = candidateById(measure.candidate),
     </span>
     <div>
       <p class="measure-meta">
-        {candidate.name}{' '}
+        {measure.partyAuthor ?? candidate.name}{' '}
         <span class:list={['tag', { archive: measure.scope === 'archive' }]}>
           {scopes[measure.scope]}
         </span>

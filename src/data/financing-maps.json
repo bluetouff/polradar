@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checked": "2026-11-18",
+  "checked": "2026-11-19",
   "maps": [
     {
       "id": "lisnard-affectations",
@@ -171,6 +171,36 @@
       "relation": "affectation",
       "title": "Mesures de pouvoir d’achat",
       "note": "L’enveloppe associe une baisse de recettes fiscales et deux mesures de soutien. La source la finance par les recettes sur le patrimoine et les hauts revenus, sans quote-part précise.",
+      "origin": null,
+      "assumptions": []
+    },
+    {
+      "id": "glucks-contribution-climat",
+      "candidate": "glucksmann",
+      "budgetEntry": "glucks-contribution-climatique",
+      "relation": "affectation",
+      "title": "Contribution exceptionnelle affectée à la transition",
+      "note": "Le livret annonce une recette sur une seule année, intégralement destinée au fonds pour les investissements climatiques.",
+      "origin": null,
+      "assumptions": []
+    },
+    {
+      "id": "lepen-retraites-gains-parametriques",
+      "candidate": "lepen",
+      "budgetEntry": "lepen-retraites-parametres",
+      "relation": "composition",
+      "title": "Plancher de trimestres et décote",
+      "note": "Gains projetés par le RN en 2032 pour ces deux paramètres. Les autres mesures présentées dans le chiffrage portent sur des postes distincts.",
+      "origin": null,
+      "assumptions": []
+    },
+    {
+      "id": "retailleau-revision-depenses",
+      "candidate": "retailleau",
+      "budgetEntry": "retailleau-depenses-perimetre",
+      "relation": "composition",
+      "title": "Révision du périmètre des dépenses publiques",
+      "note": "Trois postes de la mesure 119 du plan de finances publiques, selon les montants publiés par la campagne.",
       "origin": null,
       "assumptions": []
     }

@@ -1,0 +1,462 @@
+[
+  {
+    "id": "retraites-conditions-depart",
+    "theme": "retraites",
+    "label": "Retraites · âge et conditions de départ",
+    "context": "Âge minimal, taux plein, durée de cotisation et pénibilité changent les conditions du départ. Les propositions sont regroupées selon la règle qu’elles mettent en avant.",
+    "positions": [
+      {
+        "id": "departs-plus-tot",
+        "label": "Ouvrir des départs plus tôt",
+        "versions": [
+          "melenchon-retraites-1-v2",
+          "roussel-retraites-1-v2",
+          "kazib-retraites-age-v1",
+          "tondelier-retraites-age-par-etapes-v1",
+          "lepen-retraites-age-carriere-v1",
+          "ps-retraites-age-cotisation-v1"
+        ]
+      },
+      {
+        "id": "age-cotisation",
+        "label": "Fixer des règles d’âge ou de cotisation",
+        "versions": [
+          "philippe-retraites-1-v3",
+          "retailleau-retraites-1-v2",
+          "attal-retraites-1-v1",
+          "dupont-aignan-retraites-age-maintien-v1",
+          "collovati-retraites-duree-depart-v1",
+          "rohou-retraites-duree-situation-v1"
+        ]
+      },
+      {
+        "id": "consultation",
+        "label": "Faire dépendre la réforme d’un vote",
+        "versions": ["egger-retraites-vote-v1", "philippot-retraites-age-v1"]
+      }
+    ]
+  },
+  {
+    "id": "retraites-protection-revenus",
+    "theme": "retraites",
+    "label": "Retraites · niveau des pensions",
+    "context": "Les minima, l’indexation et l’abattement fiscal agissent sur des composantes différentes du revenu des retraités.",
+    "positions": [
+      {
+        "id": "minimum",
+        "label": "Relever les pensions les plus modestes",
+        "versions": [
+          "melenchon-retraites-2-v2",
+          "tondelier-retraites-petites-pensions-v1"
+        ]
+      },
+      {
+        "id": "indexation",
+        "label": "Indexer les pensions",
+        "versions": ["dupont-aignan-retraites-indexation-v1"]
+      },
+      {
+        "id": "fiscalite",
+        "label": "Maintenir l’abattement fiscal des pensions",
+        "versions": ["lepen-retraites-abattement-fiscal-v1"]
+      }
+    ]
+  },
+  {
+    "id": "retraites-financement-regimes",
+    "theme": "retraites",
+    "label": "Retraites · répartition et capitalisation",
+    "context": "Les projets portent sur un complément d’épargne ou sur des changements de recettes et de pilotage du régime par répartition.",
+    "positions": [
+      {
+        "id": "capital",
+        "label": "Ajouter un complément par capitalisation",
+        "versions": [
+          "lepen-retraites-capitalisation-v1",
+          "philippe-retraites-2-v3",
+          "retailleau-retraites-2-v1",
+          "lisnard-retraites-1-v1",
+          "dupont-aignan-retraites-capital-naissance-v1"
+        ]
+      },
+      {
+        "id": "repartition",
+        "label": "Réformer le financement de la répartition",
+        "versions": [
+          "tondelier-retraites-conference-repartition-v1",
+          "ps-retraites-capital-recettes-v1"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "travail-salaire-minimum",
+    "theme": "travail",
+    "label": "SMIC · montants et mécanismes",
+    "context": "Le cadre de fixation du SMIC, la base brute ou nette et l’indexation font partie des propositions.",
+    "positions": [
+      {
+        "id": "net-national",
+        "label": "Un montant national en net",
+        "versions": [
+          "melenchon-travail-1-v2",
+          "arthaud-travail-smic-v1",
+          "dupont-aignan-travail-smic-v1",
+          "kazib-travail-smic-v2",
+          "ps-travail-smic-v1"
+        ]
+      },
+      {
+        "id": "brut",
+        "label": "Un montant national en brut",
+        "versions": ["tondelier-travail-1-v2"]
+      },
+      {
+        "id": "plancher",
+        "label": "Un plancher national pour des SMIC locaux",
+        "versions": ["branco-travail-smic-national-v1"]
+      },
+      {
+        "id": "hausse-indexation",
+        "label": "Une hausse et une indexation",
+        "versions": ["roussel-travail-1-v1"]
+      }
+    ]
+  },
+  {
+    "id": "travail-duree-travail",
+    "theme": "travail",
+    "label": "Durée et organisation du temps de travail",
+    "context": "La durée du travail peut être modifiée pour tous les salariés, selon le métier ou par accord d’entreprise. Une semaine répartie sur quatre jours peut conserver la même durée.",
+    "positions": [
+      {
+        "id": "reduction-generale",
+        "label": "Réduire la durée du travail",
+        "versions": [
+          "kazib-travail-temps-v1",
+          "labib-travail-temps-v1",
+          "arthaud-travail-partage-travail-v1"
+        ]
+      },
+      {
+        "id": "penibilite",
+        "label": "Cibler la pénibilité et le travail de nuit",
+        "versions": ["melenchon-travail-2-v2"]
+      },
+      {
+        "id": "organisation",
+        "label": "Laisser adapter la durée ou le calendrier",
+        "versions": ["philippe-travail-1-v2", "attal-travail-quatre-jours-v1"]
+      },
+      {
+        "id": "allongement",
+        "label": "Augmenter la durée de travail",
+        "versions": ["collovati-travail-semaine-39-heures-v1"]
+      }
+    ]
+  },
+  {
+    "id": "institutions-declenchement-referendum",
+    "theme": "institutions",
+    "label": "Référendums · qui peut les déclencher ?",
+    "context": "L’initiative citoyenne, le champ des questions et la fréquence des consultations sont trois leviers distincts.",
+    "positions": [
+      {
+        "id": "initiative-citoyenne",
+        "label": "Autoriser une initiative citoyenne",
+        "versions": [
+          "melenchon-institutions-2-v1",
+          "egger-institutions-ric-v1",
+          "branco-institutions-ric-v1",
+          "asselineau-institutions-ric-v1",
+          "philippot-institutions-ric-v1",
+          "legendre-institutions-referendums-v1",
+          "rohou-institutions-ric-v1",
+          "lalanne-institutions-ric-v1"
+        ]
+      },
+      {
+        "id": "frequence-champ",
+        "label": "Élargir le champ ou fixer une fréquence",
+        "versions": ["retailleau-institutions-1-v1", "attal-institutions-1-v1"]
+      },
+      {
+        "id": "consultation",
+        "label": "Consulter le peuple sur les choix nationaux",
+        "versions": ["polony-institutions-referendums-v1"]
+      }
+    ]
+  },
+  {
+    "id": "climat-production-nucleaire",
+    "theme": "climat",
+    "label": "Électricité · place du nucléaire",
+    "context": "Les projets portent sur la construction, l’allongement de la durée de vie du parc ou la procédure de décision. Le nombre de centrales et celui de réacteurs désignent des équipements différents.",
+    "positions": [
+      {
+        "id": "relance",
+        "label": "Relancer ou développer la filière",
+        "versions": [
+          "philippe-climat-1-v2",
+          "roussel-climat-nucleaire-v1",
+          "dupont-aignan-climat-reacteurs-v1",
+          "branco-climat-nouveaux-reacteurs-v1",
+          "retailleau-climat-relance-epr2-v1"
+        ]
+      },
+      {
+        "id": "parc-actuel",
+        "label": "Prolonger le parc et accélérer les renouvelables",
+        "versions": ["glucksmann-climat-1-v1"]
+      },
+      {
+        "id": "referendum",
+        "label": "Soumettre le choix à référendum",
+        "versions": ["egger-climat-nucleaire-v1"]
+      },
+      {
+        "id": "renouvellement",
+        "label": "Renouveler une partie du parc",
+        "versions": ["ps-climat-mix-v1"]
+      },
+      {
+        "id": "sortie",
+        "label": "Programmer la sortie",
+        "versions": ["tondelier-climat-sortie-nucleaire-v1"]
+      },
+      {
+        "id": "surete",
+        "label": "Admettre une contribution sous condition de sûreté",
+        "versions": ["rohou-climat-nucleaire-surete-v1"]
+      }
+    ]
+  },
+  {
+    "id": "logement-regulation-loyers",
+    "theme": "logement",
+    "label": "Loyers · prix et encadrement",
+    "context": "Les règles du parc privé et du parc social s’appliquent à des logements différents. La fiche de chaque proposition indique le périmètre visé.",
+    "positions": [
+      {
+        "id": "encadrement",
+        "label": "Étendre ou renforcer l’encadrement",
+        "versions": [
+          "ruffin-logement-complements-loyer-v1",
+          "tondelier-logement-loyers-encadrement-v1",
+          "ps-logement-loyers-v1",
+          "melenchon-logement-loyers-v1"
+        ]
+      },
+      {
+        "id": "suppression",
+        "label": "Supprimer l’encadrement",
+        "versions": ["retailleau-logement-loyers-v1"]
+      },
+      {
+        "id": "logement-social",
+        "label": "Moduler le loyer dans le parc social",
+        "versions": ["branco-logement-loyers-parc-social-v1"]
+      },
+      {
+        "id": "baisse",
+        "label": "Fixer une baisse des loyers",
+        "versions": ["collovati-logement-loyers-v1"]
+      }
+    ]
+  },
+  {
+    "id": "sante-installation-medecins",
+    "theme": "sante",
+    "label": "Déserts médicaux · installation et offre de soins",
+    "context": "Les propositions jouent sur la répartition des cabinets, les conditions d’exercice ou le maintien de soignants en activité.",
+    "positions": [
+      {
+        "id": "regulation",
+        "label": "Réguler l’installation et l’exercice",
+        "versions": [
+          "melenchon-sante-2-v1",
+          "branco-sante-implantation-medicale-v1",
+          "mikolajczak-sante-installation-v1",
+          "ps-sante-installation-medecins-v1",
+          "tondelier-sante-installation-medecins-v1",
+          "retailleau-sante-installation-medecins-v1"
+        ]
+      },
+      {
+        "id": "conventionnement",
+        "label": "Différencier le conventionnement selon le territoire",
+        "versions": ["lisnard-sante-1-v1"]
+      },
+      {
+        "id": "activite",
+        "label": "Faciliter l’activité des soignants retraités",
+        "versions": ["groupe-rn-sante-cumul-soignants-v1"]
+      }
+    ]
+  },
+  {
+    "id": "education-acces-etudes",
+    "theme": "education",
+    "label": "Études supérieures · accès et admission",
+    "context": "Les propositions précisent le sort de Parcoursup et les règles envisagées pour attribuer les places.",
+    "positions": [
+      {
+        "id": "sans-selection",
+        "label": "Supprimer la plateforme et la sélection universitaire",
+        "versions": [
+          "kazib-education-parcoursup-v1",
+          "melenchon-education-admission-superieur-v1"
+        ]
+      },
+      {
+        "id": "procedure",
+        "label": "Remplacer la procédure d’admission",
+        "versions": [
+          "branco-education-parcoursup-v1",
+          "ruffin-education-parcoursup-v1",
+          "ps-education-parcoursup-v1",
+          "tondelier-education-parcoursup-orientation-v1"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "institutions-logiciels-publics",
+    "theme": "institutions",
+    "label": "Logiciels publics · libre, préférence et contrôle",
+    "context": "Plusieurs leviers sont proposés pour les logiciels publics, de la commande commune aux exigences de code ouvert et aux critères des marchés.",
+    "positions": [
+      {
+        "id": "libre",
+        "label": "Généraliser ou imposer le logiciel libre",
+        "versions": [
+          "melenchon-institutions-logiciels-libres-v1",
+          "branco-institutions-logiciels-libres-v1",
+          "tondelier-institutions-achats-logiciels-libres-v1"
+        ]
+      },
+      {
+        "id": "mutualisation",
+        "label": "Mutualiser les logiciels ou les achats",
+        "versions": [
+          "ruffin-institutions-forge-v1",
+          "philippe-travail-achats-tech-europeens-v1"
+        ]
+      },
+      {
+        "id": "critere",
+        "label": "Évaluer la souveraineté ou l’auditabilité",
+        "versions": [
+          "retailleau-institutions-achats-numeriques-v2",
+          "philippot-institutions-logiciels-auditables-v1"
+        ]
+      },
+      {
+        "id": "fonds",
+        "label": "Financer les alternatives européennes",
+        "versions": ["glucksmann-europe-fonds-alternatives-numeriques-v1"]
+      }
+    ]
+  },
+  {
+    "id": "fiscalite-transmission-patrimoine",
+    "theme": "fiscalite",
+    "label": "Successions · abattements et patrimoine transmis",
+    "context": "Le montant total transmis, le type de bien et la concentration sur les plus grandes successions déterminent des assiettes différentes.",
+    "positions": [
+      {
+        "id": "seuil",
+        "label": "Exonérer sous un seuil et taxer davantage les transmissions élevées",
+        "versions": [
+          "melenchon-fiscalite-petits-heritages-v1",
+          "roussel-fiscalite-heritages-v1"
+        ]
+      },
+      {
+        "id": "biens",
+        "label": "Exonérer certains biens et relever les plafonds des dons",
+        "versions": ["dupont-aignan-fiscalite-transmission-v1"]
+      },
+      {
+        "id": "fortunes",
+        "label": "Accroître la contribution des plus grandes fortunes et successions",
+        "versions": ["ruffin-fiscalite-1-v1"]
+      }
+    ]
+  },
+  {
+    "id": "climat-prix-energie",
+    "theme": "climat",
+    "label": "Énergie · fiscalité et prix",
+    "context": "Les mesures agissent sur des composantes différentes de la facture, dont la TVA, les prix réglementés, les heures creuses et le barème de consommation.",
+    "positions": [
+      {
+        "id": "impots",
+        "label": "Modifier la taxation de l’énergie",
+        "versions": [
+          "lepen-climat-tva-energie-v1",
+          "labib-fiscalite-tva-progressivite-v1",
+          "lalanne-fiscalite-taxes-carburants-v1"
+        ]
+      },
+      {
+        "id": "tarifs",
+        "label": "Réguler les prix ou leur évolution",
+        "versions": [
+          "glucksmann-climat-prix-electricite-v1",
+          "ps-climat-tarifs-reglementes-v1",
+          "branco-climat-distribution-electricite-v1"
+        ]
+      },
+      {
+        "id": "objectifs",
+        "label": "Fixer un objectif de baisse du prix",
+        "versions": ["dupont-aignan-climat-electricite-v1"]
+      }
+    ]
+  },
+  {
+    "id": "logement-obligations-parc-social",
+    "theme": "logement",
+    "label": "Logements sociaux · obligations des communes",
+    "context": "Le quota SRU fixe une part de logements sociaux dans certaines communes. Les propositions changent le seuil, le mécanisme de sanction ou l’existence de cette obligation.",
+    "positions": [
+      {
+        "id": "renforcer",
+        "label": "Relever les obligations et renforcer les sanctions",
+        "versions": ["melenchon-logement-sru-v1", "tondelier-logement-sru-v1"]
+      },
+      {
+        "id": "supprimer",
+        "label": "Supprimer les obligations de la loi SRU",
+        "versions": ["lepen-logement-sru-v1", "collovati-logement-sru-v1"]
+      }
+    ]
+  },
+  {
+    "id": "institutions-ecrire-constitution",
+    "theme": "institutions",
+    "label": "Constitution · qui écrit et qui décide ?",
+    "context": "L’assemblée constituante, le tirage au sort et le référendum interviennent à des étapes différentes de la rédaction ou de la révision du texte.",
+    "positions": [
+      {
+        "id": "assemblee",
+        "label": "Confier la rédaction à une assemblée constituante",
+        "versions": [
+          "melenchon-institutions-1-v1",
+          "mathieu-institutions-convention-500-v1",
+          "mlekuz-institutions-assemblee-tirage-v1",
+          "lalanne-institutions-ric-v1"
+        ]
+      },
+      {
+        "id": "ric",
+        "label": "Ouvrir la révision à l’initiative citoyenne",
+        "versions": [
+          "egger-institutions-ric-v1",
+          "philippot-institutions-ric-v1"
+        ]
+      }
+    ]
+  }
+]

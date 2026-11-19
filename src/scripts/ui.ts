@@ -99,7 +99,9 @@ export function measureCard(
     archive: 'Archive 2022',
   };
   meta.append(
-    anchor(candidate.name, `/candidats/${candidate.id}/`),
+    measure.partyAuthor
+      ? el('strong', measure.partyAuthor)
+      : anchor(candidate.name, `/candidats/${candidate.id}/`),
     el(
       'span',
       labels[measure.scope],

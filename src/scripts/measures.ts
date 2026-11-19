@@ -22,7 +22,7 @@ async function start() {
     const filtered = filterEntries(
       data.measures.map((measure) => ({
         ...measure,
-        text: `${data.candidates.find((candidate) => candidate.id === measure.candidate)!.name} ${data.themes.find((theme) => theme.id === measure.theme)!.label} ${measure.description}`,
+        text: `${measure.partyAuthor ?? data.candidates.find((candidate) => candidate.id === measure.candidate)!.name} ${data.themes.find((theme) => theme.id === measure.theme)!.label} ${measure.description}`,
       })),
       { candidate, theme, q, archives },
     );

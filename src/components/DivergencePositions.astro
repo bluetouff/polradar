@@ -1,0 +1,86 @@
+---
+import Icon from './Icon.astro';
+import CandidatePortrait from './CandidatePortrait.astro';
+import SourceLinks from './SourceLinks.astro';
+import { initials, scopes } from '../lib/data';
+import type { positionDivergences } from '../lib/divergence-data';
+
+interface Props {
+  topic: (typeof positionDivergences)[number];
+}
+const { topic } = Astro.props;
+---
+
+<section
+  class="divergence-panel divergence-positions"
+  id={topic.id}
+  data-divergence-panel
+  data-axis-label={topic.label}
+  aria-labelledby={`heading-${topic.id}`}
+>
+  <header class="divergence-panel-heading">
+    <p>{topic.themeLabel}</p>
+    <h2 id={`heading-${topic.id}`}>{topic.label}</h2>
+    <span>
+      {topic.total} profils et partis · {topic.positions.length} positions
+    </span>
+  </header>
+  <p class="divergence-context">{topic.context}</p>
+  <div class="divergence-position-grid">
+    {topic.positions.map((position) => (
+      <section
+        class="divergence-position"
+        aria-labelledby={`${topic.id}-${position.id}`}
+      >
+        <header>
+          <h3 id={`${topic.id}-${position.id}`}>{position.label}</h3>
+          <span>{position.entries.length}</span>
+        </header>
+        <div class="divergence-position-records">
+          {position.entries.map(({ candidate, measure, version, author }) => (
+            <article
+              class="divergence-position-record"
+              data-position-profile={candidate.id}
+            >
+              <header class="position-byline">
+                <div class="position-portrait">
+                  {version.snapshot.partyAuthor ? (
+                    <span class="position-party" aria-hidden="true">
+                      {initials(author)}
+                    </span>
+                  ) : (
+                    <CandidatePortrait candidate={candidate} compact />
+                  )}
+                </div>
+                <div>
+                  {version.snapshot.partyAuthor ? (
+                    <strong>{author}</strong>
+                  ) : (
+                    <a href={`/candidats/${candidate.id}/`}>{author}</a>
+                  )}
+                  <p>{scopes[version.snapshot.scope]}</p>
+                </div>
+              </header>
+              <h4>
+                <a href={`/mesures/${measure.id}/#version-${version.number}`}>
+                  {version.snapshot.title} <Icon name="external" />
+                </a>
+              </h4>
+              {version.snapshot.description !== version.snapshot.title && (
+                <p>{version.snapshot.description}</p>
+              )}
+              <SourceLinks
+                ids={[
+                  ...new Set(
+                    version.snapshot.sourceRefs.map((ref) => ref.sourceId),
+                  ),
+                ]}
+                compact
+              />
+            </article>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</section>

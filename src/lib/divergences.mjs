@@ -63,6 +63,14 @@ export function divergenceGroups(measures, candidates, themes) {
 export const formatMetricValue = (value) =>
   value.toLocaleString('fr-FR', { maximumSignificantDigits: 21 });
 
+/** @param {number} value @param {string} unit @returns {string} */
+export function formatDivergenceValue(value, unit) {
+  const months = value * 12;
+  if (unit === 'ans' && !Number.isInteger(value) && Number.isInteger(months))
+    return `${Math.floor(value)} ans et ${months % 12} mois`;
+  return `${formatMetricValue(value)} ${unit}`;
+}
+
 /** @param {Array<{value:number}>} values @param {number} width */
 export function divergenceLayout(values, width) {
   if (

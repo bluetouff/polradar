@@ -267,7 +267,7 @@ test('les paramètres comparés partagent une unité et excluent les archives', 
     groups.some(
       (group) =>
         group.key === 'age-depart' &&
-        group.values.length === 4 &&
+        group.values.length === 6 &&
         group.unit === 'ans',
     ),
   );

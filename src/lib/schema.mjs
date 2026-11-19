@@ -34,6 +34,7 @@ export const publicUrlSchema = z
     );
   }, 'Une source doit être une URL HTTPS publique, sans identifiants');
 const text = z.string().min(1).max(3000);
+const partyAuthorSchema = z.string().trim().min(1).max(100);
 export const sourceSchema = z.object({
   id: idSchema,
   title: text,
@@ -73,6 +74,7 @@ export const engagementSchema = z.object({
   bullets: z.array(text).min(1).max(12),
   sources: z.array(idSchema).min(1),
   scope: z.enum(['campagne', 'parti', 'orientation', 'archive']),
+  partyAuthor: partyAuthorSchema.optional(),
   edition: text,
   note: z.string().max(3000),
   checked: dateSchema,
@@ -165,6 +167,7 @@ export const measureSnapshotSchema = z.object({
   amounts: z.array(amountSchema),
   sourceRefs: z.array(sourceRefSchema).min(1),
   scope: z.enum(['campagne', 'parti', 'orientation', 'archive']),
+  partyAuthor: partyAuthorSchema.optional(),
   edition: text,
   checked: dateSchema,
 });
@@ -243,7 +246,7 @@ export function validateFeatures(dataset) {
     }
   }
   if (errors.length) return errors;
-  const sources = new Set(dataset.sources.map((s) => s.id)),
+  const sources = new Map(dataset.sources.map((s) => [s.id, s])),
     parents = new Map(dataset.engagements.map((e) => [e.id, e]));
   const measures = new Map(dataset.measures.map((m) => [m.id, m]));
   const today = civilDateInParis();
@@ -266,6 +269,8 @@ export function validateFeatures(dataset) {
         errors.push(`${measure.id}: source inconnue`);
     if (measure.scope === 'archive' && !measure.edition.includes('2022'))
       errors.push(`${measure.id}: archive sans millésime`);
+    if (measure.partyAuthor !== parent?.partyAuthor)
+      errors.push(`${measure.id}: auteur collectif incohérent avec le dossier`);
     const versions = dataset.versions
       .filter((v) => v.measureId === measure.id)
       .sort((a, b) => a.number - b.number);
@@ -293,6 +298,10 @@ export function validateFeatures(dataset) {
       errors.push(`${measure.id}: enregistrements non chronologiques`);
     const current = versions.at(-1)?.snapshot;
     if (current) {
+      if (current.partyAuthor !== measure.partyAuthor)
+        errors.push(
+          `${measure.id}: auteur collectif absent de la version courante`,
+        );
       for (const key of Object.keys(current))
         if (JSON.stringify(current[key]) !== JSON.stringify(measure[key]))
           errors.push(`${measure.id}: version courante incohérente (${key})`);
@@ -313,6 +322,14 @@ export function validateFeatures(dataset) {
       errors.push(`${version.id}: horodatage incohérent`);
     if ((version.number === 1) !== (version.kind === 'import'))
       errors.push(`${version.id}: première version non identifiée`);
+    if (
+      version.snapshot.partyAuthor &&
+      (version.snapshot.scope !== 'parti' ||
+        !version.snapshot.sourceRefs.some(
+          ({ sourceId }) => sources.get(sourceId)?.kind === 'parti',
+        ))
+    )
+      errors.push(`${version.id}: auteur collectif sans document de parti`);
     for (const ref of [
       ...version.snapshot.sourceRefs,
       ...version.snapshot.metrics,
@@ -407,11 +424,25 @@ export function validateDataset(dataset) {
     if (!candidateIds.has(item.candidate))
       errors.push(`${item.id}: candidature inconnue`);
     if (!themeIds.has(item.theme)) errors.push(`${item.id}: thème inconnu`);
-    const pair = `${item.candidate}|${item.theme}`;
+    const pair = JSON.stringify([
+      item.candidate,
+      item.theme,
+      item.partyAuthor,
+      item.scope === 'archive',
+    ]);
     if (pairs.has(pair)) errors.push(`${item.id}: doublon candidat/thème`);
     pairs.add(pair);
     for (const id of item.sources)
       if (!sourceIds.has(id)) errors.push(`${item.id}: source inconnue ${id}`);
+    if (
+      item.partyAuthor &&
+      (item.scope !== 'parti' ||
+        !dataset.sources.some(
+          (source) =>
+            source.kind === 'parti' && item.sources.includes(source.id),
+        ))
+    )
+      errors.push(`${item.id}: auteur collectif sans document de parti`);
     if (item.scope === 'archive' && !/2022/.test(item.edition))
       errors.push(`${item.id}: millésime d’archive manquant`);
     let previous = '';

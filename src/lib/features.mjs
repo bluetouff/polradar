@@ -170,6 +170,7 @@ export function metricGroups(measures, candidates) {
       group.values.push({
         candidate: measure.candidate,
         name:
+          measure.partyAuthor ||
           candidates.find((c) => c.id === measure.candidate)?.name ||
           measure.candidate,
         value: metric.value,
@@ -184,13 +185,15 @@ export function metricGroups(measures, candidates) {
       return false;
     const seen = new Map();
     for (const row of group.values) {
-      if (seen.has(row.candidate) && seen.get(row.candidate) !== row.value)
-        return false;
-      seen.set(row.candidate, row.value);
+      const key = JSON.stringify([row.candidate, row.name]);
+      if (seen.has(key) && seen.get(key) !== row.value) return false;
+      seen.set(key, row.value);
     }
     group.values = group.values.filter(
       (row, index, rows) =>
-        rows.findIndex((r) => r.candidate === row.candidate) === index,
+        rows.findIndex(
+          (r) => r.candidate === row.candidate && r.name === row.name,
+        ) === index,
     );
     return group.values.length >= 2;
   });

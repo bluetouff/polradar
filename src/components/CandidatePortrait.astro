@@ -31,6 +31,7 @@ const portrait = portraitFor(candidate.id);
     <Image
       src={portrait.image}
       alt=""
+      width={compact ? 64 : 480}
       widths={compact ? [64, 128] : [240, 480, 720]}
       sizes={compact ? '44px' : '(max-width: 650px) 45vw, 240px'}
       format="webp"

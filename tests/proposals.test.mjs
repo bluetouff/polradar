@@ -32,7 +32,27 @@ const valid = (e = evolution, f = financing, b = budgets) =>
 test('les documents officiels datés et les relations financières sont qualifiés', () => {
   assert.deepEqual(valid(), []);
   assert.equal(evolution.states.length, 14);
-  assert.equal(financing.maps.length, 16);
+  assert.equal(financing.maps.length, 19);
+  const lepen = budgets.profiles.find(({ candidate }) => candidate === 'lepen');
+  assert.equal(
+    lepen.entries.find(({ id }) => id === 'lepen-retraites-cout-brut').euros,
+    18.6e9,
+  );
+  const offsets = lepen.entries.find(
+    ({ id }) => id === 'lepen-retraites-parametres',
+  );
+  assert.deepEqual(
+    offsets.allocation.map(({ value }) => value),
+    [5.8e9, 2.7e9],
+  );
+  const glucksmann = budgets.profiles.find(
+    ({ candidate }) => candidate === 'glucksmann',
+  );
+  assert.equal(
+    glucksmann.entries.find(({ id }) => id === 'glucks-contribution-climatique')
+      .period,
+    'ponctuel',
+  );
 });
 test('les revenus de 2022 ne deviennent pas un SMIC comparable et un âge maintenu reste une position de parti', () => {
   const track = evolution.tracks.find((t) => t.id === 'arthaud-revenus');

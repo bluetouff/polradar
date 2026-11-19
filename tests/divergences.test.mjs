@@ -5,7 +5,12 @@ import {
   divergenceGroups,
   divergenceLayout,
   formatMetricValue,
+  formatDivergenceValue,
 } from '../src/lib/divergences.mjs';
+import {
+  positionsSchema,
+  validateDivergencePositions,
+} from '../src/lib/divergence-positions.mjs';
 const read = (name) =>
   JSON.parse(
     readFileSync(new URL(`../src/data/${name}.json`, import.meta.url)),
@@ -15,9 +20,21 @@ const measures = read('measures'),
   themes = read('themes');
 test('les axes reprennent les chiffres et leurs fiches, sans archives ni mélange d’âge général et de pénibilité', () => {
   const groups = divergenceGroups(measures, candidates, themes);
-  assert.equal(groups.length, 4);
+  assert.equal(groups.length, 5);
   const age = groups.find((group) => group.id === 'retraites-age-depart');
-  assert.equal(age.values.length, 5);
+  assert.equal(age.values.length, 7);
+  assert.equal(
+    age.values.find((row) => row.name === 'Parti socialiste').value,
+    62,
+  );
+  assert.equal(
+    age.values.find((row) => row.candidate === 'dupont-aignan').value,
+    62.75,
+  );
+  assert.equal(
+    age.values.some((row) => row.candidate === 'lepen'),
+    false,
+  );
   assert.equal(age.values.find((row) => row.candidate === 'roussel').value, 60);
   assert.equal(age.values.find((row) => row.candidate === 'kazib').value, 60);
   assert.equal(
@@ -57,12 +74,10 @@ test('le SMIC mensuel net ne convertit ni les montants bruts ni les périodes an
   );
   assert.deepEqual(
     group.values.map((row) => row.value).sort((a, b) => a - b),
-    [1600, 1700],
+    [1600, 1700, 2000],
   );
   assert.equal(
-    group.values.some(
-      (row) => row.candidate === 'tondelier' || row.candidate === 'kazib',
-    ),
+    group.values.some((row) => row.candidate === 'tondelier'),
     false,
   );
   for (const change of [
@@ -75,14 +90,15 @@ test('le SMIC mensuel net ne convertit ni les montants bruts ni les périodes an
       copy.find((row) => row.id === 'dupont-aignan-travail-smic').amounts[0],
     );
     assert.equal(
-      divergenceGroups(copy, candidates, themes).some(
-        (row) => row.key === 'smic-mensuel-net',
-      ),
+      divergenceGroups(copy, candidates, themes)
+        .find((row) => row.key === 'smic-mensuel-net')
+        .values.some((row) => row.candidate === 'dupont-aignan'),
       false,
     );
   }
   assert.equal(formatMetricValue(0.123456789), '0,123456789');
   assert.equal(formatMetricValue(0.000001), '0,000001');
+  assert.equal(formatDivergenceValue(62.75, 'ans'), '62 ans et 9 mois');
 });
 
 test('unités, thèmes et valeurs contradictoires restent séparés', () => {
@@ -193,4 +209,43 @@ test('des données impossibles ne produisent jamais une échelle de remplacement
     );
   for (const width of [NaN, Infinity, 100, 10001])
     assert.throws(() => divergenceLayout([{ value: 0 }, { value: 1 }], width));
+});
+
+test('les comparaisons par mesure gardent les conditions et l’auteur du document', () => {
+  const dataset = {
+    measures,
+    candidates,
+    themes,
+    versions: read('versions'),
+    sources: read('sources'),
+  };
+  const topics = positionsSchema.parse(read('divergence-positions'));
+  const axes = divergenceGroups(measures, candidates, themes).map(
+    ({ id }) => id,
+  );
+  assert.deepEqual(validateDivergencePositions(topics, dataset, axes), []);
+  const retirements = topics.find(
+    (topic) => topic.id === 'retraites-conditions-depart',
+  );
+  const entries = retirements.positions.flatMap(
+    (position) => position.versions,
+  );
+  assert.equal(entries.length, 14);
+  assert.ok(entries.includes('lepen-retraites-age-carriere-v1'));
+  assert.ok(entries.includes('ps-retraites-age-cotisation-v1'));
+  const energy = topics.find(
+    (topic) => topic.id === 'climat-production-nucleaire',
+  );
+  const names = energy.positions.flatMap((position) => position.versions);
+  assert.ok(names.includes('ps-climat-mix-v1'));
+  assert.ok(names.includes('glucksmann-climat-1-v1'));
+  for (const extra of [
+    entries[0],
+    'lepen-retraites-1-v1',
+    'version-inconnue',
+  ]) {
+    const faulty = structuredClone(topics);
+    faulty[0].positions.at(-1).versions.push(extra);
+    assert.equal(validateDivergencePositions(faulty, dataset, axes).length, 1);
+  }
 });
