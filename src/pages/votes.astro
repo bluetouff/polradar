@@ -20,14 +20,16 @@ import { sameSentence } from '../lib/measure-text';
 <Base
   title="Propositions et votes passés"
   section="/votes/"
-  description="Relier les propositions aux votes nominatifs de l’Assemblée nationale et du Sénat : objet exact, résultat et documents officiels."
+  description="Les propositions de campagne et les scrutins nominatifs de l’Assemblée nationale, du Sénat et du Parlement européen, avec les résultats et les sources."
 >
   <header class="page-title votes-title">
     <div>
       <span class="eyebrow">PROGRAMMES / PARLEMENT</span>
       <h1>Propositions et votes passés</h1>
       <p>
-        Les propositions actuelles et les scrutins nominatifs sur le même sujet.
+        Les propositions de campagne et les votes individuels sur des textes qui
+        traitent du même sujet. Chaque dossier indique l’année et l’auteur de la
+        proposition.
       </p>
     </div>
     <a href="/evolution/" class="button">
@@ -47,7 +49,7 @@ import { sameSentence } from '../lib/measure-text';
       candidats
     </span>
     <p>
-      Assemblée nationale & Sénat
+      Assemblée nationale · Sénat · Parlement européen
       <span>
         Sélection documentée au {formatDate(legislativeVotes.checked)}
       </span>
@@ -97,7 +99,10 @@ import { sameSentence } from '../lib/measure-text';
                 <article class="vote-record" data-ballot={ballot.id}>
                   <div class="vote-record-content">
                     <p class="vote-institution">
-                      {chambers[ballot.chamber]} · n°{ballot.number}
+                      {chambers[ballot.chamber]} ·{' '}
+                      {ballot.chamber === 'parlement-europeen'
+                        ? ballot.term
+                        : `n°${ballot.number}`}
                     </p>
                     <h3>{ballot.shortTitle}</h3>
                     <p class="vote-choice-label">
@@ -207,7 +212,13 @@ import { sameSentence } from '../lib/measure-text';
                 </span>
               </div>
               <article class="vote-proposal">
-                <span class="eyebrow">PROPOSITION DOCUMENTÉE</span>
+                <span class="eyebrow">
+                  {record.version.snapshot.scope === 'archive'
+                    ? 'Archive présidentielle 2022'
+                    : record.version.snapshot.scope === 'parti'
+                      ? 'Projet du parti'
+                      : 'Proposition documentée'}
+                </span>
                 <h3>{record.version.snapshot.title}</h3>
                 <p class="vote-proposal-edition">
                   {record.measure.partyAuthor &&

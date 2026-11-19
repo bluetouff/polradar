@@ -474,6 +474,19 @@
   font-variant-numeric: tabular-nums;
   font-weight: 600;
 }
+.sheet-sample {
+  margin: 0.5rem 0 0;
+  padding: 0.4rem 0.55rem;
+  border-inline-start: 2px solid #67939a;
+  background: #eef4f5;
+  display: grid;
+  gap: 0.18rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+.sheet-sample small {
+  color: #456171;
+}
 @media (max-width: 780px) {
   .atlas-body {
     grid-template-columns: 1fr;
@@ -519,6 +532,26 @@
     font-size: 0.7rem;
   }
 }
+.issue-shortcuts:not([hidden]) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.55rem 0;
+}
+.issue-shortcuts a {
+  color: #244955;
+  background: #e2eeef;
+  border: 1px solid #abc2c6;
+  border-radius: 0.35rem;
+  padding: 0.3rem 0.55rem;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+.sheet-grid article:target {
+  outline: 2px solid var(--atlas-accent, #346a74);
+  outline-offset: 2px;
+}
+
 .atlas-selection {
   font-size: 0.83rem;
   line-height: 1.4;

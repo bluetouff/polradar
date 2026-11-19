@@ -1,3 +1,144 @@
+.profile-activity {
+  margin-block: 0 1.8rem;
+  color: var(--ink);
+}
+.profile-activity > header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+  margin-bottom: 0.65rem;
+}
+.profile-activity h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+.profile-activity > header a,
+.activity-source,
+.activity-ledger summary {
+  font-size: 0.8rem;
+}
+.profile-activity > header a {
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+}
+.profile-activity > header .icon {
+  width: 1em;
+  height: 1em;
+}
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17.5rem), 1fr));
+  gap: 0.8rem;
+  align-items: start;
+}
+.activity-ledger {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 0.55rem;
+  overflow: clip;
+  background: linear-gradient(155deg, #f3f8fa, #e8f0f2);
+}
+.activity-ledger h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: linear-gradient(110deg, #213649, #34536a);
+  color: #f5fafb;
+}
+.activity-ledger:nth-child(2) h3 {
+  background: linear-gradient(110deg, #1b4249, #356469);
+}
+.activity-ledger h3 .icon {
+  width: 1.18rem;
+  height: 1.18rem;
+  flex-shrink: 0;
+}
+.activity-ledger h3 span {
+  margin-inline-start: auto;
+  font: 0.8rem var(--mono);
+}
+.activity-ledger ol {
+  list-style: none;
+  margin: 0;
+  padding: 0 0.9rem;
+}
+.activity-ledger li {
+  padding: 0.65rem 0;
+  display: grid;
+  gap: 0.24rem;
+}
+.activity-ledger li + li,
+.activity-ledger details {
+  border-top: 1px solid var(--line);
+}
+.activity-ledger summary {
+  padding: 0.65rem 0.9rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+.activity-meta,
+.activity-source {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.65rem;
+}
+.activity-meta {
+  font: 0.72rem/1.5 var(--mono);
+  color: #355268;
+}
+.activity-meta [data-choice] {
+  border-radius: 0.2rem;
+  padding: 0 0.35rem;
+  background: #dce8ec;
+}
+.activity-meta [data-choice='pour'] {
+  color: #174f47;
+  background: #d5e8e1;
+}
+.activity-meta [data-choice='contre'] {
+  color: #743d32;
+  background: #f2e0d9;
+}
+.activity-meta [data-choice='abstention'] {
+  color: #57492d;
+  background: #efe8d7;
+}
+.activity-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.32;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.activity-title:hover {
+  text-decoration: underline;
+}
+.activity-source {
+  color: #425b69;
+}
+.activity-empty {
+  margin: 0;
+  padding: 0.8rem 0.9rem;
+  font-size: 0.85rem;
+  color: #425b69;
+}
+
+.activity-publication {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0 0.9rem 0.7rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+}
 .registry-heading {
   display: flex;
   align-items: center;

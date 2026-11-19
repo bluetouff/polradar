@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 import wave from '../../src/data/ches-france-2024.json' with { type: 'json' };
+import votes from '../../src/data/legislative-votes.json' with { type: 'json' };
+import agenda from '../../src/data/campaign-agenda.json' with { type: 'json' };
 test('les deux plans et le tableau restituent la même enquête', async ({
   page,
 }) => {
@@ -67,4 +69,66 @@ test('la carte, les textes et les profils se consultent sans JavaScript', async 
   await page.locator('.sheet-atlas summary').click();
   await expect(page.locator('.sheet-grid')).toContainText('Sylvain Durif');
   await ctx.close();
+});
+
+test('les six dossiers donnent accès aux sources et aux rendez-vous selon la couverture réelle', async ({
+  page,
+}) => {
+  await page.goto('/candidats/philippot/');
+  await expect(page.locator('#scrutins')).toContainText('Abstention');
+  await page
+    .locator('#scrutins .activity-title')
+    .filter({ hasText: 'Canada' })
+    .click();
+  await expect(page.locator('[data-ballot="pe8-20170215-ceta"]')).toContainText(
+    'Contre le texte',
+  );
+  await page.goto('/candidats/lassalle/');
+  await page.locator('#scrutins details summary').click();
+  await expect(page.locator('#scrutins .activity-title:visible')).toHaveCount(
+    votes.ballots.filter((b) =>
+      b.positions.some((p) => p.candidate === 'lassalle'),
+    ).length,
+  );
+  if (!agenda.events.some((e) => e.candidate === 'lassalle'))
+    await expect(page.locator('#rendez-vous')).toContainText('Publication du');
+  await page.goto(
+    '/echiquier/?question=travail-demarches-entreprises&candidature=riner#issues-title',
+  );
+  await expect(page.locator('.issue-lane a:visible')).toContainText(
+    'Teddy Riner',
+  );
+  await page.locator('[data-issue-shortcuts] a').first().click();
+  await expect(page.locator('#rendez-vous')).toContainText(
+    'hôpital Delafontaine',
+  );
+  await page.goto('/agenda/#rohou-associations-paris');
+  await expect(page.locator('#rohou-associations-paris')).toBeVisible();
+  await expect(page.locator('#rohou-associations-paris')).toContainText(
+    '16 h 30',
+  );
+  for (const id of ['cheve', 'billetdoux']) {
+    await page.goto(`/candidats/${id}/`);
+    const ballots = votes.ballots.filter((b) =>
+      b.positions.some((p) => p.candidate === id),
+    );
+    const dates = agenda.events.filter((e) => e.candidate === id);
+    await expect(page.locator('#scrutins .activity-title')).toHaveCount(
+      ballots.length,
+    );
+    await expect(page.locator('#rendez-vous .activity-title')).toHaveCount(
+      dates.length,
+    );
+    if (!ballots.length)
+      await expect(page.locator('#scrutins')).toContainText(
+        'Aucun vote nominatif recensé',
+      );
+    if (!dates.length)
+      await expect(page.locator('#rendez-vous')).toContainText(
+        'Aucun rendez-vous daté',
+      );
+    await page.getByRole('link', { name: 'Voir dans l’échiquier' }).click();
+    await expect(page.locator('#profile-choice')).toHaveValue(id);
+    await expect(page.locator('.issue-lane a:visible')).toHaveCount(1);
+  }
 });

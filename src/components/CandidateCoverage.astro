@@ -1,20 +1,44 @@
 ---
-import { candidates, measures, events, themes } from '../lib/data';
+import { candidates, measures, events, themes, formatDate } from '../lib/data';
+import { positionLabel } from '../lib/legislative-votes.mjs';
 import { legislativeVotes } from '../lib/votes-data';
 import { agenda } from '../lib/visual-data';
 const rows = candidates.map((person) => {
   const records = measures.filter(
     (m) => m.candidate === person.id && m.scope !== 'archive',
   );
+  const ballots = legislativeVotes.ballots
+    .filter((b) => b.positions.some((p) => p.candidate === person.id))
+    .sort((a, b) => b.date.localeCompare(a.date));
+  const latest = ballots[0];
+  const dates = agenda.events
+    .filter((e) => e.candidate === person.id)
+    .sort(
+      (a, b) =>
+        a.date.localeCompare(b.date) ||
+        (a.time ?? '').localeCompare(b.time ?? ''),
+    );
+  const appointment =
+    dates.find((e) => e.date >= agenda.checked && e.status === 'annonce') ??
+    dates.filter((e) => e.date < agenda.checked).at(-1);
   return {
     person,
     own: records.filter((m) => m.scope !== 'parti').length,
     party: records.filter((m) => m.scope === 'parti').length,
-    themes: new Set(records.map((m) => m.theme)).size,
-    ballots: legislativeVotes.ballots.filter((b) =>
-      b.positions.some((p) => p.candidate === person.id),
+    archives: measures.filter(
+      (m) => m.candidate === person.id && m.scope === 'archive',
     ).length,
-    dates: agenda.events.filter((e) => e.candidate === person.id).length,
+    themes: new Set(records.map((m) => m.theme)).size,
+    ballots: ballots.length,
+    latest,
+    vote: latest
+      ? positionLabel(
+          latest.positions.find((p) => p.candidate === person.id)!,
+          latest,
+        )
+      : null,
+    dates: dates.length,
+    appointment,
     timeline: events.filter(
       (e) =>
         e.candidates.includes(person.id) &&
@@ -41,7 +65,7 @@ const rows = candidates.map((person) => {
     <summary>Consulter les {rows.length} profils</summary>
     <div class="sheet-grid">
       {rows.map((r) => (
-        <article>
+        <article id={`couverture-${r.person.id}`}>
           <h3>
             <a href={`/candidats/${r.person.id}/`}>{r.person.name} ↗</a>
           </h3>
@@ -58,18 +82,80 @@ const rows = candidates.map((person) => {
           </div>
           <dl>
             {[
-              [r.own, 'Propositions personnelles'],
-              [r.party, 'Fiches de parti'],
-              [r.ballots, 'Scrutins nominatifs'],
-              [r.dates, 'Rendez-vous'],
-              [r.timeline, 'Repères de campagne'],
-            ].map(([v, label]) => (
+              {
+                count: r.own,
+                label: 'Propositions personnelles',
+                href: `/candidats/${r.person.id}/#mesures-du-profil`,
+              },
+              {
+                count: r.party,
+                label: 'Fiches de parti',
+                href: `/candidats/${r.person.id}/#mesures-du-profil`,
+              },
+              {
+                count: r.ballots,
+                label: 'Scrutins nominatifs',
+                href: `/candidats/${r.person.id}/#scrutins`,
+              },
+              {
+                count: r.dates,
+                label: 'Rendez-vous',
+                href: `/candidats/${r.person.id}/#rendez-vous`,
+              },
+              {
+                count: r.archives,
+                label: 'Archives de 2022',
+                href: `/candidats/${r.person.id}/#archives-2022`,
+              },
+              {
+                count: r.timeline,
+                label: 'Repères de campagne',
+                href: `/campagne/#candidat=${r.person.id}`,
+              },
+            ].map(({ count, label, href }) => (
               <div>
                 <dt>{label}</dt>
-                <dd>{v || '–'}</dd>
+                <dd>
+                  {count && href ? (
+                    <a
+                      href={href}
+                      aria-label={`${r.person.name} · ${label} (${count})`}
+                    >
+                      {count} ↗
+                    </a>
+                  ) : (
+                    count || '–'
+                  )}
+                </dd>
               </div>
             ))}
           </dl>
+          {r.latest && (
+            <p class="sheet-sample">
+              <small>
+                Dernier scrutin du dossier ·{' '}
+                <time datetime={r.latest.date}>
+                  {formatDate(r.latest.date)}
+                </time>
+              </small>
+              <a href={r.latest.source.url}>
+                {r.vote} · {r.latest.shortTitle} ↗
+              </a>
+            </p>
+          )}
+          {r.appointment && (
+            <p class="sheet-sample">
+              <small>
+                Agenda ·{' '}
+                <time datetime={r.appointment.date}>
+                  {formatDate(r.appointment.date)}
+                </time>
+              </small>
+              <a href={`/agenda/#${r.appointment.id}`}>
+                {r.appointment.title} ↗
+              </a>
+            </p>
+          )}
         </article>
       ))}
     </div>

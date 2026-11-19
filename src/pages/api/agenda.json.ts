@@ -8,7 +8,9 @@ export function GET() {
         agenda.events.some((e) => e.candidate === c.id),
       ),
       sources: sources.filter((s) =>
-        agenda.events.some((e) => e.source === s.id),
+        agenda.events.some(
+          (e) => e.source === s.id || e.additionalSources?.includes(s.id),
+        ),
       ),
     }),
     { headers: { 'Content-Type': 'application/json; charset=utf-8' } },

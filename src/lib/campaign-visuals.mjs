@@ -129,7 +129,8 @@ export const agendaSchema = z
           venue: text.nullable(),
           note: z.string().max(1200),
           source: idSchema,
-          status: z.enum(['annonce', 'annule']),
+          additionalSources: z.array(idSchema).min(1).max(5).optional(),
+          status: z.enum(['annonce', 'tenu', 'annule']),
         }),
       )
       .max(1000),
@@ -142,8 +143,14 @@ export const agendaSchema = z
       new Set(data.events.map((e) => e.id)).size !== data.events.length
     )
       fail('Doublon dans l’agenda');
-    for (const e of data.events)
+    for (const e of data.events) {
       if (e.city && !cities.has(e.city)) fail('Commune inconnue');
+      const refs = [e.source, ...(e.additionalSources ?? [])];
+      if (new Set(refs).size !== refs.length)
+        fail('Source de rendez-vous dupliquée');
+      if (e.status === 'tenu' && e.date > data.checked)
+        fail('Un rendez-vous futur ne peut pas être indiqué comme tenu');
+    }
   });
 export const mapSchema = z.object({
   sourceUrl: publicUrlSchema,
@@ -165,8 +172,8 @@ export function validateVisualReferences(budgets, agenda, candidates, sources) {
   for (const e of agenda.events) {
     if (!people.has(e.candidate))
       errors.push(`Agenda : candidat inconnu ${e.candidate}`);
-    if (!refs.has(e.source))
-      errors.push(`Agenda : source inconnue ${e.source}`);
+    for (const ref of [e.source, ...(e.additionalSources ?? [])])
+      if (!refs.has(ref)) errors.push(`Agenda : source inconnue ${ref}`);
   }
   return errors;
 }

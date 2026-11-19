@@ -16215,5 +16215,519 @@
     "scope": "campagne",
     "edition": "Projet économique présidentiel du 12 novembre 2026",
     "checked": "2026-11-19"
+  },
+  {
+    "id": "billetdoux-heritage-bareme",
+    "parentId": "billetdoux-fiscalite",
+    "candidate": "billetdoux",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Revoir la fiscalité des héritages et les tranches d’impôt",
+    "description": "Augustin Billetdoux annonce une réforme des successions et des tranches d’imposition. Il ne précise dans ce passage ni les seuils ni le sens de leur modification.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "billetdoux-declaration-2027",
+        "locator": "Vidéo de déclaration, à 3 min 27 s, avant le passage consacré à l’ISF climatique."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027 · déclaration de candidature en vidéo",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "billetdoux-remuneration-agriculteurs",
+    "parentId": "billetdoux-travail",
+    "candidate": "billetdoux",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Lier les aides aux entreprises à la rémunération des agriculteurs",
+    "description": "Parmi les critères d’attribution des aides aux entreprises, il propose de tenir compte de la rémunération des agriculteurs qui les approvisionnent. Il prend le seuil de pauvreté comme référence.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "billetdoux-declaration-2027",
+        "locator": "Vidéo de déclaration, de 5 min 37 s (conditionnement des aides) à 6 min 32 s (rémunération agricole)."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027 · déclaration de candidature en vidéo",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "cheve-deux-pouvoirs-executifs",
+    "parentId": "cheve-institutions",
+    "candidate": "cheve",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Diviser l’exécutif entre décision nationale et application locale",
+    "description": "L’autorité centrale édicterait les règlements et contrôlerait les agents. Une seconde autorité, proche des communes et des préfectures, appliquerait le droit, coordonnerait la force publique et percevrait les impôts.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "cheve-projet-resume-electeurs",
+        "locator": "Version résumée, p. 5 imprimée, « Réforme institutionnelle »."
+      },
+      {
+        "sourceId": "cheve-remontee-citoyenne",
+        "locator": "Ébauche complète, p. 2, rôle de l’État."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "La France Adulte, ébauche de projet signée par Joël Chevé",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "cheve-proposition-argumentee",
+    "parentId": "cheve-institutions",
+    "candidate": "cheve",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Permettre aux citoyens de soumettre un projet au gouvernement",
+    "description": "Une synthèse d’une page et un dossier référencé ouvriraient l’examen de la proposition. L’autorité décisionnaire pourrait la retenir, la soumettre à l’assemblée, consulter des experts ou l’écarter.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "cheve-remontee-citoyenne",
+        "locator": "Ébauche, p. 15, « Proposition argumentée », avant l’exemple fictif."
+      },
+      {
+        "sourceId": "cheve-projet-resume-electeurs",
+        "locator": "Version résumée, p. 3 imprimée, point 4."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "La France Adulte, ébauche de projet signée par Joël Chevé",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "cheve-transmission-mensuelle",
+    "parentId": "cheve-institutions",
+    "candidate": "cheve",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Transmettre chaque mois les demandes locales restées sans réponse",
+    "description": "Les communes regrouperaient les demandes non urgentes. Celles qui restent à résoudre passeraient par l’intercommunalité, le département et la région, avec un suivi automatisé.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "cheve-remontee-citoyenne",
+        "locator": "Ébauche, p. 1 et 2, traitement local, périodicité et circuit des requêtes."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "La France Adulte, ébauche de projet signée par Joël Chevé",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "rohou-renovation-thermique",
+    "parentId": "rohou-renovation-thermique-dossier",
+    "candidate": "rohou",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Donner la priorité à la rénovation thermique des bâtiments",
+    "description": "Erwan Rohou met la réduction des besoins de chauffage parmi les priorités d’investissement public pour abaisser la demande d’énergie.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "rohou-tribune-energie",
+        "locator": "Section « Sobriété et efficacité », passage sur la rénovation thermique."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Tribune énergétique du 29 septembre 2026",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "rohou-chaleur-industrielle",
+    "parentId": "rohou-chaleur-industrielle-dossier",
+    "candidate": "rohou",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Récupérer la chaleur perdue dans l’industrie",
+    "description": "Il propose d’améliorer les procédés industriels et de réutiliser la chaleur qu’ils dégagent pour réduire les pertes d’énergie.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "rohou-tribune-energie",
+        "locator": "Section « Sobriété et efficacité », procédés industriels et récupération de chaleur."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Tribune énergétique du 29 septembre 2026",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "rohou-capacites-intermittentes",
+    "parentId": "rohou-climat-presidentielle",
+    "candidate": "rohou",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Suspendre l’ajout de capacités électriques intermittentes",
+    "description": "Rohou estime que le parc éolien déjà installé ou en projet permet d’attendre la mise en service des futurs EPR2. Il distingue les panneaux solaires posés sur des sols déjà artificialisés et non renaturalisables.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "rohou-tribune-energie",
+        "locator": "Sections sur les critères des filières et « Des capacités EnR déjà surabondantes »."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Tribune énergétique du 29 septembre 2026",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "rohou-chaleur-renouvelable",
+    "parentId": "rohou-climat-presidentielle",
+    "candidate": "rohou",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Développer la chaleur renouvelable pour décarboner les usages",
+    "description": "Il préconise de recourir aussi à la biomasse durable, au biogaz, au solaire thermique et aux pompes à chaleur.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "rohou-tribune-energie",
+        "locator": "Section « L’électricité n’est pas la seule réponse »."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Tribune énergétique du 29 septembre 2026",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "rohou-portefeuille-energie",
+    "parentId": "rohou-climat-presidentielle",
+    "candidate": "rohou",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Publier les capacités énergétiques en projet par filière",
+    "description": "Erwan Rohou demande que soient rendues publiques les capacités réellement en portefeuille pour chaque filière afin d’éclairer les objectifs énergétiques.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "rohou-tribune-energie",
+        "locator": "Section finale « Repenser le système énergétique avec lucidité », premier point."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Tribune énergétique du 29 septembre 2026",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "riner-normes-production",
+    "parentId": "riner-travail",
+    "candidate": "riner",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Alléger les contraintes administratives des producteurs français",
+    "description": "Après le salon du Made in France, Teddy Riner demande un allègement des normes et des démarches pesant sur les entreprises qui produisent en France. Il ne désigne pas de règle à supprimer.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "riner-production-locale",
+        "locator": "Publication personnelle du 15 novembre, passage sur les entreprises et la production locale."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Déclaration sur la production locale du 15 novembre 2026",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "philippot-accords-commerciaux",
+    "parentId": "philippot-europe",
+    "candidate": "philippot",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Sortir des accords de libre-échange européens jugés défavorables à la France",
+    "description": "Les Patriotes proposent de négocier des partenariats commerciaux au niveau national et de se dégager des accords européens que le mouvement estime contraires aux intérêts français.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "patriotes-projet-2026-2027",
+        "locator": "PDF, feuillet 3, partie sur le protectionnisme et la politique industrielle."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les Patriotes, orientations 2026-2027 conditionnées au Frexit",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "philippot-concessions-barrages",
+    "parentId": "philippot-climat",
+    "candidate": "philippot",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Maintenir les concessions des barrages sous contrôle public",
+    "description": "Les Patriotes veulent empêcher l’ouverture à la concurrence des concessions des barrages hydroélectriques exploités par EDF.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "patriotes-projet-2026-2027",
+        "locator": "PDF, feuillet 3, chapitre sur l’énergie, paragraphe consacré aux concessions des barrages."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les Patriotes, orientations 2026-2027 conditionnées au Frexit",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "philippot-demarches-petites-entreprises",
+    "parentId": "philippot-travail",
+    "candidate": "philippot",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Simplifier les démarches des artisans et des petites entreprises",
+    "description": "Le projet des Patriotes associe une simplification des procédures à des incitations au maintien ou au retour d’activité en France pour les artisans, TPE et PME.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "patriotes-projet-2026-2027",
+        "locator": "PDF, feuillet 3, paragraphe sur les créateurs, les artisans et les TPE/PME."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les Patriotes, orientations 2026-2027 conditionnées au Frexit",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "philippot-eolien-demantelement",
+    "parentId": "philippot-climat",
+    "candidate": "philippot",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Arrêter l’éolien terrestre et maritime et démanteler les installations",
+    "description": "Les Patriotes proposent l’arrêt du développement des parcs éoliens et un plan de démantèlement des éoliennes en place.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "patriotes-projet-2026-2027",
+        "locator": "PDF, feuillet 3, passage sur l’éolien terrestre et maritime."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les Patriotes, orientations 2026-2027 conditionnées au Frexit",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "lassalle-indexation-retraites-2022",
+    "parentId": "lassalle-indexation-retraites-2022-dossier",
+    "candidate": "lassalle",
+    "theme": "retraites",
+    "revision": 1,
+    "title": "Garantir par la Constitution le pouvoir d’achat des retraités",
+    "description": "En 2022, Jean Lassalle proposait d’inscrire dans la Constitution une garantie de maintien du pouvoir d’achat des retraités face à l’inflation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lassalle-profession-de-foi-2022",
+        "locator": "Profession de foi, feuillet 1, partie sur les jeunes et les retraités."
+      }
+    ],
+    "scope": "archive",
+    "edition": "Présidentielle 2022 · profession de foi du premier tour",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "lassalle-evasions-isf-2022",
+    "parentId": "lassalle-evasions-isf-2022-dossier",
+    "candidate": "lassalle",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Lutter contre l’évasion fiscale et rétablir l’ISF",
+    "description": "Dans sa profession de foi de 2022, il associait le rétablissement de l’impôt de solidarité sur la fortune à la lutte contre l’évasion fiscale.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lassalle-profession-de-foi-2022",
+        "locator": "Feuillet 2, propositions sur la fiscalité et l’économie."
+      }
+    ],
+    "scope": "archive",
+    "edition": "Présidentielle 2022 · profession de foi du premier tour",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "lassalle-location-accession-2022",
+    "parentId": "lassalle-location-accession-2022-dossier",
+    "candidate": "lassalle",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Étendre la location-accession pour faciliter l’achat d’un logement",
+    "description": "Le programme de 2022 proposait de développer la location-accession pour permettre à davantage de ménages de devenir propriétaires.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lassalle-profession-de-foi-2022",
+        "locator": "Feuillet 1, « Une maison pour tous »."
+      }
+    ],
+    "scope": "archive",
+    "edition": "Présidentielle 2022 · profession de foi du premier tour",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "lassalle-rsa-jeunes-2022",
+    "parentId": "lassalle-rsa-jeunes-2022-dossier",
+    "candidate": "lassalle",
+    "theme": "social",
+    "revision": 1,
+    "title": "Ouvrir le RSA aux jeunes selon leurs revenus ou leur formation",
+    "description": "Sa profession de foi prévoyait une extension du RSA aux jeunes, soumise à des critères de revenus, de formation ou aux deux.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lassalle-profession-de-foi-2022",
+        "locator": "Feuillet 1, passage sur le RSA jeunes."
+      }
+    ],
+    "scope": "archive",
+    "edition": "Présidentielle 2022 · profession de foi du premier tour",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "lassalle-lits-hopital-2022",
+    "parentId": "lassalle-sante-2022",
+    "candidate": "lassalle",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Ouvrir 20 000 lits d’hôpital",
+    "description": "Le candidat prévoyait de créer des lits, y compris de réserve, avec le personnel soignant nécessaire.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lassalle-profession-de-foi-2022",
+        "locator": "Feuillet 2, partie sur l’hôpital et les déserts médicaux."
+      }
+    ],
+    "scope": "archive",
+    "edition": "Présidentielle 2022 · profession de foi du premier tour",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "lassalle-aah-2022",
+    "parentId": "lassalle-rsa-jeunes-2022-dossier",
+    "candidate": "lassalle",
+    "theme": "social",
+    "revision": 1,
+    "title": "Calculer l’AAH indépendamment de la situation conjugale",
+    "description": "En 2022, Jean Lassalle proposait d’individualiser l’allocation aux adultes handicapés.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lassalle-profession-de-foi-2022",
+        "locator": "Feuillet 2, propositions sur le handicap."
+      }
+    ],
+    "scope": "archive",
+    "edition": "Présidentielle 2022 · profession de foi du premier tour",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "lassalle-reorientation-pac-2022",
+    "parentId": "lassalle-travail-2022",
+    "candidate": "lassalle",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Réorienter les aides de la PAC vers les exploitants",
+    "description": "Jean Lassalle voulait attribuer les aides agricoles en fonction des pratiques de soin des terres et des animaux, et écarter la spéculation foncière.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lassalle-profession-de-foi-2022",
+        "locator": "Feuillet 2, partie agricole sur la distribution de la PAC."
+      }
+    ],
+    "scope": "archive",
+    "edition": "Présidentielle 2022 · profession de foi du premier tour",
+    "checked": "2026-11-20"
   }
 ]

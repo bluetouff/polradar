@@ -61,6 +61,38 @@ atlas?.querySelector('.axis-switch')?.addEventListener('change', (event) => {
 });
 function filterIssues() {
   if (!issue || !person) return;
+  const shortcuts = document.querySelector<HTMLElement>(
+    '[data-issue-shortcuts]',
+  );
+  if (shortcuts) {
+    shortcuts.replaceChildren();
+    shortcuts.hidden = !person.value;
+    if (person.value) {
+      const profile = document.createElement('a');
+      profile.href = `/candidats/${encodeURIComponent(person.value)}/#activite`;
+      profile.textContent = `Votes et rendez-vous de ${person.selectedOptions[0].textContent}`;
+      shortcuts.append(profile);
+      for (const panel of panels) {
+        const id = panel.dataset.issue;
+        if (
+          !id ||
+          id === issue.value ||
+          !Array.from(
+            panel.querySelectorAll<HTMLElement>('[data-issue-person]'),
+          ).some((entry) => entry.dataset.issuePerson === person.value)
+        )
+          continue;
+        const link = document.createElement('a');
+        const url = new URL(location.href);
+        url.searchParams.set('question', id);
+        url.searchParams.set('candidature', person.value);
+        url.hash = 'issues-title';
+        link.href = url.href;
+        link.textContent = panel.querySelector('summary')!.textContent;
+        shortcuts.append(link);
+      }
+    }
+  }
   for (const panel of panels) {
     const active = panel.dataset.issue === issue.value;
     panel.hidden = !active;

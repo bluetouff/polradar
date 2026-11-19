@@ -350,3 +350,24 @@ test('les contours, repères et groupes restent dans le viewBox', () => {
   copy.events[0].time = '25:01';
   assert.equal(agendaSchema.safeParse(copy).success, false);
 });
+test('les rendez-vous confirmés et leurs sources complémentaires sont vérifiés', () => {
+  const next = structuredClone(agenda);
+  const row = next.events.find(
+    (e) => e.id === 'rohou-presentation-livre-blanc',
+  );
+  assert.equal(row.status, 'tenu');
+  row.additionalSources = ['source-inconnue'];
+  assert.ok(
+    validateVisualReferences(
+      budgets,
+      next,
+      data('candidates'),
+      data('sources'),
+    ).some((error) => error.includes('source-inconnue')),
+  );
+  row.additionalSources = [row.source];
+  assert.equal(agendaSchema.safeParse(next).success, false);
+  delete row.additionalSources;
+  row.date = '2099-01-01';
+  assert.equal(agendaSchema.safeParse(next).success, false);
+});

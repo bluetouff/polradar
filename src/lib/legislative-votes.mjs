@@ -16,7 +16,7 @@ export const legislativeVotesSchema = z.strictObject({
     .array(
       z.strictObject({
         id: idSchema,
-        chamber: z.enum(['assemblee', 'senat']),
+        chamber: z.enum(['assemblee', 'senat', 'parlement-europeen']),
         term: text,
         number: z.number().int().positive(),
         date: dateSchema,
@@ -111,6 +111,7 @@ const chamberHosts = {
     'www2.assemblee-nationale.fr',
   ]),
   senat: new Set(['www.senat.fr', 'extranet.senat.fr']),
+  'parlement-europeen': new Set(['www.europarl.europa.eu']),
 };
 export function validateLegislativeReferences(data, dataset, now = new Date()) {
   const errors = [],
@@ -237,7 +238,11 @@ export const ballotKinds = {
   'motion-rejet': 'Motion de rejet',
   'motion-censure': 'Motion de censure',
 };
-export const chambers = { assemblee: 'Assemblée nationale', senat: 'Sénat' };
+export const chambers = {
+  assemblee: 'Assemblée nationale',
+  senat: 'Sénat',
+  'parlement-europeen': 'Parlement européen',
+};
 export function decisionLabel(ballot) {
   const adopted = ballot.decision === 'adopte';
   if (ballot.kind === 'declaration')

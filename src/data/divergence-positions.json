@@ -386,6 +386,11 @@
         "id": "fortunes",
         "label": "Accroître la contribution des plus grandes fortunes et successions",
         "versions": ["ruffin-fiscalite-1-v1"]
+      },
+      {
+        "id": "reforme-sans-bareme",
+        "label": "Annoncer une réforme sans en préciser le barème",
+        "versions": ["billetdoux-heritage-bareme-v1"]
       }
     ]
   },
@@ -497,6 +502,79 @@
         "id": "souverainete",
         "label": "Renforcer la souveraineté européenne",
         "versions": ["glucksmann-europe-1-v1"]
+      }
+    ]
+  },
+  {
+    "id": "travail-demarches-entreprises",
+    "theme": "travail",
+    "label": "Entreprises · quelles démarches simplifier ?",
+    "context": "Les textes distinguent l’allègement pour les producteurs, les petites structures et un objectif global de réduction des normes.",
+    "positions": [
+      {
+        "id": "producteurs",
+        "label": "Alléger les contraintes de la production locale",
+        "versions": ["riner-normes-production-v1"]
+      },
+      {
+        "id": "petites",
+        "label": "Cibler les artisans, TPE et PME",
+        "versions": ["philippot-demarches-petites-entreprises-v1"]
+      },
+      {
+        "id": "normes",
+        "label": "Réduire le volume des normes administratives",
+        "versions": ["dupont-aignan-travail-normes-v1"]
+      }
+    ]
+  },
+  {
+    "id": "institutions-contributions-citoyennes",
+    "theme": "institutions",
+    "label": "Participation · que devient une proposition citoyenne ?",
+    "context": "Le citoyen peut déposer une proposition, contribuer à une convention ou demander un référendum. La suite donnée à sa demande dépend du mécanisme.",
+    "positions": [
+      {
+        "id": "instruction",
+        "label": "Faire examiner un dossier argumenté",
+        "versions": ["cheve-proposition-argumentee-v1"]
+      },
+      {
+        "id": "convention",
+        "label": "Ouvrir les travaux d’une convention aux contributions",
+        "versions": ["mathieu-consultations-territoires-v1"]
+      },
+      {
+        "id": "vote",
+        "label": "Soumettre une initiative au vote des citoyens",
+        "versions": [
+          "branco-institutions-ric-v1",
+          "melenchon-institutions-2-v1",
+          "asselineau-institutions-ric-v1"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "climat-avenir-eolien",
+    "theme": "climat",
+    "label": "Éolien · que faire des parcs et des nouveaux projets ?",
+    "context": "Les documents portent sur des décisions différentes : ajout de capacités, aides publiques ou devenir des installations existantes.",
+    "positions": [
+      {
+        "id": "capacites",
+        "label": "Suspendre les capacités supplémentaires",
+        "versions": ["rohou-capacites-intermittentes-v1"]
+      },
+      {
+        "id": "aides",
+        "label": "Supprimer les aides aux installations",
+        "versions": ["dupont-aignan-climat-renouvelables-v1"]
+      },
+      {
+        "id": "demanteler",
+        "label": "Organiser le démantèlement des parcs",
+        "versions": ["philippot-eolien-demantelement-v1"]
       }
     ]
   }

@@ -111,9 +111,31 @@ test('les quatre nouvelles candidatures livrent les fiches primaires et les arch
     (m) => m.candidate === 'lassalle' && m.scope === 'archive',
   );
   expect(historical.length).toBeGreaterThan(0);
-  await expect(
-    page.locator('#measure-results article .tag.archive'),
-  ).toHaveCount(historical.length);
+  const total = measures.filter((m) => m.candidate === 'lassalle').length;
+  await expect(page.locator('#measure-count')).toHaveText(total + ' résultats');
+  const displayed: string[] = [];
+  for (let n = 1; n <= Math.ceil(total / pageSize); n++) {
+    if (n > 1) {
+      await page
+        .locator(pager)
+        .first()
+        .getByRole('link', { name: 'Page suivante' })
+        .click();
+      await expect(page).toHaveURL(new RegExp('page=' + n));
+    }
+    const links = page
+      .locator('#measure-results article')
+      .filter({ has: page.locator('.tag.archive') })
+      .locator('h3 a');
+    displayed.push(
+      ...(await links.evaluateAll((nodes) =>
+        nodes.map((n) => n.getAttribute('href')!),
+      )),
+    );
+  }
+  expect(displayed.sort()).toEqual(
+    historical.map((m) => `/mesures/${m.id}/`).sort(),
+  );
   await page.goto('/mesures/lassalle-smic-conjoint-elevage/#sources');
   await expect(
     page.locator('.precise-sources a[href*="pleinchamp.com"]'),
@@ -214,6 +236,16 @@ test('la recherche par année trouve la profession de foi et ses archives quand 
     archive.length + ' résultats',
   );
   await expect(page.locator('#search-results article')).toHaveCount(
-    archive.length,
+    Math.min(pageSize, archive.length),
   );
+  if (archive.length > pageSize) {
+    await page
+      .locator(pager)
+      .first()
+      .getByRole('link', { name: 'Page suivante' })
+      .click();
+    await expect(page.locator('#search-results article')).toHaveCount(
+      Math.min(pageSize, archive.length - pageSize),
+    );
+  }
 });

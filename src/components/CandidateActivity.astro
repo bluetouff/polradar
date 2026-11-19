@@ -1,0 +1,168 @@
+---
+import Icon from './Icon.astro';
+import { events, formatDate, sources, type Candidate } from '../lib/data';
+import { chambers, positionLabel } from '../lib/legislative-votes.mjs';
+import { legislativeVotes, voteCases } from '../lib/votes-data';
+import { agenda } from '../lib/visual-data';
+import { positionDivergences } from '../lib/divergence-data';
+
+interface Props {
+  candidate: Candidate;
+}
+const { candidate } = Astro.props;
+const sourceById = new Map(sources.map((source) => [source.id, source]));
+const byLatest = (left: { date: string }, right: { date: string }) =>
+  right.date.localeCompare(left.date);
+const publication = events
+  .filter(
+    (event) =>
+      event.candidates.includes(candidate.id) &&
+      event.kind === 'past' &&
+      event.category === 'programme' &&
+      event.dateKind === 'publication',
+  )
+  .sort(byLatest)[0];
+const ballots = legislativeVotes.ballots
+  .filter((b) => b.positions.some((p) => p.candidate === candidate.id))
+  .sort(byLatest)
+  .map((b) => {
+    const position = b.positions.find((p) => p.candidate === candidate.id)!;
+    const dossier = voteCases.find(
+      (c) =>
+        c.candidate === candidate.id &&
+        c.links.some((l) => l.ballotId === b.id),
+    );
+    return {
+      date: b.date,
+      title: b.shortTitle,
+      href: dossier ? `/votes/#dossier=${dossier.id}` : b.source.url,
+      label: positionLabel(position, b),
+      kind: position.choice,
+      detail: chambers[b.chamber],
+      source: b.source.url,
+    };
+  });
+const dates = agenda.events
+  .filter((e) => e.candidate === candidate.id)
+  .sort((a, b) => byLatest(a, b) || (a.time ?? '').localeCompare(b.time ?? ''))
+  .map((e) => {
+    const city = agenda.cities.find((c) => c.id === e.city);
+    const label = { tenu: 'Tenu', annonce: 'Annoncé', annule: 'Annulé' }[
+      e.status
+    ];
+    return {
+      date: e.date,
+      title: e.title,
+      href: `/agenda/#${e.id}`,
+      label: [label, e.time?.replace(':', ' h ')].filter(Boolean).join(' · '),
+      kind: 'date',
+      detail: city?.name ?? e.venue ?? '',
+      source: sourceById.get(e.source)!.url,
+    };
+  });
+const questions = positionDivergences.filter((topic) =>
+  topic.positions.some((p) =>
+    p.entries.some((e) => e.candidate.id === candidate.id),
+  ),
+);
+const first =
+  questions.find((topic) =>
+    topic.positions.some((p) =>
+      p.entries.some(
+        (e) =>
+          e.candidate.id === candidate.id &&
+          e.version.snapshot.scope !== 'parti',
+      ),
+    ),
+  ) ?? questions[0];
+const atlas = first
+  ? `/echiquier/?question=${first.id}&candidature=${candidate.id}#issues-title`
+  : `/echiquier/#couverture-${candidate.id}`;
+const groups = [
+  {
+    id: 'scrutins',
+    name: 'Votes nominatifs',
+    icon: 'vote',
+    rows: ballots,
+    empty: 'Aucun vote nominatif recensé dans ce dossier.',
+  },
+  {
+    id: 'rendez-vous',
+    name: 'Rendez-vous de campagne',
+    icon: 'map-pin',
+    rows: dates,
+    empty: 'Aucun rendez-vous daté dans les sources de ce dossier.',
+  },
+];
+---
+
+<section aria-labelledby="activite" class="profile-activity">
+  <header>
+    <h2 id="activite">Votes et rendez-vous</h2>
+    <a href={atlas}>
+      Voir dans l’échiquier <Icon name="arrow" />
+    </a>
+  </header>
+  <div class="activity-grid">
+    {groups.map((group) => (
+      <section
+        id={group.id}
+        class="activity-ledger"
+        aria-labelledby={`titre-${group.id}`}
+      >
+        <h3 id={`titre-${group.id}`}>
+          <Icon name={group.icon} />
+          {group.name}
+          <span>{group.rows.length}</span>
+        </h3>
+        {group.rows.length === 0 && <p class="activity-empty">{group.empty}</p>}
+        {group.id === 'rendez-vous' && !dates.length && publication && (
+          <p class="activity-publication">
+            <small>
+              Publication du{' '}
+              <time datetime={publication.date}>
+                {formatDate(publication.date)}
+              </time>
+            </small>
+            <a href={`/campagne/#${publication.id}`}>{publication.title} ↗</a>
+          </p>
+        )}
+        {[group.rows.slice(0, 3), group.rows.slice(3)].map((entries, index) => {
+          if (!entries.length) return null;
+          const Wrapper = index === 0 ? 'div' : 'details';
+          return (
+            <Wrapper>
+              {index > 0 && <summary>Voir les {entries.length} autres</summary>}
+              <ol>
+                {entries.map((entry) => (
+                  <li>
+                    <div class="activity-meta">
+                      <time datetime={entry.date}>
+                        {formatDate(entry.date)}
+                      </time>
+                      {entry.label && (
+                        <span data-choice={entry.kind}>{entry.label}</span>
+                      )}
+                    </div>
+                    <a class="activity-title" href={entry.href}>
+                      {entry.title}
+                    </a>
+                    <div class="activity-source">
+                      {entry.detail && <span>{entry.detail}</span>}
+                      <a
+                        href={entry.source}
+                        aria-label={`Source de « ${entry.title} »`}
+                      >
+                        Source ↗
+                      </a>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </Wrapper>
+          );
+        })}
+      </section>
+    ))}
+  </div>
+</section>

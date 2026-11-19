@@ -578,6 +578,7 @@
     "dateKind": "evenement",
     "candidates": ["riner"],
     "sources": [
+      "riner-annonce-personnelle",
       "riner-entretien-parisien-novembre",
       "riner-lcp-orientations-novembre"
     ]
@@ -614,5 +615,27 @@
     "dateKind": "publication",
     "candidates": ["zemmour"],
     "sources": ["zemmour-entretien-jdd-novembre"]
+  },
+  {
+    "id": "rohou-tribune-choix-energetiques",
+    "date": "2026-09-29",
+    "title": "Erwan Rohou publie ses choix de politique énergétique",
+    "description": "Le candidat du MEI défend la récupération de chaleur et la publication des capacités en projet dans chaque filière.",
+    "kind": "past",
+    "category": "programme",
+    "dateKind": "publication",
+    "candidates": ["rohou"],
+    "sources": ["rohou-tribune-energie"]
+  },
+  {
+    "id": "riner-prise-position-production",
+    "date": "2026-11-15",
+    "title": "Teddy Riner demande un allègement des normes pour les producteurs",
+    "description": "À la suite du salon du Made in France, il publie sa position sur les démarches auxquelles sont soumises les entreprises qui produisent en France.",
+    "kind": "past",
+    "category": "programme",
+    "dateKind": "publication",
+    "candidates": ["riner"],
+    "sources": ["riner-production-locale"]
   }
 ]

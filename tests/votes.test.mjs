@@ -158,3 +158,21 @@ test('une capture de scrutin déjà intégrée reste immuable', () => {
   assert.ok(immutableHistoryErrors(data.ballots, copy).length);
   assert.ok(immutableHistoryErrors(data.ballots, data.ballots.slice(1)).length);
 });
+
+test('les appels nominaux européens conservent le vote personnel et la chambre du document', () => {
+  const european = data.ballots.filter(
+    (b) => b.chamber === 'parlement-europeen',
+  );
+  const ceta = european.find((b) => b.id === 'pe8-20170215-ceta');
+  const posting = european.find((b) => b.id === 'pe8-20180529-detachement');
+  assert.equal(ceta.positions[0].choice, 'contre');
+  assert.equal(posting.positions[0].choice, 'abstention');
+  assert.equal(posting.tally.expressed, 603);
+  const wrong = structuredClone(data);
+  wrong.ballots.find((b) => b.id === ceta.id).chamber = 'assemblee';
+  assert.ok(
+    valid(wrong).some((error) =>
+      error.includes('domaine institutionnel incohérent'),
+    ),
+  );
+});
