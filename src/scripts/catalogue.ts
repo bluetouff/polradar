@@ -151,5 +151,6 @@ export function catalogue<T>({
   window.addEventListener('popstate', restore);
   window.addEventListener('hashchange', restore);
   restore();
+  form.hidden = false;
   return async () => select(await all(), read());
 }
