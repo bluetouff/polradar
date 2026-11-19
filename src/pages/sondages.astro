@@ -3,12 +3,12 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import PollChart from '../components/PollChart.astro';
 import { polls, sourceById, formatDate, type Poll } from '../lib/data';
-import { pollSeries, pollColor } from '../lib/features.mjs';
+import { pollSeries, pollColor, rankedPollResults } from '../lib/features.mjs';
 const groups = pollSeries(polls) as Poll[][];
 const initial = groups.find((rows) => rows[0].round === 'premier')!;
 const latest = initial.at(-1)!;
-const selected = [...latest.results]
-  .sort((a, b) => b.percentage - a.percentage)
+const selected = rankedPollResults(latest)
+  .filter((result) => result.percentage !== null)
   .slice(0, 4)
   .map((row) => row.id);
 const institutes = [...new Set(polls.map((poll) => poll.institute))];
@@ -137,12 +137,15 @@ const notices = [...new Set(polls.map((poll) => poll.noticeSource))];
         {formatDate(latest.fieldworkEnd)}
       </p>
       <div id="poll-bars">
-        {[...latest.results]
-          .sort((a, b) => b.percentage - a.percentage)
-          .map((result) => (
-            <div class="poll-bar-row">
-              <span>{result.name}</span>
-              <strong>{result.percentage.toLocaleString('fr-FR')} %</strong>
+        {rankedPollResults(latest).map((result) => (
+          <div class="poll-bar-row">
+            <span>{result.name}</span>
+            <strong>
+              {result.percentage === null
+                ? 'Non publié'
+                : `${result.percentage.toLocaleString('fr-FR')} %`}
+            </strong>
+            {result.percentage !== null && (
               <svg viewBox="0 0 300 8" aria-hidden="true">
                 <rect
                   class="poll-bar-track"
@@ -159,14 +162,14 @@ const notices = [...new Set(polls.map((poll) => poll.noticeSource))];
                   rx="3"
                 />
               </svg>
-            </div>
-          ))}
+            )}
+          </div>
+        ))}
       </div>
       <p id="poll-no-intention" class="small muted">
-        Sans intention exprimée : {latest.noIntention?.toLocaleString('fr-FR')}{' '}
-        %{' '}
-        {latest.noIntentionNote ||
-          '(donnée distincte des pourcentages de candidats).'}
+        {latest.noIntention === null
+          ? 'Part sans intention exprimée : non renseignée.'
+          : `Sans intention exprimée : ${latest.noIntention.toLocaleString('fr-FR')} % ${latest.noIntentionNote || '(donnée distincte des pourcentages de candidats).'}`}
       </p>
     </aside>
   </section>
@@ -208,7 +211,7 @@ const notices = [...new Set(polls.map((poll) => poll.noticeSource))];
         </dd>
       </div>
       <div>
-        <dt>Première publication</dt>
+        <dt>Date de publication</dt>
         <dd>{formatDate(latest.published)}</dd>
       </div>
       <div>

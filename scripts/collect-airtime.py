@@ -63,16 +63,31 @@ def source_files(body, year, today):
     return sorted(result, key=lambda r:r['month'], reverse=True)[:3]
 
 
+def recent_files(now):
+    files = []
+    unavailable = []
+    years = (now.year, now.year - 1) if now.month <= 3 else (now.year,)
+    for year in years:
+        index = f'https://www.arcom.fr/temps-parole/hors-elections/recherche/source/{year}'
+        try:
+            status, mime, body = transport.fetch_reliably(index, HOSTS)
+            if status != 200 or mime not in ('text/html', 'application/xhtml+xml'):
+                raise ValueError('Arcom index unavailable')
+            files.extend(source_files(body, year, now.date()))
+        except (ValueError, KeyError, TypeError, OSError):
+            unavailable.append(year)
+        if len(files) >= 3:
+            break
+    if not files:
+        raise ValueError('No complete Arcom release')
+    return sorted(files, key=lambda row: row['month'], reverse=True)[:3], unavailable
+
+
 def main():
     now = datetime.now(ZoneInfo('Europe/Paris'))
-    # At the beginning of a year the current page may not contain a full month yet.
-    # Fail for review rather than substitute an unverified period.
-    index = f'https://www.arcom.fr/temps-parole/hors-elections/recherche/source/{now.year}'
     output = ROOT / 'artifacts/airtime-review'; output.mkdir(parents=True, exist_ok=True)
     try:
-        status, mime, body = transport.fetch_reliably(index, HOSTS)
-        if status != 200 or mime not in ('text/html', 'application/xhtml+xml'): raise ValueError('Arcom index unavailable')
-        files = source_files(body, now.year, now.date())
+        files, unavailable = recent_files(now)
         for row in files:
             status, mime, raw = transport.fetch_reliably(row['sourceUrl'], HOSTS)
             if status != 200 or mime not in ('text/csv','application/csv','text/plain','application/octet-stream','application/vnd.ms-excel'): raise ValueError('Arcom CSV unavailable')
@@ -86,7 +101,9 @@ def main():
         manifest = {'version':1, 'checked':now.date().isoformat(), 'observedAt':now.isoformat(), 'status':'review' if changed else 'unchanged', 'months':files}
         (output / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2)+'\n')
         report = '# Relevés Arcom\n\n' + ('Nouveaux fichiers ou révisions à examiner.' if changed else 'Les trois derniers fichiers correspondent au relevé intégré.') + '\n\n' + '\n'.join(f"- [{r['month']}]({r['sourceUrl']})" for r in files) + '\n'
-    except (ValueError, KeyError, TypeError, OSError) as exc:
+        if unavailable:
+            report += '\nIndex annuel indisponible : ' + ', '.join(map(str, unavailable)) + '.\n'
+    except (ValueError, KeyError, TypeError, OSError):
         # An unsuccessful run cannot leave a stale successful manifest behind.
         (output / 'manifest.json').write_text(json.dumps({'version':1,'checked':now.date().isoformat(),'status':'unavailable','months':[]})+'\n')
         report = '# Relevés Arcom\n\nSource indisponible ou format modifié. Le relevé intégré au site est conservé.\n'

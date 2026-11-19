@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import economy from '../../src/data/economy.json' with { type: 'json' };
 
 test.use({ javaScriptEnabled: false, viewport: { width: 320, height: 840 } });
 
@@ -31,7 +32,11 @@ test('les séries économiques et leurs valeurs restent lisibles sans JavaScript
   expect((await downloading).suggestedFilename()).toBe('polradar-economie.csv');
   const csv = await request.get('/api/economie-csv.txt');
   expect(csv.ok()).toBe(true);
-  expect(await csv.text()).toContain('inflation;FR;M;2026-10;3.7;%;');
+  const inflation = economy.series.find((row) => row.id === 'inflation')!;
+  const [period, value] = inflation.observations
+    .filter((row) => row[1] !== null)
+    .at(-1)!;
+  expect(await csv.text()).toContain(`inflation;FR;M;${period};${value};%;`);
 });
 
 test('les déclarations distinguent concordance, révision et périmètre', async ({

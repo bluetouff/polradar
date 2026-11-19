@@ -125,12 +125,13 @@ export const pollSchema = z.object({
   noticeSource: idSchema,
   resultSource: idSchema.optional(),
   resultPage: z.number().int().positive().optional(),
+  rounding: z.literal('unite').optional(),
   results: z
     .array(
       z.object({
         id: idSchema,
         name: text,
-        percentage: z.number().min(0).max(100),
+        percentage: z.number().min(0).max(100).nullable(),
       }),
     )
     .min(2)
@@ -491,10 +492,16 @@ export function validateDataset(dataset) {
       errors.push(`${poll.id}: calendrier d’enquête incohérent`);
     if (poll.usefulSample !== null && poll.usefulSample > poll.sampleSize)
       errors.push(`${poll.id}: effectif utile supérieur à l’échantillon`);
+    const scores = poll.results
+      .map((item) => item.percentage)
+      .filter((score) => score !== null);
+    const tolerance =
+      poll.rounding === 'unite' ? Math.min(2, scores.length / 2) : 1;
     if (
-      Math.abs(
-        poll.results.reduce((sum, item) => sum + item.percentage, 0) - 100,
-      ) > 1
+      scores.length < 2 ||
+      (poll.rounding === 'unite' &&
+        scores.some((score) => !Number.isInteger(score))) ||
+      Math.abs(scores.reduce((sum, score) => sum + score, 0) - 100) > tolerance
     )
       errors.push(`${poll.id}: résultats incompatibles`);
     if (poll.round === 'second' && poll.results.length !== 2)

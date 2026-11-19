@@ -2,6 +2,7 @@ import { corpus, el, anchor, svg, number, date, download } from './ui';
 import {
   pollSeries,
   pollColor,
+  rankedPollResults,
   chartGeometry,
   csvValue,
 } from '../lib/features.mjs';
@@ -52,8 +53,8 @@ async function start() {
       [];
     index = Math.max(0, rows.length - 1);
     active = rows.length
-      ? [...rows.at(-1)!.results]
-          .sort((a, b) => b.percentage - a.percentage)
+      ? rankedPollResults(rows.at(-1)!)
+          .filter((result) => result.percentage !== null)
           .slice(0, 4)
           .map((result) => result.id)
       : [];
@@ -238,11 +239,20 @@ async function start() {
       rows.at(-1)!.fieldworkEnd,
     );
     range.setAttribute('aria-valuetext', date(poll.fieldworkEnd));
-    for (const result of [...poll.results].sort(
-      (a, b) => b.percentage - a.percentage,
-    )) {
-      const row = el('div', undefined, 'poll-bar-row'),
-        bar = svg('svg', { viewBox: '0 0 300 8', 'aria-hidden': 'true' });
+    for (const result of rankedPollResults(poll)) {
+      const row = el('div', undefined, 'poll-bar-row');
+      row.append(
+        el('span', result.name),
+        el(
+          'strong',
+          result.percentage === null
+            ? 'Non publié'
+            : `${number(result.percentage)} %`,
+        ),
+      );
+      bars.append(row);
+      if (result.percentage === null) continue;
+      const bar = svg('svg', { viewBox: '0 0 300 8', 'aria-hidden': 'true' });
       bar.append(
         svg('rect', {
           class: 'poll-bar-track',
@@ -259,12 +269,7 @@ async function start() {
           rx: '3',
         }),
       );
-      row.append(
-        el('span', result.name),
-        el('strong', `${number(result.percentage)} %`),
-        bar,
-      );
-      bars.append(row);
+      row.append(bar);
     }
     document.querySelector('#poll-no-intention')!.textContent =
       poll.noIntention === null
@@ -286,7 +291,7 @@ async function start() {
         'Terrain',
         `Du ${date(poll.fieldworkStart)} au ${date(poll.fieldworkEnd)}`,
       ],
-      ['Première publication', date(poll.published)],
+      ['Date de publication', date(poll.published)],
       [
         'Échantillon global',
         `${number(poll.sampleSize)} personnes, dont ${number(poll.registeredSample)} inscrits`,
@@ -362,7 +367,7 @@ async function start() {
         poll.fieldworkEnd,
         poll.published,
         result.name,
-        String(result.percentage),
+        result.percentage === null ? '' : String(result.percentage),
         data.sources.find((source) => source.id === poll.noticeSource)!.url,
       ]),
     ]

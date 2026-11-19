@@ -23,9 +23,18 @@ test('les relevés Arcom filtrent média et personne sans perdre les durées man
   });
   page.on('pageerror', (e) => errors.push(e.message));
   await page.goto('/temps-de-parole/');
-  await expect(page.locator('.airtime-row:visible')).toHaveCount(15);
+  await expect(page.locator('.airtime-row:visible')).toHaveCount(
+    airtime.months[0].services.filter(
+      (service) => service.kind === 'television',
+    ).length,
+  );
+  await page.locator('#airtime-month').selectOption('2026-09');
   await page.locator('#airtime-kind').selectOption('radio');
-  await expect(page.locator('.airtime-row:visible')).toHaveCount(9);
+  await expect(page.locator('.airtime-row:visible')).toHaveCount(
+    airtime.months
+      .find((month) => month.month === '2026-09')!
+      .services.filter((service) => service.kind === 'radio').length,
+  );
   await page.locator('#airtime-candidate').selectOption('retailleau');
   await expect(page.locator('#airtime-legend')).toContainText(
     'Bruno Retailleau',
@@ -54,7 +63,9 @@ test('les relevés Arcom filtrent média et personne sans perdre les durées man
   await expect(page.locator('#airtime-candidate')).toHaveValue('');
   await page.locator('#airtime-kind').selectOption('');
   await page.reload();
-  await expect(page.locator('.airtime-row:visible')).toHaveCount(24);
+  await expect(page.locator('.airtime-row:visible')).toHaveCount(
+    airtime.months[0].services.length,
+  );
   expect(external).toEqual([]);
   expect(errors).toEqual([]);
 });
@@ -200,7 +211,9 @@ for (const route of ['/temps-de-parole/', '/budget-programmes/', '/agenda/']) {
         agenda.events.length,
       );
     if (route === '/temps-de-parole/')
-      await expect(page.locator('.airtime-row:visible')).toHaveCount(24);
+      await expect(page.locator('.airtime-row:visible')).toHaveCount(
+        airtime.months[0].services.length,
+      );
     if (route === '/budget-programmes/')
       await expect(page.locator('.budget-entry:visible')).toHaveCount(
         budgets.profiles.reduce((n, p) => n + p.entries.length, 0),

@@ -25,8 +25,16 @@ export function pollSeries(polls) {
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key).push(poll);
   }
-  return [...groups.values()].map((rows) =>
-    rows.sort((a, b) => a.fieldworkEnd.localeCompare(b.fieldworkEnd)),
+  return [...groups.values()]
+    .map((rows) =>
+      rows.sort((a, b) => a.fieldworkEnd.localeCompare(b.fieldworkEnd)),
+    )
+    .sort((a, b) => b.at(-1).published.localeCompare(a.at(-1).published));
+}
+/** @param {import('./data').Poll} poll */
+export function rankedPollResults(poll) {
+  return [...poll.results].sort(
+    (a, b) => (b.percentage ?? -1) - (a.percentage ?? -1),
   );
 }
 /** @template T @param {T[]} entries @returns {T[]} */
@@ -227,7 +235,8 @@ export function chartGeometry(rows, activeIds, width = 760) {
   const values = rows.flatMap((row) =>
     row.results
       .filter((result) => activeIds.includes(result.id))
-      .map((result) => result.percentage),
+      .map((result) => result.percentage)
+      .filter((value) => value !== null),
   );
   const max = Math.max(10, Math.ceil(Math.max(0, ...values) / 10) * 10);
   const start = Date.parse(rows[0].fieldworkEnd + 'T12:00:00Z'),
@@ -243,13 +252,14 @@ export function chartGeometry(rows, activeIds, width = 760) {
   const lines = rows[0].results
     .filter((result) => activeIds.includes(result.id))
     .map((result) => {
-      const points = rows.map((row, index) => ({
-        x: x(row),
-        y: y(row.results.find((item) => item.id === result.id).percentage),
-        value: row.results.find((item) => item.id === result.id).percentage,
-        date: row.fieldworkEnd,
-        index,
-      }));
+      const points = rows.flatMap((row, index) => {
+        const value = row.results.find(
+          (item) => item.id === result.id,
+        ).percentage;
+        return value === null
+          ? []
+          : [{ x: x(row), y: y(value), value, date: row.fieldworkEnd, index }];
+      });
       return {
         id: result.id,
         name: result.name,
@@ -258,11 +268,12 @@ export function chartGeometry(rows, activeIds, width = 760) {
         path: points
           .map(
             (point, index) =>
-              `${index ? 'L' : 'M'}${point.x.toFixed(2)} ${point.y.toFixed(2)}`,
+              `${points[index - 1]?.index === point.index - 1 ? 'L' : 'M'}${point.x.toFixed(2)} ${point.y.toFixed(2)}`,
           )
           .join(' '),
       };
-    });
+    })
+    .filter((line) => line.points.length);
   const tickCount = 4;
   return {
     width,

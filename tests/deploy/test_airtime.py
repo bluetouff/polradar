@@ -1,8 +1,9 @@
 import importlib.util
 from pathlib import Path
-from datetime import date
+from datetime import date, datetime
 import json
 import unittest
+from unittest.mock import patch
 
 spec = importlib.util.spec_from_file_location('airtime', Path(__file__).resolve().parents[2]/'scripts/collect-airtime.py')
 airtime = importlib.util.module_from_spec(spec)
@@ -29,6 +30,15 @@ class AirtimeTests(unittest.TestCase):
         for path in ['//localhost/file.csv','/sites/default/files/tphe/files/speaking_time_files/../../private.csv','/sites/default/files/tphe/files/speaking_time_files/%00.csv','/sites/default/files/tphe/files/speaking_time_files/file.csv?url=http://localhost/']:
             with self.subTest(path=path),self.assertRaises(ValueError):airtime.file_url(path)
         self.assertEqual(airtime.file_url('/sites/default/files/tphe/files/speaking_time_files/a%20%281%29.csv'),'https://www.arcom.fr/sites/default/files/tphe/files/speaking_time_files/a%20%281%29.csv')
+
+    def test_december_is_detected_when_the_current_year_has_no_release(self):
+        previous = self.body({'date_start': '01/12/2026', 'date_end': '31/12/2026'})
+        answers = [(404, 'text/html', b''), (200, 'text/html', previous)]
+        with patch.object(airtime.transport, 'fetch_reliably', side_effect=answers) as fetch:
+            files, unavailable = airtime.recent_files(datetime(2027, 1, 25))
+        self.assertEqual([row['month'] for row in files], ['2026-12'])
+        self.assertEqual(unavailable, [2027])
+        self.assertTrue(fetch.call_args_list[1].args[0].endswith('/2026'))
 
 
 if __name__=='__main__':unittest.main()

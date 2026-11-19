@@ -3,8 +3,7 @@ on:
   schedule:
     - cron: '23 5 * * *'
   workflow_dispatch:
-permissions:
-  contents: read
+permissions: {}
 concurrency:
   group: source-watch
   cancel-in-progress: false
@@ -12,6 +11,8 @@ jobs:
   watch:
     runs-on: ubuntu-latest
     timeout-minutes: 12
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -20,29 +21,109 @@ jobs:
         run: python3 scripts/watch-sources.py
       - name: Résumé de la veille
         run: cat artifacts/watch-report.md >> "$GITHUB_STEP_SUMMARY"
-      - name: Relever les fichiers Arcom pour examen
-        run: python3 scripts/collect-airtime.py
-      - name: Résumé des relevés Arcom
-        run: cat artifacts/airtime-review/report.md >> "$GITHUB_STEP_SUMMARY"
-      - name: Relever les séries économiques pour examen
-        run: python3 scripts/collect-economy.py
-      - name: Résumé des séries économiques
-        run: cat artifacts/economy-review/report.md >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: source-watch-review
           path: artifacts/watch-report.*
           if-no-files-found: error
           retention-days: 14
-      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+
+  refresh:
+    name: Collecter les données publiques
+    if: github.repository == 'bluetouff/polradar' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    outputs:
+      changed: ${{ steps.bundle.outputs.changed }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          name: airtime-review
-          path: artifacts/airtime-review/
-          if-no-files-found: error
-          retention-days: 14
-      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          name: economy-review
-          path: artifacts/economy-review/
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Installer le lecteur des notices
+        run: |
+          python3 -m venv "$RUNNER_TEMP/poll-reader"
+          "$RUNNER_TEMP/poll-reader/bin/python" -m pip install --isolated --disable-pip-version-check --no-deps --require-hashes --only-binary=:all: -r scripts/requirements/poll-pdf.txt
+      - name: Relever les notices, marchés, séries et fichiers Arcom
+        run: |
+          set -euo pipefail
+          "$RUNNER_TEMP/poll-reader/bin/python" scripts/collect-polls.py | tee -a "$GITHUB_STEP_SUMMARY"
+          python3 scripts/collect-markets.py > artifacts/markets-review.txt || [[ $? == 1 ]]
+          cat artifacts/markets-review.txt >> "$GITHUB_STEP_SUMMARY"
+          python3 scripts/collect-economy.py
+          cat artifacts/economy-review/report.md >> "$GITHUB_STEP_SUMMARY"
+          python3 scripts/collect-airtime.py
+          cat artifacts/airtime-review/report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Intégrer les relevés validés
+        run: |
+          node scripts/refresh-data.mjs
+          node scripts/import-airtime.mjs --refresh
+          npx --no-install prettier --write src/data/{polls,sources,prediction-markets,economy,airtime}.json
+          node scripts/validate-content.mjs
+          git diff --check
+      - name: Préparer les seuls fichiers de données
+        id: bundle
+        run: |
+          changed=$(python3 scripts/daily-data-files.py pack)
+          printf 'changed=%s\n' "$changed" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: steps.bundle.outputs.changed == 'true'
+        with:
+          name: daily-data
+          path: artifacts/daily-data/
           if-no-files-found: error
+          retention-days: 2
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: daily-data-review
+          path: |
+            artifacts/polls-review/review.json
+            artifacts/markets-review.json
+            artifacts/economy-review/
+            artifacts/airtime-review/
+          if-no-files-found: ignore
           retention-days: 14
+
+  update:
+    name: Pousser les données validées
+    needs: refresh
+    if: github.repository == 'bluetouff/polradar' && github.ref == 'refs/heads/main' && needs.refresh.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment: polradar-data-publish
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: daily-data
+          path: artifacts/daily-data/
+      - name: Vérifier et enregistrer les fichiers quotidiens
+        run: |
+          python3 scripts/daily-data-files.py apply
+          git diff --cached --check
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Actualise les données publiques de Polradar'
+      - name: Déclencher la publication habituelle par un push
+        env:
+          POLRADAR_DATA_PUSH_KEY: ${{ secrets.POLRADAR_DATA_PUSH_KEY }}
+        run: |
+          set -euo pipefail
+          umask 077
+          key_dir=$(mktemp -d "$RUNNER_TEMP/polradar-push.XXXXXX")
+          trap 'rm -f -- "$key_dir/key" "$key_dir/known_hosts"; rmdir -- "$key_dir"' EXIT
+          test -n "$POLRADAR_DATA_PUSH_KEY"
+          printf '%s\n' "$POLRADAR_DATA_PUSH_KEY" > "$key_dir/key"
+          unset POLRADAR_DATA_PUSH_KEY
+          printf '%s\n' 'github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl' > "$key_dir/known_hosts"
+          export GIT_SSH_COMMAND="ssh -F /dev/null -i \"$key_dir/key\" -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o HostKeyAlgorithms=ssh-ed25519 -o UpdateHostKeys=no -o UserKnownHostsFile=\"$key_dir/known_hosts\" -o GlobalKnownHostsFile=/dev/null -o ConnectTimeout=15"
+          git push ssh://git@github.com/bluetouff/polradar.git HEAD:refs/heads/main

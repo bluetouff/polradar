@@ -34,7 +34,7 @@ Le corpus comprend 33 candidatures recensées, 12 thèmes et 354 fiches de mesur
 
 Le registre de sondages contient 36 relevés de scénarios, regroupés en 30 séries compatibles sur neuf vagues, provenant de sept instituts : Elabe, Ifop, Ipsos BVA, Odoxa, Cluster17, OpinionWay et Toluna Harris Interactive. Les notices de la Commission des sondages documentent les terrains, échantillons et méthodes. Pour Odoxa, les résultats sont liés séparément à la publication de l’institut. Chaque courbe conserve le même institut, tour, méthode et liste de candidatures. Les effectifs utiles inconnus restent à `null`. Les bases des non-exprimés et les marges indicatives sont précisées dans chaque fiche. Les comptes de campagne et les résultats territoriaux restent à intégrer.
 
-Les vues `/temps-de-parole/`, `/budget-programmes/` et `/agenda/` proposent les relevés Arcom de juillet à septembre 2026 (24 médias), 37 montants annoncés pour 14 profils et 28 rendez-vous officiels dans 21 communes. Elles conservent les périodes, les données absentes et les sources. La collecte Arcom accompagne la veille quotidienne et produit un artefact à examiner ; elle ne publie pas de données automatiquement. Voir [la méthode et les commandes de mise à jour](docs/visualisations.md).
+Les vues `/temps-de-parole/`, `/budget-programmes/` et `/agenda/` proposent les relevés Arcom de juillet à septembre 2026 (24 médias), 37 montants annoncés pour 14 profils et 28 rendez-vous officiels dans 21 communes. Elles conservent les périodes, les données absentes et les sources. Chaque jour, les fichiers Arcom sont vérifiés puis intégrés via la publication Git habituelle. Voir [la méthode et les commandes de mise à jour](docs/visualisations.md).
 
 Les nouvelles vues `/evolution/` et `/financements/` ajoutent six dossiers datés (quatorze états de proposition pour cinq candidats) et seize schémas financiers concernant neuf candidats. Les documents historiques sont conservés séparément des révisions éditoriales ; les liens financiers reprennent uniquement les relations documentées. Voir [leurs règles de comparaison](docs/propositions.md). L’accueil propose deux aperçus fondés sur ces données, avec une navigation horizontale et un footer structuré.
 
@@ -80,7 +80,7 @@ Cette option écrit `src/data/prediction-markets.json` ; elle ne pousse pas Git.
 
 ## Veille et historique
 
-Le workflow `watch.yml` est programmé chaque jour à 05:23 UTC (exécution pouvant être retardée par GitHub). Il produit un rapport à relire, conservé 14 jours, sans accès en écriture au dépôt. Il ne modifie pas les programmes. Les références PCF utilisent deux PDF officiels et la captation publiée sur la chaîne YouTube du parti. Le relevé de la captation lit les métadonnées officielles oEmbed, sans exécuter ni intégrer le lecteur externe. Il vérifie l’existence de la vidéo et les changements de titre ou de chaîne ; il ne compare pas le son et les images. Le lien du texte national publié le 15 septembre est conservé comme référence précédente de la captation du 12 septembre. Les reprises sur les erreurs HTTP transitoires restent bornées et la vérification TLS est maintenue. Le site affiche le dernier relevé intégré, avec sa date effective ; le lien vers Actions donne accès aux exécutions suivantes.
+Le workflow `watch.yml` est programmé une fois par jour à 05:23 UTC. GitHub peut retarder son démarrage. La veille des programmes produit un rapport à relire, conservé 14 jours. Ce job dispose uniquement d’un accès en lecture au dépôt. Les références PCF utilisent deux PDF officiels et la captation publiée sur la chaîne YouTube du parti. Le relevé de la captation lit les métadonnées officielles oEmbed, sans exécuter ni intégrer le lecteur externe. Il vérifie l’existence de la vidéo et les changements de titre ou de chaîne ; il ne compare pas le son et les images. Le lien du texte national publié le 15 septembre est conservé comme référence précédente de la captation du 12 septembre. Les reprises sur les erreurs HTTP transitoires restent bornées et la vérification TLS est maintenue. Le site affiche le dernier relevé intégré, avec sa date effective ; le lien vers Actions donne accès aux exécutions suivantes.
 
 ```sh
 python3 scripts/watch-sources.py
@@ -94,6 +94,14 @@ Pour les premières mesures d’Anasse Kazib, la veille compare le corps de l’
 
 Pour intégrer un relevé : relire les liens et états du rapport, vérifier les changements dans les documents originaux, puis copier le JSON validé vers `src/data/watch.json`. Une indisponibilité reste affichée comme telle. Pour mettre à jour une mesure, conserver toutes les entrées de `versions.json`, ajouter la nouvelle version complète puis synchroniser `measures.json` et son numéro `revision`. La CI compare les anciennes versions avec la base Git et refuse leur réécriture. `node scripts/check-history.mjs` fait ce contrôle localement contre `HEAD`.
 
+## Actualisation quotidienne des données
+
+La collecte suit le catalogue de la Commission des sondages, Polymarket et Kalshi, Eurostat et l’Arcom. Les nouveaux tableaux Ifop et YouGov reconnus sont importés avec la page de référence et la base de calcul. Les autres notices repérées, les changements de format et les cas ambigus figurent dans le rapport `daily-data-review`. Les résultats publiés sont conservés à leur précision d’origine. Les tirets Ifop restent des valeurs absentes.
+
+Le workflow vérifie les données en lecture seule, puis transmet uniquement les fichiers JSON validés au job de publication. Celui-ci utilise la clé dédiée rangée dans l’environnement GitHub `polradar-data-publish`, limité à `main`. Le push déclenche les contrôles habituels et le déploiement sur Zen. Chaque relevé garde l’heure ou la période de sa source. En cas d’indisponibilité, les marchés affichent l’état du fournisseur et Eurostat et l’Arcom conservent leur dernier relevé valide.
+
+Sur GitHub, le bouton **Run workflow** de **Veille des sources**, avec la branche `main`, lance la même collecte à la demande.
+
 ## Mettre à jour le site
 
 1. Modifier les contenus ou le code dans une branche et ouvrir une pull request.
@@ -101,7 +109,7 @@ Pour intégrer un relevé : relire les liens et états du rapport, vérifier les
 3. GitHub Actions construit le site et publie une version `site-<commit>` accompagnée de son empreinte SHA-256.
 4. Le serveur récupère les nouvelles versions toutes les cinq minutes et active uniquement un commit de `main` dont le workflow a réussi.
 
-Le serveur ne construit pas de code npm. GitHub ne possède ni accès SSH ni secret de déploiement. Les pull requests ne peuvent pas publier de version. Une livraison rejetée conserve la version précédente. Le mécanisme est détaillé dans [deploy/README.md](deploy/README.md).
+Le serveur ne construit pas de code npm. GitHub ne possède aucun identifiant donnant accès à Zen. Les pull requests ne peuvent pas publier de version. Une livraison rejetée conserve la version précédente. Le mécanisme est détaillé dans [deploy/README.md](deploy/README.md).
 
 Le fichier public [`build.json`](https://polradar.fr/build.json) permet de comparer le commit servi avec le dépôt. Une compilation réussie n’établit pas à elle seule que le site a été mis à jour.
 
@@ -117,10 +125,7 @@ Voir [CONTRIBUTING.md](CONTRIBUTING.md) et [SECURITY.md](SECURITY.md). Les corre
 
 La rubrique [Indicateurs économiques](https://polradar.fr/economie/) lit un relevé
 versionné des séries d’Eurostat pour la France. Les définitions et filtres sont dans
-`src/data/economy-series.json`. La veille quotidienne collecte un relevé pour examen.
-Pour intégrer ses observations, lancer `python3 scripts/collect-economy.py --write`
-puis valider et publier le diff par le flux Git habituel. Une collecte incomplète
-conserve le relevé publié. Les vérifications de déclarations citent le millésime de la
+`src/data/economy-series.json`. La chaîne quotidienne intègre un relevé complet après validation. Une collecte incomplète conserve le dernier relevé publié et apparaît dans le rapport GitHub. Les vérifications de déclarations citent le millésime de la
 publication de référence pour rester lisibles après révision des séries.
 
 Le tableau de bord propose un téléchargement `polradar-economie.csv` et un export

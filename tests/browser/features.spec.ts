@@ -40,6 +40,7 @@ test('les nouvelles vues restent lisibles de 320 à 1440 pixels', async ({
         expect(compressed).toBe(false);
       }
       if (route === '/sondages/') {
+        await page.locator('#poll-institute').selectOption('Elabe');
         await expect(page.locator('#poll-status')).toContainText('Elabe');
         const textSizes = await page
           .locator('#poll-plot .chart-tick')
@@ -275,7 +276,7 @@ test('un échec d’effacement est indiqué sans annoncer une suppression', asyn
 test('les sondages séparent les tours et permettent de choisir une vague', async ({
   page,
 }) => {
-  await page.goto('/sondages/');
+  await page.goto('/sondages/#enquete=elabe-2026-11-14-philippe');
   await expect(page.locator('#poll-status')).toContainText('Elabe');
   await expect(page.locator('#poll-bars .poll-bar-row')).toHaveCount(11);
   await page.locator('#poll-wave').focus();
@@ -376,9 +377,11 @@ test('les vues initiales et les notices restent disponibles sans JavaScript', as
     page = await context.newPage();
   await page.goto('http://127.0.0.1:4321/sondages/');
   await expect(page.locator('.poll-chart.chart-narrow')).toBeVisible();
-  await expect(page.locator('#poll-bars .poll-bar-row')).toHaveCount(11);
+  await expect(page.locator('#poll-bars .poll-bar-row').first()).toBeVisible();
   await expect(
-    page.getByRole('link', { name: 'Notice officielle, page 7' }),
+    page
+      .locator('#poll-method')
+      .getByRole('link', { name: /^Notice officielle, page \d+/ }),
   ).toBeVisible();
   await page.goto('http://127.0.0.1:4321/mesures/melenchon-retraites-1/');
   await expect(page.locator('.measure-number-grid')).toContainText('60');

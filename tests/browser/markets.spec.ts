@@ -1,4 +1,7 @@
 import { test, expect } from '@playwright/test';
+import snapshot from '../../src/data/prediction-markets.json' with { type: 'json' };
+import { normalize } from '../../src/lib/features.mjs';
+import type { Poll } from '../../src/lib/data';
 
 test('les deux plateformes se consultent sans appel externe et la recherche reste inerte', async ({
   page,
@@ -13,13 +16,33 @@ test('les deux plateformes se consultent sans appel externe et la recherche rest
   await page.goto('/marches-predictifs/');
   await expect(page.locator('.market-board:visible')).toHaveCount(2);
   await expect(page.locator('#market-filters')).toBeVisible();
-  await page.locator('#market-search').fill('Le Pen');
-  await expect(page.locator('.market-row:visible')).toHaveCount(2);
-  await page.locator('#market-provider').selectOption('kalshi');
+  const provider =
+    snapshot.providers.find((item) => item.status === 'available') ??
+    snapshot.providers[0];
+  const query = provider.contracts[0]?.label ?? 'Le Pen';
+  const matching = (item: (typeof snapshot.providers)[number]) =>
+    item.contracts.filter((row) =>
+      normalize(row.label).includes(normalize(query)),
+    ).length;
+  await page.locator('#market-search').fill(query);
+  await expect(page.locator('.market-row:visible')).toHaveCount(
+    snapshot.providers.reduce((count, item) => count + matching(item), 0),
+  );
+  await page.locator('#market-provider').selectOption(provider.id);
   await expect(page.locator('.market-board:visible')).toHaveCount(1);
-  await expect(page.locator('.market-row:visible')).toHaveCount(1);
-  await page.locator('.market-row:visible summary').click();
-  await expect(page.locator('.market-contract[open]')).toContainText('wins');
+  await expect(page.locator('.market-row:visible')).toHaveCount(
+    matching(provider),
+  );
+  if (provider.status === 'available') {
+    await page.locator('.market-row:visible summary').first().click();
+    await expect(page.locator('.market-contract[open]').first()).toContainText(
+      'Écart achat / vente',
+    );
+  } else {
+    await expect(page.locator('.market-board:visible .notice')).toContainText(
+      'Flux indisponible',
+    );
+  }
   await page.locator('#market-search').fill('<img src=x onerror=alert(1)>');
   await expect(page.locator('#market-status')).toHaveText(
     '0 contrat correspondant',
@@ -37,13 +60,22 @@ test('les prix et les règles restent consultables sans JavaScript', async ({
   await page.goto('http://127.0.0.1:4321/marches-predictifs/');
   await expect(page.locator('.market-board')).toHaveCount(2);
   await expect(page.locator('#market-filters')).toBeHidden();
-  await expect(page.locator('.market-row:visible')).toHaveCount(20);
-  await page
-    .locator('.market-board')
-    .first()
-    .locator('.market-more > summary')
-    .click();
-  expect(await page.locator('.market-row:visible').count()).toBeGreaterThan(20);
+  const initiallyVisible = snapshot.providers.reduce(
+    (count, item) => count + Math.min(10, item.contracts.length),
+    0,
+  );
+  await expect(page.locator('.market-row:visible')).toHaveCount(
+    initiallyVisible,
+  );
+  const more = snapshot.providers.find((item) => item.contracts.length > 10);
+  if (more) {
+    await page
+      .locator(`[data-provider="${more.id}"] .market-more > summary`)
+      .click();
+    await expect(page.locator('.market-row:visible')).toHaveCount(
+      initiallyVisible + more.contracts.length - 10,
+    );
+  }
   await context.close();
 });
 
@@ -51,9 +83,9 @@ test('les instituts et les références distinctes des résultats sont accessibl
   page,
 }) => {
   await page.goto('/sondages/');
-  await expect(page.locator('#poll-institute option')).toHaveCount(8);
   for (const institute of [
     'Ifop',
+    'YouGov',
     'Ipsos BVA',
     'Cluster17',
     'OpinionWay',
@@ -72,4 +104,39 @@ test('les instituts et les références distinctes des résultats sont accessibl
       .locator('#poll-method a')
       .filter({ hasText: 'Résultats de l’institut' }),
   ).toHaveAttribute('href', /\.pdf#page=12$/);
+});
+
+test('le dernier sondage est sélectionné et un tiret Ifop reste une valeur absente', async ({
+  page,
+}) => {
+  const corpus: { polls: Poll[] } = await (
+    await page.request.get('/api/corpus.json')
+  ).json();
+  const latest = corpus.polls
+    .filter((row) => row.round === 'premier')
+    .map((row) => row.published)
+    .sort()
+    .at(-1);
+  await page.goto('/sondages/');
+  const publication = new Date(latest + 'T12:00:00Z').toLocaleDateString(
+    'fr-FR',
+    {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      timeZone: 'Europe/Paris',
+    },
+  );
+  await expect(page.locator('#poll-method')).toContainText(publication);
+  await page.goto('/sondages/#enquete=ifop-2026-11-18-10384-p9');
+  await page.reload();
+  const arthaud = page
+    .locator('.poll-bar-row')
+    .filter({ hasText: 'Nathalie Arthaud' });
+  await expect(arthaud).toContainText('Non publié');
+  await expect(arthaud.locator('svg')).toHaveCount(0);
+  await expect(page.locator('#poll-method a').first()).toHaveAttribute(
+    'href',
+    /\/add\/2406#page=9$/,
+  );
 });

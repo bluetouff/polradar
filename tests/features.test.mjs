@@ -210,7 +210,7 @@ test('les sondages restent séparés par institut, tour, méthode et candidature
   );
 });
 test('le graphique respecte les écarts de dates et conserve un axe à zéro', () => {
-  const rows = pollSeries(original.polls)[0],
+  const rows = pollSeries(original.polls).find((group) => group.length >= 3),
     id = rows[0].results[0].id;
   for (const width of [260, 320, 760]) {
     const geometry = chartGeometry(rows, [id], width),
@@ -231,6 +231,44 @@ test('le graphique respecte les écarts de dates et conserve un axe à zéro', (
   const one = chartGeometry([rows[0]], [id], 320);
   assert.equal(one.lines[0].points.length, 1);
   assert.equal(one.lines[0].points[0].x, (one.left + one.right) / 2);
+});
+test('une valeur absente interrompt le tracé sans placer de point à zéro', () => {
+  const rows = structuredClone(
+    pollSeries(original.polls).find((group) => group.length >= 3),
+  ).slice(0, 3);
+  const score = rows[1].results[0];
+  score.percentage = null;
+  const [line] = chartGeometry(rows, [score.id]).lines;
+  assert.deepEqual(
+    line.points.map((point) => point.index),
+    [0, 2],
+  );
+  assert.equal(line.path.match(/M/g).length, 2);
+  assert.ok(!line.path.includes('L'));
+});
+test('les notices Ifop et YouGov conservent les bases et les scores publiés', () => {
+  const yougov = original.polls.filter(
+    (row) => row.noticeSource === 'notice-commission-10382',
+  );
+  const ifop = original.polls.filter(
+    (row) => row.noticeSource === 'notice-commission-10384',
+  );
+  assert.equal(yougov.length, 10);
+  assert.equal(ifop.length, 5);
+  const wide = yougov.find((row) => row.noticePage === 24);
+  assert.equal(wide.usefulSample, 722);
+  assert.equal(
+    wide.results.reduce((sum, row) => sum + row.percentage, 0),
+    102,
+  );
+  assert.equal(wide.results.find((row) => row.id === 'lepen').percentage, 32);
+  const first = ifop.find((row) => row.noticePage === 9);
+  assert.equal(first.usefulSample, 1078);
+  assert.equal(
+    first.results.find((row) => row.id === 'arthaud').percentage,
+    null,
+  );
+  assert.equal(first.results.find((row) => row.id === 'riner').percentage, 4);
 });
 test('résultats dupliqués, totaux incomplets et dénominateurs impossibles sont refusés', () => {
   assert.ok(

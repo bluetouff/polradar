@@ -2,12 +2,17 @@ import { readFile, writeFile, rename } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { airtimeSchema, compileArcom } from '../src/lib/airtime.mjs';
 
-// Run after reviewing the daily artifact. No network request or implicit write.
+// Compile the verified daily files locally. The default writes a preview.
 const root = new URL('../', import.meta.url);
 const directory = new URL('artifacts/airtime-review/', root);
 const manifest = JSON.parse(
   await readFile(new URL('manifest.json', directory), 'utf8'),
 );
+const refresh = process.argv.includes('--refresh');
+if (refresh && manifest.status === 'unavailable') {
+  console.log('Arcom indisponible. Relevé publié conservé.');
+  process.exit(0);
+}
 if (
   manifest.version !== 1 ||
   !['review', 'unchanged'].includes(manifest.status) ||
@@ -35,18 +40,30 @@ for (const row of manifest.months) {
     ),
   });
 }
+const source = new URL('src/data/airtime.json', root);
+if (refresh) {
+  const previous = airtimeSchema.parse(
+    JSON.parse(await readFile(source, 'utf8')),
+  );
+  if (manifest.checked < previous.checked)
+    throw new Error('Consultation Arcom antérieure à la dernière publication');
+  months.push(
+    ...previous.months.filter(
+      (month) => !months.some((row) => row.month === month.month),
+    ),
+  );
+}
 months.sort((a, b) => b.month.localeCompare(a.month));
 const snapshot = airtimeSchema.parse({
   version: 1,
   checked: manifest.checked,
   months,
 });
-const destination = process.argv.includes('--write')
-  ? new URL('src/data/airtime.json', root)
-  : new URL('snapshot.json', directory);
+const write = refresh || process.argv.includes('--write');
+const destination = write ? source : new URL('snapshot.json', directory);
 const temporary = new URL(destination.href + '.tmp');
 await writeFile(temporary, JSON.stringify(snapshot, null, 2) + '\n');
 await rename(temporary, destination);
 console.log(
-  `${snapshot.months.length} relevés validés. ${process.argv.includes('--write') ? 'Données locales mises à jour ; aucun push.' : 'Aperçu : artifacts/airtime-review/snapshot.json.'}`,
+  `${snapshot.months.length} relevés validés. ${write ? 'Données locales mises à jour.' : 'Aperçu : artifacts/airtime-review/snapshot.json.'}`,
 );
