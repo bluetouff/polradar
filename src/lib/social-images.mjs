@@ -73,6 +73,7 @@ const communes2022 = read('communes-2022');
 const retirement = read('retirement-comparison');
 const digitalTopics = read('digital-topics');
 const digitalComparison = read('digital-comparison');
+const digitalLaw = read('digital-law');
 const generation1969 = retirement.cohorts.find(
   (row) => row.id === '1969-et-apres',
 );
@@ -125,6 +126,21 @@ const defs = [
         value: topic.measures.length,
       })),
       'Fiches recensées par sujet',
+    ),
+  ],
+  [
+    'numerique-droit',
+    '/numerique/ce-qui-changerait/',
+    'Ce qui changerait',
+    'Le numérique et\nle droit en vigueur',
+    'Chiffrement, vie privée et données publiques.',
+    'navy',
+    tiles(
+      digitalLaw.sections.map((section) => [
+        section.title,
+        section.cases.length,
+      ]),
+      'Situations comparées',
     ),
   ],
   [

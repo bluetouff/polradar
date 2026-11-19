@@ -4,6 +4,7 @@ import Icon from '../../../components/Icon.astro';
 import EncryptionParliament from '../../../components/EncryptionParliament.astro';
 import { digitalAxes } from '../../../lib/digital-compare-data';
 import { digitalComparePath } from '../../../lib/digital-comparison.mjs';
+import { digitalLawRoot } from '../../../lib/digital-law.mjs';
 import { formatDate, scopes } from '../../../lib/data';
 import { formatMoney } from '../../../lib/campaign-visuals-view.mjs';
 import '../../../styles/digital-comparison.css';
@@ -62,6 +63,11 @@ const amountPeriods = {
       </a>
     ))}
   </nav>
+  <p class="digital-law-crosslink">
+    <a class="inline-action" href={digitalLawRoot}>
+      Ce qui changerait face au droit en vigueur ↗
+    </a>
+  </p>
   <fieldset
     class="digital-profile-controls"
     id="digital-profile-controls"

@@ -11,6 +11,7 @@ import { digitalComparePath } from '../../lib/digital-comparison.mjs';
 import { scopes } from '../../lib/data';
 import { formatMoney } from '../../lib/campaign-visuals-view.mjs';
 import '../../styles/digital.css';
+import { digitalLawSections } from '../../lib/digital-law-data';
 import '../../styles/digital-comparison.css';
 
 export function getStaticPaths() {
@@ -58,6 +59,21 @@ const maxCount = Math.max(
       </p>
     </div>
   </header>
+  <section class="digital-law-entry" aria-labelledby="digital-law-entry-title">
+    <div>
+      <h2 id="digital-law-entry-title">Ce qui changerait</h2>
+      <p>Les propositions face au droit en vigueur.</p>
+    </div>
+    <nav aria-label="Droit en vigueur et propositions">
+      {digitalLawSections.map((section) => (
+        <a href={section.cases[0].href}>
+          <Icon name={section.icon} />
+          <span>{section.title}</span>
+          <Icon name="arrow" />
+        </a>
+      ))}
+    </nav>
+  </section>
   <section
     class="digital-compare-entry"
     aria-labelledby="digital-compare-entry-title"
@@ -134,7 +150,7 @@ const maxCount = Math.max(
           )}
         </header>
         <div class="digital-measures">
-          {(selection ? topic.entries : topic.entries.slice(0, 2)).map(
+          {(selection ? topic.entries : topic.entries.slice(0, 3)).map(
             ({ measure, candidate, source }) => (
               <article class="digital-card">
                 <div class="digital-byline">
@@ -174,9 +190,11 @@ const maxCount = Math.max(
                 )}
                 <footer>
                   <a href={source.url}>
-                    {source.kind === 'parti'
-                      ? 'Document du parti'
-                      : 'Programme officiel'}{' '}
+                    {measure.scope === 'orientation'
+                      ? 'Publication officielle'
+                      : source.kind === 'parti'
+                        ? 'Document du parti'
+                        : 'Programme officiel'}{' '}
                     ↗
                   </a>
                   {selection && (

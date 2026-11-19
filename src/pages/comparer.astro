@@ -4,6 +4,7 @@ import MeasureCard from '../components/MeasureCard.astro';
 import MetricPlot from '../components/MetricPlot.astro';
 import Icon from '../components/Icon.astro';
 import { candidates, themes, measures, candidateById } from '../lib/data';
+import { digitalLawRoot } from '../lib/digital-law.mjs';
 const defaults = ['melenchon', 'philippe', 'retailleau'];
 ---
 
@@ -17,6 +18,16 @@ const defaults = ['melenchon', 'philippe', 'retailleau'];
     <span>
       <strong>Ce qui changerait · Retraites</strong>
       <small>Trois programmes face au droit en vigueur</small>
+    </span>
+    <Icon name="arrow" />
+  </a>
+  <a class="retirement-entry" href={digitalLawRoot}>
+    <Icon name="chiffrement" />
+    <span>
+      <strong>Ce qui changerait · Numérique</strong>
+      <small>
+        Chiffrement et données personnelles face au droit en vigueur
+      </small>
     </span>
     <Icon name="arrow" />
   </a>

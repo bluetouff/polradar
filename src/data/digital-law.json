@@ -1,0 +1,360 @@
+{
+  "asOf": "2026-11-19",
+  "sections": [
+    {
+      "id": "chiffrement",
+      "title": "Chiffrement",
+      "icon": "chiffrement",
+      "cases": [
+        {
+          "id": "outils-chiffres",
+          "slug": "",
+          "label": "Outils chiffrés",
+          "question": "Qui peut utiliser le chiffrement ?",
+          "context": "Communications chiffrées et sécurité des données personnelles.",
+          "icon": "chiffrement",
+          "rules": [
+            {
+              "title": "L’usage du chiffrement est libre",
+              "body": "En France, la loi pour la confiance dans l’économie numérique pose la liberté d’utiliser des moyens de cryptologie.",
+              "refs": [
+                {
+                  "sourceId": "legifrance-lcen-article-30",
+                  "label": "LCEN, art. 30 I"
+                }
+              ]
+            },
+            {
+              "title": "La protection dépend des risques",
+              "body": "Le RGPD exige des mesures de sécurité adaptées au risque. Il cite le chiffrement parmi les mesures possibles selon les circonstances.",
+              "refs": [
+                {
+                  "sourceId": "eurlex-rgpd",
+                  "label": "RGPD, art. 32"
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "versionId": "tondelier-institutions-outils-chiffres-v1",
+              "title": "Soutenir les outils libres et chiffrés",
+              "body": "Le soutien porterait sur des outils de communication libres, chiffrés et décentralisés qui évitent l’exploitation des données de leurs utilisateurs."
+            },
+            {
+              "versionId": "dupont-aignan-institutions-chiffrement-sensible-v1",
+              "title": "Imposer des outils souverains aux postes sensibles",
+              "body": "Debout la France rendrait obligatoires les terminaux et logiciels de chiffrement souverains pour les postes et personnels sensibles."
+            }
+          ]
+        },
+        {
+          "id": "acces-communications",
+          "slug": "acces-communications",
+          "label": "Réquisitions",
+          "question": "Quand le renseignement peut-il demander un déchiffrement ?",
+          "context": "Obligations des fournisseurs de prestations de cryptologie assurant une fonction de confidentialité.",
+          "icon": "institutions",
+          "rules": [
+            {
+              "title": "Remise des éléments de déchiffrement",
+              "body": "Sur demande des agents habilités, les prestataires concernés doivent remettre les conventions de déchiffrement des données traitées par leurs propres prestations.",
+              "refs": [
+                {
+                  "sourceId": "legifrance-csi-l871-1",
+                  "label": "Code de la sécurité intérieure, art. L. 871-1"
+                }
+              ]
+            },
+            {
+              "title": "Mise en œuvre par le fournisseur",
+              "body": "Les agents habilités peuvent demander au prestataire de mettre en œuvre ces conventions. Le texte prévoit une exception s’il démontre son incapacité à répondre à cette demande.",
+              "refs": [
+                {
+                  "sourceId": "legifrance-csi-l871-1",
+                  "label": "Code de la sécurité intérieure, art. L. 871-1, al. 2"
+                }
+              ]
+            }
+          ],
+          "changes": [],
+          "parliament": {
+            "title": "L’Assemblée a retiré l’article 16 bis",
+            "body": "Le Sénat voulait interdire d’imposer aux fournisseurs de chiffrement des dispositifs affaiblissant la sécurité ou permettant un accès sans consentement aux données protégées. L’Assemblée a supprimé cet article le 10 novembre 2026. Elle a adopté le projet de loi en première lecture le 17 novembre.",
+            "refs": [
+              {
+                "sourceId": "senat-resilience-texte-adopte",
+                "label": "Texte du Sénat, art. 16 bis"
+              },
+              {
+                "sourceId": "assemblee-resilience-scrutin-9794",
+                "label": "Scrutin n° 9794"
+              },
+              {
+                "sourceId": "assemblee-resilience-texte-adopte",
+                "label": "Texte de l’Assemblée"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "donnees-personnelles",
+      "title": "Données personnelles",
+      "icon": "donnees",
+      "cases": [
+        {
+          "id": "portabilite",
+          "slug": "donnees-personnelles",
+          "label": "Portabilité",
+          "question": "Que peut-on emporter en changeant de service ?",
+          "context": "Récupération des données personnelles et échanges entre services numériques.",
+          "icon": "exchange",
+          "rules": [
+            {
+              "title": "Récupérer les données fournies",
+              "body": "Le RGPD permet de récupérer les données personnelles fournies lorsque le traitement est automatisé et repose sur le consentement ou un contrat. Le transfert direct est prévu s’il est techniquement possible, dans le respect des droits d’autrui.",
+              "refs": [
+                {
+                  "sourceId": "eurlex-rgpd",
+                  "label": "RGPD, art. 20"
+                }
+              ]
+            },
+            {
+              "title": "Des obligations pour les grandes plateformes désignées",
+              "body": "Le DMA impose aux contrôleurs d’accès, pour leurs services désignés, une portabilité effective et gratuite. Elle couvre les données fournies ou générées par l’activité de l’utilisateur et comprend des outils d’accès continu en temps réel.",
+              "refs": [
+                {
+                  "sourceId": "eurlex-dma",
+                  "label": "DMA, art. 6 § 9"
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "versionId": "tondelier-institutions-portabilite-donnees-v1",
+              "title": "Faciliter les transferts entre réseaux sociaux",
+              "body": "Les Écologistes veulent simplifier l’exercice du droit à la portabilité, notamment par l’interopérabilité des réseaux sociaux."
+            },
+            {
+              "versionId": "melenchon-institutions-interoperabilite-v1",
+              "title": "Élargir l’interopérabilité aux acteurs publics et privés",
+              "body": "Le programme de Jean-Luc Mélenchon ferait de l’interopérabilité une règle pour l’ensemble des acteurs publics et privés."
+            }
+          ]
+        },
+        {
+          "id": "publicite",
+          "slug": "donnees-personnelles/publicite",
+          "label": "Publicité ciblée",
+          "question": "Quelles données peuvent servir au ciblage publicitaire ?",
+          "context": "Publicité fondée sur le profilage par les plateformes en ligne couvertes par le règlement européen sur les services numériques.",
+          "icon": "source",
+          "rules": [
+            {
+              "title": "Restrictions sur les catégories sensibles",
+              "body": "Le DSA interdit aux plateformes concernées de présenter des publicités fondées sur un profilage qui utilise les catégories particulières de données du RGPD, comme les opinions politiques ou les données de santé.",
+              "refs": [
+                {
+                  "sourceId": "eurlex-dsa",
+                  "label": "DSA, art. 19 et 26 § 3"
+                },
+                {
+                  "sourceId": "eurlex-rgpd",
+                  "label": "RGPD, art. 9"
+                }
+              ]
+            },
+            {
+              "title": "Protection des mineurs",
+              "body": "Ces plateformes ne peuvent pas présenter de publicité fondée sur le profilage à un utilisateur dont elles savent avec une certitude raisonnable qu’il est mineur.",
+              "refs": [
+                {
+                  "sourceId": "eurlex-dsa",
+                  "label": "DSA, art. 19 et 28 § 2"
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "versionId": "tondelier-institutions-ciblage-publicitaire-v1",
+              "title": "Élargir les catégories de données protégées",
+              "body": "Les Écologistes proposent d’étendre le périmètre des données interdites au partage, à la revente et au ciblage reposant sur la surveillance des comportements."
+            }
+          ]
+        },
+        {
+          "id": "courtiers",
+          "slug": "donnees-personnelles/courtiers",
+          "label": "Courtiers en données",
+          "question": "Quelles règles s’appliquent aux courtiers en données ?",
+          "context": "Collecte indirecte, revente et réutilisation des données personnelles.",
+          "icon": "exchange",
+          "rules": [
+            {
+              "title": "Une base légale pour le traitement",
+              "body": "Le RGPD impose une base légale pour chaque traitement. Lorsque les données viennent d’un tiers, la personne doit en principe être informée, notamment de l’origine des données et des finalités poursuivies.",
+              "refs": [
+                {
+                  "sourceId": "eurlex-rgpd",
+                  "label": "RGPD, art. 6 et 14"
+                }
+              ]
+            },
+            {
+              "title": "Opposition à la prospection",
+              "body": "Chacun peut s’opposer à l’utilisation de ses données pour la prospection, y compris au profilage lié à cette prospection.",
+              "refs": [
+                {
+                  "sourceId": "eurlex-rgpd",
+                  "label": "RGPD, art. 21 § 2 et 3"
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "versionId": "tondelier-institutions-courtiers-donnees-v1",
+              "title": "Interdire l’activité de courtier au niveau européen",
+              "body": "Le projet des Écologistes vise une interdiction de l’activité dans l’Union européenne."
+            }
+          ]
+        },
+        {
+          "id": "decisions-automatisees",
+          "slug": "donnees-personnelles/decisions-automatisees",
+          "label": "Décisions automatisées",
+          "question": "Un algorithme peut-il décider seul d’un droit ?",
+          "context": "Décisions individuelles des administrations françaises et recours administratifs.",
+          "icon": "institutions",
+          "rules": [
+            {
+              "title": "Un droit assorti d’exceptions",
+              "body": "Le RGPD pose le droit de ne pas faire l’objet d’une décision fondée exclusivement sur un traitement automatisé si elle produit un effet juridique ou un autre effet d’importance comparable pour la personne. Des exceptions encadrées existent, notamment si la loi autorise la décision et garantit les droits de la personne.",
+              "refs": [
+                {
+                  "sourceId": "eurlex-rgpd",
+                  "label": "RGPD, art. 22"
+                }
+              ]
+            },
+            {
+              "title": "Des conditions propres aux administrations",
+              "body": "La loi française autorise certaines décisions administratives exclusivement automatisées sous conditions, notamment de transparence, de maîtrise du traitement et d’exclusion des données sensibles visées par le texte. Un recours administratif ne peut être tranché sur ce seul fondement.",
+              "refs": [
+                {
+                  "sourceId": "legifrance-informatique-libertes-47",
+                  "label": "Loi Informatique et Libertés, art. 47"
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "versionId": "ruffin-social-droit-humain-v1",
+              "title": "Garantir un interlocuteur humain",
+              "body": "François Ruffin propose de pouvoir choisir un agent humain pour chaque démarche et d’empêcher qu’un algorithme décide seul de l’attribution d’un droit ou d’une prestation."
+            }
+          ]
+        },
+        {
+          "id": "identite-numerique",
+          "slug": "donnees-personnelles/identite-numerique",
+          "label": "Identité numérique",
+          "question": "Le portefeuille d’identité européen est-il obligatoire ?",
+          "context": "Identification auprès des services publics et privés dans l’Union européenne.",
+          "icon": "donnees",
+          "rules": [
+            {
+              "title": "Une offre obligatoire, un usage facultatif",
+              "body": "Le cadre eIDAS demande à chaque État membre de fournir au moins un portefeuille d’identité numérique. Son utilisation reste volontaire. Les services publics et privés restent accessibles par d’autres moyens d’identification existants.",
+              "refs": [
+                {
+                  "sourceId": "eurlex-eidas-2024",
+                  "label": "eIDAS, art. 5 bis § 1 et 15"
+                }
+              ]
+            },
+            {
+              "title": "L’utilisateur contrôle les données du portefeuille",
+              "body": "Le règlement impose que les utilisateurs gardent le contrôle de leur portefeuille et de ses données. Le fournisseur ne peut collecter les informations d’usage qui ne sont pas nécessaires au service.",
+              "refs": [
+                {
+                  "sourceId": "eurlex-eidas-2024",
+                  "label": "eIDAS, art. 5 bis § 14"
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "versionId": "philippot-europe-identite-numerique-v1",
+              "title": "Refuser le portefeuille européen",
+              "body": "Les Patriotes se prononcent contre le dispositif européen dans un projet qui prévoit la sortie de l’Union européenne."
+            }
+          ]
+        },
+        {
+          "id": "cloud-sensible",
+          "slug": "donnees-personnelles/cloud-sensible",
+          "label": "Cloud de l’État",
+          "question": "Quelles garanties pour le cloud de l’État ?",
+          "context": "Données publiques d’une sensibilité particulière, personnelles ou non, confiées à un prestataire privé de cloud.",
+          "icon": "layers",
+          "rules": [
+            {
+              "title": "Protéger des accès étrangers non autorisés",
+              "body": "La loi vise les données dont la violation risquerait de porter atteinte notamment à la sécurité publique ou à la santé. Le prestataire doit les protéger contre les accès d’autorités de pays tiers qui ne sont autorisés ni par le droit de l’Union ni par celui d’un État membre.",
+              "refs": [
+                {
+                  "sourceId": "legifrance-sren-article-31",
+                  "label": "Loi SREN, art. 31"
+                }
+              ]
+            },
+            {
+              "title": "SecNumCloud ou certification reconnue équivalente",
+              "body": "L’arrêté approuve le référentiel SecNumCloud 3.2. La conformité est attestée par une qualification de l’ANSSI ou une certification de l’Union ou de l’EEE reconnue équivalente par l’ANSSI. Le décret encadre les dérogations.",
+              "refs": [
+                {
+                  "sourceId": "legifrance-arrete-secnumcloud",
+                  "label": "Arrêté du 12 août 2026"
+                },
+                {
+                  "sourceId": "legifrance-decret-cloud-2026",
+                  "label": "Décret n° 2026-272"
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "versionId": "melenchon-institutions-serveurs-publics-v1",
+              "title": "Héberger sur des serveurs publics en France",
+              "body": "Le programme vise les données des services publics et des entreprises essentielles. Il retient un hébergement sur des serveurs publics situés en France."
+            },
+            {
+              "versionId": "retailleau-institutions-donnees-sensibles-v1",
+              "title": "Exiger une juridiction européenne pour l’IA sensible",
+              "body": "Les usages régaliens, les infrastructures critiques et certaines activités des opérateurs d’importance vitale passeraient par des offres de type SecNumCloud, sous juridiction exclusivement européenne."
+            },
+            {
+              "versionId": "ruffin-institutions-secnumcloud-v1",
+              "title": "Étendre et renforcer SecNumCloud",
+              "body": "François Ruffin rendrait la qualification obligatoire pour les données de l’État et des secteurs stratégiques et en renforcerait les critères pour orienter les achats publics vers des fournisseurs français et européens."
+            },
+            {
+              "versionId": "philippot-institutions-hebergement-strategique-v1",
+              "title": "Réserver les données stratégiques à des serveurs sous contrôle français",
+              "body": "Les Patriotes demandent des serveurs publics ou contrôlés par l’ANSSI et l’application systématique du droit français. Leur projet est conditionné à la sortie de l’Union européenne."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

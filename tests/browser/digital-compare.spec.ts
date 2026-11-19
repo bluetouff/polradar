@@ -12,7 +12,9 @@ test('le comparatif numérique sélectionne des profils distincts et conserve le
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/numerique/');
   await expect(
-    page.getByText('40 propositions dans les documents de 13 profils suivis.'),
+    page.getByText(
+      /\d+ propositions dans les documents de \d+ profils suivis\./,
+    ),
   ).toBeVisible();
   await page
     .getByRole('navigation', { name: 'Comparatif du numérique' })

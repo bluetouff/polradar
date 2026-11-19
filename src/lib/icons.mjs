@@ -28,6 +28,9 @@ export const iconPaths = {
   social:
     'M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm9 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM2 21v-4a6 6 0 0 1 12 0v4m3-8a5 5 0 0 1 5 5v3',
   mesures: 'M4 4h16v16H4Zm4 4h1m3 0h5m-9 4h1m3 0h5m-9 4h1m3 0h5',
+  chiffrement: 'M6 10h12v11H6Zm2 0V7a4 4 0 0 1 8 0v3m-4 4v3',
+  donnees:
+    'M4 7c0-2.2 3.6-4 8-4s8 1.8 8 4-3.6 4-8 4-8-1.8-8-4Zm0 0v5c0 2.2 3.6 4 8 4s8-1.8 8-4V7M4 12v5c0 2.2 3.6 4 8 4s8-1.8 8-4v-5',
   historique: 'M4 5v5h5M4 10a8 8 0 1 1 1 8m7-11v5l3 2',
   veille:
     'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Zm10-3a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z',

@@ -1,0 +1,204 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Icon from '../../../components/Icon.astro';
+import {
+  digitalLawAsOf,
+  digitalLawSections,
+} from '../../../lib/digital-law-data';
+import { formatDate, scopes } from '../../../lib/data';
+import '../../../styles/digital-law.css';
+
+export function getStaticPaths() {
+  return digitalLawSections.flatMap((section) =>
+    section.cases.map((item) => ({
+      params: { cas: item.slug || undefined },
+      props: { section, item },
+    })),
+  );
+}
+
+const { section, item } = Astro.props;
+const changeHeading = item.changes.length
+  ? 'Changements proposés'
+  : 'Parcours parlementaire';
+---
+
+<Base
+  title={
+    item.slug
+      ? `${item.label} · Ce qui changerait`
+      : 'Ce qui changerait dans le numérique'
+  }
+  description={item.context}
+  section="/numerique/"
+>
+  <div class="breadcrumbs">
+    <a href="/numerique/">Numérique</a>
+    <span>/</span>
+    <span>Ce qui changerait</span>
+  </div>
+
+  <header class="page-title feature-title digital-law-title">
+    <span class="feature-emblem">
+      <Icon name="exchange" />
+    </span>
+    <div>
+      <h1>Ce qui changerait</h1>
+      <p>Chiffrement et données personnelles face au droit en vigueur.</p>
+    </div>
+  </header>
+
+  <div class="digital-law">
+    <nav class="law-sections" aria-label="Thèmes du comparatif juridique">
+      {digitalLawSections.map((entry) => (
+        <a
+          href={entry.cases[0].href}
+          aria-current={entry.id === section.id ? 'true' : undefined}
+        >
+          <Icon name={entry.icon} />
+          <span>{entry.title}</span>
+          <Icon name="arrow" class="law-nav-arrow" />
+        </a>
+      ))}
+    </nav>
+
+    <section class="law-board" aria-labelledby="law-question">
+      <nav class="law-cases" aria-label={`Situations · ${section.title}`}>
+        {section.cases.map((entry) => (
+          <a
+            href={entry.href}
+            aria-current={entry.id === item.id ? 'page' : undefined}
+          >
+            <Icon name={entry.icon} />
+            {entry.label}
+          </a>
+        ))}
+      </nav>
+
+      <header class="law-question">
+        <span class="law-question-icon">
+          <Icon name={item.icon} />
+        </span>
+        <div>
+          <h2 id="law-question">{item.question}</h2>
+          <p>{item.context}</p>
+        </div>
+      </header>
+
+      <nav class="law-jump" aria-label="Accès aux deux volets">
+        <a href="#law-current">
+          Droit en vigueur <Icon name="chevron" />
+        </a>
+        <a href="#law-next">
+          {changeHeading} <Icon name="chevron" />
+        </a>
+      </nav>
+      <div class="law-flow" data-branches={item.changes.length}>
+        <section
+          class="law-lane law-lane-current"
+          aria-labelledby="law-current"
+        >
+          <header class="law-lane-heading">
+            <h3 id="law-current">Droit en vigueur</h3>
+            <time datetime={digitalLawAsOf}>
+              Au {formatDate(digitalLawAsOf)}
+            </time>
+          </header>
+          <div class="law-cards">
+            {item.rules.map((rule) => (
+              <article class="law-card">
+                <h4>{rule.title}</h4>
+                <p>{rule.body}</p>
+                <footer>
+                  {rule.refs.map((ref) => (
+                    <a href={ref.url}>
+                      <Icon name="source" />
+                      {ref.label}
+                    </a>
+                  ))}
+                </footer>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="law-lane law-lane-changes" aria-labelledby="law-next">
+          <header class="law-lane-heading">
+            <h3 id="law-next">{changeHeading}</h3>
+            {item.changes.length > 0 && <span>Présidentielle 2027</span>}
+          </header>
+          <div class="law-cards">
+            {item.changes.map((change) => (
+              <article class="law-card law-change">
+                <div class="law-byline">
+                  <span>{change.author}</span>
+                  <span title={change.edition}>{scopes[change.scope]}</span>
+                </div>
+                <h4>{change.title}</h4>
+                <p>{change.body}</p>
+                <footer>
+                  {change.sources.map(({ source, locator }, index) => (
+                    <a href={source.url} title={locator}>
+                      <Icon name="source" />
+                      {change.sources.length === 1
+                        ? 'Texte officiel'
+                        : `Texte officiel ${index + 1}`}
+                    </a>
+                  ))}
+                  <a href={change.detailHref}>
+                    <Icon name="historique" />
+                    Fiche datée
+                  </a>
+                </footer>
+              </article>
+            ))}
+            {item.parliament && (
+              <article class="law-card law-change law-parliament">
+                <div class="law-byline">
+                  <span>Projet de loi</span>
+                  <span>Première lecture</span>
+                </div>
+                <h4>{item.parliament.title}</h4>
+                <p>{item.parliament.body}</p>
+                <footer>
+                  {item.parliament.refs.map((ref) => (
+                    <a href={ref.url}>
+                      <Icon name="source" />
+                      {ref.label}
+                    </a>
+                  ))}
+                </footer>
+                <a
+                  class="law-vote-link"
+                  href="/numerique/comparer/chiffrement/#encryption-vote-title"
+                >
+                  Voir le graphique du scrutin <Icon name="arrow" />
+                </a>
+              </article>
+            )}
+          </div>
+        </section>
+      </div>
+    </section>
+    <nav class="law-related" aria-label="Autres comparatifs">
+      <a href="/numerique/protection/">
+        <Icon name="securite" />
+        Dossier données et protection <Icon name="arrow" />
+      </a>
+      <a
+        href={
+          section.id === 'chiffrement'
+            ? '/numerique/comparer/chiffrement/'
+            : '/numerique/comparer/souverainete/'
+        }
+      >
+        <Icon name="exchange" />
+        Comparatif des programmes <Icon name="arrow" />
+      </a>
+      <a href="/comparer/retraites/">
+        <Icon name="historique" />
+        Ce qui changerait pour les retraites <Icon name="arrow" />
+      </a>
+    </nav>
+  </div>
+</Base>

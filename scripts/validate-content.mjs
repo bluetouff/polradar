@@ -3,6 +3,10 @@ import { validateDataset, validateFeatures } from '../src/lib/schema.mjs';
 import { marketSnapshotSchema } from '../src/lib/markets.mjs';
 import { airtimeSchema } from '../src/lib/airtime.mjs';
 import {
+  digitalLawSchema,
+  validateDigitalLaw,
+} from '../src/lib/digital-law.mjs';
+import {
   digitalComparisonSchema,
   validateDigitalComparison,
 } from '../src/lib/digital-comparison.mjs';
@@ -90,6 +94,19 @@ errors.push(
       JSON.parse(
         await readFile(
           new URL('../src/data/digital-comparison.json', import.meta.url),
+          'utf8',
+        ),
+      ),
+    ),
+    dataset,
+  ),
+);
+errors.push(
+  ...validateDigitalLaw(
+    digitalLawSchema.parse(
+      JSON.parse(
+        await readFile(
+          new URL('../src/data/digital-law.json', import.meta.url),
           'utf8',
         ),
       ),
