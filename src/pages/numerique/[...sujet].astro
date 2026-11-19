@@ -1,0 +1,180 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import {
+  digitalCandidates,
+  digitalCount,
+  digitalTopics,
+} from '../../lib/digital-data';
+import { scopes } from '../../lib/data';
+import { formatMoney } from '../../lib/campaign-visuals-view.mjs';
+import '../../styles/digital.css';
+
+export function getStaticPaths() {
+  return [
+    { params: { sujet: undefined }, props: { selection: undefined } },
+    ...digitalTopics.map((topic) => ({
+      params: { sujet: topic.id },
+      props: { selection: topic },
+    })),
+  ];
+}
+const { selection } = Astro.props;
+const visible = selection ? [selection] : digitalTopics;
+const maxCount = Math.max(
+  ...digitalTopics.map(({ entries }) => entries.length),
+);
+---
+
+<Base
+  title={
+    selection
+      ? `${selection.label} · Numérique`
+      : 'Propositions sur le numérique'
+  }
+  description="Logiciels libres, données, formation à l’IA et centres de calcul dans les programmes de 2027."
+  section="/numerique/"
+>
+  {selection && (
+    <div class="breadcrumbs">
+      <a href="/numerique/">Numérique</a>
+      <span>/</span>
+      <span>{selection.label}</span>
+    </div>
+  )}
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="layers" />
+    </span>
+    <div>
+      <h1>{selection?.label ?? 'Propositions sur le numérique'}</h1>
+      <p>
+        {selection
+          ? selection.example
+          : `${digitalCount} propositions dans les documents de ${digitalCandidates} profils suivis.`}
+      </p>
+    </div>
+  </header>
+  <nav class="digital-topics" aria-label="Sujets du numérique">
+    {digitalTopics.map((topic) => (
+      <a
+        href={`/numerique/${topic.id}/`}
+        data-topic={topic.id}
+        aria-current={selection?.id === topic.id ? 'page' : undefined}
+      >
+        <span class="digital-topics-label">
+          <Icon name={topic.icon} />
+          <span>{topic.label}</span>
+        </span>
+        <svg
+          class="digital-coverage"
+          viewBox={`0 0 ${maxCount * 12} 8`}
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          {Array.from({ length: maxCount }, (_, index) => (
+            <rect
+              x={index * 12}
+              width="10"
+              height="8"
+              rx="1"
+              class:list={{ 'digital-recorded': index < topic.entries.length }}
+            />
+          ))}
+        </svg>
+        <span class="digital-topic-count">
+          {topic.entries.length} fiches · {topic.candidateCount} profils
+        </span>
+      </a>
+    ))}
+  </nav>
+
+  <div
+    class="digital-dossiers"
+    class:list={{ 'digital-selected': Boolean(selection) }}
+  >
+    {visible.map((topic) => (
+      <section
+        class="digital-dossier"
+        data-topic={topic.id}
+        aria-labelledby={`digital-${topic.id}`}
+      >
+        <header>
+          <div>
+            <h2 id={`digital-${topic.id}`}>
+              {selection ? 'Propositions recensées' : topic.label}
+            </h2>
+            <p>
+              {selection
+                ? `${topic.entries.length} fiches · ${topic.candidateCount} profils`
+                : topic.example}
+            </p>
+          </div>
+          {!selection && (
+            <a class="inline-action" href={`/numerique/${topic.id}/`}>
+              Voir les {topic.entries.length} fiches ↗
+            </a>
+          )}
+        </header>
+        <div class="digital-measures">
+          {(selection ? topic.entries : topic.entries.slice(0, 2)).map(
+            ({ measure, candidate, source }) => (
+              <article class="digital-card">
+                <div class="digital-byline">
+                  <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+                  <span>{scopes[measure.scope]}</span>
+                </div>
+                <h3>
+                  <a href={`/mesures/${measure.id}/`}>{measure.title}</a>
+                </h3>
+                {selection && (
+                  <p class="digital-description">{measure.description}</p>
+                )}
+                {(measure.metrics.length > 0 || measure.amounts.length > 0) && (
+                  <dl class="digital-quantities">
+                    {measure.metrics.map((metric) => (
+                      <div>
+                        <dt>{metric.label}</dt>
+                        <dd>
+                          {metric.value.toLocaleString('fr-FR')} {metric.unit}
+                        </dd>
+                      </div>
+                    ))}
+                    {measure.amounts.map((amount) => (
+                      <div>
+                        <dt>{amount.label}</dt>
+                        <dd>
+                          {amount.unit === '€'
+                            ? formatMoney(amount.value)
+                            : `${amount.value.toLocaleString('fr-FR')} ${amount.unit}`}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
+                {selection && measure.timing && (
+                  <p class="digital-timing">{measure.timing}</p>
+                )}
+                <footer>
+                  <a href={source.url}>
+                    {source.kind === 'parti'
+                      ? 'Document du parti'
+                      : 'Programme officiel'}{' '}
+                    ↗
+                  </a>
+                  {selection && (
+                    <a
+                      href={`/mesures/${measure.id}/#version-${measure.revision}`}
+                    >
+                      Version datée ↗
+                    </a>
+                  )}
+                </footer>
+              </article>
+            ),
+          )}
+        </div>
+      </section>
+    ))}
+  </div>
+</Base>

@@ -1,0 +1,182 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import CommuneRound from '../../components/CommuneRound.astro';
+import elections from '../../data/communes-2022.json';
+import provenance from '../../data/communes-2022-sources.json';
+import {
+  communeLink,
+  integerLabel,
+  vacancyLabel,
+  readCommune,
+} from '../../lib/communes.mjs';
+import '../../styles/communes.css';
+
+const { preview, rounds } = elections;
+const [code, first, second, housing] = readCommune(
+  preview.record,
+  String(preview.record[0]),
+  rounds.map(({ candidates }) => candidates.length),
+);
+const dates = new Intl.DateTimeFormat('fr-FR', {
+  dateStyle: 'long',
+  timeZone: 'Europe/Paris',
+});
+const links = [
+  [
+    't1-subcom.txt',
+    'Ministère de l’Intérieur · résultats définitifs du premier tour',
+  ],
+  [
+    't2-subcom.txt',
+    'Ministère de l’Intérieur · résultats définitifs du second tour',
+  ],
+  ['comparateur.zip', 'Insee · comparateur de territoires'],
+  ['commune_2022.csv', 'Insee · Code officiel géographique 2022'],
+  ['passage.zip', 'Insee · correspondance des communes 2022–2026'],
+].map(([file, title]) => ({
+  ...provenance.find((item) => item.file === file)!,
+  title,
+}));
+---
+
+<Base
+  title="La présidentielle dans ma commune"
+  section="/communes/"
+  description={`Les résultats définitifs des deux tours de 2022 dans ${integerLabel(elections.count)} communes, avec la participation et les chiffres de l’Insee.`}
+>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="map-pin" />
+    </span>
+    <div>
+      <h1>La présidentielle dans ma commune</h1>
+      <p>
+        {integerLabel(elections.count)} communes · Résultats définitifs des deux
+        tours de 2022
+      </p>
+    </div>
+  </header>
+  <div class="commune-picker">
+    <form id="commune-search" role="search" hidden>
+      <label for="commune-query">Nom de commune ou code Insee</label>
+      <div class="commune-input">
+        <input
+          id="commune-query"
+          type="search"
+          autocomplete="off"
+          maxlength="80"
+          placeholder="Ex. Chartres, 28085"
+          aria-controls="commune-matches"
+        />
+        <button type="submit" class="button primary">
+          Rechercher
+        </button>
+      </div>
+      <ul id="commune-matches" aria-label="Communes trouvées" hidden></ul>
+    </form>
+    <p id="commune-status" role="status"></p>
+    <div class="commune-examples" id="commune-examples" hidden>
+      <a href="#commune=75056">Paris</a>
+      <a href="#commune=13055">Marseille</a>
+      <a href="#commune=69123">Lyon</a>
+      <a href="#commune=97120">Pointe-à-Pitre</a>
+    </div>
+    <noscript>
+      <p>
+        Exemple à Chartres.{' '}
+        <a href="https://www.archives-resultats-elections.interieur.gouv.fr/resultats/presidentielle-2022/">
+          Consulter les autres communes dans les archives du ministère ↗
+        </a>
+      </p>
+    </noscript>
+  </div>
+  <section class="commune-report" aria-labelledby="commune-name">
+    <div class="commune-heading">
+      <div>
+        <div class="commune-kicker">
+          <span>Présidentielle 2022</span>
+          <span>
+            Code Insee <span id="commune-code">{code}</span>
+          </span>
+        </div>
+        <h2 id="commune-name">{preview.name}</h2>
+      </div>
+      <a
+        class="commune-permalink"
+        id="commune-permalink"
+        href={communeLink(code)}
+        hidden
+      >
+        Lien de la commune ↗
+      </a>
+    </div>
+    <div class="commune-rounds">
+      <CommuneRound counts={first} round={rounds[0]} index={0} />
+      <div class="commune-later">
+        <CommuneRound counts={second} round={rounds[1]} index={1} />
+        <div class="commune-context">
+          <div>
+            <h3>Recensement 2023</h3>
+            <p>Insee · périmètre communal au 1er janvier 2026</p>
+          </div>
+          <dl id="commune-context-values" hidden={!housing}>
+            <div>
+              <dt>Population</dt>
+              <dd id="commune-population">
+                {housing ? integerLabel(housing[0]) : ''}
+              </dd>
+            </div>
+            <div>
+              <dt>Logements vacants</dt>
+              <dd id="commune-vacancy">
+                {housing ? vacancyLabel(housing[2], housing[1]) : ''}
+              </dd>
+            </div>
+          </dl>
+          <p id="commune-context-unavailable" hidden={Boolean(housing)}>
+            Indicateurs indisponibles pour ce périmètre.
+          </p>
+        </div>
+        <section class="commune-upcoming" aria-labelledby="commune-2027">
+          <h3 id="commune-2027">Résultats 2027</h3>
+          <p>À venir après leur publication officielle.</p>
+        </section>
+      </div>
+    </div>
+  </section>
+  <details class="commune-sources">
+    <summary>Sources et périmètre</summary>
+    <p>
+      Les voix sont celles des résultats définitifs. La participation rapporte
+      les votants aux inscrits. Le repère France entière inclut le vote des
+      Français de l’étranger.
+    </p>
+    <p>
+      La recherche utilise les communes du scrutin de 2022. Le vote consulaire
+      et le résultat territorial de Wallis-et-Futuna sont consultables dans les
+      archives du ministère.
+    </p>
+    <p>
+      Le recensement apparaît pour {integerLabel(elections.withContext)}{' '}
+      communes dont le périmètre a pu être rapproché entre 2022 et 2026. La part
+      de logements vacants est calculée sur l’ensemble des logements.
+    </p>
+    <ul>
+      {links.map(({ title, source, url, updated }) => (
+        <li>
+          <a href={source}>{title} ↗</a>
+          {' · '}
+          <a href={url}>Fichier source ↗</a>
+          {updated && <span> · {dates.format(new Date(updated))}</span>}
+        </li>
+      ))}
+      <li>
+        <a href="https://www.archives-resultats-elections.interieur.gouv.fr/resultats/presidentielle-2022/">
+          Archives électorales du ministère ↗
+        </a>
+      </li>
+    </ul>
+  </details>
+  <script src="../../scripts/communes.ts"></script>
+</Base>

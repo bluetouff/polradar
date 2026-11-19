@@ -1,0 +1,187 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Icon from '../../../components/Icon.astro';
+import comparison from '../../../data/retirement-comparison.json';
+import { dataset, formatDate } from '../../../lib/data';
+import {
+  retirementComparison,
+  retirementPath,
+  retirementUrl,
+} from '../../../lib/retirement-comparison.mjs';
+import '../../../styles/retirement-comparison.css';
+
+export function getStaticPaths() {
+  return comparison.cohorts.map((cohort) => ({
+    params: {
+      cohorte:
+        retirementUrl(cohort.id) === retirementPath ? undefined : cohort.id,
+    },
+    props: { cohort },
+  }));
+}
+const { cohort } = Astro.props;
+const { programmes, panels } = retirementComparison(
+  comparison,
+  cohort,
+  dataset,
+);
+---
+
+<Base
+  title={`Retraites · Ce qui changerait · ${cohort.label}`}
+  description="Âge de départ, durée de cotisation et taux plein. Trois programmes de 2027 comparés au droit en vigueur, par génération."
+  section="/comparer/"
+>
+  <div class="breadcrumbs">
+    <a href="/comparer/">Comparer</a>
+    <span>/</span>
+    <span>Ce qui changerait</span>
+  </div>
+  <header class="page-title feature-title retirement-title">
+    <span class="feature-emblem">
+      <Icon name="retraites" />
+    </span>
+    <div>
+      <h1>Retraites · Ce qui changerait</h1>
+      <p>Trois programmes face aux règles du régime général.</p>
+    </div>
+    <a
+      class="button primary retirement-download"
+      href={`${retirementPath}${cohort.id}.svg`}
+      download={`polradar-retraites-${cohort.id}-${comparison.reviewedOn}.svg`}
+    >
+      Télécharger le graphique <small>SVG</small>
+    </a>
+  </header>
+  <section class="retirement-cohorts" aria-labelledby="retirement-generation">
+    <div>
+      <h2 id="retirement-generation">Période de naissance</h2>
+      <p>
+        Cas général · pensions prenant effet depuis le{' '}
+        {formatDate(comparison.effectiveFrom)}.
+      </p>
+    </div>
+    <ul>
+      {comparison.cohorts.map((option) => (
+        <li>
+          <a
+            href={retirementUrl(option.id)}
+            aria-current={option.id === cohort.id ? 'page' : undefined}
+          >
+            {option.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+  <figure class="retirement-board" aria-labelledby="retirement-graph">
+    <figcaption id="retirement-graph">
+      <span>Naissance · {cohort.label}</span>
+      <span>
+        Droit et programmes consultés le {formatDate(comparison.reviewedOn)}
+      </span>
+    </figcaption>
+    <div class="retirement-panels">
+      {panels.map((panel) => (
+        <section
+          class="retirement-panel"
+          aria-labelledby={`retirement-${panel.id}`}
+        >
+          <header>
+            <h2 id={`retirement-${panel.id}`}>{panel.label}</h2>
+            <p>{panel.detail}</p>
+          </header>
+          <div class="retirement-axis" aria-hidden="true">
+            {panel.marks.map(({ value }) => (
+              <span>{value}</span>
+            ))}
+          </div>
+          <dl>
+            {panel.rows.map((row, index) => (
+              <div
+                class:list={[
+                  'retirement-row',
+                  `retirement-row-${index}`,
+                  { 'retirement-missing': row.position === null },
+                ]}
+              >
+                <div>
+                  <dt>{row.name}</dt>
+                  <dd>{row.text}</dd>
+                </div>
+                <svg
+                  viewBox="-1 0 102 12"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path d="M0 6h100" />
+                  {panel.marks.map(({ position }) => (
+                    <path d={`M${position * 100} 2v8`} />
+                  ))}
+                  {row.position !== null && (
+                    <path
+                      class="retirement-point"
+                      d={`M${row.position * 100} 1v10`}
+                    />
+                  )}
+                </svg>
+              </div>
+            ))}
+          </dl>
+        </section>
+      ))}
+    </div>
+    <p class="retirement-key">
+      Une annuité est placée à quatre trimestres sur l’axe de durée. Le droit
+      actuel indique la durée d’assurance requise pour le taux plein. Les
+      programmes indiquent les durées de cotisation qu’ils proposent.
+    </p>
+  </figure>
+  <section
+    class="retirement-references section-space"
+    aria-labelledby="retirement-references"
+  >
+    <div class="register-heading">
+      <h2 id="retirement-references">Conditions et sources</h2>
+      <Icon name="source" />
+    </div>
+    <div class="retirement-reference-grid">
+      <article>
+        <h3>Droit en vigueur</h3>
+        <p>
+          À 67 ans, la décote est annulée dans le cas général. Le montant peut
+          rester proratisé selon la durée d’assurance. Des règles particulières
+          s’appliquent aux départs anticipés.
+        </p>
+        <ul>
+          {comparison.legalSources.map(({ label, url }) => (
+            <li>
+              <a href={url}>{label} ↗</a>
+            </li>
+          ))}
+        </ul>
+      </article>
+      {programmes.map((programme) => (
+        <article>
+          <h3>{programme.name}</h3>
+          <p>{programme.note}</p>
+          <ul>
+            <li>
+              <a href={programme.source.url}>Programme officiel ↗</a>
+            </li>
+            {programme.detailSource && (
+              <li>
+                <a href={programme.detailSource.url}>
+                  {programme.detailSource.label} ↗
+                </a>
+              </li>
+            )}
+            <li>
+              <a href={programme.versionLink}>Version comparée ↗</a>
+            </li>
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
+</Base>

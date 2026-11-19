@@ -75,3 +75,15 @@ Les budgets couvrent 14 profils et 37 entrées. Le contre-budget Équinoxe porte
 L’agenda compte 28 rendez-vous et 21 communes. Le dépliant Arthaud du 3 novembre (page 4) annonce Paris le 24 janvier 2027, Vénissieux le 30 janvier et Nantes le 6 février, à 15 h. Le meeting annoncé pour Lyon se situe à Vénissieux : le marqueur utilise cette commune, vérifiée avec `geo.api.gouv.fr`.
 
 Le contrôle Arcom du 18 novembre a renvoyé une page de maintenance. Le dernier relevé validé de juillet à septembre est conservé ; aucun mois vide ou zéro artificiel n’a été ajouté. Le relevé manuel des marchés prédictifs du 18 novembre à 17:43 UTC contient 46 contrats Polymarket et 31 Kalshi, avec les dates d’observation de chaque fournisseur.
+
+## Retraites et droit en vigueur
+
+Le comparatif utilise les articles L. 161-17-2, L. 161-17-3 et L. 351-8 du Code de la sécurité sociale pour le cas général du régime général. Le barème concerne les pensions prenant effet à partir du 1er septembre 2026 et les générations nées depuis septembre 1961. Les trois programmes sont lus dans les versions datées du corpus. La conversion en trimestres sert uniquement à positionner les annuités sur l’axe. Le graphique SVG reprend les chiffres de la page de chaque génération.
+
+## Résultats de la présidentielle par commune
+
+Les deux fichiers communaux de 2022 du ministère de l’Intérieur sont réconciliés avec le fichier France entière de leur tour, candidat par candidat. Le périmètre publié suit les 35 034 communes du scrutin dont le code figure au COG 2022. Les lignes consulaires et le résultat territorial de Wallis-et-Futuna entrent dans la réconciliation nationale.
+
+La population et les logements proviennent du recensement 2023 dans la géographie de 2026. La correspondance Insee doit être univoque dans les deux sens. Les communes concernées par une fusion ou une scission entre ces millésimes gardent leurs chiffres électoraux et affichent les indicateurs Insee comme indisponibles. Le graphique distingue la participation parmi les inscrits et les scores parmi les suffrages exprimés.
+
+Pour reproduire l’import, télécharger les fichiers listés dans `src/data/communes-2022-sources.json` sous les noms indiqués dans ce registre, puis exécuter `python3 scripts/import-communes.py <dossier-des-sources>` avec Python 3.11 ou plus récent. Le script contrôle la taille et le SHA-256 de chaque fichier. Les données restent attribuées au ministère et à l’Insee, avec leur millésime et leur date de mise à disposition lorsque celle-ci est connue. Le dépôt contient uniquement les données normalisées nécessaires au site.

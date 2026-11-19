@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import MeasureCard from '../components/MeasureCard.astro';
 import MetricPlot from '../components/MetricPlot.astro';
+import Icon from '../components/Icon.astro';
 import { candidates, themes, measures, candidateById } from '../lib/data';
 const defaults = ['melenchon', 'philippe', 'retailleau'];
 ---
@@ -11,6 +12,14 @@ const defaults = ['melenchon', 'philippe', 'retailleau'];
     <h1>Comparateur de programmes</h1>
     <p>Sélectionnez un thème et deux ou trois candidats.</p>
   </header>
+  <a class="retirement-entry" href="/comparer/retraites/">
+    <Icon name="retraites" />
+    <span>
+      <strong>Ce qui changerait · Retraites</strong>
+      <small>Trois programmes face au droit en vigueur</small>
+    </span>
+    <Icon name="arrow" />
+  </a>
   <form id="compare-form" class="compare-form" action="/comparer/" method="get">
     <label>
       Votre sujet
@@ -127,3 +136,27 @@ const defaults = ['melenchon', 'philippe', 'retailleau'];
   </aside>
   <script src="../scripts/compare.ts"></script>
 </Base>
+
+<style>
+  .retirement-entry {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    border: 1px solid #b7c7be;
+    border-left: 4px solid #205d79;
+    border-radius: 4px;
+    padding: 0.65rem 0.85rem;
+    margin: 0.75rem 0 1rem;
+    background: #e8eee7;
+    text-decoration: none;
+  }
+  .retirement-entry span {
+    flex: 1;
+    min-width: 0;
+  }
+  .retirement-entry small {
+    display: block;
+    color: var(--muted);
+  }
+</style>

@@ -73,12 +73,15 @@ test('l’accueil et toutes les rubriques ont un PNG distinct et les sous-pages 
     );
   paths.push(
     '/candidats/',
+    '/communes/',
+    '/comparer/retraites/',
     '/dossiers/',
     '/engagements/',
     '/mesures/',
+    '/numerique/',
     '/themes/',
   );
-  assert.equal(socialImages.length, 28);
+  assert.equal(socialImages.length, 31);
   const agenda = JSON.parse(
     readFileSync(
       new URL('../src/data/campaign-agenda.json', import.meta.url),
@@ -94,7 +97,10 @@ test('l’accueil et toutes les rubriques ont un PNG distinct et les sous-pages 
     ),
   );
   assert.equal(socialImageFor('/agenda/').graphic.points.length, communes.size);
-  assert.equal(new Set(socialImages.map((c) => c.url)).size, 28);
+  assert.equal(
+    new Set(socialImages.map((c) => c.url)).size,
+    socialImages.length,
+  );
   for (const path of paths) assert.equal(socialImageFor(path).path, path);
   for (const card of socialImages) {
     assert.match(card.url, /^\/og\/[a-z-]+-[a-f0-9]{20}\.png$/);

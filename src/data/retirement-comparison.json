@@ -1,0 +1,73 @@
+{
+  "reviewedOn": "2026-11-19",
+  "effectiveFrom": "2026-09-01",
+  "automaticAgeMonths": 804,
+  "legalSources": [
+    {
+      "label": "Code de la sécurité sociale · art. L. 161-17-2 et L. 161-17-3",
+      "url": "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006073189/LEGISCTA000006194414/2026-06-15"
+    },
+    {
+      "label": "Code de la sécurité sociale · art. L. 351-8, 1°",
+      "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051289852/2026-01-14"
+    },
+    {
+      "label": "Assurance retraite · âge et durée d’assurance",
+      "url": "https://www.lassuranceretraite.fr/portail-info/home/actif/age-depart/age-depart-retraite.html"
+    }
+  ],
+  "cohorts": [
+    {
+      "id": "1961-septembre",
+      "label": "Sept. à déc. 1961",
+      "ageMonths": 747,
+      "quarters": 169
+    },
+    { "id": "1962", "label": "1962", "ageMonths": 750, "quarters": 169 },
+    {
+      "id": "1963-mars-1965",
+      "label": "Janv. 1963 à mars 1965",
+      "ageMonths": 753,
+      "quarters": 170
+    },
+    {
+      "id": "1965-avril",
+      "label": "Avril à déc. 1965",
+      "ageMonths": 756,
+      "quarters": 171
+    },
+    { "id": "1966", "label": "1966", "ageMonths": 759, "quarters": 172 },
+    { "id": "1967", "label": "1967", "ageMonths": 762, "quarters": 172 },
+    { "id": "1968", "label": "1968", "ageMonths": 765, "quarters": 172 },
+    {
+      "id": "1969-et-apres",
+      "label": "1969 et après",
+      "ageMonths": 768,
+      "quarters": 172
+    }
+  ],
+  "programmes": [
+    {
+      "candidate": "melenchon",
+      "versionId": "melenchon-retraites-1-v2",
+      "metrics": ["age-depart", "annuites", null],
+      "note": "Départ à taux plein à 60 ans avec 40 annuités de cotisation."
+    },
+    {
+      "candidate": "philippe",
+      "versionId": "philippe-retraites-1-v3",
+      "metrics": ["age-depart", "annuites", null],
+      "note": "Relèvement progressif en moins de dix ans. Départs anticipés maintenus pour les carrières longues et certaines situations de santé."
+    },
+    {
+      "candidate": "retailleau",
+      "versionId": "retailleau-retraites-1-v2",
+      "metrics": ["age-depart", null, "age-taux-plein"],
+      "note": "Taux plein à 65 ans quelle que soit la durée de cotisation. Le projet conserve la proratisation du montant selon la durée cotisée.",
+      "detailSource": {
+        "label": "Mesure 108 · règles de départ et de calcul",
+        "url": "https://www.avecretailleau.fr/projet/mesure/d"
+      }
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+---
+import { formatDate } from '../lib/data';
+import {
+  describeBallot,
+  integerLabel,
+  percentLabel,
+  percentWidth,
+} from '../lib/communes.mjs';
+interface Props {
+  counts: number[];
+  round: { date: string; candidates: string[]; national: number[] };
+  index: number;
+}
+const { counts, round, index } = Astro.props;
+const title = index === 0 ? 'Premier tour' : 'Second tour';
+const panel = describeBallot(counts, round.candidates);
+const [nationalRegistered, nationalVoters] = round.national;
+const nationalWidth = percentWidth(nationalVoters, nationalRegistered);
+const sections = [panel.candidates.slice(0, 5), panel.candidates.slice(5)];
+---
+
+<article
+  class="commune-round"
+  data-commune-round
+  aria-labelledby={`commune-tour-${index}`}
+>
+  <header>
+    <h3 id={`commune-tour-${index}`}>{title}</h3>
+    <time datetime={round.date}>{formatDate(round.date)}</time>
+  </header>
+  <div class="commune-turnout">
+    <div>
+      <span>Participation</span>
+      <strong data-participation>{panel.participants}</strong>
+    </div>
+    <svg viewBox="-1 0 102 9" preserveAspectRatio="none" aria-hidden="true">
+      <rect width="100" height="9" class="commune-track" />
+      <rect
+        width={panel.width}
+        height="9"
+        class="commune-progress"
+        data-ballot-width
+      />
+      <path d={`M${nationalWidth} 0v9`} class="commune-national-mark" />
+    </svg>
+    <span class="commune-national-label">
+      France entière · {percentLabel(nationalVoters, nationalRegistered)}
+    </span>
+  </div>
+  <dl class="commune-totals">
+    {(
+      [
+        ['registered', 'Inscrits'],
+        ['voters', 'Votants'],
+        ['abstained', 'Abstentions'],
+        ['expressed', 'Exprimés'],
+        ['blank', 'Blancs'],
+        ['invalid', 'Nuls'],
+      ] as const
+    ).map(([field, label]) => (
+      <div>
+        <dt>{label}</dt>
+        <dd data-total={field}>{integerLabel(panel[field])}</dd>
+      </div>
+    ))}
+  </dl>
+  <div data-expressed hidden={!panel.expressed} class="commune-counts">
+    <p class="commune-score-label">Part des suffrages exprimés</p>
+    {sections.map((section, group) => {
+      if (!section.length) return null;
+      const rows = (
+        <ol
+          class="commune-candidates"
+          start={group === 0 ? 1 : 6}
+          aria-label={group === 0 ? 'Premiers résultats' : 'Autres résultats'}
+        >
+          {section.map((candidate) => (
+            <li data-candidate-result>
+              <div>
+                <span data-candidate-name>{candidate.name}</span>
+                <strong data-candidate-score>{candidate.score}</strong>
+              </div>
+              <svg
+                viewBox="0 0 100 6"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <rect width="100" height="6" class="commune-track" />
+                <rect
+                  width={candidate.width}
+                  height="6"
+                  class="commune-progress"
+                  data-candidate-width
+                />
+              </svg>
+              <span data-candidate-votes>
+                {integerLabel(candidate.count)} voix
+              </span>
+            </li>
+          ))}
+        </ol>
+      );
+      return group === 0 ? (
+        rows
+      ) : (
+        <details class="commune-more">
+          <summary>Voir les 7 autres résultats</summary>
+          {rows}
+        </details>
+      );
+    })}
+  </div>
+  <p
+    class="commune-no-votes"
+    data-no-expressed
+    hidden={Boolean(panel.expressed)}
+  >
+    Aucun suffrage exprimé dans le résultat définitif de ce tour.
+  </p>
+</article>

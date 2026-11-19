@@ -69,8 +69,63 @@ const tiles = (rows, label) => ({
   rows: rows.map(([label, value]) => ({ label, value: number(value) })),
   label,
 });
+const communes2022 = read('communes-2022');
+const retirement = read('retirement-comparison');
+const digitalTopics = read('digital-topics');
+const generation1969 = retirement.cohorts.find(
+  (row) => row.id === '1969-et-apres',
+);
 /** @type {Array<[string, string, string, string, string, string, Record<string, any>]>} */
 const defs = [
+  [
+    'retraites-droit',
+    '/comparer/retraites/',
+    'Ce qui changerait',
+    'Retraites et\ndroit en vigueur',
+    'Trois programmes comparés au régime général.',
+    'navy',
+    tiles(
+      [
+        ['Âge légal · ans', generation1969.ageMonths / 12],
+        ['Durée · trimestres', generation1969.quarters],
+        ['Taux plein · ans', retirement.automaticAgeMonths / 12],
+        ['Programmes', retirement.programmes.length],
+      ],
+      'Règles actuelles · génération 1969 et après',
+    ),
+  ],
+  [
+    'communes',
+    '/communes/',
+    'Présidentielle 2022',
+    'Les résultats\npar commune',
+    `${number(communes2022.count)} communes. Les résultats définitifs des deux tours.`,
+    'sage',
+    tiles(
+      [
+        ['Communes', communes2022.count],
+        ['Tours', communes2022.rounds.length],
+        ['Indicateurs Insee', communes2022.withContext],
+        ['Recensement', 2023],
+      ],
+      'Ministère de l’Intérieur · Insee',
+    ),
+  ],
+  [
+    'numerique',
+    '/numerique/',
+    'Les programmes',
+    'Propositions sur\nle numérique',
+    'Services publics, données, formation et centres de calcul.',
+    'sage',
+    bars(
+      digitalTopics.map((topic) => ({
+        label: topic.label,
+        value: topic.measures.length,
+      })),
+      'Fiches recensées par sujet',
+    ),
+  ],
   [
     'accueil',
     '/',
@@ -547,9 +602,8 @@ export const socialImages = defs.map(
   },
 );
 export function socialImageFor(pathname) {
-  const root = `/${pathname.split('/').filter(Boolean)[0] || ''}/`.replace(
-    '//',
-    '/',
-  );
-  return socialImages.find((image) => image.path === root) || socialImages[0];
+  const path = pathname.endsWith('/') ? pathname : `${pathname}/`;
+  return socialImages
+    .filter((image) => path.startsWith(image.path))
+    .sort((first, second) => second.path.length - first.path.length)[0];
 }
