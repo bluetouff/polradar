@@ -1,4 +1,5 @@
 ---
+import PagedResults from '../components/PagedResults.astro';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import {
@@ -217,70 +218,74 @@ let stateOffset = 0;
   >
     {rows.length} sources
   </p>
-  <div class="watch-source-grid">
-    {rows.map((row, index) => (
-      <article
-        class={`watch-card watch-card-${row.status}`}
-        id={`watch-${row.sourceId}`}
-        data-watch-source={row.sourceId}
-        data-watch-status={row.status}
-        data-watch-format={row.format}
-        data-watch-search={`${row.source.title} ${row.host}`}
-      >
-        <div class="watch-card-heading">
-          <span class="watch-document-icon">
-            <Icon name={row.format === 'video' ? 'veille' : 'source'} />
-          </span>
-          <span class="watch-document-format">
-            {formats[row.format]}
-            <small>{sourceKinds[row.source.kind]}</small>
-          </span>
-          <span class="watch-source-number">
-            {String(index + 1).padStart(2, '0')}
-          </span>
-        </div>
-        <h3>
-          <a href={row.source.url} target="_blank" rel="noopener noreferrer">
-            {row.source.title}
-            <Icon name="external" />
-          </a>
-        </h3>
-        <p class="watch-source-host">{row.host}</p>
-        <div class="watch-card-footer">
-          <span class={`watch-card-status status-${row.status}`}>
-            <Icon
-              name={
-                row.status === 'accessible'
-                  ? 'check'
-                  : row.status === 'modifie'
-                    ? 'historique'
-                    : 'warning'
-              }
-            />
-            {labels[row.status]}
-          </span>
-          <p class="watch-card-time">
-            <Icon name="clock" />
-            <time datetime={row.checkedAt}>
-              {formatTimestamp(row.checkedAt)} (Paris)
-            </time>
-          </p>
-          <details class="watch-card-details">
-            <summary>Détail du contrôle</summary>
-            <p>{row.message}</p>
-            {row.httpStatus !== null && <p>Réponse HTTP : {row.httpStatus}.</p>}
-            {row.reviewNote && <p>{row.reviewNote}</p>}
-            {row.reviewedAt && (
-              <p>
-                Relecture du contenu : {formatTimestamp(row.reviewedAt)}{' '}
-                (Paris).
-              </p>
-            )}
-          </details>
-        </div>
-      </article>
-    ))}
-  </div>
+  <PagedResults total={rows.length}>
+    <div class="watch-source-grid">
+      {rows.map((row, index) => (
+        <article
+          class={`watch-card watch-card-${row.status}`}
+          id={`watch-${row.sourceId}`}
+          data-watch-source={row.sourceId}
+          data-watch-status={row.status}
+          data-watch-format={row.format}
+          data-watch-search={`${row.source.title} ${row.host}`}
+        >
+          <div class="watch-card-heading">
+            <span class="watch-document-icon">
+              <Icon name={row.format === 'video' ? 'veille' : 'source'} />
+            </span>
+            <span class="watch-document-format">
+              {formats[row.format]}
+              <small>{sourceKinds[row.source.kind]}</small>
+            </span>
+            <span class="watch-source-number">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+          </div>
+          <h3>
+            <a href={row.source.url} target="_blank" rel="noopener noreferrer">
+              {row.source.title}
+              <Icon name="external" />
+            </a>
+          </h3>
+          <p class="watch-source-host">{row.host}</p>
+          <div class="watch-card-footer">
+            <span class={`watch-card-status status-${row.status}`}>
+              <Icon
+                name={
+                  row.status === 'accessible'
+                    ? 'check'
+                    : row.status === 'modifie'
+                      ? 'historique'
+                      : 'warning'
+                }
+              />
+              {labels[row.status]}
+            </span>
+            <p class="watch-card-time">
+              <Icon name="clock" />
+              <time datetime={row.checkedAt}>
+                {formatTimestamp(row.checkedAt)} (Paris)
+              </time>
+            </p>
+            <details class="watch-card-details">
+              <summary>Détail du contrôle</summary>
+              <p>{row.message}</p>
+              {row.httpStatus !== null && (
+                <p>Réponse HTTP : {row.httpStatus}.</p>
+              )}
+              {row.reviewNote && <p>{row.reviewNote}</p>}
+              {row.reviewedAt && (
+                <p>
+                  Relecture du contenu : {formatTimestamp(row.reviewedAt)}{' '}
+                  (Paris).
+                </p>
+              )}
+            </details>
+          </div>
+        </article>
+      ))}
+    </div>
+  </PagedResults>
   <p class="notice" id="watch-empty" hidden>
     Aucune source pour cette sélection.
   </p>

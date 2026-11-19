@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
+import PagedResults from '../components/PagedResults.astro';
 import VisualFilters from '../components/VisualFilters.astro';
 import CandidatePortrait from '../components/CandidatePortrait.astro';
 import SourceLinks from '../components/SourceLinks.astro';
@@ -107,180 +108,184 @@ const annualScales = budgetAnnualScales(programmeBudgets.profiles);
     Aucun montant intégré pour cette sélection. Le comparateur donne accès aux
     propositions et à leurs documents.
   </p>
-  <div class="programme-ledger">
-    {programmeBudgets.profiles.map((profile) => {
-      const c = candidateById(profile.candidate);
-      return (
-        <section class="budget-profile" data-budget-candidate={c.id}>
-          <header class="budget-person">
-            <a href={`/candidats/${c.id}/`} class="budget-avatar">
-              <CandidatePortrait candidate={c} compact />
-            </a>
-            <div>
-              <span class="visual-kicker">{scopes[profile.scope]}</span>
-              <h2>
-                <a href={`/candidats/${c.id}/`}>{c.name}</a>
-              </h2>
-              <p>{c.party}</p>
-            </div>
-          </header>
-          <div class="budget-measures">
-            <p class="budget-profile-note">{profile.note}</p>
-            {profile.entries.map((entry) => {
-              let x = 0;
-              const total = budgetAllocationTotal(entry);
-              const ceiling =
-                entry.period === 'annuel'
-                  ? annualScales[entry.kind]
-                  : (entry.eurosMax ?? entry.euros);
-              return (
-                <article
-                  class="budget-entry"
-                  id={entry.id}
-                  data-budget-period={entry.period}
-                >
-                  <div class="budget-entry-head">
-                    <div>
-                      <span class="visual-kicker">{kinds[entry.kind]}</span>
-                      <h3>{entry.label}</h3>
+  <PagedResults
+    total={programmeBudgets.profiles.flatMap((p) => p.entries).length}
+  >
+    <div class="programme-ledger">
+      {programmeBudgets.profiles.map((profile) => {
+        const c = candidateById(profile.candidate);
+        return (
+          <section class="budget-profile" data-budget-candidate={c.id}>
+            <header class="budget-person">
+              <a href={`/candidats/${c.id}/`} class="budget-avatar">
+                <CandidatePortrait candidate={c} compact />
+              </a>
+              <div>
+                <span class="visual-kicker">{scopes[profile.scope]}</span>
+                <h2>
+                  <a href={`/candidats/${c.id}/`}>{c.name}</a>
+                </h2>
+                <p>{c.party}</p>
+              </div>
+            </header>
+            <div class="budget-measures">
+              <p class="budget-profile-note">{profile.note}</p>
+              {profile.entries.map((entry) => {
+                let x = 0;
+                const total = budgetAllocationTotal(entry);
+                const ceiling =
+                  entry.period === 'annuel'
+                    ? annualScales[entry.kind]
+                    : (entry.eurosMax ?? entry.euros);
+                return (
+                  <article
+                    class="budget-entry"
+                    id={entry.id}
+                    data-budget-period={entry.period}
+                  >
+                    <div class="budget-entry-head">
+                      <div>
+                        <span class="visual-kicker">{kinds[entry.kind]}</span>
+                        <h3>{entry.label}</h3>
+                      </div>
+                      <p class="budget-number">
+                        {formatBudgetAmount(entry)}
+                        <span>{periods[entry.period]}</span>
+                      </p>
                     </div>
-                    <p class="budget-number">
-                      {formatBudgetAmount(entry)}
-                      <span>{periods[entry.period]}</span>
+                    <p class="budget-horizon">
+                      <Icon name="clock" />
+                      {entry.horizon}
                     </p>
-                  </div>
-                  <p class="budget-horizon">
-                    <Icon name="clock" />
-                    {entry.horizon}
-                  </p>
-                  {entry.allocation.length ? (
-                    <figure class="budget-allocation">
-                      <figcaption>
-                        Répartition annoncée
-                        {entry.allocationUnit === 'pourcentage'
-                          ? ' de l’effort'
-                          : ''}
-                      </figcaption>
-                      {entry.allocationDifference && (
-                        <p class="budget-horizon">
-                          Somme des postes : {formatMoney(total)}. Total publié
-                          : {formatBudgetAmount(entry)}.{' '}
-                          {entry.allocationDifference.note}
-                        </p>
-                      )}
-                      <svg
-                        viewBox="0 0 100 14"
-                        preserveAspectRatio="none"
-                        role="img"
-                        aria-label={`Répartition annoncée : ${entry.allocation.map((p) => `${p.label}, ${entry.allocationUnit === 'pourcentage' ? `${p.value} %` : formatMoney(p.value)}`).join(' ; ')}`}
-                      >
-                        {entry.allocation.map((part, i) => {
-                          const width = (part.value / total) * 100,
-                            start = x;
-                          x += width;
-                          return (
-                            <rect
-                              x={start}
-                              width={width}
-                              height="14"
-                              class={`tone-${i % 7}`}
-                            >
-                              <title>{part.label} : {entry.allocationUnit==='pourcentage'?`${part.value} %`:formatMoney(part.value)}</title>
-                            </rect>
-                          );
-                        })}
-                      </svg>
-                      <ul class="budget-allocation-key">
-                        {entry.allocation.map((part, i) => (
-                          <li>
-                            <i class={`tone-${i % 7}`} aria-hidden="true"></i>
-                            <span>{part.label}</span>
-                            <strong>
-                              {entry.allocationUnit === 'pourcentage'
-                                ? `${part.value} %`
-                                : formatMoney(part.value)}
-                            </strong>
-                          </li>
-                        ))}
-                      </ul>
-                    </figure>
-                  ) : (
-                    <figure class="budget-amount-chart">
-                      <figcaption>
-                        {entry.eurosMax !== undefined
-                          ? 'Fourchette annoncée'
-                          : entry.period === 'annuel'
-                            ? 'Montant annuel de la mesure'
-                            : 'Montant annoncé pour la période indiquée'}
-                      </figcaption>
-                      <svg
-                        viewBox="0 0 100 10"
-                        preserveAspectRatio="none"
-                        role="img"
-                        aria-label={`${entry.label} : ${formatBudgetAmount(entry)}, ${entry.horizon}`}
-                      >
-                        <rect class="budget-track" width="100" height="10" />
-                        <rect
-                          class="tone-0"
-                          width={(entry.euros / ceiling) * 100}
-                          height="10"
-                        />
-                        {entry.eurosMax !== undefined && (
+                    {entry.allocation.length ? (
+                      <figure class="budget-allocation">
+                        <figcaption>
+                          Répartition annoncée
+                          {entry.allocationUnit === 'pourcentage'
+                            ? ' de l’effort'
+                            : ''}
+                        </figcaption>
+                        {entry.allocationDifference && (
+                          <p class="budget-horizon">
+                            Somme des postes : {formatMoney(total)}. Total
+                            publié : {formatBudgetAmount(entry)}.{' '}
+                            {entry.allocationDifference.note}
+                          </p>
+                        )}
+                        <svg
+                          viewBox="0 0 100 14"
+                          preserveAspectRatio="none"
+                          role="img"
+                          aria-label={`Répartition annoncée : ${entry.allocation.map((p) => `${p.label}, ${entry.allocationUnit === 'pourcentage' ? `${p.value} %` : formatMoney(p.value)}`).join(' ; ')}`}
+                        >
+                          {entry.allocation.map((part, i) => {
+                            const width = (part.value / total) * 100,
+                              start = x;
+                            x += width;
+                            return (
+                              <rect
+                                x={start}
+                                width={width}
+                                height="14"
+                                class={`tone-${i % 7}`}
+                              >
+                                <title>{part.label} : {entry.allocationUnit==='pourcentage'?`${part.value} %`:formatMoney(part.value)}</title>
+                              </rect>
+                            );
+                          })}
+                        </svg>
+                        <ul class="budget-allocation-key">
+                          {entry.allocation.map((part, i) => (
+                            <li>
+                              <i class={`tone-${i % 7}`} aria-hidden="true"></i>
+                              <span>{part.label}</span>
+                              <strong>
+                                {entry.allocationUnit === 'pourcentage'
+                                  ? `${part.value} %`
+                                  : formatMoney(part.value)}
+                              </strong>
+                            </li>
+                          ))}
+                        </ul>
+                      </figure>
+                    ) : (
+                      <figure class="budget-amount-chart">
+                        <figcaption>
+                          {entry.eurosMax !== undefined
+                            ? 'Fourchette annoncée'
+                            : entry.period === 'annuel'
+                              ? 'Montant annuel de la mesure'
+                              : 'Montant annoncé pour la période indiquée'}
+                        </figcaption>
+                        <svg
+                          viewBox="0 0 100 10"
+                          preserveAspectRatio="none"
+                          role="img"
+                          aria-label={`${entry.label} : ${formatBudgetAmount(entry)}, ${entry.horizon}`}
+                        >
+                          <rect class="budget-track" width="100" height="10" />
                           <rect
-                            class="budget-range"
-                            x={(entry.euros / ceiling) * 100}
-                            width={
-                              ((entry.eurosMax - entry.euros) / ceiling) * 100
-                            }
+                            class="tone-0"
+                            width={(entry.euros / ceiling) * 100}
                             height="10"
                           />
-                        )}
-                      </svg>
-                      <div class="budget-axis">
-                        <span>0</span>
-                        <span>
-                          {formatMoney(ceiling)}
-                          {entry.period === 'annuel' ? ' / an' : ''}
-                        </span>
+                          {entry.eurosMax !== undefined && (
+                            <rect
+                              class="budget-range"
+                              x={(entry.euros / ceiling) * 100}
+                              width={
+                                ((entry.eurosMax - entry.euros) / ceiling) * 100
+                              }
+                              height="10"
+                            />
+                          )}
+                        </svg>
+                        <div class="budget-axis">
+                          <span>0</span>
+                          <span>
+                            {formatMoney(ceiling)}
+                            {entry.period === 'annuel' ? ' / an' : ''}
+                          </span>
+                        </div>
+                      </figure>
+                    )}
+                    {(entry.funding ||
+                      ['depense', 'financement'].includes(entry.kind)) && (
+                      <div class="budget-funding">
+                        <Icon name="exchange" />
+                        <div>
+                          <h4>
+                            {['recette', 'economie', 'baisse-recette'].includes(
+                              entry.kind,
+                            )
+                              ? 'Hypothèses annoncées'
+                              : entry.kind === 'financement'
+                                ? 'Modalités annoncées'
+                                : 'Financement annoncé'}
+                          </h4>
+                          <p>
+                            {entry.funding ??
+                              'Financement propre à cette mesure non détaillé dans la source citée.'}
+                          </p>
+                        </div>
                       </div>
-                    </figure>
-                  )}
-                  {(entry.funding ||
-                    ['depense', 'financement'].includes(entry.kind)) && (
-                    <div class="budget-funding">
-                      <Icon name="exchange" />
-                      <div>
-                        <h4>
-                          {['recette', 'economie', 'baisse-recette'].includes(
-                            entry.kind,
-                          )
-                            ? 'Hypothèses annoncées'
-                            : entry.kind === 'financement'
-                              ? 'Modalités annoncées'
-                              : 'Financement annoncé'}
-                        </h4>
-                        <p>
-                          {entry.funding ??
-                            'Financement propre à cette mesure non détaillé dans la source citée.'}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                  <details class="budget-source">
-                    <summary>Document et emplacement</summary>
-                    <p>{entry.locator}</p>
-                    <SourceLinks
-                      ids={[entry.source, ...(entry.additionalSources ?? [])]}
-                    />
-                  </details>
-                </article>
-              );
-            })}
-          </div>
-        </section>
-      );
-    })}
-  </div>
+                    )}
+                    <details class="budget-source">
+                      <summary>Document et emplacement</summary>
+                      <p>{entry.locator}</p>
+                      <SourceLinks
+                        ids={[entry.source, ...(entry.additionalSources ?? [])]}
+                      />
+                    </details>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+        );
+      })}
+    </div>
+  </PagedResults>
   <details class="visual-method">
     <summary>Périmètre et méthode</summary>
     <p>

@@ -1,4 +1,5 @@
 ---
+import PagedResults from '../components/PagedResults.astro';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import { measures, versions, candidates, formatDate } from '../lib/data';
@@ -87,38 +88,43 @@ const initial = measures.find((measure) => measure.revision > 1) || measures[0];
       <h2>Dernières modifications éditoriales</h2>
       <span class="index-total">{updated.length}</span>
     </div>
-    <ol class="version-timeline">
-      {updated.map((version) => {
-        const measure = measures.find((item) => item.id === version.measureId)!;
-        return (
-          <li>
-            <span class="version-node" aria-hidden="true"></span>
-            <div>
-              <time datetime={version.observedOn}>
-                {formatDate(version.observedOn)}
-              </time>
-              <h3>
-                <a
-                  href={`/historique/?mesure=${measure.id}&apres=${version.number}`}
-                >
-                  {measure.title}
-                </a>
-              </h3>
-              <p>
-                {
-                  candidates.find(
-                    (candidate) => candidate.id === measure.candidate,
-                  )!.name
-                }{' '}
-                · version {version.number}
-              </p>
-              <p>{version.summary}</p>
-            </div>
-            <Icon name="historique" />
-          </li>
-        );
-      })}
-    </ol>
+    <PagedResults total={updated.length}>
+      <ol class="version-timeline" data-document-list>
+        {updated.map((version) => {
+          const measure = measures.find(
+            (item) => item.id === version.measureId,
+          )!;
+          return (
+            <li data-page-item>
+              <span class="version-node" aria-hidden="true"></span>
+              <div>
+                <time datetime={version.observedOn}>
+                  {formatDate(version.observedOn)}
+                </time>
+                <h3>
+                  <a
+                    href={`/historique/?mesure=${measure.id}&apres=${version.number}`}
+                  >
+                    {measure.title}
+                  </a>
+                </h3>
+                <p>
+                  {
+                    candidates.find(
+                      (candidate) => candidate.id === measure.candidate,
+                    )!.name
+                  }{' '}
+                  · version {version.number}
+                </p>
+                <p>{version.summary}</p>
+              </div>
+              <Icon name="historique" />
+            </li>
+          );
+        })}
+      </ol>
+    </PagedResults>
   </section>
   <script src="../scripts/history.ts"></script>
+  <script src="../scripts/document-pages.ts"></script>
 </Base>

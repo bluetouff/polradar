@@ -1,3 +1,4 @@
+import { domPager, listFilters } from './pager';
 import { normalize } from '../lib/features.mjs';
 
 const form = document.querySelector<HTMLFormElement>('#watch-filters')!;
@@ -16,6 +17,8 @@ const cells = new Map(
   ),
 );
 
+const root = document.querySelector<HTMLElement>('[data-paged-results]')!;
+const paginate = domPager(root, () => restore());
 function render() {
   const query = normalize(search.value.slice(0, 200));
   let visible = 0;
@@ -28,14 +31,22 @@ function render() {
     cells.get(card.dataset.watchSource)!.hidden = card.hidden;
     if (!card.hidden) visible++;
   }
+  const target = document.getElementById(location.hash.slice(1));
+  const matches = cards.filter((c) => !c.hidden);
+  paginate(matches, { target });
+  if (target && matches.includes(target)) target.scrollIntoView();
   const label = `${visible} source${visible > 1 ? 's' : ''}`;
   status.textContent = label;
   mapCount.textContent = label;
   empty.hidden = visible > 0;
 }
-form.hidden = false;
-form.addEventListener('submit', (event) => event.preventDefault());
-form.addEventListener('input', render);
-form.addEventListener('change', render);
-form.addEventListener('reset', () => setTimeout(render, 0));
-render();
+const restore = listFilters(
+  form,
+  [
+    [search, 'q'],
+    [state, 'etat'],
+    [format, 'format'],
+  ],
+  render,
+);
+restore();

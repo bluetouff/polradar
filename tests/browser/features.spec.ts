@@ -461,6 +461,9 @@ test('le déficit corrigé conserve sa version précédente et ses dates', async
   await expect(page.locator('.diff-after').first()).toContainText('2,5 %');
   await expect(page.locator('.diff-before').first()).toContainText('2 %');
   await page.goto('/sources/');
+  await page
+    .locator('#sources-list-filters input')
+    .fill('Édouard Philippe : école');
   const row = page.locator('.source-card').filter({
     has: page.getByRole('link', { name: 'Édouard Philippe : école' }),
   });

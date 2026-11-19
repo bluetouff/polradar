@@ -52,10 +52,15 @@ export function corpus(): Promise<Corpus> {
     pending = fetch('/api/corpus.json', {
       credentials: 'omit',
       redirect: 'error',
-    }).then((response) => {
-      if (!response.ok) throw Error('Corpus indisponible');
-      return response.json() as Promise<Corpus>;
-    });
+    })
+      .then((response) => {
+        if (!response.ok) throw Error('Corpus indisponible');
+        return response.json() as Promise<Corpus>;
+      })
+      .catch((error) => {
+        pending = undefined;
+        throw error;
+      });
   return pending;
 }
 export function download(content: string, type: string, filename: string) {

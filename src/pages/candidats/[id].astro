@@ -1,4 +1,5 @@
 ---
+import PagedResults from '../../components/PagedResults.astro';
 import Base from '../../layouts/Base.astro';
 import MeasureCard from '../../components/MeasureCard.astro';
 import FollowButton from '../../components/FollowButton.astro';
@@ -170,22 +171,31 @@ const votesLink = voteCases.find((v) => v.candidate === candidate.id);
         </div>
       </div>
       {current.length ? (
-        documented.map((theme) => (
-          <section class="candidate-theme" id={`theme-${theme.id}`}>
-            <header class="candidate-theme-heading">
-              <Icon name={theme.id} />
-              <h3>{theme.label}</h3>
-              <span>
-                {theme.items.length} fiche{theme.items.length > 1 ? 's' : ''}
-              </span>
-            </header>
-            <div class="measure-list">
-              {theme.items.map((item) => (
-                <MeasureCard measure={item} level="h4" />
-              ))}
-            </div>
-          </section>
-        ))
+        <PagedResults total={current.length}>
+          <div data-document-list>
+            {documented.map((theme) => (
+              <section
+                data-page-group
+                class="candidate-theme"
+                id={`theme-${theme.id}`}
+              >
+                <header class="candidate-theme-heading">
+                  <Icon name={theme.id} />
+                  <h3>{theme.label}</h3>
+                  <span>
+                    {theme.items.length} fiche
+                    {theme.items.length > 1 ? 's' : ''}
+                  </span>
+                </header>
+                <div class="measure-list">
+                  {theme.items.map((item) => (
+                    <MeasureCard measure={item} level="h4" />
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
+        </PagedResults>
       ) : (
         <div class="notice">
           <p>Aucune proposition récente documentée pour cette candidature.</p>
@@ -221,4 +231,5 @@ const votesLink = voteCases.find((v) => v.candidate === candidate.id);
       )}
     </div>
   </div>
+  <script src="../../scripts/document-pages.ts"></script>
 </Base>

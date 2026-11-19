@@ -1,4 +1,5 @@
 ---
+import PagedResults from '../components/PagedResults.astro';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import SourceLinks from '../components/SourceLinks.astro';
@@ -212,101 +213,103 @@ let categoryOffset = 0;
   <p id="campaign-status" role="status" aria-live="polite" class="results-meta">
     {past.length} événements
   </p>
-  <div class="campaign-layout">
-    <div class="campaign-journal">
-      {months.map((month) => (
-        <section
-          class="campaign-month"
-          id={`mois-${month.id}`}
-          data-month={month.id}
-          aria-labelledby={`titre-${month.id}`}
-        >
-          <h2 id={`titre-${month.id}`}>
-            {month.label}
-            <span data-month-count>{month.rows.length}</span>
-          </h2>
-          <ol class="campaign-event-grid">
-            {month.rows.map((event) => (
-              <li
-                class={`campaign-entry event-${event.category}`}
-                id={event.id}
-                data-category={event.category}
-                data-candidates={event.candidates.join(' ')}
-                data-search={`${event.title} ${event.description} ${event.candidates.map((id) => candidates.find((row) => row.id === id)?.name || '').join(' ')}`}
-              >
-                <div class="campaign-card-heading">
-                  <time
-                    class="campaign-day"
-                    datetime={event.date}
-                    aria-label={formatDate(event.date)}
-                  >
-                    <b>{event.date.slice(-2)}</b>
-                    <span>
-                      {new Intl.DateTimeFormat('fr-FR', {
-                        weekday: 'short',
-                        timeZone: 'Europe/Paris',
-                      }).format(new Date(`${event.date}T12:00:00Z`))}
-                    </span>
-                  </time>
-                  <div class="campaign-entry-meta">
-                    <span class="campaign-category-label">
-                      <Icon name={categories[event.category].icon} />
-                      {categories[event.category].label}
-                    </span>
-                    <span>{dateKinds[event.dateKind]}</span>
-                  </div>
-                </div>
-                <article>
-                  <h3>{event.title}</h3>
-                  <p>{event.description}</p>
-                </article>
-                <div class="campaign-card-footer">
-                  {event.candidates.length === 1 ? (
-                    <a
-                      class="campaign-person"
-                      href={`/candidats/${event.candidates[0]}/`}
+  <PagedResults total={past.length}>
+    <div class="campaign-layout">
+      <div class="campaign-journal">
+        {months.map((month) => (
+          <section
+            class="campaign-month"
+            id={`mois-${month.id}`}
+            data-month={month.id}
+            aria-labelledby={`titre-${month.id}`}
+          >
+            <h2 id={`titre-${month.id}`}>
+              {month.label}
+              <span data-month-count>{month.rows.length}</span>
+            </h2>
+            <ol class="campaign-event-grid">
+              {month.rows.map((event) => (
+                <li
+                  class={`campaign-entry event-${event.category}`}
+                  id={event.id}
+                  data-category={event.category}
+                  data-candidates={event.candidates.join(' ')}
+                  data-search={`${event.title} ${event.description} ${event.candidates.map((id) => candidates.find((row) => row.id === id)?.name || '').join(' ')}`}
+                >
+                  <div class="campaign-card-heading">
+                    <time
+                      class="campaign-day"
+                      datetime={event.date}
+                      aria-label={formatDate(event.date)}
                     >
-                      <span class="campaign-person-portrait">
-                        <CandidatePortrait
-                          candidate={candidateById(event.candidates[0])}
-                          compact
-                        />
+                      <b>{event.date.slice(-2)}</b>
+                      <span>
+                        {new Intl.DateTimeFormat('fr-FR', {
+                          weekday: 'short',
+                          timeZone: 'Europe/Paris',
+                        }).format(new Date(`${event.date}T12:00:00Z`))}
                       </span>
-                      <span>{candidateById(event.candidates[0]).name}</span>
-                    </a>
-                  ) : (
-                    <a
-                      class="campaign-section-link"
-                      href={
-                        event.category === 'sondage'
-                          ? '/sondages/'
-                          : '/reperes/'
-                      }
-                    >
-                      <Icon name={categories[event.category].icon} />
-                      {event.category === 'sondage'
-                        ? 'Consulter les sondages'
-                        : 'Calendrier électoral'}
-                      <Icon name="arrow" />
-                    </a>
-                  )}
-                  <details class="campaign-entry-sources">
-                    <summary>
-                      <Icon name="source" /> Sources · {event.sources.length}
-                    </summary>
-                    <SourceLinks ids={event.sources} compact />
-                  </details>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </section>
-      ))}
-      <p id="campaign-empty" class="notice" hidden>
-        Aucun événement pour cette sélection.
-      </p>
+                    </time>
+                    <div class="campaign-entry-meta">
+                      <span class="campaign-category-label">
+                        <Icon name={categories[event.category].icon} />
+                        {categories[event.category].label}
+                      </span>
+                      <span>{dateKinds[event.dateKind]}</span>
+                    </div>
+                  </div>
+                  <article>
+                    <h3>{event.title}</h3>
+                    <p>{event.description}</p>
+                  </article>
+                  <div class="campaign-card-footer">
+                    {event.candidates.length === 1 ? (
+                      <a
+                        class="campaign-person"
+                        href={`/candidats/${event.candidates[0]}/`}
+                      >
+                        <span class="campaign-person-portrait">
+                          <CandidatePortrait
+                            candidate={candidateById(event.candidates[0])}
+                            compact
+                          />
+                        </span>
+                        <span>{candidateById(event.candidates[0]).name}</span>
+                      </a>
+                    ) : (
+                      <a
+                        class="campaign-section-link"
+                        href={
+                          event.category === 'sondage'
+                            ? '/sondages/'
+                            : '/reperes/'
+                        }
+                      >
+                        <Icon name={categories[event.category].icon} />
+                        {event.category === 'sondage'
+                          ? 'Consulter les sondages'
+                          : 'Calendrier électoral'}
+                        <Icon name="arrow" />
+                      </a>
+                    )}
+                    <details class="campaign-entry-sources">
+                      <summary>
+                        <Icon name="source" /> Sources · {event.sources.length}
+                      </summary>
+                      <SourceLinks ids={event.sources} compact />
+                    </details>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))}
+        <p id="campaign-empty" class="notice" hidden>
+          Aucun événement pour cette sélection.
+        </p>
+      </div>
     </div>
-  </div>
+  </PagedResults>
   <details class="campaign-reading">
     <summary>
       <Icon name="clock" /> Lire les dates

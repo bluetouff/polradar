@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import PagedResults from '../components/PagedResults.astro';
 import Base from '../layouts/Base.astro';
 import { candidates } from '../lib/data';
 import { portraits, portraitFor } from '../lib/portraits';
@@ -22,71 +23,76 @@ import '../styles/candidates.css';
     s’appliquent aux images, indépendamment de la licence MIT du code. Leur
     présence ne constitue pas un soutien à Polradar.
   </p>
-  <div class="photo-credit-list">
-    {portraits.map((credit) => {
-      const candidate = candidates.find((row) => row.id === credit.candidate)!;
-      const portrait = portraitFor(candidate.id)!;
-      const permission = portraitPermissions.find(
-        (item) => item.candidate === candidate.id,
-      );
-      return (
-        <article class="photo-credit-row" id={candidate.id}>
-          <a href={`/candidats/${candidate.id}/`} aria-label={candidate.name}>
-            {portrait.preserveOriginal ? (
-              <img
-                src={portrait.image.src}
-                width={portrait.image.width}
-                height={portrait.image.height}
-                alt=""
-                loading="lazy"
-                decoding="async"
-              />
-            ) : (
-              <Image
-                src={portrait.image}
-                alt=""
-                width={130}
-                format="webp"
-                loading="lazy"
-              />
-            )}
-          </a>
-          <div>
-            <h2>{candidate.name}</h2>
-            {credit.title && <p>{credit.title}</p>}
-            <p>
-              {credit.author}
-              {credit.year && ` · ${credit.year}`}
-            </p>
-            {permission && <p>{permission.note}</p>}
-            <p>
-              <a
-                href={credit.sourceUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Source du portrait ↗
-              </a>
-              <a
-                href={credit.licenseUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {credit.license} ↗
-              </a>
-              {permission && (
+  <PagedResults total={portraits.length}>
+    <div class="photo-credit-list" data-document-list>
+      {portraits.map((credit) => {
+        const candidate = candidates.find(
+          (row) => row.id === credit.candidate,
+        )!;
+        const portrait = portraitFor(candidate.id)!;
+        const permission = portraitPermissions.find(
+          (item) => item.candidate === candidate.id,
+        );
+        return (
+          <article data-page-item class="photo-credit-row" id={candidate.id}>
+            <a href={`/candidats/${candidate.id}/`} aria-label={candidate.name}>
+              {portrait.preserveOriginal ? (
+                <img
+                  src={portrait.image.src}
+                  width={portrait.image.width}
+                  height={portrait.image.height}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <Image
+                  src={portrait.image}
+                  alt=""
+                  width={130}
+                  format="webp"
+                  loading="lazy"
+                />
+              )}
+            </a>
+            <div>
+              <h2>{candidate.name}</h2>
+              {credit.title && <p>{credit.title}</p>}
+              <p>
+                {credit.author}
+                {credit.year && ` · ${credit.year}`}
+              </p>
+              {permission && <p>{permission.note}</p>}
+              <p>
                 <a
-                  href={permission.identityUrl}
+                  href={credit.sourceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Fiche officielle ↗
+                  Source du portrait ↗
                 </a>
-              )}
-            </p>
-          </div>
-        </article>
-      );
-    })}
-  </div>
+                <a
+                  href={credit.licenseUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {credit.license} ↗
+                </a>
+                {permission && (
+                  <a
+                    href={permission.identityUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Fiche officielle ↗
+                  </a>
+                )}
+              </p>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </PagedResults>
+  <script src="../scripts/document-pages.ts"></script>
 </Base>

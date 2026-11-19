@@ -6,7 +6,7 @@ interface Props {
   title?: string;
 }
 const { name, class: className = '', title } = Astro.props;
-const path = iconPaths[name as keyof typeof iconPaths] || iconPaths.source;
+const id = Object.hasOwn(iconPaths, name) ? name : 'source';
 ---
 
 <svg
@@ -16,5 +16,5 @@ const path = iconPaths[name as keyof typeof iconPaths] || iconPaths.source;
   role={title ? 'img' : undefined}
   aria-label={title}
 >
-  <path d={path} />
+  <use href={`/icones.svg#${id}`} />
 </svg>

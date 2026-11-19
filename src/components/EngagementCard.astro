@@ -8,10 +8,7 @@ const { item } = Astro.props;
 const candidate = candidateById(item.candidate);
 ---
 
-<article
-  class="engagement-card"
-  data-search={`${item.partyAuthor ?? candidate.name} ${themeById(item.theme).label} ${item.title} ${item.bullets.join(' ')}`}
->
+<article class="engagement-card">
   <div class="card-meta">
     <a href={`/themes/${item.theme}/`}>
       <Icon name={item.theme} /> {themeById(item.theme).label}

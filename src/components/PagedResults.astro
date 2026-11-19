@@ -1,0 +1,25 @@
+---
+import Pager from './Pager.astro';
+import { pageRange } from '../lib/pagination';
+import '../styles/pagination.css';
+interface Props {
+  total: number;
+  page?: number;
+  base?: string;
+}
+const { total, page = 1, base } = Astro.props;
+const range = pageRange(total, page);
+---
+
+<div
+  id="resultats"
+  tabindex="-1"
+  data-paged-results
+  data-base={base}
+  data-initial-page={range.page}
+  data-total={total}
+>
+  <Pager range={range} base={base} />
+  <slot />
+  <Pager range={range} base={base} />
+</div>

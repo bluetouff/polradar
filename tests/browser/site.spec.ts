@@ -62,9 +62,9 @@ test('recherche locale et absence de requêtes vers des tiers', async ({
   });
   await page.goto('/recherche/');
   await page.getByRole('searchbox').fill('Philippe');
-  await expect(page.locator('[data-search]:visible').first()).toContainText(
-    'Philippe',
-  );
+  await expect(
+    page.locator('#search-results .advanced-result:visible').first(),
+  ).toContainText('Philippe');
   await page.getByRole('searchbox').fill('aucunresultatpossible');
   await expect(page.locator('[role=status]')).toHaveText('0 résultat');
   expect(external).toEqual([]);

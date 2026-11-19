@@ -22,11 +22,7 @@ const portrait =
   showAuthor && measure.scope !== 'parti' && !measure.partyAuthor;
 ---
 
-<article
-  class:list={['measure-row', { compact }]}
-  data-scope={measure.scope}
-  data-search={`${measure.partyAuthor ?? candidate.name} ${theme.label} ${measure.title} ${measure.description}`}
->
+<article class:list={['measure-row', { compact }]} data-scope={measure.scope}>
   {portrait ? (
     <a
       class="measure-symbol measure-author"

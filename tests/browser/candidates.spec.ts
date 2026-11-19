@@ -1,3 +1,4 @@
+import { pageSize } from '../../src/lib/pagination';
 import { test, expect } from '@playwright/test';
 import portraits from '../../src/data/portraits.json' with { type: 'json' };
 import reviewed from '../../src/data/portraits-reviewed.json' with { type: 'json' };
@@ -13,7 +14,10 @@ test('la galerie conserve toutes les candidatures et explore les fiches par thè
   );
   await page.locator('[data-candidate-theme]').selectOption('retraites');
   await expect(page).toHaveURL(/#theme=retraites/);
-  await expect(page.locator('.person:visible')).toHaveCount(33);
+  await expect(page.locator('.person:visible')).toHaveCount(pageSize);
+  await expect(page.locator('[data-candidate-status]')).toContainText(
+    '33 candidatures',
+  );
   await expect(
     page.locator('.person[data-search^="Anasse"] [data-person-count]'),
   ).toContainText('1 fiche');

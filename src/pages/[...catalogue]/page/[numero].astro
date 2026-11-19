@@ -1,0 +1,43 @@
+---
+import Measures from '../../mesures/index.astro';
+import Search from '../../recherche.astro';
+import Sources from '../../sources.astro';
+import Engagements from '../../engagements/index.astro';
+import Theme from '../../themes/[id].astro';
+import { measures, themes, sources, engagements } from '../../../lib/data';
+import { searchEntries } from '../../../lib/search';
+import { pagesFor } from '../../../lib/pagination';
+export async function getStaticPaths() {
+  const current = measures.filter((m) => m.scope !== 'archive');
+  const counts: [string, number][] = [
+    ['mesures', current.length],
+    [
+      'recherche',
+      (await searchEntries()).filter((e) => e.scope !== 'archive').length,
+    ],
+    ['sources', sources.length],
+    ['engagements', engagements.filter((e) => e.scope !== 'archive').length],
+    ...themes.map((t): [string, number] => [
+      'themes/' + t.id,
+      current.filter((m) => m.theme === t.id).length,
+    ]),
+  ];
+  return counts.flatMap(([catalogue, count]) =>
+    pagesFor(count)
+      .slice(1)
+      .map((page) => ({
+        params: { catalogue, numero: String(page) },
+        props: { page },
+      })),
+  );
+}
+const { catalogue } = Astro.params;
+const { page } = Astro.props;
+const theme = themes.find((t) => 'themes/' + t.id === catalogue);
+---
+
+{catalogue === 'mesures' && <Measures page={page} />}
+{catalogue === 'recherche' && <Search page={page} />}
+{catalogue === 'sources' && <Sources page={page} />}
+{catalogue === 'engagements' && <Engagements page={page} />}
+{theme && <Theme page={page} theme={theme} />}

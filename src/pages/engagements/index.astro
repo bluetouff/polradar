@@ -3,11 +3,24 @@ import Base from '../../layouts/Base.astro';
 import EngagementCard from '../../components/EngagementCard.astro';
 import Filter from '../../components/Filter.astro';
 import { engagements } from '../../lib/data';
+import PagedResults from '../../components/PagedResults.astro';
+import { pageRange } from '../../lib/pagination';
+interface Props {
+  page?: number;
+}
+const { page = 1 } = Astro.props;
 const current = engagements.filter((item) => item.scope !== 'archive');
+const range = pageRange(current.length, page);
 const archives = engagements.filter((item) => item.scope === 'archive');
 ---
 
-<Base title="Engagements des candidats">
+<Base
+  title={
+    page === 1
+      ? 'Engagements des candidats'
+      : `Engagements des candidats · page ${page}`
+  }
+>
   <header class="page-title">
     <h1>Engagements des candidats</h1>
     <p>
@@ -17,13 +30,17 @@ const archives = engagements.filter((item) => item.scope === 'archive');
   </header>
   <Filter
     target="engagement-list"
+    total={current.length}
     label="Rechercher une mesure, un sujet ou une candidature"
   />
-  <div class="engagement-grid three" id="engagement-list">
-    {current.map((item) => (
-      <EngagementCard item={item} />
-    ))}
-  </div>
+  <PagedResults total={current.length} page={page} base="/engagements/">
+    <div class="engagement-grid three" id="engagement-list">
+      {current.slice(range.start, range.end).map((item) => (
+        <EngagementCard item={item} />
+      ))}
+    </div>
+  </PagedResults>
+  <script src="../../scripts/directories.ts"></script>
   <details class="archive-folder section-space">
     <summary>
       Consulter séparément les {archives.length} fiches d’archives 2022

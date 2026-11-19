@@ -1,3 +1,4 @@
+import { pageSize } from '../../src/lib/pagination';
 import { test, expect } from '@playwright/test';
 import watch from '../../src/data/watch.json' with { type: 'json' };
 
@@ -17,7 +18,7 @@ test('la chronologie combine les filtres, gère une recherche vide et se réinit
   await expect(page.locator('#campaign-empty')).toBeVisible();
   expect(await page.locator('img[src=x]').count()).toBe(0);
   await page.getByRole('button', { name: 'Réinitialiser' }).click();
-  await expect(page.locator('.campaign-entry:visible')).toHaveCount(31);
+  await expect(page.locator('.campaign-entry:visible')).toHaveCount(pageSize);
   await expect(page.locator('#campaign-empty')).toBeHidden();
 });
 
@@ -48,13 +49,17 @@ test('la veille filtre les formats et les états en gardant sa matrice cohérent
   page,
 }) => {
   await page.goto('/veille/');
-  await expect(page.locator('.watch-card:visible')).toHaveCount(watch.length);
+  await expect(page.locator('.watch-card:visible')).toHaveCount(
+    Math.min(pageSize, watch.length),
+  );
   await expect(page.locator('.watch-cell:visible')).toHaveCount(watch.length);
   await page.locator('#watch-format').selectOption('pdf');
   const pdfCount = watch.filter((row) =>
     row.contentType.includes('pdf'),
   ).length;
-  await expect(page.locator('.watch-card:visible')).toHaveCount(pdfCount);
+  await expect(page.locator('.watch-card:visible')).toHaveCount(
+    Math.min(pageSize, pdfCount),
+  );
   await expect(page.locator('.watch-cell:visible')).toHaveCount(pdfCount);
   await page.locator('#watch-search').fill('CommunisteS');
   await expect(page.locator('.watch-card:visible')).toHaveCount(1);
@@ -66,10 +71,12 @@ test('la veille filtre les formats et les états en gardant sa matrice cohérent
   await expect(page.locator('.watch-cell:visible')).toHaveCount(0);
   expect(await page.locator('img[src=x]').count()).toBe(0);
   await page.getByRole('button', { name: 'Réinitialiser' }).click();
-  await expect(page.locator('.watch-card:visible')).toHaveCount(watch.length);
+  await expect(page.locator('.watch-card:visible')).toHaveCount(
+    Math.min(pageSize, watch.length),
+  );
   await page.locator('#watch-state').selectOption('modifie');
   await expect(page.locator('.watch-card:visible')).toHaveCount(
-    watch.filter((row) => row.status === 'modifie').length,
+    Math.min(pageSize, watch.filter((row) => row.status === 'modifie').length),
   );
   await expect(page.locator('.watch-cell:visible')).toHaveCount(
     watch.filter((row) => row.status === 'modifie').length,

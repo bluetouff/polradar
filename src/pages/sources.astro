@@ -2,9 +2,16 @@
 import Base from '../layouts/Base.astro';
 import Filter from '../components/Filter.astro';
 import { sources, sourceKinds, formatDate } from '../lib/data';
+import PagedResults from '../components/PagedResults.astro';
+import { pageRange } from '../lib/pagination';
+interface Props {
+  page?: number;
+}
+const { page = 1 } = Astro.props;
+const range = pageRange(sources.length, page);
 ---
 
-<Base title="Sources">
+<Base title={page === 1 ? 'Sources' : `Sources · page ${page}`}>
   <header class="page-title">
     <h1>Sources</h1>
     <p>
@@ -14,52 +21,57 @@ import { sources, sourceKinds, formatDate } from '../lib/data';
   </header>
   <Filter
     target="sources-list"
+    total={sources.length}
     label="Rechercher un document, un auteur ou un domaine"
   />
-  <div class="sources-grid" id="sources-list">
-    {sources.map((source) => (
-      <article
-        class="source-card"
-        data-search={`${source.title} ${source.url} ${source.previousUrl || ''} ${sourceKinds[source.kind]}`}
-      >
-        <span class:list={['tag', { archive: source.kind === 'archive' }]}>
-          {sourceKinds[source.kind]}
-        </span>
-        <h2>
-          <a href={source.url} target="_blank" rel="noopener noreferrer">
-            {source.title} ↗
-          </a>
-        </h2>
-        <p>{new URL(source.url).hostname}</p>
-        <dl>
-          <div>
-            <dt>Publication</dt>
-            <dd>{formatDate(source.published)}</dd>
-          </div>
-          <div>
-            <dt>Consultation</dt>
-            <dd>{formatDate(source.checked)}</dd>
-          </div>
-          {source.updated && (
-            <div>
-              <dt>Mise à jour du document</dt>
-              <dd>{formatDate(source.updated)}</dd>
-            </div>
-          )}
-        </dl>
-        {source.previousUrl && (
-          <details>
-            <summary>Référence précédente</summary>
-            <a
-              href={source.previousUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {new URL(source.previousUrl).hostname} ↗
+  <PagedResults total={sources.length} page={page} base="/sources/">
+    <div class="sources-grid" id="sources-list">
+      {sources.slice(range.start, range.end).map((source) => (
+        <article class="source-card">
+          <span class:list={['tag', { archive: source.kind === 'archive' }]}>
+            {sourceKinds[source.kind]}
+          </span>
+          <h2>
+            <a href={source.url} target="_blank" rel="noopener noreferrer">
+              {source.title} ↗
             </a>
-          </details>
-        )}
-      </article>
-    ))}
-  </div>
+          </h2>
+          <p>{new URL(source.url).hostname}</p>
+          <dl>
+            <div>
+              <dt>Publication</dt>
+              <dd>
+                {source.published
+                  ? formatDate(source.published)
+                  : (source.publishedYear ?? formatDate(null))}
+              </dd>
+            </div>
+            <div>
+              <dt>Consultation</dt>
+              <dd>{formatDate(source.checked)}</dd>
+            </div>
+            {source.updated && (
+              <div>
+                <dt>Mise à jour du document</dt>
+                <dd>{formatDate(source.updated)}</dd>
+              </div>
+            )}
+          </dl>
+          {source.previousUrl && (
+            <details>
+              <summary>Référence précédente</summary>
+              <a
+                href={source.previousUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {new URL(source.previousUrl).hostname} ↗
+              </a>
+            </details>
+          )}
+        </article>
+      ))}
+    </div>
+  </PagedResults>
+  <script src="../scripts/directories.ts"></script>
 </Base>

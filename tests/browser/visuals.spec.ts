@@ -1,14 +1,17 @@
+import { pageSize } from '../../src/lib/pagination';
 import { test, expect } from '@playwright/test';
 import airtime from '../../src/data/airtime.json' with { type: 'json' };
 import agenda from '../../src/data/campaign-agenda.json' with { type: 'json' };
 import budgets from '../../src/data/programme-budgets.json' with { type: 'json' };
-const annualProfiles = budgets.profiles.filter((p) =>
-  p.entries.some((e) => e.period === 'annuel'),
+const budgetRows = budgets.profiles.flatMap((profile) =>
+  profile.entries.map((entry) => ({
+    candidate: profile.candidate,
+    period: entry.period,
+  })),
 );
-const annualEntryCount = budgets.profiles.reduce(
-  (n, p) => n + p.entries.filter((e) => e.period === 'annuel').length,
-  0,
-);
+const annualRows = budgetRows.filter((row) => row.period === 'annuel');
+const profileCount = (rows: typeof budgetRows) =>
+  new Set(rows.slice(0, pageSize).map((row) => row.candidate)).size;
 const parisEvents = agenda.events.filter(
   (e) => e.city === 'paris' && e.date >= '2026-11-18',
 );
@@ -74,14 +77,17 @@ test('les montants annuels et les objectifs à terme se filtrent et se réinitia
 }) => {
   await page.goto('/budget-programmes/');
   await expect(page.locator('.budget-profile:visible')).toHaveCount(
-    budgets.profiles.length,
+    profileCount(budgetRows),
   );
   await page.locator('#budget-period').selectOption('annuel');
+  await expect(page.locator('#budget-status')).toContainText(
+    annualRows.length + ' montants',
+  );
   await expect(page.locator('.budget-profile:visible')).toHaveCount(
-    annualProfiles.length,
+    profileCount(annualRows),
   );
   await expect(page.locator('.budget-entry:visible')).toHaveCount(
-    annualEntryCount,
+    Math.min(pageSize, annualRows.length),
   );
   await page.locator('#budget-candidate').selectOption('philippe');
   await expect(page.locator('#budget-empty')).toBeVisible();
@@ -94,7 +100,7 @@ test('les montants annuels et les objectifs à terme se filtrent et se réinitia
   await expect(page.locator('#budget-candidate')).toHaveValue('philippe');
   await page.getByRole('button', { name: 'Réinitialiser' }).click();
   await expect(page.locator('.budget-profile:visible')).toHaveCount(
-    budgets.profiles.length,
+    profileCount(budgetRows),
   );
   await page.locator('#budget-candidate').selectOption('polony');
   await expect(page.locator('#budget-empty')).toBeVisible();
@@ -120,7 +126,10 @@ test('la carte et les fiches partagent les filtres et le jour civil de Paris', a
   await page.clock.setFixedTime(new Date('2026-11-17T23:05:00Z'));
   await page.goto('/agenda/');
   await expect(page.locator('.agenda-event:visible')).toHaveCount(
-    agenda.events.filter((e) => e.date >= '2026-11-18').length,
+    Math.min(
+      pageSize,
+      agenda.events.filter((e) => e.date >= '2026-11-18').length,
+    ),
   );
   await page.locator('#agenda-city').selectOption('paris');
   await expect(page.locator('.agenda-event:visible')).toHaveCount(
@@ -143,7 +152,10 @@ test('la carte et les fiches partagent les filtres et le jour civil de Paris', a
   await page.getByRole('button', { name: 'Réinitialiser' }).click();
   await page.locator('#agenda-period').selectOption('passes');
   await expect(page.locator('.agenda-event:visible')).toHaveCount(
-    agenda.events.filter((e) => e.date < '2026-11-18').length,
+    Math.min(
+      pageSize,
+      agenda.events.filter((e) => e.date < '2026-11-18').length,
+    ),
   );
   await page.getByRole('button', { name: 'Réinitialiser' }).click();
   await page.locator('[data-map-cities~="paris"]').click();
@@ -176,7 +188,7 @@ test('les profils ajoutés se consultent et un lieu inconnu ne crée pas de rep�
     await page.locator('#budget-candidate').selectOption(profile.candidate);
     await expect(page.locator('.budget-profile:visible')).toHaveCount(1);
     await expect(page.locator('.budget-entry:visible')).toHaveCount(
-      profile.entries.length,
+      Math.min(pageSize, profile.entries.length),
     );
   }
   await page.clock.setFixedTime(new Date('2026-11-18T09:00:00Z'));

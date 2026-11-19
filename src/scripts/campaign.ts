@@ -1,3 +1,4 @@
+import { domPager, listFilters } from './pager';
 import { normalize } from '../lib/features.mjs';
 
 const form = document.querySelector<HTMLFormElement>('#campaign-filters')!;
@@ -9,6 +10,9 @@ const candidate = document.querySelector<HTMLSelectElement>(
 )!;
 const status = document.querySelector<HTMLElement>('#campaign-status')!;
 const months = [...document.querySelectorAll<HTMLElement>('.campaign-month')];
+const root = document.querySelector<HTMLElement>('[data-paged-results]')!;
+const paginate = domPager(root, () => restore());
+const rows = [...root.querySelectorAll<HTMLElement>('.campaign-entry')];
 function render() {
   const query = normalize(search.value);
   let total = 0;
@@ -50,11 +54,25 @@ function render() {
         'width',
         String((Number(link.dataset.visibleCount) / max) * 100),
       );
+  const matched = rows.filter((row) => !row.hidden);
+  const target = document.getElementById(location.hash.slice(1));
+  const row = matched.find((el) => el === target || target?.contains(el));
+  paginate(matched, { target: row });
+  months.forEach(
+    (month) =>
+      (month.hidden = !month.querySelector('.campaign-entry:not([hidden])')),
+  );
+  if (row && target) target.scrollIntoView();
   status.textContent = `${total} événement${total > 1 ? 's' : ''}`;
   document.querySelector<HTMLElement>('#campaign-empty')!.hidden = total > 0;
 }
-form.hidden = false;
-form.addEventListener('submit', (event) => event.preventDefault());
-form.addEventListener('input', render);
-form.addEventListener('change', render);
-form.addEventListener('reset', () => setTimeout(render, 0));
+const restore = listFilters(
+  form,
+  [
+    [search, 'q'],
+    [category, 'categorie'],
+    [candidate, 'candidat'],
+  ],
+  render,
+);
+restore();

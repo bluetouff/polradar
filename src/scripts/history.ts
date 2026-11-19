@@ -159,11 +159,11 @@ async function start() {
     }
     result.append(diff);
     status.textContent = `${changes.length} champ${changes.length > 1 ? 's' : ''} différent${changes.length > 1 ? 's' : ''} · versions ${a.number} et ${b.number}`;
-    history.replaceState(
-      null,
-      '',
-      `/historique/?${new URLSearchParams({ mesure: measure.id, avant: String(a.number), apres: String(b.number) })}`,
-    );
+    const url = new URL(location.href);
+    url.searchParams.set('mesure', measure.id);
+    url.searchParams.set('avant', String(a.number));
+    url.searchParams.set('apres', String(b.number));
+    history.replaceState(null, '', url);
   }
   choice.addEventListener('change', () => {
     options();

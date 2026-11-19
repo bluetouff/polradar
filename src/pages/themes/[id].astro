@@ -5,19 +5,29 @@ import MetricPlot from '../../components/MetricPlot.astro';
 import FollowButton from '../../components/FollowButton.astro';
 import Icon from '../../components/Icon.astro';
 import { themes, measures } from '../../lib/data';
+import PagedResults from '../../components/PagedResults.astro';
+import { pageRange } from '../../lib/pagination';
+interface Props {
+  theme: (typeof themes)[number];
+  page?: number;
+}
 export function getStaticPaths() {
   return themes.map((theme) => ({
     params: { id: theme.id },
     props: { theme },
   }));
 }
-const { theme } = Astro.props;
+const { theme, page = 1 } = Astro.props;
 const records = measures.filter(
   (e) => e.theme === theme.id && e.scope !== 'archive',
 );
+const range = pageRange(records.length, page);
 ---
 
-<Base title={`${theme.label} : les propositions`} description={theme.note}>
+<Base
+  title={`${theme.label} : les propositions${page > 1 ? ' · page ' + page : ''}`}
+  description={theme.note}
+>
   <div class="breadcrumbs">
     <a href="/themes/">Enjeux</a>
     <span>/</span>
@@ -38,12 +48,18 @@ const records = measures.filter(
       </div>
     </div>
   </header>
-  <MetricPlot measures={records} />
-  <div class="measure-list">
-    {records.map((item) => (
-      <MeasureCard measure={item} showAuthor />
-    ))}
-  </div>
+  {page === 1 && <MetricPlot measures={records} />}
+  <PagedResults
+    base={`/themes/${theme.id}/`}
+    total={records.length}
+    page={page}
+  >
+    <div class="measure-list">
+      {records.slice(range.start, range.end).map((item) => (
+        <MeasureCard measure={item} showAuthor />
+      ))}
+    </div>
+  </PagedResults>
   <aside class="notice section-space">
     <p>
       Ces fiches reflètent les documents intégrés au corpus. L’absence d’une

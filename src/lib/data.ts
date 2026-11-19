@@ -73,19 +73,7 @@ export function formatTimestamp(value: string) {
 }
 export type Candidate = (typeof candidates)[number];
 export type Engagement = (typeof engagements)[number];
-export const scopes: Record<string, string> = {
-  campagne: 'Campagne 2027',
-  parti: 'Projet de parti',
-  orientation: 'Orientation',
-  archive: 'Archive 2022',
-};
-export const sourceKinds: Record<string, string> = {
-  campagne: 'Campagne',
-  parti: 'Parti',
-  institution: 'Institution publique',
-  presse: 'Presse',
-  archive: 'Archive',
-};
+export { scopes, sourceKinds } from './labels';
 export const byCandidate = (id: string, includeArchives = true) =>
   engagements.filter(
     (e) => e.candidate === id && (includeArchives || e.scope !== 'archive'),

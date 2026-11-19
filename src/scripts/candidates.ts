@@ -1,3 +1,4 @@
+import { domPager } from './pager';
 const controls = document.querySelector<HTMLElement>(
   '[data-candidate-controls]',
 );
@@ -28,6 +29,10 @@ if (controls) {
       JSON.parse(card.dataset.themeCounts || '{}') as Record<string, number>,
     ]),
   );
+  const paginate = domPager(
+    document.querySelector<HTMLElement>('[data-paged-results]')!,
+    restore,
+  );
   function update(write = true) {
     const selected = allowed.has(theme.value) ? theme.value : '';
     let visible = 0,
@@ -57,6 +62,7 @@ if (controls) {
             cell.dataset.themeCell === selected ? 'yes' : 'no';
         });
     }
+    const matches = cards.filter((card) => !card.hidden);
     status.textContent = `${visible} candidature${visible > 1 ? 's' : ''}${selected ? ` · ${documented} dossier${documented > 1 ? 's' : ''} documenté${documented > 1 ? 's' : ''} sur ce thème` : ''}`;
     if (write) {
       const params = new URLSearchParams();
@@ -68,6 +74,7 @@ if (controls) {
         location.pathname + (params.size ? '#' + params : ''),
       );
     }
+    paginate(matches, { reset: write });
   }
   function restore() {
     const params = new URLSearchParams(location.hash.slice(1));
@@ -79,6 +86,5 @@ if (controls) {
   controls.hidden = false;
   query.addEventListener('input', () => update());
   theme.addEventListener('change', () => update());
-  window.addEventListener('hashchange', restore);
   restore();
 }

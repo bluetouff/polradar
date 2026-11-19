@@ -1,3 +1,4 @@
+import { domPager, hashSelectFilters } from './pager';
 import { agendaMatches, parisToday } from '../lib/campaign-visuals-view.mjs';
 const form = document.querySelector<HTMLFormElement>('#agenda-filters')!;
 const candidate =
@@ -8,7 +9,26 @@ const period = document.querySelector<HTMLSelectElement>('#agenda-period')!;
 const status = document.querySelector<HTMLElement>('#agenda-status')!;
 const choices = document.querySelector<HTMLElement>('#map-city-choices')!;
 const nodes = [...document.querySelectorAll<HTMLElement>('[data-agenda-id]')];
-function render() {
+const fields = hashSelectFilters([
+  [candidate, 'personnalite'],
+  [city, 'ville'],
+  [week, 'semaine'],
+  [period, 'periode'],
+]);
+const paginate = domPager(
+  document.querySelector<HTMLElement>('[data-paged-results]')!,
+  restore,
+);
+let matches: HTMLElement[] = [];
+function restore() {
+  fields.restore();
+  const target = nodes.find((node) => node.id === location.hash.slice(1));
+  if (target) period.value = 'tous';
+  render(false, target);
+  target?.scrollIntoView();
+}
+function render(reset = true, target?: HTMLElement) {
+  if (reset) fields.write();
   const today = parisToday(),
     filters = {
       candidate: candidate.value,
@@ -16,7 +36,7 @@ function render() {
       week: week.value,
       period: period.value,
     };
-  let count = 0;
+  matches = [];
   for (const node of nodes) {
     const event = {
       candidate: node.dataset.candidate,
@@ -24,14 +44,10 @@ function render() {
       date: node.dataset.date!,
     };
     node.hidden = !agendaMatches(event, filters, today);
-    if (!node.hidden) count++;
+    if (!node.hidden) matches.push(node);
   }
-  const towns = new Set(
-    nodes
-      .filter((n) => !n.hidden)
-      .map((n) => n.dataset.city)
-      .filter(Boolean),
-  );
+  const count = matches.length;
+  const towns = new Set(matches.map((n) => n.dataset.city).filter(Boolean));
   status.textContent = `${count} rendez-vous · ${towns.size} ville${towns.size > 1 ? 's' : ''}`;
   document.querySelector<HTMLElement>('#agenda-empty')!.hidden = count > 0;
   choices.hidden = true;
@@ -40,9 +56,7 @@ function render() {
     '[data-map-cities]',
   )) {
     const ids = (marker.dataset.mapCities || '').split(' '),
-      visible = nodes.filter(
-        (n) => !n.hidden && ids.includes(n.dataset.city || ''),
-      );
+      visible = matches.filter((n) => ids.includes(n.dataset.city || ''));
     marker.setAttribute('visibility', visible.length ? 'visible' : 'hidden');
     marker.setAttribute('tabindex', visible.length ? '0' : '-1');
     marker.setAttribute('aria-hidden', String(!visible.length));
@@ -62,15 +76,7 @@ function render() {
       `${names} : ${visible.length} rendez-vous`,
     );
   }
-  const params = new URLSearchParams();
-  for (const [control, key] of [
-    [candidate, 'personnalite'],
-    [city, 'ville'],
-    [week, 'semaine'],
-    [period, 'periode'],
-  ] as const)
-    if (control.value) params.set(key, control.value);
-  history.replaceState(null, '', `${location.pathname}#${params}`);
+  paginate(matches, { reset, target });
 }
 for (const marker of document.querySelectorAll<SVGAElement>(
   '[data-map-cities]',
@@ -79,7 +85,7 @@ for (const marker of document.querySelectorAll<SVGAElement>(
     event.preventDefault();
     const ids = (marker.dataset.mapCities || '')
       .split(' ')
-      .filter((id) => nodes.some((n) => !n.hidden && n.dataset.city === id));
+      .filter((id) => matches.some((n) => n.dataset.city === id));
     if (ids.length === 1) {
       city.value = ids[0];
       render();
@@ -101,17 +107,6 @@ for (const marker of document.querySelectorAll<SVGAElement>(
     choices.querySelector('button')?.focus();
   });
 }
-const params = new URLSearchParams(location.hash.slice(1));
-for (const [control, key] of [
-  [candidate, 'personnalite'],
-  [city, 'ville'],
-  [week, 'semaine'],
-  [period, 'periode'],
-] as const) {
-  const value = params.get(key);
-  if (value !== null && [...control.options].some((o) => o.value === value))
-    control.value = value;
-}
 form.hidden = false;
 const controls = form.closest<HTMLDetailsElement>('.visual-controls')!;
 controls.hidden = false;
@@ -121,7 +116,7 @@ wide.addEventListener('change', (event) => {
   controls.open = event.matches;
 });
 form.addEventListener('submit', (e) => e.preventDefault());
-form.addEventListener('change', render);
+form.addEventListener('change', () => render());
 form.addEventListener('reset', (event) => {
   event.preventDefault();
   candidate.value = '';
@@ -130,4 +125,4 @@ form.addEventListener('reset', (event) => {
   period.value = 'a-venir';
   render();
 });
-render();
+restore();

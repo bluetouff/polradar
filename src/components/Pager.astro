@@ -1,0 +1,45 @@
+---
+import {
+  pagePath,
+  pagerLinks,
+  rangeText,
+  type PageRange,
+} from '../lib/pagination';
+interface Props {
+  range: PageRange;
+  base?: string;
+}
+const { range, base } = Astro.props;
+---
+
+<nav
+  class="catalog-pager"
+  aria-label="Pagination des résultats"
+  hidden={!base || range.pages === 1}
+  data-pager
+>
+  <span class="pager-range">{rangeText(range)}</span>
+  <div class="pager-links">
+    {pagerLinks(range).map((link) =>
+      base && link.number && link.kind !== 'current' ? (
+        <a
+          class={'pager-' + link.kind}
+          href={pagePath(base, link.number) + '#resultats'}
+          data-page={link.number}
+          aria-label={link.label}
+        >
+          {link.text}
+        </a>
+      ) : (
+        <span
+          class={'pager-' + link.kind}
+          aria-current={link.kind === 'current' ? 'page' : undefined}
+          aria-label={link.kind === 'current' ? link.label : undefined}
+          aria-hidden={link.kind !== 'current' ? 'true' : undefined}
+        >
+          {link.text}
+        </span>
+      ),
+    )}
+  </div>
+</nav>

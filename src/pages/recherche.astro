@@ -3,13 +3,21 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import { candidates, themes } from '../lib/data';
 import { searchEntries, searchKinds } from '../lib/search';
+import PagedResults from '../components/PagedResults.astro';
+import { pageRange } from '../lib/pagination';
+interface Props {
+  page?: number;
+}
+const { page = 1 } = Astro.props;
 const entries = await searchEntries();
+const current = entries.filter((entry) => entry.scope !== 'archive');
+const range = pageRange(current.length, page);
 const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
   .sort()
   .reverse();
 ---
 
-<Base title="Recherche" noindex>
+<Base title={page === 1 ? 'Recherche' : `Recherche · page ${page}`} noindex>
   <header class="page-title feature-title">
     <span class="feature-emblem">
       <Icon name="search" />
@@ -85,7 +93,7 @@ const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
   </form>
   <div class="search-toolbar">
     <p id="search-count" class="results-meta" role="status" aria-live="polite">
-      {entries.length} entrées dans l’index
+      {current.length} résultats
     </p>
     <div>
       <button type="button" class="button small" id="export-csv">
@@ -101,14 +109,10 @@ const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
       </button>
     </div>
   </div>
-  <div id="search-results" class="advanced-results">
-    {entries
-      .filter((entry) => entry.scope !== 'archive')
-      .map((entry) => (
-        <article
-          class="advanced-result"
-          data-search={`${entry.title} ${entry.text}`}
-        >
+  <PagedResults base="/recherche/" total={current.length} page={page}>
+    <div id="search-results" class="advanced-results">
+      {current.slice(range.start, range.end).map((entry) => (
+        <article class="advanced-result">
           <span class="result-symbol">
             <Icon
               name={
@@ -152,6 +156,7 @@ const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
           <span aria-hidden="true">↗</span>
         </article>
       ))}
-  </div>
+    </div>
+  </PagedResults>
   <script src="../scripts/search.ts"></script>
 </Base>

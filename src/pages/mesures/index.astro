@@ -3,7 +3,14 @@ import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import MeasureCard from '../../components/MeasureCard.astro';
 import { measures, candidates, themes } from '../../lib/data';
+import PagedResults from '../../components/PagedResults.astro';
+import { pageRange } from '../../lib/pagination';
+interface Props {
+  page?: number;
+}
+const { page = 1 } = Astro.props;
 const current = measures.filter((measure) => measure.scope !== 'archive');
+const range = pageRange(current.length, page);
 const max = Math.max(
   ...themes.map(
     (theme) => current.filter((measure) => measure.theme === theme.id).length,
@@ -11,7 +18,14 @@ const max = Math.max(
 );
 ---
 
-<Base title="Mesures et orientations" section="/mesures/">
+<Base
+  title={
+    page === 1
+      ? 'Mesures et orientations'
+      : `Mesures et orientations · page ${page}`
+  }
+  section="/mesures/"
+>
   <header class="page-title feature-title">
     <span class="feature-emblem">
       <Icon name="mesures" />
@@ -28,42 +42,46 @@ const max = Math.max(
       Recherche détaillée
     </a>
   </header>
-  <section class="coverage-panel" aria-labelledby="coverage-title">
-    <div class="register-heading">
-      <h2 id="coverage-title">Fiches par thème</h2>
-      <span class="small muted">Nombre de fiches présentes dans le corpus</span>
-    </div>
-    <div class="coverage-bars">
-      {themes.map((theme) => {
-        const count = current.filter(
-          (measure) => measure.theme === theme.id,
-        ).length;
-        return (
-          <a href={`/mesures/#theme=${theme.id}`} class="coverage-item">
-            <Icon name={theme.id} />
-            <span>{theme.label}</span>
-            <svg viewBox="0 0 180 10" aria-hidden="true">
-              <rect
-                class="coverage-track"
-                width="180"
-                height="6"
-                y="2"
-                rx="3"
-              />
-              <rect
-                class="coverage-fill"
-                width={(count / max) * 180}
-                height="6"
-                y="2"
-                rx="3"
-              />
-            </svg>
-            <b>{count}</b>
-          </a>
-        );
-      })}
-    </div>
-  </section>
+  {page === 1 && (
+    <section class="coverage-panel" aria-labelledby="coverage-title">
+      <div class="register-heading">
+        <h2 id="coverage-title">Fiches par thème</h2>
+        <span class="small muted">
+          Nombre de fiches présentes dans le corpus
+        </span>
+      </div>
+      <div class="coverage-bars">
+        {themes.map((theme) => {
+          const count = current.filter(
+            (measure) => measure.theme === theme.id,
+          ).length;
+          return (
+            <a href={`/mesures/#theme=${theme.id}`} class="coverage-item">
+              <Icon name={theme.id} />
+              <span>{theme.label}</span>
+              <svg viewBox="0 0 180 10" aria-hidden="true">
+                <rect
+                  class="coverage-track"
+                  width="180"
+                  height="6"
+                  y="2"
+                  rx="3"
+                />
+                <rect
+                  class="coverage-fill"
+                  width={(count / max) * 180}
+                  height="6"
+                  y="2"
+                  rx="3"
+                />
+              </svg>
+              <b>{count}</b>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  )}
   <form id="measure-filters" class="facet-filters">
     <label>
       Candidat
@@ -103,15 +121,17 @@ const max = Math.max(
   <p class="results-meta" id="measure-count" role="status">
     {current.length} résultats
   </p>
-  <div id="measure-results" class="measure-list">
-    {current.map((measure) => (
-      <MeasureCard measure={measure} />
-    ))}
-  </div>
+  <PagedResults base="/mesures/" total={current.length} page={page}>
+    <div id="measure-results" class="measure-list">
+      {current.slice(range.start, range.end).map((measure) => (
+        <MeasureCard measure={measure} />
+      ))}
+    </div>
+  </PagedResults>
   <noscript>
     <p class="notice">
-      Les fiches actuelles sont consultables ci-dessus. Les filtres nécessitent
-      JavaScript.
+      Les filtres nécessitent JavaScript. La pagination donne accès à toutes les
+      fiches hors archives.
     </p>
   </noscript>
   <script src="../../scripts/measures.ts"></script>

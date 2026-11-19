@@ -1,4 +1,5 @@
 ---
+import PagedResults from '../../components/PagedResults.astro';
 import Base from '../../layouts/Base.astro';
 import CandidateCard from '../../components/CandidateCard.astro';
 import Icon from '../../components/Icon.astro';
@@ -50,11 +51,13 @@ import '../../styles/candidates.css';
     <p>Les repères colorés indiquent les thèmes documentés dans Polradar.</p>
     <a href="/credits-photos/">Crédits photos ↗</a>
   </div>
-  <div class="candidate-gallery" id="candidate-list">
-    {candidates.map((candidate) => (
-      <CandidateCard candidate={candidate} />
-    ))}
-  </div>
+  <PagedResults total={candidates.length}>
+    <div class="candidate-gallery" id="candidate-list">
+      {candidates.map((candidate) => (
+        <CandidateCard candidate={candidate} />
+      ))}
+    </div>
+  </PagedResults>
   <aside class="notice section-space">
     <strong>
       Déclaration, investiture et validation sont des étapes distinctes.
