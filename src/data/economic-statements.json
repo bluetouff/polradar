@@ -1,0 +1,97 @@
+[
+  {
+    "id": "farandou-chomage-t3-2026",
+    "title": "Chômage au troisième trimestre 2026",
+    "speaker": "Jean-Pierre Farandou · ministre du Travail",
+    "quote": "le taux de chômage passant de 8,3 % à 8,2 %",
+    "statement": {
+      "title": "Compte rendu de l’Assemblée nationale",
+      "url": "https://questions.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2026-2027/premiere-seance-du-mardi-10-novembre-2026",
+      "date": "2026-11-10"
+    },
+    "period": "France · T3 2026 · enquête Emploi",
+    "unit": "%",
+    "claimed": "8.2",
+    "observed": "8.2",
+    "reference": {
+      "title": "Insee · Enquête Emploi du 10 novembre 2026",
+      "url": "https://www.insee.fr/fr/statistiques/9118603",
+      "date": "2026-11-10"
+    },
+    "assessment": "comparable",
+    "context": "L’Insee publie 8,3 % au trimestre précédent et 8,2 % au troisième trimestre, soit −0,1 point. Sur un an, le taux augmente de 0,4 point."
+  },
+  {
+    "id": "juvin-deficit-2025",
+    "title": "Déficit des administrations publiques en 2025",
+    "speaker": "Philippe Juvin · rapporteur général du budget",
+    "quote": "le déficit public recule à 5,1 % du PIB",
+    "statement": {
+      "title": "Compte rendu de l’Assemblée nationale",
+      "url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2025-2026/seance-du-mardi-09-juin-2026",
+      "date": "2026-06-09"
+    },
+    "period": "France · 2025 · déficit au sens de Maastricht",
+    "unit": "% du PIB",
+    "claimed": "5.1",
+    "observed": "5.1",
+    "reference": {
+      "title": "Insee · Comptes des administrations publiques, mai 2026",
+      "url": "https://www.insee.fr/fr/statistiques/8997691",
+      "date": "2026-05"
+    },
+    "assessment": "comparable",
+    "context": "L’Insee publie un déficit de 152,5 milliards d’euros, soit 5,1 % du PIB après 5,8 % en 2024. Dans la série de solde public, le même déficit est affiché avec un signe négatif.",
+    "indicatorId": "solde-public"
+  },
+  {
+    "id": "mercier-dette-2025",
+    "title": "Dette publique à la fin de 2025",
+    "speaker": "Estelle Mercier · députée socialiste",
+    "quote": "la dette atteint désormais 115,6 % du PIB",
+    "statement": {
+      "title": "Compte rendu de l’Assemblée nationale",
+      "url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2025-2026/seance-du-mardi-09-juin-2026",
+      "date": "2026-06-09"
+    },
+    "period": "France · fin 2025 · dette au sens de Maastricht",
+    "unit": "% du PIB",
+    "claimed": "115.6",
+    "observed": "115.7",
+    "reference": {
+      "title": "Insee · Révision de mai 2026",
+      "url": "https://www.insee.fr/fr/statistiques/8997691",
+      "date": "2026-05"
+    },
+    "assessment": "revision",
+    "context": "Le chiffre cité correspond à la première estimation publiée en mars. L’Insee l’avait relevé de 0,1 point dans l’édition de mai, avant cette séance.",
+    "priorReference": {
+      "title": "Insee · Première estimation de mars 2026",
+      "url": "https://www.insee.fr/fr/statistiques/8956575",
+      "date": "2026-03-27"
+    },
+    "indicatorId": "dette-publique"
+  },
+  {
+    "id": "attal-echanges-electriques-2025",
+    "title": "Exportations d’électricité en 2025",
+    "speaker": "Programme de Gabriel Attal",
+    "quote": "la France a pourtant exporté un volume record de 92,3 térawattheures d’électricité vers ses voisins européens en 2025",
+    "statement": {
+      "title": "Programme · Dette écologique",
+      "url": "https://attalpresident.fr/programme/dette-ecologique",
+      "date": null
+    },
+    "period": "France métropolitaine · 2025 · échanges électriques",
+    "unit": "TWh",
+    "claimed": "92.3",
+    "observed": "92.3",
+    "reference": {
+      "title": "RTE · Bilan électrique 2025",
+      "url": "https://analysesetdonnees.rte-france.com/bilan-electrique-2025/echanges",
+      "date": null
+    },
+    "assessment": "perimetre",
+    "context": "Les 92,3 TWh correspondent au solde exportateur net publié par RTE, calculé en retirant les importations des exportations. Le record porte sur ce solde."
+  }
+]

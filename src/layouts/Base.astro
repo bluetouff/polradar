@@ -1,9 +1,9 @@
 ---
 import '../styles/global.css';
 import '../styles/features.css';
-import '../styles/mobile-nav.css';
 import '../styles/editorial.css';
 import SiteFooter from '../components/SiteFooter.astro';
+import SiteNavigation from '../components/SiteNavigation.astro';
 import Icon from '../components/Icon.astro';
 import ShareLinks from '../components/ShareLinks.astro';
 import { socialImageFor } from '../lib/social-images.mjs';
@@ -24,41 +24,6 @@ const {
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const social = socialImageFor(Astro.url.pathname);
 const socialImageUrl = new URL(social.url, Astro.site);
-const nav = [
-  ['/', 'Accueil', 'institutions'],
-  ['/mesures/', 'Mesures', 'mesures'],
-  ['/comparer/', 'Comparer', 'layers'],
-  ['/divergences/', 'Divergences', 'exchange'],
-  ['/candidats/', 'Candidats', 'people'],
-  ['/evolution/', 'Évolution', 'historique'],
-  ['/votes/', 'Propositions et votes', 'vote'],
-  ['/financements/', 'Financements', 'exchange'],
-  ['/campagne/', 'Campagne', 'historique'],
-  ['/sondages/', 'Sondages', 'sondages'],
-  ['/marches-predictifs/', 'Marchés', 'markets'],
-  ['/temps-de-parole/', 'Temps de parole', 'microphone'],
-  ['/budget-programmes/', 'Budgets', 'euro'],
-  ['/numerique/', 'Numérique', 'layers'],
-  ['/agenda/', 'Agenda', 'map-pin'],
-  ['/communes/', 'Communes', 'map-pin'],
-  ['/veille/', 'Veille', 'veille'],
-  ['/historique/', 'Historique', 'historique'],
-  ['/suivi/', 'Mon suivi', 'suivi'],
-];
-const primaryUrls = [
-  '/',
-  '/mesures/',
-  '/comparer/',
-  '/divergences/',
-  '/candidats/',
-  '/evolution/',
-  '/financements/',
-  '/campagne/',
-];
-const active = (url: string) =>
-  url === '/'
-    ? Astro.url.pathname === '/'
-    : section === url || Astro.url.pathname.startsWith(url);
 ---
 
 <!doctype html>
@@ -129,23 +94,9 @@ const active = (url: string) =>
               <span class="election-context">Présidentielle française</span>
               <span class="election-year">2027</span>
             </p>
-            <details class="mobile-navigation">
-              <summary>
-                Menu <Icon name="filter" />
-              </summary>
-              <nav aria-label="Navigation complète">
-                {nav.map(([url, label]) => (
-                  <a href={url} aria-current={active(url) ? 'page' : undefined}>
-                    {label}
-                  </a>
-                ))}
-                <a href="/themes/">Thèmes</a>
-                <a href="/dossiers/">Dossiers</a>
-                <a href="/sources/">Sources</a>
-                <a href="/reperes/">Calendrier électoral</a>
-                <a href="/recherche/">Rechercher</a>
-              </nav>
-            </details>
+            <a href="/recherche/" class="mobile-search" aria-label="Rechercher">
+              <Icon name="search" />
+            </a>
           </div>
           <div class="masthead-actions">
             <time datetime={meta.edition}>
@@ -159,49 +110,7 @@ const active = (url: string) =>
             </a>
           </div>
         </div>
-        <div class="publication-nav">
-          <nav class="main-nav" aria-label="Navigation principale">
-            {nav
-              .filter(([url]) => primaryUrls.includes(url))
-              .map(([url, label, icon]) => (
-                <a href={url} aria-current={active(url) ? 'page' : undefined}>
-                  <Icon name={icon} />
-                  <span>{label}</span>
-                </a>
-              ))}
-          </nav>
-          <details class="publication-nav-more">
-            <summary>
-              Explorer <Icon name="filter" />
-            </summary>
-            <nav aria-label="Autres rubriques">
-              {nav
-                .filter(([url]) => !primaryUrls.includes(url))
-                .map(([url, label, icon]) => (
-                  <a href={url} aria-current={active(url) ? 'page' : undefined}>
-                    <Icon name={icon} />
-                    {label}
-                  </a>
-                ))}
-              <a href="/themes/">
-                <Icon name="layers" />
-                Thèmes
-              </a>
-              <a href="/dossiers/">
-                <Icon name="source" />
-                Dossiers
-              </a>
-              <a href="/sources/">
-                <Icon name="source" />
-                Sources
-              </a>
-              <a href="/methode/">
-                <Icon name="check" />
-                Méthode
-              </a>
-            </nav>
-          </details>
-        </div>
+        <SiteNavigation section={section} />
       </header>
       <div class="page-column">
         <main id="contenu" class="container" tabindex="-1">

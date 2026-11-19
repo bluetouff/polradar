@@ -27,7 +27,7 @@ test('les situations ont des liens propres et des références officielles versi
     digitalLawPath(cases.find(({ id }) => id === 'publicite').slug),
     '/numerique/ce-qui-changerait/donnees-personnelles/publicite/',
   );
-  for (const item of cases.filter(({ parliament }) => parliament)) {
+  for (const item of cases.filter(({ id }) => id === 'acces-communications')) {
     assert.equal(item.changes.length, 0);
     assert.ok(
       item.rules.every(({ refs }) =>

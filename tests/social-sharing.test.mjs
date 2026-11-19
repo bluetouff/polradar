@@ -81,9 +81,12 @@ test('l’accueil et toutes les rubriques ont un PNG distinct et les sous-pages 
     '/numerique/',
     '/numerique/comparer/',
     '/numerique/ce-qui-changerait/',
+    '/economie/',
+    '/economie/declarations/',
+    '/economie/finances-publiques/',
     '/themes/',
   );
-  assert.equal(socialImages.length, 33);
+  assert.equal(socialImages.length, 35);
   const agenda = JSON.parse(
     readFileSync(
       new URL('../src/data/campaign-agenda.json', import.meta.url),

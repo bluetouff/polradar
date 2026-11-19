@@ -24,6 +24,10 @@ jobs:
         run: python3 scripts/collect-airtime.py
       - name: Résumé des relevés Arcom
         run: cat artifacts/airtime-review/report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Relever les séries économiques pour examen
+        run: python3 scripts/collect-economy.py
+      - name: Résumé des séries économiques
+        run: cat artifacts/economy-review/report.md >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: source-watch-review
@@ -34,5 +38,11 @@ jobs:
         with:
           name: airtime-review
           path: artifacts/airtime-review/
+          if-no-files-found: error
+          retention-days: 14
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: economy-review
+          path: artifacts/economy-review/
           if-no-files-found: error
           retention-days: 14

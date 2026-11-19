@@ -355,6 +355,342 @@
           ]
         }
       ]
+    },
+    {
+      "id": "cybersecurite",
+      "title": "Cybersécurité",
+      "icon": "securite",
+      "cases": [
+        {
+          "id": "cybersecurite",
+          "slug": "cybersecurite",
+          "label": "Opérateurs essentiels",
+          "question": "Quels opérateurs doivent sécuriser leurs systèmes ?",
+          "context": "Obligations françaises pour la continuité des services essentiels et des activités d’importance vitale.",
+          "icon": "securite",
+          "rules": [
+            {
+              "title": "Opérateurs de services essentiels désignés",
+              "body": "Le Premier ministre désigne les opérateurs de services essentiels. Ils appliquent les règles de sécurité prévues pour les systèmes nécessaires à ces services.",
+              "refs": [
+                {
+                  "sourceId": "legifrance-nis1-loi",
+                  "label": "Loi du 26 février 2018, art. 5 et 6"
+                }
+              ]
+            },
+            {
+              "title": "Systèmes d’information d’importance vitale",
+              "body": "Le Premier ministre fixe les règles de sécurité applicables aux systèmes d’information visés des opérateurs d’importance vitale. Ces opérateurs les mettent en œuvre à leurs frais.",
+              "refs": [
+                {
+                  "sourceId": "legifrance-defense-l1332",
+                  "label": "Code de la défense, art. L. 1332-6-1"
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "versionId": "retailleau-institutions-plan-vauban-cyber-v1",
+              "title": "Piloter un plan national par l’ANSSI",
+              "body": "Le plan Vauban prévoit de cartographier les dépendances critiques, d’accélérer la migration des hébergements sensibles et de créer une inspection générale du numérique au sein de l’ANSSI."
+            },
+            {
+              "versionId": "lisnard-securite-maitrise-cyber-etat-v1",
+              "title": "Garder la capacité de reprendre les systèmes de l’État",
+              "body": "David Lisnard veut que les systèmes critiques de l’État puissent être audités, remplacés et repris. Il inclut les identités, l’hébergement sensible et les outils de chiffrement."
+            }
+          ],
+          "parliament": {
+            "title": "NIS 2 · transposition en cours",
+            "body": "La directive prévoit des obligations de gestion des risques pour des entités essentielles et importantes dans les secteurs qu’elle définit. En France, le projet de loi de transposition a été adopté en première lecture à l’Assemblée nationale le 17 novembre 2026. Le dossier législatif reste ouvert.",
+            "refs": [
+              {
+                "sourceId": "eurlex-nis2",
+                "label": "Directive NIS 2, art. 2, 3 et 21"
+              },
+              {
+                "sourceId": "senat-resilience-dossier",
+                "label": "Dossier législatif"
+              },
+              {
+                "sourceId": "assemblee-resilience-texte-adopte",
+                "label": "Texte de l’Assemblée"
+              }
+            ],
+            "stages": [
+              {
+                "date": "2025-03-12",
+                "label": "Sénat, première lecture"
+              },
+              {
+                "date": "2026-11-17",
+                "label": "Assemblée, première lecture"
+              }
+            ]
+          }
+        },
+        {
+          "id": "signalement-cyber",
+          "slug": "cybersecurite/signalement",
+          "label": "Signaler un incident",
+          "question": "Qui doit signaler un incident cyber, et quand ?",
+          "context": "Les obligations varient selon le responsable et la nature de l’incident.",
+          "icon": "source",
+          "rules": [
+            {
+              "title": "Services essentiels · sans délai",
+              "body": "Un opérateur de services essentiels signale à l’ANSSI un incident qui affecte ou risque d’affecter significativement la continuité du service, dès qu’il en a connaissance.",
+              "refs": [
+                {
+                  "sourceId": "legifrance-nis1-article-7",
+                  "label": "Loi du 26 février 2018, art. 7"
+                }
+              ]
+            },
+            {
+              "title": "Données personnelles · si un risque existe",
+              "body": "Le responsable du traitement notifie la violation à l’autorité de contrôle dans les meilleurs délais et si possible sous 72 heures. La notification est écartée si un risque pour les droits et libertés est peu probable.",
+              "refs": [
+                {
+                  "sourceId": "eurlex-rgpd",
+                  "label": "RGPD, art. 33"
+                }
+              ]
+            },
+            {
+              "title": "Produits numériques · fabricants",
+              "body": "Depuis le 11 septembre 2026, le règlement sur la cyberrésilience prévoit une alerte initiale sous 24 heures, puis une notification sous 72 heures pour une vulnérabilité activement exploitée ou un incident grave répondant aux critères du texte.",
+              "refs": [
+                {
+                  "sourceId": "eurlex-cra",
+                  "label": "Cyber Resilience Act, art. 14 et 71"
+                }
+              ]
+            }
+          ],
+          "changes": [],
+          "parliament": {
+            "title": "Les délais prévus par NIS 2",
+            "body": "Pour les incidents importants des entités couvertes, la directive prévoit une alerte précoce sous 24 heures, une notification sous 72 heures en principe et un rapport final en principe dans le mois qui suit la notification. Ces délais figurent dans le cadre dont la transposition française est en cours.",
+            "refs": [
+              {
+                "sourceId": "eurlex-nis2",
+                "label": "Directive NIS 2, art. 23"
+              },
+              {
+                "sourceId": "senat-resilience-dossier",
+                "label": "Dossier législatif"
+              }
+            ]
+          }
+        },
+        {
+          "id": "aide-cyber-locale",
+          "slug": "cybersecurite/aide-locale",
+          "label": "Communes et PME",
+          "question": "À qui une commune ou une petite entreprise peut-elle demander de l’aide ?",
+          "context": "Sécurité des démarches électroniques et dispositifs publics d’accompagnement aux incidents.",
+          "icon": "institutions",
+          "rules": [
+            {
+              "title": "Démarches électroniques des administrations",
+              "body": "Le référentiel général de sécurité fixe les exigences pour des fonctions de sécurité des échanges électroniques des autorités administratives, comme l’identification, la signature, la confidentialité ou l’horodatage.",
+              "refs": [
+                {
+                  "sourceId": "legifrance-rgs",
+                  "label": "Ordonnance du 8 décembre 2005, art. 9"
+                }
+              ]
+            },
+            {
+              "title": "Des relais d’assistance existent",
+              "body": "Cybermalveillance.gouv.fr oriente les victimes vers des ressources et des prestataires. Les centres régionaux de réponse aux incidents peuvent apporter un premier niveau d’assistance aux entreprises, collectivités et associations de leur territoire.",
+              "refs": [
+                {
+                  "sourceId": "gouv-cybermalveillance",
+                  "label": "Cybermalveillance.gouv.fr"
+                },
+                {
+                  "sourceId": "anssi-csirt-regionaux",
+                  "label": "ANSSI · réponse régionale aux incidents"
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "versionId": "philippe-securite-bouclier-cyber-v1",
+              "title": "Proposer des centres de protection",
+              "body": "Le projet d’Édouard Philippe prévoit d’investir dans des centres de protection contre les cyberattaques pour les administrations publiques."
+            },
+            {
+              "versionId": "roussel-securite-centre-public-cyber-v1",
+              "title": "Créer un centre public de cybersécurité",
+              "body": "Le document du PCF prévoit un centre public pour apporter assistance et moyens aux petites entreprises, associations et particuliers."
+            },
+            {
+              "versionId": "roussel-securite-anssi-cyber-v1",
+              "title": "Renforcer les moyens régionaux et ceux de l’ANSSI",
+              "body": "Le document du PCF prévoit de renforcer l’ANSSI et les structures régionales de cybersécurité."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "souverainete",
+      "title": "Souveraineté numérique",
+      "icon": "europe",
+      "cases": [
+        {
+          "id": "achats-logiciels",
+          "slug": "souverainete",
+          "label": "Logiciels publics",
+          "question": "Quels logiciels l’administration peut-elle privilégier ?",
+          "context": "Développement et commande publique de logiciels et systèmes d’information.",
+          "icon": "layers",
+          "rules": [
+            {
+              "title": "Le logiciel libre est encouragé",
+              "body": "La loi demande aux administrations visées de préserver la maîtrise et l’indépendance de leurs systèmes et d’encourager les logiciels libres et les formats ouverts.",
+              "refs": [
+                {
+                  "sourceId": "legifrance-republique-numerique-16",
+                  "label": "Loi pour une République numérique, art. 16"
+                }
+              ]
+            },
+            {
+              "title": "Égalité d’accès aux marchés publics",
+              "body": "Le Code de la commande publique garantit la liberté d’accès, l’égalité de traitement et la transparence des procédures. L’acheteur applique les règles de définition des spécifications techniques.",
+              "refs": [
+                {
+                  "sourceId": "legifrance-commande-publique-l3",
+                  "label": "Code de la commande publique, art. L. 3"
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "versionId": "melenchon-institutions-logiciels-libres-v1",
+              "title": "Généraliser les logiciels libres",
+              "body": "Le programme de Jean-Luc Mélenchon propose de systématiser l’usage des logiciels libres dans les administrations et le service public."
+            },
+            {
+              "versionId": "branco-institutions-logiciels-libres-v1",
+              "title": "En faire une obligation pour l’administration",
+              "body": "Le programme de Juan Branco demande d’imposer les logiciels libres à l’administration et de créer des infrastructures publiques de calcul."
+            },
+            {
+              "versionId": "tondelier-institutions-achats-logiciels-libres-v1",
+              "title": "Modifier les appels d’offres",
+              "body": "Les Écologistes proposent d’imposer des critères liés aux logiciels libres dans les appels d’offres publics et de soutenir leur écosystème."
+            },
+            {
+              "versionId": "retailleau-institutions-achats-numeriques-v2",
+              "title": "Noter la souveraineté des outils achetés",
+              "body": "Bruno Retailleau propose un score pour les achats numériques de l’État, avec un seuil pour les fonctions critiques et des critères de juridiction et de maîtrise des clés de chiffrement."
+            }
+          ]
+        },
+        {
+          "id": "hebergement-sante",
+          "slug": "souverainete/donnees-de-sante",
+          "label": "Données de santé",
+          "question": "Quelles règles pour héberger des données de santé ?",
+          "context": "Hébergement de données de santé à caractère personnel pour le compte d’un tiers ou du patient.",
+          "icon": "sante",
+          "rules": [
+            {
+              "title": "Contrat et certification HDS",
+              "body": "L’hébergement numérique des données recueillies à l’occasion d’activités de prévention, de diagnostic, de soins ou de suivi est soumis à une certification quand il est effectué pour le compte du patient ou de l’organisme qui les produit ou les recueille.",
+              "refs": [
+                {
+                  "sourceId": "legifrance-csp-l1111-8",
+                  "label": "Code de la santé publique, art. L. 1111-8"
+                }
+              ]
+            },
+            {
+              "title": "Le patient est informé",
+              "body": "L’hébergement suppose une information du patient. Le texte prévoit qu’il peut s’y opposer pour un motif légitime.",
+              "refs": [
+                {
+                  "sourceId": "legifrance-csp-l1111-8",
+                  "label": "Code de la santé publique, art. L. 1111-8 I"
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "versionId": "philippot-institutions-confidentialite-donnees-sante-v1",
+              "title": "Décentraliser le stockage et demander un accord explicite",
+              "body": "Les Patriotes proposent notamment la carte Vitale comme support possible et demandent l’accord explicite du patient pour consulter les informations médicales. Le projet du parti est conditionné à la sortie de l’Union européenne."
+            },
+            {
+              "versionId": "tondelier-institutions-hebergement-france-v1",
+              "title": "Localiser l’hébergement des données sensibles en France",
+              "body": "Les Écologistes proposent une règle générale pour les données sensibles. Les centres devraient être situés en France et détenus et gérés par des acteurs européens."
+            }
+          ]
+        },
+        {
+          "id": "centres-de-calcul",
+          "slug": "souverainete/centres-de-calcul",
+          "label": "Centres de données",
+          "question": "Quelles exigences pour les centres de données ?",
+          "context": "Consommation d’électricité, usage de l’eau et implantation des centres de calcul.",
+          "icon": "climat",
+          "rules": [
+            {
+              "title": "Déclaration européenne à partir de 500 kW",
+              "body": "Les exploitants concernés transmettent des informations sur leur centre et des indicateurs de durabilité à partir de 500 kW de puissance informatique installée. Le règlement précise les indicateurs, dont la consommation d’énergie et l’eau utilisée.",
+              "refs": [
+                {
+                  "sourceId": "eurlex-centres-donnees",
+                  "label": "Règlement délégué (UE) 2024/1364, art. 1 et annexes"
+                }
+              ]
+            },
+            {
+              "title": "Indicateurs d’exploitation",
+              "body": "Le dispositif prévoit une transmission annuelle des données. Les résultats européens accessibles au public sont agrégés.",
+              "refs": [
+                {
+                  "sourceId": "eurlex-centres-donnees",
+                  "label": "Règlement délégué (UE) 2024/1364, art. 3 et 5"
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "versionId": "melenchon-climat-moratoire-data-centers-v1",
+              "title": "Suspendre les projets sans participation publique",
+              "body": "Jean-Luc Mélenchon propose un moratoire pour les centres qui ne prévoient pas de participation publique, ainsi qu’une autorisation de construction tenant compte de leurs consommations d’eau et d’énergie."
+            },
+            {
+              "versionId": "ruffin-climat-pointe-data-centers-v1",
+              "title": "Reporter des tâches lors des pointes électriques",
+              "body": "François Ruffin veut rendre obligatoire l’effacement pendant les pics de consommation, en interrompant les tâches informatiques non critiques."
+            },
+            {
+              "versionId": "tondelier-climat-impact-centres-donnees-v1",
+              "title": "Planifier les besoins et maintenir des études d’impact",
+              "body": "Les Écologistes demandent de planifier la puissance par territoire et de fixer des seuils pour les permis de construire, en maintenant l’étude d’impact."
+            },
+            {
+              "versionId": "philippe-travail-zones-calcul-v1",
+              "title": "Définir des zones pour accélérer l’implantation",
+              "body": "Édouard Philippe veut accélérer l’implantation des centres de données dans des zones définies et faciliter leur raccordement."
+            }
+          ]
+        }
+      ]
     }
   ]
 }

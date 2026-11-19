@@ -1,0 +1,258 @@
+[
+  {
+    "id": "inflation",
+    "group": "prix",
+    "title": "Inflation harmonisée",
+    "dataset": "prc_hicp_minr",
+    "frequency": "M",
+    "unit": "%",
+    "filters": {
+      "unit": "RCH_A",
+      "coicop18": "TOTAL"
+    },
+    "description": "Variation de l’indice des prix à la consommation harmonisé (IPCH) sur douze mois, ensemble des postes."
+  },
+  {
+    "id": "prix-alimentation",
+    "group": "prix",
+    "title": "Prix de l’alimentation",
+    "dataset": "prc_hicp_minr",
+    "frequency": "M",
+    "unit": "%",
+    "filters": {
+      "unit": "RCH_A",
+      "coicop18": "CP01"
+    },
+    "description": "Variation sur douze mois des prix des produits alimentaires et boissons non alcoolisées, IPCH."
+  },
+  {
+    "id": "prix-energie",
+    "group": "prix",
+    "title": "Prix de l’énergie",
+    "dataset": "prc_hicp_minr",
+    "frequency": "M",
+    "unit": "%",
+    "filters": {
+      "unit": "RCH_A",
+      "coicop18": "NRG"
+    },
+    "description": "Variation sur douze mois de l’agrégat énergie de l’IPCH."
+  },
+  {
+    "id": "chomage",
+    "group": "emploi",
+    "title": "Taux de chômage",
+    "dataset": "une_rt_m",
+    "frequency": "M",
+    "unit": "%",
+    "filters": {
+      "sex": "T",
+      "s_adj": "SA",
+      "unit": "PC_ACT",
+      "age": "TOTAL"
+    },
+    "description": "Chômage harmonisé selon la définition du BIT, en part de la population active. Série mensuelle Eurostat, corrigée des variations saisonnières."
+  },
+  {
+    "id": "chomage-jeunes",
+    "group": "emploi",
+    "title": "Chômage des moins de 25 ans",
+    "dataset": "une_rt_m",
+    "frequency": "M",
+    "unit": "%",
+    "filters": {
+      "sex": "T",
+      "s_adj": "SA",
+      "unit": "PC_ACT",
+      "age": "Y_LT25"
+    },
+    "description": "Part au chômage parmi les jeunes actifs, de 15 à 24 ans. Série mensuelle corrigée des variations saisonnières."
+  },
+  {
+    "id": "emploi",
+    "group": "emploi",
+    "title": "Taux d’emploi des 20–64 ans",
+    "dataset": "lfsi_emp_q",
+    "frequency": "Q",
+    "unit": "%",
+    "filters": {
+      "indic_em": "EMP_LFS",
+      "s_adj": "SA",
+      "sex": "T",
+      "age": "Y20-64",
+      "unit": "PC_POP"
+    },
+    "description": "Part des 20–64 ans en emploi, dans l’ensemble de la population de cet âge. Série trimestrielle corrigée des variations saisonnières."
+  },
+  {
+    "id": "croissance",
+    "group": "activite",
+    "title": "Croissance du PIB",
+    "dataset": "namq_10_gdp",
+    "frequency": "Q",
+    "unit": "%",
+    "filters": {
+      "s_adj": "SCA",
+      "unit": "CLV_PCH_PRE",
+      "na_item": "B1GQ"
+    },
+    "description": "Variation du PIB en volume par rapport au trimestre précédent, corrigée des variations saisonnières et des jours ouvrables."
+  },
+  {
+    "id": "consommation",
+    "group": "activite",
+    "title": "Consommation des ménages",
+    "dataset": "namq_10_gdp",
+    "frequency": "Q",
+    "unit": "%",
+    "filters": {
+      "s_adj": "SCA",
+      "unit": "CLV_PCH_PRE",
+      "na_item": "P31_S14_S15"
+    },
+    "description": "Variation trimestrielle en volume de la consommation finale des ménages et institutions sans but lucratif au service des ménages, corrigée des variations saisonnières et des jours ouvrables."
+  },
+  {
+    "id": "investissement",
+    "group": "activite",
+    "title": "Investissement",
+    "dataset": "namq_10_gdp",
+    "frequency": "Q",
+    "unit": "%",
+    "filters": {
+      "s_adj": "SCA",
+      "unit": "CLV_PCH_PRE",
+      "na_item": "P51G"
+    },
+    "description": "Variation trimestrielle en volume de la formation brute de capital fixe, corrigée des variations saisonnières et des jours ouvrables."
+  },
+  {
+    "id": "exportations",
+    "group": "activite",
+    "title": "Exportations de biens et services",
+    "dataset": "namq_10_gdp",
+    "frequency": "Q",
+    "unit": "%",
+    "filters": {
+      "s_adj": "SCA",
+      "unit": "CLV_PCH_PRE",
+      "na_item": "P6"
+    },
+    "description": "Variation trimestrielle en volume des exportations françaises, corrigée des variations saisonnières et des jours ouvrables."
+  },
+  {
+    "id": "dette-publique",
+    "group": "finances",
+    "title": "Dette publique en part du PIB",
+    "dataset": "gov_10q_ggdebt",
+    "frequency": "Q",
+    "unit": "% du PIB",
+    "filters": {
+      "sector": "S13",
+      "unit": "PC_GDP",
+      "na_item": "GD"
+    },
+    "description": "Dette brute consolidée des administrations publiques au sens de Maastricht, en fin de trimestre, rapportée au PIB des quatre derniers trimestres."
+  },
+  {
+    "id": "encours-dette",
+    "group": "finances",
+    "title": "Encours de dette publique",
+    "dataset": "gov_10q_ggdebt",
+    "frequency": "Q",
+    "unit": "M€",
+    "filters": {
+      "sector": "S13",
+      "unit": "MIO_EUR",
+      "na_item": "GD"
+    },
+    "description": "Dette brute consolidée des administrations publiques au sens de Maastricht, en fin de trimestre, en millions d’euros courants."
+  },
+  {
+    "id": "solde-public",
+    "group": "finances",
+    "title": "Solde des administrations publiques",
+    "dataset": "gov_10dd_edpt1",
+    "frequency": "A",
+    "unit": "% du PIB",
+    "filters": {
+      "sector": "S13",
+      "unit": "PC_GDP",
+      "na_item": "B9"
+    },
+    "description": "Capacité ou besoin de financement des administrations publiques. Une valeur négative indique un déficit."
+  },
+  {
+    "id": "depenses-publiques",
+    "group": "finances",
+    "title": "Dépenses publiques",
+    "dataset": "gov_10a_main",
+    "frequency": "A",
+    "unit": "% du PIB",
+    "filters": {
+      "sector": "S13",
+      "unit": "PC_GDP",
+      "na_item": "TE"
+    },
+    "description": "Dépenses de l’ensemble des administrations publiques au sens des comptes nationaux, en part du PIB."
+  },
+  {
+    "id": "recettes-publiques",
+    "group": "finances",
+    "title": "Recettes publiques",
+    "dataset": "gov_10a_main",
+    "frequency": "A",
+    "unit": "% du PIB",
+    "filters": {
+      "sector": "S13",
+      "unit": "PC_GDP",
+      "na_item": "TR"
+    },
+    "description": "Recettes de l’ensemble des administrations publiques au sens des comptes nationaux, en part du PIB."
+  },
+  {
+    "id": "revenu-reel",
+    "group": "niveau-de-vie",
+    "title": "Revenu disponible réel par habitant",
+    "dataset": "nasq_10_ki",
+    "frequency": "Q",
+    "unit": "%",
+    "filters": {
+      "sector": "S14_S15",
+      "na_item": "B6G_R_HAB_GR",
+      "unit": "PC",
+      "s_adj": "SCA"
+    },
+    "description": "Variation trimestrielle du revenu disponible brut réel des ménages par habitant. La série d’Eurostat est corrigée des variations saisonnières et des jours ouvrables."
+  },
+  {
+    "id": "epargne-menages",
+    "group": "niveau-de-vie",
+    "title": "Taux d’épargne des ménages",
+    "dataset": "nasq_10_ki",
+    "frequency": "Q",
+    "unit": "%",
+    "filters": {
+      "sector": "S14_S15",
+      "na_item": "SRG_S14_S15",
+      "unit": "PC",
+      "s_adj": "SCA"
+    },
+    "description": "Épargne brute en part du revenu disponible brut après ajustement pour droits à pension. Comptes de secteurs trimestriels, corrigés des variations saisonnières et des jours ouvrables."
+  },
+  {
+    "id": "salaires-horaires",
+    "group": "emploi",
+    "title": "Salaires et traitements horaires",
+    "dataset": "lc_lci_r2_q",
+    "frequency": "Q",
+    "unit": "%",
+    "filters": {
+      "nace_r2": "B-S",
+      "lcstruct": "D11",
+      "unit": "PCH_SM",
+      "s_adj": "CA"
+    },
+    "description": "Variation sur un an des salaires et traitements par heure travaillée, en valeur nominale. Secteurs B à S de la NACE. Indice corrigé des jours ouvrables."
+  }
+]

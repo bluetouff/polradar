@@ -1,0 +1,70 @@
+---
+import { economyCurve, labelPeriod, printedNumber } from '../lib/economy.mjs';
+
+interface Props {
+  title: string;
+  frequency: 'A' | 'Q' | 'M';
+  points: [string, string | null, string][];
+  compact?: boolean;
+}
+const { title, frequency, points, compact = false } = Astro.props;
+const width = compact ? 280 : 640;
+const height = compact ? 76 : 188;
+const firstIndex = points.findIndex(([, value]) => value !== null);
+const lastIndex = points.findLastIndex(([, value]) => value !== null);
+const plotted = firstIndex < 0 ? [] : points.slice(firstIndex, lastIndex + 1);
+const chart = economyCurve(plotted, frequency, width, height, compact ? 5 : 10);
+const first = plotted[0];
+const last = chart?.latest;
+const label =
+  first && last
+    ? `${title}, de ${labelPeriod(first[0])} à ${labelPeriod(last.period)}`
+    : title;
+---
+
+{chart && (
+  <figure class:list={['economy-curve', { 'economy-curve-detail': !compact }]}>
+    {!compact && (
+      <div class="economy-scale" aria-hidden="true">
+        <span>{printedNumber(chart.top)}</span>
+        <span>{printedNumber(chart.bottom)}</span>
+      </div>
+    )}
+    <div>
+      <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label={label}>
+        <path
+          class="economy-grid"
+          d={`M5 ${height / 4}H${width - 5}M5 ${height / 2}H${width - 5}M5 ${(height * 3) / 4}H${width - 5}`}
+        />
+        {chart.zero !== null && (
+          <path class="economy-zero" d={`M5 ${chart.zero}H${width - 5}`} />
+        )}
+        {chart.segments.map((segment) =>
+          segment.length === 1 ? (
+            <circle
+              class="economy-dot"
+              cx={segment[0].x}
+              cy={segment[0].y}
+              r="3"
+            />
+          ) : (
+            <polyline
+              class="economy-line"
+              points={segment.map((point) => `${point.x},${point.y}`).join(' ')}
+            />
+          ),
+        )}
+        <circle
+          class="economy-dot"
+          cx={chart.latest.x}
+          cy={chart.latest.y}
+          r={compact ? 4 : 5}
+        />
+      </svg>
+      <figcaption>
+        <span>{labelPeriod(plotted[0][0])}</span>
+        <span>{labelPeriod(plotted.at(-1)![0])}</span>
+      </figcaption>
+    </div>
+  </figure>
+)}

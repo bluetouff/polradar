@@ -40,7 +40,15 @@ export const digitalLawSchema = z.strictObject({
                   }),
                 )
                 .max(4),
-              parliament: rule.optional(),
+              parliament: rule
+                .extend({
+                  stages: z
+                    .array(z.strictObject({ date: dateSchema, label: text }))
+                    .min(2)
+                    .max(5)
+                    .optional(),
+                })
+                .optional(),
             }),
           )
           .min(1)
@@ -95,6 +103,14 @@ export function validateDigitalLaw(config, dataset, now = new Date()) {
             );
         }
       }
+      const stages = item.parliament?.stages ?? [];
+      if (
+        stages.some(
+          ({ date }, index) =>
+            date > config.asOf || (index > 0 && date <= stages[index - 1].date),
+        )
+      )
+        errors.push(`${item.id} : étapes parlementaires non chronologiques.`);
       const seen = new Set();
       for (const change of item.changes) {
         const version = versions.get(change.versionId);

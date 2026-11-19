@@ -6,6 +6,7 @@ import {
   digitalLawSections,
 } from '../../../lib/digital-law-data';
 import { formatDate, scopes } from '../../../lib/data';
+import { digitalComparePath } from '../../../lib/digital-comparison.mjs';
 import '../../../styles/digital-law.css';
 
 export function getStaticPaths() {
@@ -44,7 +45,7 @@ const changeHeading = item.changes.length
     </span>
     <div>
       <h1>Ce qui changerait</h1>
-      <p>Chiffrement et données personnelles face au droit en vigueur.</p>
+      <p>Les programmes numériques face au droit en vigueur.</p>
     </div>
   </header>
 
@@ -168,12 +169,26 @@ const changeHeading = item.changes.length
                     </a>
                   ))}
                 </footer>
-                <a
-                  class="law-vote-link"
-                  href="/numerique/comparer/chiffrement/#encryption-vote-title"
-                >
-                  Voir le graphique du scrutin <Icon name="arrow" />
-                </a>
+                {item.parliament.stages && (
+                  <ol class="law-stages" aria-label="Étapes parlementaires">
+                    {item.parliament.stages.map((stage) => (
+                      <li>
+                        <time datetime={stage.date}>
+                          {formatDate(stage.date)}
+                        </time>
+                        <span>{stage.label}</span>
+                      </li>
+                    ))}
+                  </ol>
+                )}
+                {item.id === 'acces-communications' && (
+                  <a
+                    class="law-vote-link"
+                    href="/numerique/comparer/chiffrement/#encryption-vote-title"
+                  >
+                    Voir le graphique du scrutin <Icon name="arrow" />
+                  </a>
+                )}
               </article>
             )}
           </div>
@@ -186,11 +201,9 @@ const changeHeading = item.changes.length
         Dossier données et protection <Icon name="arrow" />
       </a>
       <a
-        href={
-          section.id === 'chiffrement'
-            ? '/numerique/comparer/chiffrement/'
-            : '/numerique/comparer/souverainete/'
-        }
+        href={digitalComparePath(
+          section.id === 'donnees-personnelles' ? 'souverainete' : section.id,
+        )}
       >
         <Icon name="exchange" />
         Comparatif des programmes <Icon name="arrow" />

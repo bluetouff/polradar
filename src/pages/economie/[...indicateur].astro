@@ -1,0 +1,230 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import EconomyCurve from '../../components/EconomyCurve.astro';
+import {
+  economy,
+  economyCollectedAt,
+  statements,
+} from '../../lib/economy-data';
+import {
+  economyGroups,
+  frequencyLabels,
+  labelPeriod,
+  printedNumber,
+} from '../../lib/economy.mjs';
+import '../../styles/economy.css';
+
+export function getStaticPaths() {
+  return [
+    { params: { indicateur: undefined }, props: { series: undefined } },
+    ...economy.map((row) => ({
+      params: { indicateur: row.id },
+      props: { series: row },
+    })),
+  ];
+}
+
+const { series } = Astro.props;
+const groups = Object.entries(economyGroups).map(([id, group]) => ({
+  id,
+  ...group,
+  rows: economy.filter((row) => row.group === id),
+}));
+const flagged = (flag: string) => (flag ? `Statut Eurostat ${flag}` : '');
+const dateTime = new Intl.DateTimeFormat('fr-FR', {
+  dateStyle: 'medium',
+  timeStyle: 'short',
+  timeZone: 'Europe/Paris',
+});
+const collected = dateTime.format(new Date(economyCollectedAt));
+const flaggedLatest = series?.latest[2];
+---
+
+<Base
+  title={series ? `${series.title} · Économie` : 'Indicateurs économiques'}
+  description={
+    series?.description ??
+    'Prix, emploi, revenus, activité et finances publiques en France. Séries officielles d’Eurostat et données à télécharger.'
+  }
+  section="/economie/"
+>
+  {series && (
+    <div class="breadcrumbs">
+      <a href="/economie/">Indicateurs économiques</a>
+      <span>/</span>
+      <span>{series.title}</span>
+    </div>
+  )}
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name={series ? economyGroups[series.group].icon : 'markets'} />
+    </span>
+    <div>
+      <h1>{series?.title ?? 'Indicateurs économiques'}</h1>
+      <p>
+        {series?.description ??
+          'France · Prix, emploi, revenus, activité et finances publiques.'}
+      </p>
+    </div>
+  </header>
+
+  <div class="economy">
+    <nav class="economy-nav" aria-label="Données et déclarations">
+      <a href="/economie/" aria-current={!series ? 'page' : undefined}>
+        <Icon name="markets" /> Indicateurs
+      </a>
+      <a href="/economie/declarations/">
+        <Icon name="exchange" /> Vérifier les déclarations
+      </a>
+      {!series && (
+        <a href="/economie/finances-publiques/">
+          <Icon name="fiscalite" /> Comptes publics
+        </a>
+      )}
+      <a href="/api/economie.csv" download>
+        <Icon name="download" /> Données CSV
+      </a>
+      <a href="/api/economie.json">
+        <Icon name="source" /> JSON
+      </a>
+    </nav>
+
+    {series ? (
+      <>
+        <section class="economy-detail" aria-labelledby="economy-series-title">
+          <header>
+            <div>
+              <h2 id="economy-series-title">Série publiée</h2>
+              <div class="economy-reading">
+                <strong>{printedNumber(series.latest[1]!)}</strong>
+                <span>{series.unit}</span>
+              </div>
+              <p>
+                {labelPeriod(series.latest[0])} ·{' '}
+                {frequencyLabels[series.frequency]}
+                {flaggedLatest && ` · ${flagged(flaggedLatest)}`}
+              </p>
+            </div>
+            <p>
+              Jeu Eurostat mis à jour le{' '}
+              <time datetime={series.updatedAt}>
+                {dateTime.format(new Date(series.updatedAt))}
+              </time>
+              .
+            </p>
+          </header>
+          <EconomyCurve
+            title={series.title}
+            points={series.observations}
+            frequency={series.frequency}
+          />
+          <div class="economy-links">
+            <a href={series.links.table}>Table Eurostat ↗</a>
+            <a href={series.links.api}>Extraction filtrée ↗</a>
+            {statements.some(
+              ({ indicatorId }) => indicatorId === series.id,
+            ) && (
+              <a href="/economie/declarations/">
+                Déclarations sur cet indicateur ↗
+              </a>
+            )}
+          </div>
+        </section>
+
+        <details class="economy-table">
+          <summary>Toutes les observations</summary>
+          <table>
+            <caption>
+              {series.title} · {series.unit}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Période</th>
+                <th scope="col">Valeur</th>
+                <th scope="col">Statut Eurostat</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[...series.observations]
+                .reverse()
+                .map(([period, value, flag]) => (
+                  <tr>
+                    <th scope="row">{labelPeriod(period)}</th>
+                    <td>
+                      {value === null ? 'Indisponible' : printedNumber(value)}
+                    </td>
+                    <td>{flag || '—'}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </details>
+      </>
+    ) : (
+      <>
+        <nav class="economy-index" aria-label="Familles d’indicateurs">
+          {groups.map((group) => (
+            <a href={`#${group.id}`}>
+              <Icon name={group.icon} />
+              <span>{group.label}</span>
+              <small>{group.rows.length} séries</small>
+            </a>
+          ))}
+        </nav>
+
+        <p class="economy-meta">
+          Eurostat · {economy.length} séries · Relevé du{' '}
+          <time datetime={economyCollectedAt}>{collected}</time> (heure de
+          Paris)
+        </p>
+        {groups.map((group) => (
+          <section
+            class="economy-group"
+            data-group={group.id}
+            id={group.id}
+            aria-labelledby={`title-${group.id}`}
+          >
+            <h2 id={`title-${group.id}`}>
+              <Icon name={group.icon} /> {group.label}
+            </h2>
+            <div class="economy-grid-cards">
+              {group.rows.map((row) => (
+                <article class="economy-card">
+                  <h3>
+                    <a href={`/economie/${row.id}/`}>
+                      {row.title} <Icon name="arrow" />
+                    </a>
+                  </h3>
+                  <div class="economy-reading">
+                    <strong>{printedNumber(row.latest[1]!)}</strong>
+                    <span>{row.unit}</span>
+                  </div>
+                  <p>
+                    {labelPeriod(row.latest[0])} ·{' '}
+                    {frequencyLabels[row.frequency]}
+                    {row.latest[2] && ` · ${row.latest[2]}`}
+                  </p>
+                  <EconomyCurve
+                    title={row.title}
+                    points={row.observations.slice(
+                      -{ M: 36, Q: 20, A: 12 }[row.frequency],
+                    )}
+                    frequency={row.frequency}
+                    compact
+                  />
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
+        <p class="economy-note">
+          Les périodes dépendent du calendrier de chaque série. Les statuts
+          Eurostat sont conservés dans les fiches et les exports. Le code{' '}
+          <code>p</code> indique une valeur provisoire et <code>e</code> une
+          estimation statistique.
+        </p>
+      </>
+    )}
+  </div>
+</Base>

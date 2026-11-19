@@ -169,16 +169,30 @@ test('les nouveaux parcours restent lisibles à 320 pixels et ne chargent aucun 
   expect(external).toEqual([]);
 });
 
-test('le menu compact donne accès aux autres rubriques sur mobile', async ({
+test('le menu mobile donne accès aux sous-rubriques et ferme le menu précédent', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 320, height: 900 });
   await page.goto('/candidats/');
-  await page.locator('.mobile-navigation summary').click();
-  await expect(page.locator('.mobile-navigation nav')).toBeVisible();
-  const link = page.locator('.mobile-navigation a[href="/campagne/"]');
-  await expect(link).toBeVisible();
-  await link.click();
+  const menu = page.getByRole('navigation', { name: 'Navigation principale' });
+  const campaign = menu.locator('summary').filter({ hasText: 'Campagne' });
+  await campaign.click();
+  const timeline = menu.getByRole('link', { name: 'Chronologie', exact: true });
+  await expect(timeline).toBeVisible();
+  const data = menu.locator('summary').filter({ hasText: 'Données' });
+  await data.click();
+  await expect(timeline).toBeHidden();
+  await expect(
+    menu.getByRole('link', { name: 'Indicateurs économiques' }),
+  ).toBeVisible();
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth),
+  ).toBeLessThanOrEqual(320);
+  await data.press('Escape');
+  await expect(menu.locator('details[open]')).toHaveCount(0);
+  await expect(data).toBeFocused();
+  await campaign.click();
+  await timeline.click();
   await expect(page).toHaveURL(/\/campagne\//);
 });
 

@@ -1,234 +1,108 @@
 ---
 import Icon from './Icon.astro';
 import { proposalTracks, financingMaps } from '../lib/proposal-data';
-import { stateValue } from '../lib/proposal-view.mjs';
-import { formatMoney } from '../lib/campaign-visuals-view.mjs';
 import { voteCases } from '../lib/votes-data';
-import { ballotDots, positionLabel } from '../lib/legislative-votes.mjs';
-const track = proposalTracks.find((t) => t.id === 'melenchon-smic')!;
-const map = financingMaps.find((m) => m.id === 'lisnard-affectations')!;
-const colors = ['#75b5a0', '#f3b295', '#99aad2'];
-const voteCase = voteCases.find((c) => c.id === 'melenchon-isf')!;
-const voteChart = ballotDots(voteCase.ballots[0]);
+import law from '../data/digital-law.json';
+import { statements } from '../lib/economy-data';
+
+const tools = [
+  {
+    title: 'Numérique et droit en vigueur',
+    href: '/numerique/ce-qui-changerait/',
+    icon: 'chiffrement',
+    count: law.sections.reduce((sum, section) => sum + section.cases.length, 0),
+    unit: 'situations',
+  },
+  {
+    title: 'Déclarations et chiffres publics',
+    href: '/economie/declarations/',
+    icon: 'source',
+    count: statements.length,
+    unit: 'déclarations vérifiées',
+  },
+  {
+    title: 'Évolution des propositions',
+    href: '/evolution/',
+    icon: 'historique',
+    count: proposalTracks.length,
+    unit: 'frises',
+  },
+  {
+    title: 'Propositions et votes passés',
+    href: '/votes/',
+    icon: 'vote',
+    count: voteCases.length,
+    unit: 'dossiers',
+  },
+  {
+    title: 'Carte des financements',
+    href: '/financements/',
+    icon: 'exchange',
+    count: financingMaps.length,
+    unit: 'cartes',
+  },
+];
 ---
 
-<section
-  class="home-evidence"
-  aria-label="Explorer les propositions et les financements"
->
-  <a href="/evolution/#dossier=melenchon-smic" class="home-evolution-preview">
-    <div class="evidence-preview-heading">
-      <span>
-        <Icon name="historique" />
-        Évolution des propositions
-      </span>
-      <Icon name="arrow" />
-    </div>
-    <h2>Le SMIC dans les programmes soutenus par Jean-Luc Mélenchon</h2>
-    <ol>
-      {track.states.map((s) => (
-        <li>
-          <small>
-            {s.date.value.length === 4 ? s.date.value : 'Campagne 2027'}
-          </small>
-          <strong>{stateValue(s)}</strong>
-          <span>
-            {s.scope === 'archive' && s.date.value === '2024'
-              ? 'Programme collectif NFP'
-              : 'Programme présidentiel'}
-          </span>
-        </li>
-      ))}
-    </ol>
-    <p>Montants nets mensuels annoncés · documents officiels</p>
-  </a>
-  <a
-    href="/financements/#carte=lisnard-affectations"
-    class="home-finance-preview"
-  >
-    <div class="evidence-preview-heading">
-      <span>
-        <Icon name="exchange" />
-        Carte des financements
-      </span>
-      <Icon name="arrow" />
-    </div>
-    <h2>Où David Lisnard affecterait ses économies annoncées</h2>
-    <div class="preview-finance">
-      <strong>
-        {formatMoney(map.entry.euros)}
-        <small>par an à terme</small>
-      </strong>
-      <svg viewBox="0 0 250 104" aria-hidden="true">
-        {map.entry.allocation.map((a, i) => (
-          <path
-            d={`M0,52 C110,52 130,${18 + i * 34} 250,${18 + i * 34}`}
-            stroke={colors[i]}
-            stroke-width={(a.value / map.entry.euros) * 56}
-            fill="none"
-          />
-        ))}
-      </svg>
-      <ol>
-        {map.entry.allocation.map((a, i) => (
-          <li>
-            <span
-              class={`preview-dot preview-dot-${i}`}
-              aria-hidden="true"
-            ></span>
-            <strong>{formatMoney(a.value)}</strong>
-            <span>{a.label}</span>
-          </li>
-        ))}
-      </ol>
-    </div>
-    <p>Répartition publiée par Nouvelle Énergie · rythme de croisière</p>
-  </a>
-  <a href="/votes/#dossier=melenchon-isf" class="home-votes-preview">
-    <div>
-      <div class="evidence-preview-heading">
+<section class="home-comparison-index" aria-labelledby="home-comparison-title">
+  <h2 id="home-comparison-title">Comparer et vérifier</h2>
+  <div>
+    {tools.map((tool) => (
+      <a href={tool.href}>
+        <Icon name={tool.icon} />
         <span>
-          <Icon name="vote" />
-          Propositions et votes passés
+          <strong>{tool.title}</strong>
+          <small>
+            {tool.count} {tool.unit}
+          </small>
         </span>
         <Icon name="arrow" />
-      </div>
-      <h2>Jean-Luc Mélenchon et l’ISF</h2>
-      <p>
-        Votes nominatifs de l’Assemblée nationale et proposition documentée.
-      </p>
-    </div>
-    <ol>
-      {voteCase.ballots.map((b) => (
-        <li>
-          <small>{b.date.slice(0, 4)}</small>
-          <strong>{positionLabel(b.position, b)}</strong>
-          <span>
-            {b.id === 'an15-169'
-              ? 'ISF remplacé par l’IFI'
-              : 'Rejet du texte sur l’ISF'}
-          </span>
-        </li>
-      ))}
-      <li>
-        <small>Campagne 2027</small>
-        <strong>ISF climatique</strong>
-        <span>Proposition actuelle</span>
-      </li>
-    </ol>
-    <div class="home-vote-points">
-      <svg
-        viewBox={`0 0 ${voteChart.width} ${voteChart.height}`}
-        aria-hidden="true"
-      >
-        {voteChart.dots.map((d) => (
-          <circle
-            cx={d.x}
-            cy={d.y}
-            r="2.9"
-            class={`preview-voice-${d.choice}`}
-          />
-        ))}
-      </svg>
-      <span>
-        Article 12 · 20 octobre 2017
-        <br />1 point = 1 voix ou abstention
-      </span>
-    </div>
-  </a>
+      </a>
+    ))}
+  </div>
 </section>
 
 <style>
-  .home-votes-preview {
-    grid-column: 1/-1;
+  .home-comparison-index h2 {
+    margin: 0 0 0.55rem;
+    font-size: 1.1rem;
+  }
+  .home-comparison-index > div {
     display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr) minmax(
-        130px,
-        0.5fr
-      );
-    align-items: center;
-    gap: 28px;
-    background: #eee8dc;
+    gap: 0.45rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 11.5rem), 1fr));
   }
-  .home-votes-preview ol {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    list-style: none;
-    padding: 0;
-    gap: 16px;
+  .home-comparison-index a {
+    display: flex;
+    align-items: start;
+    min-width: 0;
+    gap: 0.52rem;
+    padding: 0.65rem;
+    border: 1px solid #a8bcb2;
+    border-top: 3px solid #597e68;
+    border-radius: 4px;
+    background: #fffdf6;
+    text-decoration: none;
+    line-height: 1.35;
+    font-size: 0.84rem;
   }
-  .home-votes-preview li {
-    display: grid;
-    gap: 7px;
-    position: relative;
-    padding-top: 18px;
-    border-top: 1px solid #b6c4ba;
+  .home-comparison-index a:hover {
+    background: #e5ede4;
   }
-  .home-votes-preview li::before {
-    content: '';
-    position: absolute;
-    top: -4px;
-    width: 7px;
-    height: 7px;
-    background: #a86349;
-    border-radius: 50%;
+  .home-comparison-index .icon {
+    flex: 0 0 auto;
+    width: 1.05rem;
+    height: 1.05rem;
+    color: #33667a;
   }
-  .home-votes-preview small {
-    font-size: 10px;
-    color: var(--muted);
+  .home-comparison-index .icon:last-child {
+    width: 0.78rem;
+    margin-inline-start: auto;
   }
-  .home-votes-preview li strong {
-    font-size: 14px;
-    line-height: 1.4;
-  }
-  .home-votes-preview li span {
-    font-size: 10px;
-    line-height: 1.5;
-    color: var(--muted);
-  }
-  .home-vote-points svg {
-    width: 100%;
-    height: auto;
+  .home-comparison-index small {
     display: block;
-  }
-  .home-vote-points > span {
-    display: block;
-    font-size: 9px;
-    line-height: 1.6;
-    margin-top: 10px;
+    margin-top: 0.26rem;
     color: var(--muted);
-  }
-  .preview-voice-pour {
-    fill: #6b8f74;
-  }
-  .preview-voice-contre {
-    fill: #b76d53;
-  }
-  .preview-voice-abstention {
-    fill: #8999af;
-  }
-  @media (max-width: 1050px) {
-    .home-votes-preview {
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
-      gap: 22px;
-    }
-    .home-vote-points {
-      display: none;
-    }
-  }
-  @media (max-width: 650px) {
-    .home-votes-preview {
-      display: block;
-    }
-    .home-votes-preview ol {
-      margin-top: 22px;
-      gap: 12px;
-    }
-    .home-votes-preview li strong {
-      font-size: 12px;
-    }
-    .home-votes-preview li span {
-      font-size: 9px;
-    }
+    font: 0.7rem var(--mono);
   }
 </style>

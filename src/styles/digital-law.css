@@ -390,3 +390,32 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+@media (min-width: 900px) {
+  .law-sections {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.law-stages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  gap: 0.5rem;
+  margin: 0.9rem 0 0.1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.law-stages li {
+  display: grid;
+  gap: 0.2rem;
+  padding-block-start: 0.55rem;
+  border-top: 2px solid #c39757;
+  font-size: 0.8rem;
+}
+
+.law-stages time {
+  font-family: var(--mono);
+  color: #674a22;
+  font-size: 0.74rem;
+}

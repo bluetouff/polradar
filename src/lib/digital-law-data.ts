@@ -33,7 +33,9 @@ export const digitalLawSections = law.sections.map((section) => ({
     ...item,
     href: digitalLawPath(item.slug),
     rules: item.rules.map(resolveRule),
-    parliament: item.parliament ? resolveRule(item.parliament) : undefined,
+    parliament: item.parliament
+      ? { ...item.parliament, ...resolveRule(item.parliament) }
+      : undefined,
     changes: item.changes.map((change) => {
       const version = versionById.get(change.versionId)!;
       const candidate = candidateById(measureById(version.measureId).candidate);

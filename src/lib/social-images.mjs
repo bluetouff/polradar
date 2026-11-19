@@ -74,6 +74,8 @@ const retirement = read('retirement-comparison');
 const digitalTopics = read('digital-topics');
 const digitalComparison = read('digital-comparison');
 const digitalLaw = read('digital-law');
+const economy = read('economy-series');
+const statements = read('economic-statements');
 const generation1969 = retirement.cohorts.find(
   (row) => row.id === '1969-et-apres',
 );
@@ -161,6 +163,36 @@ const defs = [
       })),
       'Fiches comparées par axe',
     ),
+  ],
+  [
+    'economie',
+    '/economie/',
+    'Statistiques publiques',
+    'Indicateurs\néconomiques',
+    'France · Prix, emploi, activité et finances publiques.',
+    'navy',
+    bars(
+      [
+        ['Prix', 'prix'],
+        ['Emploi', 'emploi'],
+        ['Activité', 'activite'],
+        ['Revenus', 'niveau-de-vie'],
+        ['Finances publiques', 'finances'],
+      ].map(([label, group]) => ({
+        label,
+        value: economy.filter((row) => row.group === group).length,
+      })),
+      'Séries Eurostat',
+    ),
+  ],
+  [
+    'declarations',
+    '/economie/declarations/',
+    'Statistiques publiques',
+    'Déclarations et\nchiffres publics',
+    'Les chiffres cités face aux publications officielles.',
+    'sage',
+    tiles([['Déclarations vérifiées', statements.length]], 'Insee · RTE'),
   ],
   [
     'accueil',
@@ -524,8 +556,8 @@ const defs = [
     },
   ],
   [
-    'economie',
-    '/economie/',
+    'finances-publiques',
+    '/economie/finances-publiques/',
     'Contexte des programmes',
     'Repères\néconomiques',
     'Les données publiques et leurs sources.',

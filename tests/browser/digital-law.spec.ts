@@ -85,3 +85,31 @@ test('les huit situations sont navigables sur mobile et relient les textes et ve
     );
   }
 });
+
+test('le comparatif expose les six situations ajoutées et le calendrier de transposition', async ({
+  page,
+}) => {
+  const root = '/numerique/ce-qui-changerait/';
+  const views = [
+    ['cybersecurite/', 'Opérateurs essentiels'],
+    ['cybersecurite/signalement/', 'Signaler un incident'],
+    ['cybersecurite/aide-locale/', 'Communes et PME'],
+    ['souverainete/', 'Logiciels publics'],
+    ['souverainete/donnees-de-sante/', 'Données de santé'],
+    ['souverainete/centres-de-calcul/', 'Centres de données'],
+  ];
+  for (const [path, label] of views) {
+    const response = await page.goto(root + path);
+    expect(response?.ok()).toBe(true);
+    await expect(page.locator('.law-cases [aria-current]')).toHaveText(label);
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth),
+    ).toBeLessThanOrEqual(320);
+  }
+  await page.goto(root + 'cybersecurite/');
+  await expect(page.locator('.law-stages time')).toHaveCount(2);
+  await expect(page.locator('.law-lane-current')).not.toContainText('NIS 2');
+  await expect(page.locator('.law-parliament')).toContainText(
+    'transposition en cours',
+  );
+});

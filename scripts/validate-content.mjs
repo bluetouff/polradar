@@ -3,6 +3,12 @@ import { validateDataset, validateFeatures } from '../src/lib/schema.mjs';
 import { marketSnapshotSchema } from '../src/lib/markets.mjs';
 import { airtimeSchema } from '../src/lib/airtime.mjs';
 import {
+  economySchema,
+  seriesConfigSchema,
+  statementsSchema,
+  validateEconomy,
+} from '../src/lib/economy.mjs';
+import {
   digitalLawSchema,
   validateDigitalLaw,
 } from '../src/lib/digital-law.mjs';
@@ -83,7 +89,22 @@ marketSnapshotSchema.parse(
     ),
   ),
 );
+const [series, economy, statements] = await Promise.all(
+  ['economy-series', 'economy', 'economic-statements'].map(async (name) =>
+    JSON.parse(
+      await readFile(
+        new URL(`../src/data/${name}.json`, import.meta.url),
+        'utf8',
+      ),
+    ),
+  ),
+);
 const errors = [
+  ...validateEconomy(
+    seriesConfigSchema.parse(series),
+    economySchema.parse(economy),
+    statementsSchema.parse(statements),
+  ),
   ...validateDataset(dataset),
   ...validateFeatures(dataset),
   ...visualErrors,

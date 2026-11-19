@@ -98,20 +98,30 @@ test('les fiches et la matrice de veille restent consultables sans JavaScript', 
   await context.close();
 });
 
-test('la home conserve ses graphiques en haut et ses dossiers sous les thèmes', async ({
+test('la home affiche les séries et les accès au corpus sans exemple nominatif', async ({
   page,
 }) => {
-  for (const width of [768, 1024, 1440, 1800]) {
+  for (const width of [320, 768, 1024, 1440, 1800]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/');
     await page.evaluate(() => document.fonts.ready);
     const programme = (await page.locator('.programme-index').boundingBox())!;
     const dossiers = (await page.locator('.home-dossiers').boundingBox())!;
-    const poll = (await page.locator('.home-poll').boundingBox())!;
     expect(dossiers.y - programme.y - programme.height).toBeLessThanOrEqual(32);
-    expect(Math.abs(poll.y - programme.y)).toBeLessThanOrEqual(1);
-    await expect(page.locator('.candidate-roster a')).toHaveCount(33);
-    await expect(page.locator('.home-market-provider')).toHaveCount(2);
+    await expect(
+      page.locator('.home-economic-signals svg[role="img"]'),
+    ).toHaveCount(4);
+    await expect(page.locator('main')).not.toContainText(
+      /Jean-Luc Mélenchon|David Lisnard/,
+    );
+    await expect(
+      page
+        .getByRole('navigation', { name: 'Accès rapides' })
+        .getByRole('link', { name: '33 profils suivis' }),
+    ).toBeVisible();
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth),
+    ).toBeLessThanOrEqual(width);
   }
 });
 

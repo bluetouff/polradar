@@ -112,3 +112,13 @@ Voir [CONTRIBUTING.md](CONTRIBUTING.md) et [SECURITY.md](SECURITY.md). Les corre
 ## Licence
 
 [MIT](LICENSE), pour le code et les contenus originaux du projet. Les documents de tiers cités, les noms et les marques restent soumis à leurs propres droits. La licence du dépôt ne les relicencie pas.
+
+### Séries économiques
+
+La rubrique [Indicateurs économiques](https://polradar.fr/economie/) lit un relevé
+versionné des séries d’Eurostat pour la France. Les définitions et filtres sont dans
+`src/data/economy-series.json`. La veille quotidienne collecte un relevé pour examen.
+Pour intégrer ses observations, lancer `python3 scripts/collect-economy.py --write`
+puis valider et publier le diff par le flux Git habituel. Une collecte incomplète
+conserve le relevé publié. Les vérifications de déclarations citent le millésime de la
+publication de référence pour rester lisibles après révision des séries.

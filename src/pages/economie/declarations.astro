@@ -1,0 +1,116 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { statements } from '../../lib/economy-data';
+import { printedNumber } from '../../lib/economy.mjs';
+import { formatDate } from '../../lib/data';
+import '../../styles/economy.css';
+
+const cases = [...statements].sort((a, b) =>
+  (b.statement.date ?? '').localeCompare(a.statement.date ?? ''),
+);
+---
+
+<Base
+  title="Déclarations et chiffres publics"
+  description="Déclarations politiques comparées aux publications de l’Insee, d’Eurostat et des producteurs de statistiques publiques."
+  section="/economie/"
+>
+  <div class="breadcrumbs">
+    <a href="/economie/">Indicateurs économiques</a>
+    <span>/</span>
+    <span>Déclarations</span>
+  </div>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="exchange" />
+    </span>
+    <div>
+      <h1>Déclarations et chiffres publics</h1>
+      <p>
+        Les chiffres cités et les statistiques publiées pour la même période.
+      </p>
+    </div>
+  </header>
+  <div class="economy">
+    <nav class="economy-nav" aria-label="Données et déclarations">
+      <a href="/economie/">
+        <Icon name="markets" /> Indicateurs
+      </a>
+      <a href="/economie/declarations/" aria-current="page">
+        <Icon name="exchange" /> Déclarations
+      </a>
+    </nav>
+    <div class="economy-claims">
+      {cases.map((row) => (
+        <article
+          class="economy-claim"
+          data-result={row.result.tone}
+          id={row.id}
+        >
+          <header>
+            <div>
+              <span>{row.speaker}</span>
+              <h2>
+                <a href={`#${row.id}`}>{row.title}</a>
+              </h2>
+            </div>
+            <span class="economy-result">{row.result.label}</span>
+          </header>
+          <p class="economy-meta">
+            {row.statement.date ? (
+              <time datetime={row.statement.date}>
+                {formatDate(row.statement.date)}
+              </time>
+            ) : (
+              'Publication non datée'
+            )}
+            {' · '}
+            {row.period}
+          </p>
+          <blockquote>« {row.quote} »</blockquote>
+          <dl class="economy-values">
+            <div>
+              <dt>Chiffre cité</dt>
+              <dd>
+                {printedNumber(row.claimed)} <small>{row.unit}</small>
+              </dd>
+            </div>
+            <div>
+              <dt>Chiffre de référence</dt>
+              <dd>
+                {printedNumber(row.observed)} <small>{row.unit}</small>
+              </dd>
+            </div>
+            {row.result.delta !== null && Number(row.result.delta) !== 0 && (
+              <div>
+                <dt>Écart cité moins référence</dt>
+                <dd>
+                  {printedNumber(row.result.delta)}{' '}
+                  <small>
+                    {row.unit.startsWith('%')
+                      ? row.unit === '%'
+                        ? 'pt'
+                        : 'pt de PIB'
+                      : row.unit}
+                  </small>
+                </dd>
+              </div>
+            )}
+          </dl>
+          <p>{row.context}</p>
+          <footer class="economy-links">
+            <a href={row.statement.url}>{row.statement.title} ↗</a>
+            <a href={row.reference.url}>{row.reference.title} ↗</a>
+            {row.priorReference && (
+              <a href={row.priorReference.url}>{row.priorReference.title} ↗</a>
+            )}
+            {row.indicatorId && (
+              <a href={`/economie/${row.indicatorId}/`}>Série complète ↗</a>
+            )}
+          </footer>
+        </article>
+      ))}
+    </div>
+  </div>
+</Base>

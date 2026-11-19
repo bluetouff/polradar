@@ -1,233 +1,217 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import ArticleCard from '../components/ArticleCard.astro';
 import Icon from '../components/Icon.astro';
 import {
   candidates,
   themes,
   measures,
-  versions,
-  watch,
   sources,
   events,
   formatDate,
 } from '../lib/data';
 import HomeSignals from '../components/HomeSignals.astro';
-import CandidatePortrait from '../components/CandidatePortrait.astro';
 import HomeExplorers from '../components/HomeExplorers.astro';
 import HomeEvidence from '../components/HomeEvidence.astro';
+
 const articles = (
   await getCollection('articles', ({ data }) => !data.draft)
-).sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
-const recent = events
-  .filter((event) => event.kind === 'past')
-  .sort((a, b) => b.date.localeCompare(a.date))
-  .slice(0, 3);
-const dates = events.filter((event) => event.kind === 'announced');
-const currentMeasures = measures.filter((item) => item.scope !== 'archive');
-const themeCounts = themes.map((theme) => ({
+).sort(
+  (a, b) =>
+    b.data.published.localeCompare(a.data.published) ||
+    a.data.title.localeCompare(b.data.title, 'fr'),
+);
+const dates = events.filter((event) =>
+  ['premier-tour', 'second-tour'].includes(event.id),
+);
+const current = measures.filter((item) => item.scope !== 'archive');
+const counts = themes.map((theme) => ({
   ...theme,
-  count: currentMeasures.filter((item) => item.theme === theme.id).length,
+  count: current.filter((item) => item.theme === theme.id).length,
 }));
-const maxThemeCount = Math.max(1, ...themeCounts.map((theme) => theme.count));
+const maxCount = Math.max(1, ...counts.map((theme) => theme.count));
 ---
 
 <Base>
-  <header class="page-title home-title">
-    <h1>Présidentielle 2027</h1>
-    <p>Programmes, candidats et calendrier électoral.</p>
+  <header class="page-title home-title home-brief">
+    <div>
+      <h1>Présidentielle 2027</h1>
+      <p>Programmes, données publiques et calendrier électoral.</p>
+    </div>
+    <nav aria-label="Accès rapides">
+      <a href="/candidats/">
+        <Icon name="people" /> <strong>{candidates.length}</strong> profils
+        suivis
+      </a>
+      <a href="/mesures/">
+        <Icon name="mesures" /> <strong>{current.length}</strong> fiches hors
+        archives
+      </a>
+      <a href="/sources/">
+        <Icon name="source" /> <strong>{sources.length}</strong> sources
+      </a>
+    </nav>
   </header>
-  <HomeEvidence />
-  <HomeExplorers />
-  <div class="campaign-index">
-    <div class="home-editorial">
-      <section class="programme-index" aria-labelledby="programme-index-title">
-        <div class="register-heading">
-          <h2 id="programme-index-title">Comparer les programmes</h2>
-          <a href="/numerique/" class="inline-action">
-            Numérique ↗
-          </a>
-          <a href="/comparer/" class="inline-action">
-            Ouvrir le comparateur ↗
-          </a>
-        </div>
-        <p class="register-note">
-          Nombre de fiches documentées par thème, hors archives de 2022.
-        </p>
-        <div class="theme-register">
-          {themeCounts.map((theme) => (
-            <a href={`/comparer/?theme=${theme.id}`}>
-              <Icon name={theme.id} />
-              <span class="theme-entry">
-                <span>{theme.label}</span>
-                <svg
-                  viewBox="0 0 100 5"
-                  preserveAspectRatio="none"
-                  aria-hidden="true"
-                >
-                  <rect class="theme-track" width="100" height="5" />
-                  <rect
-                    class="theme-fill"
-                    width={(theme.count / maxThemeCount) * 100}
-                    height="5"
-                  />
-                </svg>
-              </span>
-              <span class="theme-count" aria-label={`${theme.count} fiches`}>
-                {theme.count}
-              </span>
-              <span aria-hidden="true">↗</span>
-            </a>
-          ))}
-        </div>
-        <div class="corpus-line">
-          <span>
-            {measures.filter((item) => item.scope !== 'archive').length} fiches
-            hors archives
-          </span>
-          <span>
-            {measures.filter((item) => item.scope === 'archive').length}{' '}
-            archives de 2022
-          </span>
-          <a href="/sources/">{sources.length} sources ↗</a>
-        </div>
-      </section>
-      <section class="home-dossiers" aria-labelledby="home-dossiers-title">
-        <div class="register-heading">
-          <h2 id="home-dossiers-title">Dossiers</h2>
-          <a href="/dossiers/" class="inline-action">
-            Tous les dossiers ↗
-          </a>
-        </div>
-        <div class="article-grid">
-          {articles.slice(0, 3).map((article, index) => (
-            <ArticleCard article={article} index={index} />
-          ))}
-        </div>
-      </section>
-    </div>
+  <div class="home-layout">
     <HomeSignals />
-  </div>
-  <section
-    class="candidate-register"
-    aria-labelledby="candidate-register-title"
-  >
-    <div class="register-heading">
-      <h2 id="candidate-register-title">Candidats</h2>
-      <span class="index-total">
-        {String(candidates.length).padStart(2, '0')}
-      </span>
-    </div>
-    <p class="register-note">Profils suivis · ordre alphabétique</p>
-    <ol class="candidate-roster">
-      {candidates.map((candidate) => (
-        <li>
-          <a href={`/candidats/${candidate.id}/`}>
-            <span class="roster-portrait">
-              <CandidatePortrait candidate={candidate} compact />
-            </span>
-            <span class="roster-person">
-              <strong>{candidate.name}</strong>
-            </span>
-            <span class="roster-arrow" aria-hidden="true">
-              ↗
-            </span>
-          </a>
-        </li>
-      ))}
-    </ol>
-    <a class="register-bottom" href="/candidats/">
-      Statuts et fiches des candidats <span aria-hidden="true">↗</span>
-    </a>
-  </section>
-
-  <section class="home-tools" aria-label="Outils de suivi">
-    <a href="/mesures/">
-      <Icon name="mesures" />
-      <span>
-        <strong>{measures.length} mesures et orientations</strong>
-        <small>Paramètres, bénéficiaires et références</small>
-      </span>
-      <span aria-hidden="true">↗</span>
-    </a>
-    <a href="/historique/">
-      <Icon name="historique" />
-      <span>
-        <strong>{versions.length} versions de fiches</strong>
-        <small>Consulter les modifications avant / après</small>
-      </span>
-      <span aria-hidden="true">↗</span>
-    </a>
-    <a href="/veille/">
-      <Icon name="veille" />
-      <span>
-        <strong>{watch.length} sources en veille</strong>
-        <small>Relevés et rapports quotidiens</small>
-      </span>
-      <span aria-hidden="true">↗</span>
-    </a>
-    <a href="/suivi/">
-      <Icon name="suivi" />
-      <span>
-        <strong>Mon suivi</strong>
-        <small>Candidats, thèmes et flux RSS</small>
-      </span>
-      <span aria-hidden="true">↗</span>
-    </a>
-  </section>
-  <div class="home-bottom">
-    <section aria-labelledby="recent-title">
+    <HomeEvidence />
+    <section class="programme-index" aria-labelledby="programme-index-title">
       <div class="register-heading">
-        <h2 id="recent-title">Chronologie de la campagne</h2>
-        <a href="/campagne/" class="inline-action">
-          Voir la chronologie ↗
+        <h2 id="programme-index-title">Programmes par thème</h2>
+        <a href="/comparer/" class="inline-action">
+          Ouvrir le comparateur ↗
         </a>
       </div>
-      <ol class="recent-list">
-        {recent.map((event) => (
-          <li>
-            <time datetime={event.date}>{formatDate(event.date)}</time>
-            <span>{event.title}</span>
-            <a href="/campagne/" aria-label={`Consulter : ${event.title}`}>
-              ↗
-            </a>
-          </li>
+      <p class="register-note">
+        Nombre de fiches recensées hors archives de 2022.
+      </p>
+      <div class="theme-register">
+        {counts.map((theme) => (
+          <a href={`/comparer/?theme=${theme.id}`}>
+            <Icon name={theme.id} />
+            <span class="theme-entry">
+              <span>{theme.label}</span>
+              <svg
+                viewBox="0 0 100 5"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <rect class="theme-track" width="100" height="5" />
+                <rect
+                  class="theme-fill"
+                  width={(theme.count / maxCount) * 100}
+                  height="5"
+                />
+              </svg>
+            </span>
+            <span class="theme-count" aria-label={`${theme.count} fiches`}>
+              {theme.count}
+            </span>
+            <span aria-hidden="true">↗</span>
+          </a>
         ))}
-      </ol>
+      </div>
     </section>
+    <section class="home-dossiers" aria-labelledby="home-dossiers-title">
+      <div class="register-heading">
+        <h2 id="home-dossiers-title">Derniers dossiers</h2>
+        <a href="/dossiers/" class="inline-action">
+          Tous les dossiers ↗
+        </a>
+      </div>
+      <div class="home-dossier-grid">
+        {articles.slice(0, 3).map((article) => (
+          <a href={`/dossiers/${article.id}/`}>
+            <small>
+              {article.data.category} ·{' '}
+              <time datetime={article.data.published}>
+                {formatDate(article.data.published)}
+              </time>
+            </small>
+            <strong>{article.data.title}</strong>
+          </a>
+        ))}
+      </div>
+    </section>
+    <HomeExplorers />
     <section
       class="election-calendar"
       aria-labelledby="election-calendar-title"
     >
       <div class="register-heading">
         <h2 id="election-calendar-title">Dates du scrutin</h2>
+        <a class="inline-action" href="/reperes/">
+          Calendrier et sources ↗
+        </a>
       </div>
-      {dates.map((event) => (
-        <div class="calendar-entry">
-          <time datetime={event.date}>{formatDate(event.date)}</time>
-          <span>
-            {event.id === 'premier-tour' ? 'Premier tour' : 'Second tour'}
-          </span>
-        </div>
-      ))}
-      <a class="inline-action" href="/reperes/">
-        Calendrier et sources ↗
-      </a>
+      <div class="home-election-dates">
+        {dates.map((event) => (
+          <div class="calendar-entry">
+            <span>
+              {event.id === 'premier-tour' ? 'Premier tour' : 'Second tour'}
+            </span>
+            <time datetime={event.date}>{formatDate(event.date)}</time>
+          </div>
+        ))}
+      </div>
     </section>
   </div>
 </Base>
 
 <style>
-  .candidate-roster a {
-    grid-template-columns: 44px minmax(0, 1fr) 14px;
-    align-items: center;
-    padding-block: 10px;
+  .home-brief {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: end;
+    gap: 0.65rem 1.2rem;
+    padding-block-end: 0.9rem;
+    margin-block-end: 1rem;
   }
-  .roster-portrait {
-    display: block;
-    width: 44px;
-    height: 50px;
-    overflow: hidden;
+  .home-brief h1 {
+    font-size: 26px;
+  }
+  .home-brief p {
+    margin-block-end: 0;
+  }
+  .home-brief nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .home-brief nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.36rem 0.55rem;
+    border: 1px solid #abc0b3;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.8rem;
+  }
+  .home-brief nav .icon {
+    width: 1rem;
+    height: 1rem;
+  }
+  .home-layout {
+    display: grid;
+    gap: 1.05rem;
+    min-width: 0;
+  }
+  .home-layout .programme-index {
+    margin: 0;
+  }
+  .home-layout .home-dossiers {
+    margin-block: 0;
+  }
+  .home-dossier-grid,
+  .home-election-dates {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    gap: 0.5rem;
+    margin-top: 0.45rem;
+  }
+  .home-dossier-grid a {
+    display: grid;
+    gap: 0.3rem;
+    padding: 0.65rem;
+    border: 1px solid #b7c7bf;
+    background: #fffdf6;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.87rem;
+  }
+  .home-dossier-grid a:hover,
+  .home-brief nav a:hover {
+    background: #e7eee6;
+  }
+  .home-dossier-grid small {
+    color: var(--muted);
+    font: 0.71rem var(--mono);
+  }
+  @media (min-width: 1040px) {
+    .home-layout .theme-register {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
   }
 </style>
