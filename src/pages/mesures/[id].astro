@@ -136,8 +136,13 @@ const candidate = candidateById(measure.candidate),
                   <Icon name="external" />
                 </a>
                 <p>{ref.locator}</p>
-                {source.published && (
-                  <span>Publication : {formatDate(source.published)}</span>
+                {(source.published || source.publishedYear) && (
+                  <span>
+                    Publication :{' '}
+                    {source.published
+                      ? formatDate(source.published)
+                      : source.publishedYear}
+                  </span>
                 )}
                 {source.updated && (
                   <span>

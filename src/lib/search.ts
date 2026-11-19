@@ -31,14 +31,17 @@ export const searchKinds: Record<string, string> = {
   sondage: 'Sondage',
   evenement: 'Chronologie',
 };
+const publicationYear = (s: (typeof sources)[number]) =>
+  s.published?.slice(0, 4) ?? s.publishedYear ?? '';
 export async function searchEntries(): Promise<SearchEntry[]> {
   const articles = await getCollection('articles', ({ data }) => !data.draft);
   const sourceYear = (ids: string[]) => {
     const years = [
       ...new Set(
         sources
-          .filter((source) => ids.includes(source.id) && source.published)
-          .map((source) => source.published!.slice(0, 4)),
+          .filter((source) => ids.includes(source.id))
+          .map(publicationYear)
+          .filter(Boolean),
       ),
     ];
     return years.length === 1 ? years[0] : '';
@@ -114,7 +117,7 @@ export async function searchEntries(): Promise<SearchEntry[]> {
         ],
         theme: '',
         themes: [...new Set(related.map((m) => m.theme))],
-        year: source.published?.slice(0, 4) || '',
+        year: publicationYear(source),
         scope: source.kind === 'archive' ? 'archive' : '',
         date: source.published || '',
       };

@@ -47,6 +47,10 @@ export const sourceSchema = z.object({
     .optional(),
   kind: z.enum(['campagne', 'parti', 'institution', 'presse', 'archive']),
   published: dateSchema.nullable(),
+  publishedYear: z
+    .string()
+    .regex(/^\d{4}$/)
+    .optional(),
   updated: dateSchema.nullable().optional(),
   watch: z.boolean().optional(),
   checked: dateSchema,
@@ -407,6 +411,13 @@ export function validateDataset(dataset) {
     }
     if (source.checked > today)
       errors.push(`${source.id}: consultation future`);
+    if (
+      source.publishedYear &&
+      (source.publishedYear > source.checked.slice(0, 4) ||
+        (source.published &&
+          source.published.slice(0, 4) !== source.publishedYear))
+    )
+      errors.push(`${source.id}: année de publication incohérente`);
     if (source.published && source.published > source.checked)
       errors.push(`${source.id}: publication après consultation`);
     if (
@@ -429,6 +440,7 @@ export function validateDataset(dataset) {
       item.candidate,
       item.theme,
       item.partyAuthor,
+      item.scope === 'parti',
       item.scope === 'archive',
     ]);
     if (pairs.has(pair)) errors.push(`${item.id}: doublon candidat/thème`);

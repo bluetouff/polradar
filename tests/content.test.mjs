@@ -202,3 +202,26 @@ test('le suivi vidéo impose une URL YouTube canonique', () => {
     );
   }
 });
+
+test('un dossier de parti et une déclaration personnelle peuvent partager un thème, deux dossiers du même auteur restent un doublon', () => {
+  const errors = changed((d) => {
+    const current = d.engagements.find(
+      (e) => e.id === 'rohou-climat-presidentielle',
+    );
+    d.engagements.push({ ...current, id: 'rohou-test-duplique' });
+  });
+  assert.ok(errors.some((e) => e.includes('doublon candidat/thème')));
+});
+test('une année seule reste distincte du jour de publication et doit précéder la consultation', () => {
+  assert.ok(
+    changed((d) => {
+      d.sources[0].publishedYear = '2099';
+    }).some((e) => e.includes('année de publication')),
+  );
+  assert.ok(
+    changed((d) => {
+      d.sources[0].published = '2023-02-01';
+      d.sources[0].publishedYear = '2022';
+    }).some((e) => e.includes('année de publication')),
+  );
+});
