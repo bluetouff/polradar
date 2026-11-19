@@ -122,6 +122,7 @@
   }
   .site-navigation {
     margin-inline: 0.55rem;
+    grid-template-columns: 1.19fr 1fr 1.12fr 1fr 0.79fr;
   }
   .site-nav-group summary {
     gap: 0.12rem;

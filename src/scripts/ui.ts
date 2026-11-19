@@ -168,26 +168,25 @@ export function renderMetricPlots(
       el('span', group.unit),
     );
     const scale = el('div', undefined, 'metric-scale');
-    scale.append(el('span', '0'), el('span', `${max} ${group.unit}`));
+    scale.append(el('span', '0'), el('span', `${number(max)} ${group.unit}`));
     panel.append(header, scale);
-    group.values.forEach((row, index) => {
+    group.values.forEach((row) => {
       const link = anchor('', `/mesures/${row.measureId}/`);
       link.className = 'metric-row';
       const chart = svg('svg', {
         viewBox: '0 0 320 28',
+        preserveAspectRatio: 'none',
         'aria-hidden': 'true',
       });
       chart.append(
         svg('path', { class: 'metric-track', d: 'M5 14H315' }),
         svg('path', {
-          class: `metric-line series-${index % 8}`,
+          class: 'metric-line',
           d: `M5 14H${5 + (row.value / max) * 310}`,
         }),
-        svg('circle', {
-          class: `metric-dot series-${index % 8}`,
-          cx: String(5 + (row.value / max) * 310),
-          cy: '14',
-          r: '4',
+        svg('path', {
+          class: 'metric-dot',
+          d: `M${5 + (row.value / max) * 310} 14h0`,
         }),
       );
       link.append(el('span', row.name), chart, el('strong', number(row.value)));

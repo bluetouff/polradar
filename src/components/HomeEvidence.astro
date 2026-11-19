@@ -78,15 +78,16 @@ const tools = [
     align-content: start;
     row-gap: 0.6rem;
     padding: 0.9rem;
-    background: #e0d3f2;
-    border: 1px solid #81718d;
-    border-top: 3px solid var(--press);
-    color: var(--press);
+    background: linear-gradient(135deg, #f3f7f8 10%, #dbe8ec);
+    border: 1px solid #acc2ca;
+    border-radius: 0.55rem;
+    box-shadow: inset 0 1px 0 #ffffffa6;
+    color: var(--ink);
     text-decoration: none;
     line-height: 1.27;
   }
-  .home-comparison-index a:nth-child(2n) {
-    background: #f1d6bd;
+  .home-comparison-index a:is(:hover, :focus-visible) {
+    border-color: #638593;
   }
   .home-comparison-index a:hover strong {
     text-decoration: underline;
@@ -94,6 +95,7 @@ const tools = [
   .home-comparison-index .icon {
     width: 1.5rem;
     height: 1.5rem;
+    color: #376877;
   }
   .home-comparison-index .icon:last-child {
     grid-area: 1/2;
@@ -107,7 +109,8 @@ const tools = [
     display: block;
     margin-top: 0.35rem;
     color: var(--muted);
-    font: 0.77rem var(--mono);
+    font: 500 0.78rem/1.4 var(--sans);
+    font-variant-numeric: tabular-nums;
   }
   @media (max-width: 620px) {
     .home-comparison-index > div {

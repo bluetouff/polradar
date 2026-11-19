@@ -65,7 +65,11 @@ const maxCount = Math.max(1, ...counts.map((theme) => theme.count));
         ))}
       </div>
     </section>
-    <section class="home-dossiers" aria-labelledby="home-dossiers-title">
+    <section
+      id="dossiers"
+      class="home-dossiers"
+      aria-labelledby="home-dossiers-title"
+    >
       <div class="register-heading">
         <h2 id="home-dossiers-title">Derniers dossiers</h2>
         <a href="/dossiers/" class="inline-action">
@@ -75,13 +79,19 @@ const maxCount = Math.max(1, ...counts.map((theme) => theme.count));
       <div class="home-dossier-grid">
         {articles.slice(0, 3).map((article) => (
           <a href={`/dossiers/${article.id}/`}>
-            <small>
-              {article.data.category} ·{' '}
-              <time datetime={article.data.published}>
-                {formatDate(article.data.published)}
-              </time>
-            </small>
-            <strong>{article.data.title}</strong>
+            <span class="dossier-icon">
+              <Icon name={article.data.themes[0] ?? 'source'} />
+            </span>
+            <span class="dossier-copy">
+              <small>
+                {article.data.category} <span aria-hidden="true">·</span>{' '}
+                <time datetime={article.data.published}>
+                  {formatDate(article.data.published)}
+                </time>
+              </small>
+              <strong>{article.data.title}</strong>
+            </span>
+            <Icon name="arrow" class="dossier-arrow" />
           </a>
         ))}
       </div>
@@ -101,18 +111,29 @@ const maxCount = Math.max(1, ...counts.map((theme) => theme.count));
     margin: 0;
     align-self: start;
     min-width: 0;
-    border: 1px solid #aa9ab5;
-    background: #f0e9f7;
-    padding: clamp(0.8rem, 1.4vw, 1.45rem);
+    border: 1px solid #b4c7ce;
+    border-radius: 0.7rem;
+    background: var(--panel-gradient);
+    padding: clamp(0.85rem, 1.55vw, 1.5rem);
   }
   .home-dossiers {
-    background: #f3ddce;
+    color: #eef6f7;
+    background:
+      radial-gradient(ellipse at 100% 0, #365a65, transparent 64%),
+      linear-gradient(135deg, #192e3c, #10232f);
+    border-color: #395561;
   }
   .programme-index .register-heading,
   .home-dossiers .register-heading {
     border: 0;
-    padding-block: 0 0.65rem;
+    padding-block: 0 0.75rem;
     align-items: baseline;
+  }
+  .home-dossiers h2 {
+    color: #f0f7f8;
+  }
+  .home-dossiers .inline-action {
+    color: #b7d9df;
   }
   .register-note {
     margin: 0 0 0.5rem;
@@ -121,39 +142,92 @@ const maxCount = Math.max(1, ...counts.map((theme) => theme.count));
   }
   .home-dossier-grid a {
     display: grid;
-    gap: 0.4rem;
-    border-top: 1px solid #ad9489;
-    padding-block: 0.85rem;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: clamp(0.55rem, 1.2vw, 1rem);
+    border-top: 1px solid #48636e;
+    padding: 0.95rem 0;
+    color: inherit;
     text-decoration: none;
   }
-  .home-dossier-grid a:hover strong {
+  .home-dossier-grid a:hover strong,
+  .home-dossier-grid a:focus-visible strong {
     text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
   }
-  .home-dossier-grid small {
-    font: 0.75rem var(--mono);
-    color: #584a52;
+  .home-dossier-grid a:focus-visible {
+    outline-color: var(--ice);
   }
-  .home-dossier-grid strong {
-    font: 400 1.55rem/1.09 var(--display);
-    color: var(--press);
+  .dossier-icon {
+    display: grid;
+    place-items: center;
+    width: 2.1rem;
+    height: 2.4rem;
+    color: #c8e2e7;
+    background: linear-gradient(145deg, #3b5868, #263e4b);
+    border: 1px solid #55727e;
+    border-radius: 0.4rem;
+  }
+  .dossier-icon :global(.icon) {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+  .dossier-copy {
+    display: grid;
+    gap: 0.28rem;
+  }
+  .dossier-copy small {
+    font: 500 0.76rem/1.35 var(--sans);
+    color: #bbced5;
+    font-variant-numeric: tabular-nums;
+  }
+  .dossier-copy small span {
+    padding-inline: 0.18rem;
+  }
+  .dossier-copy strong {
+    color: #f2f7f9;
+    font: 610 clamp(1.02rem, 1.35vw, 1.19rem)/1.32 var(--sans);
+    letter-spacing: -0.018em;
+  }
+  .home-dossier-grid :global(.dossier-arrow) {
+    width: 0.95rem;
+    height: 0.95rem;
+    color: #acced7;
   }
   .theme-register > a > :global(.icon) {
-    background: #e1d3f1;
-    border-color: #beacd0;
-    color: #443454;
+    background: #d9e7ea;
+    border-color: #a8bdc6;
+    color: #375b69;
+  }
+  .theme-register :global(.theme-track) {
+    fill: #cddbe0;
+  }
+  .theme-register :global(.theme-fill) {
+    fill: #477888;
   }
   .home-layout :global(.home-explorers) {
     margin: 0;
     border: 0;
   }
   .home-layout :global(.home-explorers .explorer-index > a) {
-    background: #d5e5df;
-    border: 1px solid #9baea5;
-    border-top: 3px solid var(--press);
-    border-radius: 0;
+    background: var(--panel-gradient);
+    border: 1px solid var(--line);
+    border-radius: 0.6rem;
   }
   .home-layout :global(.home-explorers .explorer-index > a:hover h3) {
     text-decoration: underline;
+  }
+  @media print {
+    .home-dossiers {
+      color: black;
+      background: white;
+    }
+    .home-dossiers :is(h2, .inline-action, small, strong),
+    .home-dossier-grid :global(.dossier-arrow),
+    .dossier-icon {
+      color: black;
+    }
   }
   @media (min-width: 1040px) {
     .home-layout {

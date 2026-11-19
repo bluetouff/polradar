@@ -820,46 +820,48 @@
 
 @media screen {
   .evolution-dossier .proposal-timeline {
-    background: var(--press);
-    color: #faf6ff;
+    background: var(--night-gradient);
+    color: #eff6f8;
+    border-radius: 0.55rem;
     padding: 1rem clamp(0.7rem, 1.8vw, 1.6rem);
     margin: 1rem 0 0;
   }
   .proposal-timeline .timeline-date,
   .proposal-timeline small {
-    color: #dfd1e9;
+    color: #c1d5de;
   }
   .proposal-timeline a {
     color: inherit;
   }
   .proposal-timeline a:focus-visible {
-    outline-color: var(--citron);
+    outline-color: var(--ice);
   }
   .proposal-timeline a::before {
-    background: #a789bd;
+    background: #7897a6;
   }
   .proposal-timeline .timeline-point {
     color: white;
-    background: var(--press);
-    border-color: #c3a9da;
+    background: var(--navy);
+    border-color: #96b3c2;
   }
   .proposal-timeline .is-compared .timeline-point {
-    background: var(--citron);
-    color: var(--press);
-    border-color: var(--citron);
+    background: var(--ice);
+    color: var(--navy);
+    border-color: var(--ice);
   }
   .proposal-timeline strong {
-    font: 400 clamp(1.4rem, 2.3vw, 2rem)/1.12 var(--display);
+    font: 620 clamp(1.12rem, 1.7vw, 1.5rem)/1.18 var(--sans);
+    font-variant-numeric: tabular-nums;
   }
   .evolution-dossier .proposal-state {
-    background: #fcf5e9;
-    border: 1px solid #bdaead;
-    border-top: 4px solid #c4a2d6;
-    border-radius: 0;
+    background: var(--panel-gradient);
+    border: 1px solid #afc3cd;
+    border-top: 2px solid #7a93a4;
+    border-radius: 0.5rem;
   }
   .evolution-dossier .proposal-state:last-child {
-    background: #f0edf8;
-    border-top-color: var(--press);
+    background: linear-gradient(135deg, #e9f2f3, #dfecee);
+    border-top-color: #467581;
   }
   @media (max-width: 650px) {
     .evolution-dossier .dossier-heading {
@@ -873,7 +875,8 @@
     }
   }
   .proposal-state .state-amount {
-    font: 400 clamp(1.65rem, 3vw, 2.4rem)/1.08 var(--display);
+    font: 620 clamp(1.45rem, 2.55vw, 1.95rem)/1.15 var(--sans);
+    font-variant-numeric: tabular-nums;
     letter-spacing: -0.015em;
   }
 }

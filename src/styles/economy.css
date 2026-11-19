@@ -1,7 +1,7 @@
 .economy {
-  --economy-mint: #d5edbe;
-  --economy-board: #16323a;
-  --economy-amber: #efca83;
+  --economy-mint: #c0ddd5;
+  --economy-board: #142e3b;
+  --economy-amber: #dfbf9d;
   display: grid;
   gap: 1rem;
   min-width: 0;
@@ -69,22 +69,22 @@
 }
 .economy-group,
 .economy-detail {
-  --economy-line: #cbe6ac;
-  --economy-grid: #527072;
+  --economy-line: #abd6ca;
+  --economy-grid: #536f7d;
   min-width: 0;
   padding: clamp(0.7rem, 2vw, 1.05rem);
   border-radius: 7px;
-  background: var(--economy-board);
+  background: var(--night-gradient, var(--economy-board));
   color: #fffbf2;
 }
 .economy-group[data-group='emploi'] {
-  --economy-line: #f3cb83;
+  --economy-line: #e2c5a8;
 }
 .economy-group[data-group='activite'] {
   --economy-line: #a9d4e9;
 }
 .economy-group[data-group='niveau-de-vie'] {
-  --economy-line: #ded7ee;
+  --economy-line: #c6d7e2;
 }
 .economy-group[data-group='finances'] {
   --economy-line: #ecc2ac;
@@ -109,7 +109,7 @@
   padding: 0.65rem;
   border: 1px solid #658080;
   border-radius: 5px;
-  background: #1f3f47;
+  background: #1c3947;
 }
 .economy-card h3 {
   margin: 0 0 0.35rem;

@@ -1,8 +1,8 @@
 ---
 import Icon from './Icon.astro';
 import { candidates, events, measures, sources } from '../lib/data';
-import smallPrint from '../assets/edition/scrutin-480.webp?url';
-import largePrint from '../assets/edition/scrutin-1200.webp?url';
+import smallCover from '../assets/edition/scrutin-480.webp?url';
+import largeCover from '../assets/edition/scrutin-1200.webp?url';
 
 const dates = events.filter(({ id }) =>
   ['premier-tour', 'second-tour'].includes(id),
@@ -35,10 +35,10 @@ const register = [
     <p>Programmes, données publiques et calendrier électoral.</p>
   </div>
   <img
-    class="cover-print"
-    src={largePrint}
-    srcset={`${smallPrint} 480w, ${largePrint} 1200w`}
-    sizes="(max-width: 620px) 39vw, (max-width: 1536px) 49vw, 720px"
+    class="cover-image"
+    src={largeCover}
+    srcset={`${smallCover} 480w, ${largeCover} 1200w`}
+    sizes="(max-width: 620px) 47vw, (max-width: 960px) 48vw, 32rem"
     width="1200"
     height="800"
     fetchpriority="high"
@@ -74,59 +74,70 @@ const register = [
 
 <style>
   .election-cover {
+    position: relative;
     display: grid;
-    grid-template-columns: 1.05fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr);
     grid-template-areas: 'title art' 'calendar art' 'register register';
     grid-template-rows: auto 1fr auto;
     isolation: isolate;
-    color: var(--ink);
-    background: #bda8f0;
-    border: 1px solid var(--ink);
+    overflow: hidden;
+    color: #f2f8fa;
+    background:
+      radial-gradient(ellipse at 51% 120%, #295360 0, transparent 63%),
+      linear-gradient(115deg, #102431 0%, #163544 49%, #112632 78%);
+    border: 1px solid #3d5967;
+    border-radius: 0.85rem;
+    box-shadow: 0 7px 22px #17344016;
     margin-bottom: clamp(1rem, 2vw, 1.6rem);
   }
   .cover-title {
     grid-area: title;
-    padding: clamp(1.15rem, 2.6vw, 2.35rem) clamp(1rem, 2.6vw, 2.4rem) 0;
+    padding: clamp(1.15rem, 2.8vw, 2.55rem) clamp(1rem, 2.8vw, 2.6rem) 0;
   }
   .cover-title h1 {
+    color: #f1f7f9;
     font-size: clamp(1.5rem, 2.1vw, 1.75rem);
-    letter-spacing: -0.055em;
-    line-height: 1.1;
+    font-weight: 620;
+    letter-spacing: -0.038em;
+    line-height: 1.12;
   }
   .cover-title p {
-    max-width: 39ch;
+    max-width: 49ch;
+    color: #c6d7de;
     font-size: 1rem;
-    margin-top: 0.5rem;
-    line-height: 1.4;
+    margin-top: 0.55rem;
+    line-height: 1.45;
   }
-  .cover-print {
+  .cover-image {
     grid-area: art;
-    width: 100%;
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: auto;
+    max-width: 100%;
     height: 100%;
-    min-height: 0;
-    min-width: 0;
+    aspect-ratio: 1.8;
     object-fit: cover;
-    object-position: center 48%;
-    aspect-ratio: auto;
-    contain: size;
-    clip-path: polygon(4% 0, 100% 0, 100% 100%, 0 100%);
+    object-position: 56% 42%;
+    mask-image: linear-gradient(90deg, transparent, #000 24%);
   }
   .cover-calendar {
     grid-area: calendar;
     align-self: end;
-    margin: clamp(1.25rem, 2vw, 1.8rem) clamp(1rem, 2.6vw, 2.4rem)
+    margin: clamp(1.15rem, 2vw, 1.8rem) clamp(1rem, 2.8vw, 2.6rem)
       clamp(1rem, 2vw, 1.7rem);
-    border-top: 1px solid #736487;
+    border-top: 1px solid #58727f;
   }
   .calendar-link {
     display: inline-flex;
     gap: 0.5rem;
     align-items: center;
-    min-height: 2.55rem;
-    font: 650 0.82rem var(--sans);
+    min-height: 2.6rem;
+    color: #c1dfe5;
+    font: 580 0.83rem var(--sans);
     text-decoration-thickness: 1px;
+    text-underline-offset: 0.19em;
   }
-  .calendar-link .icon {
+  .calendar-link :global(.icon) {
     width: 1rem;
     height: 1rem;
   }
@@ -137,111 +148,135 @@ const register = [
     gap: 0.65rem;
   }
   .cover-calendar dl > div + div {
-    border-inline-start: 1px solid #736487;
+    border-inline-start: 1px solid #516d79;
     padding-inline-start: clamp(0.7rem, 1.5vw, 1.6rem);
   }
   .cover-calendar dt {
+    color: #d0e1e5;
     font-size: 0.82rem;
     line-height: 1.3;
-    font-weight: 650;
+    font-weight: 550;
   }
   .cover-calendar dd {
-    margin: 0;
+    margin: 0.32rem 0 0;
   }
   .cover-calendar time {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 0 0.6rem;
+    gap: 0.12rem 0.5rem;
+    color: #d5e3e8;
     font-size: 0.88rem;
   }
   .cover-calendar .day {
-    font: 400 clamp(2.7rem, 4.8vw, 4.6rem)/0.95 var(--display);
-    letter-spacing: -0.045em;
+    color: #f5f9fa;
+    font: 500 clamp(2.2rem, 3.65vw, 3.35rem)/1 var(--sans);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.055em;
   }
   .cover-register {
     grid-area: register;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    background: var(--citron);
-    border-top: 1px solid var(--ink);
+    background: linear-gradient(100deg, #c6d9de, #dbe7e9 55%, #bcced7);
+    border-top: 1px solid #a8c3cb;
   }
   .cover-register a {
     display: flex;
     align-items: center;
     min-width: 0;
-    padding: 0.7rem clamp(0.7rem, 2.5vw, 2.4rem);
-    gap: 0.55rem;
-    color: var(--ink);
+    min-height: 3.35rem;
+    padding: 0.66rem clamp(0.7rem, 2.5vw, 2.4rem);
+    gap: 0.6rem;
+    color: #183744;
     text-decoration: none;
     line-height: 1.2;
-    font-size: 0.88rem;
+    font-size: 0.89rem;
   }
   .cover-register a + a {
-    border-inline-start: 1px solid #818451;
+    border-inline-start: 1px solid #a5bac3;
   }
-  .cover-register .icon {
-    width: 1.25rem;
-    height: 1.25rem;
+  .cover-register :global(.icon) {
+    width: 1.15rem;
+    height: 1.15rem;
+    color: #355c6b;
     flex-shrink: 0;
   }
   .cover-register strong {
-    font: 750 clamp(1.35rem, 2vw, 1.75rem)/1 var(--sans);
-    letter-spacing: -0.055em;
+    font: 640 clamp(1.25rem, 1.8vw, 1.62rem)/1 var(--sans);
+    letter-spacing: -0.04em;
     font-variant-numeric: tabular-nums;
   }
   .cover-register a:hover {
-    background: #f4ffac;
+    background: #f3f9fa75;
   }
   .cover-register a:hover span {
     text-decoration: underline;
   }
+  .calendar-link:focus-visible {
+    outline-color: var(--ice);
+  }
+  .cover-register a:focus-visible {
+    outline-offset: -3px;
+  }
   @media (max-width: 620px) {
     .election-cover {
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.13fr) minmax(0, 1fr);
       grid-template-areas: 'title art' 'calendar calendar' 'register register';
     }
     .cover-title {
       align-self: center;
-      padding: 1rem 0.72rem;
-    }
-    .cover-title h1 {
-      font-size: 1.5rem;
+      padding: 1.08rem 0 1rem 0.82rem;
     }
     .cover-title p {
       font-size: 0.87rem;
     }
+    .cover-image {
+      width: 100%;
+      object-position: 56% 42%;
+    }
     .cover-calendar {
-      margin: 0;
-      padding: 0.25rem 0.72rem 0.85rem;
+      margin: 0 0.82rem 0.9rem;
     }
     .cover-register a {
       display: grid;
       grid-template-columns: auto 1fr;
       align-content: start;
-      gap: 0.3rem;
+      gap: 0.35rem;
       padding: 0.65rem 0.55rem;
     }
-    .cover-register .icon {
+    .cover-register :global(.icon) {
       width: 0.95rem;
       height: 0.95rem;
     }
     .cover-register span {
-      grid-column: 1 / -1;
+      grid-column: 1/-1;
       font-size: 0.78rem;
     }
   }
   @media print {
     .election-cover {
       background: white;
+      border: 1px solid #536671;
       color: black;
-    }
-    .cover-print {
-      display: none;
-    }
-    .election-cover {
+      box-shadow: none;
       grid-template-columns: 1fr;
       grid-template-areas: 'title' 'calendar' 'register';
+    }
+    .cover-image {
+      display: none;
+    }
+    .cover-title h1,
+    .cover-title p,
+    .cover-calendar dt,
+    .cover-calendar time,
+    .cover-calendar .day,
+    .calendar-link,
+    .cover-register a {
+      color: black;
+    }
+    .cover-register {
+      background: white;
     }
   }
 </style>

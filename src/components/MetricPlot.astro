@@ -23,23 +23,25 @@ const groups = metricGroups(Astro.props.measures, candidates);
         <div class="metric-scale">
           <span>0</span>
           <span>
-            {max} {group.unit}
+            {max.toLocaleString('fr-FR')} {group.unit}
           </span>
         </div>
-        {group.values.map((row, index) => (
+        {group.values.map((row) => (
           <a class="metric-row" href={`/mesures/${row.measureId}/`}>
             <span>{row.name}</span>
-            <svg viewBox="0 0 320 28" aria-hidden="true">
+            <svg
+              viewBox="0 0 320 28"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
               <path class="metric-track" d="M5 14H315" />
               <path
-                class={`metric-line series-${index % 8}`}
+                class="metric-line"
                 d={`M5 14H${5 + (row.value / max) * 310}`}
               />
-              <circle
-                class={`metric-dot series-${index % 8}`}
-                cx={5 + (row.value / max) * 310}
-                cy="14"
-                r="4"
+              <path
+                class="metric-dot"
+                d={`M${5 + (row.value / max) * 310} 14h0`}
               />
             </svg>
             <strong>{row.value.toLocaleString('fr-FR')}</strong>

@@ -14,38 +14,42 @@ body {
   font-family: Archivo, sans-serif;
   color: var(--ink);
   background: var(--paper);
-  --paper: #f4f2e8;
-  --ink: #173746;
-  --accent: #b25e45;
-  --muted: #627470;
-  --line: #1737462a;
-  --panel: #fff9;
-  --bar: #4f7c69;
+  --paper: #eff4f5;
+  --wash: #dae6ea;
+  --ink: #182e3c;
+  --accent: #2e6676;
+  --muted: #4a626d;
+  --line: #3b5b6b40;
+  --panel: #f6fafbc9;
+  --bar: #537b8c;
 }
 .palette-navy {
-  --paper: #142f3a;
-  --ink: #f4f2e8;
-  --accent: #e9b69b;
-  --muted: #b3c9c6;
-  --line: #c2d6cd40;
-  --panel: #24424a;
-  --bar: #a9c8b6;
+  --paper: #122835;
+  --wash: #224450;
+  --ink: #edf5f7;
+  --accent: #b5dae1;
+  --muted: #c0d3da;
+  --line: #b9d1d845;
+  --panel: #203d4a;
+  --bar: #92bdc8;
 }
 .palette-sage {
-  --paper: #e3eadf;
-  --ink: #183c3e;
-  --accent: #a3543b;
-  --muted: #536e66;
-  --panel: #f5f5eabb;
-  --bar: #5b7e65;
+  --paper: #e4edeb;
+  --wash: #cedfdd;
+  --ink: #1c393c;
+  --accent: #326868;
+  --muted: #4b6768;
+  --panel: #f2f7f5d9;
+  --bar: #567f7c;
 }
 .palette-clay {
-  --paper: #efdfd1;
-  --ink: #273e42;
-  --accent: #9a4a34;
-  --muted: #736f61;
-  --panel: #fff7e9a6;
-  --bar: #966553;
+  --paper: #e7edf2;
+  --wash: #d3dfe8;
+  --ink: #203749;
+  --accent: #3c627e;
+  --muted: #506778;
+  --panel: #f5f8fbd4;
+  --bar: #65839a;
 }
 .og-card {
   width: 1200px;
@@ -61,7 +65,12 @@ body {
   left: 0;
   height: 6px;
   width: 100%;
-  background: var(--accent);
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    var(--bar) 64%,
+    var(--wash)
+  );
 }
 .og-card > header {
   display: flex;

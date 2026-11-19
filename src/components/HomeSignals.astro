@@ -55,10 +55,12 @@ const indicators = ['inflation', 'chomage', 'croissance', 'dette-publique'].map(
 
 <style>
   .home-economic-signals .economy-group {
-    --economy-board: var(--press);
-    --economy-grid: #665b75;
-    background: var(--economy-board);
-    border-radius: 0;
+    --economy-board: #eef4f5;
+    --economy-grid: #b7c8ce;
+    background: var(--panel-gradient, #eef4f5);
+    color: var(--ink);
+    border: 1px solid #b0c4cc;
+    border-radius: 0.75rem;
     padding: clamp(0.9rem, 1.7vw, 1.5rem);
   }
   .home-signals-header {
@@ -68,15 +70,15 @@ const indicators = ['inflation', 'chomage', 'croissance', 'dette-publique'].map(
     align-items: baseline;
     gap: 0.4rem 1rem;
     padding-bottom: 0.8rem;
-    border-bottom: 1px solid #71647d;
+    border-bottom: 1px solid #b0c4cc;
   }
   .home-signals-header h2 {
     margin: 0;
-    color: #fff5ea;
+    color: var(--ink);
     font-size: 1.2rem;
   }
   .home-signals-header a {
-    color: var(--citron);
+    color: var(--accent);
     font-size: 0.88rem;
   }
   .economy-grid-cards {
@@ -84,10 +86,10 @@ const indicators = ['inflation', 'chomage', 'croissance', 'dette-publique'].map(
     margin-top: 0.8rem;
   }
   .home-economic-signals .economy-card {
-    --economy-line: var(--citron);
+    --economy-line: #226477;
     padding: 0.3rem 0.85rem;
     border: 0;
-    border-left: 1px solid #63546d;
+    border-left: 1px solid #c2d1d7;
     border-radius: 0;
     background: transparent;
   }
@@ -95,13 +97,23 @@ const indicators = ['inflation', 'chomage', 'croissance', 'dette-publique'].map(
     border-left: 0;
   }
   .home-economic-signals .economy-card:nth-child(2) {
-    --economy-line: #c8b5ff;
+    --economy-line: #405f82;
   }
   .home-economic-signals .economy-card:nth-child(3) {
-    --economy-line: #ffb28e;
+    --economy-line: #865a49;
   }
   .home-economic-signals .economy-card:nth-child(4) {
-    --economy-line: #a2dcc6;
+    --economy-line: #38675c;
+  }
+  .home-economic-signals .economy-card h3 {
+    color: var(--ink);
+  }
+  .home-economic-signals .economy-card p,
+  .home-economic-signals :global(.economy-curve figcaption) {
+    color: var(--muted);
+  }
+  .home-economic-signals :global(.economy-zero) {
+    stroke: #718995;
   }
   .economy-card h3 a {
     text-decoration: none;
@@ -110,7 +122,8 @@ const indicators = ['inflation', 'chomage', 'croissance', 'dette-publique'].map(
     text-decoration: underline;
   }
   .economy-reading strong {
-    font-size: clamp(1.45rem, 2.65vw, 2.25rem);
+    font: 640 clamp(1.45rem, 2.65vw, 2.1rem)/1.18 var(--sans);
+    font-variant-numeric: tabular-nums;
   }
   .home-economic-signals :global(.economy-curve figcaption) {
     font-size: 0.7rem;

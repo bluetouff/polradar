@@ -673,7 +673,7 @@
   .vote-date {
     min-height: 4.2rem;
     padding: 0.6rem 0.35rem 0.6rem 0;
-    border-top: 2px solid var(--press);
+    border-top: 1px solid var(--section-ink);
     gap: 0.6rem;
   }
   .vote-timeline-node {
@@ -681,8 +681,8 @@
     flex: none;
     width: 1.85rem;
     height: 1.85rem;
-    color: var(--press);
-    border-color: var(--press);
+    color: var(--navy);
+    border-color: var(--section-ink);
     background: var(--tint);
   }
   .vote-object {
@@ -696,9 +696,9 @@
   }
   .vote-record {
     display: block;
-    border-color: #bcabbf;
-    border-radius: 0;
-    background: #fbf4ee;
+    border-color: var(--line);
+    border-radius: 0.6rem;
+    background: var(--panel-gradient);
   }
   .vote-record-content {
     padding: 1rem;
@@ -718,8 +718,8 @@
     align-items: center;
     gap: 0.25rem 0.9rem;
     padding: 0.85rem 1rem;
-    background: var(--press);
-    color: #fff9f2;
+    background: var(--night-gradient);
+    color: #edf5f6;
   }
   .ballot-chart svg {
     grid-row: 1 / span 3;
@@ -735,29 +735,30 @@
     font-size: 0.7rem;
   }
   .ballot-tally strong {
-    font: 400 1.85rem/1 var(--display);
+    font: 620 1.55rem/1.1 var(--sans);
+    font-variant-numeric: tabular-nums;
   }
   .tally-pour {
-    color: #c8ebb0;
+    color: #a9d6c6;
   }
   .tally-contre {
-    color: #ffb89c;
+    color: #edbaaa;
   }
   .tally-abstention {
-    color: #cec1dd;
+    color: #bfcedc;
   }
   .ballot-dot-pour {
-    stroke: #c8ebb0;
+    stroke: #a9d6c6;
   }
   .ballot-dot-contre {
-    stroke: #ffb89c;
+    stroke: #edbaaa;
   }
   .ballot-dot-abstention {
-    stroke: #cec1dd;
+    stroke: #bfcedc;
   }
   .ballot-chart-key,
   .ballot-censure-note {
-    color: #e2d8e9;
+    color: #c7d9df;
     font-size: 0.69rem;
     margin: 0;
     line-height: 1.35;
@@ -770,7 +771,7 @@
     margin-top: 0.25rem;
   }
   .vote-proposal {
-    border-radius: 0;
-    border-top: 4px solid var(--citron);
+    border-radius: 0.55rem;
+    border-top: 2px solid var(--section-ink);
   }
 }

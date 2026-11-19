@@ -74,6 +74,38 @@ test('les nouvelles vues restent lisibles de 320 à 1440 pixels', async ({
   expect(errors).toEqual([]);
 });
 
+test('les montants de fiscalité restent dans leur carte sur le thème et dans le comparateur', async ({
+  page,
+}) => {
+  for (const width of [320, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const route of [
+      '/themes/fiscalite/',
+      '/comparer/?theme=fiscalite&c=melenchon,roussel&archives=0',
+    ]) {
+      await page.goto(route);
+      const panel = page
+        .locator('.metric-panel')
+        .filter({ hasText: 'Seuil d’exonération annoncé' });
+      await expect(panel).toBeVisible();
+      await page.evaluate(() => document.fonts.ready);
+      for (const row of await panel.locator('.metric-row').all()) {
+        const plot = (await row.locator('svg').boundingBox())!;
+        const value = (await row.locator('strong').boundingBox())!;
+        const bounds = (await row.boundingBox())!;
+        expect(plot.height).toBeLessThanOrEqual(32);
+        expect(value.x).toBeGreaterThan(plot.x + plot.width);
+        expect(value.x + value.width).toBeLessThanOrEqual(
+          bounds.x + bounds.width + 1,
+        );
+        expect(
+          await row.locator('strong').evaluate((node) => node.scrollWidth),
+        ).toBeLessThanOrEqual(Math.ceil(value.width) + 1);
+      }
+    }
+  }
+});
+
 test('plusieurs mesures restent consultables pour un candidat et un thème', async ({
   page,
 }) => {
