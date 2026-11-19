@@ -1,0 +1,73 @@
+---
+import CandidatePortrait from './CandidatePortrait.astro';
+import Icon from './Icon.astro';
+import type { Candidate } from '../lib/data';
+interface Props {
+  type: 'votes' | 'evolution';
+  choices: {
+    id: string;
+    title: string;
+    candidate: Candidate;
+    detail: string;
+  }[];
+}
+const { type, choices } = Astro.props;
+const votes = type === 'votes';
+const ordered = [...choices].sort(
+  (a, b) =>
+    a.candidate.name.localeCompare(b.candidate.name, 'fr') ||
+    a.title.localeCompare(b.title, 'fr'),
+);
+const groups = new Map<string, Props['choices']>();
+for (const choice of ordered) {
+  const group = groups.get(choice.candidate.id);
+  if (group) group.push(choice);
+  else groups.set(choice.candidate.id, [choice]);
+}
+---
+
+<nav class="dossier-picker" aria-label="Choisir un dossier">
+  <label class="dossier-select">
+    Choisir un dossier
+    <select
+      data-vote-select={votes || undefined}
+      data-evidence-select={!votes || undefined}
+    >
+      {[...groups.values()].map((group) => (
+        <optgroup label={group[0].candidate.name}>
+          {group.map((choice) => (
+            <option value={choice.id} selected={choice.id === choices[0].id}>
+              {choice.title}
+            </option>
+          ))}
+        </optgroup>
+      ))}
+    </select>
+  </label>
+  <details open class="dossier-directory">
+    <summary>
+      <Icon name="layers" />
+      Parcourir les {choices.length} dossiers
+      <Icon name="chevron" />
+    </summary>
+    <div class={votes ? 'vote-picker' : 'evidence-picker'}>
+      {ordered.map((choice) => (
+        <a
+          href={`#dossier=${choice.id}`}
+          data-vote-tab={votes ? choice.id : undefined}
+          data-evidence-tab={votes ? undefined : choice.id}
+        >
+          <span class={votes ? 'vote-picker-portrait' : 'picker-portrait'}>
+            <CandidatePortrait candidate={choice.candidate} compact />
+          </span>
+          <span>
+            <small>{choice.candidate.name}</small>
+            <strong>{choice.title}</strong>
+            <em>{choice.detail}</em>
+          </span>
+          <Icon name="arrow" />
+        </a>
+      ))}
+    </div>
+  </details>
+</nav>

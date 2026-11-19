@@ -1,86 +1,13 @@
 ---
 import Icon from './Icon.astro';
+import { groups } from '../lib/navigation';
 import '../styles/site-navigation.css';
 
 interface Props {
-  section?: string;
+  current: string;
 }
-const { section = '' } = Astro.props;
+const { current } = Astro.props;
 const path = Astro.url.pathname;
-const groups = [
-  {
-    name: 'Programmes',
-    icon: 'mesures',
-    links: [
-      ['/mesures/', 'Mesures et orientations', 'mesures'],
-      ['/themes/', 'Thèmes', 'layers'],
-      ['/comparer/', 'Comparer les programmes', 'exchange'],
-      ['/comparer/retraites/', 'Retraites et droit en vigueur', 'retraites'],
-      ['/numerique/', 'Propositions sur le numérique', 'layers'],
-      [
-        '/numerique/ce-qui-changerait/',
-        'Numérique et droit en vigueur',
-        'chiffrement',
-      ],
-      ['/divergences/', 'Carte des divergences', 'exchange'],
-    ],
-  },
-  {
-    name: 'Candidats',
-    icon: 'people',
-    links: [
-      ['/candidats/', 'Fiches des candidats', 'people'],
-      ['/votes/', 'Propositions et votes passés', 'vote'],
-      ['/evolution/', 'Évolution des propositions', 'historique'],
-      ['/suivi/', 'Mon suivi', 'suivi'],
-    ],
-  },
-  {
-    name: 'Campagne',
-    icon: 'historique',
-    links: [
-      ['/campagne/', 'Chronologie', 'historique'],
-      ['/agenda/', 'Carte des rendez-vous', 'map-pin'],
-      ['/reperes/', 'Calendrier électoral', 'clock'],
-      ['/communes/', 'Résultats par commune', 'institutions'],
-    ],
-  },
-  {
-    name: 'Données',
-    icon: 'sondages',
-    links: [
-      ['/economie/', 'Indicateurs économiques', 'markets'],
-      [
-        '/economie/finances-publiques/',
-        'Comptes publics de référence',
-        'fiscalite',
-      ],
-      ['/economie/declarations/', 'Déclarations et chiffres publics', 'source'],
-      ['/sondages/', 'Sondages', 'sondages'],
-      ['/marches-predictifs/', 'Marchés prédictifs', 'markets'],
-      ['/temps-de-parole/', 'Temps de parole', 'microphone'],
-      ['/budget-programmes/', 'Budgets des programmes', 'euro'],
-      ['/financements/', 'Carte des financements', 'exchange'],
-    ],
-  },
-  {
-    name: 'Projet',
-    icon: 'source',
-    links: [
-      ['/dossiers/', 'Dossiers', 'source'],
-      ['/veille/', 'Veille quotidienne', 'veille'],
-      ['/sources/', 'Catalogue des sources', 'source'],
-      ['/historique/', 'Historique du corpus', 'historique'],
-      ['/methode/', 'Méthode', 'check'],
-      ['/transparence/', 'À propos de Polradar', 'institutions'],
-    ],
-  },
-];
-const urls = groups.flatMap(({ links }) => links.map(([url]) => url));
-const current =
-  urls
-    .filter((url) => path.startsWith(url))
-    .sort((a, b) => b.length - a.length)[0] ?? section;
 ---
 
 <nav
@@ -92,6 +19,7 @@ const current =
     <details
       class="site-nav-group"
       name="polradar-navigation"
+      data-desk={group.id}
       data-current={
         group.links.some(([url]) => current === url) ? 'true' : undefined
       }

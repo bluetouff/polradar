@@ -8,6 +8,10 @@ Une édition 2022 ou 2024 conserve cette précision annuelle. Une consultation n
 
 Les pages sont statiques et lisibles sans JavaScript. Les contrôles n’affichent que les identifiants connus du corpus ; les données externes passent par les schémas et sont rendues comme texte. Les graphiques ont une échelle propre à chaque enveloppe et une présentation adaptée aux petites largeurs.
 
+## Enrichissement du 19 novembre 2026
+
+Les 19 dossiers rassemblent 41 états de propositions pour onze personnalités. Les frises précisent le scrutin ou la campagne d’origine, y compris pour les programmes collectifs des européennes et des législatives de 2024. Les deux amendements de Marine Le Pen sur la TVA des énergies sont datés de leur dépôt. Les passages sur le kérosène de la liste PS–Place publique et de la campagne de Raphaël Glucksmann sont comparés selon les vols et le territoire visés. Les dispositions publiées sans montant sont conservées sous forme de texte.
+
 ## Enrichissement du 18 novembre 2026
 
 Le corpus comporte 6 dossiers historiques (14 états, 5 candidats) et 16 schémas financiers (9 candidats). Les 9 captures initiales et les versions éditoriales déjà publiées sont conservées sans modification. Les ajouts Arthaud et Roussel reposent sur leurs professions de foi CNCCEP et des publications de parti de 2026. Le minimum de revenu de 2022 et le SMIC d’Arthaud en 2026 ont des champs distincts : aucune hausse automatique n’est calculée.

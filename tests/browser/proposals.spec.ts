@@ -1,4 +1,32 @@
 import { test, expect } from '@playwright/test';
+import evolution from '../../src/data/proposal-evolution.json' with { type: 'json' };
+test('les sélecteurs mobiles ouvrent les nouveaux dossiers et conservent le choix au retour', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 840 });
+  for (const [route, select, target, expected] of [
+    ['votes', 'data-vote-select', 'nda-prestations', 'Abstention'],
+    [
+      'evolution',
+      'data-evidence-select',
+      'glucksmann-renouvelables',
+      'Au moins le double',
+    ],
+  ]) {
+    await page.goto(`/${route}/`);
+    const chooser = page.locator(`[${select}]`);
+    const first = await chooser.inputValue();
+    await chooser.selectOption(target);
+    await expect(page).toHaveURL(new RegExp(`#dossier=${target}$`));
+    await expect(page.locator(`section[id="dossier=${target}"]`)).toContainText(
+      expected,
+    );
+    await page.reload();
+    await expect(chooser).toHaveValue(target);
+    await page.goBack();
+    await expect(chooser).toHaveValue(first);
+  }
+});
 test('l’évolution compare les documents, conserve les conditions et partage les états choisis', async ({
   page,
 }) => {
@@ -18,6 +46,7 @@ test('l’évolution compare les documents, conserve les conditions et partage l
   await expect(
     page.locator('[data-evolution-dossier]:visible [data-state-to]'),
   ).toHaveValue('melenchon-smic-nfp-2024');
+  await page.locator('.dossier-directory summary').click();
   await page.locator('[data-evidence-tab="lisnard-perimetres"]').click();
   await expect(page.locator('[data-comparison-label]:visible')).toHaveText(
     'Périmètres distincts',
@@ -25,6 +54,7 @@ test('l’évolution compare les documents, conserve les conditions et partage l
   await expect(page.locator('.reported-note:visible')).toContainText(
     'reprise par le parti',
   );
+  await page.locator('.dossier-directory summary').click();
   await page.locator('[data-evidence-tab="melenchon-autonomie"]').click();
   await expect(page.locator('[data-comparison-label]:visible')).toHaveText(
     'Conditions à comparer',
@@ -111,8 +141,12 @@ test('tous les dossiers et les documents sont lisibles sans JavaScript', async (
   });
   const page = await context.newPage();
   await page.goto('http://127.0.0.1:4321/evolution/');
-  await expect(page.locator('[data-evolution-dossier]:visible')).toHaveCount(6);
-  await expect(page.locator('[data-proposal-state]:visible')).toHaveCount(14);
+  await expect(page.locator('[data-evolution-dossier]:visible')).toHaveCount(
+    evolution.tracks.length,
+  );
+  await expect(page.locator('[data-proposal-state]:visible')).toHaveCount(
+    evolution.states.length,
+  );
   await page.goto('http://127.0.0.1:4321/financements/');
   await expect(page.locator('[data-financing-map]:visible')).toHaveCount(19);
   await page.locator('.finance-source summary').first().click();

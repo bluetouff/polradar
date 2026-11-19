@@ -9,6 +9,7 @@ import {
 import {
   proposalComparison,
   financingLayout,
+  stateValue,
 } from '../src/lib/proposal-view.mjs';
 import { immutableHistoryErrors } from '../src/lib/history.mjs';
 const data = (name) =>
@@ -27,11 +28,14 @@ const valid = (e = evolution, f = financing, b = budgets) =>
     f,
     dataset,
     b,
-    new Date('2026-11-19T12:00:00Z'),
+    new Date(`${evolution.checked}T23:59:59Z`),
   );
 test('les documents officiels datés et les relations financières sont qualifiés', () => {
   assert.deepEqual(valid(), []);
-  assert.equal(evolution.states.length, 14);
+  assert.equal(
+    new Set(evolution.tracks.flatMap((t) => t.stateIds)).size,
+    evolution.states.length,
+  );
   assert.equal(financing.maps.length, 19);
   const lepen = budgets.profiles.find(({ candidate }) => candidate === 'lepen');
   assert.equal(
@@ -52,6 +56,36 @@ test('les documents officiels datés et les relations financières sont qualifi�
     glucksmann.entries.find(({ id }) => id === 'glucks-contribution-climatique')
       .period,
     'ponctuel',
+  );
+});
+test('les dispositions sans chiffre et les référentiels européen et français gardent leur portée', () => {
+  const track = evolution.tracks.find(
+    (t) => t.id === 'glucksmann-renouvelables',
+  );
+  const states = track.stateIds.map((id) =>
+    evolution.states.find((s) => s.id === id),
+  );
+  assert.equal(stateValue(states[0]), '75 %');
+  assert.equal(states[1].value, null);
+  assert.equal(stateValue(states[1]), 'Au moins le double');
+  assert.deepEqual(proposalComparison(track, ...states), {
+    label: 'Périmètres distincts',
+    delta: null,
+  });
+  const malformed = structuredClone(evolution);
+  malformed.states.find((s) => s.id === states[1].id).value = 0;
+  assert.ok(valid(malformed).length);
+  const incompatible = structuredClone(evolution);
+  incompatible.states
+    .filter((s) => s.trackId === incompatible.tracks[0].id)
+    .forEach((s) => {
+      s.unit = 'pourcentage';
+    });
+  assert.ok(valid(incompatible).length);
+  const egger = evolution.states.find((s) => s.trackId === 'egger-ric');
+  assert.equal(
+    stateValue(egger),
+    `${(700000).toLocaleString('fr-FR')} signatures`,
   );
 });
 test('les revenus de 2022 ne deviennent pas un SMIC comparable et un âge maintenu reste une position de parti', () => {

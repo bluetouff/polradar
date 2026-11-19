@@ -41,7 +41,7 @@ const records = measures.filter(
   <MetricPlot measures={records} />
   <div class="measure-list">
     {records.map((item) => (
-      <MeasureCard measure={item} />
+      <MeasureCard measure={item} showAuthor />
     ))}
   </div>
   <aside class="notice section-space">

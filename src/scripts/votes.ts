@@ -6,17 +6,27 @@ if (workspace) {
   const tabs = [
     ...workspace.querySelectorAll<HTMLAnchorElement>('[data-vote-tab]'),
   ];
+  const chooser =
+    workspace.querySelector<HTMLSelectElement>('[data-vote-select]')!;
+  const directory =
+    workspace.querySelector<HTMLDetailsElement>('.dossier-directory')!;
   const update = () => {
     const selected = new URLSearchParams(location.hash.slice(1)).get('dossier');
     const panel =
       panels.find((p) => p.dataset.voteCase === selected) || panels[0];
     panels.forEach((p) => (p.hidden = p !== panel));
+    chooser.value = panel.dataset.voteCase!;
     tabs.forEach((tab) => {
       if (tab.dataset.voteTab === panel.dataset.voteCase)
         tab.setAttribute('aria-current', 'true');
       else tab.removeAttribute('aria-current');
     });
   };
+  const choose = (id: string) => {
+    history.pushState(null, '', `#${new URLSearchParams({ dossier: id })}`);
+    update();
+  };
+  chooser.addEventListener('change', () => choose(chooser.value));
   workspace.addEventListener('click', (event) => {
     if (
       !(event instanceof MouseEvent) ||
@@ -33,14 +43,13 @@ if (workspace) {
         : null;
     if (!tab) return;
     event.preventDefault();
-    history.pushState(
-      null,
-      '',
-      `#${new URLSearchParams({ dossier: tab.dataset.voteTab! })}`,
-    );
-    update();
+    choose(tab.dataset.voteTab!);
+    directory.open = false;
+    directory.querySelector('summary')?.focus();
   });
   window.addEventListener('hashchange', update);
   window.addEventListener('popstate', update);
   update();
+  directory.open = false;
+  workspace.classList.add('votes-ready');
 }

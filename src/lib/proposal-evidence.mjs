@@ -10,6 +10,7 @@ const state = z.strictObject({
       'edition',
       'publication',
       'declaration',
+      'depot',
       'consultation',
       'mise-a-jour',
     ]),
@@ -18,8 +19,19 @@ const state = z.strictObject({
   scope: z.enum(['archive', 'parti', 'campagne']),
   observedOn: dateSchema,
   recordedAt: z.iso.datetime(),
-  value: z.number().positive().max(1e13),
-  unit: z.enum(['euros-net-mois', 'euros-mois', 'euros', 'ans']),
+  value: z.number().nonnegative().max(1e13).nullable(),
+  label: text.optional(),
+  unit: z.enum([
+    'euros-net-mois',
+    'euros-mois',
+    'euros',
+    'ans',
+    'pourcentage',
+    'logements-an',
+    'tranches',
+    'signatures',
+    'disposition',
+  ]),
   basisKey: idSchema,
   population: text,
   statement: text,
@@ -149,8 +161,17 @@ export function validateProposalReferences(
         fail(`${track.id} : état manquant ou mal rattaché`);
     const known = states.filter(Boolean);
     if (
+      track.kind === 'montant' &&
+      known.some(
+        (s) =>
+          s.value === null ||
+          !['euros', 'euros-mois', 'euros-net-mois', 'ans'].includes(s.unit),
+      )
+    )
+      fail(`${track.id} : unité ou valeur incompatible avec un écart chiffré`);
+    if (
       track.kind === 'maintien' &&
-      new Set(known.map((s) => s.value)).size !== 1
+      new Set(known.map((s) => s.value ?? s.label)).size !== 1
     )
       fail(`${track.id} : paramètre modifié présenté comme maintenu`);
     if (
@@ -170,6 +191,12 @@ export function validateProposalReferences(
   unique(assigned, 'Affectation des états');
   for (const s of evolution.states) {
     if (
+      s.unit === 'disposition'
+        ? s.value !== null || !s.label
+        : s.value === null || s.label !== undefined
+    )
+      fail(`${s.id} : valeur et unité incompatibles`);
+    if (
       ![
         'www.cnccep.fr',
         'melenchon2027.fr',
@@ -177,7 +204,22 @@ export function validateProposalReferences(
         'www.unenouvelleenergie.fr',
         'www.lutte-ouvriere.org',
         'www.pcf.fr',
-      ].includes(new URL(s.source.url).hostname)
+        'ps56.bzh',
+        'glucks2027.fr',
+        'www.debout-la-france.fr',
+        'www.espoir-ric.fr',
+        'solutiondemocratique.fr',
+        'www.revolutionpermanente.fr',
+        'nouspresident.fr',
+        'www.assemblee-nationale.fr',
+      ].includes(new URL(s.source.url).hostname) &&
+      !(
+        s.source.id === 'pcf-work' &&
+        new URL(s.source.url).hostname === 'assets.nationbuilder.com' &&
+        new URL(s.source.url).pathname.startsWith(
+          '/pcf/pages/35369/attachments/original/',
+        )
+      )
     )
       fail(`${s.id} : domaine historique non qualifié`);
     if (!assigned.includes(s.id) || !official(s.source.id))
@@ -204,7 +246,10 @@ export function validateProposalReferences(
       fail(`${s.id} : date future ou incohérente`);
     if (s.date.kind === 'consultation' && s.date.value !== s.observedOn)
       fail(`${s.id} : consultation incohérente`);
-    if (s.date.kind === 'publication' && s.date.value !== s.source.published)
+    if (
+      ['publication', 'depot'].includes(s.date.kind) &&
+      s.date.value !== s.source.published
+    )
       fail(`${s.id} : publication incohérente`);
     if (s.date.kind === 'mise-a-jour' && s.date.value !== s.source.updated)
       fail(`${s.id} : mise à jour incohérente`);

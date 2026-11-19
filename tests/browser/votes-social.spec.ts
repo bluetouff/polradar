@@ -1,5 +1,51 @@
 import { test, expect } from '@playwright/test';
+import legislativeVotes from '../../src/data/legislative-votes.json' with { type: 'json' };
 import { socialImages } from '../../src/lib/social-images.mjs';
+
+test('les thèmes, les sources et la recherche utilisent la largeur disponible', async ({
+  page,
+}) => {
+  for (const [width, minimum] of [
+    [1440, 3],
+    [390, 1],
+  ]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const [route, grid] of [
+      ['/themes/fiscalite/', '.measure-list'],
+      ['/recherche/?q=retraites', '.advanced-results'],
+      ['/sources/', '.sources-grid'],
+    ]) {
+      await page.goto(route);
+      if (route === '/themes/fiscalite/') {
+        await expect(
+          page.locator('[data-scope="campagne"] .measure-author img').first(),
+        ).toBeVisible();
+        await expect(
+          page.locator('[data-scope="parti"] .measure-author'),
+        ).toHaveCount(0);
+        const reference = page
+          .locator('.measure-links a[href$="#sources"]')
+          .first();
+        await expect(reference).toHaveText(/\d+ sources?/);
+        await reference.click();
+        await expect(page.locator('#sources')).toHaveText('Références');
+        await page.goBack();
+      }
+      const columns = await page
+        .locator(grid)
+        .evaluate(
+          (el) => getComputedStyle(el).gridTemplateColumns.split(' ').length,
+        );
+      if (width === 390) expect(columns).toBe(1);
+      else expect(columns).toBeGreaterThanOrEqual(minimum);
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth + 1,
+        ),
+      ).toBe(true);
+    }
+  }
+});
 
 test('la frise conserve les objets des motions, les sources et les liens directs', async ({
   page,
@@ -20,6 +66,7 @@ test('la frise conserve les objets des motions, les sources et les liens directs
     'href',
     'https://www.assemblee-nationale.fr/dyn/15/scrutins/169',
   );
+  await page.locator('.dossier-directory summary').click();
   await page.locator('[data-vote-tab="roussel-retraites"]').click();
   await expect(page.locator('[data-vote-case]:visible')).toContainText(
     'Pour la motion',
@@ -30,9 +77,11 @@ test('la frise conserve les objets des motions, les sources et les liens directs
   await expect(
     page.locator('[data-vote-case]:visible .ballot-tally > span'),
   ).toHaveCount(1);
-  await expect(
-    page.locator('[data-vote-case]:visible svg[role="img"] circle'),
-  ).toHaveCount(278);
+  const dots = page.locator('[data-vote-case]:visible .ballot-chart svg path');
+  await expect(dots).toHaveCount(1);
+  expect((await dots.getAttribute('d'))?.match(/M\d+ \d+h0/g)).toHaveLength(
+    278,
+  );
   await page.reload();
   await expect(
     page.locator('[data-vote-tab="roussel-retraites"]'),
@@ -51,8 +100,12 @@ test('les votes restent accessibles sans JavaScript', async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto('/votes/');
-  await expect(page.locator('[data-vote-case]:visible')).toHaveCount(6);
-  await expect(page.locator('.vote-proposal')).toHaveCount(6);
+  await expect(page.locator('[data-vote-case]:visible')).toHaveCount(
+    legislativeVotes.cases.length,
+  );
+  await expect(page.locator('.vote-proposal')).toHaveCount(
+    legislativeVotes.cases.length,
+  );
   await page.locator('.vote-source summary').first().click();
   await expect(page.locator('.vote-source[open]')).toHaveCount(1);
   await context.close();

@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import CandidatePortrait from '../components/CandidatePortrait.astro';
+import DossierPicker from '../components/DossierPicker.astro';
 import ProposalSource from '../components/ProposalSource.astro';
 import { candidateById, themeById } from '../lib/data';
 import { proposalTracks, evolution } from '../lib/proposal-data';
@@ -53,26 +53,15 @@ import '../styles/proposals.css';
     ]}
     data-evolution
   >
-    <nav class="evidence-picker" aria-label="Dossiers de propositions">
-      {proposalTracks.map((track, i) => (
-        <a href={`#dossier=${track.id}`} data-evidence-tab={track.id}>
-          <span class="picker-portrait">
-            <CandidatePortrait
-              candidate={candidateById(track.candidate)}
-              compact
-            />
-          </span>
-          <span>
-            <small>{candidateById(track.candidate).name}</small>
-            <strong>{track.title}</strong>
-            <em>
-              {track.states.length} documents · {themeById(track.theme).short}
-            </em>
-          </span>
-          <span class="picker-number">0{i + 1}</span>
-        </a>
-      ))}
-    </nav>
+    <DossierPicker
+      type="evolution"
+      choices={proposalTracks.map((track) => ({
+        id: track.id,
+        title: track.title,
+        candidate: candidateById(track.candidate),
+        detail: `${track.states.length} documents · ${themeById(track.theme).short}`,
+      }))}
+    />
     <div class="evidence-stage">
       {proposalTracks.map((track) => (
         <section
@@ -149,7 +138,7 @@ import '../styles/proposals.css';
                 id={`etat-${state.id}`}
                 class="proposal-state"
                 data-proposal-state={state.id}
-                data-value={state.value}
+                data-value={state.value ?? undefined}
                 data-unit={state.unit}
                 data-basis={state.basisKey}
               >

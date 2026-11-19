@@ -1,16 +1,16 @@
 ---
 import { formatDate } from '../lib/data';
+import Icon from './Icon.astro';
 import type { CollectionEntry } from 'astro:content';
 interface Props {
   article: CollectionEntry<'articles'>;
-  index?: number;
 }
-const { article, index = 0 } = Astro.props;
+const { article } = Astro.props;
 ---
 
 <article class="article-card">
-  <span class="article-index" aria-hidden="true">
-    {String(index + 1).padStart(2, '0')}
+  <span class="article-symbol" aria-hidden="true">
+    <Icon name={article.data.themes[0] ?? 'source'} />
   </span>
   <div class="article-card-text">
     <p class="article-meta">
@@ -19,16 +19,12 @@ const { article, index = 0 } = Astro.props;
         {formatDate(article.data.published)}
       </time>
     </p>
-    <h3>
+    <h2>
       <a href={`/dossiers/${article.id}/`}>{article.data.title}</a>
-    </h3>
+    </h2>
     <p>{article.data.description}</p>
   </div>
-  <a
-    class="article-open"
-    href={`/dossiers/${article.id}/`}
-    aria-label={`Lire : ${article.data.title}`}
-  >
-    ↗
-  </a>
+  <span class="article-open" aria-hidden="true">
+    <Icon name="arrow" />
+  </span>
 </article>

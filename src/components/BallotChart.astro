@@ -17,6 +17,13 @@ interface Props {
 }
 const { ballot } = Astro.props;
 const chart = ballotDots(ballot);
+const paths = ['pour', 'contre', 'abstention'].map((choice) => ({
+  choice,
+  d: chart.dots
+    .filter((dot) => dot.choice === choice)
+    .map((dot) => `M${dot.x} ${dot.y}h0`)
+    .join(''),
+}));
 const censure = ballot.kind === 'motion-censure';
 const label = censure
   ? `${ballot.tally.for} voix pour la motion. Majorité requise : ${ballot.tally.majority}.`
@@ -29,14 +36,13 @@ const label = censure
     role="img"
     aria-label={label}
   >
-    {chart.dots.map((dot) => (
-      <circle
-        cx={dot.x}
-        cy={dot.y}
-        r="2.9"
-        class={`ballot-dot-${dot.choice}`}
-      />
-    ))}
+    <g fill="none" stroke-width="5.8" stroke-linecap="round">
+      {paths
+        .filter((path) => path.d)
+        .map((path) => (
+          <path d={path.d} class={`ballot-dot-${path.choice}`} />
+        ))}
+    </g>
   </svg>
   <div class="ballot-tally">
     <span class="tally-pour">

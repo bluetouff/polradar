@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import CandidatePortrait from '../components/CandidatePortrait.astro';
+import DossierPicker from '../components/DossierPicker.astro';
 import BallotChart from '../components/BallotChart.astro';
 import SourceLinks from '../components/SourceLinks.astro';
 import { formatDate, formatTimestamp, themeById } from '../lib/data';
@@ -10,10 +10,10 @@ import {
   ballotKinds,
   chambers,
   positionLabel,
+  decisionLabel,
 } from '../lib/legislative-votes.mjs';
 import '../styles/votes.css';
-const sameSentence = (a: string, b: string) =>
-  a.trim().replace(/[.!?…]+$/u, '') === b.trim().replace(/[.!?…]+$/u, '');
+import { sameSentence } from '../lib/measure-text';
 ---
 
 <Base
@@ -53,25 +53,15 @@ const sameSentence = (a: string, b: string) =>
     </p>
   </div>
   <div class="votes-workspace" data-votes-workspace>
-    <nav class="vote-picker" aria-label="Choisir un dossier de votes">
-      {voteCases.map((record) => (
-        <a href={`#dossier=${record.id}`} data-vote-tab={record.id}>
-          <span class="vote-picker-portrait">
-            <CandidatePortrait candidate={record.candidateRecord} compact />
-          </span>
-          <span>
-            <small>{record.candidateRecord.name}</small>
-            <strong>{record.title}</strong>
-            <em>
-              {record.ballots.length}{' '}
-              {record.ballots.length > 1 ? 'scrutins' : 'scrutin'} ·{' '}
-              {themeById(record.measure.theme).short}
-            </em>
-          </span>
-          <Icon name="arrow" />
-        </a>
-      ))}
-    </nav>
+    <DossierPicker
+      type="votes"
+      choices={voteCases.map((record) => ({
+        id: record.id,
+        title: record.title,
+        candidate: record.candidateRecord,
+        detail: `${record.ballots.length} scrutin${record.ballots.length > 1 ? 's' : ''} · ${themeById(record.measure.theme).short}`,
+      }))}
+    />
     <div class="vote-stage">
       {voteCases.map((record) => (
         <section
@@ -126,20 +116,7 @@ const sameSentence = (a: string, b: string) =>
                     <p class="vote-group">
                       Groupe lors du scrutin : {ballot.position.groupAtTime}
                     </p>
-                    <p class="vote-result">
-                      {ballot.kind.startsWith('motion-')
-                        ? 'Motion'
-                        : ballot.kind === 'article'
-                          ? 'Article'
-                          : 'Texte'}{' '}
-                      {ballot.decision === 'adopte'
-                        ? ballot.kind.startsWith('motion-')
-                          ? 'adoptée'
-                          : 'adopté'
-                        : ballot.kind.startsWith('motion-')
-                          ? 'rejetée'
-                          : 'rejeté'}
-                    </p>
+                    <p class="vote-result">{decisionLabel(ballot)}</p>
                   </div>
                   <BallotChart ballot={ballot} />
                   <div class="vote-context">
@@ -228,6 +205,11 @@ const sameSentence = (a: string, b: string) =>
               <article class="vote-proposal">
                 <span class="eyebrow">PROPOSITION DOCUMENTÉE</span>
                 <h3>{record.version.snapshot.title}</h3>
+                <p class="vote-proposal-edition">
+                  {record.measure.partyAuthor &&
+                    `${record.measure.partyAuthor} · `}
+                  {record.version.snapshot.edition}
+                </p>
                 {!sameSentence(
                   record.version.snapshot.description,
                   record.version.snapshot.title,

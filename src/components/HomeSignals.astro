@@ -54,20 +54,82 @@ const indicators = ['inflation', 'chomage', 'croissance', 'dette-publique'].map(
 </section>
 
 <style>
+  .home-economic-signals .economy-group {
+    --economy-board: var(--press);
+    --economy-grid: #665b75;
+    background: var(--economy-board);
+    border-radius: 0;
+    padding: clamp(0.9rem, 1.7vw, 1.5rem);
+  }
   .home-signals-header {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: baseline;
-    gap: 0.15rem 0.6rem;
-    margin-bottom: 0.55rem;
+    gap: 0.4rem 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid #71647d;
   }
   .home-signals-header h2 {
     margin: 0;
+    color: #fff5ea;
+    font-size: 1.2rem;
   }
   .home-signals-header a {
-    color: #d5edbe;
-    font-size: 0.81rem;
-    font-weight: 680;
+    color: var(--citron);
+    font-size: 0.88rem;
+  }
+  .economy-grid-cards {
+    gap: 0;
+    margin-top: 0.8rem;
+  }
+  .home-economic-signals .economy-card {
+    --economy-line: var(--citron);
+    padding: 0.3rem 0.85rem;
+    border: 0;
+    border-left: 1px solid #63546d;
+    border-radius: 0;
+    background: transparent;
+  }
+  .home-economic-signals .economy-card:first-child {
+    border-left: 0;
+  }
+  .home-economic-signals .economy-card:nth-child(2) {
+    --economy-line: #c8b5ff;
+  }
+  .home-economic-signals .economy-card:nth-child(3) {
+    --economy-line: #ffb28e;
+  }
+  .home-economic-signals .economy-card:nth-child(4) {
+    --economy-line: #a2dcc6;
+  }
+  .economy-card h3 a {
+    text-decoration: none;
+  }
+  .economy-card h3 a:hover {
+    text-decoration: underline;
+  }
+  .economy-reading strong {
+    font-size: clamp(1.45rem, 2.65vw, 2.25rem);
+  }
+  .home-economic-signals :global(.economy-curve figcaption) {
+    font-size: 0.7rem;
+  }
+  @media (max-width: 950px) {
+    .home-economic-signals .economy-grid-cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      row-gap: 0.8rem;
+    }
+    .home-economic-signals .economy-card:nth-child(odd) {
+      border-left: 0;
+    }
+  }
+  @media (max-width: 420px) {
+    .home-economic-signals .economy-card {
+      padding-inline: 0.45rem;
+    }
+    .home-economic-signals :global(.economy-curve figcaption) {
+      flex-wrap: wrap;
+    }
   }
 </style>

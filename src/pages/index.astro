@@ -2,14 +2,8 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import {
-  candidates,
-  themes,
-  measures,
-  sources,
-  events,
-  formatDate,
-} from '../lib/data';
+import { themes, measures, formatDate } from '../lib/data';
+import HomeCover from '../components/HomeCover.astro';
 import HomeSignals from '../components/HomeSignals.astro';
 import HomeExplorers from '../components/HomeExplorers.astro';
 import HomeEvidence from '../components/HomeEvidence.astro';
@@ -21,9 +15,6 @@ const articles = (
     b.data.published.localeCompare(a.data.published) ||
     a.data.title.localeCompare(b.data.title, 'fr'),
 );
-const dates = events.filter((event) =>
-  ['premier-tour', 'second-tour'].includes(event.id),
-);
 const current = measures.filter((item) => item.scope !== 'archive');
 const counts = themes.map((theme) => ({
   ...theme,
@@ -33,25 +24,7 @@ const maxCount = Math.max(1, ...counts.map((theme) => theme.count));
 ---
 
 <Base>
-  <header class="page-title home-title home-brief">
-    <div>
-      <h1>Présidentielle 2027</h1>
-      <p>Programmes, données publiques et calendrier électoral.</p>
-    </div>
-    <nav aria-label="Accès rapides">
-      <a href="/candidats/">
-        <Icon name="people" /> <strong>{candidates.length}</strong> profils
-        suivis
-      </a>
-      <a href="/mesures/">
-        <Icon name="mesures" /> <strong>{current.length}</strong> fiches hors
-        archives
-      </a>
-      <a href="/sources/">
-        <Icon name="source" /> <strong>{sources.length}</strong> sources
-      </a>
-    </nav>
-  </header>
+  <HomeCover />
   <div class="home-layout">
     <HomeSignals />
     <HomeEvidence />
@@ -114,104 +87,85 @@ const maxCount = Math.max(1, ...counts.map((theme) => theme.count));
       </div>
     </section>
     <HomeExplorers />
-    <section
-      class="election-calendar"
-      aria-labelledby="election-calendar-title"
-    >
-      <div class="register-heading">
-        <h2 id="election-calendar-title">Dates du scrutin</h2>
-        <a class="inline-action" href="/reperes/">
-          Calendrier et sources ↗
-        </a>
-      </div>
-      <div class="home-election-dates">
-        {dates.map((event) => (
-          <div class="calendar-entry">
-            <span>
-              {event.id === 'premier-tour' ? 'Premier tour' : 'Second tour'}
-            </span>
-            <time datetime={event.date}>{formatDate(event.date)}</time>
-          </div>
-        ))}
-      </div>
-    </section>
   </div>
 </Base>
 
 <style>
-  .home-brief {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: end;
-    gap: 0.65rem 1.2rem;
-    padding-block-end: 0.9rem;
-    margin-block-end: 1rem;
-  }
-  .home-brief h1 {
-    font-size: 26px;
-  }
-  .home-brief p {
-    margin-block-end: 0;
-  }
-  .home-brief nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-  .home-brief nav a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.36rem 0.55rem;
-    border: 1px solid #abc0b3;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 0.8rem;
-  }
-  .home-brief nav .icon {
-    width: 1rem;
-    height: 1rem;
-  }
   .home-layout {
     display: grid;
-    gap: 1.05rem;
     min-width: 0;
+    gap: clamp(1rem, 1.8vw, 1.7rem);
   }
-  .home-layout .programme-index {
+  .programme-index,
+  .home-dossiers {
     margin: 0;
+    align-self: start;
+    min-width: 0;
+    border: 1px solid #aa9ab5;
+    background: #f0e9f7;
+    padding: clamp(0.8rem, 1.4vw, 1.45rem);
   }
-  .home-layout .home-dossiers {
-    margin-block: 0;
+  .home-dossiers {
+    background: #f3ddce;
   }
-  .home-dossier-grid,
-  .home-election-dates {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
-    gap: 0.5rem;
-    margin-top: 0.45rem;
+  .programme-index .register-heading,
+  .home-dossiers .register-heading {
+    border: 0;
+    padding-block: 0 0.65rem;
+    align-items: baseline;
+  }
+  .register-note {
+    margin: 0 0 0.5rem;
+    color: var(--muted);
+    font-size: 0.82rem;
   }
   .home-dossier-grid a {
     display: grid;
-    gap: 0.3rem;
-    padding: 0.65rem;
-    border: 1px solid #b7c7bf;
-    background: #fffdf6;
-    border-radius: 4px;
+    gap: 0.4rem;
+    border-top: 1px solid #ad9489;
+    padding-block: 0.85rem;
     text-decoration: none;
-    font-size: 0.87rem;
   }
-  .home-dossier-grid a:hover,
-  .home-brief nav a:hover {
-    background: #e7eee6;
+  .home-dossier-grid a:hover strong {
+    text-decoration: underline;
   }
   .home-dossier-grid small {
-    color: var(--muted);
-    font: 0.71rem var(--mono);
+    font: 0.75rem var(--mono);
+    color: #584a52;
+  }
+  .home-dossier-grid strong {
+    font: 400 1.55rem/1.09 var(--display);
+    color: var(--press);
+  }
+  .theme-register > a > :global(.icon) {
+    background: #e1d3f1;
+    border-color: #beacd0;
+    color: #443454;
+  }
+  .home-layout :global(.home-explorers) {
+    margin: 0;
+    border: 0;
+  }
+  .home-layout :global(.home-explorers .explorer-index > a) {
+    background: #d5e5df;
+    border: 1px solid #9baea5;
+    border-top: 3px solid var(--press);
+    border-radius: 0;
+  }
+  .home-layout :global(.home-explorers .explorer-index > a:hover h3) {
+    text-decoration: underline;
   }
   @media (min-width: 1040px) {
+    .home-layout {
+      grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+    }
+    .home-layout > :global(section:not(.programme-index):not(.home-dossiers)) {
+      grid-column: 1/-1;
+    }
+  }
+  @media (min-width: 1330px) {
     .home-layout .theme-register {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 </style>

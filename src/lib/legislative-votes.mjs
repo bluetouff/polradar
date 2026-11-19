@@ -24,6 +24,7 @@ export const legislativeVotesSchema = z.strictObject({
         title: text,
         shortTitle: text,
         kind: z.enum([
+          'declaration',
           'article',
           'amendement',
           'ensemble',
@@ -215,7 +216,9 @@ export function validateLegislativeReferences(data, dataset, now = new Date()) {
         fail(`${c.id} : position nominative manquante`);
       if (
         b &&
-        ['ensemble', 'motion-rejet', 'motion-censure'].includes(b.kind) &&
+        ['ensemble', 'declaration', 'motion-rejet', 'motion-censure'].includes(
+          b.kind,
+        ) &&
         link.relation !== 'texte-plus-large'
       )
         fail(`${c.id} : portée du scrutin masquée`);
@@ -227,6 +230,7 @@ export function validateLegislativeReferences(data, dataset, now = new Date()) {
 }
 
 export const ballotKinds = {
+  declaration: 'Déclaration du Gouvernement',
   article: 'Article',
   amendement: 'Amendement',
   ensemble: 'Ensemble du texte',
@@ -234,16 +238,28 @@ export const ballotKinds = {
   'motion-censure': 'Motion de censure',
 };
 export const chambers = { assemblee: 'Assemblée nationale', senat: 'Sénat' };
+export function decisionLabel(ballot) {
+  const adopted = ballot.decision === 'adopte';
+  if (ballot.kind === 'declaration')
+    return adopted ? 'Déclaration approuvée' : 'Déclaration rejetée';
+  if (ballot.kind.startsWith('motion-'))
+    return adopted ? 'Motion adoptée' : 'Motion rejetée';
+  const subject =
+    ballot.kind === 'ensemble' ? 'Texte' : ballotKinds[ballot.kind];
+  return `${subject} ${adopted ? 'adopté' : 'rejeté'}`;
+}
 export function positionLabel(position, ballot) {
   if (position.choice === 'abstention') return 'Abstention';
   if (position.choice === 'non-votant') return 'Non-votant indiqué';
   const object = ballot.kind.startsWith('motion-')
     ? 'la motion'
-    : ballot.kind === 'article'
-      ? 'l’article'
-      : ballot.kind === 'amendement'
-        ? 'l’amendement'
-        : 'le texte';
+    : ballot.kind === 'declaration'
+      ? 'la déclaration'
+      : ballot.kind === 'article'
+        ? 'l’article'
+        : ballot.kind === 'amendement'
+          ? 'l’amendement'
+          : 'le texte';
   return `${position.choice === 'pour' ? 'Pour' : 'Contre'} ${object}`;
 }
 export function ballotDots(ballot) {

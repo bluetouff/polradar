@@ -279,13 +279,13 @@
     max-height: 170px;
   }
   .ballot-dot-pour {
-    fill: #497d65;
+    stroke: #497d65;
   }
   .ballot-dot-contre {
-    fill: #c27a60;
+    stroke: #c27a60;
   }
   .ballot-dot-abstention {
-    fill: #a1adbb;
+    stroke: #a1adbb;
   }
   .ballot-tally {
     display: flex;
@@ -653,5 +653,124 @@
     .ballot-tally span {
       font-size: 8px;
     }
+  }
+}
+
+@media screen {
+  .vote-timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18.5rem), 1fr));
+    gap: 0.9rem;
+    align-items: start;
+  }
+  .vote-timeline-item {
+    min-width: 0;
+    padding: 0;
+  }
+  .vote-timeline-item::before {
+    content: none;
+  }
+  .vote-date {
+    min-height: 4.2rem;
+    padding: 0.6rem 0.35rem 0.6rem 0;
+    border-top: 2px solid var(--press);
+    gap: 0.6rem;
+  }
+  .vote-timeline-node {
+    position: static;
+    flex: none;
+    width: 1.85rem;
+    height: 1.85rem;
+    color: var(--press);
+    border-color: var(--press);
+    background: var(--tint);
+  }
+  .vote-object {
+    color: var(--muted);
+    background: transparent;
+    padding: 0.25rem 0;
+    font: 0.7rem/1.3 var(--mono);
+  }
+  .vote-date time {
+    font-variant-numeric: tabular-nums;
+  }
+  .vote-record {
+    display: block;
+    border-color: #bcabbf;
+    border-radius: 0;
+    background: #fbf4ee;
+  }
+  .vote-record-content {
+    padding: 1rem;
+  }
+  .vote-group {
+    font-size: 0.77rem;
+  }
+  .personal-choice {
+    margin-top: 0.7rem;
+  }
+  .vote-result {
+    margin-top: 0.65rem;
+  }
+  .ballot-chart {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 0.25rem 0.9rem;
+    padding: 0.85rem 1rem;
+    background: var(--press);
+    color: #fff9f2;
+  }
+  .ballot-chart svg {
+    grid-row: 1 / span 3;
+    max-height: 8.5rem;
+  }
+  .ballot-tally {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.45rem 0.7rem;
+    margin: 0;
+  }
+  .ballot-tally span {
+    font-size: 0.7rem;
+  }
+  .ballot-tally strong {
+    font: 400 1.85rem/1 var(--display);
+  }
+  .tally-pour {
+    color: #c8ebb0;
+  }
+  .tally-contre {
+    color: #ffb89c;
+  }
+  .tally-abstention {
+    color: #cec1dd;
+  }
+  .ballot-dot-pour {
+    stroke: #c8ebb0;
+  }
+  .ballot-dot-contre {
+    stroke: #ffb89c;
+  }
+  .ballot-dot-abstention {
+    stroke: #cec1dd;
+  }
+  .ballot-chart-key,
+  .ballot-censure-note {
+    color: #e2d8e9;
+    font-size: 0.69rem;
+    margin: 0;
+    line-height: 1.35;
+  }
+  .vote-context {
+    display: block;
+    padding: 0.75rem 1rem;
+  }
+  .vote-context p {
+    margin-top: 0.25rem;
+  }
+  .vote-proposal {
+    border-radius: 0;
+    border-top: 4px solid var(--citron);
   }
 }

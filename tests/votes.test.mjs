@@ -5,6 +5,7 @@ import {
   legislativeVotesSchema,
   validateLegislativeReferences,
   positionLabel,
+  decisionLabel,
   ballotDots,
 } from '../src/lib/legislative-votes.mjs';
 import { immutableHistoryErrors } from '../src/lib/history.mjs';
@@ -17,13 +18,50 @@ const dataset = Object.fromEntries(
   ['candidates', 'measures', 'versions'].map((n) => [n, read(n)]),
 );
 const valid = (d = data) =>
-  validateLegislativeReferences(d, dataset, new Date('2026-11-19T12:00:00Z'));
-test('six dossiers lient des propositions figées à six scrutins nominatifs institutionnels', () => {
+  validateLegislativeReferences(
+    d,
+    dataset,
+    new Date(`${data.checked}T23:59:59Z`),
+  );
+test('les dossiers relient des propositions figées à des scrutins nominatifs institutionnels', () => {
   assert.deepEqual(valid(), []);
-  assert.equal(data.ballots.length, 6);
-  assert.equal(data.cases.length, 6);
+  for (const id of [
+    'an14-647',
+    'an15-49',
+    'an16-1240',
+    'an15-2059',
+    'sen22-281',
+    'sen23-109',
+    'an15-928',
+  ])
+    assert.ok(
+      data.ballots.some((b) => b.id === id),
+      id,
+    );
   for (const c of data.cases)
     assert.ok(dataset.versions.some((v) => v.id === c.versionId));
+});
+test('un même texte conserve des votes nominatifs distincts, et une déclaration son objet propre', () => {
+  const immigration = data.ballots.find((b) => b.id === 'an16-3213');
+  assert.deepEqual(
+    Object.fromEntries(
+      immigration.positions.map((p) => [
+        p.candidate,
+        positionLabel(p, immigration),
+      ]),
+    ),
+    { lepen: 'Pour le texte', 'dupont-aignan': 'Abstention' },
+  );
+  const ukraine = data.ballots.find((b) => b.id === 'an16-3461');
+  assert.equal(
+    positionLabel(ukraine.positions[0], ukraine),
+    'Contre la déclaration',
+  );
+  assert.equal(decisionLabel(ukraine), 'Déclaration approuvée');
+  assert.equal(
+    decisionLabel(data.ballots.find((b) => b.id === 'an17-4038')),
+    'Amendement rejeté',
+  );
 });
 test('une motion garde son objet : contre le rejet ne devient pas contre l’ISF', () => {
   const b = data.ballots.find((b) => b.id === 'an15-1716');
@@ -45,7 +83,7 @@ test('la censure ne fabrique ni contre ni abstention pour les députés non rece
   assert.equal(positionLabel(b.positions[0], b), 'Pour la motion');
   for (const key of ['against', 'abstained']) {
     const d = structuredClone(data);
-    d.ballots.at(-1).tally[key] = 0;
+    d.ballots.find((b) => b.kind === 'motion-censure').tally[key] = 0;
     assert.ok(valid(d).length);
   }
 });
@@ -72,7 +110,8 @@ test('un homonyme, un profil au préfixe trompeur et les incohérences de source
   const changes = [
     (d) => (d.ballots[0].positions[0].officialName = 'Philippe Édouard'),
     (d) => {
-      d.ballots.at(-1).positions[0].officialName = 'Cédric Roussel';
+      d.ballots.find((b) => b.id === 'an16-1240').positions[0].officialName =
+        'Cédric Roussel';
     },
     (d) => {
       d.ballots[1].positions[0].profileUrl += '0';

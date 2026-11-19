@@ -16,6 +16,8 @@ if (root) {
   const chooser = root.querySelector<HTMLSelectElement>(
     '[data-evidence-select]',
   );
+  const directory =
+    root.querySelector<HTMLDetailsElement>('.dossier-directory');
   const idOf = (section: HTMLElement) =>
     section.dataset.evolutionDossier || section.dataset.financingMap || '';
   const update = () => {
@@ -52,7 +54,7 @@ if (root) {
         const c = cards.find((c) => c.dataset.proposalState === id)!;
         return {
           id,
-          value: Number(c.dataset.value),
+          value: c.dataset.value === undefined ? null : Number(c.dataset.value),
           unit: c.dataset.unit!,
           basisKey: c.dataset.basis!,
         };
@@ -73,19 +75,17 @@ if (root) {
         );
     }
   };
-  const navigate = (params: URLSearchParams) => {
-    history.replaceState(
-      null,
-      '',
-      `${location.pathname}${location.search}#${params}`,
-    );
+  const navigate = (params: URLSearchParams, newEntry = false) => {
+    const url = `${location.pathname}${location.search}#${params}`;
+    if (newEntry) history.pushState(null, '', url);
+    else history.replaceState(null, '', url);
     update();
   };
   root.addEventListener('change', (event) => {
     const control = event.target;
     if (!(control instanceof HTMLSelectElement)) return;
     if (control === chooser) {
-      navigate(new URLSearchParams({ [key]: control.value }));
+      navigate(new URLSearchParams({ [key]: control.value }), !!directory);
       return;
     }
     const section = control.closest<HTMLElement>('[data-evolution-dossier]');
@@ -115,7 +115,11 @@ if (root) {
     const tab = target.getAttribute('data-evidence-tab');
     if (tab) {
       event.preventDefault();
-      navigate(new URLSearchParams({ [key]: tab }));
+      navigate(new URLSearchParams({ [key]: tab }), !!directory);
+      if (directory) {
+        directory.open = false;
+        directory.querySelector('summary')?.focus();
+      }
       return;
     }
     const jump = target.getAttribute('data-state-jump');
@@ -160,6 +164,7 @@ if (root) {
     }
   });
   root.classList.add('evidence-ready');
+  if (directory) directory.open = false;
   addEventListener('hashchange', update);
   update();
 }

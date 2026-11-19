@@ -1,6 +1,10 @@
 # Propositions et votes passés
 
-La première sélection comprend six dossiers, six scrutins distincts et six personnalités. Elle rapproche un état éditorial figé d’une proposition et des listes nominatives officielles. Elle ne mesure ni l’ensemble d’une carrière parlementaire ni une cohérence politique.
+Au 19 novembre 2026, 21 dossiers rapprochent les propositions de huit personnalités et 17 scrutins distincts. Chaque dossier renvoie à la liste nominative et au document décrivant la proposition.
+
+## Enrichissement du 19 novembre 2026
+
+Les nouveaux dossiers couvrent le CETA, l’énergie, le logement, l’immigration, la déclaration sur l’Ukraine et la fiscalité. Plusieurs personnalités peuvent avoir voté sur le même texte. Leurs choix sont relevés séparément. Lors du scrutin sur l’immigration du 19 décembre 2023 à l’Assemblée, Marine Le Pen a voté pour et Nicolas Dupont-Aignan s’est abstenu. La comparaison précise que le scrutin portait sur l’ensemble du texte. [Assemblée nationale, scrutin 3213](https://www.assemblee-nationale.fr/dyn/16/scrutins/3213)
 
 ## Sélection vérifiée le 18 novembre 2026
 

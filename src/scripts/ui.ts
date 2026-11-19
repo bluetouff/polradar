@@ -1,3 +1,4 @@
+import { sameSentence, sourceCountLabel } from '../lib/measure-text';
 import { iconPaths } from '../lib/icons.mjs';
 import type { Corpus, Measure } from '../lib/data';
 export function el<K extends keyof HTMLElementTagNameMap>(
@@ -30,11 +31,6 @@ export function icon(name: string) {
   const node = svg('svg', {
     viewBox: '0 0 24 24',
     class: 'icon',
-    fill: 'none',
-    stroke: 'currentColor',
-    'stroke-width': '1.65',
-    'stroke-linecap': 'round',
-    'stroke-linejoin': 'round',
     'aria-hidden': 'true',
   });
   node.append(
@@ -86,6 +82,7 @@ export function measureCard(
     undefined,
     compact ? 'measure-row compact' : 'measure-row',
   );
+  article.dataset.scope = measure.scope;
   const symbol = anchor('', `/themes/${theme.id}/`);
   symbol.className = 'measure-symbol';
   symbol.setAttribute('aria-label', theme.label);
@@ -111,7 +108,8 @@ export function measureCard(
   const h = el(level);
   h.append(anchor(measure.title, `/mesures/${measure.id}/`));
   content.append(meta, h);
-  if (!compact) content.append(el('p', measure.description));
+  if (!compact && !sameSentence(measure.title, measure.description))
+    content.append(el('p', measure.description));
   const quantities = el('div', undefined, 'measure-quantities');
   measure.metrics.forEach((metric) => {
     const span = el('span');
@@ -132,15 +130,19 @@ export function measureCard(
     quantities.append(span);
   });
   const links = el('div', undefined, 'measure-links'),
-    detail = anchor('Détail de la mesure ', `/mesures/${measure.id}/`),
+    source = anchor(
+      sourceCountLabel(measure.sourceRefs),
+      `/mesures/${measure.id}/#sources`,
+    ),
     history = anchor(
       `${measure.revision} version${measure.revision > 1 ? 's' : ''}`,
       `/historique/?mesure=${measure.id}`,
     );
-  detail.append(icon('arrow'));
+  source.prepend(icon('source'));
   history.prepend(icon('historique'));
-  links.append(detail, history);
-  content.append(quantities, links);
+  links.append(source, history);
+  if (quantities.childElementCount) content.append(quantities);
+  content.append(links);
   article.append(symbol, content);
   return article;
 }

@@ -36,7 +36,7 @@ Le registre de sondages contient 36 relevés de scénarios, regroupés en 30 sé
 
 Les vues `/temps-de-parole/`, `/budget-programmes/` et `/agenda/` proposent les relevés Arcom de juillet à septembre 2026 (24 médias), 37 montants annoncés pour 14 profils et 28 rendez-vous officiels dans 21 communes. Elles conservent les périodes, les données absentes et les sources. Chaque jour, les fichiers Arcom sont vérifiés puis intégrés via la publication Git habituelle. Voir [la méthode et les commandes de mise à jour](docs/visualisations.md).
 
-Les nouvelles vues `/evolution/` et `/financements/` ajoutent six dossiers datés (quatorze états de proposition pour cinq candidats) et seize schémas financiers concernant neuf candidats. Les documents historiques sont conservés séparément des révisions éditoriales ; les liens financiers reprennent uniquement les relations documentées. Voir [leurs règles de comparaison](docs/propositions.md). L’accueil propose deux aperçus fondés sur ces données, avec une navigation horizontale et un footer structuré.
+La rubrique `/evolution/` rassemble 19 dossiers et 41 états de propositions pour onze personnalités. La rubrique `/financements/` présente les relations documentées entre financements et dépenses. Les fiches indiquent les éditions, les dates de dépôt ou de consultation et le périmètre de chaque mesure. [Règles de comparaison](docs/propositions.md)
 
 L’audience utilise un [paquet GoAccess privé](deploy/goaccess/README.md), distinct du site statique et activé par l’opérateur. Aucun script de mesure n’est ajouté aux pages publiques. Le lecteur garde une CSP stricte ; il utilise des agrégats du moteur GoAccess sans IP ni agents utilisateurs bruts. La disponibilité du paquet dans une version GitHub ne prouve pas son activation sur le serveur.
 
@@ -54,7 +54,7 @@ La carte `/divergences/` rapproche quatre paramètres chiffrés du corpus : âge
 
 ## Propositions, votes et partage
 
-La frise `/votes/` relie six propositions à six scrutins nominatifs de l’Assemblée nationale et du Sénat. Les objets des votes, les groupes à l’époque et les sources sont conservés. Les motions restent distinctes des votes sur une mesure. Voir [la méthode de sélection](docs/votes.md).
+La frise `/votes/` relie 21 dossiers à 17 scrutins nominatifs de l’Assemblée nationale et du Sénat. Pour chaque vote figurent son objet, le groupe parlementaire à la date de séance et la liste nominative officielle. [Méthode de sélection](docs/votes.md)
 
 L’accueil et chaque rubrique disposent d’une image OG PNG de 1200 × 630, générée à la construction avec Chromium et la police locale. Les graphiques reprennent les données du corpus, sans requête distante ni photographie synthétique. Les noms de fichiers changent avec le contenu et le rendu. Les pages détaillées héritent du visuel de leur rubrique. `npm run og:render` permet de les régénérer ; Chromium doit être installé avant `build` ou `dev`. Les PNG générés sont ignorés par Git et intégrés à la livraison statique.
 

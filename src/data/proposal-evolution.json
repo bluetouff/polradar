@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checked": "2026-11-18",
+  "checked": "2026-11-19",
   "tracks": [
     {
       "id": "melenchon-smic",
@@ -75,6 +75,173 @@
       "note": "Le même âge cible figure dans la profession de foi 2022 et le discours de 2026. Ce dernier est une position du parti ; les conditions de cotisation ne sont pas chiffrées dans ce passage.",
       "stateIds": ["roussel-retraites-2022", "roussel-retraites-juin-2026"],
       "measureIds": ["roussel-retraites-1"]
+    },
+    {
+      "id": "nda-transmission",
+      "candidate": "dupont-aignan",
+      "theme": "fiscalite",
+      "title": "Succession de la résidence principale",
+      "kind": "conditions",
+      "note": "Les deux documents mentionnent la résidence principale. Le projet de parti traite aussi les terres agricoles et la transmission d’entreprises.",
+      "stateIds": [
+        "nda-transmission-cnc-nda-2022",
+        "nda-transmission-dlf-economie-2026"
+      ],
+      "measureIds": ["dupont-aignan-fiscalite-transmission"]
+    },
+    {
+      "id": "nda-indexation",
+      "candidate": "dupont-aignan",
+      "theme": "retraites",
+      "title": "Indexation des pensions et des traitements",
+      "kind": "maintien",
+      "note": "Les deux textes retiennent l’inflation comme référence pour les retraites et les traitements des fonctionnaires.",
+      "stateIds": [
+        "nda-indexation-cnc-nda-2022",
+        "nda-indexation-dlf-economie-2026"
+      ],
+      "measureIds": ["dupont-aignan-retraites-indexation"]
+    },
+    {
+      "id": "nda-benefices-reinvestis",
+      "candidate": "dupont-aignan",
+      "theme": "fiscalite",
+      "title": "Fiscalité des bénéfices réinvestis en France",
+      "kind": "conditions",
+      "note": "La campagne de 2022 annonçait une baisse d’impôt. Le projet de Debout la France retient un crédit d’impôt, sans en donner le taux dans ce passage.",
+      "stateIds": [
+        "nda-benefices-reinvestis-cnc-nda-2022",
+        "nda-benefices-reinvestis-dlf-economie-2026"
+      ],
+      "measureIds": ["dupont-aignan-fiscalite-credit-production"]
+    },
+    {
+      "id": "glucksmann-renouvelables",
+      "candidate": "glucksmann",
+      "theme": "climat",
+      "title": "Objectifs de développement des renouvelables",
+      "kind": "perimetre",
+      "note": "La liste européenne chiffre la part des renouvelables dans la consommation finale. Le livret présidentiel chiffre une progression des capacités installées en France. Les unités et les horizons diffèrent.",
+      "stateIds": [
+        "glucksmann-renouvelables-glucks-ps56-2024",
+        "glucksmann-renouvelables-glucksmann-100-jours-accessible"
+      ],
+      "measureIds": ["glucksmann-climat-doublement-renouvelables"]
+    },
+    {
+      "id": "glucksmann-kerosene",
+      "candidate": "glucksmann",
+      "theme": "fiscalite",
+      "title": "Fiscalité du carburant aérien",
+      "kind": "perimetre",
+      "note": "La liste de 2024 propose une taxe européenne sur le kérosène. Le livret des 100 jours donne une première cible nationale, les vols intérieurs.",
+      "stateIds": [
+        "glucksmann-kerosene-glucks-ps56-2024",
+        "glucksmann-kerosene-glucksmann-100-jours-accessible"
+      ],
+      "measureIds": ["glucksmann-fiscalite-fiscalite-aerien"]
+    },
+    {
+      "id": "glucksmann-superprofits",
+      "candidate": "glucksmann",
+      "theme": "europe",
+      "title": "Taxation européenne des superprofits",
+      "kind": "perimetre",
+      "note": "Le programme européen vise plusieurs catégories d’entreprises. Le livret présidentiel développe une proposition sectorielle à défendre au niveau européen.",
+      "stateIds": [
+        "glucksmann-superprofits-glucks-ps56-2024",
+        "glucksmann-superprofits-glucksmann-100-jours-accessible"
+      ],
+      "measureIds": ["glucksmann-europe-taxe-superprofits"]
+    },
+    {
+      "id": "lepen-tva-energie",
+      "candidate": "lepen",
+      "theme": "climat",
+      "title": "TVA sur le gaz, l’électricité et les carburants",
+      "kind": "conditions",
+      "note": "La profession de foi de 2022 annonce une baisse des taxes énergétiques. Les amendements de 2025 et 2026 précisent l’instrument, la TVA, et le taux proposé pour les mêmes produits.",
+      "stateIds": [
+        "lepen-tva-energie-2022",
+        "lepen-tva-energie-an-lepen-i792",
+        "lepen-tva-energie-an-lepen-i635-tva-energies"
+      ],
+      "measureIds": ["lepen-climat-tva-energie"]
+    },
+    {
+      "id": "kazib-smic",
+      "candidate": "kazib",
+      "theme": "travail",
+      "title": "Précision du montant du SMIC",
+      "kind": "conditions",
+      "note": "Le chiffre annoncé en septembre est précisé en octobre. La première publication ne donne pas sa base brute ou nette.",
+      "stateIds": [
+        "kazib-smic-kazib-premieres-mesures-2027",
+        "kazib-smic-kazib-smic-octobre-2026"
+      ],
+      "measureIds": ["kazib-travail-smic"]
+    },
+    {
+      "id": "roussel-logements",
+      "candidate": "roussel",
+      "theme": "logement",
+      "title": "Objectif annuel de construction",
+      "kind": "perimetre",
+      "note": "La profession de foi chiffre le logement social. Le discours de Marseille reprend le même nombre pour les logements à construire sans reprendre le qualificatif « sociaux ».",
+      "stateIds": [
+        "roussel-logements-cnc-roussel-2022",
+        "roussel-logements-pcf-work"
+      ],
+      "measureIds": ["roussel-logement-construction"]
+    },
+    {
+      "id": "ruffin-logements",
+      "candidate": "ruffin",
+      "theme": "logement",
+      "title": "Objectif de logements publics",
+      "kind": "conditions",
+      "note": "Le contrat commun de 2024 fixe un objectif sur cinq ans. Le cahier logement de François Ruffin précise les publics visés.",
+      "stateIds": [
+        "ruffin-logements-nfp-2024-contrat",
+        "ruffin-logements-ruffin-logement"
+      ],
+      "measureIds": ["ruffin-logement-construction-publique"]
+    },
+    {
+      "id": "melenchon-tranches-ir",
+      "candidate": "melenchon",
+      "theme": "fiscalite",
+      "title": "Nombre de tranches de l’impôt sur le revenu",
+      "kind": "maintien",
+      "note": "L’accord du NFP pour les législatives et le programme présidentiel de LFI retiennent le même nombre de tranches.",
+      "stateIds": [
+        "melenchon-tranches-ir-nfp-2024-contrat",
+        "melenchon-tranches-ir-lfi-tax"
+      ],
+      "measureIds": ["melenchon-fiscalite-1"]
+    },
+    {
+      "id": "melenchon-retraite",
+      "candidate": "melenchon",
+      "theme": "retraites",
+      "title": "Âge de départ à taux plein",
+      "kind": "maintien",
+      "note": "Les deux programmes associent l’âge de 60 ans à quarante annuités. Le programme actuel décrit aussi l’abrogation de la réforme de 2023.",
+      "stateIds": [
+        "melenchon-retraite-melenchon-2022-declaration",
+        "melenchon-retraite-lfi-social"
+      ],
+      "measureIds": ["melenchon-retraites-1"]
+    },
+    {
+      "id": "egger-ric",
+      "candidate": "egger",
+      "theme": "institutions",
+      "title": "Seuil du référendum d’initiative constituante",
+      "kind": "maintien",
+      "note": "Le projet porté par Espoir RIC pour 2022 et le programme 2027 de Solution démocratique fixent le même seuil et le même délai pour recueillir les signatures.",
+      "stateIds": ["egger-ric-egger-2022", "egger-ric-egger-programme-2027"],
+      "measureIds": ["egger-institutions-ric"]
     }
   ],
   "states": [
@@ -519,6 +686,829 @@
         "sha256": "463fc9118f4ddbe53011977cab3703f2b9b2dfde4f999c6864b011149122c553",
         "quote": "la retraite à 60 ans",
         "locator": "Discours : produire, cotiser et retraite à 60 ans"
+      }
+    },
+    {
+      "date": {
+        "value": "2022",
+        "kind": "edition"
+      },
+      "edition": "Présidentielle 2022",
+      "scope": "archive",
+      "observedOn": "2026-11-18",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": null,
+      "unit": "disposition",
+      "basisKey": "residence-principale",
+      "population": "Héritiers de la résidence principale",
+      "statement": "La profession de foi propose de supprimer les droits de succession sur cette résidence.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "cnc-nda-2022",
+        "title": "Nicolas Dupont-Aignan · déclaration du premier tour de 2022, archive de la CNCCEP",
+        "url": "https://www.cnccep.fr/pdfs/Candidat-02-Nicolas-Dupont-Aignan-Declaration-accessible.pdf",
+        "authority": "institution",
+        "published": null,
+        "updated": null,
+        "sha256": "5888d0bd6617b92dfa25d4453150781cef7f7c87054efe51283c82fc75840894",
+        "quote": "Zéro droit de succession",
+        "locator": "Déclaration du premier tour, page 2"
+      },
+      "label": "Exonération",
+      "id": "nda-transmission-cnc-nda-2022",
+      "trackId": "nda-transmission"
+    },
+    {
+      "date": {
+        "value": "2026-11-19",
+        "kind": "consultation"
+      },
+      "edition": "Projet économique de Debout la France",
+      "scope": "parti",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": null,
+      "unit": "disposition",
+      "basisKey": "residence-principale",
+      "population": "Héritiers de la résidence principale",
+      "statement": "Le projet du parti reprend cette exonération et la complète par d’autres dispositions.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "dlf-economie-2026",
+        "title": "Debout la France : économie et finances, trente mesures",
+        "url": "https://www.debout-la-france.fr/projet/economie-travail/",
+        "authority": "parti",
+        "published": null,
+        "updated": null,
+        "sha256": "58cbb61dbe49e8937ec3dd96d5b0f3025862802a9f7241dcb55057f8328ec7c4",
+        "quote": "sur la résidence principale",
+        "locator": "Projet Économie et travail, mesures pour la production ou le pouvoir d’achat"
+      },
+      "label": "Exonération",
+      "id": "nda-transmission-dlf-economie-2026",
+      "trackId": "nda-transmission"
+    },
+    {
+      "date": {
+        "value": "2022",
+        "kind": "edition"
+      },
+      "edition": "Présidentielle 2022",
+      "scope": "archive",
+      "observedOn": "2026-11-18",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": null,
+      "unit": "disposition",
+      "basisKey": "pensions-traitements-prix",
+      "population": "Retraités et fonctionnaires",
+      "statement": "La déclaration propose d’indexer les retraites et les salaires des fonctionnaires sur l’inflation.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "cnc-nda-2022",
+        "title": "Nicolas Dupont-Aignan · déclaration du premier tour de 2022, archive de la CNCCEP",
+        "url": "https://www.cnccep.fr/pdfs/Candidat-02-Nicolas-Dupont-Aignan-Declaration-accessible.pdf",
+        "authority": "institution",
+        "published": null,
+        "updated": null,
+        "sha256": "5888d0bd6617b92dfa25d4453150781cef7f7c87054efe51283c82fc75840894",
+        "quote": "Indexation sur l’inflation des retraites",
+        "locator": "Déclaration du premier tour, page 2"
+      },
+      "label": "Indexation sur les prix",
+      "id": "nda-indexation-cnc-nda-2022",
+      "trackId": "nda-indexation"
+    },
+    {
+      "date": {
+        "value": "2026-11-19",
+        "kind": "consultation"
+      },
+      "edition": "Projet économique de Debout la France",
+      "scope": "parti",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": null,
+      "unit": "disposition",
+      "basisKey": "pensions-traitements-prix",
+      "population": "Retraités et fonctionnaires",
+      "statement": "Le programme économique demande de réindexer sur l’inflation les pensions et les traitements publics.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "dlf-economie-2026",
+        "title": "Debout la France : économie et finances, trente mesures",
+        "url": "https://www.debout-la-france.fr/projet/economie-travail/",
+        "authority": "parti",
+        "published": null,
+        "updated": null,
+        "sha256": "58cbb61dbe49e8937ec3dd96d5b0f3025862802a9f7241dcb55057f8328ec7c4",
+        "quote": "Réindexer les pensions",
+        "locator": "Projet Économie et travail, mesures pour la production ou le pouvoir d’achat"
+      },
+      "label": "Indexation sur les prix",
+      "id": "nda-indexation-dlf-economie-2026",
+      "trackId": "nda-indexation"
+    },
+    {
+      "date": {
+        "value": "2022",
+        "kind": "edition"
+      },
+      "edition": "Présidentielle 2022",
+      "scope": "archive",
+      "observedOn": "2026-11-18",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": null,
+      "unit": "disposition",
+      "basisKey": "benefices-reinvestis-france",
+      "population": "Entreprises réinvestissant en France",
+      "statement": "Diviser par deux l’impôt sur les sociétés sur la part des bénéfices réinvestis en France.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "cnc-nda-2022",
+        "title": "Nicolas Dupont-Aignan · déclaration du premier tour de 2022, archive de la CNCCEP",
+        "url": "https://www.cnccep.fr/pdfs/Candidat-02-Nicolas-Dupont-Aignan-Declaration-accessible.pdf",
+        "authority": "institution",
+        "published": null,
+        "updated": null,
+        "sha256": "5888d0bd6617b92dfa25d4453150781cef7f7c87054efe51283c82fc75840894",
+        "quote": "Division par 2",
+        "locator": "Déclaration du premier tour, page 2"
+      },
+      "label": "Impôt divisé par deux",
+      "id": "nda-benefices-reinvestis-cnc-nda-2022",
+      "trackId": "nda-benefices-reinvestis"
+    },
+    {
+      "date": {
+        "value": "2026-11-19",
+        "kind": "consultation"
+      },
+      "edition": "Projet économique de Debout la France",
+      "scope": "parti",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": null,
+      "unit": "disposition",
+      "basisKey": "benefices-reinvestis-france",
+      "population": "Entreprises réinvestissant en France",
+      "statement": "Accorder un crédit d’impôt de production aux entreprises qui réinvestissent leurs bénéfices sur le territoire.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "dlf-economie-2026",
+        "title": "Debout la France : économie et finances, trente mesures",
+        "url": "https://www.debout-la-france.fr/projet/economie-travail/",
+        "authority": "parti",
+        "published": null,
+        "updated": null,
+        "sha256": "58cbb61dbe49e8937ec3dd96d5b0f3025862802a9f7241dcb55057f8328ec7c4",
+        "quote": "crédit d’impôt production",
+        "locator": "Projet Économie et travail, mesures pour la production ou le pouvoir d’achat"
+      },
+      "label": "Crédit d’impôt",
+      "id": "nda-benefices-reinvestis-dlf-economie-2026",
+      "trackId": "nda-benefices-reinvestis"
+    },
+    {
+      "date": {
+        "value": "2024",
+        "kind": "edition"
+      },
+      "edition": "Européennes 2024 · liste PS et Place publique",
+      "scope": "parti",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": 75,
+      "unit": "pourcentage",
+      "basisKey": "consommation-finale-ue-2040",
+      "population": "Part de la consommation finale en 2040",
+      "statement": "Atteindre 75 % d’énergies renouvelables dans la consommation finale européenne à l’horizon 2040.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "glucks-ps56-2024",
+        "title": "Réveiller l’Europe · programme de la liste PS et Place publique pour les européennes de 2024",
+        "url": "https://ps56.bzh/wp-content/uploads/2024/05/Programme-Europe-Puissance-210x145_IMP_FINAL-1.pdf",
+        "authority": "parti",
+        "published": null,
+        "updated": null,
+        "sha256": "529f965239e37a4600976739357de97925f736613ce6f2a49320efe1020cad0f",
+        "quote": "atteindre 75 %",
+        "locator": "Programme Réveiller l’Europe, page 9 du PDF"
+      },
+      "id": "glucksmann-renouvelables-glucks-ps56-2024",
+      "trackId": "glucksmann-renouvelables"
+    },
+    {
+      "date": {
+        "value": "2026",
+        "kind": "edition"
+      },
+      "edition": "Présidentielle 2027 · livret écologique",
+      "scope": "campagne",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": null,
+      "unit": "disposition",
+      "basisKey": "capacite-france-2035",
+      "population": "Capacités installées en France",
+      "statement": "Doubler au moins les capacités renouvelables installées d’ici 2035.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "glucksmann-100-jours-accessible",
+        "title": "Raphaël Glucksmann et Yannick Jadot : les 100 premiers jours, version accessible",
+        "url": "https://glucks2027.fr/wp-content/uploads/2026/11/livret_100_jours_revolution_ecologique_accessible.pdf",
+        "authority": "campagne",
+        "published": null,
+        "updated": null,
+        "sha256": "f69630f123e11e0a9b4243205b5e197633ba4a75c9ffc800547e0e23361dbdaf",
+        "quote": "les capacités installées",
+        "locator": "Livret des 100 premiers jours, page 12 du PDF accessible"
+      },
+      "label": "Au moins le double",
+      "id": "glucksmann-renouvelables-glucksmann-100-jours-accessible",
+      "trackId": "glucksmann-renouvelables"
+    },
+    {
+      "date": {
+        "value": "2024",
+        "kind": "edition"
+      },
+      "edition": "Européennes 2024 · liste PS et Place publique",
+      "scope": "parti",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": null,
+      "unit": "disposition",
+      "basisKey": "kerosene-europe",
+      "population": "Aviation dans l’Union européenne",
+      "statement": "Instaurer une taxe sur le kérosène dans le secteur aérien.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "glucks-ps56-2024",
+        "title": "Réveiller l’Europe · programme de la liste PS et Place publique pour les européennes de 2024",
+        "url": "https://ps56.bzh/wp-content/uploads/2024/05/Programme-Europe-Puissance-210x145_IMP_FINAL-1.pdf",
+        "authority": "parti",
+        "published": null,
+        "updated": null,
+        "sha256": "529f965239e37a4600976739357de97925f736613ce6f2a49320efe1020cad0f",
+        "quote": "taxe sur le kérosène",
+        "locator": "Programme Réveiller l’Europe, page 19 du PDF"
+      },
+      "label": "Taxe européenne",
+      "id": "glucksmann-kerosene-glucks-ps56-2024",
+      "trackId": "glucksmann-kerosene"
+    },
+    {
+      "date": {
+        "value": "2026",
+        "kind": "edition"
+      },
+      "edition": "Présidentielle 2027 · livret écologique",
+      "scope": "campagne",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": null,
+      "unit": "disposition",
+      "basisKey": "carburant-vols-interieurs",
+      "population": "Carburant des vols intérieurs",
+      "statement": "Supprimer les exonérations fiscales sur le carburant des vols intérieurs dès les cent premiers jours.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "glucksmann-100-jours-accessible",
+        "title": "Raphaël Glucksmann et Yannick Jadot : les 100 premiers jours, version accessible",
+        "url": "https://glucks2027.fr/wp-content/uploads/2026/11/livret_100_jours_revolution_ecologique_accessible.pdf",
+        "authority": "campagne",
+        "published": null,
+        "updated": null,
+        "sha256": "f69630f123e11e0a9b4243205b5e197633ba4a75c9ffc800547e0e23361dbdaf",
+        "quote": "carburant pour les vols intérieurs",
+        "locator": "Livret des 100 premiers jours, page 8 du PDF accessible"
+      },
+      "label": "Vols intérieurs",
+      "id": "glucksmann-kerosene-glucksmann-100-jours-accessible",
+      "trackId": "glucksmann-kerosene"
+    },
+    {
+      "date": {
+        "value": "2024",
+        "kind": "edition"
+      },
+      "edition": "Européennes 2024 · liste PS et Place publique",
+      "scope": "parti",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": null,
+      "unit": "disposition",
+      "basisKey": "superprofits-multinationales",
+      "population": "Multinationales et profiteurs de guerre",
+      "statement": "Taxer les superprofits des multinationales et des profiteurs de guerre.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "glucks-ps56-2024",
+        "title": "Réveiller l’Europe · programme de la liste PS et Place publique pour les européennes de 2024",
+        "url": "https://ps56.bzh/wp-content/uploads/2024/05/Programme-Europe-Puissance-210x145_IMP_FINAL-1.pdf",
+        "authority": "parti",
+        "published": null,
+        "updated": null,
+        "sha256": "529f965239e37a4600976739357de97925f736613ce6f2a49320efe1020cad0f",
+        "quote": "superprofits des multinationales",
+        "locator": "Programme Réveiller l’Europe, page 19 du PDF"
+      },
+      "label": "Multinationales",
+      "id": "glucksmann-superprofits-glucks-ps56-2024",
+      "trackId": "glucksmann-superprofits"
+    },
+    {
+      "date": {
+        "value": "2026",
+        "kind": "edition"
+      },
+      "edition": "Présidentielle 2027 · livret écologique",
+      "scope": "campagne",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": null,
+      "unit": "disposition",
+      "basisKey": "superprofits-hydrocarbures",
+      "population": "Compagnies pétrolières et gazières",
+      "statement": "Défendre une taxe européenne sur les superprofits des entreprises pétrolières et gazières.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "glucksmann-100-jours-accessible",
+        "title": "Raphaël Glucksmann et Yannick Jadot : les 100 premiers jours, version accessible",
+        "url": "https://glucks2027.fr/wp-content/uploads/2026/11/livret_100_jours_revolution_ecologique_accessible.pdf",
+        "authority": "campagne",
+        "published": null,
+        "updated": null,
+        "sha256": "f69630f123e11e0a9b4243205b5e197633ba4a75c9ffc800547e0e23361dbdaf",
+        "quote": "pétroliers et gaziers",
+        "locator": "Livret des 100 premiers jours, page 8 du PDF accessible"
+      },
+      "label": "Pétrole et gaz",
+      "id": "glucksmann-superprofits-glucksmann-100-jours-accessible",
+      "trackId": "glucksmann-superprofits"
+    },
+    {
+      "date": {
+        "value": "2025-10-21",
+        "kind": "depot"
+      },
+      "edition": "Budget 2026 · dépôt de Marine Le Pen",
+      "scope": "campagne",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": 5.5,
+      "unit": "pourcentage",
+      "basisKey": "tva-energies-lepen",
+      "population": "TVA proposée sur les énergies",
+      "statement": "Appliquer le taux réduit de 5,5 % aux quatre catégories d’énergie énumérées dans l’exposé.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "an-lepen-i792",
+        "title": "Assemblée nationale · amendement I-792 de Marine Le Pen au projet de loi de finances pour 2026",
+        "url": "https://www.assemblee-nationale.fr/dyn/17/amendements/1906A/AN/792",
+        "authority": "institution",
+        "published": "2025-10-21",
+        "updated": null,
+        "sha256": "a5d8109057d688e5aad57d483ae73b4c1d1d98076f5684f77f13875358d37b4b",
+        "quote": "le gaz, l’électricité, le fioul et les carburants",
+        "locator": "Exposé sommaire de l’amendement I-792"
+      },
+      "id": "lepen-tva-energie-an-lepen-i792",
+      "trackId": "lepen-tva-energie"
+    },
+    {
+      "date": {
+        "value": "2026-10-08",
+        "kind": "depot"
+      },
+      "edition": "Budget 2027 · dépôt de Marine Le Pen",
+      "scope": "campagne",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": 5.5,
+      "unit": "pourcentage",
+      "basisKey": "tva-energies-lepen",
+      "population": "TVA proposée sur les énergies",
+      "statement": "Appliquer le taux réduit de 5,5 % aux quatre catégories d’énergie énumérées dans l’exposé.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "an-lepen-i635-tva-energies",
+        "title": "Assemblée nationale : amendement I-635 de Marine Le Pen sur la TVA énergétique",
+        "url": "https://www.assemblee-nationale.fr/dyn/17/amendements/3210A/AN/635",
+        "authority": "institution",
+        "published": "2026-10-08",
+        "updated": null,
+        "sha256": "e79397107245bd08e87515bfe1866854497aac16360e84818c9c9551da01efe5",
+        "quote": "le gaz, l’électricité, le fioul et les carburants",
+        "locator": "Exposé sommaire de l’amendement I-635"
+      },
+      "id": "lepen-tva-energie-an-lepen-i635-tva-energies",
+      "trackId": "lepen-tva-energie"
+    },
+    {
+      "date": {
+        "value": "2026-09-16",
+        "kind": "publication"
+      },
+      "edition": "Premières mesures de campagne",
+      "scope": "campagne",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": null,
+      "unit": "disposition",
+      "basisKey": "smic-base-non-precisee",
+      "population": "Salariés au SMIC",
+      "statement": "Relever le SMIC à 2 000 euros. La base brute ou nette ne figure pas dans ce passage.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "kazib-premieres-mesures-2027",
+        "title": "Anasse Kazib : premières mesures présentées par Révolution Permanente",
+        "url": "https://www.revolutionpermanente.fr/28h-expropriation-des-secteurs-strategiques-RP-presente-les-premieres-mesures-de-sa-candidature",
+        "authority": "campagne",
+        "published": "2026-09-16",
+        "updated": null,
+        "sha256": "5cf3731f0a5debcdf9f8268b4bcaf45b27bf9f5cf1a84eb979c1f246f03cb1c0",
+        "quote": "SMIC à 2000 euros",
+        "locator": "Paragraphe consacré aux salaires"
+      },
+      "label": "2 000 €",
+      "id": "kazib-smic-kazib-premieres-mesures-2027",
+      "trackId": "kazib-smic"
+    },
+    {
+      "date": {
+        "value": "2026-10-26",
+        "kind": "publication"
+      },
+      "edition": "Intervention sur la conférence sociale",
+      "scope": "campagne",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": 2000,
+      "unit": "euros-net-mois",
+      "basisKey": "smic-net-kazib",
+      "population": "Salariés au SMIC",
+      "statement": "Anasse Kazib précise que le montant revendiqué est net.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "kazib-smic-octobre-2026",
+        "title": "Anasse Kazib : intervention sur la conférence sociale",
+        "url": "https://www.revolutionpermanente.fr/La-conference-sociale-ne-distribuera-que-des-miettes-Anasse-Kazib-appelle-a-durcir-la-mobilisation",
+        "authority": "campagne",
+        "published": "2026-10-26",
+        "updated": null,
+        "sha256": "494c659d7f0092a0cee2e9b37b57dd70245735a198f32c8c60300ad2a3e19b61",
+        "quote": "Un SMIC à 2 000 € net",
+        "locator": "Liste des revendications, premier point"
+      },
+      "id": "kazib-smic-kazib-smic-octobre-2026",
+      "trackId": "kazib-smic"
+    },
+    {
+      "date": {
+        "value": "2022",
+        "kind": "edition"
+      },
+      "edition": "Présidentielle 2022",
+      "scope": "archive",
+      "observedOn": "2026-11-18",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": 200000,
+      "unit": "logements-an",
+      "basisKey": "social-construction",
+      "population": "Logements sociaux",
+      "statement": "Construire 200 000 logements sociaux par an.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "cnc-roussel-2022",
+        "title": "CNCCEP : profession de foi de Fabien Roussel, premier tour 2022",
+        "url": "https://www.cnccep.fr/pdfs/Candidat-11-Fabien-Roussel-Declaration-accessible.pdf",
+        "authority": "institution",
+        "published": null,
+        "updated": null,
+        "sha256": "c37cd69cef21e85c4a1401d71c6d50d6f4a81c87350a5e5efe08d95b26632751",
+        "quote": "200 000 logements sociaux",
+        "locator": "Déclaration, page 2 du PDF"
+      },
+      "id": "roussel-logements-cnc-roussel-2022",
+      "trackId": "roussel-logements"
+    },
+    {
+      "date": {
+        "value": "2025-11-23",
+        "kind": "declaration"
+      },
+      "edition": "Discours de Marseille",
+      "scope": "campagne",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": 200000,
+      "unit": "logements-an",
+      "basisKey": "logements-construction",
+      "population": "Logements, catégorie non précisée",
+      "statement": "Construire 200 000 logements chaque année pour répondre aux besoins des jeunes et des familles.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "pcf-work",
+        "title": "Fabien Roussel : discours de Marseille, PDF officiel",
+        "url": "https://assets.nationbuilder.com/pcf/pages/35369/attachments/original/1764162032/Discours_FR_corrige%CC%81_241125.pdf",
+        "authority": "campagne",
+        "published": null,
+        "updated": null,
+        "sha256": "7d457b67ecc81a12fb335b8bfebcd9d405a5874191a832068ade912d5df8ba68",
+        "quote": "200.000",
+        "locator": "Discours de Marseille, page 7 du PDF"
+      },
+      "id": "roussel-logements-pcf-work",
+      "trackId": "roussel-logements"
+    },
+    {
+      "date": {
+        "value": "2024",
+        "kind": "edition"
+      },
+      "edition": "Législatives 2024 · accord du Nouveau Front populaire",
+      "scope": "parti",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": 200000,
+      "unit": "logements-an",
+      "basisKey": "construction-publique",
+      "population": "Logements publics",
+      "statement": "Construire 200 000 logements publics par an pendant cinq ans.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "nfp-2024-contrat",
+        "title": "Nouveau Front populaire : contrat de législature de 2024 (PDF)",
+        "url": "https://melenchon2027.fr/wp-content/uploads/2026/04/PROGRAMME-FRONT-POPULAIRE.pdf",
+        "authority": "parti",
+        "published": null,
+        "updated": null,
+        "sha256": "e6dd6fbd6c4315fbee86c2fcf4d7d008dfd2783d5a5ec1052fd0240c217a6cd3",
+        "quote": "logements publics par an",
+        "locator": "Contrat de législature du NFP, page 16 du PDF"
+      },
+      "id": "ruffin-logements-nfp-2024-contrat",
+      "trackId": "ruffin-logements"
+    },
+    {
+      "date": {
+        "value": "2026-11-19",
+        "kind": "consultation"
+      },
+      "edition": "Cahier logement de François Ruffin",
+      "scope": "campagne",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": 200000,
+      "unit": "logements-an",
+      "basisKey": "construction-publique",
+      "population": "Logements publics",
+      "statement": "Produire chaque année 200 000 logements publics à loyer abordable pour les jeunes, les familles et les seniors.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "ruffin-logement",
+        "title": "François Ruffin : cahier sur le logement",
+        "url": "https://nouspresident.fr/face-a-la-crise-du-logement/",
+        "authority": "campagne",
+        "published": null,
+        "updated": null,
+        "sha256": "747f333bd04a4c8b4e30e529becd777a7e84ad0a0dce6e38af92c3a585e3e88e",
+        "quote": "200 000 nouveaux logements",
+        "locator": "Proposition 3, production de logements publics"
+      },
+      "id": "ruffin-logements-ruffin-logement",
+      "trackId": "ruffin-logements"
+    },
+    {
+      "date": {
+        "value": "2024",
+        "kind": "edition"
+      },
+      "edition": "Législatives 2024 · accord du Nouveau Front populaire",
+      "scope": "parti",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": 14,
+      "unit": "tranches",
+      "basisKey": "bareme-ir",
+      "population": "Barème de l’impôt sur le revenu",
+      "statement": "Rendre l’impôt sur le revenu plus progressif en portant le barème à quatorze tranches.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "nfp-2024-contrat",
+        "title": "Nouveau Front populaire : contrat de législature de 2024 (PDF)",
+        "url": "https://melenchon2027.fr/wp-content/uploads/2026/04/PROGRAMME-FRONT-POPULAIRE.pdf",
+        "authority": "parti",
+        "published": null,
+        "updated": null,
+        "sha256": "e6dd6fbd6c4315fbee86c2fcf4d7d008dfd2783d5a5ec1052fd0240c217a6cd3",
+        "quote": "14 tranches",
+        "locator": "Contrat de législature du NFP, page 13 du PDF"
+      },
+      "id": "melenchon-tranches-ir-nfp-2024-contrat",
+      "trackId": "melenchon-tranches-ir"
+    },
+    {
+      "date": {
+        "value": "2026-11-19",
+        "kind": "consultation"
+      },
+      "edition": "L’Avenir en commun 2027",
+      "scope": "campagne",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": 14,
+      "unit": "tranches",
+      "basisKey": "bareme-ir",
+      "population": "Barème de l’impôt sur le revenu",
+      "statement": "Passer le barème de l’impôt sur le revenu à quatorze tranches.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "lfi-tax",
+        "title": "L’Avenir en commun : partager les richesses",
+        "url": "https://melenchon2027.fr/programme/livre/une-economie-au-service-des-besoins/chapitre2",
+        "authority": "campagne",
+        "published": null,
+        "updated": null,
+        "sha256": "5fe5d01e39176fadca6bf268ff1e06a9b0df24d815cb4629afbcbb491606137a",
+        "quote": "barème à 14 tranches",
+        "locator": "Chapitre fiscal, mesure sur le barème"
+      },
+      "id": "melenchon-tranches-ir-lfi-tax",
+      "trackId": "melenchon-tranches-ir"
+    },
+    {
+      "date": {
+        "value": "2022",
+        "kind": "edition"
+      },
+      "edition": "Présidentielle 2022",
+      "scope": "archive",
+      "observedOn": "2026-11-18",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": 60,
+      "unit": "ans",
+      "basisKey": "taux-plein-40-annuites",
+      "population": "Assurés ayant quarante annuités",
+      "statement": "Rétablir le départ à 60 ans à taux plein après quarante annuités.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "melenchon-2022-declaration",
+        "title": "Jean-Luc Mélenchon : déclaration du premier tour de 2022, archive CNCCEP",
+        "url": "https://www.cnccep.fr/pdfs/Candidat-08-Jean-Luc-Melenchon-Declaration-accessible.pdf",
+        "authority": "institution",
+        "published": null,
+        "updated": null,
+        "sha256": "2dc0d46164c48c165950bd3a75c7777a8538ac24d3c1989c52922629c4bc0f49",
+        "quote": "40 annuités",
+        "locator": "Déclaration accessible, page 4"
+      },
+      "id": "melenchon-retraite-melenchon-2022-declaration",
+      "trackId": "melenchon-retraite"
+    },
+    {
+      "date": {
+        "value": "2026-11-19",
+        "kind": "consultation"
+      },
+      "edition": "L’Avenir en commun 2027",
+      "scope": "campagne",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": 60,
+      "unit": "ans",
+      "basisKey": "taux-plein-40-annuites",
+      "population": "Assurés ayant quarante annuités",
+      "statement": "Rétablir progressivement le droit au départ à 60 ans à taux plein pour quarante annuités.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "lfi-social",
+        "title": "L’Avenir en commun : à chacun selon ses besoins",
+        "url": "https://melenchon2027.fr/programme/livre/mettre-en-securite-sociale/chapitre1",
+        "authority": "campagne",
+        "published": null,
+        "updated": null,
+        "sha256": "b7637e98b45f202637fb59f7259ca69bd520296e9e84c4559898419b8dc20c01",
+        "quote": "40 annuités de cotisations",
+        "locator": "Section Garantir une retraite digne"
+      },
+      "id": "melenchon-retraite-lfi-social",
+      "trackId": "melenchon-retraite"
+    },
+    {
+      "date": {
+        "value": "2022",
+        "kind": "edition"
+      },
+      "edition": "Projet de candidature 2022 · Espoir RIC",
+      "scope": "archive",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": 700000,
+      "unit": "signatures",
+      "basisKey": "ric-constituant-18-mois",
+      "population": "Signatures en dix-huit mois",
+      "statement": "Soumettre une initiative constituante à 700 000 signatures recueillies en dix-huit mois.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "egger-2022",
+        "title": "Clara Egger · programme présidentiel du mouvement Espoir RIC pour 2022",
+        "url": "https://www.espoir-ric.fr/programme-presidentiel",
+        "authority": "campagne",
+        "published": null,
+        "updated": null,
+        "sha256": "e10f29c52730942b69d37896eac662b13f8c71f1922b67dcbf15828397747eba",
+        "quote": "700 000 signatures",
+        "locator": "Projet détaillé de modification de l’article 89"
+      },
+      "id": "egger-ric-egger-2022",
+      "trackId": "egger-ric"
+    },
+    {
+      "date": {
+        "value": "2026",
+        "kind": "edition"
+      },
+      "edition": "Présidentielle 2027 · Solution démocratique",
+      "scope": "campagne",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": 700000,
+      "unit": "signatures",
+      "basisKey": "ric-constituant-18-mois",
+      "population": "Signatures en dix-huit mois",
+      "statement": "Recueillir 700 000 signatures en dix-huit mois pour une initiative de révision constitutionnelle.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "egger-programme-2027",
+        "title": "Clara Egger, Solution Démocratique : programme présidentiel 2027",
+        "url": "https://solutiondemocratique.fr/wp-content/uploads/2026/11/Programme-de-Solution-Democratique-a-lelection-presidentielle-2027.pdf",
+        "authority": "campagne",
+        "published": null,
+        "updated": null,
+        "sha256": "4ba753e497f13851a0f14ee088e9da3fa212e461430cfa1aa461e56ca582928d",
+        "quote": "700 000 citoyens en 18 mois",
+        "locator": "Programme présidentiel, page 7 du PDF"
+      },
+      "id": "egger-ric-egger-programme-2027",
+      "trackId": "egger-ric"
+    },
+    {
+      "id": "lepen-tva-energie-2022",
+      "trackId": "lepen-tva-energie",
+      "date": {
+        "value": "2022",
+        "kind": "edition"
+      },
+      "edition": "Présidentielle 2022",
+      "scope": "archive",
+      "observedOn": "2026-11-19",
+      "recordedAt": "2026-11-19T18:10:15.847676Z",
+      "value": null,
+      "unit": "disposition",
+      "label": "Baisse des taxes",
+      "basisKey": "taxes-sur-energies",
+      "population": "Consommateurs d’énergie",
+      "statement": "La déclaration du premier tour annonce une baisse des taxes sur les carburants, le gaz, le fioul et l’électricité. Ce passage ne fixe ni le taux ni la nature de la taxe.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "cnc-lepen-1t",
+        "title": "Marine Le Pen · déclaration du premier tour de 2022, archive de la CNCCEP",
+        "url": "https://www.cnccep.fr/pdfs/Candidat-06-Marine-Le-Pen-Declaration-accessible.pdf",
+        "authority": "institution",
+        "published": null,
+        "updated": null,
+        "sha256": "68a296ebf9a7e50956398dd0418c719237f1a7c81ddf4d3f14e467596387aa14",
+        "quote": "massivement les taxes sur le gazole",
+        "locator": "Déclaration du premier tour, page 2 du PDF, colonne sur le pouvoir d’achat"
       }
     }
   ]

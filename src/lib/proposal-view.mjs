@@ -15,7 +15,12 @@ export const relationKinds = {
   'non-chiffree': 'Lien partiellement documenté',
 };
 export function stateValue(state) {
+  if (state.unit === 'disposition') return state.label;
   const n = state.value.toLocaleString('fr-FR');
+  if (state.unit === 'pourcentage') return n + ' %';
+  if (state.unit === 'logements-an') return n + ' logements/an';
+  if (state.unit === 'signatures') return n + ' signatures';
+  if (state.unit === 'tranches') return n + ' tranches';
   return state.unit === 'euros'
     ? formatMoney(state.value)
     : `${n} ${state.unit === 'ans' ? 'ans' : '€'}`;
@@ -25,7 +30,12 @@ export function stateUnit(state) {
     'euros-net-mois': 'net par mois',
     'euros-mois': 'par mois',
     euros: state.population,
-    ans: 'âge légal cible',
+    ans: 'âge de départ proposé',
+    pourcentage: state.population,
+    'logements-an': state.population,
+    tranches: state.population,
+    signatures: state.population,
+    disposition: 'Disposition publiée',
   }[state.unit];
 }
 export function evidenceDate(state) {
@@ -33,6 +43,7 @@ export function evidenceDate(state) {
     edition: 'Édition',
     publication: 'Publié le',
     declaration: 'Déclaration du',
+    depot: 'Déposé le',
     consultation: 'Consulté le',
     'mise-a-jour': 'Mis à jour le',
   }[state.date.kind];
@@ -52,6 +63,8 @@ export function proposalComparison(track, from, to) {
   if (from.id === to.id) return { label: 'Même document', delta: null };
   if (
     track.kind !== 'montant' ||
+    from.value === null ||
+    to.value === null ||
     from.unit !== to.unit ||
     from.basisKey !== to.basisKey
   )
@@ -63,6 +76,7 @@ export function proposalComparison(track, from, to) {
     euros: '€',
     ans: 'ans',
   }[from.unit];
+  if (!unit) return { label: evolutionKinds[track.kind], delta: null };
   return {
     label: `${delta > 0 ? '+' : ''}${delta.toLocaleString('fr-FR')} ${unit}`,
     delta,
