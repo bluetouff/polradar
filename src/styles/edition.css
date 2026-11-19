@@ -16,6 +16,9 @@
     --section-ink: #547b89;
     --panel-gradient: linear-gradient(135deg, #f7fafb, #eaf1f3);
     --night-gradient: linear-gradient(112deg, #10202e 2%, #183848 72%, #214b53);
+    --panel-edge: #b0c4cc;
+    --card-radius: 0.7rem;
+    --panel-shadow: 0 3px 12px #1735410c, inset 0 1px 0 #ffffffa8;
   }
   [data-desk='programmes'] {
     --tint: #c0d6d9;
@@ -63,7 +66,13 @@
   .publication-header .wordmark:hover {
     color: #f5f8f9;
   }
-  .publication-header .brand-mark,
+  .wordmark .brand-signature,
+  .footer-brand .brand-signature {
+    display: block;
+    width: clamp(8rem, 17vw, 12.9rem);
+    height: auto;
+    --logo-signal: #98d0d9;
+  }
   .publication-header .rail-brand .election-year {
     color: var(--ice);
   }
@@ -182,7 +191,6 @@
     background: var(--night-gradient);
     border-top: 1px solid #5c7c87;
   }
-  .footer-brand > span,
   .footer-follow .icon,
   .footer-columns h2 .icon,
   .publication-footer a:hover {
@@ -209,6 +217,7 @@
     align-items: stretch;
   }
   .measure-list > .measure-row,
+  .engagement-grid > .engagement-card,
   .advanced-result,
   .article-grid .article-card,
   .sources-grid .source-card {
@@ -223,7 +232,12 @@
       inset 0 1px 0 #ffffffc0;
   }
   .measure-list > .measure-row:is(:hover, :focus-within),
-  :is(.advanced-result, .article-card, .source-card):focus-within {
+  :is(
+    .engagement-card,
+    .advanced-result,
+    .article-card,
+    .source-card
+  ):focus-within {
     border-color: #7295a3;
     box-shadow: 0 4px 16px #15394a16;
   }
@@ -372,8 +386,8 @@
     align-items: center;
     gap: 0.7rem;
     padding: 0.85rem 1rem;
-    color: #f0f7f8;
-    background: var(--night-gradient);
+    color: #1e414e;
+    background: linear-gradient(110deg, #eaf2f4, #d2e2e7);
     border-radius: 0.58rem;
     cursor: pointer;
     font-weight: 650;
@@ -386,7 +400,7 @@
     display: none;
   }
   .dossier-directory > summary .icon {
-    color: var(--ice);
+    color: #426a78;
   }
   .dossier-directory > summary .icon:last-child {
     margin-left: auto;
@@ -401,15 +415,17 @@
     padding: 0.75rem;
     gap: 0.5rem;
   }
-  .dossier-directory a {
+  .dossier-directory a,
+  [data-financing] > .evidence-picker a {
     padding: 0.65rem;
     gap: 0.65rem;
     border: 1px solid var(--line);
-    border-radius: 0.4rem;
-    background: #edf3f4;
+    border-radius: 0.5rem;
+    background: var(--panel-gradient);
   }
-  .dossier-directory a[aria-current] {
-    background: var(--navy);
+  .dossier-directory a[aria-current],
+  [data-financing] > .evidence-picker a[aria-current] {
+    background: var(--night-gradient);
     color: #eff6f7;
   }
   .dossier-directory a > .icon {
@@ -425,13 +441,213 @@
     border-radius: 0.35rem;
   }
   .vote-stage > section,
-  [data-evolution] > .evidence-stage {
+  .evidence-workspace > .evidence-stage {
     background: var(--panel-gradient);
     border: 1px solid #adbec6;
     border-radius: 0.75rem;
   }
   .vote-proposal-edition {
     font-size: 0.87rem;
+  }
+  main :is(.votes-summary, .evidence-overview) {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(12rem, 1.25fr);
+    gap: 0.6rem;
+    align-items: center;
+    padding: 0.85rem clamp(0.85rem, 1.6vw, 1.4rem);
+    margin-bottom: 1rem;
+    background: var(--panel-gradient);
+    border: 1px solid var(--panel-edge);
+    border-radius: var(--card-radius);
+  }
+  :is(.votes-summary, .evidence-overview) > span {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.12rem 0.5rem;
+    color: #385765;
+    font: 0.83rem/1.35 var(--sans);
+  }
+  :is(.votes-summary, .evidence-overview) > span + span {
+    padding-inline-start: clamp(0.6rem, 1.8vw, 1.6rem);
+    border-inline-start: 1px solid var(--line);
+  }
+  :is(.votes-summary, .evidence-overview) strong {
+    color: var(--ink);
+    font: 510 clamp(1.5rem, 2.4vw, 1.95rem)/1.05 var(--sans);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.045em;
+  }
+  .votes-summary > p,
+  .evidence-overview > a {
+    margin: 0;
+    justify-self: end;
+    font-size: 0.8rem;
+  }
+  .dossier-directory a[aria-current] :is(em, small) {
+    color: #d0e0e5;
+    opacity: 1;
+  }
+  main
+    :is(
+      .vote-method,
+      .evidence-method,
+      .visual-method,
+      .coverage-panel,
+      .poll-method,
+      .watch-source-map,
+      .digital-card,
+      .retirement-panel,
+      .digital-decision,
+      .divergence-panel,
+      .divergence-position-record,
+      .market-board,
+      .topic-card,
+      .campaign-entry,
+      .watch-card,
+      .method-grid > .panel
+    ) {
+    background: var(--panel-gradient);
+    border-radius: var(--card-radius);
+    box-shadow: var(--panel-shadow);
+  }
+  main
+    :is(
+      .law-board,
+      .retirement-board,
+      .digital-decision-board,
+      .commune-report,
+      .digital-law-entry,
+      .dark-panel
+    ) {
+    background: var(--night-gradient);
+    border-radius: var(--card-radius);
+  }
+  main .digital-law {
+    --law-paper: #f6fafb;
+    --law-green: #c3dfe3;
+    --law-coral: #d5e1eb;
+  }
+  main .law-card {
+    background: #e4eff0;
+    border-inline-start-color: #6a9496;
+  }
+  main .law-change {
+    background: var(--panel-gradient);
+    border-inline-start-color: #738fa6;
+  }
+  main .digital-law-entry a:is(:hover, :focus-visible) {
+    background: var(--ice);
+    color: var(--navy);
+  }
+  main .digital-law-entry .icon {
+    color: var(--ice);
+  }
+  main .digital-law-entry a:is(:hover, :focus-visible) .icon {
+    color: var(--navy);
+  }
+  main .watch-document-icon {
+    border-radius: 0.4rem;
+  }
+  main .watch-card[data-watch-format] .watch-document-icon {
+    background: #e0eaef;
+    color: #345d6e;
+    border-color: #adc1ca;
+  }
+  main .campaign-day,
+  .version-timeline .version-node {
+    border: 1px solid #93afb9;
+    background: #dce9ed;
+    color: #315969;
+    border-radius: 0.4rem;
+  }
+  main .campaign-day {
+    padding: 0.35rem 0.25rem;
+  }
+  main .campaign-day b {
+    font: 530 1.55rem/1.05 var(--sans);
+    font-variant-numeric: tabular-nums;
+  }
+  main .campaign-person-portrait {
+    border-radius: 0.32rem;
+    overflow: hidden;
+  }
+  main .topic-grid {
+    gap: 0.75rem;
+    border: 0;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  }
+  .topic-grid > .topic-card {
+    padding: 1rem;
+    border: 1px solid var(--panel-edge);
+    align-items: center;
+  }
+  .topic-card > .icon {
+    color: #416b79;
+  }
+  .topic-card:is(:hover, :focus-visible) h2 {
+    text-decoration: underline;
+  }
+  main .programme-ledger,
+  .agenda-events {
+    display: grid;
+    gap: 0.7rem;
+    border: 0;
+  }
+  main :is(.budget-profile, .agenda-event) {
+    min-width: 0;
+    border: 1px solid var(--panel-edge);
+    border-radius: var(--card-radius);
+    background: var(--panel-gradient);
+    padding: clamp(0.85rem, 1.5vw, 1.3rem);
+  }
+  main .agenda-events {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr));
+  }
+  main .visual-tabs a[aria-current='page'] {
+    background: #dce9ed;
+  }
+  main .budget-funding {
+    background: #e0ecef;
+  }
+  main .version-timeline {
+    padding: 0.2rem clamp(0.75rem, 1.5vw, 1.2rem);
+    background: var(--panel-gradient);
+    border: 1px solid var(--panel-edge);
+    border-radius: var(--card-radius);
+  }
+  main .version-timeline > li:last-child {
+    border-bottom: 0;
+  }
+  .version-timeline .version-node {
+    position: relative;
+    z-index: 1;
+    border-radius: 50%;
+    border-width: 2px;
+    background: #386e7d;
+    border-color: #aecdd5;
+  }
+  .version-timeline > li::before {
+    background: #96b1bd;
+  }
+  @media (max-width: 700px) {
+    main :is(.votes-summary, .evidence-overview) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    :is(.votes-summary, .evidence-overview) > span {
+      display: grid;
+      align-self: start;
+      font-size: 0.76rem;
+      gap: 0.24rem;
+    }
+    .votes-summary > p,
+    .evidence-overview > a {
+      grid-column: 1/-1;
+      justify-self: start;
+      padding-top: 0.45rem;
+      border-top: 1px solid var(--line);
+      width: 100%;
+    }
   }
   .proposal-state .state-amount {
     overflow-wrap: anywhere;

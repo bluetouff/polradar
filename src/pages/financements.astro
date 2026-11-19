@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import CandidatePortrait from '../components/CandidatePortrait.astro';
+import DossierHeading from '../components/DossierHeading.astro';
 import FinancingFlow from '../components/FinancingFlow.astro';
 import { financingMaps } from '../lib/proposal-data';
 import { candidateById, sourceById, formatDate } from '../lib/data';
@@ -90,18 +91,16 @@ import '../styles/proposals.css';
           class="financing-dossier"
           aria-labelledby={`title-${map.id}`}
         >
-          <header class="dossier-heading">
-            <span class="dossier-symbol">
-              <Icon name="euro" />
-            </span>
-            <div>
-              <p class="eyebrow">
-                {candidateById(map.candidate).name} ·{' '}
-                {map.scope === 'parti' ? 'Projet de parti' : 'Campagne 2027'}
-              </p>
-              <h2 id={`title-${map.id}`}>{map.title}</h2>
-            </div>
-          </header>
+          <DossierHeading
+            candidate={candidateById(map.candidate)}
+            theme={{
+              id: 'euro',
+              label:
+                map.scope === 'parti' ? 'Projet de parti' : 'Campagne 2027',
+            }}
+            id={`title-${map.id}`}
+            title={map.title}
+          />
           <div class="financing-context">
             <span class="evolution-badge">{relationKinds[map.relation]}</span>
             <p>{map.entry.horizon}</p>
@@ -118,7 +117,8 @@ import '../styles/proposals.css';
             class="proposal-source finance-source"
           >
             <summary>
-              Documents et détail des montants <Icon name="source" />
+              <Icon name="source" /> Documents et détail des montants{' '}
+              <Icon name="chevron" />
             </summary>
             <div>
               <p data-flow-selection aria-live="polite">

@@ -22,6 +22,9 @@ const css = await readFile(
 const font = await readFile(
   new URL('../src/assets/fonts/archivo-latin.woff2', import.meta.url),
 );
+const logo = await readFile(
+  new URL('../public/marque/polradar.svg', import.meta.url),
+);
 const pages = new Map(
   socialImages.map((c) => [`/card/${c.id}`, socialImageHtml(c)]),
 );
@@ -44,6 +47,9 @@ const server = createServer((request, response) => {
       'Content-Type': 'text/css; charset=utf-8',
     });
     response.end(css);
+  } else if (route === '/marque/polradar.svg') {
+    response.writeHead(200, { ...headers, 'Content-Type': 'image/svg+xml' });
+    response.end(logo);
   } else if (route === '/archivo.woff2') {
     response.writeHead(200, { ...headers, 'Content-Type': 'font/woff2' });
     response.end(font);

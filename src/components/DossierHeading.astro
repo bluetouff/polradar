@@ -1,0 +1,142 @@
+---
+import CandidatePortrait from './CandidatePortrait.astro';
+import Icon from './Icon.astro';
+import type { Candidate } from '../lib/data';
+interface Props {
+  candidate: Candidate;
+  theme: { id: string; label: string };
+  title: string;
+  id: string;
+}
+const { candidate, theme, title, id } = Astro.props;
+---
+
+<header class="record-heading">
+  <div class="record-subject">
+    <p>
+      <Icon name={theme.id} />
+      {theme.label}
+    </p>
+    <h2 id={id}>{title}</h2>
+    <slot />
+  </div>
+  <a class="record-author" href={`/candidats/${candidate.id}/`}>
+    <span class="record-portrait">
+      <CandidatePortrait candidate={candidate} compact />
+    </span>
+    <span>
+      <strong>{candidate.name}</strong>
+      <small>{candidate.party}</small>
+    </span>
+    <Icon name="arrow" />
+  </a>
+</header>
+
+<style>
+  .record-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(11rem, auto);
+    align-items: center;
+    gap: 0.7rem 1.6rem;
+    padding: clamp(0.9rem, 1.75vw, 1.45rem);
+    color: #f1f7f8;
+    background: var(--night-gradient, #183947);
+    border: 1px solid #456471;
+    border-radius: var(--card-radius, 0.7rem);
+  }
+  .record-subject p {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font: 530 0.8rem/1.4 var(--sans);
+    color: #c5dce2;
+  }
+  .record-subject p :global(.icon) {
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+  .record-subject h2 {
+    margin: 0.38rem 0 0;
+    font: 570 clamp(1.15rem, 1.8vw, 1.46rem)/1.25 var(--sans);
+    letter-spacing: -0.022em;
+  }
+  .record-subject :global(.evolution-badge) {
+    margin-top: 0.56rem;
+    padding: 0.17rem 0.5rem;
+    background: #ffffff0a;
+    border: 1px solid #7896a1;
+    color: #e3eef1;
+    font-size: 0.73rem;
+  }
+  .record-author {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr) 1rem;
+    align-items: center;
+    gap: 0.65rem;
+    max-width: 20rem;
+    padding: 0.4rem 0.65rem 0.4rem 0.4rem;
+    border: 1px solid #688390;
+    border-radius: 0.48rem;
+    background: #e5f7ff0a;
+    text-decoration: none;
+    color: inherit;
+  }
+  .record-author:is(:hover, :focus-visible) {
+    color: white;
+    border-color: #b2d2da;
+  }
+  .record-author:focus-visible {
+    outline-color: var(--ice);
+  }
+  .record-portrait {
+    width: 2.5rem;
+    height: 2.85rem;
+    overflow: hidden;
+    border-radius: 0.29rem;
+  }
+  .record-author strong,
+  .record-author small {
+    display: block;
+  }
+  .record-author strong {
+    font: 570 0.89rem/1.28 var(--sans);
+  }
+  .record-author small {
+    margin-top: 0.15rem;
+    color: #cadae1;
+    font: 0.76rem/1.35 var(--sans);
+  }
+  .record-author > :global(.icon) {
+    width: 0.85rem;
+    height: 0.85rem;
+    color: #b9d9df;
+  }
+  @media (max-width: 650px) {
+    .record-heading {
+      grid-template-columns: 1fr;
+    }
+    .record-author {
+      max-width: 100%;
+      justify-self: stretch;
+      border-width: 1px 0 0;
+      border-radius: 0;
+      padding: 0.65rem 0 0;
+      background: none;
+      grid-template-columns: 2rem minmax(0, 1fr) 1rem;
+    }
+    .record-portrait {
+      width: 2rem;
+      height: 2.36rem;
+    }
+  }
+  @media print {
+    .record-heading,
+    .record-heading * {
+      background: white;
+      color: black;
+    }
+    .record-author {
+      border: 0;
+    }
+  }
+</style>

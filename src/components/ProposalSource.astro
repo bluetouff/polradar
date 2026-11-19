@@ -1,5 +1,6 @@
 ---
 import { formatDate } from '../lib/data';
+import Icon from './Icon.astro';
 import type { evolution } from '../lib/proposal-data';
 interface Props {
   state: (typeof evolution.states)[number];
@@ -9,7 +10,7 @@ const { state } = Astro.props;
 
 <details class="proposal-source">
   <summary>
-    Document officiel <span aria-hidden="true">↗</span>
+    <Icon name="source" /> Document officiel <Icon name="chevron" />
   </summary>
   <div>
     <a href={state.source.url} target="_blank" rel="noopener noreferrer">

@@ -61,6 +61,36 @@ test('l’évolution compare les documents, conserve les conditions et partage l
   );
   await expect(page.locator('[data-proposal-state]:visible')).toHaveCount(2);
 });
+test('les fiches suivent le sens de comparaison et la frise reste chronologique', async ({
+  page,
+}) => {
+  await page.goto(
+    '/evolution/#dossier=melenchon-smic&de=melenchon-smic-2026&a=melenchon-smic-2022',
+  );
+  const dossier = page.locator('[data-evolution-dossier="melenchon-smic"]');
+  const cards = dossier.locator('[data-proposal-state]:visible');
+  const dates = dossier.locator('[data-state-jump]');
+  await expect(cards.locator('.selection-role')).toHaveText([
+    'Départ',
+    'Comparé',
+  ]);
+  await expect(cards.first()).toHaveAttribute(
+    'data-proposal-state',
+    'melenchon-smic-2026',
+  );
+  await expect(dates.locator('.selection-role:visible')).toHaveText([
+    'Comparé',
+    'Départ',
+  ]);
+  await dossier.locator('[data-state-to]').selectOption('melenchon-smic-2026');
+  await expect(cards).toHaveCount(1);
+  await expect(cards.locator('.selection-role')).toHaveText('Même document');
+  await expect(dates).toHaveCount(3);
+  await expect(dates.first()).toHaveAttribute(
+    'data-state-jump',
+    'melenchon-smic-2022',
+  );
+});
 test('les flux gardent les parts publiées et leurs sources accessibles', async ({
   page,
 }) => {

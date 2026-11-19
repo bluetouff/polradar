@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import DossierPicker from '../components/DossierPicker.astro';
+import DossierHeading from '../components/DossierHeading.astro';
 import ProposalSource from '../components/ProposalSource.astro';
 import { candidateById, themeById } from '../lib/data';
 import { proposalTracks, evolution } from '../lib/proposal-data';
@@ -71,28 +72,30 @@ import '../styles/proposals.css';
           data-kind={track.kind}
           aria-labelledby={`title-${track.id}`}
         >
-          <header class="dossier-heading">
-            <span class="dossier-symbol">
-              <Icon name={track.theme} />
-            </span>
-            <div>
-              <p class="eyebrow">
-                {candidateById(track.candidate).name} ·{' '}
-                {themeById(track.theme).label}
-              </p>
-              <h2 id={`title-${track.id}`}>{track.title}</h2>
-            </div>
+          <DossierHeading
+            candidate={candidateById(track.candidate)}
+            theme={themeById(track.theme)}
+            title={track.title}
+            id={`title-${track.id}`}
+          >
             <span class={`evolution-badge badge-${track.kind}`}>
               {evolutionKinds[track.kind]}
             </span>
-          </header>
-          <ol class="proposal-timeline">
-            {track.states.map((state, i) => (
+          </DossierHeading>
+          <ol class="proposal-timeline" aria-label="Documents par date">
+            {track.states.map((state) => (
               <li>
                 <a href={`#etat-${state.id}`} data-state-jump={state.id}>
-                  <span class="timeline-date">{evidenceDate(state)}</span>
-                  <span class="timeline-point" aria-hidden="true">
-                    {i + 1}
+                  <span class="timeline-rail" aria-hidden="true">
+                    <span class="timeline-point"></span>
+                  </span>
+                  <span class="timeline-meta">
+                    <span class="timeline-date">{evidenceDate(state)}</span>
+                    <span
+                      class="selection-role"
+                      data-state-role={state.id}
+                      hidden
+                    ></span>
                   </span>
                   <strong>{stateValue(state)}</strong>
                   <small>{state.edition}</small>
@@ -143,6 +146,11 @@ import '../styles/proposals.css';
                 data-basis={state.basisKey}
               >
                 <header>
+                  <span
+                    class="selection-role"
+                    data-state-role={state.id}
+                    hidden
+                  ></span>
                   <span>{state.edition}</span>
                   <time
                     datetime={

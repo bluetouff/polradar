@@ -22,7 +22,12 @@ const records = measures.filter(
 );
 const current = records.filter((record) => record.scope !== 'archive');
 const archives = records.filter((record) => record.scope === 'archive');
-const covered = new Set(current.map((measure) => measure.theme)).size;
+const byTheme = themes.map((theme) => ({
+  ...theme,
+  items: current.filter((measure) => measure.theme === theme.id),
+}));
+const documented = byTheme.filter((theme) => theme.items.length);
+const missing = byTheme.filter((theme) => !theme.items.length);
 const portrait = portraitFor(candidate.id);
 const evolutionLink = proposalTracks.find((t) => t.candidate === candidate.id);
 const financingLink = financingMaps.find((m) => m.candidate === candidate.id);
@@ -52,17 +57,23 @@ const votesLink = voteCases.find((v) => v.candidate === candidate.id);
         </figcaption>
       )}
     </figure>
-    <div>
-      <p class="eyebrow">{candidate.party}</p>
+    <div class="profile-identity">
+      <p class="profile-party">{candidate.party}</p>
       <h1>{candidate.name}</h1>
-      <span class="tag">{candidate.status}</span>
+      <span class="profile-status">{candidate.status}</span>
+    </div>
+    <div class="profile-intro">
       <p class="candidate-summary">{candidate.note}</p>
       <div class="feature-actions">
         <a
           class="button primary"
+          aria-label={`Comparer les propositions de ${candidate.name}`}
           href={`/comparer/?c=${candidate.id},${candidate.id === 'melenchon' ? 'philippe' : 'melenchon'}&theme=retraites`}
         >
-          Comparer ses propositions ↗
+          <Icon name="exchange" />
+          <span>
+            Comparer<span class="compare-extra"> ses propositions</span>
+          </span>
         </a>
         <FollowButton
           kind="candidate"
@@ -70,109 +81,126 @@ const votesLink = voteCases.find((v) => v.candidate === candidate.id);
           name={candidate.name}
         />
       </div>
-      {(evolutionLink || financingLink || votesLink) && (
-        <nav class="profile-evidence-links" aria-label="Analyses du programme">
-          {votesLink && (
-            <a href={`/votes/#dossier=${votesLink.id}`}>
-              <Icon name="vote" />
-              Propositions et votes passés
-            </a>
-          )}
-          {evolutionLink && (
-            <a href={`/evolution/#dossier=${evolutionLink.id}`}>
-              <Icon name="historique" />
-              Évolution des propositions
-            </a>
-          )}
-          {financingLink && (
-            <a href={`/financements/#carte=${financingLink.id}`}>
-              <Icon name="exchange" />
-              Carte des financements
-            </a>
-          )}
-        </nav>
-      )}
-      {covered > 0 && (
-        <nav class="profile-theme-nav" aria-label="Thèmes documentés">
-          {themes
-            .filter((theme) => current.some((row) => row.theme === theme.id))
-            .map((theme) => (
-              <a href={`#theme-${theme.id}`}>
-                <Icon name={theme.id} />
-                {theme.label}
-              </a>
-            ))}
-        </nav>
-      )}
     </div>
+    <dl class="profile-figures" aria-label="Contenu du dossier">
+      <div>
+        <dt>
+          <a href="#mesures-du-profil">Fiches hors archives</a>
+        </dt>
+        <dd>{current.length}</dd>
+      </div>
+      <div>
+        <dt>Thèmes renseignés</dt>
+        <dd>
+          {documented.length}
+          <small> / {themes.length}</small>
+        </dd>
+      </div>
+      <div>
+        <dt>Archives de 2022</dt>
+        <dd>{archives.length}</dd>
+      </div>
+    </dl>
   </header>
   <div class="profile-layout">
-    <aside class="profile-aside">
-      <p class="eyebrow">ÉTAT DU DOSSIER</p>
-      <b>
-        {covered}
-        <span> / {themes.length} thèmes</span>
-      </b>
-      <p>
-        Renseignés dans ce corpus, orientations incluses. Les archives de 2022
-        sont comptées à part.
-      </p>
-      <hr />
-      <p class="eyebrow">SOURCE DU STATUT</p>
-      <SourceLinks ids={[candidate.statusSource]} />
-      <a href="/transparence/" class="text-link">
-        Périmètre du suivi ↗
-      </a>
+    <aside class="profile-aside" aria-label="Parcourir le dossier">
+      {documented.length > 0 && (
+        <details class="profile-topic-index">
+          <summary>
+            <Icon name="layers" />
+            Accès par thème
+            <Icon name="chevron" />
+          </summary>
+          <nav class="profile-theme-nav" aria-label="Thèmes documentés">
+            {documented.map((theme) => (
+              <a href={`#theme-${theme.id}`}>
+                <Icon name={theme.id} />
+                <span>{theme.label}</span>
+                <span aria-label={`${theme.items.length} fiches`}>
+                  {theme.items.length}
+                </span>
+              </a>
+            ))}
+          </nav>
+        </details>
+      )}
+      {(votesLink || evolutionLink || financingLink) && (
+        <section class="profile-resources">
+          <h2>Analyses du programme</h2>
+          <nav
+            class="profile-evidence-links"
+            aria-label="Analyses du programme"
+          >
+            {votesLink && (
+              <a href={`/votes/#dossier=${votesLink.id}`}>
+                <Icon name="vote" />
+                <span>Propositions et votes passés</span>
+                <Icon name="arrow" />
+              </a>
+            )}
+            {evolutionLink && (
+              <a href={`/evolution/#dossier=${evolutionLink.id}`}>
+                <Icon name="historique" />
+                <span>Évolution des propositions</span>
+                <Icon name="arrow" />
+              </a>
+            )}
+            {financingLink && (
+              <a href={`/financements/#carte=${financingLink.id}`}>
+                <Icon name="exchange" />
+                <span>Carte des financements</span>
+                <Icon name="arrow" />
+              </a>
+            )}
+          </nav>
+        </section>
+      )}
+      <section class="profile-resources">
+        <h2>Source du statut</h2>
+        <SourceLinks ids={[candidate.statusSource]} />
+        <a href="/transparence/" class="text-link">
+          Périmètre du suivi ↗
+        </a>
+      </section>
     </aside>
     <div>
       <div class="section-heading">
         <div>
-          <h2>Mesures et orientations</h2>
+          <h2 id="mesures-du-profil">Mesures et orientations</h2>
         </div>
       </div>
       {current.length ? (
-        themes.map((theme) => {
-          const items = current.filter((item) => item.theme === theme.id);
-          return (
-            items.length > 0 && (
-              <section class="candidate-theme" id={`theme-${theme.id}`}>
-                <header class="candidate-theme-heading">
-                  <Icon name={theme.id} />
-                  <h3>{theme.label}</h3>
-                  <span>
-                    {items.length} fiche{items.length > 1 ? 's' : ''}
-                  </span>
-                </header>
-                <div class="measure-list">
-                  {items.map((item) => (
-                    <MeasureCard measure={item} level="h4" />
-                  ))}
-                </div>
-              </section>
-            )
-          );
-        })
+        documented.map((theme) => (
+          <section class="candidate-theme" id={`theme-${theme.id}`}>
+            <header class="candidate-theme-heading">
+              <Icon name={theme.id} />
+              <h3>{theme.label}</h3>
+              <span>
+                {theme.items.length} fiche{theme.items.length > 1 ? 's' : ''}
+              </span>
+            </header>
+            <div class="measure-list">
+              {theme.items.map((item) => (
+                <MeasureCard measure={item} level="h4" />
+              ))}
+            </div>
+          </section>
+        ))
       ) : (
         <div class="notice">
-          <h3>Aucune fiche de campagne 2027</h3>
-          <p>
-            Le corpus actuel ne contient pas encore de fiche de campagne récente
-            pour cette candidature. Les archives sont séparées ci-dessous.
-          </p>
+          <p>Aucune proposition récente documentée pour cette candidature.</p>
         </div>
       )}
-      <details class="missing-themes">
-        <summary>
-          Les thèmes restant à documenter ({themes.length - covered})
-        </summary>
-        <ul>
-          {themes
-            .filter((t) => !current.some((e) => e.theme === t.id))
-            .map((t) => (
+      {missing.length > 0 && (
+        <details class="missing-themes">
+          <summary>Les thèmes restant à documenter ({missing.length})</summary>
+          <ul>
+            {missing.map((t) => (
               <li>{t.label}</li>
             ))}
-        </ul>
-      </details>
+          </ul>
+        </details>
+      )}
       {archives.length > 0 && (
         <section class="section-space">
           <div class="section-heading">

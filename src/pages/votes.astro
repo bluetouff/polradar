@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import DossierPicker from '../components/DossierPicker.astro';
+import DossierHeading from '../components/DossierHeading.astro';
 import BallotChart from '../components/BallotChart.astro';
 import SourceLinks from '../components/SourceLinks.astro';
 import { formatDate, formatTimestamp, themeById } from '../lib/data';
@@ -69,26 +70,22 @@ import { sameSentence } from '../lib/measure-text';
           data-vote-case={record.id}
           aria-labelledby={`vote-title-${record.id}`}
         >
-          <header class="vote-case-heading">
-            <div>
-              <span class="eyebrow">
-                {record.candidateRecord.name} ·{' '}
-                {themeById(record.measure.theme).label}
-              </span>
-              <h2 id={`vote-title-${record.id}`}>{record.title}</h2>
-            </div>
-            <span class="vote-case-symbol">
-              <Icon name="vote" />
-            </span>
-          </header>
+          <DossierHeading
+            candidate={record.candidateRecord}
+            theme={themeById(record.measure.theme)}
+            title={record.title}
+            id={`vote-title-${record.id}`}
+          />
           <p class="vote-case-note">{record.note}</p>
-          <ol class="vote-timeline">
+          <ol class="vote-timeline" data-steps={record.ballots.length + 1}>
             {record.ballots.map((ballot) => (
               <li class="vote-timeline-item">
-                <div class="vote-date">
+                <div class="vote-rail" aria-hidden="true">
                   <span class="vote-timeline-node" aria-hidden="true">
                     <Icon name="vote" />
                   </span>
+                </div>
+                <div class="vote-date">
                   <span>
                     Séance du
                     <time datetime={ballot.date}>
@@ -103,6 +100,9 @@ import { sameSentence } from '../lib/measure-text';
                       {chambers[ballot.chamber]} · n°{ballot.number}
                     </p>
                     <h3>{ballot.shortTitle}</h3>
+                    <p class="vote-choice-label">
+                      Vote de {record.candidateRecord.name}
+                    </p>
                     <p
                       class={`personal-choice choice-${ballot.position.choice}`}
                     >
@@ -116,7 +116,9 @@ import { sameSentence } from '../lib/measure-text';
                     <p class="vote-group">
                       Groupe lors du scrutin : {ballot.position.groupAtTime}
                     </p>
-                    <p class="vote-result">{decisionLabel(ballot)}</p>
+                    <p class="vote-result">
+                      <span>Issue du scrutin</span> {decisionLabel(ballot)}
+                    </p>
                   </div>
                   <BallotChart ballot={ballot} />
                   <div class="vote-context">
@@ -188,10 +190,12 @@ import { sameSentence } from '../lib/measure-text';
               </li>
             ))}
             <li class="vote-timeline-item vote-proposal-item">
-              <div class="vote-date">
+              <div class="vote-rail" aria-hidden="true">
                 <span class="vote-timeline-node" aria-hidden="true">
                   <Icon name="mesures" />
                 </span>
+              </div>
+              <div class="vote-date">
                 <span>
                   Proposition consultée le
                   <time datetime={record.version.snapshot.checked}>

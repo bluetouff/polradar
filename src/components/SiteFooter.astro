@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import BrandLogo from './BrandLogo.astro';
 import { meta, formatDate } from '../lib/data';
 const columns = [
   {
@@ -62,8 +63,8 @@ const columns = [
   <div class="footer-inner">
     <div class="footer-intro">
       <div>
-        <a href="/" class="footer-brand">
-          polradar<span aria-hidden="true">.</span>
+        <a href="/" class="footer-brand" aria-label="Polradar, accueil">
+          <BrandLogo />
         </a>
         <p>
           Présidentielle française 2027

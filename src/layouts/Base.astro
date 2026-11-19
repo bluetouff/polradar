@@ -5,6 +5,7 @@ import '../styles/editorial.css';
 import '../styles/edition.css';
 import { navigationFor } from '../lib/navigation';
 import SiteFooter from '../components/SiteFooter.astro';
+import BrandLogo from '../components/BrandLogo.astro';
 import SiteNavigation from '../components/SiteNavigation.astro';
 import Icon from '../components/Icon.astro';
 import ShareLinks from '../components/ShareLinks.astro';
@@ -82,16 +83,7 @@ const socialImageUrl = new URL(social.url, Astro.site);
         <div class="masthead">
           <div class="rail-brand">
             <a href="/" class="wordmark" aria-label="Polradar, accueil">
-              <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
-                <path
-                  d="M9 7v27m0-26h12a9 9 0 0 1 0 18H9"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="4"
-                />
-                <path d="M29 29h7v7h-7z" fill="currentColor" />
-              </svg>
-              polradar
+              <BrandLogo />
             </a>
             <p>
               <span class="election-context">Présidentielle française</span>

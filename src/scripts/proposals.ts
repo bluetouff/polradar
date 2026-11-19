@@ -44,34 +44,48 @@ if (root) {
       const cards = [
         ...selected.querySelectorAll<HTMLElement>('[data-proposal-state]'),
       ];
-      cards.forEach(
-        (c) =>
-          (c.hidden =
-            c.dataset.proposalState !== from.value &&
-            c.dataset.proposalState !== to.value),
-      );
-      const state = (id: string) => {
-        const c = cards.find((c) => c.dataset.proposalState === id)!;
-        return {
-          id,
-          value: c.dataset.value === undefined ? null : Number(c.dataset.value),
-          unit: c.dataset.unit!,
-          basisKey: c.dataset.basis!,
-        };
-      };
+      const roles = new Map([
+        [from.value, 'Départ'],
+        [to.value, 'Comparé'],
+      ]);
+      if (from.value === to.value) roles.set(from.value, 'Même document');
+      selected
+        .querySelectorAll<HTMLElement>('[data-state-role]')
+        .forEach((label) => {
+          const role = roles.get(label.dataset.stateRole!);
+          label.hidden = !role;
+          label.textContent = role ?? '';
+        });
+      cards.forEach((c) => (c.hidden = !roles.has(c.dataset.proposalState!)));
+      const departure = cards.find(
+        (c) => c.dataset.proposalState === from.value,
+      )!;
+      const comparison = cards.find(
+        (c) => c.dataset.proposalState === to.value,
+      )!;
+      if (
+        departure.compareDocumentPosition(comparison) &
+        Node.DOCUMENT_POSITION_PRECEDING
+      ) {
+        comparison.before(departure);
+      }
+      const state = (card: HTMLElement) => ({
+        id: card.dataset.proposalState!,
+        value:
+          card.dataset.value === undefined ? null : Number(card.dataset.value),
+        unit: card.dataset.unit!,
+        basisKey: card.dataset.basis!,
+      });
       selected.querySelector('[data-comparison-label]')!.textContent =
         proposalComparison(
           { kind: selected.dataset.kind },
-          state(from.value),
-          state(to.value),
+          state(departure),
+          state(comparison),
         ).label;
       selected
         .querySelectorAll<HTMLAnchorElement>('[data-state-jump]')
         .forEach((a) =>
-          a.classList.toggle(
-            'is-compared',
-            [from.value, to.value].includes(a.dataset.stateJump!),
-          ),
+          a.classList.toggle('is-compared', roles.has(a.dataset.stateJump!)),
         );
     }
   };

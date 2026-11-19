@@ -31,9 +31,6 @@ const index = candidates.findIndex((item) => item.id === candidate.id) + 1;
   >
     <div class="person-visual">
       <CandidatePortrait candidate={candidate} eager={index <= 5} />
-      <span class="person-number" aria-hidden="true">
-        {String(index).padStart(2, '0')}
-      </span>
       <span class="person-open" aria-hidden="true">
         ↗
       </span>

@@ -645,6 +645,7 @@ const rendererFiles = [
   '../lib/social-images.mjs',
   '../lib/social-image-view.mjs',
   '../styles/social-images.css',
+  '../../public/marque/polradar.svg',
   '../assets/fonts/archivo-latin.woff2',
   '../../scripts/render-social-images.mjs',
 ];
