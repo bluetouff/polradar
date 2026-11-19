@@ -1,0 +1,98 @@
+---
+import { digitalParliament } from '../lib/digital-compare-data';
+import { formatDate, sourceById } from '../lib/data';
+
+const { vote, statements, earlier } = digitalParliament;
+const segments = [
+  { count: vote.for, label: 'Pour le retrait', start: 0, key: 'for' },
+  {
+    count: vote.against,
+    label: 'Contre le retrait',
+    start: vote.for,
+    key: 'against',
+  },
+  {
+    count: vote.abstained,
+    label: 'Abstention',
+    start: vote.expressed,
+    key: 'abstained',
+  },
+];
+const scale = (count: number) => (count / vote.voters) * 100;
+---
+
+<section class="encryption-parliament" aria-labelledby="encryption-vote-title">
+  <header>
+    <time datetime={vote.date}>{formatDate(vote.date)}</time>
+    <h2 id="encryption-vote-title">
+      Accès aux communications · article 16 bis
+    </h2>
+  </header>
+  <p>
+    L’article 16 bis du projet de loi Résilience prévoyait d’interdire d’imposer
+    aux fournisseurs de chiffrement un dispositif affaiblissant la sécurité ou
+    donnant un accès non consenti aux données protégées. L’Assemblée a voté
+    <strong>le retrait de cet article</strong> en première lecture.
+  </p>
+  <figure class="encryption-ballot" aria-labelledby="encryption-ballot-legend">
+    <figcaption id="encryption-ballot-legend">
+      Scrutin n° {vote.number} · {vote.voters} votants
+    </figcaption>
+    <svg viewBox="0 0 100 12" preserveAspectRatio="none" aria-hidden="true">
+      {segments.map(({ count, start, key }) => (
+        <rect
+          x={scale(start)}
+          width={scale(count)}
+          height="12"
+          class={`encryption-vote-${key}`}
+        />
+      ))}
+    </svg>
+    <ul>
+      {segments.map(({ count, label, key }) => (
+        <li>
+          <span class={`encryption-vote-${key}`} aria-hidden="true"></span>
+          <strong>{count}</strong> {label}
+        </li>
+      ))}
+    </ul>
+    <div class="encryption-reference">
+      <a href={sourceById(vote.sourceId).url}>Scrutin officiel ↗</a>
+      <a href={sourceById(vote.textSourceId).url}>
+        Amendement de suppression ↗
+      </a>
+    </div>
+  </figure>
+  <div class="encryption-statements">
+    {statements.map((statement) => (
+      <article>
+        <p class="encryption-group">{statement.group}</p>
+        <h3>{statement.position}</h3>
+        <p class="encryption-byline">
+          {statement.author} · Débat à l’Assemblée
+        </p>
+        <p>{statement.description}</p>
+      </article>
+    ))}
+  </div>
+  <a class="inline-action" href={sourceById(vote.debateSourceId).url}>
+    Compte rendu de la séance ↗
+  </a>
+  <details class="encryption-earlier">
+    <summary>
+      Débat du {formatDate(earlier.date)} · Article 8 ter sur le narcotrafic
+    </summary>
+    <p>
+      {earlier.description} Le Parlement a écarté cette disposition du texte
+      promulgué.
+    </p>
+    <div class="encryption-reference">
+      <a href={sourceById(earlier.sourceId).url}>
+        Intervention de Bruno Retailleau ↗
+      </a>
+      <a href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051734851">
+        Loi promulguée ↗
+      </a>
+    </div>
+  </details>
+</section>

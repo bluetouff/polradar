@@ -6,9 +6,12 @@ import {
   digitalCount,
   digitalTopics,
 } from '../../lib/digital-data';
+import { digitalAxes } from '../../lib/digital-compare-data';
+import { digitalComparePath } from '../../lib/digital-comparison.mjs';
 import { scopes } from '../../lib/data';
 import { formatMoney } from '../../lib/campaign-visuals-view.mjs';
 import '../../styles/digital.css';
+import '../../styles/digital-comparison.css';
 
 export function getStaticPaths() {
   return [
@@ -55,6 +58,20 @@ const maxCount = Math.max(
       </p>
     </div>
   </header>
+  <section
+    class="digital-compare-entry"
+    aria-labelledby="digital-compare-entry-title"
+  >
+    <h2 id="digital-compare-entry-title">Comparer les propositions</h2>
+    <nav aria-label="Comparatif du numérique">
+      {digitalAxes.map((axis) => (
+        <a href={digitalComparePath(axis.id)}>
+          <Icon name={axis.icon} />
+          {axis.title} ↗
+        </a>
+      ))}
+    </nav>
+  </section>
   <nav class="digital-topics" aria-label="Sujets du numérique">
     {digitalTopics.map((topic) => (
       <a

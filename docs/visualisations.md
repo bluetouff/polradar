@@ -87,3 +87,9 @@ Les deux fichiers communaux de 2022 du ministère de l’Intérieur sont réconc
 La population et les logements proviennent du recensement 2023 dans la géographie de 2026. La correspondance Insee doit être univoque dans les deux sens. Les communes concernées par une fusion ou une scission entre ces millésimes gardent leurs chiffres électoraux et affichent les indicateurs Insee comme indisponibles. Le graphique distingue la participation parmi les inscrits et les scores parmi les suffrages exprimés.
 
 Pour reproduire l’import, télécharger les fichiers listés dans `src/data/communes-2022-sources.json` sous les noms indiqués dans ce registre, puis exécuter `python3 scripts/import-communes.py <dossier-des-sources>` avec Python 3.11 ou plus récent. Le script contrôle la taille et le SHA-256 de chaque fichier. Les données restent attribuées au ministère et à l’Insee, avec leur millésime et leur date de mise à disposition lorsque celle-ci est connue. Le dépôt contient uniquement les données normalisées nécessaires au site.
+
+## Comparatif du numérique
+
+Chaque cellule renvoie à une version conservée d’une mesure. Les fiches de campagne, les projets de parti et les entretiens gardent leur attribution. L’investissement Vauban et l’enveloppe 2027 d’Équinoxe apparaissent avec leurs périmètres et périodes propres.
+
+Le graphique parlementaire reprend le scrutin public n° 9794 sur la suppression de l’article 16 bis, avec les abstentions dans le total des votants. Les positions exprimées dans le débat sont attribuées aux orateurs et datées dans le compte rendu.

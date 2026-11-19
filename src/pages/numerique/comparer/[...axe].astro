@@ -1,0 +1,192 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Icon from '../../../components/Icon.astro';
+import EncryptionParliament from '../../../components/EncryptionParliament.astro';
+import { digitalAxes } from '../../../lib/digital-compare-data';
+import { digitalComparePath } from '../../../lib/digital-comparison.mjs';
+import { formatDate, scopes } from '../../../lib/data';
+import { formatMoney } from '../../../lib/campaign-visuals-view.mjs';
+import '../../../styles/digital-comparison.css';
+
+export function getStaticPaths() {
+  return digitalAxes.map((axis) => ({
+    params: { axe: axis.id === 'cybersecurite' ? undefined : axis.id },
+    props: { axis },
+  }));
+}
+const { axis } = Astro.props;
+const order = [
+  ...axis.defaults,
+  ...axis.profiles
+    .map(({ id }) => id)
+    .filter((id) => !axis.defaults.includes(id)),
+];
+const profiles = order.map((id) =>
+  axis.profiles.find((profile) => profile.id === id)!,
+);
+const amountPeriods = {
+  mois: 'par mois',
+  an: 'sur un an',
+  mandat: 'sur le mandat',
+  ponctuel: 'ponctuel',
+};
+---
+
+<Base
+  title={`${axis.title} · Comparatif des programmes`}
+  description={axis.description}
+  section="/numerique/"
+>
+  <div class="breadcrumbs">
+    <a href="/numerique/">Numérique</a>
+    <span>/</span>
+    <span>Comparer</span>
+  </div>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name={axis.icon} />
+    </span>
+    <div>
+      <h1>Comparer les propositions numériques</h1>
+      <p>{axis.description}</p>
+    </div>
+  </header>
+  <nav class="digital-axis-tabs" aria-label="Axes de comparaison">
+    {digitalAxes.map((item) => (
+      <a
+        href={digitalComparePath(item.id)}
+        aria-current={item.id === axis.id ? 'page' : undefined}
+      >
+        <Icon name={item.icon} />
+        <span>{item.title}</span>
+      </a>
+    ))}
+  </nav>
+  <fieldset
+    class="digital-profile-controls"
+    id="digital-profile-controls"
+    hidden
+  >
+    <legend>Profils à comparer</legend>
+    <div>
+      {axis.defaults.map((id, index) => (
+        <label>
+          Profil {index + 1}
+          <select data-digital-select>
+            {axis.profiles.map((candidate) => (
+              <option value={candidate.id} selected={candidate.id === id}>
+                {candidate.name}
+              </option>
+            ))}
+          </select>
+        </label>
+      ))}
+      <button class="button" type="button" id="digital-copy">
+        Copier le lien
+      </button>
+    </div>
+  </fieldset>
+  <p
+    class="digital-profile-status"
+    id="digital-profile-status"
+    role="status"
+  ></p>
+  <div class="digital-decision-board" data-axis={axis.id}>
+    {axis.rows.map((row) => (
+      <section
+        class="digital-decision-row"
+        aria-labelledby={`digital-question-${row.id}`}
+      >
+        <h2 id={`digital-question-${row.id}`}>{row.label}</h2>
+        <div class="digital-decision-cells" data-digital-cells>
+          {profiles.map((candidate) => {
+            const entry = row.entries.find(
+              (choice) => choice.candidate.id === candidate.id,
+            );
+            const snapshot = entry?.version.snapshot;
+            return (
+              <article
+                class:list={[
+                  'digital-decision',
+                  { 'digital-undocumented': !entry },
+                ]}
+                data-digital-profile={candidate.id}
+                hidden={!axis.defaults.includes(candidate.id)}
+              >
+                <div class="digital-decision-byline">
+                  <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+                  {snapshot && <span>{scopes[snapshot.scope]}</span>}
+                </div>
+                {entry && snapshot ? (
+                  <>
+                    <h3>{entry.repere}</h3>
+                    {!entry.amountOnly && <p>{snapshot.description}</p>}
+                    {snapshot.timing && !entry.amountOnly && (
+                      <p class="digital-decision-timing">{snapshot.timing}</p>
+                    )}
+                    {(snapshot.metrics.length > 0 ||
+                      (entry.amountOnly && snapshot.amounts.length > 0)) && (
+                      <dl class="digital-decision-numbers">
+                        {snapshot.metrics.map((metric) => (
+                          <div>
+                            <dt>{metric.label}</dt>
+                            <dd>
+                              {metric.value.toLocaleString('fr-FR')}{' '}
+                              {metric.unit}
+                            </dd>
+                          </div>
+                        ))}
+                        {entry.amountOnly &&
+                          snapshot.amounts.map((amount) => {
+                            const value =
+                              amount.unit === '€'
+                                ? formatMoney(amount.value)
+                                : `${amount.value.toLocaleString('fr-FR')} ${amount.unit}`;
+                            return (
+                              <div>
+                                <dt>{amount.label}</dt>
+                                <dd>{`${value} ${amountPeriods[amount.period]}`}</dd>
+                              </div>
+                            );
+                          })}
+                      </dl>
+                    )}
+                    <footer>
+                      <a href={entry.source.url}>
+                        {snapshot.scope === 'orientation'
+                          ? 'Entretien officiel'
+                          : entry.source.kind === 'parti'
+                            ? 'Document du parti'
+                            : 'Programme officiel'}{' '}
+                        ↗
+                      </a>
+                      <a
+                        href={`/mesures/${entry.version.measureId}/#version-${entry.version.number}`}
+                      >
+                        Fiche et références ↗
+                      </a>
+                      {entry.source.published && (
+                        <time datetime={entry.source.published}>
+                          Publié le {formatDate(entry.source.published)}
+                        </time>
+                      )}
+                      {entry.source.updated && (
+                        <time datetime={entry.source.updated}>
+                          Mis à jour le {formatDate(entry.source.updated)}
+                        </time>
+                      )}
+                    </footer>
+                  </>
+                ) : (
+                  <p>Non documenté pour ce sujet</p>
+                )}
+              </article>
+            );
+          })}
+        </div>
+      </section>
+    ))}
+  </div>
+  {axis.id === 'chiffrement' && <EncryptionParliament />}
+  <script src="../../../scripts/digital-compare.ts"></script>
+</Base>

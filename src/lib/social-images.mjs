@@ -72,6 +72,7 @@ const tiles = (rows, label) => ({
 const communes2022 = read('communes-2022');
 const retirement = read('retirement-comparison');
 const digitalTopics = read('digital-topics');
+const digitalComparison = read('digital-comparison');
 const generation1969 = retirement.cohorts.find(
   (row) => row.id === '1969-et-apres',
 );
@@ -124,6 +125,25 @@ const defs = [
         value: topic.measures.length,
       })),
       'Fiches recensées par sujet',
+    ),
+  ],
+  [
+    'comparatif-numerique',
+    '/numerique/comparer/',
+    'Les programmes',
+    'Comparer le\nnumérique',
+    'Cybersécurité, chiffrement et souveraineté.',
+    'navy',
+    bars(
+      digitalComparison.axes.map((axis) => ({
+        label: axis.title,
+        value: new Set(
+          axis.rows.flatMap((row) =>
+            row.entries.map(({ versionId }) => versionId),
+          ),
+        ).size,
+      })),
+      'Fiches comparées par axe',
     ),
   ],
   [

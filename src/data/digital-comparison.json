@@ -1,0 +1,224 @@
+{
+  "axes": [
+    {
+      "id": "cybersecurite",
+      "title": "Cybersécurité",
+      "description": "Protection des administrations, contrôle des systèmes et accompagnement des petites structures.",
+      "icon": "securite",
+      "defaults": ["philippe", "retailleau", "roussel"],
+      "rows": [
+        {
+          "id": "administrations",
+          "label": "Protection des administrations",
+          "entries": [
+            {
+              "versionId": "philippe-securite-bouclier-cyber-v1",
+              "repere": "Centres de protection"
+            },
+            {
+              "versionId": "retailleau-institutions-plan-vauban-cyber-v1",
+              "repere": "Plan national · ANSSI"
+            },
+            {
+              "versionId": "roussel-securite-anssi-cyber-v1",
+              "repere": "ANSSI et structures régionales"
+            },
+            {
+              "versionId": "dupont-aignan-institutions-audit-ministeres-v1",
+              "repere": "Audits des ministères"
+            },
+            {
+              "versionId": "lisnard-securite-maitrise-cyber-etat-v1",
+              "repere": "Continuité des systèmes de l’État"
+            }
+          ]
+        },
+        {
+          "id": "appui",
+          "label": "Appui et investissements",
+          "entries": [
+            {
+              "versionId": "roussel-securite-centre-public-cyber-v1",
+              "repere": "Petites entreprises et associations"
+            },
+            {
+              "versionId": "retailleau-institutions-plan-vauban-cyber-v1",
+              "repere": "Plan et renforts associés",
+              "amountOnly": true
+            },
+            {
+              "versionId": "mikolajczak-travail-ia-numerique-v1",
+              "repere": "IA, recherche et cybersécurité",
+              "amountOnly": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chiffrement",
+      "title": "Chiffrement",
+      "description": "Usages des outils chiffrés, maîtrise des clés et accès aux communications.",
+      "icon": "source",
+      "defaults": ["lisnard", "tondelier", "dupont-aignan"],
+      "rows": [
+        {
+          "id": "usages",
+          "label": "Outils chiffrés et maîtrise des clés",
+          "entries": [
+            {
+              "versionId": "lisnard-securite-maitrise-cyber-etat-v1",
+              "repere": "Systèmes critiques de l’État"
+            },
+            {
+              "versionId": "tondelier-institutions-outils-chiffres-v1",
+              "repere": "Communications libres et décentralisées"
+            },
+            {
+              "versionId": "dupont-aignan-institutions-chiffrement-sensible-v1",
+              "repere": "Terminaux des personnels sensibles"
+            },
+            {
+              "versionId": "retailleau-institutions-achats-numeriques-v2",
+              "repere": "Clés de chiffrement dans les marchés publics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "souverainete",
+      "title": "Souveraineté numérique",
+      "description": "Hébergement des données, juridiction, commandes publiques et capacité de calcul.",
+      "icon": "institutions",
+      "defaults": ["melenchon", "retailleau", "tondelier"],
+      "rows": [
+        {
+          "id": "hebergement",
+          "label": "Hébergement et juridiction",
+          "entries": [
+            {
+              "versionId": "melenchon-institutions-serveurs-publics-v1",
+              "repere": "Serveurs publics en France"
+            },
+            {
+              "versionId": "retailleau-institutions-donnees-sensibles-v1",
+              "repere": "Juridiction européenne"
+            },
+            {
+              "versionId": "dupont-aignan-institutions-cloud-francais-v1",
+              "repere": "Hébergement souverain français"
+            },
+            {
+              "versionId": "tondelier-institutions-lois-extraterritoriales-v1",
+              "repere": "Écarter les technologies exposées aux lois extraterritoriales"
+            },
+            {
+              "versionId": "lisnard-securite-maitrise-cyber-etat-v1",
+              "repere": "Maîtrise de l’hébergement de l’État"
+            }
+          ]
+        },
+        {
+          "id": "logiciels",
+          "label": "Logiciels et commande publique",
+          "entries": [
+            {
+              "versionId": "melenchon-institutions-logiciels-libres-v1",
+              "repere": "Généraliser les logiciels libres"
+            },
+            {
+              "versionId": "branco-institutions-logiciels-libres-v1",
+              "repere": "Logiciels libres imposés à l’administration"
+            },
+            {
+              "versionId": "ruffin-institutions-forge-v1",
+              "repere": "Mutualiser les logiciels"
+            },
+            {
+              "versionId": "retailleau-institutions-achats-numeriques-v2",
+              "repere": "Critère de souveraineté"
+            },
+            {
+              "versionId": "philippe-travail-achats-tech-europeens-v1",
+              "repere": "Préférence européenne"
+            },
+            {
+              "versionId": "tondelier-institutions-achats-logiciels-libres-v1",
+              "repere": "Logiciels libres dans les appels d’offres"
+            },
+            {
+              "versionId": "glucksmann-europe-fonds-alternatives-numeriques-v1",
+              "repere": "Fonds pour les alternatives libres"
+            }
+          ]
+        },
+        {
+          "id": "capacite",
+          "label": "Capacité de calcul et centres de données",
+          "entries": [
+            {
+              "versionId": "melenchon-climat-moratoire-data-centers-v1",
+              "repere": "Participation publique"
+            },
+            {
+              "versionId": "retailleau-travail-data-centers-v1",
+              "repere": "Capacité de centres de données souverains"
+            },
+            {
+              "versionId": "philippe-travail-zones-calcul-v1",
+              "repere": "Zones d’accélération"
+            },
+            {
+              "versionId": "attal-travail-puissance-calcul-v1",
+              "repere": "Part européenne du calcul mondial"
+            },
+            {
+              "versionId": "tondelier-climat-impact-centres-donnees-v1",
+              "repere": "Études d’impact et besoins électriques"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "parliament": {
+    "vote": {
+      "date": "2026-11-10",
+      "number": 9794,
+      "voters": 107,
+      "expressed": 106,
+      "for": 69,
+      "against": 37,
+      "abstained": 1,
+      "sourceId": "assemblee-resilience-scrutin-9794",
+      "textSourceId": "assemblee-resilience-amendement-358",
+      "debateSourceId": "assemblee-resilience-seance-chiffrement"
+    },
+    "statements": [
+      {
+        "author": "Emeric Salmon",
+        "group": "Rassemblement national",
+        "position": "Retirer l’article",
+        "description": "Il veut conserver les moyens d’enquête existants. Au nom du RN, il s’engage à écarter toute obligation de porte dérobée et à encadrer les moyens d’enquête sous contrôle du juge si Marine Le Pen est élue."
+      },
+      {
+        "author": "René Pilato",
+        "group": "La France insoumise – NFP",
+        "position": "Maintenir l’article",
+        "description": "Il défend l’article pour empêcher qu’on impose des dispositifs qui affaibliraient la confidentialité des communications."
+      },
+      {
+        "author": "Catherine Hervieu",
+        "group": "Écologiste et social",
+        "position": "Maintenir l’article",
+        "description": "Elle annonce une demande de rapport sur la reconnaissance constitutionnelle du droit au chiffrement."
+      }
+    ],
+    "earlier": {
+      "date": "2025-03-20",
+      "sourceId": "assemblee-narcotrafic-debat-chiffrement",
+      "description": "Alors ministre de l’Intérieur, Bruno Retailleau défend une obligation d’assistance des services de messagerie pour certains accès autorisés. Il affirme que le chiffrement de bout en bout serait préservé."
+    }
+  }
+}

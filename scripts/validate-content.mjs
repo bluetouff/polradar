@@ -3,6 +3,10 @@ import { validateDataset, validateFeatures } from '../src/lib/schema.mjs';
 import { marketSnapshotSchema } from '../src/lib/markets.mjs';
 import { airtimeSchema } from '../src/lib/airtime.mjs';
 import {
+  digitalComparisonSchema,
+  validateDigitalComparison,
+} from '../src/lib/digital-comparison.mjs';
+import {
   legislativeVotesSchema,
   validateLegislativeReferences,
 } from '../src/lib/legislative-votes.mjs';
@@ -80,6 +84,19 @@ const errors = [
   ...validateFeatures(dataset),
   ...visualErrors,
 ];
+errors.push(
+  ...validateDigitalComparison(
+    digitalComparisonSchema.parse(
+      JSON.parse(
+        await readFile(
+          new URL('../src/data/digital-comparison.json', import.meta.url),
+          'utf8',
+        ),
+      ),
+    ),
+    dataset,
+  ),
+);
 errors.push(
   ...validateLegislativeReferences(
     legislativeVotesSchema.parse(
