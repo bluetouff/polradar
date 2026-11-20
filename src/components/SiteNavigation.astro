@@ -24,24 +24,18 @@ const path = Astro.url.pathname;
       }
     >
       <summary class={`menu-${group.icon}`}>{group.name}</summary>
-      <ul aria-label={group.name}>
+      <div class="desk-links">
         {group.links.map(([url, label]) => (
-          <li>
-            <a
-              href={url}
-              aria-current={
-                current === url
-                  ? path === url
-                    ? 'page'
-                    : 'location'
-                  : undefined
-              }
-            >
-              {label}
-            </a>
-          </li>
+          <a
+            href={url}
+            aria-current={
+              current === url ? (path === url ? 'page' : 'location') : undefined
+            }
+          >
+            {label}
+          </a>
         ))}
-      </ul>
+      </div>
     </details>
   ))}
 </nav>

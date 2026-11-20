@@ -1,0 +1,127 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { sourceById } from '../lib/data';
+import comptes from '../data/comptes-presidentielle-2022.json';
+import '../styles/questions.css';
+const cnccfp = sourceById('cnccfp'),
+  hatvp = sourceById('hatvp-presidentielle-2027'),
+  archive = sourceById('cnccfp-comptes-presidentielle-2022');
+const euros = new Intl.NumberFormat('fr-FR', {
+  style: 'currency',
+  currency: 'EUR',
+  maximumFractionDigits: 0,
+});
+const max = Math.max(...comptes.map((c) => c.depensesRetenues));
+---
+
+<Base
+  title="L’argent des campagnes"
+  section="/argent-des-campagnes/"
+  description="Calendrier des publications de la CNCCFP et de la HATVP pour 2027. Comptes et remboursements des douze candidats en 2022."
+>
+  <header class="q-intro">
+    <div>
+      <h1>L’argent des campagnes</h1>
+      <p>
+        Dépenses électorales, remboursement public et déclarations des
+        candidats.
+      </p>
+    </div>
+    <Icon name="euro" />
+  </header>
+  <section
+    class="q-answers"
+    aria-label="Publications de la présidentielle 2027"
+  >
+    <article class="q-answer">
+      <header>
+        <Icon name="clock" />
+        <h2>Comptes de campagne 2027</h2>
+      </header>
+      <dl class="accounts-dates">
+        <div>
+          <dt>2 juillet 2027</dt>
+          <dd>Dépôt des comptes auprès de la CNCCFP au plus tard.</dd>
+        </div>
+        <div>
+          <dt>2 août 2027</dt>
+          <dd>
+            Date limite de publication des comptes déposés au Journal officiel.
+          </dd>
+        </div>
+        <div>
+          <dt>2 février 2028</dt>
+          <dd>
+            Date limite annoncée pour publier les décisions de la Commission et
+            les comptes après contrôle.
+          </dd>
+        </div>
+      </dl>
+      <a href={cnccfp.url}>Calendrier de la CNCCFP ↗</a>
+    </article>
+    <article class="q-answer">
+      <header>
+        <Icon name="source" />
+        <h2>Patrimoine et intérêts</h2>
+      </header>
+      <p>
+        La HATVP prévoit la mise en ligne des déclarations des candidats dans
+        les semaines précédant le premier tour. Le lecteur pourra consulter les
+        activités et intérêts déclarés à côté de la situation patrimoniale.
+      </p>
+      <a href={hatvp.url}>Calendrier de la HATVP ↗</a>
+      <section>
+        <h3>Combien coûtent les promesses ?</h3>
+        <p>
+          Les montants annoncés pour appliquer les programmes sont regroupés
+          dans une rubrique dédiée.
+        </p>
+        <a href="/budget-programmes/">Budgets des programmes ↗</a>
+      </section>
+    </article>
+  </section>
+  <section class="q-coverage">
+    <h2>Présidentielle 2022 · les comptes définitifs</h2>
+    <p>
+      Dépenses de campagne et remboursement arrêté par la Commission, en euros.
+      Les barres comparent les dépenses retenues, sur la même échelle pour les
+      douze candidats.
+    </p>
+    <div class="account-directory">
+      {comptes.map((c) => (
+        <article>
+          <h3>{c.candidat}</h3>
+          <strong>{euros.format(c.depensesRetenues)}</strong>
+          <small>Dépenses retenues</small>
+          <meter
+            value={c.depensesRetenues}
+            max={max}
+            aria-label={'Dépenses retenues pour ' + c.candidat}
+          ></meter>
+          <dl>
+            <div>
+              <dt>Déclarées</dt>
+              <dd>{euros.format(c.depensesDeclarees)}</dd>
+            </div>
+            <div>
+              <dt>Remboursement</dt>
+              <dd>{euros.format(c.remboursement)}</dd>
+            </div>
+          </dl>
+        </article>
+      ))}
+    </div>
+    <nav class="q-related" aria-label="Sources des comptes 2022">
+      <a href={archive.url + '#page=35'}>
+        Tableau original de la CNCCFP, p. 33 ↗
+      </a>
+      <a
+        href="/api/comptes-presidentielle-2022-csv.txt"
+        download="comptes-presidentielle-2022.csv"
+      >
+        Télécharger les douze comptes (CSV)
+      </a>
+    </nav>
+  </section>
+</Base>

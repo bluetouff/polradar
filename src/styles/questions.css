@@ -1,0 +1,506 @@
+.q-intro,
+.q-note,
+.q-coverage,
+.q-filter,
+.q-topic,
+.q-answer {
+  border: 1px solid #b2c5cc;
+  border-radius: 0.75rem;
+}
+.q-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  background: var(--night-gradient);
+  color: #f6fafb;
+  padding: clamp(1.15rem, 3vw, 2.4rem);
+  margin-block: 1rem;
+}
+.q-intro > div {
+  min-width: 0;
+}
+.q-intro a,
+.q-intro p {
+  color: #c5dde2;
+}
+.q-intro h1 {
+  font-size: clamp(1.45rem, 3vw, 1.75rem);
+  margin-block: 0.35rem;
+}
+.q-intro > .icon {
+  width: clamp(2rem, 5vw, 4rem);
+  height: auto;
+  color: #9cd1d8;
+  flex: none;
+}
+.q-filter {
+  display: flex;
+  align-items: end;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  padding: clamp(0.9rem, 2vw, 1.45rem);
+  background: var(--sheet);
+  margin-block: 1rem;
+}
+.q-filter label {
+  flex: 1 1 12rem;
+  min-width: 0;
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+.q-filter label:first-child {
+  flex-grow: 2;
+}
+.q-filter :is(input, select) {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 0.4rem;
+}
+.q-status {
+  margin: 0.6rem 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.q-themes,
+.q-answers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 21rem), 1fr));
+  gap: 0.8rem;
+  align-items: start;
+}
+.q-topic,
+.q-answer,
+.q-coverage,
+.q-note {
+  background: var(--panel-gradient);
+  box-shadow: var(--panel-shadow);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.q-topic summary {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  cursor: pointer;
+  min-height: 64px;
+  padding: 0.85rem 1rem;
+  list-style: none;
+}
+.q-topic summary::-webkit-details-marker {
+  display: none;
+}
+.q-topic summary:after {
+  content: '+';
+  color: var(--accent);
+  font-size: 1.3rem;
+  margin-left: 0.15rem;
+}
+.q-topic[open] summary:after {
+  content: '−';
+}
+.q-topic summary > .icon,
+.q-answer header > .icon,
+.q-note > .icon {
+  color: var(--accent);
+  flex: none;
+}
+.q-topic summary small {
+  margin-left: auto;
+  white-space: nowrap;
+  color: var(--muted);
+}
+.q-topic ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 1rem 0.55rem;
+}
+.q-topic li {
+  border-top: 1px solid var(--line);
+}
+.q-topic li > a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  min-height: 52px;
+  padding: 0.65rem 0.05rem;
+  text-decoration: none;
+  font-weight: 550;
+}
+.q-topic li > a:hover span:first-child {
+  text-decoration: underline;
+}
+.q-count {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 4rem;
+  text-align: right;
+}
+.q-count small {
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.q-count meter {
+  width: 4rem;
+  height: 0.6rem;
+  accent-color: #247d88;
+}
+.q-note,
+.q-coverage,
+.q-answer {
+  padding: clamp(1rem, 2vw, 1.5rem);
+}
+.q-note,
+.q-coverage {
+  margin-top: 1rem;
+}
+.q-note {
+  display: flex;
+  gap: 1rem;
+}
+.q-note h2,
+.q-coverage h2,
+.q-answer h2 {
+  font-size: 1.13rem;
+  margin: 0 0 0.4rem;
+}
+.q-note p,
+.q-coverage p {
+  margin: 0.4rem 0;
+}
+.q-note a {
+  display: inline-block;
+  margin-top: 0.55rem;
+}
+.q-related {
+  display: flex;
+  gap: 0.6rem 1.2rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+.q-related a {
+  font-size: 0.88rem;
+}
+.q-answer {
+  border-top: 3px solid #568993;
+  scroll-margin: 1.5rem;
+}
+.q-answer:target {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+.q-answer header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.q-answer header h2 {
+  margin: 0;
+}
+.q-answer header a {
+  text-decoration: none;
+}
+.q-answer section {
+  border-top: 1px solid var(--line);
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+}
+.q-byline,
+.q-citations small {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+.q-answer h3 {
+  font-size: 1rem;
+  margin: 0.45rem 0;
+}
+.q-answer section > p {
+  font-size: 0.9rem;
+}
+.q-citations {
+  margin-top: 0.75rem;
+}
+.q-citations summary,
+.q-coverage summary {
+  cursor: pointer;
+  min-height: 32px;
+  color: var(--accent);
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+.q-citations div {
+  margin: 0.55rem 0;
+  padding: 0.65rem 0.85rem;
+  border-left: 3px solid #8fb2ba;
+  background: #e7eff1;
+}
+.q-citations p,
+.q-citations a {
+  font-size: 0.82rem;
+}
+.q-citations small {
+  display: block;
+}
+.q-coverage ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1.35rem;
+  padding-left: 1rem;
+}
+.q-coverage li {
+  font-size: 0.88rem;
+}
+.q-stale {
+  color: #744015;
+}
+.q-filter[hidden],
+.q-topic[hidden],
+.q-topic li[hidden],
+.q-note[hidden] {
+  display: none;
+}
+@media (max-width: 42rem) {
+  .q-filter {
+    align-items: stretch;
+  }
+  .q-filter label:first-child {
+    flex-basis: 100%;
+  }
+  .q-filter .button {
+    align-self: end;
+  }
+  .q-intro {
+    gap: 0.5rem;
+  }
+}
+@media print {
+  .q-filter,
+  .q-related,
+  .q-note {
+    display: none;
+  }
+  .q-intro {
+    background: none;
+    color: inherit;
+  }
+  .q-intro p {
+    color: inherit;
+  }
+  .q-answers {
+    display: block;
+  }
+  .q-answer {
+    break-inside: avoid;
+    margin: 0.6rem 0;
+  }
+}
+.accounts-dates,
+.account-directory dl {
+  margin: 0.7rem 0 1rem;
+}
+.accounts-dates > div {
+  border-inline-start: 3px solid #648e98;
+  padding: 0.1rem 0 0.6rem 0.8rem;
+}
+.accounts-dates dt {
+  font-weight: 650;
+}
+.accounts-dates dd {
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+}
+.account-directory {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+.account-directory article {
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.65rem;
+  background: var(--sheet);
+}
+.account-directory h3 {
+  font-size: 1rem;
+  margin: 0 0 0.5rem;
+}
+.account-directory strong,
+.account-directory small,
+.account-directory meter {
+  display: block;
+}
+.account-directory strong {
+  font-size: 1.25rem;
+  font-variant-numeric: tabular-nums;
+}
+.account-directory meter {
+  width: 100%;
+  height: 0.85rem;
+  accent-color: #246873;
+  margin: 0.3rem 0;
+}
+.account-directory dl {
+  margin: 0;
+}
+.account-directory dl > div {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+  font-size: 0.78rem;
+}
+.account-directory dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+.q-filter label[hidden],
+.q-person[hidden],
+.q-count[hidden] {
+  display: none;
+}
+.q-person {
+  flex: none;
+  font-size: 0.72rem;
+  max-width: 6rem;
+  border: 1px dashed #8299a2;
+  color: #3a515b;
+  border-radius: 0.3rem;
+  padding: 0.24rem 0.36rem;
+}
+.q-person.q-documented {
+  color: #145965;
+  background: #dceff0;
+  border: 1px solid #7ba8b0;
+}
+.q-intro h1 {
+  color: #f4fbfd;
+}
+.q-matrix {
+  margin: 0 0 1rem;
+  background: var(--panel-gradient);
+  border: 1px solid #92adb8;
+  border-radius: 0.65rem;
+}
+.q-matrix[hidden] {
+  display: none;
+}
+.q-matrix > summary {
+  cursor: pointer;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  list-style: none;
+}
+.q-matrix > summary::-webkit-details-marker {
+  display: none;
+}
+.q-matrix > summary:after {
+  content: '+';
+  font-size: 1.45rem;
+  margin-left: auto;
+}
+.q-matrix[open] > summary:after {
+  content: '−';
+}
+.q-matrix summary small {
+  display: block;
+  color: var(--muted);
+}
+.q-matrix-inner {
+  padding: 0 clamp(0.6rem, 1.5vw, 1.25rem) 1rem;
+}
+.q-matrix table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin: 0.5rem 0;
+}
+.q-matrix th,
+.q-matrix td {
+  padding: clamp(0.3rem, 1vw, 0.65rem);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  overflow-wrap: anywhere;
+  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+}
+.q-matrix thead th {
+  color: #eff7f9;
+  background: #1b3b48;
+}
+.q-matrix thead a {
+  color: inherit;
+}
+.q-matrix th:first-child {
+  width: 32%;
+}
+.q-matrix caption {
+  font-size: 0.79rem;
+  text-align: left;
+  margin: 0.35rem 0;
+  color: var(--muted);
+}
+.q-matrix tbody a[data-kind] {
+  display: inline-block;
+  padding: 0.28rem 0.42rem;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0.2rem;
+  color: #185562;
+  background: #d4e9eb;
+}
+.q-matrix td small {
+  display: block;
+  margin-block-start: 0.25rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+.q-review-status {
+  display: block;
+  margin-block-start: 0.35rem;
+  color: var(--muted);
+}
+.q-matrix a[data-kind='parti'] {
+  color: #493e58;
+  background: #e7e6ec;
+}
+.q-matrix a[data-kind='declaration'],
+.q-matrix a[data-kind='orientation'] {
+  color: #5f441c;
+  background: #eee7d8;
+}
+.q-matrix a[data-kind='absent'],
+.q-matrix a[data-kind='revue'] {
+  border: 1px dashed #8ba0a8;
+  background: transparent;
+  color: #415560;
+}
+.q-matrix a:focus-visible,
+.q-matrix a:hover {
+  text-decoration: underline;
+}
+.q-navigator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  font-size: 0.85rem;
+}
+.q-navigator button {
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 0.35rem;
+  background: var(--sheet);
+  color: var(--ink);
+}
+.q-navigator button:disabled {
+  opacity: 0.45;
+}
+.q-reviews p {
+  border-left: 2px solid #66939d;
+  padding-inline-start: 0.7rem;
+}

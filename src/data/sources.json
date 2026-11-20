@@ -433,7 +433,8 @@
     "url": "https://cnccfp.fr/elections/election-du-president-de-la-republique-2027/",
     "kind": "institution",
     "published": null,
-    "checked": "2026-11-17"
+    "checked": "2026-11-20",
+    "watch": true
   },
   {
     "id": "elections-data",
@@ -1677,7 +1678,7 @@
     "url": "https://rassemblementnational.fr/lettre-ouverte/lettre-ouverte-de-marine-le-pen-aux-professionnels-de-limmobilier",
     "kind": "campagne",
     "published": "2026-09-21",
-    "checked": "2026-11-19",
+    "checked": "2026-11-20",
     "watch": true
   },
   {
@@ -1938,8 +1939,9 @@
     "url": "https://www.pleinchamp.com/actualite/fezzfffzfz",
     "kind": "presse",
     "published": "2026-10-08",
-    "checked": "2026-11-19",
-    "watch": false
+    "checked": "2026-11-20",
+    "watch": false,
+    "originalFormat": "entretien"
   },
   {
     "id": "lassalle-profession-de-foi-2022",
@@ -2020,8 +2022,9 @@
     "url": "https://www.tf1info.fr/politique/elections/presidentielle/mira-markovic-candidate-du-parti-animaliste-a-l-election-presidentielle-nous-pensons-qu-etre-animaliste-c-est-le-futur-progres-social-2472996.html",
     "kind": "presse",
     "published": "2026-11-01",
-    "checked": "2026-11-19",
-    "watch": false
+    "checked": "2026-11-20",
+    "watch": false,
+    "originalFormat": "entretien"
   },
   {
     "id": "rohou-entretien-tageblatt-2026",
@@ -3182,5 +3185,67 @@
     "published": null,
     "checked": "2026-11-20",
     "watch": false
+  },
+  {
+    "id": "hatvp-presidentielle-2027",
+    "title": "HATVP · le calendrier des déclarations des candidats",
+    "url": "https://www.hatvp.fr/presse/presidentielle-2027-le-role-de-la-haute-autorite/",
+    "kind": "institution",
+    "published": "2026-11-17",
+    "checked": "2026-11-20",
+    "watch": true
+  },
+  {
+    "id": "cnccfp-comptes-presidentielle-2022",
+    "title": "CNCCFP · rapport d’activité 2022, tableau des décisions sur les douze comptes",
+    "url": "https://cnccfp.fr/wp-content/uploads/2023/06/cnccfp-rapport_activite-2022.pdf",
+    "kind": "institution",
+    "published": null,
+    "checked": "2026-11-20",
+    "publishedYear": "2023"
+  },
+  {
+    "id": "insee-indexation-retraites",
+    "title": "Insee Analyses 109 · règles d’indexation des retraites et croissance",
+    "url": "https://www.insee.fr/fr/statistiques/8563753",
+    "kind": "institution",
+    "published": "2025-04-30",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "ipp-indexation-retraites",
+    "title": "Institut des politiques publiques · sous-indexation des retraites",
+    "url": "https://www.ipp.eu/publication/sous-indexer-les-retraites-impacts-redistributifs-et-enjeux-de-pilotage/",
+    "kind": "institution",
+    "published": null,
+    "checked": "2026-11-20",
+    "publishedYear": "2026"
+  },
+  {
+    "id": "rn-ukraine-communique",
+    "title": "Marine Le Pen · rencontre avec l’ambassadeur d’Ukraine en France",
+    "url": "https://rassemblementnational.fr/post/rencontre-avec-lambassadeur-dukraine-en-france",
+    "kind": "campagne",
+    "published": "2026-11-19",
+    "checked": "2026-11-20",
+    "watch": true
+  },
+  {
+    "id": "lfi-2027-biodiversite",
+    "title": "L’Avenir en commun 2027 · réparer l’écosystème et la biodiversité",
+    "url": "https://melenchon2027.fr/programme/livre/le-gout-du-futur-aux-nouvelles-frontieres-de-l-humanite/chapitre1",
+    "kind": "campagne",
+    "published": null,
+    "checked": "2026-11-20",
+    "watch": true
+  },
+  {
+    "id": "lfi-2027-conditions-elevage",
+    "title": "L’Avenir en commun 2027 · les conditions d’élevage",
+    "url": "https://melenchon2027.fr/programme/livre/pour-une-bifurcation-ecologique-et-sociale/chapitre3",
+    "kind": "campagne",
+    "published": null,
+    "checked": "2026-11-20",
+    "watch": true
   }
 ]

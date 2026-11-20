@@ -6,6 +6,7 @@ const form = document.querySelector<HTMLFormElement>('#search-form')!,
   results = document.querySelector<HTMLElement>('#search-results')!,
   count = document.querySelector<HTMLElement>('#search-count')!;
 const kinds: Record<string, string> = {
+  question: 'Question de programme',
   mesure: 'Mesure',
   candidat: 'Candidat',
   theme: 'Thème',

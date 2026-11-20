@@ -68,7 +68,13 @@ export async function rss(
         title: article.data.title,
         url: `https://polradar.fr/dossiers/${article.id}/`,
         guid: `https://polradar.fr/dossiers/${article.id}/`,
-        description: `${article.data.description}\nPublication : ${formatDate(article.data.published)}`,
+        description: [
+          article.data.description,
+          article.data.themes.map((id) => themeById(id).label).join(' · '),
+          `Publication : ${formatDate(article.data.published)}`,
+        ]
+          .filter(Boolean)
+          .join('\n'),
         day: article.data.published,
         timestamp: null,
       });

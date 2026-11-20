@@ -1,0 +1,168 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { candidates } from '../../lib/data';
+import { questions, questionThemes } from '../../lib/questions';
+import '../../styles/questions.css';
+---
+
+<Base
+  title="Qui propose quoi ?"
+  description="Comparer les propositions question par question, retrouver le document et voir quels candidats sont documentés."
+  section="/questions/"
+>
+  <header class="q-intro">
+    <div>
+      <a href="/comparer/">Comparer les programmes</a>
+      <h1>Qui propose quoi ?</h1>
+      <p>
+        {questions.length} questions · {candidates.length} candidats suivis
+      </p>
+    </div>
+    <Icon name="exchange" />
+  </header>
+  <form class="q-filter" id="q-filter" role="search" hidden>
+    <label>
+      Rechercher une question
+      <input
+        type="search"
+        name="q"
+        placeholder="CSG, loyers, âge de départ…"
+        maxlength="140"
+      />
+    </label>
+    <label>
+      Thème
+      <select name="theme">
+        <option value="">Tous les thèmes</option>
+        {questionThemes.map((t) => (
+          <option value={t.id}>{t.label}</option>
+        ))}
+      </select>
+    </label>
+    <label>
+      Candidat
+      <select name="candidat">
+        <option value="">Tous les candidats</option>
+        {candidates.map((c) => (
+          <option value={c.id}>{c.name}</option>
+        ))}
+      </select>
+    </label>
+    <label id="q-state" hidden>
+      Couverture
+      <select name="etat">
+        <option value="">Toutes les questions</option>
+        <option value="documentees">Avec une fiche</option>
+        <option value="manquantes">Sans fiche reliée</option>
+      </select>
+    </label>
+    <button class="button" type="reset">
+      Effacer
+    </button>
+  </form>
+  <p id="q-result" role="status" aria-live="polite" class="q-status" hidden></p>
+  <details id="q-matrix" class="q-matrix" hidden>
+    <summary>
+      <Icon name="layers" />
+      <span>
+        <strong>Matrice de couverture</strong>
+        <small>
+          Voir, candidat par candidat, le type de réponse disponible
+        </small>
+      </span>
+    </summary>
+    <div class="q-matrix-inner">
+      <div class="q-navigator">
+        <button type="button" id="q-m-prev" aria-label="Questions précédentes">
+          ←
+        </button>
+        <span id="q-m-span"></span>
+        <button type="button" id="q-m-next" aria-label="Questions suivantes">
+          →
+        </button>
+      </div>
+      <table id="q-m-table">
+        <caption>
+          État des documents par candidat et par question. Chaque lien ouvre la
+          pièce ou la liste des documents manquants.
+        </caption>
+        <thead></thead>
+        <tbody></tbody>
+      </table>
+      <div class="q-navigator">
+        <button type="button" id="q-p-prev" aria-label="Candidats précédents">
+          ←
+        </button>
+        <span id="q-p-span"></span>
+        <button type="button" id="q-p-next" aria-label="Candidats suivants">
+          →
+        </button>
+      </div>
+    </div>
+  </details>
+  <div class="q-themes">
+    {questionThemes.map((t) => {
+      const items = questions.filter((q) => q.theme === t.id);
+      return (
+        items.length > 0 && (
+          <details class="q-topic" data-theme={t.id} id={t.id}>
+            <summary>
+              <Icon name={t.icon} />
+              <strong>{t.label}</strong>
+              <small>
+                {items.length} question{items.length > 1 ? 's' : ''}
+              </small>
+            </summary>
+            <ul>
+              {items.map((q) => (
+                <li
+                  data-search={q.title + ' ' + q.terms + ' ' + t.label}
+                  data-people={q.candidateIds.join(' ')}
+                  data-coverage={JSON.stringify(q.coverage)}
+                  data-alerts={
+                    Object.keys(q.alerts).length
+                      ? JSON.stringify(q.alerts)
+                      : undefined
+                  }
+                >
+                  <a href={q.href}>
+                    <span>{q.title}</span>
+                    <span class="q-person" hidden></span>
+                    <span class="q-count">
+                      <meter
+                        value={q.candidateIds.length}
+                        max={candidates.length}
+                        aria-label="Dossiers avec une réponse sourcée"
+                      ></meter>
+                      <small>
+                        {q.candidateIds.length} sur {candidates.length}
+                      </small>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </details>
+        )
+      );
+    })}
+  </div>
+  <p id="q-empty" class="q-note" hidden>
+    Aucune question ne correspond à cette recherche.{' '}
+    <a href="/questions/">Voir tous les thèmes</a>
+  </p>
+  <aside class="q-note">
+    <Icon name="source" />
+    <div>
+      <h2>Lire les compteurs</h2>
+      <p>
+        Ils comptent les dossiers où Polradar a relié une proposition à cette
+        question. Un texte de parti conserve son auteur. Chaque réponse renvoie
+        à son document et à sa date de consultation.
+      </p>
+      <a href="/mises-a-jour/">Consulter le journal des sources</a>
+    </div>
+  </aside>
+</Base>
+<script src="../../scripts/questions.ts"></script>

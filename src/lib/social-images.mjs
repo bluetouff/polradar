@@ -307,6 +307,40 @@ const defs = [
     ),
   ],
   [
+    'questions',
+    '/questions/',
+    'Comparer les programmes',
+    'Qui propose\nquoi ?',
+    'Les réponses des candidats, leurs documents et les sujets encore à renseigner.',
+    'sage',
+    {
+      kind: 'document',
+      rows: [
+        'Question précise',
+        'Texte de campagne ou de parti',
+        'Date du document',
+        'Couverture des candidatures',
+      ],
+    },
+  ],
+  [
+    'argent-des-campagnes',
+    '/argent-des-campagnes/',
+    'Publications officielles',
+    'L’argent des\ncampagnes',
+    'Comptes électoraux, décisions de la CNCCFP et déclarations auprès de la HATVP.',
+    'ivory',
+    {
+      kind: 'document',
+      rows: [
+        'Financement électoral',
+        'Dépôt des comptes',
+        'Décisions de la Commission',
+        'Déclarations des candidats',
+      ],
+    },
+  ],
+  [
     'divergences',
     '/divergences/',
     'Comparaisons des programmes',

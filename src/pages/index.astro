@@ -25,6 +25,36 @@ const maxCount = Math.max(1, ...counts.map((theme) => theme.count));
 
 <Base>
   <HomeCover />
+  <nav class="home-choices" aria-label="Que cherchez-vous ?">
+    <a href="/questions/">
+      <Icon name="exchange" />
+      <span>
+        <strong>Qui propose quoi ?</strong>
+        <small>Comparer les réponses à une question</small>
+      </span>
+    </a>
+    <a href="/economie/declarations/">
+      <Icon name="donnees" />
+      <span>
+        <strong>Vérifier un chiffre</strong>
+        <small>Retrouver la série publique et sa période</small>
+      </span>
+    </a>
+    <a href="/reperes/#voter">
+      <Icon name="vote" />
+      <span>
+        <strong>Préparer mon vote</strong>
+        <small>Inscription, bureau de vote et procuration</small>
+      </span>
+    </a>
+    <a href="/mises-a-jour/">
+      <Icon name="clock" />
+      <span>
+        <strong>Quoi de neuf ?</strong>
+        <small>Consulter le dernier passage de la veille</small>
+      </span>
+    </a>
+  </nav>
   <div class="home-layout">
     <HomeSignals />
     <HomeEvidence />
@@ -101,6 +131,38 @@ const maxCount = Math.max(1, ...counts.map((theme) => theme.count));
 </Base>
 
 <style>
+  .home-choices {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 0.65rem;
+    margin: 0 0 1.25rem;
+  }
+  .home-choices a {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem;
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--panel-gradient);
+    border: 1px solid var(--line);
+    border-radius: 0.7rem;
+  }
+  .home-choices a:hover strong {
+    text-decoration: underline;
+  }
+  .home-choices :global(.icon) {
+    flex: none;
+    color: var(--accent);
+  }
+  .home-choices span {
+    display: grid;
+    gap: 0.25rem;
+  }
+  .home-choices small {
+    color: var(--muted);
+    line-height: 1.4;
+  }
   .home-layout {
     display: grid;
     min-width: 0;

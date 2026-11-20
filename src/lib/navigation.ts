@@ -4,6 +4,7 @@ export const groups = [
     name: 'Programmes',
     icon: 'mesures',
     links: [
+      ['/questions/', 'Qui propose quoi ?', 'exchange'],
       ['/mesures/', 'Mesures et orientations', 'mesures'],
       ['/themes/', 'Thèmes', 'layers'],
       ['/comparer/', 'Comparer les programmes', 'exchange'],
@@ -36,6 +37,7 @@ export const groups = [
     links: [
       ['/campagne/', 'Chronologie', 'historique'],
       ['/agenda/', 'Carte des rendez-vous', 'map-pin'],
+      ['/argent-des-campagnes/', 'Argent des campagnes', 'euro'],
       ['/reperes/', 'Calendrier électoral', 'clock'],
       ['/communes/', 'Résultats par commune', 'institutions'],
     ],

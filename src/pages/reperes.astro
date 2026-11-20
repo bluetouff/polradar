@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import '../styles/questions.css';
 import SourceLinks from '../components/SourceLinks.astro';
 import { events, formatDate } from '../lib/data';
 ---
@@ -9,7 +11,52 @@ import { events, formatDate } from '../lib/data';
     <h1>Calendrier électoral</h1>
     <p>Dates du scrutin et étapes de validation des candidatures.</p>
   </header>
-  <div class="three-col">
+  <section class="q-coverage" id="voter">
+    <h2>Préparer mon vote</h2>
+    <div class="q-answers">
+      <article class="q-answer">
+        <header>
+          <Icon name="map-pin" />
+          <h3>Trouver mon bureau</h3>
+        </header>
+        <p>
+          Service Public permet de vérifier son inscription, l’adresse de son
+          bureau de vote et son numéro national d’électeur.
+        </p>
+        <a href="https://www.service-public.gouv.fr/particuliers/vosdroits/R51788">
+          Vérifier mon inscription ↗
+        </a>
+      </article>
+      <article class="q-answer">
+        <header>
+          <Icon name="vote" />
+          <h3>Faire une procuration</h3>
+        </header>
+        <p>
+          Munissez-vous des informations de la personne qui votera pour vous. Le
+          service du ministère de l’Intérieur indique comment faire vérifier
+          votre identité.
+        </p>
+        <a href="https://www.maprocuration.gouv.fr/">
+          Accéder à MaProcuration ↗
+        </a>
+      </article>
+      <article class="q-answer">
+        <header>
+          <Icon name="source" />
+          <h3>Quels papiers présenter ?</h3>
+        </header>
+        <p>
+          La liste des justificatifs dépend du lieu où vous votez. Service
+          Public détaille les documents acceptés en France et à l’étranger.
+        </p>
+        <a href="https://www.service-public.gouv.fr/particuliers/vosdroits/F1361">
+          Consulter les justificatifs acceptés ↗
+        </a>
+      </article>
+    </div>
+  </section>
+  <div class="three-col section-space">
     <article class="panel">
       <p class="eyebrow">01</p>
       <h2>Se déclarer</h2>

@@ -36,3 +36,5 @@ Pour chaque demande, obtenir le fichier, le nom de l’auteur, la mention de cr�
 ## Revue du 20 novembre 2026
 
 Les neuf fiches ci-dessus renvoient désormais à la publication originale du candidat ou de son parti. Billetdoux présente sa candidature en vidéo. Pour Rohou, le [portrait du MEI](https://les-ecologistes-mei.org/erwan-rohou/) nomme le candidat. La [page de Trajectoire](https://trajectoire2027.fr/equipe) identifie Mlekuz dans son équipe. L’ancienne image de Mlekuz a été supprimée de Wikimedia Commons. Les conditions de reproduction de ces neuf visuels restent à établir.
+
+Les formulaires des campagnes d’Augustin Billetdoux, de Christian Collovati et du Parti animaliste pour Mira Markovic ont accusé réception de la demande de portrait le 20 novembre. Ceux du NPA-Révolutionnaires pour Selma Labib et d’Équinoxe pour Antoine Mikolajczak ont été soumis sans confirmation de réception. Le suivi éditorial distingue l’envoi d’une demande de l’obtention du fichier et des droits.

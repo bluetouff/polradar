@@ -1,0 +1,216 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import {
+  candidates,
+  formatDate,
+  formatTimestamp,
+  scopes,
+} from '../../lib/data';
+import {
+  questions,
+  questionThemes,
+  latestSourceCheck,
+} from '../../lib/questions';
+import { sameSentence } from '../../lib/measure-text';
+import { voteCases } from '../../lib/votes-data';
+import { proposalTracks } from '../../lib/proposal-data';
+import '../../styles/questions.css';
+export function getStaticPaths() {
+  return questions.map((q) => ({ params: { id: q.id }, props: { q } }));
+}
+const { q } = Astro.props;
+const t = questionThemes.find((x) => x.id === q.theme)!;
+const covered = candidates.filter((c) => q.candidateIds.includes(c.id));
+const missing = candidates.filter((c) => !q.candidateIds.includes(c.id));
+const ids = new Set(q.entries.map((e) => e.measure.id));
+const votes = voteCases.filter((v) => ids.has(v.measureId));
+const tracks = proposalTracks.filter((v) =>
+  v.measureIds.some((id) => ids.has(id)),
+);
+const checkLabels = {
+  accessible: 'Accessible',
+  modifie: 'Changement à relire',
+  bloque: 'Accès bloqué',
+  indisponible: 'Indisponible',
+};
+---
+
+<Base
+  title={q.title}
+  section="/questions/"
+  description={
+    'Positions recensées, textes de campagne et sources sur cette question. ' +
+    t.label +
+    '.'
+  }
+>
+  <nav class="breadcrumbs" aria-label="Fil d’Ariane">
+    <a href="/questions/">Qui propose quoi ?</a>
+    <span>/</span>
+    <a href={'/questions/#' + t.id}>{t.label}</a>
+  </nav>
+  <header class="q-intro">
+    <div>
+      <h1>{q.title}</h1>
+      <p>
+        {covered.length} dossier{covered.length === 1 ? '' : 's'} avec une
+        réponse sourcée sur {candidates.length} candidats suivis
+      </p>
+    </div>
+    <Icon name={t.icon} />
+  </header>
+  <nav class="q-related" aria-label="Explorer cette question">
+    {q.related && <a href={q.related.href}>{q.related.label} ↗</a>}
+    {q.id === 'retraites-protection-revenus' && (
+      <a href="/dossiers/indexation-pensions/">
+        Effets sur les ménages et les finances publiques ↗
+      </a>
+    )}
+    <a href="#couverture">
+      Voir la couverture des {candidates.length} candidats ↓
+    </a>
+  </nav>
+  <div class="q-answers">
+    {covered.map((c) => (
+      <article class="q-answer" id={'candidat-' + c.id}>
+        <header>
+          <Icon name="people" />
+          <h2>
+            <a href={'/candidats/' + c.id + '/'}>{c.name}</a>
+          </h2>
+        </header>
+        {q.entries
+          .filter((e) => e.candidate.id === c.id)
+          .map(({ measure, version, author, refs }) => (
+            <section>
+              <p class="q-byline">
+                {scopes[version.snapshot.scope]}
+                {version.snapshot.scope === 'parti' && ' · ' + author}
+                {refs.some((r) => r.source.originalFormat) &&
+                  ' · Déclaration publique'}
+              </p>
+              <h3>
+                <a
+                  href={
+                    '/mesures/' + measure.id + '/#version-' + version.number
+                  }
+                >
+                  {version.snapshot.title}
+                </a>
+              </h3>
+              {!sameSentence(
+                version.snapshot.title,
+                version.snapshot.description,
+              ) && <p>{version.snapshot.description}</p>}
+              {version.number !== measure.revision && (
+                <p class="q-stale">
+                  <a href={'/mesures/' + measure.id + '/'}>
+                    Une version plus récente de cette fiche est disponible ↗
+                  </a>
+                </p>
+              )}
+              <details class="q-citations">
+                <summary>Sources et dates ({refs.length})</summary>
+                {refs.map((ref) => {
+                  const check = latestSourceCheck(ref.sourceId);
+                  return (
+                    <div>
+                      <a href={ref.source.url} rel="noreferrer">
+                        {ref.source.title} ↗
+                      </a>
+                      <p>{ref.locator}</p>
+                      <small>
+                        {ref.source.published
+                          ? 'Publié le ' + formatDate(ref.source.published)
+                          : ref.source.publishedYear
+                            ? 'Publié en ' + ref.source.publishedYear
+                            : 'Date de publication non précisée'}{' '}
+                        · Consulté le {formatDate(ref.source.checked)}
+                      </small>
+                      <small>
+                        {check
+                          ? checkLabels[check.status] +
+                            ' au contrôle du ' +
+                            formatTimestamp(check.checkedAt)
+                          : ref.source.watch
+                            ? 'Contrôle de ce document indisponible dans le dernier rapport.'
+                            : 'Document hors veille quotidienne.'}
+                      </small>
+                    </div>
+                  );
+                })}
+              </details>
+            </section>
+          ))}
+      </article>
+    ))}
+  </div>
+  <section class="q-coverage" id="couverture">
+    <h2>Couverture documentaire</h2>
+    <p>
+      {covered.length} dossier{covered.length === 1 ? '' : 's'} avec une
+      proposition, une orientation ou un texte de parti relié à cette question.
+    </p>
+    {q.reviews.length > 0 && (
+      <div class="q-reviews">
+        <h3>Documents examinés sans réponse sur cette question</h3>
+        {q.reviews.map((r) => {
+          const check = latestSourceCheck(r.sourceId);
+          return (
+            <p id={'revue-' + r.candidate}>
+              <strong>
+                {candidates.find((c) => c.id === r.candidate)?.name}
+              </strong>{' '}
+              · {r.locator} Aucune proposition explicite sur cette question
+              relevée lors de la lecture du {formatDate(r.checked)}.{' '}
+              <a href={r.source.url}>Ouvrir le document ↗</a>
+              {check && (
+                <small class="q-review-status">
+                  Contrôle automatique du {formatTimestamp(check.checkedAt)} ·{' '}
+                  {checkLabels[check.status]}
+                </small>
+              )}
+            </p>
+          );
+        })}
+      </div>
+    )}
+    {missing.length > 0 && (
+      <details>
+        <summary>
+          {missing.length} candidat{missing.length === 1 ? '' : 's'} sans fiche
+          reliée à cette question
+        </summary>
+        <p>
+          Polradar n’a pas encore relié de réponse sourcée à ces dossiers. Le
+          nom ouvre la fiche du candidat et les documents déjà recensés.
+        </p>
+        <ul>
+          {missing.map((c) => (
+            <li>
+              <a href={'/candidats/' + c.id + '/'}>{c.name}</a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    )}
+  </section>
+  {(votes.length > 0 || tracks.length > 0) && (
+    <section class="q-coverage">
+      <h2>Votes et versions liés aux propositions</h2>
+      <ul>
+        {votes.map((v) => (
+          <li>
+            <a href={'/votes/#dossier=' + v.id}>{v.title} · scrutin ↗</a>
+          </li>
+        ))}
+        {tracks.map((v) => (
+          <li>
+            <a href={'/evolution/#dossier=' + v.id}>{v.title} · évolution ↗</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</Base>

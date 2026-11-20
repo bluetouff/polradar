@@ -82,13 +82,11 @@ const columns = [
       {columns.map((column) => (
         <div>
           <h2 class={`menu-${column.icon}`}>{column.title}</h2>
-          <ul>
+          <div class="footer-links">
             {column.links.map(([url, label]) => (
-              <li>
-                <a href={url}>{label}</a>
-              </li>
+              <a href={url}>{label}</a>
             ))}
-          </ul>
+          </div>
         </div>
       ))}
     </nav>

@@ -122,7 +122,7 @@
     border-bottom-color: var(--ice);
     background: linear-gradient(to bottom, #ffffff02, #b2d3d520);
   }
-  .site-navigation .site-nav-group > ul {
+  .site-navigation .site-nav-group > .desk-links {
     color: var(--ink);
     background: #eff5f6;
     border: 1px solid var(--line);
@@ -130,11 +130,11 @@
     border-radius: 0 0 0.65rem 0.65rem;
     box-shadow: 0 12px 28px #142c3826;
   }
-  .site-navigation .site-nav-group > ul a:is(:hover, [aria-current]) {
+  .site-navigation .site-nav-group > .desk-links a:is(:hover, [aria-current]) {
     color: var(--ink);
     background: #dce9ec;
   }
-  .site-navigation .site-nav-group > ul :focus-visible {
+  .site-navigation .site-nav-group > .desk-links :focus-visible {
     outline-color: var(--accent);
   }
 

@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import FollowButton from '../../components/FollowButton.astro';
+import { questionsForMeasure } from '../../lib/questions';
 import { proposalTracks } from '../../lib/proposal-data';
 import {
   measures,
@@ -196,6 +197,12 @@ const candidate = candidateById(measure.candidate),
     <aside class="measure-side">
       <FollowButton kind="candidate" id={candidate.id} name={candidate.name} />
       <FollowButton kind="theme" id={theme.id} name={theme.label} />
+      {questionsForMeasure(measure.id).map((q) => (
+        <a href={q.href}>
+          <Icon name="exchange" />
+          {q.title}
+        </a>
+      ))}
       <a href={`/comparer/?theme=${theme.id}&c=${candidate.id}`}>
         <Icon name="layers" />
         Comparer sur ce thème

@@ -1,5 +1,6 @@
 import { getCollection } from 'astro:content';
 import { candidates, themes, measures, sources, polls, events } from './data';
+import { questions } from './questions';
 import { measureSearchText } from './features.mjs';
 export interface SearchEntry {
   id: string;
@@ -16,6 +17,7 @@ export interface SearchEntry {
   date: string;
 }
 export const searchKinds: Record<string, string> = {
+  question: 'Question de programme',
   mesure: 'Mesure',
   candidat: 'Candidat',
   theme: 'Thème',
@@ -55,6 +57,19 @@ export async function searchEntries(): Promise<SearchEntry[]> {
       year: sourceYear(measure.sourceRefs.map((ref) => ref.sourceId)),
       scope: measure.scope,
       date: measure.checked,
+    })),
+    ...questions.map((q) => ({
+      id: 'question-' + q.id,
+      type: 'question',
+      title: q.title,
+      text: q.terms,
+      url: q.href,
+      candidate: '',
+      candidates: q.candidateIds,
+      theme: q.theme,
+      year: '',
+      scope: '',
+      date: '',
     })),
     ...candidates.map((candidate) => ({
       id: `candidat-${candidate.id}`,

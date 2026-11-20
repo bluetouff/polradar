@@ -23205,5 +23205,86 @@
       "edition": "Programme présidentiel 2022",
       "checked": "2026-11-20"
     }
+  },
+  {
+    "id": "lepen-europe-1-v2",
+    "measureId": "lepen-europe-1",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-20",
+    "recordedAt": "2026-11-20T10:48:41.601Z",
+    "summary": "Le communiqué signé par Marine Le Pen distingue la fin de l’aide financière des dons de matériel et de l’aide humanitaire, qu’elle souhaite maintenir.",
+    "snapshot": {
+      "title": "Mettre fin à l’aide financière à l’Ukraine et maintenir les dons de matériel",
+      "description": "Marine Le Pen prévoit de poursuivre les dons de matériel, l’aide humanitaire et les démarches diplomatiques. Elle affirme que les finances publiques françaises ne permettent plus de verser une aide financière dans les prochains mois.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "rn-ukraine-communique",
+          "locator": "Communiqué signé Marine Le Pen, paragraphe sur les finances publiques et les formes de soutien maintenues."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Communiqué du 19 novembre 2026",
+      "checked": "2026-11-20"
+    }
+  },
+  {
+    "id": "melenchon-ogm-ntg-v1",
+    "measureId": "melenchon-ogm-ntg",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-20",
+    "recordedAt": "2026-11-20T11:12:47.487Z",
+    "summary": "Fiche intégrée après lecture du programme présidentiel.",
+    "snapshot": {
+      "title": "Refuser les OGM et les nouvelles techniques génomiques",
+      "description": "Le programme inclut explicitement les nouvelles techniques génomiques dans son refus des organismes génétiquement modifiés.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-2027-biodiversite",
+          "locator": "Partie 4, chapitre 1, rubrique « Réparer l’écosystème et la biodiversité », point sur les OGM."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "L’Avenir en commun 2027",
+      "checked": "2026-11-20"
+    }
+  },
+  {
+    "id": "melenchon-normes-elevage-v1",
+    "measureId": "melenchon-normes-elevage",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-20",
+    "recordedAt": "2026-11-20T11:12:47.487Z",
+    "summary": "Fiche intégrée après lecture du programme présidentiel.",
+    "snapshot": {
+      "title": "Fixer de nouvelles normes pour les conditions d’élevage",
+      "description": "Le programme prévoit des normes sur la densité, la surface minimale, le pâturage et l’accès des animaux à l’air libre.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-2027-conditions-elevage",
+          "locator": "Partie 1, chapitre 3, rubrique « Rompre avec la maltraitance animale », point sur les conditions d’élevage."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "L’Avenir en commun 2027",
+      "checked": "2026-11-20"
+    }
   }
 ]

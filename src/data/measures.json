@@ -2195,9 +2195,9 @@
     "parentId": "lepen-europe",
     "candidate": "lepen",
     "theme": "europe",
-    "revision": 1,
-    "title": "Défendre l’arrêt du soutien français à l’Ukraine",
-    "description": "Défendre l’arrêt du soutien français à l’Ukraine.",
+    "revision": 2,
+    "title": "Mettre fin à l’aide financière à l’Ukraine et maintenir les dons de matériel",
+    "description": "Marine Le Pen prévoit de poursuivre les dons de matériel, l’aide humanitaire et les démarches diplomatiques. Elle affirme que les finances publiques françaises ne permettent plus de verser une aide financière dans les prochains mois.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -2205,13 +2205,13 @@
     "amounts": [],
     "sourceRefs": [
       {
-        "sourceId": "rn-ukraine",
-        "locator": "Dossier initial : Retirer le soutien à l’Ukraine"
+        "sourceId": "rn-ukraine-communique",
+        "locator": "Communiqué signé Marine Le Pen, paragraphe sur les finances publiques et les formes de soutien maintenues."
       }
     ],
     "scope": "campagne",
-    "edition": "Position rapportée le 16 novembre 2026",
-    "checked": "2026-11-16"
+    "edition": "Communiqué du 19 novembre 2026",
+    "checked": "2026-11-20"
   },
   {
     "id": "lepen-immigration-1",
@@ -18954,6 +18954,52 @@
     ],
     "scope": "archive",
     "edition": "Programme présidentiel 2022",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "melenchon-ogm-ntg",
+    "parentId": "melenchon-climat",
+    "candidate": "melenchon",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Refuser les OGM et les nouvelles techniques génomiques",
+    "description": "Le programme inclut explicitement les nouvelles techniques génomiques dans son refus des organismes génétiquement modifiés.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-2027-biodiversite",
+        "locator": "Partie 4, chapitre 1, rubrique « Réparer l’écosystème et la biodiversité », point sur les OGM."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
+    "checked": "2026-11-20"
+  },
+  {
+    "id": "melenchon-normes-elevage",
+    "parentId": "melenchon-climat",
+    "candidate": "melenchon",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Fixer de nouvelles normes pour les conditions d’élevage",
+    "description": "Le programme prévoit des normes sur la densité, la surface minimale, le pâturage et l’accès des animaux à l’air libre.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-2027-conditions-elevage",
+        "locator": "Partie 1, chapitre 3, rubrique « Rompre avec la maltraitance animale », point sur les conditions d’élevage."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
     "checked": "2026-11-20"
   }
 ]

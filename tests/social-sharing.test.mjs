@@ -79,6 +79,7 @@ test('l’accueil et toutes les rubriques ont un PNG distinct et les sous-pages 
     '/engagements/',
     '/mesures/',
     '/numerique/',
+    '/questions/',
     '/numerique/comparer/',
     '/numerique/ce-qui-changerait/',
     '/economie/',
