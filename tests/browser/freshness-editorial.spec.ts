@@ -93,6 +93,14 @@ test('lisibilité des encadrés et pictogrammes de partage', async ({ page }) =>
     expect(logos).toHaveLength(5);
     expect(new Set(logos).size).toBe(5);
     expect(logos.every((x) => x !== 'none')).toBe(true);
+    for (const logo of logos) {
+      const url = /^url\("(https?:\/\/[^"]+)"\)$/.exec(logo)?.[1];
+      expect(url).toBeTruthy();
+      const response = await page.request.get(url!);
+      expect(response.status()).toBe(200);
+      expect(response.headers()['content-type']).toContain('image/svg+xml');
+      expect(await response.text()).toMatch(/<path\b/);
+    }
   }
 });
 test('les encadrés de méthode gardent un retrait sur les quatre côtés', async ({

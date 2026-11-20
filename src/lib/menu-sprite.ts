@@ -36,7 +36,7 @@ const digest = (value: string) =>
 const imageFile = digest(svg) + '.svg';
 const navLinks = groups.flatMap((group) => group.links);
 const css =
-  `:where(.site-nav-group li a,.site-nav-group summary,.footer-columns h2,.footer-follow,.page-share-label,.page-share a[data-share-platform="mail"])::before,:where(.site-nav-group summary,.footer-follow,.footer-meta a,.footer-bottom>a)::after{content:"";display:inline-block;flex:none;width:var(--pic-size,1rem);height:var(--pic-size,1rem);background:currentColor;mask-image:url("/pictos-menu/${imageFile}");mask-repeat:no-repeat;mask-size:100% auto;mask-position:0 var(--menu-y)}` +
+  `:where(.site-nav-group .desk-links a,.site-nav-group summary,.footer-columns h2,.footer-follow,.page-share-label,.page-share a[data-share-platform="mail"])::before,:where(.site-nav-group summary,.footer-follow,.footer-meta a,.footer-bottom>a)::after{content:"";display:inline-block;flex:none;width:var(--pic-size,1rem);height:var(--pic-size,1rem);background:currentColor;mask-image:url("/pictos-menu/${imageFile}");mask-repeat:no-repeat;mask-size:100% auto;mask-position:0 var(--menu-y)}` +
   icons
     .map(
       (id, i) =>

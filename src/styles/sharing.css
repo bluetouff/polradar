@@ -45,16 +45,16 @@
     color: var(--accent);
   }
   .page-share a[data-share-platform='x'] {
-    --logo: url('/icons/partage-x.svg');
+    --logo: url('/pictos-polradar/partage-x.svg');
   }
   .page-share a[data-share-platform='bluesky'] {
-    --logo: url('/icons/partage-bluesky.svg');
+    --logo: url('/pictos-polradar/partage-bluesky.svg');
   }
   .page-share a[data-share-platform='linkedin'] {
-    --logo: url('/icons/partage-linkedin.svg');
+    --logo: url('/pictos-polradar/partage-linkedin.svg');
   }
   .page-share a[data-share-platform='facebook'] {
-    --logo: url('/icons/partage-facebook.svg');
+    --logo: url('/pictos-polradar/partage-facebook.svg');
   }
   .page-share a:not([data-share-platform='mail'])::before {
     content: '';
