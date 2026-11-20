@@ -168,8 +168,8 @@ test('les fichiers publics se réconcilient avec les deux totaux nationaux du mi
     totals,
     elections.rounds.map(({ national }) => national),
   );
-  assert.deepEqual(elections.preview.record, getRecord('28085'));
-  assert.equal(elections.preview.name, index.get('28085'));
+  assert.deepEqual(elections.preview.record, getRecord('75056'));
+  assert.equal(elections.preview.name, index.get('75056'));
 });
 
 test('les résultats distinguent voix, participation, regroupements et absences de suffrages', () => {

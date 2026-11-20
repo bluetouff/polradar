@@ -52,11 +52,12 @@ test('la recherche communale est locale et ses liens conservent les deux tours',
   });
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/communes/');
-  await expect(page.locator('#commune-name')).toHaveText('Chartres');
-  await expect(page.locator('#commune-vacancy')).toHaveText(/10,9\s%/);
+  await expect(page.locator('#commune-name')).toHaveText('Paris');
+  await expect(page.locator('#commune-vacancy')).toHaveText(/9,9\s%/);
   let input = page.getByRole('searchbox', {
     name: 'Nom de commune ou code Insee',
   });
+  await expect(input).toHaveAttribute('placeholder', 'Ex. Paris');
   await input.fill('pointe a pitre');
   await page.getByRole('link', { name: /Pointe-à-Pitre.*97120/ }).click();
   await expect(page).toHaveURL(/#commune=97120$/);
@@ -85,17 +86,17 @@ test('la recherche communale est locale et ses liens conservent les deux tours',
 test('un fichier communal indisponible ne remplace pas le dernier résultat affiché', async ({
   page,
 }) => {
-  await page.route('**/data/communes/2022/75.json', (route) =>
+  await page.route('**/data/communes/2022/28.json', (route) =>
     route.fulfill({ status: 503, body: 'Unavailable' }),
   );
-  await page.goto('/communes/#commune=75056');
+  await page.goto('/communes/#commune=28085');
   await expect(page.locator('#commune-status')).toHaveText(
     'Les résultats de cette commune sont momentanément indisponibles.',
   );
-  await expect(page.locator('#commune-name')).toHaveText('Chartres');
+  await expect(page.locator('#commune-name')).toHaveText('Paris');
   await expect(page.locator('#commune-permalink')).toHaveAttribute(
     'href',
-    '#commune=28085',
+    '#commune=75056',
   );
 });
 
