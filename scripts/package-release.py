@@ -1,13 +1,21 @@
 """Package only built static files; no checkout, dependencies or credentials."""
 import hashlib
+import io
 import json
 import os
 import pathlib
+import re
 import runpy
 import tarfile
 import tempfile
 
 root = pathlib.Path('dist')
+verification_file = os.environ.get('GSC_VERIFICATION_FILE', '')
+if verification_file:
+    if not re.fullmatch(r'google[0-9a-f]{16}\.html', verification_file):
+        raise ValueError('Invalid Search Console verification filename')
+    if (root / verification_file).exists():
+        raise ValueError('Search Console verification filename already in build')
 target = pathlib.Path('artifacts')
 target.mkdir(exist_ok=True)
 archive = target / 'site.tar.gz'
@@ -22,6 +30,12 @@ with tarfile.open(archive, 'w:gz', format=tarfile.USTAR_FORMAT) as bundle:
             info.mode = 0o644
             with path.open('rb') as source:
                 bundle.addfile(info, source)
+    if verification_file:
+        body = ('google-site-verification: ' + verification_file).encode('ascii')
+        entry = tarfile.TarInfo(verification_file)
+        entry.size = len(body)
+        entry.mode = 0o644
+        bundle.addfile(entry, io.BytesIO(body))
 deployment = runpy.run_path(pathlib.Path(__file__).resolve().parents[1] / 'deploy/pull-release.py')
 if archive.stat().st_size > deployment['MAX_ARCHIVE']:
     raise ValueError('Compressed static archive too large')

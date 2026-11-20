@@ -2,7 +2,10 @@ import gzip
 import importlib.util
 import io
 import json
+import os
 from pathlib import Path
+import subprocess
+import sys
 import tarfile
 import tempfile
 import unittest
@@ -26,6 +29,32 @@ def archive(extra=(), sha=SHA):
 
 
 class DeploymentTests(unittest.TestCase):
+    def test_search_console_verification_packaging(self):
+        packager = Path(__file__).resolve().parents[2] / 'scripts/package-release.py'
+        name = 'google0123456789abcdef.html'
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            dist = root / 'dist'
+            dist.mkdir()
+            deployment.extract_static(archive(), dist, SHA)
+
+            def package(value):
+                env = {**os.environ, 'GITHUB_SHA': SHA, 'GSC_VERIFICATION_FILE': value}
+                return subprocess.run([sys.executable, str(packager)], cwd=root, env=env, capture_output=True)
+
+            for value in ['', name]:
+                with self.subTest(value=value):
+                    result = package(value)
+                    self.assertEqual(result.returncode, 0, result.stderr)
+                    with tarfile.open(root / 'artifacts/site.tar.gz') as bundle:
+                        self.assertEqual(name in bundle.getnames(), bool(value))
+                        if value:
+                            self.assertEqual(bundle.extractfile(name).read(), f'google-site-verification: {name}'.encode())
+                            self.assertNotIn(name.encode(), bundle.extractfile('sitemap.xml').read())
+            self.assertNotEqual(package('../' + name).returncode, 0)
+            (dist / name).write_text('existing file')
+            self.assertNotEqual(package(name).returncode, 0)
+
     def test_valid_static_release(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
