@@ -237,7 +237,12 @@ export function makeDailyReport({
     incidents,
     !!watch?.some((w) => ['accessible', 'modifie'].includes(w.status)),
   );
-  return { run, attempt, at, rows };
+  const sourceChecks = (watch ?? []).map(({ sourceId, checkedAt, status }) => ({
+    sourceId,
+    checkedAt,
+    status,
+  }));
+  return { run, attempt, at, sourceChecks, rows };
 }
 
 async function main() {

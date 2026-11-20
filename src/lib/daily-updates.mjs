@@ -9,6 +9,11 @@ export const families = {
 };
 const text = z.string().min(1).max(650);
 const stamp = z.iso.datetime({ offset: true });
+const sourceCheck = z.strictObject({
+  sourceId: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+  checkedAt: stamp,
+  status: z.enum(['accessible', 'modifie', 'bloque', 'indisponible']),
+});
 const row = z.strictObject({
   id: z.enum(Object.keys(families)),
   checked: z.union([stamp, z.iso.date()]).nullable(),
@@ -26,6 +31,7 @@ export const dailyHistorySchema = z
       run: z.string().regex(/^[1-9]\d{0,15}$/),
       attempt: z.number().int().min(1),
       at: stamp,
+      sourceChecks: z.array(sourceCheck).max(2000).optional(),
       rows: z.array(row).length(Object.keys(families).length),
     }),
   )
@@ -39,6 +45,12 @@ export const dailyHistorySchema = z
       if (
         runs.has(key) ||
         instant > previous ||
+        (item.sourceChecks &&
+          (new Set(item.sourceChecks.map((c) => c.sourceId)).size !==
+            item.sourceChecks.length ||
+            item.sourceChecks.some(
+              (c) => Date.parse(c.checkedAt) > instant,
+            ))) ||
         new Set(item.rows.map((r) => r.id)).size !== item.rows.length ||
         item.rows.some(
           (r) => r.lastChange && Date.parse(r.lastChange) > instant,

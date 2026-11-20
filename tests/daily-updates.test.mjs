@@ -103,3 +103,34 @@ test('le journal conserve le dernier changement, les indisponibilités et les do
   assert.deepEqual(row('sondages').changes, []);
   assert.equal(dailyHistorySchema.safeParse([report, report]).success, false);
 });
+
+test('chaque contrôle public garde uniquement le document, le statut et son heure effective', () => {
+  const f = fixture();
+  f.watch = [
+    {
+      sourceId: 'campagne',
+      status: 'indisponible',
+      checkedAt: previous,
+      message: 'diagnostic privé',
+      httpStatus: 503,
+    },
+  ];
+  const report = makeDailyReport(f);
+  assert.deepEqual(report.sourceChecks, [
+    { sourceId: 'campagne', status: 'indisponible', checkedAt: previous },
+  ]);
+  assert.equal(dailyHistorySchema.safeParse([report]).success, true);
+  for (const invalid of [
+    [report.sourceChecks[0], report.sourceChecks[0]],
+    [{ ...report.sourceChecks[0], checkedAt: '2026-12-01T00:00:00Z' }],
+    [{ ...report.sourceChecks[0], status: 'suppose' }],
+  ])
+    assert.equal(
+      dailyHistorySchema.safeParse([{ ...report, sourceChecks: invalid }])
+        .success,
+      false,
+    );
+  const old = { ...report };
+  delete old.sourceChecks;
+  assert.equal(dailyHistorySchema.safeParse([old]).success, true);
+});
