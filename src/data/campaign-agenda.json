@@ -176,6 +176,13 @@
       "code": "52160",
       "coordinates": [4.9346, 48.2973],
       "sourceUrl": "https://geo.api.gouv.fr/communes/52160?fields=nom,code,centre"
+    },
+    {
+      "id": "cournon-auvergne",
+      "name": "Cournon-d'Auvergne",
+      "code": "63124",
+      "coordinates": [3.1885, 45.742],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/63124?fields=nom,code,centre"
     }
   ],
   "events": [
@@ -659,6 +666,48 @@
       "note": "Après la conférence de presse de 15 h, le candidat a invité les responsables associatifs nationaux à discuter du Livre blanc.",
       "source": "rohou-invitation-presse-associations",
       "status": "annonce"
+    },
+    {
+      "id": "lassalle-ici-bearn-juillet",
+      "candidate": "lassalle",
+      "date": "2026-07-10",
+      "time": "07:43",
+      "timezone": "Europe/Paris",
+      "city": null,
+      "title": "Jean Lassalle, invité d’ICI Béarn Bigorre",
+      "venue": "Antenne d’ICI Béarn Bigorre",
+      "note": "Horaire de diffusion indiqué par Radio France. Jean Lassalle présente sa démarche pour 2027 et répond sur le financement de sa campagne.",
+      "source": "lassalle-ici-bearn-juillet",
+      "status": "tenu"
+    },
+    {
+      "id": "lassalle-sommet-elevage-2026",
+      "candidate": "lassalle",
+      "date": "2026-10-06",
+      "latestPossibleDate": "2026-10-09",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": "cournon-auvergne",
+      "title": "Jean Lassalle au Sommet de l’élevage",
+      "venue": "Sommet de l’élevage",
+      "note": "Pleinchamp a filmé Jean Lassalle sur place. Il y a répondu sur la présidentielle et sur l’avenir des exploitations agricoles. La Région donne les dates du salon. Le jour de l’entretien n’est pas indiqué.",
+      "source": "lassalle-pleinchamp-elevage-2026",
+      "additionalSources": ["region-sommet-elevage-2026"],
+      "status": "tenu"
+    }
+  ],
+  "sourceChecks": [
+    {
+      "candidate": "billetdoux",
+      "checked": "2026-11-20",
+      "source": "billetdoux-declaration-2027",
+      "note": "Le site de candidature publie sa déclaration en vidéo et renvoie à sa publication sur LinkedIn. Aucun rendez-vous public daté n’y est annoncé."
+    },
+    {
+      "candidate": "cheve",
+      "checked": "2026-11-20",
+      "source": "cheve-appel-rencontrez-elus",
+      "note": "Joël Chevé invite ses soutiens à rencontrer leurs élus avant février 2027. Son appel ne fixe ni réunion publique ni date de déplacement personnel."
     }
   ]
 }

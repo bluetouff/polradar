@@ -42,6 +42,7 @@ function render(reset = true, target?: HTMLElement) {
       candidate: node.dataset.candidate,
       city: node.dataset.city,
       date: node.dataset.date!,
+      latestPossibleDate: node.dataset.latestPossibleDate,
     };
     node.hidden = !agendaMatches(event, filters, today);
     if (!node.hidden) matches.push(node);
@@ -49,7 +50,15 @@ function render(reset = true, target?: HTMLElement) {
   const count = matches.length;
   const towns = new Set(matches.map((n) => n.dataset.city).filter(Boolean));
   status.textContent = `${count} rendez-vous · ${towns.size} ville${towns.size > 1 ? 's' : ''}`;
-  document.querySelector<HTMLElement>('#agenda-empty')!.hidden = count > 0;
+  let hasSourceNote = false;
+  for (const note of document.querySelectorAll<HTMLElement>(
+    '[data-agenda-check]',
+  )) {
+    note.hidden = count > 0 || note.dataset.agendaCheck !== candidate.value;
+    if (!note.hidden) hasSourceNote = true;
+  }
+  document.querySelector<HTMLElement>('#agenda-empty')!.hidden =
+    count > 0 || hasSourceNote;
   choices.hidden = true;
   choices.replaceChildren();
   for (const marker of document.querySelectorAll<SVGAElement>(

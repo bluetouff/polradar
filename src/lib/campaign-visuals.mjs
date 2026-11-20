@@ -113,12 +113,23 @@ export const agendaSchema = z
         ),
       }),
     ),
+    sourceChecks: z
+      .array(
+        z.object({
+          candidate: idSchema,
+          checked: dateSchema,
+          source: idSchema,
+          note: text,
+        }),
+      )
+      .default([]),
     events: z
       .array(
         z.object({
           id: idSchema,
           candidate: idSchema,
           date: dateSchema,
+          latestPossibleDate: dateSchema.optional(),
           time: z
             .string()
             .regex(/^([01]\d|2[0-3]):[0-5]\d$/)
@@ -143,12 +154,26 @@ export const agendaSchema = z
       new Set(data.events.map((e) => e.id)).size !== data.events.length
     )
       fail('Doublon dans l’agenda');
+    if (
+      new Set(data.sourceChecks.map((check) => check.candidate)).size !==
+        data.sourceChecks.length ||
+      data.sourceChecks.some((check) => check.checked > data.checked)
+    )
+      fail('Vérification de source d’agenda incohérente');
     for (const e of data.events) {
       if (e.city && !cities.has(e.city)) fail('Commune inconnue');
+      if (
+        e.latestPossibleDate &&
+        (e.latestPossibleDate <= e.date || e.time !== null)
+      )
+        fail('Période de présence incompatible avec le jour ou l’heure');
       const refs = [e.source, ...(e.additionalSources ?? [])];
       if (new Set(refs).size !== refs.length)
         fail('Source de rendez-vous dupliquée');
-      if (e.status === 'tenu' && e.date > data.checked)
+      if (
+        e.status === 'tenu' &&
+        (e.latestPossibleDate ?? e.date) > data.checked
+      )
         fail('Un rendez-vous futur ne peut pas être indiqué comme tenu');
     }
   });
@@ -174,6 +199,10 @@ export function validateVisualReferences(budgets, agenda, candidates, sources) {
       errors.push(`Agenda : candidat inconnu ${e.candidate}`);
     for (const ref of [e.source, ...(e.additionalSources ?? [])])
       if (!refs.has(ref)) errors.push(`Agenda : source inconnue ${ref}`);
+  }
+  for (const check of agenda.sourceChecks ?? []) {
+    if (!people.has(check.candidate) || !refs.has(check.source))
+      errors.push('Agenda : référence de vérification inconnue');
   }
   return errors;
 }

@@ -258,3 +258,19 @@ for (const route of ['/temps-de-parole/', '/budget-programmes/', '/agenda/']) {
     expect(errors).toEqual([]);
   });
 }
+test('l’agenda distingue une présence sur une période et les sources de candidatures sans date', async ({
+  page,
+}) => {
+  await page.goto('/agenda/#lassalle-sommet-elevage-2026');
+  const salon = page.locator('#lassalle-sommet-elevage-2026');
+  await expect(salon).toBeVisible();
+  await expect(salon).toContainText(
+    'Entre le 6 octobre 2026 et le 9 octobre 2026',
+  );
+  await expect(salon).toContainText('Le jour de l’entretien n’est pas indiqué');
+  for (const id of ['cheve', 'billetdoux']) {
+    await page.locator('#agenda-candidate').selectOption(id);
+    await expect(page.locator(`[data-agenda-check="${id}"]`)).toBeVisible();
+    await expect(page.locator('[data-agenda-id]:visible')).toHaveCount(0);
+  }
+});

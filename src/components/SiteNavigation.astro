@@ -1,5 +1,4 @@
 ---
-import Icon from './Icon.astro';
 import { groups } from '../lib/navigation';
 import '../styles/site-navigation.css';
 
@@ -24,10 +23,8 @@ const path = Astro.url.pathname;
         group.links.some(([url]) => current === url) ? 'true' : undefined
       }
     >
-      <summary>
-        <Icon name={group.icon} class="site-nav-group-icon" />
+      <summary class={`menu-${group.icon}`}>
         <span>{group.name}</span>
-        <Icon name="chevron" class="site-nav-chevron" />
       </summary>
       <ul aria-label={group.name}>
         {group.links.map(([url, label, icon]) => (

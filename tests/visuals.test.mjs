@@ -16,6 +16,7 @@ import {
 } from '../src/lib/campaign-visuals.mjs';
 import {
   agendaMatches,
+  agendaWeeks,
   parisToday,
   weekStart,
   projectFrance,
@@ -33,6 +34,38 @@ const airtime = data('airtime'),
   budgets = data('programme-budgets'),
   agenda = data('campaign-agenda'),
   map = data('france-map');
+test('un passage dont le jour est inconnu conserve ses bornes dans les filtres de l’agenda', () => {
+  const event = {
+    ...agenda.events[0],
+    date: '2026-10-09',
+    latestPossibleDate: '2026-10-13',
+    time: null,
+    status: 'tenu',
+  };
+  const sample = { ...agenda, events: [event] };
+  assert.equal(agendaSchema.safeParse(sample).success, true);
+  for (const patch of [
+    { time: '09:00' },
+    { latestPossibleDate: event.date },
+    { latestPossibleDate: '2026-10-08' },
+  ]) {
+    assert.equal(
+      agendaSchema.safeParse({ ...sample, events: [{ ...event, ...patch }] })
+        .success,
+      false,
+    );
+  }
+  assert.deepEqual(agendaWeeks(event), ['2026-10-05', '2026-10-12']);
+  assert.equal(
+    agendaMatches(event, { week: '2026-10-12', period: 'tous' }, '2026-11-20'),
+    true,
+  );
+  assert.equal(
+    agendaMatches(event, { week: '2026-10-19', period: 'tous' }, '2026-11-20'),
+    false,
+  );
+  assert.equal(agendaMatches(event, { period: 'passes' }, '2026-10-11'), false);
+});
 const csv =
   ";Appartenance;TF1;TF1;TF1\nType de service;-;Chaîne généraliste;Chaîne généraliste;Chaîne généraliste\nType d'émission;-;JTF;MAG;PROG\nARTHAUD Nathalie;Lutte Ouvrière;00:01:30;-;00:00:30\nBRANCO REMI;Autre;00:05:00;-;-\n";
 test('les quatre jeux de données et leurs références sont qualifiés', () => {

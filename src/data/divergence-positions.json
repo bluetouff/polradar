@@ -577,5 +577,23 @@
         "versions": ["philippot-eolien-demantelement-v1"]
       }
     ]
+  },
+  {
+    "id": "fiscalite-csg-salaires",
+    "theme": "fiscalite",
+    "label": "CSG sur les salaires",
+    "context": "La CSG est évoquée ici pour les revenus du travail. Chaque position renvoie au périmètre annoncé par son auteur.",
+    "positions": [
+      {
+        "id": "supprimer",
+        "label": "Supprimer la CSG sur les salaires ou les revenus d’activité",
+        "versions": ["attal-csg-salaires-v1", "zemmour-csg-activite-v2"]
+      },
+      {
+        "id": "baisser",
+        "label": "Baisser progressivement la CSG sur les salaires",
+        "versions": ["glucksmann-csg-salaires-v1"]
+      }
+    ]
   }
 ]

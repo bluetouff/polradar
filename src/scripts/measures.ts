@@ -1,6 +1,6 @@
 import { corpus, measureCard } from './ui';
 import { catalogue } from './catalogue';
-import { filterEntries } from '../lib/features.mjs';
+import { filterEntries, measureSearchText } from '../lib/features.mjs';
 import type { Corpus, Measure } from '../lib/data';
 let data: Corpus;
 catalogue<Measure & { text: string }>({
@@ -13,7 +13,7 @@ catalogue<Measure & { text: string }>({
     const themes = new Map(data.themes.map((t) => [t.id, t.label]));
     return data.measures.map((m) => ({
       ...m,
-      text: `${m.partyAuthor ?? names.get(m.candidate)} ${themes.get(m.theme)} ${m.description}`,
+      text: measureSearchText(m, names.get(m.candidate), themes.get(m.theme)),
     }));
   },
   select: (rows, filters) => filterEntries(rows, Object.fromEntries(filters)),

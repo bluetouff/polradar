@@ -417,3 +417,47 @@ test('les recherches traitent les motifs extglob et regex comme du texte littér
     assert.deepEqual(filterEntries([rows[1]], { q: query }), []);
   }
 });
+
+test('la recherche distingue une suppression d’une baisse et reconnaît le nom complet de la CSG', () => {
+  const deletion = {
+    candidate: 'attal',
+    title: 'Supprimer la CSG sur les salaires',
+    text: 'Gabriel Attal, gain maximal de 270 € nets par mois.',
+  };
+  const reduction = {
+    candidate: 'glucksmann',
+    title: 'Baisser progressivement la contribution sociale généralisée',
+    text: 'Raphaël Glucksmann vise les salaires.',
+  };
+  const mention = {
+    title: 'Une comparaison',
+    text: 'Suppression de la contribution sociale généralisée sur les salaires.',
+  };
+  const rows = [mention, reduction, deletion];
+  for (const q of [
+    'suppression de la csg',
+    'supprimer la contribution sociale généralisée',
+    'suppression C.S.G.',
+  ]) {
+    assert.deepEqual(filterEntries(rows, { q }), [deletion, mention]);
+  }
+  assert.deepEqual(filterEntries(rows, { q: 'baisse de CSG' }), [reduction]);
+  assert.deepEqual(
+    filterEntries(rows, {
+      q: 'suppression de la CSG',
+      candidate: 'glucksmann',
+    }),
+    [],
+  );
+  assert.deepEqual(filterEntries(rows, { q: '270 euros' }), [deletion]);
+  assert.deepEqual(filterEntries(rows, { q: 'contribution' }), [
+    reduction,
+    mention,
+  ]);
+  assert.deepEqual(filterEntries(rows, { q: 'CSG licornes' }), []);
+  assert.deepEqual(
+    filterEntries([{ title: '10 000 euros', text: '' }], { q: '10000 €' })
+      .length,
+    1,
+  );
+});

@@ -52,13 +52,37 @@ export function weekStart(date) {
   return d.toISOString().slice(0, 10);
 }
 export function agendaMatches(event, filters, today) {
+  const end = event.latestPossibleDate ?? event.date;
   return (
     (!filters.candidate || event.candidate === filters.candidate) &&
     (!filters.city || event.city === filters.city) &&
-    (!filters.week || weekStart(event.date) === filters.week) &&
+    (!filters.week ||
+      (weekStart(event.date) <= filters.week &&
+        weekStart(end) >= filters.week)) &&
     (filters.period === 'tous' ||
-      (filters.period === 'passes' ? event.date < today : event.date >= today))
+      (filters.period === 'passes' ? end < today : end >= today))
   );
+}
+export function agendaWeeks(event) {
+  const first = weekStart(event.date);
+  const last = weekStart(event.latestPossibleDate ?? event.date);
+  const weeks = [first];
+  const cursor = new Date(`${first}T12:00:00Z`);
+  while (weeks.at(-1) < last) {
+    cursor.setUTCDate(cursor.getUTCDate() + 7);
+    weeks.push(cursor.toISOString().slice(0, 10));
+  }
+  return weeks;
+}
+const agendaFormatter = new Intl.DateTimeFormat('fr-FR', {
+  dateStyle: 'long',
+  timeZone: 'Europe/Paris',
+});
+export function agendaDateLabel(date, latestPossibleDate) {
+  const format = (s) => agendaFormatter.format(new Date(`${s}T12:00:00Z`));
+  return latestPossibleDate
+    ? `Entre le ${format(date)} et le ${format(latestPossibleDate)}`
+    : format(date);
 }
 // The outline and every marker share this projection and the same padded viewBox.
 export function projectFrance([lon, lat]) {

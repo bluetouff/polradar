@@ -1,5 +1,4 @@
 ---
-import Icon from './Icon.astro';
 import BrandLogo from './BrandLogo.astro';
 import { meta, formatDate } from '../lib/data';
 const columns = [
@@ -73,20 +72,15 @@ const columns = [
         </p>
       </div>
       <a href="/suivi/" class="footer-follow">
-        <Icon name="suivi" />
         <span>
           Mon suivi<small>Choisir mes candidats et mes thèmes</small>
         </span>
-        <Icon name="arrow" />
       </a>
     </div>
     <nav class="footer-columns" aria-label="Plan du site">
       {columns.map((column) => (
         <div>
-          <h2>
-            <Icon name={column.icon} />
-            {column.title}
-          </h2>
+          <h2 class={`menu-${column.icon}`}>{column.title}</h2>
           <ul>
             {column.links.map(([url, label]) => (
               <li>
@@ -106,7 +100,7 @@ const columns = [
         <span> · Sélection non exhaustive</span>
       </p>
       <a href={meta.repository} target="_blank" rel="noopener noreferrer">
-        GitHub · Licence MIT <Icon name="external" />
+        GitHub · Licence MIT
       </a>
     </div>
     <div class="footer-bottom">
@@ -125,9 +119,7 @@ const columns = [
         <span>website by</span>
         <a href="https://bluetouff.com/">bluetouff</a>
       </span>
-      <a href="/reperes/">
-        Calendrier électoral <Icon name="arrow" />
-      </a>
+      <a href="/reperes/">Calendrier électoral</a>
     </div>
   </div>
 </footer>

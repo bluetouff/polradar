@@ -5,18 +5,22 @@ import PagedResults from '../components/PagedResults.astro';
 import VisualFilters from '../components/VisualFilters.astro';
 import CandidatePortrait from '../components/CandidatePortrait.astro';
 import SourceLinks from '../components/SourceLinks.astro';
-import { candidates, candidateById, formatDate } from '../lib/data';
+import { candidates, candidateById, formatDate, sourceById } from '../lib/data';
 import { agenda, franceMap } from '../lib/visual-data';
 import {
   weekStart,
+  agendaDateLabel,
+  agendaWeeks,
   francePath,
   clusterCities,
 } from '../lib/campaign-visuals-view.mjs';
 import '../styles/visuals.css';
-const related = candidates.filter((c) =>
-  agenda.events.some((e) => e.candidate === c.id),
+const related = candidates.filter(
+  (c) =>
+    agenda.events.some((e) => e.candidate === c.id) ||
+    agenda.sourceChecks.some((entry) => entry.candidate === c.id),
 );
-const weeks = [...new Set(agenda.events.map((e) => weekStart(e.date)))];
+const weeks = [...new Set(agenda.events.flatMap(agendaWeeks))].sort();
 const clusters = clusterCities(agenda.cities);
 const dateParts = (date: string) => ({
   day: date.slice(8),
@@ -37,7 +41,7 @@ const dateParts = (date: string) => ({
     </span>
     <div>
       <h1>Agenda de campagne</h1>
-      <p>Meetings et rencontres annoncés par les organisateurs.</p>
+      <p>Meetings, rencontres et interventions datées des candidats.</p>
     </div>
   </header>
   <nav class="visual-tabs" aria-label="Explorer la campagne">
@@ -210,6 +214,14 @@ const dateParts = (date: string) => ({
         Aucun rendez-vous dans cette sélection. Élargissez la période, la ville
         ou la personnalité.
       </p>
+      {agenda.sourceChecks.map((entry) => (
+        <p class="visual-empty" data-agenda-check={entry.candidate} hidden>
+          {entry.note}{' '}
+          <a href={sourceById(entry.source).url}>
+            Source consultée le {formatDate(entry.checked)} ↗
+          </a>
+        </p>
+      ))}
       <PagedResults total={agenda.events.length}>
         <ol class="agenda-events">
           {agenda.events.map((event) => {
@@ -224,16 +236,24 @@ const dateParts = (date: string) => ({
                 data-candidate={c.id}
                 data-city={event.city ?? ''}
                 data-date={event.date}
+                data-latest-possible-date={event.latestPossibleDate}
                 data-week={weekStart(event.date)}
               >
-                <time
-                  class="agenda-date"
-                  datetime={`${event.date}${event.time ? `T${event.time}` : ''}`}
-                >
-                  <b>{parts.day}</b>
-                  <span>{parts.month}</span>
-                  <small>{event.date.slice(0, 4)}</small>
-                </time>
+                {event.latestPossibleDate ? (
+                  <div class="agenda-date" aria-hidden="true">
+                    <Icon name="clock" />
+                    <small>Période</small>
+                  </div>
+                ) : (
+                  <time
+                    class="agenda-date"
+                    datetime={`${event.date}${event.time ? `T${event.time}` : ''}`}
+                  >
+                    <b>{parts.day}</b>
+                    <span>{parts.month}</span>
+                    <small>{event.date.slice(0, 4)}</small>
+                  </time>
+                )}
                 <article>
                   <div class="agenda-event-meta">
                     <span class="agenda-announcement">
@@ -244,7 +264,10 @@ const dateParts = (date: string) => ({
                           : 'Rendez-vous annoncé'}
                     </span>
                     <span>
-                      {event.time?.replace(':', ' h ') ?? 'Horaire non précisé'}
+                      {event.latestPossibleDate
+                        ? agendaDateLabel(event.date, event.latestPossibleDate)
+                        : (event.time?.replace(':', ' h ') ??
+                          'Horaire non précisé')}
                     </span>
                   </div>
                   <h3>{event.title}</h3>

@@ -57,11 +57,15 @@ export function validateDivergencePositions(topics, dataset, reservedIds = []) {
           !measure ||
           !candidates.has(measure.candidate) ||
           version.snapshot.scope === 'archive' ||
-          !version.snapshot.sourceRefs.some(({ sourceId }) =>
-            ['campagne', 'parti', 'institution'].includes(
-              sources.get(sourceId)?.kind,
-            ),
-          )
+          !version.snapshot.sourceRefs.some(({ sourceId }) => {
+            const source = sources.get(sourceId);
+            return (
+              source &&
+              (['campagne', 'parti', 'institution'].includes(source.kind) ||
+                (source.kind === 'presse' &&
+                  ['debat', 'entretien'].includes(source.originalFormat)))
+            );
+          })
         ) {
           errors.push(
             `${topic.id} : version officielle indisponible (${versionId}).`,

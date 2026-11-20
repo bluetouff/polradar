@@ -123,10 +123,18 @@ test('les six dossiers donnent accès aux sources et aux rendez-vous selon la co
       await expect(page.locator('#scrutins')).toContainText(
         'Aucun vote nominatif recensé',
       );
-    if (!dates.length)
+    if (!dates.length) {
+      const check = agenda.sourceChecks.find((entry) => entry.candidate === id);
       await expect(page.locator('#rendez-vous')).toContainText(
-        'Aucun rendez-vous daté',
+        check?.note ?? 'Aucun rendez-vous daté',
       );
+      if (check)
+        await expect(
+          page
+            .locator('#rendez-vous')
+            .getByRole('link', { name: /Source consultée/ }),
+        ).toBeVisible();
+    }
     await page.getByRole('link', { name: 'Voir dans l’échiquier' }).click();
     await expect(page.locator('#profile-choice')).toHaveValue(id);
     await expect(page.locator('.issue-lane a:visible')).toHaveCount(1);

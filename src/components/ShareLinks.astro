@@ -1,5 +1,4 @@
 ---
-import Icon from './Icon.astro';
 import { shareLinks } from '../lib/sharing.mjs';
 import '../styles/sharing.css';
 interface Props {
@@ -11,10 +10,7 @@ const links = shareLinks(title, canonical);
 ---
 
 <nav class="page-share" aria-label="Partager cette page">
-  <span class="page-share-label">
-    <Icon name="share" />
-    Partager
-  </span>
+  <span class="page-share-label">Partager</span>
   <ul>
     {links.map((link) => (
       <li>
@@ -30,8 +26,7 @@ const links = shareLinks(title, canonical);
               : `Partager cette page sur ${link.label} (nouvel onglet)`
           }
         >
-          <span>{link.label}</span>
-          <Icon name={link.id === 'mail' ? 'mail' : 'external'} />
+          {link.label}
         </a>
       </li>
     ))}

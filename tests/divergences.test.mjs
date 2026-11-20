@@ -224,6 +224,19 @@ test('les comparaisons par mesure gardent les conditions et l’auteur du docume
     ({ id }) => id,
   );
   assert.deepEqual(validateDivergencePositions(topics, dataset, axes), []);
+  const csg = topics.find((topic) => topic.id === 'fiscalite-csg-salaires');
+  const commentaryOnly = dataset.sources.map((source) =>
+    source.id === 'lci-restos-debat-16-novembre'
+      ? { ...source, originalFormat: undefined }
+      : source,
+  );
+  assert.ok(
+    validateDivergencePositions(
+      [csg],
+      { ...dataset, sources: commentaryOnly },
+      axes,
+    ).some((error) => error.includes('glucksmann-csg-salaires')),
+  );
   const retirements = topics.find(
     (topic) => topic.id === 'retraites-conditions-depart',
   );

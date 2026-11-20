@@ -41,6 +41,7 @@ export const sourceSchema = z.object({
   url: publicUrlSchema,
   previousUrl: publicUrlSchema.optional(),
   publisher: z.string().trim().min(1).max(160).optional(),
+  originalFormat: z.enum(['entretien', 'debat']).optional(),
   watchFormat: z.literal('youtube-oembed').optional(),
   watchContentClass: z
     .string()

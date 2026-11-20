@@ -191,8 +191,9 @@
     background: var(--night-gradient);
     border-top: 1px solid #5c7c87;
   }
-  .footer-follow .icon,
-  .footer-columns h2 .icon,
+  .footer-follow::before,
+  .footer-follow::after,
+  .footer-columns h2::before,
   .publication-footer a:hover {
     color: var(--ice);
   }

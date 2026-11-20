@@ -440,7 +440,8 @@ select {
   color: #b8cdcc;
   margin-top: 4px;
 }
-.footer-follow .icon {
+.footer-follow::before,
+.footer-follow::after {
   color: #efb09a;
 }
 .footer-columns {
@@ -458,7 +459,7 @@ select {
   color: #fff;
   margin-bottom: 16px;
 }
-.footer-columns h2 .icon {
+.footer-columns h2::before {
   width: 19px;
   height: 19px;
   color: #8cbaa9;
@@ -501,8 +502,8 @@ select {
   gap: 8px;
   text-decoration: none;
 }
-.footer-meta .icon,
-.footer-bottom > a .icon {
+.footer-meta a::after,
+.footer-bottom > a::after {
   width: 14px;
   height: 14px;
 }
@@ -754,7 +755,7 @@ select {
     font-size: 12px;
     gap: 8px;
   }
-  .footer-columns h2 .icon {
+  .footer-columns h2::before {
     width: 16px;
     height: 16px;
   }

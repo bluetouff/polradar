@@ -134,6 +134,31 @@ test('une mesure s’ouvre au premier clic après une recherche', async ({
   );
 });
 
+test('la suppression de la CSG se retrouve dans les deux moteurs avec le bon périmètre', async ({
+  page,
+}) => {
+  for (const pagePath of ['/recherche/', '/mesures/']) {
+    await page.goto(pagePath);
+    await page.getByRole('searchbox').fill('suppression de la csg');
+    const links = page.locator('#search-results, #measure-results');
+    await expect(
+      links.locator('a[href="/mesures/attal-csg-salaires/"]').first(),
+    ).toBeVisible();
+    await expect(
+      links.locator('a[href="/mesures/zemmour-csg-activite/"]').first(),
+    ).toBeVisible();
+    await expect(
+      links.locator('a[href="/mesures/glucksmann-csg-salaires/"]'),
+    ).toHaveCount(0);
+    await page
+      .getByRole('searchbox')
+      .fill('baisse de la contribution sociale généralisée');
+    await expect(
+      links.locator('a[href="/mesures/glucksmann-csg-salaires/"]').first(),
+    ).toBeVisible();
+  }
+});
+
 test('la recherche combine les facettes et exporte la sélection', async ({
   page,
 }) => {

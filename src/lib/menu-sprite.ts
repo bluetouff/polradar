@@ -2,8 +2,20 @@ import { createHash } from 'node:crypto';
 import { groups } from './navigation';
 import { iconPaths } from './icons.mjs';
 
+// These controls already have text labels. The shared mask supplies only their artwork.
+const decorations: Record<string, string> = {
+  chevron: '.site-nav-group summary::after',
+  share: '.page-share-label::before',
+  external: '.page-share a::after,.footer-meta a::after',
+  mail: '.page-share a[data-share-platform="mail"]::after',
+  suivi: '.footer-follow::before',
+  arrow: '.footer-follow::after,.footer-bottom>a::after',
+};
 const icons = [
-  ...new Set(groups.flatMap((g) => g.links.map((link) => link[2]))),
+  ...new Set([
+    ...groups.flatMap((g) => [g.icon, ...g.links.map((link) => link[2])]),
+    ...Object.keys(decorations),
+  ]),
 ].sort();
 const paths = icons.map((id) => {
   if (!Object.hasOwn(iconPaths, id) || !/^[a-z][a-z0-9-]*$/.test(id))
@@ -23,11 +35,11 @@ const digest = (value: string) =>
   createHash('sha256').update(value).digest('hex').slice(0, 16);
 const imageFile = digest(svg) + '.svg';
 const css =
-  `.site-nav-group li a::before{content:"";flex:none;width:1rem;height:1rem;background:currentColor;mask-image:url("/pictos-menu/${imageFile}");mask-repeat:no-repeat;mask-size:100% auto;mask-position:0 var(--menu-y)}` +
+  `:where(.site-nav-group li a,.site-nav-group summary,.footer-columns h2,.footer-follow,.page-share-label)::before,:where(.site-nav-group summary,.footer-follow,.footer-meta a,.footer-bottom>a,.page-share a)::after{content:"";display:inline-block;flex:none;width:var(--pic-size,1rem);height:var(--pic-size,1rem);background:currentColor;mask-image:url("/pictos-menu/${imageFile}");mask-repeat:no-repeat;mask-size:100% auto;mask-position:0 var(--menu-y)}` +
   icons
     .map(
       (id, i) =>
-        `.menu-${id}{--menu-y:${((i * 100) / Math.max(1, icons.length - 1)).toFixed(6)}%}`,
+        `${[`.menu-${id}`, decorations[id]].filter(Boolean).join(',')}{--menu-y:${((i * 100) / Math.max(1, icons.length - 1)).toFixed(6)}%}`,
     )
     .join('');
 const styleFile = digest(css) + '.css';

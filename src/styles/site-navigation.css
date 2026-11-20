@@ -39,15 +39,15 @@
 .site-nav-group summary:hover {
   background: #e7efe7;
 }
-.site-nav-group[open] > summary .site-nav-chevron {
+.site-nav-group[open] > summary::after {
   rotate: 180deg;
 }
-.site-nav-group .icon {
+.site-nav-group summary::before {
   flex: 0 0 auto;
   width: 1rem;
   height: 1rem;
 }
-.site-nav-group .site-nav-chevron {
+.site-nav-group summary::after {
   width: 0.72rem;
   height: 0.72rem;
 }
@@ -117,7 +117,7 @@
 }
 @media (max-width: 630px) {
   .publication-header .election-context,
-  .site-nav-group .site-nav-group-icon {
+  .site-nav-group summary::before {
     display: none;
   }
   .site-navigation {
@@ -129,7 +129,7 @@
     padding-inline: 0.1rem;
     font-size: clamp(0.63rem, 2.45vw, 0.82rem);
   }
-  .site-nav-group .site-nav-chevron {
+  .site-nav-group summary::after {
     width: 0.65rem;
     height: 0.65rem;
   }
@@ -140,7 +140,7 @@
 }
 
 @media (max-width: 360px) {
-  .site-nav-group .site-nav-chevron {
+  .site-nav-group summary::after {
     display: none;
   }
 }

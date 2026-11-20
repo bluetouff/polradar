@@ -1,13 +1,6 @@
 import { getCollection } from 'astro:content';
-import {
-  candidates,
-  themes,
-  measures,
-  sources,
-  polls,
-  events,
-  engagements,
-} from './data';
+import { candidates, themes, measures, sources, polls, events } from './data';
+import { measureSearchText } from './features.mjs';
 export interface SearchEntry {
   id: string;
   type: string;
@@ -51,7 +44,11 @@ export async function searchEntries(): Promise<SearchEntry[]> {
       id: `mesure-${measure.id}`,
       type: 'mesure',
       title: measure.title,
-      text: `${measure.partyAuthor ?? candidates.find((c) => c.id === measure.candidate)!.name} ${themes.find((t) => t.id === measure.theme)!.label} ${measure.description} ${measure.beneficiaries || ''} ${measure.timing || ''} ${measure.financing || ''} ${engagements.find((e) => e.id === measure.parentId)!.title}`,
+      text: measureSearchText(
+        measure,
+        candidates.find((c) => c.id === measure.candidate)!.name,
+        themes.find((t) => t.id === measure.theme)!.label,
+      ),
       url: `/mesures/${measure.id}/`,
       candidate: measure.candidate,
       theme: measure.theme,

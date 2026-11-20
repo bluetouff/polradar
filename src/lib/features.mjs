@@ -37,16 +37,80 @@ export function rankedPollResults(poll) {
     (a, b) => (b.percentage ?? -1) - (a.percentage ?? -1),
   );
 }
+const grammaticalWords = new Set(
+  'a au aux d de des du l la le les un une'.split(' '),
+);
+const wordForms = new Map();
+for (const family of [
+  'supprimer suppression suppressions supprime suppriment supprimees supprimes',
+  'baisser baisse baisses baissent',
+  'reduire reduction reductions reduit reduite reduites reduits',
+  'augmenter augmentation augmentations augmente augmentent',
+  'retablir retablissement retablissements retablit',
+  'abroger abrogation abrogations abroge abrogee',
+  'creer creation creations cree creee',
+  'exonerer exoneration exonerations exonere exoneres exoneree',
+  'salaire salaires',
+  'cotisation cotisations',
+  'retraite retraites',
+  'allocation allocations',
+  'pension pensions',
+  'revenu revenus',
+  'impot impots',
+  'logement logements',
+  'entreprise entreprises',
+]) {
+  const forms = family.split(' ');
+  for (const form of forms) wordForms.set(form, forms[0]);
+}
+const officialTerms = [
+  [/\b(?:contribution sociale generalisee|c\.s\.g\.?)\b\.?/g, 'csg'],
+  [
+    /\bcontribution (?:au|pour le) remboursement de la dette sociale\b/g,
+    'crds',
+  ],
+  [/\brevenu de solidarite active\b/g, 'rsa'],
+  [/\bimpot de solidarite sur la fortune\b/g, 'isf'],
+  [/\btaxe sur la valeur ajoutee\b/g, 'tva'],
+  [/\ballocation aux adultes handicapes\b/g, 'aah'],
+  [/\breferendum d['’ ]initiative citoyenne\b/g, 'ric'],
+  [/\beuros?\b/g, '€'],
+];
+function searchTokens(text, index = false) {
+  const original = normalize(text).replace(/(\d) (?=\d{3}(?:\D|$))/g, '$1');
+  let expanded = original;
+  for (const [phrase, acronym] of officialTerms)
+    expanded = expanded.replace(phrase, acronym);
+  const searchable =
+    index && original !== expanded ? `${original} ${expanded}` : expanded;
+  return (searchable.match(/[\p{L}\p{N}]+(?:[.,]\d+)?|[%€]/gu) || []).map(
+    (word) => wordForms.get(word) ?? word.replace(/(\d),(\d)/g, '$1.$2'),
+  );
+}
+/** @param {import('./data').Measure} measure */
+export function measureSearchText(measure, candidateName, themeLabel) {
+  const format = (entry) =>
+    `${entry.label} ${entry.value.toLocaleString('fr-FR')} ${entry.unit}`;
+  return [
+    measure.partyAuthor || candidateName,
+    themeLabel,
+    measure.description,
+    measure.beneficiaries,
+    measure.timing,
+    measure.financing,
+    ...measure.metrics.map(format),
+    ...measure.amounts.map(
+      (amount) =>
+        `${format(amount)} ${amount.period} ${amount.basis === 'non-applicable' ? '' : amount.basis}`,
+    ),
+  ]
+    .filter(Boolean)
+    .join(' ');
+}
 /** @template T @param {T[]} entries @returns {T[]} */
 export function filterEntries(entries, filters) {
-  const words = normalize(filters.q || '')
-    .split(' ')
-    .filter(Boolean);
-  return entries.filter(
+  const selection = entries.filter(
     (entry) =>
-      words.every((word) =>
-        normalize(`${entry.title} ${entry.text}`).includes(word),
-      ) &&
       (!filters.candidate ||
         entry.candidate === filters.candidate ||
         entry.candidates?.includes(filters.candidate)) &&
@@ -57,6 +121,41 @@ export function filterEntries(entries, filters) {
       (!filters.year || entry.year === filters.year) &&
       (filters.archives === '1' || entry.scope !== 'archive'),
   );
+  const query = normalize(filters.q || '');
+  if (!query) return selection;
+  // Operator-like input and punctuation-only queries remain literal text.
+  const literal = /[+*?()|[\]{}^$@!\\]/.test(query);
+  const tokens = [
+    ...new Set(
+      searchTokens(query).filter((word) => !grammaticalWords.has(word)),
+    ),
+  ];
+  if (literal || !tokens.length)
+    return selection.filter((row) =>
+      normalize(`${row.title} ${row.text}`).includes(query),
+    );
+  const ranked = [];
+  for (const row of selection) {
+    const title = searchTokens(row.title, true);
+    const body = searchTokens(row.text, true);
+    const vocabulary = [...title, ...body];
+    const exact = new Set(vocabulary);
+    // Allow incomplete typed words, but require complete short acronyms and numbers.
+    const matches = (word) =>
+      exact.has(word) ||
+      (word.length >= 4 &&
+        /^[a-z]+$/.test(word) &&
+        !wordForms.has(word) &&
+        vocabulary.some((item) => item.startsWith(word)));
+    if (tokens.every(matches)) {
+      const titleMatches = tokens.filter((word) => title.includes(word)).length;
+      ranked.push({
+        row,
+        score: titleMatches * 2 + Number(normalize(row.title).includes(query)),
+      });
+    }
+  }
+  return ranked.sort((a, b) => b.score - a.score).map(({ row }) => row);
 }
 export function csvValue(value) {
   let text = String(value ?? '');
