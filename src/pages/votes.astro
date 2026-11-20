@@ -62,7 +62,10 @@ import { sameSentence } from '../lib/measure-text';
         id: record.id,
         title: record.title,
         candidate: record.candidateRecord,
-        detail: `${record.ballots.length} scrutin${record.ballots.length > 1 ? 's' : ''} · ${themeById(record.measure.theme).short}`,
+        icon: record.measure.theme,
+        topic: themeById(record.measure.theme).short,
+        subject: record.ballots.at(-1)!.shortTitle,
+        detail: `${record.ballots.length > 1 ? 'Dernier scrutin · ' : ''}${chambers[record.ballots.at(-1)!.chamber]} · ${formatDate(record.ballots.at(-1)!.date)}`,
       }))}
     />
     <div class="vote-stage">
@@ -70,6 +73,7 @@ import { sameSentence } from '../lib/measure-text';
         <section
           id={`dossier=${record.id}`}
           data-vote-case={record.id}
+          tabindex="-1"
           aria-labelledby={`vote-title-${record.id}`}
         >
           <DossierHeading
@@ -284,9 +288,7 @@ import { sameSentence } from '../lib/measure-text';
     </div>
   </aside>
   <noscript>
-    <p>
-      Tous les dossiers sont affichés. Les liens permettent d’accéder à chacun.
-    </p>
+    <p>Choisissez le sujet dans le répertoire pour rejoindre son dossier.</p>
   </noscript>
 </Base>
 <script src="../scripts/votes.ts"></script>

@@ -29,8 +29,8 @@
   .page-share a {
     display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    justify-content: flex-start;
+    gap: 0.55rem;
     min-height: 44px;
     padding: 9px 13px;
     border: 1px solid var(--line);
@@ -44,9 +44,29 @@
     border-color: var(--accent);
     color: var(--accent);
   }
-  .page-share a::after {
-    --pic-size: 14px;
-    color: var(--muted);
+  .page-share a[data-share-platform='x'] {
+    --logo: url('/icons/partage-x.svg');
+  }
+  .page-share a[data-share-platform='bluesky'] {
+    --logo: url('/icons/partage-bluesky.svg');
+  }
+  .page-share a[data-share-platform='linkedin'] {
+    --logo: url('/icons/partage-linkedin.svg');
+  }
+  .page-share a[data-share-platform='facebook'] {
+    --logo: url('/icons/partage-facebook.svg');
+  }
+  .page-share a:not([data-share-platform='mail'])::before {
+    content: '';
+    display: inline-block;
+    width: 1.1rem;
+    height: 1.1rem;
+    flex: none;
+    background: currentColor;
+    mask: var(--logo) center / contain no-repeat;
+  }
+  .page-share a[data-share-platform='mail']::before {
+    --pic-size: 1.1rem;
   }
 }
 @layer responsive {

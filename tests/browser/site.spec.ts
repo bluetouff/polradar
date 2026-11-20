@@ -38,6 +38,8 @@ test('le comparateur conserve une sélection de deux candidatures', async ({
   await expect(page.locator('#compare-theme')).toHaveValue('climat');
   await page.locator('#compare-candidate-0').selectOption('asselineau');
   await page.getByRole('radio', { name: '3', exact: true }).check();
+  await expect(page.locator('#compare-candidate-2')).toHaveValue('');
+  await page.locator('#compare-candidate-2').selectOption('roussel');
   await expect(page.locator('.comparison-card')).toHaveCount(3);
   const names = await page.locator('.comparison-card h3').allTextContents();
   expect(new Set(names).size).toBe(3);
@@ -48,7 +50,7 @@ test('les paramètres non reconnus restent du texte sans exécution', async ({
   await page.goto(
     '/comparer/?theme=%3Cimg%20src=x%20onerror=alert(1)%3E&c=philippe,philippe,inconnu',
   );
-  await expect(page.locator('.comparison-card')).toHaveCount(3);
+  await expect(page.locator('.comparison-card')).toHaveCount(0);
   await expect(page.locator('#comparison-theme-title')).toHaveText('Retraites');
   expect(await page.locator('img[src=x]').count()).toBe(0);
 });
@@ -77,7 +79,7 @@ test('une erreur de chargement préserve la comparaison initiale', async ({
   await expect(page.locator('#comparison-feedback')).toContainText(
     'n’a pas pu être chargé',
   );
-  await expect(page.locator('.comparison-card')).toHaveCount(3);
+  await expect(page.locator('.comparison-card')).toHaveCount(0);
 });
 test('la comparaison initiale reste accessible sans JavaScript', async ({
   browser,
@@ -85,7 +87,7 @@ test('la comparaison initiale reste accessible sans JavaScript', async ({
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto('http://127.0.0.1:4321/comparer/');
-  await expect(page.locator('.comparison-card')).toHaveCount(3);
+  await expect(page.locator('.comparison-card')).toHaveCount(0);
   await expect(page.locator('noscript')).toBeVisible();
   await context.close();
 });

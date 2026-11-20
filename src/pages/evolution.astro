@@ -60,7 +60,9 @@ import '../styles/proposals.css';
         id: track.id,
         title: track.title,
         candidate: candidateById(track.candidate),
-        detail: `${track.states.length} documents · ${themeById(track.theme).short}`,
+        icon: track.theme,
+        topic: themeById(track.theme).short,
+        detail: `${track.states.length} documents`,
       }))}
     />
     <div class="evidence-stage">

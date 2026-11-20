@@ -12,12 +12,12 @@ if (workspace) {
     workspace.querySelector<HTMLDetailsElement>('.dossier-directory')!;
   const update = () => {
     const selected = new URLSearchParams(location.hash.slice(1)).get('dossier');
-    const panel =
-      panels.find((p) => p.dataset.voteCase === selected) || panels[0];
+    const panel = panels.find((p) => p.dataset.voteCase === selected);
     panels.forEach((p) => (p.hidden = p !== panel));
-    chooser.value = panel.dataset.voteCase!;
+    chooser.value = panel?.dataset.voteCase ?? '';
+    directory.open = !panel;
     tabs.forEach((tab) => {
-      if (tab.dataset.voteTab === panel.dataset.voteCase)
+      if (tab.dataset.voteTab === panel?.dataset.voteCase)
         tab.setAttribute('aria-current', 'true');
       else tab.removeAttribute('aria-current');
     });
@@ -45,11 +45,10 @@ if (workspace) {
     event.preventDefault();
     choose(tab.dataset.voteTab!);
     directory.open = false;
-    directory.querySelector('summary')?.focus();
+    panels.find((p) => !p.hidden)?.focus();
   });
   window.addEventListener('hashchange', update);
   window.addEventListener('popstate', update);
   update();
-  directory.open = false;
   workspace.classList.add('votes-ready');
 }

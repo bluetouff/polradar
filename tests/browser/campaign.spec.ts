@@ -131,7 +131,7 @@ test('la home affiche les séries et les accès au corpus sans exemple nominatif
     await expect(
       page
         .getByRole('navigation', { name: 'Accès rapides' })
-        .getByRole('link', { name: '33 profils suivis' }),
+        .getByRole('link', { name: '33 candidats suivis' }),
     ).toBeVisible();
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth),

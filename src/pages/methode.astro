@@ -125,3 +125,22 @@ import Base from '../layouts/Base.astro';
     <a href="mailto:admin@toonux.com">Contacter la rédaction ↗</a>
   </div>
 </Base>
+
+<style>
+  .method-grid {
+    gap: 0.65rem;
+  }
+  .method-grid > .panel {
+    padding: clamp(1rem, 2.2vw, 1.65rem);
+  }
+  @media (max-width: 640px) {
+    .method-grid > .panel {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.45rem;
+    }
+    .method-grid > .panel > :is(.eyebrow, h2, p) {
+      grid-column: 1;
+      grid-row: auto;
+    }
+  }
+</style>

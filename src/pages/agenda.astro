@@ -63,7 +63,7 @@ const dateParts = (date: string) => ({
       <label>
         Personnalité
         <select id="agenda-candidate">
-          <option value="">Tous les profils présents</option>
+          <option value="">Tous les candidats présents</option>
           {related.map((c) => (
             <option value={c.id}>{c.name}</option>
           ))}
@@ -184,7 +184,7 @@ const dateParts = (date: string) => ({
       </figure>
       <div class="agenda-coverage">
         <strong>
-          {related.length} profils · {agenda.cities.length} communes
+          {related.length} candidats · {agenda.cities.length} communes
         </strong>
         <p>
           Sélection non exhaustive. Agenda mis à jour le{' '}

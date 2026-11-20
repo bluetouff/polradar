@@ -9,7 +9,7 @@ const selects = [
 const feedback = document.querySelector<HTMLElement>(
   '#digital-profile-status',
 )!;
-const defaults = selects.map((select) => select.value);
+
 const allowed = new Set([...selects[0].options].map((option) => option.value));
 const rows = [
   ...document.querySelectorAll<HTMLElement>('[data-digital-cells]'),
@@ -23,35 +23,46 @@ const rows = [
 }));
 
 function render(requested: string[], save: boolean) {
-  const valid =
-    requested.length === defaults.length &&
-    new Set(requested).size === defaults.length &&
-    requested.every((id) => allowed.has(id));
-  const active = valid ? requested : defaults;
+  const slots = selects.map((_, i) => {
+    const id = requested[i] || '';
+    return allowed.has(id) && requested.indexOf(id) === i ? id : '';
+  });
+  const active = slots.filter(Boolean);
   selects.forEach((select, index) => {
-    select.value = active[index];
+    select.value = slots[index];
     for (const option of select.options)
       option.disabled =
         option.value !== select.value && active.includes(option.value);
   });
   for (const { container, cells } of rows) {
-    for (const [id, cell] of cells) cell.hidden = !active.includes(id);
-    for (const id of active) container.append(cells.get(id)!);
+    for (const [id, cell] of cells)
+      cell.hidden = active.length
+        ? !active.includes(id)
+        : cell.dataset.documented !== 'true';
+    for (const id of active.length ? active : cells.keys())
+      container.append(cells.get(id)!);
   }
   if (save) {
-    const selection = new URLSearchParams({ profils: active.join(',') });
-    history.replaceState(null, '', `${location.pathname}#${selection}`);
+    const selection = new URLSearchParams({ candidats: slots.join(',') });
+    history.replaceState(
+      null,
+      '',
+      location.pathname + (active.length ? '#' + selection : ''),
+    );
     feedback.textContent = 'Comparaison mise à jour.';
   }
 }
 
 function restoreSelection() {
   const hash = new URLSearchParams(location.hash.slice(1));
-  render((hash.get('profils') ?? '').split(','), false);
+  render(
+    (hash.get('candidats') ?? hash.get('profils') ?? '').split(','),
+    false,
+  );
 }
 restoreSelection();
 window.addEventListener('hashchange', () => {
-  if (location.hash.startsWith('#profils=')) restoreSelection();
+  restoreSelection();
 });
 controls.hidden = false;
 controls.addEventListener('change', () =>
@@ -62,11 +73,8 @@ controls.addEventListener('change', () =>
 );
 document.querySelector('#digital-copy')!.addEventListener('click', async () => {
   try {
-    const selection = new URLSearchParams({
-      profils: selects.map((select) => select.value).join(','),
-    });
     await navigator.clipboard.writeText(
-      `${location.origin}${location.pathname}#${selection}`,
+      location.origin + location.pathname + location.hash,
     );
     feedback.textContent = 'Lien de comparaison copié.';
   } catch {

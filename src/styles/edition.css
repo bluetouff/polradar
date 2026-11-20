@@ -368,7 +368,8 @@
     background: #dce9eb;
   }
   .votes-workspace,
-  [data-evolution].evidence-workspace {
+  [data-evolution].evidence-workspace,
+  [data-financing].evidence-workspace {
     display: block;
   }
   .dossier-picker {
@@ -524,6 +525,20 @@
     background: var(--night-gradient);
     border-radius: var(--card-radius);
   }
+  main :is(.evidence-method, .visual-method, .poll-method, .panel.dark-panel) {
+    padding: clamp(1rem, 2.2vw, 1.65rem);
+  }
+  .poll-method > .register-heading:first-child {
+    padding-top: 0;
+  }
+  main .panel.dark-panel {
+    --accent: #b1d4dc;
+    --blue: #b1d4dc;
+    color: #f5fbfe;
+  }
+  main .panel.dark-panel p {
+    color: #d9e9ef;
+  }
   main .digital-law {
     --law-paper: #f6fafb;
     --law-green: #c3dfe3;
@@ -664,8 +679,8 @@
     background: linear-gradient(105deg, var(--sheet), var(--tint));
   }
   @media (max-width: 650px) {
-    :is(.votes-ready, .evidence-ready) .dossier-directory {
-      display: none;
+    .dossier-select {
+      margin-bottom: 0.6rem;
     }
     :is(.votes-ready, .evidence-ready) .dossier-select {
       display: grid;
@@ -686,4 +701,20 @@
       background-position: center;
     }
   }
+}
+
+/* The directory is the entry point, including before scripts run. Native fragment links also work offline from JavaScript. */
+:is(
+    [data-votes-workspace]:not(.votes-ready),
+    [data-evolution]:not(.evidence-ready),
+    [data-financing]:not(.evidence-ready)
+  )
+  :is([data-vote-case], [data-evolution-dossier], [data-financing-map]):not(
+    :target
+  ) {
+  display: none;
+}
+.evidence-stage:not(:has(section:not([hidden]))),
+.vote-stage:not(:has(section:not([hidden]))) {
+  display: none;
 }

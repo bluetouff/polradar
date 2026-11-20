@@ -43,7 +43,7 @@ function render(reset = true, target?: HTMLElement | null) {
   }
   const amounts = matches.length;
   empty.hidden = amounts > 0;
-  status.textContent = `${profiles} profil${profiles > 1 ? 's' : ''} · ${amounts} montant${amounts > 1 ? 's' : ''} documenté${amounts > 1 ? 's' : ''}`;
+  status.textContent = `${profiles} candidat${profiles > 1 ? 's' : ''} · ${amounts} montant${amounts > 1 ? 's' : ''} documenté${amounts > 1 ? 's' : ''}`;
   paginate(matches, { reset, target });
   for (const profile of groups)
     profile.hidden = !profile.querySelector(

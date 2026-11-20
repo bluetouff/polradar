@@ -30,7 +30,8 @@ jobs:
 
   refresh:
     name: Collecter les données publiques
-    if: github.repository == 'bluetouff/polradar' && github.ref == 'refs/heads/main'
+    needs: watch
+    if: ${{ !cancelled() && github.repository == 'bluetouff/polradar' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -60,11 +61,18 @@ jobs:
           cat artifacts/economy-review/report.md >> "$GITHUB_STEP_SUMMARY"
           python3 scripts/collect-airtime.py
           cat artifacts/airtime-review/report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Lire le rapport de veille de ce passage
+        if: needs.watch.result == 'success'
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: source-watch-review
+          path: artifacts/
       - name: Intégrer les relevés validés
         run: |
           node scripts/refresh-data.mjs
           node scripts/import-airtime.mjs --refresh
-          npx --no-install prettier --write src/data/{polls,sources,prediction-markets,economy,airtime}.json
+          node scripts/daily-report.mjs
+          npx --no-install prettier --write src/data/{polls,sources,prediction-markets,economy,airtime,daily-updates}.json
           node scripts/validate-content.mjs
           git diff --check
       - name: Préparer les seuls fichiers de données

@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import CandidatePortrait from '../components/CandidatePortrait.astro';
+import DossierPicker from '../components/DossierPicker.astro';
 import DossierHeading from '../components/DossierHeading.astro';
 import FinancingFlow from '../components/FinancingFlow.astro';
 import { financingMaps } from '../lib/proposal-data';
@@ -53,36 +53,17 @@ import '../styles/proposals.css';
     ]}
     data-financing
   >
-    <label class="evidence-compact">
-      Choisir un schéma
-      <select data-evidence-select>
-        {financingMaps.map((map) => (
-          <option value={map.id}>
-            {candidateById(map.candidate).name} · {map.title}
-          </option>
-        ))}
-      </select>
-    </label>
-    <nav class="evidence-picker" aria-label="Schémas de financement">
-      {financingMaps.map((map) => (
-        <a href={`#carte=${map.id}`} data-evidence-tab={map.id}>
-          <span class="picker-portrait">
-            <CandidatePortrait
-              candidate={candidateById(map.candidate)}
-              compact
-            />
-          </span>
-          <span>
-            <small>{candidateById(map.candidate).name}</small>
-            <strong>{map.title}</strong>
-            <em>
-              {formatBudgetAmount(map.entry)} ·{' '}
-              {map.scope === 'parti' ? 'Projet de parti' : 'Campagne 2027'}
-            </em>
-          </span>
-        </a>
-      ))}
-    </nav>
+    <DossierPicker
+      type="financements"
+      choices={financingMaps.map((map) => ({
+        id: map.id,
+        title: map.title,
+        candidate: candidateById(map.candidate),
+        icon: 'euro',
+        topic: map.scope === 'parti' ? 'Projet de parti' : 'Campagne 2027',
+        detail: formatBudgetAmount(map.entry),
+      }))}
+    />
     <div class="evidence-stage">
       {financingMaps.map((map) => (
         <section

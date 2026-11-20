@@ -196,9 +196,7 @@ const candidate = candidateById(measure.candidate),
     <aside class="measure-side">
       <FollowButton kind="candidate" id={candidate.id} name={candidate.name} />
       <FollowButton kind="theme" id={theme.id} name={theme.label} />
-      <a
-        href={`/comparer/?theme=${theme.id}&c=${candidate.id},${candidate.id === 'melenchon' ? 'philippe' : 'melenchon'}`}
-      >
+      <a href={`/comparer/?theme=${theme.id}&c=${candidate.id}`}>
         <Icon name="layers" />
         Comparer sur ce thème
       </a>

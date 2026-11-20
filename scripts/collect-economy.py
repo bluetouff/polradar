@@ -183,6 +183,7 @@ def main():
             period, value, flag = next(point for point in reversed(result["observations"]) if point[1] is not None)
             lines.append(f"- {row['id']} · {period} · {value} {row['unit']} · {'évolution du relevé' if changed else 'relevé identique'}.")
     REPORT.mkdir(parents=True, exist_ok=True)
+    write_snapshot(REPORT / "status.json", {"checked": snapshot["collectedAt"], "failed": failed})
     if failed:
         (REPORT / "economy.json").unlink(missing_ok=True)
         lines.extend(["", "Collecte incomplète. Le relevé publié est conservé."])

@@ -16,15 +16,7 @@ export function getStaticPaths() {
   }));
 }
 const { axis } = Astro.props;
-const order = [
-  ...axis.defaults,
-  ...axis.profiles
-    .map(({ id }) => id)
-    .filter((id) => !axis.defaults.includes(id)),
-];
-const profiles = order.map((id) =>
-  axis.profiles.find((profile) => profile.id === id)!,
-);
+const profiles = axis.profiles;
 const amountPeriods = {
   mois: 'par mois',
   an: 'sur un an',
@@ -76,16 +68,15 @@ const amountPeriods = {
     id="digital-profile-controls"
     hidden
   >
-    <legend>Profils à comparer</legend>
+    <legend>Candidats à comparer</legend>
     <div>
-      {axis.defaults.map((id, index) => (
+      {[0, 1, 2].map((index) => (
         <label>
-          Profil {index + 1}
+          Candidat {index + 1}
           <select data-digital-select>
-            {axis.profiles.map((candidate) => (
-              <option value={candidate.id} selected={candidate.id === id}>
-                {candidate.name}
-              </option>
+            <option value="">Choisir un candidat</option>
+            {profiles.map((candidate) => (
+              <option value={candidate.id}>{candidate.name}</option>
             ))}
           </select>
         </label>
@@ -120,10 +111,17 @@ const amountPeriods = {
                   { 'digital-undocumented': !entry },
                 ]}
                 data-digital-profile={candidate.id}
-                hidden={!axis.defaults.includes(candidate.id)}
+                hidden={!entry}
+                data-documented={Boolean(entry)}
               >
                 <div class="digital-decision-byline">
-                  <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+                  <a href={`/candidats/${candidate.id}/`}>
+                    {snapshot?.scope === 'parti'
+                      ? (snapshot.partyAuthor ??
+                        entry?.source.publisher ??
+                        candidate.party)
+                      : candidate.name}
+                  </a>
                   {snapshot && <span>{scopes[snapshot.scope]}</span>}
                 </div>
                 {entry && snapshot ? (

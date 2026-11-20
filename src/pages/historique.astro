@@ -6,7 +6,6 @@ import { measures, versions, candidates, formatDate } from '../lib/data';
 const updated = versions
   .filter((version) => version.kind !== 'import')
   .sort((a, b) => b.observedOn.localeCompare(a.observedOn));
-const initial = measures.find((measure) => measure.revision > 1) || measures[0];
 ---
 
 <Base title="Historique des fiches" section="/historique/">
@@ -36,8 +35,9 @@ const initial = measures.find((measure) => measure.revision > 1) || measures[0];
       <label>
         Fiche
         <select id="history-measure" name="mesure">
+          <option value="">Choisir une fiche</option>
           {measures.map((measure) => (
-            <option value={measure.id} selected={measure.id === initial.id}>
+            <option value={measure.id}>
               {
                 candidates.find(
                   (candidate) => candidate.id === measure.candidate,
@@ -50,26 +50,11 @@ const initial = measures.find((measure) => measure.revision > 1) || measures[0];
       </label>
       <label>
         Avant
-        <select id="history-before" name="avant">
-          {Array.from({ length: initial.revision }, (_, i) => (
-            <option
-              value={i + 1}
-              selected={i === Math.max(0, initial.revision - 2)}
-            >
-              Version {i + 1}
-            </option>
-          ))}
-        </select>
+        <select id="history-before" name="avant"></select>
       </label>
       <label>
         Après
-        <select id="history-after" name="apres">
-          {Array.from({ length: initial.revision }, (_, i) => (
-            <option value={i + 1} selected={i + 1 === initial.revision}>
-              Version {i + 1}
-            </option>
-          ))}
-        </select>
+        <select id="history-after" name="apres"></select>
       </label>
       <button class="button" type="submit">
         Comparer

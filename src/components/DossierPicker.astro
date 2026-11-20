@@ -1,73 +1,146 @@
 ---
-import CandidatePortrait from './CandidatePortrait.astro';
 import Icon from './Icon.astro';
+import PagedResults from './PagedResults.astro';
 import type { Candidate } from '../lib/data';
 interface Props {
-  type: 'votes' | 'evolution';
+  type: 'votes' | 'evolution' | 'financements';
   choices: {
     id: string;
     title: string;
     candidate: Candidate;
+    topic: string;
+    icon: string;
     detail: string;
+    subject?: string;
   }[];
 }
 const { type, choices } = Astro.props;
 const votes = type === 'votes';
+const key = type === 'financements' ? 'carte' : 'dossier';
 const ordered = [...choices].sort(
   (a, b) =>
-    a.candidate.name.localeCompare(b.candidate.name, 'fr') ||
-    a.title.localeCompare(b.title, 'fr'),
+    a.title.localeCompare(b.title, 'fr') ||
+    a.candidate.name.localeCompare(b.candidate.name, 'fr'),
 );
-const groups = new Map<string, Props['choices']>();
-for (const choice of ordered) {
-  const group = groups.get(choice.candidate.id);
-  if (group) group.push(choice);
-  else groups.set(choice.candidate.id, [choice]);
-}
 ---
 
 <nav class="dossier-picker" aria-label="Choisir un dossier">
   <label class="dossier-select">
-    Choisir un dossier
+    Accès direct
     <select
       data-vote-select={votes || undefined}
       data-evidence-select={!votes || undefined}
     >
-      {[...groups.values()].map((group) => (
-        <optgroup label={group[0].candidate.name}>
-          {group.map((choice) => (
-            <option value={choice.id} selected={choice.id === choices[0].id}>
-              {choice.title}
-            </option>
-          ))}
-        </optgroup>
+      <option value="">Tous les dossiers</option>
+      {ordered.map((choice) => (
+        <option value={choice.id}>
+          {choice.title} · {choice.candidate.name}
+        </option>
       ))}
     </select>
   </label>
   <details open class="dossier-directory">
     <summary>
       <Icon name="layers" />
-      Parcourir les {choices.length} dossiers
+      Les {choices.length} dossiers
       <Icon name="chevron" />
     </summary>
-    <div class={votes ? 'vote-picker' : 'evidence-picker'}>
-      {ordered.map((choice) => (
-        <a
-          href={`#dossier=${choice.id}`}
-          data-vote-tab={votes ? choice.id : undefined}
-          data-evidence-tab={votes ? undefined : choice.id}
-        >
-          <span class={votes ? 'vote-picker-portrait' : 'picker-portrait'}>
-            <CandidatePortrait candidate={choice.candidate} compact />
-          </span>
-          <span>
-            <small>{choice.candidate.name}</small>
+    <PagedResults total={ordered.length}>
+      <div class="subject-directory" data-document-list>
+        {ordered.map((choice) => (
+          <a
+            class="subject-card"
+            data-page-item
+            href={`#${key}=${choice.id}`}
+            data-vote-tab={votes ? choice.id : undefined}
+            data-evidence-tab={!votes ? choice.id : undefined}
+          >
+            <span class="subject-topic">
+              <Icon name={choice.icon} />
+              {choice.topic}
+            </span>
             <strong>{choice.title}</strong>
-            <em>{choice.detail}</em>
-          </span>
-          <Icon name="arrow" />
-        </a>
-      ))}
-    </div>
+            {choice.subject && (
+              <span class="subject-ballot">{choice.subject}</span>
+            )}
+            <small>{choice.detail}</small>
+            <span class="subject-person">
+              {choice.candidate.name}
+              <Icon name="arrow" />
+            </span>
+          </a>
+        ))}
+      </div>
+    </PagedResults>
   </details>
 </nav>
+<script src="../scripts/document-pages.ts"></script>
+<style>
+  .subject-directory {
+    padding: 0.75rem;
+    display: grid;
+    gap: 0.65rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  }
+  .dossier-directory .subject-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding: 0.9rem 1rem;
+    text-decoration: none;
+    color: #18323f;
+    background: linear-gradient(135deg, #fff 0%, #eef4f5 100%);
+  }
+  .subject-card[hidden] {
+    display: none;
+  }
+  .subject-card strong {
+    font: 630 1.03rem/1.28 var(--sans);
+  }
+  .subject-topic,
+  .subject-person {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.76rem;
+  }
+  .subject-topic {
+    color: #305b6b;
+    margin-bottom: 0.2rem;
+  }
+  .subject-topic :global(.icon) {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+  .subject-ballot {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  .subject-card small {
+    font-size: 0.76rem;
+    color: #465f6d;
+  }
+  .subject-person {
+    width: 100%;
+    border-top: 1px solid #b9cdd3;
+    padding-top: 0.5rem;
+    margin-top: auto;
+    color: #3d5661;
+  }
+  .subject-person :global(.icon) {
+    width: 0.9rem;
+    height: 0.9rem;
+    margin-left: auto;
+  }
+  .dossier-directory .subject-card:hover,
+  .dossier-directory .subject-card:focus-visible {
+    border-color: #367086;
+    background: #e8f3f6;
+  }
+  .dossier-directory .subject-card[aria-current] {
+    border-color: #347183;
+    color: #18323f;
+    background: #e1eff1;
+  }
+</style>

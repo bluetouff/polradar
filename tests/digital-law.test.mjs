@@ -17,7 +17,7 @@ const dataset = {
   versions: load('versions'),
   measures: load('measures'),
 };
-const now = new Date('2026-11-19T12:00:00Z');
+const now = new Date(config.asOf + 'T12:00:00Z');
 const cases = config.sections.flatMap((section) => section.cases);
 
 test('les situations ont des liens propres et des références officielles versionnées', () => {
@@ -58,7 +58,7 @@ test('le comparatif refuse une version inconnue, une archive et une référence 
 
 test('une date future, une adresse en double ou un chemin externe sont invalides', () => {
   const changed = structuredClone(config);
-  changed.asOf = '2026-11-20';
+  changed.asOf = new Date(now.getTime() + 86400000).toISOString().slice(0, 10);
   changed.sections[0].cases[1].slug = changed.sections[0].cases[0].slug;
   const errors = validateDigitalLaw(changed, dataset, now);
   assert.ok(

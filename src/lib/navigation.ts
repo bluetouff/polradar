@@ -45,6 +45,7 @@ export const groups = [
     name: 'Données',
     icon: 'sondages',
     links: [
+      ['/mises-a-jour/', 'Mises à jour automatiques', 'clock'],
       ['/economie/', 'Indicateurs économiques', 'markets'],
       [
         '/economie/finances-publiques/',

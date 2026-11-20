@@ -98,7 +98,7 @@ def main():
         previous = json.loads((ROOT / 'src/data/airtime.json').read_text())
         known = {r['month']:r['sha256'] for r in previous['months']}
         changed = any(known.get(row['month']) != row['sha256'] for row in files)
-        manifest = {'version':1, 'checked':now.date().isoformat(), 'observedAt':now.isoformat(), 'status':'review' if changed else 'unchanged', 'months':files}
+        manifest = {'version':1, 'checked':now.date().isoformat(), 'observedAt':now.isoformat(), 'status':'review' if changed else 'unchanged', 'months':files, 'unavailableYears':unavailable}
         (output / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2)+'\n')
         report = '# Relevés Arcom\n\n' + ('Nouveaux fichiers ou révisions à examiner.' if changed else 'Les trois derniers fichiers correspondent au relevé intégré.') + '\n\n' + '\n'.join(f"- [{r['month']}]({r['sourceUrl']})" for r in files) + '\n'
         if unavailable:

@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
+import PagedResults from '../../components/PagedResults.astro';
 import {
   digitalCandidates,
   digitalCount,
@@ -8,7 +9,7 @@ import {
 } from '../../lib/digital-data';
 import { digitalAxes } from '../../lib/digital-compare-data';
 import { digitalComparePath } from '../../lib/digital-comparison.mjs';
-import { scopes } from '../../lib/data';
+import { candidates, scopes } from '../../lib/data';
 import { formatMoney } from '../../lib/campaign-visuals-view.mjs';
 import '../../styles/digital.css';
 import { digitalLawSections } from '../../lib/digital-law-data';
@@ -24,7 +25,7 @@ export function getStaticPaths() {
   ];
 }
 const { selection } = Astro.props;
-const visible = selection ? [selection] : digitalTopics;
+const visible = selection ? [selection] : [];
 const maxCount = Math.max(
   ...digitalTopics.map(({ entries }) => entries.length),
 );
@@ -55,10 +56,16 @@ const maxCount = Math.max(
       <p>
         {selection
           ? selection.example
-          : `${digitalCount} propositions dans les documents de ${digitalCandidates} profils suivis.`}
+          : `${digitalCount} fiches numériques dans les dossiers de ${digitalCandidates} candidats, projets de parti compris.`}
       </p>
     </div>
   </header>
+  <p class="digital-law-crosslink">
+    <a class="inline-action" href="/numerique/candidats/">
+      <Icon name="people" /> Le numérique chez les {candidates.length} candidats
+      ↗
+    </a>
+  </p>
   <section class="digital-law-entry" aria-labelledby="digital-law-entry-title">
     <div>
       <h2 id="digital-law-entry-title">Ce qui changerait</h2>
@@ -116,7 +123,7 @@ const maxCount = Math.max(
           ))}
         </svg>
         <span class="digital-topic-count">
-          {topic.entries.length} fiches · {topic.candidateCount} profils
+          {topic.entries.length} fiches · {topic.candidateCount} candidats
         </span>
       </a>
     ))}
@@ -139,7 +146,7 @@ const maxCount = Math.max(
             </h2>
             <p>
               {selection
-                ? `${topic.entries.length} fiches · ${topic.candidateCount} profils`
+                ? `${topic.entries.length} fiches · ${topic.candidateCount} candidats`
                 : topic.example}
             </p>
           </div>
@@ -149,13 +156,17 @@ const maxCount = Math.max(
             </a>
           )}
         </header>
-        <div class="digital-measures">
-          {(selection ? topic.entries : topic.entries.slice(0, 3)).map(
-            ({ measure, candidate, source }) => (
-              <article class="digital-card">
+        <PagedResults total={topic.entries.length}>
+          <div class="digital-measures" data-document-list>
+            {topic.entries.map(({ measure, candidate, source }) => (
+              <article class="digital-card" data-page-item>
                 <div class="digital-byline">
-                  {measure.partyAuthor ? (
-                    <strong>{measure.partyAuthor}</strong>
+                  {measure.scope === 'parti' ? (
+                    <strong>
+                      {measure.partyAuthor ??
+                        source.publisher ??
+                        candidate.party}
+                    </strong>
                   ) : (
                     <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
                   )}
@@ -210,10 +221,12 @@ const maxCount = Math.max(
                   )}
                 </footer>
               </article>
-            ),
-          )}
-        </div>
+            ))}
+          </div>
+        </PagedResults>
       </section>
     ))}
   </div>
 </Base>
+
+<script src="../../scripts/document-pages.ts"></script>

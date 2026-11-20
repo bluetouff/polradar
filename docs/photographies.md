@@ -32,3 +32,7 @@ Les recherches sur Commons, les sites de campagne, les espaces presse et les con
 | Erwan Rohou            | [Annonce du MEI](https://www.les-ecologistes-mei.org/post/erwan-rohou-candidat-du-mei-aux-%C3%A9lections-pr%C3%A9sidentielles) et [mentions légales](https://www.les-ecologistes-mei.org/mentions-l%C3%A9gales) | Portrait original avec auteur et autorisation photographique.                                                                                                                                    |
 
 Pour chaque demande, obtenir le fichier, le nom de l’auteur, la mention de crédit, la permission de publication sur Polradar et dans son dépôt public, ainsi que les transformations permises. Conserver l’accord et ne pas le transformer en licence libre sans l’accord du titulaire des droits.
+
+## Revue du 20 novembre 2026
+
+Les neuf fiches ci-dessus renvoient désormais à la publication originale du candidat ou de son parti. Billetdoux présente sa candidature en vidéo. Pour Rohou, le [portrait du MEI](https://les-ecologistes-mei.org/erwan-rohou/) nomme le candidat. La [page de Trajectoire](https://trajectoire2027.fr/equipe) identifie Mlekuz dans son équipe. L’ancienne image de Mlekuz a été supprimée de Wikimedia Commons. Les conditions de reproduction de ces neuf visuels restent à établir.

@@ -7,27 +7,23 @@ const form = document.querySelector<HTMLFormElement>('#compare-form')!,
   selects = [0, 1, 2].map((index) =>
     document.querySelector<HTMLSelectElement>(`#compare-candidate-${index}`)!,
   );
-const defaults = ['melenchon', 'philippe', 'retailleau'];
 async function start() {
   const data = await corpus(),
     valid = new Set(data.candidates.map((candidate) => candidate.id)),
     params = new URLSearchParams(location.search);
-  const requested = [
-      ...new Set(
-        (params.get('c') || '').split(',').filter((id) => valid.has(id)),
-      ),
-    ].slice(0, 3),
-    ids = requested.length >= 2 ? requested : defaults;
+  const ids = [
+    ...new Set(
+      (params.get('c') || '').split(',').filter((id) => valid.has(id)),
+    ),
+  ].slice(0, 3);
   if (data.themes.some((theme) => theme.id === params.get('theme')))
     themeSelect.value = params.get('theme')!;
   archives.checked = params.get('archives') === '1';
   form.querySelector<HTMLInputElement>(
-    `input[name=count][value="${ids.length}"]`,
+    `input[name=count][value="${ids.length === 3 || params.get('count') === '3' ? 3 : 2}"]`,
   )!.checked = true;
   selects.forEach((select, index) => {
-    select.value =
-      ids[index] ||
-      data.candidates.find((candidate) => !ids.includes(candidate.id))!.id;
+    select.value = ids[index] ?? '';
   });
   const count = () =>
     form.querySelector<HTMLInputElement>('input[name=count]:checked')!.value ===
@@ -35,23 +31,19 @@ async function start() {
       ? 2
       : 3;
   function render() {
-    if (
-      count() === 3 &&
-      selects.slice(0, 2).some((select) => select.value === selects[2].value)
-    )
-      selects[2].value = data.candidates.find(
-        (candidate) =>
-          !selects.slice(0, 2).some((select) => select.value === candidate.id),
-      )!.id;
-    const active = selects.slice(0, count()).map((select) => select.value);
-    if (new Set(active).size !== active.length) {
-      feedback.textContent = 'Choisissez des candidatures différentes.';
-      return;
-    }
+    const active = [
+      ...new Set(
+        selects
+          .slice(0, count())
+          .map((select) => select.value)
+          .filter(Boolean),
+      ),
+    ];
     selects[2].parentElement!.hidden = count() === 2;
     selects.forEach((select, index) =>
       Array.from(select.options).forEach((option) => {
         option.disabled =
+          !!option.value &&
           index < count() &&
           active.includes(option.value) &&
           select.value !== option.value;
@@ -70,6 +62,23 @@ async function start() {
     const container = document.querySelector<HTMLElement>('#comparison-cards')!;
     container.dataset.count = String(count());
     container.replaceChildren();
+    const query = new URLSearchParams();
+    if (theme.id !== data.themes[0].id) query.set('theme', theme.id);
+    if (active.length) query.set('c', active.join(','));
+    if (count() === 3 && active.length < 3) query.set('count', '3');
+    if (archives.checked) query.set('archives', '1');
+    history.replaceState(
+      null,
+      '',
+      location.pathname + (query.size ? '?' + query : ''),
+    );
+    if (active.length < 2) {
+      document.querySelector('#comparison-metrics')!.replaceChildren();
+      feedback.textContent = active.length
+        ? 'Choisissez une deuxième candidature.'
+        : 'Choisissez deux candidatures à comparer.';
+      return;
+    }
     let available = 0;
     for (const id of active) {
       const candidate = data.candidates.find(
@@ -114,12 +123,7 @@ async function start() {
       document.querySelector<HTMLElement>('#comparison-metrics')!,
       metricGroups(relevant, data.candidates),
     );
-    feedback.textContent = `${available} candidature${available > 1 ? 's' : ''} renseignée${available > 1 ? 's' : ''} sur ${count()} · ${relevant.length} fiche${relevant.length > 1 ? 's' : ''} · corpus du ${date(data.meta.corpusUpdated)}`;
-    history.replaceState(
-      null,
-      '',
-      `/comparer/?${new URLSearchParams({ theme: theme.id, c: active.join(','), archives: archives.checked ? '1' : '0' })}`,
-    );
+    feedback.textContent = `${available} candidature${available > 1 ? 's' : ''} renseignée${available > 1 ? 's' : ''} sur ${active.length} · ${relevant.length} fiche${relevant.length > 1 ? 's' : ''} · corpus du ${date(data.meta.corpusUpdated)}`;
   }
   form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -145,5 +149,5 @@ async function start() {
 }
 start().catch(() => {
   feedback.textContent =
-    'Le corpus interactif n’a pas pu être chargé. La comparaison initiale reste consultable.';
+    'Le corpus interactif n’a pas pu être chargé. Les propositions restent accessibles depuis les pages thématiques.';
 });

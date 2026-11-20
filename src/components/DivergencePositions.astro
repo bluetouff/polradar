@@ -22,7 +22,7 @@ const { topic } = Astro.props;
     <p>{topic.themeLabel}</p>
     <h2 id={`heading-${topic.id}`}>{topic.label}</h2>
     <span>
-      {topic.total} profils et partis · {topic.positions.length} positions
+      {topic.total} candidats et partis · {topic.positions.length} positions
     </span>
   </header>
   <p class="divergence-context">{topic.context}</p>

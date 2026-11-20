@@ -1,11 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
-import MeasureCard from '../components/MeasureCard.astro';
-import MetricPlot from '../components/MetricPlot.astro';
 import Icon from '../components/Icon.astro';
-import { candidates, themes, measures, candidateById } from '../lib/data';
+import { candidates, themes } from '../lib/data';
 import { digitalLawRoot } from '../lib/digital-law.mjs';
-const defaults = ['melenchon', 'philippe', 'retailleau'];
 ---
 
 <Base title="Comparateur de programmes" section="/comparer/">
@@ -43,10 +40,10 @@ const defaults = ['melenchon', 'philippe', 'retailleau'];
     <fieldset class="comparison-count">
       <legend>Candidatures</legend>
       <label>
-        <input type="radio" name="count" value="2" />2
+        <input type="radio" name="count" value="2" checked />2
       </label>
       <label>
-        <input type="radio" name="count" value="3" checked />3
+        <input type="radio" name="count" value="3" />3
       </label>
     </fieldset>
     <label class="check-label">
@@ -58,18 +55,17 @@ const defaults = ['melenchon', 'philippe', 'retailleau'];
     </button>
   </form>
   <div id="candidate-selectors" class="candidate-selectors">
-    {defaults.map((id, index) => (
-      <label>
+    {[0, 1, 2].map((index) => (
+      <label hidden={index === 2}>
         {' '}
         Candidature {index + 1}
         <select
           id={`compare-candidate-${index}`}
           aria-label={`Candidature ${index + 1}`}
         >
+          <option value="">Choisir une candidature</option>
           {candidates.map((c) => (
-            <option value={c.id} selected={c.id === id}>
-              {c.name}
-            </option>
+            <option value={c.id}>{c.name}</option>
           ))}
         </select>
       </label>
@@ -95,46 +91,13 @@ const defaults = ['melenchon', 'philippe', 'retailleau'];
     role="status"
     aria-live="polite"
   ></p>
-  <div id="comparison-metrics">
-    <MetricPlot
-      measures={measures.filter(
-        (measure) =>
-          defaults.includes(measure.candidate) && measure.theme === 'retraites',
-      )}
-    />
-  </div>
-  <div id="comparison-cards" class="comparison-grid" data-count="3">
-    {defaults.map((id) => {
-      const candidate = candidateById(id);
-      const items = measures.filter(
-        (measure) =>
-          measure.candidate === id &&
-          measure.theme === 'retraites' &&
-          measure.scope !== 'archive',
-      );
-      return (
-        <article class="comparison-card">
-          <header>
-            <p>{candidate.party}</p>
-            <h3>{candidate.name}</h3>
-          </header>
-          <div class="comparison-body">
-            {items.map((measure) => (
-              <MeasureCard measure={measure} compact level="h4" />
-            ))}
-          </div>
-          <footer>
-            <a href={`/candidats/${candidate.id}/`}>Dossier du candidat ↗</a>
-          </footer>
-        </article>
-      );
-    })}
-  </div>
+  <div id="comparison-metrics"></div>
+  <div id="comparison-cards" class="comparison-grid"></div>
   <noscript>
     <p class="notice">
-      La comparaison initiale est lisible sans JavaScript. Pour explorer les
-      autres sujets, consultez <a href="/themes/">les pages thématiques</a> et{' '}
-      <a href="/candidats/">les dossiers candidats</a>.
+      Retrouvez les propositions dans{' '}
+      <a href="/themes/">les dossiers thématiques</a> ou{' '}
+      <a href="/candidats/">les fiches des candidats</a>.
     </p>
   </noscript>
   <aside class="notice section-space">

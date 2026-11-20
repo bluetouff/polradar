@@ -66,7 +66,7 @@ const annualScales = budgetAnnualScales(programmeBudgets.profiles);
     <div>
       <span class="visual-kicker">Sélection documentée</span>
       <strong>
-        {programmeBudgets.profiles.length} profils ·{' '}
+        {programmeBudgets.profiles.length} candidats ·{' '}
         {programmeBudgets.profiles.flatMap((p) => p.entries).length} montants
       </strong>
       <p>Sélection mise à jour le {formatDate(programmeBudgets.checked)}.</p>
@@ -81,7 +81,7 @@ const annualScales = budgetAnnualScales(programmeBudgets.profiles);
       <label>
         Personnalité
         <select id="budget-candidate">
-          <option value="">Tous les profils</option>
+          <option value="">Tous les candidats</option>
           {candidates.map((c) => (
             <option value={c.id}>{c.name}</option>
           ))}
@@ -102,7 +102,7 @@ const annualScales = budgetAnnualScales(programmeBudgets.profiles);
     </form>
   </VisualFilters>
   <p class="visual-status" id="budget-status" role="status" aria-live="polite">
-    {programmeBudgets.profiles.length} profils, par ordre alphabétique.
+    {programmeBudgets.profiles.length} candidats, par ordre alphabétique.
   </p>
   <p class="visual-empty" id="budget-empty" hidden>
     Aucun montant intégré pour cette sélection. Le comparateur donne accès aux
@@ -311,7 +311,7 @@ const annualScales = budgetAnnualScales(programmeBudgets.profiles);
       Les barres annuelles partagent une échelle par nature de montant :
       dépenses, économies ou recettes. Les fourchettes gardent leurs deux
       bornes, sans valeur intermédiaire calculée. Les répartitions portent sur
-      le seul montant du profil concerné. Cette sélection couvre des mesures
+      le seul montant du candidat concerné. Cette sélection couvre des mesures
       chiffrées ; l’absence d’un candidat ne signifie pas qu’il n’a publié aucun
       chiffrage.
     </p>

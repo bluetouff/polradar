@@ -54,7 +54,7 @@ test('la comparaison sépare parti, candidat et position absente et se partage',
   await page.goBack();
   await expect(page.locator('#profile-choice')).toHaveValue('philippot');
 });
-test('la carte, les textes et les profils se consultent sans JavaScript', async ({
+test('la carte, les textes et les candidats se consultent sans JavaScript', async ({
   browser,
 }) => {
   const ctx = await browser.newContext({ javaScriptEnabled: false });

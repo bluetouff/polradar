@@ -5,7 +5,6 @@
       "title": "Cybersécurité",
       "description": "Protection des administrations, contrôle des systèmes et accompagnement des petites structures.",
       "icon": "securite",
-      "defaults": ["philippe", "retailleau", "roussel"],
       "rows": [
         {
           "id": "administrations",
@@ -30,6 +29,10 @@
             {
               "versionId": "lisnard-securite-maitrise-cyber-etat-v1",
               "repere": "Continuité des systèmes de l’État"
+            },
+            {
+              "versionId": "collovati-institutions-numerique-sites-publics-v1",
+              "repere": "Protection des sites gouvernementaux"
             }
           ]
         },
@@ -60,7 +63,6 @@
       "title": "Chiffrement",
       "description": "Usages des outils chiffrés, maîtrise des clés et accès aux communications.",
       "icon": "source",
-      "defaults": ["lisnard", "tondelier", "dupont-aignan"],
       "rows": [
         {
           "id": "usages",
@@ -91,7 +93,6 @@
       "title": "Souveraineté numérique",
       "description": "Hébergement des données, juridiction, commandes publiques et capacité de calcul.",
       "icon": "institutions",
-      "defaults": ["melenchon", "retailleau", "tondelier"],
       "rows": [
         {
           "id": "hebergement",
@@ -158,6 +159,10 @@
             {
               "versionId": "philippot-institutions-logiciels-auditables-v1",
               "repere": "Code des outils publics libre et auditable"
+            },
+            {
+              "versionId": "mikolajczak-travail-achats-numeriques-v1",
+              "repere": "Priorité des achats de technologies"
             }
           ]
         },

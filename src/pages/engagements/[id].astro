@@ -89,9 +89,7 @@ const theme = themeById(item.theme);
       <a href={`/themes/${theme.id}/`}>
         Les propositions sur {theme.label.toLocaleLowerCase('fr')} ↗
       </a>
-      <a
-        href={`/comparer/?theme=${theme.id}&c=${candidate.id},${candidate.id === 'melenchon' ? 'philippe' : 'melenchon'}`}
-      >
+      <a href={`/comparer/?theme=${theme.id}&c=${candidate.id}`}>
         Comparer sur ce sujet ↗
       </a>
       <hr />

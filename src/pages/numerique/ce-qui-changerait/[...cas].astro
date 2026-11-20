@@ -126,7 +126,12 @@ const changeHeading = item.changes.length
         <section class="law-lane law-lane-changes" aria-labelledby="law-next">
           <header class="law-lane-heading">
             <h3 id="law-next">{changeHeading}</h3>
-            {item.changes.length > 0 && <span>Présidentielle 2027</span>}
+            {item.changes.length > 0 && (
+              <span>
+                {item.changes.length} proposition
+                {item.changes.length > 1 ? 's' : ''}
+              </span>
+            )}
           </header>
           <div class="law-cards">
             {item.changes.map((change) => (
@@ -137,6 +142,7 @@ const changeHeading = item.changes.length
                 </div>
                 <h4>{change.title}</h4>
                 <p>{change.body}</p>
+                {change.scope !== 'campagne' && <small>{change.edition}</small>}
                 <footer>
                   {change.sources.map(({ source, locator }, index) => (
                     <a href={source.url} title={locator}>
@@ -196,13 +202,18 @@ const changeHeading = item.changes.length
       </div>
     </section>
     <nav class="law-related" aria-label="Autres comparatifs">
+      <a href="/numerique/candidats/">
+        <Icon name="people" /> Le numérique par candidat <Icon name="arrow" />
+      </a>
       <a href="/numerique/protection/">
         <Icon name="securite" />
         Dossier données et protection <Icon name="arrow" />
       </a>
       <a
         href={digitalComparePath(
-          section.id === 'donnees-personnelles' ? 'souverainete' : section.id,
+          ['donnees-personnelles', 'services-publics'].includes(section.id)
+            ? 'souverainete'
+            : section.id,
         )}
       >
         <Icon name="exchange" />

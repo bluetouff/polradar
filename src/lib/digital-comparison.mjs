@@ -18,7 +18,6 @@ export const digitalComparisonSchema = z.strictObject({
         title: text,
         description: text,
         icon: idSchema,
-        defaults: z.array(idSchema).length(3),
         rows: z
           .array(
             z.strictObject({
@@ -87,7 +86,6 @@ export function validateDigitalComparison(config, dataset, now = new Date()) {
   if (new Set(config.axes.map(({ id }) => id)).size !== 3)
     errors.push('Comparatif numérique : axes manquants ou en double.');
   for (const axis of config.axes) {
-    const profiled = new Set();
     if (new Set(axis.rows.map(({ id }) => id)).size !== axis.rows.length)
       errors.push(`${axis.id} : questions en double.`);
     for (const row of axis.rows) {
@@ -113,14 +111,8 @@ export function validateDigitalComparison(config, dataset, now = new Date()) {
             `${axis.id}/${row.id} : profil en double (${measure.candidate}).`,
           );
         compared.add(measure.candidate);
-        profiled.add(measure.candidate);
       }
     }
-    if (
-      new Set(axis.defaults).size !== 3 ||
-      axis.defaults.some((id) => !profiled.has(id))
-    )
-      errors.push(`${axis.id} : profils par défaut invalides.`);
   }
   const { vote, earlier } = config.parliament;
   if (

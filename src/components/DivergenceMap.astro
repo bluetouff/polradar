@@ -58,12 +58,13 @@ const exact = (value: number) => formatDivergenceValue(value, group.unit);
     <p>{group.themeLabel}</p>
     <h2>{group.label}</h2>
     <span>
-      {group.values.length} profils et partis · {group.unit}
+      {group.values.length} candidats et partis · {group.unit}
     </span>
   </header>
   {related && (
     <a class="divergence-related" href={`#${related.id}`}>
-      {related.label} · {related.total} profils et partis <Icon name="arrow" />
+      {related.label} · {related.total} candidats et partis{' '}
+      <Icon name="arrow" />
     </a>
   )}
   <figure class="divergence-figure">

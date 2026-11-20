@@ -62,14 +62,14 @@ const rows = candidates.map((person) => {
       <p class="atlas-kicker">Couverture de Polradar</p>
       <h2 id="sheets-title">Les données par candidature</h2>
     </div>
-    <span>{rows.length} profils</span>
+    <span>{rows.length} candidats</span>
   </header>
   <p>
     Le nombre indique les éléments recensés dans Polradar. Un tiret signale une
     donnée encore absente du corpus.
   </p>
   <details>
-    <summary>Consulter les {rows.length} profils</summary>
+    <summary>Consulter les {rows.length} candidats</summary>
     <div class="sheet-grid">
       {rows.map((r) => (
         <article id={`couverture-${r.person.id}`}>
@@ -92,12 +92,12 @@ const rows = candidates.map((person) => {
               {
                 count: r.own,
                 label: 'Propositions personnelles',
-                href: `/candidats/${r.person.id}/#mesures-du-profil`,
+                href: `/candidats/${r.person.id}/#mesures-du-candidat`,
               },
               {
                 count: r.party,
                 label: 'Fiches de parti',
-                href: `/candidats/${r.person.id}/#mesures-du-profil`,
+                href: `/candidats/${r.person.id}/#mesures-du-candidat`,
               },
               {
                 count: r.ballots,

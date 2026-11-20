@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('le comparatif numérique sélectionne des profils distincts et conserve le lien', async ({
+test('le comparatif numérique sélectionne des candidats distincts et conserve le lien', async ({
   page,
   baseURL,
 }) => {
@@ -12,9 +12,7 @@ test('le comparatif numérique sélectionne des profils distincts et conserve le
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/numerique/');
   await expect(
-    page.getByText(
-      /\d+ propositions dans les documents de \d+ profils suivis\./,
-    ),
+    page.getByText(/\d+ fiches numériques dans les dossiers de \d+ candidats/),
   ).toBeVisible();
   await page
     .getByRole('navigation', { name: 'Comparatif du numérique' })
@@ -22,19 +20,17 @@ test('le comparatif numérique sélectionne des profils distincts et conserve le
     .click();
   await expect(page).toHaveURL(/\/numerique\/comparer\/$/);
   const first = page.locator('[data-digital-cells]').first();
-  await expect(
-    first.locator(
-      '[data-digital-profile]:visible .digital-decision-byline > a',
-    ),
-  ).toHaveText(['Édouard Philippe', 'Bruno Retailleau', 'Fabien Roussel']);
-  const input = page.getByLabel('Profil 1');
+  const input = page.getByLabel('Candidat 1');
+  await expect(input).toHaveValue('');
+  const documented = first.locator('[data-documented="true"]');
+  await expect(first.locator('[data-digital-profile]:visible')).toHaveCount(
+    await documented.count(),
+  );
+  await page.getByLabel('Candidat 2').selectOption('retailleau');
+  await page.getByLabel('Candidat 3').selectOption('roussel');
   await expect(input.locator('option[value="retailleau"]')).toBeDisabled();
   await input.selectOption('dupont-aignan');
-  await expect(
-    first.locator(
-      '[data-digital-profile]:visible .digital-decision-byline > a',
-    ),
-  ).toHaveText(['Nicolas Dupont-Aignan', 'Bruno Retailleau', 'Fabien Roussel']);
+  await expect(first.locator('[data-digital-profile]:visible')).toHaveCount(3);
   await expect(
     first.locator('[data-digital-profile="dupont-aignan"]'),
   ).toContainText('Document du parti');
@@ -42,14 +38,15 @@ test('le comparatif numérique sélectionne des profils distincts et conserve le
     /2,3\sMd€ sur le mandat/,
   );
   await expect(page).toHaveURL(
-    /#profils=dupont-aignan%2Cretailleau%2Croussel$/,
+    /#candidats=dupont-aignan%2Cretailleau%2Croussel$/,
   );
   await page.reload();
   await expect(input).toHaveValue('dupont-aignan');
   await page.goto(
     '/numerique/comparer/#profils=retailleau,retailleau,%3Csvg%3E',
   );
-  await expect(input).toHaveValue('philippe');
+  await expect(input).toHaveValue('retailleau');
+  await expect(page.getByLabel('Candidat 2')).toHaveValue('');
   expect(external).toEqual([]);
   expect(errors).toEqual([]);
 });
@@ -116,7 +113,13 @@ test('les trois axes restent lisibles sans JavaScript à 320 pixels', async ({
         .locator('[data-digital-cells]')
         .first()
         .locator('[data-digital-profile]:visible'),
-    ).toHaveCount(3);
+    ).toHaveCount(
+      await page
+        .locator('[data-digital-cells]')
+        .first()
+        .locator('[data-documented="true"]')
+        .count(),
+    );
     await expect(page.locator('#digital-profile-controls')).toBeHidden();
     expect(
       await page.evaluate(

@@ -52,12 +52,7 @@ async function start() {
       available[0] ||
       [];
     index = Math.max(0, rows.length - 1);
-    active = rows.length
-      ? rankedPollResults(rows.at(-1)!)
-          .filter((result) => result.percentage !== null)
-          .slice(0, 4)
-          .map((result) => result.id)
-      : [];
+    active = [];
     range.max = String(Math.max(0, rows.length - 1));
     range.value = String(index);
     range.disabled = rows.length < 2;
@@ -93,19 +88,9 @@ async function start() {
       plot.append(el('p', 'Aucune enquête pour cette sélection.', 'notice'));
       return;
     }
-    if (!active.length) {
-      plot.append(
-        el(
-          'p',
-          'Sélectionnez un candidat dans la légende pour afficher sa courbe.',
-          'empty-chart',
-        ),
-      );
-      return;
-    }
     const geometry = chartGeometry(
         rows,
-        active,
+        active.length ? active : rows[0].results.map((item) => item.id),
         Math.max(240, plot.clientWidth),
       ),
       chart = svg('svg', {

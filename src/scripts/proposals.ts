@@ -22,16 +22,16 @@ if (root) {
     section.dataset.evolutionDossier || section.dataset.financingMap || '';
   const update = () => {
     const params = new URLSearchParams(location.hash.slice(1));
-    const selected =
-      sections.find((s) => idOf(s) === params.get(key)) || sections[0];
+    const selected = sections.find((s) => idOf(s) === params.get(key));
     sections.forEach((s) => (s.hidden = s !== selected));
-    if (chooser) chooser.value = idOf(selected);
+    if (chooser) chooser.value = selected ? idOf(selected) : '';
+    if (directory) directory.open = !selected;
     tabs.forEach((t) => {
-      if (t.dataset.evidenceTab === idOf(selected))
+      if (selected && t.dataset.evidenceTab === idOf(selected))
         t.setAttribute('aria-current', 'true');
       else t.removeAttribute('aria-current');
     });
-    if (evolution) {
+    if (evolution && selected) {
       const from =
         selected.querySelector<HTMLSelectElement>('[data-state-from]')!;
       const to = selected.querySelector<HTMLSelectElement>('[data-state-to]')!;
@@ -178,7 +178,6 @@ if (root) {
     }
   });
   root.classList.add('evidence-ready');
-  if (directory) directory.open = false;
   addEventListener('hashchange', update);
   update();
 }

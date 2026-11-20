@@ -47,6 +47,12 @@ async function start() {
   if (data.measures.some((measure) => measure.id === params.get('mesure')))
     choice.value = params.get('mesure')!;
   function options(requestedBefore?: number, requestedAfter?: number) {
+    before.disabled = after.disabled = !choice.value;
+    if (!choice.value) {
+      before.replaceChildren();
+      after.replaceChildren();
+      return;
+    }
     const rows = data.versions
       .filter((version) => version.measureId === choice.value)
       .sort((a, b) => a.number - b.number);
@@ -73,6 +79,15 @@ async function start() {
     );
   }
   function render() {
+    if (!choice.value) {
+      result.replaceChildren();
+      status.textContent = 'Choisissez une fiche pour comparer ses versions.';
+      const url = new URL(location.href);
+      for (const key of ['mesure', 'avant', 'apres'])
+        url.searchParams.delete(key);
+      history.replaceState(null, '', url);
+      return;
+    }
     const measure = data.measures.find(
       (measure) => measure.id === choice.value,
     )!;

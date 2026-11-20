@@ -1,3 +1,4 @@
+import { openDossier } from './dossier-directory';
 import financing from '../../src/data/financing-maps.json' with { type: 'json' };
 import { test, expect } from '@playwright/test';
 import evolution from '../../src/data/proposal-evolution.json' with { type: 'json' };
@@ -32,6 +33,8 @@ test('l’évolution compare les documents, conserve les conditions et partage l
   page,
 }) => {
   await page.goto('/evolution/');
+  await expect(page.locator('[data-evolution-dossier]:visible')).toHaveCount(0);
+  await openDossier(page, '[data-evidence-tab="melenchon-smic"]');
   await expect(page.locator('[data-evolution-dossier]:visible')).toHaveCount(1);
   await expect(page.locator('[data-proposal-state]:visible')).toHaveCount(2);
   await expect(page.locator('[data-comparison-label]:visible')).toContainText(
@@ -47,16 +50,14 @@ test('l’évolution compare les documents, conserve les conditions et partage l
   await expect(
     page.locator('[data-evolution-dossier]:visible [data-state-to]'),
   ).toHaveValue('melenchon-smic-nfp-2024');
-  await page.locator('.dossier-directory summary').click();
-  await page.locator('[data-evidence-tab="lisnard-perimetres"]').click();
+  await openDossier(page, '[data-evidence-tab="lisnard-perimetres"]');
   await expect(page.locator('[data-comparison-label]:visible')).toHaveText(
     'Périmètres distincts',
   );
   await expect(page.locator('.reported-note:visible')).toContainText(
     'reprise par le parti',
   );
-  await page.locator('.dossier-directory summary').click();
-  await page.locator('[data-evidence-tab="melenchon-autonomie"]').click();
+  await openDossier(page, '[data-evidence-tab="melenchon-autonomie"]');
   await expect(page.locator('[data-comparison-label]:visible')).toHaveText(
     'Conditions à comparer',
   );
@@ -107,7 +108,7 @@ test('les flux gardent les parts publiées et leurs sources accessibles', async 
   await dossier.locator('.financing-flow [data-flow-node="2"]').last().click();
   await expect(dossier.locator('.finance-source')).toHaveAttribute('open', '');
   await expect(dossier.locator('[data-flow-selection]')).toContainText('25 %');
-  await page.locator('[data-evidence-tab="ruffin-defense-ia"]').click();
+  await openDossier(page, '[data-evidence-tab="ruffin-defense-ia"]');
   await expect(
     page.locator('[data-financing-map]:visible .flow-unquantified'),
   ).toHaveCount(1);
@@ -172,17 +173,24 @@ test('tous les dossiers et les documents sont lisibles sans JavaScript', async (
   });
   const page = await context.newPage();
   await page.goto('http://127.0.0.1:4321/evolution/');
-  await expect(page.locator('[data-evolution-dossier]:visible')).toHaveCount(
+  await expect(page.locator('.subject-card:visible')).toHaveCount(
     evolution.tracks.length,
   );
+  await page.locator('[data-evidence-tab="melenchon-smic"]').click();
+  await expect(page.locator('[data-evolution-dossier]:visible')).toHaveCount(1);
   await expect(page.locator('[data-proposal-state]:visible')).toHaveCount(
-    evolution.states.length,
+    evolution.tracks.find((t) => t.id === 'melenchon-smic')!.stateIds.length,
   );
   await page.goto('http://127.0.0.1:4321/financements/');
-  await expect(page.locator('[data-financing-map]:visible')).toHaveCount(
+  await expect(page.locator('.subject-card:visible')).toHaveCount(
     financing.maps.length,
   );
-  await page.locator('.finance-source summary').first().click();
+  await page.locator('[data-evidence-tab="philippe-effort"]').click();
+  await expect(page.locator('[data-financing-map]:visible')).toHaveCount(1);
+  await page
+    .locator('[data-financing-map]:visible .finance-source summary')
+    .first()
+    .click();
   await expect(page.locator('.finance-source[open] a').first()).toHaveAttribute(
     'href',
     /^https:\/\//,

@@ -8,6 +8,7 @@ import CandidatePortrait from '../../components/CandidatePortrait.astro';
 import CandidateActivity from '../../components/CandidateActivity.astro';
 import Icon from '../../components/Icon.astro';
 import { candidates, measures, themes } from '../../lib/data';
+import { portraitLinks } from '../../lib/portrait-links';
 import { portraitFor } from '../../lib/portraits';
 import { proposalTracks, financingMaps } from '../../lib/proposal-data';
 import { voteCases } from '../../lib/votes-data';
@@ -31,6 +32,7 @@ const byTheme = themes.map((theme) => ({
 const documented = byTheme.filter((theme) => theme.items.length);
 const missing = byTheme.filter((theme) => !theme.items.length);
 const portrait = portraitFor(candidate.id);
+const externalPortrait = portraitLinks[candidate.id];
 const evolutionLink = proposalTracks.find((t) => t.candidate === candidate.id);
 const financingLink = financingMaps.find((m) => m.candidate === candidate.id);
 const votesLink = voteCases.find((v) => v.candidate === candidate.id);
@@ -51,12 +53,20 @@ const votesLink = voteCases.find((v) => v.candidate === candidate.id);
       <div class="profile-portrait">
         <CandidatePortrait candidate={candidate} eager />
       </div>
-      {portrait && (
+      {portrait ? (
         <figcaption>
           <a href={`/credits-photos/#${candidate.id}`}>
             Photo {portrait.credit.year} · crédits ↗
           </a>
         </figcaption>
+      ) : (
+        externalPortrait && (
+          <figcaption>
+            <a href={externalPortrait.url} rel="noreferrer">
+              {externalPortrait.label} ↗
+            </a>
+          </figcaption>
+        )
       )}
     </figure>
     <div class="profile-identity">
@@ -70,7 +80,7 @@ const votesLink = voteCases.find((v) => v.candidate === candidate.id);
         <a
           class="button primary"
           aria-label={`Comparer les propositions de ${candidate.name}`}
-          href={`/comparer/?c=${candidate.id},${candidate.id === 'melenchon' ? 'philippe' : 'melenchon'}&theme=retraites`}
+          href={`/comparer/?c=${candidate.id}&theme=retraites`}
         >
           <Icon name="exchange" />
           <span>
@@ -87,7 +97,7 @@ const votesLink = voteCases.find((v) => v.candidate === candidate.id);
     <dl class="profile-figures" aria-label="Contenu du dossier">
       <div>
         <dt>
-          <a href="#mesures-du-profil">Fiches hors archives</a>
+          <a href="#mesures-du-candidat">Fiches hors archives</a>
         </dt>
         <dd>{current.length}</dd>
       </div>
@@ -167,9 +177,15 @@ const votesLink = voteCases.find((v) => v.candidate === candidate.id);
     </aside>
     <div>
       <CandidateActivity candidate={candidate} />
+      <p>
+        <a class="inline-action" href={`/numerique/candidats/#${candidate.id}`}>
+          Numérique · mesures et documents examinés ↗
+        </a>
+      </p>
       <div class="section-heading">
         <div>
-          <h2 id="mesures-du-profil">Mesures et orientations</h2>
+          <span id="mesures-du-profil" aria-hidden="true"></span>
+          <h2 id="mesures-du-candidat">Mesures et orientations</h2>
         </div>
       </div>
       {current.length ? (

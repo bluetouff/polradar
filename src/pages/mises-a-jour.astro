@@ -1,0 +1,340 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import history from '../data/daily-updates.json';
+import { dailyHistorySchema, families } from '../lib/daily-updates.mjs';
+import { formatDate, formatTimestamp, meta } from '../lib/data';
+const runs = dailyHistorySchema.parse(history);
+const latest = runs[0];
+const terms = {
+  sondages: 'Fin du terrain le plus récent',
+  economie: 'Dernière publication Eurostat',
+  arcom: 'Dernier mois couvert',
+  polymarket: 'Dernière modification horodatée des contrats',
+  kalshi: 'Dernière modification horodatée des contrats',
+  veille: 'Date des documents',
+};
+function display(value: string | null) {
+  if (!value) return 'Non renseignée';
+  if (value.includes('T')) return formatTimestamp(value);
+  if (value.length === 7)
+    return new Intl.DateTimeFormat('fr-FR', {
+      month: 'long',
+      year: 'numeric',
+      timeZone: 'UTC',
+    }).format(new Date(value + '-01T12:00:00Z'));
+  return formatDate(value);
+}
+const state = (r: NonNullable<typeof latest>['rows'][number]) =>
+  r.status === 'unavailable'
+    ? 'Indisponible'
+    : r.status === 'partial'
+      ? 'Contrôle partiel'
+      : r.changes.length
+        ? 'Mis à jour'
+        : r.review.length
+          ? 'À relire'
+          : 'Sans changement';
+const workflow = meta.repository + '/actions/workflows/watch.yml';
+---
+
+<Base
+  title="Mises à jour automatiques"
+  section="/mises-a-jour/"
+  description="Derniers contrôles, changements publiés et incidents de collecte des données de Polradar."
+>
+  <header class="page-title">
+    <h1>Mises à jour automatiques</h1>
+    <p>
+      Sondages, marchés prédictifs, indicateurs économiques, temps de parole et
+      veille des programmes.
+    </p>
+  </header>
+  <div class="run-summary">
+    <div>
+      <Icon name="clock" />
+      <div>
+        <h2>Dernier rapport publié</h2>
+        {latest ? (
+          <time id="last-report" datetime={latest.at}>
+            {formatTimestamp(latest.at)} · heure de Paris
+          </time>
+        ) : (
+          <p>Aucun passage enregistré.</p>
+        )}
+      </div>
+    </div>
+    <p>
+      Collecte quotidienne prévue à 05 h 23 UTC.
+      <br />
+      <a href={workflow}>Exécutions et éventuels échecs sur GitHub ↗</a>
+    </p>
+  </div>
+  {latest && (
+    <p id="report-delay" hidden role="status">
+      Le dernier rapport publié a plus de 24 heures.{' '}
+      <a href={workflow}>Vérifier le passage suivant ↗</a>
+    </p>
+  )}
+  {latest && (
+    <section aria-label="État des données" class="fresh-grid">
+      {latest.rows.map((row) => {
+        const key = row.id as keyof typeof families;
+        const [name, link, icon] = families[key];
+        return (
+          <article class="fresh-card">
+            <div class="fresh-family">
+              <Icon name={icon} />
+              <h2>
+                <a href={link}>{name}</a>
+              </h2>
+            </div>
+            <span class="fresh-state" data-status={row.status}>
+              {state(row)}
+            </span>
+            <dl>
+              <div>
+                <dt>Dernier contrôle</dt>
+                <dd>{display(row.checked)}</dd>
+              </div>
+              {row.id !== 'veille' && (
+                <div>
+                  <dt>{terms[key]}</dt>
+                  <dd>{display(row.dataDate)}</dd>
+                </div>
+              )}
+              {row.id !== 'veille' && (
+                <div>
+                  <dt>Dernier changement enregistré</dt>
+                  <dd>
+                    {row.lastChange
+                      ? display(row.lastChange)
+                      : 'Aucun dans le journal'}
+                  </dd>
+                </div>
+              )}
+            </dl>
+            <a class="fresh-detail" href={'#journal-' + row.id}>
+              Détail du passage <Icon name="arrow" />
+            </a>
+          </article>
+        );
+      })}
+    </section>
+  )}
+  <section class="fresh-history" aria-labelledby="journal">
+    <h2 id="journal">Journal des passages</h2>
+    <p>
+      Les changements portent sur les données publiées. Les notices et documents
+      signalés pour relecture restent en attente d’une décision éditoriale.
+    </p>
+    {runs.map((run, i) => (
+      <details open={i === 0} class="daily-run">
+        <summary>
+          <Icon name="historique" />
+          <time datetime={run.at}>{display(run.at)}</time>
+        </summary>
+        <a
+          class="run-source"
+          href={
+            meta.repository +
+            '/actions/runs/' +
+            run.run +
+            '/attempts/' +
+            run.attempt
+          }
+        >
+          Exécution GitHub ↗
+        </a>
+        <div class="entry-list">
+          {run.rows.map((row) => (
+            <article id={i === 0 ? 'journal-' + row.id : undefined}>
+              <h3>{families[row.id as keyof typeof families][0]}</h3>
+              <p>
+                {row.changes.length} changement
+                {row.changes.length > 1 ? 's' : ''} publié
+                {row.changes.length > 1 ? 's' : ''} · {row.review.length} à
+                relire · {row.incidents.length} incident
+                {row.incidents.length > 1 ? 's' : ''}
+              </p>
+              {[
+                ['Changements publiés', row.changes],
+                ['À relire', row.review],
+                ['Incidents', row.incidents],
+                ['Périodes des indicateurs publiés', row.periods ?? []],
+              ].map(
+                ([title, items]) =>
+                  Array.isArray(items) &&
+                  items.length > 0 && (
+                    <details class="entry-items">
+                      <summary>
+                        {title} ({items.length})
+                      </summary>
+                      <ul>
+                        {items.map((item) => (
+                          <li>{item}</li>
+                        ))}
+                      </ul>
+                    </details>
+                  ),
+              )}
+            </article>
+          ))}
+        </div>
+      </details>
+    ))}
+  </section>
+</Base>
+<script>
+  const last = document.querySelector<HTMLTimeElement>('#last-report'),
+    notice = document.querySelector<HTMLElement>('#report-delay');
+  function update() {
+    if (last && notice)
+      notice.hidden =
+        Date.now() - Date.parse(last.dateTime) <= 24 * 60 * 60 * 1000;
+  }
+  update();
+  document.addEventListener('visibilitychange', update);
+  setInterval(update, 60000);
+</script>
+<style>
+  .run-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    background: #183644;
+    color: #edf5f6;
+    border-radius: 0.7rem;
+  }
+  .run-summary > div,
+  .fresh-family {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+  .run-summary h2,
+  .run-summary p,
+  .fresh-family h2,
+  .fresh-history h3 {
+    margin: 0;
+    font-size: 1rem;
+  }
+  .run-summary p {
+    color: #d4e9ec;
+    font-size: 0.88rem;
+  }
+  .run-summary a {
+    color: white;
+  }
+  .run-summary time {
+    font-size: 1.04rem;
+    font-variant-numeric: tabular-nums;
+  }
+  #report-delay {
+    background: #faedcf;
+    color: #523617;
+    padding: 1rem;
+    border-left: 3px solid #9a641b;
+  }
+  .fresh-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    gap: 0.75rem;
+    margin: 1rem 0 2rem;
+  }
+  .fresh-card,
+  .daily-run {
+    border: 1px solid #b3c5ca;
+    border-radius: 0.65rem;
+    background: var(--panel-gradient, #f4f8fa);
+    padding: clamp(0.9rem, 2vw, 1.3rem);
+  }
+  .fresh-family :global(.icon),
+  .fresh-detail :global(.icon),
+  .daily-run > summary :global(.icon) {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex: none;
+  }
+  .fresh-family a {
+    text-decoration: none;
+  }
+  .fresh-state {
+    display: inline-block;
+    margin: 0.55rem 0 0.25rem;
+    border-left: 3px solid #347183;
+    padding-left: 0.5rem;
+    font-size: 0.83rem;
+  }
+  .fresh-state[data-status='partial'],
+  .fresh-state[data-status='unavailable'] {
+    border-color: #a45b32;
+    color: #703c1e;
+  }
+  .fresh-card dl {
+    margin: 0 0 0.65rem;
+  }
+  .fresh-card dl div {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 1.05fr);
+    gap: 0.6rem;
+    border-bottom: 1px solid #d2dfe2;
+    padding: 0.42rem 0;
+    font-size: 0.82rem;
+  }
+  .fresh-card dt {
+    color: #435e69;
+  }
+  .fresh-card dd {
+    margin: 0;
+  }
+  .fresh-detail,
+  .daily-run > summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+  }
+  .fresh-history > h2 {
+    margin-bottom: 0.15rem;
+  }
+  .daily-run {
+    margin: 0.65rem 0;
+  }
+  .daily-run summary {
+    cursor: pointer;
+  }
+  .daily-run > summary {
+    font-weight: 620;
+    display: flex;
+  }
+  .run-source {
+    display: inline-block;
+    margin: 0.3rem 0 0.8rem;
+  }
+  .entry-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    gap: 0.8rem;
+  }
+  .entry-list article {
+    border-top: 1px solid #a7bcc4;
+    padding: 0.65rem 0.25rem;
+    min-width: 0;
+    scroll-margin-top: 1rem;
+  }
+  .entry-list article > p,
+  .entry-items {
+    font-size: 0.85rem;
+  }
+  .entry-items {
+    margin: 0.35rem 0;
+  }
+  .entry-items ul {
+    padding-left: 1.25rem;
+    overflow-wrap: anywhere;
+  }
+</style>

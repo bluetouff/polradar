@@ -48,22 +48,21 @@ import {
         dates de consultation figurent dans chaque source.
       </p>
     </article>
-    <article class="panel dark-panel">
-      <h2>Code et historique GitHub</h2>
+    <aside class="repository-note">
+      <h2>Dépôt GitHub</h2>
       <p>
-        Le code, les fichiers de contenu et les modifications sont consultables.
-        Les documents de tiers restent attribués à leurs auteurs et ne sont pas
-        relicenciés par le dépôt.
+        Le dépôt public contient le code, les données et l’historique des
+        modifications. Les documents de tiers conservent leurs licences.
       </p>
       <a
-        class="button light"
+        class="repository-link"
         href={meta.repository}
         target="_blank"
         rel="noopener noreferrer"
       >
-        Ouvrir le dépôt GitHub ↗
+        bluetouff/polradar ↗
       </a>
-    </article>
+    </aside>
   </div>
   <section class="prose section-space">
     <h2>Rubriques disponibles</h2>
@@ -75,13 +74,13 @@ import {
       navigateur et propose des flux RSS spécialisés. La veille couvre
       {watch.length} sources sélectionnées.
     </p>
-    <h2>Données restant à intégrer</h2>
+    <h2>Données suivies</h2>
     <p>
-      Le registre de sondages comprend {polls.length} résultats de scénarios
-      provenant de trois vagues Elabe, entre août et novembre 2026. Les autres
-      instituts restent à intégrer. Les relevés de temps de parole, les
-      financements et les résultats territoriaux demanderont chacun une
-      intégration des données et de leur calendrier de publication.
+      Les {polls.length} scénarios publiés proviennent de{' '}
+      {new Set(polls.map((poll) => poll.institute)).size} instituts. Les dates
+      des enquêtes, des cours de marché, des séries Eurostat et des relevés de
+      l’Arcom figurent dans le{' '}
+      <a href="/mises-a-jour/">journal des mises à jour automatiques</a>.
     </p>
     <h2>Contrôles de publication</h2>
     <p>
@@ -92,3 +91,57 @@ import {
     </p>
   </section>
 </Base>
+
+<style>
+  .repository-note {
+    align-self: start;
+    display: grid;
+    gap: 0.7rem;
+    padding: clamp(1.1rem, 2.4vw, 1.8rem);
+    border: 1px solid #486877;
+    border-radius: 0.7rem;
+    background: linear-gradient(115deg, #142d3b, #204654);
+    color: #f5fbfe;
+  }
+  .repository-note h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+  .repository-note h2::before {
+    content: '';
+    width: 1.55rem;
+    height: 1.55rem;
+    background: #a5e1e8;
+    mask: url('/icons/depot-git.svg') center / contain no-repeat;
+    flex: none;
+  }
+  .repository-note h2,
+  .repository-note p {
+    margin: 0;
+    color: inherit;
+  }
+  .repository-note p {
+    color: #d9e9ef;
+    line-height: 1.55;
+    max-width: 60ch;
+  }
+  .repository-link {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.23em;
+  }
+  .repository-link:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+  .repository-note ::selection {
+    color: #112c39;
+    background: #d0edf3;
+  }
+</style>

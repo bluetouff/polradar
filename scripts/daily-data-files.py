@@ -8,7 +8,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'src/data'
 ARTIFACT = ROOT / 'artifacts/daily-data'
-ALLOWED = {'polls.json', 'sources.json', 'prediction-markets.json', 'economy.json', 'airtime.json'}
+ALLOWED = {'polls.json', 'sources.json', 'prediction-markets.json', 'economy.json', 'airtime.json', 'daily-updates.json'}
 MAX_SIZE = 2 * 1024 * 1024
 
 

@@ -38,6 +38,16 @@ import {
   validateVisualReferences,
 } from '../src/lib/campaign-visuals.mjs';
 
+import { dailyHistorySchema } from '../src/lib/daily-updates.mjs';
+dailyHistorySchema.parse(
+  JSON.parse(
+    await readFile(
+      new URL('../src/data/daily-updates.json', import.meta.url),
+      'utf8',
+    ),
+  ),
+);
+
 const names = [
   'candidates',
   'themes',
@@ -63,6 +73,35 @@ const entries = await Promise.all(
   ]),
 );
 const dataset = Object.fromEntries(entries);
+const digitalReview = JSON.parse(
+  await readFile(
+    new URL('../src/data/digital-reviews.json', import.meta.url),
+    'utf8',
+  ),
+);
+const reviewedIds = Object.keys(digitalReview.documents).sort();
+if (
+  !/^\d{4}-\d{2}-\d{2}$/.test(digitalReview.checked) ||
+  digitalReview.checked >
+    new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Paris' }).format(
+      new Date(),
+    ) ||
+  reviewedIds.join(',') !==
+    dataset.candidates
+      .map((c) => c.id)
+      .sort()
+      .join(',') ||
+  Object.values(digitalReview.documents).some(
+    (ids) =>
+      !ids.length ||
+      new Set(ids).size !== ids.length ||
+      ids.some((id) => !dataset.sources.some((s) => s.id === id)),
+  ) ||
+  digitalReview.archives.some(
+    (id) => !dataset.measures.some((m) => m.id === id && m.scope === 'archive'),
+  )
+)
+  throw new Error('Périmètre ou références de la revue numérique invalides.');
 const visualDatasets = [];
 for (const [name, schema] of [
   ['programme-budgets', programmeBudgetSchema],

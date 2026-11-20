@@ -180,7 +180,7 @@ test('la carte et les fiches partagent les filtres et le jour civil de Paris', a
     .click();
   await expect(page.locator('.agenda-event:visible')).toHaveCount(2);
 });
-test('les profils ajoutés se consultent et un lieu inconnu ne crée pas de repère', async ({
+test('les candidats ajoutés se consultent et un lieu inconnu ne crée pas de repère', async ({
   page,
 }) => {
   await page.goto('/budget-programmes/');

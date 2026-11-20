@@ -17,21 +17,18 @@ const path = Astro.url.pathname;
   {groups.map((group) => (
     <details
       class="site-nav-group"
-      name="polradar-navigation"
+      name="rubriques"
       data-desk={group.id}
       data-current={
         group.links.some(([url]) => current === url) ? 'true' : undefined
       }
     >
-      <summary class={`menu-${group.icon}`}>
-        <span>{group.name}</span>
-      </summary>
+      <summary class={`menu-${group.icon}`}>{group.name}</summary>
       <ul aria-label={group.name}>
-        {group.links.map(([url, label, icon]) => (
+        {group.links.map(([url, label]) => (
           <li>
             <a
               href={url}
-              class={`menu-${icon}`}
               aria-current={
                 current === url
                   ? path === url

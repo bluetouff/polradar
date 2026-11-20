@@ -6,8 +6,8 @@ import { iconPaths } from './icons.mjs';
 const decorations: Record<string, string> = {
   chevron: '.site-nav-group summary::after',
   share: '.page-share-label::before',
-  external: '.page-share a::after,.footer-meta a::after',
-  mail: '.page-share a[data-share-platform="mail"]::after',
+  external: '.footer-meta a::after',
+  mail: '.page-share a[data-share-platform="mail"]::before',
   suivi: '.footer-follow::before',
   arrow: '.footer-follow::after,.footer-bottom>a::after',
 };
@@ -34,12 +34,13 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${side}" height="${h
 const digest = (value: string) =>
   createHash('sha256').update(value).digest('hex').slice(0, 16);
 const imageFile = digest(svg) + '.svg';
+const navLinks = groups.flatMap((group) => group.links);
 const css =
-  `:where(.site-nav-group li a,.site-nav-group summary,.footer-columns h2,.footer-follow,.page-share-label)::before,:where(.site-nav-group summary,.footer-follow,.footer-meta a,.footer-bottom>a,.page-share a)::after{content:"";display:inline-block;flex:none;width:var(--pic-size,1rem);height:var(--pic-size,1rem);background:currentColor;mask-image:url("/pictos-menu/${imageFile}");mask-repeat:no-repeat;mask-size:100% auto;mask-position:0 var(--menu-y)}` +
+  `:where(.site-nav-group li a,.site-nav-group summary,.footer-columns h2,.footer-follow,.page-share-label,.page-share a[data-share-platform="mail"])::before,:where(.site-nav-group summary,.footer-follow,.footer-meta a,.footer-bottom>a)::after{content:"";display:inline-block;flex:none;width:var(--pic-size,1rem);height:var(--pic-size,1rem);background:currentColor;mask-image:url("/pictos-menu/${imageFile}");mask-repeat:no-repeat;mask-size:100% auto;mask-position:0 var(--menu-y)}` +
   icons
     .map(
       (id, i) =>
-        `${[`.menu-${id}`, decorations[id]].filter(Boolean).join(',')}{--menu-y:${((i * 100) / Math.max(1, icons.length - 1)).toFixed(6)}%}`,
+        `${[`.menu-${id}`, ...navLinks.filter((link) => link[2] === id).map(([href]) => `.site-navigation a[href="${href}"]`), decorations[id]].filter(Boolean).join(',')}{--menu-y:${((i * 100) / Math.max(1, icons.length - 1)).toFixed(6)}%}`,
     )
     .join('');
 const styleFile = digest(css) + '.css';

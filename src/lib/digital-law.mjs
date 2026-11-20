@@ -31,15 +31,13 @@ export const digitalLawSchema = z.strictObject({
               context: text,
               icon: idSchema,
               rules: z.array(rule).min(1).max(4),
-              changes: z
-                .array(
-                  z.strictObject({
-                    versionId: idSchema,
-                    title: text,
-                    body: text,
-                  }),
-                )
-                .max(4),
+              changes: z.array(
+                z.strictObject({
+                  versionId: idSchema,
+                  title: text,
+                  body: text,
+                }),
+              ),
               parliament: rule
                 .extend({
                   stages: z
@@ -55,8 +53,7 @@ export const digitalLawSchema = z.strictObject({
           .max(8),
       }),
     )
-    .min(1)
-    .max(4),
+    .min(1),
 });
 
 export const digitalLawRoot = '/numerique/ce-qui-changerait/';

@@ -9,7 +9,6 @@ const initial = groups.find((rows) => rows[0].round === 'premier')!;
 const latest = initial.at(-1)!;
 const selected = rankedPollResults(latest)
   .filter((result) => result.percentage !== null)
-  .slice(0, 4)
   .map((row) => row.id);
 const institutes = [...new Set(polls.map((poll) => poll.institute))];
 const notices = [...new Set(polls.map((poll) => poll.noticeSource))];
@@ -82,14 +81,13 @@ const notices = [...new Set(polls.map((poll) => poll.noticeSource))];
       <div id="poll-plot">
         <PollChart rows={initial} selected={selected} />
       </div>
+      <p class="small muted">
+        Toutes les courbes sont affichées. Cochez un nom pour isoler sa courbe.
+      </p>
       <div id="poll-legend" class="poll-legend">
         {latest.results.map((result) => (
           <label>
-            <input
-              type="checkbox"
-              value={result.id}
-              checked={selected.includes(result.id)}
-            />
+            <input type="checkbox" value={result.id} />
             <span class={`legend-color series-${pollColor(result.id)}`}></span>
             <span>{result.name}</span>
           </label>

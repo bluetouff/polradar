@@ -1,10 +1,12 @@
 ---
 import { candidates, measures, themes, type Candidate } from '../lib/data';
+import { portraitLinks } from '../lib/portrait-links';
 import CandidatePortrait from './CandidatePortrait.astro';
 interface Props {
   candidate: Candidate;
 }
 const { candidate } = Astro.props;
+const externalPortrait = portraitLinks[candidate.id];
 const records = measures.filter(
   (row) => row.candidate === candidate.id && row.scope !== 'archive',
 );
@@ -40,6 +42,11 @@ const index = candidates.findIndex((item) => item.id === candidate.id) + 1;
       <p class="person-party">{candidate.party}</p>
     </div>
   </a>
+  {externalPortrait && (
+    <a class="portrait-link" href={externalPortrait.url} rel="noreferrer">
+      {externalPortrait.label} ↗
+    </a>
+  )}
   <p class="person-status">{candidate.status}</p>
   <div class="person-topics" aria-hidden="true">
     {themes.map((theme) => (
@@ -64,3 +71,14 @@ const index = candidates.findIndex((item) => item.id === candidate.id) + 1;
       : 'Dossier à documenter'}
   </p>
 </article>
+
+<style>
+  .portrait-link {
+    display: inline-block;
+    align-self: start;
+    margin: 0.3rem 1rem;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: #245667;
+  }
+</style>

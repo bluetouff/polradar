@@ -130,34 +130,49 @@ test('les dossiers numériques s’explorent sur mobile et renvoient à leurs so
   await expect(
     page.getByRole('heading', { name: 'Propositions sur le numérique' }),
   ).toBeVisible();
-  await expect(page.locator('.digital-dossier')).toHaveCount(4);
+  await expect(page.locator('.digital-topics a')).toHaveCount(4);
   await page.locator('.digital-topics a[data-topic="calcul-energie"]').click();
   await expect(page).toHaveURL(/\/numerique\/calcul-energie\/$/);
   await expect(
     page.locator('.digital-topics [aria-current="page"]'),
   ).toHaveCount(1);
-  const centre = page
-    .locator('.digital-card')
-    .filter({ hasText: 'Capacité visée en 2030' });
-  await expect(centre.locator('dd')).toHaveText('1 GW');
-  await expect(
-    centre.getByRole('link', { name: 'Programme officiel ↗' }),
-  ).toHaveAttribute(
-    'href',
-    'https://www.avecretailleau.fr/projet/mesure/construire-nos-data-centers-souverains',
-  );
-  await expect(
-    page
-      .locator('.digital-card')
-      .filter({ hasText: 'Enveloppe annoncée pour 2027' })
-      .locator('dd'),
-  ).toHaveText(/700\sM€/);
-  await expect(
-    page
-      .locator('.digital-card')
-      .filter({ hasText: 'Budget annuel proposé du laboratoire' })
-      .locator('dd'),
-  ).toHaveText(['500 personnes', '1 Md€']);
+  const pager = page
+    .getByRole('navigation', { name: 'Pagination des résultats' })
+    .first();
+  await expect(pager).toBeVisible();
+  const quantities = [
+    {
+      label: 'Capacité visée en 2030',
+      values: ['1 GW'],
+      programme:
+        'https://www.avecretailleau.fr/projet/mesure/construire-nos-data-centers-souverains',
+    },
+    { label: 'Enveloppe annoncée pour 2027', values: [/700\sM€/] },
+    {
+      label: 'Budget annuel proposé du laboratoire',
+      values: ['500 personnes', '1 Md€'],
+    },
+  ];
+  const seen: string[] = [];
+  for (;;) {
+    for (const item of quantities) {
+      const card = page
+        .locator('.digital-card:visible')
+        .filter({ hasText: item.label });
+      if (!(await card.count())) continue;
+      await expect(card.locator('dd')).toHaveText(item.values);
+      if (item.programme) {
+        await expect(
+          card.getByRole('link', { name: 'Programme officiel ↗' }),
+        ).toHaveAttribute('href', item.programme);
+      }
+      seen.push(item.label);
+    }
+    const next = pager.getByRole('link', { name: 'Page suivante' });
+    if (!(await next.count())) break;
+    await next.click();
+  }
+  expect(seen.sort()).toEqual(quantities.map((item) => item.label).sort());
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth > window.innerWidth,

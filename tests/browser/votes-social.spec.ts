@@ -1,3 +1,4 @@
+import { openDossier } from './dossier-directory';
 import { test, expect } from '@playwright/test';
 import legislativeVotes from '../../src/data/legislative-votes.json' with { type: 'json' };
 import { socialImages } from '../../src/lib/social-images.mjs';
@@ -51,7 +52,12 @@ test('la frise conserve les objets des motions, les sources et les liens directs
   page,
 }) => {
   await page.goto('/votes/');
-  await expect(page.locator('[data-vote-case]:visible')).toHaveCount(1);
+  await expect(page.locator('[data-vote-case]:visible')).toHaveCount(0);
+  await expect(page.locator('.subject-card:visible')).toHaveCount(12);
+  await expect(page.locator('.subject-card')).toHaveCount(
+    legislativeVotes.cases.length,
+  );
+  await openDossier(page, '[data-vote-tab="melenchon-isf"]');
   const dossier = page.locator('[data-vote-case]:visible');
   await expect(dossier).toContainText('Jean-Luc Mélenchon');
   await expect(dossier.locator('.personal-choice')).toHaveText([
@@ -66,8 +72,7 @@ test('la frise conserve les objets des motions, les sources et les liens directs
     'href',
     'https://www.assemblee-nationale.fr/dyn/15/scrutins/169',
   );
-  await page.locator('.dossier-directory summary').click();
-  await page.locator('[data-vote-tab="roussel-retraites"]').click();
+  await openDossier(page, '[data-vote-tab="roussel-retraites"]');
   await expect(page.locator('[data-vote-case]:visible')).toContainText(
     'Pour la motion',
   );
@@ -87,10 +92,7 @@ test('la frise conserve les objets des motions, les sources et les liens directs
     page.locator('[data-vote-tab="roussel-retraites"]'),
   ).toHaveAttribute('aria-current', 'true');
   await page.goto('/votes/#dossier=%3Cimg%20src=x%20onerror=alert(1)%3E');
-  await expect(page.locator('[data-vote-case]:visible')).toHaveAttribute(
-    'data-vote-case',
-    'melenchon-isf',
-  );
+  await expect(page.locator('[data-vote-case]:visible')).toHaveCount(0);
   await expect(page.locator('[data-votes-workspace] img[src="x"]')).toHaveCount(
     0,
   );
@@ -100,13 +102,18 @@ test('les votes restent accessibles sans JavaScript', async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto('/votes/');
-  await expect(page.locator('[data-vote-case]:visible')).toHaveCount(
+  await expect(page.locator('.subject-card:visible')).toHaveCount(
     legislativeVotes.cases.length,
   );
+  await page.locator('[data-vote-tab="melenchon-isf"]').click();
+  await expect(page.locator('[data-vote-case]:visible')).toHaveCount(1);
   await expect(page.locator('.vote-proposal')).toHaveCount(
     legislativeVotes.cases.length,
   );
-  await page.locator('.vote-source summary').first().click();
+  await page
+    .locator('[data-vote-case]:visible .vote-source summary')
+    .first()
+    .click();
   await expect(page.locator('.vote-source[open]')).toHaveCount(1);
   await context.close();
 });

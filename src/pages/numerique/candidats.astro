@@ -1,0 +1,164 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import PagedResults from '../../components/PagedResults.astro';
+import {
+  candidates,
+  formatDate,
+  measureById,
+  scopes,
+  sourceById,
+} from '../../lib/data';
+import { digitalTopics } from '../../lib/digital-data';
+import review from '../../data/digital-reviews.json';
+const docs: Record<string, string[]> = review.documents;
+const measures = digitalTopics.flatMap((t) => t.entries);
+const archives = review.archives.map(measureById);
+const cards = candidates.map((candidate) => ({
+  candidate,
+  sources: (docs[candidate.id] ?? []).map(sourceById),
+  entries: measures.filter((x) => x.candidate.id === candidate.id),
+  archives: archives.filter((x) => x.candidate === candidate.id),
+}));
+const covered = cards.filter((c) => c.entries.length).length;
+---
+
+<Base
+  title="Le numérique par candidat"
+  description="Propositions personnelles, projets de parti, archives et documents consultés pour chaque candidat."
+  section="/numerique/"
+>
+  <nav class="breadcrumbs" aria-label="Fil d’Ariane">
+    <a href="/numerique/">Numérique</a>
+    <span>/</span>
+    <span>Candidats</span>
+  </nav>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="people" />
+    </span>
+    <div>
+      <h1>Le numérique par candidat</h1>
+      <p>
+        {cards.length} candidats examinés · Des mesures recensées dans {covered}{' '}
+        dossiers · Revue du{' '}
+        <time datetime={review.checked}>{formatDate(review.checked)}</time>.
+      </p>
+    </div>
+  </header>
+  <PagedResults total={cards.length}>
+    <div class="review-grid" data-document-list>
+      {cards.map(({ candidate, sources, entries, archives }) => (
+        <article class="review-card" id={candidate.id} data-page-item>
+          <h2>
+            <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+          </h2>
+          {entries.length > 0 ? (
+            <details>
+              <summary>
+                {entries.length}{' '}
+                {entries.length === 1 ? 'fiche numérique' : 'fiches numériques'}
+              </summary>
+              <ul>
+                {entries.map(({ measure, source }) => (
+                  <li>
+                    <a href={`/mesures/${measure.id}/`}>{measure.title}</a>
+                    <small>
+                      {scopes[measure.scope]} ·{' '}
+                      {measure.partyAuthor ??
+                        (measure.scope === 'parti'
+                          ? (source.publisher ?? candidate.party)
+                          : candidate.name)}
+                    </small>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ) : (
+            <p>
+              Aucune mesure numérique précise repérée dans les documents
+              ci-dessous.
+            </p>
+          )}
+          {archives.length > 0 && (
+            <details>
+              <summary>Archives de 2022 ({archives.length})</summary>
+              <ul>
+                {archives.map((m) => (
+                  <li>
+                    <a href={`/mesures/${m.id}/`}>{m.title}</a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
+          <details class="review-docs">
+            <summary>Documents examinés ({sources.length})</summary>
+            <ul>
+              {sources.map((s) => (
+                <li>
+                  <a href={s.url}>{s.title} ↗</a>
+                </li>
+              ))}
+            </ul>
+          </details>
+        </article>
+      ))}
+    </div>
+  </PagedResults>
+</Base>
+<script src="../../scripts/document-pages.ts"></script>
+<style>
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+    gap: 0.85rem;
+    margin-block: 1rem;
+  }
+  .review-card {
+    align-self: start;
+    padding: 1.1rem 1.25rem;
+    border: 1px solid #afc4ca;
+    border-top: 3px solid #367384;
+    border-radius: 0.65rem;
+    background: linear-gradient(135deg, #fff, #e9f1f3);
+    color: #163440;
+    overflow-wrap: anywhere;
+  }
+  .review-card h2 {
+    font-size: 1.05rem;
+    margin: 0 0 0.65rem;
+  }
+  .review-card h2 a {
+    text-decoration: none;
+  }
+  .review-card h2 a:hover {
+    text-decoration: underline;
+  }
+  .review-card p,
+  .review-card li,
+  .review-card summary {
+    font-size: 0.87rem;
+    line-height: 1.45;
+  }
+  .review-card summary {
+    padding: 0.5rem 0;
+    cursor: pointer;
+    color: #14566a;
+    font-weight: 640;
+  }
+  .review-card details + details {
+    border-top: 1px solid #ccd9dc;
+  }
+  .review-card ul {
+    margin: 0 0 0.5rem;
+    padding-inline-start: 1.1rem;
+  }
+  .review-card li + li {
+    margin-top: 0.4rem;
+  }
+  .review-card small {
+    display: block;
+    color: #46616d;
+  }
+</style>

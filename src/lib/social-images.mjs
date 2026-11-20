@@ -158,11 +158,31 @@ const defs = [
     'Chiffrement, vie privée et données publiques.',
     'navy',
     tiles(
-      digitalLaw.sections.map((section) => [
-        section.title,
-        section.cases.length,
-      ]),
-      'Situations comparées',
+      [
+        ['Thèmes', digitalLaw.sections.length],
+        ['Situations', digitalLaw.sections.flatMap((s) => s.cases).length],
+        [
+          'Textes de référence',
+          new Set(
+            digitalLaw.sections.flatMap((s) =>
+              s.cases.flatMap((c) =>
+                c.rules.flatMap((r) => r.refs.map((ref) => ref.sourceId)),
+              ),
+            ),
+          ).size,
+        ],
+        [
+          'Propositions',
+          new Set(
+            digitalLaw.sections.flatMap((s) =>
+              s.cases.flatMap((c) =>
+                c.changes.map((change) => change.versionId),
+              ),
+            ),
+          ).size,
+        ],
+      ],
+      'Comparatif juridique',
     ),
   ],
   [
@@ -234,7 +254,7 @@ const defs = [
     '/candidats/',
     'Les candidatures',
     'Candidats',
-    'Profils, programmes et sources.',
+    'Candidats, programmes et sources.',
     'sage',
     {
       kind: 'people',
@@ -452,6 +472,23 @@ const defs = [
     `${agenda.events.length} rendez-vous · ${communeIds.size} communes.`,
     'sage',
     { kind: 'map', ...chartMap },
+  ],
+  [
+    'mises-a-jour',
+    '/mises-a-jour/',
+    'Données publiques',
+    'Mises à jour\nautomatiques',
+    'Contrôles quotidiens, changements et incidents.',
+    'navy',
+    {
+      kind: 'document',
+      rows: [
+        'Contrôles de collecte',
+        'Modifications publiées',
+        'Documents à relire',
+        'Sources indisponibles',
+      ],
+    },
   ],
   [
     'veille',

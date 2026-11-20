@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-19",
+  "asOf": "2026-11-20",
   "sections": [
     {
       "id": "chiffrement",
@@ -45,6 +45,16 @@
               "versionId": "dupont-aignan-institutions-chiffrement-sensible-v1",
               "title": "Imposer des outils souverains aux postes sensibles",
               "body": "Debout la France rendrait obligatoires les terminaux et logiciels de chiffrement souverains pour les postes et personnels sensibles."
+            },
+            {
+              "versionId": "lisnard-securite-maitrise-cyber-etat-v1",
+              "title": "Garder la maîtrise du chiffrement et des systèmes critiques de l’État",
+              "body": "David Lisnard inclut le chiffrement, les identités, l’hébergement des données sensibles et la continuité des réseaux de l’État. Il souhaite que ces systèmes puissent être audités, remplacés et repris."
+            },
+            {
+              "versionId": "retailleau-institutions-achats-numeriques-v2",
+              "title": "Introduire un critère de souveraineté dans les achats numériques de l’État",
+              "body": "Publier un score pour les logiciels et équipements et l’utiliser dans les marchés publics. Fixer un seuil pour les fonctions critiques. La maîtrise des clés de chiffrement fait partie des critères. Pour le renseignement, la défense, la police et la justice, les exigences minimales sur les clés et la juridiction s’appliqueraient sans dérogation."
             }
           ]
         },
@@ -258,6 +268,16 @@
               "versionId": "ruffin-social-droit-humain-v1",
               "title": "Garantir un interlocuteur humain",
               "body": "François Ruffin propose de pouvoir choisir un agent humain pour chaque démarche et d’empêcher qu’un algorithme décide seul de l’attribution d’un droit ou d’une prestation."
+            },
+            {
+              "versionId": "ps-travail-algorithmes-france-travail-v1",
+              "title": "Publier les critères des algorithmes de France Travail",
+              "body": "Publier les critères utilisés pour orienter, évaluer ou sanctionner les demandeurs d’emploi et ouvrir un recours humain suspensif avant sanction."
+            },
+            {
+              "versionId": "melenchon-institutions-ia-usages-sensibles-v1",
+              "title": "Interdire l’intelligence artificielle pour certains usages sensibles",
+              "body": "La liste du programme couvre notamment l’identification biométrique, la notation dans le crédit et l’assurance, la police prédictive et la surveillance des bénéficiaires de prestations sociales."
             }
           ]
         },
@@ -351,6 +371,43 @@
               "versionId": "philippot-institutions-hebergement-strategique-v1",
               "title": "Réserver les données stratégiques à des serveurs sous contrôle français",
               "body": "Les Patriotes demandent des serveurs publics ou contrôlés par l’ANSSI et l’application systématique du droit français. Leur projet est conditionné à la sortie de l’Union européenne."
+            },
+            {
+              "versionId": "dupont-aignan-institutions-cloud-francais-v1",
+              "title": "Développer un hébergement souverain français et un espace numérique citoyen",
+              "body": "Créer une offre française face aux services des grands groupes numériques étrangers. Debout la France précise sa priorité pour les hébergeurs et les outils maîtrisés en France et soumis uniquement au droit national."
+            },
+            {
+              "versionId": "tondelier-institutions-hebergement-france-v1",
+              "title": "Héberger les données sensibles en France",
+              "body": "Le projet prévoit des centres de données situés en France, détenus et exploités par des acteurs européens."
+            }
+          ]
+        },
+        {
+          "id": "recommandations",
+          "slug": "donnees-personnelles/recommandations",
+          "label": "Recommandations",
+          "question": "Comment les plateformes recommandent-elles leurs contenus ?",
+          "context": "Choix proposés aux utilisateurs et fonctionnement des fils de recommandation.",
+          "icon": "donnees",
+          "rules": [
+            {
+              "title": "Les plateformes doivent expliquer les principaux paramètres",
+              "body": "Le règlement européen sur les services numériques impose aux plateformes concernées d’expliquer leurs paramètres de recommandation. Les très grandes plateformes et les très grands moteurs doivent aussi proposer une option indépendante du profilage.",
+              "refs": [
+                {
+                  "sourceId": "eurlex-dsa",
+                  "label": "DSA, art. 27 et 38"
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "versionId": "place-publique-numerique-algorithmes-reseaux-v1",
+              "title": "Encadrer la conception des algorithmes de recommandation",
+              "body": "Le parti souhaite imposer des règles aux réseaux sociaux dès la conception de leurs algorithmes pour limiter les mécanismes de dépendance et redonner du choix aux utilisateurs."
             }
           ]
         }
@@ -400,6 +457,21 @@
               "versionId": "lisnard-securite-maitrise-cyber-etat-v1",
               "title": "Garder la capacité de reprendre les systèmes de l’État",
               "body": "David Lisnard veut que les systèmes critiques de l’État puissent être audités, remplacés et repris. Il inclut les identités, l’hébergement sensible et les outils de chiffrement."
+            },
+            {
+              "versionId": "collovati-institutions-numerique-sites-publics-v1",
+              "title": "Renforcer la sécurité des données sur les sites de l’État",
+              "body": "Christian Collovati veut réunir les entreprises spécialisées pour renforcer les règles de protection des données sur les sites gouvernementaux."
+            },
+            {
+              "versionId": "dupont-aignan-institutions-audit-ministeres-v1",
+              "title": "Soumettre les ministères à des audits de sécurité systématiques",
+              "body": "Confier le contrôle des ministères à l’ANSSI et présenter au Parlement un rapport public annuel sur la protection des systèmes de l’État."
+            },
+            {
+              "versionId": "philippe-securite-bouclier-cyber-v1",
+              "title": "Investir dans des centres de protection cyber des administrations",
+              "body": "Édouard Philippe inclut ces centres dans son projet de Bouclier Cyber pour les administrations publiques."
             }
           ],
           "parliament": {
@@ -593,6 +665,26 @@
               "versionId": "retailleau-institutions-achats-numeriques-v2",
               "title": "Noter la souveraineté des outils achetés",
               "body": "Bruno Retailleau propose un score pour les achats numériques de l’État, avec un seuil pour les fonctions critiques et des critères de juridiction et de maîtrise des clés de chiffrement."
+            },
+            {
+              "versionId": "philippot-institutions-logiciels-auditables-v1",
+              "title": "Rendre le code source des outils publics libre et auditable",
+              "body": "Le projet des Patriotes demande aussi que les technologies utilisées pour la décision publique puissent être comprises et vérifiées."
+            },
+            {
+              "versionId": "ruffin-institutions-standards-ouverts-v1",
+              "title": "Privilégier les standards ouverts dans la commande numérique",
+              "body": "Le cahier de campagne demande des standards ouverts européens et l’interopérabilité pour rendre les composants réutilisables dans les services publics."
+            },
+            {
+              "versionId": "philippe-travail-achats-tech-europeens-v1",
+              "title": "Donner une priorité européenne aux achats de technologies",
+              "body": "Proposer un texte européen de préférence technologique et mutualiser des achats entre États membres."
+            },
+            {
+              "versionId": "mikolajczak-travail-achats-numeriques-v1",
+              "title": "Orienter les achats publics numériques vers la souveraineté",
+              "body": "Équinoxe veut faire de la souveraineté une priorité des achats français et européens dans le numérique, comme dans la défense et l’énergie."
             }
           ]
         },
@@ -687,6 +779,92 @@
               "versionId": "philippe-travail-zones-calcul-v1",
               "title": "Définir des zones pour accélérer l’implantation",
               "body": "Édouard Philippe veut accélérer l’implantation des centres de données dans des zones définies et faciliter leur raccordement."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "services-publics",
+      "title": "École et démarches",
+      "icon": "institutions",
+      "cases": [
+        {
+          "id": "enseignement-numerique",
+          "slug": "enseignement",
+          "label": "À l’école",
+          "question": "Que doivent apprendre les élèves sur le numérique ?",
+          "context": "Éducation aux réseaux, aux médias et à l’utilisation de l’intelligence artificielle.",
+          "icon": "education",
+          "rules": [
+            {
+              "title": "Les usages responsables font déjà partie de la formation",
+              "body": "Le Code de l’éducation prévoit une formation aux usages responsables du numérique. Elle porte notamment sur la vie privée et les droits et devoirs liés à Internet.",
+              "refs": [
+                {
+                  "sourceId": "code-education-l312-9",
+                  "label": "Code de l’éducation, art. L. 312-9"
+                }
+              ]
+            },
+            {
+              "title": "Une attestation en fin de primaire et de collège",
+              "body": "Les élèves reçoivent une attestation de sensibilisation aux usages de l’IA et des réseaux sociaux, aux risques associés et à la désinformation.",
+              "refs": [
+                {
+                  "sourceId": "code-education-l312-9",
+                  "label": "Code de l’éducation, art. L. 312-9"
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "versionId": "legendre-education-numerique-reseaux-sociaux-v1",
+              "title": "Enseigner les usages des réseaux sociaux",
+              "body": "Le manifeste propose d’apprendre aux jeunes à utiliser les réseaux sociaux à des fins éducatives et de développement personnel. Il laisse ouverts le calendrier et le contenu des cours."
+            },
+            {
+              "versionId": "place-publique-education-medias-enseignement-v1",
+              "title": "Enseigner le fonctionnement des algorithmes et l’influence des médias",
+              "body": "Place publique propose un apprentissage du décodage des images et des algorithmes dès le primaire et un module obligatoire sur les médias et l’influence au lycée."
+            },
+            {
+              "versionId": "attal-ia-savoirs-fondamentaux-v1",
+              "title": "Faire de la formulation de requêtes à l’IA un apprentissage fondamental",
+              "body": "Il veut enseigner aux élèves à formuler des instructions pour l’intelligence artificielle, aux côtés de la lecture, de l’écriture et du calcul."
+            },
+            {
+              "versionId": "attal-education-enseignants-ia-v1",
+              "title": "Former tous les enseignants à l’usage pédagogique de l’IA",
+              "body": "La mesure prévoit une formation pour utiliser l’intelligence artificielle à l’école et encadrer les usages des élèves."
+            }
+          ]
+        },
+        {
+          "id": "demarches-en-ligne",
+          "slug": "demarches",
+          "label": "Démarches",
+          "question": "Comment saisir une administration en ligne ?",
+          "context": "Saisine électronique, orientation des demandes et accès à un interlocuteur.",
+          "icon": "institutions",
+          "rules": [
+            {
+              "title": "La saisine électronique est ouverte sous conditions",
+              "body": "Une personne identifiée peut adresser une demande à une administration par voie électronique selon les modalités de son téléservice. Des exceptions peuvent être fixées par décret en Conseil d’État.",
+              "refs": [
+                {
+                  "sourceId": "crpa-saisine-electronique",
+                  "label": "CRPA, art. L. 112-8 à L. 112-10"
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "versionId": "cheve-institutions-remontee-citoyenne-v1",
+              "title": "Organiser un guichet d’orientation des demandes citoyennes",
+              "body": "Prévoir une entrée par un portail, la mairie ou un médiateur accrédité. Les communes orienteraient les demandes vers le service ou l’échelon compétent."
             }
           ]
         }

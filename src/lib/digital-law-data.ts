@@ -42,7 +42,12 @@ export const digitalLawSections = law.sections.map((section) => ({
       const snapshot = version.snapshot;
       return {
         ...change,
-        author: snapshot.scope === 'parti' ? candidate.party : candidate.name,
+        author:
+          snapshot.partyAuthor ??
+          (snapshot.scope === 'parti'
+            ? (sourceById(snapshot.sourceRefs[0].sourceId).publisher ??
+              candidate.party)
+            : candidate.name),
         scope: snapshot.scope,
         edition: snapshot.edition,
         sources: snapshot.sourceRefs.map((ref) => ({

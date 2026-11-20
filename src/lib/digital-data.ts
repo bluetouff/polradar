@@ -25,17 +25,17 @@ export const digitalTopics = topics.map((topic) => {
   });
   return {
     ...topic,
-    entries,
-    candidateCount: new Set(
-      entries.map((entry) => entry.measure.partyAuthor ?? entry.candidate.id),
-    ).size,
+    entries: entries.sort(
+      (a, b) =>
+        a.measure.title.localeCompare(b.measure.title, 'fr') ||
+        a.measure.id.localeCompare(b.measure.id),
+    ),
+    candidateCount: new Set(entries.map((entry) => entry.candidate.id)).size,
   };
 });
 export const digitalCount = referenced.size;
 export const digitalCandidates = new Set(
   digitalTopics.flatMap(({ entries }) =>
-    entries.map(
-      ({ candidate, measure }) => measure.partyAuthor ?? candidate.id,
-    ),
+    entries.map(({ candidate }) => candidate.id),
   ),
 ).size;
