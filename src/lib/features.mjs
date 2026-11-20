@@ -42,7 +42,7 @@ const grammaticalWords = new Set(
 );
 const wordForms = new Map();
 for (const family of [
-  'supprimer suppression suppressions supprime suppriment supprimees supprimes',
+  'supprimer suppression suppressions supprime supprimee suppriment supprimees supprimes',
   'baisser baisse baisses baissent',
   'reduire reduction reductions reduit reduite reduites reduits',
   'augmenter augmentation augmentations augmente augmentent',
@@ -124,7 +124,7 @@ export function filterEntries(entries, filters) {
   const query = normalize(filters.q || '');
   if (!query) return selection;
   // Operator-like input and punctuation-only queries remain literal text.
-  const literal = /[+*?()|[\]{}^$@!\\]/.test(query);
+  const literal = /[+*|[\]{}^$@\\]|[?!]\(/.test(query);
   const tokens = [
     ...new Set(
       searchTokens(query).filter((word) => !grammaticalWords.has(word)),

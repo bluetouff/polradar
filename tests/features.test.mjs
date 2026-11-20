@@ -438,6 +438,8 @@ test('la recherche distingue une suppression d’une baisse et reconnaît le nom
     'suppression de la csg',
     'supprimer la contribution sociale généralisée',
     'suppression C.S.G.',
+    'suppression de la CSG ?',
+    'CSG supprimée (salaires)',
   ]) {
     assert.deepEqual(filterEntries(rows, { q }), [deletion, mention]);
   }
