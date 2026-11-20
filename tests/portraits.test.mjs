@@ -5,6 +5,7 @@ import { createHash } from 'node:crypto';
 import {
   parsePortraits,
   portraitPermissions,
+  unconfirmedRights,
 } from '../src/lib/portrait-schema.mjs';
 const read = (name) =>
   JSON.parse(
@@ -78,6 +79,21 @@ test('le portrait Glucksmann écarté ne peut pas revenir avec son ancienne attr
     year: '2026',
   });
   assert.throws(() => parsePortraits([copy], candidates));
+});
+
+test('les portraits publiés sans autorisation documentée conservent leur source nominative et leur statut', () => {
+  const selected = rows.filter((row) => row.license === unconfirmedRights);
+  assert.ok(selected.length > 0);
+  for (const row of selected) {
+    assert.equal(row.licenseUrl, null);
+    for (const change of [
+      { sourceUrl: 'https://example.org/portrait' },
+      { licenseUrl: 'https://creativecommons.org/licenses/by/4.0' },
+      { license: 'CC BY 4.0' },
+      { candidate: 'arthaud', file: 'arthaud.jpg' },
+    ])
+      assert.throws(() => parsePortraits([{ ...row, ...change }], candidates));
+  }
 });
 
 test('les fichiers et les crédits publiés correspondent à la revue photographique', () => {

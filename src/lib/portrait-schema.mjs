@@ -1,5 +1,8 @@
 import { z } from 'astro/zod';
 import { idSchema, publicUrlSchema } from './schema.mjs';
+import { portraitLinks } from './portrait-links.mjs';
+
+export const unconfirmedRights = 'Autorisation de reproduction non documentée';
 
 // These permissions apply only to the reviewed photographs, not to their sites.
 export const portraitPermissions = [
@@ -44,8 +47,9 @@ export const portraitSchema = z
       'CC BY-SA 4.0',
       'Conditions du Parlement européen',
       'Autorisation de campagne',
+      unconfirmedRights,
     ]),
-    licenseUrl: publicUrlSchema,
+    licenseUrl: publicUrlSchema.nullable(),
     sourceUrl: publicUrlSchema,
     year: z
       .string()
@@ -53,8 +57,7 @@ export const portraitSchema = z
       .nullable(),
   })
   .superRefine((row, context) => {
-    const source = new URL(row.sourceUrl),
-      license = new URL(row.licenseUrl);
+    const source = new URL(row.sourceUrl);
     const permission = portraitPermissions.find(
       (item) => item.candidate === row.candidate,
     );
@@ -73,12 +76,27 @@ export const portraitSchema = z
             message: 'Le portrait ne correspond pas à l’autorisation vérifiée',
           });
       }
-    } else if (!row.license.startsWith('CC')) {
+    } else if (row.license === unconfirmedRights) {
+      const publication = Object.hasOwn(portraitLinks, row.candidate)
+        ? portraitLinks[row.candidate]
+        : undefined;
+      if (
+        !publication ||
+        row.licenseUrl !== null ||
+        row.sourceUrl !== (publication.sourceUrl ?? publication.url)
+      )
+        context.addIssue({
+          code: 'custom',
+          message:
+            'La publication du portrait doit être identifiée sans licence de reprise',
+        });
+    } else if (!row.license.startsWith('CC') || !row.licenseUrl) {
       context.addIssue({
         code: 'custom',
         message: 'Autorisation photographique non documentée',
       });
     } else {
+      const license = new URL(row.licenseUrl);
       const prefix =
         row.license === 'CC0'
           ? '/publicdomain/zero/1.0'

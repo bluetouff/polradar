@@ -1,14 +1,13 @@
-// Publication d’origine quand les droits de reproduction du portrait ne sont pas établis.
-export const portraitLinks: Record<
-  string,
-  { label: string; url: string } | undefined
-> = {
+// Publications nominatives utilisées pour identifier les portraits de campagne.
+/** @type {Record<string, {label: string, url: string, sourceUrl?: string} | undefined>} */
+export const portraitLinks = {
   billetdoux: {
     label: 'Vidéo de candidature',
     url: 'https://billetdoux2027.fr/',
   },
   cheve: {
-    label: 'Photos dans la lettre du candidat (p. 4)',
+    label: 'Lettre de présentation de Joël Chevé (p. 4)',
+    sourceUrl: 'https://2027presidentielle.fr/joel-cheve',
     url: 'https://www.lafranceadulte.fr/lettre2025.pdf#page=4',
   },
   collovati: {
@@ -28,7 +27,9 @@ export const portraitLinks: Record<
     url: 'https://parti-animaliste.fr/mira-markovic-2027',
   },
   mikolajczak: {
-    label: 'Portrait sur le site d’Équinoxe',
+    label: 'Fiche du candidat sur le site d’Équinoxe',
+    sourceUrl:
+      'https://parti-equinoxe.fr/wp-content/uploads/2026/07/Parti-equinoxe-dossier-de-presse-2026.pdf#page=6',
     url: 'https://parti-equinoxe.fr/qui-est-antoine-mikolajczak/',
   },
   mlekuz: {

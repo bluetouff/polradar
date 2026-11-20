@@ -1,12 +1,14 @@
 ---
 import { candidates, measures, themes, type Candidate } from '../lib/data';
-import { portraitLinks } from '../lib/portrait-links';
+import { portraitLinks } from '../lib/portrait-links.mjs';
+import { portraitFor } from '../lib/portraits';
 import CandidatePortrait from './CandidatePortrait.astro';
 interface Props {
   candidate: Candidate;
 }
 const { candidate } = Astro.props;
-const externalPortrait = portraitLinks[candidate.id];
+const externalPortrait =
+  !portraitFor(candidate.id) && portraitLinks[candidate.id];
 const records = measures.filter(
   (row) => row.candidate === candidate.id && row.scope !== 'archive',
 );

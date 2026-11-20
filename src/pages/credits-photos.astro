@@ -5,6 +5,7 @@ import Base from '../layouts/Base.astro';
 import { candidates } from '../lib/data';
 import { portraits, portraitFor } from '../lib/portraits';
 import { portraitPermissions } from '../lib/portrait-schema.mjs';
+import { portraitLinks } from '../lib/portrait-links.mjs';
 import '../styles/candidates.css';
 ---
 
@@ -12,16 +13,15 @@ import '../styles/candidates.css';
   <header class="page-title">
     <h1>Crédits photographiques</h1>
     <p>
-      {portraits.length} portraits avec leurs crédits et conditions de
-      réutilisation. La date indiquée est celle du portrait, lorsqu’elle est
-      renseignée par la source.
+      {portraits.length} portraits. Chaque fiche indique la publication
+      d’origine, le crédit disponible et le statut des droits de reproduction.
     </p>
   </header>
   <p class="section-description">
-    Les photographies sont servies depuis Polradar. Elles sont redimensionnées
-    et recadrées à l’affichage. Les licences ou autorisations indiquées
-    s’appliquent aux images, indépendamment de la licence MIT du code. Leur
-    présence ne constitue pas un soutien à Polradar.
+    Polradar héberge les images et les adapte aux vignettes. Les photographies
+    conservent leurs droits propres. Une licence de réutilisation, lorsqu’elle
+    est publiée, figure à côté de la source. L’année indiquée est celle du
+    cliché lorsqu’elle est connue.
   </p>
   <PagedResults total={portraits.length}>
     <div class="photo-credit-list" data-document-list>
@@ -30,6 +30,7 @@ import '../styles/candidates.css';
           (row) => row.id === credit.candidate,
         )!;
         const portrait = portraitFor(candidate.id)!;
+        const publication = portraitLinks[candidate.id];
         const permission = portraitPermissions.find(
           (item) => item.candidate === candidate.id,
         );
@@ -49,8 +50,9 @@ import '../styles/candidates.css';
                 <Image
                   src={portrait.image}
                   alt=""
-                  width={130}
+                  width={128}
                   format="webp"
+                  quality={82}
                   loading="lazy"
                 />
               )}
@@ -71,13 +73,27 @@ import '../styles/candidates.css';
                 >
                   Source du portrait ↗
                 </a>
-                <a
-                  href={credit.licenseUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {credit.license} ↗
-                </a>
+                {credit.licenseUrl ? (
+                  <a
+                    href={credit.licenseUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {credit.license} ↗
+                  </a>
+                ) : (
+                  <span>{credit.license}</span>
+                )}
+                {publication?.sourceUrl &&
+                  publication.url !== credit.sourceUrl && (
+                    <a
+                      href={publication.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {publication.label} ↗
+                    </a>
+                  )}
                 {permission && (
                   <a
                     href={permission.identityUrl}

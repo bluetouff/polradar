@@ -23,6 +23,15 @@ import portrait20 from '../assets/portraits/ruffin.jpg';
 import portrait21 from '../assets/portraits/tondelier.jpg';
 import portrait22 from '../assets/portraits/zemmour.jpg';
 import portrait23 from '../assets/portraits/mathieu.jpg';
+import billetdoux from '../assets/portraits/billetdoux.jpg';
+import cheve from '../assets/portraits/cheve.jpg';
+import collovati from '../assets/portraits/collovati.jpg';
+import labib from '../assets/portraits/labib.jpg';
+import legendre from '../assets/portraits/legendre.jpg';
+import markovic from '../assets/portraits/markovic.jpg';
+import mikolajczak from '../assets/portraits/mikolajczak.jpg';
+import mlekuz from '../assets/portraits/mlekuz.jpg';
+import rohou from '../assets/portraits/rohou.jpg';
 export const portraitAssets: Record<string, ImageMetadata> = {
   'arthaud.jpg': portrait0,
   'asselineau.jpg': portrait1,
@@ -48,4 +57,13 @@ export const portraitAssets: Record<string, ImageMetadata> = {
   'tondelier.jpg': portrait21,
   'zemmour.jpg': portrait22,
   'mathieu.jpg': portrait23,
+  'billetdoux.jpg': billetdoux,
+  'cheve.jpg': cheve,
+  'collovati.jpg': collovati,
+  'labib.jpg': labib,
+  'legendre.jpg': legendre,
+  'markovic.jpg': markovic,
+  'mikolajczak.jpg': mikolajczak,
+  'mlekuz.jpg': mlekuz,
+  'rohou.jpg': rohou,
 };

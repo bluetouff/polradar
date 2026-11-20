@@ -2,7 +2,7 @@
 
 Revue du 17 novembre 2026 : fichiers affichés, identité représentée, provenance, auteur, date du cliché lorsqu’elle est établie, licence ou autorisation. Une légende Wikimedia ne suffit pas à elle seule à identifier une personne ou à établir les droits du déposant.
 
-Les crédits publics sont dans `src/data/portraits.json` et sur `/credits-photos/`. Le relevé `src/data/portraits-reviewed.json` fixe les empreintes des 24 fichiers et de leurs crédits après cette revue. Les tests bloquent une modification ou un ajout qui ne correspond plus à ce relevé. Les empreintes constatent la stabilité des fichiers ; elles ne vérifient pas l’identité, l’authenticité ou les droits. Toute nouvelle image exige de vérifier son identité, son origine et ses droits avant de mettre à jour le relevé.
+Les crédits publics sont dans `src/data/portraits.json` et sur `/credits-photos/`. Le relevé `src/data/portraits-reviewed.json` fixe les empreintes des fichiers et de leurs crédits après cette revue. Les tests bloquent une modification ou un ajout qui ne correspond plus à ce relevé. Les empreintes constatent la stabilité des fichiers ; elles ne vérifient pas l’identité, l’authenticité ou les droits. Chaque ajout documente l’identité, la publication et le statut des droits avant de mettre à jour le relevé.
 
 ## Corrections effectuées
 
@@ -15,9 +15,9 @@ Les crédits publics sont dans `src/data/portraits.json` et sur `/credits-photos
 
 **Benoît Mathieu** : [portrait officiel sur fond bleu](https://benoitmathieu2027.fr/espace-presse), photo Delphine Herbin. L’[autorisation publiée](https://benoitmathieu2027.fr/presse/CREDITS-ET-CONDITIONS.txt) couvre les articles de presse et la communication liée à sa candidature, impose le crédit, permet recadrage et détourage et interdit les autres modifications. Le JPEG fourni est conservé et servi sans réencodage, avec un cadrage CSS. La date du cliché n’est pas indiquée dans ces conditions et reste non renseignée. Cette autorisation ne couvre pas les autres photos du site.
 
-## Neuf portraits encore à obtenir
+## Sources examinées le 17 novembre 2026
 
-Les recherches sur Commons, les sites de campagne, les espaces presse et les conditions accessibles n’ont pas permis de qualifier ces neuf portraits au 17 novembre 2026. Les images de presse payantes et les portraits générés ou parodiques ne sont pas utilisés. Aucun message n’a été envoyé aux campagnes.
+Les recherches sur Commons, les sites de campagne, les espaces presse et les conditions accessibles n’ont pas permis de qualifier ces neuf portraits au 17 novembre 2026. Les images de presse payantes et les portraits générés ou parodiques ne sont pas utilisés. À cette date, aucun message n’avait été envoyé aux campagnes.
 
 | Candidature            | Source examinée                                                                                                                                                                                                 | Point restant à établir                                                                                                                                                                          |
 | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -31,10 +31,16 @@ Les recherches sur Commons, les sites de campagne, les espaces presse et les con
 | Manolo Mlekuz          | [Équipe](https://trajectoire2027.fr/equipe), [presse](https://trajectoire2027.fr/presse) et [mentions légales](https://trajectoire2027.fr/mentions-legales)                                                     | Autorisation écrite et auteur. Une ancienne page Commons indexée n’était plus récupérable ; sa mention CC BY avec auteur inconnu n’a pas été retenue. Le site de campagne exige un accord écrit. |
 | Erwan Rohou            | [Annonce du MEI](https://www.les-ecologistes-mei.org/post/erwan-rohou-candidat-du-mei-aux-%C3%A9lections-pr%C3%A9sidentielles) et [mentions légales](https://www.les-ecologistes-mei.org/mentions-l%C3%A9gales) | Portrait original avec auteur et autorisation photographique.                                                                                                                                    |
 
-Pour chaque demande, obtenir le fichier, le nom de l’auteur, la mention de crédit, la permission de publication sur Polradar et dans son dépôt public, ainsi que les transformations permises. Conserver l’accord et ne pas le transformer en licence libre sans l’accord du titulaire des droits.
+Une photographie dont l’auteur ou la licence sont inconnus conserve ce statut dans la fiche de crédits. Un accord individuel reste attaché au seul cliché qu’il vise.
 
 ## Revue du 20 novembre 2026
 
-Les neuf fiches ci-dessus renvoient désormais à la publication originale du candidat ou de son parti. Billetdoux présente sa candidature en vidéo. Pour Rohou, le [portrait du MEI](https://les-ecologistes-mei.org/erwan-rohou/) nomme le candidat. La [page de Trajectoire](https://trajectoire2027.fr/equipe) identifie Mlekuz dans son équipe. L’ancienne image de Mlekuz a été supprimée de Wikimedia Commons. Les conditions de reproduction de ces neuf visuels restent à établir.
+Les publications nominatives ont été vérifiées. Billetdoux présente sa candidature en vidéo. Pour Rohou, le [portrait du MEI](https://les-ecologistes-mei.org/erwan-rohou/) nomme le candidat. La [page de Trajectoire](https://trajectoire2027.fr/equipe) identifie Mlekuz dans son équipe. L’ancienne image de Mlekuz a été supprimée de Wikimedia Commons.
 
 Les formulaires des campagnes d’Augustin Billetdoux, de Christian Collovati et du Parti animaliste pour Mira Markovic ont accusé réception de la demande de portrait le 20 novembre. Ceux du NPA-Révolutionnaires pour Selma Labib et d’Équinoxe pour Antoine Mikolajczak ont été soumis sans confirmation de réception. Le suivi éditorial distingue l’envoi d’une demande de l’obtention du fichier et des droits.
+
+## Publication des neuf portraits
+
+Les neuf portraits ont été intégrés le 20 novembre à partir des publications identifiées. Les fichiers et les crédits sont répertoriés sur [la page des crédits](https://polradar.fr/credits-photos/). L’autorisation de reproduction de chacun de ces neuf fichiers reste non documentée. La licence MIT du site ne s’étend pas aux photos.
+
+La vignette de Billetdoux provient de sa déclaration filmée. Le portrait de Chevé figure sur [sa fiche nominative](https://2027presidentielle.fr/joel-cheve), à rapprocher de la page 4 de sa présentation. Le tract du NPA nomme Labib sous sa photo en couverture. Pour Mikolajczak, le portrait vient de la page 6 du [dossier de presse d’Équinoxe](https://parti-equinoxe.fr/wp-content/uploads/2026/07/Parti-equinoxe-dossier-de-presse-2026.pdf#page=6). Le MEI attribue le cliché de Rohou à Franck Buchy. Pour les huit autres clichés, les publications utilisées ne nomment pas l’auteur de l’image.
