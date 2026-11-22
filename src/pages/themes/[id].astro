@@ -7,6 +7,7 @@ import Icon from '../../components/Icon.astro';
 import { themes, measures } from '../../lib/data';
 import PagedResults from '../../components/PagedResults.astro';
 import { pageRange } from '../../lib/pagination';
+import { retirementPath } from '../../lib/retirement-comparison.mjs';
 interface Props {
   theme: (typeof themes)[number];
   page?: number;
@@ -22,11 +23,20 @@ const records = measures.filter(
   (e) => e.theme === theme.id && e.scope !== 'archive',
 );
 const range = pageRange(records.length, page);
+const retirementOverview = theme.id === 'retraites' && page === 1;
 ---
 
 <Base
-  title={`${theme.label} : les propositions${page > 1 ? ' · page ' + page : ''}`}
-  description={theme.note}
+  title={
+    retirementOverview
+      ? 'Retraites : les propositions pour la présidentielle 2027'
+      : `${theme.label} : les propositions${page > 1 ? ' · page ' + page : ''}`
+  }
+  description={
+    retirementOverview
+      ? 'Âge de départ, pensions et financement des retraites : retrouvez les propositions pour la présidentielle 2027 et les documents qui les étayent.'
+      : theme.note
+  }
 >
   <div class="breadcrumbs">
     <a href="/themes/">Enjeux</a>
@@ -46,6 +56,16 @@ const range = pageRange(records.length, page);
         </a>
         <FollowButton kind="theme" id={theme.id} name={theme.label} />
       </div>
+      {retirementOverview && (
+        <nav class="feature-actions" aria-label="Approfondir les retraites">
+          <a class="button" href="/questions/retraites-conditions-depart/">
+            Âge de départ et durée de cotisation ↗
+          </a>
+          <a class="button" href={retirementPath}>
+            Programmes et droit en vigueur par génération ↗
+          </a>
+        </nav>
+      )}
     </div>
   </header>
   {page === 1 && <MetricPlot measures={records} />}

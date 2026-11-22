@@ -26,7 +26,10 @@ const counts = themes.map((theme) => ({
 const maxCount = Math.max(1, ...counts.map((theme) => theme.count));
 ---
 
-<Base>
+<Base
+  title="Présidentielle 2027 : candidats, programmes et sondages"
+  description="Suivez la présidentielle française de 2027. Retrouvez les candidats, comparez les programmes et consultez les sondages, le calendrier et les sources."
+>
   <HomeCover />
   <nav class="home-choices" aria-label="Que cherchez-vous ?">
     <a href="/questions/">
@@ -84,7 +87,13 @@ const maxCount = Math.max(1, ...counts.map((theme) => theme.count));
       </p>
       <div class="theme-register">
         {counts.map((theme) => (
-          <a href={`/comparer/?theme=${theme.id}`}>
+          <a
+            href={
+              theme.id === 'retraites'
+                ? '/themes/retraites/'
+                : `/comparer/?theme=${theme.id}`
+            }
+          >
             <Icon name={theme.id} />
             <span class="theme-entry">
               <span>{theme.label}</span>
