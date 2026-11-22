@@ -1,0 +1,81 @@
+name: Veille éditoriale
+on:
+  schedule:
+    - cron: '0 18 * * *'
+      timezone: Europe/Paris
+  workflow_dispatch:
+
+permissions: {}
+concurrency:
+  group: polradar-editorial
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    name: Chercher les publications
+    if: github.repository == 'bluetouff/polradar' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Rechercher les annonces et ouvrir les sources
+        shell: bash
+        run: python3 scripts/editorial-collect.py | tee -a "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: editorial-observations
+          path: artifacts/editorial/edition.json
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    name: Valider et publier la revue
+    needs: collect
+    if: github.repository == 'bluetouff/polradar' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    environment: polradar-data-publish
+    concurrency:
+      group: polradar-main-data-writer
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .node-version
+      - run: npm ci --ignore-scripts
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: editorial-observations
+          path: artifacts/editorial/
+      - name: Intégrer les publications vérifiées
+        id: prepare
+        run: |
+          set -euo pipefail
+          node scripts/publish-editorial.mjs
+          files=(src/data/{editorial-reviews,sources,events,campaign-agenda,measures,versions}.json)
+          ./node_modules/.bin/prettier --write "${files[@]}"
+          node scripts/validate-content.mjs
+          node scripts/check-history.mjs
+          git add -- "${files[@]}"
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+          else
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Publie la revue éditoriale quotidienne de Polradar'
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Publier sur la branche de déploiement
+        if: steps.prepare.outputs.changed == 'true'
+        env:
+          POLRADAR_DATA_PUSH_KEY: ${{ secrets.POLRADAR_DATA_PUSH_KEY }}
+        run: bash scripts/push-published-data.sh

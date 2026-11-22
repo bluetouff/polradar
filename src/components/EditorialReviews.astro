@@ -1,5 +1,6 @@
 ---
 import reviews from '../data/editorial-reviews.json';
+import HostedEditorial from './HostedEditorial.astro';
 import {
   candidates,
   sources,
@@ -26,8 +27,8 @@ const labels = {
 <section class="editorial-reviews" aria-labelledby="revue-editoriale">
   <h2 id="revue-editoriale">Recherche éditoriale</h2>
   <p>
-    Les publications des candidats, des partis et des institutions sont
-    recherchées chaque jour à 18 h, heure de Paris.
+    GitHub Actions recherche chaque jour les publications des candidats, des
+    partis et des institutions. Le passage est programmé à 18 h, heure de Paris.
   </p>
   {reports.length === 0 && <p>Aucune revue publiée.</p>}
   {reports.length > 0 && (
@@ -45,6 +46,13 @@ const labels = {
           {formatTimestamp(report.checkedAt)} · Paris
         </time>
       </summary>
+      {report.hosted && <HostedEditorial hosted={report.hosted} />}
+      {report.manualCheckedAt && (
+        <p>
+          Revue rédigée le {formatTimestamp(report.manualCheckedAt)} · heure de
+          Paris
+        </p>
+      )}
       {report.collection && (
         <a
           href={

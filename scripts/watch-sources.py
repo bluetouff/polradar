@@ -76,8 +76,8 @@ def redirect_url(current, location, allowed_hosts):
     return result
 
 
-def fetch(url, allowed_hosts):
-    deadline = time.monotonic() + 45
+def fetch(url, allowed_hosts, *, with_url=False, timeout=45):
+    deadline = time.monotonic() + timeout
 
     def remaining():
         value = deadline - time.monotonic()
@@ -88,14 +88,15 @@ def fetch(url, allowed_hosts):
     for _ in range(5):
         parts = checked_url(url, allowed_hosts)
         addresses = public_addresses(parts.hostname)
-        response = None
         for address in addresses:
             connection = http.client.HTTPSConnection(parts.hostname, timeout=remaining(), context=ssl.create_default_context())
             raw = None
+            response = None
             try:
                 # Pin a validated IP while keeping hostname and certificate validation.
                 raw = socket.create_connection((address, 443), timeout=remaining())
-                connection.sock = ssl.create_default_context().wrap_socket(raw, server_hostname=parts.hostname)
+                tls = ssl.create_default_context().wrap_socket(raw, server_hostname=parts.hostname)
+                connection.sock = tls
                 raw = None
                 connection.sock.settimeout(remaining())
                 path = urllib.parse.urlunsplit(('', '', parts.path or '/', parts.query, ''))
@@ -109,15 +110,18 @@ def fetch(url, allowed_hosts):
                     url = redirect_url(url, response.getheader('Location', ''), allowed_hosts)
                     break
                 if status != 200:
-                    return status, content_type, b''
+                    result = (status, content_type, b'')
+                    return (*result, url) if with_url else result
                 if response.getheader('Content-Encoding', 'identity') not in ('identity', ''):
                     raise ValueError('Unexpected encoding')
                 length = response.getheader('Content-Length')
                 if length and int(length) > LIMIT:
                     raise ValueError('Document too large')
                 chunks, size = [], 0
-                while True:
-                    connection.sock.settimeout(remaining())
+                # http.client releases connection.sock when the server requests
+                # Connection: close. The response still owns a readable socket.
+                while not response.isclosed():
+                    tls.settimeout(remaining())
                     chunk = response.read1(min(65536, LIMIT + 1 - size))
                     if not chunk:
                         break
@@ -126,11 +130,14 @@ def fetch(url, allowed_hosts):
                         raise ValueError('Document too large')
                     chunks.append(chunk)
                 body = b''.join(chunks)
-                return status, content_type, body
+                result = (status, content_type, body)
+                return (*result, url) if with_url else result
             except (OSError, ssl.SSLError):
                 if address == addresses[-1]:
                     raise
             finally:
+                if response is not None:
+                    response.close()
                 connection.close()
                 if raw is not None:
                     raw.close()

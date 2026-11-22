@@ -103,6 +103,7 @@ export const eventSchema = z.object({
     'calendrier',
   ]),
   dateKind: z.enum(['evenement', 'publication', 'mise-a-jour']),
+  publicationBrief: dateSchema.optional(),
   candidates: z.array(idSchema).max(40),
   sources: z.array(idSchema).min(1),
 });
@@ -479,6 +480,15 @@ export function validateDataset(dataset) {
     }
   }
   for (const event of dataset.events) {
+    if (
+      event.publicationBrief &&
+      (event.dateKind !== 'publication' ||
+        event.date > event.publicationBrief ||
+        event.publicationBrief > today)
+    )
+      errors.push(
+        `${event.id}: date de brève incompatible avec la publication d’origine`,
+      );
     if (event.kind === 'past' && event.date > today)
       errors.push(`${event.id}: événement passé daté dans le futur`);
     for (const id of event.candidates)

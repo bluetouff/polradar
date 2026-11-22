@@ -166,6 +166,7 @@ class WatchTests(unittest.TestCase):
         self.assertNotIn('reviewedAt',row)
 
     def fake_fetch(self,response):
+        response.isclosed.return_value=False
         connection=Mock()
         connection.getresponse.return_value=response
         context=Mock()
@@ -184,6 +185,21 @@ class WatchTests(unittest.TestCase):
         self.assertEqual(context.wrap_socket.call_args.kwargs['server_hostname'],'example.org')
         self.assertEqual(connection.request.call_args.args[:2],('GET','/source'))
         connection.close.assert_called_once()
+
+    def test_fetch_reads_body_after_remote_peer_requests_connection_close(self):
+        response=Mock(status=200)
+        response.getheader.side_effect=lambda name,default='': {'Content-Type':'text/html'}.get(name,default)
+        response.isclosed.side_effect=[False,True]
+        response.read1.return_value=b'page'
+        connection,context,patches=self.fake_fetch(response)
+        def detach_socket():
+            connection.sock=None
+            return response
+        connection.getresponse.side_effect=detach_socket
+        with patches[0],patches[1],patches[2],patches[3]:
+            self.assertEqual(watch.fetch('https://example.org/source',self.allowed,with_url=True),
+                             (200,'text/html',b'page','https://example.org/source'))
+        response.read1.assert_called_once()
 
     def test_oversized_and_encoded_documents_are_blocked(self):
         for headers in [{'Content-Type':'text/html','Content-Length':str(watch.LIMIT+1)},{'Content-Type':'text/html','Content-Encoding':'gzip'}]:

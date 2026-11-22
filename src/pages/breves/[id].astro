@@ -10,8 +10,8 @@ export async function getStaticPaths() {
     props: { brief },
   }));
 }
-const { article, event } = Astro.props.brief;
-const { Content } = await render(article);
+const { article, event, entry } = Astro.props.brief;
+const Content = entry ? (await render(entry)).Content : null;
 ---
 
 <Base
@@ -26,7 +26,8 @@ const { Content } = await render(article);
   <article class="brief-reading">
     <header>
       <p class="brief-byline">
-        Rédaction Polradar · Publié le{' '}
+        {entry ? 'Rédaction Polradar' : 'Veille des publications officielles'} ·
+        Publié le{' '}
         <time datetime={article.data.published}>
           {formatDate(article.data.published)}
         </time>
@@ -34,9 +35,16 @@ const { Content } = await render(article);
       <h1>{article.data.title}</h1>
       <p class="brief-deck">{article.data.description}</p>
     </header>
-    <div class="prose">
-      <Content />
-    </div>
+    {Content ? (
+      <div class="prose">
+        <Content />
+      </div>
+    ) : (
+      <p>
+        Le document d’origine est daté du{' '}
+        <time datetime={event.date}>{formatDate(event.date)}</time>.
+      </p>
+    )}
     <section class="article-sources">
       <h2>Sources</h2>
       <SourceLinks ids={event.sources} />

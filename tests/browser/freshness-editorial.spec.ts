@@ -83,6 +83,30 @@ test.describe('journal éditorial', () => {
       latest.checkedAt,
     );
     const report = section.locator('.edition-review').first();
+    if ('hosted' in latest && latest.hosted) {
+      const hosted = latest.hosted as {
+        run: string;
+        attempt: number;
+        checks: unknown[];
+      };
+      const hostedView = report.getByRole('region', {
+        name: 'Passage sur GitHub Actions',
+      });
+      await expect(
+        hostedView.getByRole('link', { name: 'Exécution GitHub Actions ↗' }),
+      ).toHaveAttribute(
+        'href',
+        'https://github.com/bluetouff/polradar/actions/runs/' +
+          hosted.run +
+          '/attempts/' +
+          hosted.attempt,
+      );
+      const sources = hostedView.locator('details').filter({
+        has: page.locator('summary', { hasText: 'Accès aux sources' }),
+      });
+      await sources.locator('summary').click();
+      await expect(sources.locator('li')).toHaveCount(hosted.checks.length);
+    }
     await expect(report.locator('.review-candidates > summary')).toContainText(
       String(latest.candidates.length),
     );

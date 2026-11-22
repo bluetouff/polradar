@@ -1,0 +1,101 @@
+{
+  "candidates": {
+    "arthaud": ["arthaud-discours-2026"],
+    "asselineau": ["upr"],
+    "attal": ["attal-work"],
+    "billetdoux": ["billetdoux-declaration-2027"],
+    "branco": ["branco-projet"],
+    "cheve": ["cheve-remontee-citoyenne"],
+    "collovati": ["collovati-projet-2027"],
+    "dupont-aignan": ["dlf-economie-2026"],
+    "durif": ["durif-elvita-programme-2027"],
+    "egger": ["egger-programme-2027"],
+    "glucksmann": ["glucks-climate", "pp-home", "ps-projet-2027-vivre-libres"],
+    "kazib": ["kazib-programme-campagne", "kazib-premieres-mesures-2027"],
+    "labib": ["labib-campagne-2027"],
+    "lalanne": ["lalanne-projet-2027"],
+    "lassalle": ["resistons-site"],
+    "legendre": ["legendre-projet-2027"],
+    "lepen": ["rn-ukraine-communique"],
+    "lisnard": ["lisnard-project"],
+    "markovic": ["animaliste-markovic-2026"],
+    "mathieu": ["mathieu-projet-2027"],
+    "melenchon": ["lfi-social"],
+    "mikolajczak": ["equinoxe-programme-2027"],
+    "mlekuz": ["mlekuz-programme-2027"],
+    "philippe": ["philippe-index"],
+    "philippot": ["patriotes-projet-2026-2027"],
+    "polony": ["polony-vision"],
+    "retailleau": ["retailleau-index"],
+    "riner": ["riner-production-locale", "riner-agenda-novembre-lcp"],
+    "rohou": ["mei-projet-2027"],
+    "roussel": ["roussel-pacte-2026"],
+    "ruffin": ["ruffin-project"],
+    "tondelier": ["eco-work"],
+    "villepin": ["villepin-chapitre-1"],
+    "zemmour": ["reconquete-paroles"]
+  },
+  "sections": {
+    "candidatures": {
+      "query": "\"présidentielle 2027\" (candidature OR retrait OR investiture)",
+      "sources": ["lcp-candidatures-novembre", "cazeneuve-lettre"]
+    },
+    "propositions": {
+      "query": "\"présidentielle 2027\" (programme OR propositions)",
+      "sources": ["villepin-chapitre-12", "kazib-programme-campagne"]
+    },
+    "agenda": {
+      "query": "\"présidentielle 2027\" (meeting OR déplacement OR \"réunion publique\")",
+      "sources": ["agenda-kazib-paris", "pcf-loos-avion-decembre"]
+    },
+    "breves": {
+      "query": "\"présidentielle 2027\" (campagne OR annonce OR communiqué)",
+      "sources": ["lcp-candidatures-novembre", "reconquete-paroles"]
+    },
+    "votes": {
+      "query": "(scrutin OR vote) (\"Assemblée nationale\" OR Sénat OR \"Parlement européen\")",
+      "sources": ["an-index-scrutins", "senat-seance-20-novembre"]
+    },
+    "financements": {
+      "query": "(présidentielle OR CNCCFP) (financement OR chiffrage OR comptes)",
+      "sources": ["cnccfp", "senat-budget-2027-contexte"]
+    },
+    "droit": {
+      "query": "(CNIL OR Légifrance OR \"Conseil constitutionnel\") (élection OR numérique OR retraites)",
+      "sources": [
+        "service-public-dates-scrutins",
+        "cnil-actualites",
+        "assurance-retraite-age"
+      ]
+    },
+    "reperes": {
+      "query": "(présidentielle OR CHES) (communes OR parrainages OR résultats)",
+      "sources": ["interieur-resultats-2022-t1", "ches-catalogue-europe"]
+    },
+    "donnees": {
+      "query": "(Ifop OR YouGov OR Insee OR Eurostat OR Arcom) (sondage OR économie OR \"temps de parole\")",
+      "sources": [
+        "sondages",
+        "eurostat-euro-indicateurs",
+        "arcom-hors-elections"
+      ]
+    },
+    "declarations": {
+      "query": "(Insee OR \"Cour des comptes\" OR Eurostat) (chômage OR budget OR \"dette publique\")",
+      "sources": ["insee-chomage-t3-2026", "senat-budget-2027-contexte"]
+    }
+  },
+  "programmes": {
+    "lfi-health": "melenchon-sante",
+    "lfi-school": "melenchon-education",
+    "lfi-climate": "melenchon-climat",
+    "attal-school": "attal-education",
+    "attal-budget": "attal-fiscalite",
+    "philippe-pension": "philippe-retraites",
+    "philippe-ecole": "philippe-education",
+    "philippe-famille": "philippe-social",
+    "retailleau-pension": "retailleau-retraites",
+    "retailleau-logement": "retailleau-logement",
+    "retailleau-budget": "retailleau-fiscalite"
+  }
+}

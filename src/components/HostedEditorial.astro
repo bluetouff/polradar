@@ -1,0 +1,181 @@
+---
+import { type z } from 'astro/zod';
+import {
+  editorialReviewSchema,
+  editorialSections,
+} from '../lib/editorial-reviews.mjs';
+import { candidates, formatDate, sourceById, meta } from '../lib/data';
+type Report = z.infer<ReturnType<typeof editorialReviewSchema>>[number];
+interface Props {
+  hosted: NonNullable<Report['hosted']>;
+}
+const { hosted } = Astro.props;
+const labels = new Map([
+  ...Object.entries(editorialSections),
+  ...candidates.map((c) => [c.id, c.name] as [string, string]),
+]);
+const successful = hosted.queries.filter((q) => q.count !== null);
+const candidatesQueried = successful.filter(
+  (q) => !Object.hasOwn(editorialSections, q.id),
+).length;
+const readable = hosted.checks.filter((c) => c.ok);
+const leads = [
+  ...new Map(
+    hosted.queries.flatMap((q) =>
+      q.leads.map(
+        (l) => [l.article ?? l.publisher + ' ' + l.title, l] as const,
+      ),
+    ),
+  ).values(),
+].sort((a, b) => b.date.localeCompare(a.date));
+---
+
+<section class="hosted-report" aria-label="Passage sur GitHub Actions">
+  <h3>Veille de 18 h</h3>
+  <p>
+    Recherches abouties pour {candidatesQueried} candidats et{' '}
+    {successful.length - candidatesQueried} rubriques. {readable.length} sources
+    accessibles sur {hosted.checks.length}.{' '}
+    <a
+      href={
+        meta.repository +
+        '/actions/runs/' +
+        hosted.run +
+        '/attempts/' +
+        hosted.attempt
+      }
+    >
+      Exécution GitHub Actions ↗
+    </a>
+  </p>
+  {hosted.changes.length > 0 && (
+    <div>
+      <h4>Ajouts sur Polradar</h4>
+      <ul>
+        {hosted.changes.map((change) => (
+          <li>
+            <a href={change.path}>{change.title}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+  {hosted.publications.length > 0 && (
+    <details>
+      <summary>
+        Publications datées sur les sites d’origine (
+        {hosted.publications.length})
+      </summary>
+      <ul>
+        {hosted.publications.map((id) => {
+          const s = sourceById(id);
+          return (
+            <li>
+              <a href={s.url}>{s.title}</a> ·{' '}
+              {s.publisher || new URL(s.url).hostname}
+              {s.published && ' · ' + formatDate(s.published)}
+            </li>
+          );
+        })}
+      </ul>
+    </details>
+  )}
+  <details>
+    <summary>
+      Résultats de recherche depuis le {formatDate(hosted.since)}
+    </summary>
+    <ul>
+      {hosted.queries.map((q) => (
+        <li>
+          {labels.get(q.id)} ·{' '}
+          {q.count === null
+            ? 'index indisponibles'
+            : q.count +
+              ' résultat' +
+              (q.count > 1 ? 's' : '') +
+              ' · ' +
+              (q.engine === 'bing' ? 'Bing Actualités' : 'Google Actualités')}
+        </li>
+      ))}
+    </ul>
+  </details>
+  {leads.length > 0 && (
+    <details>
+      <summary>Articles à relire ({leads.length})</summary>
+      <p>
+        Ces titres proviennent des index d’actualité. Chaque attribution au
+        programme d’un candidat nécessite la lecture de sa source.
+      </p>
+      <ul>
+        {leads.map((l) => (
+          <li>
+            <a
+              href={
+                l.article
+                  ? 'https://news.google.com/rss/articles/' + l.article
+                  : 'https://www.bing.com/news/search?' +
+                    new URLSearchParams({ q: l.title })
+              }
+            >
+              {l.title}
+            </a>{' '}
+            · {formatDate(l.date)}
+          </li>
+        ))}
+      </ul>
+    </details>
+  )}
+  <details>
+    <summary>
+      Accès aux sources ({readable.length}/{hosted.checks.length})
+    </summary>
+    <ul>
+      {hosted.checks.map((c) => (
+        <li>
+          {c.url ? (
+            <a href={c.url}>
+              {new URL(c.url).hostname} · {sourceById(c.id).title}
+            </a>
+          ) : (
+            sourceById(c.id).title
+          )}{' '}
+          ·{' '}
+          {c.ok
+            ? 'accessible'
+            : c.url
+              ? 'inaccessible lors du passage'
+              : 'hébergement partagé, consultation directe non traitée'}
+        </li>
+      ))}
+    </ul>
+  </details>
+</section>
+<style>
+  .hosted-report {
+    margin: 0.7rem 0;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 0.55rem;
+    background: var(--panel-gradient);
+    overflow-wrap: anywhere;
+  }
+  h3,
+  h4,
+  p,
+  ul {
+    margin: 0.35rem 0;
+  }
+  summary {
+    padding-block: 0.45rem;
+    cursor: pointer;
+  }
+  li,
+  p,
+  summary {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  ul {
+    padding-inline-start: 1.2rem;
+  }
+</style>

@@ -1,5 +1,24 @@
 import { z } from 'astro/zod';
-import { civilDateInParis, idSchema } from './schema.mjs';
+import {
+  civilDateInParis,
+  idSchema,
+  publicUrlSchema,
+  dateSchema,
+} from './schema.mjs';
+
+export const editorialLead = z.strictObject({
+  title: z
+    .string()
+    .min(2)
+    .max(220)
+    .regex(/^[^<>\u0000-\u001f\u007f\u202a-\u202e\u2066-\u2069]*$/u),
+  date: dateSchema,
+  article: z
+    .string()
+    .regex(/^[A-Za-z0-9_-]{12,800}$/)
+    .nullable(),
+  publisher: z.string().regex(/^[a-z0-9.-]{3,180}$/),
+});
 
 export const editorialSections = {
   candidatures: 'Candidatures et investitures',
@@ -26,22 +45,20 @@ const localPage = z
 export function editorialReviewSchema(candidates, sources) {
   const candidateIds = new Set(candidates.map((c) => c.id));
   const sourceIds = new Set(sources.map((s) => s.id));
+  const source = idSchema.refine((id) => sourceIds.has(id), 'Source inconnue');
+  const publication = z.strictObject({
+    title: z.string().trim().min(1).max(300),
+    path: localPage,
+  });
+  const runNumber = z.string().regex(/^[1-9]\d{0,15}$/);
   const section = z
     .strictObject({
       id: z.enum(Object.keys(editorialSections)),
       status: z.enum(['consulte', 'partiel', 'indisponible']),
       note: z.string().trim().min(1).max(900),
-      sources: z
-        .array(idSchema.refine((id) => sourceIds.has(id), 'Source inconnue'))
-        .min(1)
-        .refine(unique),
+      sources: z.array(source).min(1).refine(unique),
       changes: z
-        .array(
-          z.strictObject({
-            title: z.string().trim().min(1).max(200),
-            path: localPage,
-          }),
-        )
+        .array(publication)
         .refine((links) => unique(links.map((link) => link.path))),
     })
     .refine(
@@ -57,8 +74,42 @@ export function editorialReviewSchema(candidates, sources) {
       ),
     collection: z
       .strictObject({
-        run: z.string().regex(/^[1-9]\d{0,15}$/),
+        run: runNumber,
         attempt: z.number().int().positive(),
+      })
+      .optional(),
+    manualCheckedAt: z.iso.datetime({ offset: true }).optional(),
+    hosted: z
+      .strictObject({
+        run: runNumber,
+        attempt: z.number().int().positive(),
+        since: z.iso.date(),
+        queries: z
+          .array(
+            z.strictObject({
+              id: idSchema.refine(
+                (id) =>
+                  candidateIds.has(id) || Object.hasOwn(editorialSections, id),
+              ),
+              count: z.number().int().min(0).max(150).nullable(),
+              engine: z.enum(['google', 'bing']).nullable(),
+              leads: z.array(editorialLead).max(2),
+            }),
+          )
+          .max(500)
+          .refine((rows) => unique(rows.map((row) => row.id))),
+        checks: z
+          .array(
+            z.strictObject({
+              id: source,
+              ok: z.boolean(),
+              url: publicUrlSchema.nullable(),
+            }),
+          )
+          .max(1000)
+          .refine((rows) => unique(rows.map((row) => row.id))),
+        publications: z.array(source).max(800).refine(unique),
+        changes: z.array(publication).max(800),
       })
       .optional(),
     candidates: z
