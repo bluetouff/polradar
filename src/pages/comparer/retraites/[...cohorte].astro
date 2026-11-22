@@ -1,6 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import Icon from '../../../components/Icon.astro';
+import RetirementEmbed from '../../../components/RetirementEmbed.astro';
 import comparison from '../../../data/retirement-comparison.json';
 import { dataset, formatDate } from '../../../lib/data';
 import {
@@ -88,6 +89,9 @@ const { programmes, panels } = retirementComparison(
       <span>
         Droit et programmes consultés le {formatDate(comparison.reviewedOn)}
       </span>
+      <a class="retirement-integrer" href="#integrer">
+        Intégrer le graphique
+      </a>
     </figcaption>
     <div class="retirement-panels">
       {panels.map((panel) => (
@@ -145,6 +149,7 @@ const { programmes, panels } = retirementComparison(
       programmes indiquent les durées de cotisation qu’ils proposent.
     </p>
   </figure>
+  <RetirementEmbed cohort={cohort} />
   <section
     class="retirement-references section-space"
     aria-labelledby="retirement-references"

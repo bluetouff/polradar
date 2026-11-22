@@ -61,8 +61,12 @@
   font-weight: 750;
   letter-spacing: 0.015em;
 }
-.retirement-board figcaption span:last-child {
+.retirement-board figcaption span:last-of-type {
   color: #d5e2df;
+}
+.retirement-integrer {
+  color: #d7f4f2;
+  text-underline-offset: 0.2em;
 }
 .retirement-panels {
   display: grid;

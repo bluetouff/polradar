@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import FollowButton from '../components/FollowButton.astro';
+import FollowChanges from '../components/FollowChanges.astro';
 import { activeCandidates as candidates, themes } from '../lib/data';
 ---
 
@@ -19,7 +20,8 @@ import { activeCandidates as candidates, themes } from '../lib/data';
     </div>
   </header>
   <div id="follow-app">
-    <div class="follow-layout">
+    <FollowChanges />
+    <div class="follow-layout" id="choisir-suivi">
       <section>
         <div class="register-heading">
           <h2>Candidats</h2>

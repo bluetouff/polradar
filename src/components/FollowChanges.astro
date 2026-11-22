@@ -1,0 +1,270 @@
+---
+import { dataset } from '../lib/data';
+import Icon from './Icon.astro';
+import { followJournal } from '../lib/follow-journal.mjs';
+const { days, complete } = followJournal(dataset);
+---
+
+<section
+  id="depuis-hier"
+  class="follow-changes"
+  data-days={[...days.keys()].join(',')}
+  aria-labelledby="since-title"
+>
+  <header class="since-header">
+    <div>
+      <div class="since-heading">
+        <Icon name="historique" />
+        <h2 id="since-title">Depuis hier</h2>
+      </div>
+      <p>
+        Les mesures, rendez-vous et votes consignés dans Polradar pour votre
+        sélection.
+      </p>
+    </div>
+    <fieldset>
+      <legend>Période du suivi</legend>
+      <label>
+        <input type="radio" name="since-hours" value="24" checked />
+        24 heures
+      </label>
+      <label>
+        <input type="radio" name="since-hours" value="168" />7 jours
+      </label>
+    </fieldset>
+  </header>
+  {!complete && (
+    <p class="notice">
+      L’historique des comparaisons de programmes, des rendez-vous et des votes
+      est indisponible pour cette édition.
+    </p>
+  )}
+  <div id="since-actions">
+    <a href="#choisir-suivi">Choisir mes candidats et thèmes</a>
+    <button
+      type="button"
+      class="button small"
+      id="since-all"
+      aria-pressed="false"
+      hidden
+    >
+      Toute la campagne
+    </button>
+    <a href="#depuis-hier" id="since-return" hidden>
+      Revenir à mon suivi
+    </a>
+  </div>
+  <p id="since-status" role="status">
+    Choisissez un candidat ou un thème pour afficher ses changements.
+  </p>
+  <div id="since-cards"></div>
+  <button type="button" class="button small" id="since-more" hidden>
+    Afficher la suite
+  </button>
+  <noscript>
+    <p>
+      Le suivi personnalisé utilise JavaScript.{' '}
+      <a href="/mises-a-jour/#revue-editoriale">
+        Lire le journal public des mises à jour
+      </a>
+      .
+    </p>
+  </noscript>
+</section>
+<style is:global>
+  .follow-changes {
+    border: 1px solid var(--line);
+    border-radius: 0.85rem;
+    background: var(--panel-gradient);
+    padding: clamp(1rem, 2.5vw, 1.7rem);
+    margin-block: 1rem 1.5rem;
+    min-width: 0;
+    scroll-margin-top: 1rem;
+  }
+  .since-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem 1.5rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .since-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.58rem;
+    color: var(--ink);
+  }
+  .since-heading h2 {
+    font-size: clamp(1.18rem, 2vw, 1.45rem);
+    margin: 0;
+  }
+  .since-header p {
+    color: var(--muted);
+    margin: 0.35rem 0;
+    line-height: 1.45;
+  }
+  .since-header fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .since-header legend,
+  .since-kind,
+  .since-time,
+  .change-side h4 {
+    font: 0.78rem/1.45 var(--mono);
+    color: var(--muted);
+  }
+  .since-header label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border: 1px solid var(--line);
+    padding: 0.38rem 0.58rem;
+    border-radius: 0.38rem;
+    cursor: pointer;
+  }
+  .since-header label:has(:checked) {
+    border-color: #196371;
+    background: #e6f1f2;
+    color: #124657;
+  }
+  .since-header input {
+    width: 1rem;
+    height: 1rem;
+    accent-color: #196371;
+  }
+  #since-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.8rem;
+  }
+  #since-actions a {
+    font-size: 0.9rem;
+    text-underline-offset: 0.18em;
+  }
+  #since-status {
+    margin: 0.8rem 0 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  #since-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 25rem), 1fr));
+    gap: 0.85rem;
+    align-items: start;
+  }
+  #since-cards:not(:empty) {
+    margin-top: 0.8rem;
+  }
+  .change-card {
+    border: 1px solid var(--line);
+    border-radius: 0.65rem;
+    background: linear-gradient(135deg, #fff, #f2f7f8);
+    padding: clamp(0.8rem, 2vw, 1.2rem);
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
+  .change-meta,
+  .change-links {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.4rem 0.85rem;
+    flex-wrap: wrap;
+  }
+  .since-kind {
+    color: #185f6e;
+    font-weight: 600;
+  }
+  .change-author {
+    font-weight: 650;
+    font-size: 0.9rem;
+    margin: 0.4rem 0 0.1rem;
+  }
+  .change-card h3 {
+    font-size: 1.06rem;
+    line-height: 1.35;
+    margin: 0;
+  }
+  .change-context {
+    font-size: 0.84rem;
+    color: var(--muted);
+    margin: 0.3rem 0 0;
+  }
+  .change-states {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0.85rem 0;
+    gap: 0.55rem;
+  }
+  .change-side {
+    padding: 0.6rem 0.7rem;
+    border-inline-start: 3px solid #97a9b1;
+    background: #ecf1f3;
+    min-width: 0;
+  }
+  .change-after {
+    background: #e5f2f2;
+    border-color: #247581;
+  }
+  .change-side h4 {
+    margin: 0 0 0.45rem;
+    font-weight: 650;
+    color: #3f5965;
+  }
+  .change-after h4 {
+    color: #125963;
+  }
+  .change-side dl {
+    margin: 0;
+  }
+  .change-side dt {
+    font-weight: 650;
+    margin: 0.38rem 0 0.1rem;
+    font-size: 0.83rem;
+  }
+  .change-side dd,
+  .change-side p,
+  .change-sources {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.48;
+    white-space: pre-line;
+  }
+  .change-sources {
+    margin-top: 0.45rem;
+  }
+  .change-sources summary {
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+  .change-sources ul {
+    margin: 0.35rem 0 0;
+    padding-left: 1rem;
+  }
+  .change-sources small {
+    display: block;
+    color: var(--muted);
+  }
+  .change-links {
+    border-top: 1px solid var(--line);
+    padding-top: 0.6rem;
+    font-size: 0.86rem;
+  }
+  #since-more {
+    margin-top: 0.8rem;
+  }
+  @media (max-width: 620px) {
+    .change-states {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

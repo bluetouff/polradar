@@ -20,6 +20,22 @@ async function start() {
   let prefs = safePreferences(raw, candidateIds, themeIds);
   let previousVisit = prefs.lastVisit;
   const status = document.querySelector<HTMLElement>('#follow-status');
+  let updateFeed:
+    | ((preferences: { candidates: string[]; themes: string[] }) => void)
+    | undefined;
+  if (app)
+    void import('./follow-since')
+      .then(({ mountChangeFeed }) => {
+        updateFeed = mountChangeFeed(
+          new Map(data.candidates.map((c) => [c.id, c.name])),
+        );
+        updateFeed(prefs);
+      })
+      .catch(() => {
+        const notice = document.getElementById('since-status');
+        if (notice)
+          notice.textContent = 'Le journal des changements est indisponible.';
+      });
   function save() {
     try {
       localStorage.setItem(key, JSON.stringify(prefs));
@@ -49,6 +65,7 @@ async function start() {
       );
     }
     if (!app) return;
+    updateFeed?.(prefs);
     const rows = data.measures.filter(
       (measure) =>
         prefs.candidates.includes(measure.candidate) ||
@@ -115,7 +132,7 @@ async function start() {
         'L’effacement du stockage a échoué. Effacez les données du site dans les réglages de votre navigateur.';
   });
   render();
-  if (app) {
+  if (app && !location.hash.startsWith('#changement=')) {
     prefs.lastVisit = new Date().toISOString();
     if (!save()) render();
   }
@@ -127,6 +144,9 @@ start().catch(() => {
       button.disabled = true;
       button.title = 'Suivi indisponible. Les flux RSS restent accessibles.';
     });
+  const journal = document.getElementById('since-status');
+  if (journal)
+    journal.textContent = 'Le journal des changements est indisponible.';
   const status = document.querySelector('#follow-status');
   if (status)
     status.textContent =

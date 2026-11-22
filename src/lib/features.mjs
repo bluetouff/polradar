@@ -200,6 +200,7 @@ export function snapshotChanges(before, after) {
     'amounts',
     'sourceRefs',
     'scope',
+    'partyAuthor',
     'edition',
     'checked',
   ];

@@ -52,6 +52,10 @@ La galerie des candidatures héberge ses portraits sur Polradar. La page `/credi
 
 La carte `/divergences/` rapproche quatre paramètres chiffrés du corpus : âge général de départ, durée de cotisation, SMIC mensuel net et seuil d’exonération annoncé pour les héritages. Les conditions et sources restent visibles sous chaque graphique. Les clés `age-depart` et `age-retraite` désignent la cible générale ; l’âge de pénibilité et celui du taux plein restent séparés. Le SMIC compare uniquement les montants mensuels nets renseignés dans les données structurées, sans convertir les montants bruts. Les graphiques excluent les archives et refusent les unités ou valeurs contradictoires. Ils ne produisent pas de score politique. Les thèmes, fiches et sources restent consultables sans JavaScript.
 
+Le comparatif retraites fournit un code HTML par génération. L’image actualisée garde son URL. Pour archiver une nouvelle édition sur Polradar, exécuter `node scripts/archive-retirement-graphics.mjs` et ajouter les nouveaux SVG au commit. Leur nom dépend de leur contenu. Une édition encore absente des archives est incorporée directement dans le code HTML figé.
+
+Dans Mon suivi, « Depuis hier » rapproche les versions de mesures et les comparaisons de documents de programme, les rendez-vous et les votes enregistrés dans Git. La construction avec l’historique Git complet permet de dater les entrées. Le navigateur filtre les fichiers quotidiens à partir de la sélection locale.
+
 ## Propositions, votes et partage
 
 La frise `/votes/` relie 21 dossiers à 17 scrutins nominatifs de l’Assemblée nationale et du Sénat. Pour chaque vote figurent son objet, le groupe parlementaire à la date de séance et la liste nominative officielle. [Méthode de sélection](docs/votes.md)

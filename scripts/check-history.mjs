@@ -1,5 +1,6 @@
 import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { immutableHistoryErrors } from '../src/lib/history.mjs';
 
 const base = process.env.HISTORY_BASE || 'HEAD';
@@ -35,4 +36,26 @@ for (const [file, key] of [
   const errors = immutableHistoryErrors(before, after);
   if (errors.length) throw Error(errors.join('\n'));
   console.log(`${file} : ${before.length} états antérieurs conservés.`);
+}
+
+// Already published image addresses are permanent, including after a redesign.
+const archivePaths = execFileSync(
+  'git',
+  [
+    'ls-tree',
+    '-r',
+    '--name-only',
+    base,
+    '--',
+    'public/graphiques/retraites/editions',
+  ],
+  { encoding: 'utf8' },
+).trim();
+for (const filename of archivePaths.split('\n').filter(Boolean)) {
+  const hash = /\/([a-f0-9]{64})\.svg$/.exec(filename)?.[1];
+  if (
+    !hash ||
+    createHash('sha256').update(readFileSync(filename)).digest('hex') !== hash
+  )
+    throw Error('Édition figée modifiée : ' + filename);
 }

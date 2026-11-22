@@ -1,0 +1,240 @@
+---
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import comparison from '../data/retirement-comparison.json';
+import { dataset, meta } from '../lib/data';
+import Icon from './Icon.astro';
+import {
+  retirementCard,
+  liveGraphicPath,
+  frozenGraphicPath,
+  retirementSnippet,
+} from '../lib/retirement-embed.mjs';
+interface Props {
+  cohort: (typeof comparison.cohorts)[number];
+}
+const { cohort } = Astro.props;
+const card = retirementCard(comparison, cohort, dataset);
+const page = new URL(card.page, meta.site).href;
+const live = liveGraphicPath(cohort.id),
+  archive = frozenGraphicPath(card.svg);
+const archived = existsSync(join('public', archive));
+const frozenImage = archived
+  ? new URL(archive, meta.site).href
+  : 'data:image/svg+xml;base64,' + Buffer.from(card.svg).toString('base64');
+const sources = [
+  ...comparison.legalSources,
+  ...card.programmes.map((p) => ({
+    label: p.name + ' · version comparée',
+    url: new URL(p.versionLink, meta.site).href,
+  })),
+];
+const modes = [
+  {
+    id: 'actualisee',
+    title: 'Version actualisée',
+    description:
+      'Le graphique reprend chaque nouvelle édition du comparatif pour cette génération.',
+    image: new URL(live, meta.site).href,
+  },
+  {
+    id: 'figee',
+    title: 'Version figée',
+    description:
+      'Les valeurs et leurs références restent celles du ' + card.date + '.',
+    image: frozenImage,
+  },
+];
+---
+
+<details class="retirement-embed" id="integrer">
+  <summary>
+    <Icon name="source" />
+    <strong>Intégrer ce graphique</strong>
+    <span>HTML</span>
+  </summary>
+  <div class="embed-workbench">
+    <div class="embed-preview">
+      <img
+        src={live}
+        width="480"
+        height="610"
+        loading="lazy"
+        alt={'Aperçu du graphique pour la génération ' + cohort.label}
+      />
+    </div>
+    <div>
+      <h2>Publier le graphique sur votre site</h2>
+      <p>
+        Une image avec sa source, sans script ni traceur. Génération
+        sélectionnée · {cohort.label}.
+      </p>
+      {modes.map((mode, index) => (
+        <details class="embed-mode" name="retirement-mode" open={index === 0}>
+          <summary>{mode.title}</summary>
+          <p>{mode.description}</p>
+          <label for={'code-' + mode.id}>
+            Code HTML · {mode.title.toLowerCase()}
+          </label>
+          <textarea
+            id={'code-' + mode.id}
+            rows="4"
+            readonly
+            spellcheck="false"
+          >{retirementSnippet({image:mode.image,page,cohort:cohort.label,frozen:index===1,date:card.date,sources,summary:card.summary})}</textarea>
+          <div class="embed-tools">
+            <button
+              type="button"
+              class="button small"
+              data-copy-chart={'code-' + mode.id}
+              hidden
+            >
+              Copier le code
+            </button>
+            {index === 1 && (
+              <a
+                href={archived ? archive : frozenImage}
+                download={
+                  'polradar-retraites-' +
+                  cohort.id +
+                  '-' +
+                  comparison.reviewedOn +
+                  '.svg'
+                }
+              >
+                Télécharger cette édition
+              </a>
+            )}
+          </div>
+        </details>
+      ))}
+      <p class="embed-feedback" role="status"></p>
+    </div>
+  </div>
+</details>
+<script>
+  const integration = document.querySelector<HTMLDetailsElement>('#integrer');
+  function openIntegration() {
+    if (integration && location.hash === '#integrer') integration.open = true;
+  }
+  openIntegration();
+  window.addEventListener('hashchange', openIntegration);
+  document
+    .querySelectorAll<HTMLButtonElement>('[data-copy-chart]')
+    .forEach((button) => {
+      button.hidden = false;
+      button.addEventListener('click', async () => {
+        const code = document.getElementById(
+          button.dataset.copyChart!,
+        ) as HTMLTextAreaElement;
+        const feedback = button
+          .closest('.retirement-embed')!
+          .querySelector('[role=status]')!;
+        try {
+          await navigator.clipboard.writeText(code.value);
+          feedback.textContent = 'Code HTML copié.';
+        } catch {
+          code.focus();
+          code.select();
+          feedback.textContent =
+            'Code sélectionné. Utilisez la commande Copier de votre navigateur.';
+        }
+      });
+    });
+</script>
+<style>
+  .retirement-embed {
+    margin-block: 1rem 1.6rem;
+    border: 1px solid var(--line);
+    border-radius: 0.7rem;
+    background: var(--panel-gradient);
+    padding: 0.22rem clamp(0.9rem, 2.5vw, 1.65rem);
+  }
+  .retirement-embed > summary {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    cursor: pointer;
+    min-height: 3.2rem;
+  }
+  .retirement-embed > summary:after {
+    content: '+' / '';
+    margin-left: auto;
+    font-size: 1.3rem;
+  }
+  .retirement-embed[open] > summary:after {
+    content: '−' / '';
+  }
+  .retirement-embed > summary span {
+    font: 0.8rem var(--mono);
+    color: var(--muted);
+  }
+  .embed-workbench {
+    display: grid;
+    grid-template-columns: minmax(0, 16rem) minmax(0, 1fr);
+    gap: clamp(1rem, 3vw, 2.5rem);
+    padding-block: 1rem 1.4rem;
+    border-top: 1px solid var(--line);
+    align-items: start;
+  }
+  .embed-preview img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: 0.6rem;
+  }
+  h2 {
+    font-size: 1.14rem;
+    margin: 0;
+  }
+  p {
+    line-height: 1.5;
+    margin: 0.4rem 0 0.8rem;
+  }
+  .embed-mode {
+    border-top: 1px solid var(--line);
+    padding: 0.2rem 0 0.4rem;
+  }
+  .embed-mode summary {
+    font-weight: 650;
+    padding: 0.6rem 0;
+    cursor: pointer;
+  }
+  label {
+    display: block;
+    color: var(--muted);
+    font-size: 0.87rem;
+    margin-bottom: 0.35rem;
+  }
+  textarea {
+    width: 100%;
+    min-width: 0;
+    resize: vertical;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: 0.4rem;
+    background: #f5f9fa;
+    color: var(--ink);
+    font: 0.82rem/1.45 var(--mono);
+  }
+  .embed-tools {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+  .embed-feedback:empty {
+    display: none;
+  }
+  @media (max-width: 650px) {
+    .embed-workbench {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .embed-preview {
+      max-width: 15rem;
+      margin-inline: auto;
+    }
+  }
+</style>

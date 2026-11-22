@@ -16,6 +16,7 @@ const labels: Record<string, string> = {
   amounts: 'Montants',
   sourceRefs: 'Références',
   scope: 'Nature du document',
+  partyAuthor: 'Auteur collectif',
   edition: 'Édition',
   checked: 'Date de consultation',
 };
