@@ -1,6 +1,8 @@
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
+import { z } from 'astro/zod';
+import { dateSchema } from '../src/lib/schema.mjs';
 import { socialImageFor } from '../src/lib/social-images.mjs';
 
 const root = path.resolve('dist');
@@ -21,6 +23,7 @@ const known = new Set(files);
 const pages = files.filter((file) => file.endsWith('.html'));
 const errors = [];
 const sitemap = [];
+const sitemapDate = dateSchema.or(z.iso.datetime({ offset: true }));
 const verifiedImages = new Set();
 for (const file of pages) {
   const html = await readFile(file, 'utf8');
@@ -75,8 +78,19 @@ for (const file of pages) {
     if (!known.has(target) && !known.has(path.join(target, 'index.html')))
       errors.push(`${route}: lien cassé ${local}`);
   }
-  if (!/name="robots" content="noindex/.test(html) && route !== '/404.html')
-    sitemap.push(`https://polradar.fr${route}`);
+  if (!/name="robots" content="noindex/.test(html) && route !== '/404.html') {
+    const htmlTag = html.match(/<html\b[^>]*>/)?.[0];
+    const lastmod = htmlTag?.match(/\sdata-last-modified="([^"]*)"/)?.[1];
+    if (lastmod !== undefined && !sitemapDate.safeParse(lastmod).success)
+      errors.push(`${route}: date lastmod invalide`);
+    const loc = `https://polradar.fr${route}`
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;');
+    sitemap.push(
+      `<url><loc>${loc}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}</url>`,
+    );
+  }
 }
 if (errors.length) throw new Error(errors.join('\n'));
 let sourceCommit = process.env.GITHUB_SHA || null;
@@ -98,7 +112,7 @@ await writeFile(
 );
 await writeFile(
   path.join(root, 'sitemap.xml'),
-  `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sitemap.map((url) => `<url><loc>${url}</loc></url>`).join('')}</urlset>\n`,
+  `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sitemap.join('')}</urlset>\n`,
 );
 console.log(
   `${pages.length} pages vérifiées : liens internes, CSP et ressources locales.`,

@@ -19,12 +19,14 @@ interface Props {
   section?: string;
   noindex?: boolean;
   articlePublished?: string;
+  lastModified?: string;
 }
 const {
   title = 'Présidentielle 2027',
   description = 'Programmes, candidatures, calendrier et sources de la présidentielle française de 2027.',
   section = '',
   articlePublished,
+  lastModified,
   noindex = false,
 } = Astro.props;
 const navigation = navigationFor(Astro.url.pathname, section);
@@ -34,7 +36,7 @@ const socialImageUrl = new URL(social.url, Astro.site);
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-last-modified={lastModified}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />

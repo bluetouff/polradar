@@ -19,7 +19,11 @@ const institutes = [...new Set(polls.map((poll) => poll.institute))];
 const notices = [...new Set(polls.map((poll) => poll.noticeSource))];
 ---
 
-<Base title="Sondages" section="/sondages/">
+<Base
+  title="Sondages de la présidentielle 2027 par institut"
+  description="Consultez les intentions de vote aux deux tours de la présidentielle 2027, par institut et scénario, avec les dates de terrain et les notices."
+  section="/sondages/"
+>
   <header class="page-title feature-title">
     <span class="feature-emblem">
       <Icon name="sondages" />

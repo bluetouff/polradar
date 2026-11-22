@@ -27,6 +27,8 @@ const candidate = candidateById(measure.candidate),
 
 <Base
   title={`${measure.title} : ${measure.partyAuthor ?? candidate.name}`}
+  description={measure.description}
+  lastModified={versions.at(-1)?.recordedAt ?? undefined}
   section="/mesures/"
 >
   <div class="breadcrumbs">

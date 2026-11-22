@@ -16,6 +16,7 @@ import { digitalLawSections } from '../../lib/digital-law-data';
 import { sameSentence } from '../../lib/measure-text';
 import { voteCases } from '../../lib/votes-data';
 import { proposalTracks } from '../../lib/proposal-data';
+import { retirementPath } from '../../lib/retirement-comparison.mjs';
 import '../../styles/questions.css';
 export function getStaticPaths() {
   return questions.map((q) => ({ params: { id: q.id }, props: { q } }));
@@ -66,6 +67,16 @@ const checkLabels = {
   </header>
   <nav class="q-related" aria-label="Explorer cette question">
     {q.related && <a href={q.related.href}>{q.related.label} ↗</a>}
+    {q.id === 'retraites-conditions-depart' && (
+      <>
+        <a href="/themes/retraites/">
+          Toutes les propositions sur les retraites ↗
+        </a>
+        <a href={retirementPath}>
+          Programmes et droit en vigueur par génération ↗
+        </a>
+      </>
+    )}
     {q.id === 'retraites-protection-revenus' && (
       <a href="/dossiers/indexation-pensions/">
         Effets sur les ménages et les finances publiques ↗
