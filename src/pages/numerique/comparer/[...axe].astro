@@ -1,4 +1,5 @@
 ---
+import { collectiveLabel } from '../../../lib/attribution.mjs';
 import Base from '../../../layouts/Base.astro';
 import Icon from '../../../components/Icon.astro';
 import EncryptionParliament from '../../../components/EncryptionParliament.astro';
@@ -115,13 +116,11 @@ const amountPeriods = {
                 data-documented={Boolean(entry)}
               >
                 <div class="digital-decision-byline">
-                  <a href={`/candidats/${candidate.id}/`}>
-                    {snapshot?.scope === 'parti'
-                      ? (snapshot.partyAuthor ??
-                        entry?.source.publisher ??
-                        candidate.party)
-                      : candidate.name}
-                  </a>
+                  {snapshot && collectiveLabel(snapshot) ? (
+                    <strong>{collectiveLabel(snapshot)}</strong>
+                  ) : (
+                    <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
+                  )}
                   {snapshot && <span>{scopes[snapshot.scope]}</span>}
                 </div>
                 {entry && snapshot ? (

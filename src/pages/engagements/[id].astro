@@ -1,4 +1,8 @@
 ---
+import {
+  collectiveLabel,
+  unspecifiedCollective,
+} from '../../lib/attribution.mjs';
 import Base from '../../layouts/Base.astro';
 import SourceLinks from '../../components/SourceLinks.astro';
 import MeasureCard from '../../components/MeasureCard.astro';
@@ -17,12 +21,13 @@ export function getStaticPaths() {
   }));
 }
 const { item } = Astro.props;
+const collective = collectiveLabel(item);
 const candidate = candidateById(item.candidate);
 const theme = themeById(item.theme);
 ---
 
 <Base
-  title={`${item.title} : ${item.partyAuthor ?? candidate.name}`}
+  title={`${item.title} : ${collective ?? candidate.name}`}
   description={item.bullets[0]}
 >
   <div class="breadcrumbs">
@@ -32,8 +37,8 @@ const theme = themeById(item.theme);
   </div>
   <header class="page-title article-title">
     <div class="card-meta">
-      {item.partyAuthor ? (
-        <strong>{item.partyAuthor}</strong>
+      {collective ? (
+        <strong>{collective}</strong>
       ) : (
         <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
       )}
@@ -42,6 +47,9 @@ const theme = themeById(item.theme);
       </span>
     </div>
     <h1>{item.title}</h1>
+    {collective === unspecifiedCollective && (
+      <p>L’auteur des propositions reste à préciser.</p>
+    )}
     <p>
       {item.edition} · document consulté le {formatDate(item.checked)}
     </p>

@@ -1,3 +1,4 @@
+import { attributionLabel } from './attribution.mjs';
 import { getCollection } from 'astro:content';
 import { candidates, themes, measures, sources, polls, events } from './data';
 import { voteCases } from './votes-data';
@@ -17,6 +18,7 @@ export interface SearchEntry {
   url: string;
   candidate: string;
   candidates?: string[];
+  author?: string;
   theme: string;
   themes?: string[];
   year: string;
@@ -50,6 +52,7 @@ export async function searchEntries(): Promise<SearchEntry[]> {
       ),
       url: `/mesures/${measure.id}/`,
       candidate: measure.candidate,
+      author: attributionLabel(measure, candidateById(measure.candidate).name),
       theme: measure.theme,
       year: sourceYear(measure.sourceRefs.map((ref) => ref.sourceId)),
       scope: measure.scope,

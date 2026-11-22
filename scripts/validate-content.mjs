@@ -1,5 +1,10 @@
 import { readFile } from 'node:fs/promises';
-import { validateDataset, validateFeatures } from '../src/lib/schema.mjs';
+import documentAuthors from '../src/data/document-authors.json' with { type: 'json' };
+import {
+  documentAuthorsSchema,
+  validateDataset,
+  validateFeatures,
+} from '../src/lib/schema.mjs';
 import { marketSnapshotSchema } from '../src/lib/markets.mjs';
 import { divergenceGroups } from '../src/lib/divergences.mjs';
 import {
@@ -74,6 +79,16 @@ const entries = await Promise.all(
   ]),
 );
 const dataset = Object.fromEntries(entries);
+const today = new Intl.DateTimeFormat('sv-SE', {
+  timeZone: 'Europe/Paris',
+}).format(new Date());
+const sourceIds = new Set(dataset.sources.map((source) => source.id));
+for (const [id, credit] of Object.entries(
+  documentAuthorsSchema.parse(documentAuthors),
+)) {
+  if (!sourceIds.has(id) || credit.checked > today)
+    throw new Error('Crédit documentaire invalide : ' + id);
+}
 editorialReviewSchema(dataset.candidates, dataset.sources).parse(
   JSON.parse(
     await readFile(

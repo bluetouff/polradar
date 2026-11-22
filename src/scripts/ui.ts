@@ -1,3 +1,4 @@
+import { collectiveLabel } from '../lib/attribution.mjs';
 import { sameSentence, sourceCountLabel } from '../lib/measure-text';
 import { iconPaths } from '../lib/icons.mjs';
 import type { Corpus, Measure } from '../lib/data';
@@ -87,6 +88,7 @@ export function measureCard(
     undefined,
     compact ? 'measure-row compact' : 'measure-row',
   );
+  const collective = collectiveLabel(measure);
   article.dataset.scope = measure.scope;
   const symbol = anchor('', `/themes/${theme.id}/`);
   symbol.className = 'measure-symbol';
@@ -101,13 +103,13 @@ export function measureCard(
     archive: 'Archive 2022',
   };
   meta.append(
-    measure.partyAuthor
-      ? el('strong', measure.partyAuthor)
+    collective
+      ? el('strong', collective)
       : anchor(candidate.name, `/candidats/${candidate.id}/`),
     el(
       'span',
       labels[measure.scope] +
-        (candidate.withdrawnOn && measure.scope !== 'archive'
+        (!collective && candidate.withdrawnOn && measure.scope !== 'archive'
           ? ' · candidature retirée'
           : ''),
       measure.scope === 'archive' ? 'tag archive' : 'tag',

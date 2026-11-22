@@ -1,4 +1,9 @@
 ---
+import {
+  collectiveLabel,
+  unspecifiedCollective,
+  documentCredit,
+} from '../../lib/attribution.mjs';
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import FollowButton from '../../components/FollowButton.astro';
@@ -20,13 +25,14 @@ export function getStaticPaths() {
   }));
 }
 const { measure } = Astro.props;
+const collective = collectiveLabel(measure);
 const candidate = candidateById(measure.candidate),
   theme = themeById(measure.theme),
   versions = measureVersions(measure.id);
 ---
 
 <Base
-  title={`${measure.title} : ${measure.partyAuthor ?? candidate.name}`}
+  title={`${measure.title} : ${collective ?? candidate.name}`}
   description={measure.description}
   lastModified={versions.at(-1)?.recordedAt ?? undefined}
   section="/mesures/"
@@ -34,8 +40,8 @@ const candidate = candidateById(measure.candidate),
   <div class="breadcrumbs">
     <a href="/mesures/">Mesures</a>
     <span>/</span>
-    {measure.partyAuthor ? (
-      <span>{measure.partyAuthor}</span>
+    {collective ? (
+      <span>{collective}</span>
     ) : (
       <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
     )}
@@ -48,15 +54,25 @@ const candidate = candidateById(measure.candidate),
     </span>
     <div>
       <p class="measure-meta">
-        {measure.partyAuthor ?? candidate.name}{' '}
+        {collective ?? candidate.name}{' '}
         <span class:list={['tag', { archive: measure.scope === 'archive' }]}>
           {scopes[measure.scope]}
-          {candidate.withdrawnOn &&
+          {!collective &&
+            candidate.withdrawnOn &&
             measure.scope !== 'archive' &&
             ' · candidature retirée le ' + formatDate(candidate.withdrawnOn)}
         </span>
       </p>
       <h1>{measure.title}</h1>
+      {collective && (
+        <p>
+          {collective === unspecifiedCollective &&
+            'L’auteur de la proposition reste à préciser. '}
+          <a href={`/candidats/${candidate.id}/`}>
+            Dossier de {candidate.name}
+          </a>
+        </p>
+      )}
       <p>
         {measure.edition} · source consultée le {formatDate(measure.checked)}
       </p>
@@ -135,6 +151,7 @@ const candidate = candidateById(measure.candidate),
         <ul class="precise-sources">
           {measure.sourceRefs.map((ref) => {
             const source = sourceById(ref.sourceId);
+            const credit = collective ? documentCredit(ref.sourceId) : null;
             return (
               <li>
                 <a href={source.url} target="_blank" rel="noopener noreferrer">
@@ -142,6 +159,11 @@ const candidate = candidateById(measure.candidate),
                   <Icon name="external" />
                 </a>
                 <p>{ref.locator}</p>
+                {credit && (
+                  <p>
+                    Auteur du document · {credit.author}. {credit.locator}
+                  </p>
+                )}
                 {(source.published || source.publishedYear) && (
                   <span>
                     Publication :{' '}

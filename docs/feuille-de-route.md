@@ -1,5 +1,21 @@
 # Feuille de route de Polradar
 
+## Lots issus de l’audit du 22 novembre
+
+| Priorité et état | Travail                                                                                                        | Dépendance                                                            | Critère de livraison                                                                                                           |
+| ---------------- | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| P0 livré         | Corriger la signature des textes de parti dans les pages, comparaisons, métadonnées, flux et exports           | Signature existante ou vérification du document d’origine             | Un troisième lecteur peut retrouver l’auteur, le dossier rattaché et les cas à éclaircir. Un test protège les documents mixtes |
+| P0 livré         | Rendre les graphiques de sondages et d’économie réutilisables et redonner de la marge au paquet                | Scénarios et séries validés, légende et sources                       | Édition autonome et SVG actualisé vérifiés sur une page tierce. Limites TAR, gzip et nombre d’entrées mesurées en CI           |
+| P0 à instruire   | Documenter les droits effectifs de rediffusion des marchés et les autorisations de portrait manquantes         | Conditions de l’opérateur, pièce de licence ou autorisation conservée | Pour chaque jeu ou photo, donner les usages et la référence vérifiée                                                           |
+| P1 prochain lot  | Ouvrir le dossier de vote depuis chacune des 28 mesures déjà reliées                                           | Identifiants du dossier, du scrutin et de la version                  | Aller-retour au clavier entre la mesure et son scrutin exact, avec nature du vote et rôle de la personne                       |
+| P1               | Compléter millésimes, nature des entretiens, issue des rendez-vous passés et libellés de questions des notices | Intervention originale, organisateur et notice officielle             | Le dossier conserve la précision disponible et expose un état à confirmer lorsque la pièce manque                              |
+| P2               | Relier les chiffrages à leur mesure, à l’assiette, à la période et à leur auteur                               | Correspondances explicites et hypothèses publiées                     | Deux évaluations comparées décrivent le même dispositif. Un désaccord d’hypothèses est visible                                 |
+| P3               | Relier déclarations chiffrées, interventions et séries publiques dans le moteur de recherche                   | Source horodatée et périmètre compatible                              | Une déclaration conduit à l’original et au calcul reproductible avec possibilité de signaler une correction                    |
+
+[État initial et décomptes](../AUDIT.md) · [Qualité et cadence](../DATA_QUALITY.md) · [Comparaison de onze services](audit-concurrence-2026-11-20.md)
+
+## Première feuille de route, 20 novembre 2026
+
 État de la livraison du 20 novembre 2026. Le nombre de questions est calculé au build. La couverture compte les candidats pour lesquels une référence répond à la question. Le corpus documente aussi des textes collectifs, identifiés par leur signataire.
 
 | Premier chantier proposé                      | Parcours livré                                                                                                                                                                                                                                          | Travail éditorial ou technique suivant                                                                                                                                                                      | Condition de publication                                                                                                                                                                   |

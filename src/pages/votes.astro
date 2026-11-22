@@ -1,4 +1,5 @@
 ---
+import { attributionLabel } from '../lib/attribution.mjs';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import DossierPicker from '../components/DossierPicker.astro';
@@ -225,9 +226,11 @@ import { sameSentence } from '../lib/measure-text';
                 </span>
                 <h3>{record.version.snapshot.title}</h3>
                 <p class="vote-proposal-edition">
-                  {record.measure.partyAuthor &&
-                    `${record.measure.partyAuthor} · `}
-                  {record.version.snapshot.edition}
+                  {attributionLabel(
+                    record.version.snapshot,
+                    record.candidateRecord.name,
+                  )}{' '}
+                  ·{record.version.snapshot.edition}
                 </p>
                 {!sameSentence(
                   record.version.snapshot.description,

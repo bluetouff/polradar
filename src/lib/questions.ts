@@ -1,3 +1,4 @@
+import { attributionLabel } from './attribution.mjs';
 import {
   candidates,
   measureById,
@@ -339,11 +340,7 @@ function resolveEntry(id: string) {
     );
   if (!refs.length || snap.scope === 'archive')
     throw new Error('Version sans source primaire courante : ' + id);
-  const author =
-    snap.partyAuthor ??
-    (snap.scope === 'parti'
-      ? (refs[0].source.publisher ?? candidate.party)
-      : candidate.name);
+  const author = attributionLabel(snap, candidate.name);
   return { version, measure, candidate, author, refs };
 }
 interface Definition {

@@ -1,3 +1,4 @@
+import { attributionLabel } from './attribution.mjs';
 import { campaignBriefs } from './briefs';
 import { getCollection } from 'astro:content';
 import {
@@ -52,7 +53,7 @@ export async function rss(
         (measure) => measure.id === version.measureId,
       )!;
       return {
-        title: `${kind[version.kind]} · ${candidateById(measure.candidate).name} · ${version.snapshot.title}`,
+        title: `${kind[version.kind]} · ${attributionLabel(version.snapshot, candidateById(measure.candidate).name)} · ${version.snapshot.title}`,
         url: `https://polradar.fr/historique/?mesure=${measure.id}&apres=${version.number}`,
         guid: `https://polradar.fr/mesures/${measure.id}/#version-${version.number}`,
         description: `${version.summary}\n${version.snapshot.description}\n${themeById(measure.theme).label} · date de suivi : ${formatDate(version.observedOn)}`,

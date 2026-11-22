@@ -1,3 +1,4 @@
+import { attributionLabel, collectiveLabel } from '../lib/attribution.mjs';
 import { catalogue } from './catalogue';
 import { el, anchor, icon, date, corpus } from './ui';
 import { normalize } from '../lib/features.mjs';
@@ -81,8 +82,9 @@ if (document.getElementById('sources-list')) {
 }
 if (document.getElementById('engagement-list')) {
   let data: Corpus;
-  const author = (e: Engagement) =>
-    e.partyAuthor ?? data.candidates.find((c) => c.id === e.candidate)!.name;
+  const dossier = (e: Engagement) =>
+    data.candidates.find((c) => c.id === e.candidate)!.name;
+  const author = (e: Engagement) => attributionLabel(e, dossier(e));
   const theme = (e: Engagement) =>
     data.themes.find((t) => t.id === e.theme)!.label;
   directory<Engagement>(
@@ -91,7 +93,7 @@ if (document.getElementById('engagement-list')) {
       data = await corpus();
       return data.engagements.filter((e) => e.scope !== 'archive');
     },
-    (e) => [author(e), theme(e), e.title, ...e.bullets].join(' '),
+    (e) => [author(e), dossier(e), theme(e), e.title, ...e.bullets].join(' '),
     (e) => {
       const card = el('article', undefined, 'engagement-card'),
         meta = el('div', undefined, 'card-meta'),
@@ -105,8 +107,8 @@ if (document.getElementById('engagement-list')) {
       const link = anchor('Lire la fiche ↗', url);
       link.setAttribute('aria-label', 'Lire la fiche ' + e.title);
       footer.append(
-        e.partyAuthor
-          ? el('strong', e.partyAuthor)
+        collectiveLabel(e)
+          ? el('strong', author(e))
           : anchor(author(e), '/candidats/' + e.candidate + '/'),
         link,
       );

@@ -1,4 +1,5 @@
 ---
+import { collectiveLabel } from '../lib/attribution.mjs';
 import { getImage } from 'astro:assets';
 import {
   divergenceLayout,
@@ -20,7 +21,7 @@ const layout = divergenceLayout(group.values, 720);
 const faces = new Map(
   await Promise.all(
     group.values.map(async (row) => {
-      const portrait = row.measure.partyAuthor
+      const portrait = collectiveLabel(row.measure)
         ? null
         : portraitFor(row.candidate);
       return [
@@ -116,7 +117,7 @@ const exact = (value: number) => formatDivergenceValue(value, group.unit);
           <g
             data-divergence-point
             data-candidate={
-              row.measure.partyAuthor ? row.measureId : row.candidate
+              collectiveLabel(row.measure) ? row.measureId : row.candidate
             }
             data-value={row.value}
           >
@@ -198,7 +199,7 @@ const exact = (value: number) => formatDivergenceValue(value, group.unit);
         <article
           class="divergence-record"
           data-focus-candidate={
-            measure.partyAuthor ? row.measureId : row.candidate
+            collectiveLabel(measure) ? row.measureId : row.candidate
           }
         >
           <header>

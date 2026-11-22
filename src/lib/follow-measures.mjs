@@ -1,3 +1,4 @@
+import { collectiveLabel } from './attribution.mjs';
 import { snapshotChanges } from './features.mjs';
 import { agendaDateLabel } from './campaign-visuals-view.mjs';
 import { isPublicSourceUrl } from './source-url.mjs';
@@ -103,7 +104,7 @@ export function measureChanges({ measures, versions, sources }) {
         at: v.recordedAt,
         candidate: m.candidate,
         themes: [m.theme],
-        author: current.partyAuthor ?? null,
+        author: collectiveLabel(current),
         kind: 'mesure',
         label: revisionLabels[v.kind],
         title: current.title,

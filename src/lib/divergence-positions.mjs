@@ -1,4 +1,5 @@
 import { z } from 'astro/zod';
+import { collectiveLabel, unspecifiedCollective } from './attribution.mjs';
 import { idSchema } from './schema.mjs';
 
 const text = z.string().trim().min(1).max(700);
@@ -72,7 +73,11 @@ export function validateDivergencePositions(topics, dataset, reservedIds = []) {
           );
           continue;
         }
-        const profile = version.snapshot.partyAuthor ?? measure.candidate;
+        const author = collectiveLabel(version.snapshot);
+        const profile =
+          author === unspecifiedCollective
+            ? 'parti:' + measure.candidate
+            : (author ?? measure.candidate);
         if (profiles.has(profile)) {
           errors.push(
             `${topic.id} : profil rangé dans plusieurs positions (${profile}).`,

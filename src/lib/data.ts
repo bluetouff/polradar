@@ -1,6 +1,7 @@
 import candidates from '../data/candidates.json';
 import themes from '../data/themes.json';
 import sourceRows from '../data/sources.json';
+import documentAuthors from '../data/document-authors.json';
 import engagementRows from '../data/engagements.json';
 import eventRows from '../data/events.json';
 import pollRows from '../data/polls.json';
@@ -29,6 +30,7 @@ const versions = versionSchema.array().parse(versionRows);
 const watch = watchSchema.array().parse(watchRows);
 
 export const dataset = {
+  documentAuthors,
   candidates,
   themes,
   sources,

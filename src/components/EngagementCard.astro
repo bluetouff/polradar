@@ -1,10 +1,12 @@
 ---
+import { collectiveLabel } from '../lib/attribution.mjs';
 import { candidateById, themeById, scopes, type Engagement } from '../lib/data';
 import Icon from './Icon.astro';
 interface Props {
   item: Engagement;
 }
 const { item } = Astro.props;
+const collective = collectiveLabel(item);
 const candidate = candidateById(item.candidate);
 ---
 
@@ -22,8 +24,8 @@ const candidate = candidateById(item.candidate);
   </h3>
   <p>{item.bullets[0]}</p>
   <div class="engagement-author">
-    {item.partyAuthor ? (
-      <strong>{item.partyAuthor}</strong>
+    {collective ? (
+      <strong>{collective}</strong>
     ) : (
       <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
     )}

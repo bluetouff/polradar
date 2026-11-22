@@ -1,4 +1,5 @@
 ---
+import { attributionLabel } from '../../lib/attribution.mjs';
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import PagedResults from '../../components/PagedResults.astro';
@@ -60,15 +61,12 @@ const covered = cards.filter((c) => c.entries.length).length;
                 {entries.length === 1 ? 'fiche numérique' : 'fiches numériques'}
               </summary>
               <ul>
-                {entries.map(({ measure, source }) => (
+                {entries.map(({ measure }) => (
                   <li>
                     <a href={`/mesures/${measure.id}/`}>{measure.title}</a>
                     <small>
                       {scopes[measure.scope]} ·{' '}
-                      {measure.partyAuthor ??
-                        (measure.scope === 'parti'
-                          ? (source.publisher ?? candidate.party)
-                          : candidate.name)}
+                      {attributionLabel(measure, candidate.name)}
                     </small>
                   </li>
                 ))}

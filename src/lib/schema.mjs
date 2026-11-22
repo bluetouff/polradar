@@ -26,6 +26,14 @@ export const publicUrlSchema = z
   );
 const text = z.string().min(1).max(3000);
 const partyAuthorSchema = z.string().trim().min(1).max(100);
+export const documentAuthorsSchema = z.record(
+  idSchema,
+  z.strictObject({
+    author: partyAuthorSchema,
+    locator: z.string().trim().min(1).max(500),
+    checked: dateSchema,
+  }),
+);
 export const sourceSchema = z.object({
   id: idSchema,
   title: text,

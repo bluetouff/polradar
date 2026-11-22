@@ -1,3 +1,4 @@
+import { attributionLabel } from './attribution.mjs';
 import rows from '../data/digital-law.json';
 import {
   candidateById,
@@ -37,9 +38,10 @@ export const digitalLawSections = law.sections.map((section) => ({
       const version = versionById.get(id)!;
       return {
         title: version.snapshot.title,
-        author:
-          version.snapshot.partyAuthor ??
+        author: attributionLabel(
+          version.snapshot,
           candidateById(measureById(version.measureId).candidate).name,
+        ),
         href: `/mesures/${version.measureId}/#version-${version.number}`,
       };
     }),
@@ -61,12 +63,7 @@ export const digitalLawSections = law.sections.map((section) => ({
         const snapshot = version.snapshot;
         return {
           ...change,
-          author:
-            snapshot.partyAuthor ??
-            (snapshot.scope === 'parti'
-              ? (sourceById(snapshot.sourceRefs[0].sourceId).publisher ??
-                candidate.party)
-              : candidate.name),
+          author: attributionLabel(snapshot, candidate.name),
           scope: snapshot.scope,
           edition: snapshot.edition,
           sources: snapshot.sourceRefs.map((ref) => ({

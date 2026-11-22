@@ -30,13 +30,13 @@ npm run security:audit
 - `src/lib/schema.mjs` : validation des types, références et invariants.
 - `deploy/` : récupération et activation des versions publiques sur le serveur.
 
-Le corpus comprend 33 candidatures recensées, 12 thèmes et 354 fiches de mesures ou orientations, dont 9 archives de 2022. Les 69 fiches thématiques initiales conservent leurs adresses ; le registre en comprend désormais 131. Les 382 versions sont des états du contenu Polradar : les enrichissements éditoriaux sont distingués des évolutions de programme. Il ne s’agit pas d’une liste officielle exhaustive. Chaque référence conserve sa propre date de consultation.
+Le registre distingue candidature active ou retirée, mesures de campagne, textes de parti, orientations et archives. La date de consultation figure sur chaque référence. Une correction éditoriale et une évolution documentée du programme ont des historiques distincts. [Inventaire daté](AUDIT.md) · [Sources et droits](SOURCES.md) · [Règles d’attribution et de fraîcheur](DATA_QUALITY.md) · [Changements](CHANGELOG.md)
 
 Le registre des sondages indique le nombre d’enquêtes, d’instituts et de scénarios couverts. Chaque série conserve l’institut, le tour, la question, la population, la méthode, le scénario et la liste de candidatures. Les dates de terrain, les effectifs et les références renvoient aux notices de la Commission des sondages et, le cas échéant, aux résultats publiés par l’institut.
 
 Chaque vague de sondage et chaque fiche d’indicateur économique propose « Intégrer ce graphique ». La version actualisée charge un SVG de Polradar. Sa légende renvoie à la série et à sa méthode. La version figée conserve le SVG et les références dans le HTML copié. Elle fonctionne hors ligne. Le téléchargement permet aussi d’héberger le fichier chez l’éditeur. Aucun script, cookie ou identifiant de suivi n’est ajouté par l’intégration.
 
-Les vues `/temps-de-parole/`, `/budget-programmes/` et `/agenda/` proposent les relevés Arcom de juillet à septembre 2026 (24 médias), 37 montants annoncés pour 14 profils et 28 rendez-vous officiels dans 21 communes. Elles conservent les périodes, les données absentes et les sources. Chaque jour, les fichiers Arcom sont vérifiés puis intégrés via la publication Git habituelle. Voir [la méthode et les commandes de mise à jour](docs/visualisations.md).
+Les rubriques de temps de parole, de budgets et d’agenda publient respectivement des relevés Arcom par période, des montants sourcés et des rendez-vous documentés. La collecte Arcom vérifie chaque jour les fichiers disponibles. [Méthode et commandes](docs/visualisations.md)
 
 La rubrique `/evolution/` rassemble 19 dossiers et 41 états de propositions pour onze personnalités. La rubrique `/financements/` présente les relations documentées entre financements et dépenses. Les fiches indiquent les éditions, les dates de dépôt ou de consultation et le périmètre de chaque mesure. [Règles de comparaison](docs/propositions.md)
 
@@ -60,7 +60,7 @@ Dans Mon suivi, « Depuis hier » rapproche les versions de mesures et les compa
 
 ## Propositions, votes et partage
 
-La frise `/votes/` relie 21 dossiers à 17 scrutins nominatifs de l’Assemblée nationale et du Sénat. Pour chaque vote figurent son objet, le groupe parlementaire à la date de séance et la liste nominative officielle. [Méthode de sélection](docs/votes.md)
+La frise des votes relie les propositions à des scrutins nominatifs de l’Assemblée nationale, du Sénat et du Parlement européen. Chaque fiche indique le texte soumis au vote, le rôle de la personne à la séance et le relevé officiel. [Méthode de sélection](docs/votes.md)
 
 L’accueil et chaque rubrique disposent d’une image OG PNG de 1200 × 630, générée à la construction avec Chromium et la police locale. Les graphiques reprennent les données du corpus, sans requête distante ni photographie synthétique. Les noms de fichiers changent avec le contenu et le rendu. Les pages détaillées héritent du visuel de leur rubrique. `npm run og:render` permet de les régénérer ; Chromium doit être installé avant `build` ou `dev`. Les PNG générés sont ignorés par Git et intégrés à la livraison statique.
 

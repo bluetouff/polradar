@@ -1,4 +1,5 @@
 ---
+import { collectiveLabel } from '../../lib/attribution.mjs';
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import PagedResults from '../../components/PagedResults.astro';
@@ -161,12 +162,8 @@ const maxCount = Math.max(
             {topic.entries.map(({ measure, candidate, source }) => (
               <article class="digital-card" data-page-item>
                 <div class="digital-byline">
-                  {measure.scope === 'parti' ? (
-                    <strong>
-                      {measure.partyAuthor ??
-                        source.publisher ??
-                        candidate.party}
-                    </strong>
+                  {collectiveLabel(measure) ? (
+                    <strong>{collectiveLabel(measure)}</strong>
                   ) : (
                     <a href={`/candidats/${candidate.id}/`}>{candidate.name}</a>
                   )}

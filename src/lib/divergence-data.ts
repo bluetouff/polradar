@@ -1,3 +1,4 @@
+import { attributionLabel } from './attribution.mjs';
 import positionRows from '../data/divergence-positions.json';
 import {
   activeCandidates,
@@ -37,18 +38,7 @@ export const positionDivergences = topics.map((topic) => {
           const version = versionById.get(id)!;
           const measure = measureById(version.measureId);
           const candidate = candidateById(measure.candidate);
-          const author =
-            version.snapshot.scope === 'parti'
-              ? (version.snapshot.partyAuthor ??
-                version.snapshot.sourceRefs
-                  .map(
-                    (ref) =>
-                      dataset.sources.find((s) => s.id === ref.sourceId)
-                        ?.publisher,
-                  )
-                  .find(Boolean) ??
-                `Document de parti (dossier ${candidate.name})`)
-              : candidate.name;
+          const author = attributionLabel(version.snapshot, candidate.name);
           return { candidate, measure, version, author };
         })
         .filter((entry) => !entry.candidate.withdrawnOn)

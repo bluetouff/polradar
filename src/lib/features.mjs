@@ -1,3 +1,4 @@
+import { attributionLabel, collectiveLabel } from './attribution.mjs';
 /** Shared, dependency-free rules for charts, history and local search. */
 export function normalize(value) {
   return String(value)
@@ -108,10 +109,11 @@ function searchTokens(text, index = false) {
 }
 /** @param {import('./data').Measure} measure */
 export function measureSearchText(measure, candidateName, themeLabel) {
+  const collective = collectiveLabel(measure);
   const format = (entry) =>
     `${entry.label} ${entry.value.toLocaleString('fr-FR')} ${entry.unit}`;
   return [
-    measure.partyAuthor || candidateName,
+    collective ? `${collective} · Dossier de ${candidateName}` : candidateName,
     themeLabel,
     measure.description,
     measure.beneficiaries,
@@ -186,7 +188,15 @@ export function exportCsv(rows) {
   return (
     '\uFEFF' +
     [
-      ['Titre', 'Type', 'Candidat', 'Thème', 'Année', 'URL'],
+      [
+        'Titre',
+        'Type',
+        'Candidat',
+        'Thème',
+        'Année',
+        'URL',
+        'Auteur du document',
+      ],
       ...rows.map((row) => [
         row.title,
         row.type,
@@ -194,6 +204,7 @@ export function exportCsv(rows) {
         row.theme || '',
         row.year || '',
         new URL(row.url, 'https://polradar.fr').href,
+        row.author ?? '',
       ]),
     ]
       .map((row) => row.map(csvValue).join(';'))
@@ -296,10 +307,11 @@ export function metricGroups(measures, candidates) {
       const group = groups.get(key);
       group.values.push({
         candidate: measure.candidate,
-        name:
-          measure.partyAuthor ||
-          candidates.find((c) => c.id === measure.candidate)?.name ||
-          measure.candidate,
+        name: attributionLabel(
+          measure,
+          candidates.find((c) => c.id === measure.candidate)?.name ??
+            measure.candidate,
+        ),
         value: metric.value,
         measureId: measure.id,
       });
