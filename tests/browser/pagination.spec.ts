@@ -211,13 +211,19 @@ test('les pictogrammes partagés gardent leur tracé sous la CSP de la page', as
     if (m.type() === 'error') messages.push(m.text());
   });
   await page.goto('/themes/fiscalite/');
-  const drawing = page.locator('.feature-emblem .icon use');
-  await expect(drawing).toHaveAttribute('href', '/icones.svg#fiscalite');
-  await expect
-    .poll(() =>
-      drawing.evaluate((el) => (el as SVGGraphicsElement).getBBox().width),
-    )
-    .toBeGreaterThan(0);
+  const drawing = page.locator('.feature-emblem .icon.i-fiscalite');
+  await expect(drawing).toBeVisible();
+  const mask = await drawing.evaluate((el) => {
+    const css = getComputedStyle(el);
+    return {
+      image: css.maskImage,
+      position: css.getPropertyValue('--icon-y'),
+      width: el.getBoundingClientRect().width,
+    };
+  });
+  expect(mask.image).toMatch(/pictos-menu\/[a-f0-9]+\.svg/);
+  expect(mask.position).toMatch(/%/);
+  expect(mask.width).toBeGreaterThan(0);
   expect(
     messages.filter((m) => m.toLowerCase().includes('content security')),
   ).toEqual([]);

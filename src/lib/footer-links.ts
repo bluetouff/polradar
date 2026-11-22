@@ -1,0 +1,57 @@
+export const footerColumns = [
+  {
+    title: 'Explorer',
+    icon: 'people',
+    links: [
+      ['/candidats/', 'Candidats'],
+      ['/mesures/', 'Mesures et orientations'],
+      ['/themes/', 'Thèmes'],
+      ['/numerique/', 'Propositions sur le numérique'],
+      ['/dossiers/', 'Dossiers'],
+    ],
+  },
+  {
+    title: 'Comparer',
+    icon: 'exchange',
+    links: [
+      ['/comparer/', 'Programmes'],
+      ['/numerique/comparer/', 'Comparatif numérique'],
+      ['/comparer/retraites/', 'Retraites et droit en vigueur'],
+      ['/numerique/ce-qui-changerait/', 'Numérique et droit en vigueur'],
+      ['/divergences/', 'Divergences'],
+      ['/evolution/', 'Évolution des propositions'],
+      ['/votes/', 'Propositions et votes passés'],
+      ['/financements/', 'Carte des financements'],
+      ['/budget-programmes/', 'Budgets annoncés'],
+    ],
+  },
+  {
+    title: 'Suivre la campagne',
+    icon: 'historique',
+    links: [
+      ['/breves/', 'Brèves de campagne'],
+      ['/campagne/', 'Chronologie'],
+      ['/agenda/', 'Carte des rendez-vous'],
+      ['/communes/', 'Résultats par commune'],
+      ['/sondages/', 'Sondages'],
+      ['/economie/', 'Indicateurs économiques'],
+      ['/economie/declarations/', 'Déclarations et chiffres publics'],
+      ['/marches-predictifs/', 'Marchés prédictifs'],
+      ['/temps-de-parole/', 'Temps de parole'],
+      ['/veille/', 'Veille quotidienne'],
+      ['/mises-a-jour/', 'Mises à jour'],
+    ],
+  },
+  {
+    title: 'Le projet',
+    icon: 'source',
+    links: [
+      ['/transparence/', 'À propos de Polradar'],
+      ['/methode/', 'Méthode'],
+      ['/sources/', 'Catalogue des sources'],
+      ['/credits-photos/', 'Crédits photos'],
+      ['/mentions/', 'Mentions et confidentialité'],
+      ['/rss.xml', 'Flux RSS'],
+    ],
+  },
+];

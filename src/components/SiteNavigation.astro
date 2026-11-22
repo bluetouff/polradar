@@ -7,6 +7,9 @@ interface Props {
 }
 const { current } = Astro.props;
 const path = Astro.url.pathname;
+// Leaf dossiers and catalogue pages repeat the same off-topic menus thousands of times.
+const detail =
+  /^\/(?:mesures|engagements)\/[^/]+\/$/.test(path) || path.includes('/page/');
 ---
 
 <nav
@@ -24,17 +27,30 @@ const path = Astro.url.pathname;
       }
     >
       <summary class={`menu-${group.icon}`}>{group.name}</summary>
-      <div class="desk-links">
-        {group.links.map(([url, label]) => (
-          <a
-            href={url}
-            aria-current={
-              current === url ? (path === url ? 'page' : 'location') : undefined
-            }
-          >
-            {label}
+      <div
+        class="desk-links"
+        id={path === '/' ? 'menu-' + group.id : undefined}
+      >
+        {detail && !group.links.some(([url]) => url === current) ? (
+          <a href={'/#menu-' + group.id} data-menu-links={group.id}>
+            Toutes les rubriques · {group.name}
           </a>
-        ))}
+        ) : (
+          group.links.map(([url, label]) => (
+            <a
+              href={url}
+              aria-current={
+                current === url
+                  ? path === url
+                    ? 'page'
+                    : 'location'
+                  : undefined
+              }
+            >
+              {label}
+            </a>
+          ))
+        )}
       </div>
     </details>
   ))}

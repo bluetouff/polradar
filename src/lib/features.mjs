@@ -14,8 +14,17 @@ export function pollSignature(poll) {
     poll.population,
     poll.method,
     poll.questionKey,
+    poll.scenario,
     poll.results.map((result) => result.id).sort(),
   ]);
+}
+export function comparePollWaves(a, b) {
+  return (
+    a.fieldworkEnd.localeCompare(b.fieldworkEnd) ||
+    a.published.localeCompare(b.published) ||
+    a.fieldworkStart.localeCompare(b.fieldworkStart) ||
+    a.id.localeCompare(b.id)
+  );
 }
 /** @param {import('./data').Poll[]} polls @returns {import('./data').Poll[][]} */
 export function pollSeries(polls) {
@@ -26,10 +35,12 @@ export function pollSeries(polls) {
     groups.get(key).push(poll);
   }
   return [...groups.values()]
-    .map((rows) =>
-      rows.sort((a, b) => a.fieldworkEnd.localeCompare(b.fieldworkEnd)),
-    )
-    .sort((a, b) => b.at(-1).published.localeCompare(a.at(-1).published));
+    .map((rows) => rows.sort(comparePollWaves))
+    .sort(
+      (a, b) =>
+        b.at(-1).published.localeCompare(a.at(-1).published) ||
+        comparePollWaves(b.at(-1), a.at(-1)),
+    );
 }
 /** @param {import('./data').Poll['results'][number]} result */
 export function pollScoreLabel(result) {

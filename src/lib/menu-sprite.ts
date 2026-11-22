@@ -16,6 +16,7 @@ const icons = [
   ...new Set([
     ...groups.flatMap((g) => [g.icon, ...g.links.map((link) => link[2])]),
     ...Object.keys(decorations),
+    ...Object.keys(iconPaths),
   ]),
 ].sort();
 const paths = icons.map((id) => {
@@ -38,6 +39,13 @@ const imageFile = digest(svg) + '.svg';
 const navLinks = groups.flatMap((group) => group.links);
 const css =
   `:where(.site-nav-group .desk-links a,.site-nav-group summary,.footer-columns h2,.footer-follow,.follow-button,.mobile-search,.masthead-actions>a,.page-share-label,.page-share a[data-share-platform="mail"])::before,:where(.site-nav-group summary,.footer-follow,.footer-meta a,.footer-bottom>a)::after{content:"";display:var(--pic-display,inline-block);flex:none;width:var(--pic-size,1rem);height:var(--pic-size,1rem);background:currentColor;mask-image:url("/pictos-menu/${imageFile}");mask-repeat:no-repeat;mask-size:100% auto;mask-position:0 var(--menu-y)}` +
+  `i.icon{display:inline-block;background-color:currentColor;mask-image:url("/pictos-menu/${imageFile}");mask-repeat:no-repeat;mask-size:100% auto;mask-position:0 var(--icon-y)}` +
+  icons
+    .map(
+      (id, i) =>
+        `.i-${id}{--icon-y:${((i * 100) / Math.max(1, icons.length - 1)).toFixed(6)}%}`,
+    )
+    .join('') +
   icons
     .map(
       (id, i) =>

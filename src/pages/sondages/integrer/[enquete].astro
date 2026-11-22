@@ -1,0 +1,59 @@
+---
+import Base from '../../../layouts/Base.astro';
+import DataGraphicEmbed from '../../../components/DataGraphicEmbed.astro';
+import { polls, sources, formatDate } from '../../../lib/data';
+import { pollGraphic, pollGraphicCatalog } from '../../../lib/poll-graphic.mjs';
+export function getStaticPaths() {
+  return pollGraphicCatalog(polls).flatMap(({ id, waves, latest }) =>
+    waves.map((wave: (typeof polls)[number]) => ({
+      params: { enquete: wave.id },
+      props: { wave, latest, id },
+    })),
+  );
+}
+const { wave, latest, id } = Astro.props;
+const edition = pollGraphic(wave, sources);
+const live = pollGraphic(latest, sources);
+const livePage = '/sondages/#' + id;
+const liveAlt =
+  'Intentions de vote · ' +
+  wave.institute +
+  ' · ' +
+  wave.scenario +
+  '. Résultats et méthode dans la légende.';
+---
+
+<Base
+  title={
+    'Intégrer le sondage ' +
+    wave.institute +
+    ' du ' +
+    formatDate(wave.published)
+  }
+  description={wave.scenario}
+  section="/sondages/"
+  noindex
+  publicationTool
+>
+  <div class="breadcrumbs">
+    <a href={edition.page}>← Revoir cette vague de sondage</a>
+  </div>
+  <header class="page-title">
+    <div>
+      <h1>
+        {wave.institute} · {formatDate(wave.published)}
+      </h1>
+      <p>{wave.scenario}</p>
+    </div>
+  </header>
+  <DataGraphicEmbed
+    {edition}
+    latest={live}
+    livePath={'/graphiques/sondages/' + id + '.svg'}
+    {livePage}
+    {liveAlt}
+    liveDescription="Affiche la dernière vague publiée pour cet institut, ce tour et cette hypothèse de candidatures."
+    filename={'polradar-' + wave.id + '.svg'}
+    expanded
+  />
+</Base>

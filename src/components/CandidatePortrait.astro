@@ -9,6 +9,8 @@ interface Props {
 }
 const { candidate, eager = false, compact = false } = Astro.props;
 const portrait = portraitFor(candidate.id);
+const maxWidth = Math.min(portrait?.image.width ?? 640, compact ? 128 : 640);
+const widths = [...new Set([Math.min(compact ? 64 : 240, maxWidth), maxWidth])];
 ---
 
 <div
@@ -31,11 +33,11 @@ const portrait = portraitFor(candidate.id);
     <Image
       src={portrait.image}
       alt=""
-      width={compact ? 64 : 640}
-      widths={compact ? [64, 128] : [240, 640]}
+      width={compact ? widths[0] : maxWidth}
+      widths={widths}
       sizes={compact ? '44px' : '(max-width: 650px) 45vw, 240px'}
-      format="webp"
-      quality={82}
+      format="avif"
+      quality={65}
       loading={eager ? 'eager' : 'lazy'}
       decoding="async"
     />

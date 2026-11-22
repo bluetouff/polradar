@@ -9,12 +9,15 @@ const { name, class: className = '', title } = Astro.props;
 const id = Object.hasOwn(iconPaths, name) ? name : 'source';
 ---
 
-<svg
-  class:list={['icon', className]}
-  viewBox="0 0 24 24"
-  aria-hidden={title ? undefined : 'true'}
-  role={title ? 'img' : undefined}
-  aria-label={title}
->
-  <use href={`/icones.svg#${id}`} />
-</svg>
+{title ? (
+  <svg
+    class:list={['icon', className]}
+    viewBox="0 0 24 24"
+    role="img"
+    aria-label={title}
+  >
+    <use href={`/icones.svg#${id}`} />
+  </svg>
+) : (
+  <i class:list={['icon', 'i-' + id, className]}></i>
+)}

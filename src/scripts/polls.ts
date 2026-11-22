@@ -16,6 +16,7 @@ const round = document.querySelector<HTMLSelectElement>('#poll-round')!,
   range = document.querySelector<HTMLInputElement>('#poll-wave')!,
   bars = document.querySelector<HTMLElement>('#poll-bars')!,
   method = document.querySelector<HTMLElement>('#poll-method')!,
+  embedLink = document.querySelector<HTMLAnchorElement>('#poll-embed-link')!,
   status = document.querySelector<HTMLElement>('#poll-status')!;
 const shortDate = (value: string) =>
   new Intl.DateTimeFormat('fr-FR', {
@@ -209,11 +210,13 @@ async function start() {
     renderPlot();
     bars.replaceChildren();
     method.replaceChildren();
+    embedLink.hidden = !rows.length;
     if (!rows.length) {
       status.textContent = 'Aucun scénario correspondant.';
       return;
     }
     const poll = rows[index];
+    embedLink.href = `/sondages/integrer/${poll.id}/`;
     document.querySelector('#poll-wave-total')!.textContent =
       `${rows.length} vague${rows.length > 1 ? 's' : ''}`;
     for (const selector of ['#poll-selected-date', '#poll-bar-date'])
@@ -359,7 +362,10 @@ async function start() {
       `polradar-${poll.id}.csv`,
     );
   });
-  const requested = new URLSearchParams(location.hash.slice(1)).get('enquete'),
+  const fragment = location.hash.slice(1);
+  const requested =
+      new URLSearchParams(fragment).get('enquete') ??
+      document.getElementById(fragment)?.dataset.vague,
     poll = data.polls.find((poll) => poll.id === requested);
   if (poll) {
     round.value = poll.round;

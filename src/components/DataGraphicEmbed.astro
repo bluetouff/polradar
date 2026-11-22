@@ -1,0 +1,62 @@
+---
+import GraphicWorkbench from './GraphicWorkbench.astro';
+import {
+  editionId,
+  publicationCode,
+  type Graphic,
+} from '../lib/chart-publication';
+interface Props {
+  edition: Graphic;
+  latest: Graphic;
+  livePath: string;
+  livePage: string;
+  liveAlt: string;
+  liveDescription: string;
+  filename: string;
+  expanded?: boolean;
+}
+const {
+  edition,
+  latest,
+  livePath,
+  livePage,
+  liveAlt,
+  liveDescription,
+  filename,
+  expanded,
+} = Astro.props;
+const preview = '/graphiques/editions/' + editionId(edition) + '.svg';
+const modes = [
+  {
+    id: 'actualisee',
+    title: 'Version actualisée',
+    description: liveDescription,
+    preview: livePath,
+    width: latest.width,
+    height: latest.height,
+    alt: latest.alt,
+    code: publicationCode(latest, livePath, livePage, liveAlt, false),
+  },
+  {
+    id: 'figee',
+    title: 'Version figée',
+    description:
+      'Édition du ' +
+      edition.dateLabel +
+      '. Le code contient l’image et ses références. Vous pouvez aussi télécharger le SVG et l’héberger sur votre site.',
+    preview,
+    width: edition.width,
+    height: edition.height,
+    alt: edition.alt,
+    code: publicationCode(edition, livePath, livePage, liveAlt, true),
+    download: { href: preview, filename },
+  },
+];
+---
+
+<GraphicWorkbench
+  {modes}
+  {expanded}
+  selected={editionId(edition) === editionId(latest) ? 0 : 1}
+  intro="Copiez le HTML dans votre article. Le graphique fonctionne sans script ni traceur."
+/>

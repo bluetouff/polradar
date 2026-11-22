@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import PollChart from '../components/PollChart.astro';
+import { pollGraphicCatalog } from '../lib/poll-graphic.mjs';
 import { polls, sourceById, formatDate, type Poll } from '../lib/data';
 import {
   pollSeries,
@@ -9,6 +10,9 @@ import {
   pollScoreLabel,
   rankedPollResults,
 } from '../lib/features.mjs';
+const currentSeries = new Map(
+  pollGraphicCatalog(polls).map(({ id, latest }) => [latest.id, id]),
+);
 const groups = pollSeries(polls) as Poll[][];
 const initial = groups.find((rows) => rows[0].round === 'premier')!;
 const latest = initial.at(-1)!;
@@ -143,6 +147,13 @@ const notices = [...new Set(polls.map((poll) => poll.noticeSource))];
       <p id="poll-bar-date" class="results-meta">
         {formatDate(latest.fieldworkEnd)}
       </p>
+      <a
+        class="button small"
+        id="poll-embed-link"
+        href={'/sondages/integrer/' + latest.id + '/'}
+      >
+        <Icon name="source" /> Intégrer ce graphique
+      </a>
       <div id="poll-bars">
         {rankedPollResults(latest).map((result) => (
           <div class="poll-bar-row">
@@ -248,7 +259,10 @@ const notices = [...new Set(polls.map((poll) => poll.noticeSource))];
     <ul>
       {polls.map((poll) => (
         <li id={`enquete-${poll.id}`}>
-          <span>
+          <span
+            id={currentSeries.get(poll.id)}
+            data-vague={currentSeries.has(poll.id) ? poll.id : undefined}
+          >
             {poll.institute} · {formatDate(poll.published)} · {poll.scenario}
           </span>
           <a
@@ -258,6 +272,7 @@ const notices = [...new Set(polls.map((poll) => poll.noticeSource))];
           >
             Notice, page {poll.noticePage} ↗
           </a>
+          <a href={'/sondages/integrer/' + poll.id + '/'}>Intégrer la vague</a>
         </li>
       ))}
     </ul>

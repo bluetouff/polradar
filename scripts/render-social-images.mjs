@@ -7,6 +7,7 @@ import {
   readdir,
   unlink,
 } from 'node:fs/promises';
+import sharp from 'sharp';
 import { chromium } from '@playwright/test';
 import { socialImages } from '../src/lib/social-images.mjs';
 import { socialImageHtml } from '../src/lib/social-image-view.mjs';
@@ -132,7 +133,20 @@ try {
     });
     if (overflow.length || errors.length)
       throw Error(`${card.id} : ${[...overflow, ...errors].join(', ')}`);
-    const png = await page.screenshot({ type: 'png', animations: 'disabled' });
+    const bitmap = await page.screenshot({
+      type: 'png',
+      animations: 'disabled',
+    });
+    const png = await sharp(bitmap)
+      .png({
+        palette: true,
+        colours: 256,
+        dither: 0.5,
+        effort: 7,
+        compressionLevel: 9,
+        adaptiveFiltering: true,
+      })
+      .toBuffer();
     if (
       png.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a' ||
       png.readUInt32BE(16) !== 1200 ||

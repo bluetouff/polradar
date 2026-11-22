@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
+import DataGraphicEmbed from '../../components/DataGraphicEmbed.astro';
+import { economyGraphic } from '../../lib/economy-graphic.mjs';
 import EconomyCurve from '../../components/EconomyCurve.astro';
 import {
   economy,
@@ -38,6 +40,7 @@ const dateTime = new Intl.DateTimeFormat('fr-FR', {
   timeZone: 'Europe/Paris',
 });
 const collected = dateTime.format(new Date(economyCollectedAt));
+const graphic = series && economyGraphic(economy, series.id);
 const flaggedLatest = series?.latest[2];
 ---
 
@@ -131,6 +134,27 @@ const flaggedLatest = series?.latest[2];
             )}
           </div>
         </section>
+
+        {graphic && (
+          <DataGraphicEmbed
+            edition={graphic}
+            latest={graphic}
+            livePath={'/graphiques/economie/' + series.id + '.svg'}
+            livePage={graphic.page}
+            liveAlt={
+              series.title +
+              ' en France. Série Eurostat, valeurs et sources dans la légende.'
+            }
+            liveDescription="La courbe intègre les nouvelles observations et les révisions publiées par Eurostat lors de la mise à jour de Polradar."
+            filename={
+              'polradar-' +
+              series.id +
+              '-' +
+              series.updatedAt.slice(0, 10) +
+              '.svg'
+            }
+          />
+        )}
 
         <details class="economy-table">
           <summary>Toutes les observations</summary>

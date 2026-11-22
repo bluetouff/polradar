@@ -17,6 +17,7 @@ interface Props {
   description?: string;
   section?: string;
   noindex?: boolean;
+  publicationTool?: boolean;
   articlePublished?: string;
   lastModified?: string;
 }
@@ -24,6 +25,7 @@ const {
   title = 'Présidentielle 2027',
   description = 'Programmes, candidatures, calendrier et sources de la présidentielle française de 2027.',
   section = '',
+  publicationTool = false,
   articlePublished,
   lastModified,
   noindex = false,
@@ -118,18 +120,21 @@ const socialImageUrl = new URL(social.url, Astro.site);
             <a href="/recherche/">Rechercher</a>
           </div>
         </div>
-        <SiteNavigation current={navigation.current} />
+        {!publicationTool && <SiteNavigation current={navigation.current} />}
       </header>
       <div class="page-column">
         <main id="contenu" class="container" tabindex="-1">
           <slot />
-          <ShareLinks title={title} canonical={canonical} />
+          {!publicationTool && (
+            <ShareLinks title={title} canonical={canonical} />
+          )}
         </main>
         <SiteFooter />
       </div>
     </div>
     <script>
       import '../scripts/site-navigation';
+      import '../scripts/footer-links';
       import '../scripts/follow';
     </script>
   </body>

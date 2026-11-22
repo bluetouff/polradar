@@ -8,6 +8,8 @@ Aucun secret de serveur n’est stocké dans GitHub. Aucun runner GitHub n’ent
 
 Le site ne reçoit ni dépôt Git, ni `node_modules`, ni outil de déploiement. Les archives n’acceptent que des fichiers statiques ordinaires, avec des limites de taille et de nombre. Le déploiement s’interrompt si un contrôle échoue.
 
+Le résumé du job de publication indique la marge sur la taille gzip, le TAR complet après décompression et le nombre de fichiers. Un avertissement apparaît sous 10 % de marge. Les plafonds sont ceux du déployeur installé.
+
 ## Installation initiale
 
 L’opérateur vérifie la configuration Apache, le propriétaire des répertoires et les deux scripts avant installation. Le serveur doit disposer de Python 3.10+, curl, cron et d’un certificat HTTPS valide pour `polradar.fr`.
