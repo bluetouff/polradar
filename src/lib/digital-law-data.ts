@@ -33,29 +33,48 @@ export const digitalLawSections = law.sections.map((section) => ({
     ...item,
     href: digitalLawPath(item.slug),
     rules: item.rules.map(resolveRule),
+    contextMeasures: (item.relatedMeasures ?? []).map((id) => {
+      const version = versionById.get(id)!;
+      return {
+        title: version.snapshot.title,
+        author:
+          version.snapshot.partyAuthor ??
+          candidateById(measureById(version.measureId).candidate).name,
+        href: `/mesures/${version.measureId}/#version-${version.number}`,
+      };
+    }),
     parliament: item.parliament
       ? { ...item.parliament, ...resolveRule(item.parliament) }
       : undefined,
-    changes: item.changes.map((change) => {
-      const version = versionById.get(change.versionId)!;
-      const candidate = candidateById(measureById(version.measureId).candidate);
-      const snapshot = version.snapshot;
-      return {
-        ...change,
-        author:
-          snapshot.partyAuthor ??
-          (snapshot.scope === 'parti'
-            ? (sourceById(snapshot.sourceRefs[0].sourceId).publisher ??
-              candidate.party)
-            : candidate.name),
-        scope: snapshot.scope,
-        edition: snapshot.edition,
-        sources: snapshot.sourceRefs.map((ref) => ({
-          ...ref,
-          source: sourceById(ref.sourceId),
-        })),
-        detailHref: `/mesures/${version.measureId}/#version-${version.number}`,
-      };
-    }),
+    changes: item.changes
+      .filter(
+        (c) =>
+          !candidateById(
+            measureById(versionById.get(c.versionId)!.measureId).candidate,
+          ).withdrawnOn,
+      )
+      .map((change) => {
+        const version = versionById.get(change.versionId)!;
+        const candidate = candidateById(
+          measureById(version.measureId).candidate,
+        );
+        const snapshot = version.snapshot;
+        return {
+          ...change,
+          author:
+            snapshot.partyAuthor ??
+            (snapshot.scope === 'parti'
+              ? (sourceById(snapshot.sourceRefs[0].sourceId).publisher ??
+                candidate.party)
+              : candidate.name),
+          scope: snapshot.scope,
+          edition: snapshot.edition,
+          sources: snapshot.sourceRefs.map((ref) => ({
+            ...ref,
+            source: sourceById(ref.sourceId),
+          })),
+          detailHref: `/mesures/${version.measureId}/#version-${version.number}`,
+        };
+      }),
   })),
 }));

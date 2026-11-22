@@ -106,7 +106,10 @@ export function measureCard(
       : anchor(candidate.name, `/candidats/${candidate.id}/`),
     el(
       'span',
-      labels[measure.scope],
+      labels[measure.scope] +
+        (candidate.withdrawnOn && measure.scope !== 'archive'
+          ? ' · candidature retirée'
+          : ''),
       measure.scope === 'archive' ? 'tag archive' : 'tag',
     ),
   );

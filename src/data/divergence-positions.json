@@ -172,7 +172,8 @@
           "philippot-institutions-ric-v1",
           "legendre-institutions-referendums-v1",
           "rohou-institutions-ric-v1",
-          "lalanne-institutions-ric-v1"
+          "lalanne-institutions-ric-v1",
+          "villepin-referendum-citoyen-v1"
         ]
       },
       {
@@ -374,7 +375,8 @@
         "label": "Exonérer sous un seuil et taxer davantage les transmissions élevées",
         "versions": [
           "melenchon-fiscalite-petits-heritages-v1",
-          "roussel-fiscalite-heritages-v1"
+          "roussel-fiscalite-heritages-v1",
+          "villepin-successions-ligne-directe-v1"
         ]
       },
       {
@@ -519,12 +521,18 @@
       {
         "id": "petites",
         "label": "Cibler les artisans, TPE et PME",
-        "versions": ["philippot-demarches-petites-entreprises-v1"]
+        "versions": [
+          "philippot-demarches-petites-entreprises-v1",
+          "attal-test-pme-avant-chaque-loi-v1"
+        ]
       },
       {
         "id": "normes",
         "label": "Réduire le volume des normes administratives",
-        "versions": ["dupont-aignan-travail-normes-v1"]
+        "versions": [
+          "dupont-aignan-travail-normes-v1",
+          "philippe-moratoire-normes-entreprises-v1"
+        ]
       }
     ]
   },
@@ -575,6 +583,11 @@
         "id": "demanteler",
         "label": "Organiser le démantèlement des parcs",
         "versions": ["philippot-eolien-demantelement-v1"]
+      },
+      {
+        "id": "zones-protegees",
+        "label": "Restreindre les implantations dans les espaces protégés",
+        "versions": ["ecologistes-eolien-reserves-parcs-v1"]
       }
     ]
   },
@@ -593,6 +606,11 @@
         "id": "baisser",
         "label": "Baisser progressivement la CSG sur les salaires",
         "versions": ["glucksmann-csg-salaires-v1"]
+      },
+      {
+        "id": "bascule-cotisations",
+        "label": "Financer une partie des cotisations par la CSG",
+        "versions": ["villepin-cotisations-vers-csg-v1"]
       }
     ]
   }

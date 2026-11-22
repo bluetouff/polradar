@@ -7,6 +7,19 @@ export const unconfirmedRights = 'Autorisation de reproduction non documentée';
 // These permissions apply only to the reviewed photographs, not to their sites.
 export const portraitPermissions = [
   {
+    candidate: 'villepin',
+    file: 'villepin.jpg',
+    author: 'Service photographique de Matignon',
+    license: 'Licence Ouverte 1.0',
+    licenseUrl: 'https://www.data.gouv.fr/pages/legal/licences/etalab-1-0',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:De_Villepin_PM_portrait.png',
+    year: '2005',
+    identityUrl:
+      'https://www.info.gouv.fr/les-anciens-premiers-et-premieres-ministres-de-la-ve-republique/dominique-de-villepin',
+    note: 'Portrait institutionnel de 2005, recadré par Polradar. Le fichier original est accessible sur Wikimedia Commons.',
+  },
+  {
     candidate: 'glucksmann',
     file: 'glucksmann.jpg',
     author: '© Union européenne 2024 · Source : Parlement européen',
@@ -45,6 +58,7 @@ export const portraitSchema = z
       'CC BY 4.0',
       'CC BY-SA 3.0',
       'CC BY-SA 4.0',
+      'Licence Ouverte 1.0',
       'Conditions du Parlement européen',
       'Autorisation de campagne',
       unconfirmedRights,

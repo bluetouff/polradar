@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-20",
+  "asOf": "2026-11-22",
   "sections": [
     {
       "id": "chiffrement",
@@ -55,11 +55,17 @@
               "versionId": "retailleau-institutions-achats-numeriques-v2",
               "title": "Introduire un critère de souveraineté dans les achats numériques de l’État",
               "body": "Publier un score pour les logiciels et équipements et l’utiliser dans les marchés publics. Fixer un seuil pour les fonctions critiques. La maîtrise des clés de chiffrement fait partie des critères. Pour le renseignement, la défense, la police et la justice, les exigences minimales sur les clés et la juridiction s’appliqueraient sans dérogation."
+            },
+            {
+              "versionId": "melenchon-droit-constitutionnel-chiffrement-v1",
+              "title": "Inscrire le droit au chiffrement dans la Constitution",
+              "body": "Le programme de Jean-Luc Mélenchon veut protéger les données et les communications face aux possibilités d’interception et de surveillance."
             }
           ]
         },
         {
           "id": "acces-communications",
+          "positionOnly": true,
           "slug": "acces-communications",
           "label": "Réquisitions",
           "question": "Quand le renseignement peut-il demander un déchiffrement ?",
@@ -87,7 +93,13 @@
               ]
             }
           ],
-          "changes": [],
+          "changes": [
+            {
+              "versionId": "ecologistes-obligation-acces-messageries-v1",
+              "title": "Rejeter l’obligation d’aménager un accès aux messageries chiffrées",
+              "body": "Dans le débat sur le narcotrafic, Les Écologistes soutiennent la suppression de l’article 8 ter. Leur fiche de 2025 porte sur ce projet d’accès imposé aux fournisseurs. Elle ne demande pas l’abrogation de l’article L. 871-1 en vigueur."
+            }
+          ],
           "parliament": {
             "title": "L’Assemblée a retiré l’article 16 bis",
             "body": "Le Sénat voulait interdire d’imposer aux fournisseurs de chiffrement des dispositifs affaiblissant la sécurité ou permettant un accès sans consentement aux données protégées. L’Assemblée a supprimé cet article le 10 novembre 2026. Elle a adopté le projet de loi en première lecture le 17 novembre.",
@@ -105,7 +117,8 @@
                 "label": "Texte de l’Assemblée"
               }
             ]
-          }
+          },
+          "relatedMeasures": ["melenchon-droit-constitutionnel-chiffrement-v1"]
         }
       ]
     },
@@ -194,6 +207,11 @@
               "versionId": "tondelier-institutions-ciblage-publicitaire-v1",
               "title": "Élargir les catégories de données protégées",
               "body": "Les Écologistes proposent d’étendre le périmètre des données interdites au partage, à la revente et au ciblage reposant sur la surveillance des comportements."
+            },
+            {
+              "versionId": "ps-limiter-publicite-ciblee-v1",
+              "title": "Restreindre la publicité ciblée",
+              "body": "Le PS veut limiter le ciblage pour réduire le profilage des personnes et les manipulations politiques."
             }
           ]
         },
@@ -408,6 +426,11 @@
               "versionId": "place-publique-numerique-algorithmes-reseaux-v1",
               "title": "Encadrer la conception des algorithmes de recommandation",
               "body": "Le parti souhaite imposer des règles aux réseaux sociaux dès la conception de leurs algorithmes pour limiter les mécanismes de dépendance et redonner du choix aux utilisateurs."
+            },
+            {
+              "versionId": "ps-fil-non-personnalise-v1",
+              "title": "Afficher par défaut un fil non personnalisé",
+              "body": "Le PS demanderait aux grandes plateformes de rendre leurs algorithmes transparents et de proposer par défaut un fil sans personnalisation."
             }
           ]
         }
@@ -556,7 +579,8 @@
                 "label": "Dossier législatif"
               }
             ]
-          }
+          },
+          "relatedMeasures": ["renaissance-guichet-signalement-cyber-v1"]
         },
         {
           "id": "aide-cyber-locale",
@@ -865,6 +889,21 @@
               "versionId": "cheve-institutions-remontee-citoyenne-v1",
               "title": "Organiser un guichet d’orientation des demandes citoyennes",
               "body": "Prévoir une entrée par un portail, la mairie ou un médiateur accrédité. Les communes orienteraient les demandes vers le service ou l’échelon compétent."
+            },
+            {
+              "versionId": "melenchon-guichets-papier-v1",
+              "title": "Maintenir les guichets physiques et les formulaires papier",
+              "body": "Les services publics qui dématérialisent leurs démarches devraient aussi maintenir un accueil sur place et des formulaires papier."
+            },
+            {
+              "versionId": "ecologistes-droit-non-connexion-v1",
+              "title": "Créer un droit opposable à la non-connexion administrative",
+              "body": "Les Écologistes demandent des guichets physiques pour ouvrir ou faire valoir un droit et régler un problème administratif, quelle que soit la nationalité."
+            },
+            {
+              "versionId": "ruffin-social-droit-humain-v1",
+              "title": "Un droit à un interlocuteur humain dans les services publics",
+              "body": "Permettre de choisir un agent pour chaque démarche et empêcher qu’un algorithme décide seul de l’attribution d’un droit ou d’une prestation."
             }
           ]
         }

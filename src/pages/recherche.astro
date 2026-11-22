@@ -1,8 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import { candidates, themes } from '../lib/data';
-import { searchEntries, searchKinds } from '../lib/search';
+import { questionThemes } from '../lib/questions';
+import { candidates } from '../lib/data';
+import { searchIcon, searchKinds } from '../lib/search-kinds';
+import { searchEntries } from '../lib/search';
 import PagedResults from '../components/PagedResults.astro';
 import { pageRange } from '../lib/pagination';
 interface Props {
@@ -25,7 +27,8 @@ const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
     <div>
       <h1>Recherche</h1>
       <p>
-        Mesures, programmes, documents et sondages. Les filtres se combinent.
+        Recherchez une mesure, un scrutin, un rendez-vous ou une déclaration
+        chiffrée.
       </p>
     </div>
   </header>
@@ -56,7 +59,7 @@ const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
         Thème
         <select name="theme">
           <option value="">Tous</option>
-          {themes.map((theme) => (
+          {questionThemes.map((theme) => (
             <option value={theme.id}>{theme.label}</option>
           ))}
         </select>
@@ -114,21 +117,7 @@ const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
       {current.slice(range.start, range.end).map((entry) => (
         <article class="advanced-result">
           <span class="result-symbol">
-            <Icon
-              name={
-                entry.type === 'mesure'
-                  ? entry.theme
-                  : entry.type === 'sondage'
-                    ? 'sondages'
-                    : entry.type === 'evenement'
-                      ? 'clock'
-                      : entry.type === 'candidat'
-                        ? 'people'
-                        : entry.type === 'source'
-                          ? 'source'
-                          : 'layers'
-              }
-            />
+            <Icon name={searchIcon(entry.type, entry.theme)} />
           </span>
           <div>
             <p class="result-meta">

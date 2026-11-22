@@ -3,6 +3,7 @@ import PagedResults from '../components/PagedResults.astro';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import SourceLinks from '../components/SourceLinks.astro';
+import { campaignBriefs } from '../lib/briefs';
 import CandidatePortrait from '../components/CandidatePortrait.astro';
 import { events, candidates, candidateById, formatDate } from '../lib/data';
 import '../styles/campaign.css';
@@ -19,6 +20,8 @@ const dateKinds: Record<string, string> = {
   publication: 'Publication',
   'mise-a-jour': 'Document mis à jour',
 };
+const briefs = await campaignBriefs();
+const briefByEvent = new Map(briefs.map((b) => [b.event.id, b.href]));
 const past = events
   .filter((event) => event.kind === 'past')
   .sort(
@@ -68,6 +71,11 @@ let categoryOffset = 0;
       </a>
     </div>
   </header>
+  <p class="campaign-brief-link">
+    <a class="inline-action" href="/breves/">
+      Lire les brèves de campagne ↗
+    </a>
+  </p>
   <div class="campaign-overview">
     <section
       class="campaign-activity"
@@ -259,7 +267,13 @@ let categoryOffset = 0;
                     </div>
                   </div>
                   <article>
-                    <h3>{event.title}</h3>
+                    <h3>
+                      {briefByEvent.has(event.id) ? (
+                        <a href={briefByEvent.get(event.id)}>{event.title}</a>
+                      ) : (
+                        event.title
+                      )}
+                    </h3>
                     <p>{event.description}</p>
                   </article>
                   <div class="campaign-card-footer">
@@ -276,6 +290,15 @@ let categoryOffset = 0;
                         </span>
                         <span>{candidateById(event.candidates[0]).name}</span>
                       </a>
+                    ) : event.category === 'candidature' &&
+                      event.candidates.length > 1 ? (
+                      <span class="campaign-section-link">
+                        {event.candidates.map((id) => (
+                          <a href={'/candidats/' + id + '/'}>
+                            {candidateById(id).name}
+                          </a>
+                        ))}
+                      </span>
                     ) : (
                       <a
                         class="campaign-section-link"

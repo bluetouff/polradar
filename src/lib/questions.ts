@@ -1,4 +1,11 @@
-import { candidates, measureById, sourceById, themes, versions } from './data';
+import {
+  candidates,
+  measureById,
+  sourceById,
+  themes,
+  versions,
+  watch,
+} from './data';
 import { positionDivergences } from './divergence-data';
 import { digitalLawSections } from './digital-law-data';
 import { dailyHistorySchema } from './daily-updates.mjs';
@@ -8,6 +15,11 @@ const journal = dailyHistorySchema.parse(history)[0];
 const checks = new Map(
   (journal?.sourceChecks ?? []).map((entry) => [entry.sourceId, entry]),
 );
+for (const entry of watch) {
+  const previous = checks.get(entry.sourceId);
+  if (!previous || Date.parse(entry.checkedAt) > Date.parse(previous.checkedAt))
+    checks.set(entry.sourceId, entry);
+}
 export function latestSourceCheck(id: string) {
   return checks.get(id);
 }
@@ -16,6 +28,116 @@ const examinedDocuments: Record<
   string,
   { candidate: string; sourceId: string; checked: string; locator: string }[]
 > = {
+  'numerique-signalement-cyber': [
+    {
+      candidate: 'retailleau',
+      sourceId: 'retailleau-vauban-numerique',
+      checked: '2026-11-22',
+      locator:
+        'Plan Vauban, engagement sur les administrations et hôpitaux et pilotage par l’ANSSI.',
+    },
+    {
+      candidate: 'melenchon',
+      sourceId: 'lfi-numerique',
+      checked: '2026-11-22',
+      locator:
+        'Chapitre 7, passages sur les fuites de données, la formation et la transmission à des tiers.',
+    },
+    {
+      candidate: 'dupont-aignan',
+      sourceId: 'dlf-cybersecurite-etat',
+      checked: '2026-11-22',
+      locator:
+        'Communiqué du 25 août 2026. Le rapport annuel demandé au Parlement porte sur la sécurité des ministères.',
+    },
+    {
+      candidate: 'attal',
+      sourceId: 'renaissance-convention-regalien',
+      checked: '2026-11-22',
+      locator:
+        'Convention de Renaissance, proposition 25, p. 24. Elle porte sur le guichet des victimes, distinct de la notification obligatoire par les organismes.',
+    },
+    {
+      candidate: 'glucksmann',
+      sourceId: 'ps-projet-2027-securites',
+      checked: '2026-11-22',
+      locator:
+        'Projet du PS, section « Cybersécurité : une nouvelle frontière », sur le service public de prévention.',
+    },
+    {
+      candidate: 'ruffin',
+      sourceId: 'ruffin-numerique',
+      checked: '2026-11-22',
+      locator:
+        'Cahier numérique, passages sur les données de l’État et les conditions d’hébergement.',
+    },
+  ],
+  'numerique-acces-communications': [
+    {
+      candidate: 'melenchon',
+      sourceId: 'lfi-numerique',
+      checked: '2026-11-22',
+      locator:
+        'Chapitre 7. Le droit constitutionnel au chiffrement proposé ne précise ni les agents habilités ni les conditions d’une réquisition.',
+    },
+    {
+      candidate: 'dupont-aignan',
+      sourceId: 'dlf-cybersecurite-etat',
+      checked: '2026-11-22',
+      locator:
+        'Point sur les communications sécurisées. L’obligation proposée vise l’équipement en outils souverains des personnels sensibles.',
+    },
+    {
+      candidate: 'retailleau',
+      sourceId: 'retailleau-vauban-numerique',
+      checked: '2026-11-22',
+      locator:
+        'Mesure présidentielle sur les cyberattaques. Son intervention comme ministre en mars 2025 figure dans le dossier parlementaire.',
+    },
+  ],
+  'numerique-courtiers': [
+    {
+      candidate: 'glucksmann',
+      sourceId: 'ps-projet-2027-vivre-libres',
+      checked: '2026-11-22',
+      locator:
+        'Le volet sur les plateformes encadre la publicité ciblée et les fils personnalisés.',
+    },
+    {
+      candidate: 'melenchon',
+      sourceId: 'lfi-numerique',
+      checked: '2026-11-22',
+      locator:
+        'Le chapitre 7 aborde la transmission de données sensibles à des tiers et le consentement au traitement.',
+    },
+  ],
+  'numerique-identite-numerique': [
+    {
+      candidate: 'dupont-aignan',
+      sourceId: 'dlf-cybersecurite-etat',
+      checked: '2026-11-22',
+      locator:
+        'Les paragraphes sur l’euro numérique et les données de l’État portent sur d’autres usages.',
+    },
+  ],
+  'numerique-portabilite': [
+    {
+      candidate: 'glucksmann',
+      sourceId: 'ps-projet-2027-vivre-libres',
+      checked: '2026-11-22',
+      locator:
+        'Volet sur les grandes plateformes et la transparence de leurs algorithmes. La portabilité des droits sociaux relève d’un autre chapitre.',
+    },
+  ],
+  'numerique-hebergement-sante': [
+    {
+      candidate: 'retailleau',
+      sourceId: 'retailleau-vauban-numerique',
+      checked: '2026-11-22',
+      locator:
+        'La fiche Vauban traite de la sécurité des hôpitaux et des hébergements sensibles, sans préciser une nouvelle règle pour les hébergeurs de données de santé.',
+    },
+  ],
   'fiscalite-csg-salaires': [
     {
       candidate: 'cheve',
@@ -102,7 +224,11 @@ const additions = [
       'Quelles règles pour les OGM et les nouvelles techniques génomiques ?',
     terms:
       'agriculture organismes génétiquement modifiés nouvelles techniques génomiques semences NGT NTG',
-    versions: ['durif-ogm-v1', 'melenchon-ogm-ntg-v1'],
+    versions: [
+      'ecologistes-interdiction-ntg-v1',
+      'durif-ogm-v1',
+      'melenchon-ogm-ntg-v1',
+    ],
   },
   {
     id: 'places-prison',
@@ -110,6 +236,8 @@ const additions = [
     title: 'Faut-il construire de nouvelles places de prison ?',
     terms: 'prisons capacité pénitentiaire détention construction',
     versions: [
+      'ps-prisons-renovation-construction-v1',
+      'patriotes-nouvelles-places-prison-v1',
       'philippe-securite-2-v2',
       'dupont-aignan-places-prison-quinquennat-v1',
       'lisnard-places-prison-v1',
@@ -121,6 +249,10 @@ const additions = [
     title: 'Quelles règles pour l’immigration de travail ?',
     terms: 'travailleurs étrangers séjour titres de séjour points quotas',
     versions: [
+      'lisnard-immigration-1-v1',
+      'ps-sejour-contrat-six-mois-v1',
+      'ecologistes-regularisation-criteres-v1',
+      'melenchon-sejour-travailleurs-etudiants-parents-v1',
       'attal-immigration-1-v2',
       'retailleau-immigration-2-v1',
       'philippot-immigration-oqtf-v1',
@@ -133,6 +265,8 @@ const additions = [
       'À quelles conditions une famille pourrait-elle rejoindre un proche en France ?',
     terms: 'regroupement familial immigration familiale',
     versions: [
+      'lisnard-regroupement-ressources-integration-v1',
+      'patriotes-regroupement-familial-v1',
       'attal-immigration-2-v2',
       'retailleau-immigration-1-v1',
       'philippe-immigration-1-v2',
@@ -144,6 +278,9 @@ const additions = [
     title: 'Qui pourrait obtenir une régularisation de séjour ?',
     terms: 'sans-papiers titre de séjour régularisation',
     versions: [
+      'ps-sejour-contrat-six-mois-v1',
+      'ecologistes-regularisation-criteres-v1',
+      'melenchon-sejour-travailleurs-etudiants-parents-v1',
       'retailleau-immigration-regularisations-v1',
       'kazib-immigration-regularisation-v1',
     ],
@@ -154,6 +291,8 @@ const additions = [
     title: 'Quel soutien pour les parents qui élèvent seuls leurs enfants ?',
     terms: 'mères seules familles monoparentales séparation CAF droit au répit',
     versions: [
+      'ps-statut-familles-monoparentales-v1',
+      'ecologistes-pmi-familles-monoparentales-v1',
       'attal-social-2-v2',
       'attal-droit-au-repit-v1',
       'glucksmann-statut-meres-seules-v1',
@@ -215,6 +354,10 @@ interface Definition {
   versions: string[];
   related?: { label: string; href: string };
 }
+const complementaryVersions: Record<string, string[]> = {
+  'retraites-financement-regimes': ['philippe-plan-epargne-premier-emploi-v1'],
+  'logement-regulation-loyers': ['melenchon-blocage-loyers-urgence-sociale-v1'],
+};
 const definitions: Definition[] = [
   ...positionDivergences.map((t) => ({
     id: t.id,
@@ -226,7 +369,10 @@ const definitions: Definition[] = [
       (t.id === 'fiscalite-csg-salaires'
         ? 'suppression de la CSG contribution sociale généralisée fiche de paie salaires actifs'
         : ''),
-    versions: t.positions.flatMap((p) => p.entries.map((e) => e.version.id)),
+    versions: [
+      ...t.positions.flatMap((p) => p.entries.map((e) => e.version.id)),
+      ...(complementaryVersions[t.id] ?? []),
+    ],
     related: { label: 'Carte des positions', href: '/divergences/#' + t.id },
   })),
   ...digitalLawSections.flatMap((section) =>
@@ -251,16 +397,21 @@ export const questions = definitions.map((q) => {
     throw new Error('Thème inconnu : ' + q.theme);
   const entries = [...new Set(q.versions)]
     .map(resolveEntry)
+    .filter((entry) => !entry.candidate.withdrawnOn)
     .sort(
       (a, b) =>
         candidates.indexOf(a.candidate) - candidates.indexOf(b.candidate) ||
         a.version.snapshot.title.localeCompare(b.version.snapshot.title, 'fr'),
     );
   const candidateIds = [...new Set(entries.map((e) => e.candidate.id))];
-  const reviews = (examinedDocuments[q.id] ?? []).map((r) => ({
-    ...r,
-    source: sourceById(r.sourceId),
-  }));
+  const reviews = (examinedDocuments[q.id] ?? [])
+    .filter((r) =>
+      candidates.some((c) => c.id === r.candidate && !c.withdrawnOn),
+    )
+    .map((r) => ({
+      ...r,
+      source: sourceById(r.sourceId),
+    }));
   const coverage: Record<string, string> = {};
   const alerts: Record<string, string> = {};
   function recordChecks(candidate: string, sourceIds: string[]) {

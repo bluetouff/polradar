@@ -20,8 +20,12 @@ export function getStaticPaths() {
 
 const { section, item } = Astro.props;
 const changeHeading = item.changes.length
-  ? 'Changements proposés'
-  : 'Parcours parlementaire';
+  ? item.positionOnly
+    ? 'Positions sur le texte débattu'
+    : 'Changements proposés'
+  : item.parliament
+    ? 'Parcours parlementaire'
+    : 'Propositions recherchées';
 ---
 
 <Base
@@ -128,7 +132,8 @@ const changeHeading = item.changes.length
             <h3 id="law-next">{changeHeading}</h3>
             {item.changes.length > 0 && (
               <span>
-                {item.changes.length} proposition
+                {item.changes.length}{' '}
+                {item.positionOnly ? 'position' : 'proposition'}
                 {item.changes.length > 1 ? 's' : ''}
               </span>
             )}
@@ -159,8 +164,28 @@ const changeHeading = item.changes.length
                 </footer>
               </article>
             ))}
+            {item.contextMeasures.map((measure) => (
+              <article class="law-card">
+                <h4>
+                  {item.id === 'signalement-cyber'
+                    ? 'Signalement par les victimes'
+                    : 'Protection des communications'}
+                </h4>
+                <p>
+                  {measure.author} · <a href={measure.href}>{measure.title}</a>.
+                </p>
+                {item.id === 'signalement-cyber' && (
+                  <p>
+                    Ce projet de guichet concerne les victimes. Les délais de
+                    notification des organismes relèvent des textes cités
+                    ci-contre.
+                  </p>
+                )}
+              </article>
+            ))}
             {item.parliament && (
               <article class="law-card law-change law-parliament">
+                {item.changes.length > 0 && <h4>Parcours parlementaire</h4>}
                 <div class="law-byline">
                   <span>Projet de loi</span>
                   <span>Première lecture</span>

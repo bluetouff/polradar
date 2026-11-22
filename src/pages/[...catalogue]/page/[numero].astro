@@ -1,4 +1,6 @@
 ---
+import Briefs from '../../breves/index.astro';
+import { campaignBriefs } from '../../../lib/briefs';
 import Measures from '../../mesures/index.astro';
 import Search from '../../recherche.astro';
 import Sources from '../../sources.astro';
@@ -11,6 +13,7 @@ export async function getStaticPaths() {
   const current = measures.filter((m) => m.scope !== 'archive');
   const counts: [string, number][] = [
     ['mesures', current.length],
+    ['breves', (await campaignBriefs()).length],
     [
       'recherche',
       (await searchEntries()).filter((e) => e.scope !== 'archive').length,
@@ -36,6 +39,7 @@ const { page } = Astro.props;
 const theme = themes.find((t) => 'themes/' + t.id === catalogue);
 ---
 
+{catalogue === 'breves' && <Briefs page={page} />}
 {catalogue === 'mesures' && <Measures page={page} />}
 {catalogue === 'recherche' && <Search page={page} />}
 {catalogue === 'sources' && <Sources page={page} />}

@@ -32,6 +32,7 @@ import markovic from '../assets/portraits/markovic.jpg';
 import mikolajczak from '../assets/portraits/mikolajczak.jpg';
 import mlekuz from '../assets/portraits/mlekuz.jpg';
 import rohou from '../assets/portraits/rohou.jpg';
+import villepin from '../assets/portraits/villepin.jpg';
 export const portraitAssets: Record<string, ImageMetadata> = {
   'arthaud.jpg': portrait0,
   'asselineau.jpg': portrait1,
@@ -66,4 +67,5 @@ export const portraitAssets: Record<string, ImageMetadata> = {
   'mikolajczak.jpg': mikolajczak,
   'mlekuz.jpg': mlekuz,
   'rohou.jpg': rohou,
+  'villepin.jpg': villepin,
 };

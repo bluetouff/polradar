@@ -3,7 +3,12 @@ import PagedResults from '../../components/PagedResults.astro';
 import Base from '../../layouts/Base.astro';
 import CandidateCard from '../../components/CandidateCard.astro';
 import Icon from '../../components/Icon.astro';
-import { candidates, themes } from '../../lib/data';
+import {
+  activeCandidates,
+  candidates,
+  formatDate,
+  themes,
+} from '../../lib/data';
 import '../../styles/candidates.css';
 ---
 
@@ -12,7 +17,7 @@ import '../../styles/candidates.css';
     <div>
       <p class="registry-kicker">PRÉSIDENTIELLE 2027 / LES DOSSIERS</p>
       <h1>
-        Candidats <span>{candidates.length}</span>
+        Candidats <span>{activeCandidates.length}</span>
       </h1>
       <p>Les personnalités, leurs propositions et les textes consultés.</p>
     </div>
@@ -51,13 +56,28 @@ import '../../styles/candidates.css';
     <p>Les repères colorés indiquent les thèmes documentés dans Polradar.</p>
     <a href="/credits-photos/">Crédits photos ↗</a>
   </div>
-  <PagedResults total={candidates.length}>
+  <PagedResults total={activeCandidates.length}>
     <div class="candidate-gallery" id="candidate-list">
-      {candidates.map((candidate) => (
+      {activeCandidates.map((candidate) => (
         <CandidateCard candidate={candidate} />
       ))}
     </div>
   </PagedResults>
+  <section class="withdrawn-registry" aria-labelledby="withdrawn-title">
+    <h2 id="withdrawn-title">Candidatures retirées</h2>
+    <ul>
+      {candidates
+        .filter((person) => person.withdrawnOn)
+        .map((person) => (
+          <li>
+            <a href={`/candidats/${person.id}/`}>{person.name}</a> · retrait le{' '}
+            <time datetime={person.withdrawnOn}>
+              {formatDate(person.withdrawnOn!)}
+            </time>
+          </li>
+        ))}
+    </ul>
+  </section>
   <aside class="notice section-space">
     <strong>
       Déclaration, investiture et validation sont des étapes distinctes.

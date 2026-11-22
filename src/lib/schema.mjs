@@ -65,6 +65,7 @@ export const candidateSchema = z.object({
   status: text,
   note: text,
   statusSource: idSchema,
+  withdrawnOn: dateSchema.optional(),
 });
 export const themeSchema = z.object({
   id: idSchema,
@@ -134,11 +135,17 @@ export const pollSchema = z.object({
   rounding: z.literal('unite').optional(),
   results: z
     .array(
-      z.object({
-        id: idSchema,
-        name: text,
-        percentage: z.number().min(0).max(100).nullable(),
-      }),
+      z
+        .object({
+          id: idSchema,
+          name: text,
+          percentage: z.number().min(0).max(100).nullable(),
+          below: z.number().positive().max(100).optional(),
+        })
+        .refine(
+          (result) => result.below === undefined || result.percentage === null,
+          'Une borne exclut un score précis',
+        ),
     )
     .min(2)
     .max(40),
@@ -430,6 +437,8 @@ export function validateDataset(dataset) {
       errors.push(`${source.id}: date de mise à jour incohérente`);
   }
   for (const candidate of dataset.candidates) {
+    if (candidate.withdrawnOn && candidate.withdrawnOn > today)
+      errors.push(`${candidate.id}: retrait futur`);
     if (!sourceIds.has(candidate.statusSource))
       errors.push(`${candidate.id}: statut sans source existante`);
   }

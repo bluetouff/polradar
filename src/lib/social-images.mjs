@@ -12,7 +12,7 @@ if (
 )
   throw Error('Exécuter la génération OG depuis la racine de Polradar');
 const measures = read('measures'),
-  candidates = read('candidates'),
+  candidates = read('candidates').filter((person) => !person.withdrawnOn),
   themes = read('themes');
 const current = measures.filter((m) => m.scope !== 'archive');
 const sources = read('sources'),
@@ -30,7 +30,11 @@ const watch = read('watch'),
 const edition = read('meta').edition;
 const ches = read('ches-france-2024');
 const curatedComparisons = read('divergence-positions');
-const quantitativeComparisons = divergenceGroups(measures, candidates, themes);
+const quantitativeComparisons = divergenceGroups(
+  measures.filter((m) => candidates.some((c) => c.id === m.candidate)),
+  candidates,
+  themes,
+);
 const number = (n) => n.toLocaleString('fr-FR');
 const counts = (rows, key) =>
   [...new Set(rows.map((r) => r[key]))].map((label) => ({
@@ -406,6 +410,18 @@ const defs = [
     { kind: 'finance', total: programme.euros, rows: programme.allocation },
   ],
   [
+    'breves',
+    '/breves/',
+    'Rédaction Polradar',
+    'Brèves de\ncampagne',
+    'Les annonces, les programmes et les décisions de campagne.',
+    'navy',
+    {
+      kind: 'document',
+      rows: ['Candidatures', 'Programmes', 'Décisions des partis'],
+    },
+  ],
+  [
     'campagne',
     '/campagne/',
     'La campagne présidentielle',
@@ -531,21 +547,25 @@ const defs = [
     'Veille des\nprogrammes',
     'Une collecte quotidienne, relue avant publication.',
     'navy',
-    {
-      kind: 'watch',
-      states: watch.map((r) => r.status),
-      total: watch.length,
-      observed: [
-        ...new Set(
-          watch.map((r) =>
-            new Intl.DateTimeFormat('fr-FR', {
-              dateStyle: 'short',
-              timeZone: 'Europe/Paris',
-            }).format(new Date(r.checkedAt)),
-          ),
-        ),
-      ].join(' · '),
-    },
+    bars(
+      [
+        {
+          label: 'Accessibles',
+          value: watch.filter((r) => r.status === 'accessible').length,
+        },
+        {
+          label: 'À examiner',
+          value: watch.filter((r) => r.status === 'modifie').length,
+        },
+        {
+          label: 'Accès en échec',
+          value: watch.filter((r) =>
+            ['bloque', 'indisponible'].includes(r.status),
+          ).length,
+        },
+      ],
+      watch.length + ' sources contrôlées',
+    ),
   ],
   [
     'historique',

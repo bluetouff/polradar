@@ -539,36 +539,6 @@ h1 {
 .og-graphic-map .og-chart-note {
   margin: 0;
 }
-.og-watch-total {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-  margin-bottom: 26px;
-}
-.og-watch-total strong {
-  font-size: 80px;
-  font-weight: 550;
-  letter-spacing: -4px;
-  color: var(--accent);
-}
-.og-watch-total span {
-  font-size: 15px;
-  line-height: 1.5;
-}
-.og-watch-grid {
-  display: grid;
-  grid-template-columns: repeat(14, 1fr);
-  gap: 9px;
-}
-.og-watch-grid i {
-  display: block;
-  aspect-ratio: 1;
-  border-radius: 3px;
-  background: #8e7966;
-}
-.og-watch-grid .state-accessible {
-  background: #a6c7b0;
-}
 .og-graphic-document {
   background: transparent;
   border: 0;

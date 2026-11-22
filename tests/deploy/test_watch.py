@@ -144,6 +144,15 @@ class WatchTests(unittest.TestCase):
         self.assertEqual(source['checked'],'2026-11-16')
         self.assertEqual(row['fingerprint'],watch.fingerprint('text/html',content))
 
+    def test_unreviewed_change_stays_open_on_the_next_check(self):
+        raw = ('<main>' + 'Proposition détaillée. ' * 24 + '</main>').encode()
+        previous = {'fingerprint': 'a'*64, 'status':'accessible'}
+        source = {'id':'programme','url':'https://example.org/programme'}
+        with patch.object(watch, 'fetch_reliably', return_value=(200,'text/html',raw)):
+            changed = watch.inspect(source,previous,self.allowed)
+            repeated = watch.inspect(source,changed,self.allowed)
+        self.assertEqual((repeated['status'],repeated['previousFingerprint'],repeated['fingerprint']),('modifie','a'*64,changed['fingerprint']))
+
     def test_editorial_review_is_kept_only_for_the_same_fingerprint(self):
         source={'id':'source-test','url':'https://example.org/'}
         body=b'<main>'+b'Programme documente pour la consultation. '*12+b'</main>'

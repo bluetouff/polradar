@@ -637,5 +637,93 @@
     "dateKind": "publication",
     "candidates": ["riner"],
     "sources": ["riner-production-locale"]
+  },
+  {
+    "id": "ruffin-retrait-presidentielle",
+    "date": "2026-11-21",
+    "title": "François Ruffin retire sa candidature à la présidentielle",
+    "description": "Le député de la Somme annonce son retrait dans un communiqué. Il ne donne de consigne de soutien à aucun autre candidat.",
+    "kind": "past",
+    "category": "candidature",
+    "dateKind": "evenement",
+    "candidates": ["ruffin"],
+    "sources": ["ruffin-retrait-communique", "lcp-ruffin-retrait"]
+  },
+  {
+    "id": "tondelier-proposition-coalition",
+    "date": "2026-11-18",
+    "title": "Marine Tondelier propose une coalition autour de Jean-Luc Mélenchon",
+    "description": "Sur France 2, la candidate écologiste se dit prête à négocier. Le choix de la stratégie présidentielle revient aux adhérents des Écologistes.",
+    "kind": "past",
+    "category": "candidature",
+    "dateKind": "evenement",
+    "candidates": ["tondelier", "melenchon"],
+    "sources": [
+      "tondelier-france2-coalition",
+      "tondelier-maintien-novembre",
+      "ecologistes-calendrier-vote-decembre"
+    ]
+  },
+  {
+    "id": "philippe-premier-volume",
+    "date": "2026-11-18",
+    "title": "Édouard Philippe présente le premier volume de son programme",
+    "description": "Le livret rassemble notamment ses propositions sur les retraites et les finances publiques.",
+    "kind": "past",
+    "category": "programme",
+    "dateKind": "evenement",
+    "candidates": ["philippe"],
+    "sources": [
+      "philippe-volume-un-presentation",
+      "philippe-pension",
+      "philippe-budget"
+    ]
+  },
+  {
+    "id": "ifop-sud-radio-quatre-hypotheses",
+    "date": "2026-11-20",
+    "title": "Sud Radio publie quatre hypothèses de premier tour testées par l’Ifop",
+    "description": "Le terrain a eu lieu du 2 au 4 novembre. L’institut teste séparément Édouard Philippe, Bruno Retailleau, David Lisnard et Gabriel Attal comme candidat unique de la droite et du centre.",
+    "category": "sondage",
+    "dateKind": "publication",
+    "kind": "past",
+    "candidates": ["attal", "lisnard", "philippe", "retailleau"],
+    "sources": ["notice-commission-10392", "sud-radio-hypotheses-droite-centre"]
+  },
+  {
+    "id": "opinionway-cnews-12-novembre",
+    "date": "2026-11-12",
+    "title": "Publication de l’enquête OpinionWay pour CNews",
+    "description": "Le terrain a eu lieu du 10 au 12 novembre. La notice présente deux hypothèses de premier tour, avec et sans Teddy Riner, puis trois duels de second tour.",
+    "category": "sondage",
+    "dateKind": "publication",
+    "kind": "past",
+    "candidates": [
+      "arthaud",
+      "attal",
+      "dupont-aignan",
+      "glucksmann",
+      "lepen",
+      "lisnard",
+      "melenchon",
+      "philippe",
+      "retailleau",
+      "riner",
+      "roussel",
+      "tondelier",
+      "zemmour"
+    ],
+    "sources": ["notice-commission-10371"]
+  },
+  {
+    "id": "villepin-annonce-presidentielle",
+    "date": "2026-11-20",
+    "title": "Dominique de Villepin déclare sa candidature à Paris",
+    "description": "L’ancien Premier ministre se présente avec La France Humaniste et publie son programme de 258 propositions.",
+    "kind": "past",
+    "category": "candidature",
+    "dateKind": "evenement",
+    "candidates": ["villepin"],
+    "sources": ["villepin-lettre", "villepin-programme", "lcp-villepin-annonce"]
   }
 ]

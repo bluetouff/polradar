@@ -3,7 +3,12 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import PollChart from '../components/PollChart.astro';
 import { polls, sourceById, formatDate, type Poll } from '../lib/data';
-import { pollSeries, pollColor, rankedPollResults } from '../lib/features.mjs';
+import {
+  pollSeries,
+  pollColor,
+  pollScoreLabel,
+  rankedPollResults,
+} from '../lib/features.mjs';
 const groups = pollSeries(polls) as Poll[][];
 const initial = groups.find((rows) => rows[0].round === 'premier')!;
 const latest = initial.at(-1)!;
@@ -138,11 +143,7 @@ const notices = [...new Set(polls.map((poll) => poll.noticeSource))];
         {rankedPollResults(latest).map((result) => (
           <div class="poll-bar-row">
             <span>{result.name}</span>
-            <strong>
-              {result.percentage === null
-                ? 'Non publié'
-                : `${result.percentage.toLocaleString('fr-FR')} %`}
-            </strong>
+            <strong>{pollScoreLabel(result)}</strong>
             {result.percentage !== null && (
               <svg viewBox="0 0 300 8" aria-hidden="true">
                 <rect

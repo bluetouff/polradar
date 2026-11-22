@@ -1,5 +1,12 @@
 import { getCollection } from 'astro:content';
 import { candidates, themes, measures, sources, polls, events } from './data';
+import { voteCases } from './votes-data';
+import { chambers, positionLabel } from './legislative-votes.mjs';
+import { proposalTracks } from './proposal-data';
+import { agenda } from './visual-data';
+import { statements } from './economy-data';
+import { candidateById, formatDate } from './data';
+import { campaignBriefs } from './briefs';
 import { questions } from './questions';
 import { measureSearchText } from './features.mjs';
 export interface SearchEntry {
@@ -16,16 +23,6 @@ export interface SearchEntry {
   scope: string;
   date: string;
 }
-export const searchKinds: Record<string, string> = {
-  question: 'Question de programme',
-  mesure: 'Mesure',
-  candidat: 'Candidat',
-  theme: 'Thème',
-  dossier: 'Dossier',
-  source: 'Source',
-  sondage: 'Sondage',
-  evenement: 'Chronologie',
-};
 const publicationYear = (s: (typeof sources)[number]) =>
   s.published?.slice(0, 4) ?? s.publishedYear ?? '';
 export async function searchEntries(): Promise<SearchEntry[]> {
@@ -71,6 +68,84 @@ export async function searchEntries(): Promise<SearchEntry[]> {
       scope: '',
       date: '',
     })),
+    ...voteCases.map((item) => ({
+      id: 'vote-' + item.id,
+      type: 'vote',
+      title: item.title,
+      text: [
+        item.candidateRecord.name,
+        ...item.ballots.map(
+          (b) =>
+            `${chambers[b.chamber]}, scrutin n° ${b.number} du ${formatDate(b.date)}. ${b.shortTitle}. ${positionLabel(b.position, b)}. ${b.title}`,
+        ),
+        item.note,
+      ].join(' '),
+      url: '/votes/#dossier=' + item.id,
+      candidate: item.candidate,
+      theme: item.measure.theme,
+      year: '',
+      scope: '',
+      date: '',
+    })),
+    ...proposalTracks.map((track) => ({
+      id: 'evolution-' + track.id,
+      type: 'evolution',
+      title: track.title,
+      text: [
+        candidateById(track.candidate).name,
+        ...track.states.map(
+          (state) =>
+            `${state.edition} (${state.date.value}). ${state.statement}`,
+        ),
+        track.note,
+      ].join(' '),
+      url: '/evolution/#dossier=' + track.id,
+      candidate: track.candidate,
+      theme: track.theme,
+      year: '',
+      scope: '',
+      date: '',
+    })),
+    ...agenda.events.map((event) => ({
+      id: 'agenda-' + event.id,
+      type: 'agenda',
+      title: event.title,
+      text: [
+        candidateById(event.candidate).name,
+        agenda.cities.find((city) => city.id === event.city)?.name,
+        formatDate(event.date),
+        event.latestPossibleDate && formatDate(event.latestPossibleDate),
+        event.venue,
+        event.note,
+      ]
+        .filter(Boolean)
+        .join(' · '),
+      url: '/agenda/#' + event.id,
+      candidate: event.candidate,
+      theme: '',
+      year: sourceYear([event.source, ...(event.additionalSources ?? [])]),
+      scope: '',
+      date: event.date,
+    })),
+    ...statements.map((row) => ({
+      id: 'verification-' + row.id,
+      type: 'verification',
+      title: row.title,
+      text: [
+        row.speaker,
+        row.quote,
+        row.period,
+        row.result.label,
+        row.context,
+        row.reference.title,
+      ].join(' · '),
+      url: '/economie/declarations/#' + row.id,
+      candidate: row.candidate ?? '',
+      theme: row.theme ?? '',
+      year: row.statement.date?.slice(0, 4) ?? '',
+      scope: '',
+      date: row.statement.date ?? '',
+    })),
     ...candidates.map((candidate) => ({
       id: `candidat-${candidate.id}`,
       type: 'candidat',
@@ -94,6 +169,23 @@ export async function searchEntries(): Promise<SearchEntry[]> {
       year: '',
       scope: '',
       date: '',
+    })),
+    ...(await campaignBriefs()).map(({ article, event, href }) => ({
+      id: 'breve-' + article.id,
+      type: 'breve',
+      title: article.data.title,
+      text: [
+        article.data.description,
+        event.candidates.map((id) => candidateById(id).name).join(' '),
+        article.body,
+      ].join(' '),
+      url: href,
+      candidate: '',
+      candidates: event.candidates,
+      theme: '',
+      year: article.data.published.slice(0, 4),
+      scope: '',
+      date: article.data.published,
     })),
     ...articles.map((article) => ({
       id: `dossier-${article.id}`,

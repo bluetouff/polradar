@@ -1,8 +1,11 @@
+import candidateRows from '../../src/data/candidates.json' with { type: 'json' };
 import { pageSize } from '../../src/lib/pagination';
 import { test, expect } from '@playwright/test';
 import campaignEvents from '../../src/data/events.json' with { type: 'json' };
 const pastCount = campaignEvents.filter((e) => e.kind === 'past').length;
 import watch from '../../src/data/watch.json' with { type: 'json' };
+
+const active = candidateRows.filter((c) => !c.withdrawnOn);
 
 test('la chronologie combine les filtres, gère une recherche vide et se réinitialise', async ({
   page,
@@ -131,7 +134,9 @@ test('la home affiche les séries et les accès au corpus sans exemple nominatif
     await expect(
       page
         .getByRole('navigation', { name: 'Accès rapides' })
-        .getByRole('link', { name: '33 candidats suivis' }),
+        .getByRole('link', {
+          name: String(active.length) + ' candidats suivis',
+        }),
     ).toBeVisible();
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth),

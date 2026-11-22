@@ -6,6 +6,14 @@ import { printedNumber } from '../../lib/economy.mjs';
 import { formatDate } from '../../lib/data';
 import '../../styles/economy.css';
 
+const publicationDate = (date: string) =>
+  date.length === 7
+    ? new Intl.DateTimeFormat('fr-FR', {
+        month: 'long',
+        year: 'numeric',
+        timeZone: 'UTC',
+      }).format(new Date(date + '-01T12:00:00Z'))
+    : formatDate(date);
 const cases = [...statements].sort((a, b) =>
   (b.statement.date ?? '').localeCompare(a.statement.date ?? ''),
 );
@@ -60,7 +68,7 @@ const cases = [...statements].sort((a, b) =>
           <p class="economy-meta">
             {row.statement.date ? (
               <time datetime={row.statement.date}>
-                {formatDate(row.statement.date)}
+                {publicationDate(row.statement.date)}
               </time>
             ) : (
               'Publication non datée'
@@ -101,7 +109,12 @@ const cases = [...statements].sort((a, b) =>
           <p>{row.context}</p>
           <footer class="economy-links">
             <a href={row.statement.url}>{row.statement.title} ↗</a>
-            <a href={row.reference.url}>{row.reference.title} ↗</a>
+            <a href={row.reference.url}>
+              {row.reference.title}
+              {row.reference.date &&
+                ` · ${publicationDate(row.reference.date)}`}{' '}
+              ↗
+            </a>
             {row.priorReference && (
               <a href={row.priorReference.url}>{row.priorReference.title} ↗</a>
             )}

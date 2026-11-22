@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import PagedResults from '../../components/PagedResults.astro';
 import {
-  candidates,
+  activeCandidates as candidates,
   formatDate,
   measureById,
   scopes,
@@ -41,7 +41,7 @@ const covered = cards.filter((c) => c.entries.length).length;
       <h1>Le numérique par candidat</h1>
       <p>
         {cards.length} candidats examinés · Des mesures recensées dans {covered}{' '}
-        dossiers · Revue du{' '}
+        dossiers · Dernière lecture le{' '}
         <time datetime={review.checked}>{formatDate(review.checked)}</time>.
       </p>
     </div>

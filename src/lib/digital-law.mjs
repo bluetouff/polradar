@@ -31,6 +31,7 @@ export const digitalLawSchema = z.strictObject({
               context: text,
               icon: idSchema,
               rules: z.array(rule).min(1).max(4),
+              positionOnly: z.boolean().optional(),
               changes: z.array(
                 z.strictObject({
                   versionId: idSchema,
@@ -38,6 +39,7 @@ export const digitalLawSchema = z.strictObject({
                   body: text,
                 }),
               ),
+              relatedMeasures: z.array(idSchema).max(5).optional(),
               parliament: rule
                 .extend({
                   stages: z
@@ -109,8 +111,11 @@ export function validateDigitalLaw(config, dataset, now = new Date()) {
       )
         errors.push(`${item.id} : étapes parlementaires non chronologiques.`);
       const seen = new Set();
-      for (const change of item.changes) {
-        const version = versions.get(change.versionId);
+      for (const versionId of [
+        ...item.changes.map((c) => c.versionId),
+        ...(item.relatedMeasures ?? []),
+      ]) {
+        const version = versions.get(versionId);
         const measure = measures.get(version?.measureId);
         const snapshot = version?.snapshot;
         if (
@@ -125,11 +130,11 @@ export function validateDigitalLaw(config, dataset, now = new Date()) {
           )
         )
           errors.push(
-            `${item.id} : version officielle invalide (${change.versionId}).`,
+            `${item.id} : version officielle invalide (${versionId}).`,
           );
-        if (seen.has(change.versionId))
-          errors.push(`${item.id} : version en double (${change.versionId}).`);
-        seen.add(change.versionId);
+        if (seen.has(versionId))
+          errors.push(`${item.id} : version en double (${versionId}).`);
+        seen.add(versionId);
       }
     }
   }

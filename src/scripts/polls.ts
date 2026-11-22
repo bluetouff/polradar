@@ -2,6 +2,7 @@ import { corpus, el, anchor, svg, number, date, download } from './ui';
 import {
   pollSeries,
   pollColor,
+  pollScoreLabel,
   rankedPollResults,
   chartGeometry,
   csvValue,
@@ -226,15 +227,7 @@ async function start() {
     range.setAttribute('aria-valuetext', date(poll.fieldworkEnd));
     for (const result of rankedPollResults(poll)) {
       const row = el('div', undefined, 'poll-bar-row');
-      row.append(
-        el('span', result.name),
-        el(
-          'strong',
-          result.percentage === null
-            ? 'Non publié'
-            : `${number(result.percentage)} %`,
-        ),
-      );
+      row.append(el('span', result.name), el('strong', pollScoreLabel(result)));
       bars.append(row);
       if (result.percentage === null) continue;
       const bar = svg('svg', { viewBox: '0 0 300 8', 'aria-hidden': 'true' });
@@ -343,6 +336,7 @@ async function start() {
         'Candidat',
         'Pourcentage exprimé',
         'Notice',
+        'Borne supérieure exclusive (%)',
       ],
       ...poll.results.map((result) => [
         poll.institute,
@@ -354,6 +348,7 @@ async function start() {
         result.name,
         result.percentage === null ? '' : String(result.percentage),
         data.sources.find((source) => source.id === poll.noticeSource)!.url,
+        result.below === undefined ? '' : String(result.below),
       ]),
     ]
       .map((row) => row.map(csvValue).join(';'))

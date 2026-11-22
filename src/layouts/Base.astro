@@ -18,11 +18,13 @@ interface Props {
   description?: string;
   section?: string;
   noindex?: boolean;
+  articlePublished?: string;
 }
 const {
   title = 'Présidentielle 2027',
   description = 'Programmes, candidatures, calendrier et sources de la présidentielle française de 2027.',
   section = '',
+  articlePublished,
   noindex = false,
 } = Astro.props;
 const navigation = navigationFor(Astro.url.pathname, section);
@@ -55,10 +57,20 @@ const socialImageUrl = new URL(social.url, Astro.site);
     <link
       rel="alternate"
       type="application/rss+xml"
-      title="Publications et mises à jour Polradar"
-      href="/rss.xml"
+      title={
+        section === '/breves/'
+          ? 'Brèves de campagne'
+          : 'Publications et mises à jour Polradar'
+      }
+      href={section === '/breves/' ? '/breves/rss.xml' : '/rss.xml'}
     />
-    <meta property="og:type" content="website" />
+    <meta
+      property="og:type"
+      content={articlePublished ? 'article' : 'website'}
+    />
+    {articlePublished && (
+      <meta property="article:published_time" content={articlePublished} />
+    )}
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:title" content={`${title} · Polradar`} />
     <meta property="og:description" content={description} />

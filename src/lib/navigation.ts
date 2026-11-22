@@ -35,6 +35,7 @@ export const groups = [
     name: 'Campagne',
     icon: 'historique',
     links: [
+      ['/breves/', 'Brèves de campagne', 'source'],
       ['/campagne/', 'Chronologie', 'historique'],
       ['/agenda/', 'Carte des rendez-vous', 'map-pin'],
       ['/argent-des-campagnes/', 'Argent des campagnes', 'euro'],

@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import {
-  candidates,
+  activeCandidates as candidates,
   formatDate,
   formatTimestamp,
   scopes,
@@ -12,6 +12,7 @@ import {
   questionThemes,
   latestSourceCheck,
 } from '../../lib/questions';
+import { digitalLawSections } from '../../lib/digital-law-data';
 import { sameSentence } from '../../lib/measure-text';
 import { voteCases } from '../../lib/votes-data';
 import { proposalTracks } from '../../lib/proposal-data';
@@ -21,6 +22,9 @@ export function getStaticPaths() {
 }
 const { q } = Astro.props;
 const t = questionThemes.find((x) => x.id === q.theme)!;
+const digitalCase = digitalLawSections
+  .flatMap((section) => section.cases)
+  .find((item) => q.id === 'numerique-' + item.id);
 const covered = candidates.filter((c) => q.candidateIds.includes(c.id));
 const missing = candidates.filter((c) => !q.candidateIds.includes(c.id));
 const ids = new Set(q.entries.map((e) => e.measure.id));
@@ -146,6 +150,25 @@ const checkLabels = {
       </article>
     ))}
   </div>
+  {digitalCase?.contextMeasures.length ? (
+    <section class="q-coverage">
+      <h2>
+        {digitalCase.id === 'signalement-cyber'
+          ? 'Signaler un délit en tant que victime'
+          : 'Protection générale des communications'}
+      </h2>
+      {digitalCase.contextMeasures.map((item) => (
+        <p>
+          {item.author} · <a href={item.href}>{item.title}</a>
+        </p>
+      ))}
+      <p>
+        <a href={digitalCase.href}>
+          Consulter les règles en vigueur et les travaux parlementaires ↗
+        </a>
+      </p>
+    </section>
+  ) : null}
   <section class="q-coverage" id="couverture">
     <h2>Couverture documentaire</h2>
     <p>
@@ -167,7 +190,7 @@ const checkLabels = {
               <a href={r.source.url}>Ouvrir le document ↗</a>
               {check && (
                 <small class="q-review-status">
-                  Contrôle automatique du {formatTimestamp(check.checkedAt)} ·{' '}
+                  Contrôle du {formatTimestamp(check.checkedAt)} ·{' '}
                   {checkLabels[check.status]}
                 </small>
               )}

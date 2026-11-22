@@ -49,6 +49,9 @@ const candidate = candidateById(measure.candidate),
         {measure.partyAuthor ?? candidate.name}{' '}
         <span class:list={['tag', { archive: measure.scope === 'archive' }]}>
           {scopes[measure.scope]}
+          {candidate.withdrawnOn &&
+            measure.scope !== 'archive' &&
+            ' · candidature retirée le ' + formatDate(candidate.withdrawnOn)}
         </span>
       </p>
       <h1>{measure.title}</h1>

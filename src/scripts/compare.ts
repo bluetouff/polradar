@@ -9,7 +9,11 @@ const form = document.querySelector<HTMLFormElement>('#compare-form')!,
   );
 async function start() {
   const data = await corpus(),
-    valid = new Set(data.candidates.map((candidate) => candidate.id)),
+    valid = new Set(
+      data.candidates
+        .filter((candidate) => !candidate.withdrawnOn)
+        .map((candidate) => candidate.id),
+    ),
     params = new URLSearchParams(location.search);
   const ids = [
     ...new Set(

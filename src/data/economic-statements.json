@@ -92,6 +92,202 @@
       "date": null
     },
     "assessment": "perimetre",
-    "context": "Les 92,3 TWh correspondent au solde exportateur net publié par RTE, calculé en retirant les importations des exportations. Le record porte sur ce solde."
+    "context": "Les 92,3 TWh correspondent au solde exportateur net publié par RTE, calculé en retirant les importations des exportations. Le record porte sur ce solde.",
+    "candidate": "attal",
+    "theme": "climat"
+  },
+  {
+    "id": "labib-depenses-publiques-2025",
+    "title": "Dépenses publiques françaises en 2025",
+    "speaker": "Selma Labib",
+    "candidate": "labib",
+    "theme": "fiscalite",
+    "quote": "En 2025, elles ont représenté 57,3 % du PIB",
+    "statement": {
+      "title": "Selma Labib : réponse au rapporteur général de la commission des finances",
+      "url": "https://www.npa-revolutionnaires.org/articles/reponse-de-selma-labib-a-philippe-juvin-rapporteur-general-de-la-commission-des-finances",
+      "date": "2026-10-26"
+    },
+    "period": "France · 2025 · ensemble des administrations publiques",
+    "unit": "% du PIB",
+    "claimed": "57.3",
+    "observed": "57.3",
+    "reference": {
+      "title": "Insee · Dépenses et recettes publiques",
+      "url": "https://www.insee.fr/fr/statistiques/2381414",
+      "date": "2026-08-28"
+    },
+    "assessment": "comparable",
+    "context": "Dans sa réponse au rapporteur général du budget, Selma Labib parle des dépenses de toutes les administrations publiques. Le tableau de l’Insee donne le même ratio et indique que le chiffre de 2025 est provisoire.",
+    "indicatorId": "depenses-publiques"
+  },
+  {
+    "id": "ruffin-pauvrete-jeunes-2024",
+    "title": "Pauvreté des 18 à 29 ans en 2024",
+    "speaker": "Cahier jeunesse de François Ruffin",
+    "candidate": "ruffin",
+    "theme": "social",
+    "quote": "en 2024, 18,6% des 18-29 ans sont en situation de pauvreté monétaire, contre 10,6% des 65-74 ans",
+    "statement": {
+      "title": "François Ruffin : cahier 11, jeunesse",
+      "url": "https://nouspresident.fr/redonner-aux-jeunes-les-clefs-de-leur-avenir/",
+      "date": "2026-11-17"
+    },
+    "period": "France métropolitaine · 2024 · seuil à 60 % du niveau de vie médian",
+    "unit": "%",
+    "claimed": "18.6",
+    "observed": "18.6",
+    "reference": {
+      "title": "Insee · Pauvreté selon l’âge et le seuil",
+      "url": "https://www.insee.fr/fr/statistiques/3565548",
+      "date": "2026-07-09"
+    },
+    "assessment": "comparable",
+    "context": "La même enquête donne aussi 10,6 % pour les 65 à 74 ans. Elle porte sur les ménages en logement ordinaire dont la personne de référence n’est pas étudiante et dont le revenu déclaré est positif ou nul."
+  },
+  {
+    "id": "ps-emploi-handicap-2023",
+    "title": "Emploi des personnes reconnues handicapées en 2023",
+    "speaker": "Parti socialiste · projet collectif",
+    "candidate": "glucksmann",
+    "theme": "travail",
+    "quote": "en 2023, seules 39 % d’entre elles étaient en emploi, contre 68 % pour la population générale",
+    "statement": {
+      "title": "Parti socialiste : S’épanouir à égalité, projet adopté le 25 juin 2026",
+      "url": "https://projet-socialiste.fr/projet/sepanouir-a-egalite/",
+      "date": null
+    },
+    "period": "France hors Mayotte · 2023 · 15 à 64 ans en logement ordinaire",
+    "unit": "%",
+    "claimed": "39",
+    "observed": "39",
+    "reference": {
+      "title": "DREES · Le handicap en chiffres, édition 2024, fiche 5.1, tableau 1",
+      "url": "https://drees.solidarites-sante.gouv.fr/sites/default/files/2025-01/Fiche%205.1%20-%20Situation%20des%20personnes%20handicap%C3%A9es%20par%20rapport%20%C3%A0%20l%E2%80%99emploi.pdf",
+      "date": null
+    },
+    "assessment": "perimetre",
+    "context": "Les deux valeurs figurent dans l’enquête Emploi. Les 39 % concernent les personnes qui déclarent une reconnaissance administrative du handicap. Pour l’ensemble des personnes limitées durablement par un problème de santé, le tableau donne 52 %."
+  },
+  {
+    "id": "ecologistes-pauvrete-2024",
+    "title": "Nombre de personnes sous le seuil de pauvreté en 2024",
+    "speaker": "Les Écologistes · programme collectif",
+    "candidate": "tondelier",
+    "theme": "social",
+    "quote": "près de 10 millions de personnes en situation de pauvreté",
+    "statement": {
+      "title": "Les Écologistes : projet 2027, programme intégral",
+      "url": "https://lesecologistes.fr/document/3N4JsAEmq6vsx42IITGNZa/vdef-programme-1.pdf",
+      "date": "2026-07"
+    },
+    "period": "France métropolitaine · 2024 · pauvreté monétaire",
+    "unit": "millions de personnes",
+    "claimed": "10",
+    "observed": "9.8",
+    "reference": {
+      "title": "Insee · L’essentiel sur la pauvreté",
+      "url": "https://www.insee.fr/fr/statistiques/5759045",
+      "date": "2026-07-09"
+    },
+    "assessment": "arrondi",
+    "context": "L’avant-propos du programme précise le territoire et l’année. L’Insee mesure 9,8 millions de personnes en logement ordinaire sous le seuil de 60 % du niveau de vie médian, soit 15,4 % de la population étudiée."
+  },
+  {
+    "id": "dlf-commerce-biens-2025",
+    "title": "Déficit commercial des biens en 2025",
+    "speaker": "Debout la France · projet économique",
+    "candidate": "dupont-aignan",
+    "theme": "travail",
+    "quote": "notre déficit commercial sur les biens qui a atteint 69 milliards d’euros en 2025",
+    "statement": {
+      "title": "Debout la France : économie et finances, trente mesures",
+      "url": "https://www.debout-la-france.fr/projet/economie-travail/",
+      "date": null
+    },
+    "period": "France · 2025 · échanges de biens · FAB/FAB",
+    "unit": "Md€",
+    "claimed": "69",
+    "observed": "69.2",
+    "reference": {
+      "title": "Douane · Analyse annuelle du commerce extérieur 2025, p. 1",
+      "url": "https://www.douane.gouv.fr/sites/default/files/2026-02/09/chiffre-comex-Analyse-Annuelle-2025.pdf",
+      "date": "2026-02-06"
+    },
+    "assessment": "arrondi",
+    "context": "La Douane mesure un solde de −69,2 milliards d’euros. Le programme exprime la taille du déficit en valeur positive, arrondie au milliard. Cette statistique porte sur les biens."
+  },
+  {
+    "id": "groupe-rn-deficit-zone-euro-2025",
+    "title": "Solde public de la zone euro en 2025",
+    "speaker": "Groupe RN à l’Assemblée nationale · contre-budget",
+    "candidate": "lepen",
+    "theme": "fiscalite",
+    "quote": "Moyenne zone € 2025 : -2,7%",
+    "statement": {
+      "title": "Groupe Rassemblement national à l’Assemblée nationale : contre-budget 2027",
+      "url": "https://back.deputes-rn.fr/wp-content/uploads/2026/10/GRN-CONTRE-BUDGET-2027-DOSSIER.pdf",
+      "date": "2026-10"
+    },
+    "period": "Zone euro à vingt · 2025 · administrations publiques",
+    "unit": "% du PIB",
+    "claimed": "-2.7",
+    "observed": "-3.0",
+    "reference": {
+      "title": "Eurostat · Seconde notification de 2026",
+      "url": "https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-21102026-ap",
+      "date": "2026-10-21"
+    },
+    "assessment": "perimetre",
+    "context": "Le groupe RN cite un solde de −2,7 %. Eurostat rapporte −3,0 % pour les vingt pays de la zone euro en 2025, après −2,9 % dans la notification d’avril. Le dossier, p. 3, ne précise pas la méthode de sa moyenne. Eurostat rapporte les montants agrégés au PIB agrégé."
+  },
+  {
+    "id": "groupe-rn-dette-zone-euro-2025",
+    "title": "Dette publique de la zone euro en 2025",
+    "speaker": "Groupe RN à l’Assemblée nationale · contre-budget",
+    "candidate": "lepen",
+    "theme": "fiscalite",
+    "quote": "Moyenne zone € 2025 : 88,2%",
+    "statement": {
+      "title": "Groupe Rassemblement national à l’Assemblée nationale : contre-budget 2027",
+      "url": "https://back.deputes-rn.fr/wp-content/uploads/2026/10/GRN-CONTRE-BUDGET-2027-DOSSIER.pdf",
+      "date": "2026-10"
+    },
+    "period": "Zone euro à vingt · 2025 · administrations publiques",
+    "unit": "% du PIB",
+    "claimed": "88.2",
+    "observed": "87.7",
+    "reference": {
+      "title": "Eurostat · Seconde notification de 2026",
+      "url": "https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-21102026-ap",
+      "date": "2026-10-21"
+    },
+    "assessment": "perimetre",
+    "context": "Le dossier cite 88,2 %. Pour la zone euro à vingt en fin d’année, Eurostat publie 87,7 % en octobre, après 87,8 % en avril. Le dossier, p. 3, ne précise pas la méthode de sa moyenne. Eurostat rapporte les montants agrégés au PIB agrégé."
+  },
+  {
+    "id": "labib-depenses-publiques-2019",
+    "title": "Poids des dépenses publiques avant la crise sanitaire",
+    "speaker": "Selma Labib",
+    "candidate": "labib",
+    "theme": "fiscalite",
+    "quote": "55,3 % du PIB en 2019",
+    "statement": {
+      "title": "Selma Labib : réponse au rapporteur général de la commission des finances",
+      "url": "https://www.npa-revolutionnaires.org/articles/reponse-de-selma-labib-a-philippe-juvin-rapporteur-general-de-la-commission-des-finances",
+      "date": "2026-10-26"
+    },
+    "period": "France · 2019 · ensemble des administrations publiques",
+    "unit": "% du PIB",
+    "claimed": "55.3",
+    "observed": "55.2",
+    "reference": {
+      "title": "Insee · Le compte des administrations publiques en 2025, figure 1",
+      "url": "https://www.insee.fr/fr/statistiques/8997691",
+      "date": "2026-05-29"
+    },
+    "assessment": "comparable",
+    "context": "Dans sa comparaison historique, Selma Labib donne 55,3 % pour 2019. Le compte publié par l’Insee en mai 2026 donne 55,2 % pour cette même année. La lettre ne précise pas l’édition statistique utilisée.",
+    "indicatorId": "depenses-publiques"
   }
 ]

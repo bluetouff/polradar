@@ -1,0 +1,88 @@
+---
+import type { CampaignBrief } from '../lib/briefs';
+import { formatDate } from '../lib/data';
+import Icon from './Icon.astro';
+interface Props {
+  items: CampaignBrief[];
+}
+const { items } = Astro.props;
+const labels: Record<string, string> = {
+  candidature: 'Candidatures',
+  programme: 'Programmes',
+  meeting: 'Réunions publiques',
+  calendrier: 'Calendrier',
+  sondage: 'Sondages',
+};
+---
+
+<ul class="brief-cards" role="list">
+  {items.map(({ article, event, href }) => (
+    <li>
+      <a href={href}>
+        <span class="brief-meta">
+          {labels[event.category]} <span aria-hidden="true">·</span>{' '}
+          <time datetime={event.date}>{formatDate(event.date)}</time>
+        </span>
+        <strong>{article.data.title}</strong>
+        <span class="brief-summary">{article.data.description}</span>
+        <Icon name="arrow" class="brief-arrow" />
+      </a>
+    </li>
+  ))}
+</ul>
+<style>
+  .brief-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: 0.85rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .brief-cards li {
+    min-width: 0;
+  }
+  .brief-cards a {
+    display: grid;
+    height: 100%;
+    box-sizing: border-box;
+    align-content: start;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.65rem;
+    padding: clamp(1rem, 2vw, 1.35rem);
+    border: 1px solid var(--line);
+    border-top: 3px solid #398090;
+    border-radius: 0.7rem;
+    background: var(--panel-gradient);
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .brief-meta,
+  .brief-summary {
+    grid-column: 1 / -1;
+    color: var(--muted);
+  }
+  .brief-meta {
+    font: 0.75rem/1.6 var(--mono, monospace);
+  }
+  .brief-cards strong {
+    font-size: 1.12rem;
+    line-height: 1.28;
+    letter-spacing: -0.015em;
+  }
+  .brief-summary {
+    font-size: 0.93rem;
+    line-height: 1.5;
+  }
+  .brief-cards :global(.brief-arrow) {
+    grid-column: 2;
+    grid-row: 2;
+    width: 1rem;
+    color: var(--accent);
+  }
+  .brief-cards a:hover strong,
+  .brief-cards a:focus-visible strong {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+</style>

@@ -31,6 +31,14 @@ export function pollSeries(polls) {
     )
     .sort((a, b) => b.at(-1).published.localeCompare(a.at(-1).published));
 }
+/** @param {import('./data').Poll['results'][number]} result */
+export function pollScoreLabel(result) {
+  if (result.below !== undefined)
+    return 'Moins de ' + result.below.toLocaleString('fr-FR') + ' %';
+  return result.percentage === null
+    ? 'Non publié'
+    : result.percentage.toLocaleString('fr-FR') + ' %';
+}
 /** @param {import('./data').Poll} poll */
 export function rankedPollResults(poll) {
   return [...poll.results].sort(

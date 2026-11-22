@@ -14,6 +14,8 @@ import {
 } from './lib/schema.mjs';
 import sources from './data/sources.json';
 import themes from './data/themes.json';
+import events from './data/events.json';
+const knownEvents = new Map(events.map((event) => [event.id, event]));
 const knownSources = new Set(sources.map((source) => source.id));
 const knownThemes = new Set(themes.map((theme) => theme.id));
 
@@ -49,6 +51,23 @@ export const collections = {
   polls: defineCollection({
     loader: file('src/data/polls.json'),
     schema: pollSchema,
+  }),
+  breves: defineCollection({
+    loader: glob({ pattern: '**/*.md', base: './src/content/breves' }),
+    schema: z
+      .object({
+        title: z.string().trim().min(1),
+        description: z.string().trim().min(1),
+        event: z
+          .string()
+          .refine((id) => knownEvents.has(id), 'Événement inconnu'),
+        published: dateSchema,
+        draft: z.boolean().default(false),
+      })
+      .refine(
+        (b) => (knownEvents.get(b.event)?.date ?? '') <= b.published,
+        'Publication antérieure au fait relaté',
+      ),
   }),
   articles: defineCollection({
     loader: glob({ pattern: '**/*.md', base: './src/content/articles' }),

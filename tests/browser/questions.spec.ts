@@ -1,6 +1,8 @@
 import { expect, test } from '@playwright/test';
 import comptes from '../../src/data/comptes-presidentielle-2022.json' with { type: 'json' };
-import candidates from '../../src/data/candidates.json' with { type: 'json' };
+import candidateRows from '../../src/data/candidates.json' with { type: 'json' };
+
+const candidates = candidateRows.filter((candidate) => !candidate.withdrawnOn);
 
 test('la recherche CSG, les documents examinés et les absences sont distincts', async ({
   page,
@@ -31,7 +33,10 @@ test('la recherche CSG, les documents examinés et les absences sont distincts',
   await expect(page).toHaveURL(
     /\/questions\/fiscalite-csg-salaires\/#candidat-attal$/,
   );
-  await expect(page.locator('.q-answer')).toHaveCount(3);
+  await expect(page.locator('.q-answer')).toHaveCount(4);
+  await expect(page.locator('#candidat-villepin')).toContainText(
+    'cotisations sociales vers la CSG',
+  );
   const attal = page.locator('#candidat-attal');
   await expect(attal).toContainText('Supprimer la CSG sur les salaires');
   await attal.locator('summary').click();
@@ -40,7 +45,7 @@ test('la recherche CSG, les documents examinés et les absences sont distincts',
   ).toHaveAttribute('href', /tf1info.fr/);
   await expect(page.locator('#revue-egger')).toContainText('28 pages');
   await expect(page.locator('#couverture details')).toContainText(
-    `${candidates.length - 3} candidats sans fiche`,
+    `${candidates.length - 4} candidats sans fiche`,
   );
 });
 
@@ -100,7 +105,7 @@ test('les thèmes et les sources des questions sont consultables sans JavaScript
       .getByRole('link', { name: /Faut-il baisser ou supprimer la CSG/ })
       .click();
     await expect(page.locator('#couverture')).toContainText(
-      String(candidates.length - 3),
+      String(candidates.length - 4),
     );
   } finally {
     await ctx.close();

@@ -237,6 +237,22 @@
 .registry-legend > a {
   flex-shrink: 0;
 }
+.withdrawn-registry,
+.candidate-briefs {
+  margin-block: 1.4rem;
+  padding: 1rem 1.25rem;
+  border-inline-start: 3px solid var(--line);
+}
+.withdrawn-registry h2,
+.candidate-briefs h2 {
+  font-size: 1.15rem;
+  margin: 0;
+}
+.withdrawn-registry ul,
+.candidate-briefs ul {
+  padding-inline-start: 1.15rem;
+  margin: 0.6rem 0 0;
+}
 .candidate-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));

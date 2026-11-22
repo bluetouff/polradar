@@ -8,6 +8,9 @@ import HomeSignals from '../components/HomeSignals.astro';
 import HomeExplorers from '../components/HomeExplorers.astro';
 import HomeEvidence from '../components/HomeEvidence.astro';
 
+import BriefCards from '../components/BriefCards.astro';
+import { campaignBriefs } from '../lib/briefs';
+const briefs = await campaignBriefs();
 const articles = (
   await getCollection('articles', ({ data }) => !data.draft)
 ).sort(
@@ -55,6 +58,17 @@ const maxCount = Math.max(1, ...counts.map((theme) => theme.count));
       </span>
     </a>
   </nav>
+  {briefs.length > 0 && (
+    <section class="home-briefs" aria-labelledby="home-briefs-title">
+      <div class="register-heading">
+        <h2 id="home-briefs-title">Brèves de campagne</h2>
+        <a class="inline-action" href="/breves/">
+          Toutes les brèves ↗
+        </a>
+      </div>
+      <BriefCards items={briefs.slice(0, 3)} />
+    </section>
+  )}
   <div class="home-layout">
     <HomeSignals />
     <HomeEvidence />
@@ -131,6 +145,12 @@ const maxCount = Math.max(1, ...counts.map((theme) => theme.count));
 </Base>
 
 <style>
+  .home-briefs {
+    margin-block: 0 1.4rem;
+  }
+  .home-briefs .register-heading {
+    padding-bottom: 0.75rem;
+  }
   .home-choices {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));

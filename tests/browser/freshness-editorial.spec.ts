@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import review from '../../src/data/digital-reviews.json' with { type: 'json' };
+import candidates from '../../src/data/candidates.json' with { type: 'json' };
 import history from '../../src/data/daily-updates.json' with { type: 'json' };
 
 test('chaque candidat dispose de documents numériques et les textes collectifs gardent leur auteur', async ({
@@ -7,7 +8,10 @@ test('chaque candidat dispose de documents numériques et les textes collectifs 
 }) => {
   await page.goto('/numerique/candidats/#glucksmann');
   const cards = page.locator('.review-card');
-  await expect(cards).toHaveCount(Object.keys(review.documents).length);
+  const active = candidates.filter((c) => !c.withdrawnOn);
+  expect(active.every((c) => Object.hasOwn(review.documents, c.id))).toBe(true);
+  await expect(cards).toHaveCount(active.length);
+  await expect(page.locator('.review-card#ruffin')).toHaveCount(0);
   const candidate = page.locator('#glucksmann');
   await expect(candidate).toBeVisible();
   await candidate.locator('details').first().locator('summary').click();

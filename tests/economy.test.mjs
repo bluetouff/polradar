@@ -58,6 +58,30 @@ test('la courbe conserve les lacunes et les zéros observés', () => {
   assert.equal(chart.latest.flag, 'e');
 });
 
+test('l’arrondi respecte la précision annoncée et les demi-unités de chaque signe', () => {
+  for (const [claimed, observed] of [
+    ['10', '9.8'],
+    ['1.3', '1.25'],
+    ['-1.3', '-1.25'],
+    ['0', '-0.4'],
+  ]) {
+    assert.equal(
+      statementResult({ assessment: 'arrondi', claimed, observed }).label,
+      'Concorde à l’arrondi',
+    );
+  }
+  const invalid = {
+    ...statements.find((row) => row.assessment === 'arrondi'),
+    claimed: '1.2',
+    observed: '1.25',
+  };
+  assert.ok(
+    validateEconomy(definitions, snapshot, [invalid]).some((error) =>
+      error.includes(invalid.id),
+    ),
+  );
+});
+
 test('les écarts décimaux se calculent à précision égale et seulement sur un périmètre comparable', () => {
   assert.equal(decimalDifference('115.6', '115.7'), '-0.1');
   assert.equal(decimalDifference('-0.2', '0.09'), '-0.29');

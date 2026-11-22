@@ -149,10 +149,6 @@ test('les dossiers numériques s’explorent sur mobile et renvoient à leurs so
         'https://www.avecretailleau.fr/projet/mesure/construire-nos-data-centers-souverains',
     },
     { label: 'Enveloppe annoncée pour 2027', values: [/700\sM€/] },
-    {
-      label: 'Budget annuel proposé du laboratoire',
-      values: ['500 personnes', '1 Md€'],
-    },
   ];
   const seen: string[] = [];
   for (;;) {
@@ -174,6 +170,12 @@ test('les dossiers numériques s’explorent sur mobile et renvoient à leurs so
     await next.click();
   }
   expect(seen.sort()).toEqual(quantities.map((item) => item.label).sort());
+  await page.goto('/mesures/ruffin-education-laboratoire-ia/');
+  await expect(page.getByText(/candidature retirée le/).first()).toBeVisible();
+  await expect(page.locator('.measure-number-grid strong')).toHaveText([
+    '500 personnes',
+    /1\s000\s000\s000\s+€\s*\/\s*an/,
+  ]);
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth > window.innerWidth,

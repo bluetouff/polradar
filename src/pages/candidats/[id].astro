@@ -5,6 +5,7 @@ import MeasureCard from '../../components/MeasureCard.astro';
 import FollowButton from '../../components/FollowButton.astro';
 import SourceLinks from '../../components/SourceLinks.astro';
 import CandidatePortrait from '../../components/CandidatePortrait.astro';
+import { campaignBriefs } from '../../lib/briefs';
 import CandidateActivity from '../../components/CandidateActivity.astro';
 import Icon from '../../components/Icon.astro';
 import { candidates, measures, themes } from '../../lib/data';
@@ -20,6 +21,9 @@ export function getStaticPaths() {
   }));
 }
 const { candidate } = Astro.props;
+const briefs = (await campaignBriefs()).filter((b) =>
+  b.event.candidates.includes(candidate.id),
+);
 const records = measures.filter(
   (measure) => measure.candidate === candidate.id,
 );
@@ -176,6 +180,18 @@ const votesLink = voteCases.find((v) => v.candidate === candidate.id);
       </section>
     </aside>
     <div>
+      {briefs.length > 0 && (
+        <section class="candidate-briefs">
+          <h2>Brèves de campagne</h2>
+          <ul>
+            {briefs.map((b) => (
+              <li>
+                <a href={b.href}>{b.article.data.title}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
       <CandidateActivity candidate={candidate} />
       <p>
         <a class="inline-action" href={`/numerique/candidats/#${candidate.id}`}>

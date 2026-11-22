@@ -232,7 +232,8 @@ def youtube_metadata_fingerprint(content_type, body, video):
 
 def inspect(source, previous, allowed_hosts):
     now = datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
-    old = previous.get('fingerprint') or previous.get('previousFingerprint')
+    # A recorded alert is not an editorial acceptance of the new document.
+    old = previous.get('previousFingerprint') if previous.get('status') == 'modifie' else (previous.get('fingerprint') or previous.get('previousFingerprint'))
     row = {'sourceId':source['id'], 'checkedAt':now, 'status':'indisponible', 'httpStatus':None, 'fingerprint':None, 'previousFingerprint':old, 'bytes':0, 'contentType':'', 'message':'Connexion indisponible'}
     try:
         video = None

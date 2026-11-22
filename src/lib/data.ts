@@ -71,6 +71,9 @@ export function formatTimestamp(value: string) {
     timeZone: 'Europe/Paris',
   }).format(new Date(value));
 }
+export const activeCandidates = candidates.filter(
+  (candidate) => !candidate.withdrawnOn,
+);
 export type Candidate = (typeof candidates)[number];
 export type Engagement = (typeof engagements)[number];
 export { scopes, sourceKinds } from './labels';

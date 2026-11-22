@@ -1,0 +1,92 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import SourceLinks from '../../components/SourceLinks.astro';
+import { candidateById, formatDate } from '../../lib/data';
+import { campaignBriefs } from '../../lib/briefs';
+export async function getStaticPaths() {
+  return (await campaignBriefs()).map((brief) => ({
+    params: { id: brief.article.id },
+    props: { brief },
+  }));
+}
+const { article, event } = Astro.props.brief;
+const { Content } = await render(article);
+---
+
+<Base
+  title={article.data.title}
+  description={article.data.description}
+  section="/breves/"
+  articlePublished={article.data.published}
+>
+  <nav class="breadcrumbs" aria-label="Fil d’Ariane">
+    <a href="/breves/">Brèves de campagne</a>
+  </nav>
+  <article class="brief-reading">
+    <header>
+      <p class="brief-byline">
+        Rédaction Polradar · Publié le{' '}
+        <time datetime={article.data.published}>
+          {formatDate(article.data.published)}
+        </time>
+      </p>
+      <h1>{article.data.title}</h1>
+      <p class="brief-deck">{article.data.description}</p>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+    <section class="article-sources">
+      <h2>Sources</h2>
+      <SourceLinks ids={event.sources} />
+    </section>
+    <nav aria-label="Dossiers liés" class="brief-links">
+      <a href={'/campagne/#' + event.id}>
+        Le fait du {formatDate(event.date)} dans la chronologie ↗
+      </a>
+      {event.candidates.map((id) => (
+        <a href={'/candidats/' + id + '/'}>{candidateById(id).name} ↗</a>
+      ))}
+    </nav>
+  </article>
+</Base>
+<style>
+  .brief-reading {
+    max-width: 52rem;
+    margin-inline: auto;
+    padding: clamp(1.1rem, 3.5vw, 3rem);
+    border: 1px solid var(--line);
+    border-top: 3px solid #398090;
+    border-radius: 0.8rem;
+    background: var(--panel-gradient);
+  }
+  .brief-byline {
+    margin: 0 0 0.65rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .brief-reading h1 {
+    margin: 0;
+    font-size: clamp(1.5rem, 3vw, 1.75rem);
+    line-height: 1.18;
+  }
+  .brief-deck {
+    margin: 0.85rem 0 1.25rem;
+    font-size: 1.1rem;
+    line-height: 1.55;
+  }
+  .brief-reading .prose {
+    max-width: 68ch;
+  }
+  .brief-links {
+    border-top: 1px solid var(--line);
+    padding-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+  }
+  .brief-links a {
+    text-underline-offset: 0.2em;
+  }
+</style>

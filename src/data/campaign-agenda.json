@@ -183,6 +183,13 @@
       "code": "63124",
       "coordinates": [3.1885, 45.742],
       "sourceUrl": "https://geo.api.gouv.fr/communes/63124?fields=nom,code,centre"
+    },
+    {
+      "id": "garges-les-gonesse",
+      "name": "Garges-lès-Gonesse",
+      "code": "95268",
+      "coordinates": [2.4035, 48.9696],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/95268?fields=nom,code,centre"
     }
   ],
   "events": [
@@ -288,7 +295,8 @@
       "venue": "Cabanon, zone industrielle Nord",
       "note": "",
       "source": "agenda-arthaud-arles",
-      "status": "annonce"
+      "status": "annonce",
+      "additionalSources": ["lo-journal-reunions-arles"]
     },
     {
       "id": "arthaud-arles-apres-midi",
@@ -301,7 +309,8 @@
       "venue": "Salle Jean et Pons Dedieu, 62 rue du 4-Septembre",
       "note": "",
       "source": "agenda-arthaud-arles",
-      "status": "annonce"
+      "status": "annonce",
+      "additionalSources": ["lo-journal-reunions-arles"]
     },
     {
       "id": "arthaud-nimes-1118",
@@ -693,6 +702,34 @@
       "note": "Pleinchamp a filmé Jean Lassalle sur place. Il y a répondu sur la présidentielle et sur l’avenir des exploitations agricoles. La Région donne les dates du salon. Le jour de l’entretien n’est pas indiqué.",
       "source": "lassalle-pleinchamp-elevage-2026",
       "additionalSources": ["region-sommet-elevage-2026"],
+      "status": "tenu"
+    },
+    {
+      "id": "villepin-declaration-paris",
+      "candidate": "villepin",
+      "date": "2026-11-20",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": "paris",
+      "title": "Annonce de candidature à Paris",
+      "venue": "Maison de l’Amérique latine",
+      "note": "LCP a couvert la conférence de presse du 20 novembre.",
+      "source": "villepin-lettre",
+      "additionalSources": ["lcp-villepin-annonce"],
+      "status": "tenu"
+    },
+    {
+      "id": "villepin-reunion-garges",
+      "candidate": "villepin",
+      "date": "2026-11-20",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": "garges-les-gonesse",
+      "title": "Réunion publique à Garges-lès-Gonesse",
+      "venue": "Mairie de Garges-lès-Gonesse",
+      "note": "Rencontre à l’invitation du maire Benoît Jimenez. L’AFP a filmé la réunion.",
+      "source": "villepin-reunion-garges",
+      "additionalSources": ["afp-villepin-garges"],
       "status": "tenu"
     }
   ],

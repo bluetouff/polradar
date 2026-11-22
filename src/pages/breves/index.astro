@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import BriefCards from '../../components/BriefCards.astro';
+import Icon from '../../components/Icon.astro';
+import Pager from '../../components/Pager.astro';
+import { campaignBriefs } from '../../lib/briefs';
+import { pageRange } from '../../lib/pagination';
+import '../../styles/pagination.css';
+interface Props {
+  page?: number;
+}
+const { page = 1 } = Astro.props;
+const briefs = await campaignBriefs();
+const range = pageRange(briefs.length, page);
+---
+
+<Base
+  title={
+    page === 1 ? 'Brèves de campagne' : 'Brèves de campagne · page ' + page
+  }
+  section="/breves/"
+  description="Les annonces de candidature, les programmes et les décisions des partis pour la présidentielle de 2027."
+>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="source" />
+    </span>
+    <div>
+      <h1>Brèves de campagne</h1>
+      <p>
+        Les annonces de la présidentielle de 2027, avec les documents et
+        déclarations d’origine.
+      </p>
+    </div>
+    <a class="inline-action" href="/breves/rss.xml">
+      <Icon name="rss" /> Flux RSS
+    </a>
+  </header>
+  <div id="resultats" tabindex="-1">
+    <BriefCards items={briefs.slice(range.start, range.end)} />
+    {range.pages > 1 && <Pager range={range} base="/breves/" />}
+  </div>
+</Base>

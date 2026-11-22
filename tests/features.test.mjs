@@ -11,6 +11,7 @@ import {
 import {
   pollSeries,
   pollSignature,
+  pollScoreLabel,
   chartGeometry,
   metricGroups,
   filterEntries,
@@ -270,6 +271,23 @@ test('les notices Ifop et YouGov conservent les bases et les scores publiés', (
   );
   assert.equal(first.results.find((row) => row.id === 'riner').percentage, 4);
 });
+test('une borne de sondage reste distincte d’un score et d’un résultat absent', () => {
+  const poll = original.polls.find(
+    (p) => p.id === 'opinionway-2026-11-12-10371-p13',
+  );
+  const result = poll.results.find((r) => r.id === 'bouamrane');
+  assert.equal(result.percentage, null);
+  assert.equal(pollScoreLabel(result), 'Moins de 1 %');
+  assert.equal(pollScoreLabel({ percentage: null }), 'Non publié');
+  assert.equal(pollScoreLabel({ percentage: 0 }), '0 %');
+  assert.deepEqual(chartGeometry([poll], [result.id]).lines, []);
+  const mutated = structuredClone(original);
+  mutated.polls
+    .find((p) => p.id === poll.id)
+    .results.find((r) => r.id === result.id).percentage = 0;
+  assert.ok(validateDataset(mutated).length);
+});
+
 test('résultats dupliqués, totaux incomplets et dénominateurs impossibles sont refusés', () => {
   assert.ok(
     mutate((data) => {

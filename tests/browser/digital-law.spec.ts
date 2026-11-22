@@ -41,8 +41,11 @@ test('les huit situations sont navigables sur mobile et relient les textes et ve
     page.getByRole('heading', { name: 'Parcours parlementaire' }),
   ).toBeVisible();
   await expect(
-    page.getByRole('heading', { name: 'Changements proposés' }),
-  ).toHaveCount(0);
+    page.getByRole('heading', { name: 'Positions sur le texte débattu' }),
+  ).toBeVisible();
+  await expect(
+    page.locator('.law-change').filter({ hasText: 'Les Écologistes' }),
+  ).toHaveCount(1);
   await expect(
     page.getByRole('link', { name: 'Voir le graphique du scrutin' }),
   ).toHaveAttribute(

@@ -86,14 +86,16 @@ export const statementsSchema = z
       id: idSchema,
       title: text,
       speaker: text,
+      candidate: idSchema.optional(),
+      theme: idSchema.optional(),
       quote: text.max(420),
       statement: source,
       period: text,
-      unit: z.enum(['%', '% du PIB', 'TWh', 'Md€']),
+      unit: z.enum(['%', '% du PIB', 'TWh', 'Md€', 'millions de personnes']),
       claimed: decimal,
       observed: decimal,
       reference: source,
-      assessment: z.enum(['comparable', 'revision', 'perimetre']),
+      assessment: z.enum(['comparable', 'revision', 'perimetre', 'arrondi']),
       context: text,
       priorReference: source.optional(),
       indicatorId: idSchema.optional(),
@@ -160,6 +162,8 @@ export function validateEconomy(
     ];
     if (
       ids.has(row.id) ||
+      (row.assessment === 'arrondi' &&
+        !matchesRounding(row.claimed, row.observed)) ||
       dates.some((date) => date && date > today) ||
       (row.indicatorId && !definitions.has(row.indicatorId)) ||
       (row.assessment === 'revision') !== Boolean(row.priorReference) ||
@@ -285,7 +289,25 @@ export function decimalDifference(left, right) {
   return (diff < 0n ? '-' : '') + absolute;
 }
 
+// Compare decimal strings at the precision actually used in the quotation.
+function matchesRounding(claimed, observed) {
+  const places = claimed.split('.')[1]?.length ?? 0;
+  const [whole, fraction = ''] = observed.replace(/^-/, '').split('.');
+  if (fraction.length <= places) return false;
+  let rounded = BigInt(whole + fraction.slice(0, places));
+  if (fraction[places] >= '5') rounded += 1n;
+  return (
+    (observed.startsWith('-') ? -rounded : rounded) ===
+    BigInt(claimed.replace('.', ''))
+  );
+}
+
 export function statementResult(row) {
+  if (
+    row.assessment === 'arrondi' &&
+    matchesRounding(row.claimed, row.observed)
+  )
+    return { label: 'Concorde à l’arrondi', tone: 'match', delta: null };
   if (row.assessment === 'perimetre')
     return { label: 'Périmètre à préciser', tone: 'scope', delta: null };
   const delta = decimalDifference(row.claimed, row.observed);

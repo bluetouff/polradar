@@ -126,8 +126,12 @@ test('une mesure s’ouvre au premier clic après une recherche', async ({
 }) => {
   await page.goto('/mesures/#candidate=philippe&theme=retraites');
   await page.getByRole('searchbox').fill('capitalisation');
-  await expect(page.locator('#measure-results .measure-row')).toHaveCount(1);
-  await page.locator('#measure-results h3 a').click();
+  await expect(page.locator('#measure-results .measure-row')).toHaveCount(2);
+  await page
+    .getByRole('link', {
+      name: 'Capitalisation collective et départs anticipés',
+    })
+    .click();
   await expect(page).toHaveURL(/\/mesures\/philippe-retraites-2\/$/);
   await expect(page.locator('h1')).toHaveText(
     'Capitalisation collective et départs anticipés',

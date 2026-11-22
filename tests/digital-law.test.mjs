@@ -28,7 +28,15 @@ test('les situations ont des liens propres et des références officielles versi
     '/numerique/ce-qui-changerait/donnees-personnelles/publicite/',
   );
   for (const item of cases.filter(({ id }) => id === 'acces-communications')) {
-    assert.equal(item.changes.length, 0);
+    assert.deepEqual(
+      item.changes.map((entry) => entry.versionId),
+      ['ecologistes-obligation-acces-messageries-v1'],
+    );
+    assert.ok(
+      item.relatedMeasures.includes(
+        'melenchon-droit-constitutionnel-chiffrement-v1',
+      ),
+    );
     assert.ok(
       item.rules.every(({ refs }) =>
         refs.every(({ sourceId }) => sourceId === 'legifrance-csi-l871-1'),

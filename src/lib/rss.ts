@@ -1,3 +1,4 @@
+import { campaignBriefs } from './briefs';
 import { getCollection } from 'astro:content';
 import {
   versions,
@@ -28,7 +29,7 @@ interface FeedItem {
 }
 export async function rss(
   title: string,
-  filter?: { candidate?: string; theme?: string },
+  filter?: { candidate?: string; theme?: string; briefsOnly?: boolean },
 ) {
   const kind: Record<string, string> = {
     import: 'Fiche intégrée',
@@ -36,7 +37,7 @@ export async function rss(
     correction: 'Correction',
     programme: 'Programme modifié',
   };
-  const items: FeedItem[] = versions
+  const items: FeedItem[] = (filter?.briefsOnly ? [] : versions)
     .filter((version) => {
       const measure = measures.find(
         (measure) => measure.id === version.measureId,
@@ -59,7 +60,29 @@ export async function rss(
         timestamp: version.recordedAt,
       };
     });
-  const articles = await getCollection('articles', ({ data }) => !data.draft);
+  if (!filter?.theme) {
+    for (const { article, event, href } of await campaignBriefs()) {
+      if (filter?.candidate && !event.candidates.includes(filter.candidate))
+        continue;
+      const url = new URL(href, 'https://polradar.fr').href;
+      items.push({
+        title: article.data.title,
+        description: [
+          article.data.description,
+          event.candidates.map((id) => candidateById(id).name).join(' · '),
+        ]
+          .filter(Boolean)
+          .join('\n'),
+        url,
+        guid: url,
+        day: article.data.published,
+        timestamp: null,
+      });
+    }
+  }
+  const articles = filter?.briefsOnly
+    ? []
+    : await getCollection('articles', ({ data }) => !data.draft);
   if (!filter?.candidate)
     for (const article of articles) {
       if (filter?.theme && !article.data.themes.includes(filter.theme))
@@ -85,8 +108,14 @@ export async function rss(
       (b.timestamp || '').localeCompare(a.timestamp || ''),
   );
   // Day-only source dates must not be turned into invented publication hours.
+  const channelUrl = filter?.briefsOnly
+    ? 'https://polradar.fr/breves/'
+    : 'https://polradar.fr/';
+  const description = filter?.briefsOnly
+    ? 'Brèves de la présidentielle de 2027'
+    : 'Fiches et publications Polradar';
   return new Response(
-    `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>${escape(title)}</title><link>https://polradar.fr/</link><description>Fiches et publications Polradar</description><language>fr</language><lastBuildDate>${new Date().toUTCString()}</lastBuildDate>${items.map((item) => `<item><title>${escape(item.title)}</title><link>${escape(item.url)}</link><guid>${escape(item.guid)}</guid><description>${escape(item.description)}</description>${item.timestamp ? `<pubDate>${new Date(item.timestamp).toUTCString()}</pubDate>` : ''}</item>`).join('')}</channel></rss>`,
+    `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>${escape(title)}</title><link>${channelUrl}</link><description>${description}</description><language>fr</language><lastBuildDate>${new Date().toUTCString()}</lastBuildDate>${items.map((item) => `<item><title>${escape(item.title)}</title><link>${escape(item.url)}</link><guid>${escape(item.guid)}</guid><description>${escape(item.description)}</description>${item.timestamp ? `<pubDate>${new Date(item.timestamp).toUTCString()}</pubDate>` : ''}</item>`).join('')}</channel></rss>`,
     { headers: { 'Content-Type': 'application/rss+xml;charset=utf-8' } },
   );
 }

@@ -49,6 +49,9 @@ const portrait =
       )}
       <span class:list={['tag', { archive: measure.scope === 'archive' }]}>
         {scopes[measure.scope]}
+        {candidate.withdrawnOn &&
+          measure.scope !== 'archive' &&
+          ' · candidature retirée'}
       </span>
     </div>
     <Heading>

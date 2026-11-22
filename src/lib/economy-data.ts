@@ -1,3 +1,4 @@
+import { candidateById, themeById } from './data';
 import definitions from '../data/economy-series.json';
 import observations from '../data/economy.json';
 import publishedStatements from '../data/economic-statements.json';
@@ -14,6 +15,13 @@ const config = seriesConfigSchema.parse(definitions);
 const snapshot = economySchema.parse(observations);
 const rawStatements = statementsSchema.parse(publishedStatements);
 const errors = validateEconomy(config, snapshot, rawStatements);
+for (const row of rawStatements) {
+  if (
+    (row.candidate && !candidateById(row.candidate)) ||
+    (row.theme && !themeById(row.theme))
+  )
+    errors.push(row.id + ' : candidat ou thème inconnu.');
+}
 if (errors.length) throw new Error(errors.join('\n'));
 
 export const economyCollectedAt = snapshot.collectedAt;

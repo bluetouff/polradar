@@ -1,3 +1,4 @@
+import candidateRows from '../../src/data/candidates.json' with { type: 'json' };
 import { pageSize } from '../../src/lib/pagination';
 import { test, expect } from '@playwright/test';
 import portraits from '../../src/data/portraits.json' with { type: 'json' };
@@ -5,19 +6,23 @@ import reviewed from '../../src/data/portraits-reviewed.json' with { type: 'json
 import { createHash } from 'node:crypto';
 import positions from '../../src/data/divergence-positions.json' with { type: 'json' };
 
+const active = candidateRows.filter((c) => !c.withdrawnOn);
+
 test('la galerie conserve toutes les candidatures et explore les fiches par thème', async ({
   page,
 }) => {
   await page.goto('/candidats/');
-  await expect(page.locator('.candidate-gallery .person')).toHaveCount(33);
+  await expect(page.locator('.candidate-gallery .person')).toHaveCount(
+    active.length,
+  );
   await expect(page.locator('.candidate-gallery img')).toHaveCount(
-    portraits.length,
+    portraits.filter((p) => active.some((c) => c.id === p.candidate)).length,
   );
   await page.locator('[data-candidate-theme]').selectOption('retraites');
   await expect(page).toHaveURL(/#theme=retraites/);
   await expect(page.locator('.person:visible')).toHaveCount(pageSize);
   await expect(page.locator('[data-candidate-status]')).toContainText(
-    '33 candidatures',
+    String(active.length) + ' candidatures',
   );
   await expect(
     page.locator('.person[data-search^="Anasse"] [data-person-count]'),
@@ -44,7 +49,7 @@ test('les portraits, crédits et fiches restent disponibles sans JavaScript', as
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto('/candidats/');
-  await expect(page.locator('.person')).toHaveCount(33);
+  await expect(page.locator('.person')).toHaveCount(active.length);
   await expect(page.locator('[data-candidate-controls]')).toBeHidden();
   await page.goto('/candidats/philippe/');
   await expect(page.locator('.candidate-hero img')).toBeVisible();
