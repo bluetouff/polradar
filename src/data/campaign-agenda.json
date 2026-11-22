@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checked": "2026-11-20",
+  "checked": "2026-11-22",
   "cities": [
     {
       "id": "paris",
@@ -190,6 +190,13 @@
       "code": "95268",
       "coordinates": [2.4035, 48.9696],
       "sourceUrl": "https://geo.api.gouv.fr/communes/95268?fields=nom,code,centre"
+    },
+    {
+      "id": "avion",
+      "name": "Avion",
+      "code": "62065",
+      "coordinates": [2.8243, 50.404],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/62065?fields=nom,code,centre"
     }
   ],
   "events": [
@@ -360,9 +367,10 @@
       "city": "toulon",
       "title": "Meeting de campagne",
       "venue": "Zénith de Toulon, boulevard du Commandant-Nicolas",
-      "note": "Avec Sarah Knafo. Ouverture des portes à 13 h 15 ; inscription obligatoire et pièce d’identité demandée par l’organisateur.",
+      "note": "Avec Sarah Knafo. Le candidat a diffusé son discours et l’AFP a couvert la réunion.",
       "source": "agenda-zemmour-toulon",
-      "status": "annonce"
+      "status": "tenu",
+      "additionalSources": ["zemmour-toulon-discours", "afp-toulon-arcom"]
     },
     {
       "id": "kazib-paris-1121",
@@ -373,9 +381,10 @@
       "city": "paris",
       "title": "Meeting de campagne",
       "venue": "Espace Charenton, Paris",
-      "note": "Meeting autour de la candidature d’Anasse Kazib.",
+      "note": "Révolution Permanente a diffusé la réunion de lancement de campagne à l’Espace Charenton.",
       "source": "agenda-kazib-paris",
-      "status": "annonce"
+      "status": "tenu",
+      "additionalSources": ["kazib-paris-retransmission"]
     },
     {
       "id": "arthaud-pau-1124",
@@ -731,6 +740,19 @@
       "source": "villepin-reunion-garges",
       "additionalSources": ["afp-villepin-garges"],
       "status": "tenu"
+    },
+    {
+      "id": "roussel-avion-1206",
+      "candidate": "roussel",
+      "date": "2026-12-06",
+      "time": "14:30",
+      "timezone": "Europe/Paris",
+      "city": "avion",
+      "title": "Meeting de campagne à Avion",
+      "venue": "Salle Jorion",
+      "note": "Date, horaire et salle annoncés par la section de Loos du PCF.",
+      "source": "pcf-loos-avion-decembre",
+      "status": "annonce"
     }
   ],
   "sourceChecks": [

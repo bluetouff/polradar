@@ -39,6 +39,7 @@ import {
 } from '../src/lib/campaign-visuals.mjs';
 
 import { dailyHistorySchema } from '../src/lib/daily-updates.mjs';
+import { editorialReviewSchema } from '../src/lib/editorial-reviews.mjs';
 dailyHistorySchema.parse(
   JSON.parse(
     await readFile(
@@ -73,6 +74,14 @@ const entries = await Promise.all(
   ]),
 );
 const dataset = Object.fromEntries(entries);
+editorialReviewSchema(dataset.candidates, dataset.sources).parse(
+  JSON.parse(
+    await readFile(
+      new URL('../src/data/editorial-reviews.json', import.meta.url),
+      'utf8',
+    ),
+  ),
+);
 const digitalReview = JSON.parse(
   await readFile(
     new URL('../src/data/digital-reviews.json', import.meta.url),

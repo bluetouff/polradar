@@ -1,0 +1,190 @@
+---
+import reviews from '../data/editorial-reviews.json';
+import {
+  candidates,
+  sources,
+  formatTimestamp,
+  candidateById,
+  sourceById,
+  meta,
+} from '../lib/data';
+import {
+  editorialSections,
+  editorialReviewSchema,
+} from '../lib/editorial-reviews.mjs';
+const reports = editorialReviewSchema(candidates, sources)
+  .parse(reviews)
+  .sort((a, b) => Date.parse(b.checkedAt) - Date.parse(a.checkedAt));
+const sections = Object.entries(editorialSections);
+const labels = {
+  consulte: 'Sources consultées',
+  partiel: 'Recherche partielle',
+  indisponible: 'Source indisponible',
+};
+---
+
+<section class="editorial-reviews" aria-labelledby="revue-editoriale">
+  <h2 id="revue-editoriale">Recherche éditoriale</h2>
+  <p>
+    Les publications des candidats, des partis et des institutions sont
+    recherchées chaque jour à 18 h, heure de Paris.
+  </p>
+  {reports.length === 0 && <p>Aucune revue publiée.</p>}
+  {reports.length > 0 && (
+    <p id="editorial-delay" hidden role="status">
+      La dernière recherche éditoriale publiée a plus de 24 heures.
+    </p>
+  )}
+  {reports.slice(0, 7).map((report, index) => (
+    <details class="edition-review" open={index === 0}>
+      <summary>
+        <time
+          id={index === 0 ? 'last-editorial-review' : undefined}
+          datetime={report.checkedAt}
+        >
+          {formatTimestamp(report.checkedAt)} · Paris
+        </time>
+      </summary>
+      {report.collection && (
+        <a
+          href={
+            meta.repository +
+            '/actions/runs/' +
+            report.collection.run +
+            '/attempts/' +
+            report.collection.attempt
+          }
+        >
+          Collecte automatique consultée ↗
+        </a>
+      )}
+      <details class="review-candidates">
+        <summary>
+          {report.candidates.length} candidatures recherchées par nom
+        </summary>
+        <p>
+          {report.candidates
+            .map((id) => candidateById(id).name)
+            .sort((a, b) => a.localeCompare(b, 'fr'))
+            .join(', ') || 'Aucune recherche nominative consignée.'}
+        </p>
+      </details>
+      <div class="review-grid">
+        {sections.map(([id, label]) => {
+          const row = report.sections.find((s) => s.id === id);
+          return (
+            <article>
+              <h3>{label}</h3>
+              {row ? (
+                <>
+                  <small>
+                    {labels[row.status]}
+                    {row.changes.length
+                      ? ' · Mise à jour publiée'
+                      : row.status === 'consulte'
+                        ? ' · Aucun ajout éditorial'
+                        : ''}
+                  </small>
+                  <p>{row.note}</p>
+                  {row.changes.length > 0 && (
+                    <ul>
+                      {row.changes.map((change) => (
+                        <li>
+                          <a href={change.path}>{change.title}</a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <details>
+                    <summary>Références ({row.sources.length})</summary>
+                    <ul>
+                      {row.sources.map((id) => {
+                        const s = sourceById(id);
+                        return (
+                          <li>
+                            <a href={s.url}>{s.title}</a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </details>
+                </>
+              ) : (
+                <small>Recherche non documentée pour ce passage</small>
+              )}
+            </article>
+          );
+        })}
+      </div>
+    </details>
+  ))}
+  {reports.length > 7 && (
+    <a href={meta.repository + '/commits/main/src/data/editorial-reviews.json'}>
+      Historique des revues sur GitHub ↗
+    </a>
+  )}
+</section>
+<style>
+  .editorial-reviews {
+    margin-block: 1.5rem;
+  }
+  .editorial-reviews > h2,
+  .review-grid h3 {
+    margin: 0;
+  }
+  .editorial-reviews > p {
+    margin: 0.35rem 0 0.85rem;
+  }
+  .edition-review {
+    background: var(--panel-gradient);
+    border: 1px solid var(--line);
+    border-radius: 0.65rem;
+    padding: 0.75rem 1rem;
+    margin-block: 0.6rem;
+  }
+  .edition-review summary {
+    cursor: pointer;
+    padding-block: 0.45rem;
+  }
+  .edition-review > summary {
+    font-weight: 650;
+  }
+  .review-candidates p {
+    max-width: 88ch;
+    font-size: 0.87rem;
+  }
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+    gap: 0.85rem;
+    margin-top: 0.75rem;
+  }
+  .review-grid article {
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: 0.55rem;
+    background: var(--paper);
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .review-grid h3 {
+    font-size: 1rem;
+  }
+  .review-grid p,
+  .review-grid li,
+  .review-grid summary {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  .review-grid small {
+    color: var(--muted);
+  }
+  .review-grid p,
+  .review-grid ul,
+  .review-candidates p {
+    margin-block: 0.45rem;
+  }
+  .review-grid ul {
+    padding-inline-start: 1.15rem;
+  }
+</style>

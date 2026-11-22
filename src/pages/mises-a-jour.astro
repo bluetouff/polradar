@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
+import EditorialReviews from '../components/EditorialReviews.astro';
 import history from '../data/daily-updates.json';
 import { dailyHistorySchema, families } from '../lib/daily-updates.mjs';
 import { formatDate, formatTimestamp, meta } from '../lib/data';
@@ -39,22 +40,22 @@ const workflow = meta.repository + '/actions/workflows/watch.yml';
 ---
 
 <Base
-  title="Mises à jour automatiques"
+  title="Mises à jour"
   section="/mises-a-jour/"
   description="Derniers contrôles, changements publiés et incidents de collecte des données de Polradar."
 >
   <header class="page-title">
-    <h1>Mises à jour automatiques</h1>
+    <h1>Mises à jour</h1>
     <p>
-      Sondages, marchés prédictifs, indicateurs économiques, temps de parole et
-      veille des programmes.
+      <a href="#revue-editoriale">Recherche éditoriale</a> ·{' '}
+      <a href="#journal">Journal des collectes automatiques</a>
     </p>
   </header>
   <div class="run-summary">
     <div>
       <Icon name="clock" />
       <div>
-        <h2>Dernier rapport publié</h2>
+        <h2>Dernière collecte automatique</h2>
         {latest ? (
           <time id="last-report" datetime={latest.at}>
             {formatTimestamp(latest.at)} · heure de Paris
@@ -122,8 +123,9 @@ const workflow = meta.repository + '/actions/workflows/watch.yml';
       })}
     </section>
   )}
+  <EditorialReviews />
   <section class="fresh-history" aria-labelledby="journal">
-    <h2 id="journal">Journal des passages</h2>
+    <h2 id="journal">Journal des collectes automatiques</h2>
     <p>
       Les changements portent sur les données publiées. Les notices et documents
       signalés pour relecture restent en attente d’une décision éditoriale.
@@ -186,12 +188,19 @@ const workflow = meta.repository + '/actions/workflows/watch.yml';
   </section>
 </Base>
 <script>
-  const last = document.querySelector<HTMLTimeElement>('#last-report'),
-    notice = document.querySelector<HTMLElement>('#report-delay');
+  const clocks = [
+    ['last-report', 'report-delay'],
+    ['last-editorial-review', 'editorial-delay'],
+  ].map(([clock, notice]) => ({
+    last: document.getElementById(clock) as HTMLTimeElement | null,
+    notice: document.getElementById(notice),
+  }));
   function update() {
-    if (last && notice)
-      notice.hidden =
-        Date.now() - Date.parse(last.dateTime) <= 24 * 60 * 60 * 1000;
+    for (const { last, notice } of clocks) {
+      if (last && notice)
+        notice.hidden =
+          Date.now() - Date.parse(last.dateTime) <= 24 * 60 * 60 * 1000;
+    }
   }
   update();
   document.addEventListener('visibilitychange', update);

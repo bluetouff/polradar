@@ -1,0 +1,221 @@
+[
+  {
+    "checkedAt": "2026-11-22T17:31:51.198Z",
+    "collection": {
+      "run": "45027663424",
+      "attempt": 1
+    },
+    "candidates": [
+      "arthaud",
+      "asselineau",
+      "attal",
+      "billetdoux",
+      "branco",
+      "cheve",
+      "collovati",
+      "dupont-aignan",
+      "durif",
+      "egger",
+      "glucksmann",
+      "kazib",
+      "labib",
+      "lalanne",
+      "lassalle",
+      "legendre",
+      "lepen",
+      "lisnard",
+      "markovic",
+      "mathieu",
+      "melenchon",
+      "mikolajczak",
+      "mlekuz",
+      "philippe",
+      "philippot",
+      "polony",
+      "retailleau",
+      "riner",
+      "rohou",
+      "roussel",
+      "tondelier",
+      "villepin",
+      "zemmour"
+    ],
+    "sections": [
+      {
+        "id": "candidatures",
+        "status": "partiel",
+        "note": "Recherche nominative sur les candidatures suivies et recherche d’annonces de retrait ou d’investiture. La lettre de Bernard Cazeneuve expose son projet. Son statut actuel reste à confirmer.",
+        "sources": [
+          "ruffin-retrait-communique",
+          "tondelier-maintien-novembre",
+          "villepin-lettre",
+          "cazeneuve-lettre",
+          "cazeneuve-lcp-position"
+        ],
+        "changes": []
+      },
+      {
+        "id": "propositions",
+        "status": "partiel",
+        "note": "Quatre mesures entrent dans le corpus. Le livre blanc diffusé par Trajectoire est attribué à Démocratie Ouverte sur sa couverture. Le livret sur l’enfance des Écologistes et la déclaration de Teddy Riner sur la production locale, publiée sur X, restent à vérifier directement.",
+        "sources": [
+          "arthaud-discours-2026",
+          "asselineau-discours-rentree-2026",
+          "attal-programme-droit-au-brut",
+          "billetdoux-declaration-2027",
+          "branco-presentation",
+          "cheve-projet-resume-electeurs",
+          "collovati-projet-2027",
+          "nda-cahier-rouge-novembre",
+          "durif-programme-signe-2027",
+          "egger-programme-2027",
+          "glucksmann-100-jours-accessible",
+          "kazib-smic-octobre-2026",
+          "labib-campagne-2027",
+          "lalanne-projet-2027",
+          "legendre-projet-2027",
+          "rn-ukraine-communique",
+          "lisnard-health",
+          "animalistes-programme-general",
+          "mathieu-projet-2027",
+          "lfi-numerique",
+          "equinoxe-programme-2027",
+          "mlekuz-programme-detaille",
+          "philippe-pension",
+          "patriotes-projet-2026-2027",
+          "polony-vision",
+          "retailleau-pension",
+          "riner-production-locale",
+          "rohou-tribune-energie",
+          "pcf-work",
+          "eco-enfance-pdf",
+          "villepin-chapitre-1",
+          "zemmour-priorites-actifs",
+          "villepin-chapitre-12",
+          "zemmour-toulon-discours",
+          "afp-toulon-arcom",
+          "kazib-programme-campagne"
+        ],
+        "changes": [
+          {
+            "title": "Éric Zemmour · suppression de l’Arcom",
+            "path": "/mesures/zemmour-suppression-arcom/"
+          },
+          {
+            "title": "Dominique de Villepin · production de logements",
+            "path": "/mesures/villepin-production-logements/"
+          },
+          {
+            "title": "Dominique de Villepin · logement social coopératif",
+            "path": "/mesures/villepin-logement-social-cooperatif/"
+          },
+          {
+            "title": "Dominique de Villepin · banque publique du logement",
+            "path": "/mesures/villepin-banque-publique-logement/"
+          }
+        ]
+      },
+      {
+        "id": "agenda",
+        "status": "consulte",
+        "note": "Les réunions du 21 novembre à Paris et Toulon ont eu lieu. Le PCF de Loos annonce le meeting de Fabien Roussel le 6 décembre à 14 h 30 à la salle Jorion, à Avion.",
+        "sources": [
+          "kazib-paris-retransmission",
+          "agenda-kazib-paris",
+          "zemmour-toulon-discours",
+          "afp-toulon-arcom",
+          "pcf-loos-avion-decembre"
+        ],
+        "changes": [
+          {
+            "title": "Paris · Anasse Kazib",
+            "path": "/agenda/#kazib-paris-1121"
+          },
+          {
+            "title": "Toulon · Éric Zemmour",
+            "path": "/agenda/#zemmour-toulon-1121"
+          },
+          {
+            "title": "Avion · Fabien Roussel",
+            "path": "/agenda/#roussel-avion-1206"
+          }
+        ]
+      },
+      {
+        "id": "breves",
+        "status": "consulte",
+        "note": "Deux brèves documentent les réunions du 21 novembre. La chronologie intègre également le rendez-vous annoncé à Avion.",
+        "sources": [
+          "kazib-paris-retransmission",
+          "zemmour-toulon-discours",
+          "afp-toulon-arcom",
+          "pcf-loos-avion-decembre"
+        ],
+        "changes": [
+          {
+            "title": "Anasse Kazib à Paris",
+            "path": "/breves/kazib-meeting-lancement-paris/"
+          },
+          {
+            "title": "Éric Zemmour à Toulon",
+            "path": "/breves/zemmour-toulon-suppression-arcom/"
+          }
+        ]
+      },
+      {
+        "id": "votes",
+        "status": "partiel",
+        "note": "Les scrutins de l’Assemblée et la séance du Sénat du 20 novembre ont été consultés. Aucun nouveau vote nominatif n’a été rattaché à une proposition lors de ce passage.",
+        "sources": ["an-index-scrutins", "senat-seance-20-novembre"],
+        "changes": []
+      },
+      {
+        "id": "financements",
+        "status": "consulte",
+        "note": "Le chapitre sur le logement de Dominique de Villepin décrit sa banque publique. La proposition 110 ne lui attribue aucun montant. Le guide de la CNCCFP reste la référence pour les comptes de campagne.",
+        "sources": ["villepin-chapitre-12", "cnccfp"],
+        "changes": []
+      },
+      {
+        "id": "droit",
+        "status": "partiel",
+        "note": "Vérification du calendrier électoral auprès de Service Public et consultation de l’Assurance retraite et des actualités de la CNIL. Aucune modification du droit publiée dans les comparateurs lors de ce passage.",
+        "sources": [
+          "service-public-dates-scrutins",
+          "assurance-retraite-age",
+          "cnil-actualites"
+        ],
+        "changes": []
+      },
+      {
+        "id": "reperes",
+        "status": "consulte",
+        "note": "Vérification des références des résultats communaux du premier tour de 2022 et de l’enquête européenne CHES de 2024 utilisée dans l’échiquier.",
+        "sources": ["interieur-resultats-2022-t1", "ches-catalogue-europe"],
+        "changes": []
+      },
+      {
+        "id": "donnees",
+        "status": "consulte",
+        "note": "Le relevé automatique du jour signale des changements sur Polymarket et Kalshi. Les notices de sondage, les séries Eurostat et les temps de parole Arcom ne présentent aucun changement publié dans ce relevé.",
+        "sources": [
+          "sondages",
+          "eurostat-euro-indicateurs",
+          "arcom-hors-elections"
+        ],
+        "changes": []
+      },
+      {
+        "id": "declarations",
+        "status": "consulte",
+        "note": "Les objectifs de logements proposés par Dominique de Villepin sont classés dans son programme. Le relevé de chômage de l’Insee et le rapport budgétaire du Sénat ont été consultés pour les vérifications économiques.",
+        "sources": [
+          "villepin-chapitre-12",
+          "insee-chomage-t3-2026",
+          "senat-budget-2027-contexte"
+        ],
+        "changes": []
+      }
+    ]
+  }
+]

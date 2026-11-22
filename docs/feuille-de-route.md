@@ -22,6 +22,8 @@
 
 Le même passage quotidien surveille les notices de sondage, deux fournisseurs de marchés, les séries économiques, l’Arcom et les documents inscrits à la veille. Le [journal public](https://polradar.fr/mises-a-jour/) donne les dates des collectes, leurs incidents et les périodes couvertes. Une publication institutionnelle mensuelle conserve son mois de référence. Une nouvelle valeur ou un nouveau texte de programme entre dans les comparaisons après contrôle de son périmètre.
 
+La [revue éditoriale quotidienne](https://polradar.fr/mises-a-jour/#revue-editoriale) recherche les nouvelles publications des campagnes et des institutions. Elle indique les candidatures recherchées, les nouveautés intégrées et les rubriques dont le contrôle reste partiel.
+
 ## Suite du séquencement A à J du rapport
 
 Après la couverture et les dossiers de référence, le chantier électoral porte sur les parrainages et documents officiels. La diffusion passe par des exports documentés et des séances pédagogiques. Les simulations de revenu, les reports de voix et une éventuelle boussole nécessitent chacun leurs hypothèses, leurs cas de test et une méthode publique avant mise en ligne. [Relevé des quinze sites](audit-concurrence-2026-11-20.md)

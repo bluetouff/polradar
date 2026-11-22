@@ -102,6 +102,12 @@ Le workflow vérifie les données en lecture seule, puis transmet uniquement les
 
 Sur GitHub, le bouton **Run workflow** de **Veille des sources**, avec la branche `main`, lance la même collecte à la demande.
 
+### Recherche éditoriale
+
+La revue quotidienne de Polradar est programmée dans Codex à 18 h, heure de Paris. Elle reprend le dernier passage disponible de `watch.yml` et recherche les publications récentes sur le Web, par candidature et par rubrique. Elle couvre aussi les nouveaux candidats, les retraits, les modifications de programme, les réunions reportées ou annulées, les scrutins, les budgets, les changements de droit et les nouvelles éditions des données de référence. Une réunion passée conserve le statut annoncé tant que sa tenue n’est pas établie. Pour un fait de campagne vérifié, mettre à jour les fiches concernées et publier une brève lorsqu’elle apporte une information distincte.
+
+Consigner la revue dans `src/data/editorial-reviews.json` avec l’heure de consultation, les identifiants des candidats effectivement recherchés, les références consultées et les liens vers les changements publiés. Mentionner le numéro et la tentative du passage GitHub utilisé quand il est disponible. Une reprise enrichit l’entrée de la même journée de Paris. Le journal affiche les limites de la recherche et les rubriques sans contrôle documenté. Après une interruption, reprendre depuis la dernière vérification effective de chaque rubrique. Les collectes chiffrées continuent sur GitHub indépendamment de la disponibilité de Codex.
+
 ## Mettre à jour le site
 
 1. Modifier les contenus ou le code dans une branche et ouvrir une pull request.

@@ -725,5 +725,46 @@
     "dateKind": "evenement",
     "candidates": ["villepin"],
     "sources": ["villepin-lettre", "villepin-programme", "lcp-villepin-annonce"]
+  },
+  {
+    "id": "zemmour-discours-toulon",
+    "date": "2026-11-21",
+    "title": "Éric Zemmour propose de supprimer l’Arcom à Toulon",
+    "description": "Le candidat de Reconquête a présenté cet engagement lors de son meeting au Zénith de Toulon.",
+    "kind": "past",
+    "category": "meeting",
+    "dateKind": "evenement",
+    "candidates": ["zemmour"],
+    "sources": [
+      "zemmour-toulon-discours",
+      "afp-toulon-arcom",
+      "agenda-zemmour-toulon"
+    ]
+  },
+  {
+    "id": "kazib-meeting-charenton",
+    "date": "2026-11-21",
+    "title": "Anasse Kazib tient son meeting de lancement à Paris",
+    "description": "Révolution Permanente a retransmis la réunion à l’Espace Charenton, dans le XIIᵉ arrondissement.",
+    "kind": "past",
+    "category": "meeting",
+    "dateKind": "evenement",
+    "candidates": ["kazib"],
+    "sources": [
+      "kazib-paris-retransmission",
+      "agenda-kazib-paris",
+      "kazib-programme-campagne"
+    ]
+  },
+  {
+    "id": "roussel-meeting-avion",
+    "date": "2026-12-06",
+    "title": "Meeting de Fabien Roussel à Avion",
+    "description": "La section de Loos du PCF annonce une réunion à 14 h 30 à la salle Jorion.",
+    "kind": "announced",
+    "category": "meeting",
+    "dateKind": "evenement",
+    "candidates": ["roussel"],
+    "sources": ["pcf-loos-avion-decembre"]
   }
 ]

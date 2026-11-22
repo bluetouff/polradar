@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 import review from '../../src/data/digital-reviews.json' with { type: 'json' };
 import candidates from '../../src/data/candidates.json' with { type: 'json' };
 import history from '../../src/data/daily-updates.json' with { type: 'json' };
+import editorial from '../../src/data/editorial-reviews.json' with { type: 'json' };
 
 test('chaque candidat dispose de documents numériques et les textes collectifs gardent leur auteur', async ({
   page,
@@ -66,6 +67,36 @@ test('le journal publie ses six contrôles et la date réelle de la dernière ex
       .first()
       .getByRole('link', { name: 'Exécution GitHub ↗' }),
   ).toHaveAttribute('href', new RegExp('/' + history[0].run + '/attempts/'));
+});
+test.describe('journal éditorial', () => {
+  test.use({ javaScriptEnabled: false, viewport: { width: 320, height: 800 } });
+  test('le dernier passage donne accès aux références et publications sans JavaScript', async ({
+    page,
+  }) => {
+    await page.goto('/mises-a-jour/#revue-editoriale');
+    const section = page.getByRole('region', { name: 'Recherche éditoriale' });
+    const latest = [...editorial].sort(
+      (a, b) => Date.parse(b.checkedAt) - Date.parse(a.checkedAt),
+    )[0];
+    await expect(section.locator('#last-editorial-review')).toHaveAttribute(
+      'datetime',
+      latest.checkedAt,
+    );
+    const report = section.locator('.edition-review').first();
+    await expect(report.locator('.review-candidates > summary')).toContainText(
+      String(latest.candidates.length),
+    );
+    const references = report.locator('.review-grid article details').first();
+    await references.locator('summary').click();
+    await expect(references.getByRole('link').first()).toBeVisible();
+    for (const item of latest.sections.flatMap((s) => s.changes))
+      await expect(
+        report.getByRole('link', { name: item.title, exact: true }).first(),
+      ).toHaveAttribute('href', item.path);
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth),
+    ).toBeLessThanOrEqual(320);
+  });
 });
 test('lisibilité des encadrés et pictogrammes de partage', async ({ page }) => {
   for (const width of [320, 1440]) {

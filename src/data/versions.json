@@ -24212,5 +24212,132 @@
       "edition": "Réussir à nouveau · présidentielle 2027",
       "checked": "2026-11-22"
     }
+  },
+  {
+    "id": "zemmour-suppression-arcom-v1",
+    "measureId": "zemmour-suppression-arcom",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-22",
+    "recordedAt": "2026-11-22T17:22:26Z",
+    "summary": "Proposition annoncée le 21 novembre au meeting de Toulon.",
+    "snapshot": {
+      "title": "Supprimer l’Arcom",
+      "description": "Éric Zemmour propose de supprimer l’Autorité de régulation de la communication audiovisuelle et numérique s’il est élu président.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "zemmour-toulon-discours",
+          "locator": "Discours du 21 novembre 2026 au Zénith de Toulon, passage sur la liberté d’expression."
+        },
+        {
+          "sourceId": "afp-toulon-arcom",
+          "locator": "Compte rendu du meeting, passage sur la suppression de l’autorité."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Discours de Toulon · présidentielle 2027",
+      "checked": "2026-11-22"
+    }
+  },
+  {
+    "id": "villepin-production-logements-v1",
+    "measureId": "villepin-production-logements",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-22",
+    "recordedAt": "2026-11-22T17:22:26Z",
+    "summary": "Lecture de la proposition 107 du programme présenté le 20 novembre.",
+    "snapshot": {
+      "title": "Porter la production annuelle à 500 000 logements",
+      "description": "Dominique de Villepin propose une montée en charge avec les régions et les communes, avec densification du bâti et adaptation des logements existants. Il vise aussi la production de 100 000 logements sociaux par an.",
+      "beneficiaries": null,
+      "timing": "Montée en charge sur le quinquennat.",
+      "financing": null,
+      "metrics": [
+        {
+          "key": "production-annuelle",
+          "label": "Production annuelle visée",
+          "value": 500000,
+          "unit": "logements par an",
+          "sourceId": "villepin-chapitre-12"
+        },
+        {
+          "key": "production-sociale",
+          "label": "Logements sociaux visés",
+          "value": 100000,
+          "unit": "logements sociaux par an",
+          "sourceId": "villepin-chapitre-12"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "villepin-chapitre-12",
+          "locator": "Chapitre 12, proposition 107."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Réussir à nouveau · présidentielle 2027",
+      "checked": "2026-11-22"
+    }
+  },
+  {
+    "id": "villepin-logement-social-cooperatif-v1",
+    "measureId": "villepin-logement-social-cooperatif",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-22",
+    "recordedAt": "2026-11-22T17:22:26Z",
+    "summary": "Lecture de la proposition 108 du programme présenté le 20 novembre.",
+    "snapshot": {
+      "title": "Créer un statut de logement social coopératif",
+      "description": "Les résidents pourraient participer à la gouvernance et constituer un apport pour acheter ensuite un logement dans le parc privé.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "villepin-chapitre-12",
+          "locator": "Chapitre 12, proposition 108."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Réussir à nouveau · présidentielle 2027",
+      "checked": "2026-11-22"
+    }
+  },
+  {
+    "id": "villepin-banque-publique-logement-v1",
+    "measureId": "villepin-banque-publique-logement",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-22",
+    "recordedAt": "2026-11-22T17:22:26Z",
+    "summary": "Lecture de la proposition 110 du programme présenté le 20 novembre.",
+    "snapshot": {
+      "title": "Créer une banque publique du logement",
+      "description": "Cette banque proposerait notamment des prêts viagers hypothécaires et des prêts sur la nue-propriété pour les primo-accédants. Le candidat cite aussi l’adaptation des logements des seniors.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "villepin-chapitre-12",
+          "locator": "Chapitre 12, proposition 110."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Réussir à nouveau · présidentielle 2027",
+      "checked": "2026-11-22"
+    }
   }
 ]
