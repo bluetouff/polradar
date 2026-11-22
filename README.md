@@ -54,7 +54,7 @@ La carte `/divergences/` rapproche quatre paramètres chiffrés du corpus : âge
 
 Le comparatif retraites fournit un code HTML par génération. L’image actualisée garde son URL. Pour archiver une nouvelle édition sur Polradar, exécuter `node scripts/archive-retirement-graphics.mjs` et ajouter les nouveaux SVG au commit. Leur nom dépend de leur contenu. Une édition encore absente des archives est incorporée directement dans le code HTML figé.
 
-Dans Mon suivi, « Depuis hier » rapproche les versions de mesures et les comparaisons de documents de programme, les rendez-vous et les votes enregistrés dans Git. La construction avec l’historique Git complet permet de dater les entrées. Le navigateur filtre les fichiers quotidiens à partir de la sélection locale.
+Dans Mon suivi, « Depuis hier » rapproche les versions de mesures et les comparaisons de documents de programme, les rendez-vous et les votes enregistrés dans Git. La construction avec l’historique Git complet permet de dater les entrées. Chaque fichier quotidien référence les versions de mesures du corpus. Le navigateur retrouve leur texte et leurs sources et applique la sélection locale.
 
 ## Propositions, votes et partage
 

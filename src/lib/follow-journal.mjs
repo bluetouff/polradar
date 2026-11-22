@@ -1,9 +1,9 @@
+import { measureChanges } from './follow-measures.mjs';
 import { execFileSync } from 'node:child_process';
 import {
   agendaStates,
   ballotStates,
   comparisonChanges,
-  measureChanges,
   revisionChanges,
 } from './follow-changes.mjs';
 const git = (...args) =>

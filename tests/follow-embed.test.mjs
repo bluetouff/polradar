@@ -1,3 +1,4 @@
+import { measureChanges } from '../src/lib/follow-measures.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -10,7 +11,6 @@ import {
 } from '../src/lib/retirement-embed.mjs';
 import { retirementComparison } from '../src/lib/retirement-comparison.mjs';
 import {
-  measureChanges,
   agendaStates,
   ballotStates,
   revisionChanges,
@@ -265,4 +265,22 @@ test('une position de vote nominative ne se répète pas entre dossiers et chaqu
   assert.equal(changes[0].before.sources[0].url, from.source.url);
   assert.equal(changes[0].after.sources[0].locator, to.source.locator);
   assert.ok(changes[0].after.fields[0].text.includes(to.edition));
+});
+
+test('le journal local exige les mêmes adresses de source publiques que le corpus', async () => {
+  const { isPublicSourceUrl } = await import('../src/lib/source-url.mjs');
+  const { publicUrlSchema } = await import('../src/lib/schema.mjs');
+  for (const [url, allowed] of [
+    ['https://source.example/document', true],
+    ['http://source.example/', false],
+    ['/relative', false],
+    ['https://user@source.example/', false],
+    ['https://127.0.0.1/', false],
+    ['https://host.internal/', false],
+    ['https://source.example:2700/', false],
+    ['https://source.example/texte avec espace', false],
+  ]) {
+    assert.equal(isPublicSourceUrl(url), allowed);
+    assert.equal(publicUrlSchema.safeParse(url).success, allowed);
+  }
 });

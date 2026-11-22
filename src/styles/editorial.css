@@ -90,6 +90,7 @@ body {
   text-align: right;
 }
 .masthead-actions > a {
+  --pic-size: 20px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -97,10 +98,6 @@ body {
   font-weight: 600;
   min-height: 44px;
   text-decoration: none;
-}
-.masthead-actions > a > .icon {
-  width: 20px;
-  height: 20px;
 }
 .publication-nav {
   max-width: 1448px;

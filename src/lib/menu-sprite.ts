@@ -8,7 +8,8 @@ const decorations: Record<string, string> = {
   share: '.page-share-label::before',
   external: '.footer-meta a::after',
   mail: '.page-share a[data-share-platform="mail"]::before',
-  suivi: '.footer-follow::before',
+  suivi: '.footer-follow::before,.follow-button::before',
+  search: '.mobile-search::before,.masthead-actions>a::before',
   arrow: '.footer-follow::after,.footer-bottom>a::after',
 };
 const icons = [
@@ -36,7 +37,7 @@ const digest = (value: string) =>
 const imageFile = digest(svg) + '.svg';
 const navLinks = groups.flatMap((group) => group.links);
 const css =
-  `:where(.site-nav-group .desk-links a,.site-nav-group summary,.footer-columns h2,.footer-follow,.page-share-label,.page-share a[data-share-platform="mail"])::before,:where(.site-nav-group summary,.footer-follow,.footer-meta a,.footer-bottom>a)::after{content:"";display:inline-block;flex:none;width:var(--pic-size,1rem);height:var(--pic-size,1rem);background:currentColor;mask-image:url("/pictos-menu/${imageFile}");mask-repeat:no-repeat;mask-size:100% auto;mask-position:0 var(--menu-y)}` +
+  `:where(.site-nav-group .desk-links a,.site-nav-group summary,.footer-columns h2,.footer-follow,.follow-button,.mobile-search,.masthead-actions>a,.page-share-label,.page-share a[data-share-platform="mail"])::before,:where(.site-nav-group summary,.footer-follow,.footer-meta a,.footer-bottom>a)::after{content:"";display:var(--pic-display,inline-block);flex:none;width:var(--pic-size,1rem);height:var(--pic-size,1rem);background:currentColor;mask-image:url("/pictos-menu/${imageFile}");mask-repeat:no-repeat;mask-size:100% auto;mask-position:0 var(--menu-y)}` +
   icons
     .map(
       (id, i) =>

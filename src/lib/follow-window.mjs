@@ -4,9 +4,10 @@ const paris = new Intl.DateTimeFormat('en-CA', {
   month: '2-digit',
   day: '2-digit',
 });
+export const followDay = (timestamp) => paris.format(timestamp);
 export function followWindow(now, hours) {
   const start = now - hours * 3600000;
-  return { start, now, first: paris.format(start), last: paris.format(now) };
+  return { start, now, first: followDay(start), last: followDay(now) };
 }
 export function withinWindow(row, period) {
   if (!row.at) return row.day > period.first && row.day <= period.last;

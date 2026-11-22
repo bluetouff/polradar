@@ -622,6 +622,7 @@
     color: var(--muted);
   }
   .follow-button {
+    --pic-size: 17px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -633,10 +634,6 @@
     font-size: 12px;
     font-weight: 550;
     color: var(--ink);
-  }
-  .follow-button .icon {
-    width: 17px;
-    height: 17px;
   }
   .follow-button[aria-pressed='true'] {
     border-color: var(--blue);
@@ -2132,12 +2129,9 @@
     }
     .follow-candidates .follow-button,
     .follow-themes .follow-button {
+      --pic-display: none;
       font-size: 9px;
       padding: 6px;
-    }
-    .follow-candidates .follow-button > .icon,
-    .follow-themes .follow-button > .icon {
-      display: none;
     }
     .feed-list {
       grid-template-columns: minmax(0, 1fr);

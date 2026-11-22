@@ -26,9 +26,7 @@ async function start() {
   if (app)
     void import('./follow-since')
       .then(({ mountChangeFeed }) => {
-        updateFeed = mountChangeFeed(
-          new Map(data.candidates.map((c) => [c.id, c.name])),
-        );
+        updateFeed = mountChangeFeed(data);
         updateFeed(prefs);
       })
       .catch(() => {

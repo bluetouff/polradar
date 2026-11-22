@@ -1,5 +1,4 @@
 ---
-import Icon from './Icon.astro';
 interface Props {
   kind: 'candidate' | 'theme';
   id: string;
@@ -17,6 +16,5 @@ const { kind, id, name } = Astro.props;
   aria-pressed="false"
   disabled
 >
-  <Icon name="suivi" />
   <span>Suivre {kind === 'candidate' ? 'ce candidat' : 'ce thème'}</span>
 </button>

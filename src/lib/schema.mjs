@@ -1,4 +1,5 @@
 import { z } from 'astro/zod';
+import { isPublicSourceUrl } from './source-url.mjs';
 
 export const idSchema = z
   .string()
@@ -19,20 +20,10 @@ export const publicUrlSchema = z
   .max(1500)
   .regex(/^[^\u0000-\u0020\u007f\\]+$/, 'Caractères interdits dans une URL')
   .pipe(z.url().max(1500))
-  .refine((value) => {
-    const url = new URL(value);
-    const host = url.hostname.replace(/\.$/, '');
-    return (
-      url.protocol === 'https:' &&
-      !url.username &&
-      !url.password &&
-      !url.port &&
-      host.includes('.') &&
-      !/^[\d.]+$/.test(host) &&
-      !host.includes(':') &&
-      !/\.(local|internal|localhost)$/.test(host)
-    );
-  }, 'Une source doit être une URL HTTPS publique, sans identifiants');
+  .refine(
+    isPublicSourceUrl,
+    'Une source doit être une URL HTTPS publique, sans identifiants',
+  );
 const text = z.string().min(1).max(3000);
 const partyAuthorSchema = z.string().trim().min(1).max(100);
 export const sourceSchema = z.object({

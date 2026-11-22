@@ -8,7 +8,6 @@ import SiteFooter from '../components/SiteFooter.astro';
 import BrandLogo from '../components/BrandLogo.astro';
 import SiteNavigation from '../components/SiteNavigation.astro';
 import { menuStyle } from '../lib/menu-sprite';
-import Icon from '../components/Icon.astro';
 import ShareLinks from '../components/ShareLinks.astro';
 import { socialImageFor } from '../lib/social-images.mjs';
 import archivoFont from '../assets/fonts/archivo-latin.woff2?url';
@@ -104,9 +103,11 @@ const socialImageUrl = new URL(social.url, Astro.site);
               <span class="election-context">Présidentielle française</span>
               <span class="election-year">2027</span>
             </p>
-            <a href="/recherche/" class="mobile-search" aria-label="Rechercher">
-              <Icon name="search" />
-            </a>
+            <a
+              href="/recherche/"
+              class="mobile-search"
+              aria-label="Rechercher"
+            ></a>
           </div>
           <div class="masthead-actions">
             <time datetime={meta.edition}>
@@ -114,10 +115,7 @@ const socialImageUrl = new URL(social.url, Astro.site);
               <br />
               {formatDate(meta.edition)}
             </time>
-            <a href="/recherche/">
-              <Icon name="search" />
-              Rechercher
-            </a>
+            <a href="/recherche/">Rechercher</a>
           </div>
         </div>
         <SiteNavigation current={navigation.current} />
@@ -130,6 +128,9 @@ const socialImageUrl = new URL(social.url, Astro.site);
         <SiteFooter />
       </div>
     </div>
-    <script src="../scripts/follow.ts"></script>
+    <script>
+      import '../scripts/site-navigation';
+      import '../scripts/follow';
+    </script>
   </body>
 </html>

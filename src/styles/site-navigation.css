@@ -101,6 +101,7 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .mobile-search {
+    --pic-size: 1.15rem;
     display: grid;
     flex: 0 0 auto;
     place-items: center;
@@ -109,10 +110,6 @@
     margin-inline-start: auto;
     border-radius: 5px;
     background: #e7efe7;
-  }
-  .mobile-search .icon {
-    width: 1.15rem;
-    height: 1.15rem;
   }
 }
 @media (max-width: 630px) {

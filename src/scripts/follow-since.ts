@@ -1,3 +1,5 @@
+import type { Corpus } from '../lib/data';
+import { measureChanges } from '../lib/follow-measures.mjs';
 import { detailDate, type Change, type ChangeState } from '../lib/follow-view';
 import {
   followWindow,
@@ -88,7 +90,20 @@ function changeCard(row: Change, names: Map<string, string>) {
   card.append(states, links);
   return card;
 }
-export function mountChangeFeed(names: Map<string, string>) {
+export function mountChangeFeed(data: Corpus) {
+  const names = new Map(data.candidates.map((c) => [c.id, c.name]));
+  let byVersion: Map<string, Change> | undefined;
+  function expand(entries: (Change | string)[], day: string) {
+    return entries.map((entry) => {
+      if (typeof entry !== 'string') return entry;
+      byVersion ??= new Map(
+        measureChanges(data).map((row: Change) => [row.id, row]),
+      );
+      const row = byVersion.get(entry);
+      if (!row || row.day !== day) throw Error('Version de suivi indisponible');
+      return row;
+    });
+  }
   const root = document.getElementById('depuis-hier')!,
     dates = root.dataset.days!.split(',').filter(Boolean);
   const cards = document.getElementById('since-cards')!,
@@ -112,8 +127,9 @@ export function mountChangeFeed(names: Map<string, string>) {
       })
         .then((r) => {
           if (!r.ok) throw Error('Journal indisponible');
-          return r.json() as Promise<Change[]>;
+          return r.json() as Promise<(Change | string)[]>;
         })
+        .then((entries) => expand(entries, day))
         .catch((err) => {
           cache.delete(day);
           throw err;

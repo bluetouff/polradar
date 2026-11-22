@@ -216,3 +216,56 @@ test('le suivi hebdomadaire distingue séance et consignation, pagine et signale
   await expect(page.locator('#since-status')).toContainText('indisponible');
   await expect(page.locator('#since-cards article')).toHaveCount(0);
 });
+
+test('une correction retrouve les deux versions du corpus et leurs sources respectives', async ({
+  page,
+  request,
+}) => {
+  const day = '2026-11-20',
+    id = 'lepen-europe-1-v2';
+  const edition = await request.get('/api/suivi/' + day + '.json');
+  expect(await edition.json()).toContain(id);
+  await page.goto('/suivi/#changement=' + day + ':' + id);
+  const card = page.locator('#since-cards article');
+  await expect(card.locator('.since-kind')).toHaveText('Fiche corrigée');
+  await expect(card.locator('.change-before')).toContainText(
+    'Défendre l’arrêt du soutien français',
+  );
+  await expect(card.locator('.change-after')).toContainText(
+    'maintenir les dons de matériel',
+  );
+  await expect(card.locator('.change-before a').first()).toHaveAttribute(
+    'href',
+    /^https:\/\/www\.lemonde\.fr\//,
+  );
+  await expect(card.locator('.change-after a').first()).toHaveAttribute(
+    'href',
+    /^https:\/\/rassemblementnational\.fr\//,
+  );
+});
+
+test('les loupes de recherche et le bouton de suivi conservent leurs pictogrammes et noms accessibles', async ({
+  page,
+}) => {
+  await page.goto('/suivi/');
+  for (const width of [390, 1280]) {
+    await page.setViewportSize({ width, height: 850 });
+    const search = page
+      .getByRole('link', { name: 'Rechercher', exact: true })
+      .first();
+    await expect(search).toBeVisible();
+    expect(
+      await search.evaluate((el) => getComputedStyle(el, '::before').maskImage),
+    ).toContain('/pictos-menu/');
+    expect(
+      await search.evaluate((el) =>
+        parseFloat(getComputedStyle(el, '::before').width),
+      ),
+    ).toBeGreaterThanOrEqual(16);
+  }
+  const follow = page.locator('[data-follow-id=kazib]');
+  await expect(follow).toHaveAccessibleName(/Suivre.*Kazib/);
+  expect(
+    await follow.evaluate((el) => getComputedStyle(el, '::before').maskImage),
+  ).toContain('/pictos-menu/');
+});
