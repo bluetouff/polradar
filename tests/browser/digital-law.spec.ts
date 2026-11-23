@@ -17,6 +17,10 @@ test('les huit situations sont navigables sur mobile et relient les textes et ve
   await expect(
     page.getByRole('link', { name: 'LCEN, art. 30 I' }),
   ).toBeVisible();
+  const count = await page.locator('.law-change').count();
+  await expect(page.locator('.law-lane-changes > header > span')).toHaveText(
+    `${count} proposition${count === 1 ? '' : 's'}`,
+  );
   await expect(page.locator('.law-change .law-byline span').first()).toHaveText(
     'Les Écologistes',
   );
