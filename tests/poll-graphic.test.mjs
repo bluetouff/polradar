@@ -176,3 +176,62 @@ test('chaque édition reflète les corrections de résultats et de références,
     /Référence de sondage invalide/,
   );
 });
+
+test('la formulation et la base déterminent les courbes, le périmètre des anciennes adresses est conservé', async () => {
+  const { pollSignature, pollSeries } = await import('../src/lib/features.mjs');
+  const { legacyPollGraphics } = await import('../src/lib/poll-graphic.mjs');
+  const q = first.question;
+  const different = {
+    ...first,
+    id: 'nouveau',
+    question: { ...q, wording: 'Qui ne choisiriez-vous jamais ?' },
+  };
+  const single = { ...first, question: { status: 'a-relire' } };
+  const other = { ...single, id: 'autre' };
+  assert.notEqual(pollSignature(first), pollSignature(different));
+  assert.equal(
+    pollSignature(first),
+    pollSignature({
+      ...first,
+      question: { ...q, wording: q.wording.replace('?', ' !') },
+    }),
+  );
+  assert.notEqual(
+    pollSignature(first),
+    pollSignature({ ...first, question: { ...q, base: 'Tous les adultes' } }),
+  );
+  assert.equal(pollSeries([single, other]).length, 2);
+  const equivalence = {
+    key: 'libelle-equivalent',
+    reason:
+      'Même tour, même horizon et même choix unique selon les deux questionnaires.',
+  };
+  const paraphrase = {
+    ...first,
+    question: {
+      ...q,
+      wording: 'Lequel choisiriez-vous parmi ces candidats ?',
+      equivalence,
+    },
+  };
+  assert.equal(
+    pollSignature(paraphrase),
+    pollSignature({ ...first, question: { ...q, equivalence } }),
+  );
+  const live = pollGraphicCatalog(polls);
+  const prior = data('poll-graphic-migration');
+  for (const key of Object.keys(prior))
+    assert.ok(live.some((g) => g.id === 'serie-' + key));
+  const archived = legacyPollGraphics(polls, []);
+  assert.equal(archived.length, Object.keys(prior).length);
+  assert.ok(
+    archived.every((g) => g.latest.id === prior[g.id.slice(6)].waves.at(-1)),
+  );
+  assert.ok(
+    pollGraphic(first, sources, true).svg.includes('Vérification ' + q.checked),
+  );
+  assert.equal(
+    pollGraphic(first, sources).svg.includes('Vérification ' + q.checked),
+    false,
+  );
+});

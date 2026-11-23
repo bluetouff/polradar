@@ -4,6 +4,8 @@ Le journal des données rend compte de chaque collecte. Cette page consigne les 
 
 ## 23 novembre 2026
 
+- **Questions des sondages.** Le libellé original, la base et la page du questionnaire accompagnent chaque point relu. Les graphiques conservent leurs anciennes adresses. [Sondages](https://polradar.fr/sondages/)
+
 - **Sondages et dates documentaires.** Les compteurs séparent observations, séries, terrains identifiés et notices. Une vérification de fiche et une consultation de document ont désormais chacun leur libellé. [Méthode des sondages](https://polradar.fr/dossiers/sondages-les-scenarios-comptent/)
 
 - **Scrutins sur les fiches de mesures.** Les 28 mesures concernées présentent l’objet de chaque vote, la position individuelle et un lien vers le relevé nominatif officiel. Le dossier parlementaire et la version de la mesure comparée sont accessibles depuis la fiche. [Propositions et votes passés](https://polradar.fr/votes/) · [Sources parlementaires](docs/votes.md)

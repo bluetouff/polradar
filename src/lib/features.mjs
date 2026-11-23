@@ -8,7 +8,7 @@ export function normalize(value) {
     .replace(/\s+/g, ' ')
     .trim();
 }
-export function pollSignature(poll) {
+export function legacyPollSignature(poll) {
   return JSON.stringify([
     poll.institute,
     poll.round,
@@ -18,6 +18,29 @@ export function pollSignature(poll) {
     poll.scenario,
     poll.results.map((result) => result.id).sort(),
   ]);
+}
+// Only typography is ignored. Numbers, negations, word order and accents remain significant.
+function questionText(value) {
+  return value
+    .normalize('NFC')
+    .toLocaleLowerCase('fr')
+    .replace(/[’']/gu, ' ')
+    .replace(/[.,;:!?«»"()]/gu, ' ')
+    .replace(/\s+/gu, ' ')
+    .trim();
+}
+export function pollSignature(poll) {
+  const question = poll.question;
+  const documented = question?.status === 'verifiee';
+  const identity = documented
+    ? [
+        question.equivalence
+          ? ['equivalence', question.equivalence.key]
+          : ['texte', questionText(question.wording)],
+        questionText(question.base),
+      ]
+    : ['observation', poll.id];
+  return JSON.stringify([legacyPollSignature(poll), identity]);
 }
 export function comparePollWaves(a, b) {
   return (

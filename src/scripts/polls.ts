@@ -265,6 +265,28 @@ async function start() {
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     heading.append(el('h2', 'Enquête et méthode'), link);
+    const question = poll.question;
+    const questionBlock = el('p');
+    if (question?.status === 'verifiee') {
+      const document = data.sources.find((s) => s.id === question.sourceId)!;
+      questionBlock.append(
+        el('strong', 'Question posée'),
+        ' · « ' + question.wording + ' »',
+        el('br'),
+        question.base + ' ',
+        anchor(
+          'Questionnaire, p. ' + question.page,
+          document.url + '#page=' + question.page,
+        ),
+        ' · Vérifié le ' + date(question.checked) + '.',
+      );
+      if (question.equivalence)
+        questionBlock.append(' ' + question.equivalence.reason);
+    } else {
+      questionBlock.textContent =
+        'Libellé original à vérifier. Cette observation reste affichée seule.';
+    }
+    method.append(questionBlock);
     const dl = el('dl', undefined, 'poll-method-grid');
     const values = [
       ['Institut / commanditaire', `${poll.institute} / ${poll.commissioner}`],
@@ -328,6 +350,7 @@ async function start() {
   document.querySelector('#poll-export')!.addEventListener('click', () => {
     if (!rows.length) return;
     const poll = rows[index];
+    const question = poll.question;
     const csv = [
       [
         'Institut',
@@ -340,6 +363,12 @@ async function start() {
         'Pourcentage exprimé',
         'Notice',
         'Borne supérieure exclusive (%)',
+        'Enquête',
+        'Question originale',
+        'Base',
+        'Source de la question',
+        'Vérification du libellé',
+        'Statut documentaire',
       ],
       ...poll.results.map((result) => [
         poll.institute,
@@ -352,6 +381,18 @@ async function start() {
         result.percentage === null ? '' : String(result.percentage),
         data.sources.find((source) => source.id === poll.noticeSource)!.url,
         result.below === undefined ? '' : String(result.below),
+        poll.surveyId ?? '',
+        ...(question?.status === 'verifiee'
+          ? [
+              question.wording,
+              question.base,
+              data.sources.find((s) => s.id === question.sourceId)!.url +
+                '#page=' +
+                question.page,
+              question.checked,
+              'vérifiée',
+            ]
+          : ['', '', '', '', 'à relire']),
       ]),
     ]
       .map((row) => row.map(csvValue).join(';'))

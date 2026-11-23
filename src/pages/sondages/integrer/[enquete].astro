@@ -12,6 +12,7 @@ export function getStaticPaths() {
   );
 }
 const { wave, latest, id } = Astro.props;
+const question = wave.question;
 const edition = pollGraphic(wave, sources);
 const live = pollGraphic(latest, sources);
 const livePage = '/sondages/#' + id;
@@ -44,6 +45,22 @@ const liveAlt =
         {wave.institute} · {formatDate(wave.published)}
       </h1>
       <p>{wave.scenario}</p>
+      {question?.status === 'verifiee' ? (
+        <p>
+          « {question.wording} »{' '}
+          <a
+            href={
+              sources.find((s) => s.id === question.sourceId)!.url +
+              '#page=' +
+              question.page
+            }
+          >
+            Questionnaire, p. {question.page}
+          </a>
+        </p>
+      ) : (
+        <p>Libellé original à vérifier. Comparabilité non confirmée.</p>
+      )}
     </div>
   </header>
   <DataGraphicEmbed

@@ -2,9 +2,11 @@ import { createHash } from 'node:crypto';
 import {
   comparePollWaves,
   pollSignature,
+  legacyPollSignature,
   pollSeries,
   rankedPollResults,
 } from './features.mjs';
+import migration from '../data/poll-graphic-migration.json' with { type: 'json' };
 import { escapeHtml as esc } from './social-image-view.mjs';
 import { isPublicSourceUrl } from './source-url.mjs';
 
@@ -16,13 +18,30 @@ const date = new Intl.DateTimeFormat('fr-FR', {
 });
 const civilDay = (value) => new Date(value + 'T12:00:00Z');
 
-// Two hypotheses can use the same names, question and survey design.
+const digest = (text) => createHash('sha256').update(text).digest('hex');
+const priorWaves = new Set(
+  Object.values(migration).flatMap((entry) => entry.waves),
+);
+
 export function pollGraphicSeriesId(poll) {
-  return (
-    'serie-' + createHash('sha256').update(pollSignature(poll)).digest('hex')
-  );
+  const scope = digest(pollSignature(poll));
+  const old = digest(legacyPollSignature(poll));
+  return 'serie-' + (migration[old]?.scope === scope ? old : scope);
 }
 
+/** When a historical scope splits, the old URL resolves to its last published observation. */
+export function legacyPollGraphics(polls, current) {
+  const active = new Set(current.map((group) => group.id));
+  const byId = new Map(polls.map((row) => [row.id, row]));
+  return Object.entries(migration)
+    .filter(([key]) => !active.has('serie-' + key))
+    .map(([key, entry]) => {
+      const latest = byId.get(entry.waves.at(-1));
+      if (!latest)
+        throw new Error('Observation historique de sondage manquante');
+      return { id: 'serie-' + key, latest };
+    });
+}
 /** @param {import('./data').Poll[]} polls */
 export function pollGraphicCatalog(polls) {
   return pollSeries(polls)
@@ -99,7 +118,11 @@ function scoreLabel(result) {
 }
 
 /** @param {import('./data').Poll} poll @param {{id: string, url: string}[]} sourceRows */
-export function pollGraphic(poll, sourceRows) {
+export function pollGraphic(
+  poll,
+  sourceRows,
+  documentQuestion = !priorWaves.has(poll.id),
+) {
   const sources = [
     sourceLink(
       sourceRows,
@@ -118,6 +141,33 @@ export function pollGraphic(poll, sourceRows) {
       ),
     );
 
+  let provenance = '';
+  if (documentQuestion) {
+    const item = poll.question;
+    if (item?.status === 'verifiee') {
+      const reference = sourceLink(
+        sourceRows,
+        item.sourceId,
+        item.page,
+        'Question posée',
+      );
+      provenance =
+        ' · ' +
+        [
+          item.wording,
+          item.base,
+          reference.url,
+          'Vérification ' + item.checked,
+          item.equivalence?.reason,
+        ]
+          .filter(Boolean)
+          .map(esc)
+          .join(' · ');
+    } else {
+      provenance =
+        ' · Libellé original à vérifier. Comparabilité non confirmée.';
+    }
+  }
   const dateLabel = date.format(civilDay(poll.published));
   const terrain = date.formatRange(
     civilDay(poll.fieldworkStart),
@@ -210,7 +260,7 @@ export function pollGraphic(poll, sourceRows) {
   const height = y + 4;
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" xml:lang="fr" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="titre description">
 <title id="titre">${esc(title)}</title><desc id="description">${esc(desc)}</desc>
-<metadata>${sources.map((s) => esc(s.label + ' : ' + s.url)).join(' · ')}</metadata>
+<metadata>${sources.map((s) => esc(s.label + ' : ' + s.url)).join(' · ')}${provenance}</metadata>
 <defs><linearGradient id="entete" x2="1" y2="1"><stop stop-color="#102c40"/><stop offset="1" stop-color="#155360"/></linearGradient></defs>
 <rect width="${width}" height="${height}" rx="14" fill="#f8fbfb"/>
 <g font-family="Arial, Helvetica, sans-serif" fill="#173746" aria-hidden="true">

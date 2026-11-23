@@ -119,6 +119,20 @@ export const pollSchema = z.object({
   round: z.enum(['premier', 'second']),
   questionKey: idSchema,
   surveyId: idSchema.optional(),
+  question: z
+    .discriminatedUnion('status', [
+      z.strictObject({ status: z.literal('a-relire') }),
+      z.strictObject({
+        status: z.literal('verifiee'),
+        wording: text,
+        base: text,
+        sourceId: idSchema,
+        page: z.number().int().positive(),
+        checked: dateSchema,
+        equivalence: z.strictObject({ key: idSchema, reason: text }).optional(),
+      }),
+    ])
+    .optional(),
   population: text,
   method: text,
   noticePage: z.number().int().positive(),
@@ -498,7 +512,31 @@ export function validateDataset(dataset) {
       if (!sourceIds.has(id)) errors.push(`${event.id}: source inconnue ${id}`);
     }
   }
+  const surveyDesign = new Map();
   for (const poll of dataset.polls) {
+    if (poll.surveyId) {
+      const design = JSON.stringify([
+        poll.institute,
+        poll.fieldworkStart,
+        poll.fieldworkEnd,
+      ]);
+      if (
+        surveyDesign.has(poll.surveyId) &&
+        surveyDesign.get(poll.surveyId) !== design
+      )
+        errors.push(`${poll.id}: terrains contradictoires pour cette enquête`);
+      surveyDesign.set(poll.surveyId, design);
+    }
+    if (
+      poll.question?.status === 'verifiee' &&
+      (!sourceIds.has(poll.question.sourceId) ||
+        ![poll.noticeSource, poll.resultSource].includes(
+          poll.question.sourceId,
+        ) ||
+        poll.question.checked > today ||
+        poll.question.checked < poll.fieldworkEnd)
+    )
+      errors.push(`${poll.id}: référence ou date de la question invalide`);
     if (poll.registeredSample > poll.sampleSize)
       errors.push(`${poll.id}: inscrits supérieurs à l’échantillon`);
     if (poll.usefulSample !== null && poll.usefulSample > poll.registeredSample)

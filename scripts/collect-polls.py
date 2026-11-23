@@ -388,6 +388,7 @@ def import_notice(notice, pages, identities, today):
             'institute': institute, 'published': publication.isoformat(),
             'fieldworkStart': start.isoformat(), 'fieldworkEnd': end.isoformat(),
             'noticeSource': source_id, 'questionKey': 'intention-vote-presidentielle-2027',
+            'question': {'status': 'a-relire'},
             **metadata, **{key: value for key, value in row.items() if key != 'key'},
         }
         for row in scenarios

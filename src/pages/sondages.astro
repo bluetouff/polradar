@@ -2,7 +2,10 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import PollChart from '../components/PollChart.astro';
-import { pollGraphicCatalog } from '../lib/poll-graphic.mjs';
+import {
+  pollGraphicCatalog,
+  legacyPollGraphics,
+} from '../lib/poll-graphic.mjs';
 import { polls, sourceById, formatDate, type Poll } from '../lib/data';
 import {
   pollSeries,
@@ -11,9 +14,9 @@ import {
   pollScoreLabel,
   rankedPollResults,
 } from '../lib/features.mjs';
-const currentSeries = new Map(
-  pollGraphicCatalog(polls).map(({ id, latest }) => [latest.id, id]),
-);
+const catalog = pollGraphicCatalog(polls);
+const legacy = legacyPollGraphics(polls, catalog);
+const currentSeries = new Map(catalog.map(({ id, latest }) => [latest.id, id]));
 const groups = pollSeries(polls) as Poll[][];
 const initial = groups.find((rows) => rows[0].round === 'premier')!;
 const latest = initial.at(-1)!;
@@ -144,9 +147,10 @@ const { institutes } = coverage;
         </div>
       </div>
       <p class="chart-caption">
-        Les courbes relient les résultats d’un même institut, pour les mêmes
-        candidatures et le même tour. L’axe horizontal correspond à la fin du
-        terrain. Les marges publiées figurent dans la méthode ci-dessous.
+        Les courbes relient uniquement des observations dont la question, la
+        base de répondants et le scénario sont comparables au sein du même
+        institut. L’axe horizontal correspond à la fin du terrain. Les marges
+        publiées figurent dans la méthode ci-dessous.
       </p>
     </div>
     <aside class="poll-breakdown">
@@ -223,6 +227,26 @@ const { institutes } = coverage;
         </a>
       </p>
     )}
+    {latest.question?.status === 'verifiee' ? (
+      <p class="poll-question">
+        <strong>Question posée</strong> · « {latest.question.wording} »<br />
+        {latest.question.base}{' '}
+        <a
+          href={
+            sourceById(latest.question.sourceId).url +
+            '#page=' +
+            latest.question.page
+          }
+        >
+          Questionnaire, p. {latest.question.page}
+        </a>{' '}
+        · Vérifié le {formatDate(latest.question.checked)}.
+      </p>
+    ) : (
+      <p>
+        Libellé original à vérifier. Cette observation reste affichée seule.
+      </p>
+    )}
     <dl class="poll-method-grid">
       <div>
         <dt>Institut / commanditaire</dt>
@@ -270,6 +294,14 @@ const { institutes } = coverage;
   <details class="poll-notices section-space">
     <summary>Notices et scénarios intégrés</summary>
     <ul>
+      {legacy.map(({ id, latest }) => (
+        <li id={id} data-vague={latest.id}>
+          <a href={'/sondages/#enquete=' + latest.id}>
+            Ancienne série · {latest.institute} · {latest.scenario} ·{' '}
+            {formatDate(latest.fieldworkEnd)}
+          </a>
+        </li>
+      ))}
       {polls.map((poll) => (
         <li id={`enquete-${poll.id}`}>
           <span
