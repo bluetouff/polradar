@@ -84,7 +84,21 @@
           "source": "branco-voie-pdf",
           "locator": "PDF, page 28 : niches liées au travail (titres-restaurant, chèques-vacances, chèques-cadeaux)",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Juan Branco",
+            "origin": "annonce",
+            "publicScope": "Salariés qui bénéficient des titres cités",
+            "assumptions": "Le projet vise plusieurs avantages fiscaux liés au travail. Le montant annuel les couvre ensemble.",
+            "targets": [
+              {
+                "versionId": "branco-niches-fiscales-travail-v1",
+                "locator": "La Voie, p. 28, passage sur les niches fiscales liées au travail."
+              }
+            ]
+          }
         },
         {
           "id": "branco-allocations-ciblees",
@@ -98,7 +112,21 @@
           "source": "branco-voie-pdf",
           "locator": "PDF, page 28 : allocations scolaires, chèque énergie et fournitures scolaires",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Juan Branco",
+            "origin": "annonce",
+            "publicScope": "Bénéficiaires des aides citées et étudiants recevant les fournitures",
+            "assumptions": "Le montant annuel couvre la suppression des aides et la fourniture de matériel scolaire. Le livret ne donne pas de part par dispositif.",
+            "targets": [
+              {
+                "versionId": "branco-allocations-fournitures-scolaires-v1",
+                "locator": "La Voie, p. 28, passage sur les allocations scolaires, le chèque énergie et la manufacture nationale."
+              }
+            ]
+          }
         },
         {
           "id": "branco-foncier",
@@ -112,7 +140,21 @@
           "source": "branco-voie-pdf",
           "locator": "PDF, page 28 : coefficient de taxe foncière et déclaration des détentions foncières",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Juan Branco",
+            "origin": "annonce",
+            "publicScope": "Propriétaires de biens à usage non professionnel",
+            "assumptions": "Le projet retient les propriétés détenues dans le monde. Il classe le gain attendu parmi les économies sans détailler le calcul.",
+            "targets": [
+              {
+                "versionId": "branco-taxe-fonciere-nombre-proprietes-v1",
+                "locator": "La Voie, p. 28, passage sur le coefficient de taxe foncière et la déclaration des biens."
+              }
+            ]
+          }
         },
         {
           "id": "branco-ppv",
@@ -126,7 +168,21 @@
           "source": "branco-voie-pdf",
           "locator": "PDF, page 28 : suppression de la PPV",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Juan Branco",
+            "origin": "annonce",
+            "publicScope": "Entreprises et salariés concernés par la prime de partage de la valeur",
+            "assumptions": "Les 5 Md€ correspondent aux recettes annuelles annoncées. Le projet indique séparément 100 à 200 M€ de frais de gestion économisés.",
+            "targets": [
+              {
+                "versionId": "branco-suppression-prime-partage-valeur-v1",
+                "locator": "La Voie, p. 28, passage « Suppression de la PPV »."
+              }
+            ]
+          }
         },
         {
           "id": "branco-petites-taxes",
@@ -141,7 +197,21 @@
           "locator": "PDF, pages 27–28 : suppression et fusion de taxes à faible rendement",
           "allocationUnit": null,
           "allocation": [],
-          "eurosMax": 4000000000
+          "eurosMax": 4000000000,
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Juan Branco",
+            "origin": "annonce",
+            "publicScope": "Taxes sectorielles examinées dans le projet",
+            "assumptions": "La fourchette de 3 à 4 Md€ porte sur le coût de suppression. Le document prévoit un réexamen à six mois pour 44 taxes et ne précise pas la période de ce coût.",
+            "targets": [
+              {
+                "versionId": "branco-petites-taxes-suppression-fusion-v1",
+                "locator": "La Voie, p. 27–28, passage sur les taxes à faible rendement puis estimation du coût de suppression."
+              }
+            ]
+          }
         }
       ]
     },
@@ -162,7 +232,21 @@
           "source": "dlf-economie-2026",
           "locator": "10 mesures pour créer et relocaliser 2 millions d’emplois : fonds d’investissement",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Debout la France",
+            "origin": "annonce",
+            "publicScope": "Fonds de relocalisation industrielle",
+            "assumptions": "Dotation annuelle annoncée pour un fonds porté par la Caisse des dépôts.",
+            "targets": [
+              {
+                "versionId": "dupont-aignan-travail-fonds-v1",
+                "locator": "Projet économique, relocalisations et fonds national de la Caisse des dépôts."
+              }
+            ]
+          }
         },
         {
           "id": "nda-capital",
@@ -176,7 +260,21 @@
           "source": "dlf-economie-2026",
           "locator": "Capital retraite de 10 000 € à la naissance : coût annoncé d’environ 6 milliards d’euros par an",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Debout la France",
+            "origin": "annonce",
+            "publicScope": "Nouveau-nés français",
+            "assumptions": "Le parti estime le coût annuel de la dotation de 10 000 € à la naissance. Le rendement futur du placement relève d’une autre hypothèse.",
+            "targets": [
+              {
+                "versionId": "dupont-aignan-retraites-capital-naissance-v1",
+                "locator": "Projet économique, pouvoir d’achat, capital retraite à la naissance."
+              }
+            ]
+          }
         },
         {
           "id": "dupont-aignan-aides-ukraine",
@@ -190,7 +288,21 @@
           "source": "dlf-economie-2026",
           "locator": "Mettre fin aux aides à l’Ukraine",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Debout la France",
+            "origin": "annonce",
+            "publicScope": "Budget français et quote-part européenne",
+            "assumptions": "Les 7 Md€ annuels incluent la quote-part française de l’aide européenne selon le parti.",
+            "targets": [
+              {
+                "versionId": "dupont-aignan-europe-ukraine-v1",
+                "locator": "Projet économique, finances publiques, arrêt des aides à l’Ukraine."
+              }
+            ]
+          }
         },
         {
           "id": "dupont-aignan-administration",
@@ -204,7 +316,35 @@
           "source": "dlf-economie-2026",
           "locator": "Supprimer le millefeuille administratif et les agences d’État inutiles",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Debout la France",
+            "origin": "annonce",
+            "publicScope": "Agences de l’État et échelons administratifs",
+            "assumptions": "L’objectif de 40 Md€ par an serait atteint après cinq ans. La suppression d’agences et la réforme des échelons territoriaux font partie du même ensemble.",
+            "targets": [
+              {
+                "versionId": "dupont-aignan-institutions-agences-v1",
+                "locator": "Projet économique, finances publiques, organisation administrative et agences de l’État."
+              },
+              {
+                "versionId": "dupont-aignan-institutions-regions-v1",
+                "locator": "Même rubrique, paragraphe sur les régions, les intercommunalités et le CESE."
+              }
+            ],
+            "overlaps": [
+              {
+                "entryId": "dupont-aignan-agences",
+                "reason": "Les agences figurent dans le projet de réforme administrative. Les deux objectifs ont des échéances différentes."
+              },
+              {
+                "entryId": "nda-plan-2031-2032",
+                "reason": "Le cahier de campagne et le projet du parti reprennent ce levier. Leurs objectifs décrivent deux présentations du programme."
+              }
+            ]
+          }
         },
         {
           "id": "dupont-aignan-agences",
@@ -218,7 +358,31 @@
           "source": "dlf-economie-2026",
           "locator": "Suppression progressive des agences d’État",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Debout la France",
+            "origin": "annonce",
+            "publicScope": "Agences de l’État et ministères de tutelle",
+            "assumptions": "Le parti vise 20 Md€ d’économies annuelles après trois ans en transférant des missions aux ministères.",
+            "targets": [
+              {
+                "versionId": "dupont-aignan-institutions-agences-v1",
+                "locator": "Projet économique, finances publiques, organisation administrative et agences de l’État."
+              }
+            ],
+            "overlaps": [
+              {
+                "entryId": "dupont-aignan-administration",
+                "reason": "Les agences figurent dans le projet de réforme administrative. Les deux objectifs ont des échéances différentes."
+              },
+              {
+                "entryId": "nda-plan-2031-2032",
+                "reason": "Le cahier de campagne et le projet du parti reprennent ce levier. Leurs objectifs décrivent deux présentations du programme."
+              }
+            ]
+          }
         },
         {
           "id": "dupont-aignan-fraude-sociale",
@@ -232,7 +396,27 @@
           "source": "dlf-economie-2026",
           "locator": "Mettre fin au scandale de la fraude sociale",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Debout la France",
+            "origin": "annonce",
+            "publicScope": "Finances de la Sécurité sociale",
+            "assumptions": "L’objectif couvre plusieurs types de fraudes aux prestations. La page du parti ne précise pas l’horizon du gain.",
+            "targets": [
+              {
+                "versionId": "dlf-fraudes-securite-sociale-v1",
+                "locator": "Projet économique, finances publiques, lutte contre les fraudes à la sécurité sociale."
+              }
+            ],
+            "overlaps": [
+              {
+                "entryId": "nda-plan-2031-2032",
+                "reason": "Le cahier de campagne et le projet du parti reprennent ce levier. Leurs objectifs décrivent deux présentations du programme."
+              }
+            ]
+          }
         },
         {
           "id": "dupont-aignan-participation",
@@ -246,7 +430,21 @@
           "source": "dlf-economie-2026",
           "locator": "Favoriser l’actionnariat salarié : coût de la mesure",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Debout la France",
+            "origin": "annonce",
+            "publicScope": "Entreprises et salariés participant au capital",
+            "assumptions": "Le parti chiffre ensemble la baisse d’impôt sur les sociétés liée à l’actionnariat salarié et l’exonération de forfait social sur la participation. La période reste ouverte.",
+            "targets": [
+              {
+                "versionId": "dupont-aignan-travail-participation-v1",
+                "locator": "Projet économique, pouvoir d’achat, fiscalité de la participation des salariés."
+              }
+            ]
+          }
         },
         {
           "id": "nda-plan-2031-2032",
@@ -271,7 +469,35 @@
               "label": "Recettes supplémentaires",
               "value": 40000000000
             }
-          ]
+          ],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Nicolas Dupont-Aignan",
+            "origin": "annonce",
+            "publicScope": "Finances publiques, exercice 2031–2032",
+            "assumptions": "Les 100 Md€ d’économies et les 40 Md€ de recettes sont les ressources attendues sur cet exercice. Le tableau retrace la montée en charge et isole les effets de la relance.",
+            "targets": [
+              {
+                "versionId": "dupont-aignan-ressources-2032-v1",
+                "locator": "Cahier rouge, tableaux des économies et des recettes puis total des ressources en 2031–2032, p. 4–5."
+              }
+            ],
+            "overlaps": [
+              {
+                "entryId": "dupont-aignan-administration",
+                "reason": "Le cahier de campagne et le projet du parti reprennent ce levier. Leurs objectifs décrivent deux présentations du programme."
+              },
+              {
+                "entryId": "dupont-aignan-agences",
+                "reason": "Le cahier de campagne et le projet du parti reprennent ce levier. Leurs objectifs décrivent deux présentations du programme."
+              },
+              {
+                "entryId": "dupont-aignan-fraude-sociale",
+                "reason": "Le cahier de campagne et le projet du parti reprennent ce levier. Leurs objectifs décrivent deux présentations du programme."
+              }
+            ]
+          }
         }
       ]
     },
@@ -292,7 +518,21 @@
           "source": "glucks-livret",
           "locator": "Livret de révolution écologique : adaptation au changement climatique, sécurité civile",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Raphaël Glucksmann",
+            "origin": "annonce",
+            "publicScope": "Sécurité civile",
+            "assumptions": "L’investissement commence en juin 2027. Le livret ne précise ni récurrence, ni montant pour le fonds d’avance aux sinistrés cité dans la phrase suivante.",
+            "targets": [
+              {
+                "versionId": "glucksmann-investir-securite-civile-v1",
+                "locator": "Les premiers 100 jours, p. 14, investissement dans la sécurité civile à partir de juin 2027."
+              }
+            ]
+          }
         },
         {
           "id": "glucks-investissement-climatique",
@@ -306,7 +546,28 @@
           "source": "glucksmann-100-jours-accessible",
           "locator": "Les premiers 100 jours, p. 7",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "additionalSources": ["glucks-livret"],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Raphaël Glucksmann",
+            "origin": "annonce",
+            "publicScope": "Investissements publics de transition climatique",
+            "assumptions": "Les 200 Md€ couvrent cinq ans. Le livret prévoit plusieurs sources de financement, dont la contribution exceptionnelle sur les plus hauts patrimoines.",
+            "targets": [
+              {
+                "versionId": "glucksmann-fiscalite-1-v1",
+                "locator": "Les premiers 100 jours, p. 7, financement public de la transition sur le quinquennat."
+              }
+            ],
+            "overlaps": [
+              {
+                "entryId": "glucks-contribution-climatique",
+                "reason": "La contribution exceptionnelle finance une partie du programme d’investissement sur cinq ans."
+              }
+            ]
+          }
         },
         {
           "id": "glucks-contribution-climatique",
@@ -325,7 +586,29 @@
               "label": "Fonds d’investissement pour la transition climatique",
               "value": 50000000000
             }
-          ]
+          ],
+          "additionalSources": ["glucks-livret"],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Raphaël Glucksmann",
+            "origin": "annonce",
+            "publicScope": "Foyers situés au sommet de la distribution des patrimoines",
+            "assumptions": "La campagne attend 50 Md€ en une année et destine cette recette au financement de l’investissement climatique du quinquennat.",
+            "targets": [
+              {
+                "versionId": "glucksmann-fiscalite-2-v1",
+                "locator": "Les premiers 100 jours, p. 8, contribution exceptionnelle pour l’investissement climatique.",
+                "allocationPart": "Fonds d’investissement pour la transition climatique"
+              }
+            ],
+            "overlaps": [
+              {
+                "entryId": "glucks-investissement-climatique",
+                "reason": "La contribution exceptionnelle finance une partie du programme d’investissement sur cinq ans."
+              }
+            ]
+          }
         }
       ]
     },
@@ -363,7 +646,28 @@
           "additionalSources": [
             "lisnard-crayon-2026",
             "lisnard-economies-annuelles-2026"
-          ]
+          ],
+          "scope": "campagne",
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "David Lisnard",
+            "origin": "annonce",
+            "publicScope": "Actifs, entreprises et finances de l’État",
+            "assumptions": "Au rythme de croisière, le candidat affecte 120 Md€ aux cotisations, 40 Md€ aux impôts de production et 40 Md€ à la dette.",
+            "targets": [
+              {
+                "versionId": "lisnard-economies-premiere-annee-regime-v1",
+                "locator": "Entretien au Crayon, trajectoire des dépenses, puis présentation de la répartition des économies, rubrique « Sur quel rythme »."
+              }
+            ],
+            "overlaps": [
+              {
+                "entryId": "lisnard-premiere-annee",
+                "reason": "Les 80 Md€ de la première année sont une étape vers les 200 Md€ par an à terme."
+              }
+            ]
+          }
         },
         {
           "id": "lisnard-premiere-annee",
@@ -376,9 +680,43 @@
           "funding": null,
           "source": "lisnard-crayon-2026",
           "locator": "Entretien au Crayon, première étape de la trajectoire budgétaire.",
-          "allocationUnit": null,
-          "allocation": [],
-          "scope": "campagne"
+          "allocationUnit": "pourcentage",
+          "allocation": [
+            {
+              "label": "Baisse des cotisations des actifs",
+              "value": 60
+            },
+            {
+              "label": "Baisse des impôts de production",
+              "value": 20
+            },
+            {
+              "label": "Dette ou modernisation de l’État",
+              "value": 20
+            }
+          ],
+          "scope": "campagne",
+          "additionalSources": ["lisnard-repartition-2026"],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "David Lisnard",
+            "origin": "annonce",
+            "publicScope": "Dépenses publiques durant la première année",
+            "assumptions": "La campagne applique dès la première année sa clé de répartition de 60 %, 20 % et 20 %. Les montants en euros par destination ne sont pas détaillés pour cette étape.",
+            "targets": [
+              {
+                "versionId": "lisnard-economies-premiere-annee-regime-v1",
+                "locator": "Entretien au Crayon, trajectoire des dépenses, puis présentation de la répartition des économies, rubrique « Sur quel rythme »."
+              }
+            ],
+            "overlaps": [
+              {
+                "entryId": "lisnard-economies",
+                "reason": "Les 80 Md€ de la première année sont une étape vers les 200 Md€ par an à terme."
+              }
+            ]
+          }
         }
       ]
     },
@@ -440,6 +778,20 @@
           "allocationDifference": {
             "euros": 10000000,
             "note": "Le détail porte sur les neuf postes renseignés de la colonne État."
+          },
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Équipe de L’Avenir en commun",
+            "origin": "annonce",
+            "publicScope": "Logements et bâtiments, part de l’État",
+            "assumptions": "Le tableau annonce 12 Md€ pour l’État. Les neuf postes renseignés totalisent 12,01 Md€. La colonne des autres opérateurs est distincte.",
+            "targets": [
+              {
+                "versionId": "melenchon-construction-renovation-v1",
+                "locator": "Plan d’investissement productif, tableau des investissements supplémentaires, colonne « État » et principales mesures."
+              }
+            ]
           }
         },
         {
@@ -487,6 +839,20 @@
           "allocationDifference": {
             "euros": -30000000,
             "note": "Le détail porte sur les sept postes renseignés de la colonne État."
+          },
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Équipe de L’Avenir en commun",
+            "origin": "annonce",
+            "publicScope": "Filière automobile, part de l’État",
+            "assumptions": "L’État apporterait 1,4 Md€ supplémentaires par an. Les sept postes chiffrés dans cette colonne totalisent 1,37 Md€.",
+            "targets": [
+              {
+                "versionId": "melenchon-reorienter-filiere-automobile-v1",
+                "locator": "Plan d’investissement productif, tableau des investissements supplémentaires, colonne « État » et principales mesures."
+              }
+            ]
           }
         },
         {
@@ -526,7 +892,21 @@
               "label": "Formation",
               "value": 10000000
             }
-          ]
+          ],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Équipe de L’Avenir en commun",
+            "origin": "annonce",
+            "publicScope": "Filière textile, investissements de l’État",
+            "assumptions": "Le tableau répartit l’investissement annuel de l’État entre six postes. Les autres financeurs figurent dans une colonne distincte.",
+            "targets": [
+              {
+                "versionId": "melenchon-relocaliser-filiere-textile-v1",
+                "locator": "Plan d’investissement productif, tableau des investissements supplémentaires, colonne « État » et principales mesures."
+              }
+            ]
+          }
         }
       ]
     },
@@ -560,7 +940,21 @@
               "label": "Croissance et emploi attendus",
               "value": 25
             }
-          ]
+          ],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Édouard Philippe",
+            "origin": "annonce",
+            "publicScope": "Finances publiques à la fin du quinquennat",
+            "assumptions": "L’objectif de déficit est inférieur à 2,5 % de la richesse nationale. Le candidat attribue la moitié de l’effort aux dépenses sociales, un quart à l’État et aux collectivités, un quart à la croissance.",
+            "targets": [
+              {
+                "versionId": "philippe-fiscalite-1-v3",
+                "locator": "Programme d’Édouard Philippe, comptes publics, objectif de déficit et répartition de l’effort."
+              }
+            ]
+          }
         }
       ]
     },
@@ -598,7 +992,22 @@
               "label": "Soutien énergétique et bouclier",
               "value": 5000000000
             }
-          ]
+          ],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Les Patriotes",
+            "origin": "annonce",
+            "publicScope": "Finances publiques françaises",
+            "assumptions": "Sur 60 Md€ attendus, le tableau attribue 15 Md€ à la contribution nette à l’UE. L’introduction du projet cite un autre ordre de grandeur. La fiche reprend le montant du tableau.",
+            "targets": [
+              {
+                "versionId": "philippot-europe-frexit-v1",
+                "locator": "Projet 2026–2027, tableau budgétaire des économies annuelles, ligne de contribution nette à l’UE.",
+                "allocationPart": "Contribution nette à l’UE"
+              }
+            ]
+          }
         },
         {
           "id": "philippot-recettes",
@@ -641,7 +1050,22 @@
               "label": "Lutte contre la fraude sociale",
               "value": 5000000000
             }
-          ]
+          ],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Les Patriotes",
+            "origin": "annonce",
+            "publicScope": "Recettes publiques françaises",
+            "assumptions": "Le parti compte 3,5 Md€ de droits de douane aujourd’hui affectés à l’Union et 7 Md€ de droits supplémentaires. Son total de 74,8 Md€ inclut aussi une hypothèse de croissance de 3 %.",
+            "targets": [
+              {
+                "versionId": "philippot-europe-frexit-v1",
+                "locator": "Projet 2026–2027, tableau des recettes annuelles, récupération des droits de douane après la sortie de l’UE.",
+                "allocationPart": "Récupération de droits de douane"
+              }
+            ]
+          }
         }
       ]
     },
@@ -671,7 +1095,27 @@
               "label": "Montant « rendu » annoncé",
               "value": 51000000000
             }
-          ]
+          ],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Bruno Retailleau",
+            "origin": "annonce",
+            "publicScope": "Ensemble des finances publiques en 2032",
+            "assumptions": "La campagne destine 146 Md€ à la réduction du déficit et 51 Md€ à la somme qu’elle prévoit de rendre. La cible concerne 2032.",
+            "targets": [
+              {
+                "versionId": "retailleau-trajectoire-depenses-2032-v1",
+                "locator": "Projet, mesure 116, trajectoire financière, objectif pour 2032 et destination des économies."
+              }
+            ],
+            "overlaps": [
+              {
+                "entryId": "retailleau-depenses-perimetre",
+                "reason": "La mesure 119 appartient au volet des comptes publics dont la trajectoire présente l’objectif global."
+              }
+            ]
+          }
         },
         {
           "id": "retailleau-depenses-perimetre",
@@ -698,7 +1142,28 @@
               "label": "Suppression de dispositifs",
               "value": 14000000000
             }
-          ]
+          ],
+          "additionalSources": ["retailleau-budget"],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Bruno Retailleau",
+            "origin": "annonce",
+            "publicScope": "Dépenses d’intervention et fonctionnement de l’État",
+            "assumptions": "La campagne répartit les 32 Md€ entre transferts au secteur privé (5 Md€), réexamen de trois politiques (13 Md€) et suppression de dispositifs (14 Md€).",
+            "targets": [
+              {
+                "versionId": "retailleau-fiscalite-2-v1",
+                "locator": "Projet, comptes publics, mesure 119, composition des 32 Md€ d’économies."
+              }
+            ],
+            "overlaps": [
+              {
+                "entryId": "retailleau-trajectoire",
+                "reason": "La mesure 119 appartient au volet des comptes publics dont la trajectoire présente l’objectif global."
+              }
+            ]
+          }
         }
       ]
     },
@@ -719,7 +1184,16 @@
           "source": "roussel-pacte-2026",
           "locator": "Passage sur le pacte d’avenir et de confiance : emprunt de 500 milliards sur cinq ans",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "enveloppe-non-ventilee",
+            "checked": "2026-11-23",
+            "estimator": "Parti communiste français, présenté par Fabien Roussel",
+            "origin": "annonce",
+            "publicScope": "Emprunt pour l’industrie, le climat et la relance économique",
+            "assumptions": "Fabien Roussel propose un emprunt de 500 Md€ sur cinq ans via la Caisse des dépôts et Bpifrance. Le discours cite plusieurs objectifs sans chiffrer la part de chacun.",
+            "targets": []
+          }
         }
       ]
     },
@@ -796,7 +1270,21 @@
           "source": "ruffin-budget",
           "locator": "Annexe 1 : taxe sur les très hauts patrimoines, dite taxe Zucman",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Équipe de François Ruffin",
+            "origin": "annonce",
+            "publicScope": "Foyers dont le patrimoine dépasse 100 M€",
+            "assumptions": "La campagne retient un minimum d’imposition de 2 %, impôts déjà acquittés déduits. Elle passe de 25 Md€ bruts à 18,5 Md€ en appliquant une hypothèse de réaction des contribuables inspirée des travaux de Jakobsen et al.",
+            "targets": [
+              {
+                "versionId": "ruffin-fiscalite-1-v1",
+                "locator": "Plan de redressement, proposition 1 et annexe 1, taxe Zucman, patrimoine supérieur à 100 M€."
+              }
+            ]
+          }
         },
         {
           "id": "ruffin-dividende-climatique",
@@ -810,7 +1298,22 @@
           "source": "ruffin-budget",
           "locator": "Annexe 1 : dividende climatique sur les distributions de dividendes",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "additionalSources": ["an-debat-contribution-dividendes-2025"],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Équipe de François Ruffin, d’après le chiffrage du rapporteur général Thibault Bazin",
+            "origin": "estimation-externe",
+            "publicScope": "Dividendes distribués par les entreprises",
+            "assumptions": "La campagne retient environ 6 Md€ avec un taux de 2 %. La note 9 renvoie à l’estimation de 6,01 Md€ donnée à l’Assemblée nationale pour cette assiette et ce taux.",
+            "targets": [
+              {
+                "versionId": "ruffin-dividende-climatique-transition-v1",
+                "locator": "Plan de redressement, proposition 3, annexe 1 et note 9 sur le chiffrage parlementaire."
+              }
+            ]
+          }
         },
         {
           "id": "ruffin-investissements-2027",
@@ -823,8 +1326,52 @@
           "funding": "Le plan propose des recettes supplémentaires et une révision des aides publiques. La taxe sur les successions y figure comme une option.",
           "source": "ruffin-budget",
           "locator": "Annexe 2 : total du coût budgétaire supplémentaire en 2027",
-          "allocationUnit": null,
-          "allocation": []
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Rénovation et adaptation des logements",
+              "value": 1900000000
+            },
+            {
+              "label": "Rénovation et adaptation des bâtiments publics",
+              "value": 1600000000
+            },
+            {
+              "label": "Renforcement de la sécurité civile",
+              "value": 900000000
+            },
+            {
+              "label": "Gestion publique des forêts",
+              "value": 40000000
+            },
+            {
+              "label": "Leasing social public",
+              "value": 800000000
+            },
+            {
+              "label": "Aides aux déplacements et taxe flottante",
+              "value": 500000000
+            }
+          ],
+          "additionalSources": ["ruffin-plans"],
+          "allocationDifference": {
+            "euros": 40000000,
+            "note": "Les six lignes publiées totalisent 5,74 Md€. Le tableau affiche un total arrondi de 5,7 Md€."
+          },
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Équipe de François Ruffin",
+            "origin": "annonce",
+            "publicScope": "Dépenses publiques supplémentaires en 2027",
+            "assumptions": "L’annexe publie six postes, dont les logements, les bâtiments publics et la sécurité civile. Le total affiché de 5,7 Md€ concerne 2027. La moyenne annoncée sur cinq ans est de 12,6 Md€ par an.",
+            "targets": [
+              {
+                "versionId": "ruffin-climat-1-v1",
+                "locator": "Plan de redressement, annexe 2, colonne « Coût budgétaire supplémentaire en 2027 »."
+              }
+            ]
+          }
         },
         {
           "id": "ruffin-logements-jeunes",
@@ -839,7 +1386,21 @@
           "locator": "Un choc de construction grâce à la mobilisation du foncier public et des friches privées",
           "allocationUnit": null,
           "allocation": [],
-          "eurosMax": 12000000000
+          "eurosMax": 12000000000,
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Équipe de François Ruffin",
+            "origin": "annonce",
+            "publicScope": "Étudiants et jeunes actifs",
+            "assumptions": "Les 8 à 12 Md€ financeraient sur cinq ans un plan de logements pour les jeunes. La cible est de 200 000 places d’ici 2032, dont 150 000 pour les étudiants. Elle s’inscrit dans une politique plus large de logements publics.",
+            "targets": [
+              {
+                "versionId": "ruffin-logement-construction-publique-v1",
+                "locator": "Plan logement, partie 2, proposition 1 sur les jeunes, deuxième axe du plan."
+              }
+            ]
+          }
         }
       ]
     },
@@ -860,7 +1421,21 @@
           "source": "eco-enfance-pdf",
           "locator": "PDF, page 18 : loi intégrale incluant les violences sexuelles sur mineurs",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Campagne de Marine Tondelier",
+            "origin": "annonce",
+            "publicScope": "Ensemble de la loi contre les violences sexistes et sexuelles",
+            "assumptions": "Les violences sexuelles sur mineurs entrent dans la loi. Le livret ne donne ni montant propre aux mineurs, ni période pour les 3 Md€.",
+            "targets": [
+              {
+                "versionId": "tondelier-loi-violences-sexistes-sexuelles-v1",
+                "locator": "Pour un pays à hauteur d’enfants, p. 18, prévention et repérage des violences."
+              }
+            ]
+          }
         },
         {
           "id": "tondelier-fonds-ecoles",
@@ -874,7 +1449,21 @@
           "source": "eco-enfance-pdf",
           "locator": "PDF, page 29 : fonds vert pour l’école",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Campagne de Marine Tondelier",
+            "origin": "annonce",
+            "publicScope": "Bâtiments des écoles, collèges et lycées de France",
+            "assumptions": "Le fonds financerait la rénovation du parc scolaire, évalué par la campagne à 130 millions de m². Le livret ne répartit pas la dotation annuelle par type d’établissement.",
+            "targets": [
+              {
+                "versionId": "tondelier-fonds-vert-renovation-ecoles-v1",
+                "locator": "Pour un pays à hauteur d’enfants, p. 29, « Des espaces de vie pensés pour les enfants »."
+              }
+            ]
+          }
         }
       ]
     },
@@ -912,7 +1501,21 @@
               "label": "Charge de la dette",
               "value": 800000000
             }
-          ]
+          ],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Équinoxe",
+            "origin": "annonce",
+            "publicScope": "Finances publiques, exercice 2027",
+            "assumptions": "Le plafond d’allocation chômage à 5 600 € représente 0,3 Md€ selon Équinoxe, dans les 6,6 Md€ de santé et protection sociale. Le total de 46,4 Md€ couvre aussi les retraites, l’État, les collectivités et la dette.",
+            "targets": [
+              {
+                "versionId": "mikolajczak-social-allocation-chomage-v1",
+                "locator": "Contre-budget 2027, protection sociale, ligne sur le plafond des allocations chômage."
+              }
+            ]
+          }
         },
         {
           "id": "mikolajczak-recettes",
@@ -943,7 +1546,21 @@
               "label": "Fiscalité écologique et santé",
               "value": 6300000000
             }
-          ]
+          ],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Équinoxe",
+            "origin": "annonce",
+            "publicScope": "Recettes publiques, exercice 2027",
+            "assumptions": "Équinoxe chiffre le recentrage du crédit d’impôt recherche à 3 Md€ sur les 15 Md€ attendus des entreprises. Les 59 Md€ incluent aussi les recettes sur les ménages, les patrimoines, les retraites, l’environnement et la santé.",
+            "targets": [
+              {
+                "versionId": "mikolajczak-fiscalite-cir-v1",
+                "locator": "Contre-budget 2027, contribution des entreprises, ligne sur le crédit d’impôt recherche."
+              }
+            ]
+          }
         },
         {
           "id": "mikolajczak-transition",
@@ -982,7 +1599,38 @@
               "label": "Bonification des prêts",
               "value": 100000000
             }
-          ]
+          ],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Équinoxe",
+            "origin": "annonce",
+            "publicScope": "Dépenses de transition écologique en 2027",
+            "assumptions": "Le parti chiffre à 1 Md€ chacun le train, le logement et la restauration de la nature. Les 5,8 Md€ incluent aussi l’agriculture, l’électricité et 0,1 Md€ de bonification de prêts.",
+            "targets": [
+              {
+                "versionId": "mikolajczak-climat-train-v1",
+                "locator": "Transition écologique, réseau ferroviaire et fret.",
+                "allocationPart": "Train et fret"
+              },
+              {
+                "versionId": "mikolajczak-logement-renovation-v1",
+                "locator": "Transition écologique, rénovation des logements.",
+                "allocationPart": "Rénovation des logements"
+              },
+              {
+                "versionId": "mikolajczak-climat-biodiversite-v1",
+                "locator": "Transition écologique, restauration de la nature.",
+                "allocationPart": "Restauration de la nature"
+              }
+            ],
+            "overlaps": [
+              {
+                "entryId": "mikolajczak-prets",
+                "reason": "Les prêts et apports apportent un financement. La dépense de transition comprend séparément le coût de leur bonification."
+              }
+            ]
+          }
         },
         {
           "id": "mikolajczak-canicules",
@@ -1073,7 +1721,32 @@
               "label": "Leasing social électrique",
               "value": 1000000000
             }
-          ]
+          ],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Équinoxe",
+            "origin": "annonce",
+            "publicScope": "Ménages, exercice 2027",
+            "assumptions": "Le contre-budget ventile les 7 Md€ entre l’accise sur l’électricité (4,6 Md€), le chèque énergie (1,4 Md€) et le leasing social électrique (1 Md€).",
+            "targets": [
+              {
+                "versionId": "mikolajczak-fiscalite-accise-electricite-v1",
+                "locator": "Pouvoir d’achat, accise sur l’électricité.",
+                "allocationPart": "Baisse de l’accise sur l’électricité"
+              },
+              {
+                "versionId": "mikolajczak-social-cheque-energie-v1",
+                "locator": "Pouvoir d’achat, élargissement et revalorisation du chèque énergie.",
+                "allocationPart": "Chèque énergie"
+              },
+              {
+                "versionId": "mikolajczak-climat-leasing-electrique-v1",
+                "locator": "Pouvoir d’achat, voitures électriques en location aidée.",
+                "allocationPart": "Leasing social électrique"
+              }
+            ]
+          }
         },
         {
           "id": "mikolajczak-prets",
@@ -1086,8 +1759,37 @@
           "funding": "Prêts et apports de fonds propres annoncés par le parti, dont 3,8 Md€ liés à la transition. Ils restent distincts des dépenses ; la bonification de 100 M€ est déjà comptée dans la transition.",
           "source": "equinoxe-contre-budget-2027",
           "locator": "Encadré « Les prêts publics »",
-          "allocationUnit": null,
-          "allocation": []
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Transition écologique",
+              "value": 3800000000
+            },
+            {
+              "label": "Réindustrialisation via Bpifrance",
+              "value": 1200000000
+            }
+          ],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Équinoxe",
+            "origin": "annonce",
+            "publicScope": "Prêts publics et apports en fonds propres, exercice 2027",
+            "assumptions": "Équinoxe prévoit 3,8 Md€ pour la transition et 1,2 Md€ de prêts de Bpifrance pour la réindustrialisation. Dans le logement, 0,3 Md€ préfinanceraient le reste à charge des ménages. Le parti compte séparément la bonification des prêts en dépense.",
+            "targets": [
+              {
+                "versionId": "mikolajczak-logement-renovation-v1",
+                "locator": "Transition écologique, paragraphe sur les prêts destinés aux ménages pour rénover leur logement."
+              }
+            ],
+            "overlaps": [
+              {
+                "entryId": "mikolajczak-transition",
+                "reason": "Les prêts et apports apportent un financement. La dépense de transition comprend séparément le coût de leur bonification."
+              }
+            ]
+          }
         }
       ]
     },
@@ -1108,7 +1810,28 @@
           "source": "rn-retraites-17-novembre-2026",
           "locator": "Conférence du 17 novembre, chapitre Chiffrage à 31:34",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Jean-Philippe Tanguy pour le Rassemblement national",
+            "origin": "annonce",
+            "publicScope": "Retraites, mesures d’âge et de droits en 2032",
+            "assumptions": "Le RN chiffre le coût des mesures d’âge et des droits avant les économies liées au plancher de trimestres et à la décote.",
+            "targets": [
+              {
+                "versionId": "lepen-retraites-chiffrage-2032-v1",
+                "locator": "Conférence de Marine Le Pen et Jordan Bardella du 17 novembre 2026, chapitre « Chiffrage » à 31 min 34 s, intervention de Jean-Philippe Tanguy."
+              }
+            ],
+            "grossNet": "brut",
+            "overlaps": [
+              {
+                "entryId": "lepen-retraites-parametres",
+                "reason": "Les deux paramètres sont présentés dans le passage du coût brut estimé par le RN au coût après prise en compte de ces économies."
+              }
+            ]
+          }
         },
         {
           "id": "lepen-retraites-parametres",
@@ -1131,7 +1854,28 @@
               "label": "Modification de la décote",
               "value": 2700000000
             }
-          ]
+          ],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Polradar, à partir des deux estimations présentées par Jean-Philippe Tanguy",
+            "origin": "calcul-polradar",
+            "publicScope": "Paramètres de calcul des retraites, année 2032",
+            "assumptions": "Polradar additionne deux montants annoncés par le RN pour 2032. Le plancher de 160 trimestres représente 5,8 Md€ et la modification de la décote 2,7 Md€.",
+            "targets": [
+              {
+                "versionId": "lepen-retraites-age-carriere-v1",
+                "locator": "Conférence de Marine Le Pen et Jordan Bardella du 17 novembre 2026, chapitre « Chiffrage » à 31 min 34 s, intervention de Jean-Philippe Tanguy. Le plancher d’activité cotisée intervient dans les conditions de départ.",
+                "allocationPart": "Plancher de 160 trimestres"
+              }
+            ],
+            "overlaps": [
+              {
+                "entryId": "lepen-retraites-cout-brut",
+                "reason": "Les deux paramètres sont présentés dans le passage du coût brut estimé par le RN au coût après prise en compte de ces économies."
+              }
+            ]
+          }
         },
         {
           "id": "groupe-rn-iff-2027",
@@ -1175,7 +1919,21 @@
           "locator": "Annexe chiffrée, p. 12 du PDF, Remplacement de MaPrimeRenov",
           "allocationUnit": null,
           "allocation": [],
-          "scope": "parti"
+          "scope": "parti",
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Groupe Rassemblement national à l’Assemblée nationale",
+            "origin": "annonce",
+            "publicScope": "Contre-budget parlementaire pour 2027",
+            "assumptions": "Le groupe RN classe 5,1 Md€ en nouvelles recettes liées au remplacement de MaPrimeRénov’. Le tableau ne détaille pas le calcul de cette recette.",
+            "targets": [
+              {
+                "versionId": "groupe-rn-remplacer-maprimerenov-v1",
+                "locator": "Contre-budget 2027 du groupe RN, p. 5 et annexe p. 12, ligne sur le remplacement de MaPrimeRénov’."
+              }
+            ]
+          }
         },
         {
           "id": "groupe-rn-cumul-soignants-2027",
@@ -1455,7 +2213,21 @@
               "label": "Réduction du déficit",
               "value": 140000000000
             }
-          ]
+          ],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Éric Zemmour",
+            "origin": "annonce",
+            "publicScope": "Finances publiques à partir de 2032",
+            "assumptions": "Le candidat destine 140 Md€ par an aux baisses d’impôts et 140 Md€ à la réduction du déficit. Il cite la CSG sur les revenus d’activité parmi les baisses sans lui attribuer la totalité de l’enveloppe.",
+            "targets": [
+              {
+                "versionId": "zemmour-csg-activite-v3",
+                "locator": "Entretien d’Éric Zemmour au Journal du dimanche du 15 novembre 2026, financement des baisses d’impôts et suppression de la CSG sur les revenus d’activité."
+              }
+            ]
+          }
         }
       ]
     }

@@ -48,6 +48,7 @@ export const sourceSchema = z.object({
     .optional(),
   kind: z.enum(['campagne', 'parti', 'institution', 'presse', 'archive']),
   published: dateSchema.nullable(),
+  publicationReference: publicUrlSchema.optional(),
   publishedYear: z
     .string()
     .regex(/^\d{4}$/)

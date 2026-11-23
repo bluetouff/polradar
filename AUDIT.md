@@ -10,6 +10,12 @@ Les 64 observations de sondage comprennent 47 observations de premier tour et 17
 
 Le budget compte 56 entrées pour 17 dossiers. Treize chiffrages sont reliés à quinze versions de propositions. Une enveloppe supplémentaire, annoncée par Gabriel Attal, est documentée sans ventilation par réforme. Les 42 autres entrées gardent une correspondance à examiner. Le pilote de couverture a donné cinq ajouts sur onze actions identifiées dans dix-huit cellules. [Dépouillement et sources](docs/audit-concurrence-2026-11-20.md#pilote-documentaire-du-23-novembre-2026) · [Budget](https://polradar.fr/budget-programmes/) · [Sondages](https://polradar.fr/sondages/)
 
+### Après vérification des dates et des chiffrages
+
+Le corpus compte 934 mesures, dont 909 hors archives, et 449 sources. Sur les 600 mesures initialement sans référence datée, 366 ont retrouvé un jour ou une année de publication. Parmi les 17 mesures ajoutées, six renvoient à un document non daté. Il reste donc 240 fiches sans date de publication établie.
+
+Les 56 chiffrages ont été relus. 54 renvoient à une ou plusieurs versions des propositions (61 liens vers 57 versions distinctes). Les enveloppes de Gabriel Attal et de Fabien Roussel gardent leur montant global. [Documents](SOURCES.md) · [Budgets](https://polradar.fr/budget-programmes/)
+
 ## État du site et priorités
 
 | Fonction                     | État observé                                                                                                                             | Lacune mesurée                                                                                                                                                                | Conséquence pour le lecteur                                                                  | Priorité       | Effort                | Action vérifiable                                                                                                                           |

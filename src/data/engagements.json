@@ -24,19 +24,27 @@
   {
     "candidate": "melenchon",
     "theme": "travail",
-    "title": "SMIC à 1 700 € net",
+    "title": "Salaires, temps de travail et filières industrielles",
     "bullets": [
       "Relever immédiatement le SMIC mensuel et indexer les salaires sur l’inflation.",
       "Favoriser les 32 heures par négociation ; les appliquer aux métiers pénibles ou de nuit.",
       "Proposer, sur la base du volontariat, un emploi payé au moins au SMIC revalorisé dans un secteur d’urgence écologique ou sociale.",
       "Étendre ce droit à l’ensemble des salariés.",
-      "Bloquer les marges des grandes entreprises agroalimentaires"
+      "Bloquer les marges des grandes entreprises agroalimentaires",
+      "Réorienter la filière automobile vers les véhicules électriques légers",
+      "Relocaliser une filière textile et développer le réemploi"
     ],
-    "sources": ["lfi-tax", "lfi-social", "lci-restos-debat-16-novembre"],
+    "sources": [
+      "lfi-tax",
+      "lfi-social",
+      "lci-restos-debat-16-novembre",
+      "lfi-investissement-auto-2026",
+      "lfi-investissement-textile-2026"
+    ],
     "scope": "campagne",
     "edition": "L’Avenir en commun 2027",
     "note": "Le montant est annoncé en net. La version antérieure de Polradar indiquait 1 600 €.",
-    "checked": "2026-11-20",
+    "checked": "2026-11-23",
     "id": "melenchon-travail",
     "history": [
       {
@@ -53,6 +61,11 @@
         "date": "2026-11-20",
         "event": "Enrichissement du dossier",
         "summary": "Ajout de précisions issues des publications et interventions citées."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du chiffrage",
+        "summary": "Ajout des propositions précisées dans les documents budgétaires cités."
       }
     ]
   },
@@ -376,18 +389,26 @@
     "candidate": "tondelier",
     "theme": "education",
     "title": "L’enfance comme priorité",
-    "bullets": ["Un livret consacré à l’enfance a été publié en septembre."],
-    "sources": ["eco-corpus"],
+    "bullets": [
+      "Un livret consacré à l’enfance a été publié en septembre.",
+      "Créer un fonds annuel pour rénover les écoles, collèges et lycées"
+    ],
+    "sources": ["eco-corpus", "eco-enfance-pdf"],
     "scope": "orientation",
     "edition": "Livret du 17 septembre 2026",
     "note": "Document repéré. Aucune mesure scolaire précise n’est déduite de son seul titre.",
-    "checked": "2026-11-16",
+    "checked": "2026-11-23",
     "id": "tondelier-education",
     "history": [
       {
         "date": "2026-11-16",
         "event": "Import du dossier documenté",
         "summary": "Première version conservée dans le registre Polradar. Cette entrée ne présume pas de l’historique antérieur du programme."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du chiffrage",
+        "summary": "Ajout des propositions précisées dans les documents budgétaires cités."
       }
     ]
   },
@@ -1244,13 +1265,18 @@
     "bullets": [
       "Publier un volet consacré aux comptes publics et à une règle budgétaire.",
       "Réduire le périmètre et le coût de fonctionnement de l’État.",
-      "Abolir les cent règles présentées comme les plus pénalisantes pour les entreprises."
+      "Abolir les cent règles présentées comme les plus pénalisantes pour les entreprises.",
+      "Viser 197 milliards d’euros d’économies en 2032"
     ],
-    "sources": ["retailleau-budget", "retailleau-entreprises"],
+    "sources": [
+      "retailleau-budget",
+      "retailleau-entreprises",
+      "retailleau-trajectoire"
+    ],
     "scope": "campagne",
     "edition": "Campagne 2027",
     "note": "Les montants et leur périmètre doivent se lire dans le document ; ils ne sont pas une évaluation indépendante.",
-    "checked": "2026-11-17",
+    "checked": "2026-11-23",
     "id": "retailleau-fiscalite",
     "history": [
       {
@@ -1262,6 +1288,11 @@
         "date": "2026-11-17",
         "event": "Fiche complétée",
         "summary": "Ajout de mesures distinctes et de références précises après lecture des documents."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du chiffrage",
+        "summary": "Ajout des propositions précisées dans les documents budgétaires cités."
       }
     ]
   },
@@ -1642,22 +1673,32 @@
   {
     "candidate": "ruffin",
     "theme": "fiscalite",
-    "title": "Taxer patrimoines et successions",
+    "title": "Patrimoine, successions et dividendes",
     "bullets": [
       "Mobiliser une taxe sur les très hauts patrimoines et la fiscalité des grandes successions.",
-      "Financer la protection sociale par une contribution sur l’usage des algorithmes."
+      "Financer la protection sociale par une contribution sur l’usage des algorithmes.",
+      "Prélever 2 % des dividendes pour financer la transition écologique"
     ],
-    "sources": ["ruffin-budget", "ruffin-numerique"],
+    "sources": [
+      "ruffin-budget",
+      "ruffin-numerique",
+      "an-debat-contribution-dividendes-2025"
+    ],
     "scope": "campagne",
     "edition": "Campagne 2027",
     "note": "Un plan chiffré existe. Polradar n’en reprend pas le solde sans reconstruire ses hypothèses et son calendrier.",
-    "checked": "2026-11-16",
+    "checked": "2026-11-23",
     "id": "ruffin-fiscalite",
     "history": [
       {
         "date": "2026-11-16",
         "event": "Import du dossier documenté",
         "summary": "Première version conservée dans le registre Polradar. Cette entrée ne présume pas de l’historique antérieur du programme."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du chiffrage",
+        "summary": "Ajout des propositions précisées dans les documents budgétaires cités."
       }
     ]
   },
@@ -2282,17 +2323,25 @@
     "candidate": "tondelier",
     "theme": "securite",
     "title": "Mesures et orientations : Sécurité & justice",
-    "bullets": ["Inscrire cette imprescriptibilité dans la loi."],
+    "bullets": [
+      "Inscrire cette imprescriptibilité dans la loi.",
+      "Financer une loi contre les violences sexistes et sexuelles"
+    ],
     "sources": ["eco-enfance-pdf"],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
     "note": "",
-    "checked": "2026-11-17",
+    "checked": "2026-11-23",
     "history": [
       {
         "date": "2026-11-17",
         "event": "Fiche intégrée",
         "summary": "Propositions relevées dans les documents cités."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du chiffrage",
+        "summary": "Ajout des propositions précisées dans les documents budgétaires cités."
       }
     ]
   },
@@ -4263,18 +4312,24 @@
       "Faire suivre le gel par un encadrement sur tout le territoire, orienté à la baisse dans les grandes villes.",
       "Mettre en place un dispositif de couverture des impayés pour les locataires et les bailleurs.",
       "Calculer le seuil par arrondissement dans les grandes métropoles et renforcer les sanctions contre les communes qui ne le respectent pas.",
-      "Créer une taxe unique progressive selon le nombre de logements vacants et recourir à la réquisition pour des logements remis en état décent."
+      "Créer une taxe unique progressive selon le nombre de logements vacants et recourir à la réquisition pour des logements remis en état décent.",
+      "Financer la construction et la rénovation des bâtiments"
     ],
-    "sources": ["lfi-droit-logement-2027"],
+    "sources": ["lfi-droit-logement-2027", "lfi-investissement-btp-2026"],
     "scope": "campagne",
     "edition": "L’Avenir en commun 2027",
     "note": "",
-    "checked": "2026-11-19",
+    "checked": "2026-11-23",
     "history": [
       {
         "date": "2026-11-19",
         "event": "Publication du dossier",
         "summary": "Premières propositions issues du document cité."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du chiffrage",
+        "summary": "Ajout des propositions précisées dans les documents budgétaires cités."
       }
     ]
   },
@@ -5809,21 +5864,27 @@
     "id": "dupont-aignan-fiscalite-presidentielle",
     "candidate": "dupont-aignan",
     "theme": "fiscalite",
-    "title": "Investissement productif et transmission des terres",
+    "title": "Investissement, transmission et ressources publiques",
     "bullets": [
       "Le crédit d’impôt « production » s’adresserait aux entreprises qui réinvestissent leurs bénéfices sur le territoire français.",
-      "Le projet prévoit de supprimer les droits de donation et de succession sur les 100 premiers hectares de terres agricoles et viticoles."
+      "Le projet prévoit de supprimer les droits de donation et de succession sur les 100 premiers hectares de terres agricoles et viticoles.",
+      "Dégager 140 milliards d’euros de ressources en 2031–2032"
     ],
     "sources": ["nda-cahier-rouge-novembre"],
     "scope": "campagne",
     "edition": "Projet économique présidentiel du 12 novembre 2026",
     "note": "",
-    "checked": "2026-11-19",
+    "checked": "2026-11-23",
     "history": [
       {
         "date": "2026-11-19",
         "event": "Publication du dossier",
         "summary": "Mesures relevées dans le cahier économique du 12 novembre."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du chiffrage",
+        "summary": "Ajout des propositions précisées dans les documents budgétaires cités."
       }
     ]
   },
@@ -7439,5 +7500,112 @@
       }
     ],
     "partyAuthor": "Les Patriotes"
+  },
+  {
+    "id": "branco-fiscalite",
+    "candidate": "branco",
+    "theme": "fiscalite",
+    "title": "Fiscalité du travail et du patrimoine",
+    "scope": "campagne",
+    "edition": "La Voie · Projet de Juan Branco",
+    "note": "",
+    "bullets": [
+      "Supprimer certains avantages fiscaux liés au travail",
+      "Supprimer des aides et distribuer des fournitures scolaires",
+      "Moduler la taxe foncière selon le nombre de biens détenus",
+      "Supprimer la prime de partage de la valeur",
+      "Supprimer des taxes à faible rendement et en réexaminer d’autres"
+    ],
+    "sources": ["branco-voie-pdf"],
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du chiffrage",
+        "summary": "Ajout des propositions précisées dans les documents budgétaires cités."
+      }
+    ]
+  },
+  {
+    "id": "dlf-fraudes-securite-sociale-dossier",
+    "candidate": "dupont-aignan",
+    "theme": "fiscalite",
+    "title": "Renforcer la lutte contre les fraudes à la Sécurité sociale",
+    "scope": "parti",
+    "edition": "Projet économique de Debout la France",
+    "note": "",
+    "bullets": ["Renforcer la lutte contre les fraudes à la Sécurité sociale"],
+    "sources": ["dlf-economie-2026"],
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du chiffrage",
+        "summary": "Ajout des propositions précisées dans les documents budgétaires cités."
+      }
+    ],
+    "partyAuthor": "Debout la France"
+  },
+  {
+    "id": "glucksmann-investir-securite-civile-dossier",
+    "candidate": "glucksmann",
+    "theme": "securite",
+    "title": "Investir dans la sécurité civile face aux canicules et aux incendies",
+    "scope": "campagne",
+    "edition": "Les premiers 100 jours",
+    "note": "",
+    "bullets": [
+      "Investir dans la sécurité civile face aux canicules et aux incendies"
+    ],
+    "sources": ["glucks-livret"],
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du chiffrage",
+        "summary": "Ajout des propositions précisées dans les documents budgétaires cités."
+      }
+    ]
+  },
+  {
+    "id": "lisnard-economies-premiere-annee-regime-dossier",
+    "candidate": "lisnard",
+    "theme": "fiscalite",
+    "title": "Réduire les dépenses de 80 milliards la première année puis de 200 milliards par an",
+    "scope": "campagne",
+    "edition": "Propositions économiques de David Lisnard",
+    "note": "",
+    "bullets": [
+      "Réduire les dépenses de 80 milliards la première année puis de 200 milliards par an"
+    ],
+    "sources": ["lisnard-crayon-2026"],
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du chiffrage",
+        "summary": "Ajout des propositions précisées dans les documents budgétaires cités."
+      }
+    ]
+  },
+  {
+    "id": "groupe-rn-remplacer-maprimerenov-dossier",
+    "candidate": "lepen",
+    "theme": "logement",
+    "title": "Remplacer MaPrimeRénov’ par « 100 % Rénov’ »",
+    "scope": "parti",
+    "edition": "Contre-budget 2027 du groupe Rassemblement national",
+    "note": "",
+    "bullets": ["Remplacer MaPrimeRénov’ par « 100 % Rénov’ »"],
+    "sources": ["groupe-rn-contre-budget-2027"],
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du chiffrage",
+        "summary": "Ajout des propositions précisées dans les documents budgétaires cités."
+      }
+    ],
+    "partyAuthor": "Groupe Rassemblement national"
   }
 ]

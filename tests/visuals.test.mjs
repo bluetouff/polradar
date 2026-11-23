@@ -421,7 +421,7 @@ test('une enveloppe garde un seul montant, ses postes et ses versions distinctes
   const base = structuredClone(budgets);
   const envelope = base.profiles
     .flatMap((p) => p.entries)
-    .find((e) => (e.review?.targets.length ?? 0) > 1);
+    .find((e) => e.id === 'mikolajczak-canicules');
   const amount = envelope.euros;
   assert.equal(envelope.review.estimator, 'Équinoxe');
   assert.equal(envelope.period, 'annuel');
@@ -435,7 +435,7 @@ test('une enveloppe garde un seul montant, ses postes et ses versions distinctes
   );
   const global = base.profiles
     .flatMap((p) => p.entries)
-    .find((e) => e.review?.status === 'enveloppe-non-ventilee');
+    .find((e) => e.id === 'attal-economies-quinquennat');
   assert.deepEqual(global.review.targets, []);
   assert.equal(global.period, 'pluriannuel');
   assert.equal(global.review.priceYear, undefined);
