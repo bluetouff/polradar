@@ -2,11 +2,42 @@ import { z } from 'astro/zod';
 import { idSchema, dateSchema, publicUrlSchema } from './schema.mjs';
 const text = z.string().min(1).max(1200);
 const money = z.number().positive().max(1e13);
+const budgetReview = z.strictObject({
+  status: z.enum([
+    'reliee',
+    'enveloppe-non-ventilee',
+    'a-examiner',
+    'insuffisant',
+  ]),
+  checked: dateSchema,
+  estimator: text.optional(),
+  origin: z
+    .enum(['annonce', 'estimation-externe', 'calcul-polradar'])
+    .optional(),
+  publicScope: text.optional(),
+  priceYear: z.number().int().min(1900).max(2100).optional(),
+  grossNet: z.enum(['brut', 'net']).optional(),
+  assumptions: text,
+  overlaps: z
+    .array(z.strictObject({ entryId: idSchema, reason: text }))
+    .min(1)
+    .optional(),
+  targets: z
+    .array(
+      z.strictObject({
+        versionId: idSchema,
+        locator: text,
+        allocationPart: text.optional(),
+      }),
+    )
+    .max(30),
+});
 const entry = z
   .object({
     id: idSchema,
     label: text,
     euros: money,
+    review: budgetReview.optional(),
     scope: z.enum(['campagne', 'parti']).optional(),
     eurosMax: money.optional(),
     kind: z.enum([
@@ -51,6 +82,23 @@ const entry = z
       (row.eurosMax <= row.euros || row.allocation.length)
     )
       fail('Fourchette incohérente ou répartition non déterminée');
+    if (row.review) {
+      const { status, targets, estimator, origin } = row.review;
+      if ((status === 'reliee') !== Boolean(targets.length))
+        fail('État de relation incompatible avec les versions');
+      if (targets.length && !(estimator && origin))
+        fail('Auteur et nature du chiffrage requis');
+      if (new Set(targets.map((t) => t.versionId)).size !== targets.length)
+        fail('Version budgétaire dupliquée');
+      if (
+        targets.some(
+          (t) =>
+            t.allocationPart &&
+            !row.allocation.some((a) => a.label === t.allocationPart),
+        )
+      )
+        fail('Poste absent de la ventilation publiée');
+    }
     const refs = [row.source, ...(row.additionalSources ?? [])];
     if (new Set(refs).size !== refs.length) fail('Source dupliquée');
     if (Boolean(row.allocation.length) !== (row.allocationUnit !== null))
@@ -94,6 +142,19 @@ export const programmeBudgetSchema = z
     )
       ctx.addIssue({ code: 'custom', message: 'Profil dupliqué' });
     const ids = data.profiles.flatMap((p) => p.entries.map((e) => e.id));
+    for (const e of data.profiles.flatMap((p) => p.entries)) {
+      if (
+        e.review &&
+        (e.review.checked > data.checked ||
+          e.review.overlaps?.some(
+            (o) => o.entryId === e.id || !ids.includes(o.entryId),
+          ))
+      )
+        ctx.addIssue({
+          code: 'custom',
+          message: 'Date de revue ou chevauchement budgétaire invalide',
+        });
+    }
     if (new Set(ids).size !== ids.length)
       ctx.addIssue({ code: 'custom', message: 'Montant dupliqué' });
   });
@@ -183,13 +244,34 @@ export const mapSchema = z.object({
   sha256: z.string().regex(/^[a-f0-9]{64}$/),
   rings: z.array(z.array(point).min(4).max(10000)).min(1).max(100),
 });
-export function validateVisualReferences(budgets, agenda, candidates, sources) {
+export function validateVisualReferences(
+  budgets,
+  agenda,
+  candidates,
+  sources,
+  versions = [],
+) {
   const errors = [],
     people = new Set(candidates.map((c) => c.id)),
     refs = new Set(sources.map((s) => s.id));
+  const byVersion = new Map(versions.map((v) => [v.id, v]));
   for (const p of budgets.profiles) {
     if (!people.has(p.candidate))
       errors.push(`Budget : candidat inconnu ${p.candidate}`);
+    for (const e of p.entries) {
+      for (const target of e.review?.targets ?? []) {
+        const version = byVersion.get(target.versionId);
+        if (
+          !version ||
+          !version.snapshot.sourceRefs.some((ref) =>
+            [e.source, ...(e.additionalSources ?? [])].includes(ref.sourceId),
+          )
+        )
+          errors.push(
+            `Budget : version ou source commune non établie pour ${e.id}, ${target.versionId}`,
+          );
+      }
+    }
     for (const e of p.entries)
       for (const ref of [e.source, ...(e.additionalSources ?? [])])
         if (!refs.has(ref)) errors.push(`Budget : source inconnue ${ref}`);

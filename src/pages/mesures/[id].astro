@@ -8,6 +8,8 @@ import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import FollowButton from '../../components/FollowButton.astro';
 import MeasureVotes from '../../components/MeasureVotes.astro';
+import { budgetById, budgetIdsByMeasure } from '../../lib/visual-data';
+import { formatBudgetAmount } from '../../lib/campaign-visuals-view.mjs';
 import { questionsForMeasure } from '../../lib/questions';
 import { proposalTracks } from '../../lib/proposal-data';
 import { voteCases } from '../../lib/votes-data';
@@ -27,6 +29,9 @@ export function getStaticPaths() {
   }));
 }
 const { measure } = Astro.props;
+const linkedBudgets = (budgetIdsByMeasure.get(measure.id) ?? []).map((id) =>
+  budgetById.get(id)!,
+);
 const collective = collectiveLabel(measure);
 const voteRecords = voteCases.filter(
   (record) => record.measureId === measure.id,
@@ -124,6 +129,38 @@ const candidate = candidateById(measure.candidate),
       )}
       {voteRecords.length > 0 && (
         <MeasureVotes records={voteRecords} revision={measure.revision} />
+      )}
+      {linkedBudgets.length > 0 && (
+        <section class="section-space">
+          <div class="register-heading">
+            <h2>Chiffrage documenté</h2>
+            <Icon name="euro" />
+          </div>
+          <ul class="precise-sources">
+            {linkedBudgets.map((b) => (
+              <li>
+                <a href={`/budget-programmes/#${b.id}`}>
+                  {b.label} · {formatBudgetAmount(b)}
+                </a>
+                <p>
+                  {b.estimator} · {b.horizon}
+                </p>
+                {b.targets
+                  .filter((t) => t.measureId === measure.id)
+                  .map((t) => (
+                    <p>
+                      Version {t.number} ·{' '}
+                      {t.allocationPart && (
+                        <>Poste « {t.allocationPart} » dans l’enveloppe. </>
+                      )}
+                      {t.locator}
+                    </p>
+                  ))}
+                <p>{b.assumptions}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
       )}
       <dl class="measure-fields">
         <div>

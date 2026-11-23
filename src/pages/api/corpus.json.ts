@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { pollCoverage } from '../../lib/features.mjs';
+import { budgetIdsByMeasure } from '../../lib/visual-data';
 import { attributionLabel } from '../../lib/attribution.mjs';
 import {
   candidateById,
@@ -16,7 +17,13 @@ export const GET: APIRoute = () =>
     JSON.stringify({
       ...dataset,
       pollCoverage: pollCoverage(dataset.polls),
-      measures: dataset.measures.map(credited),
+      programmeBudgetsUrl: '/api/budgets-programmes.json',
+      measures: dataset.measures.map((m) => ({
+        ...credited(m),
+        ...(budgetIdsByMeasure.has(m.id)
+          ? { budgetEntryIds: budgetIdsByMeasure.get(m.id) }
+          : {}),
+      })),
       engagements: dataset.engagements.map(credited),
     }),
     {

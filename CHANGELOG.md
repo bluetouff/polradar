@@ -4,6 +4,8 @@ Le journal des données rend compte de chaque collecte. Cette page consigne les 
 
 ## 23 novembre 2026
 
+- **Chiffrages et mesures.** Les budgets renvoient à la version de chaque proposition dont le lien a été vérifié. Les fiches de mesure renvoient au poste, à son auteur et à la pièce budgétaire. [Budgets](https://polradar.fr/budget-programmes/)
+
 - **Questions des sondages.** Le libellé original, la base et la page du questionnaire accompagnent chaque point relu. Les graphiques conservent leurs anciennes adresses. [Sondages](https://polradar.fr/sondages/)
 
 - **Sondages et dates documentaires.** Les compteurs séparent observations, séries, terrains identifiés et notices. Une vérification de fiche et une consultation de document ont désormais chacun leur libellé. [Méthode des sondages](https://polradar.fr/dossiers/sondages-les-scenarios-comptent/)

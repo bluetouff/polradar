@@ -19,7 +19,21 @@
           "source": "asselineau-discours-rentree-2026",
           "locator": "Réforme des institutions : suppression des régions",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "François Asselineau",
+            "origin": "annonce",
+            "publicScope": "Organisation des collectivités territoriales",
+            "assumptions": "La présentation ne précise pas le délai de réalisation de l’économie.",
+            "targets": [
+              {
+                "versionId": "asselineau-institutions-suppression-regions-v1",
+                "locator": "Réforme des institutions, « Réduction drastique des élus et des structures »."
+              }
+            ]
+          }
         }
       ]
     },
@@ -40,7 +54,16 @@
           "source": "attal-finances-lettre-2026",
           "locator": "Un plan de 150 milliards d’euros d’économies sur cinq ans",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "enveloppe-non-ventilee",
+            "checked": "2026-11-23",
+            "estimator": "Gabriel Attal",
+            "origin": "annonce",
+            "publicScope": "Ensemble des dépenses publiques sur le quinquennat",
+            "assumptions": "Les deux tiers de l’effort sont annoncés sur les dépenses sociales. La lettre ne chiffre pas séparément chaque réforme.",
+            "targets": []
+          }
         }
       ]
     },
@@ -717,7 +740,21 @@
           "source": "ruffin-numerique",
           "locator": "Cahier 10, partie 2, proposition 2 sur les communs numériques européens",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "François Ruffin",
+            "origin": "annonce",
+            "publicScope": "Contribution française aux communs logiciels européens",
+            "assumptions": "Le cahier propose un financement annuel de projets du Sovereign Tech Fund européen.",
+            "targets": [
+              {
+                "versionId": "ruffin-europe-fonds-communs-europe-v1",
+                "locator": "Cahier 10, partie 2, proposition 2, contribution annuelle de la France."
+              }
+            ]
+          }
         },
         {
           "id": "ruffin-labo",
@@ -731,7 +768,21 @@
           "source": "ruffin-numerique",
           "locator": "Notre plan pour une intelligence artificielle souveraine : laboratoire public de recherche",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "François Ruffin",
+            "origin": "annonce",
+            "publicScope": "Laboratoire public de recherche en intelligence artificielle",
+            "assumptions": "Le cahier associe cette enveloppe annuelle à une équipe de 500 personnes et à une commande publique.",
+            "targets": [
+              {
+                "versionId": "ruffin-education-laboratoire-ia-v1",
+                "locator": "Cahier 10, partie 4, laboratoire public, paragraphe sur le budget annuel."
+              }
+            ]
+          }
         },
         {
           "id": "ruffin-taxe-patrimoines",
@@ -970,6 +1021,31 @@
           "allocationDifference": {
             "euros": -50000000,
             "note": "Le plan d’adaptation détaille cinq postes."
+          },
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Équinoxe",
+            "origin": "annonce",
+            "publicScope": "Contre-budget pour 2027, plan d’adaptation aux canicules",
+            "assumptions": "Le montant du plan couvre cinq postes. Dans le milliard affecté à la sécurité civile, le parti affecte 200 millions d’euros au recrutement des pompiers.",
+            "targets": [
+              {
+                "versionId": "mikolajczak-climat-adaptation-ecoles-v1",
+                "locator": "Adaptation aux canicules, « Adapter les écoles et les espaces publics ».",
+                "allocationPart": "Écoles et espaces publics"
+              },
+              {
+                "versionId": "mikolajczak-travail-chaleur-v1",
+                "locator": "Même rubrique, « Protéger les travailleurs par forte chaleur ».",
+                "allocationPart": "Protection des travailleurs"
+              },
+              {
+                "versionId": "mikolajczak-securite-pompiers-v1",
+                "locator": "Même rubrique, « Renforcer notre Sécurité civile », sous-poste des recrutements.",
+                "allocationPart": "Sécurité civile"
+              }
+            ]
           }
         },
         {
@@ -1070,7 +1146,21 @@
           "locator": "Annexe chiffrée, p. 12 du PDF, IFF en remplacement de l’IFI",
           "allocationUnit": null,
           "allocation": [],
-          "scope": "parti"
+          "scope": "parti",
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Groupe Rassemblement national à l’Assemblée nationale",
+            "origin": "annonce",
+            "publicScope": "Contre-budget parlementaire pour 2027",
+            "assumptions": "Recette inscrite par le groupe pour le remplacement de l’impôt.",
+            "targets": [
+              {
+                "versionId": "groupe-rn-fiscalite-iff-v1",
+                "locator": "Annexe, p. 12, remplacement de l’IFI par l’IFF."
+              }
+            ]
+          }
         },
         {
           "id": "groupe-rn-100-renov-2027",
@@ -1100,7 +1190,21 @@
           "locator": "Annexe chiffrée, p. 12 du PDF, Favoriser le cumul-emploi retraite du personnel soignant",
           "allocationUnit": null,
           "allocation": [],
-          "scope": "parti"
+          "scope": "parti",
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Groupe Rassemblement national à l’Assemblée nationale",
+            "origin": "annonce",
+            "publicScope": "Contre-budget parlementaire pour 2027",
+            "assumptions": "Le groupe inscrit cette ligne dans son contre-budget pour 2027.",
+            "targets": [
+              {
+                "versionId": "groupe-rn-sante-cumul-soignants-v1",
+                "locator": "Annexe, p. 12, cumul emploi-retraite du personnel soignant."
+              }
+            ]
+          }
         },
         {
           "id": "groupe-rn-contributions-ue-2027",
@@ -1124,7 +1228,22 @@
               "label": "Reversement des droits de douane",
               "value": 2200000000
             }
-          ]
+          ],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Groupe Rassemblement national à l’Assemblée nationale",
+            "origin": "annonce",
+            "publicScope": "Relations financières entre la France et l’Union européenne",
+            "assumptions": "Seul le reversement des droits de douane se rattache à cette fiche. La baisse de contribution est un autre poste.",
+            "targets": [
+              {
+                "versionId": "groupe-rn-droits-douane-ue-v1",
+                "locator": "Annexe, p. 11, récupération des droits de douane.",
+                "allocationPart": "Reversement des droits de douane"
+              }
+            ]
+          }
         },
         {
           "id": "groupe-rn-ame-amu-2027",
@@ -1140,7 +1259,21 @@
           "locator": "Annexe, p. 11, ligne sur le remplacement de l’AME. Amendement II-CF681, p. 2.",
           "allocationUnit": null,
           "allocation": [],
-          "additionalSources": ["an-rn-aide-medicale-amendement-2027"]
+          "additionalSources": ["an-rn-aide-medicale-amendement-2027"],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Groupe Rassemblement national à l’Assemblée nationale",
+            "origin": "annonce",
+            "publicScope": "Contre-budget parlementaire pour 2027",
+            "assumptions": "Économie inscrite par le groupe pour la substitution des deux aides.",
+            "targets": [
+              {
+                "versionId": "groupe-rn-ame-aide-urgence-v1",
+                "locator": "Annexe, p. 11, ligne AME/AMU."
+              }
+            ]
+          }
         }
       ]
     },
@@ -1162,7 +1295,21 @@
           "locator": "Programme, section sur le financement de la convention.",
           "allocationUnit": null,
           "allocation": [],
-          "eurosMax": 33000000
+          "eurosMax": 33000000,
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Benoît Mathieu",
+            "origin": "annonce",
+            "publicScope": "Organisation nationale du processus constituant",
+            "assumptions": "L’estimation publiée porte sur l’organisation d’une convention de neuf mois.",
+            "targets": [
+              {
+                "versionId": "mathieu-institutions-convention-500-v1",
+                "locator": "Programme, financement du processus constituant, paragraphe sur les estimations préparatoires."
+              }
+            ]
+          }
         },
         {
           "id": "mathieu-scrutin",
@@ -1177,7 +1324,21 @@
           "locator": "Programme, section sur le financement, estimation par référendum.",
           "allocationUnit": null,
           "allocation": [],
-          "eurosMax": 220000000
+          "eurosMax": 220000000,
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Benoît Mathieu",
+            "origin": "annonce",
+            "publicScope": "Organisation nationale du processus constituant",
+            "assumptions": "La fourchette s’applique à un seul référendum. Le projet prévoit deux consultations.",
+            "targets": [
+              {
+                "versionId": "mathieu-institutions-referendums-constitution-v1",
+                "locator": "Programme, financement du processus constituant, paragraphe sur les estimations préparatoires."
+              }
+            ]
+          }
         }
       ]
     },

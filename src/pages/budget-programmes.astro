@@ -6,7 +6,7 @@ import VisualFilters from '../components/VisualFilters.astro';
 import CandidatePortrait from '../components/CandidatePortrait.astro';
 import SourceLinks from '../components/SourceLinks.astro';
 import { candidates, candidateById, formatDate, scopes } from '../lib/data';
-import { programmeBudgets } from '../lib/visual-data';
+import { programmeBudgets, budgetById } from '../lib/visual-data';
 import {
   formatMoney,
   formatBudgetAmount,
@@ -28,6 +28,17 @@ const kinds = {
   'baisse-recette': 'Baisse de recettes annoncée',
   financement: 'Financement proposé',
   trajectoire: 'Trajectoire annoncée',
+};
+const reviewLabels = {
+  reliee: 'Mesures reliées au chiffrage',
+  'enveloppe-non-ventilee': 'Enveloppe sans ventilation par mesure',
+  'a-examiner': 'Correspondance avec les mesures à examiner',
+  insuffisant: 'Information insuffisante pour relier une mesure',
+};
+const originLabels = {
+  annonce: 'Chiffrage annoncé',
+  'estimation-externe': 'Estimation extérieure',
+  'calcul-polradar': 'Calcul de Polradar',
 };
 const annualScales = budgetAnnualScales(programmeBudgets.profiles);
 ---
@@ -139,6 +150,7 @@ const annualScales = budgetAnnualScales(programmeBudgets.profiles);
             <div class="budget-measures">
               <p class="budget-profile-note">{profile.note}</p>
               {profile.entries.map((entry) => {
+                const assessment = budgetById.get(entry.id)!;
                 let x = 0;
                 const total = budgetAllocationTotal(entry);
                 const ceiling =
@@ -283,6 +295,43 @@ const annualScales = budgetAnnualScales(programmeBudgets.profiles);
                         </div>
                       </div>
                     )}
+                    <details
+                      class="budget-source"
+                      open={assessment.targets.length > 0}
+                    >
+                      <summary>{reviewLabels[assessment.status]}</summary>
+                      {assessment.estimator && assessment.origin && (
+                        <p>
+                          {originLabels[assessment.origin]} ·{' '}
+                          {assessment.estimator}
+                        </p>
+                      )}
+                      {assessment.publicScope && (
+                        <p>{assessment.publicScope}</p>
+                      )}
+                      {assessment.assumptions && (
+                        <p>{assessment.assumptions}</p>
+                      )}
+                      {assessment.targets.length > 0 && (
+                        <ul>
+                          {assessment.targets.map((t) => (
+                            <li>
+                              <a href={t.href}>{t.title}</a> · {t.author},
+                              version {t.number}. {t.locator}
+                              {t.allocationPart && (
+                                <> Poste de l’enveloppe · {t.allocationPart}.</>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {assessment.reviewedOn && (
+                        <p>
+                          Relation examinée le{' '}
+                          {formatDate(assessment.reviewedOn)}.
+                        </p>
+                      )}
+                    </details>
                     <details class="budget-source">
                       <summary>Document et emplacement</summary>
                       <p>{entry.locator}</p>
@@ -327,7 +376,10 @@ const annualScales = budgetAnnualScales(programmeBudgets.profiles);
     <p>
       <a href="/economie/finances-publiques/">Comptes publics de référence</a> ·{' '}
       <a href="/comparer/">Comparer les propositions</a> ·{' '}
-      <a href="/sources/">Documents</a>
+      <a href="/sources/">Documents</a> ·{' '}
+      <a href="/api/budgets-programmes.json">
+        Télécharger les chiffrages et leurs relations (JSON)
+      </a>
     </p>
   </details>
   <script src="../scripts/programme-budgets.ts"></script>

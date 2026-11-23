@@ -79,6 +79,7 @@ test('les quatre jeux de données et leurs références sont qualifiés', () => 
       agenda,
       data('candidates'),
       data('sources'),
+      data('versions'),
     ),
     [],
   );
@@ -195,8 +196,13 @@ test('les nouveaux chiffrages conservent la période et le périmètre de leurs 
     lisnard = copy.profiles.find((p) => p.candidate === 'lisnard').entries[0];
   lisnard.additionalSources.push('inconnue');
   assert.ok(
-    validateVisualReferences(copy, agenda, data('candidates'), data('sources'))
-      .length,
+    validateVisualReferences(
+      copy,
+      agenda,
+      data('candidates'),
+      data('sources'),
+      data('versions'),
+    ).length,
   );
 });
 
@@ -327,8 +333,13 @@ test('les budgets réconcilient chaque répartition et conservent les périodes'
   const copy = structuredClone(agenda);
   copy.events[0].source = 'absente';
   assert.ok(
-    validateVisualReferences(budgets, copy, data('candidates'), data('sources'))
-      .length,
+    validateVisualReferences(
+      budgets,
+      copy,
+      data('candidates'),
+      data('sources'),
+      data('versions'),
+    ).length,
   );
 });
 test('la période de l’agenda dépend du jour à Paris et les filtres se combinent', () => {
@@ -403,4 +414,41 @@ test('les rendez-vous confirmés et leurs sources complémentaires sont vérifi�
   delete row.additionalSources;
   row.date = '2099-01-01';
   assert.equal(agendaSchema.safeParse(next).success, false);
+});
+
+test('une enveloppe garde un seul montant, ses postes et ses versions distinctes', () => {
+  const base = structuredClone(budgets);
+  const envelope = base.profiles
+    .flatMap((p) => p.entries)
+    .find((e) => (e.review?.targets.length ?? 0) > 1);
+  const amount = envelope.euros;
+  assert.equal(envelope.review.estimator, 'Équinoxe');
+  assert.equal(envelope.period, 'annuel');
+  assert.ok(envelope.review.targets.every((t) => t.allocationPart));
+  assert.equal(
+    base.profiles
+      .flatMap((p) => p.entries)
+      .filter((e) => e.id === envelope.id)
+      .reduce((total, e) => total + e.euros, 0),
+    amount,
+  );
+  const global = base.profiles
+    .flatMap((p) => p.entries)
+    .find((e) => e.review?.status === 'enveloppe-non-ventilee');
+  assert.deepEqual(global.review.targets, []);
+  assert.equal(global.period, 'pluriannuel');
+  assert.equal(global.review.priceYear, undefined);
+  envelope.review.targets.push(envelope.review.targets[0]);
+  assert.equal(programmeBudgetSchema.safeParse(base).success, false);
+  envelope.review.targets.pop();
+  envelope.review.targets[0].versionId = 'version-inconnue';
+  assert.ok(
+    validateVisualReferences(
+      base,
+      agenda,
+      data('candidates'),
+      data('sources'),
+      data('versions'),
+    ).length,
+  );
 });

@@ -150,6 +150,7 @@ const visualErrors = validateVisualReferences(
   visualDatasets[1],
   dataset.candidates,
   dataset.sources,
+  dataset.versions,
 );
 marketSnapshotSchema.parse(
   JSON.parse(

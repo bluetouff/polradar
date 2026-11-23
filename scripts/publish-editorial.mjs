@@ -582,6 +582,7 @@ async function main() {
       agendaSchema.parse(db.agenda),
       db.candidates,
       db.sources,
+      db.versions,
     ),
   ];
   if (errors.length) throw Error('Incohérence dans les données éditoriales');
