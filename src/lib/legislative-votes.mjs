@@ -9,9 +9,18 @@ const text = z.string().trim().min(1).max(1800);
 const count = z.number().int().nonnegative().max(1500);
 const choice = z.enum(['pour', 'contre', 'abstention', 'non-votant']);
 const reference = z.strictObject({ title: text, url: publicUrlSchema });
+const rollCallSource = reference.extend({
+  sha256: z.string().regex(/^[a-f0-9]{64}$/),
+  checkedAt: z.iso.datetime({ offset: true }),
+  locator: text,
+});
 export const legislativeVotesSchema = z.strictObject({
   version: z.literal(1),
   checked: dateSchema,
+  readingSources: z
+    .array(rollCallSource.extend({ ballotId: idSchema }))
+    .max(500)
+    .default([]),
   ballots: z
     .array(
       z.strictObject({
@@ -42,13 +51,7 @@ export const legislativeVotesSchema = z.strictObject({
           majority: count.positive().nullable(),
           nonVoters: count.nullable(),
         }),
-        source: z.strictObject({
-          url: publicUrlSchema,
-          title: text,
-          sha256: z.string().regex(/^[a-f0-9]{64}$/),
-          checkedAt: z.iso.datetime({ offset: true }),
-          locator: text,
-        }),
+        source: rollCallSource,
         documents: z.array(reference).min(1).max(5),
         positions: z
           .array(
@@ -133,6 +136,33 @@ export function validateLegislativeReferences(data, dataset, now = new Date()) {
   const measures = new Map(dataset.measures.map((m) => [m.id, m]));
   const versions = new Map(dataset.versions.map((v) => [v.id, v]));
   const ballots = new Map(data.ballots.map((b) => [b.id, b]));
+  unique(
+    data.readingSources.map((s) => s.ballotId),
+    'Sources de lecture',
+  );
+  for (const source of data.readingSources) {
+    const ballot = ballots.get(source.ballotId);
+    if (!ballot) {
+      fail(`${source.ballotId} : source de lecture sans scrutin`);
+      continue;
+    }
+    const host = new URL(source.url).hostname;
+    if (
+      !chamberHosts[ballot.chamber].has(host) &&
+      !(
+        ballot.chamber === 'parlement-europeen' &&
+        host === 'data.europarl.europa.eu'
+      )
+    )
+      fail(`${ballot.id} : source de lecture hors institution`);
+    const checked = new Date(source.checkedAt);
+    if (
+      checked > now ||
+      civilDateInParis(checked) < ballot.date ||
+      civilDateInParis(checked) > data.checked
+    )
+      fail(`${ballot.id} : date de lecture incohérente`);
+  }
   const assigned = new Set();
   for (const b of data.ballots) {
     if (b.kind === 'motion-censure') {

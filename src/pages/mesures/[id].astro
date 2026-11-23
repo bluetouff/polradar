@@ -7,8 +7,10 @@ import {
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import FollowButton from '../../components/FollowButton.astro';
+import MeasureVotes from '../../components/MeasureVotes.astro';
 import { questionsForMeasure } from '../../lib/questions';
 import { proposalTracks } from '../../lib/proposal-data';
+import { voteCases } from '../../lib/votes-data';
 import {
   measures,
   measureVersions,
@@ -26,6 +28,9 @@ export function getStaticPaths() {
 }
 const { measure } = Astro.props;
 const collective = collectiveLabel(measure);
+const voteRecords = voteCases.filter(
+  (record) => record.measureId === measure.id,
+);
 const candidate = candidateById(measure.candidate),
   theme = themeById(measure.theme),
   versions = measureVersions(measure.id);
@@ -116,6 +121,9 @@ const candidate = candidateById(measure.candidate),
             </div>
           ))}
         </div>
+      )}
+      {voteRecords.length > 0 && (
+        <MeasureVotes records={voteRecords} revision={measure.revision} />
       )}
       <dl class="measure-fields">
         <div>

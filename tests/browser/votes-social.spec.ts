@@ -1,6 +1,7 @@
 import { openDossier } from './dossier-directory';
 import { test, expect } from '@playwright/test';
 import legislativeVotes from '../../src/data/legislative-votes.json' with { type: 'json' };
+import { chambers, positionLabel } from '../../src/lib/legislative-votes.mjs';
 import { socialImages } from '../../src/lib/social-images.mjs';
 
 test('les thèmes, les sources et la recherche utilisent la largeur disponible', async ({
@@ -96,6 +97,101 @@ test('la frise conserve les objets des motions, les sources et les liens directs
   await expect(page.locator('[data-votes-workspace] img[src="x"]')).toHaveCount(
     0,
   );
+});
+
+test.describe('scrutins sur les fiches de mesures', () => {
+  test.use({ javaScriptEnabled: false });
+
+  test('chaque rapprochement publié donne son objet, son votant et la liste officielle', async ({
+    page,
+  }) => {
+    const measures = new Set(
+      legislativeVotes.cases.map((record) => record.measureId),
+    );
+    for (const id of measures) {
+      const records = legislativeVotes.cases.filter(
+        (record) => record.measureId === id,
+      );
+      await page.goto(`/mesures/${id}/#scrutins`);
+      const section = page.getByRole('region', { name: 'Scrutins nominatifs' });
+      await expect(section.locator('[data-ballot]')).toHaveCount(
+        records.flatMap((record) => record.links).length,
+      );
+      for (const record of records) {
+        const group = section.locator('.vote-case').filter({
+          has: page.locator(`a[href="/votes/#dossier=${record.id}"]`),
+        });
+        for (const link of record.links) {
+          const b = legislativeVotes.ballots.find(
+            (ballot) => ballot.id === link.ballotId,
+          )!;
+          const source =
+            legislativeVotes.readingSources.find((s) => s.ballotId === b.id) ??
+            b.source;
+          const pos = b.positions.find(
+            (p) => p.candidate === record.candidate,
+          )!;
+          const card = group.locator(`[data-ballot="${b.id}"]`);
+          await expect(card.getByRole('heading', { level: 3 })).toHaveText(
+            b.title,
+          );
+          await expect(card.locator('time')).toHaveAttribute(
+            'datetime',
+            b.date,
+          );
+          await expect(card.locator('.session')).toContainText(
+            chambers[b.chamber as keyof typeof chambers],
+          );
+          await expect(card.locator('.choice')).toContainText(
+            pos.officialName.replace(/^(M\.|Mme)\s+/, ''),
+          );
+          await expect(card.locator('.choice strong')).toHaveText(
+            positionLabel(pos, b),
+          );
+          await expect(card.locator('.scope')).toHaveText(link.context);
+          await expect(
+            card.getByRole('link', { name: /Liste nominative officielle/ }),
+          ).toHaveAttribute('href', source.url);
+        }
+      }
+    }
+    await page.goto('/mesures/melenchon-retraites-1/');
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    await expect(page.locator('#scrutins')).toHaveCount(0);
+  });
+
+  test('la fiche et le dossier exact se rejoignent au clavier sur mobile, y compris pour une version antérieure', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 320, height: 800 });
+    await page.goto('/mesures/attal-travail-2/#scrutins');
+    const section = page.locator('#scrutins');
+    await expect(section.locator('.case-links')).toContainText(
+      'fiche actuelle · v2',
+    );
+    const version = section.getByRole('link', { name: 'Version comparée · 1' });
+    await version.focus();
+    await page.keyboard.press('Enter');
+    await expect(page.locator(':target')).toHaveAttribute('id', 'version-1');
+    const dossier = section.getByRole('link', { name: /Dossier de vote/ });
+    await dossier.focus();
+    await page.keyboard.press('Enter');
+    const selected = page.locator('[data-vote-case]:visible');
+    await expect(selected).toHaveAttribute(
+      'data-vote-case',
+      'attal-code-travail',
+    );
+    await selected.locator('.vote-measure-link').focus();
+    await page.keyboard.press('Enter');
+    await expect(page.locator(':target')).toHaveAttribute('id', 'scrutins');
+    await page.goto('/mesures/ruffin-fiscalite-1/#scrutins');
+    await expect(page.locator('#scrutins [data-ballot]')).toHaveCount(3);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+  });
 });
 
 test('les votes restent accessibles sans JavaScript', async ({ browser }) => {

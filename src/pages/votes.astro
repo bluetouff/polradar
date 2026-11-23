@@ -154,7 +154,7 @@ import { sameSentence } from '../lib/measure-text';
                       <ul>
                         <li>
                           <a
-                            href={ballot.source.url}
+                            href={ballot.rollCall.url}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
@@ -187,10 +187,10 @@ import { sameSentence } from '../lib/measure-text';
                         )}
                       </ul>
                       <p class="vote-source-meta">
-                        {ballot.term} · {ballot.source.locator}
+                        {ballot.term} · {ballot.rollCall.locator}
                         <br />
                         Consulté le {formatTimestamp(
-                          ballot.source.checkedAt,
+                          ballot.rollCall.checkedAt,
                         )}{' '}
                         (heure de Paris)
                       </p>
@@ -255,7 +255,7 @@ import { sameSentence } from '../lib/measure-text';
                 />
                 <a
                   class="vote-measure-link"
-                  href={`/mesures/${record.measureId}/`}
+                  href={`/mesures/${record.measureId}/#scrutins`}
                 >
                   Fiche de la proposition <Icon name="arrow" />
                 </a>

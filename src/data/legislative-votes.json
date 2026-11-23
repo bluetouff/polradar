@@ -1,6 +1,24 @@
 {
   "version": 1,
-  "checked": "2026-11-20",
+  "checked": "2026-11-23",
+  "readingSources": [
+    {
+      "ballotId": "pe8-20170215-ceta",
+      "title": "Parlement européen · Votes par appel nominal du 15 février 2017",
+      "url": "https://data.europarl.europa.eu/distribution/reds_iPlPv_Rcv/PV-8-2017-02-15-RCV/PV-8-2017-02-15-RCV-FNL_fr.xhtml#_Toc373651",
+      "locator": "A8-0009/2017, approbation. Florian Philippot figure dans les 254 voix contre, groupe ENF.",
+      "checkedAt": "2026-11-23T07:59:11Z",
+      "sha256": "0993b7449a388ad952b93a43132efd600b62cc2002a7111b008d1df43fe14da1"
+    },
+    {
+      "ballotId": "pe8-20180529-detachement",
+      "title": "Parlement européen · Votes par appel nominal du 29 mai 2018",
+      "url": "https://data.europarl.europa.eu/distribution/reds_iPlPv_Rcv/PV-8-2018-05-29-RCV/PV-8-2018-05-29-RCV-FNL_fr.xhtml#_Toc9196010",
+      "locator": "A8-0319/2017, amendement 39. Florian Philippot figure parmi les 49 abstentions, groupe EFDD.",
+      "checkedAt": "2026-11-23T07:59:11Z",
+      "sha256": "422a68a54b4b54cf76ab3a8569cc57e12d0850ab21fe8079267c4032ff425f27"
+    }
+  ],
   "ballots": [
     {
       "id": "an14-647",

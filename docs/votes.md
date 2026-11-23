@@ -1,6 +1,8 @@
 # Propositions et votes passés
 
-Au 19 novembre 2026, 21 dossiers rapprochent les propositions de huit personnalités et 17 scrutins distincts. Chaque dossier renvoie à la liste nominative et au document décrivant la proposition.
+Au 23 novembre 2026, 28 fiches de mesures renvoient à 26 scrutins distincts dans trois chambres. Les 33 rapprochements documentent le vote individuel de dix personnalités. Chaque fiche donne l’objet du vote, la date de séance, le nom du votant, son choix, la portée du rapprochement et la source officielle. Le dossier indique la version de la mesure utilisée.
+
+Les deux annexes européennes en français s’ouvrent à l’endroit du vote dans le document publié sur le portail de données du Parlement. Leur empreinte et leur date de consultation figurent dans `readingSources`. Les relevés XML d’origine conservent leur propre empreinte. [Accord UE-Canada, approbation du 15 février 2017](https://data.europarl.europa.eu/distribution/reds_iPlPv_Rcv/PV-8-2017-02-15-RCV/PV-8-2017-02-15-RCV-FNL_fr.xhtml#_Toc373651) · [Détachement des travailleurs, amendement 39 du 29 mai 2018](https://data.europarl.europa.eu/distribution/reds_iPlPv_Rcv/PV-8-2018-05-29-RCV/PV-8-2018-05-29-RCV-FNL_fr.xhtml#_Toc9196010)
 
 ## Enrichissement du 19 novembre 2026
 

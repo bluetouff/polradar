@@ -7,6 +7,9 @@ import { dataset } from './data';
 export const legislativeVotes = legislativeVotesSchema.parse(rows);
 const errors = validateLegislativeReferences(legislativeVotes, dataset);
 if (errors.length) throw new Error(errors.join('\n'));
+const readingSources = new Map(
+  legislativeVotes.readingSources.map((s) => [s.ballotId, s]),
+);
 export const voteCases = legislativeVotes.cases.map((record) => ({
   ...record,
   candidateRecord: dataset.candidates.find((c) => c.id === record.candidate)!,
@@ -19,6 +22,7 @@ export const voteCases = legislativeVotes.cases.map((record) => ({
       )!;
       return {
         ...ballot,
+        rollCall: readingSources.get(ballot.id) ?? ballot.source,
         link,
         position: ballot.positions.find(
           (p) => p.candidate === record.candidate,

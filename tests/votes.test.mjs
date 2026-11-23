@@ -159,6 +159,21 @@ test('une capture de scrutin déjà intégrée reste immuable', () => {
   assert.ok(immutableHistoryErrors(data.ballots, data.ballots.slice(1)).length);
 });
 
+test('une édition de lecture appartient au scrutin, à sa chambre et à sa période de consultation', () => {
+  for (const change of [
+    (d) => d.readingSources.push(d.readingSources[0]),
+    (d) => (d.readingSources[0].ballotId = 'inconnu'),
+    (d) => (d.readingSources[0].ballotId = 'an16-1240'),
+    (d) => (d.readingSources[0].url = 'https://example.org/releve'),
+    (d) => (d.readingSources[0].checkedAt = '2010-01-01T00:00:00Z'),
+    (d) => (d.readingSources[0].checkedAt = '2027-01-01T00:00:00Z'),
+  ]) {
+    const d = structuredClone(data);
+    change(d);
+    assert.ok(valid(d).length);
+  }
+});
+
 test('les appels nominaux européens conservent le vote personnel et la chambre du document', () => {
   const european = data.ballots.filter(
     (b) => b.chamber === 'parlement-europeen',

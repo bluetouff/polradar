@@ -2,6 +2,10 @@
 
 Le journal des données rend compte de chaque collecte. Cette page consigne les modifications du code et de la méthode. [Journal quotidien des données](https://polradar.fr/mises-a-jour/)
 
+## 23 novembre 2026
+
+- **Scrutins sur les fiches de mesures.** Les 28 mesures concernées présentent l’objet de chaque vote, la position individuelle et un lien vers le relevé nominatif officiel. Le dossier parlementaire et la version de la mesure comparée sont accessibles depuis la fiche. [Propositions et votes passés](https://polradar.fr/votes/) · [Sources parlementaires](docs/votes.md)
+
 ## 22 novembre 2026
 
 - **Attribution des projets de parti.** Sur les 156 mesures de parti sans auteur explicite dans la fiche, 151 retrouvent une signature par leurs références et cinq gardent l’indication « Document de parti ». Sur les 43 engagements thématiques dans le même cas, 42 retrouvent une signature. Les documents de 17 références ont été qualifiés. L’index de recherche, le CSV, l’API, les flux et les pages publiques distinguent l’auteur du dossier auquel la fiche est rattachée. Les attributions explicites et les versions d’origine sont conservées. [Sources](SOURCES.md) · [Modèle et règles](DATA_QUALITY.md)

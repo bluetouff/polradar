@@ -1,0 +1,159 @@
+---
+import Icon from './Icon.astro';
+import { formatDate } from '../lib/data';
+import { chambers, positionLabel } from '../lib/legislative-votes.mjs';
+import type { voteCases } from '../lib/votes-data';
+
+interface Props {
+  records: typeof voteCases;
+  revision: number;
+}
+const { records, revision } = Astro.props;
+---
+
+<section id="scrutins" aria-labelledby="scrutins-titre">
+  <h2 id="scrutins-titre">
+    <Icon name="vote" /> Scrutins nominatifs
+  </h2>
+  {records.map((record) => (
+    <div class="vote-case">
+      <ul class="roll-calls">
+        {record.ballots.map((ballot) => (
+          <li data-ballot={ballot.id}>
+            <p class="session">
+              <span>
+                {chambers[ballot.chamber]}
+                {ballot.chamber !== 'parlement-europeen' &&
+                  ` · n° ${ballot.number}`}
+              </span>
+              <time datetime={ballot.date}>{formatDate(ballot.date)}</time>
+            </p>
+            <h3>{ballot.title}</h3>
+            <p class="choice">
+              {record.candidateRecord.name}
+              <strong>{positionLabel(ballot.position, ballot)}</strong>
+            </p>
+            <p class="scope">{ballot.link.context}</p>
+            <a
+              class="roll-call-source"
+              href={ballot.rollCall.url}
+              rel="noreferrer"
+              aria-label={`Liste nominative officielle · ${ballot.title}`}
+            >
+              Liste nominative officielle <Icon name="external" />
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div class="case-links">
+        <a href={`/votes/#dossier=${record.id}`}>
+          Dossier de vote · {record.title} <Icon name="arrow" />
+        </a>
+        <span>
+          <a href={`#version-${record.version.number}`}>
+            Version comparée · {record.version.number}
+          </a>
+          {record.version.number !== revision &&
+            ` (fiche actuelle · v${revision})`}
+        </span>
+      </div>
+    </div>
+  ))}
+</section>
+
+<style>
+  #scrutins {
+    margin-block: clamp(1.5rem, 3vw, 2.3rem);
+    scroll-margin-block-start: 1rem;
+  }
+  h2,
+  .session,
+  .choice,
+  .case-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.75rem;
+  }
+  h2 {
+    margin: 0 0 0.8rem;
+    font-size: 1.2rem;
+  }
+  h2 :global(.icon) {
+    color: var(--accent);
+  }
+  .vote-case + .vote-case {
+    margin-top: 1rem;
+  }
+  .roll-calls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 21rem), 1fr));
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .roll-calls li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+    min-width: 0;
+    padding: clamp(1rem, 2.5vw, 1.45rem);
+    border: 1px solid var(--panel-edge);
+    border-inline-start: 3px solid var(--accent);
+    border-radius: var(--card-radius);
+    background: var(--panel-gradient);
+    color: var(--ink);
+    overflow-wrap: anywhere;
+  }
+  .roll-calls :is(h3, p) {
+    margin: 0;
+  }
+  h3 {
+    font-size: 1.02rem;
+    line-height: 1.4;
+  }
+  .session {
+    justify-content: space-between;
+    width: 100%;
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+  .choice {
+    font-weight: 600;
+  }
+  .choice strong {
+    padding: 0.18rem 0.55rem;
+    border: 1px solid var(--panel-edge);
+    border-radius: 0.35rem;
+    font-size: 0.85rem;
+  }
+  .scope {
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+  a {
+    color: var(--blue);
+    text-underline-offset: 0.2em;
+  }
+  a :global(.icon) {
+    vertical-align: middle;
+  }
+  .roll-call-source {
+    margin-top: auto;
+    padding-block: 0.4rem;
+    font-weight: 600;
+  }
+  .case-links {
+    justify-content: space-between;
+    margin-top: 0.45rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+  .case-links a {
+    display: inline-block;
+    padding-block: 0.4rem;
+  }
+</style>
