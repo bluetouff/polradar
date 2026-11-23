@@ -1,8 +1,10 @@
 // Publications nominatives utilisées pour identifier les portraits de campagne.
-/** @type {Record<string, {label: string, url: string, sourceUrl?: string} | undefined>} */
+/** @type {Record<string, {label: string, url: string, sourceUrl?: string, contactNote?: string} | undefined>} */
 export const portraitLinks = {
   billetdoux: {
     label: 'Vidéo de candidature',
+    contactNote:
+      'La campagne a accusé réception de la demande de portrait le 20 novembre 2026. La rédaction attend sa réponse sur les droits.',
     url: 'https://billetdoux2027.fr/',
   },
   cheve: {

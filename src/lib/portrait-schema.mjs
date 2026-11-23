@@ -7,6 +7,17 @@ export const unconfirmedRights = 'Autorisation de reproduction non documentée';
 // These permissions apply only to the reviewed photographs, not to their sites.
 export const portraitPermissions = [
   {
+    candidate: 'collovati',
+    file: 'collovati.jpg',
+    author: 'Photographe non indiqué',
+    license: 'Autorisation d’affichage sur Polradar',
+    licenseUrl: null,
+    sourceUrl: 'https://www.xn--lepeuplefranais2027-hyb.fr/',
+    year: null,
+    identityUrl: 'https://www.xn--lepeuplefranais2027-hyb.fr/',
+    note: 'Christian Collovati a autorisé le 20 novembre 2026 l’utilisation sur Polradar du portrait publié sur son site. Son accord porte sur cette photographie. Les droits de réutilisation par des tiers restent à préciser.',
+  },
+  {
     candidate: 'villepin',
     file: 'villepin.jpg',
     author: 'Service photographique de Matignon',
@@ -61,6 +72,7 @@ export const portraitSchema = z
       'Licence Ouverte 1.0',
       'Conditions du Parlement européen',
       'Autorisation de campagne',
+      'Autorisation d’affichage sur Polradar',
       unconfirmedRights,
     ]),
     licenseUrl: publicUrlSchema.nullable(),

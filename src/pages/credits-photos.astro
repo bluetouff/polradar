@@ -65,6 +65,7 @@ import '../styles/candidates.css';
                 {credit.year && ` · ${credit.year}`}
               </p>
               {permission && <p>{permission.note}</p>}
+              {publication?.contactNote && <p>{publication.contactNote}</p>}
               <p>
                 <a
                   href={credit.sourceUrl}
@@ -94,7 +95,7 @@ import '../styles/candidates.css';
                       {publication.label} ↗
                     </a>
                   )}
-                {permission && (
+                {permission && permission.identityUrl !== credit.sourceUrl && (
                   <a
                     href={permission.identityUrl}
                     target="_blank"
