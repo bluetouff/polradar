@@ -139,13 +139,15 @@
       "Remplacer l’objectif national de dépenses d’assurance maladie par un objectif national des besoins d’assurance maladie.",
       "Diversifier le financement hospitalier par dotations, critères de population et prix de journée.",
       "Rouvrir progressivement des urgences, maternités et EHPAD publics pour atteindre cet objectif de proximité.",
-      "Encadrer les usages médicaux et récréatifs, la production et la vente ; affecter les taxes à la prévention et à la lutte contre les addictions."
+      "Encadrer les usages médicaux et récréatifs, la production et la vente ; affecter les taxes à la prévention et à la lutte contre les addictions.",
+      "Supprimer les franchises médicales et les participations forfaitaires",
+      "Rendre le Nutri-Score obligatoire"
     ],
-    "sources": ["lfi-health"],
+    "sources": ["lfi-health", "lfi-plan-sante-detail-2027"],
     "scope": "campagne",
     "edition": "L’Avenir en commun 2027",
     "note": "",
-    "checked": "2026-11-17",
+    "checked": "2026-11-23",
     "id": "melenchon-sante",
     "history": [
       {
@@ -157,26 +159,32 @@
         "date": "2026-11-17",
         "event": "Fiche complétée",
         "summary": "Ajout de mesures distinctes et de références précises après lecture des documents."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
       }
     ]
   },
   {
     "candidate": "melenchon",
     "theme": "education",
-    "title": "Étendre la gratuité scolaire",
+    "title": "Gratuité scolaire et éducation à la nutrition",
     "bullets": [
       "Inclure cantine, fournitures, transports et périscolaire dans la gratuité.",
       "Réduire les effectifs et abroger le choc des savoirs.",
       "Prolonger l’obligation scolaire jusqu’à cet âge.",
       "Recruter et mobiliser davantage de remplaçants pour assurer les cours des enseignants absents.",
       "Organiser avec les communes un périscolaire gratuit animé par des personnels formés et titulaires.",
-      "Créer un service public contre l’illettrisme et l’illectronisme, en soutenant aussi les associations."
+      "Créer un service public contre l’illettrisme et l’illectronisme, en soutenant aussi les associations.",
+      "Enseigner la nutrition une heure par semaine de la maternelle au collège"
     ],
-    "sources": ["lfi-school"],
+    "sources": ["lfi-school", "lfi-plan-sante-detail-2027"],
     "scope": "campagne",
     "edition": "L’Avenir en commun 2027",
     "note": "",
-    "checked": "2026-11-17",
+    "checked": "2026-11-23",
     "id": "melenchon-education",
     "history": [
       {
@@ -188,6 +196,11 @@
         "date": "2026-11-17",
         "event": "Fiche complétée",
         "summary": "Ajout de mesures distinctes et de références précises après lecture des documents."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
       }
     ]
   },
@@ -225,17 +238,18 @@
   {
     "candidate": "melenchon",
     "theme": "social",
-    "title": "Une Sécurité sociale intégrale",
+    "title": "Sécurité sociale et accueil des jeunes enfants",
     "bullets": [
       "Construire une couverture de santé sans reste à charge.",
       "Garantir un revenu mensuel atteignant le seuil de pauvreté, chiffré dans le programme à 1 337 € pour une personne seule.",
-      "Instaurer une tranche gratuite de consommation d’électricité, de chaleur, d’eau et de gaz."
+      "Instaurer une tranche gratuite de consommation d’électricité, de chaleur, d’eau et de gaz.",
+      "Rendre les crèches publiques gratuites"
     ],
-    "sources": ["lfi-social"],
+    "sources": ["lfi-social", "lfi-plan-enfance-2027"],
     "scope": "campagne",
     "edition": "L’Avenir en commun 2027",
     "note": "",
-    "checked": "2026-11-17",
+    "checked": "2026-11-23",
     "id": "melenchon-social",
     "history": [
       {
@@ -247,6 +261,11 @@
         "date": "2026-11-17",
         "event": "Fiche complétée",
         "summary": "Ajout de mesures distinctes et de références précises après lecture des documents."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
       }
     ]
   },
@@ -2099,18 +2118,24 @@
     "theme": "climat",
     "title": "Mesures et orientations : Climat & énergie",
     "bullets": [
-      "Développer la production nucléaire pour l’objectif annoncé d’une énergie décarbonée en 2050."
+      "Développer la production nucléaire pour l’objectif annoncé d’une énergie décarbonée en 2050.",
+      "Nationaliser Total"
     ],
-    "sources": ["pcf-work"],
+    "sources": ["pcf-work", "roussel-pacte-2026"],
     "scope": "orientation",
     "edition": "Discours de Marseille du 23 novembre 2025, publié le 26 novembre 2025",
     "note": "",
-    "checked": "2026-11-17",
+    "checked": "2026-11-23",
     "history": [
       {
         "date": "2026-11-17",
         "event": "Fiche intégrée",
         "summary": "Propositions relevées dans les documents cités."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
       }
     ]
   },
@@ -3229,18 +3254,26 @@
     "id": "kazib-institutions",
     "candidate": "kazib",
     "theme": "institutions",
-    "title": "Abroger la loi de 2004 et la loi séparatisme",
-    "bullets": ["Abroger la loi de 2004 et la loi séparatisme."],
-    "sources": ["kazib-premieres-mesures-2027"],
+    "title": "Laïcité, Sénat et fonction présidentielle",
+    "bullets": [
+      "Abroger la loi de 2004 et la loi séparatisme.",
+      "Supprimer le Sénat et la fonction présidentielle"
+    ],
+    "sources": ["kazib-premieres-mesures-2027", "kazib-programme-campagne"],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
     "note": "",
-    "checked": "2026-11-17",
+    "checked": "2026-11-23",
     "history": [
       {
         "date": "2026-11-17",
         "event": "Fiche intégrée",
         "summary": "Propositions relevées dans les documents officiels cités."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
       }
     ]
   },
@@ -3305,18 +3338,26 @@
     "id": "kazib-social",
     "candidate": "kazib",
     "theme": "social",
-    "title": "Socialiser le travail domestique",
-    "bullets": ["Socialiser le travail domestique."],
-    "sources": ["kazib-premieres-mesures-2027"],
+    "title": "Travail domestique et revenu étudiant",
+    "bullets": [
+      "Socialiser le travail domestique.",
+      "Garantir aux étudiants un revenu au niveau du SMIC"
+    ],
+    "sources": ["kazib-premieres-mesures-2027", "kazib-programme-campagne"],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
     "note": "",
-    "checked": "2026-11-17",
+    "checked": "2026-11-23",
     "history": [
       {
         "date": "2026-11-17",
         "event": "Fiche intégrée",
         "summary": "Propositions relevées dans les documents officiels cités."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
       }
     ]
   },
@@ -4077,19 +4118,26 @@
     "bullets": [
       "Orienter les installations vers les zones sous-dotées. Dans les zones bien pourvues, les installations seraient limitées aux remplacements et départs à la retraite.",
       "Soutenir les centres publics, associatifs ou départementaux et reconnaître l’exercice médical salarié comme complément du libéral.",
-      "Fusionner la prise en charge de l’assurance maladie et des complémentaires sur un panier de soins et médicaments essentiels, avec remboursement intégral de ce panier."
+      "Fusionner la prise en charge de l’assurance maladie et des complémentaires sur un panier de soins et médicaments essentiels, avec remboursement intégral de ce panier.",
+      "Porter la prévention à 8 % des dépenses de santé",
+      "Créer une filière nationale d’urgence psychiatrique"
     ],
     "sources": ["ps-projet-2027-securites"],
     "scope": "parti",
     "partyAuthor": "Parti socialiste",
     "edition": "Projet du Parti socialiste adopté le 25 juin 2026",
     "note": "",
-    "checked": "2026-11-19",
+    "checked": "2026-11-23",
     "history": [
       {
         "date": "2026-11-19",
         "event": "Publication du dossier",
         "summary": "Premières propositions issues du document cité."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
       }
     ]
   },
@@ -4230,21 +4278,27 @@
     "id": "collovati-retraites",
     "candidate": "collovati",
     "theme": "retraites",
-    "title": "Retraite par durée de cotisation",
+    "title": "Durée de cotisation et épargne retraite",
     "bullets": [
       "Ouvrir la pension nominale après 172 trimestres cotisés. En cas de départ avant d’avoir cotisé ces trimestres, appliquer une décote qui dépend de l’âge au départ.",
-      "Exiger que le retraité réside en France pour percevoir sa pension."
+      "Exiger que le retraité réside en France pour percevoir sa pension.",
+      "Ajouter une épargne individuelle à la retraite par répartition"
     ],
     "sources": ["collovati-projet-2027"],
     "scope": "campagne",
     "edition": "Site de campagne 2027, propositions en cours de développement",
     "note": "",
-    "checked": "2026-11-19",
+    "checked": "2026-11-23",
     "history": [
       {
         "date": "2026-11-19",
         "event": "Publication du dossier",
         "summary": "Premières propositions issues du document cité."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
       }
     ]
   },
@@ -4275,20 +4329,26 @@
     "id": "collovati-climat",
     "candidate": "collovati",
     "theme": "climat",
-    "title": "Adaptation des villes aux canicules",
+    "title": "Adaptation des villes et contrôle des insecticides",
     "bullets": [
-      "Accroître la présence d’arbres, réduire les surfaces bitumées et solliciter des solutions d’adaptation auprès des architectes."
+      "Accroître la présence d’arbres, réduire les surfaces bitumées et solliciter des solutions d’adaptation auprès des architectes.",
+      "Interdire les néonicotinoïdes et contrôler les produits importés"
     ],
     "sources": ["collovati-projet-2027"],
     "scope": "campagne",
     "edition": "Site de campagne 2027, propositions en cours de développement",
     "note": "",
-    "checked": "2026-11-19",
+    "checked": "2026-11-23",
     "history": [
       {
         "date": "2026-11-19",
         "event": "Publication du dossier",
         "summary": "Premières propositions issues du document cité."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
       }
     ]
   },
@@ -4399,18 +4459,24 @@
       "Proposer un vote au démarrage et un autre sur le texte issu de la convention, en recourant à l’article 11 de la Constitution.",
       "Rendre les travaux publics et recueillir les contributions des citoyens, notamment lors de consultations et rencontres territoriales.",
       "La convention prendrait en charge le transport, l’hébergement et les repas. Des indemnités, des solutions de garde et des aménagements d’accessibilité sont prévus.",
-      "Le candidat prévoit des consultations et des rencontres territoriales. Le traitement des contributions reçues serait rendu public."
+      "Le candidat prévoit des consultations et des rencontres territoriales. Le traitement des contributions reçues serait rendu public.",
+      "Publier les contrats et les comptes de la convention constituante"
     ],
     "sources": ["mathieu-projet-2027"],
     "scope": "campagne",
     "edition": "Benoît Mathieu, programme de présidence de transition",
     "note": "",
-    "checked": "2026-11-19",
+    "checked": "2026-11-23",
     "history": [
       {
         "date": "2026-11-19",
         "event": "Publication du dossier",
         "summary": "Premières propositions issues du document cité."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
       }
     ]
   },
@@ -4652,21 +4718,27 @@
     "id": "lalanne-institutions",
     "candidate": "lalanne",
     "theme": "institutions",
-    "title": "Institution du RIC et assemblée constituante",
+    "title": "Référendum, assemblée constituante et rémunération des élus",
     "bullets": [
       "Inscrire le RIC dans la Constitution et créer une assemblée constituante.",
-      "Installer des caméras dans les réunions du Conseil des ministres pour rendre les décisions gouvernementales plus transparentes."
+      "Installer des caméras dans les réunions du Conseil des ministres pour rendre les décisions gouvernementales plus transparentes.",
+      "Aligner la rémunération des élus sur le salaire moyen"
     ],
     "sources": ["lalanne-projet-2027"],
     "scope": "campagne",
     "edition": "Le Projet 2027, site de campagne de Francis Lalanne",
     "note": "",
-    "checked": "2026-11-19",
+    "checked": "2026-11-23",
     "history": [
       {
         "date": "2026-11-19",
         "event": "Publication du dossier",
         "summary": "Premières propositions issues du document cité."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
       }
     ]
   },
@@ -4733,10 +4805,10 @@
     "id": "groupe-rn-sante",
     "candidate": "lepen",
     "theme": "sante",
-    "title": "Propositions de santé du contre-budget RN",
+    "title": "Soins dentaires, hôpitaux et personnels de santé",
     "bullets": [
       "Faciliter le maintien ou la reprise d’une activité des personnels soignants retraités pour répondre aux déserts médicaux.",
-      "Inscrire un remboursement à 100 % des soins dentaires dans le contre-budget parlementaire pour 2027.",
+      "Le groupe RN propose de rembourser la totalité du tarif qui sert de base à la Sécurité sociale. Si le prix facturé est supérieur, la différence reste en dehors du remboursement annoncé.",
       "Prévoir la délivrance à l’unité des médicaments dans les mesures de dépenses sociales."
     ],
     "sources": ["groupe-rn-contre-budget-2027"],
@@ -4744,12 +4816,17 @@
     "partyAuthor": "Groupe Rassemblement national",
     "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
     "note": "",
-    "checked": "2026-11-19",
+    "checked": "2026-11-23",
     "history": [
       {
         "date": "2026-11-19",
         "event": "Publication du dossier",
         "summary": "Premières propositions issues du document cité."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Correction",
+        "summary": "Précision sur la base de remboursement des soins dentaires."
       }
     ]
   },
@@ -4761,19 +4838,25 @@
     "bullets": [
       "Introduire un impôt sur la fortune financière en remplacement de l’impôt sur la fortune immobilière. Le contre-budget chiffre cette ligne à 5 Md€ en 2027.",
       "Inscrire cette modification du quotient familial dans les baisses de prélèvements du contre-budget 2027.",
-      "Appliquer un taux nul à une liste de cent produits de première nécessité dans le contre-budget pour 2027."
+      "Appliquer un taux nul à une liste de cent produits de première nécessité dans le contre-budget pour 2027.",
+      "Exonérer d’impôt sur le revenu les jeunes actifs jusqu’à quatre SMIC"
     ],
     "sources": ["groupe-rn-contre-budget-2027"],
     "scope": "parti",
     "partyAuthor": "Groupe Rassemblement national",
     "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
     "note": "",
-    "checked": "2026-11-19",
+    "checked": "2026-11-23",
     "history": [
       {
         "date": "2026-11-19",
         "event": "Publication du dossier",
         "summary": "Premières propositions issues du document cité."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
       }
     ]
   },
@@ -5929,21 +6012,27 @@
     "id": "legendre-education-numerique",
     "candidate": "legendre",
     "theme": "education",
-    "title": "Apprentissage des usages numériques et encadrement de l’IA",
+    "title": "Durée de scolarité et apprentissages numériques",
     "bullets": [
       "Enseigner les usages des réseaux sociaux.",
-      "Encadrer l’intelligence artificielle par la loi."
+      "Encadrer l’intelligence artificielle par la loi.",
+      "Étudier un parcours élémentaire et secondaire de douze ans"
     ],
     "sources": ["legendre-manifeste-64"],
     "scope": "orientation",
     "edition": "64 %, manifeste signé par Jean-François Legendre",
     "note": "",
-    "checked": "2026-11-20",
+    "checked": "2026-11-23",
     "history": [
       {
         "date": "2026-11-20",
         "event": "Première intégration",
         "summary": "Lecture du texte référencé dans le dossier."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
       }
     ]
   },
@@ -6113,20 +6202,27 @@
     "id": "ps-prisons-renovation-construction-dossier",
     "candidate": "glucksmann",
     "theme": "securite",
-    "title": "Rénover les prisons et construire des places supplémentaires",
+    "title": "Prisons, contrôles d’identité et contrôle des forces de sécurité",
     "bullets": [
-      "Le PS associe de nouvelles places à la rénovation du parc pénitentiaire et justifie ces travaux par les conditions de détention. Il ne fixe pas de nombre de places dans ce passage."
+      "Le PS associe de nouvelles places à la rénovation du parc pénitentiaire et justifie ces travaux par les conditions de détention. Il ne fixe pas de nombre de places dans ce passage.",
+      "Remettre un récépissé lors des contrôles d’identité",
+      "Créer une autorité de contrôle externe pour la police et la gendarmerie"
     ],
     "sources": ["ps-projet-2027-securites"],
     "scope": "parti",
     "edition": "Projet du Parti socialiste adopté en juin 2026",
     "note": "",
-    "checked": "2026-11-22",
+    "checked": "2026-11-23",
     "history": [
       {
         "date": "2026-11-22",
         "event": "Première intégration",
         "summary": "Lecture du document indiqué dans la fiche."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
       }
     ],
     "partyAuthor": "Parti socialiste"
@@ -6157,20 +6253,26 @@
     "id": "ps-statut-familles-monoparentales-dossier",
     "candidate": "glucksmann",
     "theme": "social",
-    "title": "Créer un statut de famille monoparentale",
+    "title": "Familles monoparentales et perte d’autonomie",
     "bullets": [
-      "Le statut ouvrirait des droits pour le logement, la garde, la culture et les loisirs. Le PS prévoit aussi des horaires de garde adaptés."
+      "Le statut ouvrirait des droits pour le logement, la garde, la culture et les loisirs. Le PS prévoit aussi des horaires de garde adaptés.",
+      "Réunir l’APA et les soins dans une prestation de Sécurité sociale"
     ],
-    "sources": ["ps-projet-2027-egalite"],
+    "sources": ["ps-projet-2027-egalite", "ps-projet-2027-securites"],
     "scope": "parti",
     "edition": "Projet du Parti socialiste adopté en juin 2026",
     "note": "",
-    "checked": "2026-11-22",
+    "checked": "2026-11-23",
     "history": [
       {
         "date": "2026-11-22",
         "event": "Première intégration",
         "summary": "Lecture du document indiqué dans la fiche."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
       }
     ],
     "partyAuthor": "Parti socialiste"
@@ -6319,21 +6421,31 @@
     "id": "villepin-climat",
     "candidate": "villepin",
     "theme": "climat",
-    "title": "Neutralité carbone et consommation électrique de l’IA",
+    "title": "Climat, énergie et mobilités électriques",
     "bullets": [
       "Une révision de la Charte de l’environnement fixerait aussi un objectif d’empreinte carbone de deux tonnes équivalent CO₂ par habitant.",
-      "Les fournisseurs devraient communiquer au consommateur final les coûts énergétiques liés aux unités de texte que traitent leurs modèles."
+      "Les fournisseurs devraient communiquer au consommateur final les coûts énergétiques liés aux unités de texte que traitent leurs modèles.",
+      "Proposer un million de voitures électriques en leasing social"
     ],
-    "sources": ["villepin-chapitre-1", "villepin-chapitre-4"],
+    "sources": [
+      "villepin-chapitre-1",
+      "villepin-chapitre-4",
+      "villepin-chapitre-12"
+    ],
     "scope": "campagne",
     "edition": "Réussir à nouveau · présidentielle 2027",
     "note": "",
-    "checked": "2026-11-22",
+    "checked": "2026-11-23",
     "history": [
       {
         "date": "2026-11-22",
         "event": "Intégration du programme",
         "summary": "Lecture des propositions numérotées du programme publié le 20 novembre."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
       }
     ]
   },
@@ -6390,13 +6502,14 @@
       "Chaque assureur habitation devrait couvrir les bailleurs du parc privé, quel que soit le locataire.",
       "Porter la production annuelle à 500 000 logements",
       "Créer un statut de logement social coopératif",
-      "Créer une banque publique du logement"
+      "Créer une banque publique du logement",
+      "Créer 30 000 places d’hébergement dans une stratégie de logement d’abord"
     ],
-    "sources": ["villepin-chapitre-12"],
+    "sources": ["villepin-chapitre-12", "villepin-chapitre-14"],
     "scope": "campagne",
     "edition": "Réussir à nouveau · présidentielle 2027",
     "note": "",
-    "checked": "2026-11-22",
+    "checked": "2026-11-23",
     "history": [
       {
         "date": "2026-11-22",
@@ -6407,6 +6520,11 @@
         "date": "2026-11-22",
         "event": "Lecture du chapitre sur le logement",
         "summary": "Intégration des propositions 107, 108 et 110, publiées le 20 novembre."
+      },
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
       }
     ]
   },
@@ -6428,6 +6546,479 @@
         "date": "2026-11-22",
         "event": "Discours de Toulon",
         "summary": "Proposition formulée au meeting du 21 novembre 2026."
+      }
+    ]
+  },
+  {
+    "id": "collovati-sante-2027",
+    "candidate": "collovati",
+    "theme": "sante",
+    "title": "Installation des médecins",
+    "bullets": [
+      "Attribuer les lieux d’installation des médecins selon un classement"
+    ],
+    "sources": ["collovati-projet-2027"],
+    "scope": "campagne",
+    "edition": "Projet présidentiel de Christian Collovati",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ]
+  },
+  {
+    "id": "collovati-immigration-2027",
+    "candidate": "collovati",
+    "theme": "immigration",
+    "title": "Asile et regroupement familial",
+    "bullets": [
+      "Faire déposer les demandes d’asile dans les ambassades et consulats",
+      "Supprimer le regroupement familial"
+    ],
+    "sources": ["collovati-projet-2027"],
+    "scope": "campagne",
+    "edition": "Projet présidentiel de Christian Collovati",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ]
+  },
+  {
+    "id": "kazib-logement-premieres-mesures",
+    "candidate": "kazib",
+    "theme": "logement",
+    "title": "Logements vacants et montant des loyers",
+    "bullets": [
+      "Geler et plafonner les loyers",
+      "Exproprier les logements vides"
+    ],
+    "sources": ["kazib-programme-campagne"],
+    "scope": "campagne",
+    "edition": "Premières mesures de campagne 2027",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ]
+  },
+  {
+    "id": "kazib-sante-premieres-mesures",
+    "candidate": "kazib",
+    "theme": "sante",
+    "title": "Prise en charge des soins",
+    "bullets": [
+      "Garantir l’accès gratuit à l’IVG, à la PMA et aux transitions de genre"
+    ],
+    "sources": ["kazib-programme-campagne"],
+    "scope": "campagne",
+    "edition": "Premières mesures de campagne 2027",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ]
+  },
+  {
+    "id": "kazib-climat-premieres-mesures",
+    "candidate": "kazib",
+    "theme": "climat",
+    "title": "Dépollution des sols et de l’eau",
+    "bullets": [
+      "Confier la coordination de la dépollution à des comités locaux"
+    ],
+    "sources": ["kazib-programme-campagne"],
+    "scope": "campagne",
+    "edition": "Premières mesures de campagne 2027",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ]
+  },
+  {
+    "id": "groupe-rn-immigration-budget-2027",
+    "candidate": "lepen",
+    "theme": "immigration",
+    "title": "Aide médicale et conditions d’accès aux prestations",
+    "bullets": [
+      "Remplacer l’aide médicale de l’État par une aide médicale d’urgence",
+      "Conditionner certaines prestations à cinq ans de travail en France"
+    ],
+    "sources": [
+      "groupe-rn-contre-budget-2027",
+      "an-rn-aide-medicale-amendement-2027"
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 du groupe RN à l’Assemblée nationale",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ],
+    "partyAuthor": "Groupe Rassemblement national"
+  },
+  {
+    "id": "groupe-rn-travail-budget-2027",
+    "candidate": "lepen",
+    "theme": "travail",
+    "title": "Assurance chômage et ruptures conventionnelles",
+    "bullets": [
+      "Limiter le recours à la rupture conventionnelle à une fois en dix ans"
+    ],
+    "sources": ["groupe-rn-contre-budget-2027"],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 du groupe RN à l’Assemblée nationale",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ],
+    "partyAuthor": "Groupe Rassemblement national"
+  },
+  {
+    "id": "groupe-rn-europe-budget-2027",
+    "candidate": "lepen",
+    "theme": "europe",
+    "title": "Contribution française au budget de l’Union européenne",
+    "bullets": [
+      "Reverser à la France sa part des droits de douane collectés par l’Union"
+    ],
+    "sources": ["groupe-rn-contre-budget-2027"],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 du groupe RN à l’Assemblée nationale",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ],
+    "partyAuthor": "Groupe Rassemblement national"
+  },
+  {
+    "id": "villepin-sante-territoires",
+    "candidate": "villepin",
+    "theme": "sante",
+    "title": "Soins de proximité, prévention et reste à charge",
+    "bullets": [
+      "Plafonner le reste à charge annuel selon le revenu",
+      "Augmenter de moitié les dépenses de prévention sur le quinquennat",
+      "Attribuer un référent aux patients en affection de longue durée"
+    ],
+    "sources": ["villepin-chapitre-13"],
+    "scope": "campagne",
+    "edition": "Réussir à nouveau · présidentielle 2027",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ]
+  },
+  {
+    "id": "villepin-social-territoires",
+    "candidate": "villepin",
+    "theme": "social",
+    "title": "Mobilité des ménages en milieu rural",
+    "bullets": [
+      "Distribuer une carte mobilité de 100 euros dans les petites communes"
+    ],
+    "sources": ["villepin-chapitre-12"],
+    "scope": "campagne",
+    "edition": "Réussir à nouveau · présidentielle 2027",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ]
+  },
+  {
+    "id": "legendre-immigration-manifeste",
+    "candidate": "legendre",
+    "theme": "immigration",
+    "title": "Accueil des migrants et garanties financières",
+    "bullets": [
+      "Permettre l’accueil d’un migrant avec la garantie financière d’un contribuable"
+    ],
+    "sources": ["legendre-manifeste-64"],
+    "scope": "campagne",
+    "edition": "64 %, manifeste signé par Jean-François Legendre",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ]
+  },
+  {
+    "id": "legendre-securite-manifeste",
+    "candidate": "legendre",
+    "theme": "securite",
+    "title": "Police de proximité et effectifs",
+    "bullets": [
+      "Ouvrir des commissariats dans les villes et villages qui en ont besoin"
+    ],
+    "sources": ["legendre-manifeste-64"],
+    "scope": "campagne",
+    "edition": "64 %, manifeste signé par Jean-François Legendre",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ]
+  },
+  {
+    "id": "legendre-social-manifeste",
+    "candidate": "legendre",
+    "theme": "social",
+    "title": "Indemnisation du chômage et prestations sociales",
+    "bullets": ["Diminuer les prestations de chômage"],
+    "sources": ["legendre-manifeste-64"],
+    "scope": "campagne",
+    "edition": "64 %, manifeste signé par Jean-François Legendre",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ]
+  },
+  {
+    "id": "polony-medicaments-essentiels",
+    "candidate": "polony",
+    "theme": "sante",
+    "title": "Production de médicaments essentiels",
+    "bullets": ["Produire en France les médicaments essentiels"],
+    "sources": ["polony-vision"],
+    "scope": "orientation",
+    "edition": "Déclaration de candidature · Ma vision",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ]
+  },
+  {
+    "id": "rohou-agriculture-eau-sols",
+    "candidate": "rohou",
+    "theme": "climat",
+    "title": "Contrats agricoles et protection des terres",
+    "bullets": [
+      "Contractualiser avec les agriculteurs la protection de l’eau et des sols",
+      "Renforcer la protection des terres agricoles autour des villes"
+    ],
+    "sources": ["mei-projet-2027"],
+    "scope": "parti",
+    "edition": "Projet du MEI pour 2027",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ],
+    "partyAuthor": "Mouvement écologiste indépendant"
+  },
+  {
+    "id": "patriotes-soins-proximite",
+    "candidate": "philippot",
+    "theme": "sante",
+    "title": "Soins de proximité et organisation de l’hôpital",
+    "bullets": [
+      "Équiper des centres de santé pour les urgences non vitales",
+      "Supprimer les agences régionales de santé"
+    ],
+    "sources": ["patriotes-projet-2026-2027"],
+    "scope": "parti",
+    "edition": "Projet des Patriotes 2026-2027",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ],
+    "partyAuthor": "Les Patriotes"
+  },
+  {
+    "id": "labib-retraites-indices",
+    "candidate": "labib",
+    "theme": "retraites",
+    "title": "Montant et indexation des pensions",
+    "bullets": ["Augmenter les pensions et les indexer sur les prix"],
+    "sources": ["labib-campagne-2027"],
+    "scope": "campagne",
+    "edition": "Premier tract de la campagne de Selma Labib",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ]
+  },
+  {
+    "id": "labib-social-indexation",
+    "candidate": "labib",
+    "theme": "social",
+    "title": "Indexation des allocations",
+    "bullets": ["Relever les allocations et les indexer sur les prix"],
+    "sources": ["labib-campagne-2027"],
+    "scope": "campagne",
+    "edition": "Premier tract de la campagne de Selma Labib",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ]
+  },
+  {
+    "id": "roussel-europe-palestine",
+    "candidate": "roussel",
+    "theme": "europe",
+    "title": "Israël et Palestine",
+    "bullets": [
+      "Soutenir la création d’un État palestinien aux côtés d’Israël"
+    ],
+    "sources": ["roussel-pacte-2026"],
+    "scope": "orientation",
+    "edition": "Discours de Fabien Roussel publié le 2 juin 2026",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ]
+  },
+  {
+    "id": "lalanne-justice-enregistrements",
+    "candidate": "lalanne",
+    "theme": "securite",
+    "title": "Enregistrement des audiences, des dépositions et des interventions",
+    "bullets": [
+      "Enregistrer les audiences, les dépositions et les interventions de police"
+    ],
+    "sources": ["lalanne-projet-2027"],
+    "scope": "campagne",
+    "edition": "Projet commun de Dieudonné et Francis Lalanne pour 2027",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ]
+  },
+  {
+    "id": "dlf-allocations-garde",
+    "candidate": "dupont-aignan",
+    "theme": "social",
+    "title": "Allocations familiales et garde des enfants",
+    "bullets": [
+      "Verser les allocations familiales sans condition de revenu",
+      "Créer 100 000 places de crèche en cinq ans",
+      "Créer un chèque de garde d’enfant modulé selon les revenus"
+    ],
+    "sources": ["dlf-famille-2026"],
+    "scope": "parti",
+    "edition": "Livret Famille de Debout la France, édition 2026",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      }
+    ],
+    "partyAuthor": "Debout la France"
+  },
+  {
+    "id": "melenchon-justice-enfants",
+    "candidate": "melenchon",
+    "theme": "securite",
+    "title": "Protection des enfants et justice des mineurs",
+    "bullets": [
+      "Créer une ordonnance de protection de l’enfant",
+      "Recruter 235 juges des enfants et 235 greffiers"
+    ],
+    "sources": ["lfi-plan-enfance-2027"],
+    "scope": "campagne",
+    "edition": "Plan pour les droits des enfants, présidentielle 2027",
+    "note": "",
+    "checked": "2026-11-23",
+    "history": [
+      {
+        "date": "2026-11-23",
+        "event": "Lecture du document",
+        "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
       }
     ]
   }

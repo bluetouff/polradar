@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checked": "2026-11-22",
+  "checked": "2026-11-23",
   "cities": [
     {
       "id": "paris",
@@ -197,6 +197,34 @@
       "code": "62065",
       "coordinates": [2.8243, 50.404],
       "sourceUrl": "https://geo.api.gouv.fr/communes/62065?fields=nom,code,centre"
+    },
+    {
+      "id": "charost",
+      "name": "Chârost",
+      "code": "18055",
+      "coordinates": [2.1248, 46.9949],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/18055?fields=nom,code,centre"
+    },
+    {
+      "id": "moulins",
+      "name": "Moulins",
+      "code": "03190",
+      "coordinates": [3.3255, 46.5591],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/03190?fields=nom,code,centre"
+    },
+    {
+      "id": "valence",
+      "name": "Valence",
+      "code": "26362",
+      "coordinates": [4.9164, 44.9234],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/26362?fields=nom,code,centre"
+    },
+    {
+      "id": "rouen",
+      "name": "Rouen",
+      "code": "76540",
+      "coordinates": [1.0912, 49.4412],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/76540?fields=nom,code,centre"
     }
   ],
   "events": [
@@ -752,6 +780,58 @@
       "venue": "Salle Jorion",
       "note": "Date, horaire et salle annoncés par la section de Loos du PCF.",
       "source": "pcf-loos-avion-decembre",
+      "status": "annonce"
+    },
+    {
+      "id": "lalanne-charost-1125",
+      "candidate": "lalanne",
+      "date": "2026-11-25",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": "charost",
+      "title": "Autonomie et énergie",
+      "venue": "Salle polyvalente, rue du 1er Régiment d’Infanterie",
+      "note": "Étape de la tournée commune de Dieudonné et Francis Lalanne. L’agenda indique la date et la salle. L’horaire reste à préciser.",
+      "source": "agenda-lalanne-tournee-2027",
+      "status": "annonce"
+    },
+    {
+      "id": "lalanne-moulins-1126",
+      "candidate": "lalanne",
+      "date": "2026-11-26",
+      "time": "20:00",
+      "timezone": "Europe/Paris",
+      "city": "moulins",
+      "title": "Racines françaises",
+      "venue": "Salle des fêtes René Vincent, 1 place du Maréchal de Lattre de Tassigny",
+      "note": "Étape annoncée dans la tournée commune de Dieudonné et Francis Lalanne.",
+      "source": "agenda-lalanne-tournee-2027",
+      "status": "annonce"
+    },
+    {
+      "id": "arthaud-valence-1210",
+      "candidate": "arthaud",
+      "date": "2026-12-10",
+      "time": "18:00",
+      "timezone": "Europe/Paris",
+      "city": "valence",
+      "title": "Réunion publique de Nathalie Arthaud",
+      "venue": "Maison de la vie associative, 74 route de Montélier",
+      "note": "Lutte ouvrière annonce la participation de Nathalie Arthaud.",
+      "source": "agenda-arthaud-valence",
+      "status": "annonce"
+    },
+    {
+      "id": "arthaud-rouen-0218",
+      "candidate": "arthaud",
+      "date": "2027-02-18",
+      "time": "19:00",
+      "timezone": "Europe/Paris",
+      "city": "rouen",
+      "title": "Réunion publique de Nathalie Arthaud",
+      "venue": "Halle aux Toiles, place de la Basse-Vieille-Tour",
+      "note": "Lutte ouvrière annonce ce rendez-vous avec Nathalie Arthaud.",
+      "source": "agenda-arthaud-rouen",
       "status": "annonce"
     }
   ],

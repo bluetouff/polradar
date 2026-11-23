@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checked": "2026-11-19",
+  "checked": "2026-11-23",
   "profiles": [
     {
       "candidate": "asselineau",
@@ -1069,7 +1069,8 @@
           "source": "groupe-rn-contre-budget-2027",
           "locator": "Annexe chiffrée, p. 12 du PDF, IFF en remplacement de l’IFI",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "scope": "parti"
         },
         {
           "id": "groupe-rn-100-renov-2027",
@@ -1083,7 +1084,8 @@
           "source": "groupe-rn-contre-budget-2027",
           "locator": "Annexe chiffrée, p. 12 du PDF, Remplacement de MaPrimeRenov",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "scope": "parti"
         },
         {
           "id": "groupe-rn-cumul-soignants-2027",
@@ -1097,7 +1099,48 @@
           "source": "groupe-rn-contre-budget-2027",
           "locator": "Annexe chiffrée, p. 12 du PDF, Favoriser le cumul-emploi retraite du personnel soignant",
           "allocationUnit": null,
-          "allocation": []
+          "allocation": [],
+          "scope": "parti"
+        },
+        {
+          "id": "groupe-rn-contributions-ue-2027",
+          "label": "Effet budgétaire annoncé de deux mesures sur l’Union européenne",
+          "euros": 11097000000,
+          "scope": "parti",
+          "kind": "trajectoire",
+          "period": "horizon",
+          "horizon": "Exercice 2027, estimation du groupe RN à l’Assemblée nationale",
+          "approximate": false,
+          "funding": null,
+          "source": "groupe-rn-contre-budget-2027",
+          "locator": "Annexe, p. 11, rubrique sur les contributions de la France à l’Union européenne.",
+          "allocationUnit": "euros",
+          "allocation": [
+            {
+              "label": "Baisse de la contribution française",
+              "value": 8897000000
+            },
+            {
+              "label": "Reversement des droits de douane",
+              "value": 2200000000
+            }
+          ]
+        },
+        {
+          "id": "groupe-rn-ame-amu-2027",
+          "label": "Économie attendue du remplacement de l’aide médicale de l’État",
+          "euros": 1100000000,
+          "scope": "parti",
+          "kind": "economie",
+          "period": "horizon",
+          "horizon": "Exercice 2027, estimation du groupe RN à l’Assemblée nationale",
+          "approximate": false,
+          "funding": null,
+          "source": "groupe-rn-contre-budget-2027",
+          "locator": "Annexe, p. 11, ligne sur le remplacement de l’AME. Amendement II-CF681, p. 2.",
+          "allocationUnit": null,
+          "allocation": [],
+          "additionalSources": ["an-rn-aide-medicale-amendement-2027"]
         }
       ]
     },

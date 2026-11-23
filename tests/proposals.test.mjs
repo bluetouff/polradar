@@ -36,7 +36,7 @@ test('les documents officiels datés et les relations financières sont qualifi�
     new Set(evolution.tracks.flatMap((t) => t.stateIds)).size,
     evolution.states.length,
   );
-  assert.equal(financing.maps.length, 20);
+  assert.equal(financing.maps.length, 21);
   const plan = budgets.profiles
     .find((p) => p.candidate === 'dupont-aignan')
     .entries.find((e) => e.id === 'nda-plan-2031-2032');
@@ -52,6 +52,19 @@ test('les documents officiels datés et les relations financières sont qualifi�
     'composition',
   );
   const lepen = budgets.profiles.find(({ candidate }) => candidate === 'lepen');
+  const eu = lepen.entries.find(
+    ({ id }) => id === 'groupe-rn-contributions-ue-2027',
+  );
+  assert.equal(eu.scope, 'parti');
+  assert.equal(eu.euros, 11_097_000_000);
+  assert.deepEqual(
+    eu.allocation.map(({ value }) => value),
+    [8_897_000_000, 2_200_000_000],
+  );
+  assert.equal(
+    financing.maps.find((map) => map.budgetEntry === eu.id).relation,
+    'composition',
+  );
   assert.equal(
     lepen.entries.find(({ id }) => id === 'lepen-retraites-cout-brut').euros,
     18.6e9,

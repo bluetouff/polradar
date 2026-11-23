@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checked": "2026-11-19",
+  "checked": "2026-11-23",
   "maps": [
     {
       "id": "lisnard-affectations",
@@ -211,6 +211,16 @@
       "relation": "composition",
       "title": "Composition du plan de redressement en 2031-2032",
       "note": "Le candidat compte sur 100 milliards d’euros de dépenses en moins et 40 milliards de recettes supplémentaires pour cet exercice. Il chiffre séparément les effets de croissance.",
+      "origin": null,
+      "assumptions": []
+    },
+    {
+      "id": "groupe-rn-budget-ue",
+      "candidate": "lepen",
+      "budgetEntry": "groupe-rn-contributions-ue-2027",
+      "relation": "composition",
+      "title": "Contribution française et droits de douane",
+      "note": "Le groupe RN additionne une baisse de la contribution française et un reversement de droits de douane à la France. Le sous-total du tableau correspond à ces deux montants pour 2027.",
       "origin": null,
       "assumptions": []
     }

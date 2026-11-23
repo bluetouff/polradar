@@ -14377,9 +14377,9 @@
     "parentId": "groupe-rn-sante",
     "candidate": "lepen",
     "theme": "sante",
-    "revision": 1,
-    "title": "Rembourser intégralement les soins dentaires",
-    "description": "Inscrire un remboursement à 100 % des soins dentaires dans le contre-budget parlementaire pour 2027.",
+    "revision": 2,
+    "title": "Rembourser les soins dentaires à 100 % du tarif de la Sécurité sociale",
+    "description": "Le groupe RN propose de rembourser la totalité du tarif qui sert de base à la Sécurité sociale. Si le prix facturé est supérieur, la différence reste en dehors du remboursement annoncé.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -14388,13 +14388,13 @@
     "sourceRefs": [
       {
         "sourceId": "groupe-rn-contre-budget-2027",
-        "locator": "P. 6 du PDF, Augmentation des dépenses"
+        "locator": "Annexe, p. 11, tableau des dépenses, ligne sur la base de remboursement des soins dentaires."
       }
     ],
     "scope": "parti",
     "partyAuthor": "Groupe Rassemblement national",
     "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
-    "checked": "2026-11-19"
+    "checked": "2026-11-23"
   },
   {
     "id": "groupe-rn-sante-medicaments-unite",
@@ -20319,6 +20319,1333 @@
     ],
     "scope": "parti",
     "edition": "Propositions du PCF sur la sécurité numérique",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "collovati-installation-classement",
+    "parentId": "collovati-sante-2027",
+    "candidate": "collovati",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Attribuer les lieux d’installation des médecins selon un classement",
+    "description": "Christian Collovati veut que les médecins diplômés choisissent parmi les postes disponibles en fonction de leur classement. Il propose de leur faire rembourser leurs études s’ils refusent ce dispositif.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "collovati-projet-2027",
+        "locator": "Enseignement, paragraphe sur le classement des médecins diplômés et les déserts médicaux."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Projet présidentiel de Christian Collovati",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "collovati-asile-consulats",
+    "parentId": "collovati-immigration-2027",
+    "candidate": "collovati",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Faire déposer les demandes d’asile dans les ambassades et consulats",
+    "description": "Le candidat propose que les demandes soient déposées depuis les pays d’origine. Le ministère français des Affaires étrangères déciderait de leur acceptation selon les accords conclus.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "collovati-projet-2027",
+        "locator": "Immigration, paragraphe sur le dépôt et l’examen des demandes d’asile."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Projet présidentiel de Christian Collovati",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "collovati-fin-regroupement-familial",
+    "parentId": "collovati-immigration-2027",
+    "candidate": "collovati",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Supprimer le regroupement familial",
+    "description": "Christian Collovati inscrit la fin du regroupement familial dans son projet sur l’immigration.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "collovati-projet-2027",
+        "locator": "Immigration, point suivant le traitement des demandes d’asile."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Projet présidentiel de Christian Collovati",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "collovati-capitalisation-complement",
+    "parentId": "collovati-retraites",
+    "candidate": "collovati",
+    "theme": "retraites",
+    "revision": 1,
+    "title": "Ajouter une épargne individuelle à la retraite par répartition",
+    "description": "Le candidat demande à chaque salarié de constituer un patrimoine qui compléterait la pension versée par le régime par répartition.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "collovati-projet-2027",
+        "locator": "Retraites, point sur la constitution d’un patrimoine par le salarié."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Projet présidentiel de Christian Collovati",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "collovati-neonicotinoides-importations",
+    "parentId": "collovati-climat",
+    "candidate": "collovati",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Interdire les néonicotinoïdes et contrôler les produits importés",
+    "description": "Christian Collovati veut mettre fin à l’emploi de ces insecticides en France et contrôler les produits entrant sur le territoire au regard de cette interdiction.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "collovati-projet-2027",
+        "locator": "Propositions, point sur les insecticides néonicotinoïdes et les produits importés."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Projet présidentiel de Christian Collovati",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "kazib-geler-plafonner-loyers",
+    "parentId": "kazib-logement-premieres-mesures",
+    "candidate": "kazib",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Geler et plafonner les loyers",
+    "description": "La campagne d’Anasse Kazib propose de plafonner les loyers et d’en geler le montant. Elle ne donne pas de barème dans ses premières mesures.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "kazib-programme-campagne",
+        "locator": "Premières mesures 2027, axe 1, point sur les logements vides et les loyers."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Premières mesures de campagne 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "kazib-exproprier-logements-vides",
+    "parentId": "kazib-logement-premieres-mesures",
+    "candidate": "kazib",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Exproprier les logements vides",
+    "description": "Anasse Kazib propose l’expropriation des logements vacants. Le premier document de campagne ne fixe pas de durée minimale de vacance.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "kazib-programme-campagne",
+        "locator": "Premières mesures 2027, axe 1, dernier point."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Premières mesures de campagne 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "kazib-revenu-etudiant-smic",
+    "parentId": "kazib-social",
+    "candidate": "kazib",
+    "theme": "social",
+    "revision": 1,
+    "title": "Garantir aux étudiants un revenu au niveau du SMIC",
+    "description": "La campagne propose un revenu étudiant aligné sur le salaire minimum et en confie le financement aux employeurs.",
+    "beneficiaries": "Étudiants.",
+    "timing": null,
+    "financing": "Financement par les employeurs selon la campagne.",
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "kazib-programme-campagne",
+        "locator": "Premières mesures 2027, axe 1, revenu étudiant."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Premières mesures de campagne 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "kazib-ivg-pma-transitions",
+    "parentId": "kazib-sante-premieres-mesures",
+    "candidate": "kazib",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Garantir l’accès gratuit à l’IVG, à la PMA et aux transitions de genre",
+    "description": "Anasse Kazib inscrit la gratuité et la liberté d’accès à ces trois parcours dans les premières mesures de sa campagne.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "kazib-programme-campagne",
+        "locator": "Premières mesures 2027, axe 3, paragraphe sur les droits reproductifs et les transitions."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Premières mesures de campagne 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "kazib-comites-depollution",
+    "parentId": "kazib-climat-premieres-mesures",
+    "candidate": "kazib",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Confier la coordination de la dépollution à des comités locaux",
+    "description": "Salariés, scientifiques et riverains formeraient des comités pour coordonner la dépollution des sols et de l’eau.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "kazib-programme-campagne",
+        "locator": "Premières mesures 2027, axe 6, avant-dernier point."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Premières mesures de campagne 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "kazib-supprimer-senat-presidence",
+    "parentId": "kazib-institutions",
+    "candidate": "kazib",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Supprimer le Sénat et la fonction présidentielle",
+    "description": "La campagne propose de mettre fin à la Ve République, au Sénat et à la fonction de président de la République.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "kazib-programme-campagne",
+        "locator": "Premières mesures 2027, axe 4, dernier point."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Premières mesures de campagne 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "groupe-rn-ame-aide-urgence",
+    "parentId": "groupe-rn-immigration-budget-2027",
+    "candidate": "lepen",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Remplacer l’aide médicale de l’État par une aide médicale d’urgence",
+    "description": "Le groupe RN veut recentrer la prise en charge sur les soins vitaux, la détresse immédiate, la maternité et la prévention des maladies contagieuses. Les députés estiment l’économie à 1,1 milliard d’euros pour 2027.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "groupe-rn-contre-budget-2027",
+        "locator": "Annexe, p. 11, ligne AME et AMU du tableau des économies."
+      },
+      {
+        "sourceId": "an-rn-aide-medicale-amendement-2027",
+        "locator": "Exposé sommaire de l’amendement II-CF681, p. 2. La première page signale son rejet en commission des finances."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 du groupe RN à l’Assemblée nationale",
+    "checked": "2026-11-23",
+    "partyAuthor": "Groupe Rassemblement national"
+  },
+  {
+    "id": "groupe-rn-prestations-cinq-ans-travail",
+    "parentId": "groupe-rn-immigration-budget-2027",
+    "candidate": "lepen",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Conditionner certaines prestations à cinq ans de travail en France",
+    "description": "Le groupe RN veut réserver les prestations de solidarité aux étrangers justifiant de cinq années travaillées en France en équivalent temps plein.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "duree-travail-etp",
+        "label": "Travail exigé en équivalent temps plein",
+        "value": 5,
+        "unit": "ans",
+        "sourceId": "groupe-rn-contre-budget-2027"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "groupe-rn-contre-budget-2027",
+        "locator": "Annexe, p. 11, rubrique Immigration, première ligne."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 du groupe RN à l’Assemblée nationale",
+    "checked": "2026-11-23",
+    "partyAuthor": "Groupe Rassemblement national"
+  },
+  {
+    "id": "groupe-rn-rupture-conventionnelle-dix-ans",
+    "parentId": "groupe-rn-travail-budget-2027",
+    "candidate": "lepen",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Limiter le recours à la rupture conventionnelle à une fois en dix ans",
+    "description": "Le contre-budget du groupe RN propose un intervalle de dix ans entre deux ruptures conventionnelles.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "delai-rupture",
+        "label": "Intervalle proposé",
+        "value": 10,
+        "unit": "ans",
+        "sourceId": "groupe-rn-contre-budget-2027"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "groupe-rn-contre-budget-2027",
+        "locator": "Annexe, p. 11, ligne sur la fréquence des ruptures conventionnelles."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 du groupe RN à l’Assemblée nationale",
+    "checked": "2026-11-23",
+    "partyAuthor": "Groupe Rassemblement national"
+  },
+  {
+    "id": "groupe-rn-droits-douane-ue",
+    "parentId": "groupe-rn-europe-budget-2027",
+    "candidate": "lepen",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Reverser à la France sa part des droits de douane collectés par l’Union",
+    "description": "Le groupe RN inscrit le reversement des droits de douane dans son contre-budget pour 2027 et distingue cette recette de la baisse de la contribution française au budget européen.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "groupe-rn-contre-budget-2027",
+        "locator": "Annexe, p. 11, deux lignes sur les contributions et droits de douane européens."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 du groupe RN à l’Assemblée nationale",
+    "checked": "2026-11-23",
+    "partyAuthor": "Groupe Rassemblement national"
+  },
+  {
+    "id": "groupe-rn-ir-jeunes-actifs",
+    "parentId": "groupe-rn-fiscalite",
+    "candidate": "lepen",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Exonérer d’impôt sur le revenu les jeunes actifs jusqu’à quatre SMIC",
+    "description": "Le groupe RN propose une exonération d’impôt sur le revenu pour les actifs jusqu’à 30 ans, avec un plafond de revenu de quatre SMIC.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "age-exoneration-ir",
+        "label": "Limite d’âge annoncée",
+        "value": 30,
+        "unit": "ans",
+        "sourceId": "groupe-rn-contre-budget-2027"
+      },
+      {
+        "key": "plafond-ir-jeunes",
+        "label": "Plafond de revenu annoncé",
+        "value": 4,
+        "unit": "SMIC",
+        "sourceId": "groupe-rn-contre-budget-2027"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "groupe-rn-contre-budget-2027",
+        "locator": "Annexe, p. 11, ligne sur l’IR des jeunes actifs."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 du groupe RN à l’Assemblée nationale",
+    "checked": "2026-11-23",
+    "partyAuthor": "Groupe Rassemblement national"
+  },
+  {
+    "id": "ps-part-prevention-depenses-sante",
+    "parentId": "ps-sante",
+    "candidate": "glucksmann",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Porter la prévention à 8 % des dépenses de santé",
+    "description": "Le Parti socialiste veut faire passer de 4 % à 8 % la part du budget de santé consacrée à la prévention. Il cite le dépistage des cancers, la prévention cardiovasculaire et la vaccination.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "objectif-part-prevention",
+        "label": "Part des dépenses de santé visée",
+        "value": 8,
+        "unit": "%",
+        "sourceId": "ps-projet-2027-securites"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "ps-projet-2027-securites",
+        "locator": "Chapitre 6, « Faire de la prévention une priorité de notre politique de santé »."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Projet du Parti socialiste pour 2027",
+    "checked": "2026-11-23",
+    "partyAuthor": "Parti socialiste"
+  },
+  {
+    "id": "ps-urgences-psychiatriques",
+    "parentId": "ps-sante",
+    "candidate": "glucksmann",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Créer une filière nationale d’urgence psychiatrique",
+    "description": "Le PS veut intégrer les urgences psychiatriques à la régulation médicale, sur le modèle du SAMU.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "ps-projet-2027-securites",
+        "locator": "Chapitre 6, plan de santé mentale, paragraphe sur les soins psychologiques et psychiatriques."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Projet du Parti socialiste pour 2027",
+    "checked": "2026-11-23",
+    "partyAuthor": "Parti socialiste"
+  },
+  {
+    "id": "ps-autonomie-fusion-apa-soins",
+    "parentId": "ps-statut-familles-monoparentales-dossier",
+    "candidate": "glucksmann",
+    "theme": "social",
+    "revision": 1,
+    "title": "Réunir l’APA et les soins dans une prestation de Sécurité sociale",
+    "description": "Pour accompagner le grand âge, le Parti socialiste veut regrouper l’allocation personnalisée d’autonomie et les soins. Le volet dépendance serait ouvert sans condition d’âge ni de ressources.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "ps-projet-2027-securites",
+        "locator": "Être en sécurité(s), section sur le grand âge, service public universel de l’autonomie."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Projet du Parti socialiste pour 2027",
+    "checked": "2026-11-23",
+    "partyAuthor": "Parti socialiste"
+  },
+  {
+    "id": "ps-recepisse-controle-identite",
+    "parentId": "ps-prisons-renovation-construction-dossier",
+    "candidate": "glucksmann",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Remettre un récépissé lors des contrôles d’identité",
+    "description": "Le PS veut que chaque contrôle d’identité donne lieu à un récépissé. Il inscrit cette mesure dans son volet sur la lutte contre les discriminations.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "ps-projet-2027-securites",
+        "locator": "Section sur les forces de sécurité, passage « Instaurer un récépissé de contrôle d’identité »."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Projet du Parti socialiste pour 2027",
+    "checked": "2026-11-23",
+    "partyAuthor": "Parti socialiste"
+  },
+  {
+    "id": "ps-autorite-externe-police",
+    "parentId": "ps-prisons-renovation-construction-dossier",
+    "candidate": "glucksmann",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Créer une autorité de contrôle externe pour la police et la gendarmerie",
+    "description": "L’autorité proposée examinerait l’action des forces de sécurité intérieure. L’IGPN et l’IGGN conserveraient leurs missions d’inspection interne.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "ps-projet-2027-securites",
+        "locator": "Section sur les forces de sécurité, paragraphe sur l’autorité externe, l’IGPN et l’IGGN."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Projet du Parti socialiste pour 2027",
+    "checked": "2026-11-23",
+    "partyAuthor": "Parti socialiste"
+  },
+  {
+    "id": "villepin-reste-charge-selon-revenu",
+    "parentId": "villepin-sante-territoires",
+    "candidate": "villepin",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Plafonner le reste à charge annuel selon le revenu",
+    "description": "Dominique de Villepin veut limiter ce que les assurés paient chaque année après remboursement. Sa proposition lie le plafond au revenu sans en publier le barème.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "villepin-chapitre-13",
+        "locator": "Chapitre 13, proposition 126."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Réussir à nouveau · présidentielle 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "villepin-prevention-depenses",
+    "parentId": "villepin-sante-territoires",
+    "candidate": "villepin",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Augmenter de moitié les dépenses de prévention sur le quinquennat",
+    "description": "Dominique de Villepin propose de financer davantage la prévention et d’organiser des rendez-vous selon l’âge et la situation des patients. Il chiffre la hausse en proportion du montant dépensé.",
+    "beneficiaries": null,
+    "timing": "Sur le quinquennat.",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "hausse-depenses-prevention",
+        "label": "Hausse des dépenses de prévention",
+        "value": 50,
+        "unit": "%",
+        "sourceId": "villepin-chapitre-13"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "villepin-chapitre-13",
+        "locator": "Chapitre 13, proposition 124."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Réussir à nouveau · présidentielle 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "villepin-referent-ald",
+    "parentId": "villepin-sante-territoires",
+    "candidate": "villepin",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Attribuer un référent aux patients en affection de longue durée",
+    "description": "Le référent prévu par Dominique de Villepin assurerait l’accompagnement social des personnes en affection de longue durée. Le projet prévoit aussi de coordonner les soins des principales maladies chroniques.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "villepin-chapitre-13",
+        "locator": "Chapitre 13, proposition 123."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Réussir à nouveau · présidentielle 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "villepin-hebergement-logement-dabord",
+    "parentId": "villepin-logement",
+    "candidate": "villepin",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Créer 30 000 places d’hébergement dans une stratégie de logement d’abord",
+    "description": "Le programme de Dominique de Villepin fixe un objectif en places d’hébergement. Cette capacité se distingue de son objectif annuel de construction de logements.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "places-hebergement",
+        "label": "Places d’hébergement proposées",
+        "value": 30000,
+        "unit": "places",
+        "sourceId": "villepin-chapitre-14"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "villepin-chapitre-14",
+        "locator": "Chapitre 14, proposition 133."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Réussir à nouveau · présidentielle 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "villepin-leasing-social-electrique",
+    "parentId": "villepin-climat",
+    "candidate": "villepin",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Proposer un million de voitures électriques en leasing social",
+    "description": "Le programme vise des voitures compactes et prévoit une tranche de revenus supplémentaire pour ouvrir le dispositif aux ménages intermédiaires.",
+    "beneficiaries": null,
+    "timing": "Sur les cinq ans du mandat.",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "voitures-leasing",
+        "label": "Voitures proposées sur le mandat",
+        "value": 1000000,
+        "unit": "voitures",
+        "sourceId": "villepin-chapitre-12"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "villepin-chapitre-12",
+        "locator": "Chapitre 12, proposition 114."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Réussir à nouveau · présidentielle 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "villepin-carte-mobilite-rurale",
+    "parentId": "villepin-social-territoires",
+    "candidate": "villepin",
+    "theme": "social",
+    "revision": 1,
+    "title": "Distribuer une carte mobilité de 100 euros dans les petites communes",
+    "description": "Les maires des communes de moins de 3 500 habitants attribueraient la carte selon les ressources et les besoins. Le programme prévoit un partenariat avec les stations-service locales.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "valeur-carte-mobilite",
+        "label": "Valeur d’une carte",
+        "value": 100,
+        "unit": "€",
+        "sourceId": "villepin-chapitre-12"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "villepin-chapitre-12",
+        "locator": "Chapitre 12, proposition 112."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Réussir à nouveau · présidentielle 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "legendre-garant-accueil-migrants",
+    "parentId": "legendre-immigration-manifeste",
+    "candidate": "legendre",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Permettre l’accueil d’un migrant avec la garantie financière d’un contribuable",
+    "description": "Dans son manifeste, Jean-François Legendre propose qu’un contribuable français puisse se porter garant du logement, de la nourriture et de l’intégration d’une personne qui souhaite s’installer en France.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "legendre-manifeste-64",
+        "locator": "Manifeste 64 %, passage sur les migrations, juste avant « Le rôle de la France dans le monde »."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "64 %, manifeste signé par Jean-François Legendre",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "legendre-commissariats-villes-villages",
+    "parentId": "legendre-securite-manifeste",
+    "candidate": "legendre",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Ouvrir des commissariats dans les villes et villages qui en ont besoin",
+    "description": "Le manifeste prévoit l’ouverture de commissariats là où des besoins sont identifiés. Il ne fixe pas de nombre d’implantations.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "legendre-manifeste-64",
+        "locator": "Manifeste 64 %, sécurité, paragraphe sur l’ouverture de commissariats."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "64 %, manifeste signé par Jean-François Legendre",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "legendre-reduction-duree-scolarite",
+    "parentId": "legendre-education-numerique",
+    "candidate": "legendre",
+    "theme": "education",
+    "revision": 1,
+    "title": "Étudier un parcours élémentaire et secondaire de douze ans",
+    "description": "Jean-François Legendre présente cette durée comme une piste à discuter avec les enseignants. Le manifeste envisage aussi davantage de stages en entreprise et à l’étranger.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "duree-cursus-envisage",
+        "label": "Durée envisagée pour l’élémentaire et le secondaire",
+        "value": 12,
+        "unit": "ans",
+        "sourceId": "legendre-manifeste-64"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "legendre-manifeste-64",
+        "locator": "Manifeste 64 %, éducation, première piste de changement du cursus."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "64 %, manifeste signé par Jean-François Legendre",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "legendre-baisse-prestations-chomage",
+    "parentId": "legendre-social-manifeste",
+    "candidate": "legendre",
+    "theme": "social",
+    "revision": 1,
+    "title": "Diminuer les prestations de chômage",
+    "description": "Le manifeste propose de diminuer l’indemnisation du chômage pour contribuer à l’équilibre du budget. Il ne donne ni taux de baisse ni durée d’indemnisation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "legendre-manifeste-64",
+        "locator": "Manifeste 64 %, passage sur l’équilibre du budget et les réductions de versements de l’État."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "64 %, manifeste signé par Jean-François Legendre",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "mathieu-convention-comptes",
+    "parentId": "mathieu-institutions",
+    "candidate": "mathieu",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Publier les contrats et les comptes de la convention constituante",
+    "description": "Benoît Mathieu prévoit un budget détaillé, des rapports réguliers et une évaluation indépendante. Les publications couvriraient aussi les indemnités et les coûts électoraux.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mathieu-projet-2027",
+        "locator": "Programme, section « Un programme financé et contrôlé »."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Cap 500 signatures · programme présidentiel 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "polony-produire-medicaments-essentiels",
+    "parentId": "polony-medicaments-essentiels",
+    "candidate": "polony",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Produire en France les médicaments essentiels",
+    "description": "Natacha Polony cite les médicaments essentiels parmi les productions dont la France doit retrouver la maîtrise. Elle ne désigne pas de molécules ni de sites de production.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "polony-vision",
+        "locator": "Ma vision, passage sur l’indépendance matérielle et les investissements de l’État."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Déclaration de candidature · Ma vision",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "mei-contrats-eau-sols-agriculteurs",
+    "parentId": "rohou-agriculture-eau-sols",
+    "candidate": "rohou",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Contractualiser avec les agriculteurs la protection de l’eau et des sols",
+    "description": "Le MEI propose des contrats entre agriculteurs, État et collectivités. Ils porteraient aussi sur la biodiversité et les paysages.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mei-projet-2027",
+        "locator": "Axe 03, Agriculture et alimentation, paragraphe sur les contrats environnementaux."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Projet du MEI pour 2027",
+    "checked": "2026-11-23",
+    "partyAuthor": "Mouvement écologiste indépendant"
+  },
+  {
+    "id": "mei-terres-fertiles-periurbaines",
+    "parentId": "rohou-agriculture-eau-sols",
+    "candidate": "rohou",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Renforcer la protection des terres agricoles autour des villes",
+    "description": "Le MEI veut protéger les terres fertiles de l’urbanisation et du développement des infrastructures, en donnant la priorité aux parcelles les plus précieuses aux abords des villes.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mei-projet-2027",
+        "locator": "Axe 03, Agriculture et alimentation, « Protéger durablement les terres agricoles »."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Projet du MEI pour 2027",
+    "checked": "2026-11-23",
+    "partyAuthor": "Mouvement écologiste indépendant"
+  },
+  {
+    "id": "patriotes-centres-soins-non-vitaux",
+    "parentId": "patriotes-soins-proximite",
+    "candidate": "philippot",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Équiper des centres de santé pour les urgences non vitales",
+    "description": "Les Patriotes proposent de confier les soins courants et les urgences non vitales à des centres locaux équipés. L’hôpital serait recentré sur les pathologies lourdes et les actes complexes.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "patriotes-projet-2026-2027",
+        "locator": "Projet pour la France, PDF p. 5, mesures sur les centres de proximité et la réorganisation de l’hôpital."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Projet des Patriotes 2026-2027",
+    "checked": "2026-11-23",
+    "partyAuthor": "Les Patriotes"
+  },
+  {
+    "id": "patriotes-supprimer-ars",
+    "parentId": "patriotes-soins-proximite",
+    "candidate": "philippot",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Supprimer les agences régionales de santé",
+    "description": "Le projet des Patriotes demande la suppression des ARS et prévoit de donner davantage d’autonomie aux soignants dans la gestion hospitalière.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "patriotes-projet-2026-2027",
+        "locator": "Projet pour la France, PDF p. 5, paragraphe sur l’administration hospitalière."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Projet des Patriotes 2026-2027",
+    "checked": "2026-11-23",
+    "partyAuthor": "Les Patriotes"
+  },
+  {
+    "id": "labib-indexer-pensions",
+    "parentId": "labib-retraites-indices",
+    "candidate": "labib",
+    "theme": "retraites",
+    "revision": 1,
+    "title": "Augmenter les pensions et les indexer sur les prix",
+    "description": "Le tract de campagne de Selma Labib inclut les pensions, aux côtés des salaires et des allocations, dans sa demande de hausse générale et d’indexation sur les prix. Il ne fixe pas de montant de pension.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "labib-campagne-2027",
+        "locator": "Tract de campagne, PDF p. 2, passage sur l’indexation des salaires, pensions et allocations."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Premier tract de la campagne de Selma Labib",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "labib-indexer-allocations",
+    "parentId": "labib-social-indexation",
+    "candidate": "labib",
+    "theme": "social",
+    "revision": 1,
+    "title": "Relever les allocations et les indexer sur les prix",
+    "description": "La campagne du NPA-Révolutionnaires demande que les allocations suivent l’évolution des prix après une revalorisation générale. Le tract ne précise pas un barème par prestation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "labib-campagne-2027",
+        "locator": "Tract de campagne, PDF p. 2, paragraphe sur les pensions et allocations."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Premier tract de la campagne de Selma Labib",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "roussel-nationalisation-total",
+    "parentId": "roussel-climat",
+    "candidate": "roussel",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Nationaliser Total",
+    "description": "Dans son discours en Haute-Garonne, Fabien Roussel demande la nationalisation de Total. Il relie la propriété publique du groupe à la maîtrise du prix des carburants.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "roussel-pacte-2026",
+        "locator": "Discours à la Fête de l’Huma 31, passage sur EDF, GDF et Total."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Discours de Fabien Roussel publié le 2 juin 2026",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "roussel-deux-etats-israel-palestine",
+    "parentId": "roussel-europe-palestine",
+    "candidate": "roussel",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Soutenir la création d’un État palestinien aux côtés d’Israël",
+    "description": "Fabien Roussel défend une solution à deux États et évoque la campagne conduite avec l’Organisation de libération de la Palestine.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "roussel-pacte-2026",
+        "locator": "Discours à la Fête de l’Huma 31, passage sur l’OLP et la coexistence de deux États."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Discours de Fabien Roussel publié le 2 juin 2026",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "melenchon-supprimer-franchises-medicales",
+    "parentId": "melenchon-sante",
+    "candidate": "melenchon",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Supprimer les franchises médicales et les participations forfaitaires",
+    "description": "Le plan santé prévoit de supprimer ces deux sommes qui restent à la charge des patients. Cette mesure figure parmi les premières décisions proposées sur le financement des soins.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-plan-sante-detail-2027",
+        "locator": "Plan thématique santé, § 3.1.1, obstacles financiers aux soins."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan thématique santé · présidentielle 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "melenchon-nutriscore-obligatoire",
+    "parentId": "melenchon-sante",
+    "candidate": "melenchon",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Rendre le Nutri-Score obligatoire",
+    "description": "Le plan santé propose de rendre obligatoire cet étiquetage nutritionnel. Il l’inscrit dans la prévention des maladies liées à l’alimentation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-plan-sante-detail-2027",
+        "locator": "Plan thématique santé, partie sur l’alimentation et la prévention des maladies écologiques."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan thématique santé · présidentielle 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "melenchon-heure-education-nutrition",
+    "parentId": "melenchon-education",
+    "candidate": "melenchon",
+    "theme": "education",
+    "revision": 1,
+    "title": "Enseigner la nutrition une heure par semaine de la maternelle au collège",
+    "description": "Le programme fixe une durée hebdomadaire pour l’éducation à la nutrition et précise les niveaux scolaires concernés.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "horaire-hebdomadaire-nutrition",
+        "label": "Enseignement prévu par semaine",
+        "value": 1,
+        "unit": "heure",
+        "sourceId": "lfi-plan-sante-detail-2027"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-plan-sante-detail-2027",
+        "locator": "Plan thématique santé, mesures portant sur l’alimentation et l’éducation."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan thématique santé · présidentielle 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "lalanne-enregistrement-audiences",
+    "parentId": "lalanne-justice-enregistrements",
+    "candidate": "lalanne",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Enregistrer les audiences, les dépositions et les interventions de police",
+    "description": "Le projet commun de Dieudonné et Francis Lalanne prévoit des caméras dans les salles d’audience, dans les bureaux de déposition et sur les policiers en intervention. Les enregistrements seraient consultables par huissier.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lalanne-projet-2027",
+        "locator": "Projet 2027, axe 7, Sécurité, point sur les caméras."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Projet commun de Dieudonné et Francis Lalanne pour 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "lalanne-remuneration-elus-salaire-moyen",
+    "parentId": "lalanne-institutions",
+    "candidate": "lalanne",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Aligner la rémunération des élus sur le salaire moyen",
+    "description": "Le projet commun de Francis Lalanne et Dieudonné prend le salaire moyen des Français comme référence pour la rémunération de tous les élus.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lalanne-projet-2027",
+        "locator": "Projet 2027, axe 6, point sur la rémunération des élus et des hauts fonctionnaires."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Projet commun de Dieudonné et Francis Lalanne pour 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "dlf-allocations-universelles",
+    "parentId": "dlf-allocations-garde",
+    "candidate": "dupont-aignan",
+    "theme": "social",
+    "revision": 1,
+    "title": "Verser les allocations familiales sans condition de revenu",
+    "description": "Debout la France propose de rétablir un versement universel, de revaloriser les allocations familiales et de les indexer automatiquement sur l’inflation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "dlf-famille-2026",
+        "locator": "Livret Famille, p. 3, propositions sur l’universalité et l’indexation des allocations."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Livret Famille de Debout la France, édition 2026",
+    "checked": "2026-11-23",
+    "partyAuthor": "Debout la France"
+  },
+  {
+    "id": "dlf-places-creches-cinq-ans",
+    "parentId": "dlf-allocations-garde",
+    "candidate": "dupont-aignan",
+    "theme": "social",
+    "revision": 1,
+    "title": "Créer 100 000 places de crèche en cinq ans",
+    "description": "Le parti propose que l’État soutienne les communes et les entreprises pour ouvrir ces places.",
+    "beneficiaries": null,
+    "timing": "Sur cinq ans.",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "places-creche-cinq-ans",
+        "label": "Places supplémentaires sur cinq ans",
+        "value": 100000,
+        "unit": "places",
+        "sourceId": "dlf-famille-2026"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "dlf-famille-2026",
+        "locator": "Livret Famille, p. 3, partie sur la garde des enfants."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Livret Famille de Debout la France, édition 2026",
+    "checked": "2026-11-23",
+    "partyAuthor": "Debout la France"
+  },
+  {
+    "id": "dlf-cheque-garde-enfant",
+    "parentId": "dlf-allocations-garde",
+    "candidate": "dupont-aignan",
+    "theme": "social",
+    "revision": 1,
+    "title": "Créer un chèque de garde d’enfant modulé selon les revenus",
+    "description": "Le chèque proposé par Debout la France permettrait aux familles de payer une crèche, une assistante maternelle ou une garde à domicile.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "dlf-famille-2026",
+        "locator": "Livret Famille, p. 3, proposition sur le chèque de garde universel."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Livret Famille de Debout la France, édition 2026",
+    "checked": "2026-11-23",
+    "partyAuthor": "Debout la France"
+  },
+  {
+    "id": "melenchon-ordonnance-protection-enfant",
+    "parentId": "melenchon-justice-enfants",
+    "candidate": "melenchon",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Créer une ordonnance de protection de l’enfant",
+    "description": "La campagne propose qu’une ordonnance permette de mettre l’enfant en sécurité dès la révélation de violences, auprès du parent qui le protège quand il y en a un.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-plan-enfance-2027",
+        "locator": "Partie sur les violences faites aux enfants, mesure portant sur l’ordonnance de protection."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan pour les droits des enfants, présidentielle 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "melenchon-juges-enfants-greffiers",
+    "parentId": "melenchon-justice-enfants",
+    "candidate": "melenchon",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Recruter 235 juges des enfants et 235 greffiers",
+    "description": "Le plan prévoit ces deux recrutements et un renforcement de la formation. Il ne fixe pas de délai de recrutement.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "nombre-juges-enfants",
+        "label": "Juges des enfants supplémentaires",
+        "value": 235,
+        "unit": "postes",
+        "sourceId": "lfi-plan-enfance-2027"
+      },
+      {
+        "key": "nombre-greffiers",
+        "label": "Greffiers supplémentaires",
+        "value": 235,
+        "unit": "postes",
+        "sourceId": "lfi-plan-enfance-2027"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-plan-enfance-2027",
+        "locator": "Partie sur la reconstruction de l’Aide sociale à l’enfance, paragraphe consacré aux métiers."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan pour les droits des enfants, présidentielle 2027",
+    "checked": "2026-11-23"
+  },
+  {
+    "id": "melenchon-creches-publiques-gratuites",
+    "parentId": "melenchon-social",
+    "candidate": "melenchon",
+    "theme": "social",
+    "revision": 1,
+    "title": "Rendre les crèches publiques gratuites",
+    "description": "Le plan pour les droits des enfants réserve cette proposition de gratuité aux crèches publiques. Il prévoit aussi de programmer les ouvertures de places selon les besoins de chaque collectivité.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-plan-enfance-2027",
+        "locator": "Partie 2.2, création d’un service public de la petite enfance."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan pour les droits des enfants, présidentielle 2027",
     "checked": "2026-11-23"
   }
 ]

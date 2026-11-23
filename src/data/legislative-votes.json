@@ -17,6 +17,14 @@
       "locator": "A8-0319/2017, amendement 39. Florian Philippot figure parmi les 49 abstentions, groupe EFDD.",
       "checkedAt": "2026-11-23T07:59:11Z",
       "sha256": "422a68a54b4b54cf76ab3a8569cc57e12d0850ab21fe8079267c4032ff425f27"
+    },
+    {
+      "ballotId": "an17-456",
+      "url": "https://www.assemblee-nationale.fr/dyn/17/scrutins/456",
+      "title": "Assemblée nationale · scrutin public n° 456 du 26 novembre 2024",
+      "sha256": "a677954e2ccb8c0f7ab08686edc73eb58bd84355a66b95e328708625e206ca29",
+      "checkedAt": "2026-11-23T10:32:56Z",
+      "locator": "Synthèse du scrutin et listes nominatives, rubriques « Pour » des groupes Ensemble pour la République et Rassemblement national."
     }
   ],
   "ballots": [
@@ -1275,6 +1283,60 @@
         }
       ],
       "rectification": null
+    },
+    {
+      "id": "an17-456",
+      "chamber": "assemblee",
+      "term": "17e législature",
+      "number": 456,
+      "date": "2024-11-26",
+      "dateKind": "seance",
+      "title": "Déclaration du Gouvernement sur les négociations de l’accord d’association entre l’Union européenne et le Mercosur",
+      "shortTitle": "Négociations avec le Mercosur",
+      "kind": "declaration",
+      "decision": "adopte",
+      "context": "Le Gouvernement défend le refus de l’accord dans les conditions alors négociées. L’Assemblée se prononce sur sa déclaration au titre de l’article 50-1 de la Constitution. La ratification du traité n’était pas soumise à ce vote.",
+      "tally": {
+        "voters": 555,
+        "expressed": 554,
+        "majority": 278,
+        "for": 485,
+        "against": 69,
+        "abstained": 1,
+        "nonVoters": null
+      },
+      "source": {
+        "url": "https://www.assemblee-nationale.fr/dyn/17/scrutins/456",
+        "title": "Assemblée nationale · scrutin public n° 456 du 26 novembre 2024",
+        "sha256": "a677954e2ccb8c0f7ab08686edc73eb58bd84355a66b95e328708625e206ca29",
+        "checkedAt": "2026-11-23T10:32:56Z",
+        "locator": "Synthèse du scrutin et listes nominatives, rubriques « Pour » des groupes Ensemble pour la République et Rassemblement national."
+      },
+      "documents": [
+        {
+          "title": "Assemblée nationale · compte rendu de la deuxième séance du 26 novembre 2024",
+          "url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/CRSANR5L17S2025O1N051"
+        }
+      ],
+      "positions": [
+        {
+          "candidate": "attal",
+          "officialName": "Gabriel Attal",
+          "officialId": "PA722190",
+          "profileUrl": "https://www.assemblee-nationale.fr/dyn/deputes/PA722190",
+          "choice": "pour",
+          "groupAtTime": "Ensemble pour la République"
+        },
+        {
+          "candidate": "lepen",
+          "officialName": "Marine Le Pen",
+          "officialId": "PA720614",
+          "profileUrl": "https://www.assemblee-nationale.fr/dyn/deputes/PA720614",
+          "choice": "pour",
+          "groupAtTime": "Rassemblement national"
+        }
+      ],
+      "rectification": null
     }
   ],
   "cases": [
@@ -1720,6 +1782,21 @@
           "ballotId": "pe8-20180529-detachement",
           "relation": "texte-plus-large",
           "context": "Le texte révisait les règles du détachement. L’abstention personnelle sur cette révision ne constitue pas un vote pour l’abrogation proposée ensuite par le parti."
+        }
+      ]
+    },
+    {
+      "id": "attal-accord-mercosur",
+      "candidate": "attal",
+      "measureId": "attal-refuser-mercosur",
+      "versionId": "attal-refuser-mercosur-v1",
+      "title": "Accord UE-Mercosur et conditions de signature",
+      "note": "Gabriel Attal propose de refuser l’accord en l’état. En novembre 2024, il a voté pour la déclaration du Gouvernement sur la négociation avec le Mercosur.",
+      "links": [
+        {
+          "ballotId": "an17-456",
+          "relation": "texte-plus-large",
+          "context": "Le vote concernait la position de la France dans la négociation. Il ne portait ni sur la ratification d’un traité ni sur les moyens de la politique agricole commune que Gabriel Attal aborde aussi dans sa proposition."
         }
       ]
     }

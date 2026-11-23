@@ -53,7 +53,10 @@
       {
         "id": "indexation",
         "label": "Indexer les pensions",
-        "versions": ["dupont-aignan-retraites-indexation-v1"]
+        "versions": [
+          "dupont-aignan-retraites-indexation-v1",
+          "labib-indexer-pensions-v1"
+        ]
       },
       {
         "id": "fiscalite",
@@ -76,7 +79,8 @@
           "philippe-retraites-2-v3",
           "retailleau-retraites-2-v1",
           "dupont-aignan-retraites-capital-naissance-v1",
-          "lisnard-etage-capitalisation-v1"
+          "lisnard-etage-capitalisation-v1",
+          "collovati-capitalisation-complement-v1"
         ]
       },
       {
@@ -267,6 +271,11 @@
         "id": "baisse",
         "label": "Fixer une baisse des loyers",
         "versions": ["collovati-logement-loyers-v1"]
+      },
+      {
+        "id": "gel-et-plafond",
+        "label": "Geler et plafonner les loyers",
+        "versions": ["kazib-geler-plafonner-loyers-v1"]
       }
     ]
   },
@@ -297,6 +306,11 @@
         "id": "activite",
         "label": "Faciliter l’activité des soignants retraités",
         "versions": ["groupe-rn-sante-cumul-soignants-v1"]
+      },
+      {
+        "id": "classement",
+        "label": "Attribuer les postes par classement",
+        "versions": ["collovati-installation-classement-v1"]
       }
     ]
   },
@@ -611,6 +625,125 @@
         "id": "bascule-cotisations",
         "label": "Financer une partie des cotisations par la CSG",
         "versions": ["villepin-cotisations-vers-csg-v2"]
+      }
+    ]
+  },
+  {
+    "id": "regularisation-sejour",
+    "theme": "immigration",
+    "label": "Séjour · critères de régularisation",
+    "context": "Les documents précisent qui pourrait obtenir un titre de séjour. Les règles de travail, les motifs familiaux et le refus d’une régularisation automatique répondent à des situations différentes.",
+    "positions": [
+      {
+        "id": "tous",
+        "label": "Régulariser toutes les personnes sans papiers",
+        "versions": ["kazib-immigration-regularisation-v1"]
+      },
+      {
+        "id": "situations",
+        "label": "Ouvrir des droits selon la situation professionnelle, scolaire ou familiale",
+        "versions": [
+          "melenchon-sejour-travailleurs-etudiants-parents-v1",
+          "ecologistes-regularisation-criteres-v1"
+        ]
+      },
+      {
+        "id": "contrat",
+        "label": "Ouvrir un droit après six mois sous contrat",
+        "versions": ["ps-sejour-contrat-six-mois-v1"]
+      },
+      {
+        "id": "automaticite",
+        "label": "Écarter les régularisations automatiques",
+        "versions": ["retailleau-immigration-regularisations-v1"]
+      }
+    ]
+  },
+  {
+    "id": "sante-remboursement-soins",
+    "theme": "sante",
+    "label": "Santé · remboursement des soins",
+    "context": "La couverture générale, le plafond annuel par patient et le remboursement d’un type de soin portent sur des périmètres différents. Chaque fiche indique les dépenses et les patients concernés.",
+    "positions": [
+      {
+        "id": "couverture",
+        "label": "Prendre en charge les soins sans reste à charge",
+        "versions": ["melenchon-social-1-v1"]
+      },
+      {
+        "id": "plafond",
+        "label": "Plafonner le reste à charge selon les revenus",
+        "versions": ["villepin-reste-charge-selon-revenu-v1"]
+      },
+      {
+        "id": "mutuelle",
+        "label": "Proposer une mutuelle publique pour les soins essentiels",
+        "versions": ["ps-sante-mutuelle-publique-v1"]
+      },
+      {
+        "id": "dentaire",
+        "label": "Rembourser les soins dentaires au tarif de la Sécurité sociale",
+        "versions": ["groupe-rn-sante-soins-dentaires-v2"]
+      }
+    ]
+  },
+  {
+    "id": "social-garde-jeunes-enfants",
+    "theme": "social",
+    "label": "Petite enfance · places en crèche et coût de la garde",
+    "context": "Deux questions concernent directement les familles : l’ouverture de places et le prix à payer. Les premières propositions de chaque document sont présentées selon le levier retenu.",
+    "positions": [
+      {
+        "id": "places",
+        "label": "Financer de nouvelles places par un livret d’épargne",
+        "versions": ["attal-social-livret-creches-v1"]
+      },
+      {
+        "id": "cheque",
+        "label": "Aider les familles à payer plusieurs modes de garde",
+        "versions": ["dlf-cheque-garde-enfant-v1"]
+      },
+      {
+        "id": "priorite",
+        "label": "Donner une priorité en crèche aux familles monoparentales",
+        "versions": ["glucksmann-statut-meres-seules-v1"]
+      },
+      {
+        "id": "gratuit",
+        "label": "Rendre les crèches publiques gratuites",
+        "versions": ["melenchon-creches-publiques-gratuites-v1"]
+      }
+    ]
+  },
+  {
+    "id": "regroupement-familial",
+    "theme": "immigration",
+    "label": "Immigration · regroupement familial",
+    "context": "Les documents portent sur les conditions posées aux familles, la révision du dispositif ou sa suppression. Les critères et le statut du texte figurent dans chaque fiche.",
+    "positions": [
+      {
+        "id": "conditions",
+        "label": "Durcir les conditions de l’immigration familiale",
+        "versions": [
+          "attal-immigration-2-v2",
+          "lisnard-regroupement-ressources-integration-v1",
+          "retailleau-immigration-1-v1"
+        ]
+      },
+      {
+        "id": "moratoire",
+        "label": "Suspendre le regroupement familial par un moratoire",
+        "versions": ["philippe-immigration-1-v2"]
+      },
+      {
+        "id": "remise-en-cause",
+        "label": "Remettre en cause le dispositif",
+        "versions": ["patriotes-regroupement-familial-v1"]
+      },
+      {
+        "id": "supprimer",
+        "label": "Supprimer le regroupement familial",
+        "versions": ["collovati-fin-regroupement-familial-v1"]
       }
     ]
   }

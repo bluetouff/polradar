@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checked": "2026-11-19",
+  "checked": "2026-11-23",
   "tracks": [
     {
       "id": "melenchon-smic",
@@ -242,6 +242,19 @@
       "note": "Le projet porté par Espoir RIC pour 2022 et le programme 2027 de Solution démocratique fixent le même seuil et le même délai pour recueillir les signatures.",
       "stateIds": ["egger-ric-egger-2022", "egger-ric-egger-programme-2027"],
       "measureIds": ["egger-institutions-ric"]
+    },
+    {
+      "id": "groupe-rn-aide-medicale",
+      "candidate": "lepen",
+      "theme": "immigration",
+      "title": "Quels soins couvrir après la suppression proposée de l’AME ?",
+      "kind": "perimetre",
+      "note": "Deux textes parlementaires du groupe RN décrivent le périmètre envisagé. Marine Le Pen est nommée parmi les signataires en 2023. En 2026, le dépôt est signé par Lionel Tivoli et les membres du groupe.",
+      "stateIds": [
+        "groupe-rn-aide-medicale-2023",
+        "groupe-rn-aide-medicale-2026"
+      ],
+      "measureIds": ["groupe-rn-ame-aide-urgence"]
     }
   ],
   "states": [
@@ -1509,6 +1522,68 @@
         "sha256": "68a296ebf9a7e50956398dd0418c719237f1a7c81ddf4d3f14e467596387aa14",
         "quote": "massivement les taxes sur le gazole",
         "locator": "Déclaration du premier tour, page 2 du PDF, colonne sur le pouvoir d’achat"
+      }
+    },
+    {
+      "id": "groupe-rn-aide-medicale-2023",
+      "trackId": "groupe-rn-aide-medicale",
+      "date": {
+        "value": "2023-07-04",
+        "kind": "depot"
+      },
+      "edition": "Proposition de loi n° 1473, article unique",
+      "scope": "parti",
+      "observedOn": "2026-11-23",
+      "recordedAt": "2026-11-23T10:32:56Z",
+      "value": null,
+      "label": "Aide d’urgence vitale",
+      "unit": "disposition",
+      "basisKey": "aide-medicale-perimetre",
+      "population": "Personnes étrangères en situation irrégulière éligibles à l’AME",
+      "statement": "Julie Lechanteux, Lionel Tivoli, Marine Le Pen et les membres du groupe RN proposent de limiter l’aide aux soins urgents en cas de risque vital ou d’altération grave et durable de la santé, y compris pour l’enfant à naître.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "an-rn-ame-proposition-loi-2023",
+        "title": "Assemblée nationale · Proposition de loi n° 1473 sur l’aide médicale de l’État",
+        "url": "https://www.assemblee-nationale.fr/dyn/16/textes/l16b1473_proposition-loi.pdf",
+        "authority": "institution",
+        "published": "2023-07-04",
+        "updated": null,
+        "sha256": "85b50506be5b5f86a40061a25c6ccbfed5edff263d9638aa715caa92315b44fd",
+        "quote": "Droit à l’aide d’urgence vitale",
+        "locator": "Article unique, p. 6, définition des soins urgents."
+      }
+    },
+    {
+      "id": "groupe-rn-aide-medicale-2026",
+      "trackId": "groupe-rn-aide-medicale",
+      "date": {
+        "value": "2026-10-16",
+        "kind": "depot"
+      },
+      "edition": "Amendement II-CF681 au budget pour 2027",
+      "scope": "parti",
+      "observedOn": "2026-11-23",
+      "recordedAt": "2026-11-23T10:32:56Z",
+      "value": null,
+      "label": "Aide médicale d’urgence",
+      "unit": "disposition",
+      "basisKey": "aide-medicale-perimetre",
+      "population": "Personnes étrangères en situation irrégulière éligibles à l’AME",
+      "statement": "Lionel Tivoli et les membres du groupe RN proposent un périmètre comprenant les soins vitaux, la détresse immédiate, la maternité et la prévention des maladies contagieuses. L’amendement a été rejeté en commission.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "an-rn-aide-medicale-amendement-2027",
+        "title": "Assemblée nationale · Amendement II-CF681 au projet de loi de finances pour 2027",
+        "url": "https://www.assemblee-nationale.fr/dyn/17/amendements/3210C/CION_FIN/CF681.pdf",
+        "authority": "institution",
+        "published": "2026-10-16",
+        "updated": null,
+        "sha256": "bc2bd4495154450ac5431c5b6346378d8736d6d7b6cf42a37002b2e85f80ca05",
+        "quote": "les soins liés à la maternité et la prévention des maladies contagieuses",
+        "locator": "P. 1 pour le rejet et les auteurs, p. 2 pour le périmètre des soins."
       }
     }
   ]

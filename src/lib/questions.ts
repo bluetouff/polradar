@@ -166,6 +166,14 @@ const examinedDocuments: Record<
   ],
 };
 const labels: Record<string, string> = {
+  'regularisation-sejour':
+    'Qui pourrait obtenir une régularisation de séjour ?',
+  'regroupement-familial':
+    'À quelles conditions une famille pourrait-elle rejoindre un proche en France ?',
+  'sante-remboursement-soins':
+    'Quelle part des frais de santé resterait à payer ?',
+  'social-garde-jeunes-enfants':
+    'Comment financer la garde des jeunes enfants et accéder à une crèche ?',
   'retraites-conditions-depart':
     'À quel âge et après combien de cotisations partir à la retraite ?',
   'retraites-protection-revenus': 'Comment les pensions évolueraient-elles ?',
@@ -260,33 +268,6 @@ const additions = [
     ],
   },
   {
-    id: 'regroupement-familial',
-    theme: 'immigration',
-    title:
-      'À quelles conditions une famille pourrait-elle rejoindre un proche en France ?',
-    terms: 'regroupement familial immigration familiale',
-    versions: [
-      'lisnard-regroupement-ressources-integration-v1',
-      'patriotes-regroupement-familial-v1',
-      'attal-immigration-2-v2',
-      'retailleau-immigration-1-v1',
-      'philippe-immigration-1-v2',
-    ],
-  },
-  {
-    id: 'regularisation-sejour',
-    theme: 'immigration',
-    title: 'Qui pourrait obtenir une régularisation de séjour ?',
-    terms: 'sans-papiers titre de séjour régularisation',
-    versions: [
-      'ps-sejour-contrat-six-mois-v1',
-      'ecologistes-regularisation-criteres-v1',
-      'melenchon-sejour-travailleurs-etudiants-parents-v1',
-      'retailleau-immigration-regularisations-v1',
-      'kazib-immigration-regularisation-v1',
-    ],
-  },
-  {
     id: 'parents-isoles',
     theme: 'social',
     title: 'Quel soutien pour les parents qui élèvent seuls leurs enfants ?',
@@ -354,18 +335,23 @@ interface Definition {
 const complementaryVersions: Record<string, string[]> = {
   'retraites-financement-regimes': ['philippe-plan-epargne-premier-emploi-v1'],
   'logement-regulation-loyers': ['melenchon-blocage-loyers-urgence-sociale-v1'],
+  'social-garde-jeunes-enfants': [
+    'dlf-places-creches-cinq-ans-v1',
+    'attal-social-professionnels-enfance-v1',
+  ],
+};
+const searchTerms: Record<string, string> = {
+  'fiscalite-csg-salaires':
+    'suppression de la CSG contribution sociale généralisée fiche de paie salaires actifs',
+  'regroupement-familial': 'regroupement familial immigration familiale',
+  'regularisation-sejour': 'sans-papiers titre de séjour régularisation',
 };
 const definitions: Definition[] = [
   ...positionDivergences.map((t) => ({
     id: t.id,
     title: labels[t.id] ?? t.label,
     theme: t.theme,
-    terms:
-      t.label +
-      ' ' +
-      (t.id === 'fiscalite-csg-salaires'
-        ? 'suppression de la CSG contribution sociale généralisée fiche de paie salaires actifs'
-        : ''),
+    terms: [t.label, searchTerms[t.id]].filter(Boolean).join(' '),
     versions: [
       ...t.positions.flatMap((p) => p.entries.map((e) => e.version.id)),
       ...(complementaryVersions[t.id] ?? []),
