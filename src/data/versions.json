@@ -24339,5 +24339,667 @@
       "edition": "Réussir à nouveau · présidentielle 2027",
       "checked": "2026-11-22"
     }
+  },
+  {
+    "id": "zemmour-csg-activite-v3",
+    "measureId": "zemmour-csg-activite",
+    "number": 3,
+    "kind": "enrichissement",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:04:28Z",
+    "summary": "Précisions sur le public concerné, le financement et le calendrier dans les sources de la proposition.",
+    "snapshot": {
+      "title": "Supprimer la CSG sur les revenus d’activité",
+      "description": "Éric Zemmour vise les revenus d’activité. Sur son site, il présente cette suppression comme une hausse de 10 % des revenus des actifs. Ce pourcentage est l’estimation de la campagne.",
+      "beneficiaries": "Actifs percevant un revenu d’activité.",
+      "timing": "Le candidat vise un plein effet de son plan d’économies en 2032. Il ne donne pas de date propre à la suppression de la CSG dans ces deux textes.",
+      "financing": "Dans son entretien au JDD, il réserve 140 milliards d’euros par an à l’ensemble de ses baisses d’impôts, sur 280 milliards d’économies annuelles visées en 2032. La part affectée à la CSG reste indéterminée.",
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "zemmour-priorites-actifs",
+          "locator": "Rubrique économique consacrée aux prélèvements, passage sur les revenus des actifs et la CSG."
+        },
+        {
+          "sourceId": "zemmour-entretien-jdd-novembre",
+          "locator": "Entretien, réponse sur les baisses de prélèvements et leur financement."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Présidentielle 2027 · priorités et entretien de novembre",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "attal-csg-salaires-v2",
+    "measureId": "attal-csg-salaires",
+    "number": 2,
+    "kind": "enrichissement",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:04:28Z",
+    "summary": "Précisions sur le public concerné, le financement et le calendrier dans les sources de la proposition.",
+    "snapshot": {
+      "title": "Supprimer la CSG sur les salaires",
+      "description": "La campagne relie la suppression de la CSG salariale au « droit au brut ». Elle annonce jusqu’à 270 € nets par mois dans son compte rendu du débat. Sa fiche de programme donne un autre repère, 250 € au salaire qu’elle situe à 2 200 € nets mensuels.",
+      "beneficiaries": "Salariés. La proposition exposée porte sur les salaires.",
+      "timing": "La fiche « Droit au brut » annonce un démarrage début 2027. Le compte rendu du débat ne date pas la suppression de la ligne CSG.",
+      "financing": "La fiche « Droit au brut » cite des économies sur l’assurance chômage et les indemnités journalières. Elle ne ventile pas entre ces postes la compensation de la seule CSG.",
+      "metrics": [],
+      "amounts": [
+        {
+          "label": "Gain maximal annoncé par le candidat",
+          "value": 270,
+          "unit": "€",
+          "period": "mois",
+          "basis": "net",
+          "sourceId": "lci-restos-debat-16-novembre"
+        },
+        {
+          "label": "Gain annoncé au salaire médian de référence de la campagne",
+          "value": 250,
+          "unit": "€",
+          "period": "mois",
+          "basis": "net",
+          "sourceId": "attal-programme-droit-au-brut"
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lci-restos-debat-16-novembre",
+          "locator": "Direct du 16 novembre, 20 h 30 (heure de Paris), intervention de Gabriel Attal."
+        },
+        {
+          "sourceId": "restos-paris-debat-solidarite",
+          "locator": "Partie consacrée au pouvoir d’achat, proposition de Gabriel Attal sur le salaire net."
+        },
+        {
+          "sourceId": "attal-restos-modele-social",
+          "locator": "Partie sur la rémunération du travail, suppression de la CSG sur les salaires."
+        },
+        {
+          "sourceId": "attal-programme-droit-au-brut",
+          "locator": "Gain annoncé au salaire médian et paragraphe sur le financement du choc de salaires."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Présidentielle 2027 · droit au brut et débat des Restos du Cœur",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "glucksmann-csg-salaires-v2",
+    "measureId": "glucksmann-csg-salaires",
+    "number": 2,
+    "kind": "enrichissement",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:04:28Z",
+    "summary": "Précisions sur le public concerné, le financement et le calendrier dans les sources de la proposition.",
+    "snapshot": {
+      "title": "Baisser progressivement la CSG sur les salaires",
+      "description": "Raphaël Glucksmann propose de réduire la CSG des salariés du Smic à 4 000 € nets mensuels. Dans son entretien au groupe EBRA, il donne l’exemple de 100 € de gain mensuel pour une rémunération de 2 000 € nets. Le barème détaillé reste à publier.",
+      "beneficiaries": "Salariés rémunérés entre le Smic et 4 000 € nets par mois.",
+      "timing": "Septembre 2027 selon l’entretien du 17 novembre.",
+      "financing": "Il propose d’augmenter les droits sur le 1 % des successions les plus élevées et de revoir le pacte Dutreil.",
+      "metrics": [],
+      "amounts": [
+        {
+          "label": "Gain annoncé pour un salaire de 2 000 € nets par mois",
+          "value": 100,
+          "unit": "€",
+          "period": "mois",
+          "basis": "net",
+          "sourceId": "glucksmann-entretien-ebra-salaires"
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lci-restos-debat-16-novembre",
+          "locator": "Direct du 16 novembre, 20 h 37 (heure de Paris), intervention de Raphaël Glucksmann."
+        },
+        {
+          "sourceId": "glucksmann-entretien-ebra-salaires",
+          "locator": "Questions sur la première mesure du quinquennat et sur son financement, réponses du candidat."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Présidentielle 2027 · débat des Restos du Cœur et entretien au groupe EBRA",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "villepin-cotisations-vers-csg-v2",
+    "measureId": "villepin-cotisations-vers-csg",
+    "number": 2,
+    "kind": "enrichissement",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:04:28Z",
+    "summary": "Précisions sur le public concerné, le financement et le calendrier dans les sources de la proposition.",
+    "snapshot": {
+      "title": "Transférer des cotisations sociales vers la CSG sur dix ans",
+      "description": "Dominique de Villepin propose de transférer plus de 200 milliards d’euros de cotisations vers la CSG en dix ans. Il estime le gain final à 200 € nets par mois au salaire moyen et à plus de 100 € au salaire minimum.",
+      "beneficiaries": "Salariés, avec deux exemples dans le programme, le salaire moyen et le salaire minimum.",
+      "timing": "Mise en œuvre sur dix ans.",
+      "financing": "La CSG prendrait en charge des dépenses aujourd’hui financées par des cotisations non contributives. La proposition 106 ne détaille pas le nouveau taux ni sa répartition entre les différentes assiettes.",
+      "metrics": [],
+      "amounts": [
+        {
+          "label": "Gain mensuel annoncé à terme au salaire moyen",
+          "value": 200,
+          "unit": "€",
+          "period": "mois",
+          "basis": "net",
+          "sourceId": "villepin-chapitre-12"
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "villepin-chapitre-12",
+          "locator": "Chapitre 12, proposition 106."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Réussir à nouveau · présidentielle 2027",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "branco-transparence-algorithmes-sociaux-v1",
+    "measureId": "branco-transparence-algorithmes-sociaux",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:45:39Z",
+    "summary": "Première lecture de ce passage pour le dossier numérique.",
+    "snapshot": {
+      "title": "Rendre transparents les algorithmes des réseaux sociaux",
+      "description": "Juan Branco veut imposer aux réseaux sociaux de rendre leurs algorithmes transparents. Le chapitre ne précise pas quelles informations les plateformes devraient publier.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "branco-projet",
+          "locator": "La Voie, réforme 05, « Le Numérique », passage sur la transparence des algorithmes."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "La Voie, projet présidentiel 2027",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "branco-interessement-donnees-personnelles-v1",
+    "measureId": "branco-interessement-donnees-personnelles",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:45:39Z",
+    "summary": "Première lecture de ce passage pour le dossier numérique.",
+    "snapshot": {
+      "title": "Associer les utilisateurs à la valeur tirée de leurs données",
+      "description": "Le projet interdirait de traiter ou de commercialiser des données personnelles produites localement sans intéresser les utilisateurs. Le texte laisse ouverts le calcul et la forme de cet intéressement.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "branco-projet",
+          "locator": "La Voie, réforme 05, « Le Numérique », passage sur les données personnelles produites localement."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "La Voie, projet présidentiel 2027",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "branco-accueil-physique-et-numerique-v1",
+    "measureId": "branco-accueil-physique-et-numerique",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:45:39Z",
+    "summary": "Première lecture de ce passage pour le dossier numérique.",
+    "snapshot": {
+      "title": "Maintenir deux modes d’accès à chaque administration",
+      "description": "Chaque administration devrait proposer à la fois un accueil physique et un service numérique.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "branco-projet",
+          "locator": "La Voie, réforme 05, « Le Numérique », passage sur le double accès aux administrations."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "La Voie, projet présidentiel 2027",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "branco-stockage-souverain-v1",
+    "measureId": "branco-stockage-souverain",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:45:39Z",
+    "summary": "Première lecture de ce passage pour le dossier numérique.",
+    "snapshot": {
+      "title": "Soutenir des solutions souveraines de stockage des données",
+      "description": "Juan Branco prend OVH pour exemple et propose un plan de développement du stockage souverain. Le passage ne fixe ni enveloppe budgétaire ni obligation de localisation.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "branco-projet",
+          "locator": "La Voie, réforme 05, « Le Numérique », passage sur le stockage souverain."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "La Voie, projet présidentiel 2027",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "branco-interop-plateformes-v1",
+    "measureId": "branco-interop-plateformes",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:45:39Z",
+    "summary": "Première lecture de ce passage pour le dossier numérique.",
+    "snapshot": {
+      "title": "Imposer l’interopérabilité aux grandes plateformes",
+      "description": "Juan Branco propose de rendre interopérables les services des grands groupes du numérique et des fournisseurs à vocation monopolistique, puis de développer des alternatives françaises destinées aussi à l’exportation.",
+      "beneficiaries": null,
+      "timing": "Trois ans pour imposer l’interopérabilité.",
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "branco-projet",
+          "locator": "La Voie, réforme 05, « Le Numérique », passage sur les alternatives logicielles aux plateformes."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "La Voie, projet présidentiel 2027",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "villepin-forfait-universel-ia-v1",
+    "measureId": "villepin-forfait-universel-ia",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:45:39Z",
+    "summary": "Première lecture de ce passage pour le dossier numérique.",
+    "snapshot": {
+      "title": "Imposer aux fournisseurs d’IA un forfait universel d’utilisation",
+      "description": "Les fournisseurs de modèles devraient offrir à chacun un forfait de jetons, les unités de texte traitées par les modèles. La proposition laisse ouverts le volume du forfait et sa périodicité.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "villepin-chapitre-4",
+          "locator": "Chapitre 4, proposition 45."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Réussir à nouveau · présidentielle 2027",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "villepin-ia-demarches-administratives-v1",
+    "measureId": "villepin-ia-demarches-administratives",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:45:39Z",
+    "summary": "Première lecture de ce passage pour le dossier numérique.",
+    "snapshot": {
+      "title": "Utiliser l’IA pour personnaliser les démarches administratives",
+      "description": "Dominique de Villepin prévoit un plan de simplification des démarches grâce à l’IA. La proposition ne désigne ni démarche prioritaire ni date de déploiement.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "villepin-chapitre-4",
+          "locator": "Chapitre 4, proposition 44."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Réussir à nouveau · présidentielle 2027",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "villepin-carbone-modeles-ia-importes-v1",
+    "measureId": "villepin-carbone-modeles-ia-importes",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:45:39Z",
+    "summary": "Première lecture de ce passage pour le dossier numérique.",
+    "snapshot": {
+      "title": "Proposer un ajustement carbone européen pour les modèles d’IA étrangers",
+      "description": "Dominique de Villepin veut demander aux partenaires européens d’obtenir des informations sur la consommation d’énergie et les émissions des modèles étrangers. Il propose de soumettre ces modèles au mécanisme européen d’ajustement carbone aux frontières.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "villepin-chapitre-4",
+          "locator": "Chapitre 4, proposition 43."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Réussir à nouveau · présidentielle 2027",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "philippe-enseignement-ia-par-niveau-v1",
+    "measureId": "philippe-enseignement-ia-par-niveau",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:45:39Z",
+    "summary": "Première lecture de ce passage pour le dossier numérique.",
+    "snapshot": {
+      "title": "Introduire l’IA au collège puis dans la pédagogie du lycée",
+      "description": "Édouard Philippe écarte l’IA pour les élèves avant le collège. Il prévoit une initiation aux usages responsables au collège puis un usage pédagogique progressif au lycée. Il encourage les professeurs à préparer leurs cours avec ces outils.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-ia",
+          "locator": "FAQ du programme IA, réponse sur les élèves et les professeurs."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "philippe-electricite-decarbonee-ia-v1",
+    "measureId": "philippe-electricite-decarbonee-ia",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:45:39Z",
+    "summary": "Première lecture de ce passage pour le dossier numérique.",
+    "snapshot": {
+      "title": "Accorder un accès préférentiel à l’électricité décarbonée aux acteurs de l’IA",
+      "description": "Édouard Philippe réserve cette priorité aux acteurs français et européens de l’IA. Il la rattache à ses zones d’accélération pour l’implantation de centres de calcul.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-ia",
+          "locator": "FAQ du programme IA, réponse sur l’accès des acteurs de l’IA à l’énergie décarbonée."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "lisnard-dossier-medical-partage-v1",
+    "measureId": "lisnard-dossier-medical-partage",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:45:39Z",
+    "summary": "Première lecture de ce passage pour le dossier numérique.",
+    "snapshot": {
+      "title": "Rendre obligatoire la généralisation du dossier médical partagé",
+      "description": "Le livret Santé de Nouvelle Énergie, porté par David Lisnard, veut généraliser le dossier médical partagé pour coordonner le parcours des patients et éviter de répéter des actes. Le passage ne détaille pas les règles d’accès au dossier.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "nouvelle-energie-livret-sante-mai-2026",
+          "locator": "Présentation du livret Santé, 6 mai 2026, « Libérer les soignants de la bureaucratie »."
+        }
+      ],
+      "scope": "parti",
+      "edition": "Livret Santé de Nouvelle Énergie · mai 2026",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "melenchon-autorite-accessibilite-numerique-v1",
+    "measureId": "melenchon-autorite-accessibilite-numerique",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:45:39Z",
+    "summary": "Première lecture de ce passage pour le dossier numérique.",
+    "snapshot": {
+      "title": "Créer une autorité de contrôle de l’accessibilité numérique",
+      "description": "Jean-Luc Mélenchon propose de confier le contrôle du respect des obligations d’accessibilité numérique à une autorité spécialisée qui pourrait sanctionner les organismes en défaut.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-numerique",
+          "locator": "Chapitre 7, passage sur le contrôle de l’accessibilité numérique."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "L’Avenir en commun 2027",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "melenchon-cnil-controle-securite-v1",
+    "measureId": "melenchon-cnil-controle-securite",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:45:39Z",
+    "summary": "Première lecture de ce passage pour le dossier numérique.",
+    "snapshot": {
+      "title": "Renforcer la CNIL pour contrôler la sécurité des données",
+      "description": "Le programme prévoit de donner plus de moyens à la CNIL pour contrôler l’application des obligations de sécurité du RGPD, dans le cadre de son plan contre les fuites de données.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-numerique",
+          "locator": "Chapitre 7, mesures contre les fuites de données, alinéa consacré à la CNIL."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "L’Avenir en commun 2027",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "attal-preference-europeenne-ia-v1",
+    "measureId": "attal-preference-europeenne-ia",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:45:39Z",
+    "summary": "Première lecture de ce passage pour le dossier numérique.",
+    "snapshot": {
+      "title": "Donner une préférence européenne dans les achats publics liés à l’IA",
+      "description": "Gabriel Attal inscrit la préférence européenne dans les marchés publics dans sa stratégie pour l’IA. Il cite aussi le soutien à Mistral. Le texte de campagne ne fixe ni quota d’achats ni seuil de marché.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-ia",
+          "locator": "Chantier Intelligence artificielle, partie « Faire le choix de la souveraineté » sur les marchés publics."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "roussel-regard-salaries-ia-v1",
+    "measureId": "roussel-regard-salaries-ia",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:45:39Z",
+    "summary": "Première lecture de ce passage pour le dossier numérique.",
+    "snapshot": {
+      "title": "Donner aux salariés un droit de regard sur les usages de l’IA",
+      "description": "Dans sa tribune, Fabien Roussel demande que les salariés puissent exercer un droit de regard sur les usages de l’IA dans chaque entreprise. Il ne précise pas la procédure de consultation.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "pcf-roussel-recherche-ia",
+          "locator": "Tribune signée de Fabien Roussel, paragraphe sur le pôle public du numérique et les entreprises."
+        }
+      ],
+      "scope": "orientation",
+      "edition": "Tribune de Fabien Roussel · 12 juin 2026",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "roussel-competences-cyber-internalisees-v1",
+    "measureId": "roussel-competences-cyber-internalisees",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:45:39Z",
+    "summary": "Première lecture de ce passage pour le dossier numérique.",
+    "snapshot": {
+      "title": "Réduire la sous-traitance des systèmes d’information publics",
+      "description": "Le PCF propose de recenser les infrastructures publiques, d’en évaluer la sécurité et de confier à des équipes internes les compétences stratégiques.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "pcf-securite-numerique",
+          "locator": "Communiqué du 2 septembre 2026, plan de modernisation des systèmes d’information publics."
+        }
+      ],
+      "scope": "parti",
+      "edition": "Propositions du PCF sur la sécurité numérique",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "egger-institutions-ric-v2",
+    "measureId": "egger-institutions-ric",
+    "number": 2,
+    "kind": "enrichissement",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:45:39Z",
+    "summary": "Précision sur les signatures numériques et papier et leur contrôle par la Cour de cassation.",
+    "snapshot": {
+      "title": "Un référendum constituant déclenché par 700 000 signatures",
+      "description": "Le programme propose de soumettre à référendum une révision de l’article 89. Une initiative recueillerait 700 000 signatures d’électeurs en dix-huit mois. Le projet accepte les signatures papier et numériques. La Cour de cassation en contrôlerait la validité dans les quatre mois.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "signatures-ric-constituant",
+          "label": "Seuil de signatures proposé",
+          "value": 700000,
+          "unit": "signatures",
+          "sourceId": "egger-programme-2027"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "egger-programme-2027",
+          "locator": "PDF, pages 7 et 11"
+        },
+        {
+          "sourceId": "egger-ric-revision-2027",
+          "locator": "Texte soumis aux maires, paragraphes 89.5 et 89.6, collecte et vérification des signatures."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Programme présidentiel 2027 de Solution Démocratique ; initiatives citoyennes conditionnées à l’adoption de la réforme constitutionnelle",
+      "checked": "2026-11-23"
+    }
+  },
+  {
+    "id": "markovic-controles-video-abattoirs-v2",
+    "measureId": "markovic-controles-video-abattoirs",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-23",
+    "recordedAt": "2026-11-23T09:45:39Z",
+    "summary": "Correction du millésime. Le parti classe cette mesure dans son programme national de 2022.",
+    "snapshot": {
+      "title": "Installer des caméras de contrôle dans les abattoirs",
+      "description": "Le Parti animaliste propose de filmer quatre étapes, du déchargement à l’abattage. Une autorité réunissant à parité inspecteurs vétérinaires et représentants associatifs contrôlerait les enregistrements.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "animalistes-programme-general",
+          "locator": "Programme national 2022, « Renforcer le droit pour mieux protéger les animaux », contrôles vidéo dans les abattoirs."
+        }
+      ],
+      "scope": "archive",
+      "edition": "Programme national 2022 du Parti animaliste",
+      "checked": "2026-11-23",
+      "partyAuthor": "Parti animaliste"
+    }
   }
 ]

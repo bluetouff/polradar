@@ -4258,5 +4258,323 @@
     ],
     "rounding": "unite",
     "uncertainty": "Colonne « Publié », page 17 du PDF. Le tableau de la page 4 donne pour 500 personnes la plage indicative affichée, à 95 %. La base exprimée de ce scénario est de 512 personnes."
+  },
+  {
+    "id": "harris-2026-11-23-attal-philippe",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6, RTL et L’Express",
+    "published": "2026-11-23",
+    "fieldworkStart": "2026-11-18",
+    "fieldworkEnd": "2026-11-19",
+    "sampleSize": 2378,
+    "registeredSample": 2088,
+    "usefulSample": 1460,
+    "population": "Inscrits certains d’aller voter et exprimant une intention de vote dans ce scénario.",
+    "method": "En ligne. Quotas et redressement sur le sexe, l’âge, la catégorie socioprofessionnelle, la région de résidence et le vote antérieur.",
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "scenario": "Premier tour · Gabriel Attal et Édouard Philippe",
+    "noticeSource": "notice-commission-10393",
+    "noticePage": 38,
+    "noIntention": null,
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "uncertainty": "La notice donne les marges indicatives pour cette hypothèse p. 38. Elle distingue p. 10 le vote blanc ou nul (7 %), l’abstention (3 %) et les sans-réponse (0 %).",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 18
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 1
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 1
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 4
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 9
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 1
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 11
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 4
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 31
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      },
+      {
+        "id": "riner",
+        "name": "Teddy Riner",
+        "percentage": 4
+      }
+    ]
+  },
+  {
+    "id": "harris-2026-11-23-philippe",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6, RTL et L’Express",
+    "published": "2026-11-23",
+    "fieldworkStart": "2026-11-18",
+    "fieldworkEnd": "2026-11-19",
+    "sampleSize": 2378,
+    "registeredSample": 2088,
+    "usefulSample": 1451,
+    "population": "Inscrits certains d’aller voter et exprimant une intention de vote dans ce scénario.",
+    "method": "En ligne. Quotas et redressement sur le sexe, l’âge, la catégorie socioprofessionnelle, la région de résidence et le vote antérieur.",
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "scenario": "Premier tour · Édouard Philippe sans Gabriel Attal",
+    "noticeSource": "notice-commission-10393",
+    "noticePage": 41,
+    "noIntention": null,
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "uncertainty": "La notice donne les marges indicatives pour cette hypothèse p. 41. Elle distingue p. 10 le vote blanc ou nul (9 %), l’abstention (3 %) et les sans-réponse (0 %).",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 19
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 1
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 1
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 10
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 2
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 11
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 4
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 31
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      },
+      {
+        "id": "riner",
+        "name": "Teddy Riner",
+        "percentage": 4
+      }
+    ]
+  },
+  {
+    "id": "harris-2026-11-23-attal",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6, RTL et L’Express",
+    "published": "2026-11-23",
+    "fieldworkStart": "2026-11-18",
+    "fieldworkEnd": "2026-11-19",
+    "sampleSize": 2378,
+    "registeredSample": 2088,
+    "usefulSample": 1453,
+    "population": "Inscrits certains d’aller voter et exprimant une intention de vote dans ce scénario.",
+    "method": "En ligne. Quotas et redressement sur le sexe, l’âge, la catégorie socioprofessionnelle, la région de résidence et le vote antérieur.",
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "scenario": "Premier tour · Gabriel Attal sans Édouard Philippe",
+    "noticeSource": "notice-commission-10393",
+    "noticePage": 44,
+    "noIntention": null,
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "uncertainty": "La notice donne les marges indicatives pour cette hypothèse p. 44. Elle distingue p. 11 le vote blanc ou nul (8 %), l’abstention (3 %) et les sans-réponse (0 %).",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 19
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 1
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 2
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 7
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 2
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 12
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 30
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      },
+      {
+        "id": "riner",
+        "name": "Teddy Riner",
+        "percentage": 5
+      }
+    ]
+  },
+  {
+    "id": "harris-2026-11-23-duel-melenchon",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6, RTL et L’Express",
+    "published": "2026-11-23",
+    "fieldworkStart": "2026-11-18",
+    "fieldworkEnd": "2026-11-19",
+    "sampleSize": 2378,
+    "registeredSample": 2088,
+    "usefulSample": 1208,
+    "population": "Inscrits certains d’aller voter et exprimant une intention de vote dans ce scénario.",
+    "method": "En ligne. Quotas et redressement sur le sexe, l’âge, la catégorie socioprofessionnelle, la région de résidence et le vote antérieur.",
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "scenario": "Second tour · Jean-Luc Mélenchon et Marine Le Pen",
+    "noticeSource": "notice-commission-10393",
+    "noticePage": 50,
+    "noIntention": null,
+    "margin": {
+      "min": 2.9,
+      "max": 3,
+      "confidence": 95
+    },
+    "uncertainty": "La notice donne les marges indicatives pour cette hypothèse p. 50. Elle distingue p. 12 le vote blanc ou nul (23 %), l’abstention (6 %) et les sans-réponse (0 %).",
+    "results": [
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 35
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 65
+      }
+    ]
   }
 ]

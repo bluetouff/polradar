@@ -19,7 +19,7 @@ test('la recherche CSG, les documents examinés et les absences sont distincts',
   await expect(matrix.locator('tbody tr')).toHaveCount(10);
   await expect(
     matrix.getByRole('row', { name: /Gabriel Attal/ }),
-  ).toContainText('Déclaration');
+  ).toContainText('Proposition');
   await expect(matrix.getByRole('row', { name: /Clara Egger/ })).toContainText(
     'Document examiné',
   );

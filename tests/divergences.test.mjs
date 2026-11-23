@@ -226,7 +226,7 @@ test('les comparaisons par mesure gardent les conditions et l’auteur du docume
   assert.deepEqual(validateDivergencePositions(topics, dataset, axes), []);
   const csg = topics.find((topic) => topic.id === 'fiscalite-csg-salaires');
   const commentaryOnly = dataset.sources.map((source) =>
-    source.id === 'lci-restos-debat-16-novembre'
+    source.kind === 'presse'
       ? { ...source, originalFormat: undefined }
       : source,
   );

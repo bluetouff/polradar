@@ -1,8 +1,8 @@
 {
   "candidates": {
-    "arthaud": ["arthaud-discours-2026"],
+    "arthaud": ["arthaud-discours-2026", "lo-actualites-presidentielle"],
     "asselineau": ["upr"],
-    "attal": ["attal-work"],
+    "attal": ["attal-work", "attal-actualites-campagne"],
     "billetdoux": ["billetdoux-declaration-2027"],
     "branco": ["branco-projet"],
     "cheve": ["cheve-remontee-citoyenne"],
@@ -12,7 +12,7 @@
     "egger": ["egger-programme-2027"],
     "glucksmann": ["glucks-climate", "pp-home", "ps-projet-2027-vivre-libres"],
     "kazib": ["kazib-programme-campagne", "kazib-premieres-mesures-2027"],
-    "labib": ["labib-campagne-2027"],
+    "labib": ["labib-campagne-2027", "npar-campagne-presidentielle"],
     "lalanne": ["lalanne-projet-2027"],
     "lassalle": ["resistons-site"],
     "legendre": ["legendre-projet-2027"],
@@ -50,7 +50,13 @@
     },
     "breves": {
       "query": "\"présidentielle 2027\" (campagne OR annonce OR communiqué)",
-      "sources": ["lcp-candidatures-novembre", "reconquete-paroles"]
+      "sources": [
+        "lcp-candidatures-novembre",
+        "reconquete-paroles",
+        "npar-campagne-presidentielle",
+        "lo-actualites-presidentielle",
+        "attal-actualites-campagne"
+      ]
     },
     "votes": {
       "query": "(scrutin OR vote) (\"Assemblée nationale\" OR Sénat OR \"Parlement européen\")",
@@ -65,7 +71,8 @@
       "sources": [
         "service-public-dates-scrutins",
         "cnil-actualites",
-        "assurance-retraite-age"
+        "assurance-retraite-age",
+        "service-public-csg-salaires"
       ]
     },
     "reperes": {
@@ -77,7 +84,9 @@
       "sources": [
         "sondages",
         "eurostat-euro-indicateurs",
-        "arcom-hors-elections"
+        "arcom-hors-elections",
+        "inventaire-sru-2026",
+        "drees-apl-premier-recours-2024"
       ]
     },
     "declarations": {

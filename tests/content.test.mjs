@@ -35,6 +35,24 @@ const changed = (fn) => {
 
 test('le corpus livré passe les contrôles', () =>
   assert.deepEqual(validateDataset(original), []));
+test('une archive collective conserve son auteur et exige une source de parti', () => {
+  const archive = original.engagements.find(
+    (row) => row.scope === 'archive' && row.partyAuthor,
+  );
+  assert.ok(archive);
+  assert.ok(
+    original.sources.some(
+      (s) => s.kind === 'parti' && archive.sources.includes(s.id),
+    ),
+  );
+  const errors = changed((d) => {
+    const row = d.engagements.find((item) => item.id === archive.id);
+    row.sources = [d.sources.find((s) => s.kind === 'institution').id];
+  });
+  assert.ok(
+    errors.includes(archive.id + ': auteur collectif sans document de parti'),
+  );
+});
 test('les anciennes références et le périmètre de veille sont validés', () => {
   assert.deepEqual(
     changed((d) => {

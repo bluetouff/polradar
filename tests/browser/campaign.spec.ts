@@ -118,6 +118,12 @@ test('les fiches et la matrice de veille restent consultables sans JavaScript', 
 test('la home affiche les séries et les accès au corpus sans exemple nominatif', async ({
   page,
 }) => {
+  await page.goto('/breves/');
+  const latestBriefs = await page
+    .locator('.brief-cards a')
+    .evaluateAll((links) =>
+      links.slice(0, 3).map((link) => link.getAttribute('href')),
+    );
   for (const width of [320, 768, 1024, 1440, 1800]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/');
@@ -128,9 +134,19 @@ test('la home affiche les séries et les accès au corpus sans exemple nominatif
     await expect(
       page.locator('.home-economic-signals svg[role="img"]'),
     ).toHaveCount(4);
-    await expect(page.locator('main')).not.toContainText(
-      /Jean-Luc Mélenchon|David Lisnard/,
-    );
+    expect(
+      await page
+        .locator('.home-briefs .brief-cards a')
+        .evaluateAll((links) => links.map((link) => link.getAttribute('href'))),
+    ).toEqual(latestBriefs);
+    const permanentSections = await page
+      .locator(
+        '.election-cover, .home-choices, .home-layout > :not(.home-dossiers)',
+      )
+      .allTextContents();
+    for (const candidate of candidateRows) {
+      expect(permanentSections.join(' ')).not.toContain(candidate.name);
+    }
     await expect(
       page
         .getByRole('navigation', { name: 'Accès rapides' })

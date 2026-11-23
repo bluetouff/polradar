@@ -338,7 +338,7 @@ export function validateFeatures(dataset) {
       errors.push(`${version.id}: première version non identifiée`);
     if (
       version.snapshot.partyAuthor &&
-      (version.snapshot.scope !== 'parti' ||
+      (!['parti', 'archive'].includes(version.snapshot.scope) ||
         !version.snapshot.sourceRefs.some(
           ({ sourceId }) => sources.get(sourceId)?.kind === 'parti',
         ))
@@ -460,7 +460,7 @@ export function validateDataset(dataset) {
       if (!sourceIds.has(id)) errors.push(`${item.id}: source inconnue ${id}`);
     if (
       item.partyAuthor &&
-      (item.scope !== 'parti' ||
+      (!['parti', 'archive'].includes(item.scope) ||
         !dataset.sources.some(
           (source) =>
             source.kind === 'parti' && item.sources.includes(source.id),
