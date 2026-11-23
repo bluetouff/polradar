@@ -30,7 +30,10 @@ const maxCount = Math.max(1, ...counts.map((theme) => theme.count));
   title="Présidentielle 2027 : candidats, programmes et sondages"
   description="Suivez la présidentielle française de 2027. Retrouvez les candidats, comparez les programmes et consultez les sondages, le calendrier et les sources."
 >
-  <HomeCover />
+  <div class="home-front">
+    <HomeCover />
+    <HomeSignals />
+  </div>
   <nav class="home-choices" aria-label="Que cherchez-vous ?">
     <a href="/questions/">
       <Icon name="exchange" />
@@ -73,7 +76,6 @@ const maxCount = Math.max(1, ...counts.map((theme) => theme.count));
     </section>
   )}
   <div class="home-layout">
-    <HomeSignals />
     <HomeEvidence />
     <section class="programme-index" aria-labelledby="programme-index-title">
       <div class="register-heading">
@@ -154,6 +156,21 @@ const maxCount = Math.max(1, ...counts.map((theme) => theme.count));
 </Base>
 
 <style>
+  .home-front {
+    display: grid;
+    grid-template-columns: minmax(0, 0.93fr) minmax(0, 1.4fr);
+    gap: clamp(0.65rem, 1.3vw, 1.2rem);
+    margin-bottom: 1rem;
+  }
+  .home-front > :global(.election-cover) {
+    margin: 0;
+  }
+  @media (max-width: 990px) {
+    .home-front {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
   .home-briefs {
     margin-block: 0 1.4rem;
   }

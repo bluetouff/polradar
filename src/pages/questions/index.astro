@@ -22,7 +22,6 @@ import '../../styles/questions.css';
     </div>
     <Icon name="exchange" />
   </header>
-  <DossierLinks />
   <form class="q-filter" id="q-filter" role="search" hidden>
     <label>
       Rechercher une question
@@ -68,10 +67,8 @@ import '../../styles/questions.css';
     <summary>
       <Icon name="layers" />
       <span>
-        <strong>Matrice de couverture</strong>
-        <small>
-          Voir, candidat par candidat, le type de réponse disponible
-        </small>
+        <strong>Les réponses par candidat</strong>
+        <small>Consulter les documents disponibles pour chaque question</small>
       </span>
     </summary>
     <div class="q-matrix-inner">
@@ -166,5 +163,6 @@ import '../../styles/questions.css';
       <a href="/mises-a-jour/">Consulter le journal des sources</a>
     </div>
   </aside>
+  <DossierLinks />
 </Base>
 <script src="../../scripts/questions.ts"></script>

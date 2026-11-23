@@ -40,6 +40,7 @@ test('les nouvelles vues restent lisibles de 320 à 1440 pixels', async ({
         expect(compressed).toBe(false);
       }
       if (route === '/sondages/') {
+        await page.locator('#poll-options summary').click();
         await page.locator('#poll-institute').selectOption('Elabe');
         await expect(page.locator('#poll-status')).toContainText('Elabe');
         const textSizes = await page
@@ -169,6 +170,7 @@ test('la recherche combine les facettes et exporte la sélection', async ({
 }) => {
   await page.goto('/recherche/');
   const form = page.locator('#search-form');
+  await form.locator('#search-options summary').click();
   await form.locator('[name=candidate]').selectOption('melenchon');
   await form.locator('[name=theme]').selectOption('retraites');
   await form.locator('[name=type]').selectOption('mesure');
@@ -348,6 +350,7 @@ test('les sondages séparent les tours et permettent de choisir une vague', asyn
   await expect(page.locator('#poll-method')).toContainText(
     'Non précisé pour cette question',
   );
+  await page.locator('#poll-options summary').click();
   await page.locator('#poll-round').selectOption('second');
   await expect(page.locator('#poll-bars .poll-bar-row')).toHaveCount(2);
   await expect(page.locator('#poll-bars')).toContainText('Glucksmann');
@@ -484,9 +487,14 @@ test('le déficit corrigé conserve sa version précédente et ses dates', async
   await expect(page.locator('.page-title')).not.toContainText(
     'Programme du 12',
   );
-  await expect(page.locator('.precise-sources')).toContainText(
-    'Mise à jour du document : 16 novembre 2026',
-  );
+  await expect(
+    page
+      .locator('section')
+      .filter({
+        has: page.getByRole('heading', { name: 'Références', exact: true }),
+      })
+      .locator('.precise-sources'),
+  ).toContainText('Mise à jour du document : 16 novembre 2026');
   await page.goto('/historique/?mesure=philippe-fiscalite-1&avant=1&apres=2');
   await expect(page.locator('.diff-after').first()).toContainText('2,5 %');
   await expect(page.locator('.diff-before').first()).toContainText('2 %');

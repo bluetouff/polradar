@@ -6,6 +6,18 @@ import type { SearchEntry } from '../lib/search';
 const form = document.querySelector<HTMLFormElement>('#search-form')!,
   results = document.querySelector<HTMLElement>('#search-results')!,
   count = document.querySelector<HTMLElement>('#search-count')!;
+const options = document.querySelector<HTMLDetailsElement>('#search-options')!;
+function revealActiveFilters() {
+  const params = new URLSearchParams(location.hash.slice(1));
+  if (
+    ['candidate', 'theme', 'type', 'year', 'archives'].some((key) =>
+      params.has(key),
+    )
+  )
+    options.open = true;
+}
+revealActiveFilters();
+window.addEventListener('hashchange', revealActiveFilters);
 const selection = catalogue<SearchEntry>({
   form,
   results,

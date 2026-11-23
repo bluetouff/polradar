@@ -89,3 +89,20 @@
     display: none;
   }
 }
+
+@media (max-width: 600px) {
+  [data-paged-results] > .catalog-pager:first-child {
+    justify-content: space-between;
+    margin: 0.4rem 0;
+    padding: 0.3rem 0.55rem;
+  }
+  [data-paged-results] > .catalog-pager:first-child .pager-range {
+    flex-basis: auto;
+  }
+  [data-paged-results]
+    > .catalog-pager:first-child
+    .pager-links
+    > :not(.pager-prev, .pager-next, .pager-current) {
+    display: none;
+  }
+}

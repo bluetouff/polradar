@@ -35,7 +35,8 @@ const max = Math.max(
       <h1>Mesures et orientations</h1>
       <p>
         {current.length} fiches hors archives et{' '}
-        {measures.length - current.length} archives de 2022.
+        {measures.length - current.length} archives de 2022.{' '}
+        <a href="/mesures/#coverage-title">Fiches par thème</a>
       </p>
     </div>
     <a href="/recherche/#type=mesure" class="button">
@@ -43,46 +44,6 @@ const max = Math.max(
       Recherche détaillée
     </a>
   </header>
-  {page === 1 && (
-    <section class="coverage-panel" aria-labelledby="coverage-title">
-      <div class="register-heading">
-        <h2 id="coverage-title">Fiches par thème</h2>
-        <span class="small muted">
-          Nombre de fiches présentes dans le corpus
-        </span>
-      </div>
-      <div class="coverage-bars">
-        {themes.map((theme) => {
-          const count = current.filter(
-            (measure) => measure.theme === theme.id,
-          ).length;
-          return (
-            <a href={`/mesures/#theme=${theme.id}`} class="coverage-item">
-              <Icon name={theme.id} />
-              <span>{theme.label}</span>
-              <svg viewBox="0 0 180 10" aria-hidden="true">
-                <rect
-                  class="coverage-track"
-                  width="180"
-                  height="6"
-                  y="2"
-                  rx="3"
-                />
-                <rect
-                  class="coverage-fill"
-                  width={(count / max) * 180}
-                  height="6"
-                  y="2"
-                  rx="3"
-                />
-              </svg>
-              <b>{count}</b>
-            </a>
-          );
-        })}
-      </div>
-    </section>
-  )}
   <form hidden id="measure-filters" class="facet-filters">
     <label>
       Candidat
@@ -129,6 +90,50 @@ const max = Math.max(
       ))}
     </div>
   </PagedResults>
+  {page === 1 && (
+    <section class="coverage-panel" aria-labelledby="coverage-title">
+      <div class="register-heading">
+        <h2 id="coverage-title">Fiches par thème</h2>
+        <span class="small muted">
+          Nombre de fiches, archives de 2022 exclues
+        </span>
+      </div>
+      <div class="coverage-bars">
+        {themes.map((theme) => {
+          const count = current.filter(
+            (measure) => measure.theme === theme.id,
+          ).length;
+          return (
+            <a
+              href={`/themes/${theme.id}/`}
+              data-filter-theme={theme.id}
+              class="coverage-item"
+            >
+              <Icon name={theme.id} />
+              <span>{theme.label}</span>
+              <svg viewBox="0 0 180 10" aria-hidden="true">
+                <rect
+                  class="coverage-track"
+                  width="180"
+                  height="6"
+                  y="2"
+                  rx="3"
+                />
+                <rect
+                  class="coverage-fill"
+                  width={(count / max) * 180}
+                  height="6"
+                  y="2"
+                  rx="3"
+                />
+              </svg>
+              <b>{count}</b>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  )}
   <noscript>
     <p class="notice">
       Les filtres nécessitent JavaScript. La pagination donne accès à toutes les

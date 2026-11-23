@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import DossierPicker from '../components/DossierPicker.astro';
 import DossierHeading from '../components/DossierHeading.astro';
+import Distribution from '../components/Distribution.astro';
 import BallotChart from '../components/BallotChart.astro';
 import SourceLinks from '../components/SourceLinks.astro';
 import { formatDate, formatTimestamp, themeById } from '../lib/data';
@@ -25,12 +26,11 @@ import { sameSentence } from '../lib/measure-text';
 >
   <header class="page-title votes-title">
     <div>
-      <span class="eyebrow">PROGRAMMES / PARLEMENT</span>
       <h1>Propositions et votes passés</h1>
       <p>
-        Les propositions de campagne et les votes individuels sur des textes qui
-        traitent du même sujet. Chaque dossier indique l’année et l’auteur de la
-        proposition.
+        {voteCases.length} dossiers relient des propositions aux votes
+        nominatifs de{' '}
+        {new Set(voteCases.map((record) => record.candidate)).size} candidats.
       </p>
     </div>
     <a href="/evolution/" class="button">
@@ -38,24 +38,15 @@ import { sameSentence } from '../lib/measure-text';
       Évolution des propositions
     </a>
   </header>
-  <div class="votes-summary">
-    <span>
-      <strong>{voteCases.length}</strong>dossiers
-    </span>
-    <span>
-      <strong>{legislativeVotes.ballots.length}</strong>scrutins
-    </span>
-    <span>
-      <strong>{new Set(voteCases.map((c) => c.candidate)).size}</strong>
-      candidats
-    </span>
-    <p>
-      Assemblée nationale · Sénat · Parlement européen
-      <span>
-        Sélection documentée au {formatDate(legislativeVotes.checked)}
-      </span>
-    </p>
-  </div>
+  <Distribution
+    title={`${legislativeVotes.ballots.length} scrutins par assemblée`}
+    note={`Votes recensés au ${formatDate(legislativeVotes.checked)}`}
+    parts={Object.entries(chambers).map(([id, label]) => ({
+      label,
+      count: legislativeVotes.ballots.filter((vote) => vote.chamber === id)
+        .length,
+    }))}
+  />
   <div class="votes-workspace" data-votes-workspace>
     <DossierPicker
       type="votes"
@@ -66,6 +57,7 @@ import { sameSentence } from '../lib/measure-text';
         icon: record.measure.theme,
         topic: themeById(record.measure.theme).short,
         subject: record.ballots.at(-1)!.shortTitle,
+        ballot: record.ballots.at(-1)!,
         detail: `${record.ballots.length > 1 ? 'Dernier scrutin · ' : ''}${chambers[record.ballots.at(-1)!.chamber]} · ${formatDate(record.ballots.at(-1)!.date)}`,
       }))}
     />

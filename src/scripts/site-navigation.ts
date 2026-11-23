@@ -2,29 +2,44 @@ import { groups } from '../lib/navigation';
 const nav = document.querySelector<HTMLElement>('.site-navigation');
 
 if (nav) {
-  for (const entry of nav.querySelectorAll<HTMLAnchorElement>(
-    'a[href^="/#menu-"]',
-  )) {
-    const group = groups.find(
-      ({ id }) => id === entry.hash.slice('#menu-'.length),
-    );
-    if (!group) continue;
-    const list = entry.parentElement;
-    if (!list) continue;
-    const current = list.querySelector<HTMLAnchorElement>('a[aria-current]');
-    list.replaceChildren(
-      ...group.links.map(([href, label]) => {
+  const section = nav.dataset.section;
+  if (section !== undefined) {
+    // The five links go straight to the corresponding native menus when scripts
+    // are disabled. Replace them only after the whole expanded menu is ready.
+    const focused = document.activeElement;
+    const activeDesk =
+      focused instanceof HTMLAnchorElement && focused.parentElement === nav
+        ? focused.hash.slice('#menu-'.length)
+        : undefined;
+    const menus = groups.map((group) => {
+      const details = document.createElement('details');
+      details.setAttribute('name', 'rubriques');
+      details.dataset.desk = group.id;
+      const summary = document.createElement('summary');
+      summary.className = 'menu-' + group.icon;
+      summary.textContent = group.name;
+      const links = document.createElement('div');
+      for (const [href, label] of group.links) {
         const link = document.createElement('a');
         link.href = href;
         link.textContent = label;
-        if (current?.getAttribute('href') === href)
+        if (href === section) {
           link.setAttribute(
             'aria-current',
-            current.getAttribute('aria-current')!,
+            location.pathname === href ? 'page' : 'location',
           );
-        return link;
-      }),
-    );
+          details.dataset.current = 'true';
+        }
+        links.append(link);
+      }
+      details.append(summary, links);
+      return details;
+    });
+    nav.replaceChildren(...menus);
+    menus
+      .find(({ dataset }) => dataset.desk === activeDesk)
+      ?.querySelector('summary')
+      ?.focus();
   }
   const opened = () => nav.querySelector<HTMLDetailsElement>('details[open]');
   document.addEventListener('click', (event) => {

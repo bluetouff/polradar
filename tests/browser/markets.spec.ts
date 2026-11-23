@@ -83,6 +83,7 @@ test('les instituts et les références distinctes des résultats sont accessibl
   page,
 }) => {
   await page.goto('/sondages/');
+  await page.locator('#poll-options summary').click();
   for (const institute of [
     'Ifop',
     'YouGov',

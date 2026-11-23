@@ -33,66 +33,71 @@ const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
     </div>
   </header>
   <form hidden id="search-form" class="search-workbench">
-    <label class="search-input">
-      <Icon name="search" />
-      <input
-        id="search-query"
-        maxlength="200"
-        type="search"
-        name="q"
-        placeholder="Retraites, SMIC, un candidat…"
-        aria-label="Votre recherche"
-        autocomplete="off"
-      />
-    </label>
-    <div class="facet-filters">
-      <label>
-        Candidat
-        <select name="candidate">
-          <option value="">Tous</option>
-          {candidates.map((candidate) => (
-            <option value={candidate.id}>{candidate.name}</option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Thème
-        <select name="theme">
-          <option value="">Tous</option>
-          {questionThemes.map((theme) => (
-            <option value={theme.id}>{theme.label}</option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Type
-        <select name="type">
-          <option value="">Tous</option>
-          {Object.entries(searchKinds).map(([id, label]) => (
-            <option value={id}>{label}</option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Publication
-        <select name="year">
-          <option value="">Toutes les années</option>
-          {years.map((year) => (
-            <option value={year}>{year}</option>
-          ))}
-        </select>
-      </label>
-      <label class="check-label">
-        <input type="checkbox" name="archives" value="1" />
-        Archives 2022
+    <div class="query-line">
+      <label class="search-input">
+        <Icon name="search" />
+        <input
+          id="search-query"
+          maxlength="200"
+          type="search"
+          name="q"
+          placeholder="Retraites, SMIC, un candidat…"
+          aria-label="Votre recherche"
+          autocomplete="off"
+        />
       </label>
       <button class="button" type="submit">
         Rechercher
       </button>
-      <button class="button small" type="reset">
-        Réinitialiser
-      </button>
     </div>
+    <details class="reader-options" id="search-options">
+      <summary>Filtrer par candidat, thème, type ou année</summary>
+      <div class="facet-filters">
+        <label>
+          Candidat
+          <select name="candidate">
+            <option value="">Tous</option>
+            {candidates.map((candidate) => (
+              <option value={candidate.id}>{candidate.name}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Thème
+          <select name="theme">
+            <option value="">Tous</option>
+            {questionThemes.map((theme) => (
+              <option value={theme.id}>{theme.label}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Type
+          <select name="type">
+            <option value="">Tous</option>
+            {Object.entries(searchKinds).map(([id, label]) => (
+              <option value={id}>{label}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Publication
+          <select name="year">
+            <option value="">Toutes les années</option>
+            {years.map((year) => (
+              <option value={year}>{year}</option>
+            ))}
+          </select>
+        </label>
+        <label class="check-label">
+          <input type="checkbox" name="archives" value="1" />
+          Archives 2022
+        </label>
+        <button class="button small" type="reset">
+          Réinitialiser
+        </button>
+      </div>
+    </details>
   </form>
   <div class="search-toolbar">
     <p id="search-count" class="results-meta" role="status" aria-live="polite">

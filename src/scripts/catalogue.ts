@@ -116,7 +116,7 @@ export function catalogue<T>({
       location.pathname.slice(base.length).match(/^page\/(\d+)\/$/)?.[1] ?? '1';
     void show(params.get('page') ?? pathPage);
   }
-  function filter(push: boolean) {
+  function filter(push: boolean, focus = false) {
     const params = read();
     const url = href(1, params);
     if (location.pathname + location.hash !== url) {
@@ -130,11 +130,11 @@ export function catalogue<T>({
         history.pushState(null, '', url);
       else history.replaceState(null, '', url);
     }
-    void show(1);
+    void show(1, focus);
   }
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    filter(true);
+    filter(true, true);
   });
   form.addEventListener('input', (e) => {
     if (e.target instanceof HTMLInputElement && e.target.type !== 'checkbox')

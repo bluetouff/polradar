@@ -44,6 +44,12 @@ const range = pageRange(sources.length, page);
                 {source.published
                   ? formatDate(source.published)
                   : (source.publishedYear ?? formatDate(null))}
+                {source.publicationReference && (
+                  <a class="date-citation" href={source.publicationReference}>
+                    {' '}
+                    Notice de l’éditeur ↗
+                  </a>
+                )}
               </dd>
             </div>
             <div>

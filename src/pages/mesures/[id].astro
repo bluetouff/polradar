@@ -98,15 +98,6 @@ const candidate = candidateById(measure.candidate),
   </header>
   <div class="measure-detail-layout">
     <article>
-      {proposalTracks
-        .filter((t) => t.measureIds.includes(measure.id))
-        .map((t) => (
-          <p class="notice">
-            <a href={`/evolution/#dossier=${t.id}`}>
-              Évolution de cette proposition dans les documents officiels ↗
-            </a>
-          </p>
-        ))}
       <p class="measure-lead">{measure.description}</p>
       {(measure.metrics.length > 0 || measure.amounts.length > 0) && (
         <div class="measure-number-grid">
@@ -138,6 +129,15 @@ const candidate = candidateById(measure.candidate),
       {voteRecords.length > 0 && (
         <MeasureVotes records={voteRecords} revision={measure.revision} />
       )}
+      {proposalTracks
+        .filter((t) => t.measureIds.includes(measure.id))
+        .map((t) => (
+          <p class="notice">
+            <a href={`/evolution/#dossier=${t.id}`}>
+              Évolution de cette proposition dans les documents officiels ↗
+            </a>
+          </p>
+        ))}
       {linkedBudgets.length > 0 && (
         <section class="section-space">
           <div class="register-heading">
@@ -221,6 +221,15 @@ const candidate = candidateById(measure.candidate),
                     {source.published
                       ? formatDate(source.published)
                       : source.publishedYear}
+                    {source.publicationReference && (
+                      <>
+                        {' '}
+                        ·{' '}
+                        <a href={source.publicationReference}>
+                          Notice de l’éditeur
+                        </a>
+                      </>
+                    )}
                   </span>
                 )}
                 {source.updated && (

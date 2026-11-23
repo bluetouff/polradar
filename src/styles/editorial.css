@@ -849,3 +849,23 @@ select {
   height: 18px;
   color: var(--accent);
 }
+
+.footer-mini {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 1.5rem;
+  padding-block: 0.9rem;
+  border-block-start: 1px solid #ffffff28;
+  font-size: 0.83rem;
+}
+.footer-mini > a,
+.footer-mini .footer-credit a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  color: inherit;
+}
+.footer-mini small {
+  color: #bfd1d8;
+}

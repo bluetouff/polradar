@@ -49,48 +49,14 @@ const changeHeading = item.changes.length
       <Icon name="exchange" />
     </span>
     <div>
-      <h1>Ce qui changerait</h1>
-      <p>Les programmes numériques face au droit en vigueur.</p>
+      <h1 id="law-question">{item.question}</h1>
+      <p>{item.context}</p>
+      <a href="#autres-situations">Choisir une autre situation</a>
     </div>
   </header>
 
   <div class="digital-law">
-    <nav class="law-sections" aria-label="Thèmes du comparatif juridique">
-      {digitalLawSections.map((entry) => (
-        <a
-          href={entry.cases[0].href}
-          aria-current={entry.id === section.id ? 'true' : undefined}
-        >
-          <Icon name={entry.icon} />
-          <span>{entry.title}</span>
-          <Icon name="arrow" class="law-nav-arrow" />
-        </a>
-      ))}
-    </nav>
-
     <section class="law-board" aria-labelledby="law-question">
-      <nav class="law-cases" aria-label={`Situations · ${section.title}`}>
-        {section.cases.map((entry) => (
-          <a
-            href={entry.href}
-            aria-current={entry.id === item.id ? 'page' : undefined}
-          >
-            <Icon name={entry.icon} />
-            {entry.label}
-          </a>
-        ))}
-      </nav>
-
-      <header class="law-question">
-        <span class="law-question-icon">
-          <Icon name={item.icon} />
-        </span>
-        <div>
-          <h2 id="law-question">{item.question}</h2>
-          <p>{item.context}</p>
-        </div>
-      </header>
-
       <nav class="law-jump" aria-label="Accès aux deux volets">
         <a href="#law-current">
           Droit en vigueur <Icon name="chevron" />
@@ -105,7 +71,7 @@ const changeHeading = item.changes.length
           aria-labelledby="law-current"
         >
           <header class="law-lane-heading">
-            <h3 id="law-current">Droit en vigueur</h3>
+            <h2 id="law-current">Droit en vigueur</h2>
             <time datetime={digitalLawAsOf}>
               Au {formatDate(digitalLawAsOf)}
             </time>
@@ -113,7 +79,7 @@ const changeHeading = item.changes.length
           <div class="law-cards">
             {item.rules.map((rule) => (
               <article class="law-card">
-                <h4>{rule.title}</h4>
+                <h3>{rule.title}</h3>
                 <p>{rule.body}</p>
                 <footer>
                   {rule.refs.map((ref) => (
@@ -130,7 +96,7 @@ const changeHeading = item.changes.length
 
         <section class="law-lane law-lane-changes" aria-labelledby="law-next">
           <header class="law-lane-heading">
-            <h3 id="law-next">{changeHeading}</h3>
+            <h2 id="law-next">{changeHeading}</h2>
             {item.changes.length > 0 && (
               <span>{`${item.changes.length} ${changeNoun}${item.changes.length > 1 ? 's' : ''}`}</span>
             )}
@@ -142,7 +108,7 @@ const changeHeading = item.changes.length
                   <span>{change.author}</span>
                   <span title={change.edition}>{scopes[change.scope]}</span>
                 </div>
-                <h4>{change.title}</h4>
+                <h3>{change.title}</h3>
                 <p>{change.body}</p>
                 {change.scope !== 'campagne' && <small>{change.edition}</small>}
                 <footer>
@@ -163,11 +129,11 @@ const changeHeading = item.changes.length
             ))}
             {item.contextMeasures.map((measure) => (
               <article class="law-card">
-                <h4>
+                <h3>
                   {item.id === 'signalement-cyber'
                     ? 'Signalement par les victimes'
                     : 'Protection des communications'}
-                </h4>
+                </h3>
                 <p>
                   {measure.author} · <a href={measure.href}>{measure.title}</a>.
                 </p>
@@ -182,12 +148,12 @@ const changeHeading = item.changes.length
             ))}
             {item.parliament && (
               <article class="law-card law-change law-parliament">
-                {item.changes.length > 0 && <h4>Parcours parlementaire</h4>}
+                {item.changes.length > 0 && <h3>Parcours parlementaire</h3>}
                 <div class="law-byline">
                   <span>Projet de loi</span>
                   <span>Première lecture</span>
                 </div>
-                <h4>{item.parliament.title}</h4>
+                <h3>{item.parliament.title}</h3>
                 <p>{item.parliament.body}</p>
                 <footer>
                   {item.parliament.refs.map((ref) => (
@@ -222,6 +188,33 @@ const changeHeading = item.changes.length
           </div>
         </section>
       </div>
+    </section>
+    <section id="autres-situations" class="law-other">
+      <h2>Explorer les autres situations</h2>
+      <nav class="law-sections" aria-label="Thèmes du comparatif juridique">
+        {digitalLawSections.map((entry) => (
+          <a
+            href={entry.cases[0].href}
+            aria-current={entry.id === section.id ? 'true' : undefined}
+          >
+            <Icon name={entry.icon} />
+            <span>{entry.title}</span>
+            <Icon name="arrow" class="law-nav-arrow" />
+          </a>
+        ))}
+      </nav>
+
+      <nav class="law-cases" aria-label={`Situations · ${section.title}`}>
+        {section.cases.map((entry) => (
+          <a
+            href={entry.href}
+            aria-current={entry.id === item.id ? 'page' : undefined}
+          >
+            <Icon name={entry.icon} />
+            {entry.label}
+          </a>
+        ))}
+      </nav>
     </section>
     <nav class="law-related" aria-label="Autres comparatifs">
       <a href="/numerique/candidats/">

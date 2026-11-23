@@ -18,7 +18,6 @@ import '../styles/proposals.css';
 >
   <header class="page-title evidence-page-title">
     <div>
-      <span class="eyebrow">PROGRAMMES / CHIFFRAGES ANNONCÉS</span>
       <h1>Carte des financements</h1>
       <p>
         Les montants, leurs origines et leurs affectations dans les projets
@@ -61,7 +60,11 @@ import '../styles/proposals.css';
         candidate: candidateById(map.candidate),
         icon: 'euro',
         topic: map.scope === 'parti' ? 'Projet de parti' : 'Campagne 2027',
-        detail: formatBudgetAmount(map.entry),
+        detail: relationKinds[map.relation],
+        amount: {
+          value: formatBudgetAmount(map.entry),
+          horizon: map.entry.horizon,
+        },
       }))}
     />
     <div class="evidence-stage">

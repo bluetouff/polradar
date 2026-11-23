@@ -1,0 +1,39 @@
+---
+import { meta, formatDate } from '../lib/data';
+---
+
+<footer class="publication-footer">
+  <div class="footer-inner">
+    <nav
+      class="footer-columns"
+      aria-label="Plan du site"
+      id="plan-du-site"
+      data-footer-links
+    >
+      <a href="/#plan-du-site">Plan du site complet</a>
+      <a href="/mentions/">Mentions et confidentialité</a>
+    </nav>
+    <div class="footer-mini">
+      <span class="footer-credit">
+        <a href="/">Polradar</a> · a
+        <a href="https://l0g.fr/" class="log-wordmark" aria-label="l0g_">
+          l<span class="log-wordmark-zero">0</span>g
+          <span class="log-wordmark-cursor">_</span>
+        </a>
+        website by <a href="https://bluetouff.com/">bluetouff</a>
+      </span>
+      <a href="/suivi/">Mon suivi</a>
+      <a href="/reperes/">Calendrier électoral</a>
+      <a href={meta.repository} target="_blank" rel="noopener noreferrer">
+        GitHub · Licence MIT
+      </a>
+      <small>
+        Corpus du{' '}
+        <time datetime={meta.corpusUpdated}>
+          {formatDate(meta.corpusUpdated)}
+        </time>{' '}
+        · Sélection non exhaustive
+      </small>
+    </div>
+  </div>
+</footer>

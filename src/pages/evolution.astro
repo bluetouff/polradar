@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import DossierPicker from '../components/DossierPicker.astro';
+import Distribution from '../components/Distribution.astro';
 import DossierHeading from '../components/DossierHeading.astro';
 import ProposalSource from '../components/ProposalSource.astro';
 import { candidateById, themeById } from '../lib/data';
@@ -23,30 +24,27 @@ import '../styles/proposals.css';
 >
   <header class="page-title evidence-page-title">
     <div>
-      <span class="eyebrow">PROGRAMMES / DOCUMENTS DATÉS</span>
       <h1>Évolution des propositions</h1>
-      <p>Comparer ce qui était annoncé, à quelle date et pour qui.</p>
+      <p>
+        {proposalTracks.length} dossiers comparent {evolution.states.length}{' '}
+        versions publiées des propositions de{' '}
+        {new Set(proposalTracks.map((track) => track.candidate)).size} candidats
+        ou de leurs partis.
+      </p>
     </div>
     <a class="button" href="/financements/">
       <Icon name="exchange" />
       Carte des financements
     </a>
   </header>
-  <div class="evidence-overview">
-    <span>
-      <strong>{proposalTracks.length}</strong> dossiers documentés
-    </span>
-    <span>
-      <strong>{evolution.states.length}</strong> états de proposition
-    </span>
-    <span>
-      <strong>{new Set(proposalTracks.map((t) => t.candidate)).size}</strong>{' '}
-      candidats couverts
-    </span>
-    <a href="#evolution-method">
-      Comment lire ces comparaisons <Icon name="arrow" />
-    </a>
-  </div>
+  <Distribution
+    title="Qu’est-ce qui change entre deux textes ?"
+    note="Nombre de dossiers par type de comparaison"
+    parts={Object.entries(evolutionKinds).map(([id, label]) => ({
+      label,
+      count: proposalTracks.filter((track) => track.kind === id).length,
+    }))}
+  />
   <div
     class:list={[
       'evidence-workspace',
@@ -62,6 +60,25 @@ import '../styles/proposals.css';
         candidate: candidateById(track.candidate),
         icon: track.theme,
         topic: themeById(track.theme).short,
+        comparison: {
+          note: evolutionKinds[track.kind],
+          first:
+            evidenceDate(track.states[0]) +
+            (track.kind === 'montant'
+              ? ' · ' +
+                stateValue(track.states[0]) +
+                ' ' +
+                stateUnit(track.states[0])
+              : ''),
+          last:
+            evidenceDate(track.states.at(-1)!) +
+            (track.kind === 'montant'
+              ? ' · ' +
+                stateValue(track.states.at(-1)!) +
+                ' ' +
+                stateUnit(track.states.at(-1)!)
+              : ''),
+        },
         detail: `${track.states.length} documents`,
       }))}
     />

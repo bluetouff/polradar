@@ -47,23 +47,12 @@ const dateParts = (date: string) => ({
     </span>
     <div>
       <h1>Agenda de campagne</h1>
-      <p>Meetings, rencontres et interventions datées des candidats.</p>
+      <p>
+        Réunions publiques, déplacements et interventions annoncés.{' '}
+        <a href="#carte-agenda">Voir la carte</a>
+      </p>
     </div>
   </header>
-  <nav class="visual-tabs" aria-label="Explorer la campagne">
-    <a href="/temps-de-parole/">
-      <Icon name="microphone" /> Médias
-    </a>
-    <a href="/budget-programmes/">
-      <Icon name="euro" /> Budgets
-    </a>
-    <a href="/agenda/" aria-current="page">
-      <Icon name="map-pin" /> Agenda
-    </a>
-    <a href="/communes/">
-      <Icon name="vote" /> Résultats par commune
-    </a>
-  </nav>
   <VisualFilters label="Personnalité, ville, semaine">
     <form id="agenda-filters" class="visual-filters agenda-filters" hidden>
       <label>
@@ -109,98 +98,6 @@ const dateParts = (date: string) => ({
     </form>
   </VisualFilters>
   <div class="agenda-layout">
-    <aside class="agenda-geography">
-      <figure class="campaign-map">
-        <figcaption>
-          <Icon name="map-pin" />
-          <span>
-            France métropolitaine<small>Repères regroupés par proximité</small>
-          </span>
-        </figcaption>
-        <svg
-          viewBox="0 0 500 500"
-          class="agenda-map"
-          aria-label="Communes des rendez-vous intégrés à l’agenda"
-        >
-          <defs>
-            <pattern
-              id="map-grid"
-              width="25"
-              height="25"
-              patternUnits="userSpaceOnUse"
-            >
-              <circle cx="1" cy="1" r="0.7" />
-            </pattern>
-          </defs>
-          <rect width="500" height="500" fill="url(#map-grid)" />
-          <path class="map-land" d={francePath(franceMap.rings)} />
-          {clusters.map((cluster) => {
-            const ids = cluster.cities.map((c) => c.id),
-              count = agenda.events.filter((e) =>
-                ids.includes(e.city ?? ''),
-              ).length;
-            return (
-              <a
-                href="#agenda-events"
-                data-map-cities={ids.join(' ')}
-                aria-label={`${cluster.cities.map((c) => c.name).join(', ')} : ${count} rendez-vous intégrés`}
-              >
-                <circle class="map-hit" cx={cluster.x} cy={cluster.y} r="21" />
-                <circle class="map-halo" cx={cluster.x} cy={cluster.y} r="17" />
-                <circle
-                  class="map-marker"
-                  cx={cluster.x}
-                  cy={cluster.y}
-                  r="12"
-                />
-                <text
-                  class="map-count"
-                  x={cluster.x}
-                  y={cluster.y + 4}
-                  text-anchor="middle"
-                >
-                  {count}
-                </text>
-                <text
-                  class="map-label"
-                  x={cluster.x}
-                  y={cluster.y - 23}
-                  text-anchor="middle"
-                >
-                  {cluster.cities.length === 1
-                    ? cluster.cities[0].name
-                    : `${cluster.cities.length} villes`}
-                </text>
-                <title>{cluster.cities.map(c=>c.name).join(', ')}</title>
-              </a>
-            );
-          })}
-        </svg>
-        <p>
-          Les repères indiquent les centres de communes, regroupés lorsqu’ils
-          sont proches. L’adresse du rendez-vous figure dans sa fiche.
-        </p>
-        <div
-          id="map-city-choices"
-          class="map-city-choices"
-          hidden
-          role="group"
-          aria-label="Choisir une ville du repère"
-        ></div>
-      </figure>
-      <div class="agenda-coverage">
-        <strong>
-          {related.length} candidats · {agenda.cities.length} communes
-        </strong>
-        <p>
-          Sélection non exhaustive. Agenda mis à jour le{' '}
-          {formatDate(agenda.checked)}.
-        </p>
-        <p>
-          <a href="/campagne/">Voir la chronologie de campagne ↗</a>
-        </p>
-      </div>
-    </aside>
     <section
       class="agenda-journal"
       aria-labelledby="agenda-list-title"
@@ -298,6 +195,98 @@ const dateParts = (date: string) => ({
         </ol>
       </PagedResults>
     </section>
+    <aside class="agenda-geography" id="carte-agenda">
+      <figure class="campaign-map">
+        <figcaption>
+          <Icon name="map-pin" />
+          <span>
+            France métropolitaine<small>Repères regroupés par proximité</small>
+          </span>
+        </figcaption>
+        <svg
+          viewBox="0 0 500 500"
+          class="agenda-map"
+          aria-label="Communes des rendez-vous intégrés à l’agenda"
+        >
+          <defs>
+            <pattern
+              id="map-grid"
+              width="25"
+              height="25"
+              patternUnits="userSpaceOnUse"
+            >
+              <circle cx="1" cy="1" r="0.7" />
+            </pattern>
+          </defs>
+          <rect width="500" height="500" fill="url(#map-grid)" />
+          <path class="map-land" d={francePath(franceMap.rings)} />
+          {clusters.map((cluster) => {
+            const ids = cluster.cities.map((c) => c.id),
+              count = agenda.events.filter((e) =>
+                ids.includes(e.city ?? ''),
+              ).length;
+            return (
+              <a
+                href="#agenda-events"
+                data-map-cities={ids.join(' ')}
+                aria-label={`${cluster.cities.map((c) => c.name).join(', ')} : ${count} rendez-vous intégrés`}
+              >
+                <circle class="map-hit" cx={cluster.x} cy={cluster.y} r="21" />
+                <circle class="map-halo" cx={cluster.x} cy={cluster.y} r="17" />
+                <circle
+                  class="map-marker"
+                  cx={cluster.x}
+                  cy={cluster.y}
+                  r="12"
+                />
+                <text
+                  class="map-count"
+                  x={cluster.x}
+                  y={cluster.y + 4}
+                  text-anchor="middle"
+                >
+                  {count}
+                </text>
+                <text
+                  class="map-label"
+                  x={cluster.x}
+                  y={cluster.y - 23}
+                  text-anchor="middle"
+                >
+                  {cluster.cities.length === 1
+                    ? cluster.cities[0].name
+                    : `${cluster.cities.length} villes`}
+                </text>
+                <title>{cluster.cities.map(c=>c.name).join(', ')}</title>
+              </a>
+            );
+          })}
+        </svg>
+        <p>
+          Les repères indiquent les centres de communes, regroupés lorsqu’ils
+          sont proches. L’adresse du rendez-vous figure dans sa fiche.
+        </p>
+        <div
+          id="map-city-choices"
+          class="map-city-choices"
+          hidden
+          role="group"
+          aria-label="Choisir une ville du repère"
+        ></div>
+      </figure>
+      <div class="agenda-coverage">
+        <strong>
+          {related.length} candidats · {agenda.cities.length} communes
+        </strong>
+        <p>
+          Sélection non exhaustive. Agenda mis à jour le{' '}
+          {formatDate(agenda.checked)}.
+        </p>
+        <p>
+          <a href="/campagne/">Voir la chronologie de campagne ↗</a>
+        </p>
+      </div>
+    </aside>
   </div>
   <details class="visual-method">
     <summary>Sources de l’agenda et de la carte</summary>
@@ -349,4 +338,18 @@ const dateParts = (date: string) => ({
     </details>
   )}
   <script src="../scripts/agenda.ts"></script>
+  <nav class="visual-tabs" aria-label="Explorer la campagne">
+    <a href="/temps-de-parole/">
+      <Icon name="microphone" /> Médias
+    </a>
+    <a href="/budget-programmes/">
+      <Icon name="euro" /> Budgets
+    </a>
+    <a href="/agenda/" aria-current="page">
+      <Icon name="map-pin" /> Agenda
+    </a>
+    <a href="/communes/">
+      <Icon name="vote" /> Résultats par commune
+    </a>
+  </nav>
 </Base>

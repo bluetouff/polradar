@@ -25,37 +25,13 @@ const monthLabel = (value: string) =>
     </span>
     <div>
       <h1>Temps de parole</h1>
-      <p>Les durées publiées par l’Arcom, média par média.</p>
-    </div>
-  </header>
-  <nav class="visual-tabs" aria-label="Explorer la campagne">
-    <a href="/temps-de-parole/" aria-current="page">
-      <Icon name="microphone" /> Médias
-    </a>
-    <a href="/budget-programmes/">
-      <Icon name="euro" /> Budgets
-    </a>
-    <a href="/agenda/">
-      <Icon name="map-pin" /> Agenda
-    </a>
-  </nav>
-  <div class="visual-intro airtime-intro">
-    <div>
-      <span class="visual-kicker">Dernier mois disponible</span>
-      <strong>{monthLabel(airtime.months[0].month)}</strong>
       <p>
-        Hors période électorale · relevé consulté le{' '}
-        {formatDate(airtime.checked)}.
+        Dernier mois publié par l’Arcom ·{' '}
+        <strong>{monthLabel(airtime.months[0].month)}</strong>. Relevés de
+        parole politique hors période électorale.
       </p>
     </div>
-    <p>
-      Ces relevés mesurent les interventions des personnalités politiques hors
-      période électorale. L’Arcom les publie avec un décalage.
-      <a href="/breves/arcom-calendrier-temps-de-parole/">
-        Calendrier des règles pour la présidentielle de 2027
-      </a>
-    </p>
-  </div>
+  </header>
   <VisualFilters label="Mois, médias, personnalité">
     <form id="airtime-filters" class="visual-filters" hidden>
       <label>
@@ -228,4 +204,10 @@ const monthLabel = (value: string) =>
     <SourceLinks ids={['arcom-hors-elections']} />
   </details>
   <script src="../scripts/airtime.ts"></script>
+  <p class="visual-caption">
+    Relevé consulté le {formatDate(airtime.checked)}.{' '}
+    <a href="/breves/arcom-calendrier-temps-de-parole/">
+      Calendrier des règles pour la présidentielle de 2027
+    </a>
+  </p>
 </Base>

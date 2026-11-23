@@ -1,6 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import PagedResults from './PagedResults.astro';
+import type { voteCases } from '../lib/votes-data';
 import type { Candidate } from '../lib/data';
 interface Props {
   type: 'votes' | 'evolution' | 'financements';
@@ -12,6 +13,9 @@ interface Props {
     icon: string;
     detail: string;
     subject?: string;
+    ballot?: (typeof voteCases)[number]['ballots'][number];
+    comparison?: { first: string; last: string; note: string };
+    amount?: { value: string; horizon: string };
   }[];
 }
 const { type, choices } = Astro.props;
@@ -63,6 +67,64 @@ const ordered = [...choices].sort(
             {choice.subject && (
               <span class="subject-ballot">{choice.subject}</span>
             )}
+            {choice.ballot && (
+              <span class="vote-preview">
+                <span>Résultat du scrutin</span>
+                {choice.ballot.kind === 'motion-censure' ? (
+                  <strong>
+                    {choice.ballot.tally.for} voix pour la motion ·{' '}
+                    {choice.ballot.tally.majority} requises
+                  </strong>
+                ) : (
+                  <>
+                    <svg
+                      viewBox={`0 0 ${choice.ballot.tally.voters} 1`}
+                      preserveAspectRatio="none"
+                      aria-hidden="true"
+                    >
+                      <rect
+                        width={choice.ballot.tally.for}
+                        height="1"
+                        fill="#23736e"
+                      />
+                      <rect
+                        x={choice.ballot.tally.for}
+                        width={choice.ballot.tally.against!}
+                        height="1"
+                        fill="#a75839"
+                      />
+                      <rect
+                        x={choice.ballot.tally.expressed}
+                        width={choice.ballot.tally.abstained!}
+                        height="1"
+                        fill="#7c8794"
+                      />
+                    </svg>
+                    <strong>
+                      {choice.ballot.tally.for} pour ·{' '}
+                      {choice.ballot.tally.against} contre ·{' '}
+                      {choice.ballot.tally.abstained}{' '}
+                      {choice.ballot.tally.abstained! > 1
+                        ? 'abstentions'
+                        : 'abstention'}
+                    </strong>
+                  </>
+                )}
+              </span>
+            )}
+            {choice.comparison && (
+              <span class="track-preview">
+                <span>{choice.comparison.note}</span>
+                <strong>{choice.comparison.first}</strong>
+                <strong>{choice.comparison.last}</strong>
+              </span>
+            )}
+            {choice.amount && (
+              <span class="amount-preview">
+                <b>{choice.amount.value}</b>
+                <span>{choice.amount.horizon}</span>
+              </span>
+            )}
             <small>{choice.detail}</small>
             <span class="subject-person">
               {choice.candidate.name}
@@ -76,6 +138,53 @@ const ordered = [...choices].sort(
 </nav>
 <script src="../scripts/document-pages.ts"></script>
 <style>
+  .vote-preview,
+  .track-preview,
+  .amount-preview {
+    width: 100%;
+    display: grid;
+    gap: 0.28rem;
+    border-top: 1px solid #c6d5da;
+    padding: 0.5rem 0 0.15rem;
+  }
+  .vote-preview > span,
+  .track-preview > span,
+  .amount-preview > span {
+    color: #495f69;
+    font-size: 0.77rem;
+  }
+  .vote-preview svg {
+    width: 100%;
+    height: 0.55rem;
+    border-radius: 0.15rem;
+  }
+  .subject-card .vote-preview strong,
+  .subject-card .track-preview strong {
+    color: #183a46;
+    font-size: 0.84rem;
+    line-height: 1.4;
+    font-variant-numeric: tabular-nums;
+  }
+  .track-preview {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.3rem 0.5rem;
+  }
+  .track-preview span {
+    grid-column: 1/-1;
+  }
+  .track-preview strong {
+    border-inline-start: 3px solid #548192;
+    padding-inline-start: 0.45rem;
+  }
+  .track-preview strong:last-child {
+    border-color: #ae7053;
+  }
+  .amount-preview b {
+    font-size: 1.3rem;
+    color: #1a535f;
+    font-variant-numeric: tabular-nums;
+  }
+
   .subject-directory {
     padding: 0.75rem;
     display: grid;

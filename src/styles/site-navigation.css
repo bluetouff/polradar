@@ -87,6 +87,30 @@
 .mobile-search {
   display: none;
 }
+/* Native links on detail pages reserve the same row as the enhanced menus. */
+.site-navigation > a,
+.site-navigation > noscript a {
+  display: flex;
+  min-width: 0;
+  min-height: 2.9rem;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 0.22rem;
+  border-inline-start: 1px solid #405966;
+  color: #e4eef1;
+  font-size: clamp(0.63rem, 2.45vw, 0.87rem);
+  font-weight: 690;
+  text-decoration: none;
+}
+.site-navigation > a:is(:hover, :focus-visible),
+.site-navigation > noscript a:is(:hover, :focus-visible) {
+  color: white;
+  text-decoration: underline;
+}
+.site-navigation > noscript {
+  grid-column: 1 / -1;
+}
+
 @media (max-width: 900px) {
   .site-navigation {
     margin-inline: 1rem;
@@ -139,5 +163,24 @@
 @media (max-width: 360px) {
   .site-navigation > details summary::after {
     display: none;
+  }
+}
+
+@media screen {
+  .publication-header .site-navigation > details > summary {
+    color: #eaf3f6;
+  }
+  .publication-header
+    .site-navigation
+    > details:is([open], [data-current])
+    > summary,
+  .publication-header .site-navigation > details > summary:hover {
+    color: #fff;
+    background: #234752;
+    border-bottom-color: #9fd3d6;
+  }
+  .publication-header .site-navigation > details > div {
+    color: #203744;
+    background: #f5f9fa;
   }
 }

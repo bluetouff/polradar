@@ -208,10 +208,28 @@ async function start() {
   }
   function render() {
     renderPlot();
+    document.getElementById('poll-trend-heading')!.textContent =
+      rows.length > 1
+        ? 'Évolution à scénario identique'
+        : rows.length === 1
+          ? 'Une seule enquête pour ce scénario'
+          : 'Évolution des résultats';
     bars.replaceChildren();
     method.replaceChildren();
     embedLink.hidden = !rows.length;
+    const quickSource =
+      document.querySelector<HTMLAnchorElement>('#poll-quick-source')!;
+    quickSource.hidden = !rows.length;
     if (!rows.length) {
+      for (const id of [
+        'poll-selected-date',
+        'poll-bar-date',
+        'poll-first-date',
+        'poll-last-date',
+        'poll-wave-total',
+        'poll-no-intention',
+      ])
+        document.getElementById(id)!.textContent = '';
       status.textContent = 'Aucun scénario correspondant.';
       return;
     }
@@ -219,8 +237,16 @@ async function start() {
     embedLink.href = `/sondages/integrer/${poll.id}/`;
     document.querySelector('#poll-wave-total')!.textContent =
       `${rows.length} observation${rows.length > 1 ? 's' : ''}`;
-    for (const selector of ['#poll-selected-date', '#poll-bar-date'])
-      document.querySelector(selector)!.textContent = date(poll.fieldworkEnd);
+    document.querySelector('#poll-selected-date')!.textContent = date(
+      poll.fieldworkEnd,
+    );
+    document
+      .querySelector('#poll-bar-date')!
+      .replaceChildren(
+        `${poll.institute} · ${poll.scenario}`,
+        el('br'),
+        `Du ${date(poll.fieldworkStart)} au ${date(poll.fieldworkEnd)}`,
+      );
     document.querySelector('#poll-first-date')!.textContent = date(
       rows[0].fieldworkEnd,
     );
@@ -233,7 +259,11 @@ async function start() {
       row.append(el('span', result.name), el('strong', pollScoreLabel(result)));
       bars.append(row);
       if (result.percentage === null) continue;
-      const bar = svg('svg', { viewBox: '0 0 300 8', 'aria-hidden': 'true' });
+      const bar = svg('svg', {
+        viewBox: '0 0 300 8',
+        preserveAspectRatio: 'none',
+        'aria-hidden': 'true',
+      });
       bar.append(
         svg('rect', {
           class: 'poll-bar-track',
@@ -262,6 +292,7 @@ async function start() {
         `Notice officielle, page ${poll.noticePage} ↗`,
         `${source.url}#page=${poll.noticePage}`,
       );
+    quickSource.href = link.href;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     heading.append(el('h2', 'Enquête et méthode'), link);

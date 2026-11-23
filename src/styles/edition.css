@@ -733,3 +733,164 @@
     aspect-ratio: auto;
   }
 }
+
+/* Shared page rhythm keeps the first result close to the heading. */
+@media screen {
+  main > :is(.page-title, .registry-heading, .divergence-heading) {
+    min-height: 0;
+    padding-block: clamp(0.8rem, 1.45vw, 1.15rem);
+    margin-block-end: clamp(0.65rem, 1.25vw, 1.05rem);
+    background-size:
+      clamp(4rem, 7vw, 6.7rem) auto,
+      cover;
+  }
+  main h1,
+  .subject-card strong {
+    text-wrap: balance;
+  }
+  main > .page-title p {
+    max-inline-size: 76ch;
+    text-wrap: pretty;
+  }
+  .masthead {
+    padding-block: clamp(0.45rem, 0.95vw, 0.85rem);
+  }
+  main.container {
+    padding-top: clamp(0.65rem, 1.3vw, 1.25rem);
+  }
+  .reader-options {
+    margin: 0.6rem 0;
+    border-block: 1px solid var(--line);
+    color: var(--ink);
+  }
+  .reader-options > summary {
+    min-height: 2.75rem;
+    align-content: center;
+    cursor: pointer;
+    font-weight: 620;
+    padding: 0.55rem 0.3rem;
+    color: var(--blue);
+  }
+  .reader-options > :is(p, form) {
+    margin: 0.4rem 0.3rem 0.8rem;
+  }
+  .reader-options summary:focus-visible {
+    outline-offset: -2px;
+  }
+  .query-line {
+    display: flex;
+    align-items: stretch;
+    gap: 0.45rem;
+  }
+  .query-line .search-input {
+    flex: 1;
+    min-width: 0;
+  }
+  .budget-credit {
+    margin: 0.4rem 0;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .poll-workspace {
+    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+    gap: clamp(0.9rem, 2vw, 2rem);
+    padding: clamp(0.85rem, 1.8vw, 1.55rem);
+    border-radius: 0.75rem;
+    margin-top: 0.8rem;
+  }
+  .poll-breakdown {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+  }
+  .poll-trend {
+    padding: 0 0 0 clamp(0.85rem, 2vw, 1.65rem);
+    border-inline-start: 1px solid var(--line);
+  }
+  .poll-context {
+    background: var(--night-gradient);
+    color: #eef7f8;
+    padding: 0.8rem 1rem;
+    border-radius: 0.45rem;
+    margin: 0.55rem 0 0.85rem;
+    font-size: 0.94rem;
+    line-height: 1.45;
+  }
+  #poll-bars {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.65rem;
+  }
+  #poll-bars .poll-bar-row {
+    margin: 0;
+    gap: 0.19rem 0.65rem;
+  }
+  #poll-bars .poll-bar-row > span {
+    font-size: 0.91rem;
+  }
+  #poll-bars .poll-bar-row > strong {
+    font: 650 0.99rem var(--sans);
+    font-variant-numeric: tabular-nums;
+  }
+  #poll-bars .poll-bar-row svg {
+    height: 0.68rem;
+  }
+  #poll-bars .poll-bar-track {
+    fill: #d3e0e5;
+  }
+  .poll-breakdown #poll-embed-link {
+    margin-top: 0.6rem;
+  }
+  .agenda-journal {
+    min-width: 0;
+  }
+}
+@media screen and (max-width: 750px) {
+  .poll-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .poll-trend {
+    border: 0;
+    border-top: 1px solid var(--line);
+    padding: 0.7rem 0 0;
+  }
+  .profile-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .profile-layout > .profile-aside {
+    order: 1;
+  }
+  .profile-layout > div {
+    min-width: 0;
+  }
+  main > :is(.page-title, .registry-heading, .divergence-heading) {
+    padding: 0.7rem 0.82rem;
+    background-size: cover;
+  }
+  .facet-filters#measure-filters {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+  #measure-filters label:nth-child(3) {
+    grid-column: 1/-1;
+  }
+  .facet-filters#measure-filters[hidden] {
+    display: none;
+  }
+}
+
+.poll-reading-key {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.3rem 0.65rem;
+  margin: 0.35rem 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.poll-reading-key a {
+  color: var(--blue);
+}

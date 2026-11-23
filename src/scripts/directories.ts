@@ -56,6 +56,11 @@ if (document.getElementById('sources-list')) {
                 : 'Date non indiquée',
           ),
         );
+        if (label === 'Publication' && s.publicationReference)
+          div.lastElementChild?.append(
+            ' · ',
+            external('Notice de l’éditeur ↗', s.publicationReference),
+          );
         dl.append(div);
       }
       card.append(

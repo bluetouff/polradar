@@ -7,36 +7,45 @@ interface Props {
 }
 const { current } = Astro.props;
 const path = Astro.url.pathname;
-// On detail pages every section has a static path to its complete menu on the homepage.
 const detail = path.split('/').filter(Boolean).length > 1;
+const active = groups
+  .flatMap(({ links }) => links)
+  .find(([url]) => url === current);
 ---
 
-<nav class="site-navigation" aria-label="Navigation principale">
-  {groups.map((group) => (
-    <details
-      name="rubriques"
-      data-desk={group.id}
-      data-current={
-        group.links.some(([url]) => current === url) ? 'true' : undefined
-      }
-    >
-      <summary class={`menu-${group.icon}`}>{group.name}</summary>
-      <div id={path === '/' ? 'menu-' + group.id : undefined}>
-        {detail ? (
-          <>
-            {group.links
-              .filter(([url]) => url === current)
-              .map(([url, label]) => (
-                <a href={url} aria-current={path === url ? 'page' : 'location'}>
-                  {label}
-                </a>
-              ))}
-            <a href={'/#menu-' + group.id}>
-              Toutes les rubriques · {group.name}
-            </a>
-          </>
-        ) : (
-          group.links.map(([url, label]) => (
+<nav
+  class="site-navigation"
+  aria-label="Navigation principale"
+  data-section={detail ? current : undefined}
+>
+  {detail ? (
+    <>
+      {groups.map(({ id, name }) => (
+        <a href={'/#menu-' + id}>{name}</a>
+      ))}
+      {active && (
+        <noscript>
+          <a
+            href={current}
+            aria-current={path === current ? 'page' : 'location'}
+          >
+            {active[1]}
+          </a>
+        </noscript>
+      )}
+    </>
+  ) : (
+    groups.map((group) => (
+      <details
+        name="rubriques"
+        data-desk={group.id}
+        data-current={
+          group.links.some(([url]) => current === url) ? 'true' : undefined
+        }
+      >
+        <summary class={'menu-' + group.icon}>{group.name}</summary>
+        <div id={path === '/' ? 'menu-' + group.id : undefined}>
+          {group.links.map(([url, label]) => (
             <a
               href={url}
               aria-current={
@@ -49,9 +58,9 @@ const detail = path.split('/').filter(Boolean).length > 1;
             >
               {label}
             </a>
-          ))
-        )}
-      </div>
-    </details>
-  ))}
+          ))}
+        </div>
+      </details>
+    ))
+  )}
 </nav>

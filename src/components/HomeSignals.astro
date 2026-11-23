@@ -8,6 +8,12 @@ import '../styles/economy.css';
 const indicators = ['inflation', 'chomage', 'croissance', 'dette-publique'].map(
   (id) => economy.find((series) => series.id === id)!,
 );
+const unitLabels: Record<string, string> = {
+  RCH_A: '% sur un an',
+  PC_ACT: '% des actifs',
+  CLV_PCH_PRE: '% sur un trimestre',
+};
+const flags: Record<string, string> = { p: 'provisoire', e: 'estimation' };
 ---
 
 <section
@@ -19,7 +25,7 @@ const indicators = ['inflation', 'chomage', 'croissance', 'dette-publique'].map(
       <h2 id="home-economy-title">
         <Icon name="markets" /> Indicateurs économiques
       </h2>
-      <a href="/economie/">Les {economy.length} séries Eurostat ↗</a>
+      <a href="/economie/">France · Eurostat ↗</a>
     </header>
     <div class="economy-grid-cards">
       {indicators.map((series) => (
@@ -32,12 +38,12 @@ const indicators = ['inflation', 'chomage', 'croissance', 'dette-publique'].map(
           </h3>
           <div class="economy-reading">
             <strong>{printedNumber(series.latest[1]!)}</strong>{' '}
-            <span>{series.unit}</span>
+            <span>{unitLabels[series.filters.unit] ?? series.unit}</span>
           </div>
           <p>
             {labelPeriod(series.latest[0])}
             {series.latest[2] &&
-              ` · ${series.latest[2] === 'p' ? 'provisoire' : series.latest[2]}`}
+              ` · ${flags[series.latest[2]] ?? 'statut Eurostat ' + series.latest[2]}`}
           </p>
           <EconomyCurve
             title={series.title}
@@ -46,6 +52,7 @@ const indicators = ['inflation', 'chomage', 'croissance', 'dette-publique'].map(
               -(series.frequency === 'M' ? 24 : 16),
             )}
             compact
+            showScale
           />
         </article>
       ))}
@@ -55,94 +62,115 @@ const indicators = ['inflation', 'chomage', 'croissance', 'dette-publique'].map(
 
 <style>
   .home-economic-signals .economy-group {
-    --economy-board: #eef4f5;
-    --economy-grid: #b7c8ce;
-    background: var(--panel-gradient, #eef4f5);
-    color: var(--ink);
-    border: 1px solid #b0c4cc;
-    border-radius: 0.75rem;
-    padding: clamp(0.9rem, 1.7vw, 1.5rem);
+    --economy-board: #133240;
+    --economy-grid: #49616d;
+    padding: clamp(0.85rem, 1.45vw, 1.3rem);
+    border: 1px solid #375a67;
+    border-radius: 0.8rem;
+    background: linear-gradient(115deg, #0e2734, #163947 64%, #204954);
+    color: #edf6f7;
   }
   .home-signals-header {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: baseline;
-    gap: 0.4rem 1rem;
-    padding-bottom: 0.8rem;
-    border-bottom: 1px solid #b0c4cc;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.7rem;
+    padding-bottom: 0.65rem;
+    border-bottom: 1px solid #577480;
   }
   .home-signals-header h2 {
     margin: 0;
-    color: var(--ink);
-    font-size: 1.2rem;
+    color: #f1f7f8;
+    font-size: 1.15rem;
   }
   .home-signals-header a {
-    color: var(--accent);
-    font-size: 0.88rem;
+    color: #c3e6e4;
+    font-size: 0.85rem;
   }
-  .economy-grid-cards {
+  .home-economic-signals .economy-grid-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0;
-    margin-top: 0.8rem;
   }
   .home-economic-signals .economy-card {
-    --economy-line: #226477;
-    padding: 0.3rem 0.85rem;
-    border: 0;
-    border-left: 1px solid #c2d1d7;
-    border-radius: 0;
+    --economy-line: #9be2df;
     background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 0.8rem 0.8rem 0.55rem 0;
   }
-  .home-economic-signals .economy-card:first-child {
-    border-left: 0;
+  .home-economic-signals .economy-card:nth-child(even) {
+    border-inline-start: 1px solid #466570;
+    padding-inline: 0.8rem 0;
+  }
+  .home-economic-signals .economy-card:nth-child(n + 3) {
+    border-top: 1px solid #466570;
   }
   .home-economic-signals .economy-card:nth-child(2) {
-    --economy-line: #405f82;
+    --economy-line: #bdd4f0;
   }
   .home-economic-signals .economy-card:nth-child(3) {
-    --economy-line: #865a49;
+    --economy-line: #efb48b;
   }
   .home-economic-signals .economy-card:nth-child(4) {
-    --economy-line: #38675c;
+    --economy-line: #d7cb9b;
   }
-  .home-economic-signals .economy-card h3 {
-    color: var(--ink);
-  }
-  .home-economic-signals .economy-card p,
-  .home-economic-signals :global(.economy-curve figcaption) {
-    color: var(--muted);
-  }
-  .home-economic-signals :global(.economy-zero) {
-    stroke: #718995;
-  }
-  .economy-card h3 a {
+  .home-economic-signals h3 a {
+    color: #edf6f7;
+    font-size: 0.96rem;
     text-decoration: none;
   }
-  .economy-card h3 a:hover {
+  .home-economic-signals h3 a:is(:hover, :focus-visible) {
     text-decoration: underline;
   }
-  .economy-reading strong {
-    font: 640 clamp(1.45rem, 2.65vw, 2.1rem)/1.18 var(--sans);
+  .home-economic-signals a:focus-visible {
+    outline-color: #b9ebe4;
+  }
+  .home-economic-signals .economy-reading strong {
+    font: 600 clamp(1.55rem, 2.2vw, 2.05rem)/1.15 var(--sans);
     font-variant-numeric: tabular-nums;
   }
-  .home-economic-signals :global(.economy-curve figcaption) {
-    font-size: 0.7rem;
+  .home-economic-signals .economy-reading span {
+    font: 550 0.85rem/1.25 var(--sans);
   }
-  @media (max-width: 950px) {
-    .home-economic-signals .economy-grid-cards {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      row-gap: 0.8rem;
+  .home-economic-signals .economy-card p,
+  .home-economic-signals :global(figcaption) {
+    color: #d1e1e4;
+  }
+  .home-economic-signals :global(.economy-curve-detail) {
+    margin: 0.3rem 0;
+    column-gap: 0.3rem;
+  }
+  .home-economic-signals :global(.economy-scale) {
+    color: #c3d8df;
+    font: 500 0.73rem/1 var(--sans);
+    padding: 0.1rem 0;
+  }
+  .home-economic-signals :global(.economy-curve svg) {
+    width: 100%;
+    height: auto;
+  }
+  .home-economic-signals :global(figcaption) {
+    font: 500 0.72rem/1.3 var(--sans);
+    flex-wrap: wrap;
+  }
+  @media (max-width: 400px) {
+    .home-economic-signals h3 a {
+      font-size: 0.87rem;
     }
-    .home-economic-signals .economy-card:nth-child(odd) {
-      border-left: 0;
+    .home-signals-header h2 {
+      font-size: 1.04rem;
     }
   }
-  @media (max-width: 420px) {
-    .home-economic-signals .economy-card {
-      padding-inline: 0.45rem;
+  @media print {
+    .home-economic-signals .economy-group {
+      background: white;
+      color: black;
     }
-    .home-economic-signals :global(.economy-curve figcaption) {
-      flex-wrap: wrap;
+    .home-economic-signals
+      :is(h2, h3 a, p, .economy-reading, .home-signals-header a) {
+      color: black;
     }
   }
 </style>

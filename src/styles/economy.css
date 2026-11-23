@@ -189,13 +189,16 @@
 }
 .economy-scale {
   flex-direction: column;
-  padding-block: 0.35rem 1.1rem;
+  padding-block: 0.35rem;
 }
 .economy-curve-detail {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: 0.5rem;
+  column-gap: 0.5rem;
   margin-block: 0.7rem;
+}
+.economy-curve-detail figcaption {
+  grid-column: 2;
 }
 .economy-detail header {
   display: flex;

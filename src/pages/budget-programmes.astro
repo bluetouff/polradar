@@ -54,40 +54,17 @@ const annualScales = budgetAnnualScales(programmeBudgets.profiles);
     </span>
     <div>
       <h1>Budgets des programmes</h1>
-      <p>Les montants annoncés et leur financement.</p>
-    </div>
-  </header>
-  <p class="evidence-related">
-    <a class="button" href="/financements/">
-      <Icon name="exchange" />
-      Explorer la carte des financements
-    </a>
-  </p>
-  <nav class="visual-tabs" aria-label="Explorer la campagne">
-    <a href="/temps-de-parole/">
-      <Icon name="microphone" /> Médias
-    </a>
-    <a href="/budget-programmes/" aria-current="page">
-      <Icon name="euro" /> Budgets
-    </a>
-    <a href="/agenda/">
-      <Icon name="map-pin" /> Agenda
-    </a>
-  </nav>
-  <div class="visual-intro budget-intro">
-    <div>
-      <span class="visual-kicker">Sélection documentée</span>
-      <strong>
-        {programmeBudgets.profiles.length} candidats ·{' '}
+      <p>
         {programmeBudgets.profiles.flatMap((p) => p.entries).length} montants
-      </strong>
-      <p>Sélection mise à jour le {formatDate(programmeBudgets.checked)}.</p>
+        annoncés dans les programmes de {programmeBudgets.profiles.length}{' '}
+        candidats ou de leurs partis. Relevé du{' '}
+        {formatDate(programmeBudgets.checked)}.
+      </p>
     </div>
-    <p>
-      Sélection de montants annoncés. Chaque graphique conserve la période et le
-      périmètre de son document.
-    </p>
-  </div>
+    <a class="button" href="/financements/">
+      <Icon name="exchange" /> Carte des financements
+    </a>
+  </header>
   <VisualFilters label="Personnalité et période">
     <form id="budget-filters" class="visual-filters" hidden>
       <label>
@@ -178,6 +155,12 @@ const annualScales = budgetAnnualScales(programmeBudgets.profiles);
                         <span>{periods[entry.period]}</span>
                       </p>
                     </div>
+                    {assessment.estimator && assessment.origin && (
+                      <p class="budget-credit">
+                        {originLabels[assessment.origin]} ·{' '}
+                        {assessment.estimator}
+                      </p>
+                    )}
                     <p class="budget-horizon">
                       <Icon name="clock" />
                       {entry.horizon}
@@ -300,12 +283,6 @@ const annualScales = budgetAnnualScales(programmeBudgets.profiles);
                       open={assessment.targets.length > 0}
                     >
                       <summary>{reviewLabels[assessment.status]}</summary>
-                      {assessment.estimator && assessment.origin && (
-                        <p>
-                          {originLabels[assessment.origin]} ·{' '}
-                          {assessment.estimator}
-                        </p>
-                      )}
                       {assessment.publicScope && (
                         <p>{assessment.publicScope}</p>
                       )}

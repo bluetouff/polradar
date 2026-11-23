@@ -14,32 +14,6 @@ import { digitalLawRoot } from '../lib/digital-law.mjs';
     <h1>Comparateur de programmes</h1>
     <p>Sélectionnez un thème et deux ou trois candidats.</p>
   </header>
-  <a class="retirement-entry" href="/questions/">
-    <Icon name="exchange" />
-    <span>
-      <strong>Qui propose quoi ?</strong>
-      <small>Comparer les réponses à une question précise</small>
-    </span>
-    <Icon name="arrow" />
-  </a>
-  <a class="retirement-entry" href="/comparer/retraites/">
-    <Icon name="retraites" />
-    <span>
-      <strong>Ce qui changerait · Retraites</strong>
-      <small>Trois programmes face au droit en vigueur</small>
-    </span>
-    <Icon name="arrow" />
-  </a>
-  <a class="retirement-entry" href={digitalLawRoot}>
-    <Icon name="chiffrement" />
-    <span>
-      <strong>Ce qui changerait · Numérique</strong>
-      <small>
-        Chiffrement et données personnelles face au droit en vigueur
-      </small>
-    </span>
-    <Icon name="arrow" />
-  </a>
   <form id="compare-form" class="compare-form" action="/comparer/" method="get">
     <label>
       Votre sujet
@@ -121,6 +95,34 @@ import { digitalLawRoot } from '../lib/digital-law.mjs';
     <a href="/methode/">Lire notre méthode ↗</a>
   </aside>
   <script src="../scripts/compare.ts"></script>
+  <nav class="comparison-related" aria-label="Autres comparaisons">
+    <a class="retirement-entry" href="/questions/">
+      <Icon name="exchange" />
+      <span>
+        <strong>Qui propose quoi ?</strong>
+        <small>Comparer les réponses à une question précise</small>
+      </span>
+      <Icon name="arrow" />
+    </a>
+    <a class="retirement-entry" href="/comparer/retraites/">
+      <Icon name="retraites" />
+      <span>
+        <strong>Ce qui changerait · Retraites</strong>
+        <small>Trois programmes face au droit en vigueur</small>
+      </span>
+      <Icon name="arrow" />
+    </a>
+    <a class="retirement-entry" href={digitalLawRoot}>
+      <Icon name="chiffrement" />
+      <span>
+        <strong>Ce qui changerait · Numérique</strong>
+        <small>
+          Chiffrement et données personnelles face au droit en vigueur
+        </small>
+      </span>
+      <Icon name="arrow" />
+    </a>
+  </nav>
 </Base>
 
 <style>

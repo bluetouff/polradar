@@ -180,24 +180,6 @@ const votesLink = voteCases.find((v) => v.candidate === candidate.id);
       </section>
     </aside>
     <div>
-      {briefs.length > 0 && (
-        <section class="candidate-briefs">
-          <h2>Brèves de campagne</h2>
-          <ul>
-            {briefs.map((b) => (
-              <li>
-                <a href={b.href}>{b.article.data.title}</a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-      <CandidateActivity candidate={candidate} />
-      <p>
-        <a class="inline-action" href={`/numerique/candidats/#${candidate.id}`}>
-          Numérique · mesures et documents examinés ↗
-        </a>
-      </p>
       <div class="section-heading">
         <div>
           <span id="mesures-du-profil" aria-hidden="true"></span>
@@ -235,6 +217,24 @@ const votesLink = voteCases.find((v) => v.candidate === candidate.id);
           <p>Aucune proposition récente documentée pour cette candidature.</p>
         </div>
       )}
+      {briefs.length > 0 && (
+        <section class="candidate-briefs">
+          <h2>Brèves de campagne</h2>
+          <ul>
+            {briefs.map((b) => (
+              <li>
+                <a href={b.href}>{b.article.data.title}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+      <CandidateActivity candidate={candidate} />
+      <p>
+        <a class="inline-action" href={`/numerique/candidats/#${candidate.id}`}>
+          Numérique · mesures et documents examinés ↗
+        </a>
+      </p>
       {missing.length > 0 && (
         <details class="missing-themes">
           <summary>Les thèmes restant à documenter ({missing.length})</summary>

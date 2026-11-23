@@ -156,7 +156,7 @@
   color: #cfdfd9;
 }
 
-.law-lane-heading h3 {
+.law-lane-heading h2 {
   margin: 0;
   color: var(--lane-color);
   font-size: 1rem;
@@ -216,7 +216,7 @@
   content: '';
 }
 
-.law-card h4 {
+.law-card h3 {
   margin: 0 0 0.24rem;
   font-size: 1.02rem;
   line-height: 1.24;
@@ -344,7 +344,7 @@
   display: none;
 }
 
-.law-lane-heading h3 {
+.law-lane-heading h2 {
   scroll-margin-block-start: 4rem;
 }
 
@@ -418,4 +418,19 @@
   font-family: var(--mono);
   color: #674a22;
   font-size: 0.74rem;
+}
+
+.law-other {
+  display: grid;
+  gap: 0.7rem;
+}
+.law-other h2 {
+  margin: 0;
+  font-size: 1.16rem;
+}
+.digital-law-title a {
+  display: inline-block;
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--accent);
 }
