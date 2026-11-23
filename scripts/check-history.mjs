@@ -16,18 +16,22 @@ for (const [file, key] of [
   ['src/data/proposal-evolution.json', 'states'],
   ['src/data/legislative-votes.json', 'ballots'],
 ]) {
-  const files = execFileSync(
+  const blobSize = execFileSync(
     'git',
-    ['ls-tree', '-r', '--name-only', base, '--', file],
+    ['ls-tree', '-r', '--format=%(objectsize)', base, '--', file],
     { encoding: 'utf8' },
-  );
-  if (!files.trim()) {
+  ).trim();
+  if (!blobSize) {
     console.log('Première intégration de l’historique.');
     continue;
   }
+  const bytes = Number(blobSize);
+  if (!Number.isSafeInteger(bytes) || bytes <= 0)
+    throw Error(`Objet d’historique Git invalide : ${file}`);
   const previous = JSON.parse(
-    execFileSync('git', ['show', `${base}:${file}`], {
+    execFileSync('git', ['cat-file', 'blob', `${base}:${file}`], {
       encoding: 'utf8',
+      maxBuffer: bytes,
     }),
   );
   const current = JSON.parse(readFileSync(file, 'utf8'));
