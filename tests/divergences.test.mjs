@@ -20,7 +20,29 @@ const measures = read('measures'),
   themes = read('themes');
 test('les axes reprennent les chiffres et leurs fiches, sans archives ni mélange d’âge général et de pénibilité', () => {
   const groups = divergenceGroups(measures, candidates, themes);
-  assert.equal(groups.length, 5);
+  assert.deepEqual(
+    new Set(groups.map((group) => group.id)),
+    new Set([
+      'retraites-age-depart',
+      'retraites-annuites',
+      'travail-smic-mensuel-net',
+      'fiscalite-seuil-exoneration-heritage',
+      'climat-nouveaux-epr2',
+      'securite-places-prison-supplementaires',
+    ]),
+  );
+  const prisons = groups.find(
+    (group) => group.key === 'places-prison-supplementaires',
+  );
+  assert.equal(prisons.unit, 'places');
+  assert.deepEqual(
+    Object.fromEntries(prisons.values.map((row) => [row.name, row.value])),
+    {
+      'David Lisnard': 20000,
+      'Groupe Rassemblement national': 30000,
+      'Nicolas Dupont-Aignan': 40000,
+    },
+  );
   const age = groups.find((group) => group.id === 'retraites-age-depart');
   assert.equal(age.values.length, 7);
   assert.equal(

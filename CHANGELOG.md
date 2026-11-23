@@ -4,6 +4,8 @@ Le journal des données rend compte de chaque collecte. Cette page consigne les 
 
 ## 23 novembre 2026
 
+- **Programmes de campagne.** Ajout de 25 fiches dans huit dossiers, dont les garanties proposées pour une assemblée constituante, les soins itinérants et l’accompagnement des élèves en situation de handicap. Cinq lignes du contre-budget du groupe RN renvoient à leur chiffrage pour 2027. Deux brèves documentent la tournée des maires de Benoît Mathieu et le cahier de doléances de Natacha Polony. [Questions](https://polradar.fr/questions/) · [Budgets](https://polradar.fr/budget-programmes/) · [Brèves](https://polradar.fr/breves/)
+
 - **Lecture sur téléphone et ordinateur.** Les résultats de sondage précèdent les courbes, les propositions précèdent la répartition par thème et chaque comparaison juridique s’ouvre sur la question traitée. Les cartes parlementaires donnent le résultat collectif du scrutin. [Sondages](https://polradar.fr/sondages/) · [Votes](https://polradar.fr/votes/)
 - **Budgets et dates.** Relecture des 42 chiffrages restants et ajout de 17 propositions. Le registre de sources conserve les publications datées à l’année quand le jour reste inconnu. [Budgets](https://polradar.fr/budget-programmes/) · [Registre des sources](https://polradar.fr/sources/)
 

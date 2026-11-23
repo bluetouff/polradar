@@ -691,7 +691,7 @@
     "id": "social-garde-jeunes-enfants",
     "theme": "social",
     "label": "Petite enfance · places en crèche et coût de la garde",
-    "context": "Deux questions concernent directement les familles : l’ouverture de places et le prix à payer. Les premières propositions de chaque document sont présentées selon le levier retenu.",
+    "context": "Les propositions portent sur le nombre de places, les tarifs, les personnes prioritaires et la garantie d’un mode de garde.",
     "positions": [
       {
         "id": "places",
@@ -712,6 +712,11 @@
         "id": "gratuit",
         "label": "Rendre les crèches publiques gratuites",
         "versions": ["melenchon-creches-publiques-gratuites-v1"]
+      },
+      {
+        "id": "garantie",
+        "label": "Garantir une solution de garde à chaque enfant",
+        "versions": ["ps-conges-parentaux-egaux-garde-v1"]
       }
     ]
   },
@@ -797,7 +802,7 @@
     "id": "handicap-accompagnement-ecole",
     "theme": "education",
     "label": "Handicap · accompagnement à l’école",
-    "context": "La reconnaissance du métier d’AESH et son intégration à la fonction publique engagent des changements distincts. La fiche de François Ruffin conserve sa date et son statut de candidature retirée.",
+    "context": "Les projets portent sur les recrutements, les salaires et le statut des accompagnants. Le projet du PS propose de sécuriser leur statut. D’autres textes prévoient leur intégration à la fonction publique.",
     "positions": [
       {
         "id": "metier",
@@ -811,6 +816,11 @@
           "ruffin-education-aesh-v1",
           "melenchon-aesh-categorie-b-v1"
         ]
+      },
+      {
+        "id": "effectifs",
+        "label": "Recruter des AESH et revaloriser leur métier",
+        "versions": ["ps-recruter-revaloriser-aesh-v1"]
       }
     ]
   },

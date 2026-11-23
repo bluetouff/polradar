@@ -10,13 +10,27 @@ export function divergenceGroups(measures, candidates, themes) {
   // Both keys describe the general retirement target. Keep hardship and
   // full-rate ages separate; they describe different conditions.
   const normalized = measures.map((measure) => {
-    const metrics = measure.metrics.map((metric) =>
-      measure.theme === 'retraites' &&
-      metric.key === 'age-retraite' &&
-      metric.unit === 'ans'
-        ? { ...metric, key: 'age-depart', label: 'Âge de départ cible' }
-        : metric,
-    );
+    const metrics = measure.metrics.map((metric) => {
+      if (
+        measure.theme === 'retraites' &&
+        metric.key === 'age-retraite' &&
+        metric.unit === 'ans'
+      )
+        return { ...metric, key: 'age-depart', label: 'Âge de départ cible' };
+      if (
+        measure.theme === 'securite' &&
+        ['places-prison', 'places-prison-supplementaires'].includes(
+          metric.key,
+        ) &&
+        metric.unit === 'places'
+      )
+        return {
+          ...metric,
+          key: 'places-prison-supplementaires',
+          label: 'Places de prison à construire',
+        };
+      return metric;
+    });
     if (measure.theme === 'travail') {
       for (const amount of measure.amounts) {
         if (

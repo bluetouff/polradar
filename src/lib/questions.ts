@@ -304,6 +304,7 @@ const additions = [
       'philippe-securite-2-v2',
       'dupont-aignan-places-prison-quinquennat-v1',
       'lisnard-places-prison-v1',
+      'groupe-rn-construction-places-prison-v1',
     ],
   },
   {
@@ -356,6 +357,7 @@ const additions = [
       'attal-europe-ukraine-v1',
       'dupont-aignan-europe-ukraine-v1',
       'philippot-livraisons-ukraine-v1',
+      'asselineau-arret-aides-ukraine-v1',
     ],
   },
 ];
@@ -387,6 +389,16 @@ interface Definition {
   related?: { label: string; href: string };
 }
 const complementaryVersions: Record<string, string[]> = {
+  'soins-de-proximite': ['equinoxe-tripler-structures-mobiles-soins-v1'],
+  'institutions-ecrire-constitution': [
+    'mathieu-convention-controle-impartialite-v1',
+    'mlekuz-garants-constituante-v1',
+    'mlekuz-constituante-apres-refus-v1',
+  ],
+  'institutions-contributions-citoyennes': [
+    'cheve-question-reponse-publique-v1',
+    'cheve-deposer-soutenir-avis-v1',
+  ],
   'retraites-financement-regimes': ['philippe-plan-epargne-premier-emploi-v1'],
   'logement-regulation-loyers': ['melenchon-blocage-loyers-urgence-sociale-v1'],
   'social-garde-jeunes-enfants': [

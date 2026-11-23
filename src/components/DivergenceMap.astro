@@ -190,6 +190,11 @@ const exact = (value: number) => formatDivergenceValue(value, group.unit);
       figurent ci-dessous.
       {group.key === 'smic-mensuel-net' &&
         ' Cet axe compare les montants mensuels nets. Les annonces brutes ou sans base précisée figurent dans les dossiers.'}
+      {group.key === 'places-prison-supplementaires' && (
+        <a href="/questions/places-prison/">
+          Comparer les calendriers et les propositions sans nombre de places.
+        </a>
+      )}
     </figcaption>
   </figure>
   <div class="divergence-records">

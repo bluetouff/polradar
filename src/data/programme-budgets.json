@@ -2119,6 +2119,151 @@
             ],
             "assumptions": "Le calcul concerne les jeunes au casier judiciaire vierge. L’annexe ne donne ni effectif ni coût par permis."
           }
+        },
+        {
+          "id": "groupe-rn-prisons-2027",
+          "label": "Construction de 30 000 places de prison",
+          "euros": 1000000000,
+          "scope": "parti",
+          "kind": "depense",
+          "period": "horizon",
+          "horizon": "Exercice 2027, par rapport aux projets de loi de finances et de financement de la Sécurité sociale",
+          "approximate": false,
+          "funding": null,
+          "source": "groupe-rn-contre-budget-2027",
+          "locator": "Annexe du contre-budget, p. 12, hausse des dépenses, ligne Construction de 30 000 places de prison.",
+          "allocationUnit": null,
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Groupe Rassemblement national à l’Assemblée nationale",
+            "origin": "annonce",
+            "publicScope": "Hausse des dépenses du contre-budget parlementaire pour 2027",
+            "targets": [
+              {
+                "versionId": "groupe-rn-construction-places-prison-v1",
+                "locator": "Annexe du contre-budget, p. 12, hausse des dépenses, ligne Construction de 30 000 places de prison."
+              }
+            ],
+            "assumptions": "Le milliard est inscrit pour 2027. L’annexe ne donne ni le coût total du chantier ni le nombre de places livrées dans l’année."
+          }
+        },
+        {
+          "id": "groupe-rn-pret-menages-2027",
+          "label": "Prêt aux jeunes ménages transformé en subvention au troisième enfant",
+          "euros": 1600000000,
+          "scope": "parti",
+          "kind": "depense",
+          "period": "horizon",
+          "horizon": "Exercice 2027, par rapport aux projets de loi de finances et de financement de la Sécurité sociale",
+          "approximate": false,
+          "funding": null,
+          "source": "groupe-rn-contre-budget-2027",
+          "locator": "Annexe du contre-budget, p. 12, hausse des dépenses, rubrique Pouvoir d’achat.",
+          "allocationUnit": null,
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Groupe Rassemblement national à l’Assemblée nationale",
+            "origin": "annonce",
+            "publicScope": "Hausse des dépenses du contre-budget parlementaire pour 2027",
+            "targets": [
+              {
+                "versionId": "groupe-rn-pret-jeunes-menages-troisieme-enfant-v1",
+                "locator": "Annexe du contre-budget, p. 12, hausse des dépenses, rubrique Pouvoir d’achat."
+              }
+            ],
+            "assumptions": "Montant global pour 2027. Le tableau ne précise ni le nombre de prêts ni le montant par ménage."
+          }
+        },
+        {
+          "id": "groupe-rn-outre-mer-2027",
+          "label": "Crédits supplémentaires pour les outre-mer",
+          "euros": 600000000,
+          "scope": "parti",
+          "kind": "depense",
+          "period": "horizon",
+          "horizon": "Exercice 2027, par rapport aux projets de loi de finances et de financement de la Sécurité sociale",
+          "approximate": false,
+          "funding": null,
+          "source": "groupe-rn-contre-budget-2027",
+          "locator": "Annexe du contre-budget, p. 12, hausse des dépenses, ligne sur les crédits budgétaires outre-mer.",
+          "allocationUnit": null,
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Groupe Rassemblement national à l’Assemblée nationale",
+            "origin": "annonce",
+            "publicScope": "Hausse des dépenses du contre-budget parlementaire pour 2027",
+            "targets": [
+              {
+                "versionId": "groupe-rn-credits-outre-mer-v1",
+                "locator": "Annexe du contre-budget, p. 12, hausse des dépenses, ligne sur les crédits budgétaires outre-mer."
+              }
+            ],
+            "assumptions": "L’annexe donne une enveloppe globale sans répartition par territoire."
+          }
+        },
+        {
+          "id": "groupe-rn-postes-administratifs-hopitaux-2027",
+          "label": "Baisse des dépenses liée aux postes administratifs hospitaliers",
+          "euros": 160000000,
+          "scope": "parti",
+          "kind": "economie",
+          "period": "horizon",
+          "horizon": "Exercice 2027, par rapport aux projets de loi de finances et de financement de la Sécurité sociale",
+          "approximate": false,
+          "funding": null,
+          "source": "groupe-rn-contre-budget-2027",
+          "locator": "Annexe du contre-budget, p. 11, baisse des dépenses, rubrique Sécurité sociale, ligne sur les hôpitaux publics.",
+          "allocationUnit": null,
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Groupe Rassemblement national à l’Assemblée nationale",
+            "origin": "annonce",
+            "publicScope": "Baisse des dépenses du contre-budget parlementaire pour 2027",
+            "targets": [
+              {
+                "versionId": "groupe-rn-effectifs-administratifs-hopitaux-v1",
+                "locator": "Annexe du contre-budget, p. 11, baisse des dépenses, rubrique Sécurité sociale, ligne sur les hôpitaux publics."
+              }
+            ],
+            "assumptions": "Le groupe inscrit cette économie pour 2027. Son objectif de réduction des postes administratifs porte sur cinq ans."
+          }
+        },
+        {
+          "id": "groupe-rn-acces-specialistes-2027",
+          "label": "Économie attendue de l’accès direct aux spécialistes",
+          "euros": 1400000000,
+          "scope": "parti",
+          "kind": "economie",
+          "period": "horizon",
+          "horizon": "Exercice 2027, par rapport aux projets de loi de finances et de financement de la Sécurité sociale",
+          "approximate": false,
+          "funding": null,
+          "source": "groupe-rn-contre-budget-2027",
+          "locator": "Annexe du contre-budget, p. 11, baisse des dépenses, rubrique Sécurité sociale, ligne sur le passage préalable par le médecin.",
+          "allocationUnit": null,
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Groupe Rassemblement national à l’Assemblée nationale",
+            "origin": "annonce",
+            "publicScope": "Baisse des dépenses du contre-budget parlementaire pour 2027",
+            "targets": [
+              {
+                "versionId": "groupe-rn-acces-direct-specialistes-v1",
+                "locator": "Annexe du contre-budget, p. 11, baisse des dépenses, rubrique Sécurité sociale, ligne sur le passage préalable par le médecin."
+              }
+            ],
+            "assumptions": "Il s’agit de l’économie estimée par le groupe. Le tableau ne détaille pas le calcul."
+          }
         }
       ]
     },
