@@ -1274,6 +1274,93 @@
               }
             ]
           }
+        },
+        {
+          "id": "groupe-rn-aah-seuil-pauvrete-2027",
+          "label": "Maintien de l’allocation aux adultes handicapés au-dessus du seuil de pauvreté",
+          "euros": 950000000,
+          "scope": "parti",
+          "kind": "depense",
+          "period": "horizon",
+          "horizon": "Exercice 2027, par rapport aux projets de loi de finances et de financement de la Sécurité sociale",
+          "approximate": false,
+          "funding": null,
+          "source": "groupe-rn-contre-budget-2027",
+          "locator": "Annexe chiffrée, p. 12 du PDF, ligne consacrée au niveau de l’AAH.",
+          "allocationUnit": null,
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Groupe Rassemblement national à l’Assemblée nationale",
+            "origin": "annonce",
+            "publicScope": "Hausse des dépenses du contre-budget parlementaire pour 2027",
+            "targets": [
+              {
+                "versionId": "groupe-rn-aah-seuil-pauvrete-v1",
+                "locator": "Annexe chiffrée, p. 12 du PDF, ligne consacrée au niveau de l’AAH."
+              }
+            ],
+            "assumptions": "Le groupe chiffre la dépense qui maintiendrait l’AAH au-dessus du seuil de pauvreté. Le barème mensuel et le nombre de bénéficiaires retenus ne sont pas précisés dans l’annexe."
+          }
+        },
+        {
+          "id": "groupe-rn-conge-proche-aidant-2027",
+          "label": "Revalorisation du congé de proche aidant",
+          "euros": 2000000000,
+          "scope": "parti",
+          "kind": "depense",
+          "period": "horizon",
+          "horizon": "Exercice 2027, par rapport aux projets de loi de finances et de financement de la Sécurité sociale",
+          "approximate": false,
+          "funding": null,
+          "source": "groupe-rn-contre-budget-2027",
+          "locator": "Annexe chiffrée, p. 12 du PDF, ligne sur le congé de proche aidant.",
+          "allocationUnit": null,
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Groupe Rassemblement national à l’Assemblée nationale",
+            "origin": "annonce",
+            "publicScope": "Hausse des dépenses du contre-budget parlementaire pour 2027",
+            "targets": [
+              {
+                "versionId": "groupe-rn-conge-proche-aidant-v1",
+                "locator": "Annexe chiffrée, p. 12 du PDF, ligne sur le congé de proche aidant."
+              }
+            ],
+            "assumptions": "Le groupe chiffre la revalorisation du congé. L’annexe ne détaille ni l’indemnité individuelle retenue ni le nombre de congés pris en compte."
+          }
+        },
+        {
+          "id": "groupe-rn-permis-jeunes-2027",
+          "label": "Permis gratuit pour les jeunes au casier judiciaire vierge",
+          "euros": 700000000,
+          "scope": "parti",
+          "kind": "depense",
+          "period": "horizon",
+          "horizon": "Exercice 2027, par rapport aux projets de loi de finances et de financement de la Sécurité sociale",
+          "approximate": false,
+          "funding": null,
+          "source": "groupe-rn-contre-budget-2027",
+          "locator": "Annexe chiffrée, p. 12 du PDF, ligne sur le permis de conduire.",
+          "allocationUnit": null,
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-23",
+            "estimator": "Groupe Rassemblement national à l’Assemblée nationale",
+            "origin": "annonce",
+            "publicScope": "Hausse des dépenses du contre-budget parlementaire pour 2027",
+            "targets": [
+              {
+                "versionId": "groupe-rn-permis-jeunes-v1",
+                "locator": "Annexe chiffrée, p. 12 du PDF, ligne sur le permis de conduire."
+              }
+            ],
+            "assumptions": "Le calcul concerne les jeunes au casier judiciaire vierge. L’annexe ne donne ni effectif ni coût par permis."
+          }
         }
       ]
     },

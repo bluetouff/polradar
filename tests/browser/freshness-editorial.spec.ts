@@ -179,25 +179,29 @@ test('les encadrés de méthode gardent un retrait sur les quatre côtés', asyn
     await page.setViewportSize({ width, height: 900 });
     for (const [path, selector] of panels) {
       await page.goto(path);
-      const panel = page.locator(selector);
-      if (selector === '.visual-method') await panel.locator('summary').click();
-      const clearance = await panel.evaluate((node) => {
-        const frame = node.getBoundingClientRect();
-        const children = [...node.children].map((c) =>
-          c.getBoundingClientRect(),
+      const matches = page.locator(selector);
+      expect(await matches.count(), path).toBeGreaterThan(0);
+      for (const panel of await matches.all()) {
+        if (selector === '.visual-method')
+          await panel.locator('summary').click();
+        const clearance = await panel.evaluate((node) => {
+          const frame = node.getBoundingClientRect();
+          const children = [...node.children].map((c) =>
+            c.getBoundingClientRect(),
+          );
+          return Math.min(
+            ...children.flatMap((r) => [
+              r.left - frame.left,
+              frame.right - r.right,
+              r.top - frame.top,
+              frame.bottom - r.bottom,
+            ]),
+          );
+        });
+        expect(clearance, path + ' à ' + width + ' px').toBeGreaterThanOrEqual(
+          15.9,
         );
-        return Math.min(
-          ...children.flatMap((r) => [
-            r.left - frame.left,
-            frame.right - r.right,
-            r.top - frame.top,
-            frame.bottom - r.bottom,
-          ]),
-        );
-      });
-      expect(clearance, path + ' à ' + width + ' px').toBeGreaterThanOrEqual(
-        15.9,
-      );
+      }
     }
   }
 });

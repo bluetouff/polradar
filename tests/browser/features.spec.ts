@@ -116,8 +116,9 @@ test('plusieurs mesures restent consultables pour un candidat et un thème', asy
   await expect(page.locator('.measure-number-grid')).toContainText('60');
   await expect(page.locator('.measure-number-grid')).toContainText('40');
   await expect(page.locator('.precise-sources')).toContainText('Garantir');
-  await expect(page.locator('.measure-fields')).toContainText(
-    'Non renseigné dans cette fiche',
+  await expect(page.locator('.measure-fields')).toContainText('Bénéficiaires');
+  await expect(page.locator('.measure-fields + .source-note')).toHaveText(
+    'Informations non renseignées dans cette fiche · financement annoncé.',
   );
 });
 
@@ -496,6 +497,10 @@ test('le déficit corrigé conserve sa version précédente et ses dates', async
   const row = page.locator('.source-card').filter({
     has: page.getByRole('link', { name: 'Édouard Philippe : école' }),
   });
-  await expect(row).toContainText('Mise à jour du document');
-  await expect(row).toContainText('16 novembre 2026');
+  await expect(
+    row.getByText('Mise à jour du document', { exact: true }).locator('+ dd'),
+  ).toHaveText('18 novembre 2026');
+  await expect(
+    row.getByText('Publication', { exact: true }).locator('+ dd'),
+  ).toHaveText('Date non indiquée');
 });

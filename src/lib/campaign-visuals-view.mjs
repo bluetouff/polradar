@@ -51,6 +51,13 @@ export function weekStart(date) {
   d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 6) % 7));
   return d.toISOString().slice(0, 10);
 }
+export function agendaStatusLabel(event, today) {
+  if (event.status === 'tenu') return 'Rendez-vous tenu';
+  if (event.status === 'annule') return 'Annulé';
+  return (event.latestPossibleDate ?? event.date) < today
+    ? 'Annonce passée · tenue non confirmée'
+    : 'Rendez-vous annoncé';
+}
 export function agendaMatches(event, filters, today) {
   const end = event.latestPossibleDate ?? event.date;
   return (

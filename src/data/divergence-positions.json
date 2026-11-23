@@ -746,5 +746,121 @@
         "versions": ["collovati-fin-regroupement-familial-v1"]
       }
     ]
+  },
+  {
+    "id": "soins-de-proximite",
+    "theme": "sante",
+    "label": "Soins · accès de proximité",
+    "context": "Les textes précisent comment rapprocher les soins des habitants. Un délai de trajet, une structure de soins et un lieu de formation correspondent à des engagements distincts.",
+    "positions": [
+      {
+        "id": "distance",
+        "label": "Fixer un temps d’accès aux urgences et maternités",
+        "versions": ["melenchon-sante-proximite-trente-minutes-v1"]
+      },
+      {
+        "id": "structures",
+        "label": "Développer les maisons de santé",
+        "versions": ["villepin-maillage-maisons-sante-v1"]
+      },
+      {
+        "id": "formation",
+        "label": "Former les médecins dans les territoires sous-dotés",
+        "versions": ["equinoxe-facultes-medecine-zones-sous-dotees-v1"]
+      }
+    ]
+  },
+  {
+    "id": "mobilite-territoires",
+    "theme": "climat",
+    "label": "Transports · déplacements en milieu rural",
+    "context": "Les programmes interviennent sur des dépenses ou des services différents. Chaque proposition indique les habitants ou les territoires concernés.",
+    "positions": [
+      {
+        "id": "bus",
+        "label": "Ouvrir les lignes scolaires aux autres habitants",
+        "versions": ["melenchon-bus-scolaires-autres-usagers-v1"]
+      },
+      {
+        "id": "gare",
+        "label": "Relier les territoires de proximité au rail",
+        "versions": ["equinoxe-gare-par-pays-v1"]
+      },
+      {
+        "id": "carte",
+        "label": "Aider les déplacements en voiture selon les ressources",
+        "versions": ["villepin-carte-mobilite-rurale-v1"]
+      }
+    ]
+  },
+  {
+    "id": "handicap-accompagnement-ecole",
+    "theme": "education",
+    "label": "Handicap · accompagnement à l’école",
+    "context": "La reconnaissance du métier d’AESH et son intégration à la fonction publique engagent des changements distincts. La fiche de François Ruffin conserve sa date et son statut de candidature retirée.",
+    "positions": [
+      {
+        "id": "metier",
+        "label": "Reconnaître le métier et faire intervenir les professionnels à l’école",
+        "versions": ["philippe-handicap-accompagnants-ecole-v1"]
+      },
+      {
+        "id": "statut",
+        "label": "Intégrer les AESH à la fonction publique",
+        "versions": [
+          "ruffin-education-aesh-v1",
+          "melenchon-aesh-categorie-b-v1"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "statuts-outre-mer",
+    "theme": "institutions",
+    "label": "Outre-mer · choix du statut",
+    "context": "Les documents distinguent la consultation sur un statut, la possibilité de devenir département et le référendum sur l’indépendance. La décision visée varie selon les propositions.",
+    "positions": [
+      {
+        "id": "statuts",
+        "label": "Consulter les territoires sur leur statut",
+        "versions": ["egger-social-outre-mer-consultations-v1"]
+      },
+      {
+        "id": "departement",
+        "label": "Proposer la départementalisation aux territoires volontaires",
+        "versions": ["patriotes-departementalisation-outremer-v1"]
+      },
+      {
+        "id": "independance",
+        "label": "Soumettre l’indépendance à référendum",
+        "versions": ["branco-referendums-independance-outremers-v1"]
+      }
+    ]
+  },
+  {
+    "id": "logement-offre-bati",
+    "theme": "logement",
+    "label": "Logement · accroître l’offre et réutiliser le bâti",
+    "context": "Production de logements, remise en usage d’immeubles et partage d’habitats couvrent différents moyens de loger les habitants. Les objectifs publiés gardent leur unité et leur horizon.",
+    "positions": [
+      {
+        "id": "production",
+        "label": "Programmer une production annuelle de logements",
+        "versions": ["villepin-production-logements-v1"]
+      },
+      {
+        "id": "vacance",
+        "label": "Remettre des logements vacants ou abandonnés en usage",
+        "versions": [
+          "collovati-logement-maisons-abandonnees-v1",
+          "melenchon-logement-vacance-v1"
+        ]
+      },
+      {
+        "id": "partage",
+        "label": "Faciliter la colocation et l’habitat inclusif",
+        "versions": ["equinoxe-habitat-partage-v1"]
+      }
+    ]
   }
 ]

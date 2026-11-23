@@ -71,7 +71,12 @@
     display: block;
     width: clamp(8rem, 17vw, 12.9rem);
     height: auto;
-    --logo-signal: #98d0d9;
+    aspect-ratio: 208 / 48;
+    background: url('/marque/polradar-clair.svg') left center / contain
+      no-repeat;
+    overflow: hidden;
+    text-indent: -100vw;
+    white-space: nowrap;
   }
   .publication-header .rail-brand .election-year {
     color: var(--ice);
@@ -105,24 +110,24 @@
     max-width: 1448px;
     border-color: #435b68;
   }
-  .site-navigation .site-nav-group,
-  .site-navigation .site-nav-group:first-child {
+  .site-navigation > details,
+  .site-navigation > details:first-child {
     border-color: #405966;
   }
-  .site-navigation .site-nav-group > summary {
+  .site-navigation > details > summary {
     color: #e4eef1;
     border-bottom: 2px solid transparent;
   }
   .site-navigation .site-nav-group-icon {
     color: var(--tint);
   }
-  .site-navigation .site-nav-group:is([open], [data-current]) > summary,
-  .site-navigation .site-nav-group > summary:hover {
+  .site-navigation > details:is([open], [data-current]) > summary,
+  .site-navigation > details > summary:hover {
     color: #fff;
     border-bottom-color: var(--ice);
     background: linear-gradient(to bottom, #ffffff02, #b2d3d520);
   }
-  .site-navigation .site-nav-group > .desk-links {
+  .site-navigation > details > div {
     color: var(--ink);
     background: #eff5f6;
     border: 1px solid var(--line);
@@ -130,11 +135,11 @@
     border-radius: 0 0 0.65rem 0.65rem;
     box-shadow: 0 12px 28px #142c3826;
   }
-  .site-navigation .site-nav-group > .desk-links a:is(:hover, [aria-current]) {
+  .site-navigation > details > div a:is(:hover, [aria-current]) {
     color: var(--ink);
     background: #dce9ec;
   }
-  .site-navigation .site-nav-group > .desk-links :focus-visible {
+  .site-navigation > details > div :focus-visible {
     outline-color: var(--accent);
   }
 
@@ -717,4 +722,14 @@
 .evidence-stage:not(:has(section:not([hidden]))),
 .vote-stage:not(:has(section:not([hidden]))) {
   display: none;
+}
+
+@media (forced-colors: active) {
+  .wordmark .brand-signature,
+  .footer-brand .brand-signature {
+    background: none;
+    text-indent: 0;
+    width: auto;
+    aspect-ratio: auto;
+  }
 }

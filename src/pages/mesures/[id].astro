@@ -32,6 +32,14 @@ const { measure } = Astro.props;
 const linkedBudgets = (budgetIdsByMeasure.get(measure.id) ?? []).map((id) =>
   budgetById.get(id)!,
 );
+const fields = [
+  { label: 'Bénéficiaires', icon: 'people', value: measure.beneficiaries },
+  { label: 'Calendrier annoncé', icon: 'clock', value: measure.timing },
+  { label: 'Financement annoncé', icon: 'euro', value: measure.financing },
+];
+const unspecified = fields
+  .filter((f) => !f.value)
+  .map((f) => f.label.toLocaleLowerCase('fr'));
 const collective = collectiveLabel(measure);
 const voteRecords = voteCases.filter(
   (record) => record.measureId === measure.id,
@@ -162,29 +170,27 @@ const candidate = candidateById(measure.candidate),
           </ul>
         </section>
       )}
-      <dl class="measure-fields">
-        <div>
-          <dt>
-            <Icon name="people" />
-            Bénéficiaires
-          </dt>
-          <dd>{measure.beneficiaries || 'Non renseignés dans cette fiche.'}</dd>
-        </div>
-        <div>
-          <dt>
-            <Icon name="clock" />
-            Calendrier annoncé
-          </dt>
-          <dd>{measure.timing || 'Non renseigné dans cette fiche.'}</dd>
-        </div>
-        <div>
-          <dt>
-            <Icon name="euro" />
-            Financement annoncé
-          </dt>
-          <dd>{measure.financing || 'Non renseigné dans cette fiche.'}</dd>
-        </div>
-      </dl>
+      {fields.some((f) => f.value) && (
+        <dl class="measure-fields">
+          {fields
+            .filter((f) => f.value)
+            .map((f) => (
+              <div>
+                <dt>
+                  <Icon name={f.icon} />
+                  {f.label}
+                </dt>
+                <dd>{f.value}</dd>
+              </div>
+            ))}
+        </dl>
+      )}
+      {unspecified.length > 0 && (
+        <p class="source-note">
+          Informations non renseignées dans cette fiche ·{' '}
+          {unspecified.join(', ')}.
+        </p>
+      )}
       {measure.scope === 'archive' && (
         <p class="archive-warning">Archive du programme de 2022.</p>
       )}

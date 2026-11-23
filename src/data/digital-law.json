@@ -119,6 +119,37 @@
             ]
           },
           "relatedMeasures": ["melenchon-droit-constitutionnel-chiffrement-v1"]
+        },
+        {
+          "id": "transferts-internationaux",
+          "slug": "chiffrement/transferts",
+          "label": "Transferts à l’étranger",
+          "question": "Quand peut-on transférer des données personnelles hors de l’Union européenne ?",
+          "context": "Le RGPD encadre les transferts vers les pays tiers. Le projet de Debout la France prend pour frontière le territoire français.",
+          "icon": "chiffrement",
+          "rules": [
+            {
+              "title": "Une décision d’adéquation, des garanties ou une dérogation encadrée",
+              "body": "Le chapitre V du RGPD prévoit notamment les décisions d’adéquation et, à défaut, les garanties appropriées. L’article 49 définit des dérogations pour des situations particulières. Ces règles visent les transferts vers un pays tiers ou une organisation internationale.",
+              "refs": [
+                {
+                  "sourceId": "cnil-transferts-rgpd",
+                  "label": "Chapitre V, articles 44 à 49."
+                },
+                {
+                  "sourceId": "eurlex-rgpd",
+                  "label": "Règlement 2016/679, chapitre V."
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "versionId": "dlf-chiffrement-transferts-v1",
+              "title": "Encadrer les transferts de données hors de France par un chiffrement aux normes françaises",
+              "body": "Debout la France veut soumettre les transferts de données hors du territoire à des protocoles de chiffrement définis selon des normes nationales. Le document vise aussi les transferts vers d’autres pays de l’Union."
+            }
+          ]
         }
       ]
     },
@@ -436,6 +467,47 @@
               "versionId": "branco-transparence-algorithmes-sociaux-v1",
               "title": "Étendre la transparence aux algorithmes des réseaux sociaux",
               "body": "Le programme vise les algorithmes des réseaux sociaux dans leur ensemble. Il ne précise ni le niveau de détail attendu ni si le code source devrait être publié."
+            },
+            {
+              "versionId": "equinoxe-plateformes-captation-attention-v1",
+              "title": "Réguler en Europe les techniques de captation de l’attention des plateformes",
+              "body": "Équinoxe vise les algorithmes opaques, les interfaces qui orientent les choix des utilisateurs et les robots conversationnels. Le parti propose une régulation à l’échelle européenne."
+            }
+          ]
+        },
+        {
+          "id": "compagnons-ia",
+          "slug": "donnees-personnelles/compagnons-ia",
+          "label": "Compagnons d’IA",
+          "question": "Quelles limites pour un chatbot conçu pour simuler une relation personnelle ?",
+          "context": "Deux programmes définissent le public et les usages qu’ils veulent encadrer.",
+          "icon": "people",
+          "rules": [
+            {
+              "title": "L’exploitation nuisible d’une vulnérabilité liée à l’âge est interdite",
+              "body": "Le règlement européen interdit les systèmes qui exploitent notamment une vulnérabilité liée à l’âge pour modifier substantiellement le comportement, lorsque cela cause ou peut raisonnablement causer un préjudice important. Cette disposition fixe des conditions précises liées au comportement et au préjudice.",
+              "refs": [
+                {
+                  "sourceId": "ue-ia-pratiques-interdites",
+                  "label": "Règlement sur l’IA, article 5, paragraphe 1, b."
+                },
+                {
+                  "sourceId": "eurlex-ia-texte-consolide",
+                  "label": "Texte consolidé, article 5."
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "versionId": "melenchon-interdire-ia-relation-affective-v1",
+              "title": "Interdire les systèmes d’IA conçus pour simuler une relation affective",
+              "body": "Le programme vise les systèmes dont le but est de simuler un lien affectif avec leur utilisateur. Il formule cette interdiction pour tous les âges."
+            },
+            {
+              "versionId": "equinoxe-compagnons-ia-mineurs-v1",
+              "title": "Soumettre les compagnons d’IA à l’accord des parents avant 16 ans",
+              "body": "Équinoxe vise les agents conversationnels conçus pour simuler une relation sociale. Un mineur de moins de 16 ans devrait obtenir l’autorisation de ses parents pour les utiliser."
             }
           ]
         }
@@ -500,6 +572,11 @@
               "versionId": "philippe-securite-bouclier-cyber-v1",
               "title": "Investir dans des centres de protection cyber des administrations",
               "body": "Édouard Philippe inclut ces centres dans son projet de Bouclier Cyber pour les administrations publiques."
+            },
+            {
+              "versionId": "ps-plans-surete-numerique-v1",
+              "title": "Généraliser les plans de sûreté numérique dans les établissements publics et privés",
+              "body": "Le Parti socialiste veut étendre l’accompagnement de l’État aux acteurs économiques et faire adopter des plans de prévention des cyberattaques dans les établissements publics comme privés."
             }
           ],
           "parliament": {
@@ -635,6 +712,11 @@
               "versionId": "roussel-securite-anssi-cyber-v1",
               "title": "Renforcer les moyens régionaux et ceux de l’ANSSI",
               "body": "Le document du PCF prévoit de renforcer l’ANSSI et les structures régionales de cybersécurité."
+            },
+            {
+              "versionId": "ps-anssi-alerte-assistance-v1",
+              "title": "Confier à l’ANSSI une plateforme publique d’alerte et d’aide aux victimes",
+              "body": "Le Parti socialiste veut réunir l’alerte et l’assistance sur une plateforme publique. Le dispositif s’adresserait notamment aux particuliers, aux PME et aux collectivités confrontés à une cyberattaque."
             }
           ]
         }
@@ -714,6 +796,21 @@
               "versionId": "mikolajczak-travail-achats-numeriques-v1",
               "title": "Orienter les achats publics numériques vers la souveraineté",
               "body": "Équinoxe veut faire de la souveraineté une priorité des achats français et européens dans le numérique, comme dans la défense et l’énergie."
+            },
+            {
+              "versionId": "ps-systemes-exploitation-souverains-v1",
+              "title": "Développer des systèmes d’exploitation souverains pour les services publics",
+              "body": "Le Parti socialiste veut réduire la dépendance des services publics aux éditeurs américains et les risques d’ingérence. Il associe cet objectif à une préférence européenne dans les marchés publics de cybersécurité."
+            },
+            {
+              "versionId": "branco-corps-etat-logiciel-v1",
+              "title": "Créer un corps d’État pour maintenir les logiciels essentiels",
+              "body": "Juan Branco confierait à un corps public la maintenance d’infrastructures logicielles autonomes, des noyaux de systèmes d’exploitation aux compilateurs et aux modèles algorithmiques."
+            },
+            {
+              "versionId": "melenchon-agence-logiciels-libres-v1",
+              "title": "Créer une agence publique pour financer les logiciels libres manquants",
+              "body": "L’agence recenserait les besoins domaine par domaine, programmerait le développement des logiciels et financerait les projets jugés prioritaires."
             }
           ]
         },
@@ -808,6 +905,47 @@
               "versionId": "philippe-travail-zones-calcul-v1",
               "title": "Définir des zones pour accélérer l’implantation",
               "body": "Édouard Philippe veut accélérer l’implantation des centres de données dans des zones définies et faciliter leur raccordement."
+            },
+            {
+              "versionId": "dlf-chaleur-centres-donnees-v1",
+              "title": "Chauffer les villes avec la chaleur des centres de données",
+              "body": "Debout la France propose d’utiliser dans le chauffage urbain la chaleur dégagée par le refroidissement des centres de données."
+            },
+            {
+              "versionId": "collovati-moratoire-centres-donnees-v1",
+              "title": "Suspendre les projets de centres de données portés par des sociétés non européennes",
+              "body": "Christian Collovati propose un moratoire fondé sur l’origine de la société qui porte le projet. Il veut donner la priorité aux données relevant de la souveraineté nationale."
+            }
+          ]
+        },
+        {
+          "id": "reversibilite-cloud",
+          "slug": "souverainete/changer-de-cloud",
+          "label": "Changer de cloud",
+          "question": "Combien peut coûter un changement de fournisseur de cloud ?",
+          "context": "Sortie d’un contrat d’informatique en nuage et récupération des données.",
+          "icon": "donnees",
+          "rules": [
+            {
+              "title": "Les frais de changement sont plafonnés puis supprimés",
+              "body": "Au 23 novembre 2026, les frais de changement doivent figurer dans le contrat et restent plafonnés aux coûts directement liés à l’opération. À compter du 12 janvier 2027, le fournisseur ne pourra plus facturer ces frais de changement. Les frais de service ordinaires restent distincts.",
+              "refs": [
+                {
+                  "sourceId": "arcep-cloud-frais",
+                  "label": "Cadre réglementaire, frais de changement de fournisseur."
+                },
+                {
+                  "sourceId": "eurlex-data-act-changement",
+                  "label": "Règlement 2023/2854, articles 23, 25 et 29."
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "versionId": "dlf-reversibilite-donnees-v1",
+              "title": "Récupérer immédiatement et sans frais les données hébergées sur des serveurs non souverains",
+              "body": "Debout la France veut imposer la réversibilité des services numériques étrangers pour que les utilisateurs puissent reprendre les données françaises qui y sont stockées. Le parti vise également les usages hors contrat."
             }
           ]
         }
@@ -872,6 +1010,21 @@
               "versionId": "philippe-enseignement-ia-par-niveau-v1",
               "title": "Introduire l’IA par niveau scolaire",
               "body": "Pour les élèves, Édouard Philippe prévoit une première sensibilisation au collège et des usages pédagogiques au lycée. Il distingue la préparation des cours par les professeurs, qu’il souhaite encourager."
+            },
+            {
+              "versionId": "dlf-ia-college-professeurs-v1",
+              "title": "Former les enseignants à l’IA et créer un cursus dès le collège",
+              "body": "Debout la France rendrait la formation des enseignants obligatoire. Les collégiens étudieraient la programmation, les biais des algorithmes et les liens entre l’IA, les sciences, l’économie et la philosophie."
+            },
+            {
+              "versionId": "branco-manuels-cours-filmes-v1",
+              "title": "Publier des manuels scolaires uniques et des cours filmés sur une plateforme libre",
+              "body": "Un pôle public éditerait les manuels. Les cours filmés de certains établissements serviraient de ressources complémentaires aux collégiens et aux lycéens."
+            },
+            {
+              "versionId": "ps-certification-cyber-v1",
+              "title": "Renforcer la certification en cybersécurité au collège, au lycée et en formation professionnelle",
+              "body": "Le PS veut approfondir la certification sur les risques et usages numériques dans le secondaire et dans la formation des salariés et des agents publics."
             }
           ]
         },
@@ -924,6 +1077,16 @@
               "versionId": "villepin-ia-demarches-administratives-v1",
               "title": "Personnaliser les démarches avec l’IA",
               "body": "La proposition 44 prévoit un plan de simplification par l’IA. Les démarches concernées et les modalités de recours à un agent restent à préciser."
+            },
+            {
+              "versionId": "collovati-assistant-demarches-v1",
+              "title": "Créer un assistant d’IA pour les démarches publiques",
+              "body": "Christian Collovati veut proposer un assistant aux usagers de l’administration et sécuriser l’accès au service ainsi que les données qu’il utilise."
+            },
+            {
+              "versionId": "equinoxe-demarches-preremplies-v1",
+              "title": "Préremplir les démarches avec les informations que possède déjà l’administration",
+              "body": "Équinoxe veut réutiliser les informations déjà détenues par les administrations pour simplifier les demandes d’accès aux droits et aux services publics."
             }
           ]
         }

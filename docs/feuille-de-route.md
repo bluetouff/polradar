@@ -1,5 +1,16 @@
 # Feuille de route de Polradar
 
+## Livraison du 23 novembre
+
+| Chantier               | Livré                                                                                                                                                                     | Travail documentaire ouvert                                                                      |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Sondages               | Question, base, page et source pour les observations relues. Les éditions historiques restent accessibles.                                                                | Relire la question exacte des nouveaux terrains avant de prolonger les courbes.                  |
+| Chiffrages             | Liens dans les deux sens pour treize entrées. L’enveloppe quinquennale d’Attal garde son périmètre global.                                                                | Examiner 42 entrées, dont les postes dont le même intitulé peut désigner des budgets différents. |
+| Questions de programme | Soins de proximité, logement, transports ruraux, handicap scolaire, rémunération agricole, statuts ultramarins et trois comparaisons numériques face au droit en vigueur. | Rechercher les passages manquants dans le pilote, notamment les trois vérifications vidéo.       |
+| Datation               | Date complète dès qu’elle est documentée, année seule en présence d’une édition datée au mois.                                                                            | 600 fiches sur 917 restent sans date de publication dans leurs références à cette coupure.       |
+
+[Résultats détaillés du pilote](audit-concurrence-2026-11-20.md#pilote-documentaire-du-23-novembre-2026)
+
 ## Lots issus de l’audit du 22 novembre
 
 | Priorité et état | Travail                                                                                                        | Dépendance                                                            | Critère de livraison                                                                                                           |

@@ -4,6 +4,8 @@ Le journal des données rend compte de chaque collecte. Cette page consigne les 
 
 ## 23 novembre 2026
 
+- **Programmes et comparaison documentaire.** Quarante nouvelles fiches, dont vingt-deux repérables dans le numérique. Trois situations supplémentaires confrontent les annonces au droit applicable. Trois lignes du contre-budget du groupe RN documentent les dépenses annoncées pour l’AAH, le congé de proche aidant et le permis. Le pilote sur les soins, le logement et les transports documente cinq ajouts. [Matrice](https://polradar.fr/questions/) · [Comparaison des sources](docs/audit-concurrence-2026-11-20.md#pilote-documentaire-du-23-novembre-2026)
+
 - **Chiffrages et mesures.** Les budgets renvoient à la version de chaque proposition dont le lien a été vérifié. Les fiches de mesure renvoient au poste, à son auteur et à la pièce budgétaire. [Budgets](https://polradar.fr/budget-programmes/)
 
 - **Questions des sondages.** Le libellé original, la base et la page du questionnaire accompagnent chaque point relu. Les graphiques conservent leurs anciennes adresses. [Sondages](https://polradar.fr/sondages/)

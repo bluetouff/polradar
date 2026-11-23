@@ -1,17 +1,27 @@
 import { groups } from '../lib/navigation';
-const nav = document.querySelector<HTMLElement>('[data-site-navigation]');
+const nav = document.querySelector<HTMLElement>('.site-navigation');
 
 if (nav) {
   for (const entry of nav.querySelectorAll<HTMLAnchorElement>(
-    'a[data-menu-links]',
+    'a[href^="/#menu-"]',
   )) {
-    const group = groups.find(({ id }) => id === entry.dataset.menuLinks);
+    const group = groups.find(
+      ({ id }) => id === entry.hash.slice('#menu-'.length),
+    );
     if (!group) continue;
-    entry.replaceWith(
+    const list = entry.parentElement;
+    if (!list) continue;
+    const current = list.querySelector<HTMLAnchorElement>('a[aria-current]');
+    list.replaceChildren(
       ...group.links.map(([href, label]) => {
         const link = document.createElement('a');
         link.href = href;
         link.textContent = label;
+        if (current?.getAttribute('href') === href)
+          link.setAttribute(
+            'aria-current',
+            current.getAttribute('aria-current')!,
+          );
         return link;
       }),
     );

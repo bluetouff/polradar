@@ -101,10 +101,10 @@ const leads = [
   </details>
   {leads.length > 0 && (
     <details>
-      <summary>Articles à relire ({leads.length})</summary>
+      <summary>Titres repérés à vérifier ({leads.length})</summary>
       <p>
-        Ces titres proviennent des index d’actualité. Chaque attribution au
-        programme d’un candidat nécessite la lecture de sa source.
+        Les liens ouvrent le service de découverte. Une publication intégrée
+        renvoie au document original dans le catalogue des sources.
       </p>
       <ul>
         {leads.map((l) => (
@@ -119,7 +119,11 @@ const leads = [
             >
               {l.title}
             </a>{' '}
-            · {formatDate(l.date)}
+            · {formatDate(l.date)} ·{' '}
+            {l.article
+              ? 'Lien de découverte Google Actualités'
+              : 'Recherche du titre sur Bing'}{' '}
+            · original à identifier
           </li>
         ))}
       </ul>

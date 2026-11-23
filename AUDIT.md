@@ -2,6 +2,14 @@
 
 L’inventaire prend pour référence le corpus et le HTML de la version `9014dd1`. Les effectifs mesurent ce que Polradar a documenté. Ils dépendent du périmètre et de la date. Les correctifs livrés ensuite figurent au journal. [Version examinée](https://github.com/bluetouff/polradar/tree/9014dd1a16623d697b4d88cb3e6ced83acd73824) · [Changements](CHANGELOG.md)
 
+## Mise à jour du 23 novembre, après relecture
+
+Le point de départ du lot de consolidation est la révision `166f0ef`, déjà servie lors du contrôle. Elle comptait 877 mesures, 440 références et 640 fiches dont aucune source ne portait de date ou d’année de publication connue. Les ajouts et vérifications portent le corpus à 917 fiches, dont 566 de campagne, 247 de parti, 79 orientations et 25 archives. Parmi les 917 fiches, 600 restent sans date de publication dans leurs références. Cela décrit les métadonnées du catalogue. Il y a 34 dossiers, dont 33 candidatures suivies hors retrait, et 448 références.
+
+Les 64 observations de sondage comprennent 47 observations de premier tour et 17 de second tour. Les 14 terrains et 14 notices ont été identifiés séparément. Les 64 questions et bases sont localisées dans les documents. Les 58 adresses de séries préexistantes et les 64 anciennes éditions SVG ont été contrôlées lors de la migration. Les nouveaux relevés sans libellé vérifié restent isolés. Le volet parlementaire contient 27 scrutins et 29 dossiers.
+
+Le budget compte 56 entrées pour 17 dossiers. Treize chiffrages sont reliés à quinze versions de propositions. Une enveloppe supplémentaire, annoncée par Gabriel Attal, est documentée sans ventilation par réforme. Les 42 autres entrées gardent une correspondance à examiner. Le pilote de couverture a donné cinq ajouts sur onze actions identifiées dans dix-huit cellules. [Dépouillement et sources](docs/audit-concurrence-2026-11-20.md#pilote-documentaire-du-23-novembre-2026) · [Budget](https://polradar.fr/budget-programmes/) · [Sondages](https://polradar.fr/sondages/)
+
 ## État du site et priorités
 
 | Fonction                     | État observé                                                                                                                             | Lacune mesurée                                                                                                                                                                | Conséquence pour le lecteur                                                                  | Priorité       | Effort                | Action vérifiable                                                                                                                           |

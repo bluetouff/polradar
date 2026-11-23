@@ -11,6 +11,8 @@ import {
   weekStart,
   agendaDateLabel,
   agendaWeeks,
+  parisToday,
+  agendaStatusLabel,
   francePath,
   clusterCities,
 } from '../lib/campaign-visuals-view.mjs';
@@ -19,6 +21,10 @@ const related = candidates.filter(
   (c) =>
     agenda.events.some((e) => e.candidate === c.id) ||
     agenda.sourceChecks.some((entry) => entry.candidate === c.id),
+);
+const today = parisToday();
+const pending = agenda.events.filter(
+  (e) => e.status === 'annonce' && (e.latestPossibleDate ?? e.date) < today,
 );
 const weeks = [...new Set(agenda.events.flatMap(agendaWeeks))].sort();
 const clusters = clusterCities(agenda.cities);
@@ -257,11 +263,7 @@ const dateParts = (date: string) => ({
                 <article>
                   <div class="agenda-event-meta">
                     <span class="agenda-announcement">
-                      {event.status === 'tenu'
-                        ? 'Rendez-vous tenu'
-                        : event.status === 'annule'
-                          ? 'Annulé'
-                          : 'Rendez-vous annoncé'}
+                      {agendaStatusLabel(event, today)}
                     </span>
                     <span>
                       {event.latestPossibleDate
@@ -328,5 +330,23 @@ const dateParts = (date: string) => ({
       <a href="/api/agenda.json">Télécharger les rendez-vous intégrés (JSON)</a>
     </p>
   </details>
+  {pending.length > 0 && (
+    <details class="visual-method">
+      <summary>Annonces passées à vérifier ({pending.length})</summary>
+      <p>
+        Une confirmation de l’organisateur permet de mettre à jour le statut.
+      </p>
+      <ul>
+        {pending.map((e) => (
+          <li>
+            {formatDate(e.date)} · {candidateById(e.candidate).name} ·{' '}
+            <a href={sourceById(e.source).url} rel="noopener noreferrer">
+              {e.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </details>
+  )}
   <script src="../scripts/agenda.ts"></script>
 </Base>

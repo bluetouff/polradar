@@ -29,6 +29,40 @@ const examinedDocuments: Record<
   string,
   { candidate: string; sourceId: string; checked: string; locator: string }[]
 > = {
+  'soins-de-proximite': [
+    {
+      candidate: 'polony',
+      sourceId: 'polony-vision',
+      checked: '2026-11-23',
+      locator:
+        'Ma vision pour la France, passages sur l’hôpital et les services publics. Aucun dispositif d’accès local aux soins identifié dans ce texte.',
+    },
+  ],
+  'mobilite-territoires': [
+    {
+      candidate: 'collovati',
+      sourceId: 'collovati-projet-2027',
+      checked: '2026-11-23',
+      locator:
+        'Programme, mesures par ministère. La lecture du projet n’a pas livré de dispositif de transport de proximité.',
+    },
+    {
+      candidate: 'polony',
+      sourceId: 'polony-vision',
+      checked: '2026-11-23',
+      locator:
+        'Ma vision pour la France, déclaration de campagne. Pas de dispositif de transport local identifié dans ce document.',
+    },
+  ],
+  'logement-offre-bati': [
+    {
+      candidate: 'polony',
+      sourceId: 'polony-vision',
+      checked: '2026-11-23',
+      locator:
+        'Ma vision pour la France, texte de la candidate. Aucun mécanisme de production ou de remise en usage de logements identifié.',
+    },
+  ],
   'numerique-signalement-cyber': [
     {
       candidate: 'retailleau',
@@ -166,6 +200,14 @@ const examinedDocuments: Record<
   ],
 };
 const labels: Record<string, string> = {
+  'soins-de-proximite': 'Comment rapprocher les soins des habitants ?',
+  'mobilite-territoires': 'Comment se déplacer au quotidien en milieu rural ?',
+  'handicap-accompagnement-ecole':
+    'Quel statut pour les accompagnants des élèves en situation de handicap ?',
+  'statuts-outre-mer':
+    'Comment les territoires ultramarins pourraient-ils choisir leur statut ?',
+  'logement-offre-bati':
+    'Comment produire des logements ou remettre le bâti en usage ?',
   'regularisation-sejour':
     'Qui pourrait obtenir une régularisation de séjour ?',
   'regroupement-familial':
@@ -212,6 +254,18 @@ const labels: Record<string, string> = {
     'Faut-il baisser ou supprimer la CSG sur les revenus du travail ?',
 };
 const additions = [
+  {
+    id: 'agriculture-remuneration-contrats',
+    theme: 'agriculture',
+    title: 'Comment améliorer la rémunération des agriculteurs ?',
+    terms:
+      'agriculture prix planchers contrats producteurs revenus aides environnement pratiques agricoles grande distribution',
+    versions: [
+      'attal-prix-planchers-agricoles-v1',
+      'billetdoux-remuneration-agriculteurs-v1',
+      'mei-contrats-eau-sols-agriculteurs-v1',
+    ],
+  },
   {
     id: 'agriculture-elevages',
     theme: 'agriculture',

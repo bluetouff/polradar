@@ -11,6 +11,9 @@ const links = shareLinks(title, canonical);
 
 <nav class="page-share" aria-label="Partager cette page">
   <span class="page-share-label">Partager</span>
+  <span id="partage-onglet" hidden>
+    Ouvre un nouvel onglet.
+  </span>
   <ul>
     {links.map((link) => (
       <li>
@@ -20,11 +23,7 @@ const links = shareLinks(title, canonical);
           target={link.id === 'mail' ? undefined : '_blank'}
           rel="noopener noreferrer"
           referrerpolicy="no-referrer"
-          aria-label={
-            link.id === 'mail'
-              ? 'Partager cette page par e-mail'
-              : `Partager cette page sur ${link.label} (nouvel onglet)`
-          }
+          aria-describedby={link.id === 'mail' ? undefined : 'partage-onglet'}
         >
           {link.label}
         </a>

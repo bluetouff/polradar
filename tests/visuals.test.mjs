@@ -15,6 +15,7 @@ import {
   validateVisualReferences,
 } from '../src/lib/campaign-visuals.mjs';
 import {
+  agendaStatusLabel,
   agendaMatches,
   agendaWeeks,
   parisToday,
@@ -450,5 +451,22 @@ test('une enveloppe garde un seul montant, ses postes et ses versions distinctes
       data('sources'),
       data('versions'),
     ).length,
+  );
+});
+
+test('une annonce passée ne confirme pas la tenue de la réunion', () => {
+  const event = {
+    status: 'annonce',
+    date: '2026-10-10',
+    latestPossibleDate: '2026-10-12',
+  };
+  assert.equal(agendaStatusLabel(event, '2026-10-12'), 'Rendez-vous annoncé');
+  assert.equal(
+    agendaStatusLabel(event, '2026-10-13'),
+    'Annonce passée · tenue non confirmée',
+  );
+  assert.equal(
+    agendaStatusLabel({ ...event, status: 'annule' }, '2026-10-13'),
+    'Annulé',
   );
 });

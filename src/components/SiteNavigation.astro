@@ -7,19 +7,13 @@ interface Props {
 }
 const { current } = Astro.props;
 const path = Astro.url.pathname;
-// Leaf dossiers and catalogue pages repeat the same off-topic menus thousands of times.
-const detail =
-  /^\/(?:mesures|engagements)\/[^/]+\/$/.test(path) || path.includes('/page/');
+// On detail pages every section has a static path to its complete menu on the homepage.
+const detail = path.split('/').filter(Boolean).length > 1;
 ---
 
-<nav
-  class="site-navigation"
-  aria-label="Navigation principale"
-  data-site-navigation
->
+<nav class="site-navigation" aria-label="Navigation principale">
   {groups.map((group) => (
     <details
-      class="site-nav-group"
       name="rubriques"
       data-desk={group.id}
       data-current={
@@ -27,14 +21,20 @@ const detail =
       }
     >
       <summary class={`menu-${group.icon}`}>{group.name}</summary>
-      <div
-        class="desk-links"
-        id={path === '/' ? 'menu-' + group.id : undefined}
-      >
-        {detail && !group.links.some(([url]) => url === current) ? (
-          <a href={'/#menu-' + group.id} data-menu-links={group.id}>
-            Toutes les rubriques · {group.name}
-          </a>
+      <div id={path === '/' ? 'menu-' + group.id : undefined}>
+        {detail ? (
+          <>
+            {group.links
+              .filter(([url]) => url === current)
+              .map(([url, label]) => (
+                <a href={url} aria-current={path === url ? 'page' : 'location'}>
+                  {label}
+                </a>
+              ))}
+            <a href={'/#menu-' + group.id}>
+              Toutes les rubriques · {group.name}
+            </a>
+          </>
         ) : (
           group.links.map(([url, label]) => (
             <a
