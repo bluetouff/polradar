@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Unprivileged, fail-closed pull deployment. Python standard library only."""
 import argparse
+from contextlib import contextmanager
 import fcntl
 import gzip
 import hashlib
@@ -17,7 +18,7 @@ import urllib.parse
 import urllib.request
 
 MAX_ARCHIVE = 12 * 1024 * 1024
-MAX_EXPANDED = 48 * 1024 * 1024
+MAX_EXPANDED = 64 * 1024 * 1024
 MAX_FILE = 10 * 1024 * 1024
 MAX_FILES = 3000
 EXTENSIONS = {'.html', '.css', '.js', '.json', '.xml', '.txt', '.svg', '.png', '.jpg', '.jpeg', '.webp', '.avif', '.ico', '.woff2'}
@@ -52,17 +53,34 @@ def api(repository, suffix):
     return json.loads(download(f'https://api.github.com/repos/{repository}/{suffix}', 2 * 1024 * 1024))
 
 
+@contextmanager
+def bounded_tar(archive):
+    """Check the complete gzip stream, including bytes after the TAR end markers."""
+    if len(archive) > MAX_ARCHIVE:
+        raise ValueError('Compressed archive too large')
+    with tempfile.TemporaryFile() as expanded:
+        with gzip.GzipFile(fileobj=io.BytesIO(archive)) as compressed:
+            remaining = MAX_EXPANDED
+            while True:
+                chunk = compressed.read(min(64 * 1024, remaining + 1))
+                if not chunk:
+                    break
+                if len(chunk) > remaining:
+                    raise ValueError('Expanded archive too large')
+                expanded.write(chunk)
+                remaining -= len(chunk)
+        expanded.seek(0)
+        with tarfile.open(fileobj=expanded, mode='r:') as bundle:
+            yield bundle
+
+
 def extract_static(archive, destination, expected_sha):
     """Never use extractall: reject traversal, links, executables and oversized data."""
     if not SHA.fullmatch(expected_sha):
         raise ValueError('Invalid source commit')
-    with gzip.GzipFile(fileobj=io.BytesIO(archive)) as compressed:
-        expanded = compressed.read(MAX_EXPANDED + 1)
-    if len(expanded) > MAX_EXPANDED:
-        raise ValueError('Expanded archive too large')
     seen = set()
     total = 0
-    with tarfile.open(fileobj=io.BytesIO(expanded), mode='r:') as bundle:
+    with bounded_tar(archive) as bundle:
         for member in bundle:
             name = member.name
             parts = PurePosixPath(name).parts

@@ -9,6 +9,7 @@ import sys
 import tarfile
 import tempfile
 import unittest
+from unittest.mock import patch
 
 spec = importlib.util.spec_from_file_location('deployment', Path(__file__).parents[2] / 'deploy/pull-release.py')
 deployment = importlib.util.module_from_spec(spec)
@@ -93,6 +94,33 @@ class DeploymentTests(unittest.TestCase):
                     deployment.extract_static(archive([('large.txt', b'x' * 129)]), Path(temporary), SHA)
         finally:
             deployment.MAX_FILE = original_limit
+
+    def test_total_tar_limit_includes_end_padding_and_is_inclusive(self):
+        packed = archive()
+        actual = len(gzip.decompress(packed))
+        for limit, accepted in ((actual, True), (actual - 1, False)):
+            with self.subTest(limit=limit), tempfile.TemporaryDirectory() as temporary:
+                with patch.object(deployment, 'MAX_EXPANDED', limit):
+                    if accepted:
+                        deployment.extract_static(packed, Path(temporary), SHA)
+                    else:
+                        with self.assertRaisesRegex(ValueError, 'Expanded archive too large'):
+                            deployment.extract_static(packed, Path(temporary), SHA)
+                        self.assertEqual(list(Path(temporary).iterdir()), [])
+
+    def test_extra_gzip_data_after_tar_is_bounded(self):
+        packed = archive()
+        actual = len(gzip.decompress(packed))
+        appended = packed + gzip.compress(b' ' * 2048)
+        with tempfile.TemporaryDirectory() as temporary, patch.object(deployment, 'MAX_EXPANDED', actual):
+            with self.assertRaisesRegex(ValueError, 'Expanded archive too large'):
+                deployment.extract_static(appended, Path(temporary), SHA)
+
+    def test_compressed_limit_checked_by_extractor(self):
+        packed = archive()
+        with tempfile.TemporaryDirectory() as temporary, patch.object(deployment, 'MAX_ARCHIVE', len(packed) - 1):
+            with self.assertRaisesRegex(ValueError, 'Compressed archive too large'):
+                deployment.extract_static(packed, Path(temporary), SHA)
 
     def test_initial_activation_and_rollback(self):
         with tempfile.TemporaryDirectory() as temporary:
