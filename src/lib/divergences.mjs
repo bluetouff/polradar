@@ -65,10 +65,14 @@ export function divergenceGroups(measures, candidates, themes) {
       id: `${theme.id}-${group.key}${groups.filter((row) => row.key === group.key).length > 1 ? '-unit-' + [...group.unit].map((char) => char.codePointAt(0).toString(36)).join('-') : ''}`,
       theme: theme.id,
       themeLabel: theme.label,
-      values: group.values.map((row) => ({
-        ...row,
-        measure: measures.find((measure) => measure.id === row.measureId),
-      })),
+      values: group.values
+        .toSorted(
+          (a, b) => a.value - b.value || a.name.localeCompare(b.name, 'fr'),
+        )
+        .map((row) => ({
+          ...row,
+          measure: measures.find((measure) => measure.id === row.measureId),
+        })),
     }));
   });
 }

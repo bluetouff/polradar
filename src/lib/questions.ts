@@ -298,6 +298,10 @@ const additions = [
     theme: 'securite',
     title: 'Faut-il construire de nouvelles places de prison ?',
     terms: 'prisons capacité pénitentiaire détention construction',
+    related: {
+      label: 'Voir le graphique des places annoncées',
+      href: '/divergences/#securite-places-prison-supplementaires',
+    },
     versions: [
       'ps-prisons-renovation-construction-v1',
       'patriotes-nouvelles-places-prison-v1',

@@ -36,12 +36,12 @@ test('les axes reprennent les chiffres et leurs fiches, sans archives ni mélang
   );
   assert.equal(prisons.unit, 'places');
   assert.deepEqual(
-    Object.fromEntries(prisons.values.map((row) => [row.name, row.value])),
-    {
-      'David Lisnard': 20000,
-      'Groupe Rassemblement national': 30000,
-      'Nicolas Dupont-Aignan': 40000,
-    },
+    prisons.values.map((row) => [row.name, row.value]),
+    [
+      ['David Lisnard', 20000],
+      ['Groupe Rassemblement national', 30000],
+      ['Nicolas Dupont-Aignan', 40000],
+    ],
   );
   const age = groups.find((group) => group.id === 'retraites-age-depart');
   assert.equal(age.values.length, 7);
