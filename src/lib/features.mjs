@@ -43,6 +43,21 @@ export function pollSeries(polls) {
         comparePollWaves(b.at(-1), a.at(-1)),
     );
 }
+/** @param {import('./data').Poll[]} polls */
+export function pollCoverage(polls, groups = pollSeries(polls)) {
+  const institutes = [...new Set(polls.map((p) => p.institute))];
+  const surveys = new Set(polls.map((p) => p.surveyId).filter(Boolean));
+  return {
+    observations: polls.length,
+    firstRound: polls.filter((p) => p.round === 'premier').length,
+    secondRound: polls.filter((p) => p.round === 'second').length,
+    documentedSurveys: surveys.size,
+    observationsWithoutSurvey: polls.filter((p) => !p.surveyId).length,
+    notices: new Set(polls.map((p) => p.noticeSource)).size,
+    series: groups.length,
+    institutes,
+  };
+}
 /** @param {import('./data').Poll['results'][number]} result */
 export function pollScoreLabel(result) {
   if (result.below !== undefined)

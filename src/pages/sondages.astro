@@ -6,6 +6,7 @@ import { pollGraphicCatalog } from '../lib/poll-graphic.mjs';
 import { polls, sourceById, formatDate, type Poll } from '../lib/data';
 import {
   pollSeries,
+  pollCoverage,
   pollColor,
   pollScoreLabel,
   rankedPollResults,
@@ -19,8 +20,8 @@ const latest = initial.at(-1)!;
 const selected = rankedPollResults(latest)
   .filter((result) => result.percentage !== null)
   .map((row) => row.id);
-const institutes = [...new Set(polls.map((poll) => poll.institute))];
-const notices = [...new Set(polls.map((poll) => poll.noticeSource))];
+const coverage = pollCoverage(polls, groups);
+const { institutes } = coverage;
 ---
 
 <Base
@@ -35,9 +36,21 @@ const notices = [...new Set(polls.map((poll) => poll.noticeSource))];
     <div>
       <h1>Sondages</h1>
       <p>
-        {notices.length} vagues documentées · {groups.length} scénarios ·{' '}
-        {institutes.length} institut{institutes.length > 1 ? 's' : ''}. Les
-        points correspondent aux résultats publiés.
+        {coverage.observations} observations datées ({coverage.firstRound} au
+        premier tour, {coverage.secondRound} au second) · {coverage.series}{' '}
+        séries · {institutes.length} instituts.
+      </p>
+      <p>
+        {coverage.documentedSurveys} enquêtes identifiées · {coverage.notices}{' '}
+        notices. Une même enquête peut tester plusieurs scénarios et les deux
+        tours.
+        {coverage.observationsWithoutSurvey > 0 && (
+          <span>
+            {' '}
+            {coverage.observationsWithoutSurvey} observations restent à
+            rattacher à une enquête.
+          </span>
+        )}
       </p>
     </div>
     <a class="button" href="/dossiers/sondages-les-scenarios-comptent/">
@@ -88,7 +101,7 @@ const notices = [...new Set(polls.map((poll) => poll.noticeSource))];
       <div class="register-heading">
         <h2>Évolution dans le scénario sélectionné</h2>
         <span id="poll-wave-total" class="small muted">
-          {initial.length} vagues
+          {initial.length} observation{initial.length > 1 ? 's' : ''}
         </span>
       </div>
       <div id="poll-plot">

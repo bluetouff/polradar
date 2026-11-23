@@ -481,3 +481,30 @@ test('la recherche distingue une suppression d’une baisse et reconnaît le nom
     1,
   );
 });
+
+test('les documents, enquêtes, observations et séries se comptent séparément', async () => {
+  const { pollCoverage } = await import('../src/lib/features.mjs');
+  const base = {
+    ...original.polls[0],
+    surveyId: 'recueil-a',
+    noticeSource: 'notice-a',
+  };
+  const rows = [
+    base,
+    { ...base, round: 'second', noticeSource: 'notice-b' },
+    { ...base, surveyId: 'recueil-b' },
+    { ...base, surveyId: undefined },
+  ];
+  const coverage = pollCoverage(rows);
+  assert.deepEqual(coverage, {
+    observations: 4,
+    firstRound: 3,
+    secondRound: 1,
+    documentedSurveys: 2,
+    observationsWithoutSurvey: 1,
+    notices: 2,
+    series: 2,
+    institutes: [base.institute],
+  });
+  assert.equal(pollCoverage([]).documentedSurveys, 0);
+});

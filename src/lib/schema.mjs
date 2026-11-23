@@ -118,6 +118,7 @@ export const pollSchema = z.object({
   registeredSample: z.number().int().positive(),
   round: z.enum(['premier', 'second']),
   questionKey: idSchema,
+  surveyId: idSchema.optional(),
   population: text,
   method: text,
   noticePage: z.number().int().positive(),

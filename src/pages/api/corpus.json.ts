@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { pollCoverage } from '../../lib/features.mjs';
 import { attributionLabel } from '../../lib/attribution.mjs';
 import {
   candidateById,
@@ -14,6 +15,7 @@ export const GET: APIRoute = () =>
   new Response(
     JSON.stringify({
       ...dataset,
+      pollCoverage: pollCoverage(dataset.polls),
       measures: dataset.measures.map(credited),
       engagements: dataset.engagements.map(credited),
     }),

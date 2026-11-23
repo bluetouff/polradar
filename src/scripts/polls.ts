@@ -218,7 +218,7 @@ async function start() {
     const poll = rows[index];
     embedLink.href = `/sondages/integrer/${poll.id}/`;
     document.querySelector('#poll-wave-total')!.textContent =
-      `${rows.length} vague${rows.length > 1 ? 's' : ''}`;
+      `${rows.length} observation${rows.length > 1 ? 's' : ''}`;
     for (const selector of ['#poll-selected-date', '#poll-bar-date'])
       document.querySelector(selector)!.textContent = date(poll.fieldworkEnd);
     document.querySelector('#poll-first-date')!.textContent = date(

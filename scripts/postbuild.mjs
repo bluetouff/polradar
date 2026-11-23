@@ -18,6 +18,23 @@ async function walk(dir) {
     )
   ).flat();
 }
+let sourceCommit = process.env.GITHUB_SHA || null;
+if (!sourceCommit) {
+  try {
+    sourceCommit = execFileSync('git', ['rev-parse', 'HEAD'], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim();
+  } catch {
+    /* Une prévisualisation locale peut précéder le premier commit. */
+  }
+}
+if (sourceCommit && !/^[a-f0-9]{40}$/.test(sourceCommit))
+  throw new Error('Commit de construction invalide');
+await writeFile(
+  path.join(root, 'build.json'),
+  `${JSON.stringify({ sourceCommit, builtAt: new Date().toISOString(), repository: 'bluetouff/polradar' }, null, 2)}\n`,
+);
 const files = await walk(root);
 const known = new Set(files);
 const pages = files.filter((file) => file.endsWith('.html'));
@@ -93,23 +110,6 @@ for (const file of pages) {
   }
 }
 if (errors.length) throw new Error(errors.join('\n'));
-let sourceCommit = process.env.GITHUB_SHA || null;
-if (!sourceCommit) {
-  try {
-    sourceCommit = execFileSync('git', ['rev-parse', 'HEAD'], {
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'ignore'],
-    }).trim();
-  } catch {
-    /* Une prévisualisation locale peut précéder le premier commit. */
-  }
-}
-if (sourceCommit && !/^[a-f0-9]{40}$/.test(sourceCommit))
-  throw new Error('Commit de construction invalide');
-await writeFile(
-  path.join(root, 'build.json'),
-  `${JSON.stringify({ sourceCommit, builtAt: new Date().toISOString(), repository: 'bluetouff/polradar' }, null, 2)}\n`,
-);
 await writeFile(
   path.join(root, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sitemap.join('')}</urlset>\n`,

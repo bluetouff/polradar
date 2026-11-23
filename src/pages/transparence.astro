@@ -11,6 +11,8 @@ import {
   meta,
   formatDate,
 } from '../lib/data';
+import { pollCoverage } from '../lib/features.mjs';
+const coverage = pollCoverage(polls);
 ---
 
 <Base title="À propos de Polradar">
@@ -45,7 +47,9 @@ import {
       </ul>
       <p>
         Dernière mise à jour du corpus : {formatDate(meta.corpusUpdated)}. Les
-        dates de consultation figurent dans chaque source.
+        dates de consultation figurent dans chaque source. Le{' '}
+        <a href="/build.json">marqueur de construction</a> donne l’heure UTC et
+        la révision de la version en ligne.
       </p>
     </article>
     <aside class="repository-note">
@@ -96,10 +100,10 @@ import {
     </p>
     <h2>Données suivies</h2>
     <p>
-      Les {polls.length} scénarios publiés proviennent de{' '}
-      {new Set(polls.map((poll) => poll.institute)).size} instituts. Les dates
-      des enquêtes, des cours de marché, des séries Eurostat et des relevés de
-      l’Arcom figurent dans le{' '}
+      Les {coverage.observations} observations de sondages proviennent de{' '}
+      {coverage.institutes.length} instituts. Elles sont regroupées en{' '}
+      {coverage.series} séries. Les dates des enquêtes, des cours de marché, des
+      séries Eurostat et des relevés de l’Arcom figurent dans le{' '}
       <a href="/mises-a-jour/">journal des mises à jour automatiques</a>.
     </p>
     <h2>Contrôles de publication</h2>
