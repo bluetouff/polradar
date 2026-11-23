@@ -1,0 +1,245 @@
+---
+import DossierCommune from './DossierCommune.astro';
+import {
+  aplFile,
+  aplSource,
+  sruFile,
+  sruLaw,
+  sruSource,
+  aplNumber,
+  type Indicator,
+} from '../lib/dossiers-territoriaux';
+import areas from '../data/territoires/departements.json';
+interface Props {
+  mode: Indicator;
+}
+const { mode } = Astro.props;
+const health = mode === 'apl';
+const bins = [
+  { label: 'Moins de 3', fill: '#c1dfe1' },
+  { label: '3 à moins de 4', fill: '#73b2b8' },
+  { label: '4 à moins de 5', fill: '#287b88' },
+  { label: '5 ou plus', fill: '#123e52' },
+  { label: 'Hors champ', fill: '#dadcda' },
+];
+function color(value: number | null) {
+  return bins[
+    value === null ? 4 : value < 3 ? 0 : value < 4 ? 1 : value < 5 ? 2 : 3
+  ].fill;
+}
+const islands = ['Guadeloupe', 'Martinique', 'Guyane', 'La Réunion', 'Mayotte'];
+---
+
+<section class="terrain-panel" aria-labelledby="terrain-title">
+  <header class="terrain-head">
+    <span>
+      {health
+        ? 'DREES · offre de soins en 2024'
+        : 'Inventaire ministériel · logement social'}
+    </span>
+    <h2 id="terrain-title">
+      {health
+        ? 'L’accès aux généralistes selon le territoire'
+        : 'Quelle part de logements sociaux dans ma commune ?'}
+    </h2>
+  </header>
+  {health ? (
+    <>
+      <div class="terrain-duo terrain-map">
+        <figure>
+          <svg
+            viewBox="0 0 520 410"
+            width="520"
+            height="410"
+            role="img"
+            aria-labelledby="carte-title carte-desc"
+          >
+            <title id="carte-title">Accessibilité aux généralistes par département en 2024</title>
+            <desc id="carte-desc">
+              Consultations accessibles par an et par habitant standardisé. Les
+              valeurs figurent aussi dans le tableau des départements. Mayotte
+              est hors du champ de l’enquête.
+            </desc>
+            <g
+              stroke="#fcfdfc"
+              stroke-width="0.7"
+              stroke-linejoin="round"
+              fill-rule="evenodd"
+            >
+              {areas.map((d) => (
+                <path id={'apl-dep-' + d.code} fill={color(d.value)} d={d.path}>
+                  <title>{d.name} · {d.value===null?'hors champ':aplNumber(d.value)}</title>
+                </path>
+              ))}
+            </g>
+            {islands.map((name, i) => (
+              <text
+                x="453"
+                y={72 + i * 79}
+                font-size="13"
+                text-anchor="middle"
+                fill="#203f4e"
+              >
+                {name}
+              </text>
+            ))}
+          </svg>
+          <figcaption>
+            Les départements d’outre-mer figurent en médaillons à des échelles
+            distinctes.
+          </figcaption>
+        </figure>
+        <div>
+          <h3>Combien de consultations accessibles ?</h3>
+          <p>
+            La DREES rapproche l’activité des généralistes de la population, de
+            son âge et des distances à parcourir. L’indicateur estime les
+            consultations, visites et téléconsultations accessibles par an et
+            par habitant standardisé.
+          </p>
+          <ul class="terrain-legend" aria-label="Classes de la carte">
+            {bins.map((b) => (
+              <li>
+                <svg
+                  width="18"
+                  height="13"
+                  viewBox="0 0 18 13"
+                  aria-hidden="true"
+                >
+                  <rect width="18" height="13" rx="2" fill={b.fill} />
+                </svg>
+                {b.label}
+              </li>
+            ))}
+          </ul>
+          <label hidden data-dept-label for="territory-department">
+            Consulter un département
+          </label>
+          <select id="territory-department" hidden>
+            <option value="">Choisir un département</option>
+            {areas.map((d) => (
+              <option
+                value={d.code}
+                data-label={
+                  d.value === null
+                    ? 'Hors du champ de la DREES.'
+                    : aplNumber(d.value) +
+                      ' consultations accessibles par an et par habitant standardisé.'
+                }
+              >
+                {d.code} · {d.name}
+              </option>
+            ))}
+          </select>
+          <p role="status" id="department-value"></p>
+          <p class="terrain-note">
+            La moyenne départementale pondère chaque commune par sa population
+            standardisée. L’indicateur ne mesure ni le délai de rendez-vous ni
+            le nombre de consultations réellement effectuées.{' '}
+            <a href={aplSource}>Méthode de la DREES ↗</a>
+          </p>
+        </div>
+      </div>
+      <details class="terrain-table">
+        <summary>Valeurs des {areas.length} départements</summary>
+        <table>
+          <caption>Accessibilité potentielle localisée en 2024</caption>
+          <thead>
+            <tr>
+              <th scope="col">Département</th>
+              <th scope="col">Consultations accessibles</th>
+            </tr>
+          </thead>
+          <tbody>
+            {areas.map((d) => (
+              <tr>
+                <th scope="row">
+                  {d.code} · {d.name}
+                </th>
+                <td>{d.value === null ? 'Hors champ' : aplNumber(d.value)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </details>
+      <h3 class="terrain-subtitle">
+        Chercher une commune ou un arrondissement
+      </h3>
+      <DossierCommune mode="apl" />
+      <p class="terrain-note">
+        Millésime 2024 publié le 22 juillet 2026. Le classeur comprend 34 890
+        observations communales ou d’arrondissement. Pour Paris, Lyon et
+        Marseille, Polradar calcule également la moyenne de la ville à partir de
+        tous ses arrondissements. Mayotte est hors champ.{' '}
+        <a href={aplFile}>Classeur de la DREES ↗</a>
+      </p>
+    </>
+  ) : (
+    <>
+      <p>
+        Le ministère rapporte les logements sociaux aux résidences principales.
+        Selon la commune, la cible inscrite au fichier est de 20 % ou 25 %.
+        L’inventaire porte sur le <strong>1ᵉʳ janvier 2025</strong>, le
+        périmètre du dispositif sur le <strong>1ᵉʳ janvier 2026</strong>.
+      </p>
+      <DossierCommune mode="sru" />
+      <details class="terrain-table">
+        <summary>Lire les statuts SRU</summary>
+        <p>
+          Une commune déficitaire est sous son objectif de logements sociaux. La
+          carence relève d’une décision préfectorale après examen des résultats
+          de rattrapage. L’exemption porte sur la période indiquée. Ces trois
+          statuts sont repris séparément du fichier officiel.{' '}
+          <a href={sruLaw}>Article 55 et procédure de carence ↗</a>
+        </p>
+        <p>
+          Le CSV du 11 août 2026 contient 2 206 codes distincts, dont 2 203
+          signalés dans le périmètre au 1ᵉʳ janvier 2026. Sa notice annonce 2
+          208 communes. Une commune absente ou un inventaire manquant reste
+          signalé comme tel. Un seuil ouvert ou une valeur atypique est
+          reproduit tel que le ministère le publie.{' '}
+          <a href={sruSource}>Notice ↗</a> ·{' '}
+          <a href={sruFile}>Télécharger le CSV ↗</a>
+        </p>
+      </details>
+    </>
+  )}
+</section>
+<h2 class="terrain-subtitle">
+  {health
+    ? 'Qui déciderait de l’installation des médecins ?'
+    : 'Quelles obligations les candidats changeraient-ils ?'}
+</h2>
+{health ? (
+  <p class="terrain-note">
+    Les textes ci-dessous ne donnent pas de date commune d’entrée en vigueur. La
+    carte présente l’offre observée en 2024. Elle ne prédit pas l’effet des
+    propositions.
+  </p>
+) : (
+  <p class="terrain-note">
+    Les fiches distinguent le territoire où le seuil s’appliquerait, le niveau
+    visé et les sanctions proposées. Un programme de parti porte le nom de son
+    auteur collectif.
+  </p>
+)}
+<script>
+  const selector = document.querySelector<HTMLSelectElement>(
+    '#territory-department',
+  );
+  if (selector) {
+    selector.hidden = false;
+    document.querySelector<HTMLElement>('[data-dept-label]')!.hidden = false;
+    selector.addEventListener('change', () => {
+      document
+        .querySelector('.terrain-map .selected-area')
+        ?.classList.remove('selected-area');
+      if (selector.value)
+        document
+          .getElementById('apl-dep-' + selector.value)
+          ?.classList.add('selected-area');
+      document.getElementById('department-value')!.textContent =
+        selector.selectedOptions[0]?.dataset.label ?? '';
+    });
+  }
+</script>

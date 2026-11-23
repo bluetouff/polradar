@@ -1,0 +1,89 @@
+---
+import DataGraphicEmbed from './DataGraphicEmbed.astro';
+import {
+  salaryGraphic,
+  salaryImage,
+  salaryPage,
+  salaryLaw,
+  payrolls,
+  euro,
+} from '../lib/csg-paie.mjs';
+const graphic = salaryGraphic();
+const example = payrolls[0];
+---
+
+<section class="terrain-panel" aria-labelledby="paie-titre">
+  <header class="terrain-head">
+    <span>Fiche de paie · règles de 2026</span>
+    <h2 id="paie-titre">Combien de CSG sur un salaire brut ?</h2>
+  </header>
+  <div class="terrain-duo">
+    <div>
+      <p>
+        Pour {euro(example.gross)} bruts par mois, la CSG est calculée sur{' '}
+        <strong>{euro(example.base)}</strong>. Au taux de 9,2 %, le prélèvement
+        atteint <strong>{euro(example.total)}</strong>.
+      </p>
+      <dl class="terrain-details">
+        <div>
+          <dt>Part déductible du revenu imposable</dt>
+          <dd>{euro(example.deducted)} · 6,8 %</dd>
+        </div>
+        <div>
+          <dt>Part non déductible</dt>
+          <dd>{euro(example.other)} · 2,4 %</dd>
+        </div>
+      </dl>
+      <p class="terrain-note">
+        Exemple d’un salarié du régime général payé sur douze mois, sans prime,
+        avantage ou contribution patronale entrant dans l’assiette. La CRDS de
+        0,5 %, les autres cotisations et l’impôt sur le revenu sont hors calcul.{' '}
+        <a href={salaryLaw}>Barème de Service Public ↗</a>
+      </p>
+    </div>
+    <figure>
+      <img
+        src={salaryImage}
+        width={graphic.width}
+        height={graphic.height}
+        alt={graphic.alt}
+      />
+      <figcaption>
+        La part colorée de chaque barre correspond aux deux lignes de CSG.
+      </figcaption>
+    </figure>
+  </div>
+  <details class="terrain-table">
+    <summary>Quel financement pour la Sécurité sociale ?</summary>
+    <p>
+      La Sécurité sociale évalue à 17,9 milliards d’euros le rendement d’un
+      point de CSG affectée au régime général en 2025. Ce total comprend les
+      revenus d’activité, de remplacement, du capital et des jeux. Pour évaluer
+      une baisse limitée aux salaires, il faut isoler les revenus concernés,
+      connaître le barème et la date d’application.{' '}
+      <a href="https://evaluation.securite-sociale.fr/home/financement/1-4-1-valeur-du-point-de-csg-et.html">
+        Rapport d’évaluation de la Sécurité sociale ↗
+      </a>
+    </p>
+    <p>
+      Quatre précisions permettraient de comparer les projets sur une même base.
+      Quels revenus seraient inclus ? Quels taux et plafonds s’appliqueraient ?
+      À quelle date ? Quelle recette compenserait la perte, année par année ?
+    </p>
+  </details>
+  <DataGraphicEmbed
+    edition={graphic}
+    latest={graphic}
+    livePath={salaryImage}
+    livePage={salaryPage}
+    liveAlt="CSG prélevée sur trois exemples de salaire brut selon le barème publié par Polradar."
+    liveDescription="L’image reprend le dernier barème vérifié par Polradar."
+    filename="polradar-csg-salaires-2026.svg"
+  />
+</section>
+<h2 class="terrain-subtitle">Ce qui changerait sur la paie</h2>
+<p class="terrain-note">
+  Les candidats utilisent des repères différents. Un montant au salaire moyen,
+  un exemple à 2 000 € nets et un gain maximal décrivent des situations
+  distinctes. Les montants annoncés ci-dessous sont ceux de leurs auteurs.
+</p>

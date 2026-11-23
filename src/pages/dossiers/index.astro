@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import DossierLinks from '../../components/DossierLinks.astro';
 import Base from '../../layouts/Base.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 const articles = (
@@ -14,8 +15,12 @@ const articles = (
 >
   <header class="page-title">
     <h1>Dossiers</h1>
-    <p>Retraites, financement des propositions et lecture des sondages.</p>
+    <p>
+      Salaires, logement social, accès aux soins, retraites et financement des
+      propositions.
+    </p>
   </header>
+  <DossierLinks />
   <div class="article-grid">
     {articles.map((article) => (
       <ArticleCard article={article} />

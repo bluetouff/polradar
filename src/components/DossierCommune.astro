@@ -1,0 +1,111 @@
+---
+import annuaireUrl from '../data/territoires/annuaire.json?url';
+import sruUrl from '../data/territoires/sru.json?url';
+import aplUrl from '../data/territoires/apl.json?url';
+import sruRows from '../data/territoires/sru.json';
+import aplRows from '../data/territoires/apl.json';
+import {
+  localFacts,
+  sruFile,
+  aplFile,
+  type Indicator,
+} from '../lib/dossiers-territoriaux';
+import { sruPicture, sruImageUrl, sruEmbedCode } from '../lib/sru-graph';
+interface Props {
+  mode: Indicator;
+}
+const { mode } = Astro.props;
+const housing = mode === 'sru';
+const initial = sruRows['75056'];
+const facts = localFacts(mode, '75056', housing ? initial : aplRows['75056']);
+const sample = sruPicture('Paris', '75056', initial);
+const sampleUrl = sruImageUrl(sample.svg);
+---
+
+<section
+  class="territory-lookup"
+  data-territory={mode}
+  data-names={annuaireUrl}
+  data-values={housing ? sruUrl : aplUrl}
+  aria-label="Données communales"
+>
+  <form role="search" hidden data-form>
+    <label for="territory-query">Nom de commune ou code Insee</label>
+    <div class="territory-input">
+      <input
+        id="territory-query"
+        type="search"
+        maxlength="80"
+        autocomplete="off"
+        placeholder="Ex. Paris"
+        aria-controls="territory-matches"
+      />
+      <button class="button" type="submit">
+        Rechercher
+      </button>
+    </div>
+    <ul
+      id="territory-matches"
+      aria-label="Communes correspondantes"
+      hidden
+    ></ul>
+  </form>
+  <p class="terrain-note" role="status" data-feedback></p>
+  <div class:list={['terrain-result', housing && 'has-figure']}>
+    <div>
+      <h3 data-place>
+        Paris <small>75056</small>
+      </h3>
+      <dl class="terrain-details" data-facts>
+        {facts.map(([name, val]) => (
+          <div>
+            <dt>{name}</dt>
+            <dd>{val}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+    {housing && (
+      <figure data-local-figure>
+        <img
+          data-chart
+          width="600"
+          height="320"
+          alt={sample.alt}
+          src={sampleUrl}
+        />
+        <figcaption>
+          <a href={sampleUrl} data-download download="polradar-sru-75056.svg">
+            Télécharger le SVG
+          </a>
+        </figcaption>
+        <details>
+          <summary>Intégrer ce graphique</summary>
+          <p class="terrain-note">
+            L’image figée est incluse dans ce code. Son affichage ne déclenche
+            aucune requête vers Polradar.
+          </p>
+          <label for="territory-embed">HTML à copier</label>
+          <textarea
+            id="territory-embed"
+            readonly
+            rows="3"
+            spellcheck="false"
+          >{sruEmbedCode('Paris','75056',initial)}</textarea>
+          <button class="button small" data-copy type="button" hidden>
+            Copier le code
+          </button>
+        </details>
+      </figure>
+    )}
+  </div>
+  <noscript>
+    <p>
+      Paris est affiché en exemple.{' '}
+      <a href={housing ? sruFile : aplFile}>
+        Consulter toutes les communes dans le fichier officiel ↗
+      </a>
+    </p>
+  </noscript>
+</section>
+<script src="../scripts/dossier-commune.ts"></script>

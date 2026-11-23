@@ -1,0 +1,40 @@
+---
+import Icon from './Icon.astro';
+import { aplPage, sruPage } from '../lib/dossiers-territoriaux';
+import { salaryPage } from '../lib/csg-paie.mjs';
+import '../styles/dossiers-terrain.css';
+const { communes = false } = Astro.props;
+const links = [
+  {
+    href: salaryPage,
+    title: 'CSG sur la fiche de paie',
+    text: 'Trois salaires bruts et quatre propositions.',
+    icon: 'fiscalite',
+  },
+  {
+    href: sruPage,
+    title: 'Logement social dans ma commune',
+    text: 'Part observée, objectif légal et carence.',
+    icon: 'logement',
+  },
+  {
+    href: aplPage,
+    title: 'Accès aux généralistes',
+    text: 'Carte des départements et données par commune.',
+    icon: 'sante',
+  },
+].filter((x) => !communes || x.href !== salaryPage);
+---
+
+<nav class="terrain-links" aria-label="Dossiers chiffrés">
+  {links.map((link) => (
+    <a href={link.href}>
+      <Icon name={link.icon} />
+      <span>
+        <strong>{link.title}</strong>
+        <small>{link.text}</small>
+      </span>
+      <span aria-hidden="true">↗</span>
+    </a>
+  ))}
+</nav>

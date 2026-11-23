@@ -57,6 +57,18 @@ export function readCommuneIndex(value) {
   });
 }
 
+export function updateCommuneIndex(baseline, changes) {
+  const names = new Map(readCommuneIndex(baseline));
+  if (!Array.isArray(changes?.removed))
+    throw Error('Édition communale invalide');
+  for (const code of changes.removed) {
+    if (!names.delete(code)) throw Error('Code communal à retirer inconnu');
+  }
+  for (const [code, name] of readCommuneIndex(changes.entries))
+    names.set(code, name);
+  return [...names].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
+}
+
 /** @param {unknown} row @param {number} size @returns {number[]} */
 export function readBallot(row, size) {
   if (

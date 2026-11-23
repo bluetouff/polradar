@@ -1,6 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
+import DossierPaie from '../../components/DossierPaie.astro';
+import DossierTerritoire from '../../components/DossierTerritoire.astro';
+import { healthMeasures } from '../../lib/dossiers-territoriaux';
+import '../../styles/dossiers-terrain.css';
 import {
   activeCandidates as candidates,
   formatDate,
@@ -22,6 +26,16 @@ export function getStaticPaths() {
   return questions.map((q) => ({ params: { id: q.id }, props: { q } }));
 }
 const { q } = Astro.props;
+const payrollReadings: Record<string, string> = {
+  'attal-csg-salaires':
+    'Sur la paie à 2 000 € bruts, la CSG actuelle est de 180,78 €. Effacer entièrement cette ligne libérerait ce montant avant impôt, à autres prélèvements constants. La campagne ne publie pas le barème reliant cet exemple à son gain maximal.',
+  'zemmour-csg-activite':
+    'Pour le salarié de notre exemple, la ligne supprimée représenterait 180,78 € avant impôt. Le gain final d’un indépendant dépend de son assiette et de ses prélèvements propres.',
+  'glucksmann-csg-salaires':
+    'Le candidat chiffre son exemple à 2 000 € nets. Pour une paie à 2 000 € bruts, il faudrait connaître le taux applicable et le salaire net de départ.',
+  'villepin-cotisations-vers-csg':
+    'Pour établir une nouvelle fiche de paie, il faudrait les cotisations supprimées et les nouveaux taux de CSG. Les deux gains cités sont les estimations du programme à dix ans.',
+};
 const t = questionThemes.find((x) => x.id === q.theme)!;
 const digitalCase = digitalLawSections
   .flatMap((section) => section.cases)
@@ -86,6 +100,11 @@ const checkLabels = {
       Voir la couverture des {candidates.length} candidats ↓
     </a>
   </nav>
+  {q.id === 'fiscalite-csg-salaires' && <DossierPaie />}
+  {q.id === 'logement-obligations-parc-social' && (
+    <DossierTerritoire mode="sru" />
+  )}
+  {q.id === 'sante-installation-medecins' && <DossierTerritoire mode="apl" />}
   <div class="q-answers">
     {covered.map((c) => (
       <article class="q-answer" id={'candidat-' + c.id}>
@@ -118,6 +137,56 @@ const checkLabels = {
                 version.snapshot.title,
                 version.snapshot.description,
               ) && <p>{version.snapshot.description}</p>}
+              {q.id === 'fiscalite-csg-salaires' && (
+                <dl class="terrain-details">
+                  <div>
+                    <dt>Personnes concernées</dt>
+                    <dd>
+                      {version.snapshot.beneficiaries ??
+                        'Public non précisé dans le texte.'}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Calendrier</dt>
+                    <dd>{version.snapshot.timing ?? 'Date non précisée.'}</dd>
+                  </div>
+                  <div>
+                    <dt>Effet sur la paie</dt>
+                    <dd>{payrollReadings[measure.id]}</dd>
+                  </div>
+                  <div>
+                    <dt>Financement annoncé</dt>
+                    <dd>{version.snapshot.financing ?? 'À documenter.'}</dd>
+                  </div>
+                </dl>
+              )}
+              {q.id === 'sante-installation-medecins' &&
+                healthMeasures[measure.id] && (
+                  <dl class="terrain-details">
+                    <div>
+                      <dt>Public concerné</dt>
+                      <dd>{healthMeasures[measure.id][0]}</dd>
+                    </div>
+                    <div>
+                      <dt>Décision et mise en œuvre</dt>
+                      <dd>{healthMeasures[measure.id][1]}</dd>
+                    </div>
+                    <div>
+                      <dt>Calendrier</dt>
+                      <dd>
+                        {version.snapshot.timing ??
+                          'Date de mise en œuvre non précisée dans ce passage.'}
+                      </dd>
+                    </div>
+                  </dl>
+                )}
+              {q.id === 'logement-obligations-parc-social' &&
+                version.snapshot.timing && (
+                  <p>
+                    <strong>Échéance annoncée</strong> ·{' '}
+                    {version.snapshot.timing}
+                  </p>
+                )}
               {version.number !== measure.revision && (
                 <p class="q-stale">
                   <a href={'/mesures/' + measure.id + '/'}>

@@ -1,12 +1,6 @@
 import { ballotDots, positionLabel } from './legislative-votes.mjs';
-export const escapeHtml = (value) =>
-  String(value).replace(
-    /[&<>"']/g,
-    (s) =>
-      ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[
-        s
-      ],
-  );
+import { escapeHtml } from './escape-html.mjs';
+export { escapeHtml };
 const e = escapeHtml;
 const n = (v) => v.toLocaleString('fr-FR');
 const label = (s) => `<span>${e(s)}</span>`;
