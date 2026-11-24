@@ -1,0 +1,5086 @@
+{
+  "version": 1,
+  "annotation": "2026-11-24",
+  "conditions": "Révision du site identique, sources et identifiants documentés, tous les champs exigés présents et toutes les valeurs attendues exactes. Un résultat absent ou une erreur masquée fait échouer la question.",
+  "questions": [
+    {
+      "famille": "programmes",
+      "question": "Dans sa première version, qui porte la fiche « Supprimer les régions » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "asselineau-institutions-suppression-regions",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "asselineau-institutions-suppression-regions",
+        "/auteur": "François Asselineau",
+        "/versionDemandee": "asselineau-institutions-suppression-regions-v1",
+        "/statut": "orientation",
+        "/sources/0/id": "asselineau-discours-rentree-2026",
+        "/sources/0/passage": "Synthèse de l’UPR, Réforme des institutions, Réduction drastique des élus et des structures",
+        "/sources/0/url": "https://upr.fr/universites/discours-de-rentree-2026-de-francois-asselineau-la-liberation-nationale"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://upr.fr/universites/discours-de-rentree-2026-de-francois-asselineau-la-liberation-nationale"
+      ],
+      "identifiants": [
+        "asselineau-institutions-suppression-regions",
+        "asselineau-institutions-suppression-regions-v1",
+        "asselineau-discours-rentree-2026"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "programmes",
+      "question": "Dans sa première version, qui porte la fiche « Reconstituer Fret SNCF » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "ps-reconstituer-fret-sncf",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "ps-reconstituer-fret-sncf",
+        "/auteur": "Parti socialiste",
+        "/versionDemandee": "ps-reconstituer-fret-sncf-v1",
+        "/statut": "parti",
+        "/sources/0/id": "ps-projet-2027-vivre-libres",
+        "/sources/0/passage": "Chapitre 2 – Coût de la vie quotidienne : reprendre le contrôle. Se déplacer. Point 5 de la liste.",
+        "/sources/0/url": "https://projet-socialiste.fr/projet/vivre-libres/"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://projet-socialiste.fr/projet/vivre-libres/"],
+      "identifiants": [
+        "ps-reconstituer-fret-sncf",
+        "ps-reconstituer-fret-sncf-v1",
+        "ps-projet-2027-vivre-libres"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "programmes",
+      "question": "Dans sa première version, qui porte la fiche « La semaine de 28 heures » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "kazib-travail-temps",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "kazib-travail-temps",
+        "/auteur": "Anasse Kazib",
+        "/versionDemandee": "kazib-travail-temps-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "kazib-premieres-mesures-2027",
+        "/sources/0/passage": "Quel programme pour affronter le patronat : temps de travail",
+        "/sources/0/url": "https://www.revolutionpermanente.fr/28h-expropriation-des-secteurs-strategiques-RP-presente-les-premieres-mesures-de-sa-candidature"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://www.revolutionpermanente.fr/28h-expropriation-des-secteurs-strategiques-RP-presente-les-premieres-mesures-de-sa-candidature"
+      ],
+      "identifiants": [
+        "kazib-travail-temps",
+        "kazib-travail-temps-v1",
+        "kazib-premieres-mesures-2027"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "programmes",
+      "question": "Dans sa première version, qui porte la fiche « Relever les APL de 10 % » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "melenchon-relever-les-apl-de-10",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "melenchon-relever-les-apl-de-10",
+        "/auteur": "Jean-Luc Mélenchon",
+        "/versionDemandee": "melenchon-relever-les-apl-de-10-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "lfi-tax",
+        "/sources/0/passage": "Rubrique « Créer un état d’urgence sociale », mesure 4 dans le chapitre.",
+        "/sources/0/url": "https://melenchon2027.fr/programme/livre/une-economie-au-service-des-besoins/chapitre2"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://melenchon2027.fr/programme/livre/une-economie-au-service-des-besoins/chapitre2"
+      ],
+      "identifiants": [
+        "melenchon-relever-les-apl-de-10",
+        "melenchon-relever-les-apl-de-10-v1",
+        "lfi-tax"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "programmes",
+      "question": "Dans sa première version, qui porte la fiche « Majorité pénale à 16 ans » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "lisnard-securite-majorite-penale",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "lisnard-securite-majorite-penale",
+        "/auteur": "Nouvelle Énergie",
+        "/versionDemandee": "lisnard-securite-majorite-penale-v1",
+        "/statut": "parti",
+        "/sources/0/id": "lisnard-securite",
+        "/sources/0/passage": "Partie 4 : violence des mineurs",
+        "/sources/0/url": "https://www.unenouvelleenergie.fr/notre-programme/securite/"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://www.unenouvelleenergie.fr/notre-programme/securite/"
+      ],
+      "identifiants": [
+        "lisnard-securite-majorite-penale",
+        "lisnard-securite-majorite-penale-v1",
+        "lisnard-securite"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "programmes",
+      "question": "Dans sa première version, qui porte la fiche « Supprimer le pass Culture » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "branco-supprimer-le-pass-culture",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "branco-supprimer-le-pass-culture",
+        "/auteur": "Juan Branco",
+        "/versionDemandee": "branco-supprimer-le-pass-culture-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "branco-voie-pdf",
+        "/sources/0/passage": "PDF, page 51. Repère : Supprimer le pass Culture.",
+        "/sources/0/url": "https://ruches.org/projet-1784217879253.pdf#page=51"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://ruches.org/projet-1784217879253.pdf#page=51"],
+      "identifiants": [
+        "branco-supprimer-le-pass-culture",
+        "branco-supprimer-le-pass-culture-v1",
+        "branco-voie-pdf"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "programmes",
+      "question": "Dans sa première version, qui porte la fiche « Supprimer le droit du sol » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "herlin-droit-sol",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "herlin-droit-sol",
+        "/auteur": "Philippe Herlin",
+        "/versionDemandee": "herlin-droit-sol-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "herlin-programme",
+        "/sources/0/passage": "Volet régalien, Immigration, première phrase.",
+        "/sources/0/url": "https://www.herlin27.fr/programme"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://www.herlin27.fr/programme"],
+      "identifiants": [
+        "herlin-droit-sol",
+        "herlin-droit-sol-v1",
+        "herlin-programme"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "programmes",
+      "question": "Dans sa première version, qui porte la fiche « Supprimer le veto à l’ONU » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "legendre-fin-veto-onu",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "legendre-fin-veto-onu",
+        "/auteur": "Jean-François Legendre",
+        "/versionDemandee": "legendre-fin-veto-onu-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "legendre-manifeste-64",
+        "/sources/0/passage": "Chapitre « Le rôle de la France dans le monde », même paragraphe sur les alliances.",
+        "/sources/0/url": "https://docs.google.com/document/d/1G4dUZaI20umZghEgSgRGCQeiWDJ2fiwhLZvtUK7hofc/edit"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://docs.google.com/document/d/1G4dUZaI20umZghEgSgRGCQeiWDJ2fiwhLZvtUK7hofc/edit"
+      ],
+      "identifiants": [
+        "legendre-fin-veto-onu",
+        "legendre-fin-veto-onu-v1",
+        "legendre-manifeste-64"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "programmes",
+      "question": "Dans sa première version, qui porte la fiche « Aider les cafés à payer leur foncier » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "ecologistes-aider-les-cafes-a-payer-leur-foncier",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "ecologistes-aider-les-cafes-a-payer-leur-foncier",
+        "/auteur": "Les Écologistes",
+        "/versionDemandee": "ecologistes-aider-les-cafes-a-payer-leur-foncier-v1",
+        "/statut": "parti",
+        "/sources/0/id": "ecologistes-projet-2027-pdf",
+        "/sources/0/passage": "Chapitre 33 « Lutter contre l’épidémie de solitude », mesure 2, PDF page 122.",
+        "/sources/0/url": "https://lesecologistes.fr/document/3N4JsAEmq6vsx42IITGNZa/vdef-programme-1.pdf#page=122"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://lesecologistes.fr/document/3N4JsAEmq6vsx42IITGNZa/vdef-programme-1.pdf#page=122"
+      ],
+      "identifiants": [
+        "ecologistes-aider-les-cafes-a-payer-leur-foncier",
+        "ecologistes-aider-les-cafes-a-payer-leur-foncier-v1",
+        "ecologistes-projet-2027-pdf"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "programmes",
+      "question": "Dans sa première version, qui porte la fiche « Diviser les flux par deux » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "philippe-immigration-1",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "philippe-immigration-1",
+        "/auteur": "Édouard Philippe",
+        "/versionDemandee": "philippe-immigration-1-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "philippe-index",
+        "/sources/0/passage": "Dossier initial : Diviser les flux par deux",
+        "/sources/0/url": "https://www.edouardphilippe.fr/programme"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://www.edouardphilippe.fr/programme"],
+      "identifiants": [
+        "philippe-immigration-1",
+        "philippe-immigration-1-v1",
+        "philippe-index"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "programmes",
+      "question": "Dans sa première version, qui porte la fiche « Baisser les loyers de 30 % » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "collovati-logement-loyers",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "collovati-logement-loyers",
+        "/auteur": "Christian Collovati",
+        "/versionDemandee": "collovati-logement-loyers-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "collovati-projet-2027",
+        "/sources/0/passage": "Actions par thématiques, Villes",
+        "/sources/0/url": "https://www.xn--lepeuplefranais2027-hyb.fr/"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://www.xn--lepeuplefranais2027-hyb.fr/"],
+      "identifiants": [
+        "collovati-logement-loyers",
+        "collovati-logement-loyers-v1",
+        "collovati-projet-2027"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "programmes",
+      "question": "Dans sa première version, qui porte la fiche « Interdire la déforestation » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "durif-deforestation",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "durif-deforestation",
+        "/auteur": "Sylvain Durif",
+        "/versionDemandee": "durif-deforestation-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "durif-elvita-programme-2027",
+        "/sources/0/passage": "Programme, axe « Écologie ».",
+        "/sources/0/url": "https://elvita2027.com/#programme"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://elvita2027.com/#programme"],
+      "identifiants": [
+        "durif-deforestation",
+        "durif-deforestation-v1",
+        "durif-elvita-programme-2027"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "fiscalité",
+      "question": "Dans sa première version, qui porte la fiche « Annuler la dette publique » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "labib-fiscalite-annulation-dette",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "labib-fiscalite-annulation-dette",
+        "/auteur": "Selma Labib",
+        "/versionDemandee": "labib-fiscalite-annulation-dette-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "labib-lettre-finances-2026",
+        "/sources/0/passage": "Réponse signée, liste des objectifs face à la dette, premier point et conclusion",
+        "/sources/0/url": "https://www.npa-revolutionnaires.org/articles/reponse-de-selma-labib-a-philippe-juvin-rapporteur-general-de-la-commission-des-finances"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://www.npa-revolutionnaires.org/articles/reponse-de-selma-labib-a-philippe-juvin-rapporteur-general-de-la-commission-des-finances"
+      ],
+      "identifiants": [
+        "labib-fiscalite-annulation-dette",
+        "labib-fiscalite-annulation-dette-v1",
+        "labib-lettre-finances-2026"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "fiscalité",
+      "question": "Dans sa première version, qui porte la fiche « Maintenir le pacte Dutreil » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "philippe-maintenir-le-pacte-dutreil",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "philippe-maintenir-le-pacte-dutreil",
+        "/auteur": "Édouard Philippe",
+        "/versionDemandee": "philippe-maintenir-le-pacte-dutreil-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "philippe-business",
+        "/sources/0/passage": "Rubrique « Entreprises et industrie », question « Édouard Philippe va-t-il garder le pacte Dutreil pour les entreprises familiales ? ».",
+        "/sources/0/url": "https://www.edouardphilippe.fr/programme/entreprises"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://www.edouardphilippe.fr/programme/entreprises"],
+      "identifiants": [
+        "philippe-maintenir-le-pacte-dutreil",
+        "philippe-maintenir-le-pacte-dutreil-v1",
+        "philippe-business"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "fiscalité",
+      "question": "Dans sa première version, qui porte la fiche « Instaurer un ISF climatique » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "billetdoux-isf-climatique",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "billetdoux-isf-climatique",
+        "/auteur": "Augustin Billetdoux",
+        "/versionDemandee": "billetdoux-isf-climatique-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "billetdoux-declaration-2027",
+        "/sources/0/passage": "Vidéo de la déclaration, 3 min 28 s à 3 min 33 s.",
+        "/sources/0/url": "https://billetdoux2027.fr/"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://billetdoux2027.fr/"],
+      "identifiants": [
+        "billetdoux-isf-climatique",
+        "billetdoux-isf-climatique-v1",
+        "billetdoux-declaration-2027"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "fiscalité",
+      "question": "Dans sa première version, qui porte la fiche « Prélever la TVA à la source » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "groupe-rn-tva-collecte-source",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "groupe-rn-tva-collecte-source",
+        "/auteur": "Groupe Rassemblement national",
+        "/versionDemandee": "groupe-rn-tva-collecte-source-v1",
+        "/statut": "parti",
+        "/sources/0/id": "groupe-rn-contre-budget-2027",
+        "/sources/0/passage": "Tableau du contre-budget, page 11, colonne 2027 en milliards d’euros. Ligne : TVA à la source.",
+        "/sources/0/url": "https://back.deputes-rn.fr/wp-content/uploads/2026/10/GRN-CONTRE-BUDGET-2027-DOSSIER.pdf#page=11"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://back.deputes-rn.fr/wp-content/uploads/2026/10/GRN-CONTRE-BUDGET-2027-DOSSIER.pdf#page=11"
+      ],
+      "identifiants": [
+        "groupe-rn-tva-collecte-source",
+        "groupe-rn-tva-collecte-source-v1",
+        "groupe-rn-contre-budget-2027"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "fiscalité",
+      "question": "Dans sa première version, qui porte la fiche « Voter des budgets à l’équilibre » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "legendre-fiscalite-equilibre-budget",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "legendre-fiscalite-equilibre-budget",
+        "/auteur": "Jean-François Legendre",
+        "/versionDemandee": "legendre-fiscalite-equilibre-budget-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "legendre-projet-2027",
+        "/sources/0/passage": "Les quatre piliers du projet, 2, Sortir de l’engrenage de la dette",
+        "/sources/0/url": "https://www.anousmaintenant.fr/"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://www.anousmaintenant.fr/"],
+      "identifiants": [
+        "legendre-fiscalite-equilibre-budget",
+        "legendre-fiscalite-equilibre-budget-v1",
+        "legendre-projet-2027"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "fiscalité",
+      "question": "Dans sa première version, qui porte la fiche « Baisser les impôts de production » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "dupont-aignan-fiscalite-production",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "dupont-aignan-fiscalite-production",
+        "/auteur": "Debout la France",
+        "/versionDemandee": "dupont-aignan-fiscalite-production-v1",
+        "/statut": "parti",
+        "/sources/0/id": "dlf-economie-2026",
+        "/sources/0/passage": "Mesures pour créer et relocaliser des emplois : impôts de production",
+        "/sources/0/url": "https://www.debout-la-france.fr/projet/economie-travail/"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://www.debout-la-france.fr/projet/economie-travail/"],
+      "identifiants": [
+        "dupont-aignan-fiscalite-production",
+        "dupont-aignan-fiscalite-production-v1",
+        "dlf-economie-2026"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "fiscalité",
+      "question": "Dans sa première version, qui porte la fiche « Rétablir un impôt sur la fortune » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "villepin-impot-fortune",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "villepin-impot-fortune",
+        "/auteur": "Dominique de Villepin",
+        "/versionDemandee": "villepin-impot-fortune-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "villepin-chapitre-1",
+        "/sources/0/passage": "Chapitre 1, proposition 10.",
+        "/sources/0/url": "https://lafrancehumaniste.fr/programme/reussir-a-nouveau/chapitre-1.html"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://lafrancehumaniste.fr/programme/reussir-a-nouveau/chapitre-1.html"
+      ],
+      "identifiants": [
+        "villepin-impot-fortune",
+        "villepin-impot-fortune-v1",
+        "villepin-chapitre-1"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "fiscalité",
+      "question": "Dans sa première version, qui porte la fiche « Supprimer la CSG sur les salaires » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "attal-csg-salaires",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "attal-csg-salaires",
+        "/auteur": "Gabriel Attal",
+        "/versionDemandee": "attal-csg-salaires-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "lci-restos-debat-16-novembre",
+        "/sources/0/passage": "Direct du 16 novembre, 20 h 30 (heure de Paris), intervention de Gabriel Attal.",
+        "/sources/0/url": "https://www.tf1info.fr/politique/elections/presidentielle/quelle-societe-pour-demain-precarite-logement-retraites-revoyez-les-temps-forts-du-debat-organise-par-lci-en-association-avec-les-restos-du-coeur-2471255.html"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://www.tf1info.fr/politique/elections/presidentielle/quelle-societe-pour-demain-precarite-logement-retraites-revoyez-les-temps-forts-du-debat-organise-par-lci-en-association-avec-les-restos-du-coeur-2471255.html"
+      ],
+      "identifiants": [
+        "attal-csg-salaires",
+        "attal-csg-salaires-v1",
+        "lci-restos-debat-16-novembre"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "fiscalité",
+      "question": "Dans sa première version, qui porte la fiche « Abaisser l’impôt sur les sociétés » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "herlin-baisse-impot-societes",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "herlin-baisse-impot-societes",
+        "/auteur": "Philippe Herlin",
+        "/versionDemandee": "herlin-baisse-impot-societes-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "herlin-programme",
+        "/sources/0/passage": "Déprogramme économique, rubrique Fiscalité, même liste de baisses.",
+        "/sources/0/url": "https://www.herlin27.fr/programme"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://www.herlin27.fr/programme"],
+      "identifiants": [
+        "herlin-baisse-impot-societes",
+        "herlin-baisse-impot-societes-v1",
+        "herlin-programme"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "fiscalité",
+      "question": "Dans sa première version, qui porte la fiche « Passer l’impôt sur le revenu à 14 tranches » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "melenchon-fiscalite-1",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "melenchon-fiscalite-1",
+        "/auteur": "Jean-Luc Mélenchon",
+        "/versionDemandee": "melenchon-fiscalite-1-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "lfi-tax",
+        "/sources/0/passage": "Dossier initial : Accroître la progressivité",
+        "/sources/0/url": "https://melenchon2027.fr/programme/livre/une-economie-au-service-des-besoins/chapitre2"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://melenchon2027.fr/programme/livre/une-economie-au-service-des-besoins/chapitre2"
+      ],
+      "identifiants": [
+        "melenchon-fiscalite-1",
+        "melenchon-fiscalite-1-v1",
+        "lfi-tax"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "fiscalité",
+      "question": "Dans sa première version, qui porte la fiche « Baisser l’accise sur l’électricité » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "mikolajczak-fiscalite-accise-electricite",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "mikolajczak-fiscalite-accise-electricite",
+        "/auteur": "Équinoxe",
+        "/versionDemandee": "mikolajczak-fiscalite-accise-electricite-v1",
+        "/statut": "parti",
+        "/sources/0/id": "equinoxe-contre-budget-2027",
+        "/sources/0/passage": "Contre-budget 2027 : Baisser l’accise sur l’électricité",
+        "/sources/0/url": "https://parti-equinoxe.fr/contre-budget-2027/"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://parti-equinoxe.fr/contre-budget-2027/"],
+      "identifiants": [
+        "mikolajczak-fiscalite-accise-electricite",
+        "mikolajczak-fiscalite-accise-electricite-v1",
+        "equinoxe-contre-budget-2027"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "fiscalité",
+      "question": "Dans sa première version, qui porte la fiche « Baisser les taxes sur les carburants » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "lalanne-fiscalite-taxes-carburants",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "lalanne-fiscalite-taxes-carburants",
+        "/auteur": "Francis Lalanne",
+        "/versionDemandee": "lalanne-fiscalite-taxes-carburants-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "lalanne-projet-2027",
+        "/sources/0/passage": "Rubrique 5, Impôts, premier point",
+        "/sources/0/url": "https://dieudolalanne2027.com/programme/"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://dieudolalanne2027.com/programme/"],
+      "identifiants": [
+        "lalanne-fiscalite-taxes-carburants",
+        "lalanne-fiscalite-taxes-carburants-v1",
+        "lalanne-projet-2027"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "retraites",
+      "question": "Dans sa première version, qui porte la fiche « Abroger la réforme de 2023, puis rétablir un départ à taux plein à 60 ans avec 40 annuités » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "melenchon-retraites-1",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "melenchon-retraites-1",
+        "/auteur": "Jean-Luc Mélenchon",
+        "/versionDemandee": "melenchon-retraites-1-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "lfi-social",
+        "/sources/0/passage": "Dossier initial : Revenir à 60 ans",
+        "/sources/0/url": "https://melenchon2027.fr/programme/livre/mettre-en-securite-sociale/chapitre1"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://melenchon2027.fr/programme/livre/mettre-en-securite-sociale/chapitre1"
+      ],
+      "identifiants": [
+        "melenchon-retraites-1",
+        "melenchon-retraites-1-v1",
+        "lfi-social"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "retraites",
+      "question": "Dans sa première version, qui porte la fiche « Porter progressivement l’âge de départ à 65 ans et la durée de cotisation à 45 ans » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "philippe-retraites-1",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "philippe-retraites-1",
+        "/auteur": "Édouard Philippe",
+        "/versionDemandee": "philippe-retraites-1-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "philippe-pension",
+        "/sources/0/passage": "Dossier initial : 65 ans et 45 annuités",
+        "/sources/0/url": "https://www.edouardphilippe.fr/programme/retraites"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://www.edouardphilippe.fr/programme/retraites"],
+      "identifiants": [
+        "philippe-retraites-1",
+        "philippe-retraites-1-v1",
+        "philippe-pension"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "retraites",
+      "question": "Dans sa première version, qui porte la fiche « Rétablir quatre critères de pénibilité » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "tondelier-retraites-penibilite",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "tondelier-retraites-penibilite",
+        "/auteur": "Les Écologistes",
+        "/versionDemandee": "tondelier-retraites-penibilite-v1",
+        "/statut": "parti",
+        "/sources/0/id": "ecologistes-projet-2027-pdf",
+        "/sources/0/passage": "Chapitre 31, point 3, p. 117 du PDF",
+        "/sources/0/url": "https://lesecologistes.fr/document/3N4JsAEmq6vsx42IITGNZa/vdef-programme-1.pdf"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://lesecologistes.fr/document/3N4JsAEmq6vsx42IITGNZa/vdef-programme-1.pdf"
+      ],
+      "identifiants": [
+        "tondelier-retraites-penibilite",
+        "tondelier-retraites-penibilite-v1",
+        "ecologistes-projet-2027-pdf"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "retraites",
+      "question": "Dans sa première version, qui porte la fiche « Maintenir les retraites par répartition » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "riner-retraites-repartition",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "riner-retraites-repartition",
+        "/auteur": "Teddy Riner",
+        "/versionDemandee": "riner-retraites-repartition-v1",
+        "/statut": "orientation",
+        "/sources/0/id": "riner-entretien-parisien-novembre",
+        "/sources/0/passage": "Entretien du 9 novembre 2026, déclaration de candidature.",
+        "/sources/0/url": "https://www.leparisien.fr/elections/presidentielle/presidentielle-2027-je-suis-candidat-pour-dire-quon-peut-relever-la-france-teddy-riner-se-lance-dans-la-competition-09-11-2026-36MFSFMWDFGATLM2YGR3MDF4QI.php"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://www.leparisien.fr/elections/presidentielle/presidentielle-2027-je-suis-candidat-pour-dire-quon-peut-relever-la-france-teddy-riner-se-lance-dans-la-competition-09-11-2026-36MFSFMWDFGATLM2YGR3MDF4QI.php"
+      ],
+      "identifiants": [
+        "riner-retraites-repartition",
+        "riner-retraites-repartition-v1",
+        "riner-entretien-parisien-novembre"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "retraites",
+      "question": "Dans sa première version, qui porte la fiche « Maintenir l’âge de départ à 62 ans et 9 mois » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "dupont-aignan-retraites-age-maintien",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "dupont-aignan-retraites-age-maintien",
+        "/auteur": "Debout la France",
+        "/versionDemandee": "dupont-aignan-retraites-age-maintien-v1",
+        "/statut": "parti",
+        "/sources/0/id": "dlf-economie-2026",
+        "/sources/0/passage": "Économie et travail, point 14, Assurer une retraite digne",
+        "/sources/0/url": "https://www.debout-la-france.fr/projet/economie-travail/"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://www.debout-la-france.fr/projet/economie-travail/"],
+      "identifiants": [
+        "dupont-aignan-retraites-age-maintien",
+        "dupont-aignan-retraites-age-maintien-v1",
+        "dlf-economie-2026"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "retraites",
+      "question": "Dans sa première version, qui porte la fiche « Indexer toutes les pensions pendant cinq ans » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "lepen-retraites-indexation-cinq-ans",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "lepen-retraites-indexation-cinq-ans",
+        "/auteur": "Marine Le Pen",
+        "/versionDemandee": "lepen-retraites-indexation-cinq-ans-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "rn-retraites-17-novembre-2026",
+        "/sources/0/passage": "Enregistrement de campagne, chapitre à 09:10",
+        "/sources/0/url": "https://www.youtube.com/watch?v=zKjV6bmKSF8"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://www.youtube.com/watch?v=zKjV6bmKSF8"],
+      "identifiants": [
+        "lepen-retraites-indexation-cinq-ans",
+        "lepen-retraites-indexation-cinq-ans-v1",
+        "rn-retraites-17-novembre-2026"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "retraites",
+      "question": "Dans sa première version, qui porte la fiche « Publier un état des lieux des régimes spéciaux » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "egger-retraites-regimes-speciaux",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "egger-retraites-regimes-speciaux",
+        "/auteur": "Clara Egger",
+        "/versionDemandee": "egger-retraites-regimes-speciaux-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "egger-programme-2027",
+        "/sources/0/passage": "§ 6, Retraites, point B, p. 18–19",
+        "/sources/0/url": "https://solutiondemocratique.fr/wp-content/uploads/2026/11/Programme-de-Solution-Democratique-a-lelection-presidentielle-2027.pdf"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://solutiondemocratique.fr/wp-content/uploads/2026/11/Programme-de-Solution-Democratique-a-lelection-presidentielle-2027.pdf"
+      ],
+      "identifiants": [
+        "egger-retraites-regimes-speciaux",
+        "egger-retraites-regimes-speciaux-v1",
+        "egger-programme-2027"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "retraites",
+      "question": "Dans sa première version, qui porte la fiche « Augmenter les pensions et les indexer sur les prix » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "labib-indexer-pensions",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "labib-indexer-pensions",
+        "/auteur": "Selma Labib",
+        "/versionDemandee": "labib-indexer-pensions-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "labib-campagne-2027",
+        "/sources/0/passage": "Tract de campagne, PDF p. 2, passage sur l’indexation des salaires, pensions et allocations.",
+        "/sources/0/url": "https://npa-revolutionnaires.org/wp-content/uploads/2026/09/260919_4p-campagne-A4.pdf"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://npa-revolutionnaires.org/wp-content/uploads/2026/09/260919_4p-campagne-A4.pdf"
+      ],
+      "identifiants": [
+        "labib-indexer-pensions",
+        "labib-indexer-pensions-v1",
+        "labib-campagne-2027"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "retraites",
+      "question": "Dans sa première version, qui porte la fiche « Distinguer l’âge d’ouverture des droits et celui du taux plein garanti » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "retailleau-retraites-1",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "retailleau-retraites-1",
+        "/auteur": "Bruno Retailleau",
+        "/versionDemandee": "retailleau-retraites-1-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "retailleau-pension",
+        "/sources/0/passage": "Dossier initial : Départ dès 63 ans, taux plein à 65",
+        "/sources/0/url": "https://www.avecretailleau.fr/projet/theme/retraites"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://www.avecretailleau.fr/projet/theme/retraites"],
+      "identifiants": [
+        "retailleau-retraites-1",
+        "retailleau-retraites-1-v1",
+        "retailleau-pension"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "retraites",
+      "question": "Dans sa première version, qui porte la fiche « Retraite à 60 ans, 55 ans pour les métiers pénibles » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "kazib-retraites-age",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "kazib-retraites-age",
+        "/auteur": "Anasse Kazib",
+        "/versionDemandee": "kazib-retraites-age-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "kazib-premieres-mesures-2027",
+        "/sources/0/passage": "Quel programme pour affronter le patronat : retraites",
+        "/sources/0/url": "https://www.revolutionpermanente.fr/28h-expropriation-des-secteurs-strategiques-RP-presente-les-premieres-mesures-de-sa-candidature"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://www.revolutionpermanente.fr/28h-expropriation-des-secteurs-strategiques-RP-presente-les-premieres-mesures-de-sa-candidature"
+      ],
+      "identifiants": [
+        "kazib-retraites-age",
+        "kazib-retraites-age-v1",
+        "kazib-premieres-mesures-2027"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "retraites",
+      "question": "Dans sa première version, qui porte la fiche « Fixer la durée à 172 trimestres sans âge de départ imposé » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "collovati-retraites-duree-depart",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "collovati-retraites-duree-depart",
+        "/auteur": "Christian Collovati",
+        "/versionDemandee": "collovati-retraites-duree-depart-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "collovati-projet-2027",
+        "/sources/0/passage": "Actions par thématiques, Retraites",
+        "/sources/0/url": "https://www.xn--lepeuplefranais2027-hyb.fr/"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://www.xn--lepeuplefranais2027-hyb.fr/"],
+      "identifiants": [
+        "collovati-retraites-duree-depart",
+        "collovati-retraites-duree-depart-v1",
+        "collovati-projet-2027"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "retraites",
+      "question": "Dans sa première version, qui porte la fiche « Baisser l’âge de la retraite si les Français le souhaitent » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "philippot-retraites-age",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "philippot-retraites-age",
+        "/auteur": "Les Patriotes",
+        "/versionDemandee": "philippot-retraites-age-v1",
+        "/statut": "parti",
+        "/sources/0/id": "patriotes-projet-2026-2027",
+        "/sources/0/passage": "PDF, page 4, modèle social et services publics",
+        "/sources/0/url": "https://les-patriotes.fr/wp-content/uploads/2026/09/Projet-pour-la-France-2026-v2.pdf"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://les-patriotes.fr/wp-content/uploads/2026/09/Projet-pour-la-France-2026-v2.pdf"
+      ],
+      "identifiants": [
+        "philippot-retraites-age",
+        "philippot-retraites-age-v1",
+        "patriotes-projet-2026-2027"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "santé",
+      "question": "Dans sa première version, qui porte la fiche « Privatiser les hôpitaux » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "herlin-hopitaux",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "herlin-hopitaux",
+        "/auteur": "Philippe Herlin",
+        "/versionDemandee": "herlin-hopitaux-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "herlin-economie",
+        "/sources/0/passage": "Santé, passage sur les hôpitaux.",
+        "/sources/0/url": "https://www.herlin27.fr/post/mon-d%C3%A9programme-%C3%A9conomique"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://www.herlin27.fr/post/mon-d%C3%A9programme-%C3%A9conomique"
+      ],
+      "identifiants": [
+        "herlin-hopitaux",
+        "herlin-hopitaux-v1",
+        "herlin-economie"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "santé",
+      "question": "Dans sa première version, qui porte la fiche « Généraliser l’ordonnance verte » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "tondelier-sante-ordonnance-verte",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "tondelier-sante-ordonnance-verte",
+        "/auteur": "Marine Tondelier",
+        "/versionDemandee": "tondelier-sante-ordonnance-verte-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "eco-reproduction-pdf",
+        "/sources/0/passage": "PDF, p. 40 : grossesse et santé environnementale",
+        "/sources/0/url": "https://lesecologistes.fr/document/79R6mBUDDQU6tylI4f0C9e/livret-santereproductive-11sep.pdf"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://lesecologistes.fr/document/79R6mBUDDQU6tylI4f0C9e/livret-santereproductive-11sep.pdf"
+      ],
+      "identifiants": [
+        "tondelier-sante-ordonnance-verte",
+        "tondelier-sante-ordonnance-verte-v1",
+        "eco-reproduction-pdf"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "santé",
+      "question": "Dans sa première version, qui porte la fiche « Maintenir l’aide médicale d’État » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "ps-maintenir-laide-medicale-detat",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "ps-maintenir-laide-medicale-detat",
+        "/auteur": "Parti socialiste",
+        "/versionDemandee": "ps-maintenir-laide-medicale-detat-v1",
+        "/statut": "parti",
+        "/sources/0/id": "ps-projet-refaire-societe",
+        "/sources/0/passage": "Chapitre 17 – Faire peuple, reconstruire la cohésion nationale. Se donner les moyens d’une réelle politique migratoire et d’intégration. Point 9 de la liste.",
+        "/sources/0/url": "https://projet-socialiste.fr/projet/refaire-societe/"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://projet-socialiste.fr/projet/refaire-societe/"],
+      "identifiants": [
+        "ps-maintenir-laide-medicale-detat",
+        "ps-maintenir-laide-medicale-detat-v1",
+        "ps-projet-refaire-societe"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "santé",
+      "question": "Dans sa première version, qui porte la fiche « Rendre le Nutri-Score obligatoire » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "melenchon-nutriscore-obligatoire",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "melenchon-nutriscore-obligatoire",
+        "/auteur": "Jean-Luc Mélenchon",
+        "/versionDemandee": "melenchon-nutriscore-obligatoire-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "lfi-plan-sante-detail-2027",
+        "/sources/0/passage": "Plan thématique santé, partie sur l’alimentation et la prévention des maladies écologiques.",
+        "/sources/0/url": "https://melenchon2027.fr/programme/plans-thematiques/sante/"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://melenchon2027.fr/programme/plans-thematiques/sante/"
+      ],
+      "identifiants": [
+        "melenchon-nutriscore-obligatoire",
+        "melenchon-nutriscore-obligatoire-v1",
+        "lfi-plan-sante-detail-2027"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "santé",
+      "question": "Dans sa première version, qui porte la fiche « Un consortium pharmaceutique européen » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "lisnard-sante-consortium",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "lisnard-sante-consortium",
+        "/auteur": "Nouvelle Énergie",
+        "/versionDemandee": "lisnard-sante-consortium-v1",
+        "/statut": "parti",
+        "/sources/0/id": "lisnard-health",
+        "/sources/0/passage": "Partie 4 : souveraineté sanitaire",
+        "/sources/0/url": "https://www.unenouvelleenergie.fr/notre-programme/sante/"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://www.unenouvelleenergie.fr/notre-programme/sante/"],
+      "identifiants": [
+        "lisnard-sante-consortium",
+        "lisnard-sante-consortium-v1",
+        "lisnard-health"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "santé",
+      "question": "Dans sa première version, qui porte la fiche « Indemniser les victimes des pesticides » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "branco-indemniser-les-victimes-des-pesticides",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "branco-indemniser-les-victimes-des-pesticides",
+        "/auteur": "Juan Branco",
+        "/versionDemandee": "branco-indemniser-les-victimes-des-pesticides-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "branco-voie-pdf",
+        "/sources/0/passage": "PDF, page 49. Repère : Indemniser les victimes des pesticides.",
+        "/sources/0/url": "https://ruches.org/projet-1784217879253.pdf#page=49"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://ruches.org/projet-1784217879253.pdf#page=49"],
+      "identifiants": [
+        "branco-indemniser-les-victimes-des-pesticides",
+        "branco-indemniser-les-victimes-des-pesticides-v1",
+        "branco-voie-pdf"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "santé",
+      "question": "Dans sa première version, qui porte la fiche « Accélérer le volet PMA du plan Fertilité » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "collovati-accelerer-le-volet-pma-du-plan-fertilite",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "collovati-accelerer-le-volet-pma-du-plan-fertilite",
+        "/auteur": "Christian Collovati",
+        "/versionDemandee": "collovati-accelerer-le-volet-pma-du-plan-fertilite-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "collovati-projet-2027",
+        "/sources/0/passage": "Rubrique ou passage : Plan Fertilité 2026.",
+        "/sources/0/url": "https://www.xn--lepeuplefranais2027-hyb.fr/"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://www.xn--lepeuplefranais2027-hyb.fr/"],
+      "identifiants": [
+        "collovati-accelerer-le-volet-pma-du-plan-fertilite",
+        "collovati-accelerer-le-volet-pma-du-plan-fertilite-v1",
+        "collovati-projet-2027"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "santé",
+      "question": "Dans sa première version, qui porte la fiche « Construire un deuxième hôpital à Combani » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "philippe-construire-un-deuxieme-hopital-a-combani",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "philippe-construire-un-deuxieme-hopital-a-combani",
+        "/auteur": "Édouard Philippe",
+        "/versionDemandee": "philippe-construire-un-deuxieme-hopital-a-combani-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "philippe-programme-13",
+        "/sources/0/passage": "Rubrique « Outre-mer », question « Que propose Édouard Philippe pour l’hôpital à Mayotte ? ».",
+        "/sources/0/url": "https://www.edouardphilippe.fr/programme/outre-mer"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://www.edouardphilippe.fr/programme/outre-mer"],
+      "identifiants": [
+        "philippe-construire-un-deuxieme-hopital-a-combani",
+        "philippe-construire-un-deuxieme-hopital-a-combani-v1",
+        "philippe-programme-13"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "santé",
+      "question": "Dans sa première version, qui porte la fiche « Supprimer les agences régionales de santé » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "patriotes-supprimer-ars",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "patriotes-supprimer-ars",
+        "/auteur": "Les Patriotes",
+        "/versionDemandee": "patriotes-supprimer-ars-v1",
+        "/statut": "parti",
+        "/sources/0/id": "patriotes-projet-2026-2027",
+        "/sources/0/passage": "Projet pour la France, PDF p. 5, paragraphe sur l’administration hospitalière.",
+        "/sources/0/url": "https://les-patriotes.fr/wp-content/uploads/2026/09/Projet-pour-la-France-2026-v2.pdf"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://les-patriotes.fr/wp-content/uploads/2026/09/Projet-pour-la-France-2026-v2.pdf"
+      ],
+      "identifiants": [
+        "patriotes-supprimer-ars",
+        "patriotes-supprimer-ars-v1",
+        "patriotes-projet-2026-2027"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "santé",
+      "question": "Dans sa première version, qui porte la fiche « Réguler l’installation en zone sous-dotée » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "retailleau-sante-installation-medecins",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "retailleau-sante-installation-medecins",
+        "/auteur": "Bruno Retailleau",
+        "/versionDemandee": "retailleau-sante-installation-medecins-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "retailleau-projet-faq",
+        "/sources/0/passage": "Questions fréquentes, Q9, débats sur les déserts médicaux",
+        "/sources/0/url": "https://www.avecretailleau.fr/projet/faq"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": ["https://www.avecretailleau.fr/projet/faq"],
+      "identifiants": [
+        "retailleau-sante-installation-medecins",
+        "retailleau-sante-installation-medecins-v1",
+        "retailleau-projet-faq"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "santé",
+      "question": "Dans sa première version, qui porte la fiche « Un pôle public du médicament à deux étages » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "ruffin-sante-pole-medicament",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "ruffin-sante-pole-medicament",
+        "/auteur": "François Ruffin",
+        "/versionDemandee": "ruffin-sante-pole-medicament-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "ruffin-industrie",
+        "/sources/0/passage": "Cahier 7 : Partie 3, proposition 2",
+        "/sources/0/url": "https://nouspresident.fr/pour-proteger-notre-industrie-relocaliser-100-produits-strategiques/"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://nouspresident.fr/pour-proteger-notre-industrie-relocaliser-100-produits-strategiques/"
+      ],
+      "identifiants": [
+        "ruffin-sante-pole-medicament",
+        "ruffin-sante-pole-medicament-v1",
+        "ruffin-industrie"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "santé",
+      "question": "Dans sa première version, qui porte la fiche « Créer un institut de santé environnementale » et quel passage la documente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "villepin-creer-un-institut-de-sante-environnementale",
+        "version": 1
+      },
+      "attendus": {
+        "/id": "villepin-creer-un-institut-de-sante-environnementale",
+        "/auteur": "Dominique de Villepin",
+        "/versionDemandee": "villepin-creer-un-institut-de-sante-environnementale-v1",
+        "/statut": "campagne",
+        "/sources/0/id": "villepin-programme-reconciliation-agricole",
+        "/sources/0/passage": "Chapitre 22, proposition n° 218.",
+        "/sources/0/url": "https://lafrancehumaniste.fr/programme/reussir-a-nouveau/chapitre-22.html#proposition-218"
+      },
+      "champs": [
+        "/sources/0/publication",
+        "/sources/0/anneePublication",
+        "/montants",
+        "/echeance",
+        "/financement",
+        "/beneficiaires"
+      ],
+      "sources": [
+        "https://lafrancehumaniste.fr/programme/reussir-a-nouveau/chapitre-22.html#proposition-218"
+      ],
+      "identifiants": [
+        "villepin-creer-un-institut-de-sante-environnementale",
+        "villepin-creer-un-institut-de-sante-environnementale-v1",
+        "villepin-programme-reconciliation-agricole"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "comparaisons",
+      "question": "Pour « À quel âge et après combien de cotisations partir à la retraite ? », quels documents sont rattachés à Gabriel Attal et Christian Collovati ?",
+      "outil": "polradar_comparer",
+      "arguments": {
+        "question": "retraites-conditions-depart",
+        "candidates": ["attal", "collovati"]
+      },
+      "attendus": {
+        "/question/id": "retraites-conditions-depart",
+        "/resultats/0/reponse/positions/0/versionId": "attal-retraites-1-v1",
+        "/resultats/1/reponse/positions/0/versionId": "collovati-retraites-duree-depart-v1",
+        "/resultats/0/reponse/positions/0/author": "Gabriel Attal",
+        "/resultats/1/reponse/positions/0/author": "Christian Collovati"
+      },
+      "champs": [
+        "/resultats/0/reponse/positions/0/sources/0/locator",
+        "/resultats/1/reponse/positions/0/sources/0/locator"
+      ],
+      "sources": [
+        "https://attalpresident.fr/programme/travail-salaires",
+        "https://www.xn--lepeuplefranais2027-hyb.fr/"
+      ],
+      "identifiants": ["retraites-conditions-depart", "attal", "collovati"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "comparaisons",
+      "question": "Pour « Comment les pensions évolueraient-elles ? », quels documents sont rattachés à Nicolas Dupont-Aignan et Selma Labib ?",
+      "outil": "polradar_comparer",
+      "arguments": {
+        "question": "retraites-protection-revenus",
+        "candidates": ["dupont-aignan", "labib"]
+      },
+      "attendus": {
+        "/question/id": "retraites-protection-revenus",
+        "/resultats/0/reponse/positions/0/versionId": "dupont-aignan-retraites-indexation-v1",
+        "/resultats/1/reponse/positions/0/versionId": "labib-indexer-pensions-v1",
+        "/resultats/0/reponse/positions/0/author": "Debout la France",
+        "/resultats/1/reponse/positions/0/author": "Selma Labib"
+      },
+      "champs": [
+        "/resultats/0/reponse/positions/0/sources/0/locator",
+        "/resultats/1/reponse/positions/0/sources/0/locator"
+      ],
+      "sources": [
+        "https://www.debout-la-france.fr/projet/economie-travail/",
+        "https://npa-revolutionnaires.org/wp-content/uploads/2026/09/260919_4p-campagne-A4.pdf"
+      ],
+      "identifiants": [
+        "retraites-protection-revenus",
+        "dupont-aignan",
+        "labib"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "comparaisons",
+      "question": "Pour « Quelle place pour la répartition et la capitalisation ? », quels documents sont rattachés à Christian Collovati et Nicolas Dupont-Aignan ?",
+      "outil": "polradar_comparer",
+      "arguments": {
+        "question": "retraites-financement-regimes",
+        "candidates": ["collovati", "dupont-aignan"]
+      },
+      "attendus": {
+        "/question/id": "retraites-financement-regimes",
+        "/resultats/0/reponse/positions/0/versionId": "collovati-capitalisation-complement-v1",
+        "/resultats/1/reponse/positions/0/versionId": "dupont-aignan-retraites-capital-naissance-v1",
+        "/resultats/0/reponse/positions/0/author": "Christian Collovati",
+        "/resultats/1/reponse/positions/0/author": "Debout la France"
+      },
+      "champs": [
+        "/resultats/0/reponse/positions/0/sources/0/locator",
+        "/resultats/1/reponse/positions/0/sources/0/locator"
+      ],
+      "sources": [
+        "https://www.xn--lepeuplefranais2027-hyb.fr/",
+        "https://www.debout-la-france.fr/projet/economie-travail/"
+      ],
+      "identifiants": [
+        "retraites-financement-regimes",
+        "collovati",
+        "dupont-aignan"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "comparaisons",
+      "question": "Pour « À quel niveau fixer le SMIC et comment le faire évoluer ? », quels documents sont rattachés à Nathalie Arthaud et Juan Branco ?",
+      "outil": "polradar_comparer",
+      "arguments": {
+        "question": "travail-salaire-minimum",
+        "candidates": ["arthaud", "branco"]
+      },
+      "attendus": {
+        "/question/id": "travail-salaire-minimum",
+        "/resultats/0/reponse/positions/0/versionId": "arthaud-travail-smic-v1",
+        "/resultats/1/reponse/positions/0/versionId": "branco-travail-smic-national-v1",
+        "/resultats/0/reponse/positions/0/author": "Nathalie Arthaud",
+        "/resultats/1/reponse/positions/0/author": "Juan Branco"
+      },
+      "champs": [
+        "/resultats/0/reponse/positions/0/sources/0/locator",
+        "/resultats/1/reponse/positions/0/sources/0/locator"
+      ],
+      "sources": [
+        "https://www.lutte-ouvriere.org/portail/brochures/meeting-26-septembre-2026-discours-nathalie-arthaud-197446.html",
+        "https://ruches.org/le-projet"
+      ],
+      "identifiants": ["travail-salaire-minimum", "arthaud", "branco"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "comparaisons",
+      "question": "Pour « Qui pourrait modifier la durée du travail ? », quels documents sont rattachés à Nathalie Arthaud et Gabriel Attal ?",
+      "outil": "polradar_comparer",
+      "arguments": {
+        "question": "travail-duree-travail",
+        "candidates": ["arthaud", "attal"]
+      },
+      "attendus": {
+        "/question/id": "travail-duree-travail",
+        "/resultats/0/reponse/positions/0/versionId": "arthaud-travail-partage-travail-v1",
+        "/resultats/1/reponse/positions/0/versionId": "attal-travail-quatre-jours-v1",
+        "/resultats/0/reponse/positions/0/author": "Nathalie Arthaud",
+        "/resultats/1/reponse/positions/0/author": "Gabriel Attal"
+      },
+      "champs": [
+        "/resultats/0/reponse/positions/0/sources/0/locator",
+        "/resultats/1/reponse/positions/0/sources/0/locator"
+      ],
+      "sources": [
+        "https://www.lutte-ouvriere.org/portail/brochures/meeting-26-septembre-2026-discours-nathalie-arthaud-197446.html",
+        "https://attalpresident.fr/programme/travail-salaires"
+      ],
+      "identifiants": ["travail-duree-travail", "arthaud", "attal"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "comparaisons",
+      "question": "Pour « Qui pourrait déclencher un référendum ? », quels documents sont rattachés à François Asselineau et Gabriel Attal ?",
+      "outil": "polradar_comparer",
+      "arguments": {
+        "question": "institutions-declenchement-referendum",
+        "candidates": ["asselineau", "attal"]
+      },
+      "attendus": {
+        "/question/id": "institutions-declenchement-referendum",
+        "/resultats/0/reponse/positions/0/versionId": "asselineau-institutions-ric-v1",
+        "/resultats/1/reponse/positions/0/versionId": "attal-institutions-1-v1",
+        "/resultats/0/reponse/positions/0/author": "François Asselineau",
+        "/resultats/1/reponse/positions/0/author": "Gabriel Attal"
+      },
+      "champs": [
+        "/resultats/0/reponse/positions/0/sources/0/locator",
+        "/resultats/1/reponse/positions/0/sources/0/locator"
+      ],
+      "sources": [
+        "https://upr.fr/universites/discours-de-rentree-2026-de-francois-asselineau-la-liberation-nationale",
+        "https://attalpresident.fr/programme"
+      ],
+      "identifiants": [
+        "institutions-declenchement-referendum",
+        "asselineau",
+        "attal"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "comparaisons",
+      "question": "Pour « Quelle place donner au nucléaire dans la production électrique ? », quels documents sont rattachés à Juan Branco et Nicolas Dupont-Aignan ?",
+      "outil": "polradar_comparer",
+      "arguments": {
+        "question": "climat-production-nucleaire",
+        "candidates": ["branco", "dupont-aignan"]
+      },
+      "attendus": {
+        "/question/id": "climat-production-nucleaire",
+        "/resultats/0/reponse/positions/0/versionId": "branco-climat-nouveaux-reacteurs-v1",
+        "/resultats/1/reponse/positions/0/versionId": "dupont-aignan-climat-reacteurs-v1",
+        "/resultats/0/reponse/positions/0/author": "Juan Branco",
+        "/resultats/1/reponse/positions/0/author": "Debout la France"
+      },
+      "champs": [
+        "/resultats/0/reponse/positions/0/sources/0/locator",
+        "/resultats/1/reponse/positions/0/sources/0/locator"
+      ],
+      "sources": [
+        "https://ruches.org/projet-1784217879253.pdf",
+        "https://www.debout-la-france.fr/projet/economie-travail/"
+      ],
+      "identifiants": [
+        "climat-production-nucleaire",
+        "branco",
+        "dupont-aignan"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "comparaisons",
+      "question": "Pour « Faut-il encadrer les loyers et à quelles conditions ? », quels documents sont rattachés à Juan Branco et Christian Collovati ?",
+      "outil": "polradar_comparer",
+      "arguments": {
+        "question": "logement-regulation-loyers",
+        "candidates": ["branco", "collovati"]
+      },
+      "attendus": {
+        "/question/id": "logement-regulation-loyers",
+        "/resultats/0/reponse/positions/0/versionId": "branco-logement-loyers-parc-social-v1",
+        "/resultats/1/reponse/positions/0/versionId": "collovati-logement-loyers-v1",
+        "/resultats/0/reponse/positions/0/author": "Juan Branco",
+        "/resultats/1/reponse/positions/0/author": "Christian Collovati"
+      },
+      "champs": [
+        "/resultats/0/reponse/positions/0/sources/0/locator",
+        "/resultats/1/reponse/positions/0/sources/0/locator"
+      ],
+      "sources": [
+        "https://ruches.org/projet-1784217879253.pdf",
+        "https://www.xn--lepeuplefranais2027-hyb.fr/"
+      ],
+      "identifiants": ["logement-regulation-loyers", "branco", "collovati"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "comparaisons",
+      "question": "Pour « Comment faire venir des médecins dans les déserts médicaux ? », quels documents sont rattachés à Juan Branco et Christian Collovati ?",
+      "outil": "polradar_comparer",
+      "arguments": {
+        "question": "sante-installation-medecins",
+        "candidates": ["branco", "collovati"]
+      },
+      "attendus": {
+        "/question/id": "sante-installation-medecins",
+        "/resultats/0/reponse/positions/0/versionId": "branco-sante-implantation-medicale-v1",
+        "/resultats/1/reponse/positions/0/versionId": "collovati-installation-classement-v1",
+        "/resultats/0/reponse/positions/0/author": "Juan Branco",
+        "/resultats/1/reponse/positions/0/author": "Christian Collovati"
+      },
+      "champs": [
+        "/resultats/0/reponse/positions/0/sources/0/locator",
+        "/resultats/1/reponse/positions/0/sources/0/locator"
+      ],
+      "sources": [
+        "https://ruches.org/projet-1784217879253.pdf",
+        "https://www.xn--lepeuplefranais2027-hyb.fr/"
+      ],
+      "identifiants": ["sante-installation-medecins", "branco", "collovati"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "comparaisons",
+      "question": "Pour « Comment décider des admissions dans le supérieur ? », quels documents sont rattachés à Juan Branco et Raphaël Glucksmann ?",
+      "outil": "polradar_comparer",
+      "arguments": {
+        "question": "education-acces-etudes",
+        "candidates": ["branco", "glucksmann"]
+      },
+      "attendus": {
+        "/question/id": "education-acces-etudes",
+        "/resultats/0/reponse/positions/0/versionId": "branco-education-parcoursup-v1",
+        "/resultats/1/reponse/positions/0/versionId": "ps-education-parcoursup-v1",
+        "/resultats/0/reponse/positions/0/author": "Juan Branco",
+        "/resultats/1/reponse/positions/0/author": "Parti socialiste"
+      },
+      "champs": [
+        "/resultats/0/reponse/positions/0/sources/0/locator",
+        "/resultats/1/reponse/positions/0/sources/0/locator"
+      ],
+      "sources": [
+        "https://ruches.org/projet-1784217879253.pdf",
+        "https://projet-socialiste.fr/projet/sepanouir-a-egalite/"
+      ],
+      "identifiants": ["education-acces-etudes", "branco", "glucksmann"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "comparaisons",
+      "question": "Pour « Quels logiciels choisir pour les administrations ? », quels documents sont rattachés à Juan Branco et Raphaël Glucksmann ?",
+      "outil": "polradar_comparer",
+      "arguments": {
+        "question": "institutions-logiciels-publics",
+        "candidates": ["branco", "glucksmann"]
+      },
+      "attendus": {
+        "/question/id": "institutions-logiciels-publics",
+        "/resultats/0/reponse/positions/0/versionId": "branco-institutions-logiciels-libres-v1",
+        "/resultats/1/reponse/positions/0/versionId": "glucksmann-europe-fonds-alternatives-numeriques-v1",
+        "/resultats/0/reponse/positions/0/author": "Juan Branco",
+        "/resultats/1/reponse/positions/0/author": "Place publique"
+      },
+      "champs": [
+        "/resultats/0/reponse/positions/0/sources/0/locator",
+        "/resultats/1/reponse/positions/0/sources/0/locator"
+      ],
+      "sources": [
+        "https://ruches.org/le-projet",
+        "https://place-publique.eu/pages/6mRSwq5tuSrSi68Cw1IADX/l-acte-i"
+      ],
+      "identifiants": [
+        "institutions-logiciels-publics",
+        "branco",
+        "glucksmann"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "comparaisons",
+      "question": "Pour « Comment taxer les donations et les successions ? », quels documents sont rattachés à Augustin Billetdoux et Nicolas Dupont-Aignan ?",
+      "outil": "polradar_comparer",
+      "arguments": {
+        "question": "fiscalite-transmission-patrimoine",
+        "candidates": ["billetdoux", "dupont-aignan"]
+      },
+      "attendus": {
+        "/question/id": "fiscalite-transmission-patrimoine",
+        "/resultats/0/reponse/positions/0/versionId": "billetdoux-heritage-bareme-v1",
+        "/resultats/1/reponse/positions/0/versionId": "dupont-aignan-fiscalite-transmission-v1",
+        "/resultats/0/reponse/positions/0/author": "Augustin Billetdoux",
+        "/resultats/1/reponse/positions/0/author": "Debout la France"
+      },
+      "champs": [
+        "/resultats/0/reponse/positions/0/sources/0/locator",
+        "/resultats/1/reponse/positions/0/sources/0/locator"
+      ],
+      "sources": [
+        "https://billetdoux2027.fr/",
+        "https://www.debout-la-france.fr/projet/economie-travail/"
+      ],
+      "identifiants": [
+        "fiscalite-transmission-patrimoine",
+        "billetdoux",
+        "dupont-aignan"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "économie",
+      "question": "Dans quelle unité et à quelle fréquence Eurostat publie-t-il « Inflation harmonisée » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "economie",
+        "id": "inflation"
+      },
+      "attendus": {
+        "/collection": "economie",
+        "/publication/id": "inflation",
+        "/publication/unit": "%",
+        "/publication/frequency": "M",
+        "/publication/dataset": "prc_hicp_minr"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/observations/0/0",
+        "/publication/observations/0/1",
+        "/publication/observations/0/2",
+        "/publication/links/table"
+      ],
+      "sources": [
+        "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_minr/default/table?lang=fr"
+      ],
+      "identifiants": ["inflation"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "économie",
+      "question": "Dans quelle unité et à quelle fréquence Eurostat publie-t-il « Prix de l’alimentation » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "economie",
+        "id": "prix-alimentation"
+      },
+      "attendus": {
+        "/collection": "economie",
+        "/publication/id": "prix-alimentation",
+        "/publication/unit": "%",
+        "/publication/frequency": "M",
+        "/publication/dataset": "prc_hicp_minr"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/observations/0/0",
+        "/publication/observations/0/1",
+        "/publication/observations/0/2",
+        "/publication/links/table"
+      ],
+      "sources": [
+        "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_minr/default/table?lang=fr"
+      ],
+      "identifiants": ["prix-alimentation"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "économie",
+      "question": "Dans quelle unité et à quelle fréquence Eurostat publie-t-il « Prix de l’énergie » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "economie",
+        "id": "prix-energie"
+      },
+      "attendus": {
+        "/collection": "economie",
+        "/publication/id": "prix-energie",
+        "/publication/unit": "%",
+        "/publication/frequency": "M",
+        "/publication/dataset": "prc_hicp_minr"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/observations/0/0",
+        "/publication/observations/0/1",
+        "/publication/observations/0/2",
+        "/publication/links/table"
+      ],
+      "sources": [
+        "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_minr/default/table?lang=fr"
+      ],
+      "identifiants": ["prix-energie"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "économie",
+      "question": "Dans quelle unité et à quelle fréquence Eurostat publie-t-il « Taux de chômage » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "economie",
+        "id": "chomage"
+      },
+      "attendus": {
+        "/collection": "economie",
+        "/publication/id": "chomage",
+        "/publication/unit": "%",
+        "/publication/frequency": "M",
+        "/publication/dataset": "une_rt_m"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/observations/0/0",
+        "/publication/observations/0/1",
+        "/publication/observations/0/2",
+        "/publication/links/table"
+      ],
+      "sources": [
+        "https://ec.europa.eu/eurostat/databrowser/view/une_rt_m/default/table?lang=fr"
+      ],
+      "identifiants": ["chomage"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "économie",
+      "question": "Dans quelle unité et à quelle fréquence Eurostat publie-t-il « Chômage des moins de 25 ans » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "economie",
+        "id": "chomage-jeunes"
+      },
+      "attendus": {
+        "/collection": "economie",
+        "/publication/id": "chomage-jeunes",
+        "/publication/unit": "%",
+        "/publication/frequency": "M",
+        "/publication/dataset": "une_rt_m"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/observations/0/0",
+        "/publication/observations/0/1",
+        "/publication/observations/0/2",
+        "/publication/links/table"
+      ],
+      "sources": [
+        "https://ec.europa.eu/eurostat/databrowser/view/une_rt_m/default/table?lang=fr"
+      ],
+      "identifiants": ["chomage-jeunes"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "économie",
+      "question": "Dans quelle unité et à quelle fréquence Eurostat publie-t-il « Taux d’emploi des 20–64 ans » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "economie",
+        "id": "emploi"
+      },
+      "attendus": {
+        "/collection": "economie",
+        "/publication/id": "emploi",
+        "/publication/unit": "%",
+        "/publication/frequency": "Q",
+        "/publication/dataset": "lfsi_emp_q"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/observations/0/0",
+        "/publication/observations/0/1",
+        "/publication/observations/0/2",
+        "/publication/links/table"
+      ],
+      "sources": [
+        "https://ec.europa.eu/eurostat/databrowser/view/lfsi_emp_q/default/table?lang=fr"
+      ],
+      "identifiants": ["emploi"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "économie",
+      "question": "Dans quelle unité et à quelle fréquence Eurostat publie-t-il « Croissance du PIB » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "economie",
+        "id": "croissance"
+      },
+      "attendus": {
+        "/collection": "economie",
+        "/publication/id": "croissance",
+        "/publication/unit": "%",
+        "/publication/frequency": "Q",
+        "/publication/dataset": "namq_10_gdp"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/observations/0/0",
+        "/publication/observations/0/1",
+        "/publication/observations/0/2",
+        "/publication/links/table"
+      ],
+      "sources": [
+        "https://ec.europa.eu/eurostat/databrowser/view/namq_10_gdp/default/table?lang=fr"
+      ],
+      "identifiants": ["croissance"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "économie",
+      "question": "Dans quelle unité et à quelle fréquence Eurostat publie-t-il « Consommation des ménages » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "economie",
+        "id": "consommation"
+      },
+      "attendus": {
+        "/collection": "economie",
+        "/publication/id": "consommation",
+        "/publication/unit": "%",
+        "/publication/frequency": "Q",
+        "/publication/dataset": "namq_10_gdp"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/observations/0/0",
+        "/publication/observations/0/1",
+        "/publication/observations/0/2",
+        "/publication/links/table"
+      ],
+      "sources": [
+        "https://ec.europa.eu/eurostat/databrowser/view/namq_10_gdp/default/table?lang=fr"
+      ],
+      "identifiants": ["consommation"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "économie",
+      "question": "Dans quelle unité et à quelle fréquence Eurostat publie-t-il « Investissement » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "economie",
+        "id": "investissement"
+      },
+      "attendus": {
+        "/collection": "economie",
+        "/publication/id": "investissement",
+        "/publication/unit": "%",
+        "/publication/frequency": "Q",
+        "/publication/dataset": "namq_10_gdp"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/observations/0/0",
+        "/publication/observations/0/1",
+        "/publication/observations/0/2",
+        "/publication/links/table"
+      ],
+      "sources": [
+        "https://ec.europa.eu/eurostat/databrowser/view/namq_10_gdp/default/table?lang=fr"
+      ],
+      "identifiants": ["investissement"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "économie",
+      "question": "Dans quelle unité et à quelle fréquence Eurostat publie-t-il « Exportations de biens et services » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "economie",
+        "id": "exportations"
+      },
+      "attendus": {
+        "/collection": "economie",
+        "/publication/id": "exportations",
+        "/publication/unit": "%",
+        "/publication/frequency": "Q",
+        "/publication/dataset": "namq_10_gdp"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/observations/0/0",
+        "/publication/observations/0/1",
+        "/publication/observations/0/2",
+        "/publication/links/table"
+      ],
+      "sources": [
+        "https://ec.europa.eu/eurostat/databrowser/view/namq_10_gdp/default/table?lang=fr"
+      ],
+      "identifiants": ["exportations"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "économie",
+      "question": "Dans quelle unité et à quelle fréquence Eurostat publie-t-il « Dette publique en part du PIB » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "economie",
+        "id": "dette-publique"
+      },
+      "attendus": {
+        "/collection": "economie",
+        "/publication/id": "dette-publique",
+        "/publication/unit": "% du PIB",
+        "/publication/frequency": "Q",
+        "/publication/dataset": "gov_10q_ggdebt"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/observations/0/0",
+        "/publication/observations/0/1",
+        "/publication/observations/0/2",
+        "/publication/links/table"
+      ],
+      "sources": [
+        "https://ec.europa.eu/eurostat/databrowser/view/gov_10q_ggdebt/default/table?lang=fr"
+      ],
+      "identifiants": ["dette-publique"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "économie",
+      "question": "Dans quelle unité et à quelle fréquence Eurostat publie-t-il « Encours de dette publique » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "economie",
+        "id": "encours-dette"
+      },
+      "attendus": {
+        "/collection": "economie",
+        "/publication/id": "encours-dette",
+        "/publication/unit": "M€",
+        "/publication/frequency": "Q",
+        "/publication/dataset": "gov_10q_ggdebt"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/observations/0/0",
+        "/publication/observations/0/1",
+        "/publication/observations/0/2",
+        "/publication/links/table"
+      ],
+      "sources": [
+        "https://ec.europa.eu/eurostat/databrowser/view/gov_10q_ggdebt/default/table?lang=fr"
+      ],
+      "identifiants": ["encours-dette"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "territoires",
+      "question": "Pour Paris (75056), quelle commune et quel millésime de la DREES accompagnent l’indicateur d’accès aux généralistes ?",
+      "outil": "polradar_territoires",
+      "arguments": {
+        "code": "75056"
+      },
+      "attendus": {
+        "/commune": "Paris",
+        "/codeInsee": "75056",
+        "/definitions/apl/millesime": 2024,
+        "/definitions/apl/unite": "consultations accessibles par an et par habitant standardisé",
+        "/definitions/sru/source": "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru"
+      },
+      "champs": ["/accessibiliteGeneralistes", "/inventaireSRU"],
+      "sources": [
+        "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru",
+        "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/260722-accessibilite-aux-soins-de-premier-recours-en-2024"
+      ],
+      "identifiants": ["75056"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "territoires",
+      "question": "Pour Lyon (69123), quelle commune et quel millésime de la DREES accompagnent l’indicateur d’accès aux généralistes ?",
+      "outil": "polradar_territoires",
+      "arguments": {
+        "code": "69123"
+      },
+      "attendus": {
+        "/commune": "Lyon",
+        "/codeInsee": "69123",
+        "/definitions/apl/millesime": 2024,
+        "/definitions/apl/unite": "consultations accessibles par an et par habitant standardisé",
+        "/definitions/sru/source": "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru"
+      },
+      "champs": ["/accessibiliteGeneralistes", "/inventaireSRU"],
+      "sources": [
+        "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru",
+        "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/260722-accessibilite-aux-soins-de-premier-recours-en-2024"
+      ],
+      "identifiants": ["69123"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "territoires",
+      "question": "Pour Marseille (13055), quelle commune et quel millésime de la DREES accompagnent l’indicateur d’accès aux généralistes ?",
+      "outil": "polradar_territoires",
+      "arguments": {
+        "code": "13055"
+      },
+      "attendus": {
+        "/commune": "Marseille",
+        "/codeInsee": "13055",
+        "/definitions/apl/millesime": 2024,
+        "/definitions/apl/unite": "consultations accessibles par an et par habitant standardisé",
+        "/definitions/sru/source": "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru"
+      },
+      "champs": ["/accessibiliteGeneralistes", "/inventaireSRU"],
+      "sources": [
+        "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru",
+        "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/260722-accessibilite-aux-soins-de-premier-recours-en-2024"
+      ],
+      "identifiants": ["13055"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "territoires",
+      "question": "Pour Pointe-à-Pitre (97120), quelle commune et quel millésime de la DREES accompagnent l’indicateur d’accès aux généralistes ?",
+      "outil": "polradar_territoires",
+      "arguments": {
+        "code": "97120"
+      },
+      "attendus": {
+        "/commune": "Pointe-à-Pitre",
+        "/codeInsee": "97120",
+        "/definitions/apl/millesime": 2024,
+        "/definitions/apl/unite": "consultations accessibles par an et par habitant standardisé",
+        "/definitions/sru/source": "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru"
+      },
+      "champs": ["/accessibiliteGeneralistes", "/inventaireSRU"],
+      "sources": [
+        "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru",
+        "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/260722-accessibilite-aux-soins-de-premier-recours-en-2024"
+      ],
+      "identifiants": ["97120"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "territoires",
+      "question": "Pour Ajaccio (2A004), quelle commune et quel millésime de la DREES accompagnent l’indicateur d’accès aux généralistes ?",
+      "outil": "polradar_territoires",
+      "arguments": {
+        "code": "2A004"
+      },
+      "attendus": {
+        "/commune": "Ajaccio",
+        "/codeInsee": "2A004",
+        "/definitions/apl/millesime": 2024,
+        "/definitions/apl/unite": "consultations accessibles par an et par habitant standardisé",
+        "/definitions/sru/source": "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru"
+      },
+      "champs": ["/accessibiliteGeneralistes", "/inventaireSRU"],
+      "sources": [
+        "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru",
+        "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/260722-accessibilite-aux-soins-de-premier-recours-en-2024"
+      ],
+      "identifiants": ["2A004"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "territoires",
+      "question": "Pour Bastia (2B033), quelle commune et quel millésime de la DREES accompagnent l’indicateur d’accès aux généralistes ?",
+      "outil": "polradar_territoires",
+      "arguments": {
+        "code": "2B033"
+      },
+      "attendus": {
+        "/commune": "Bastia",
+        "/codeInsee": "2B033",
+        "/definitions/apl/millesime": 2024,
+        "/definitions/apl/unite": "consultations accessibles par an et par habitant standardisé",
+        "/definitions/sru/source": "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru"
+      },
+      "champs": ["/accessibiliteGeneralistes", "/inventaireSRU"],
+      "sources": [
+        "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru",
+        "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/260722-accessibilite-aux-soins-de-premier-recours-en-2024"
+      ],
+      "identifiants": ["2B033"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "territoires",
+      "question": "Pour Bordeaux (33063), quelle commune et quel millésime de la DREES accompagnent l’indicateur d’accès aux généralistes ?",
+      "outil": "polradar_territoires",
+      "arguments": {
+        "code": "33063"
+      },
+      "attendus": {
+        "/commune": "Bordeaux",
+        "/codeInsee": "33063",
+        "/definitions/apl/millesime": 2024,
+        "/definitions/apl/unite": "consultations accessibles par an et par habitant standardisé",
+        "/definitions/sru/source": "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru"
+      },
+      "champs": ["/accessibiliteGeneralistes", "/inventaireSRU"],
+      "sources": [
+        "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru",
+        "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/260722-accessibilite-aux-soins-de-premier-recours-en-2024"
+      ],
+      "identifiants": ["33063"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "territoires",
+      "question": "Pour Nantes (44109), quelle commune et quel millésime de la DREES accompagnent l’indicateur d’accès aux généralistes ?",
+      "outil": "polradar_territoires",
+      "arguments": {
+        "code": "44109"
+      },
+      "attendus": {
+        "/commune": "Nantes",
+        "/codeInsee": "44109",
+        "/definitions/apl/millesime": 2024,
+        "/definitions/apl/unite": "consultations accessibles par an et par habitant standardisé",
+        "/definitions/sru/source": "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru"
+      },
+      "champs": ["/accessibiliteGeneralistes", "/inventaireSRU"],
+      "sources": [
+        "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru",
+        "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/260722-accessibilite-aux-soins-de-premier-recours-en-2024"
+      ],
+      "identifiants": ["44109"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "territoires",
+      "question": "Pour Toulouse (31555), quelle commune et quel millésime de la DREES accompagnent l’indicateur d’accès aux généralistes ?",
+      "outil": "polradar_territoires",
+      "arguments": {
+        "code": "31555"
+      },
+      "attendus": {
+        "/commune": "Toulouse",
+        "/codeInsee": "31555",
+        "/definitions/apl/millesime": 2024,
+        "/definitions/apl/unite": "consultations accessibles par an et par habitant standardisé",
+        "/definitions/sru/source": "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru"
+      },
+      "champs": ["/accessibiliteGeneralistes", "/inventaireSRU"],
+      "sources": [
+        "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru",
+        "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/260722-accessibilite-aux-soins-de-premier-recours-en-2024"
+      ],
+      "identifiants": ["31555"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "territoires",
+      "question": "Pour Lille (59350), quelle commune et quel millésime de la DREES accompagnent l’indicateur d’accès aux généralistes ?",
+      "outil": "polradar_territoires",
+      "arguments": {
+        "code": "59350"
+      },
+      "attendus": {
+        "/commune": "Lille",
+        "/codeInsee": "59350",
+        "/definitions/apl/millesime": 2024,
+        "/definitions/apl/unite": "consultations accessibles par an et par habitant standardisé",
+        "/definitions/sru/source": "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru"
+      },
+      "champs": ["/accessibiliteGeneralistes", "/inventaireSRU"],
+      "sources": [
+        "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru",
+        "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/260722-accessibilite-aux-soins-de-premier-recours-en-2024"
+      ],
+      "identifiants": ["59350"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "territoires",
+      "question": "Pour Strasbourg (67482), quelle commune et quel millésime de la DREES accompagnent l’indicateur d’accès aux généralistes ?",
+      "outil": "polradar_territoires",
+      "arguments": {
+        "code": "67482"
+      },
+      "attendus": {
+        "/commune": "Strasbourg",
+        "/codeInsee": "67482",
+        "/definitions/apl/millesime": 2024,
+        "/definitions/apl/unite": "consultations accessibles par an et par habitant standardisé",
+        "/definitions/sru/source": "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru"
+      },
+      "champs": ["/accessibiliteGeneralistes", "/inventaireSRU"],
+      "sources": [
+        "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru",
+        "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/260722-accessibilite-aux-soins-de-premier-recours-en-2024"
+      ],
+      "identifiants": ["67482"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "territoires",
+      "question": "Pour Saint-Denis (97411), quelle commune et quel millésime de la DREES accompagnent l’indicateur d’accès aux généralistes ?",
+      "outil": "polradar_territoires",
+      "arguments": {
+        "code": "97411"
+      },
+      "attendus": {
+        "/commune": "Saint-Denis",
+        "/codeInsee": "97411",
+        "/definitions/apl/millesime": 2024,
+        "/definitions/apl/unite": "consultations accessibles par an et par habitant standardisé",
+        "/definitions/sru/source": "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru"
+      },
+      "champs": ["/accessibiliteGeneralistes", "/inventaireSRU"],
+      "sources": [
+        "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru",
+        "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/260722-accessibilite-aux-soins-de-premier-recours-en-2024"
+      ],
+      "identifiants": ["97411"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sondages",
+      "question": "Pour l’enquête Elabe elabe-2026-08-29-philippe, quelle question a été posée et à quelles dates de terrain ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sondages",
+        "id": "elabe-2026-08-29-philippe"
+      },
+      "attendus": {
+        "/collection": "sondages",
+        "/publication/id": "elabe-2026-08-29-philippe",
+        "/publication/institute": "Elabe",
+        "/publication/question": {
+          "status": "verifiee",
+          "wording": "Si le 1er tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants voteriez-vous ?",
+          "base": "Inscrits ayant l’intention d’aller voter, suffrages exprimés.",
+          "sourceId": "notice-elabe-2026-08-29",
+          "page": 2,
+          "checked": "2026-11-23"
+        },
+        "/publication/fieldworkStart": "2026-08-26",
+        "/publication/fieldworkEnd": "2026-08-28",
+        "/publication/round": "premier",
+        "/publication/noticeSource": "notice-elabe-2026-08-29"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/usefulSample",
+        "/publication/population",
+        "/publication/scenario",
+        "/source/url"
+      ],
+      "sources": [
+        "https://www.commission-des-sondages.fr/notices/files/notices/2026/aout/10245-pres-iv-elabe-29-aout.pdf"
+      ],
+      "identifiants": ["elabe-2026-08-29-philippe"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sondages",
+      "question": "Pour l’enquête Elabe elabe-2026-08-29-attal, quelle question a été posée et à quelles dates de terrain ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sondages",
+        "id": "elabe-2026-08-29-attal"
+      },
+      "attendus": {
+        "/collection": "sondages",
+        "/publication/id": "elabe-2026-08-29-attal",
+        "/publication/institute": "Elabe",
+        "/publication/question": {
+          "status": "verifiee",
+          "wording": "Si le 1er tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants voteriez-vous ?",
+          "base": "Inscrits ayant l’intention d’aller voter, suffrages exprimés.",
+          "sourceId": "notice-elabe-2026-08-29",
+          "page": 2,
+          "checked": "2026-11-23"
+        },
+        "/publication/fieldworkStart": "2026-08-26",
+        "/publication/fieldworkEnd": "2026-08-28",
+        "/publication/round": "premier",
+        "/publication/noticeSource": "notice-elabe-2026-08-29"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/usefulSample",
+        "/publication/population",
+        "/publication/scenario",
+        "/source/url"
+      ],
+      "sources": [
+        "https://www.commission-des-sondages.fr/notices/files/notices/2026/aout/10245-pres-iv-elabe-29-aout.pdf"
+      ],
+      "identifiants": ["elabe-2026-08-29-attal"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sondages",
+      "question": "Pour l’enquête Elabe elabe-2026-08-29-duel-glucksmann, quelle question a été posée et à quelles dates de terrain ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sondages",
+        "id": "elabe-2026-08-29-duel-glucksmann"
+      },
+      "attendus": {
+        "/collection": "sondages",
+        "/publication/id": "elabe-2026-08-29-duel-glucksmann",
+        "/publication/institute": "Elabe",
+        "/publication/question": {
+          "status": "verifiee",
+          "wording": "Si le 2nd tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants voteriez-vous ?",
+          "base": "Inscrits ayant l’intention d’aller voter, suffrages exprimés.",
+          "sourceId": "notice-elabe-2026-08-29",
+          "page": 3,
+          "checked": "2026-11-23"
+        },
+        "/publication/fieldworkStart": "2026-08-26",
+        "/publication/fieldworkEnd": "2026-08-28",
+        "/publication/round": "second",
+        "/publication/noticeSource": "notice-elabe-2026-08-29"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/usefulSample",
+        "/publication/population",
+        "/publication/scenario",
+        "/source/url"
+      ],
+      "sources": [
+        "https://www.commission-des-sondages.fr/notices/files/notices/2026/aout/10245-pres-iv-elabe-29-aout.pdf"
+      ],
+      "identifiants": ["elabe-2026-08-29-duel-glucksmann"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sondages",
+      "question": "Pour l’enquête Elabe elabe-2026-10-17-philippe, quelle question a été posée et à quelles dates de terrain ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sondages",
+        "id": "elabe-2026-10-17-philippe"
+      },
+      "attendus": {
+        "/collection": "sondages",
+        "/publication/id": "elabe-2026-10-17-philippe",
+        "/publication/institute": "Elabe",
+        "/publication/question": {
+          "status": "verifiee",
+          "wording": "Si le 1er tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants voteriez-vous ?",
+          "base": "Inscrits ayant l’intention d’aller voter, suffrages exprimés.",
+          "sourceId": "notice-elabe-2026-10-17",
+          "page": 2,
+          "checked": "2026-11-23"
+        },
+        "/publication/fieldworkStart": "2026-10-14",
+        "/publication/fieldworkEnd": "2026-10-16",
+        "/publication/round": "premier",
+        "/publication/noticeSource": "notice-elabe-2026-10-17"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/usefulSample",
+        "/publication/population",
+        "/publication/scenario",
+        "/source/url"
+      ],
+      "sources": [
+        "https://www.commission-des-sondages.fr/notices/files/notices/2026/octobre/10324-pres-iv-elabe-17-octobre.pdf"
+      ],
+      "identifiants": ["elabe-2026-10-17-philippe"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sondages",
+      "question": "Pour l’enquête Elabe elabe-2026-10-17-attal, quelle question a été posée et à quelles dates de terrain ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sondages",
+        "id": "elabe-2026-10-17-attal"
+      },
+      "attendus": {
+        "/collection": "sondages",
+        "/publication/id": "elabe-2026-10-17-attal",
+        "/publication/institute": "Elabe",
+        "/publication/question": {
+          "status": "verifiee",
+          "wording": "Si le 1er tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants voteriez-vous ?",
+          "base": "Inscrits ayant l’intention d’aller voter, suffrages exprimés.",
+          "sourceId": "notice-elabe-2026-10-17",
+          "page": 2,
+          "checked": "2026-11-23"
+        },
+        "/publication/fieldworkStart": "2026-10-14",
+        "/publication/fieldworkEnd": "2026-10-16",
+        "/publication/round": "premier",
+        "/publication/noticeSource": "notice-elabe-2026-10-17"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/usefulSample",
+        "/publication/population",
+        "/publication/scenario",
+        "/source/url"
+      ],
+      "sources": [
+        "https://www.commission-des-sondages.fr/notices/files/notices/2026/octobre/10324-pres-iv-elabe-17-octobre.pdf"
+      ],
+      "identifiants": ["elabe-2026-10-17-attal"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sondages",
+      "question": "Pour l’enquête Elabe elabe-2026-10-17-duel-glucksmann, quelle question a été posée et à quelles dates de terrain ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sondages",
+        "id": "elabe-2026-10-17-duel-glucksmann"
+      },
+      "attendus": {
+        "/collection": "sondages",
+        "/publication/id": "elabe-2026-10-17-duel-glucksmann",
+        "/publication/institute": "Elabe",
+        "/publication/question": {
+          "status": "verifiee",
+          "wording": "Si le 2nd tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants voteriez-vous ?",
+          "base": "Inscrits ayant l’intention d’aller voter, suffrages exprimés.",
+          "sourceId": "notice-elabe-2026-10-17",
+          "page": 4,
+          "checked": "2026-11-23"
+        },
+        "/publication/fieldworkStart": "2026-10-14",
+        "/publication/fieldworkEnd": "2026-10-16",
+        "/publication/round": "second",
+        "/publication/noticeSource": "notice-elabe-2026-10-17"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/usefulSample",
+        "/publication/population",
+        "/publication/scenario",
+        "/source/url"
+      ],
+      "sources": [
+        "https://www.commission-des-sondages.fr/notices/files/notices/2026/octobre/10324-pres-iv-elabe-17-octobre.pdf"
+      ],
+      "identifiants": ["elabe-2026-10-17-duel-glucksmann"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sondages",
+      "question": "Pour l’enquête Elabe elabe-2026-11-14-philippe, quelle question a été posée et à quelles dates de terrain ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sondages",
+        "id": "elabe-2026-11-14-philippe"
+      },
+      "attendus": {
+        "/collection": "sondages",
+        "/publication/id": "elabe-2026-11-14-philippe",
+        "/publication/institute": "Elabe",
+        "/publication/question": {
+          "status": "verifiee",
+          "wording": "Si le 1er tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants voteriez-vous ?",
+          "base": "Inscrits ayant l’intention d’aller voter, suffrages exprimés.",
+          "sourceId": "notice-elabe-2026-11-14",
+          "page": 2,
+          "checked": "2026-11-23"
+        },
+        "/publication/fieldworkStart": "2026-11-12",
+        "/publication/fieldworkEnd": "2026-11-13",
+        "/publication/round": "premier",
+        "/publication/noticeSource": "notice-elabe-2026-11-14"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/usefulSample",
+        "/publication/population",
+        "/publication/scenario",
+        "/source/url"
+      ],
+      "sources": [
+        "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10375-pres-iv-elabe-14-novembre.pdf"
+      ],
+      "identifiants": ["elabe-2026-11-14-philippe"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sondages",
+      "question": "Pour l’enquête Elabe elabe-2026-11-14-attal, quelle question a été posée et à quelles dates de terrain ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sondages",
+        "id": "elabe-2026-11-14-attal"
+      },
+      "attendus": {
+        "/collection": "sondages",
+        "/publication/id": "elabe-2026-11-14-attal",
+        "/publication/institute": "Elabe",
+        "/publication/question": {
+          "status": "verifiee",
+          "wording": "Si le 1er tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants voteriez-vous ?",
+          "base": "Inscrits ayant l’intention d’aller voter, suffrages exprimés.",
+          "sourceId": "notice-elabe-2026-11-14",
+          "page": 2,
+          "checked": "2026-11-23"
+        },
+        "/publication/fieldworkStart": "2026-11-12",
+        "/publication/fieldworkEnd": "2026-11-13",
+        "/publication/round": "premier",
+        "/publication/noticeSource": "notice-elabe-2026-11-14"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/usefulSample",
+        "/publication/population",
+        "/publication/scenario",
+        "/source/url"
+      ],
+      "sources": [
+        "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10375-pres-iv-elabe-14-novembre.pdf"
+      ],
+      "identifiants": ["elabe-2026-11-14-attal"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sondages",
+      "question": "Pour l’enquête Elabe elabe-2026-11-14-duel-glucksmann, quelle question a été posée et à quelles dates de terrain ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sondages",
+        "id": "elabe-2026-11-14-duel-glucksmann"
+      },
+      "attendus": {
+        "/collection": "sondages",
+        "/publication/id": "elabe-2026-11-14-duel-glucksmann",
+        "/publication/institute": "Elabe",
+        "/publication/question": {
+          "status": "verifiee",
+          "wording": "Si le 2nd tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants voteriez-vous ?",
+          "base": "Inscrits ayant l’intention d’aller voter, suffrages exprimés.",
+          "sourceId": "notice-elabe-2026-11-14",
+          "page": 4,
+          "checked": "2026-11-23"
+        },
+        "/publication/fieldworkStart": "2026-11-12",
+        "/publication/fieldworkEnd": "2026-11-13",
+        "/publication/round": "second",
+        "/publication/noticeSource": "notice-elabe-2026-11-14"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/usefulSample",
+        "/publication/population",
+        "/publication/scenario",
+        "/source/url"
+      ],
+      "sources": [
+        "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10375-pres-iv-elabe-14-novembre.pdf"
+      ],
+      "identifiants": ["elabe-2026-11-14-duel-glucksmann"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sondages",
+      "question": "Pour l’enquête Ifop ifop-2026-11-03-tous, quelle question a été posée et à quelles dates de terrain ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sondages",
+        "id": "ifop-2026-11-03-tous"
+      },
+      "attendus": {
+        "/collection": "sondages",
+        "/publication/id": "ifop-2026-11-03-tous",
+        "/publication/institute": "Ifop",
+        "/publication/question": {
+          "status": "verifiee",
+          "wording": "Si dimanche prochain se déroulait le premier tour de l’élection présidentielle, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+          "base": "Inscrits certains d’aller voter ayant exprimé une intention.",
+          "sourceId": "notice-ifop-2026-11-03",
+          "page": 9,
+          "checked": "2026-11-23"
+        },
+        "/publication/fieldworkStart": "2026-10-27",
+        "/publication/fieldworkEnd": "2026-10-29",
+        "/publication/round": "premier",
+        "/publication/noticeSource": "notice-ifop-2026-11-03"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/usefulSample",
+        "/publication/population",
+        "/publication/scenario",
+        "/source/url"
+      ],
+      "sources": [
+        "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2376"
+      ],
+      "identifiants": ["ifop-2026-11-03-tous"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "actualité",
+      "question": "Quel événement et quelles dates documente la brève « « Réunion publique à Lille, avec Selma Labib et Gaël Quirante » » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "breves",
+        "id": "veille-ff5018354e92a975326f"
+      },
+      "attendus": {
+        "/collection": "breves",
+        "/publication/id": "veille-ff5018354e92a975326f",
+        "/publication/date": "2026-11-24",
+        "/publication/evenement": "2026-11-23",
+        "/publication/sources/0/id": "ed-src-ff5018354e92a975326f"
+      },
+      "champs": ["/rubrique", "/publication/description", "/publication/page"],
+      "sources": [
+        "https://npa-revolutionnaires.org/articles/reunion-publique-a-lille-avec-selma-labib-et-gael-quirante"
+      ],
+      "identifiants": ["veille-ff5018354e92a975326f"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "actualité",
+      "question": "Quel événement et quelles dates documente la brève « « Réunion publique de François Asselineau à Carros (06) le 28/11/2026 » » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "breves",
+        "id": "veille-233537b15f326bfe3e32"
+      },
+      "attendus": {
+        "/collection": "breves",
+        "/publication/id": "veille-233537b15f326bfe3e32",
+        "/publication/date": "2026-11-24",
+        "/publication/evenement": "2026-11-23",
+        "/publication/sources/0/id": "ed-src-233537b15f326bfe3e32"
+      },
+      "champs": ["/rubrique", "/publication/description", "/publication/page"],
+      "sources": [
+        "https://upr.fr/actualites/reunion-publique-de-francois-asselineau-a-carros-06-le-28-11-2026"
+      ],
+      "identifiants": ["veille-233537b15f326bfe3e32"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "actualité",
+      "question": "Quel événement et quelles dates documente la brève « « Samedi 28 novembre, conférence de presse et meeting du NPA-R de lancement de campagne : Selma Labib, une candidate ouvrière et révolutionnaire pour en finir avec le capitalisme ! » » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "breves",
+        "id": "veille-894cb915038129bb6b69"
+      },
+      "attendus": {
+        "/collection": "breves",
+        "/publication/id": "veille-894cb915038129bb6b69",
+        "/publication/date": "2026-11-24",
+        "/publication/evenement": "2026-11-23",
+        "/publication/sources/0/id": "ed-src-894cb915038129bb6b69"
+      },
+      "champs": ["/rubrique", "/publication/description", "/publication/page"],
+      "sources": [
+        "https://npa-revolutionnaires.org/articles/samedi-28-novembre-conference-de-presse-et-meeting-du-npa-r-de-lancement-de-campagne-selma-labib-une-candidate-ouvriere-et-revolutionnaire-pour-en-finir-avec-le-capitalisme"
+      ],
+      "identifiants": ["veille-894cb915038129bb6b69"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "actualité",
+      "question": "Quel événement et quelles dates documente la brève « Nicolas Dupont-Aignan chiffre son plan agricole à 2,1 milliards d’euros par an » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "breves",
+        "id": "dupont-aignan-plan-agricole-novembre"
+      },
+      "attendus": {
+        "/collection": "breves",
+        "/publication/id": "dupont-aignan-plan-agricole-novembre",
+        "/publication/date": "2026-11-24",
+        "/publication/evenement": "2026-11-19",
+        "/publication/sources/0/id": "dupont-aignan-sauvetage-agriculture"
+      },
+      "champs": ["/rubrique", "/publication/description", "/publication/page"],
+      "sources": [
+        "https://www.dupontaignan.fr/actualite/communique-plan-de-sauvetage-pour-notre-agriculture/"
+      ],
+      "identifiants": ["dupont-aignan-plan-agricole-novembre"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "actualité",
+      "question": "Quel événement et quelles dates documente la brève « Sarah Knafo défend la participation d’Éric Zemmour à une primaire » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "breves",
+        "id": "knafo-zemmour-primaire-rtl"
+      },
+      "attendus": {
+        "/collection": "breves",
+        "/publication/id": "knafo-zemmour-primaire-rtl",
+        "/publication/date": "2026-11-23",
+        "/publication/evenement": "2026-11-23",
+        "/publication/sources/0/id": "knafo-rtl-23-novembre"
+      },
+      "champs": ["/rubrique", "/publication/description", "/publication/page"],
+      "sources": [
+        "https://www.rtl.fr/actu/politique/on-ne-craint-pas-la-concurrence-sur-rtl-sarah-knafo-dit-croire-plus-que-jamais-a-une-primaire-a-droite-et-assure-qu-il-n-est-absolument-pas-question-qu-eric-zemmour-se-retire-7900699235"
+      ],
+      "identifiants": ["knafo-zemmour-primaire-rtl"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "actualité",
+      "question": "Quel événement et quelles dates documente la brève « Toluna teste trois configurations de premier tour » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "breves",
+        "id": "harris-intentions-vote-vague-10"
+      },
+      "attendus": {
+        "/collection": "breves",
+        "/publication/id": "harris-intentions-vote-vague-10",
+        "/publication/date": "2026-11-23",
+        "/publication/evenement": "2026-11-23",
+        "/publication/sources/0/id": "toluna-m6-rtl-express-vague-10"
+      },
+      "champs": ["/rubrique", "/publication/description", "/publication/page"],
+      "sources": [
+        "https://tolunacorporate.com/fr/intentions-de-vote-a-lelection-presidentielle-2027-vague-10/"
+      ],
+      "identifiants": ["harris-intentions-vote-vague-10"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "actualité",
+      "question": "Quel événement et quelles dates documente la brève « David Lisnard défend une part obligatoire de capitalisation pour les retraites » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "breves",
+        "id": "lisnard-grand-oral-capitalisation"
+      },
+      "attendus": {
+        "/collection": "breves",
+        "/publication/id": "lisnard-grand-oral-capitalisation",
+        "/publication/date": "2026-11-23",
+        "/publication/evenement": "2026-11-22",
+        "/publication/sources/0/id": "lisnard-grand-oral-retraites"
+      },
+      "champs": ["/rubrique", "/publication/description", "/publication/page"],
+      "sources": [
+        "https://video.lefigaro.fr/figaro/elections/presidentielles/david-lisnard-veut-que-les-francais-deviennent-proprietaires-de-leurs-retraites-20261122"
+      ],
+      "identifiants": ["lisnard-grand-oral-capitalisation"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "actualité",
+      "question": "Quel événement et quelles dates documente la brève « Marine Le Pen veut retirer leurs subventions aux associations qu’elle juge politisées » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "breves",
+        "id": "lepen-subventions-associations"
+      },
+      "attendus": {
+        "/collection": "breves",
+        "/publication/id": "lepen-subventions-associations",
+        "/publication/date": "2026-11-23",
+        "/publication/evenement": "2026-11-22",
+        "/publication/sources/0/id": "lepen-franceinter-associations"
+      },
+      "champs": ["/rubrique", "/publication/description", "/publication/page"],
+      "sources": ["https://www.youtube.com/watch?v=BeBbDw5kJbY"],
+      "identifiants": ["lepen-subventions-associations"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "actualité",
+      "question": "Quel événement et quelles dates documente la brève « La France insoumise propose une ordonnance de protection pour les enfants » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "breves",
+        "id": "lfi-plan-protection-enfance"
+      },
+      "attendus": {
+        "/collection": "breves",
+        "/publication/id": "lfi-plan-protection-enfance",
+        "/publication/date": "2026-11-23",
+        "/publication/evenement": "2026-11-19",
+        "/publication/sources/0/id": "lfi-enfance-annonce-novembre"
+      },
+      "champs": ["/rubrique", "/publication/description", "/publication/page"],
+      "sources": ["https://melenchon2027.fr/communique/plan-enfance/"],
+      "identifiants": ["lfi-plan-protection-enfance"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "actualité",
+      "question": "Quel événement et quelles dates documente la brève « Présidentielle 2027, les règles de temps de parole changent le 4 janvier » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "breves",
+        "id": "arcom-calendrier-temps-de-parole"
+      },
+      "attendus": {
+        "/collection": "breves",
+        "/publication/id": "arcom-calendrier-temps-de-parole",
+        "/publication/date": "2026-11-23",
+        "/publication/evenement": "2026-11-19",
+        "/publication/sources/0/id": "arcom-presidentielle-2027-regles"
+      },
+      "champs": ["/rubrique", "/publication/description", "/publication/page"],
+      "sources": [
+        "https://www.arcom.fr/sites/default/files/2026-11/Arcom-Dossier-de-presse-Presidentielle-2027-regles-et-preconisations-de-Arcom.pdf"
+      ],
+      "identifiants": ["arcom-calendrier-temps-de-parole"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sources",
+      "question": "Quel document et quelle adresse correspondent à la référence « Légifrance · Loi pour la confiance dans l’économie numérique, article 30 » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sources",
+        "id": "legifrance-lcen-article-30"
+      },
+      "attendus": {
+        "/collection": "sources",
+        "/publication/id": "legifrance-lcen-article-30",
+        "/publication/title": "Légifrance · Loi pour la confiance dans l’économie numérique, article 30",
+        "/publication/url": "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006421577/"
+      },
+      "champs": ["/rubrique", "/publication/checked", "/publication/published"],
+      "sources": [
+        "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006421577/"
+      ],
+      "identifiants": ["legifrance-lcen-article-30"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sources",
+      "question": "Quel document et quelle adresse correspondent à la référence « Commission des sondages : notices des enquêtes » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sources",
+        "id": "sondages"
+      },
+      "attendus": {
+        "/collection": "sources",
+        "/publication/id": "sondages",
+        "/publication/title": "Commission des sondages : notices des enquêtes",
+        "/publication/url": "https://www.commission-des-sondages.fr/notices/"
+      },
+      "champs": ["/rubrique", "/publication/checked", "/publication/published"],
+      "sources": ["https://www.commission-des-sondages.fr/notices/"],
+      "identifiants": ["sondages"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sources",
+      "question": "Quel document et quelle adresse correspondent à la référence « Arcom : relevés de temps de parole hors périodes électorales » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sources",
+        "id": "arcom-hors-elections"
+      },
+      "attendus": {
+        "/collection": "sources",
+        "/publication/id": "arcom-hors-elections",
+        "/publication/title": "Arcom : relevés de temps de parole hors périodes électorales",
+        "/publication/url": "https://www.arcom.fr/temps-parole/hors-elections"
+      },
+      "champs": ["/rubrique", "/publication/checked", "/publication/published"],
+      "sources": ["https://www.arcom.fr/temps-parole/hors-elections"],
+      "identifiants": ["arcom-hors-elections"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sources",
+      "question": "Quel document et quelle adresse correspondent à la référence « Gabriel Attal : école » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sources",
+        "id": "attal-school"
+      },
+      "attendus": {
+        "/collection": "sources",
+        "/publication/id": "attal-school",
+        "/publication/title": "Gabriel Attal : école",
+        "/publication/url": "https://attalpresident.fr/programme/education"
+      },
+      "champs": ["/rubrique", "/publication/checked", "/publication/published"],
+      "sources": ["https://attalpresident.fr/programme/education"],
+      "identifiants": ["attal-school"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sources",
+      "question": "Quel document et quelle adresse correspondent à la référence « Édouard Philippe : retraites » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sources",
+        "id": "philippe-pension"
+      },
+      "attendus": {
+        "/collection": "sources",
+        "/publication/id": "philippe-pension",
+        "/publication/title": "Édouard Philippe : retraites",
+        "/publication/url": "https://www.edouardphilippe.fr/programme/retraites"
+      },
+      "champs": ["/rubrique", "/publication/checked", "/publication/published"],
+      "sources": ["https://www.edouardphilippe.fr/programme/retraites"],
+      "identifiants": ["philippe-pension"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sources",
+      "question": "Quel document et quelle adresse correspondent à la référence « Bruno Retailleau : comptes publics » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sources",
+        "id": "retailleau-budget"
+      },
+      "attendus": {
+        "/collection": "sources",
+        "/publication/id": "retailleau-budget",
+        "/publication/title": "Bruno Retailleau : comptes publics",
+        "/publication/url": "https://www.avecretailleau.fr/projet/theme/comptes-publics"
+      },
+      "champs": ["/rubrique", "/publication/checked", "/publication/published"],
+      "sources": ["https://www.avecretailleau.fr/projet/theme/comptes-publics"],
+      "identifiants": ["retailleau-budget"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sources",
+      "question": "Quel document et quelle adresse correspondent à la référence « Eurostat · publications des euro-indicateurs » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sources",
+        "id": "eurostat-euro-indicateurs"
+      },
+      "attendus": {
+        "/collection": "sources",
+        "/publication/id": "eurostat-euro-indicateurs",
+        "/publication/title": "Eurostat · publications des euro-indicateurs",
+        "/publication/url": "https://ec.europa.eu/eurostat/web/products-euro-indicators"
+      },
+      "champs": ["/rubrique", "/publication/checked", "/publication/published"],
+      "sources": ["https://ec.europa.eu/eurostat/web/products-euro-indicators"],
+      "identifiants": ["eurostat-euro-indicateurs"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sources",
+      "question": "Quel document et quelle adresse correspondent à la référence « Insee · résultats de l’enquête Emploi au troisième trimestre 2026 » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sources",
+        "id": "insee-chomage-t3-2026"
+      },
+      "attendus": {
+        "/collection": "sources",
+        "/publication/id": "insee-chomage-t3-2026",
+        "/publication/title": "Insee · résultats de l’enquête Emploi au troisième trimestre 2026",
+        "/publication/url": "https://www.insee.fr/fr/statistiques/9118603"
+      },
+      "champs": ["/rubrique", "/publication/checked", "/publication/published"],
+      "sources": ["https://www.insee.fr/fr/statistiques/9118603"],
+      "identifiants": ["insee-chomage-t3-2026"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "parlement",
+      "question": "Au scrutin n° 3213 du 2023-12-19, quel choix est inscrit pour Nicolas Dupont-Aignan et que totalise le relevé ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement",
+        "id": "VTANR5L16V3213"
+      },
+      "attendus": {
+        "/collection": "parlement",
+        "/publication/id": "VTANR5L16V3213",
+        "/publication/date": "2023-12-19",
+        "/publication/totaux/pour": 349,
+        "/publication/totaux/contre": 186,
+        "/publication/totaux/abstention": 38,
+        "/publication/positions/0/candidat": "dupont-aignan",
+        "/publication/positions/0/vote": "abstention",
+        "/publication/positions/0/mandat": "PM797637",
+        "/publication/source": "https://www.assemblee-nationale.fr/dyn/16/scrutins/3213"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/objet",
+        "/publication/positions/0/misesAuPoint",
+        "/personnes/dupont-aignan/id",
+        "/mandats/PM797637/debut"
+      ],
+      "sources": ["https://www.assemblee-nationale.fr/dyn/16/scrutins/3213"],
+      "identifiants": ["VTANR5L16V3213"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "parlement",
+      "question": "Au scrutin n° 1240 du 2023-03-20, quel choix est inscrit pour Nicolas Dupont-Aignan et que totalise le relevé ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement",
+        "id": "VTANR5L16V1240"
+      },
+      "attendus": {
+        "/collection": "parlement",
+        "/publication/id": "VTANR5L16V1240",
+        "/publication/date": "2023-03-20",
+        "/publication/totaux/pour": 278,
+        "/publication/totaux/contre": null,
+        "/publication/totaux/abstention": null,
+        "/publication/positions/0/candidat": "dupont-aignan",
+        "/publication/positions/0/vote": "pour",
+        "/publication/positions/0/mandat": "PM797637",
+        "/publication/source": "https://www.assemblee-nationale.fr/dyn/16/scrutins/1240"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/objet",
+        "/publication/positions/0/misesAuPoint",
+        "/personnes/dupont-aignan/id",
+        "/mandats/PM797637/debut"
+      ],
+      "sources": ["https://www.assemblee-nationale.fr/dyn/16/scrutins/1240"],
+      "identifiants": ["VTANR5L16V1240"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "parlement",
+      "question": "Au scrutin n° 8 du 2022-07-12, quel choix est inscrit pour Nicolas Dupont-Aignan et que totalise le relevé ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement",
+        "id": "VTANR5L16V8"
+      },
+      "attendus": {
+        "/collection": "parlement",
+        "/publication/id": "VTANR5L16V8",
+        "/publication/date": "2022-07-12",
+        "/publication/totaux/pour": 95,
+        "/publication/totaux/contre": 297,
+        "/publication/totaux/abstention": 6,
+        "/publication/positions/0/candidat": "dupont-aignan",
+        "/publication/positions/0/vote": "pour",
+        "/publication/positions/0/mandat": "PM797637",
+        "/publication/source": "https://www.assemblee-nationale.fr/dyn/16/scrutins/8"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/objet",
+        "/publication/positions/0/misesAuPoint",
+        "/personnes/dupont-aignan/id",
+        "/mandats/PM797637/debut"
+      ],
+      "sources": ["https://www.assemblee-nationale.fr/dyn/16/scrutins/8"],
+      "identifiants": ["VTANR5L16V8"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "parlement",
+      "question": "Au scrutin n° 4414 du 2022-02-23, quel choix est inscrit pour Nicolas Dupont-Aignan et que totalise le relevé ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement",
+        "id": "VTANR5L15V4414"
+      },
+      "attendus": {
+        "/collection": "parlement",
+        "/publication/id": "VTANR5L15V4414",
+        "/publication/date": "2022-02-23",
+        "/publication/totaux/pour": 135,
+        "/publication/totaux/contre": 47,
+        "/publication/totaux/abstention": 9,
+        "/publication/positions/0/candidat": "dupont-aignan",
+        "/publication/positions/0/vote": "contre",
+        "/publication/positions/0/mandat": "PM723354",
+        "/publication/source": "https://www.assemblee-nationale.fr/dyn/15/scrutins/4414"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/objet",
+        "/publication/positions/0/misesAuPoint",
+        "/personnes/dupont-aignan/id",
+        "/mandats/PM723354/debut"
+      ],
+      "sources": ["https://www.assemblee-nationale.fr/dyn/15/scrutins/4414"],
+      "identifiants": ["VTANR5L15V4414"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "parlement",
+      "question": "Au scrutin n° 3666 du 2021-04-15, quel choix est inscrit pour Jean-Luc Mélenchon et que totalise le relevé ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement",
+        "id": "VTANR5L15V3666"
+      },
+      "attendus": {
+        "/collection": "parlement",
+        "/publication/id": "VTANR5L15V3666",
+        "/publication/date": "2021-04-15",
+        "/publication/totaux/pour": 27,
+        "/publication/totaux/contre": 76,
+        "/publication/totaux/abstention": 10,
+        "/publication/positions/0/candidat": "melenchon",
+        "/publication/positions/0/vote": "pour",
+        "/publication/positions/0/mandat": "PM722506",
+        "/publication/source": "https://www.assemblee-nationale.fr/dyn/15/scrutins/3666"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/objet",
+        "/publication/positions/0/misesAuPoint",
+        "/personnes/melenchon/id",
+        "/mandats/PM722506/debut"
+      ],
+      "sources": ["https://www.assemblee-nationale.fr/dyn/15/scrutins/3666"],
+      "identifiants": ["VTANR5L15V3666"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "parlement",
+      "question": "Au scrutin n° 3037 du 2020-10-26, quel choix est inscrit pour Fabien Roussel et que totalise le relevé ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement",
+        "id": "VTANR5L15V3037"
+      },
+      "attendus": {
+        "/collection": "parlement",
+        "/publication/id": "VTANR5L15V3037",
+        "/publication/date": "2020-10-26",
+        "/publication/totaux/pour": 17,
+        "/publication/totaux/contre": 52,
+        "/publication/totaux/abstention": 6,
+        "/publication/positions/0/candidat": "roussel",
+        "/publication/positions/0/vote": "pour",
+        "/publication/positions/0/mandat": "PM723042",
+        "/publication/source": "https://www.assemblee-nationale.fr/dyn/15/scrutins/3037"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/objet",
+        "/publication/positions/0/misesAuPoint",
+        "/personnes/roussel/id",
+        "/mandats/PM723042/debut"
+      ],
+      "sources": ["https://www.assemblee-nationale.fr/dyn/15/scrutins/3037"],
+      "identifiants": ["VTANR5L15V3037"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "parlement",
+      "question": "Au scrutin n° 1925 du 2019-05-28, quel choix est inscrit pour Jean Lassalle et que totalise le relevé ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement",
+        "id": "VTANR5L15V1925"
+      },
+      "attendus": {
+        "/collection": "parlement",
+        "/publication/id": "VTANR5L15V1925",
+        "/publication/date": "2019-05-28",
+        "/publication/totaux/pour": 48,
+        "/publication/totaux/contre": 64,
+        "/publication/totaux/abstention": 5,
+        "/publication/positions/0/candidat": "lassalle",
+        "/publication/positions/0/vote": "pour",
+        "/publication/positions/0/mandat": "PM723068",
+        "/publication/source": "https://www.assemblee-nationale.fr/dyn/15/scrutins/1925"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/objet",
+        "/publication/positions/0/misesAuPoint",
+        "/personnes/lassalle/id",
+        "/mandats/PM723068/debut"
+      ],
+      "sources": ["https://www.assemblee-nationale.fr/dyn/15/scrutins/1925"],
+      "identifiants": ["VTANR5L15V1925"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "parlement",
+      "question": "Au scrutin n° 677 du 2018-05-26, quel choix est inscrit pour François Ruffin et que totalise le relevé ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement",
+        "id": "VTANR5L15V677"
+      },
+      "attendus": {
+        "/collection": "parlement",
+        "/publication/id": "VTANR5L15V677",
+        "/publication/date": "2018-05-26",
+        "/publication/totaux/pour": 65,
+        "/publication/totaux/contre": 0,
+        "/publication/totaux/abstention": 3,
+        "/publication/positions/0/candidat": "ruffin",
+        "/publication/positions/0/vote": "pour",
+        "/publication/positions/0/mandat": "PM723484",
+        "/publication/source": "https://www.assemblee-nationale.fr/dyn/15/scrutins/677"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/objet",
+        "/publication/positions/0/misesAuPoint",
+        "/personnes/ruffin/id",
+        "/mandats/PM723484/debut"
+      ],
+      "sources": ["https://www.assemblee-nationale.fr/dyn/15/scrutins/677"],
+      "identifiants": ["VTANR5L15V677"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "parlement",
+      "question": "Au scrutin n° 4034 du 2024-06-04, quel choix est inscrit pour Fabien Roussel et que totalise le relevé ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement",
+        "id": "VTANR5L16V4034"
+      },
+      "attendus": {
+        "/collection": "parlement",
+        "/publication/id": "VTANR5L16V4034",
+        "/publication/date": "2024-06-04",
+        "/publication/totaux/pour": 63,
+        "/publication/totaux/contre": 160,
+        "/publication/totaux/abstention": 12,
+        "/publication/positions/0/candidat": "roussel",
+        "/publication/positions/0/vote": "contre",
+        "/publication/positions/0/mandat": "PM796986",
+        "/publication/source": "https://www.assemblee-nationale.fr/dyn/16/scrutins/4034"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/objet",
+        "/publication/positions/0/misesAuPoint",
+        "/personnes/roussel/id",
+        "/mandats/PM796986/debut"
+      ],
+      "sources": ["https://www.assemblee-nationale.fr/dyn/16/scrutins/4034"],
+      "identifiants": ["VTANR5L16V4034"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "parlement",
+      "question": "Au scrutin n° 2757 du 2023-10-12, quel choix est inscrit pour Marine Le Pen et que totalise le relevé ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement",
+        "id": "VTANR5L16V2757"
+      },
+      "attendus": {
+        "/collection": "parlement",
+        "/publication/id": "VTANR5L16V2757",
+        "/publication/date": "2023-10-12",
+        "/publication/totaux/pour": 108,
+        "/publication/totaux/contre": 86,
+        "/publication/totaux/abstention": 5,
+        "/publication/positions/0/candidat": "lepen",
+        "/publication/positions/0/vote": "contre",
+        "/publication/positions/0/mandat": "PM797055",
+        "/publication/source": "https://www.assemblee-nationale.fr/dyn/16/scrutins/2757"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/objet",
+        "/publication/positions/0/misesAuPoint",
+        "/personnes/lepen/id",
+        "/mandats/PM797055/debut"
+      ],
+      "sources": ["https://www.assemblee-nationale.fr/dyn/16/scrutins/2757"],
+      "identifiants": ["VTANR5L16V2757"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "parlement",
+      "question": "Au scrutin n° 1397 du 2023-04-06, quel choix est inscrit pour François Ruffin et que totalise le relevé ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement",
+        "id": "VTANR5L16V1397"
+      },
+      "attendus": {
+        "/collection": "parlement",
+        "/publication/id": "VTANR5L16V1397",
+        "/publication/date": "2023-04-06",
+        "/publication/totaux/pour": 80,
+        "/publication/totaux/contre": 66,
+        "/publication/totaux/abstention": 1,
+        "/publication/positions/0/candidat": "ruffin",
+        "/publication/positions/0/vote": "pour",
+        "/publication/positions/0/mandat": "PM797673",
+        "/publication/source": "https://www.assemblee-nationale.fr/dyn/16/scrutins/1397"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/objet",
+        "/publication/positions/0/misesAuPoint",
+        "/personnes/ruffin/id",
+        "/mandats/PM797673/debut"
+      ],
+      "sources": ["https://www.assemblee-nationale.fr/dyn/16/scrutins/1397"],
+      "identifiants": ["VTANR5L16V1397"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "parlement",
+      "question": "Au scrutin n° 940 du 2023-02-10, quel choix est inscrit pour Marine Le Pen et que totalise le relevé ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement",
+        "id": "VTANR5L16V940"
+      },
+      "attendus": {
+        "/collection": "parlement",
+        "/publication/id": "VTANR5L16V940",
+        "/publication/date": "2023-02-10",
+        "/publication/totaux/pour": 67,
+        "/publication/totaux/contre": 145,
+        "/publication/totaux/abstention": 38,
+        "/publication/positions/0/candidat": "lepen",
+        "/publication/positions/0/vote": "abstention",
+        "/publication/positions/0/mandat": "PM797055",
+        "/publication/source": "https://www.assemblee-nationale.fr/dyn/16/scrutins/940"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/objet",
+        "/publication/positions/0/misesAuPoint",
+        "/personnes/lepen/id",
+        "/mandats/PM797055/debut"
+      ],
+      "sources": ["https://www.assemblee-nationale.fr/dyn/16/scrutins/940"],
+      "identifiants": ["VTANR5L16V940"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "parlement",
+      "question": "Au scrutin n° 265 du 2022-10-12, quel choix est inscrit pour Marine Le Pen et que totalise le relevé ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement",
+        "id": "VTANR5L16V265"
+      },
+      "attendus": {
+        "/collection": "parlement",
+        "/publication/id": "VTANR5L16V265",
+        "/publication/date": "2022-10-12",
+        "/publication/totaux/pour": 81,
+        "/publication/totaux/contre": 140,
+        "/publication/totaux/abstention": 3,
+        "/publication/positions/0/candidat": "lepen",
+        "/publication/positions/0/vote": "pour",
+        "/publication/positions/0/mandat": "PM797055",
+        "/publication/source": "https://www.assemblee-nationale.fr/dyn/16/scrutins/265"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/objet",
+        "/publication/positions/0/misesAuPoint",
+        "/personnes/lepen/id",
+        "/mandats/PM797055/debut"
+      ],
+      "sources": ["https://www.assemblee-nationale.fr/dyn/16/scrutins/265"],
+      "identifiants": ["VTANR5L16V265"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "historique",
+      "question": "Quel était le titre de la première version du dossier melenchon-retraites-1 et où lire cette version ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "melenchon-retraites-1",
+        "version": 1
+      },
+      "attendus": {
+        "/versionDemandee": "melenchon-retraites-1-v1",
+        "/titre": "Abroger la réforme de 2023, puis rétablir un départ à taux plein à 60 ans avec 40 annuités",
+        "/url": "https://polradar.fr/mesures/melenchon-retraites-1/#version-1",
+        "/sources/0/id": "lfi-social"
+      },
+      "champs": [
+        "/versions/0/id",
+        "/versionDemandee",
+        "/statutCandidatureActuel"
+      ],
+      "sources": [
+        "https://melenchon2027.fr/programme/livre/mettre-en-securite-sociale/chapitre1"
+      ],
+      "identifiants": ["melenchon-retraites-1", "melenchon-retraites-1-v1"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "historique",
+      "question": "Quel était le titre de la première version du dossier tondelier-travail-1 et où lire cette version ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "tondelier-travail-1",
+        "version": 1
+      },
+      "attendus": {
+        "/versionDemandee": "tondelier-travail-1-v1",
+        "/titre": "Relever le salaire minimum dès 2027",
+        "/url": "https://polradar.fr/mesures/tondelier-travail-1/#version-1",
+        "/sources/0/id": "eco-work"
+      },
+      "champs": [
+        "/versions/0/id",
+        "/versionDemandee",
+        "/statutCandidatureActuel"
+      ],
+      "sources": [
+        "https://lesecologistes.fr/posts/4b3Vl4nRDOZk4nuMvI4eKa/nos-propositions-pour-un-travail-emancipateur-ecologique-et-democratique"
+      ],
+      "identifiants": ["tondelier-travail-1", "tondelier-travail-1-v1"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "historique",
+      "question": "Quel était le titre de la première version du dossier attal-travail-1 et où lire cette version ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "attal-travail-1",
+        "version": 1
+      },
+      "attendus": {
+        "/versionDemandee": "attal-travail-1-v1",
+        "/titre": "Réduire les cotisations salariales",
+        "/url": "https://polradar.fr/mesures/attal-travail-1/#version-1",
+        "/sources/0/id": "attal-work"
+      },
+      "champs": [
+        "/versions/0/id",
+        "/versionDemandee",
+        "/statutCandidatureActuel"
+      ],
+      "sources": ["https://attalpresident.fr/programme/travail-salaires"],
+      "identifiants": ["attal-travail-1", "attal-travail-1-v1"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "historique",
+      "question": "Quel était le titre de la première version du dossier philippe-retraites-1 et où lire cette version ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "philippe-retraites-1",
+        "version": 1
+      },
+      "attendus": {
+        "/versionDemandee": "philippe-retraites-1-v1",
+        "/titre": "Porter progressivement l’âge de départ à 65 ans et la durée de cotisation à 45 ans",
+        "/url": "https://polradar.fr/mesures/philippe-retraites-1/#version-1",
+        "/sources/0/id": "philippe-pension"
+      },
+      "champs": [
+        "/versions/0/id",
+        "/versionDemandee",
+        "/statutCandidatureActuel"
+      ],
+      "sources": ["https://www.edouardphilippe.fr/programme/retraites"],
+      "identifiants": ["philippe-retraites-1", "philippe-retraites-1-v1"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "historique",
+      "question": "Quel était le titre de la première version du dossier retailleau-retraites-1 et où lire cette version ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "retailleau-retraites-1",
+        "version": 1
+      },
+      "attendus": {
+        "/versionDemandee": "retailleau-retraites-1-v1",
+        "/titre": "Distinguer l’âge d’ouverture des droits et celui du taux plein garanti",
+        "/url": "https://polradar.fr/mesures/retailleau-retraites-1/#version-1",
+        "/sources/0/id": "retailleau-pension"
+      },
+      "champs": [
+        "/versions/0/id",
+        "/versionDemandee",
+        "/statutCandidatureActuel"
+      ],
+      "sources": ["https://www.avecretailleau.fr/projet/theme/retraites"],
+      "identifiants": ["retailleau-retraites-1", "retailleau-retraites-1-v1"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "historique",
+      "question": "Quel était le titre de la première version du dossier roussel-retraites-1 et où lire cette version ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "roussel-retraites-1",
+        "version": 1
+      },
+      "attendus": {
+        "/versionDemandee": "roussel-retraites-1-v1",
+        "/titre": "Revenir sur le report de l’âge à 64 ans et relever les pensions modestes",
+        "/url": "https://polradar.fr/mesures/roussel-retraites-1/#version-1",
+        "/sources/0/id": "pcf-work"
+      },
+      "champs": [
+        "/versions/0/id",
+        "/versionDemandee",
+        "/statutCandidatureActuel"
+      ],
+      "sources": [
+        "https://assets.nationbuilder.com/pcf/pages/35369/attachments/original/1764162032/Discours_FR_corrige%CC%81_241125.pdf"
+      ],
+      "identifiants": ["roussel-retraites-1", "roussel-retraites-1-v1"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "historique",
+      "question": "Quel était le titre de la première version du dossier lepen-europe-1 et où lire cette version ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "lepen-europe-1",
+        "version": 1
+      },
+      "attendus": {
+        "/versionDemandee": "lepen-europe-1-v1",
+        "/titre": "Défendre l’arrêt du soutien français à l’Ukraine",
+        "/url": "https://polradar.fr/mesures/lepen-europe-1/#version-1",
+        "/sources/0/id": "rn-ukraine"
+      },
+      "champs": [
+        "/versions/0/id",
+        "/versionDemandee",
+        "/statutCandidatureActuel"
+      ],
+      "sources": [
+        "https://www.lemonde.fr/en/politics/article/2026/11/16/french-presidential-election-le-pen-defends-plan-to-withdraw-french-support-for-ukraine_6782140_5.html"
+      ],
+      "identifiants": ["lepen-europe-1", "lepen-europe-1-v1"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "historique",
+      "question": "Quel était le titre de la première version du dossier egger-institutions-ric et où lire cette version ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "egger-institutions-ric",
+        "version": 1
+      },
+      "attendus": {
+        "/versionDemandee": "egger-institutions-ric-v1",
+        "/titre": "Un référendum constituant déclenché par 700 000 signatures",
+        "/url": "https://polradar.fr/mesures/egger-institutions-ric/#version-1",
+        "/sources/0/id": "egger-programme-2027"
+      },
+      "champs": [
+        "/versions/0/id",
+        "/versionDemandee",
+        "/statutCandidatureActuel"
+      ],
+      "sources": [
+        "https://solutiondemocratique.fr/wp-content/uploads/2026/11/Programme-de-Solution-Democratique-a-lelection-presidentielle-2027.pdf"
+      ],
+      "identifiants": ["egger-institutions-ric", "egger-institutions-ric-v1"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "historique",
+      "question": "Quel était le titre de la première version du dossier kazib-travail-smic et où lire cette version ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "kazib-travail-smic",
+        "version": 1
+      },
+      "attendus": {
+        "/versionDemandee": "kazib-travail-smic-v1",
+        "/titre": "Porter le SMIC à 2 000 €",
+        "/url": "https://polradar.fr/mesures/kazib-travail-smic/#version-1",
+        "/sources/0/id": "kazib-premieres-mesures-2027"
+      },
+      "champs": [
+        "/versions/0/id",
+        "/versionDemandee",
+        "/statutCandidatureActuel"
+      ],
+      "sources": [
+        "https://www.revolutionpermanente.fr/28h-expropriation-des-secteurs-strategiques-RP-presente-les-premieres-mesures-de-sa-candidature"
+      ],
+      "identifiants": ["kazib-travail-smic", "kazib-travail-smic-v1"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "historique",
+      "question": "Quel était le titre de la première version du dossier zemmour-csg-activite et où lire cette version ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "zemmour-csg-activite",
+        "version": 1
+      },
+      "attendus": {
+        "/versionDemandee": "zemmour-csg-activite-v1",
+        "/titre": "Supprimer la CSG sur les revenus d’activité",
+        "/url": "https://polradar.fr/mesures/zemmour-csg-activite/#version-1",
+        "/sources/0/id": "zemmour-entretien-jdd-novembre"
+      },
+      "champs": [
+        "/versions/0/id",
+        "/versionDemandee",
+        "/statutCandidatureActuel"
+      ],
+      "sources": [
+        "https://www.lejdd.fr/politique/eric-zemmour-au-jdd-tout-faire-pour-que-notre-avenir-soit-francais-188724"
+      ],
+      "identifiants": ["zemmour-csg-activite", "zemmour-csg-activite-v1"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "vérifications",
+      "question": "Quel organisme et quelle période permettent de vérifier « Chômage au troisième trimestre 2026 » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "verifications",
+        "id": "farandou-chomage-t3-2026"
+      },
+      "attendus": {
+        "/collection": "verifications",
+        "/publication/id": "farandou-chomage-t3-2026",
+        "/publication/assessment": "comparable",
+        "/publication/unit": "%",
+        "/publication/claimed": "8.2",
+        "/publication/observed": "8.2",
+        "/publication/reference/url": "https://www.insee.fr/fr/statistiques/9118603"
+      },
+      "champs": ["/rubrique", "/publication/period", "/publication/context"],
+      "sources": [
+        "https://questions.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2026-2027/premiere-seance-du-mardi-10-novembre-2026",
+        "https://www.insee.fr/fr/statistiques/9118603"
+      ],
+      "identifiants": ["farandou-chomage-t3-2026"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "vérifications",
+      "question": "Quel organisme et quelle période permettent de vérifier « Déficit des administrations publiques en 2025 » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "verifications",
+        "id": "juvin-deficit-2025"
+      },
+      "attendus": {
+        "/collection": "verifications",
+        "/publication/id": "juvin-deficit-2025",
+        "/publication/assessment": "comparable",
+        "/publication/unit": "% du PIB",
+        "/publication/claimed": "5.1",
+        "/publication/observed": "5.1",
+        "/publication/reference/url": "https://www.insee.fr/fr/statistiques/8997691"
+      },
+      "champs": ["/rubrique", "/publication/period", "/publication/context"],
+      "sources": [
+        "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2025-2026/seance-du-mardi-09-juin-2026",
+        "https://www.insee.fr/fr/statistiques/8997691"
+      ],
+      "identifiants": ["juvin-deficit-2025"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "vérifications",
+      "question": "Quel organisme et quelle période permettent de vérifier « Dette publique à la fin de 2025 » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "verifications",
+        "id": "mercier-dette-2025"
+      },
+      "attendus": {
+        "/collection": "verifications",
+        "/publication/id": "mercier-dette-2025",
+        "/publication/assessment": "revision",
+        "/publication/unit": "% du PIB",
+        "/publication/claimed": "115.6",
+        "/publication/observed": "115.7",
+        "/publication/reference/url": "https://www.insee.fr/fr/statistiques/8997691"
+      },
+      "champs": ["/rubrique", "/publication/period", "/publication/context"],
+      "sources": [
+        "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2025-2026/seance-du-mardi-09-juin-2026",
+        "https://www.insee.fr/fr/statistiques/8997691"
+      ],
+      "identifiants": ["mercier-dette-2025"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "vérifications",
+      "question": "Quel organisme et quelle période permettent de vérifier « Exportations d’électricité en 2025 » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "verifications",
+        "id": "attal-echanges-electriques-2025"
+      },
+      "attendus": {
+        "/collection": "verifications",
+        "/publication/id": "attal-echanges-electriques-2025",
+        "/publication/assessment": "perimetre",
+        "/publication/unit": "TWh",
+        "/publication/claimed": "92.3",
+        "/publication/observed": "92.3",
+        "/publication/reference/url": "https://analysesetdonnees.rte-france.com/bilan-electrique-2025/echanges"
+      },
+      "champs": ["/rubrique", "/publication/period", "/publication/context"],
+      "sources": [
+        "https://attalpresident.fr/programme/dette-ecologique",
+        "https://analysesetdonnees.rte-france.com/bilan-electrique-2025/echanges"
+      ],
+      "identifiants": ["attal-echanges-electriques-2025"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "vérifications",
+      "question": "Quel organisme et quelle période permettent de vérifier « Dépenses publiques françaises en 2025 » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "verifications",
+        "id": "labib-depenses-publiques-2025"
+      },
+      "attendus": {
+        "/collection": "verifications",
+        "/publication/id": "labib-depenses-publiques-2025",
+        "/publication/assessment": "comparable",
+        "/publication/unit": "% du PIB",
+        "/publication/claimed": "57.3",
+        "/publication/observed": "57.3",
+        "/publication/reference/url": "https://www.insee.fr/fr/statistiques/2381414"
+      },
+      "champs": ["/rubrique", "/publication/period", "/publication/context"],
+      "sources": [
+        "https://www.npa-revolutionnaires.org/articles/reponse-de-selma-labib-a-philippe-juvin-rapporteur-general-de-la-commission-des-finances",
+        "https://www.insee.fr/fr/statistiques/2381414"
+      ],
+      "identifiants": ["labib-depenses-publiques-2025"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "vérifications",
+      "question": "Quel organisme et quelle période permettent de vérifier « Pauvreté des 18 à 29 ans en 2024 » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "verifications",
+        "id": "ruffin-pauvrete-jeunes-2024"
+      },
+      "attendus": {
+        "/collection": "verifications",
+        "/publication/id": "ruffin-pauvrete-jeunes-2024",
+        "/publication/assessment": "comparable",
+        "/publication/unit": "%",
+        "/publication/claimed": "18.6",
+        "/publication/observed": "18.6",
+        "/publication/reference/url": "https://www.insee.fr/fr/statistiques/3565548"
+      },
+      "champs": ["/rubrique", "/publication/period", "/publication/context"],
+      "sources": [
+        "https://nouspresident.fr/redonner-aux-jeunes-les-clefs-de-leur-avenir/",
+        "https://www.insee.fr/fr/statistiques/3565548"
+      ],
+      "identifiants": ["ruffin-pauvrete-jeunes-2024"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "vérifications",
+      "question": "Quel organisme et quelle période permettent de vérifier « Emploi des personnes reconnues handicapées en 2023 » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "verifications",
+        "id": "ps-emploi-handicap-2023"
+      },
+      "attendus": {
+        "/collection": "verifications",
+        "/publication/id": "ps-emploi-handicap-2023",
+        "/publication/assessment": "perimetre",
+        "/publication/unit": "%",
+        "/publication/claimed": "39",
+        "/publication/observed": "39",
+        "/publication/reference/url": "https://drees.solidarites-sante.gouv.fr/sites/default/files/2025-01/Fiche%205.1%20-%20Situation%20des%20personnes%20handicap%C3%A9es%20par%20rapport%20%C3%A0%20l%E2%80%99emploi.pdf"
+      },
+      "champs": ["/rubrique", "/publication/period", "/publication/context"],
+      "sources": [
+        "https://projet-socialiste.fr/projet/sepanouir-a-egalite/",
+        "https://drees.solidarites-sante.gouv.fr/sites/default/files/2025-01/Fiche%205.1%20-%20Situation%20des%20personnes%20handicap%C3%A9es%20par%20rapport%20%C3%A0%20l%E2%80%99emploi.pdf"
+      ],
+      "identifiants": ["ps-emploi-handicap-2023"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "vérifications",
+      "question": "Quel organisme et quelle période permettent de vérifier « Nombre de personnes sous le seuil de pauvreté en 2024 » ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "verifications",
+        "id": "ecologistes-pauvrete-2024"
+      },
+      "attendus": {
+        "/collection": "verifications",
+        "/publication/id": "ecologistes-pauvrete-2024",
+        "/publication/assessment": "arrondi",
+        "/publication/unit": "millions de personnes",
+        "/publication/claimed": "10",
+        "/publication/observed": "9.8",
+        "/publication/reference/url": "https://www.insee.fr/fr/statistiques/5759045"
+      },
+      "champs": ["/rubrique", "/publication/period", "/publication/context"],
+      "sources": [
+        "https://lesecologistes.fr/document/3N4JsAEmq6vsx42IITGNZa/vdef-programme-1.pdf",
+        "https://www.insee.fr/fr/statistiques/5759045"
+      ],
+      "identifiants": ["ecologistes-pauvrete-2024"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "droit",
+      "question": "Qui peut utiliser le chiffrement ? Quel texte est cité pour la première règle ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "droit",
+        "id": "outils-chiffres"
+      },
+      "attendus": {
+        "/collection": "droit",
+        "/publication/id": "outils-chiffres",
+        "/publication/rules/0/refs/0/url": "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006421577/",
+        "/publication/rules/0/refs/0/label": "LCEN, art. 30 I"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/rules/0/body",
+        "/publication/checked"
+      ],
+      "sources": [
+        "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006421577/"
+      ],
+      "identifiants": ["outils-chiffres"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "droit",
+      "question": "Quand le renseignement peut-il demander un déchiffrement ? Quel texte est cité pour la première règle ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "droit",
+        "id": "acces-communications"
+      },
+      "attendus": {
+        "/collection": "droit",
+        "/publication/id": "acces-communications",
+        "/publication/rules/0/refs/0/url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030937647/",
+        "/publication/rules/0/refs/0/label": "Code de la sécurité intérieure, art. L. 871-1"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/rules/0/body",
+        "/publication/checked"
+      ],
+      "sources": [
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030937647/"
+      ],
+      "identifiants": ["acces-communications"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "droit",
+      "question": "Quand peut-on transférer des données personnelles hors de l’Union européenne ? Quel texte est cité pour la première règle ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "droit",
+        "id": "transferts-internationaux"
+      },
+      "attendus": {
+        "/collection": "droit",
+        "/publication/id": "transferts-internationaux",
+        "/publication/rules/0/refs/0/url": "https://www.cnil.fr/fr/reglement-europeen-protection-donnees/chapitre5",
+        "/publication/rules/0/refs/0/label": "Chapitre V, articles 44 à 49."
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/rules/0/body",
+        "/publication/checked"
+      ],
+      "sources": [
+        "https://www.cnil.fr/fr/reglement-europeen-protection-donnees/chapitre5"
+      ],
+      "identifiants": ["transferts-internationaux"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "droit",
+      "question": "Que peut-on emporter en changeant de service ? Quel texte est cité pour la première règle ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "droit",
+        "id": "portabilite"
+      },
+      "attendus": {
+        "/collection": "droit",
+        "/publication/id": "portabilite",
+        "/publication/rules/0/refs/0/url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj/fra",
+        "/publication/rules/0/refs/0/label": "RGPD, art. 20"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/rules/0/body",
+        "/publication/checked"
+      ],
+      "sources": ["https://eur-lex.europa.eu/eli/reg/2016/679/oj/fra"],
+      "identifiants": ["portabilite"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "droit",
+      "question": "Quelles données peuvent servir au ciblage publicitaire ? Quel texte est cité pour la première règle ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "droit",
+        "id": "publicite"
+      },
+      "attendus": {
+        "/collection": "droit",
+        "/publication/id": "publicite",
+        "/publication/rules/0/refs/0/url": "https://eur-lex.europa.eu/eli/reg/2022/2065/oj?locale=fr",
+        "/publication/rules/0/refs/0/label": "DSA, art. 19 et 26 § 3"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/rules/0/body",
+        "/publication/checked"
+      ],
+      "sources": ["https://eur-lex.europa.eu/eli/reg/2022/2065/oj?locale=fr"],
+      "identifiants": ["publicite"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "financements",
+      "question": "Quel document chiffre « Affectation des économies annoncées » et dans quelle période ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "financements",
+        "id": "lisnard-affectations"
+      },
+      "attendus": {
+        "/collection": "financements",
+        "/publication/id": "lisnard-affectations",
+        "/publication/entry/period": "annuel",
+        "/publication/sources/0/id": "lisnard-repartition-2026",
+        "/publication/scope": "campagne"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/assumptions",
+        "/publication/entry/euros",
+        "/publication/entry/horizon"
+      ],
+      "sources": [
+        "https://www.unenouvelleenergie.fr/questions/que-ferait-david-lisnard-des-200-milliards-d-economies/"
+      ],
+      "identifiants": ["lisnard-affectations"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "financements",
+      "question": "Quel document chiffre « Déficit et montants rendus » et dans quelle période ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "financements",
+        "id": "retailleau-affectations"
+      },
+      "attendus": {
+        "/collection": "financements",
+        "/publication/id": "retailleau-affectations",
+        "/publication/entry/period": "horizon",
+        "/publication/sources/0/id": "retailleau-trajectoire",
+        "/publication/scope": "campagne"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/assumptions",
+        "/publication/entry/euros",
+        "/publication/entry/horizon"
+      ],
+      "sources": [
+        "https://www.avecretailleau.fr/projet/mesure/la-trajectoire-financiere-du-projet-197-md-dont-146-md-pour"
+      ],
+      "identifiants": ["retailleau-affectations"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "financements",
+      "question": "Quel document chiffre « Origines de l’effort de redressement » et dans quelle période ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "financements",
+        "id": "philippe-effort"
+      },
+      "attendus": {
+        "/collection": "financements",
+        "/publication/id": "philippe-effort",
+        "/publication/entry/period": "horizon",
+        "/publication/sources/0/id": "philippe-budget",
+        "/publication/scope": "campagne"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/assumptions",
+        "/publication/entry/euros",
+        "/publication/entry/horizon"
+      ],
+      "sources": ["https://www.edouardphilippe.fr/programme/comptes-publics"],
+      "identifiants": ["philippe-effort"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "financements",
+      "question": "Quel document chiffre « Économies visées par les Patriotes » et dans quelle période ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "financements",
+        "id": "philippot-economies"
+      },
+      "attendus": {
+        "/collection": "financements",
+        "/publication/id": "philippot-economies",
+        "/publication/entry/period": "annuel",
+        "/publication/sources/0/id": "patriotes-projet-2026-2027",
+        "/publication/scope": "parti"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/assumptions",
+        "/publication/entry/euros",
+        "/publication/entry/horizon"
+      ],
+      "sources": [
+        "https://les-patriotes.fr/wp-content/uploads/2026/09/Projet-pour-la-France-2026-v2.pdf"
+      ],
+      "identifiants": ["philippot-economies"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "médias",
+      "question": "Pour TF1 en 2026-09, dans quelle unité consulter le relevé de l’Arcom ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "arcom",
+        "id": "2026-09-television-tf1"
+      },
+      "attendus": {
+        "/collection": "arcom",
+        "/publication/id": "2026-09-television-tf1",
+        "/publication/unit": "secondes",
+        "/publication/date": "2026-09",
+        "/publication/source": "https://www.arcom.fr/sites/default/files/tphe/files/speaking_time_files/Export_web_Personnalites_avec_seuil_01-09-2026_30-09-2026.csv"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/observations/0/seconds",
+        "/publication/publishedCells"
+      ],
+      "sources": [
+        "https://www.arcom.fr/sites/default/files/tphe/files/speaking_time_files/Export_web_Personnalites_avec_seuil_01-09-2026_30-09-2026.csv"
+      ],
+      "identifiants": ["2026-09-television-tf1"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "médias",
+      "question": "Pour Europe 1 en 2026-09, dans quelle unité consulter le relevé de l’Arcom ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "arcom",
+        "id": "2026-09-radio-europe-1"
+      },
+      "attendus": {
+        "/collection": "arcom",
+        "/publication/id": "2026-09-radio-europe-1",
+        "/publication/unit": "secondes",
+        "/publication/date": "2026-09",
+        "/publication/source": "https://www.arcom.fr/sites/default/files/tphe/files/speaking_time_files/Export_web_Personnalites_avec_seuil_01-09-2026_30-09-2026.csv"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/observations/0/seconds",
+        "/publication/publishedCells"
+      ],
+      "sources": [
+        "https://www.arcom.fr/sites/default/files/tphe/files/speaking_time_files/Export_web_Personnalites_avec_seuil_01-09-2026_30-09-2026.csv"
+      ],
+      "identifiants": ["2026-09-radio-europe-1"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "médias",
+      "question": "Pour RMC en 2026-08, dans quelle unité consulter le relevé de l’Arcom ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "arcom",
+        "id": "2026-08-radio-rmc"
+      },
+      "attendus": {
+        "/collection": "arcom",
+        "/publication/id": "2026-08-radio-rmc",
+        "/publication/unit": "secondes",
+        "/publication/date": "2026-08",
+        "/publication/source": "https://www.arcom.fr/sites/default/files/tphe/files/speaking_time_files/Export_web_Personnalites_avec_seuil_01-08-2026_31-08-2026.csv"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/observations/0/seconds",
+        "/publication/publishedCells"
+      ],
+      "sources": [
+        "https://www.arcom.fr/sites/default/files/tphe/files/speaking_time_files/Export_web_Personnalites_avec_seuil_01-08-2026_31-08-2026.csv"
+      ],
+      "identifiants": ["2026-08-radio-rmc"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "médias",
+      "question": "Pour Radio Classique en 2026-07, dans quelle unité consulter le relevé de l’Arcom ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "arcom",
+        "id": "2026-07-radio-radio-classique"
+      },
+      "attendus": {
+        "/collection": "arcom",
+        "/publication/id": "2026-07-radio-radio-classique",
+        "/publication/unit": "secondes",
+        "/publication/date": "2026-07",
+        "/publication/source": "https://www.arcom.fr/sites/default/files/tphe/files/speaking_time_files/Export_web_Personnalites_avec_seuil_01-07-2026_31-07-2026.csv"
+      },
+      "champs": [
+        "/rubrique",
+        "/publication/observations/0/seconds",
+        "/publication/publishedCells"
+      ],
+      "sources": [
+        "https://www.arcom.fr/sites/default/files/tphe/files/speaking_time_files/Export_web_Personnalites_avec_seuil_01-07-2026_31-07-2026.csv"
+      ],
+      "identifiants": ["2026-07-radio-radio-classique"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "graphiques",
+      "question": "Où intégrer le graphique « La CSG sur trois salaires bruts » et où vérifier sa source ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "graphiques",
+        "id": "csg"
+      },
+      "attendus": {
+        "/collection": "graphiques",
+        "/publication/id": "csg",
+        "/publication/actualise": "https://polradar.fr/graphiques/csg.svg",
+        "/publication/sources/0/url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2971?quest6=0"
+      },
+      "champs": ["/rubrique", "/publication/fige", "/publication/page"],
+      "sources": [
+        "https://www.service-public.gouv.fr/particuliers/vosdroits/F2971?quest6=0"
+      ],
+      "identifiants": ["csg"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "graphiques",
+      "question": "Où intégrer le graphique « Inflation harmonisée » et où vérifier sa source ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "graphiques",
+        "id": "economie-inflation"
+      },
+      "attendus": {
+        "/collection": "graphiques",
+        "/publication/id": "economie-inflation",
+        "/publication/actualise": "https://polradar.fr/graphiques/economie/inflation.svg",
+        "/publication/sources/0/url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_minr/default/table?lang=fr"
+      },
+      "champs": ["/rubrique", "/publication/fige", "/publication/page"],
+      "sources": [
+        "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_minr/default/table?lang=fr"
+      ],
+      "identifiants": ["economie-inflation"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "graphiques",
+      "question": "Où intégrer le graphique « Prix de l’alimentation » et où vérifier sa source ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "graphiques",
+        "id": "economie-prix-alimentation"
+      },
+      "attendus": {
+        "/collection": "graphiques",
+        "/publication/id": "economie-prix-alimentation",
+        "/publication/actualise": "https://polradar.fr/graphiques/economie/prix-alimentation.svg",
+        "/publication/sources/0/url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_minr/default/table?lang=fr"
+      },
+      "champs": ["/rubrique", "/publication/fige", "/publication/page"],
+      "sources": [
+        "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_minr/default/table?lang=fr"
+      ],
+      "identifiants": ["economie-prix-alimentation"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "inconnues",
+      "question": "Existe-t-il une publication dans « sondages » avec l’identifiant institut-inconnu ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sondages",
+        "id": "institut-inconnu"
+      },
+      "attendus": {
+        "/publication": null
+      },
+      "champs": [],
+      "sources": ["https://polradar.fr/mcp/documentation/"],
+      "identifiants": ["institut-inconnu"],
+      "vide": true,
+      "erreur": false
+    },
+    {
+      "famille": "inconnues",
+      "question": "Existe-t-il une publication dans « droit » avec l’identifiant texte-introuvable ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "droit",
+        "id": "texte-introuvable"
+      },
+      "attendus": {
+        "/publication": null
+      },
+      "champs": [],
+      "sources": ["https://polradar.fr/mcp/documentation/"],
+      "identifiants": ["texte-introuvable"],
+      "vide": true,
+      "erreur": false
+    },
+    {
+      "famille": "inconnues",
+      "question": "Existe-t-il une publication dans « parlement » avec l’identifiant VTANR5L16V999999 ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement",
+        "id": "VTANR5L16V999999"
+      },
+      "attendus": {
+        "/publication": null
+      },
+      "champs": [],
+      "sources": ["https://polradar.fr/mcp/documentation/"],
+      "identifiants": ["VTANR5L16V999999"],
+      "vide": true,
+      "erreur": false
+    },
+    {
+      "famille": "inconnues",
+      "question": "Existe-t-il une publication dans « breves » avec l’identifiant nouvelle-sans-source ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "breves",
+        "id": "nouvelle-sans-source"
+      },
+      "attendus": {
+        "/publication": null
+      },
+      "champs": [],
+      "sources": ["https://polradar.fr/mcp/documentation/"],
+      "identifiants": ["nouvelle-sans-source"],
+      "vide": true,
+      "erreur": false
+    },
+    {
+      "famille": "inconnues",
+      "question": "Existe-t-il une publication dans « economie » avec l’identifiant serie-inconnue ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "economie",
+        "id": "serie-inconnue"
+      },
+      "attendus": {
+        "/publication": null
+      },
+      "champs": [],
+      "sources": ["https://polradar.fr/mcp/documentation/"],
+      "identifiants": ["serie-inconnue"],
+      "vide": true,
+      "erreur": false
+    },
+    {
+      "famille": "inconnues",
+      "question": "Existe-t-il une publication dans « verifications » avec l’identifiant declaration-absente ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "verifications",
+        "id": "declaration-absente"
+      },
+      "attendus": {
+        "/publication": null
+      },
+      "champs": [],
+      "sources": ["https://polradar.fr/mcp/documentation/"],
+      "identifiants": ["declaration-absente"],
+      "vide": true,
+      "erreur": false
+    },
+    {
+      "famille": "inconnues",
+      "question": "Quelle commune correspond au code Insee non attribué 00000 ?",
+      "outil": "polradar_territoires",
+      "arguments": {
+        "code": "00000"
+      },
+      "attendus": {
+        "/commune": null
+      },
+      "champs": [],
+      "sources": ["https://polradar.fr/mcp/documentation/"],
+      "identifiants": ["00000"],
+      "vide": true,
+      "erreur": false
+    },
+    {
+      "famille": "inconnues",
+      "question": "Peut-on confirmer une mesure dont la fiche demandée est absente ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "mesure-absente-2027"
+      },
+      "attendus": {
+        "/fiche": null
+      },
+      "champs": [],
+      "sources": ["https://polradar.fr/mcp/documentation/"],
+      "identifiants": ["mesure-absente-2027"],
+      "vide": true,
+      "erreur": false
+    },
+    {
+      "famille": "inconnues",
+      "question": "La matrice documente-t-elle un dossier désigné par un identifiant inconnu ?",
+      "outil": "polradar_question",
+      "arguments": {
+        "id": "dossier-absent"
+      },
+      "attendus": {
+        "/question": null
+      },
+      "champs": [],
+      "sources": ["https://polradar.fr/mcp/documentation/"],
+      "identifiants": ["dossier-absent"],
+      "vide": true,
+      "erreur": false
+    },
+    {
+      "famille": "ambiguïtés",
+      "question": "Une comparaison répétant deux fois le même candidat est-elle recevable ?",
+      "outil": "polradar_comparer",
+      "arguments": {
+        "question": "retraites-conditions-depart",
+        "candidates": ["attal", "attal"]
+      },
+      "attendus": {},
+      "champs": [],
+      "sources": ["https://polradar.fr/mcp/documentation/"],
+      "identifiants": ["attal"],
+      "vide": false,
+      "erreur": true
+    },
+    {
+      "famille": "ambiguïtés",
+      "question": "Le service peut-il traiter le seul nom « Paris » à la place du code Insee ?",
+      "outil": "polradar_territoires",
+      "arguments": {
+        "code": "Paris"
+      },
+      "attendus": {},
+      "champs": [],
+      "sources": ["https://polradar.fr/mcp/documentation/"],
+      "identifiants": ["Paris"],
+      "vide": false,
+      "erreur": true
+    },
+    {
+      "famille": "ambiguïtés",
+      "question": "Un nom de collection inconnu peut-il produire des observations ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "inconnue"
+      },
+      "attendus": {},
+      "champs": [],
+      "sources": ["https://polradar.fr/mcp/documentation/"],
+      "identifiants": ["inconnue"],
+      "vide": false,
+      "erreur": true
+    },
+    {
+      "famille": "ambiguïtés",
+      "question": "Peut-on demander un avant/après sans préciser un type pris en charge ?",
+      "outil": "polradar_changements",
+      "arguments": {
+        "kind": "sans-type"
+      },
+      "attendus": {},
+      "champs": [],
+      "sources": ["https://polradar.fr/mcp/documentation/"],
+      "identifiants": ["sans-type"],
+      "vide": false,
+      "erreur": true
+    },
+    {
+      "famille": "ambiguïtés",
+      "question": "Que répond le service si une version négative de la fiche CSG est demandée ?",
+      "outil": "polradar_measure",
+      "arguments": {
+        "id": "attal-csg-salaires",
+        "version": -1
+      },
+      "attendus": {},
+      "champs": [],
+      "sources": ["https://polradar.fr/mcp/documentation/"],
+      "identifiants": ["attal-csg-salaires"],
+      "vide": false,
+      "erreur": true
+    },
+    {
+      "famille": "ambiguïtés",
+      "question": "Une recherche de sources contenant uniquement des espaces est-elle acceptée ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sources",
+        "query": "   "
+      },
+      "attendus": {},
+      "champs": [],
+      "sources": ["https://polradar.fr/mcp/documentation/"],
+      "identifiants": ["sources"],
+      "vide": false,
+      "erreur": true
+    },
+    {
+      "famille": "méthode",
+      "question": "Quelle règle d’attribution encadre l’emploi des textes collectifs ?",
+      "outil": "polradar_methodologie",
+      "arguments": {},
+      "attendus": {
+        "/url": "https://polradar.fr/methode/"
+      },
+      "champs": ["/attribution", "/dates", "/votes"],
+      "sources": ["https://polradar.fr/methode/"],
+      "identifiants": ["attribution"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "méthode",
+      "question": "Comment savoir si cette édition propose les scrutins de l’Assemblée ?",
+      "outil": "polradar_corpus",
+      "arguments": {},
+      "attendus": {
+        "/contratsCollections/parlement/compatible": true
+      },
+      "champs": ["/sources", "/campagne", "/archives"],
+      "sources": ["https://polradar.fr/api/contrat-donnees.json"],
+      "identifiants": ["parlement"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "candidatures",
+      "question": "Où consulter la liste des candidatures et leur source de statut ?",
+      "outil": "polradar_candidates",
+      "arguments": {
+        "includeWithdrawn": true
+      },
+      "attendus": {
+        "/candidatures/0/url": "https://polradar.fr/candidats/arthaud/"
+      },
+      "champs": ["/candidatures/0/sourceStatut"],
+      "sources": [
+        "https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-declares-et-potentiels-444932"
+      ],
+      "identifiants": ["arthaud"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "recherche",
+      "question": "Quelle fiche de Anasse Kazib la recherche retourne-t-elle en premier sur les agios bancaires ?",
+      "outil": "polradar_search",
+      "arguments": {
+        "candidate": "kazib",
+        "theme": "fiscalite",
+        "query": "agios bancaires",
+        "limit": 1
+      },
+      "attendus": {
+        "/resultats/0/id": "kazib-credits-sans-agios"
+      },
+      "champs": ["/resultats/0/source/passage"],
+      "sources": ["https://anasse2027.fr/programme"],
+      "identifiants": ["kazib-credits-sans-agios"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "recherche",
+      "question": "Quelle fiche de Philippe Herlin la recherche retourne-t-elle en premier sur les retraite par capitalisation ?",
+      "outil": "polradar_search",
+      "arguments": {
+        "candidate": "herlin",
+        "theme": "retraites",
+        "query": "retraite par capitalisation",
+        "limit": 1
+      },
+      "attendus": {
+        "/resultats/0/id": "herlin-capitalisation"
+      },
+      "champs": ["/resultats/0/source/passage"],
+      "sources": ["https://www.herlin27.fr/programme"],
+      "identifiants": ["herlin-capitalisation"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "parlement",
+      "question": "Quel choix le dossier senat2022-233 attribue-t-il à Bruno Retailleau ?",
+      "outil": "polradar_votes",
+      "arguments": {
+        "candidate": "retailleau",
+        "ballot": "senat2022-233"
+      },
+      "attendus": {
+        "/resultats/0/ballotId": "senat2022-233",
+        "/resultats/0/position/choice": "pour",
+        "/resultats/0/rollCall/url": "https://www.senat.fr/scrutin-public/2022/scr2022-233.html"
+      },
+      "champs": ["/resultats/0/date", "/resultats/0/title"],
+      "sources": ["https://www.senat.fr/scrutin-public/2022/scr2022-233.html"],
+      "identifiants": ["senat2022-233", "retailleau"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "parlement",
+      "question": "Quel choix le dossier pe8-20170215-ceta attribue-t-il à Florian Philippot ?",
+      "outil": "polradar_votes",
+      "arguments": {
+        "candidate": "philippot",
+        "ballot": "pe8-20170215-ceta"
+      },
+      "attendus": {
+        "/resultats/0/ballotId": "pe8-20170215-ceta",
+        "/resultats/0/position/choice": "contre",
+        "/resultats/0/rollCall/url": "https://data.europarl.europa.eu/distribution/reds_iPlPv_Rcv/PV-8-2017-02-15-RCV/PV-8-2017-02-15-RCV-FNL_fr.xhtml#_Toc373651"
+      },
+      "champs": ["/resultats/0/date", "/resultats/0/title"],
+      "sources": [
+        "https://data.europarl.europa.eu/distribution/reds_iPlPv_Rcv/PV-8-2017-02-15-RCV/PV-8-2017-02-15-RCV-FNL_fr.xhtml#_Toc373651"
+      ],
+      "identifiants": ["pe8-20170215-ceta", "philippot"],
+      "vide": false,
+      "erreur": false
+    }
+  ]
+}

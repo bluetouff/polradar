@@ -18,9 +18,14 @@ def previous_service(destination):
                                     cwd=ROOT,text=True).splitlines()
     for name in names:
         path = Path(name)
-        if path.parent != Path('mcp') or (path.suffix != '.go' and path.name not in ('go.sum','go.mod')):
+        if path == Path('mcp/testdata/questions-documentaires.json'):
+            target = destination/'testdata'/path.name
+            target.parent.mkdir(exist_ok=True)
+        elif path.parent == Path('mcp') and (path.suffix == '.go' or path.name in ('go.sum','go.mod')):
+            target = destination/path.name
+        else:
             continue
-        (destination/path.name).write_bytes(subprocess.check_output(['git','show',PREVIOUS+':'+name],cwd=ROOT))
+        target.write_bytes(subprocess.check_output(['git','show',PREVIOUS+':'+name],cwd=ROOT))
 
 
 def run(site, service, sha):
