@@ -1,0 +1,240 @@
+{
+  "checked": "2026-11-24",
+  "cases": [
+    {
+      "id": "philippe",
+      "label": "Édouard Philippe",
+      "question": "Porter progressivement l’âge de départ à la retraite à 65 ans",
+      "measureId": "philippe-retraites-1",
+      "source": "https://www.edouardphilippe.fr/programme/retraites"
+    },
+    {
+      "id": "mathieu",
+      "label": "Benoît Mathieu",
+      "question": "Confier la rédaction d’une Constitution à 500 citoyens tirés au sort",
+      "measureId": "mathieu-institutions-convention-500",
+      "source": "https://benoitmathieu2027.fr/programme"
+    },
+    {
+      "id": "markovic",
+      "label": "Parti animaliste",
+      "question": "Créer un ministère indépendant de la Condition animale, dans le communiqué présentant Mira Markovic",
+      "measureId": "markovic-institutions-ministere-condition-animale",
+      "source": "https://parti-animaliste.fr/news/communique-de-presse/mira-markovic-representera-le-parti-animaliste-a-la-presidentielle"
+    }
+  ],
+  "rows": [
+    {
+      "name": "PresiTracker2027",
+      "url": "https://presitracker2027.fr/",
+      "checks": [
+        {
+          "caseId": "philippe",
+          "status": "trouve",
+          "page": "https://presitracker2027.fr/candidats/philippe"
+        },
+        {
+          "caseId": "mathieu",
+          "status": "autre_formulation",
+          "page": "https://presitracker2027.fr/candidats/mathieu",
+          "note": "La fiche renvoie à un entretien sur des conventions de 150 personnes. Ce passage porte sur des conventions citoyennes en général."
+        },
+        {
+          "caseId": "markovic",
+          "status": "trouve",
+          "page": "https://presitracker2027.fr/candidats/markovic"
+        }
+      ]
+    },
+    {
+      "name": "2027 et moi",
+      "url": "https://2027etmoi.fr/",
+      "checks": [
+        {
+          "caseId": "philippe",
+          "status": "trouve",
+          "page": "https://2027etmoi.fr/candidats/philippe.html"
+        },
+        {
+          "caseId": "mathieu",
+          "status": "non_retrouve",
+          "page": "https://2027etmoi.fr/candidats/mathieu.html"
+        },
+        {
+          "caseId": "markovic",
+          "status": "trouve",
+          "page": "https://2027etmoi.fr/candidats/markovic.html"
+        }
+      ]
+    },
+    {
+      "name": "Programmes 2027",
+      "url": "https://programmes-2027.fr/",
+      "checks": [
+        {
+          "caseId": "philippe",
+          "status": "trouve",
+          "page": "https://programmes-2027.fr/candidats/philippe/"
+        },
+        {
+          "caseId": "mathieu",
+          "status": "non_retrouve",
+          "page": "https://programmes-2027.fr/"
+        },
+        {
+          "caseId": "markovic",
+          "status": "non_retrouve",
+          "page": "https://programmes-2027.fr/"
+        }
+      ]
+    },
+    {
+      "name": "La Petite Boussole",
+      "url": "https://www.lapetiteboussole.com/",
+      "checks": [
+        {
+          "caseId": "philippe",
+          "status": "trouve",
+          "page": "https://www.lapetiteboussole.com/candidats/edouard-philippe"
+        },
+        {
+          "caseId": "mathieu",
+          "status": "trouve",
+          "page": "https://www.lapetiteboussole.com/candidats/benoit-mathieu"
+        },
+        {
+          "caseId": "markovic",
+          "status": "non_retrouve",
+          "page": "https://www.lapetiteboussole.com/candidats"
+        }
+      ]
+    },
+    {
+      "name": "PrésiTracker",
+      "url": "https://presitracker.fr/",
+      "checks": [
+        {
+          "caseId": "philippe",
+          "status": "non_retrouve",
+          "page": "https://presitracker.fr/candidats/edouard-philippe.html"
+        },
+        {
+          "caseId": "mathieu",
+          "status": "non_retrouve",
+          "page": "https://presitracker.fr/"
+        },
+        {
+          "caseId": "markovic",
+          "status": "non_retrouve",
+          "page": "https://presitracker.fr/"
+        }
+      ]
+    },
+    {
+      "name": "Déchiffrer 2027",
+      "url": "https://dechiffrer2027.fr/",
+      "checks": [
+        {
+          "caseId": "philippe",
+          "status": "trouve",
+          "page": "https://dechiffrer2027.fr/candidat/philippe"
+        },
+        {
+          "caseId": "mathieu",
+          "status": "non_retrouve",
+          "page": "https://dechiffrer2027.fr/candidats"
+        },
+        {
+          "caseId": "markovic",
+          "status": "non_retrouve",
+          "page": "https://dechiffrer2027.fr/candidats"
+        }
+      ]
+    },
+    {
+      "name": "Fondation iFRAP",
+      "url": "https://www.ifrap.org/comparateurs/presidentielle-2027",
+      "checks": [
+        {
+          "caseId": "philippe",
+          "status": "non_retrouve",
+          "page": "https://www.ifrap.org/comparateurs/presidentielle-2027"
+        },
+        {
+          "caseId": "mathieu",
+          "status": "non_retrouve",
+          "page": "https://www.ifrap.org/comparateurs/presidentielle-2027"
+        },
+        {
+          "caseId": "markovic",
+          "status": "non_retrouve",
+          "page": "https://www.ifrap.org/comparateurs/presidentielle-2027"
+        }
+      ]
+    },
+    {
+      "name": "Swipe Your President",
+      "url": "https://swipeyourpresident.com/",
+      "checks": [
+        {
+          "caseId": "philippe",
+          "status": "trouve",
+          "page": "https://swipeyourpresident.com/candidats/edouard-philippe"
+        },
+        {
+          "caseId": "mathieu",
+          "status": "non_retrouve",
+          "page": "https://swipeyourpresident.com/candidats"
+        },
+        {
+          "caseId": "markovic",
+          "status": "non_retrouve",
+          "page": "https://swipeyourpresident.com/candidats"
+        }
+      ]
+    },
+    {
+      "name": "Sondages 2027",
+      "url": "https://sondages2027.fr/",
+      "checks": [
+        {
+          "caseId": "philippe",
+          "status": "trouve",
+          "page": "https://sondages2027.fr/programmes/candidat/edouard-philippe/"
+        },
+        {
+          "caseId": "mathieu",
+          "status": "non_retrouve",
+          "page": "https://sondages2027.fr/programmes/"
+        },
+        {
+          "caseId": "markovic",
+          "status": "non_retrouve",
+          "page": "https://sondages2027.fr/programmes/"
+        }
+      ]
+    },
+    {
+      "name": "Komune",
+      "url": "https://www.komunemedia.fr/comparateur/",
+      "checks": [
+        {
+          "caseId": "philippe",
+          "status": "autre_formulation",
+          "page": "https://www.komunemedia.fr/comparateur/programmes/retraites/",
+          "note": "La rubrique cite une opposition au retour à la retraite à 60 ans."
+        },
+        {
+          "caseId": "mathieu",
+          "status": "non_retrouve",
+          "page": "https://www.komunemedia.fr/comparateur/candidats/benoit-mathieu/"
+        },
+        {
+          "caseId": "markovic",
+          "status": "non_retrouve",
+          "page": "https://www.komunemedia.fr/comparateur/candidats/mira-markovic/"
+        }
+      ]
+    }
+  ]
+}

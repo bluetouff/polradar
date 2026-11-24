@@ -1,0 +1,133 @@
+---
+import Base from '../../layouts/Base.astro';
+import sample from '../../data/document-sample.json';
+import { formatDate } from '../../lib/data';
+const statuses: Record<string, string> = {
+  trouve: 'Mention explicite',
+  autre_formulation: 'Autre proposition',
+  non_retrouve: 'Non repéré',
+  inaccessible: 'Page inaccessible',
+};
+---
+
+<Base
+  title="Trois propositions dans dix comparateurs"
+  description="Comment trois propositions vérifiables sont présentées dans les pages publiques de dix sites de suivi de la présidentielle."
+  section="/sources/"
+>
+  <header class="page-title">
+    <h1>Trois propositions dans dix comparateurs</h1>
+    <p>
+      Relevé du {formatDate(sample.checked)} sur les pages publiques de chaque
+      site. Chaque cellule ouvre la page consultée.
+    </p>
+  </header>
+  <div class="questions">
+    {sample.cases.map((c) => (
+      <article>
+        <h2>{c.label}</h2>
+        <p>{c.question}.</p>
+        <a href={c.source} rel="noreferrer">
+          Document d’origine ↗
+        </a>{' '}
+        · <a href={'/mesures/' + c.measureId + '/'}>Fiche Polradar</a>
+      </article>
+    ))}
+  </div>
+  <section aria-label="Résultats sur les pages comparées" class="sites">
+    {sample.rows.map((site) => (
+      <article>
+        <h2>
+          <a href={site.url} rel="noreferrer">
+            {site.name} ↗
+          </a>
+        </h2>
+        <dl>
+          {site.checks.map((check) => (
+            <div>
+              <dt>{sample.cases.find((c) => c.id === check.caseId)!.label}</dt>
+              <dd>
+                <a
+                  data-status={check.status}
+                  href={check.page}
+                  rel="noreferrer"
+                >
+                  {statuses[check.status]}
+                </a>
+                {'note' in check && <small>{check.note}</small>}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </article>
+    ))}
+  </section>
+  <details class="reader-options">
+    <summary>Comment lire ce relevé</summary>
+    <p>
+      Nous avons cherché les trois mêmes propositions dans le comparateur
+      public, son répertoire de candidatures et les pages de programme
+      accessibles depuis ces entrées. Nous avons vérifié le sujet, l’auteur et
+      la valeur annoncée. Un lien vers un programme sans mention de la
+      proposition compte comme « non repéré ».
+    </p>
+    <p>
+      « Non repéré » porte sur les pages consultées. Une page inaccessible
+      serait indiquée séparément. Les trois exemples couvrent une retraite, un
+      projet de convention constitutionnelle et une proposition de parti.
+      L’échantillon ne mesure pas la couverture totale d’un site.
+    </p>
+  </details>
+  <p>
+    <a href="/documents/">Retour au registre des documents</a>
+  </p>
+</Base>
+<style>
+  .questions,
+  .sites {
+    display: grid;
+    gap: 0.85rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    margin: 1.5rem 0;
+  }
+  .questions article,
+  .sites article {
+    padding: 1.1rem;
+    border-radius: 0.65rem;
+    border: 1px solid var(--panel-edge, #abc3cc);
+    background: var(--panel-gradient, #f6fafb);
+    overflow-wrap: anywhere;
+  }
+  .questions h2,
+  .sites h2 {
+    font-size: 1.15rem;
+    margin: 0 0 0.5rem;
+  }
+  .questions article {
+    border-top: 3px solid #307980;
+  }
+  .sites dl {
+    margin: 0;
+  }
+  .sites dl div {
+    padding: 0.45rem 0;
+    border-top: 1px solid #cedce0;
+  }
+  .sites dt {
+    font-weight: 650;
+  }
+  .sites dd {
+    margin: 0;
+  }
+  .sites dd a,
+  .sites small {
+    font-size: 0.85rem;
+  }
+  .sites small {
+    display: block;
+    line-height: 1.5;
+  }
+  .sites a[data-status='trouve'] {
+    color: #105849;
+  }
+</style>
