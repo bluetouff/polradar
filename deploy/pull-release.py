@@ -19,7 +19,7 @@ import urllib.parse
 import urllib.request
 
 MAX_ARCHIVE = 24 * 1024 * 1024
-MAX_EXPANDED = 128 * 1024 * 1024
+MAX_EXPANDED = 144 * 1024 * 1024
 MAX_FILE = 10 * 1024 * 1024
 MAX_FILES = 6000
 EXTENSIONS = {'.html', '.css', '.js', '.json', '.xml', '.txt', '.svg', '.png', '.jpg', '.jpeg', '.webp', '.avif', '.ico', '.woff2'}
