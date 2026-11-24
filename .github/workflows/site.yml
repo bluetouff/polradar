@@ -27,6 +27,21 @@ jobs:
           node-version-file: .node-version
           cache: npm
       - run: npm ci --ignore-scripts
+      - name: Dater le cache de publication
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        id: cache-date
+        run: date -u '+day=%F' >> "$GITHUB_OUTPUT"
+      - name: Retrouver les rendus vérifiés de main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        id: renders
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            .cache/polradar-pages
+            .cache/polradar-og
+          key: polradar-renders-v1-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('package-lock.json', '.node-version', 'scripts/build-pages.mjs', 'scripts/render-social-images.mjs') }}-${{ steps.cache-date.outputs.day }}
+          restore-keys: |
+            polradar-renders-v1-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('package-lock.json', '.node-version', 'scripts/build-pages.mjs', 'scripts/render-social-images.mjs') }}-
       - run: npm run format:check
       - run: npm run security:audit
       - run: npx --no-install playwright install --with-deps chromium
@@ -36,6 +51,14 @@ jobs:
           HISTORY_BASE: ${{ github.event.pull_request.base.sha || github.event.before || github.sha }}
         run: node scripts/check-history.mjs
       - run: npm run test:e2e
+      - name: Conserver les rendus validés de main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && steps.renders.outputs.cache-hit != 'true'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            .cache/polradar-pages
+            .cache/polradar-og
+          key: ${{ steps.renders.outputs.cache-primary-key }}
       - name: Package validated main
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:

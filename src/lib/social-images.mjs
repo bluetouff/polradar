@@ -1,5 +1,4 @@
 import { readFileSync } from 'node:fs';
-import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
 import { francePath, projectFrance } from './campaign-visuals-view.mjs';
 import { divergenceGroups } from './divergences.mjs';
@@ -27,7 +26,6 @@ const votes = read('legislative-votes'),
 const watch = read('watch'),
   events = read('events'),
   airtime = read('airtime');
-const edition = read('meta').edition;
 const ches = read('ches-france-2024');
 const curatedComparisons = read('divergence-positions');
 const quantitativeComparisons = divergenceGroups(
@@ -243,7 +241,7 @@ const defs = [
     '/',
     'Présidentielle française',
     'Présidentielle\n2027',
-    'Programmes, candidatures et campagne.',
+    'Programmes, sondages et votes au Parlement.',
     'navy',
     {
       kind: 'home',
@@ -698,6 +696,40 @@ const defs = [
     bars(themeBars.slice(-6)),
   ],
   [
+    'mcp',
+    '/mcp/',
+    'Accès aux données',
+    'Serveur MCP\nde Polradar',
+    'Les propositions et leurs sources en lecture seule.',
+    'navy',
+    {
+      kind: 'document',
+      rows: [
+        'Rechercher une proposition',
+        'Lire les sources',
+        'Consulter les candidatures',
+        'Compter les contenus',
+      ],
+    },
+  ],
+  [
+    'mcp-statistiques',
+    '/mcp/statistiques/',
+    'Données publiques',
+    'Activité du\nserveur MCP',
+    'Les appels par jour et par outil sur 30 jours.',
+    'sage',
+    {
+      kind: 'document',
+      rows: [
+        'Appels quotidiens',
+        'Réponses avec résultat',
+        'Recherches sans résultat',
+        'Erreurs des outils',
+      ],
+    },
+  ],
+  [
     'statistiques',
     '/statistiques/',
     'Données',
@@ -758,18 +790,6 @@ const defs = [
     },
   ],
 ];
-const rendererFiles = [
-  '../lib/social-images.mjs',
-  '../lib/social-image-view.mjs',
-  '../styles/social-images.css',
-  '../../public/marque/polradar.svg',
-  '../assets/fonts/archivo-latin.woff2',
-  '../../scripts/render-social-images.mjs',
-];
-const rendererDigest = createHash('sha256');
-for (const file of rendererFiles)
-  rendererDigest.update(readFileSync(resolve('src/lib', file)));
-const salt = rendererDigest.digest('hex');
 export const socialImages = defs.map(
   ([id, path, kicker, title, description, palette, graphic]) => {
     const spec = {
@@ -780,18 +800,15 @@ export const socialImages = defs.map(
       description,
       palette,
       graphic,
-      edition,
     };
-    const hash = createHash('sha256')
-      .update(salt)
-      .update(JSON.stringify(spec))
-      .digest('hex')
-      .slice(0, 20);
     return {
       ...spec,
-      file: `${id}-${hash}.png`,
-      url: `/og/${id}-${hash}.png`,
-      alt: `Polradar · ${title.replaceAll('\n', ' ')}. ${description}`,
+      file: `${id}.png`,
+      url: `/og/${id}.png`,
+      alt:
+        id === 'mesures'
+          ? 'Mesures et orientations. Répartition des fiches par thème dans le corpus Polradar.'
+          : `Polradar · ${title.replaceAll('\n', ' ')}. ${description}`,
     };
   },
 );

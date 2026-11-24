@@ -60,6 +60,20 @@ for (const file of pages) {
     !html.includes('name="twitter:card" content="summary_large_image"')
   )
     errors.push(`${route}: métadonnées OG incohérentes`);
+  const imageTags =
+    html.match(
+      /<meta (?:property="og:image:alt"|name="twitter:image:alt") content="([^"]*)"/g,
+    ) ?? [];
+  const alt = socialImageFor(route)
+    .alt.replaceAll('&', '&amp;')
+    .replaceAll('"', '&quot;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;');
+  if (
+    imageTags.length !== 2 ||
+    imageTags.some((tag) => !tag.endsWith('content="' + alt + '"'))
+  )
+    errors.push(`${route}: texte alternatif des cartes sociales incohérent`);
   const imagePath = path.join(root, expectedImage.pathname);
   if (!verifiedImages.has(imagePath)) {
     const png = await readFile(imagePath);

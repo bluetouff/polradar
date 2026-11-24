@@ -27,7 +27,12 @@ export interface SearchEntry {
 }
 const publicationYear = (s: (typeof sources)[number]) =>
   s.published?.slice(0, 4) ?? s.publishedYear ?? '';
-export async function searchEntries(): Promise<SearchEntry[]> {
+let builtIndex: Promise<SearchEntry[]> | undefined;
+export function searchEntries(): Promise<SearchEntry[]> {
+  if (import.meta.env.DEV) return buildSearchIndex();
+  return (builtIndex ??= buildSearchIndex());
+}
+async function buildSearchIndex(): Promise<SearchEntry[]> {
   const articles = await getCollection('articles', ({ data }) => !data.draft);
   const sourceYear = (ids: string[]) => {
     const years = [

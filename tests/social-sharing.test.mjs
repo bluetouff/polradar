@@ -79,6 +79,8 @@ test('l’accueil et toutes les rubriques ont un PNG distinct et les sous-pages 
     '/dossiers/',
     '/engagements/',
     '/mesures/',
+    '/mcp/',
+    '/mcp/statistiques/',
     '/numerique/',
     '/questions/',
     '/numerique/comparer/',
@@ -110,7 +112,7 @@ test('l’accueil et toutes les rubriques ont un PNG distinct et les sous-pages 
   );
   for (const path of paths) assert.equal(socialImageFor(path).path, path);
   for (const card of socialImages) {
-    assert.match(card.url, /^\/og\/[a-z-]+-[a-f0-9]{20}\.png$/);
+    assert.equal(card.url, `/og/${card.id}.png`);
     assert.equal(socialImageFor(card.path + 'detail/').id, card.id);
   }
   assert.equal(socialImageFor('/mesures/une-fiche/').id, 'mesures');

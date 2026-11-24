@@ -29,7 +29,7 @@ import { meta, formatDate } from '../lib/data';
       </a>
       <small>
         Corpus du{' '}
-        <time datetime={meta.corpusUpdated}>
+        <time data-polradar-date="corpus" datetime={meta.corpusUpdated}>
           {formatDate(meta.corpusUpdated)}
         </time>{' '}
         · Sélection non exhaustive

@@ -1,4 +1,5 @@
 ---
+import { readFileSync } from 'node:fs';
 import {
   collectiveLabel,
   unspecifiedCollective,
@@ -23,10 +24,18 @@ import {
   scopes,
 } from '../../lib/data';
 export function getStaticPaths() {
-  return measures.map((measure) => ({
-    params: { id: measure.id },
-    props: { measure },
-  }));
+  const ids: Set<string> | null =
+    import.meta.env.PROD && process.env.POLRADAR_FILTER_MEASURES === '1'
+      ? new Set(
+          JSON.parse(readFileSync('.cache/polradar-pages/render.json', 'utf8')),
+        )
+      : null;
+  return measures
+    .filter((m) => !ids || ids.has(m.id))
+    .map((measure) => ({
+      params: { id: measure.id },
+      props: { measure },
+    }));
 }
 const { measure } = Astro.props;
 const linkedBudgets = (budgetIdsByMeasure.get(measure.id) ?? []).map((id) =>
