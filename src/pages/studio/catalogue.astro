@@ -1,0 +1,60 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { studioItems, studioFamilies, studioDataPath } from '../../lib/studio';
+import '../../styles/studio.css';
+const families = Object.entries(studioFamilies)
+  .map(([id, name]) => ({
+    name,
+    items: studioItems
+      .filter((item) => item.family === id)
+      .sort((a, b) => a.label.localeCompare(b.label, 'fr')),
+  }))
+  .filter((f) => f.items.length);
+---
+
+<Base
+  title="Catalogue des graphiques"
+  section="/studio/"
+  description="Télécharger les graphiques de Polradar en SVG et retrouver les sources documentaires de chaque édition."
+>
+  <header class="studio-title">
+    <span class="studio-mark">
+      <Icon name="sondages" />
+    </span>
+    <div>
+      <h1>Catalogue des graphiques</h1>
+      <p>
+        Choisissez un sujet pour télécharger le SVG ou consulter ses sources.
+      </p>
+    </div>
+    <a href="/studio/">
+      Ouvrir le Studio <Icon name="arrow" />
+    </a>
+  </header>
+  <section class="studio-noscript">
+    {families.map((f) => (
+      <details>
+        <summary>
+          {f.name} ({f.items.length})
+        </summary>
+        <ul>
+          {f.items.map((i) => (
+            <li>
+              <a href={i.live} download>
+                {i.label} ·{' '}
+                {i.generated ? 'SVG avec les données' : 'SVG actualisé'}
+              </a>{' '}
+              {!i.generated && (
+                <a href={studioDataPath(i)} download>
+                  Données JSON
+                </a>
+              )}{' '}
+              · <a href={i.graphic.page}>Dossier et sources</a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    ))}
+  </section>
+</Base>

@@ -41,6 +41,25 @@ test('le catalogue documentaire expose chaque choix du Studio et les sources de 
   expect((await request.get(new URL(map.donnees).pathname)).ok()).toBe(true);
 });
 
+async function drawingData(page: Page, id: string) {
+  const response = await page.request.get('/graphiques/studio/' + id + '.svg');
+  expect(response.ok()).toBeTruthy();
+  return page.evaluate(
+    (body) => {
+      const doc = new DOMParser().parseFromString(body, 'image/svg+xml');
+      const data = JSON.parse(
+        doc.querySelector('metadata#studio-data')!.textContent!,
+      );
+      return {
+        rows: data.rows as (string | number | null)[][],
+        alt: String(data.graphic.alt),
+        text: doc.documentElement.textContent!,
+      };
+    },
+    await response.text(),
+  );
+}
+
 async function ready(page: Page) {
   await expect(page.locator('#studio-code')).toHaveValue(/<figure>/);
   await expect(page.locator('#studio-img')).toHaveAttribute(
@@ -168,6 +187,9 @@ test('le Studio conserve son catalogue de SVG sans JavaScript', async ({
   try {
     const page = await context.newPage();
     await page.goto(testOrigin + '/studio/');
+    await page
+      .getByRole('link', { name: 'Catalogue des graphiques et des sources' })
+      .click();
     const menu = page.locator('.studio-noscript details').filter({
       has: page.locator('summary').filter({ hasText: 'Votes parlementaires' }),
     });
@@ -185,44 +207,35 @@ test('le Studio conserve son catalogue de SVG sans JavaScript', async ({
 });
 
 test('les cartes relient la méthode, les sources et le dénominateur du département', async ({
-  request,
+  page,
 }) => {
-  const round = await (
-    await request.get(
-      '/studio/donnees/elections-participation-2022-tour-2.json',
-    )
-  ).json();
-  const paris = round.rows.find((row: unknown[]) => row[0] === '75');
+  const round = await drawingData(page, 'elections-participation-2022-tour-2');
+  const paris = round.rows.find((row) => row[0] === '75')!;
   expect(paris[3]).toBe(1368623);
   expect(paris[4]).toBe(1014129);
   expect(paris[5]).toBeCloseTo((1014129 / 1368623) * 100, 8);
-  const care = await (
-    await request.get('/studio/donnees/soins-generalistes.json')
-  ).json();
-  expect(care.rows.find((r: unknown[]) => r[0] === '976')[2]).toBeNull();
-  expect(care.graphic.svg).toContain('Indisponible ou hors champ');
-  const housing = await (
-    await request.get('/studio/donnees/logement-deficit-sru.json')
-  ).json();
+  const care = await drawingData(page, 'soins-generalistes');
+  expect(care.rows.find((r) => r[0] === '976')![2]).toBeNull();
+  expect(care.text).toContain('Indisponible ou hors champ');
+  const housing = await drawingData(page, 'logement-deficit-sru');
   for (const p of housing.rows) {
-    expect(p[3]).toBeLessThanOrEqual(p[2]);
-    expect(p[4]).toBeLessThanOrEqual(p[3]);
+    expect(p[3]).toBeLessThanOrEqual(Number(p[2]));
+    expect(p[4]).toBeLessThanOrEqual(Number(p[3]));
     if (!p[3]) expect(p[5]).toBeNull();
-    else expect(p[5]).toBeCloseTo((100 * p[4]) / p[3], 8);
+    else expect(p[5]).toBeCloseTo((100 * Number(p[4])) / Number(p[3]), 8);
   }
 });
 
 test('la fenêtre économique conserve les valeurs et drapeaux Eurostat de la série complète', async ({
+  page,
   request,
 }) => {
   const original = await (
     await request.get('/studio/donnees/economie-inflation.json')
   ).json();
-  const recent = await (
-    await request.get('/studio/donnees/economie-inflation-periode-recente.json')
-  ).json();
+  const recent = await drawingData(page, 'economie-inflation-periode-recente');
   expect(recent.rows.length).toBeLessThanOrEqual(12);
   expect(recent.rows.length).toBeGreaterThan(0);
   expect(recent.rows).toEqual(original.rows.slice(-recent.rows.length));
-  expect(recent.graphic.alt).toContain('12 derniers mois');
+  expect(recent.alt).toContain('12 derniers mois');
 });

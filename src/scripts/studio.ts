@@ -13,10 +13,13 @@ const family = input('family'),
   mode = input('mode'),
   caption = node<HTMLInputElement>('caption');
 const sets = [...item.querySelectorAll('optgroup')];
-const choices = new Map<string, string>();
+const choices = new Map<string, { subject: string; drawing: boolean }>();
 for (const set of sets)
   for (const opt of set.children)
-    choices.set((opt as HTMLOptionElement).value, set.dataset.family!);
+    choices.set((opt as HTMLOptionElement).value, {
+      subject: set.dataset.family!,
+      drawing: opt.hasAttribute('data-drawing'),
+    });
 let selection: Publication | undefined;
 let currentRequest: AbortController | undefined;
 let currentSvg = '',
@@ -53,6 +56,13 @@ const publicLinks = (data: Publication) => [
 function updateTable(data: Publication) {
   const details = element('details', '');
   details.append(element('summary', 'Lire les données en tableau'));
+  node('table').replaceChildren(details);
+  details.addEventListener('toggle', () => {
+    if (details.open && !details.querySelector('table'))
+      fillTable(details, data);
+  });
+}
+function fillTable(details: HTMLDetailsElement, data: Publication) {
   const scroll = element('div', '');
   scroll.className = 'studio-scroll';
   const table = element('table', '');
@@ -78,7 +88,6 @@ function updateTable(data: Publication) {
   }
   scroll.append(table);
   details.append(scroll);
-  node('table').replaceChildren(details);
 }
 function dimensions(data: Publication) {
   const ratio =
@@ -242,8 +251,9 @@ function renderSelection(data: Publication) {
   updateTable(data);
 }
 async function select(id: string) {
-  const subject = choices.get(id);
-  if (!subject) return;
+  const choice = choices.get(id);
+  if (!choice) return;
+  const { subject, drawing } = choice;
   family.value = subject;
   const group = sets.find((g) => g.dataset.family === subject)!;
   item.replaceChildren(group);
@@ -262,7 +272,9 @@ async function select(id: string) {
   feedback('Chargement du graphique…');
   try {
     const response = await fetch(
-      '/studio/donnees/' + encodeURIComponent(id) + '.json',
+      drawing
+        ? '/graphiques/studio/' + encodeURIComponent(id) + '.svg'
+        : '/studio/donnees/' + encodeURIComponent(id) + '.json',
       {
         credentials: 'omit',
         referrerPolicy: 'no-referrer',
@@ -270,7 +282,22 @@ async function select(id: string) {
       },
     );
     if (!response.ok) throw Error('Édition indisponible');
-    const data: Publication = await response.json();
+    let data: Publication;
+    if (drawing) {
+      const xml = new DOMParser().parseFromString(
+        await response.text(),
+        'image/svg+xml',
+      );
+      const metadata = xml.documentElement.querySelector(
+        ':scope > metadata#studio-data',
+      );
+      if (!metadata?.textContent) throw Error('Données de l’édition absentes');
+      data = JSON.parse(metadata.textContent);
+      metadata.remove();
+      data.graphic.svg = new XMLSerializer().serializeToString(
+        xml.documentElement,
+      );
+    } else data = await response.json();
     if (data.id !== id) throw Error('Identifiant invalide');
     safeLinks(data);
     if (request.signal.aborted) return;

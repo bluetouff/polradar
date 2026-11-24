@@ -51,7 +51,11 @@ const families = Object.entries(studioFamilies)
           {families.map((f) => (
             <optgroup label={f.name} data-family={f.id}>
               {f.items.map((i) => (
-                <option value={i.id} selected={i.id === first.id}>
+                <option
+                  value={i.id}
+                  data-drawing={i.generated || undefined}
+                  selected={i.id === first.id}
+                >
                   {i.label}
                 </option>
               ))}
@@ -183,28 +187,11 @@ const families = Object.entries(studioFamilies)
     </article>
     <p id="studio-status" role="status" aria-live="polite"></p>
   </div>
-  <noscript>
-    <section class="studio-noscript">
-      <h2>Graphiques à télécharger</h2>
-      {families.map((f) => (
-        <details>
-          <summary>
-            {f.name} ({f.items.length})
-          </summary>
-          <ul>
-            {f.items.map((i) => (
-              <li>
-                <a href={i.live} download>
-                  {i.label} · SVG
-                </a>{' '}
-                · <a href={i.graphic.page}>Dossier et sources</a>
-              </li>
-            ))}
-          </ul>
-        </details>
-      ))}
-    </section>
-  </noscript>
+  <p class="studio-catalog-link">
+    <a href="/studio/catalogue/">
+      Catalogue des graphiques et des sources <Icon name="arrow" />
+    </a>
+  </p>
 </Base>
 <script>
   import '../../scripts/studio';

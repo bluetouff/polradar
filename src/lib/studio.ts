@@ -506,6 +506,12 @@ for (const provider of predictionMarkets.providers) {
 for (const map of studioMaps())
   publish(map.family, map.id, map.title, map.graphic, map.cols, map.records);
 export const studioItems = items;
+export function studioDataPath(item: Pick<Item, 'id' | 'generated'>) {
+  return item.generated
+    ? '/graphiques/studio/' + item.id + '.svg'
+    : '/studio/donnees/' + item.id + '.json';
+}
+
 export function studioPublication(item: Item) {
   const graphic = creditStudioGraphic(item.graphic);
   return {
@@ -516,4 +522,20 @@ export function studioPublication(item: Item) {
     pageUrl: new URL(item.graphic.page, meta.site).href,
     liveUrl: new URL(item.live, meta.site).href,
   };
+}
+
+export function studioPublicationSvg(item: Item) {
+  const publication = studioPublication(item);
+  const { svg, ...graphic } = publication.graphic;
+  // A single local file supplies the drawing, its accessible table and its source references.
+  const data = JSON.stringify({ ...publication, graphic })
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;');
+  return (
+    svg.slice(0, -'</svg>'.length) +
+    '<metadata id="studio-data">' +
+    data +
+    '</metadata></svg>'
+  );
 }
