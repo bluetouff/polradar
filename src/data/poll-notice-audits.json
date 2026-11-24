@@ -1,16 +1,142 @@
 {
+  "2393": {
+    "number": "10371",
+    "checked": "2026-11-24",
+    "sha256": "d984d55e5e2e4c909471629eeaa013d88874c3bb8a436c64264d5b7290d110e3",
+    "pages": [13, 14, 15, 16, 17],
+    "scenarios": [
+      {
+        "id": "opinionway-2026-11-12-10371-p13",
+        "page": 13
+      },
+      {
+        "id": "opinionway-2026-11-12-10371-p14",
+        "page": 14
+      },
+      {
+        "id": "opinionway-2026-11-12-10371-p15",
+        "page": 15
+      },
+      {
+        "id": "opinionway-2026-11-12-10371-p16",
+        "page": 16
+      },
+      {
+        "id": "opinionway-2026-11-12-10371-p17",
+        "page": 17
+      }
+    ],
+    "reason": "La notice OpinionWay présente deux hypothèses de premier tour, avec et sans Teddy Riner, puis trois duels de second tour."
+  },
+  "2406": {
+    "number": "10384",
+    "checked": "2026-11-24",
+    "sha256": "e870c75fc119271ac7519915bb5922b22461843275ba8a3ccd14e04d60af0ae4",
+    "pages": [9, 10, 12, 13, 14],
+    "scenarios": [
+      {
+        "id": "ifop-2026-11-18-10384-p9",
+        "page": 9
+      },
+      {
+        "id": "ifop-2026-11-18-10384-p10",
+        "page": 10
+      },
+      {
+        "id": "ifop-2026-11-18-10384-p12",
+        "page": 12
+      },
+      {
+        "id": "ifop-2026-11-18-10384-p13",
+        "page": 13
+      },
+      {
+        "id": "ifop-2026-11-18-10384-p14",
+        "page": 14
+      }
+    ],
+    "reason": "L’Ifop teste cinq configurations de premier tour. La page 11 mesure la certitude du choix des électeurs."
+  },
+  "2410": {
+    "number": "10382",
+    "checked": "2026-11-24",
+    "sha256": "b6f93bfa317307bb063f37b0baffe153d6fa4c48d0383c433a6cf6fe8b5de3a3",
+    "pages": [20, 21, 22, 23, 24, 26, 27, 28],
+    "scenarios": [
+      {
+        "id": "yougov-2026-11-19-10382-premier-1",
+        "page": 20
+      },
+      {
+        "id": "yougov-2026-11-19-10382-premier-2",
+        "page": 21
+      },
+      {
+        "id": "yougov-2026-11-19-10382-premier-3",
+        "page": 22
+      },
+      {
+        "id": "yougov-2026-11-19-10382-premier-4",
+        "page": 23
+      },
+      {
+        "id": "yougov-2026-11-19-10382-premier-5",
+        "page": 24
+      },
+      {
+        "id": "yougov-2026-11-19-10382-second-1",
+        "page": 26
+      },
+      {
+        "id": "yougov-2026-11-19-10382-second-2",
+        "page": 26
+      },
+      {
+        "id": "yougov-2026-11-19-10382-second-3",
+        "page": 27
+      },
+      {
+        "id": "yougov-2026-11-19-10382-second-4",
+        "page": 27
+      },
+      {
+        "id": "yougov-2026-11-19-10382-second-5",
+        "page": 28
+      }
+    ],
+    "reason": "Le questionnaire YouGov distingue cinq hypothèses au premier tour et cinq au second. Les résultats des hypothèses 1 et 2 du second tour partagent la page 26, les hypothèses 3 et 4 la page 27."
+  },
   "2416": {
     "number": "10392",
     "checked": "2026-11-24",
     "sha256": "176be3ccfd68b40df531e1812b28b9c5084dcb43c58ae36c687b84b930499c09",
     "pages": [8, 9, 10, 11],
-    "reason": "La notice Ifop présente quatre tableaux d’intentions de vote, un pour chacun des quatre candidats testés à droite et au centre."
+    "reason": "La notice Ifop présente quatre tableaux d’intentions de vote, un pour chacun des quatre candidats testés à droite et au centre.",
+    "scenarios": [
+      {
+        "id": "ifop-2026-11-20-10392-p8",
+        "page": 8
+      },
+      {
+        "id": "ifop-2026-11-20-10392-p9",
+        "page": 9
+      },
+      {
+        "id": "ifop-2026-11-20-10392-p10",
+        "page": 10
+      },
+      {
+        "id": "ifop-2026-11-20-10392-p11",
+        "page": 11
+      }
+    ]
   },
   "2419": {
     "number": "10395",
     "checked": "2026-11-24",
     "sha256": "4ea47cd560b97cf4b49a42ca9bcaf252bd77393ac2f82ab08a45376a53971b40",
     "pages": [],
-    "reason": "Le questionnaire Odoxa mesure le jugement sur l’exécutif et l’adhésion à des personnalités. Il ne demande pas aux répondants pour qui ils voteraient."
+    "reason": "Le questionnaire Odoxa mesure le jugement sur l’exécutif et l’adhésion à des personnalités. Il ne demande pas aux répondants pour qui ils voteraient.",
+    "scenarios": []
   }
 }

@@ -47,7 +47,11 @@ export const catalogueSchema = z
     if (
       (d.lastSuccessAt &&
         Date.parse(d.lastSuccessAt) > Date.parse(d.checkedAt)) ||
-      (d.available && !d.lastSuccessAt) ||
+      (d.available &&
+        (!d.rows.length ||
+          !d.lastSuccessAt ||
+          Date.parse(d.lastSuccessAt) !== Date.parse(d.checkedAt))) ||
+      (!d.lastSuccessAt && d.rows.length > 0) ||
       new Set(d.rows.map((r) => r.downloadId)).size !== d.rows.length ||
       d.rows.some(
         (r) =>
@@ -122,13 +126,34 @@ export const coverageLabels = {
 };
 const auditSchema = z.record(
   z.string().regex(/^[1-9][0-9]{0,6}$/),
-  z.strictObject({
-    number: z.string().regex(/^\d{4,6}[a-z]?$/),
-    checked: z.iso.date(),
-    sha256: z.string().regex(/^[a-f0-9]{64}$/),
-    pages: z.array(z.number().int().min(1).max(1000)).max(300),
-    reason: z.string().min(1).max(400),
-  }),
+  z
+    .strictObject({
+      number: z.string().regex(/^\d{4,6}[a-z]?$/),
+      checked: z.iso.date(),
+      sha256: z.string().regex(/^[a-f0-9]{64}$/),
+      pages: z.array(z.number().int().min(1).max(1000)).max(300),
+      scenarios: z
+        .array(
+          z.strictObject({
+            id: z
+              .string()
+              .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
+              .max(100),
+            page: z.number().int().min(1).max(1000),
+          }),
+        )
+        .max(300),
+      reason: z.string().min(1).max(400),
+    })
+    .refine((a) => {
+      const pages = new Set(a.scenarios.map((s) => s.page));
+      return (
+        pages.size === a.pages.length &&
+        a.pages.every((p) => pages.has(p)) &&
+        new Set(a.pages).size === a.pages.length &&
+        new Set(a.scenarios.map((s) => s.id)).size === a.scenarios.length
+      );
+    }, 'Scénarios et pages de relecture incohérents'),
 );
 /**
  * @param {z.infer<typeof catalogueSchema>} snapshot
@@ -168,13 +193,11 @@ export function catalogueCoverage(snapshot, polls, sources, rawAudits) {
       throw Error('Numéro de notice incohérent avec la relecture');
     let status = 'identifiee';
     if (scenarios.length) {
-      const pages = [...new Set(scenarios.map((s) => s.page))].sort(
-        (a, b) => a - b,
-      );
+      const actual = new Map(scenarios.map((s) => [s.id, s.page]));
       const verified =
-        audit?.pages.length &&
-        pages.length === audit.pages.length &&
-        pages.every((p, i) => p === audit.pages[i]);
+        audit &&
+        audit.scenarios.length === scenarios.length &&
+        audit.scenarios.every((s) => actual.get(s.id) === s.page);
       status = verified ? 'integree' : 'partielle';
     } else if (audit && !audit.pages.length) status = 'non_pertinente';
     else if (r.issue?.reason === 'notice-inaccessible') status = 'inaccessible';

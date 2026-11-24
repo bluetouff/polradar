@@ -26,7 +26,14 @@ test('Le baromètre Odoxa reste hors des intentions de vote, et une notice est e
   assert.equal(all.get('10395').status, 'non_pertinente');
   assert.equal(all.get('10395').scenarios.length, 0);
   assert.equal(all.get('10392').status, 'integree');
-  assert.equal(all.get('10393').status, 'partielle');
+  for (const id of ['10382', '10371', '10384'])
+    assert.equal(all.get(id).status, 'integree');
+  assert.equal(
+    byNumber(
+      polls.filter((p) => p.id !== 'yougov-2026-11-19-10382-second-2'),
+    ).get('10382').status,
+    'partielle',
+  );
   assert.equal(
     byNumber(polls.filter((p) => p.id !== 'ifop-2026-11-20-10392-p8')).get(
       '10392',
@@ -39,8 +46,10 @@ test('Le baromètre Odoxa reste hors des intentions de vote, et une notice est e
   );
 });
 test('Un échec conserve les notices et leur précédent succès ; les suppressions du catalogue sont visibles', () => {
-  const when = '2026-12-01T05:00:00Z',
-    later = '2026-12-02T05:00:00Z';
+  const when = new Date(
+      Date.parse(snapshot.checkedAt) + 86_400_000,
+    ).toISOString(),
+    later = new Date(Date.parse(when) + 86_400_000).toISOString();
   const unavailable = mergeCatalogue(snapshot, {
     checkedAt: when,
     status: 'unavailable',
@@ -79,5 +88,23 @@ test('Un échec conserve les notices et leur précédent succès ; les suppressi
         },
       ],
     }),
+  );
+});
+
+test('Une tentative sans succès ne peut pas contenir des résultats antérieurs fictifs', () => {
+  const noRecord = { ...snapshot, available: false, lastSuccessAt: null };
+  assert.equal(catalogueSchema.safeParse(noRecord).success, false);
+  assert.equal(
+    catalogueSchema.safeParse({ ...noRecord, rows: [] }).success,
+    true,
+  );
+  assert.equal(
+    catalogueSchema.safeParse({ ...snapshot, lastSuccessAt: null }).success,
+    false,
+  );
+  assert.equal(
+    catalogueSchema.safeParse({ ...snapshot, rows: [], available: true })
+      .success,
+    false,
   );
 });
