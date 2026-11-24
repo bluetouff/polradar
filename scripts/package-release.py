@@ -1,14 +1,13 @@
 """Package only built static files; no checkout, dependencies or credentials."""
-import gzip
 import hashlib
 import io
 import json
 import os
 import pathlib
 import re
-import runpy
 import tarfile
 import tempfile
+from release_capacity import DEPLOY as deployment, measure, report
 
 root = pathlib.Path('dist')
 verification_file = os.environ.get('GSC_VERIFICATION_FILE', '')
@@ -37,7 +36,6 @@ with tarfile.open(archive, 'w:gz', format=tarfile.USTAR_FORMAT) as bundle:
         entry.size = len(body)
         entry.mode = 0o644
         bundle.addfile(entry, io.BytesIO(body))
-deployment = runpy.run_path(pathlib.Path(__file__).resolve().parents[1] / 'deploy/pull-release.py')
 if archive.stat().st_size > deployment['MAX_ARCHIVE']:
     raise ValueError('Compressed static archive too large')
 raw = archive.read_bytes()
@@ -46,25 +44,13 @@ expected_sha = os.environ.get('GITHUB_SHA') or manifest['sourceCommit']
 with tempfile.TemporaryDirectory(prefix='polradar-package-') as checked:
     deployment['extract_static'](raw, pathlib.Path(checked), expected_sha)
 (target / 'site.sha256').write_text(f'{hashlib.sha256(raw).hexdigest()}  site.tar.gz\n', encoding='ascii')
-# The extractor counts the whole TAR stream, including headers and padding.
-with gzip.GzipFile(fileobj=io.BytesIO(raw)) as stream:
-    expanded_bytes = stream.seek(0, os.SEEK_END)
-with tarfile.open(archive, 'r:gz') as bundle:
-    members = len(bundle.getmembers())
-capacity = [
-    ('Archive gzip (Kio)', len(raw), deployment['MAX_ARCHIVE'], 1024),
-    ('TAR décompressé (Kio)', expanded_bytes, deployment['MAX_EXPANDED'], 1024),
-    ('Fichiers', members, deployment['MAX_FILES'], 1),
-]
-rows = ['| Déploiement | Utilisé | Plafond | Marge |', '| --- | ---: | ---: | ---: |']
-for name, used, limit, scale in capacity:
-    remaining = limit - used
-    rows.append(f'| {name} | {used / scale:,.0f} | {limit / scale:,.0f} | {remaining / scale:,.0f} ({remaining / limit:.1%}) |')
-    if remaining < limit / 10:
-        print(f'::warning::{name}: marge de déploiement inférieure à 10 %.')
-report = '\n'.join(rows) + '\n'
-print(report)
+capacity = measure(raw)
+for label, used, limit in capacity[0]:
+    if limit - used < limit / 10:
+        print(f'::warning::{label}: marge de déploiement inférieure à 10 %.')
+summary_text = report(capacity)
+print(summary_text)
 if summary := os.environ.get('GITHUB_STEP_SUMMARY'):
     with open(summary, 'a', encoding='utf-8') as output:
-        output.write('\n' + report)
+        output.write('\n' + summary_text)
 print('Static release packaged with SHA-256 checksum.')

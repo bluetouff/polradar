@@ -47,6 +47,9 @@ class DeploymentTests(unittest.TestCase):
                 with self.subTest(value=value):
                     result = package(value)
                     self.assertEqual(result.returncode, 0, result.stderr)
+                    report = result.stdout.decode('utf-8')
+                    self.assertIn('Plus grand fichier (octets)', report)
+                    self.assertIn('TAR complet (octets)', report)
                     with tarfile.open(root / 'artifacts/site.tar.gz') as bundle:
                         self.assertEqual(name in bundle.getnames(), bool(value))
                         if value:
@@ -89,6 +92,10 @@ class DeploymentTests(unittest.TestCase):
         original_limit = deployment.MAX_FILE
         deployment.MAX_FILE = 128
         try:
+            with tempfile.TemporaryDirectory() as temporary:
+                destination = Path(temporary)
+                deployment.extract_static(archive([('large.txt', b'x' * 128)]), destination, SHA)
+                self.assertEqual((destination / 'large.txt').stat().st_size, 128)
             with tempfile.TemporaryDirectory() as temporary:
                 with self.assertRaises(ValueError):
                     deployment.extract_static(archive([('large.txt', b'x' * 129)]), Path(temporary), SHA)

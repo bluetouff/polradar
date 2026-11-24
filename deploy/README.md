@@ -4,6 +4,8 @@
 
 `push main` → contrôles GitHub Actions → version statique publique → récupération par le serveur toutes les cinq minutes → vérification → activation → test HTTPS local.
 
+Le [relevé de capacité](../docs/capacite-publication.md) donne les mesures d’une archive publiée et la simulation d’une séparation des exports.
+
 Aucun secret de serveur n’est stocké dans GitHub. Aucun runner GitHub n’entre sur le serveur. Le compte système récupère les deux fichiers d’une version publique, contrôle l’empreinte, le commit de `main`, le workflow `Site` réussi et le manifeste `build.json`. Les téléchargements et redirections restent limités à des domaines GitHub précis.
 
 Le site ne reçoit ni dépôt Git, ni `node_modules`, ni outil de déploiement. Les archives n’acceptent que des fichiers statiques ordinaires, avec des limites de taille et de nombre. Le déploiement s’interrompt si un contrôle échoue.
