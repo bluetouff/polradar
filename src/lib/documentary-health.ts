@@ -38,6 +38,7 @@ for (const document of documents) {
 
 const notices = {
   integree: 0,
+  hors_series: 0,
   partielle: 0,
   a_relire: 0,
   identifiee: 0,

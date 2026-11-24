@@ -102,7 +102,7 @@ const datasets = [
       'Commission des sondages. Le fichier référence la notice publique.',
     limits:
       'Une notice identifiée peut encore être à relire, ou porter sur l’opinion. Ces statuts sont distincts des scénarios d’intentions de vote.',
-    fields: ['checkedAt', 'lastSuccessAt', 'notices'],
+    fields: ['checkedAt', 'lastSuccessAt', 'notices', 'specialStudies'],
   },
   {
     id: 'qualite-documentaire',

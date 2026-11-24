@@ -49,6 +49,11 @@ import {
 
 import { dailyHistorySchema } from '../src/lib/daily-updates.mjs';
 import { editorialReviewSchema } from '../src/lib/editorial-reviews.mjs';
+import {
+  catalogueCoverage,
+  catalogueSchema,
+} from '../src/lib/poll-catalogue.mjs';
+import { documentedSpecialStudies } from '../src/lib/poll-special-studies.mjs';
 dailyHistorySchema.parse(
   JSON.parse(
     await readFile(
@@ -87,6 +92,32 @@ const today = new Intl.DateTimeFormat('sv-SE', {
   timeZone: 'Europe/Paris',
 }).format(new Date());
 const sourceIds = new Set(dataset.sources.map((source) => source.id));
+const [catalogue, noticeAudits, specialStudies] = await Promise.all(
+  ['poll-catalogue', 'poll-notice-audits', 'poll-special-studies'].map(
+    async (name) =>
+      JSON.parse(
+        await readFile(
+          new URL(`../src/data/${name}.json`, import.meta.url),
+          'utf8',
+        ),
+      ),
+  ),
+);
+const notices = catalogueCoverage(
+  catalogueSchema.parse(catalogue),
+  dataset.polls,
+  dataset.sources,
+  noticeAudits,
+);
+if (
+  notices.some((r) => r.audit && r.audit.checked > today) ||
+  documentedSpecialStudies(specialStudies, notices).some(
+    (s) =>
+      s.fieldworkEnd > today ||
+      (s.publication?.date && s.publication.date > today),
+  )
+)
+  throw new Error('Date de relecture ou de publication de sondage future');
 withFirstPublications(
   dataset.polls,
   firstPublications,

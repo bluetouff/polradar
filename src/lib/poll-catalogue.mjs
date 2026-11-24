@@ -171,6 +171,7 @@ export function mergeCatalogue(previous, report) {
 
 export const coverageLabels = {
   integree: 'Tous les scénarios vérifiés',
+  hors_series: 'Enquêtes à périmètre particulier',
   partielle: 'Scénarios publiés, couverture à vérifier',
   a_relire: 'Intentions de vote à dépouiller',
   identifiee: 'Objet à vérifier',
@@ -198,10 +199,19 @@ const auditSchema = z.record(
         )
         .max(300),
       reason: z.string().min(1).max(400),
+      evidencePages: z
+        .array(z.number().int().min(1).max(1000))
+        .min(1)
+        .max(300)
+        .refine((pages) => new Set(pages).size === pages.length)
+        .optional(),
+      outsideSeries: z.literal(true).optional(),
     })
     .refine((a) => {
       const pages = new Set(a.scenarios.map((s) => s.page));
       return (
+        (!a.outsideSeries ||
+          (a.scenarios.length === 0 && a.evidencePages !== undefined)) &&
         pages.size === a.pages.length &&
         a.pages.every((p) => pages.has(p)) &&
         new Set(a.pages).size === a.pages.length &&
@@ -245,8 +255,13 @@ export function catalogueCoverage(snapshot, polls, sources, rawAudits) {
     const audit = audits[r.downloadId];
     if (audit && audit.number !== r.number)
       throw Error('Numéro de notice incohérent avec la relecture');
+    if (audit?.outsideSeries && scenarios.length)
+      throw Error(
+        'Une enquête hors série est présente dans les intentions nationales',
+      );
     let status = 'identifiee';
-    if (scenarios.length) {
+    if (audit?.outsideSeries) status = 'hors_series';
+    else if (scenarios.length) {
       const actual = new Map(scenarios.map((s) => [s.id, s.page]));
       const verified =
         audit &&

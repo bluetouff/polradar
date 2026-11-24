@@ -6,6 +6,7 @@ import {
   catalogueSchema,
   mergeCatalogue,
 } from '../src/lib/poll-catalogue.mjs';
+import { documentedSpecialStudies } from '../src/lib/poll-special-studies.mjs';
 const read = (n) =>
   JSON.parse(
     readFileSync(
@@ -43,6 +44,58 @@ test('Le baromètre Odoxa reste hors des intentions de vote, et une notice est e
   assert.equal(
     [...all.values()].flatMap((r) => r.scenarios).length,
     polls.length,
+  );
+});
+
+test('Les enquêtes à périmètre particulier gardent leurs bases, leurs pages et leurs résultats hors des séries nationales', () => {
+  const coverage = catalogueCoverage(snapshot, polls, sources, audits);
+  const raw = read('poll-special-studies');
+  const rows = documentedSpecialStudies(raw, coverage);
+  const tableFor = (n, p) =>
+    rows.find((s) => s.number === n).tables.find((t) => t.page === p);
+  const white = tableFor('10292', 11);
+  assert.equal(
+    white.results.find((r) => r.label === 'Vote blanc').percentage,
+    6,
+  );
+  assert.match(tableFor('10141', 9).base, /742/);
+  assert.match(tableFor('10291', 26).base, /3\s030/);
+  assert.equal(tableFor('10291', 26).results[0].percentage, 55);
+  assert.equal(rows.find((s) => s.number === '10218').tables.length, 13);
+  assert.ok(
+    rows.every((s) => {
+      const notice = coverage.find((r) => r.downloadId === s.downloadId);
+      return notice.status === 'hors_series' && notice.scenarios.length === 0;
+    }),
+  );
+
+  const [original, ...others] = raw;
+  for (const invalid of [
+    { ...original, number: '99999' },
+    { ...original, methodPage: 1000 },
+    { ...original, pdfUrl: 'https://example.org/notice.pdf' },
+    {
+      ...original,
+      tables: [{ ...original.tables[0], questionPage: 1000 }],
+    },
+  ]) {
+    assert.throws(() =>
+      documentedSpecialStudies([invalid, ...others], coverage),
+    );
+  }
+  const ordinaryPoll = polls.find((p) => p.id === 'ifop-2026-11-20-10392-p8');
+  const ordinaryNotice = coverage.find((r) => r.number === '10392');
+  assert.throws(() =>
+    catalogueCoverage(snapshot, [ordinaryPoll], sources, {
+      ...audits,
+      [ordinaryNotice.downloadId]: {
+        ...ordinaryNotice.audit,
+        outsideSeries: true,
+        pages: [],
+        scenarios: [],
+        evidencePages: [8],
+      },
+    }),
   );
 });
 test('Un échec conserve les notices et leur précédent succès ; les suppressions du catalogue sont visibles', () => {

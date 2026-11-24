@@ -1,0 +1,226 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { formatDate } from '../../lib/data';
+import { specialStudies } from '../../lib/poll-catalogue-data';
+
+const fmt = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 2 });
+const categories = [
+  { id: 'choix-de-vote', title: 'Choix de vote et préférences' },
+  { id: 'opinion', title: 'Participation et sujets de campagne' },
+];
+---
+
+<Base
+  title="Autres enquêtes de campagne"
+  description="Vote blanc, préférences électorales, participation et sujets de campagne. Résultats et question de chaque enquête, avec la notice officielle."
+  section="/sondages/"
+>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="sondages" />
+    </span>
+    <div>
+      <h1>Autres enquêtes de campagne</h1>
+      <p>
+        Vote blanc, choix de vote par population, participation et sujets de
+        campagne.
+      </p>
+    </div>
+    <a class="button" href="/api/notices-sondages.json">
+      Données JSON
+    </a>
+  </header>
+  <nav class="section-switch" aria-label="Sondages">
+    <a href="/sondages/">Intentions de vote</a>
+    <a href="/sondages/notices/hors-series/">Notices de ces enquêtes</a>
+    {categories.map((c) => (
+      <a href={'#' + c.id}>{c.title}</a>
+    ))}
+  </nav>
+  {categories.map((category) => (
+    <section
+      id={category.id}
+      class="study-list"
+      aria-labelledby={category.id + '-titre'}
+    >
+      <h2 id={category.id + '-titre'}>{category.title}</h2>
+      {specialStudies
+        .filter((s) => s.category === category.id)
+        .map((study) => (
+          <article class="study" id={'notice-' + study.downloadId}>
+            <header>
+              <p>
+                {study.institute} pour {study.commissioner}
+              </p>
+              <h3>{study.title}</h3>
+              <p>
+                Terrain du {formatDate(study.fieldworkStart)} au{' '}
+                {formatDate(study.fieldworkEnd)}. {study.population}
+              </p>
+            </header>
+            <p class="study-method">{study.scope}</p>
+            <div class="study-grid">
+              {study.tables.map((table, index) => (
+                <details
+                  open={
+                    category.id === 'choix-de-vote' &&
+                    (study.tables.length <= 3 || index === 0)
+                  }
+                >
+                  <summary>{table.title}</summary>
+                  <div class="study-table">
+                    <p>{table.question}</p>
+                    <p class="study-base">{table.base}</p>
+                    <ul aria-label="Résultats en pourcentage">
+                      {table.results.map((row) => (
+                        <li>
+                          <span>{row.label}</span>
+                          <strong>{fmt.format(row.percentage)} %</strong>
+                          <svg
+                            viewBox="0 0 100 4"
+                            preserveAspectRatio="none"
+                            aria-hidden="true"
+                            focusable="false"
+                          >
+                            <rect
+                              class="study-track"
+                              width="100"
+                              height="4"
+                              rx="1"
+                            />
+                            <rect width={row.percentage} height="4" rx="1" />
+                          </svg>
+                        </li>
+                      ))}
+                    </ul>
+                    {table.note && <p class="study-base">{table.note}</p>}
+                    <div class="study-sources">
+                      <a
+                        href={study.pdfUrl + '#page=' + table.page}
+                        rel="noreferrer"
+                      >
+                        Résultats, p. {table.page}
+                      </a>
+                      {table.questionPage &&
+                        table.questionPage !== table.page && (
+                          <a
+                            href={study.pdfUrl + '#page=' + table.questionPage}
+                            rel="noreferrer"
+                          >
+                            Question, p. {table.questionPage}
+                          </a>
+                        )}
+                    </div>
+                  </div>
+                </details>
+              ))}
+            </div>
+            <div class="study-sources">
+              <span>{study.method}</span>
+              <a
+                href={study.pdfUrl + '#page=' + study.methodPage}
+                rel="noreferrer"
+              >
+                Notice {study.number}, méthode p. {study.methodPage}
+              </a>
+              {study.publication && (
+                <a href={study.publication.url} rel="noreferrer">
+                  {study.publication.label}
+                  {study.publication.date &&
+                    ' · ' + formatDate(study.publication.date)}
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+    </section>
+  ))}
+</Base>
+
+<style>
+  .study-list {
+    display: grid;
+    gap: clamp(1rem, 3vw, 1.75rem);
+    margin-block: 1.2rem 2rem;
+  }
+  .study {
+    padding: clamp(0.85rem, 2.5vw, 1.6rem);
+    border: 1px solid var(--line);
+    border-radius: 0.8rem;
+    background: var(--panel-gradient);
+  }
+  .study h3 {
+    margin: 0.3rem 0;
+    font-size: clamp(1.2rem, 1.6vw, 1.45rem);
+    color: inherit;
+  }
+  .study header {
+    padding: clamp(0.8rem, 2vw, 1.25rem);
+    border-radius: 0.55rem;
+    color: #f3fafb;
+    background: linear-gradient(130deg, #142f40, #235961);
+  }
+  .study header p {
+    margin: 0;
+  }
+  .study-method {
+    margin: 0.75rem 0;
+  }
+  .study-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+    gap: 0.65rem;
+    align-items: start;
+  }
+  .study-grid details {
+    min-width: 0;
+    border: 1px solid var(--line);
+    border-radius: 0.55rem;
+    background: #f9fbfb;
+  }
+  .study-grid summary {
+    cursor: pointer;
+    padding: 0.75rem;
+    font-weight: 650;
+  }
+  .study-table {
+    padding: 0 0.75rem 0.85rem;
+  }
+  .study-table p {
+    margin-block: 0.25rem 0.6rem;
+  }
+  .study-base,
+  .study-sources {
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+  .study ul {
+    list-style: none;
+    padding: 0;
+  }
+  .study li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 0.15rem 0.5rem;
+    padding-block: 0.35rem;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .study li svg {
+    grid-column: 1 / -1;
+    width: 100%;
+    height: 0.28rem;
+    fill: #176474;
+  }
+  .study-track {
+    fill: #dbe7e9;
+  }
+  .study-sources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    margin-top: 0.9rem;
+  }
+</style>

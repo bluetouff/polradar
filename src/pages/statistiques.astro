@@ -355,7 +355,13 @@ const slices = scopes.map(([id, label]) => {
             <li>
               <a href="/sondages/notices/integree/">
                 <strong>{fmt(surveys.catalogue.byStatus.integree)}</strong>
-                <span>notices entièrement vérifiées</span>
+                <span>notices des séries entièrement dépouillées</span>
+              </a>
+            </li>
+            <li>
+              <a href="/sondages/notices/hors-series/">
+                <strong>{fmt(surveys.catalogue.byStatus.hors_series)}</strong>
+                <span>autres enquêtes de campagne documentées</span>
               </a>
             </li>
             <li>

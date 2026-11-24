@@ -1,11 +1,13 @@
 import snapshot from '../data/poll-catalogue.json';
 import audits from '../data/poll-notice-audits.json';
+import specialStudyRows from '../data/poll-special-studies.json';
 import { polls, sources } from './data';
 import {
   catalogueSchema,
   catalogueCoverage,
   coverageLabels,
 } from './poll-catalogue.mjs';
+import { documentedSpecialStudies } from './poll-special-studies.mjs';
 
 export const catalogue = catalogueSchema.parse(snapshot);
 export const noticeRows = catalogueCoverage(
@@ -27,3 +29,7 @@ export const noticeViews = [
     rows: noticeRows.filter((r) => r.status === key),
   })),
 ];
+export const specialStudies = documentedSpecialStudies(
+  specialStudyRows,
+  noticeRows,
+);

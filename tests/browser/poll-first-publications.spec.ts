@@ -1,6 +1,41 @@
 import { expect, test } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 
+test('les autres enquêtes se lisent sur mobile sans JavaScript et renvoient au tableau officiel', async ({
+  browser,
+  baseURL,
+  request,
+}) => {
+  const response = await request.get('/api/notices-sondages.json');
+  const { specialStudies } = await response.json();
+  const study = specialStudies.find(
+    (entry: { number: string }) => entry.number === '10291',
+  );
+  const context = await browser.newContext({
+    baseURL,
+    javaScriptEnabled: false,
+    viewport: { width: 360, height: 800 },
+  });
+  try {
+    const page = await context.newPage();
+    await page.goto('/sondages/enquetes/#notice-2309');
+    const panel = page.locator('#notice-2309');
+    await expect(
+      panel.getByRole('heading', { name: 'Participation des 18–29 ans' }),
+    ).toBeVisible();
+    await panel.locator('summary').click();
+    await expect(panel.getByText('55 %', { exact: true })).toBeVisible();
+    await expect(
+      panel.getByRole('link', { name: 'Résultats, p. 26' }),
+    ).toHaveAttribute('href', study.pdfUrl + '#page=26');
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth),
+    ).toBeLessThanOrEqual(360);
+  } finally {
+    await context.close();
+  }
+});
+
 test('la première diffusion suit le scénario sur la page, dans le JSON et dans le CSV', async ({
   page,
   request,

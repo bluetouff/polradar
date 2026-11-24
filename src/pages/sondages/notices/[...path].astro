@@ -94,6 +94,13 @@ const current = catalogue.rows.filter(
             {r.audit.reason} Vérifié le {formatDate(r.audit.checked)}.
           </p>
         )}
+        {r.status === 'hors_series' && (
+          <p>
+            <a href={'/sondages/enquetes/#notice-' + r.downloadId}>
+              Voir les résultats et leur périmètre
+            </a>
+          </p>
+        )}
         {r.scenarios.length > 0 && (
           <details>
             <summary>{r.scenarios.length} scénarios publiés</summary>
