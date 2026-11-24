@@ -190,6 +190,11 @@ const names = new Map(
               {d.measureCount === 1 ? 'fiche cite' : 'fiches citent'} ce
               document
             </summary>
+            <p>
+              <a href={'/documents/couverture/#document=' + d.id}>
+                Répartition des fiches par thème →
+              </a>
+            </p>
             <ul data-passages>
               {d.passages.slice(0, 2).map((p) => (
                 <li>

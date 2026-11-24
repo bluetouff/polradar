@@ -32,6 +32,7 @@ test('Un document et une mesure gardent des unités distinctes malgré plusieurs
       candidate: 'a',
       theme: 'justice',
       scope: 'parti',
+      document: 'source',
     }).measures,
     1,
   );
@@ -44,5 +45,6 @@ test('Un document et une mesure gardent des unités distinctes malgré plusieurs
     countCoverage(rows, { topic: 'numerique', scope: 'archive' }).measures,
     0,
   );
+  assert.equal(countCoverage(rows, { document: 'autre-document' }).measures, 0);
   assert.throws(() => countCoverage([rows[0], rows[0]]), /double/);
 });

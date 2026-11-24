@@ -36,6 +36,18 @@ const audits = documents.filter((d) => d.coverage);
       </select>
     </label>
     <label>
+      Document cité
+      <select name="document">
+        <option value="">Tous les documents</option>
+        {documents
+          .filter((d) => d.measureCount)
+          .sort((a, b) => a.title.localeCompare(b.title, 'fr'))
+          .map((d) => (
+            <option value={d.id}>{d.title}</option>
+          ))}
+      </select>
+    </label>
+    <label>
       Thème
       <select name="theme">
         <option value="">Tous les thèmes</option>
@@ -192,8 +204,32 @@ const audits = documents.filter((d) => d.coverage);
       }
     }
     form.hidden = false;
-    form.addEventListener('change', update);
-    form.addEventListener('reset', () => queueMicrotask(update));
+    function applyHash() {
+      const selected = new URLSearchParams(location.hash.slice(1));
+      for (const select of form.querySelectorAll('select')) {
+        const value = selected.get(select.name) ?? '';
+        select.value = Array.from(select.options).some((o) => o.value === value)
+          ? value
+          : '';
+      }
+      update();
+    }
+    function syncHash() {
+      const params = new URLSearchParams();
+      for (const select of form.querySelectorAll('select'))
+        if (select.value) params.set(select.name, select.value);
+      const hash = params.toString();
+      history.replaceState(
+        null,
+        '',
+        location.pathname + location.search + (hash ? '#' + hash : ''),
+      );
+      update();
+    }
+    if (location.hash) applyHash();
+    window.addEventListener('hashchange', applyHash);
+    form.addEventListener('change', syncHash);
+    form.addEventListener('reset', () => queueMicrotask(syncHash));
   </script>
 </Base>
 <style>

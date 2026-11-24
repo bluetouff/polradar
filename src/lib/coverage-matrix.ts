@@ -9,6 +9,7 @@ export type MatrixRecord = {
 };
 export type MatrixFilter = {
   candidate?: string;
+  document?: string;
   theme?: string;
   scope?: string;
   edition?: string;
@@ -26,6 +27,7 @@ export function countCoverage(
     if (
       (filters.candidate && filters.candidate !== row.candidate) ||
       (filters.theme && filters.theme !== row.theme) ||
+      (filters.document && !row.documents.includes(filters.document)) ||
       (filters.scope && filters.scope !== row.scope) ||
       (filters.edition && filters.edition !== row.edition) ||
       (filters.topic &&
