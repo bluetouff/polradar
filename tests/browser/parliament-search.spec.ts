@@ -11,8 +11,12 @@ test('chercher un scrutin européen, retrouver les trois votes et partager les f
   await page
     .getByRole('combobox', { name: 'Institution', exact: true })
     .selectOption('parlement-europeen');
-  await page.getByRole('combobox', { name: 'Candidat', exact: true }).selectOption('melenchon');
-  await page.getByRole('combobox', { name: 'Vote enregistré', exact: true }).selectOption('contre');
+  await page
+    .getByRole('combobox', { name: 'Candidat', exact: true })
+    .selectOption('melenchon');
+  await page
+    .getByRole('combobox', { name: 'Vote enregistré', exact: true })
+    .selectOption('contre');
   await page.getByRole('button', { name: 'Rechercher', exact: true }).click();
   const result = page.locator('[data-act-list] article');
   await expect(result).toHaveCount(1);
@@ -28,7 +32,9 @@ test('chercher un scrutin européen, retrouver les trois votes et partager les f
   await expect(page).toHaveURL(/candidat=melenchon/u);
   await page.reload();
   await expect(result).toHaveCount(1);
-  await page.getByRole('combobox', { name: 'Vote enregistré', exact: true }).selectOption('pour');
+  await page
+    .getByRole('combobox', { name: 'Vote enregistré', exact: true })
+    .selectOption('pour');
   await page.getByRole('button', { name: 'Rechercher', exact: true }).click();
   await expect(page.getByRole('status')).toContainText('Aucun résultat.');
 });

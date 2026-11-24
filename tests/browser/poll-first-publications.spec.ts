@@ -94,13 +94,11 @@ test('un scénario historique s’ouvre dans le graphique et le téléchargement
 }) => {
   const id = 'opinionway-commission-10333-p13';
   await page.goto('/sondages/');
-  const list = page
-    .locator('details')
-    .filter({
-      has: page.locator('summary', {
-        hasText: 'Notices et scénarios intégrés',
-      }),
-    });
+  const list = page.locator('details').filter({
+    has: page.locator('summary', {
+      hasText: 'Notices et scénarios intégrés',
+    }),
+  });
   await list.locator('summary').click();
   await list.locator(`a[href="#enquete=${id}"]`).click();
   await expect(page.locator('#poll-bar-date')).toContainText(
