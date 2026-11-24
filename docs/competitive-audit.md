@@ -96,3 +96,22 @@ curl -fsS --proto '=https' https://polradar.fr/api/parlement/recherche.json |
 curl -fsS --proto '=https' https://polradar.fr/api/exports-v1.json |
   jq '{revision: .sourceCommit, jeux: (.jeux | length)}'
 ```
+
+## Comparer les méthodes de sondage
+
+Contrôle du 24 novembre 2026. PrésiTracker et PresiTracker2027 désignent deux services.
+
+| Service          | Unité rapprochée et calcul                                                                                                                    | Validation publiée                                                                                                                                                                                                                            |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| PrésiTracker     | Scénarios où la personne est testée et duels du second tour. Régression locale robuste et bande annoncée à 50 %.                              | Comparaison visuelle avec les séries de 1995 à 2022. [Méthode de calcul](https://presitracker.fr/#comment-ce-compilateur-de-sondages-calcule-t-il-la-moyenne)                                                                                 |
+| Sondax           | Moyenne pondérée par la récence. Simulations de qualification à partir d’une loi de Dirichlet et d’un paramètre ajusté à l’erreur historique. | Réestime le paramètre en laissant une élection de côté, à J−7. Son score de Brier porte sur des cas par candidat. [Méthode et tableau de backtest](https://sondax.fr/methodologie.html)                                                       |
+| PresiTracker2027 | Terrains documentés, avec hypothèses conservées séparément selon la méthode.                                                                  | Détail par terrain, notice de chaque enquête. [Méthode](https://presitracker2027.fr/methodologie) · [Registre](https://presitracker2027.fr/sondages)                                                                                          |
+| Le Monde         | Agrégation des enquêtes, avec discussion des effets de méthode et des biais partagés entre instituts.                                         | L’article explique le calcul et la portée des tendances. [Agrégateur et méthode](https://www.lemonde.fr/les-decodeurs/article/2026/11/22/presidentielle-2027-decouvrez-ce-que-disent-les-sondages-avec-notre-agregateur_6814213_4355770.html) |
+| Polradar         | Même tour, même liste et même base. Une vague récente par institut, poids égaux, tableaux et pages sources liés.                              | Rejeu des vagues compatibles et mesure de l’écart absolu à la prochaine vague. [Calcul et comparaisons](https://polradar.fr/sondages/comparer/) · [Programme de calcul](../src/lib/poll-comparison.mjs)                                       |
+
+Le résultat cible, la date de coupure et l’unité d’erreur définissent le banc d’essai. Une comparaison de précision électorale demande de rejouer les méthodes avec les mêmes voix officielles et les mêmes terrains disponibles à chaque date de coupure. Le JSON Polradar publie les identifiants utilisés à chaque itération et le compte de terrains distincts.
+
+```sh
+curl -fsS --proto '=https' https://polradar.fr/api/scenarios-sondages.json |
+  jq '{revision: .sourceCommit, listes: (.matrix | length), comparaisons: (.comparisons | length), test: (.backtest | del(.rows))}'
+```
