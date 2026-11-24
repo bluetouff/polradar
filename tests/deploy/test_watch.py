@@ -14,6 +14,13 @@ spec.loader.exec_module(watch)
 
 
 class WatchTests(unittest.TestCase):
+    def test_institutional_watch_respects_explicit_selection(self):
+        src = {'id': 'insee', 'kind': 'institution'}
+        self.assertFalse(watch.monitored(src))
+        self.assertTrue(watch.monitored({**src, 'watch': True}))
+        self.assertTrue(watch.monitored({**src, 'id': 'sondages'}))
+        self.assertFalse(watch.monitored({**src, 'id': 'archive', 'kind': 'parti', 'watch': False}))
+
     def setUp(self):
         self.sleep_patch=patch.object(watch.time,'sleep')
         self.sleep_patch.start()

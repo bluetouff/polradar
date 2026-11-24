@@ -342,10 +342,15 @@ def inspect(source, previous, allowed_hosts):
     return row
 
 
+def monitored(source):
+    default = source['kind'] in ('campagne', 'parti') or source['id'] == 'sondages'
+    return source.get('watch', default)
+
+
 def run(output, baseline, selected=None):
     sources = json.loads((ROOT/'src/data/sources.json').read_text())
     allowed_hosts = {urllib.parse.urlsplit(source['url']).hostname for source in sources}
-    targets = [source for source in sources if source.get('watch', True) and (source['kind'] in ('campagne','parti') or source['id']=='sondages')]
+    targets = [source for source in sources if monitored(source)]
     if selected:
         if not set(selected).issubset({source['id'] for source in targets}):
             raise ValueError('Unknown source')
