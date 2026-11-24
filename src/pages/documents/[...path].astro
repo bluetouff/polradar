@@ -91,7 +91,8 @@ const names = new Map(
     {facet.rows.slice(range.start, range.end).map((d) => (
       <article id={d.id} class="document-card">
         <div class="doc-kind">
-          {sourceKinds[d.kind]} <span>· {new URL(d.url).hostname}</span>
+          {d.documentType ?? sourceKinds[d.kind]}{' '}
+          <span>· {new URL(d.url).hostname}</span>
         </div>
         <h2>
           <a href={d.url} rel="noreferrer">
@@ -118,13 +119,30 @@ const names = new Map(
               <dd>{d.author.author}</dd>
             </div>
           )}
-          {d.publisher && (
+          {d.organization && (
+            <div>
+              <dt>Organisation</dt>
+              <dd>{d.organization}</dd>
+            </div>
+          )}
+          {d.publisher && d.publisher !== d.organization && (
             <div>
               <dt>Éditeur</dt>
               <dd>{d.publisher}</dd>
             </div>
           )}
         </dl>
+        {d.reuse && (
+          <details>
+            <summary>Conditions de réutilisation</summary>
+            <p>
+              {d.reuse.label}{' '}
+              <a href={d.reuse.url} rel="noreferrer">
+                Mention de l’éditeur ↗
+              </a>
+            </p>
+          </details>
+        )}
         {d.candidates.length > 0 && (
           <p class="doc-candidates">
             {d.candidates

@@ -1,25 +1,28 @@
 import { dataset } from './data';
 import sections from '../data/document-coverage.json';
+import details from '../data/document-details.json';
 import { buildDocumentRegister } from './document-register';
 
 import { technicalFreshness } from './source-freshness';
-export const documents = buildDocumentRegister(dataset, sections).map((d) => {
-  const current = technicalFreshness.get(d.id);
-  return {
-    ...d,
-    watch: current
-      ? {
-          checkedAt: current.checkedAt,
-          lastSuccessAt: current.lastSuccessAt,
-          status: current.status,
-          fingerprint:
-            d.watch?.checkedAt === current.checkedAt
-              ? d.watch.fingerprint
-              : null,
-        }
-      : null,
-  };
-});
+export const documents = buildDocumentRegister(dataset, sections, details).map(
+  (d) => {
+    const current = technicalFreshness.get(d.id);
+    return {
+      ...d,
+      watch: current
+        ? {
+            checkedAt: current.checkedAt,
+            lastSuccessAt: current.lastSuccessAt,
+            status: current.status,
+            fingerprint:
+              d.watch?.checkedAt === current.checkedAt
+                ? d.watch.fingerprint
+                : null,
+          }
+        : null,
+    };
+  },
+);
 const ordered = documents
   .slice()
   .sort(

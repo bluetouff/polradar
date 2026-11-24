@@ -75,3 +75,42 @@ test('Les doubles comptes et les rapprochements sans citation du document échou
     /absent/,
   );
 });
+
+test('Auteur, organisation, nature du document, traitement et droits de réutilisation sont indépendants', () => {
+  const details = read('document-details');
+  const rows = new Map(
+    buildDocumentRegister(corpus, audits, details).map((d) => [d.id, d]),
+  );
+  const book = rows.get('mlekuz-programme-detaille');
+  assert.equal(book.documentType, 'Livre blanc');
+  assert.equal(book.organization, 'Démocratie Ouverte');
+  assert.match(book.reuse.label, /Trajectoire/);
+  assert.equal(rows.get('mathieu-projet-2027').reuse, null);
+  assert.equal(rows.get('mathieu-projet-2027').processing, 'périmètre relu');
+  assert.ok(
+    [...rows.values()].some(
+      (d) => d.processing === 'référence identifiée' && !d.organization,
+    ),
+  );
+  assert.ok(
+    [...rows.values()].some(
+      (d) => d.processing === 'passages localisés' && !d.coverage,
+    ),
+  );
+  assert.throws(
+    () =>
+      buildDocumentRegister(corpus, audits, {
+        ...details,
+        absent: details['mathieu-projet-2027'],
+      }),
+    /sans document/,
+  );
+  assert.throws(() =>
+    buildDocumentRegister(corpus, audits, {
+      'mlekuz-programme-detaille': {
+        ...details['mlekuz-programme-detaille'],
+        reuse: { label: 'Droits', url: 'http://localhost/' },
+      },
+    }),
+  );
+});

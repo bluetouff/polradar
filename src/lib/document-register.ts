@@ -1,5 +1,5 @@
 import type { Corpus, Measure } from './data';
-import { dateSchema, idSchema } from './schema.mjs';
+import { dateSchema, idSchema, publicUrlSchema } from './schema.mjs';
 import { z } from 'astro/zod';
 
 const auditedSection = z.strictObject({
@@ -18,6 +18,20 @@ const auditedSection = z.strictObject({
     .min(1),
 });
 
+const documentDetails = z.record(
+  idSchema,
+  z.strictObject({
+    type: z.string().trim().min(1).max(80),
+    organization: z.string().trim().min(1).max(160),
+    reuse: z
+      .strictObject({
+        label: z.string().trim().min(1).max(320),
+        url: publicUrlSchema,
+      })
+      .optional(),
+  }),
+);
+
 type Passage = {
   measureId: string;
   candidate: string;
@@ -27,9 +41,17 @@ type Passage = {
   fragment: string | null;
 };
 
-export function buildDocumentRegister(corpus: Corpus, auditInput: unknown) {
+export function buildDocumentRegister(
+  corpus: Corpus,
+  auditInput: unknown,
+  detailsInput: unknown = {},
+) {
   const sections = auditedSection.array().parse(auditInput);
   const sourcesById = new Map(corpus.sources.map((s) => [s.id, s]));
+  const details = documentDetails.parse(detailsInput);
+  for (const id of Object.keys(details))
+    if (!sourcesById.has(id))
+      throw new Error('Notice descriptive sans document : ' + id);
   const records = new Map(corpus.measures.map((m) => [m.id, m]));
   const authors: Record<
     string,
@@ -103,12 +125,22 @@ export function buildDocumentRegister(corpus: Corpus, auditInput: unknown) {
     const related = links.get(source.id)!;
     const review = audits.get(source.id);
     const watch = watches.get(source.id);
+    const info = details[source.id];
+    const processing = review
+      ? 'périmètre relu'
+      : related.passages.length
+        ? 'passages localisés'
+        : 'référence identifiée';
     return {
       id: source.id,
       title: source.title,
       url: source.url,
       previousUrl: source.previousUrl ?? null,
       kind: source.kind,
+      documentType: info?.type ?? source.originalFormat ?? null,
+      organization: info?.organization ?? null,
+      reuse: info?.reuse ?? null,
+      processing,
       format:
         source.originalFormat ??
         (/\.pdf$/i.test(new URL(source.url).pathname) ? 'pdf' : null),
