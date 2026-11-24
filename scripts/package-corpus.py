@@ -9,8 +9,11 @@ import subprocess
 import tarfile
 import tempfile
 
-DATA = ("corpus", "dossiers", "territoires", "economie", "budgets-programmes", "agenda", "marches-predictifs")
-EXTRA = ("exports-v1", "exports-v1.schema", "openapi")
+DATA = ("corpus", "dossiers", "territoires", "economie", "budgets-programmes", "agenda",
+        "marches-predictifs", "documents", "notices-sondages", "parlement/assemblee",
+        "documentation/breves", "documentation/droit", "documentation/verifications",
+        "documentation/financements", "documentation/arcom", "documentation/graphiques")
+EXTRA = ("exports-v1", "exports-v1.schema", "openapi", "licences", "catalogue-dcat")
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -24,7 +27,7 @@ def create(root, destination, revision):
     for stem in (*DATA, *EXTRA):
         name = "api/" + stem + ".json"
         path = root / name
-        if path.is_symlink() or path.parent.is_symlink() or not path.is_file():
+        if not path.is_file() or any(parent.is_symlink() for parent in (path, *path.parents) if parent.is_relative_to(root)):
             raise ValueError("Export public manquant")
         files[name] = path.read_bytes()
         json.loads(files[name])

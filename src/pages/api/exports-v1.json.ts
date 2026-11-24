@@ -14,6 +14,7 @@ export function GET() {
       ? `https://github.com/bluetouff/polradar/releases/download/site-${sourceCommit}/corpus-v1.tar.gz`
       : null,
     licence: dataLicence,
+    catalogueDCAT: origin + '/api/catalogue-dcat.json',
     changements: [
       {
         version: '1.2',

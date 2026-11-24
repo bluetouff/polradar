@@ -80,6 +80,108 @@ export const publicExports = [
       'Le prix varie avec les échanges et dépend des règles du contrat. Les droits des opérateurs s’appliquent aux données sources.',
     fields: ['providers'],
   },
+  {
+    id: 'documents',
+    title: 'Documents et passages',
+    path: '/api/documents.json',
+    description: 'Registre documentaire et passages cités dans les fiches',
+    unit: 'Une référence avec ses usages, dates et repères.',
+    provenance:
+      'Catalogue de Polradar et pièces référencées dans les propositions.',
+    limits:
+      'Un titre ou un lien seul ne permet pas de conclure qu’un programme a été intégralement dépouillé.',
+    fields: ['documents', 'coverageUnit'],
+  },
+  {
+    id: 'notices-sondages',
+    title: 'Notices de sondages',
+    path: '/api/notices-sondages.json',
+    description: 'Inventaire de la Commission des sondages et état de lecture',
+    unit: 'Une entrée identifiée au catalogue de la Commission.',
+    provenance:
+      'Commission des sondages. Le fichier référence la notice publique.',
+    limits:
+      'Une notice identifiée peut encore être à relire, ou porter sur l’opinion. Ces statuts sont distincts des scénarios d’intentions de vote.',
+    fields: ['checkedAt', 'lastSuccessAt', 'notices'],
+  },
+  {
+    id: 'registre-assemblee',
+    title: 'Scrutins de l’Assemblée nationale',
+    path: '/api/parlement/assemblee.json',
+    description:
+      'Scrutins avec une position ou une mise au point nominative documentée',
+    unit: 'Un scrutin, avec les positions enregistrées et les éventuelles mises au point.',
+    provenance:
+      'Archives des XVe et XVIe législatures de l’Assemblée nationale.',
+    limits:
+      'Le registre porte sur les personnes et mandats identifiés. Une absence de position enregistrée ne permet pas de déduire une absence en séance.',
+    fields: ['scrutins', 'personnes', 'mandats'],
+  },
+  {
+    id: 'breves',
+    title: 'Brèves de campagne',
+    path: '/api/documentation/breves.json',
+    description: 'Publications éditoriales et signalements documentés',
+    unit: 'Une brève datée, reliée au fait d’origine.',
+    provenance: 'Rédaction Polradar et publications citées pour chaque fait.',
+    limits:
+      'La date de publication de la brève peut être postérieure à celle du fait.',
+    fields: ['items'],
+  },
+  {
+    id: 'droit',
+    title: 'Droit en vigueur',
+    path: '/api/documentation/droit.json',
+    description: 'Droit en vigueur et textes cités',
+    unit: 'Une règle documentée dans les comparatifs.',
+    provenance: 'Textes et producteurs publics indiqués dans le comparatif.',
+    limits:
+      'Lire la date de validité et le champ d’application de chaque règle.',
+    fields: ['items'],
+  },
+  {
+    id: 'verifications',
+    title: 'Vérifications des déclarations',
+    path: '/api/documentation/verifications.json',
+    description: 'Déclarations examinées et séries de référence',
+    unit: 'Une comparaison de périmètres et de chiffres.',
+    provenance: 'Déclaration d’origine et producteur de l’indicateur cité.',
+    limits:
+      'Les dates, les unités et les éventuelles révisions déterminent la comparaison.',
+    fields: ['items'],
+  },
+  {
+    id: 'financements',
+    title: 'Financements annoncés',
+    path: '/api/documentation/financements.json',
+    description: 'Enveloppes, dépenses et contributions',
+    unit: 'Un schéma documenté avec ses références.',
+    provenance: 'Annonces des candidats et de leurs partis.',
+    limits:
+      'Les affectations sans montant restent distinctes des postes chiffrés.',
+    fields: ['items'],
+  },
+  {
+    id: 'arcom',
+    title: 'Temps de parole Arcom',
+    path: '/api/documentation/arcom.json',
+    description: 'Relevés audiovisuels documentés',
+    unit: 'Un relevé lié à une période et à un média.',
+    provenance: 'Arcom, selon les relevés et unités cités.',
+    limits: 'Période et médias couverts conditionnent les comparaisons.',
+    fields: ['items'],
+  },
+  {
+    id: 'graphiques',
+    title: 'Graphiques intégrables',
+    path: '/api/documentation/graphiques.json',
+    description: 'Catalogue des liens actualisés et figés',
+    unit: 'Un graphique et ses sources.',
+    provenance: 'Polradar et producteurs identifiés pour chaque graphique.',
+    limits:
+      'La licence de la création graphique est distincte des droits sur les données représentées.',
+    fields: ['items'],
+  },
 ];
 export const dataLicence = {
   originaux: 'ODbL-1.0',

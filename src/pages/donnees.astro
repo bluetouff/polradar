@@ -24,7 +24,8 @@ const archive = sourceCommit
       <a href={archive}>Télécharger cette édition complète (.tar.gz)</a>
     )}{' '}
     <a href="/api/exports-v1.json">Catalogue JSON</a>{' '}
-    <a href="/api/">Interroger l’API</a>
+    <a href="/api/">Interroger l’API</a>{' '}
+    <a href="/api/catalogue-dcat.json">Métadonnées DCAT</a>
   </nav>
   <div class="datasets">
     {publicExports.map((j) => (

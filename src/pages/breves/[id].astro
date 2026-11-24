@@ -26,7 +26,9 @@ const Content = entry ? (await render(entry)).Content : null;
   <article
     class="brief-reading"
     itemscope
-    itemtype="https://schema.org/NewsArticle"
+    itemtype={
+      entry ? 'https://schema.org/NewsArticle' : 'https://schema.org/WebPage'
+    }
   >
     <link
       itemprop="mainEntityOfPage"
@@ -41,8 +43,18 @@ const Content = entry ? (await render(entry)).Content : null;
     </span>
     <header>
       <p class="brief-byline">
-        {entry ? 'Rédaction Polradar' : 'Veille des publications officielles'} ·
-        Publié le{' '}
+        <span
+          itemprop="author"
+          itemscope
+          itemtype="https://schema.org/Organization"
+        >
+          <span itemprop="name">
+            {entry
+              ? 'Rédaction Polradar'
+              : 'Veille des publications officielles'}
+          </span>
+        </span>{' '}
+        · Publié le{' '}
         <time itemprop="datePublished" datetime={article.data.published}>
           {formatDate(article.data.published)}
         </time>

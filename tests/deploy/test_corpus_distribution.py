@@ -17,7 +17,9 @@ class CorpusDistribution(unittest.TestCase):
             sha = "a" * 40
             (root / "build.json").write_text(json.dumps({"sourceCommit": sha}))
             for stem in (*package["DATA"], *package["EXTRA"]):
-                (api / (stem + ".json")).write_text("{}")
+                target = api / (stem + ".json")
+                target.parent.mkdir(exist_ok=True, parents=True)
+                target.write_text("{}")
             (api / "hors-catalogue.json").write_text("{}")
             (api / "exports-v1.json").write_text(json.dumps({
                 "version": 1, "sourceCommit": sha, "edition": "2026-11-24", "licence": {"originaux": "ODbL-1.0"},

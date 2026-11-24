@@ -58,6 +58,7 @@ const fastInputs = new Set(
     'editorial-reviews',
     'watch',
     'prediction-markets',
+    'poll-catalogue',
   ].map((n) => 'src/data/' + n + '.json'),
 );
 function sharedSignature() {
