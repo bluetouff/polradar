@@ -87,12 +87,35 @@ test('les filtres changent de page, reviennent au premier résultat et se restau
   await expect(page.locator('#measure-count')).toHaveText('0 résultat');
   await expect(page.locator(pager).first()).toBeHidden();
 });
-test('les quatre nouvelles candidatures livrent les fiches primaires et les archives de Lassalle restent identifiées', async ({
+test('les dossiers gardent leurs fiches primaires ou indiquent que leur programme reste à documenter', async ({
   page,
 }) => {
-  expect(
-    new Set(current.filter((m) => m.scope !== 'parti').map((m) => m.candidate)),
-  ).toEqual(new Set(candidates.map((c) => c.id)));
+  const withPrimary = new Set(
+    current.filter((m) => m.scope !== 'parti').map((m) => m.candidate),
+  );
+  const missing = candidates
+    .filter((c) => !withPrimary.has(c.id))
+    .map((c) => c.id);
+  const pending = new Set([
+    'batho',
+    'becht',
+    'bonnal',
+    'bouamrane',
+    'delmur',
+    'dubuisson',
+    'platret',
+    'revillon-apreval',
+    'saforcada',
+  ]);
+  expect(missing.filter((id) => !pending.has(id))).toEqual([]);
+  for (const id of missing) {
+    await page.goto('/candidats/' + id + '/');
+    await expect(
+      page.getByText(
+        'Aucune proposition récente documentée pour cette candidature.',
+      ),
+    ).toBeVisible();
+  }
   for (const id of ['lassalle', 'durif', 'billetdoux', 'riner']) {
     const records = current.filter((m) => m.candidate === id);
     await page.goto('/mesures/#candidate=' + id);

@@ -21,9 +21,11 @@ test('la recherche CSG, les documents examinés et les absences sont distincts',
   await expect(
     matrix.getByRole('row', { name: /Gabriel Attal/ }),
   ).toContainText('Proposition');
+  await person.selectOption('egger');
   await expect(matrix.getByRole('row', { name: /Clara Egger/ })).toContainText(
     'Document examiné',
   );
+  await person.selectOption('');
   await matrix.getByRole('button', { name: 'Candidats suivants' }).click();
   await expect(matrix.locator('#q-p-span')).toContainText('11 à 20');
   await person.selectOption('attal');
