@@ -70,7 +70,7 @@ const categories = [
                 >
                   <summary>{table.title}</summary>
                   <div class="study-table">
-                    <p>{table.question}</p>
+                    <p>{table.question.replaceAll(' ?', '\u202f?')}</p>
                     <p class="study-base">{table.base}</p>
                     <ul aria-label="Résultats en pourcentage">
                       {table.results.map((row) => (

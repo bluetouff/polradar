@@ -128,11 +128,17 @@ test('le relevé de qualité recompte les notices et scrutins de la même révis
     }),
   );
   expect(quality.sourceCommit).toBe(build.sourceCommit);
+  expect(publications.sourceCommit).toBe(build.sourceCommit);
   expect(quality.polls.catalogue.total).toBe(publications.notices.length);
   const verified = publications.notices.filter(
     (notice: { status: string }) => notice.status === 'integree',
   ).length;
   expect(quality.polls.catalogue.byStatus.integree).toBe(verified);
+  const otherStudies = publications.notices.filter(
+    (notice: { status: string }) => notice.status === 'hors_series',
+  ).length;
+  expect(quality.polls.catalogue.byStatus.hors_series).toBe(otherStudies);
+  expect(publications.specialStudies).toHaveLength(otherStudies);
   expect(quality.parliament.acts).toBe(register.actes.length);
   const archive = quality.parliament.byPeriod as {
     institution: string;
@@ -176,8 +182,13 @@ test('le relevé de qualité recompte les notices et scrutins de la même révis
   await expect(
     page
       .locator('#qualite')
-      .getByRole('link', { name: /notices entièrement vérifiées/ }),
+      .getByRole('link', { name: /notices d’intentions de vote dépouillées/ }),
   ).toContainText(verified.toLocaleString('fr-FR'));
+  await expect(
+    page
+      .locator('#qualite')
+      .getByRole('link', { name: /autres enquêtes de campagne documentées/ }),
+  ).toContainText(otherStudies.toLocaleString('fr-FR'));
 });
 
 test('les périmètres parlementaires restent consultables au clavier à petite largeur', async ({
