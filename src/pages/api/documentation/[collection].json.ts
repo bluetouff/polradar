@@ -10,7 +10,11 @@ import { financing, financingMaps } from '../../../lib/proposal-data';
 import { airtime } from '../../../lib/visual-data';
 import comparison from '../../../data/retirement-comparison.json';
 import { editionId, type Graphic } from '../../../lib/chart-publication';
-import { studioFamilies, studioItems } from '../../../lib/studio';
+import {
+  studioDataPath,
+  studioFamilies,
+  studioItems,
+} from '../../../lib/studio';
 import { salaryGraphic } from '../../../lib/csg-paie.mjs';
 import { economyGraphic } from '../../../lib/economy-graphic.mjs';
 import {
@@ -39,7 +43,9 @@ function studioLinks(item: (typeof studioItems)[number]) {
   return {
     famille: studioFamilies[item.family],
     studio: url('/studio/#' + item.id),
-    donnees: url('/studio/donnees/' + item.id + '.json'),
+    donnees: url(studioDataPath(item)),
+    formatDonnees: item.generated ? 'image/svg+xml' : 'application/json',
+    ...(item.generated ? { donneesDansSVG: 'metadata#studio-data' } : {}),
   };
 }
 const collections = {

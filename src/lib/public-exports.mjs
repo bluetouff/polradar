@@ -118,6 +118,43 @@ const datasets = [
     fields: ['scrutins', 'personnes', 'mandats'],
   },
   {
+    id: 'registre-senat',
+    title: 'Scrutins du Sénat',
+    path: '/api/parlement/archives/senat.json',
+    description: 'Votes nominatifs documentés dans les sessions retenues',
+    unit: 'Un scrutin avec ses positions, ses éventuelles corrections et son lien institutionnel.',
+    provenance: 'Sénat, archives DOSLEG et annuaire des mandats et groupes.',
+    limits:
+      'Trois sessions ont été examinées. Un sénateur absent des listes nominatives ne reçoit aucune position déduite.',
+    fields: [
+      'consultation',
+      'droits',
+      'periodesExaminees',
+      'lots',
+      'personnes',
+      'scrutins',
+    ],
+  },
+  {
+    id: 'registre-parlement-europeen',
+    title: 'Votes du Parlement européen',
+    path: '/api/parlement/archives/parlement-europeen.json',
+    description:
+      'Décisions mises aux voix par appel nominal dans les séances examinées',
+    unit: 'Une décision avec une mention nominative, sa séance et son relevé.',
+    provenance: 'Parlement européen, portail Open Data et fiches de mandat.',
+    limits:
+      'Les séances sont énumérées avec le nombre de décisions examinées. Une séance peut ne comporter aucune mention du député suivi.',
+    fields: [
+      'consultation',
+      'droits',
+      'periodesExaminees',
+      'lots',
+      'personnes',
+      'scrutins',
+    ],
+  },
+  {
     id: 'breves',
     title: 'Brèves de campagne',
     path: '/api/documentation/breves.json',
@@ -210,6 +247,24 @@ const rightsByDataset = new Map([
       url: 'https://data.assemblee-nationale.fr/licence-ouverte-open-licence',
       scope:
         'Scrutins et mandats publiés par l’Assemblée nationale. Citer l’Assemblée et la version des archives utilisées.',
+    },
+  ],
+  [
+    'registre-senat',
+    {
+      label: 'Licence ouverte du Sénat',
+      url: 'https://data.senat.fr/licence/',
+      scope:
+        'Mentionner le Sénat et la date de mise à jour indiquée dans le fichier.',
+    },
+  ],
+  [
+    'registre-parlement-europeen',
+    {
+      label: 'Conditions du Parlement européen',
+      url: 'https://data.europarl.europa.eu/en/discover/rules-on-the-european-parliaments-open-data',
+      scope:
+        'Créditer le Parlement européen. Le fichier conserve les relevés institutionnels et la date de consultation.',
     },
   ],
   ['territoires', upstreamData],

@@ -11,6 +11,7 @@ import tempfile
 
 DATA = ("corpus", "dossiers", "territoires", "economie", "budgets-programmes", "agenda",
         "marches-predictifs", "documents", "notices-sondages", "parlement/assemblee",
+        "parlement/archives/senat", "parlement/archives/parlement-europeen",
         "documentation/breves", "documentation/droit", "documentation/verifications",
         "documentation/financements", "documentation/arcom", "documentation/graphiques")
 EXTRA = ("exports-v1", "exports-v1.schema", "openapi", "licences", "catalogue-dcat")
