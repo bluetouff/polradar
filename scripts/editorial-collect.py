@@ -13,7 +13,7 @@ from pathlib import Path
 import re
 import time
 import unicodedata
-from urllib.parse import parse_qsl, quote, urlencode, urljoin, urlsplit, urlunsplit
+from urllib.parse import parse_qsl, quote, unquote, urlencode, urljoin, urlsplit, urlunsplit
 import xml.etree.ElementTree as ET
 from zoneinfo import ZoneInfo
 
@@ -40,6 +40,10 @@ CAMPAIGN = re.compile(
     r"\b(presidentielle|campagne|candidat\w*|investiture|programme|proposition\w*|meeting|reunion publique|deplacement|parrainage\w*|scrutin|chiffrage|budget|refus de se presenter)\b"
 )
 NEWS = "news.google.com"
+SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
+SITEMAP_BYTES = 256 * 1024
+SITEMAP_ENTRIES = 1000
+SITEMAP_ARTICLES = 2
 
 
 def read(name):
@@ -216,6 +220,85 @@ def feed_items(body, with_publisher=False):
         if len(out) == 150:
             break
     return out
+
+
+def sitemap_article(raw, host, prefix):
+    if not isinstance(raw, str) or not raw.startswith("https://") or len(raw) > 1200:
+        return None
+    try:
+        parts = watch.checked_url(raw, {host})
+    except (ValueError, UnicodeError):
+        return None
+    if parts.query or parts.fragment or not parts.path.startswith(prefix):
+        return None
+    # These publishers use one slug per article. A decoded slash, dot or second
+    # layer of percent-encoding cannot broaden the configured section.
+    slug = unquote(parts.path[len(prefix):].removesuffix("/"))
+    if not re.fullmatch(r"[\w-]{1,300}", slug):
+        return None
+    return url_for(raw, raw, {host})
+
+
+def sitemap_items(body, host, prefix, since, today):
+    if len(body) > SITEMAP_BYTES:
+        raise ValueError("Sitemap trop volumineux")
+    xml = body.decode("utf-8-sig")
+    if "\0" in xml or re.search(r"<!\s*(?:doctype|entity)\b", xml, re.I):
+        raise ValueError("Déclaration XML interdite")
+    root = ET.fromstring(xml)
+    if root.tag != SITEMAP_NS + "urlset" or len(root) > SITEMAP_ENTRIES:
+        raise ValueError("Sitemap hors périmètre")
+    found = {}
+    for row in root.findall(SITEMAP_NS + "url"):
+        locs = row.findall(SITEMAP_NS + "loc")
+        if len(locs) != 1 or not locs[0].text:
+            continue
+        dest = sitemap_article(locs[0].text.strip(), host, prefix)
+        modified = pubday(row.findtext(SITEMAP_NS + "lastmod"))
+        if not dest or (modified and not since <= modified <= today):
+            continue
+        # lastmod only orders discovery. It is never sent to article_at.
+        found[dest] = max(found.get(dest, date.min), modified or date.min)
+    return found
+
+
+def discover_sitemap(rule, seed, since, today, registered, ongoing, issues):
+    host = urlsplit(seed).hostname
+    try:
+        if not isinstance(rule, dict) or not isinstance(rule.get("articles"), str):
+            raise ValueError("Sitemap non déclaré")
+        endpoint, prefix = rule.get("url"), rule["articles"]
+        parts = watch.checked_url(endpoint, {host})
+        if (parts.query or parts.fragment or not parts.path.endswith(".xml")
+                or not re.fullmatch(r"/[a-z0-9-]+/", prefix)):
+            raise ValueError("Périmètre du sitemap invalide")
+        context = watch.http_cache.key(json.dumps([
+            prefix, since.isoformat(), today.isoformat(), sorted(registered.items()), sorted(ongoing),
+        ]))
+        stored = watch.STATE.get("sitemap-v1", endpoint)
+        conditional = stored if stored.get("digest") == context else None
+        meta = {}
+        status, mime, body, resolved = watch.fetch(
+            endpoint, {host}, with_url=True, timeout=6,
+            conditional=conditional, response_meta=meta,
+        )
+        if resolved != endpoint:
+            raise ValueError("Autre sitemap")
+        if status == 304 and conditional:
+            return {}
+        if status == 429:
+            issues.add("limite-editeur")
+            return {}
+        if status != 200 or mime not in ("application/xml", "text/xml"):
+            raise ValueError("Sitemap indisponible")
+        found = sitemap_items(body, host, prefix, since, today)
+        # Validators cannot hide an unprocessed or unpublished lead on a rerun.
+        if meta and all(u in registered and u not in ongoing for u in found):
+            watch.STATE.remember("sitemap-v1", endpoint, meta, context)
+        return found
+    except (ValueError, OSError, http.client.HTTPException, ET.ParseError, RecursionError):
+        issues.add("flux-indisponible")
+        return {}
 
 
 def search(task, since, today):
@@ -410,7 +493,7 @@ def article_at(page, address, hosts, feed_title, feed_date, since, today):
     }, flat(page.meta.get("description") or page.meta.get("og:description"))[:600]
 
 
-def examine(task, since, today, hints, scheduled=None, *, official_index=False, registered=None):
+def examine(task, since, today, hints, scheduled=None, *, official_index=False, registered=None, sitemap=None):
     s, persons, desks, programme = task
     seed, sid = s["url"], s["id"]
     hosts = host_set(seed)
@@ -493,12 +576,16 @@ def examine(task, since, today, hints, scheduled=None, *, official_index=False, 
                 links.setdefault(dest, (text, None))
         used = set()
         ongoing = set(scheduled or ())
+        map_links = (
+            discover_sitemap(sitemap, seed, since, today, registered or {}, ongoing, issues)
+            if sitemap and s["kind"] in ("campagne", "parti", "institution") else {}
+        )
 
-        def consider(doc, url, label="", when=None):
+        def consider(doc, url, label="", when=None, article_hosts=hosts):
             result = article_at(
                 doc,
                 url,
-                hosts,
+                article_hosts,
                 label,
                 when,
                 date.min if url in ongoing else since,
@@ -547,6 +634,18 @@ def examine(task, since, today, hints, scheduled=None, *, official_index=False, 
             key=lambda pair: (pair[0] in ongoing, priority(pair)),
             reverse=True,
         )
+        if map_links:
+            # Keep all scheduled events and the leading feed/home choices. Share
+            # the existing five-article budget rather than adding another crawl.
+            front = max(len(ongoing), 3)
+            ordered = [url for url, _ in selected]
+            from_map = sorted(
+                map_links, key=lambda url: (url not in (registered or {}), map_links[url]),
+                reverse=True,
+            )
+            extra = [url for url in from_map if url != home and url not in ordered[:front]]
+            ordered[front:front] = extra[:SITEMAP_ARTICLES]
+            selected = [(url, links.get(url, ("", None))) for url in dict.fromkeys(ordered)]
         for dest, (label, when) in selected[:5]:
             if time.monotonic() >= deadline:
                 break
@@ -555,27 +654,32 @@ def examine(task, since, today, hints, scheduled=None, *, official_index=False, 
             ):
                 continue
             try:
+                article_hosts = {host} if dest in map_links else hosts
+                if dest in map_links:
+                    when = None
                 if watch.STATE.path and registered and dest in registered and dest not in ongoing:
                     # Only records already in the published corpus can use a 304 shortcut.
                     meta = {}
                     stored = watch.STATE.get('article-v1', dest)
                     context = watch.http_cache.key(json.dumps([dest, *registered[dest]]))
                     conditions = stored if stored.get('digest') == context else None
-                    status, mime, body, resolved = watch.fetch(dest, hosts, with_url=True, timeout=min(9, deadline-time.monotonic()), conditional=conditions, response_meta=meta)
+                    status, mime, body, resolved = watch.fetch(dest, article_hosts, with_url=True, timeout=min(9, deadline-time.monotonic()), conditional=conditions, response_meta=meta)
                     if status == 304 and conditions:
                         continue
                     if status != 200 or mime not in ('text/html', 'application/xhtml+xml'):
                         if status == 429: issues.add('limite-editeur')
                         raise ValueError('Article indisponible')
                     doc = Page(body)
-                    detail = article_at(doc, resolved, hosts, label, when, date.min, today)
+                    detail = article_at(doc, resolved, article_hosts, label, when, date.min, today)
                     if detail and meta:
                         article = detail[0]
-                        if article['event'] is None and (article['title'], article['date']) == registered[dest]:
+                        if article['url'] == dest and article['event'] is None and (article['title'], article['date']) == registered[dest]:
                             watch.STATE.remember('article-v1', dest, meta, context)
                 else:
-                    doc, resolved = page_at(dest, hosts, min(9, deadline - time.monotonic()))
-                consider(doc, resolved, label, when)
+                    doc, resolved = page_at(dest, article_hosts, min(9, deadline - time.monotonic()))
+                if dest in map_links and not sitemap_article(resolved, host, sitemap["articles"]):
+                    continue
+                consider(doc, resolved, label, when, article_hosts)
             except (ValueError, OSError, http.client.HTTPException, RecursionError):
                 issues.add('article-indisponible')
                 continue
@@ -680,13 +784,22 @@ def main():
         def review_site(task):
             origin, persons, _, _ = task
             hosts = host_set(origin["url"])
+            sitemap = config.get("sitemaps", {}).get(origin["id"])
             scheduled = [
                 url
                 for cid, _ in persons
                 for url in upcoming.get(cid, [])
                 if urlsplit(url).hostname in hosts
             ]
-            return examine(task, since, today, hints, scheduled, official_index=origin["id"] in selected, registered=published_urls)
+            # Preserve a candidate homepage already monitored in the daily run
+            # when its site is also added to the announcements edition.
+            use_index = origin["id"] in selected and not (
+                isinstance(sitemap, dict) and sitemap.get("startAtHomepage") is True
+            )
+            return examine(
+                task, since, today, hints, scheduled, official_index=use_index,
+                registered=published_urls, sitemap=sitemap,
+            )
 
         checks = list(pool.map(review_site, tasks))
     watch.STATE.save()

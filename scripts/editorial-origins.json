@@ -56,7 +56,8 @@
         "reconquete-paroles",
         "npar-campagne-presidentielle",
         "lo-actualites-presidentielle",
-        "attal-actualites-campagne"
+        "attal-actualites-campagne",
+        "philippe-index"
       ]
     },
     "votes": {
@@ -116,10 +117,22 @@
       "cazeneuve-lettre",
       "pp-home",
       "attal-actualites-campagne",
+      "philippe-index",
       "npar-campagne-presidentielle",
       "reconquete-paroles",
       "lo-actualites-presidentielle"
     ]
+  },
+  "sitemaps": {
+    "attal-actualites-campagne": {
+      "url": "https://attalpresident.fr/sitemap.xml",
+      "articles": "/actualites/"
+    },
+    "philippe-index": {
+      "url": "https://www.edouardphilippe.fr/sitemap.xml",
+      "articles": "/actualites/",
+      "startAtHomepage": true
+    }
   },
   "programmes": {
     "lfi-health": "melenchon-sante",
