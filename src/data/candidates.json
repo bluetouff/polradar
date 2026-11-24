@@ -31,6 +31,24 @@
     "statusSource": "lcp"
   },
   {
+    "id": "batho",
+    "name": "Delphine Batho",
+    "party": "Génération Écologie",
+    "color": "#8fa7b8",
+    "status": "Investie par son parti",
+    "note": "La 15ᵉ convention nationale de Génération Écologie a investi Delphine Batho pour l’élection présidentielle de 2027.",
+    "statusSource": "batho-investiture-ge"
+  },
+  {
+    "id": "becht",
+    "name": "Olivier Becht",
+    "party": "Affiliation non renseignée",
+    "color": "#8fa7b8",
+    "status": "Déclarée",
+    "note": "Olivier Becht a annoncé sa candidature en septembre 2026. Son site de campagne présente Le Projet France et les étapes de sa campagne.",
+    "statusSource": "becht-projet-france"
+  },
+  {
     "id": "billetdoux",
     "name": "Augustin Billetdoux",
     "party": "Affiliation non renseignée",
@@ -38,6 +56,24 @@
     "status": "Déclarée",
     "note": "Augustin Billetdoux expose ses propositions dans la vidéo de déclaration publiée sur son site de candidature.",
     "statusSource": "billetdoux-declaration-2027"
+  },
+  {
+    "id": "bonnal",
+    "name": "Sébastien Bonnal",
+    "party": "Affiliation non renseignée",
+    "color": "#8fa7b8",
+    "status": "Déclarée",
+    "note": "La notice d’auteur de Sébastien Bonnal indique qu’il se présente à la présidentielle de 2027. Il a commandé une enquête OpinionWay sur sa candidature.",
+    "statusSource": "bonnal-notice-auteur"
+  },
+  {
+    "id": "bouamrane",
+    "name": "Karim Bouamrane",
+    "party": "La France humaine et forte",
+    "color": "#8fa7b8",
+    "status": "Déclarée",
+    "note": "Karim Bouamrane présente sa candidature et publie son manifeste sur son site de campagne La France humaine et forte.",
+    "statusSource": "bouamrane-candidature-2027"
   },
   {
     "id": "branco",
@@ -69,6 +105,24 @@
     "status": "Déclarée",
     "note": "Le site de campagne présente des propositions thématiques en cours de développement, notamment sur le travail, les retraites et le logement.",
     "statusSource": "collovati-projet-2027"
+  },
+  {
+    "id": "delmur",
+    "name": "Mélody Delmur",
+    "party": "As de Cœur",
+    "color": "#8fa7b8",
+    "status": "Déclarée",
+    "note": "Le parti As de Cœur a officialisé le 5 septembre 2025 la candidature de sa présidente Mélody Delmur à l’élection de 2027.",
+    "statusSource": "delmur-candidature-as-de-coeur"
+  },
+  {
+    "id": "dubuisson",
+    "name": "Emmanuel Dubuisson",
+    "party": "Affiliation non renseignée",
+    "color": "#8fa7b8",
+    "status": "Déclarée",
+    "note": "Emmanuel Dubuisson a publié une déclaration de candidature datée du 18 juin 2026.",
+    "statusSource": "dubuisson-declaration-2027"
   },
   {
     "id": "dupont-aignan",
@@ -147,9 +201,9 @@
     "name": "Jean Lassalle",
     "party": "Résistons",
     "color": "#8fa7b8",
-    "status": "Déclarée",
+    "status": "Candidature envisagée",
     "note": "Jean Lassalle défend une banque pour les petits partis et un SMIC pour la personne qui tient le foyer d’une famille d’éleveurs. Le 8 octobre, il disait encore réfléchir à sa candidature. Sa profession de foi disponible ici date de 2022.",
-    "statusSource": "lcp-candidatures-novembre",
+    "statusSource": "lassalle-pleinchamp-elevage-2026",
     "programmeReview": {
       "checked": "2026-11-24",
       "sources": [
@@ -262,6 +316,15 @@
     }
   },
   {
+    "id": "platret",
+    "name": "Gilles Platret",
+    "party": "Affiliation non renseignée",
+    "color": "#8fa7b8",
+    "status": "Déclarée",
+    "note": "Gilles Platret a annoncé sa candidature en octobre 2026. Il a participé le 6 novembre à l’émission À vous de le dire de Sud Radio en qualité de candidat à la présidentielle.",
+    "statusSource": "platret-sudradio-2026-11-06"
+  },
+  {
     "id": "polony",
     "name": "Natacha Polony",
     "party": "Nous sommes la France",
@@ -284,9 +347,18 @@
     "name": "Bruno Retailleau",
     "party": "Les Républicains",
     "color": "#8c9cde",
-    "status": "Investie par son parti",
+    "status": "Investi par son parti",
     "note": "Projet détaillé par thème ; propositions sur les retraites et l’immigration désormais publiées.",
-    "statusSource": "lcp"
+    "statusSource": "retailleau-designation-lr"
+  },
+  {
+    "id": "revillon-apreval",
+    "name": "Rémi Revillon d’Apreval",
+    "party": "Affiliation non renseignée",
+    "color": "#8fa7b8",
+    "status": "Déclarée",
+    "note": "Rémi Revillon d’Apreval a publié sa déclaration de candidature le 8 novembre 2026. Il indique que son initiative est soutenue par le collectif REVODEMO.",
+    "statusSource": "revillon-apreval-declaration"
   },
   {
     "id": "riner",
@@ -343,6 +415,15 @@
     "note": "François Ruffin a retiré sa candidature le 21 novembre 2026. Ce dossier conserve ses propositions et ses votes.",
     "statusSource": "ruffin-retrait-communique",
     "withdrawnOn": "2026-11-21"
+  },
+  {
+    "id": "saforcada",
+    "name": "David Saforcada",
+    "party": "L’Appel au Peuple",
+    "color": "#8fa7b8",
+    "status": "Déclarée",
+    "note": "David Saforcada sollicite les parrainages des élus pour sa candidature à la présidentielle de 2027.",
+    "statusSource": "saforcada-appel-aux-elus"
   },
   {
     "id": "tondelier",

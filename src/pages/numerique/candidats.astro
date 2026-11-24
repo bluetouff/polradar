@@ -22,6 +22,7 @@ const cards = candidates.map((candidate) => ({
   archives: archives.filter((x) => x.candidate === candidate.id),
 }));
 const covered = cards.filter((c) => c.entries.length).length;
+const reviewed = cards.filter((c) => c.sources.length > 0).length;
 ---
 
 <Base
@@ -41,8 +42,8 @@ const covered = cards.filter((c) => c.entries.length).length;
     <div>
       <h1>Le numérique par candidat</h1>
       <p>
-        {cards.length} candidats examinés · Des mesures recensées dans {covered}{' '}
-        dossiers · Dernière lecture le{' '}
+        {reviewed} dossiers examinés sur {cards.length} · {covered} avec des
+        fiches numériques · Revue du{' '}
         <time datetime={review.checked}>{formatDate(review.checked)}</time>.
       </p>
     </div>
@@ -72,11 +73,13 @@ const covered = cards.filter((c) => c.entries.length).length;
                 ))}
               </ul>
             </details>
-          ) : (
+          ) : sources.length > 0 ? (
             <p>
               Aucune mesure numérique précise repérée dans les documents
               ci-dessous.
             </p>
+          ) : (
+            <p>Revue documentaire à faire.</p>
           )}
           {archives.length > 0 && (
             <details>
@@ -90,16 +93,18 @@ const covered = cards.filter((c) => c.entries.length).length;
               </ul>
             </details>
           )}
-          <details class="review-docs">
-            <summary>Documents examinés ({sources.length})</summary>
-            <ul>
-              {sources.map((s) => (
-                <li>
-                  <a href={s.url}>{s.title} ↗</a>
-                </li>
-              ))}
-            </ul>
-          </details>
+          {sources.length > 0 && (
+            <details class="review-docs">
+              <summary>Documents examinés ({sources.length})</summary>
+              <ul>
+                {sources.map((s) => (
+                  <li>
+                    <a href={s.url}>{s.title} ↗</a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
         </article>
       ))}
     </div>

@@ -114,14 +114,17 @@ const digitalReview = JSON.parse(
     'utf8',
   ),
 );
-const reviewedIds = Object.keys(digitalReview.documents).sort();
+const reviewIds = [
+  ...Object.keys(digitalReview.documents),
+  ...(digitalReview.pending ?? []),
+].sort();
 if (
   !/^\d{4}-\d{2}-\d{2}$/.test(digitalReview.checked) ||
   digitalReview.checked >
     new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Paris' }).format(
       new Date(),
     ) ||
-  reviewedIds.join(',') !==
+  reviewIds.join(',') !==
     dataset.candidates
       .map((c) => c.id)
       .sort()

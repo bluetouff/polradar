@@ -4,14 +4,23 @@ import candidates from '../../src/data/candidates.json' with { type: 'json' };
 import history from '../../src/data/daily-updates.json' with { type: 'json' };
 import editorial from '../../src/data/editorial-reviews.json' with { type: 'json' };
 
-test('chaque candidat dispose de documents numériques et les textes collectifs gardent leur auteur', async ({
+test('la revue numérique distingue les dossiers examinés et les textes gardent leur auteur', async ({
   page,
 }) => {
   await page.goto('/numerique/candidats/#glucksmann');
   const cards = page.locator('.review-card');
   const active = candidates.filter((c) => !c.withdrawnOn);
-  expect(active.every((c) => Object.hasOwn(review.documents, c.id))).toBe(true);
+  const reviewedOrPending = new Set([
+    ...Object.keys(review.documents),
+    ...review.pending,
+  ]);
+  expect(active.every((c) => reviewedOrPending.has(c.id))).toBe(true);
   await expect(cards).toHaveCount(active.length);
+  for (const id of review.pending) {
+    const pending = page.locator(`.review-card[id="${id}"]`);
+    await expect(pending).toContainText('Revue documentaire à faire.');
+    await expect(pending.locator('.review-docs')).toHaveCount(0);
+  }
   await expect(page.locator('.review-card#ruffin')).toHaveCount(0);
   const candidate = page.locator('#glucksmann');
   await expect(candidate).toBeVisible();
