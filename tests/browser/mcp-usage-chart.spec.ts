@@ -48,7 +48,12 @@ test('les appels MCP sont comptés une seule fois et consultables au clavier sur
     '2027-01-01',
   );
   await expect(rows.first().getByRole('cell')).toHaveText(['0', '1', '1']);
-  await expect(panel.locator('[data-tools] details')).toHaveCount(5);
+  await expect(panel.locator('[data-tools] details')).toHaveCount(
+    report.tools.length,
+  );
+  await expect(panel.getByText('Non renseigné', { exact: true })).toHaveCount(
+    6,
+  );
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= window.innerWidth,
@@ -71,7 +76,7 @@ test('zéro observé, absence de relevé et journée manquante ont des rendus di
   const panel = page.locator('[data-mcp-usage]');
   await expect(panel.locator('[data-zero]')).toBeVisible();
   await expect(panel.getByText('Non renseigné', { exact: true })).toHaveCount(
-    5,
+    11,
   );
   for (const failure of [
     { status: 200, data: { ...report, days: report.days.slice(1) } },
