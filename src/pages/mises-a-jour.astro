@@ -3,14 +3,22 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import EditorialReviews from '../components/EditorialReviews.astro';
 import history from '../data/daily-updates.json';
-import { dailyHistorySchema, families } from '../lib/daily-updates.mjs';
+import {
+  dailyHistorySchema,
+  families,
+  latestCollections,
+} from '../lib/daily-updates.mjs';
+import {
+  collectionClock,
+  formatCollectionTime,
+} from '../lib/collection-clock.mjs';
 import { formatDate, formatTimestamp, meta } from '../lib/data';
 const runs = dailyHistorySchema.parse(history);
 const latest = runs[0];
-const latestByFamily = Object.keys(families).flatMap((id) => {
-  const run = runs.find((run) => run.rows.some((row) => row.id === id));
-  return run ? [{ run, row: run.rows.find((row) => row.id === id)! }] : [];
-});
+const latestByFamily = latestCollections(runs);
+const latestComplete = runs.find((run) => !run.scope);
+const completeIssues =
+  latestComplete?.rows.filter((row) => row.status !== 'verified') ?? [];
 const terms = {
   sondages: 'Fin du terrain le plus récent',
   economie: 'Dernière publication Eurostat',
@@ -70,25 +78,45 @@ const workflow = meta.repository + '/actions/workflows/watch.yml';
         )}
       </div>
     </div>
-    <p>
-      Collecte quotidienne à 8 h, nouvelles notices également à 18 h (Paris).
-      <br />
-      <a href={workflow}>Exécutions et éventuels échecs sur GitHub ↗</a>
-    </p>
+    <div class="run-plan">
+      <p>
+        Collecte quotidienne à 8 h, nouvelles notices également à 18 h (Paris).
+        Le journal signale tout retard de deux heures.
+      </p>
+      {latestComplete && (
+        <p class="run-coverage">
+          Dernière collecte des six familles ·{' '}
+          <time datetime={latestComplete.at}>{display(latestComplete.at)}</time>
+          {completeIssues.length > 0 && (
+            <span>
+              Contrôle partiel ou indisponible pour{' '}
+              {completeIssues
+                .map((row) => families[row.id as keyof typeof families][0])
+                .join(', ')}
+              .
+            </span>
+          )}
+        </p>
+      )}
+      <p>
+        <a href={workflow}>Exécutions et éventuels échecs sur GitHub ↗</a>
+      </p>
+    </div>
   </div>
   {latest && (
-    <p id="report-delay" hidden role="status">
-      Le dernier rapport publié a plus de 24 heures.{' '}
-      <a href={workflow}>Vérifier le passage suivant ↗</a>
-    </p>
-  )}
-  {latest && (
     <section aria-label="État des données" class="fresh-grid">
-      {latestByFamily.map(({ row }) => {
+      {latestByFamily.map(({ row, attempted, succeeded }) => {
         const key = row.id as keyof typeof families;
         const [name, link, icon] = families[key];
+        const cadence = key === 'sondages' ? 'sondages' : 'quotidienne';
+        const timing = collectionClock(cadence, attempted, succeeded);
         return (
-          <article class="fresh-card">
+          <article
+            class="fresh-card"
+            data-cadence={cadence}
+            data-attempted={attempted}
+            data-succeeded={succeeded}
+          >
             <div class="fresh-family">
               <Icon name={icon} />
               <h2>
@@ -98,10 +126,44 @@ const workflow = meta.repository + '/actions/workflows/watch.yml';
             <span class="fresh-state" data-status={row.status}>
               {state(row)}
             </span>
+            <p
+              class="fresh-alert"
+              data-missed-attempt
+              hidden={!timing.missedAttempt}
+            >
+              Collecte en retard
+            </p>
+            <p
+              class="fresh-alert"
+              data-missed-success
+              hidden={timing.missedAttempt || !timing.missedSuccess}
+            >
+              Aucun succès depuis l’échéance
+            </p>
             <dl>
               <div>
-                <dt>Dernier contrôle</dt>
-                <dd>{display(row.checked)}</dd>
+                <dt>Dernière tentative</dt>
+                <dd>
+                  <time datetime={attempted}>{display(attempted)}</time>
+                </dd>
+              </div>
+              <div>
+                <dt>Dernier succès</dt>
+                <dd>
+                  {succeeded ? (
+                    <time datetime={succeeded}>{display(succeeded)}</time>
+                  ) : (
+                    'Aucun consigné'
+                  )}
+                </dd>
+              </div>
+              <div>
+                <dt>Prochain passage prévu</dt>
+                <dd>
+                  <time data-next-passage datetime={timing.next}>
+                    {formatCollectionTime(timing.next)}
+                  </time>
+                </dd>
               </div>
               {row.id !== 'veille' && (
                 <div>
@@ -210,18 +272,31 @@ const workflow = meta.repository + '/actions/workflows/watch.yml';
   </section>
 </Base>
 <script>
-  const clocks = [
-    ['last-report', 'report-delay'],
-    ['last-editorial-review', 'editorial-delay'],
-  ].map(([clock, notice]) => ({
-    last: document.getElementById(clock) as HTMLTimeElement | null,
-    notice: document.getElementById(notice),
-  }));
+  import {
+    collectionClock,
+    formatCollectionTime,
+  } from '../lib/collection-clock.mjs';
+  const cards = document.querySelectorAll<HTMLElement>('[data-cadence]');
   function update() {
-    for (const { last, notice } of clocks) {
-      if (last && notice)
-        notice.hidden =
-          Date.now() - Date.parse(last.dateTime) <= 24 * 60 * 60 * 1000;
+    for (const card of cards) {
+      const timing = collectionClock(
+        card.dataset.cadence,
+        card.dataset.attempted,
+        card.dataset.succeeded,
+      );
+      const next = card.querySelector<HTMLTimeElement>('[data-next-passage]')!;
+      const missedAttempt = card.querySelector<HTMLElement>(
+        '[data-missed-attempt]',
+      )!;
+      const missedSuccess = card.querySelector<HTMLElement>(
+        '[data-missed-success]',
+      )!;
+      if (next.dateTime !== timing.next) {
+        next.dateTime = timing.next;
+        next.textContent = formatCollectionTime(timing.next);
+      }
+      missedAttempt.hidden = !timing.missedAttempt;
+      missedSuccess.hidden = timing.missedAttempt || !timing.missedSuccess;
     }
   }
   update();
@@ -264,11 +339,20 @@ const workflow = meta.repository + '/actions/workflows/watch.yml';
     font-size: 1.04rem;
     font-variant-numeric: tabular-nums;
   }
-  #report-delay {
+  .run-summary .run-plan {
+    display: grid;
+    gap: 0.4rem;
+  }
+  .run-coverage span {
+    display: block;
+  }
+  .fresh-alert {
+    color: #703c1e;
     background: #faedcf;
-    color: #523617;
-    padding: 1rem;
-    border-left: 3px solid #9a641b;
+    padding: 0.45rem 0.65rem;
+    border-inline-start: 3px solid #9a641b;
+    margin: 0 0 0.35rem;
+    font-size: 0.84rem;
   }
   .fresh-grid {
     display: grid;

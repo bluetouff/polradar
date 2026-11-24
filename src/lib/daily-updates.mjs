@@ -24,6 +24,7 @@ const row = z.strictObject({
   checked: z.union([stamp, z.iso.date()]).nullable(),
   dataDate: text.nullable(),
   lastChange: stamp.nullable(),
+  lastSuccessAt: stamp.optional(),
   status: z.enum(['verified', 'partial', 'unavailable']),
   periods: z.array(text).max(100).optional(),
   changes: z.array(text).max(1500),
@@ -67,7 +68,9 @@ export const dailyHistorySchema = z
             ))) ||
         new Set(item.rows.map((r) => r.id)).size !== item.rows.length ||
         item.rows.some(
-          (r) => r.lastChange && Date.parse(r.lastChange) > instant,
+          (r) =>
+            (r.lastChange && Date.parse(r.lastChange) > instant) ||
+            (r.lastSuccessAt && Date.parse(r.lastSuccessAt) > instant),
         )
       )
         ctx.addIssue({
@@ -78,6 +81,44 @@ export const dailyHistorySchema = z
       previous = instant;
     }
   });
+
+/** @typedef {z.infer<typeof dailyHistorySchema>[number]} Run */
+
+/** @param {Pick<Run, 'at'>} run @param {Pick<Run['rows'][number], 'checked'>} row */
+export function collectionAttemptAt(run, row) {
+  return row.checked?.includes('T') &&
+    Date.parse(row.checked) <= Date.parse(run.at)
+    ? row.checked
+    : run.at;
+}
+
+/** @param {Run[]} runs @param {string} id */
+export function lastCollectionSuccess(runs, id) {
+  for (const run of runs) {
+    const row = run.rows.find((entry) => entry.id === id);
+    if (!row) continue;
+    if (row.status === 'verified') return collectionAttemptAt(run, row);
+    if (row.lastSuccessAt) return row.lastSuccessAt;
+  }
+  return null;
+}
+
+/** @param {Run[]} runs */
+export function latestCollections(runs) {
+  return Object.keys(families).flatMap((id) => {
+    const run = runs.find((entry) => entry.rows.some((row) => row.id === id));
+    const row = run?.rows.find((entry) => entry.id === id);
+    if (!run || !row) return [];
+    return [
+      {
+        run,
+        row,
+        attempted: collectionAttemptAt(run, row),
+        succeeded: lastCollectionSuccess(runs, id),
+      },
+    ];
+  });
+}
 
 /** @param {z.infer<typeof sourceCheck>[]} checks */
 export function sourceFreshness(checks) {

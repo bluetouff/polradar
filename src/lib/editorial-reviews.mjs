@@ -138,13 +138,50 @@ export function editorialReviewSchema(candidates, sources) {
         unique(
           entries
             .filter((r) => Number.isFinite(Date.parse(r.checkedAt)))
-            .map(
-              (r) =>
-                civilDateInParis(new Date(r.checkedAt)) +
-                '/' +
-                (r.scope ?? 'complete'),
+            .map((r) =>
+              r.hosted
+                ? r.hosted.run + '/' + r.hosted.attempt
+                : civilDateInParis(new Date(r.checkedAt)) +
+                  '/' +
+                  (r.scope ?? 'complete'),
             ),
         ),
-      'Deux passages du même type pour la même journée de Paris',
+      'Exécution déjà consignée ou deux revues manuelles du même type le même jour',
     );
 }
+
+/** @template {{checkedAt: string, hosted?: {checks: {id: string, ok: boolean}[]}}} Report
+ * @param {Report[]} reports
+ */
+export function editorialRunsByDay(reports) {
+  /** @type {Map<string, Report[]>} */
+  const days = new Map();
+  for (const report of [...reports].sort(
+    (a, b) => Date.parse(a.checkedAt) - Date.parse(b.checkedAt),
+  )) {
+    const day = civilDateInParis(new Date(report.checkedAt));
+    const runs = days.get(day) ?? [];
+    runs.push(report);
+    days.set(day, runs);
+  }
+  return days;
+}
+
+/** @param {{hosted?: {checks: {id: string, ok: boolean}[]}}[]} runs */
+export function editorialDayAccess(runs) {
+  const visited = new Set();
+  const accessible = new Set();
+  for (const run of runs) {
+    for (const check of run.hosted?.checks ?? []) {
+      visited.add(check.id);
+      if (check.ok) accessible.add(check.id);
+    }
+  }
+  return { checked: visited.size, accessible: accessible.size };
+}
+
+export const editorialIssueLabels = {
+  'flux-indisponible': 'flux indisponible',
+  'article-indisponible': 'article indisponible',
+  'limite-editeur': 'attente demandée par le site',
+};

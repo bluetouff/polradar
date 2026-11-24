@@ -1,4 +1,6 @@
 import test from 'node:test';
+import { collectionClock } from '../src/lib/collection-clock.mjs';
+import { latestCollections } from '../src/lib/daily-updates.mjs';
 import assert from 'node:assert/strict';
 import { makeDailyReport } from '../scripts/daily-report.mjs';
 import { dailyHistorySchema } from '../src/lib/daily-updates.mjs';
@@ -170,5 +172,106 @@ test('le passage du soir date uniquement les sondages et conserve les relevés d
   assert.equal(
     makeDailyReport(f).rows.find((r) => r.id === 'economie').lastChange,
     previous,
+  );
+});
+
+test('un passage sondages récent laisse les cinq contrôles vieux de 48 heures en retard', () => {
+  const now = Date.parse('2026-11-24T18:15:00Z');
+  const old = '2026-11-22T18:15:00Z';
+  const recent = '2026-11-24T17:58:00Z';
+  const full = makeDailyReport(fixture());
+  const night = {
+    ...full,
+    run: '741',
+    at: recent,
+    scope: 'sondages',
+    sourceChecks: [],
+    rows: [
+      {
+        ...full.rows[0],
+        checked: recent,
+        lastChange: null,
+        lastSuccessAt: recent,
+      },
+    ],
+  };
+  const day = {
+    ...full,
+    at: old,
+    sourceChecks: [],
+    rows: full.rows.map((row) => ({
+      ...row,
+      checked: old,
+      lastChange: null,
+      lastSuccessAt: old,
+    })),
+  };
+  const latest = latestCollections(dailyHistorySchema.parse([night, day]));
+  assert.equal(latest.length, 6);
+  for (const { row, attempted, succeeded } of latest) {
+    const polls = row.id === 'sondages';
+    assert.equal(attempted, polls ? recent : old);
+    const timing = collectionClock(
+      polls ? 'sondages' : 'quotidienne',
+      attempted,
+      succeeded,
+      now,
+    );
+    assert.equal(timing.missedAttempt, !polls);
+    assert.equal(timing.missedSuccess, !polls);
+    assert.equal(timing.next, '2026-11-25T07:00:00.000Z');
+  }
+
+  const failed = {
+    ...day,
+    run: '742',
+    at: '2026-11-24T07:30:00Z',
+    rows: day.rows.map((row) => ({
+      ...row,
+      status: 'unavailable',
+      checked: null,
+      lastSuccessAt: old,
+    })),
+  };
+  const current = latestCollections(dailyHistorySchema.parse([night, failed]));
+  const economy = current.find(({ row }) => row.id === 'economie');
+  assert.equal(economy.attempted, failed.at);
+  assert.equal(economy.succeeded, old);
+  assert.equal(economy.row.status, 'unavailable');
+  const timing = collectionClock(
+    'quotidienne',
+    economy.attempted,
+    economy.succeeded,
+    now,
+  );
+  assert.equal(timing.missedAttempt, false);
+  assert.equal(timing.missedSuccess, true);
+});
+
+test('le contrôle quotidien suit l’heure de Paris au changement d’heure et laisse deux heures au lancement', () => {
+  const yesterday = '2026-03-28T07:20:00Z';
+  const remaining = collectionClock(
+    'quotidienne',
+    yesterday,
+    yesterday,
+    Date.parse('2026-03-29T07:59:00Z'),
+  );
+  assert.equal(remaining.next, '2026-03-30T06:00:00.000Z');
+  assert.equal(remaining.missedAttempt, false);
+  const late = collectionClock(
+    'quotidienne',
+    yesterday,
+    yesterday,
+    Date.parse('2026-03-29T08:00:00Z'),
+  );
+  assert.equal(late.missedAttempt, true);
+  assert.equal(
+    collectionClock(
+      'sondages',
+      yesterday,
+      null,
+      Date.parse('2026-10-25T16:42:00Z'),
+    ).next,
+    '2026-10-25T17:00:00.000Z',
   );
 });

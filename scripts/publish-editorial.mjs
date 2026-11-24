@@ -386,9 +386,11 @@ export function integrate(
       (r.scope === 'annonces') === priority,
   );
   if (
-    previous?.hosted &&
-    (Date.parse(previous.checkedAt) > at ||
-      (previous.hosted.run === run && previous.hosted.attempt >= attempt))
+    (previous?.hosted && Date.parse(previous.checkedAt) > at) ||
+    db.reviews.some(
+      (review) =>
+        review.hosted?.run === run && review.hosted.attempt >= attempt,
+    )
   )
     return;
   const changes = Object.fromEntries(desks.map((k) => [k, []])),
@@ -522,10 +524,7 @@ export function integrate(
         ' sur ' +
         sources.length +
         ' références de la rubrique accessibles.';
-    const earlier = previous?.hosted
-      ? (previous.sections.find((s) => s.id === id)?.changes ?? [])
-      : [];
-    const links = byPath([...earlier, ...changes[id]]);
+    const links = byPath(changes[id]);
     return {
       id,
       status: status === 'indisponible' && links.length ? 'partiel' : status,
@@ -537,8 +536,7 @@ export function integrate(
   const candidateIds = people
     .filter((c) => queries.has(c.id) && queries.get(c.id) !== null)
     .map((c) => c.id);
-  const manual = previous && (!previous.hosted || previous.manualCheckedAt);
-  const prevChanges = previous?.hosted?.changes ?? [];
+  const manual = previous && !previous.hosted;
   const hosted = {
     run,
     attempt,
@@ -550,10 +548,8 @@ export function integrate(
       url: c.url,
       ...(c.issues?.length ? { issues: c.issues } : {}),
     })),
-    publications: [
-      ...new Set([...(previous?.hosted?.publications ?? []), ...refs]),
-    ],
-    changes: byPath([...prevChanges, ...Object.values(changes).flat()]),
+    publications: [...refs],
+    changes: byPath(Object.values(changes).flat()),
   };
   const next = {
     ...(priority ? { scope: 'annonces' } : {}),
@@ -565,9 +561,10 @@ export function integrate(
     sections: manual ? previous.sections : sections,
     hosted,
   };
-  if (manual)
+  if (manual) {
     next.manualCheckedAt = previous.manualCheckedAt ?? previous.checkedAt;
-  if (previous) db.reviews.splice(db.reviews.indexOf(previous), 1);
+    db.reviews.splice(db.reviews.indexOf(previous), 1);
+  }
   db.reviews.unshift(next);
   db.reviews.sort((a, b) => Date.parse(b.checkedAt) - Date.parse(a.checkedAt));
   editorialReviewSchema(db.candidates, db.sources).parse(db.reviews);

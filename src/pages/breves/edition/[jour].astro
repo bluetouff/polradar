@@ -2,7 +2,16 @@
 import Base from '../../../layouts/Base.astro';
 import BriefCards from '../../../components/BriefCards.astro';
 import { briefEditions } from '../../../lib/brief-editions';
-import { formatDate, formatTimestamp, sourceById } from '../../../lib/data';
+import {
+  editorialIssueLabels,
+  editorialSections,
+} from '../../../lib/editorial-reviews.mjs';
+import {
+  formatDate,
+  formatTimestamp,
+  meta,
+  sourceById,
+} from '../../../lib/data';
 export async function getStaticPaths() {
   return (await briefEditions()).map((edition) => ({
     params: { jour: edition.day },
@@ -58,18 +67,126 @@ const title = 'Le point de campagne du ' + formatDate(edition.day);
       </ul>
     </section>
   )}
-  {edition.checkedAt && (
-    <aside class="day-facts">
-      <h2>Vérification des sources</h2>
-      <p>
-        Passage enregistré le {formatTimestamp(edition.checkedAt)}.{' '}
-        {edition.consulted !== null &&
-          `${edition.consulted} sources accessibles, ${edition.unavailable} indisponibles.`}
-      </p>
+  {edition.passages.length > 0 && (
+    <section class="day-facts" aria-labelledby="edition-checks">
+      <h2 id="edition-checks">Vérification des sources</h2>
+      {edition.passages.length > 1 && edition.access.checked > 0 && (
+        <p>
+          {edition.access.checked} sources distinctes contrôlées, dont{' '}
+          {edition.access.accessible} accessibles au moins une fois dans la
+          journée.
+        </p>
+      )}
+      <div class="edition-passes">
+        {edition.passages.map((passage) => {
+          const checks = passage.hosted?.checks ?? [];
+          const incidents = checks.filter(
+            (check) => !check.ok || check.issues?.length,
+          );
+          const manualIncidents = passage.hosted
+            ? []
+            : passage.sections.filter((item) => item.status !== 'consulte');
+          const changes = [
+            ...new Map(
+              [
+                ...passage.sections.flatMap((section) => section.changes),
+                ...(passage.hosted?.changes ?? []),
+              ].map((item) => [item.path, item]),
+            ).values(),
+          ];
+          return (
+            <article class="edition-pass">
+              <h3>
+                {passage.scope === 'annonces'
+                  ? 'Annonces officielles prioritaires'
+                  : 'Revue éditoriale complète'}
+              </h3>
+              <time datetime={passage.checkedAt}>
+                {formatTimestamp(passage.checkedAt)} · Paris
+              </time>
+              {passage.hosted ? (
+                <p>
+                  <strong>
+                    {checks.filter((check) => check.ok).length} sur{' '}
+                    {checks.length}
+                  </strong>{' '}
+                  sources accessibles.
+                </p>
+              ) : (
+                <p>{passage.sections.length} rubriques examinées.</p>
+              )}
+              {incidents.length + manualIncidents.length > 0 && (
+                <details>
+                  <summary>
+                    Incidents ({incidents.length + manualIncidents.length})
+                  </summary>
+                  <ul>
+                    {incidents.map((check) => {
+                      const source = sourceById(check.id);
+                      return (
+                        <li>
+                          {check.url ? (
+                            <a href={check.url}>{source.title}</a>
+                          ) : (
+                            source.title
+                          )}
+                          {' · '}
+                          {check.issues?.length
+                            ? check.issues
+                                .map((issue) => editorialIssueLabels[issue])
+                                .join(', ')
+                            : 'source indisponible'}
+                        </li>
+                      );
+                    })}
+                    {manualIncidents.map((row) => (
+                      <li>
+                        {
+                          editorialSections[
+                            row.id as keyof typeof editorialSections
+                          ]
+                        }{' '}
+                        · {row.note}
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              )}
+              {changes.length > 0 && (
+                <details>
+                  <summary>
+                    Publications dans Polradar ({changes.length})
+                  </summary>
+                  <ul>
+                    {changes.map((item) => (
+                      <li>
+                        <a href={item.path}>{item.title}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              )}
+              {passage.hosted && (
+                <a
+                  href={
+                    meta.repository +
+                    '/actions/runs/' +
+                    passage.hosted.run +
+                    '/attempts/' +
+                    passage.hosted.attempt
+                  }
+                >
+                  Rapport du passage ↗
+                </a>
+              )}
+            </article>
+          );
+        })}
+      </div>
       <a href="/mises-a-jour/#revue-editoriale">
         Consulter le journal de veille
       </a>
-    </aside>
+    </section>
   )}
 </Base>
 <style>
@@ -91,5 +208,37 @@ const title = 'Le point de campagne du ' + formatDate(edition.day);
   .day-facts a {
     color: var(--ink);
     text-underline-offset: 0.18em;
+  }
+  .edition-passes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: 0.75rem;
+    margin-block: 0.85rem;
+  }
+  .edition-pass {
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: 0.55rem;
+    background: var(--panel-gradient);
+    overflow-wrap: anywhere;
+  }
+  .edition-pass h3 {
+    margin: 0 0 0.3rem;
+    font-size: 1rem;
+  }
+  .edition-pass time {
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+  .edition-pass p {
+    margin-block: 0.5rem;
+  }
+  .edition-pass summary {
+    cursor: pointer;
+    padding-block: 0.4rem;
+  }
+  .edition-pass > a {
+    display: inline-block;
+    margin-top: 0.55rem;
   }
 </style>

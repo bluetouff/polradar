@@ -2,6 +2,10 @@
 import reviews from '../data/editorial-reviews.json';
 import HostedEditorial from './HostedEditorial.astro';
 import {
+  collectionClock,
+  formatCollectionTime,
+} from '../lib/collection-clock.mjs';
+import {
   candidates,
   sources,
   formatTimestamp,
@@ -22,6 +26,29 @@ const labels = {
   partiel: 'Recherche partielle',
   indisponible: 'Source indisponible',
 };
+const controls = [
+  { label: 'Revue éditoriale complète', cadence: 'editorial' },
+  { label: 'Annonces prioritaires du matin', cadence: 'annonces' },
+].map((control) => {
+  const scope = control.cadence === 'annonces' ? 'annonces' : undefined;
+  const matching = reports.filter(
+    (item) => item.hosted && item.scope === scope,
+  );
+  const attempt = matching[0]?.checkedAt ?? null;
+  const success =
+    matching.find(
+      ({ hosted }) =>
+        !!hosted?.checks.length &&
+        hosted.checks.every((check) => check.ok && !check.issues?.length) &&
+        hosted.queries.every((query) => query.count !== null),
+    )?.checkedAt ?? null;
+  return {
+    ...control,
+    attempt,
+    success,
+    timing: collectionClock(control.cadence, attempt, success),
+  };
+});
 ---
 
 <section class="editorial-reviews" aria-labelledby="revue-editoriale">
@@ -33,11 +60,62 @@ const labels = {
     18 h.
   </p>
   {reports.length === 0 && <p>Aucune revue publiée.</p>}
-  {reports.length > 0 && (
-    <p id="editorial-delay" hidden role="status">
-      La dernière recherche éditoriale publiée a plus de 24 heures.
-    </p>
-  )}
+  <div class="editorial-freshness">
+    {controls.map(({ label, cadence, attempt, success, timing }) => (
+      <div
+        class="editorial-clock"
+        data-cadence={cadence}
+        data-attempted={attempt}
+        data-succeeded={success}
+      >
+        <h3>{label}</h3>
+        <p
+          class="editorial-alert"
+          data-missed-attempt
+          hidden={!timing.missedAttempt}
+        >
+          Collecte en retard
+        </p>
+        <p
+          class="editorial-alert"
+          data-missed-success
+          hidden={timing.missedAttempt || !timing.missedSuccess}
+        >
+          Aucun succès depuis l’échéance
+        </p>
+        <dl>
+          <div>
+            <dt>Dernière tentative</dt>
+            <dd>
+              {attempt ? (
+                <time datetime={attempt}>{formatCollectionTime(attempt)}</time>
+              ) : (
+                'Aucune consignée'
+              )}
+            </dd>
+          </div>
+          <div>
+            <dt>Dernier succès</dt>
+            <dd>
+              {success ? (
+                <time datetime={success}>{formatCollectionTime(success)}</time>
+              ) : (
+                'Aucun consigné'
+              )}
+            </dd>
+          </div>
+          <div>
+            <dt>Prochain passage prévu</dt>
+            <dd>
+              <time data-next-passage datetime={timing.next}>
+                {formatCollectionTime(timing.next)}
+              </time>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    ))}
+  </div>
   {reports.slice(0, 7).map((report, index) => (
     <details class="edition-review" open={index === 0}>
       <summary>
@@ -209,5 +287,38 @@ const labels = {
   }
   .review-grid ul {
     padding-inline-start: 1.15rem;
+  }
+  .editorial-freshness {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+    gap: 0.65rem;
+  }
+  .editorial-clock {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 0.55rem;
+    background: var(--paper);
+  }
+  .editorial-clock h3 {
+    margin: 0;
+    font-size: 1rem;
+  }
+  .editorial-clock dl {
+    font-size: 0.85rem;
+    margin: 0.45rem 0 0;
+  }
+  .editorial-clock dl > div {
+    display: grid;
+    grid-template-columns: 1fr 1.06fr;
+    gap: 0.5rem;
+    padding: 0.22rem 0;
+  }
+  .editorial-clock dd {
+    margin: 0;
+  }
+  .editorial-alert {
+    color: #703c1e;
+    margin: 0.42rem 0 0;
+    font-size: 0.85rem;
   }
 </style>

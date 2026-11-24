@@ -119,7 +119,15 @@ test('la reprise conserve les ajouts, les versions et la revue signée du jour',
   assert.deepEqual(db.versions[0], once.versions[0]);
   assert.equal(db.agenda.events[0].status, 'annule');
   assert.equal(db.events.length, 1);
-  assert.equal(db.reviews.length, 1);
+  assert.equal(db.reviews.length, 2);
+  assert.equal(db.reviews[0].hosted.attempt, 2);
+  assert.deepEqual(db.reviews[1], once.reviews[0]);
+  assert.equal(
+    db.reviews[0].hosted.changes.some((item) =>
+      item.path.startsWith('/agenda/'),
+    ),
+    true,
+  );
 });
 test('une panne reste visible et ne publie aucun fait de campagne', () => {
   const db = data(),

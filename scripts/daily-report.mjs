@@ -3,7 +3,9 @@ import { execFileSync } from 'node:child_process';
 import { isDeepStrictEqual } from 'node:util';
 import { pathToFileURL } from 'node:url';
 import {
+  collectionAttemptAt,
   dailyHistorySchema,
+  lastCollectionSuccess,
   sourceFreshness,
 } from '../src/lib/daily-updates.mjs';
 
@@ -66,6 +68,15 @@ export function makeDailyReport({
       ? at
       : (previous.map((h) => h.rows.find((r) => r.id === id)).find(Boolean)
           ?.lastChange ?? null);
+    const status = !available
+      ? 'unavailable'
+      : incidents.length
+        ? 'partial'
+        : 'verified';
+    const lastSuccessAt =
+      status === 'verified'
+        ? collectionAttemptAt({ at }, { checked })
+        : lastCollectionSuccess(previous, id);
     rows.push({
       id,
       checked,
@@ -74,11 +85,8 @@ export function makeDailyReport({
       changes,
       review,
       incidents,
-      status: !available
-        ? 'unavailable'
-        : incidents.length
-          ? 'partial'
-          : 'verified',
+      status,
+      ...(lastSuccessAt ? { lastSuccessAt } : {}),
     });
   }
   const sourceNames = new Map(sources.map((s) => [s.id, s.title]));

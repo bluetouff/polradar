@@ -1,6 +1,7 @@
 ---
 import { type z } from 'astro/zod';
 import {
+  editorialIssueLabels,
   editorialReviewSchema,
   editorialSections,
 } from '../lib/editorial-reviews.mjs';
@@ -20,11 +21,6 @@ const candidatesQueried = successful.filter(
   (q) => !Object.hasOwn(editorialSections, q.id),
 ).length;
 const readable = hosted.checks.filter((c) => c.ok);
-const issueLabels = {
-  'flux-indisponible': 'flux indisponible',
-  'article-indisponible': 'article indisponible',
-  'limite-editeur': 'attente demandée par le site',
-};
 const leads = [
   ...new Map(
     hosted.queries.flatMap((q) =>
@@ -162,7 +158,7 @@ const leads = [
               ? 'inaccessible lors du passage'
               : 'hébergement partagé, consultation directe non traitée'}
           {c.issues?.length
-            ? ' · ' + c.issues.map((i) => issueLabels[i]).join(', ')
+            ? ' · ' + c.issues.map((i) => editorialIssueLabels[i]).join(', ')
             : ''}
         </li>
       ))}
