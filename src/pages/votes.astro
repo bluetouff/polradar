@@ -37,14 +37,32 @@ import { sameSentence } from '../lib/measure-text';
         {new Set(voteCases.map((record) => record.candidate)).size} candidats.
       </p>
     </div>
-    <a href="/votes/registre/" class="button">
-      <Icon name="vote" /> Registre des scrutins de l’Assemblée
-    </a>
     <a href="/evolution/" class="button">
       <Icon name="historique" />
       Évolution des propositions
     </a>
   </header>
+  <nav
+    class="vote-archives-links"
+    aria-label="Archives des scrutins nominatifs"
+  >
+    <div>
+      <Icon name="vote" />
+      <p>
+        <a href="/votes/registre/">Registre des scrutins de l’Assemblée</a>
+        <small>XVe et XVIe législatures · juillet 2017 à juin 2024</small>
+      </p>
+    </div>
+    <div>
+      <Icon name="institutions" />
+      <p>
+        <a href="/votes/archives/">
+          Scrutins du Sénat et du Parlement européen
+        </a>
+        <small>Sessions du Sénat et votes européens en séance plénière</small>
+      </p>
+    </div>
+  </nav>
   <Distribution
     title={`${legislativeVotes.ballots.length} scrutins par assemblée`}
     note={`Votes recensés au ${formatDate(legislativeVotes.checked)}`}

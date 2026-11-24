@@ -1,0 +1,254 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../../layouts/Base.astro';
+import {
+  archiveGroups,
+  archiveMetadata,
+  archiveIndex,
+  type ArchiveBallot,
+} from '../../../lib/parliamentary-archives';
+import { choiceLabel } from '../../../lib/parliamentary-labels';
+import { formatDate } from '../../../lib/data';
+import '../../../styles/parliamentary-register.css';
+
+const root = '/votes/archives/';
+export const getStaticPaths = (() => [
+  { params: { lot: undefined }, props: { groupId: null, page: 1 } },
+  ...archiveGroups.flatMap((g) =>
+    Array.from(
+      { length: Math.max(1, Math.ceil(g.rows.length / 30)) },
+      (_, p) => ({
+        params: { lot: g.id + (p ? '/' + (p + 1) : '') },
+        props: { groupId: g.id, page: p + 1 },
+      }),
+    ),
+  ),
+]) satisfies GetStaticPaths;
+interface Props {
+  groupId: string | null;
+  page: number;
+}
+const { groupId, page } = Astro.props;
+const group = archiveGroups.find((g) => g.id === groupId);
+const rows: ArchiveBallot[] =
+  group?.rows.slice((page - 1) * 30, page * 30) ?? [];
+const count = group ? Math.ceil(group.rows.length / 30) : 0;
+const path = (n: number) =>
+  root + groupId + '/' + (n > 1 ? n + '/' : '') + '#resultats';
+const title = group
+  ? `${group.institution} · ${group.label}`
+  : 'Scrutins du Sénat et du Parlement européen';
+const format = new Intl.NumberFormat('fr-FR');
+---
+
+<Base
+  title={page > 1 ? title + ' · page ' + page : title}
+  section="/votes/"
+  description="Consultez les scrutins de séance, les positions individuelles et les mises au point dans les archives du Sénat et du Parlement européen."
+>
+  <header class="parl-head">
+    <a href={group ? root : '/votes/'}>
+      {group ? '← Toutes les périodes' : '← Propositions et votes passés'}
+    </a>
+    <h1>{title}</h1>
+    {group ? (
+      <p>
+        {format.format(group.rows.length)} scrutins avec une position ou une
+        mise au point nominative dans le registre.
+      </p>
+    ) : (
+      <p>
+        Choisissez une session du Sénat ou une journée de séance du Parlement
+        européen.
+      </p>
+    )}
+    {!group && (
+      <dl>
+        {['Sénat', 'Parlement européen'].map((ins) => (
+          <div>
+            <dt>{ins} · scrutins</dt>
+            <dd>
+              {format.format(
+                archiveIndex.lots
+                  .filter((p) => p.institution === ins)
+                  .reduce((sum, p) => sum + p.nombre, 0),
+              )}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    )}
+  </header>
+  {!group ? (
+    <div class="archive-sections">
+      {['Sénat', 'Parlement européen'].map((institution) => (
+        <section>
+          <h2>{institution}</h2>
+          <div class="parl-grid">
+            {archiveIndex.lots
+              .filter((p) => p.institution === institution)
+              .map((p) => (
+                <article class="parl-card">
+                  <h3>
+                    <a href={root + p.id + '/'}>{p.titre} →</a>
+                  </h3>
+                  <p>
+                    {p.nombre} scrutin{p.nombre > 1 ? 's' : ''} · {p.mentions}{' '}
+                    mention{p.mentions > 1 ? 's' : ''} nominative
+                    {p.mentions > 1 ? 's' : ''}
+                  </p>
+                </article>
+              ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  ) : (
+    <section id="resultats" aria-label="Scrutins">
+      {rows.length > 0 ? (
+        <p class="parl-status">
+          Du plus récent au plus ancien · page {page} sur {count}
+        </p>
+      ) : (
+        <p class="parl-status">
+          Aucune position ni mise au point des personnes couvertes pour cette
+          séance.
+        </p>
+      )}
+      <div class="parl-grid">
+        {rows.map((b) => (
+          <article class="parl-card">
+            <div class="parl-meta">
+              <time datetime={b.date}>{formatDate(b.date)}</time> · n°{' '}
+              {b.numero}
+            </div>
+            <h2>{b.objet}</h2>
+            <p class="parl-result">
+              {b.decision && <strong>{b.decision} · </strong>}
+              {b.pour} pour · {b.contre} contre · {b.abstentions} abstentions
+            </p>
+            <ul class="parl-positions">
+              {b.positions.map((p) => (
+                <li>
+                  <strong>{archiveIndex.personnes[p.personne].nom}</strong> ·{' '}
+                  {choiceLabel(p.vote)}
+                  {p.groupe && (
+                    <small>
+                      {b.institution === 'senat' ? (
+                        'Code du groupe dans l’annuaire du Sénat · ' + p.groupe
+                      ) : (
+                        <a
+                          href={'https://data.europarl.europa.eu/' + p.groupe}
+                          rel="noreferrer"
+                        >
+                          Groupe au Parlement européen ↗
+                        </a>
+                      )}
+                    </small>
+                  )}
+                  {p.intentions.map((i) => (
+                    <small>
+                      Intention déclarée après le vote · {choiceLabel(i)}
+                    </small>
+                  ))}
+                </li>
+              ))}
+            </ul>
+            {b.misesAuPoint.length > 0 && (
+              <details>
+                <summary>
+                  Mises au point du scrutin ({b.misesAuPoint.length})
+                </summary>
+                {b.misesAuPoint.map((m) => (
+                  <p>
+                    {m.notice}{' '}
+                    {m.source && (
+                      <a href={m.source} rel="noreferrer">
+                        Compte rendu ↗
+                      </a>
+                    )}
+                  </p>
+                ))}
+              </details>
+            )}
+            <a class="parl-source" href={b.source} rel="noreferrer">
+              Relevé officiel n° {b.numero} ↗
+            </a>
+          </article>
+        ))}
+      </div>
+      {count > 1 && (
+        <nav class="parl-nav" aria-label="Pages de la période">
+          {page > 1 && (
+            <a class="button" href={path(page - 1)}>
+              ← Page précédente
+            </a>
+          )}
+          Page {page} sur {count}
+          {page < count && (
+            <a class="button" href={path(page + 1)}>
+              Page suivante →
+            </a>
+          )}
+        </nav>
+      )}
+    </section>
+  )}
+  <aside class="parl-foot">
+    <h2>Sources et réutilisation</h2>
+    <p>
+      Au Sénat, les matricules des sénateurs relient les votes à leur mandat.
+      Les mises au point concernent le scrutin entier. Au Parlement européen,
+      les intentions déclarées après la séance figurent à côté du vote
+      enregistré.
+    </p>
+    <div>
+      <a
+        href={
+          group
+            ? '/api/parlement/archives/' + group.id + '.json'
+            : '/api/parlement/archives/index.json'
+        }
+      >
+        {group
+          ? 'Télécharger la séance (JSON)'
+          : 'Index et fichiers par période (JSON)'}
+      </a>
+      <a href="/votes/registre/">Scrutins de l’Assemblée nationale</a>
+      <a href={archiveMetadata.droitsSources.senat.licence} rel="noreferrer">
+        Sénat · licence ouverte · données du 24 novembre 2026 ↗
+      </a>
+      <a
+        href={archiveMetadata.droitsSources['parlement-europeen'].licence}
+        rel="noreferrer"
+      >
+        Parlement européen · CC BY 4.0 ↗
+      </a>
+    </div>
+  </aside>
+</Base>
+<style>
+  .archive-sections {
+    display: grid;
+    gap: 1.4rem;
+    margin-block: 1.6rem;
+  }
+  .archive-sections h2 {
+    margin: 0 0 0.7rem;
+    font-size: 1.3rem;
+  }
+  .archive-sections h3 {
+    font-size: 1.05rem;
+    margin: 0;
+  }
+  .archive-sections .parl-card p {
+    margin: 0;
+    color: var(--muted);
+  }
+  .parl-card details {
+    font-size: 0.85rem;
+  }
+  .parl-card details p {
+    margin: 0.6rem 0;
+  }
+</style>

@@ -53,3 +53,17 @@ python3 scripts/import-scrutins-assemblee.py /tmp/polradar-archives-an --verifie
 ```
 
 Le registre factuel et les dossiers de rapprochement éditorial peuvent référencer le même scrutin. Leurs totaux ont des périmètres distincts. Les scrutins sélectionnés du Sénat et du Parlement européen figurent dans la rubrique Votes.
+
+## Sessions du Sénat et séances du Parlement européen
+
+Les sessions 2006-2007, 2022-2023 et 2023-2024 du Sénat fournissent 673 scrutins et 802 positions de Jean-Luc Mélenchon et Bruno Retailleau. Les matricules de DOSLEG sont recoupés avec les mandats et les appartenances de l’annuaire pour la date de chaque scrutin. L’export de l’annuaire emploie des codes de groupe durables, notamment « UMP » pour la période 2022-2024. Les résultats nominatifs et les totaux pour, contre et abstention concordent sur les 673 scrutins. Les mises au point sont publiées au niveau du scrutin, avec le compte rendu cité. [Travaux législatifs du Sénat](https://data.senat.fr/dosleg/) · [Annuaire et groupes](https://data.senat.fr/les-senateurs/) · [Licence ouverte du Sénat](https://data.senat.fr/licence/)
+
+Le Parlement européen fournit 299 votes ou intentions nominatifs de Raphaël Glucksmann parmi les décisions de cinq journées étudiées en 2024. Les dates sont les 12, 13 et 14 mars, le 14 novembre et le 19 décembre. La sélection du 12 mars contient zéro mention nominative du député. Son identifiant 197694 est vérifié dans son dossier institutionnel, avec le mandat et le groupe du jour. L’API du Parlement identifie distinctement les votes et les intentions ultérieures. Les résultats institutionnels donnent le texte adopté ou rejeté et les effectifs. Les sources du Parlement sont sous CC BY 4.0. [Dossier du député](https://www.europarl.europa.eu/meps/fr/197694/RAPHAEL_GLUCKSMANN/home) · [Décisions du 13 mars](https://data.europarl.europa.eu/api/v2/meetings/MTG-PL-2024-03-13/decisions?format=application%2Fld%2Bjson) · [Conditions de réutilisation](https://data.europarl.europa.eu/en/discover/rules-on-the-european-parliaments-open-data)
+
+Les deux institutions sont consultables sur la [page des sessions](https://polradar.fr/votes/archives/). L’[index des exports par période](https://polradar.fr/api/parlement/archives/index.json) donne les effectifs et les adresses institutionnelles utilisés pour la collecte. Pour rejouer l’import et vérifier la sortie octet par octet :
+
+```sh
+python3 scripts/import-actes-senat-europe.py /tmp/polradar-archives-senat-europe --telecharger --verifier
+```
+
+Le contrôle traite le fichier SQL de DOSLEG comme une suite de lignes de données. Le Sénat remplace périodiquement ses exports. Une correction de la sélection historique ressort à la comparaison avec le fichier vérifié dans Git.
