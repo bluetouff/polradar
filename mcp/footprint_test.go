@@ -46,9 +46,16 @@ func TestLocalSnapshotFootprint(t *testing.T) {
 		if _, _, e := c.territory(territoryArgs{"75056"}); e != nil {
 			return e
 		}
-		if c.contract.major("parlement") == dataMajor {
-			_, _, e := c.publicData(dataArgs{Collection: "parlement", ID: "VTANR5L16V3213"})
-			return e
+		for _, a := range []dataArgs{
+			{Collection: "parlement", ID: "VTANR5L16V3213"},
+			{Collection: "senat", ID: "senat-2022-233"},
+			{Collection: "parlement-europeen", ID: "MTG-PL-2024-03-13-DEC-166377"},
+		} {
+			if c.contract.major(a.Collection) == dataMajor {
+				if _, _, err := c.publicData(a); err != nil {
+					return err
+				}
+			}
 		}
 		return nil
 	}

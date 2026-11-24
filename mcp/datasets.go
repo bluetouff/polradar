@@ -12,8 +12,9 @@ type record map[string]json.RawMessage
 func (r record) str(key string) string { var s string; json.Unmarshal(r[key], &s); return s }
 
 type dataArgs struct {
+	Periode          string `json:"periode,omitempty" jsonschema:"Sénat : année de début de session ; Parlement européen : date de la séance. Une liste sans période donne toutes les périodes couvertes."`
 	Query            string `json:"query,omitempty" jsonschema:"Mots du titre ou de l’URL pour la collection sources."`
-	Collection       string `json:"collection" jsonschema:"Collection publique : sondages, economie, agenda, budgets, marches, parlement, sources, droit, financements, verifications, breves, arcom ou graphiques."`
+	Collection       string `json:"collection" jsonschema:"Collection publique : sondages, economie, agenda, budgets, marches, parlement, sources, droit, financements, verifications, breves, arcom, graphiques, senat ou parlement-europeen."`
 	ID               string `json:"id,omitempty" jsonschema:"Identifiant exact retourné par la liste. Sans identifiant, retourne jusqu’à 15 entrées."`
 	Offset           int    `json:"offset,omitempty" jsonschema:"Position de départ pour la liste, à partir de zéro."`
 	ExpectedRevision string `json:"expectedRevision,omitempty" jsonschema:"Révision du site renvoyée par la première page."`
@@ -21,19 +22,21 @@ type dataArgs struct {
 type collection struct{ file, key, title, date, reference, page string }
 
 var collections = map[string]collection{
-	"sondages":      {"", "polls", "scenario", "published", "noticeSource", "/sondages/"},
-	"economie":      {"economie.json", "series", "title", "updatedAt", "", "/economie/"},
-	"agenda":        {"agenda.json", "events", "title", "date", "source", "/agenda/"},
-	"budgets":       {"budgets-programmes.json", "entries", "label", "reviewedOn", "source", "/budget-programmes/"},
-	"marches":       {"marches-predictifs.json", "providers", "title", "observedAt", "", "/marches-predictifs/"},
-	"parlement":     {"parlement/index.json", "scrutins", "objet", "date", "", "/votes/registre/"},
-	"sources":       {"documentation/sources.json", "items", "title", "checked", "", "/sources/"},
-	"droit":         {"documentation/droit.json", "items", "title", "checked", "", "/numerique/ce-qui-changerait/"},
-	"verifications": {"documentation/verifications.json", "items", "title", "date", "", "/economie/declarations/"},
-	"breves":        {"documentation/breves.json", "items", "title", "date", "", "/breves/"},
-	"financements":  {"documentation/financements.json", "items", "title", "", "", "/financements/"},
-	"arcom":         {"documentation/arcom.json", "items", "title", "date", "", "/temps-de-parole/"},
-	"graphiques":    {"documentation/graphiques.json", "items", "title", "", "", "/mcp/documentation/"},
+	"sondages":           {"", "polls", "scenario", "published", "noticeSource", "/sondages/"},
+	"economie":           {"economie.json", "series", "title", "updatedAt", "", "/economie/"},
+	"agenda":             {"agenda.json", "events", "title", "date", "source", "/agenda/"},
+	"budgets":            {"budgets-programmes.json", "entries", "label", "reviewedOn", "source", "/budget-programmes/"},
+	"marches":            {"marches-predictifs.json", "providers", "title", "observedAt", "", "/marches-predictifs/"},
+	"senat":              {"parlement/archives/index.json", "scrutins", "objet", "date", "", "/votes/archives/"},
+	"parlement-europeen": {"parlement/archives/index.json", "scrutins", "objet", "date", "", "/votes/archives/"},
+	"parlement":          {"parlement/index.json", "scrutins", "objet", "date", "", "/votes/registre/"},
+	"sources":            {"documentation/sources.json", "items", "title", "checked", "", "/sources/"},
+	"droit":              {"documentation/droit.json", "items", "title", "checked", "", "/numerique/ce-qui-changerait/"},
+	"verifications":      {"documentation/verifications.json", "items", "title", "date", "", "/economie/declarations/"},
+	"breves":             {"documentation/breves.json", "items", "title", "date", "", "/breves/"},
+	"financements":       {"documentation/financements.json", "items", "title", "", "", "/financements/"},
+	"arcom":              {"documentation/arcom.json", "items", "title", "date", "", "/temps-de-parole/"},
+	"graphiques":         {"documentation/graphiques.json", "items", "title", "", "", "/mcp/documentation/"},
 }
 
 func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
@@ -50,6 +53,12 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 	}
 	if len(a.Query) > 160 || (a.Query != "" && (a.Collection != "sources" || a.ID != "" || normalize(a.Query) == "")) {
 		return nil, false, errFilter
+	}
+	if a.Periode != "" && (a.ID != "" || (a.Collection != "senat" && a.Collection != "parlement-europeen")) {
+		return nil, false, errFilter
+	}
+	if a.Collection == "senat" || a.Collection == "parlement-europeen" {
+		return c.archivesData(a)
 	}
 	if a.Collection == "parlement" {
 		return c.parliamentaryData(a)

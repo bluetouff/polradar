@@ -5081,6 +5081,268 @@
       "identifiants": ["pe8-20170215-ceta", "philippot"],
       "vide": false,
       "erreur": false
+    },
+    {
+      "famille": "archives-senat",
+      "question": "Comment Bruno Retailleau a-t-il voté sur l’article 7 du budget rectificatif de la Sécurité sociale le 8 mars 2023 ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "senat",
+        "id": "senat-2022-233"
+      },
+      "attendus": {
+        "/publication/id": "senat-2022-233",
+        "/publication/date": "2023-03-08",
+        "/publication/source": "https://www.senat.fr/scrutin-public/2022/scr2022-233.html",
+        "/publication/positions/0/vote": "pour",
+        "/publication/positions/0/personne": "04033B",
+        "/publication/positions/0/mandat": "51908",
+        "/publication/pour": 201,
+        "/publication/contre": 115,
+        "/publication/abstentions": 29,
+        "/publication/misesAuPoint/3/source": "https://www.senat.fr/cra/s20230311/s20230311_0.html#par_9"
+      },
+      "champs": [
+        "/publication/objet",
+        "/publication/positions",
+        "/droitsSource/licence",
+        "/jeuVerifieLe"
+      ],
+      "sources": [
+        "https://www.senat.fr/scrutin-public/2022/scr2022-233.html",
+        "https://www.senat.fr/cra/s20230311/s20230311_0.html#par_9"
+      ],
+      "identifiants": ["senat-2022-233", "04033B"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "archives-senat",
+      "question": "Quels choix différents les deux sénateurs suivis ont-ils enregistrés sur la question préalable du 4 octobre 2006 ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "senat",
+        "id": "senat-2006-1"
+      },
+      "attendus": {
+        "/publication/id": "senat-2006-1",
+        "/publication/date": "2006-10-04",
+        "/publication/source": "https://www.senat.fr/scrutin-public/2006/scr2006-1.html",
+        "/publication/positions/0/personne": "04033B",
+        "/publication/positions/0/vote": "contre",
+        "/publication/positions/0/mandat": "10759",
+        "/publication/positions/1/personne": "86039K",
+        "/publication/positions/1/vote": "pour",
+        "/publication/positions/1/mandat": "10907",
+        "/publication/pour": 120,
+        "/publication/contre": 201,
+        "/publication/abstentions": 8
+      },
+      "champs": [
+        "/publication/objet",
+        "/publication/positions",
+        "/droitsSource/licence",
+        "/jeuVerifieLe"
+      ],
+      "sources": ["https://www.senat.fr/scrutin-public/2006/scr2006-1.html"],
+      "identifiants": ["senat-2006-1", "04033B", "86039K"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "archives-senat",
+      "question": "Combien de suffrages le Sénat a-t-il comptés sur le compromis immigration du 19 décembre 2023 ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "senat",
+        "id": "senat-2023-109"
+      },
+      "attendus": {
+        "/publication/id": "senat-2023-109",
+        "/publication/date": "2023-12-19",
+        "/publication/source": "https://www.senat.fr/scrutin-public/2023/scr2023-109.html",
+        "/publication/pour": 214,
+        "/publication/contre": 114,
+        "/publication/abstentions": 12,
+        "/publication/positions/0/vote": "pour",
+        "/personnes/04033B/candidat": "retailleau",
+        "/publication/decision": null
+      },
+      "champs": [
+        "/publication/objet",
+        "/publication/positions",
+        "/droitsSource/licence",
+        "/jeuVerifieLe"
+      ],
+      "sources": ["https://www.senat.fr/scrutin-public/2023/scr2023-109.html"],
+      "identifiants": ["senat-2023-109", "04033B"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "archives-senat",
+      "question": "Combien de scrutins et mentions de sénateurs peut-on consulter pour la session 2006-2007 ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "senat",
+        "periode": "2006"
+      },
+      "attendus": {
+        "/releve/periode": "2006",
+        "/total": 129,
+        "/releve/mentions": 258,
+        "/couverture": "periodes-consultees"
+      },
+      "champs": [],
+      "sources": ["https://www.senat.fr/scrutin-public/scr2006.html"],
+      "identifiants": ["senat-2006"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "archives-senat",
+      "question": "Que rend le registre pour la session sénatoriale 2010-2011 hors des sessions couvertes ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "senat",
+        "periode": "2010"
+      },
+      "attendus": {
+        "/periodeDemandee": "2010",
+        "/publication": null,
+        "/couverture": "periode-non-couverte"
+      },
+      "champs": [],
+      "sources": ["https://data.senat.fr/dosleg/"],
+      "identifiants": ["senat-2010"],
+      "vide": true,
+      "erreur": false
+    },
+    {
+      "famille": "archives-parlement-europeen",
+      "question": "Quel choix Raphaël Glucksmann a-t-il enregistré sur l’amendement 102 au considérant 29 du rapport Vázquez Lázara ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement-europeen",
+        "id": "MTG-PL-2024-03-13-DEC-166377"
+      },
+      "attendus": {
+        "/publication/id": "MTG-PL-2024-03-13-DEC-166377",
+        "/publication/date": "2024-03-13",
+        "/publication/source": "https://data.europarl.europa.eu/eli/dl/event/MTG-PL-2024-03-13-DEC-166377",
+        "/publication/pour": 262,
+        "/publication/contre": 351,
+        "/publication/abstentions": 8,
+        "/publication/decision": "rejeté",
+        "/publication/positions/0/vote": "pour",
+        "/publication/positions/0/mandat": "membership/197694-f-154607",
+        "/publication/positions/0/groupe": "org/5154",
+        "/publication/textes/0": "https://data.europarl.europa.eu/eli/dl/doc/A-9-2024-0042-AM-102"
+      },
+      "champs": [
+        "/publication/objet",
+        "/publication/positions",
+        "/droitsSource/licence",
+        "/jeuVerifieLe"
+      ],
+      "sources": [
+        "https://data.europarl.europa.eu/eli/dl/event/MTG-PL-2024-03-13-DEC-166377",
+        "https://data.europarl.europa.eu/eli/dl/doc/A-9-2024-0042-AM-102"
+      ],
+      "identifiants": ["MTG-PL-2024-03-13-DEC-166377", "197694"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "archives-parlement-europeen",
+      "question": "Quelle a été la décision du Parlement sur la résolution RC-B10-0219/2024 du 19 décembre 2024 ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement-europeen",
+        "id": "MTG-PL-2024-12-19-DEC-171398"
+      },
+      "attendus": {
+        "/publication/id": "MTG-PL-2024-12-19-DEC-171398",
+        "/publication/date": "2024-12-19",
+        "/publication/source": "https://data.europarl.europa.eu/eli/dl/event/MTG-PL-2024-12-19-DEC-171398",
+        "/publication/decision": "adopté",
+        "/publication/pour": 446,
+        "/publication/contre": 25,
+        "/publication/abstentions": 51,
+        "/publication/positions/0/mandat": "membership/197694-f-169750",
+        "/publication/positions/0/groupe": "org/7038",
+        "/personnes/197694/candidat": "glucksmann"
+      },
+      "champs": [
+        "/publication/objet",
+        "/publication/positions",
+        "/droitsSource/licence",
+        "/jeuVerifieLe"
+      ],
+      "sources": [
+        "https://data.europarl.europa.eu/eli/dl/event/MTG-PL-2024-12-19-DEC-171398"
+      ],
+      "identifiants": ["MTG-PL-2024-12-19-DEC-171398", "197694"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "archives-parlement-europeen",
+      "question": "Le relevé européen du 12 mars 2024 permet-il d’attribuer un vote individuel à Raphaël Glucksmann ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement-europeen",
+        "periode": "2024-03-12"
+      },
+      "attendus": {
+        "/total": 0,
+        "/releve/decisionsExaminees": 86,
+        "/releve/scrutinsNominauxExamines": 33,
+        "/releve/mentions": 0,
+        "/couverture": "periodes-consultees",
+        "/publications": []
+      },
+      "champs": [],
+      "sources": [
+        "https://data.europarl.europa.eu/api/v2/meetings/MTG-PL-2024-03-12/decisions?format=application%2Fld%2Bjson"
+      ],
+      "identifiants": ["europe-2024-03-12", "197694"],
+      "vide": true,
+      "erreur": false
+    },
+    {
+      "famille": "archives-parlement-europeen",
+      "question": "Quelle indication fournit le registre pour une séance européenne du 18 mars 2024 hors de son périmètre ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement-europeen",
+        "periode": "2024-03-18"
+      },
+      "attendus": {
+        "/periodeDemandee": "2024-03-18",
+        "/couverture": "periode-non-couverte",
+        "/publication": null
+      },
+      "champs": [],
+      "sources": ["https://polradar.fr/api/parlement/archives/index.json"],
+      "identifiants": ["europe-2024-03-18"],
+      "vide": true,
+      "erreur": false
+    },
+    {
+      "famille": "archives-parlement-europeen",
+      "question": "Une date impossible comme le 31 février 2024 peut-elle être acceptée comme séance du Parlement européen ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement-europeen",
+        "periode": "2024-02-31"
+      },
+      "attendus": {},
+      "champs": [],
+      "sources": ["https://polradar.fr/api/openapi.json"],
+      "identifiants": ["europe-2024-02-31"],
+      "vide": false,
+      "erreur": true
     }
   ]
 }

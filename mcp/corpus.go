@@ -96,6 +96,7 @@ type snapshot struct {
 	editorial   *dossiers
 	territorial *territories
 	parliament  parliamentCache
+	archives    archivesCache
 	lexical     []lexicalRecord
 	catalog
 	commit   string

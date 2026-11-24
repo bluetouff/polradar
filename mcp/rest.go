@@ -103,11 +103,12 @@ func (c *snapshot) resource(path string, q url.Values) (any, bool, error) {
 			args.ID = parts[2]
 		} else {
 			offset, ok := numberParam(q, "offset", 0, 0, 100000)
-			if !ok || !allowedParams(q, "offset", "query") {
+			if !ok || !allowedParams(q, "offset", "query", "periode") {
 				return nil, false, errFilter
 			}
 			args.Offset = offset
 			args.Query = q.Get("query")
+			args.Periode = q.Get("periode")
 		}
 		v, empty, err := c.publicData(args)
 		if args.ID != "" && empty {

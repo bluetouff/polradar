@@ -11,6 +11,8 @@ export function GET() {
       budgets: 1,
       marches: 1,
       parlement: 1,
+      senat: 1,
+      'parlement-europeen': 1,
       sources: 1,
       droit: 1,
       verifications: 1,

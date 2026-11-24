@@ -78,7 +78,7 @@ func protocol(data *store, activity *usage) http.Handler {
 	register(server, data, "polradar_measure", "Lire le texte, l’auteur, les chiffres disponibles et toutes les références d’une mesure identifiée.", (*snapshot).detail)
 	register(server, data, "polradar_candidates", "Lister les candidatures suivies avec leur statut documenté. Les retraits sont disponibles en option.", (*snapshot).listPeople)
 	register(server, data, "polradar_corpus", "Consulter les effectifs par type de fiche et les identifiants des thèmes.", (*snapshot).counts)
-	register(server, data, "polradar_donnees", "Consulter les sondages, les indicateurs économiques, l’agenda, les budgets et les marchés prédictifs. Le catalogue inclut aussi droit, financements, verifications, breves, arcom, graphiques, sources et parlement. Choisissez une collection, puis un identifiant pour lire dates et sources.", (*snapshot).publicData)
+	register(server, data, "polradar_donnees", "Consulter les sondages, les indicateurs économiques, l’agenda, les budgets et les marchés prédictifs. Le catalogue inclut aussi droit, financements, verifications, breves, arcom, graphiques, sources, parlement (Assemblée), senat et parlement-europeen. Choisissez une collection, puis un identifiant pour lire dates et sources.", (*snapshot).publicData)
 	register(server, data, "polradar_question", "Consulter les questions documentées puis leurs positions, sources et absences.", (*snapshot).question)
 	register(server, data, "polradar_comparer", "Comparer deux à six dossiers sur une question documentée.", (*snapshot).compare)
 	register(server, data, "polradar_votes", "Lire les scrutins nominatifs rapprochés des versions de propositions et leur objet.", (*snapshot).votes)

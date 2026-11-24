@@ -38,6 +38,8 @@ const collections = [
   'budgets',
   'marches',
   'parlement',
+  'senat',
+  'parlement-europeen',
   'sources',
   'droit',
   'verifications',
@@ -172,14 +174,29 @@ const schemas = {
   ),
   Candidatures: object({ candidatures: array(ref('Candidat')) }),
   Mesures: object({ ...paging, resultats: array(ref('Mesure')) }),
-  Publications: object({
-    ...paging,
-    collection: collection.schema,
-    rubrique: url,
-    publications: array(
-      object({ id: str, titre: str, date: str }, ['id', 'titre']),
-    ),
-  }),
+  Publications: {
+    oneOf: [
+      object({
+        ...paging,
+        collection: collection.schema,
+        rubrique: url,
+        publications: array(
+          object({ id: str, titre: str, date: str }, ['id', 'titre']),
+        ),
+      }),
+      object({
+        collection: { enum: ['senat', 'parlement-europeen'] },
+        rubrique: url,
+        couverture: { const: 'periode-non-couverte' },
+        periodeDemandee: str,
+        publication: { type: 'null' },
+        periodes: array({ type: 'object' }),
+        jeuVerifieLe: date,
+        droitsSource: { type: 'object' },
+        index: url,
+      }),
+    ],
+  },
   Publication: object(
     {
       collection: collection.schema,
@@ -287,6 +304,11 @@ export const apiRoutes = [
     params: [
       collection,
       offset,
+      filter(
+        'periode',
+        str,
+        'Année de début de session pour senat ou date AAAA-MM-JJ pour parlement-europeen.',
+      ),
       filter(
         'query',
         { ...str, maxLength: 160 },

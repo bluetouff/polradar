@@ -70,13 +70,18 @@ func TestPublishedBancDocumentaire(t *testing.T) {
 	unique := map[string]bool{}
 	families := map[string]int{}
 	tools := map[string]bool{}
-	passed := 0
+	passed, available := 0, 0
 	started := time.Now()
 	for _, q := range suite.Questions {
 		if unique[q.Question] || len(q.Question) < 12 || q.Famille == "" || len(q.Sources) == 0 || len(q.Identifiants) == 0 || (!q.Erreur && len(q.Attendus) == 0) {
 			t.Fatal("annotation incomplète", q.Question)
 		}
 		unique[q.Question] = true
+		collection, _ := q.Arguments["collection"].(string)
+		if (collection == "senat" || collection == "parlement-europeen") && c.contract.major(collection) != dataMajor {
+			continue
+		}
+		available++
 		families[q.Famille]++
 		tools[q.Outil] = true
 		for _, s := range q.Sources {
@@ -129,5 +134,5 @@ func TestPublishedBancDocumentaire(t *testing.T) {
 	if len(families) < 14 || len(tools) != len(toolNames) {
 		t.Errorf("couverture insuffisante de %d familles et %d outils", len(families), len(tools))
 	}
-	t.Logf("%d/%d questions conformes, %d familles, %d outils ; temps du lot hors réseau %s", passed, len(suite.Questions), len(families), len(tools), time.Since(started).Round(time.Millisecond))
+	t.Logf("%d/%d questions conformes, %d familles, %d outils ; temps du lot hors réseau %s", passed, available, len(families), len(tools), time.Since(started).Round(time.Millisecond))
 }
