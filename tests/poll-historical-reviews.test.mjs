@@ -90,3 +90,27 @@ test('Toluna Harris sépare les rappels, les scénarios chiffrés et leurs quest
   assert.equal(april.results.find((r) => r.id === 'philippe').percentage, 19);
   assert.equal(april.noticePage, 28);
 });
+
+test('Le catalogue distingue les choix de vote des souhaits, de la participation et des primaires', () => {
+  const coverage = new Map(
+    catalogueCoverage(catalogue, polls, sources, audits).map((notice) => [
+      notice.number,
+      notice,
+    ]),
+  );
+  for (const [number, whatWasMeasured] of [
+    ['10387', /primaire de la droite et du centre/],
+    ['10381', /participation envisagée/],
+    ['10377', /premier et un deuxième choix/],
+    ['10369', /séparément/],
+    ['10210', /souhaitent que ce duel ait lieu/],
+  ]) {
+    const notice = coverage.get(number);
+    assert.equal(notice.status, 'non_pertinente');
+    assert.deepEqual(notice.scenarios, []);
+    assert.match(notice.audit.reason, whatWasMeasured);
+    assert.match(notice.audit.reason, /^Pages? \d/);
+  }
+  for (const number of ['10246', '10141', '10292'])
+    assert.notEqual(coverage.get(number).status, 'non_pertinente');
+});
