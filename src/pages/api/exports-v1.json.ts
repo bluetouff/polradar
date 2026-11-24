@@ -17,6 +17,13 @@ export function GET() {
     catalogueDCAT: origin + '/api/catalogue-dcat.json',
     changements: [
       {
+        version: '1.3',
+        ajouts: [
+          'Index de recherche des actes des trois institutions',
+          'État documentaire et fraîcheur par famille de collecte',
+        ],
+      },
+      {
         version: '1.2',
         ajouts: [
           'Licence ODbL de la base originale',

@@ -25,6 +25,17 @@ test('Un document et une mesure gardent des unités distinctes malgré plusieurs
   assert.deepEqual({ ...countCoverage(rows).byTheme }, { justice: 2 });
   assert.equal(countCoverage(rows).documents, 1);
   assert.equal(countCoverage(rows).candidates, 2);
+  assert.deepEqual(
+    { ...countCoverage(rows).scopesByTheme.justice },
+    { parti: 1, archive: 1 },
+  );
+  assert.deepEqual(
+    Array.from(countCoverage(rows).documentsByTheme.get('justice')),
+    ['source'],
+  );
+  const single = countCoverage(rows, { candidate: 'a' });
+  assert.equal(single.scopesByTheme.justice.archive, undefined);
+  assert.equal(single.documentsByTheme.get('justice').size, 1);
   assert.equal(
     countCoverage(rows, {
       topic: 'justice',

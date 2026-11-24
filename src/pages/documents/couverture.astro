@@ -11,6 +11,12 @@ import { countCoverage } from '../../lib/coverage-matrix';
 const totals = countCoverage(matrixRows);
 const max = Math.max(1, ...Object.values(totals.byTheme));
 const audits = documents.filter((d) => d.coverage);
+const measuresByScope = [
+  ['campagne', 'Campagne'],
+  ['parti', 'Parti'],
+  ['orientation', 'Orientations'],
+  ['archive', 'Archives'],
+] as const;
 ---
 
 <Base
@@ -21,8 +27,8 @@ const audits = documents.filter((d) => d.coverage);
   <header class="page-title">
     <h1>Couverture des propositions</h1>
     <p>
-      Combien de fiches et de documents pour chaque candidature, chaque sujet et
-      chaque édition du programme ?
+      Fiches, références et passages vérifiés par candidature, thème et édition
+      du programme.
     </p>
   </header>
   <form id="matrix-filters" class="matrix-filters" hidden>
@@ -110,14 +116,30 @@ const audits = documents.filter((d) => d.coverage);
           max={max}
           value={totals.byTheme[t.id] ?? 0}
         ></meter>
-        <output>{totals.byTheme[t.id] ?? 0}</output>
+        <output data-theme-total>{totals.byTheme[t.id] ?? 0}</output>
+        <dl class="matrix-detail">
+          {measuresByScope.map(([id, label]) => (
+            <div>
+              <dt>{label}</dt>
+              <dd data-theme-count={id}>
+                {totals.scopesByTheme[t.id]?.[id] ?? 0}
+              </dd>
+            </div>
+          ))}
+          <div>
+            <dt>Sources citées</dt>
+            <dd data-theme-count="documents">
+              {totals.documentsByTheme.get(t.id)?.size ?? 0}
+            </dd>
+          </div>
+        </dl>
       </div>
     ))}
   </section>
   <p>
-    Une fiche compte une fois dans la sélection, même si elle relève de
-    plusieurs sous-thèmes. Les barres comparent le nombre de fiches avec celui
-    du thème le plus représenté.
+    Une fiche compte une fois, y compris lorsqu’elle relève de plusieurs
+    sous-thèmes. Les sources sont comptées par référence distincte dans chaque
+    thème. Zéro fiche indique un sujet à documenter dans la sélection.
   </p>
   <h2>Sections vérifiées et passages restant à traiter</h2>
   <p>
@@ -190,11 +212,22 @@ const audits = documents.filter((d) => d.coverage);
         for (const item of document.querySelectorAll<HTMLElement>(
           '[data-theme]',
         )) {
-          const value = stat.byTheme[item.dataset.theme ?? ''] ?? 0,
+          const theme = item.dataset.theme ?? '';
+          const value = stat.byTheme[theme] ?? 0,
             meter = item.querySelector('meter')!;
           meter.max = max;
           meter.value = value;
-          item.querySelector('output')!.textContent = String(value);
+          item.querySelector('[data-theme-total]')!.textContent = String(value);
+          for (const cell of item.querySelectorAll<HTMLElement>(
+            '[data-theme-count]',
+          )) {
+            const key = cell.dataset.themeCount!;
+            const count =
+              key === 'documents'
+                ? stat.documentsByTheme.get(theme)?.size
+                : stat.scopesByTheme[theme]?.[key];
+            cell.textContent = String(count ?? 0);
+          }
         }
         error.hidden = true;
       } catch {
@@ -279,13 +312,27 @@ const audits = documents.filter((d) => d.coverage);
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
     gap: 0.6rem 1rem;
   }
-  .matrix-bars div {
+  .matrix-bars > div {
     display: grid;
     grid-template-columns: minmax(8rem, 1fr) minmax(2rem, 0.7fr) 3ch;
     gap: 0.55rem;
     align-items: center;
     padding: 0.6rem 0.2rem;
     border-bottom: 1px solid #a9bec4;
+  }
+  .matrix-detail {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(3.7rem, 1fr));
+    gap: 0.35rem 0.55rem;
+    margin: 0;
+    font-size: 0.78rem;
+  }
+  .matrix-detail dd {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
   }
   .matrix-bars meter {
     width: 100%;

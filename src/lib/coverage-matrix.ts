@@ -20,6 +20,10 @@ export function countCoverage(
   filters: MatrixFilter = {},
 ) {
   const byTheme: Record<string, number> = Object.create(null);
+  const scopesByTheme: Record<string, Record<string, number>> = Object.create(
+    null,
+  );
+  const documentsByTheme = new Map<string, Set<string>>();
   const docs = new Set<string>(),
     candidates = new Set<string>(),
     ids = new Set<string>();
@@ -40,7 +44,14 @@ export function countCoverage(
       throw Error('Identifiant de fiche en double : ' + row.id);
     ids.add(row.id);
     candidates.add(row.candidate);
-    row.documents.forEach((id) => docs.add(id));
+    const themeDocuments = documentsByTheme.get(row.theme) ?? new Set<string>();
+    for (const id of row.documents) {
+      docs.add(id);
+      themeDocuments.add(id);
+    }
+    documentsByTheme.set(row.theme, themeDocuments);
+    const scopes = (scopesByTheme[row.theme] ??= Object.create(null));
+    scopes[row.scope] = (scopes[row.scope] ?? 0) + 1;
     byTheme[row.theme] = (byTheme[row.theme] ?? 0) + 1;
   }
   return {
@@ -48,5 +59,7 @@ export function countCoverage(
     documents: docs.size,
     candidates: candidates.size,
     byTheme,
+    scopesByTheme,
+    documentsByTheme,
   };
 }

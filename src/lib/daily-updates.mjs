@@ -94,13 +94,18 @@ export function collectionAttemptAt(run, row) {
 
 /** @param {Run[]} runs @param {string} id */
 export function lastCollectionSuccess(runs, id) {
+  let latest = null;
   for (const run of runs) {
     const row = run.rows.find((entry) => entry.id === id);
     if (!row) continue;
-    if (row.status === 'verified') return collectionAttemptAt(run, row);
-    if (row.lastSuccessAt) return row.lastSuccessAt;
+    const success =
+      row.status === 'verified'
+        ? collectionAttemptAt(run, row)
+        : row.lastSuccessAt;
+    if (success && (!latest || Date.parse(success) > Date.parse(latest)))
+      latest = success;
   }
-  return null;
+  return latest;
 }
 
 /** @param {Run[]} runs */

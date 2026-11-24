@@ -105,6 +105,29 @@ const datasets = [
     fields: ['checkedAt', 'lastSuccessAt', 'notices'],
   },
   {
+    id: 'qualite-documentaire',
+    title: 'Couverture et fraîcheur du corpus',
+    path: '/api/qualite-documentaire.json',
+    description:
+      'Couverture des notices, des scrutins et des sources, par édition',
+    unit: 'Un relevé de couverture pour le commit de publication.',
+    provenance:
+      'Corpus validé, registres institutionnels et journal des collectes de Polradar.',
+    limits:
+      'Les comptes de couverture portent sur les registres consultés. Les dates du contrôle et celles des données restent distinctes.',
+    fields: [
+      'sourceCommit',
+      'corpusUpdated',
+      'candidates',
+      'measures',
+      'sources',
+      'reviewed',
+      'polls',
+      'parliament',
+      'collections',
+    ],
+  },
+  {
     id: 'registre-assemblee',
     title: 'Scrutins de l’Assemblée nationale',
     path: '/api/parlement/assemblee.json',
@@ -116,6 +139,19 @@ const datasets = [
     limits:
       'Le registre porte sur les personnes et mandats identifiés. Une absence de position enregistrée ne permet pas de déduire une absence en séance.',
     fields: ['scrutins', 'personnes', 'mandats'],
+  },
+  {
+    id: 'recherche-parlementaire',
+    title: 'Index parlementaire',
+    path: '/api/parlement/recherche.json',
+    description:
+      'Recherche transversale des scrutins, dépôts, rapports et interventions',
+    unit: 'Un acte par identifiant, avec les mentions documentées et le lien institutionnel.',
+    provenance:
+      'Assemblée nationale, Sénat et Parlement européen. Les répertoires par institution en détaillent les périmètres.',
+    limits:
+      'Les actes indexés et les scrutins avec une position individuelle sont deux décomptes distincts.',
+    fields: ['version', 'empreinte', 'candidats', 'themes', 'actes'],
   },
   {
     id: 'registre-senat',

@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { corpusCounts, corpusActivity } from '../src/lib/corpus-counts.mjs';
+import {
+  corpusCounts,
+  corpusActivity,
+  identicalProposals,
+} from '../src/lib/corpus-counts.mjs';
 import { sourceRefSchema } from '../src/lib/schema.mjs';
 
 test('les proportions comptent les fiches une fois et sÃ©parent parti, campagne, orientation et archive', () => {
@@ -70,4 +74,36 @@ test('le graphique quotidien conserve les jours vides et distingue imports et rÃ
   assert.equal(series[1].added + series[1].revised, 0);
   assert.deepEqual(series.at(-2), { date: '2024-02-29', added: 0, revised: 2 });
   assert.deepEqual(series.at(-1), { date: '2024-03-01', added: 1, revised: 0 });
+});
+
+test('les rapprochements textuels gardent les conditions et les auteurs distincts', () => {
+  const m = {
+    id: 'premiere-fiche',
+    candidate: 'a',
+    scope: 'campagne',
+    title: 'Titre de proposition',
+    description: 'Documenter un dispositif.',
+    beneficiaries: null,
+    timing: null,
+    financing: null,
+    metrics: [],
+    amounts: [],
+  };
+  assert.deepEqual(
+    identicalProposals([
+      m,
+      {
+        ...m,
+        id: 'seconde-fiche',
+        title: 'Titre de  proposition',
+        edition: 'Autre document',
+      },
+      { ...m, id: 'condition', timing: 'Pendant deux ans' },
+      { ...m, id: 'autre-candidat', candidate: 'b' },
+      { ...m, id: 'collectif-1', scope: 'parti', partyAuthor: 'Collectif A' },
+      { ...m, id: 'collectif-2', scope: 'parti', partyAuthor: 'Collectif B' },
+      { ...m, id: 'archive', scope: 'archive' },
+    ]),
+    [['premiere-fiche', 'seconde-fiche']],
+  );
 });

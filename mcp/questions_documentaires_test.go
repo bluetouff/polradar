@@ -5,6 +5,7 @@ import (
 	"net/url"
 	"os"
 	"reflect"
+	"slices"
 	"strconv"
 	"strings"
 	"testing"
@@ -52,6 +53,9 @@ func TestPublishedBancDocumentaire(t *testing.T) {
 	if e != nil {
 		t.Fatal(e)
 	}
+	if want := os.Getenv("POLRADAR_TEST_COMMIT"); want != "" && c.commit != want {
+		t.Fatalf("Révision inattendue %s", c.commit)
+	}
 	if c.contract.major("parlement") != dataMajor {
 		t.Skip("banc de référence v1.3")
 	}
@@ -68,9 +72,11 @@ func TestPublishedBancDocumentaire(t *testing.T) {
 	}
 	h := protocol(data, openUsage(t.TempDir(), time.Now()))
 	unique := map[string]bool{}
+	calls := map[string]bool{}
 	families := map[string]int{}
 	tools := map[string]bool{}
-	passed, available := 0, 0
+	passed, exactSources, emptyAnswers, expectedErrors := 0, 0, 0, 0
+	durations := make([]time.Duration, 0, len(suite.Questions))
 	started := time.Now()
 	for _, q := range suite.Questions {
 		if unique[q.Question] || len(q.Question) < 12 || q.Famille == "" || len(q.Sources) == 0 || len(q.Identifiants) == 0 || (!q.Erreur && len(q.Attendus) == 0) {
@@ -81,17 +87,35 @@ func TestPublishedBancDocumentaire(t *testing.T) {
 		if (collection == "senat" || collection == "parlement-europeen") && c.contract.major(collection) != dataMajor {
 			continue
 		}
-		available++
+		args, e := json.Marshal(q.Arguments)
+		if e != nil {
+			t.Fatal("arguments de référence", q.Question)
+		}
+		calls[q.Outil+" "+string(args)] = true
 		families[q.Famille]++
 		tools[q.Outil] = true
 		for _, s := range q.Sources {
 			u, er := url.Parse(s)
-			if er != nil || u.Scheme != "https" || u.Hostname() == "" {
+			if er != nil || u.Scheme != "https" || u.Hostname() == "" || u.User != nil || u.Port() != "" {
 				t.Fatal("référence", q.Question)
 			}
 		}
+		for _, want := range q.Attendus {
+			if s, ok := want.(string); ok && slices.Contains(q.Sources, s) {
+				exactSources++
+				break
+			}
+		}
+		if q.Vide {
+			emptyAnswers++
+		}
+		if q.Erreur {
+			expectedErrors++
+		}
 		ok := t.Run(q.Famille+"/"+q.Question, func(t *testing.T) {
+			start := time.Now()
 			res := runTool(h, q.Outil, q.Arguments)
+			durations = append(durations, time.Since(start))
 			var resp struct {
 				Result struct {
 					IsError           bool
@@ -112,7 +136,7 @@ func TestPublishedBancDocumentaire(t *testing.T) {
 				t.Fatal("entrée invalide acceptée")
 			}
 			out := resp.Result.StructuredContent
-			if out.Commit != c.commit || out.Contract != dataMajor || out.Empty != q.Vide || out.Updated == "" {
+			if out.Commit != c.commit || out.Contract != dataMajor || out.Empty != q.Vide || out.Updated == "" || out.Updated != c.Meta.Updated {
 				t.Fatal("enveloppe ou révision")
 			}
 			for _, path := range q.Champs {
@@ -131,8 +155,22 @@ func TestPublishedBancDocumentaire(t *testing.T) {
 			passed++
 		}
 	}
-	if len(families) < 14 || len(tools) != len(toolNames) {
-		t.Errorf("couverture insuffisante de %d familles et %d outils", len(families), len(tools))
+	if len(families) < 14 || len(calls) < 100 {
+		t.Errorf("couverture insuffisante de %d familles et %d appels distincts", len(families), len(calls))
 	}
-	t.Logf("%d/%d questions conformes, %d familles, %d outils ; temps du lot hors réseau %s", passed, available, len(families), len(tools), time.Since(started).Round(time.Millisecond))
+	for _, name := range toolNames {
+		if !tools[name] {
+			t.Error("outil sans question de référence", name)
+		}
+	}
+	if len(durations) == 0 {
+		t.Fatal("aucune question exécutée")
+	}
+	total := time.Since(started)
+	slices.Sort(durations)
+	p50 := durations[(len(durations)-1)/2]
+	p95 := durations[(95*len(durations)+99)/100-1]
+	t.Logf("%d/%d questions conformes sur %s, %d appels distincts, %d familles, %d outils", passed, len(durations), c.commit, len(calls), len(families), len(tools))
+	t.Logf("%d questions vérifient une adresse de source exacte, %d résultats vides et %d erreurs attendus", exactSources, emptyAnswers, expectedErrors)
+	t.Logf("Latence par appel hors réseau : p50 %s, p95 %s. Lot complet : %s", p50.Round(time.Microsecond), p95.Round(time.Microsecond), total.Round(time.Millisecond))
 }

@@ -34,6 +34,49 @@ export function corpusCounts({ measures, themes, candidates }) {
   };
 }
 
+/** Identify identical current wording across documents. A group is a reading task.
+ * @param {import('./data').Measure[]} measures
+ */
+export function identicalProposals(measures) {
+  const text = (value) =>
+    value?.normalize('NFC').trim().replace(/\s+/gu, ' ') ?? null;
+  const groups = new Map();
+  for (const row of measures) {
+    if (row.scope !== 'campagne' && row.scope !== 'parti') continue;
+    // A collective author without an explicit name still requires editorial review.
+    if (row.scope === 'parti' && !row.partyAuthor) continue;
+    const key = JSON.stringify([
+      row.candidate,
+      row.scope,
+      row.partyAuthor ?? null,
+      text(row.title),
+      text(row.description),
+      text(row.beneficiaries),
+      text(row.timing),
+      text(row.financing),
+      row.metrics.map(({ key, label, value, unit }) => [
+        key,
+        label,
+        value,
+        unit,
+      ]),
+      row.amounts.map(({ label, value, unit, period, basis }) => [
+        label,
+        value,
+        unit,
+        period,
+        basis,
+      ]),
+    ]);
+    const group = groups.get(key) ?? [];
+    group.push(row.id);
+    groups.set(key, group);
+  }
+  return [...groups.values()]
+    .filter((group) => group.length > 1)
+    .map((group) => group.sort());
+}
+
 /** Calendar days in the corpus use ISO civil dates, regardless of the build timezone.
  * @param {Pick<import('./data').MeasureVersion, 'observedOn'|'number'>[]} versions
  * @param {string} through

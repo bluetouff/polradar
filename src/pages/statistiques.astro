@@ -4,10 +4,13 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import { dataset, formatDate } from '../lib/data';
-import { corpusCounts, corpusActivity } from '../lib/corpus-counts.mjs';
+import { corpusActivity } from '../lib/corpus-counts.mjs';
 import { campaignBriefs } from '../lib/briefs';
 import { legislativeVotes } from '../lib/votes-data';
-import { searchIndex } from '../lib/parliament-search';
+import {
+  documentaryCounts as corpus,
+  documentaryHealth as quality,
+} from '../lib/documentary-health';
 import { evolution, financing } from '../lib/proposal-data';
 import { agenda, airtime, budgetAssessments } from '../lib/visual-data';
 import {
@@ -15,7 +18,6 @@ import {
   positionDivergences,
 } from '../lib/divergence-data';
 import { digitalCount } from '../lib/digital-data';
-import { pollCoverage } from '../lib/features.mjs';
 import { predictionMarkets } from '../lib/market-data';
 import { economy, statements } from '../lib/economy-data';
 import { questions } from '../lib/questions';
@@ -23,7 +25,6 @@ import communes from '../data/communes-2022.json';
 import comptes from '../data/comptes-presidentielle-2022.json';
 import '../styles/corpus.css';
 
-const corpus = corpusCounts(dataset);
 const asOf = civilDateInParis();
 const activity = corpusActivity(dataset.versions, asOf);
 const activityMax = Math.max(
@@ -37,11 +38,11 @@ const scopes = [
   ['orientation', 'Orientations'],
   ['archive', 'Archives de 2022'],
 ] as const;
-const active = dataset.candidates.filter((c) => !c.withdrawnOn).length;
-const retired = dataset.candidates.length - active;
+const retired = quality.candidates.withdrawn;
+const active = quality.candidates.total - retired;
 const docs = await getCollection('articles', ({ data }) => !data.draft);
 const briefs = await campaignBriefs();
-const surveys = pollCoverage(dataset.polls);
+const surveys = quality.polls;
 const sections = [
   {
     label: 'Programmes et comparaisons',
@@ -214,7 +215,7 @@ const slices = scopes.map(([id, label]) => {
             '/historique/',
           ],
           [
-            searchIndex.actes.length,
+            quality.parliament.acts,
             'Actes parlementaires',
             'vote',
             '/votes/recherche/',
@@ -317,6 +318,124 @@ const slices = scopes.map(([id, label]) => {
           ))}
         </div>
       </details>
+    </section>
+    <section
+      class="corpus-section"
+      id="qualite"
+      aria-labelledby="quality-heading"
+    >
+      <div class="corpus-heading">
+        <div>
+          <h2 id="quality-heading">Couverture et fraîcheur</h2>
+          <p>État des notices, des sources et des relevés nominatifs.</p>
+        </div>
+        <a href="/api/qualite-documentaire.json">
+          Télécharger les compteurs (JSON) <Icon name="download" />
+        </a>
+      </div>
+      <div class="corpus-inventory">
+        <article>
+          <h3>
+            <Icon name="sondages" /> Notices de sondage
+          </h3>
+          <ul>
+            <li>
+              <a href="/sondages/notices/">
+                <strong>{fmt(surveys.catalogue.total)}</strong>
+                <span>notices recensées</span>
+              </a>
+            </li>
+            <li>
+              <a href="/sondages/notices/integree/">
+                <strong>{fmt(surveys.catalogue.byStatus.integree)}</strong>
+                <span>notices entièrement vérifiées</span>
+              </a>
+            </li>
+            <li>
+              <a href="/sondages/notices/identifiee/">
+                <strong>{fmt(surveys.catalogue.byStatus.identifiee)}</strong>
+                <span>notices dont l’objet reste à qualifier</span>
+              </a>
+            </li>
+          </ul>
+        </article>
+        <article>
+          <h3>
+            <Icon name="source" /> Documents
+          </h3>
+          <ul>
+            <li>
+              <a href="/documents/couverture/">
+                <strong>{fmt(quality.reviewed.sections)}</strong>
+                <span>sections de document relues</span>
+              </a>
+            </li>
+            <li>
+              <a href="/documents/couverture/">
+                <strong>
+                  {fmt(quality.reviewed.units - quality.reviewed.linkedUnits)}
+                </strong>
+                <span>passages à relier dans les sections relues</span>
+              </a>
+            </li>
+            <li>
+              <a href="/veille/">
+                <strong>
+                  {fmt(quality.sources.blocked + quality.sources.unavailable)}
+                </strong>
+                <span>
+                  sources bloquées ou indisponibles sur{' '}
+                  {fmt(quality.sources.checked)} contrôlées
+                </span>
+              </a>
+            </li>
+          </ul>
+        </article>
+        <article>
+          <h3>
+            <Icon name="vote" /> Scrutins nominatifs
+          </h3>
+          <ul>
+            {quality.parliament.byInstitution.map((institution) => (
+              <li>
+                <a
+                  href={
+                    '/votes/recherche/?institution=' +
+                    institution.id +
+                    '&nature=vote'
+                  }
+                >
+                  <strong>{fmt(institution.ballotsWithTrackedVote)}</strong>
+                  <span>
+                    {institution.label} · {fmt(institution.ballots)} scrutins
+                    indexés
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p>
+            Le nombre en gras compte les scrutins avec au moins un vote
+            individuel documenté pour une candidature suivie.
+          </p>
+        </article>
+      </div>
+      <details class="ledger-table">
+        <summary>Statuts des candidatures</summary>
+        <dl class="corpus-status-list">
+          {quality.candidates.byStatus.map(({ status, count }) => (
+            <div>
+              <dt>{status}</dt>
+              <dd>{fmt(count)}</dd>
+            </div>
+          ))}
+        </dl>
+      </details>
+      <p>
+        <a href="/mises-a-jour/">
+          Dernières tentatives, derniers succès et dates des données
+        </a>
+      </p>
     </section>
     <section
       class="corpus-section corpus-ledger"

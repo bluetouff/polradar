@@ -246,6 +246,22 @@ test('un passage sondages récent laisse les cinq contrôles vieux de 48 heures 
   );
   assert.equal(timing.missedAttempt, false);
   assert.equal(timing.missedSuccess, true);
+
+  const staleReportedSuccess = {
+    ...failed,
+    rows: failed.rows.map((row) => ({
+      ...row,
+      lastSuccessAt: '2026-11-21T07:30:00Z',
+    })),
+  };
+  const merged = latestCollections(
+    dailyHistorySchema.parse([night, staleReportedSuccess, day]),
+  );
+  assert.equal(merged.find(({ row }) => row.id === 'economie').succeeded, old);
+  assert.equal(
+    merged.find(({ row }) => row.id === 'economie').row.status,
+    'unavailable',
+  );
 });
 
 test('le contrôle quotidien suit l’heure de Paris au changement d’heure et laisse deux heures au lancement', () => {

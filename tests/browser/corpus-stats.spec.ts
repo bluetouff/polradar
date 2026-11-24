@@ -109,3 +109,58 @@ test('les statistiques essentielles sont lisibles sans JavaScript', async ({
     await context.close();
   }
 });
+
+test('le relevé de qualité recompte les notices et scrutins de la même révision', async ({
+  page,
+  request,
+}) => {
+  const [quality, publications, register, build, exports] = await Promise.all(
+    [
+      '/api/qualite-documentaire.json',
+      '/api/notices-sondages.json',
+      '/api/parlement/recherche.json',
+      '/build.json',
+      '/api/exports-v1.json',
+    ].map(async (route) => {
+      const response = await request.get(route);
+      expect(response.ok(), route).toBeTruthy();
+      return response.json();
+    }),
+  );
+  expect(quality.sourceCommit).toBe(build.sourceCommit);
+  expect(quality.polls.catalogue.total).toBe(publications.notices.length);
+  const verified = publications.notices.filter(
+    (notice: { status: string }) => notice.status === 'integree',
+  ).length;
+  expect(quality.polls.catalogue.byStatus.integree).toBe(verified);
+  expect(quality.parliament.acts).toBe(register.actes.length);
+  for (const institution of quality.parliament.byInstitution) {
+    const ballots = register.actes.filter(
+      (act: { institution: string; nature: string }) =>
+        act.institution === institution.id && act.nature === 'vote',
+    );
+    const named = ballots.filter(
+      (act: { mentions: [string, string, string][] }) =>
+        act.mentions.some(([, , kind]) => kind === 'vote'),
+    );
+    expect(institution.ballots).toBe(ballots.length);
+    expect(institution.ballotsWithTrackedVote).toBe(named.length);
+  }
+  expect(quality.collections).toHaveLength(6);
+  for (const entry of quality.collections) {
+    expect(entry.attempted).toBeTruthy();
+    if (entry.succeeded)
+      expect(Date.parse(entry.succeeded)).toBeLessThanOrEqual(
+        Date.parse(entry.attempted),
+      );
+  }
+  expect(exports.jeux.map((entry: { id: string }) => entry.id)).toEqual(
+    expect.arrayContaining(['qualite-documentaire', 'recherche-parlementaire']),
+  );
+  await page.goto('/statistiques/#qualite');
+  await expect(
+    page
+      .locator('#qualite')
+      .getByRole('link', { name: /notices entièrement vérifiées/ }),
+  ).toContainText(verified.toLocaleString('fr-FR'));
+});

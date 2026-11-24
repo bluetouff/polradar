@@ -5343,6 +5343,240 @@
       "identifiants": ["europe-2024-02-31"],
       "vide": false,
       "erreur": true
+    },
+    {
+      "famille": "recherche-parlementaire",
+      "question": "Quel scrutin sur la cybersécurité du 17 novembre 2026 ressort pour un vote favorable de Gabriel Attal avec le filtre Numérique ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement",
+        "institution": "assemblee",
+        "query": "VTANR5L17V9916",
+        "theme": "numerique",
+        "candidat": "attal",
+        "position": "pour"
+      },
+      "attendus": {
+        "/total": 1,
+        "/publications/0/id": "VTANR5L17V9916",
+        "/publications/0/date": "2026-11-17",
+        "/publications/0/institution": "assemblee",
+        "/publications/0/nature": "vote",
+        "/publications/0/source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9916"
+      },
+      "champs": ["/empreinteIndex", "/publications/0/mentions"],
+      "sources": ["https://www.assemblee-nationale.fr/dyn/17/scrutins/9916"],
+      "identifiants": ["VTANR5L17V9916", "attal"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "recherche-parlementaire",
+      "question": "Quelle date et quelle source le filtre Numérique donne-t-il pour le vote du Sénat en nouvelle lecture sur les données personnelles ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement",
+        "institution": "senat",
+        "nature": "vote",
+        "query": "sen2017-98-donnees",
+        "theme": "numerique"
+      },
+      "attendus": {
+        "/total": 1,
+        "/publications/0/id": "sen2017-98-donnees",
+        "/publications/0/date": "2018-04-19",
+        "/publications/0/institution": "senat",
+        "/publications/0/source": "https://www.senat.fr/scrutin-public/2017/scr2017-98.html"
+      },
+      "champs": [],
+      "sources": [
+        "https://www.senat.fr/scrutin-public/2017/scr2017-98.html",
+        "https://www.senat.fr/seances/s201804/s20180419/s20180419.pdf"
+      ],
+      "identifiants": ["sen2017-98-donnees"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "recherche-parlementaire",
+      "question": "Quel vote favorable de Raphaël Glucksmann retrouve-t-on sur l’accord provisoire du règlement européen sur l’intelligence artificielle ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement",
+        "institution": "parlement-europeen",
+        "query": "MTG-PL-2024-03-13-DEC-166051",
+        "theme": "numerique",
+        "candidat": "glucksmann",
+        "position": "pour"
+      },
+      "attendus": {
+        "/total": 1,
+        "/publications/0/id": "MTG-PL-2024-03-13-DEC-166051",
+        "/publications/0/date": "2024-03-13",
+        "/publications/0/institution": "parlement-europeen",
+        "/publications/0/source": "https://data.europarl.europa.eu/eli/dl/event/MTG-PL-2024-03-13-DEC-166051"
+      },
+      "champs": ["/publications/0/intitule"],
+      "sources": [
+        "https://data.europarl.europa.eu/eli/dl/event/MTG-PL-2024-03-13-DEC-166051",
+        "https://redmapl3.europarl.europa.eu/RedmapFront/media/reds_iPlPv_Rcv/PV-9-2024-03-13-RCV/PV-9-2024-03-13-RCV-FNL_en.pdf#page=11"
+      ],
+      "identifiants": ["MTG-PL-2024-03-13-DEC-166051", "glucksmann"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "recherche-parlementaire",
+      "question": "Le titre général de la loi ELAN suffit-il à faire apparaître le scrutin n°928 de la XVe législature dans le filtre Numérique ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement",
+        "institution": "assemblee",
+        "query": "VTANR5L15V928",
+        "theme": "numerique"
+      },
+      "attendus": {
+        "/total": 0,
+        "/publications": [],
+        "/couverture": "couverture-partielle"
+      },
+      "champs": ["/empreinteIndex"],
+      "sources": ["https://www.assemblee-nationale.fr/dyn/15/scrutins/928"],
+      "identifiants": ["VTANR5L15V928"],
+      "vide": true,
+      "erreur": false
+    },
+    {
+      "famille": "recherche-parlementaire",
+      "question": "Pour une recherche qui ne retrouve que le scrutin n°9916, que contient la page de résultats suivante ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "parlement",
+        "query": "VTANR5L17V9916",
+        "offset": 15
+      },
+      "attendus": {
+        "/total": 1,
+        "/offset": 1,
+        "/publications": []
+      },
+      "champs": ["/empreinteIndex"],
+      "sources": ["https://www.assemblee-nationale.fr/dyn/17/scrutins/9916"],
+      "identifiants": ["VTANR5L17V9916"],
+      "vide": true,
+      "erreur": false
+    },
+    {
+      "famille": "sondages-historiques",
+      "question": "Comment lire le résultat inférieur à 1 % de Nathalie Arthaud dans l’enquête OpinionWay pour CNews d’octobre ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sondages",
+        "id": "opinionway-commission-10333-p12"
+      },
+      "attendus": {
+        "/publication/noticePage": 12,
+        "/publication/usefulSample": 680,
+        "/publication/results/0/id": "arthaud",
+        "/publication/results/0/percentage": null,
+        "/publication/results/0/below": 1,
+        "/source/url": "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2352"
+      },
+      "champs": ["/publication/question/base"],
+      "sources": [
+        "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2352"
+      ],
+      "identifiants": [
+        "opinionway-commission-10333-p12",
+        "notice-commission-10333"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sondages-historiques",
+      "question": "Quel effectif brut et quel résultat pour Bruno Retailleau sont documentés dans la première hypothèse YouGov d’octobre ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sondages",
+        "id": "yougov-2026-10-18-10323-premier-1"
+      },
+      "attendus": {
+        "/publication/noticePage": 20,
+        "/publication/fieldworkStart": "2026-10-12",
+        "/publication/fieldworkEnd": "2026-10-15",
+        "/publication/usefulSample": 725,
+        "/publication/results/0/id": "retailleau",
+        "/publication/results/0/percentage": 6,
+        "/source/url": "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2346"
+      },
+      "champs": ["/publication/question/base"],
+      "sources": [
+        "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2346"
+      ],
+      "identifiants": [
+        "yougov-2026-10-18-10323-premier-1",
+        "notice-commission-10323"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sondages-historiques",
+      "question": "Sur quel effectif repose la plage de marges de la méthodologie Verian de juillet, et à quel effectif s’applique la part sans intention ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sondages",
+        "id": "verian-commission-10225-premier"
+      },
+      "attendus": {
+        "/publication/usefulSample": 818,
+        "/publication/registeredSample": 987,
+        "/publication/noIntention": 23,
+        "/publication/margin/min": 1.5,
+        "/publication/margin/max": 3.4,
+        "/publication/margin/confidence": 95,
+        "/source/url": "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2230"
+      },
+      "champs": ["/publication/noIntentionNote", "/publication/uncertainty"],
+      "sources": [
+        "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2230"
+      ],
+      "identifiants": [
+        "verian-commission-10225-premier",
+        "notice-commission-10225"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "sondages-historiques",
+      "question": "Quelle base et quelles références sont disponibles pour la première hypothèse Ipsos BVA pour Le Parisien en septembre ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sondages",
+        "id": "ipsos-bva-commission-10250-h1"
+      },
+      "attendus": {
+        "/publication/sampleSize": 1500,
+        "/publication/usefulSample": 1020,
+        "/publication/resultPage": 9,
+        "/publication/resultSource": "ipsos-bva-rapport-10250",
+        "/publication/firstPublication/status": "inconnue",
+        "/source/url": "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2262"
+      },
+      "champs": ["/publication/question/page", "/publication/question/base"],
+      "sources": [
+        "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2262",
+        "https://www.ipsos.com/sites/default/files/ct/news/documents/2026-09/presidentielle-2027-intention-vote-ipsos-bva-cesi-le-parisien-09-26-rapport-complet.pdf#page=9"
+      ],
+      "identifiants": [
+        "ipsos-bva-commission-10250-h1",
+        "notice-commission-10250",
+        "ipsos-bva-rapport-10250"
+      ],
+      "vide": false,
+      "erreur": false
     }
   ]
 }

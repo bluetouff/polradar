@@ -395,6 +395,24 @@
 .corpus-inventory a span {
   font-size: 0.84rem;
 }
+#qualite .corpus-inventory a {
+  grid-template-columns: minmax(2.5rem, auto) minmax(0, 1fr);
+}
+#qualite .corpus-inventory article > p {
+  margin: 0.5rem 0 0;
+  font-size: 0.84rem;
+}
+.corpus-status-list div {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+  border-block-end: 1px solid var(--corpus-line);
+  padding-block: 0.3rem;
+}
+.corpus-status-list dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
 .corpus-note {
   border-inline-start: 3px solid var(--corpus-accent);
   background: #edf4f4;
