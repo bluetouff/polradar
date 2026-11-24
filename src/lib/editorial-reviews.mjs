@@ -66,6 +66,7 @@ export function editorialReviewSchema(candidates, sources) {
       'Une recherche indisponible ne peut annoncer une publication',
     );
   const review = z.strictObject({
+    scope: z.literal('annonces').optional(),
     checkedAt: z.iso
       .datetime({ offset: true })
       .refine(
@@ -103,6 +104,16 @@ export function editorialReviewSchema(candidates, sources) {
             z.strictObject({
               id: source,
               ok: z.boolean(),
+              issues: z
+                .array(
+                  z.enum([
+                    'flux-indisponible',
+                    'article-indisponible',
+                    'limite-editeur',
+                  ]),
+                )
+                .max(3)
+                .optional(),
               url: publicUrlSchema.nullable(),
             }),
           )
@@ -127,8 +138,13 @@ export function editorialReviewSchema(candidates, sources) {
         unique(
           entries
             .filter((r) => Number.isFinite(Date.parse(r.checkedAt)))
-            .map((r) => civilDateInParis(new Date(r.checkedAt))),
+            .map(
+              (r) =>
+                civilDateInParis(new Date(r.checkedAt)) +
+                '/' +
+                (r.scope ?? 'complete'),
+            ),
         ),
-      'Plusieurs revues pour la même journée de Paris',
+      'Deux passages du même type pour la même journée de Paris',
     );
 }

@@ -9,7 +9,9 @@ export async function briefEditions() {
   const briefs = await campaignBriefs();
   const reports = editorialReviewSchema(candidates, sources).parse(reviewRows);
   const reviews = new Map(
-    reports.map((r) => [civilDateInParis(new Date(r.checkedAt)), r]),
+    [...reports]
+      .sort((a, b) => Date.parse(a.checkedAt) - Date.parse(b.checkedAt))
+      .map((r) => [civilDateInParis(new Date(r.checkedAt)), r]),
   );
   const days = new Set([
     ...reviews.keys(),

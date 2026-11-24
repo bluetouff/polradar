@@ -134,3 +134,34 @@ test('chaque contrôle public garde uniquement le document, le statut et son heu
   delete old.sourceChecks;
   assert.equal(dailyHistorySchema.safeParse([old]).success, true);
 });
+
+test('le passage du soir date uniquement les sondages et conserve les relevés des autres familles', () => {
+  const f = fixture();
+  f.pollsOnly = true;
+  f.polls.checkedAt = at;
+  const report = makeDailyReport(f);
+  assert.deepEqual(
+    report.rows.map((r) => r.id),
+    ['sondages'],
+  );
+  assert.equal(report.rows[0].checked, at);
+  assert.equal(report.scope, 'sondages');
+  assert.equal(dailyHistorySchema.safeParse([report]).success, true);
+  assert.equal(
+    dailyHistorySchema.safeParse([{ ...report, scope: undefined }]).success,
+    false,
+  );
+  assert.equal(
+    dailyHistorySchema.safeParse([{ ...report, rows: [] }]).success,
+    false,
+  );
+  f.pollsOnly = false;
+  f.history = [
+    { ...report, run: '10' },
+    { run: '9', attempt: 1, rows: [{ id: 'economie', lastChange: previous }] },
+  ];
+  assert.equal(
+    makeDailyReport(f).rows.find((r) => r.id === 'economie').lastChange,
+    previous,
+  );
+});

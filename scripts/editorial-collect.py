@@ -2,6 +2,7 @@
 """Find recent publications. External pages are data; nothing from them is executed."""
 
 from concurrent.futures import ThreadPoolExecutor
+import argparse
 from datetime import date, datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
@@ -409,7 +410,7 @@ def article_at(page, address, hosts, feed_title, feed_date, since, today):
     }, flat(page.meta.get("description") or page.meta.get("og:description"))[:600]
 
 
-def examine(task, since, today, hints, scheduled=None):
+def examine(task, since, today, hints, scheduled=None, *, official_index=False, registered=None):
     s, persons, desks, programme = task
     seed, sid = s["url"], s["id"]
     hosts = host_set(seed)
@@ -420,10 +421,11 @@ def examine(task, since, today, hints, scheduled=None):
     # On shared infrastructure stay inside the registered institutional index.
     entry = (
         f"https://{host}/"
-        if persons and s["kind"] in ("campagne", "parti") and not programme
+        if persons and s["kind"] in ("campagne", "parti") and not programme and not official_index
         else seed
     )
     row["url"] = entry
+    issues = set()
     try:
         page, home = page_at(entry, hosts)
         row["ok"] = True
@@ -450,12 +452,26 @@ def examine(task, since, today, hints, scheduled=None):
             if not feed:
                 continue
             try:
-                status, _, body = watch.fetch(feed, hosts, timeout=8)
-                if status == 200:
-                    for url, title, day in feed_items(body):
-                        dest = url_for(home, url, hosts)
-                        if dest and day and since <= day <= today:
-                            links.setdefault(dest, (title, day))
+                meta = {}
+                # A feed can change even when its HTML home does not.
+                context = watch.http_cache.key(json.dumps([since.isoformat(), today.isoformat(), sorted(registered or {})]))
+                stored = watch.STATE.get('feed-v1', feed)
+                conditions = stored if stored.get('digest') == context else None
+                options = {'conditional':conditions, 'response_meta':meta} if watch.STATE.path else {}
+                status, _, body = watch.fetch(feed, hosts, timeout=8, **options)
+                if status == 304 and conditions:
+                    continue
+                if status != 200:
+                    issues.add('limite-editeur' if status == 429 else 'flux-indisponible')
+                    continue
+                complete = True
+                for url, title, day in feed_items(body):
+                    dest = url_for(home, url, hosts)
+                    if dest and day and since <= day <= today:
+                        links.setdefault(dest, (title, day))
+                        complete = complete and dest in (registered or {}) and dest not in (scheduled or ())
+                if complete and meta:
+                    watch.STATE.remember('feed-v1', feed, meta, context)
             except (
                 ValueError,
                 OSError,
@@ -463,7 +479,7 @@ def examine(task, since, today, hints, scheduled=None):
                 ET.ParseError,
                 RecursionError,
             ):
-                pass
+                issues.add('flux-indisponible')
         for raw, text in page.links:
             if len(text) < 16 or len(text) > 240:
                 continue
@@ -539,14 +555,34 @@ def examine(task, since, today, hints, scheduled=None):
             ):
                 continue
             try:
-                doc, resolved = page_at(
-                    dest, hosts, min(9, deadline - time.monotonic())
-                )
+                if watch.STATE.path and registered and dest in registered and dest not in ongoing:
+                    # Only records already in the published corpus can use a 304 shortcut.
+                    meta = {}
+                    stored = watch.STATE.get('article-v1', dest)
+                    context = watch.http_cache.key(json.dumps([dest, *registered[dest]]))
+                    conditions = stored if stored.get('digest') == context else None
+                    status, mime, body, resolved = watch.fetch(dest, hosts, with_url=True, timeout=min(9, deadline-time.monotonic()), conditional=conditions, response_meta=meta)
+                    if status == 304 and conditions:
+                        continue
+                    if status != 200 or mime not in ('text/html', 'application/xhtml+xml'):
+                        if status == 429: issues.add('limite-editeur')
+                        raise ValueError('Article indisponible')
+                    doc = Page(body)
+                    detail = article_at(doc, resolved, hosts, label, when, date.min, today)
+                    if detail and meta:
+                        article = detail[0]
+                        if article['event'] is None and (article['title'], article['date']) == registered[dest]:
+                            watch.STATE.remember('article-v1', dest, meta, context)
+                else:
+                    doc, resolved = page_at(dest, hosts, min(9, deadline - time.monotonic()))
                 consider(doc, resolved, label, when)
             except (ValueError, OSError, http.client.HTTPException, RecursionError):
+                issues.add('article-indisponible')
                 continue
     except (ValueError, OSError, http.client.HTTPException, RecursionError):
         pass
+    if issues:
+        row['issues'] = sorted(issues)
     return row
 
 
@@ -578,6 +614,11 @@ def research_start(today, history, query_ids):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--announcements-only', action='store_true')
+    parser.add_argument('--cache', type=Path)
+    args = parser.parse_args()
+    watch.configure_cache(args.cache)
     now = datetime.now(timezone.utc)
     today = now.astimezone(PARIS).date()
     config = json.loads((ROOT / "scripts/editorial-origins.json").read_text())
@@ -608,6 +649,10 @@ def main():
         (documents[sid], persons, desks, sid in config.get("programmes", {}))
         for sid, (persons, desks) in plan.items()
     ]
+    selected = {sid for ids in config["announcements"].values() for sid in ids}
+    if args.announcements_only:
+        tasks = [(origin, persons, desks, False) for origin, persons, desks, _ in tasks
+                 if origin['id'] in selected and origin['kind'] in ('campagne', 'parti', 'institution')]
     queries = [
         (
             cid,
@@ -619,7 +664,7 @@ def main():
     # Search hits help identify the corresponding article on the publisher's own site.
     results = []
     hints = {}
-    for task in queries:
+    for task in ([] if args.announcements_only else queries):
         result = search(task, since, today)
         results.append(result)
         for lead in result["leads"]:
@@ -627,6 +672,9 @@ def main():
                 folded(lead["title"].rsplit(" - ", 1)[0])
             )
         time.sleep(1)
+    published_ids = {sid for ev in read("events") for sid in ev["sources"]}
+    published_urls = {s["url"]: (s["title"], s.get("published")) for s in documents.values()
+                      if s["id"] in published_ids and s["id"].startswith("ed-src-")}
     with ThreadPoolExecutor(max_workers=6) as pool:
 
         def review_site(task):
@@ -638,10 +686,12 @@ def main():
                 for url in upcoming.get(cid, [])
                 if urlsplit(url).hostname in hosts
             ]
-            return examine(task, since, today, hints, scheduled)
+            return examine(task, since, today, hints, scheduled, official_index=origin["id"] in selected, registered=published_urls)
 
         checks = list(pool.map(review_site, tasks))
+    watch.STATE.save()
     output = {
+        "scope": "annonces" if args.announcements_only else "complete",
         "checkedAt": datetime.now(timezone.utc)
         .isoformat(timespec="milliseconds")
         .replace("+00:00", "Z"),

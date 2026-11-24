@@ -187,3 +187,50 @@ test('les documents étrangers, les attributions incohérentes et les retours p�
   integrate(r, db, '1234', 1, now, config);
   assert.equal(db.agenda.events.length, 0);
 });
+
+test('le contrôle des annonces et le bilan complet du même jour coexistent sans doublon', () => {
+  const db = data();
+  const priority = report();
+  const settings = {
+    ...config,
+    announcements: {
+      candidatures: ['source'],
+      agenda: ['source'],
+      breves: ['source'],
+    },
+  };
+  priority.checkedAt = day + 'T07:08:00.000Z';
+  priority.scope = 'annonces';
+  priority.queries = [];
+  priority.checks[0].proposals = [];
+  const morning = Date.parse(priority.checkedAt) + 1000;
+  integrate(priority, db, '1220', 1, morning, settings);
+  assert.deepEqual(db.reviews[0].candidates, []);
+  assert.deepEqual(db.reviews[0].sections.map((s) => s.id).sort(), [
+    'agenda',
+    'breves',
+    'candidatures',
+  ]);
+  assert.equal(db.reviews[0].scope, 'annonces');
+  integrate(report(), db, '1234', 1, now, settings);
+  const frozen = structuredClone(db);
+  integrate(priority, db, '1220', 1, morning, settings);
+  assert.deepEqual(db, frozen);
+  assert.equal(db.reviews.length, 2);
+  assert.equal(db.agenda.events.length, 1);
+  assert.equal(db.events.length, 1);
+  for (const alter of [
+    (r) => r.queries.push(report().queries[0]),
+    (r) => r.checks[0].proposals.push(report().checks[0].proposals[0]),
+    (r) => (r.checks[0].source = 'hors-inventaire'),
+  ]) {
+    const r = structuredClone(priority);
+    alter(r);
+    assert.throws(() => integrate(r, data(), '1220', 1, morning, settings));
+  }
+  const unverified = data();
+  unverified.sources[0].kind = 'presse';
+  assert.throws(() =>
+    integrate(priority, unverified, '1220', 1, morning, settings),
+  );
+});

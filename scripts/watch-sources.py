@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 import hashlib
 from html.parser import HTMLParser
 import http.client
+import importlib.util
 import ipaddress
 import json
 from pathlib import Path
@@ -17,14 +18,29 @@ import threading
 import urllib.parse
 
 LIMIT = 3 * 1024 * 1024
+LARGE_PDF_LIMIT = 24 * 1024 * 1024
+LARGE_PDF_URLS = {
+    'equinoxe-programme-synthetique': 'https://parti-equinoxe.fr/wp-content/uploads/2026/11/Equinoxe-Lessentiel-Programme-synthetique-pour-lelection-presidentielle.pdf',
+    'dlf-famille-2026': 'https://www.debout-la-france.fr/wp-content/uploads/2026/01/Famille-2026_01-02_Livret.pdf',
+}
 ROOT = Path(__file__).resolve().parents[1]
 HOST_LOCKS = {}
 HOST_LAST = {}
 HOST_LOCK = threading.Lock()
 RETRY_STATUSES = {403, 408, 429, 500, 502, 503, 504, 520, 521, 522, 523, 524, 525, 526, 527}
 
+spec = importlib.util.spec_from_file_location('collector_http', ROOT / 'scripts/collector_http.py')
+http_cache = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(http_cache)
+STATE = http_cache.State()
 
-def fetch_reliably(url, allowed_hosts):
+
+def configure_cache(filename):
+    global STATE
+    STATE = http_cache.State(filename)
+
+
+def fetch_reliably(url, allowed_hosts, **options):
     """One request at a time per publisher, with bounded availability retries."""
     host = checked_url(url, allowed_hosts).hostname
     with HOST_LOCK:
@@ -35,8 +51,8 @@ def fetch_reliably(url, allowed_hosts):
             if delay:
                 time.sleep(delay)
             try:
-                result = fetch(url, allowed_hosts)
-                if result[0] not in RETRY_STATUSES or attempt == 2:
+                result = fetch(url, allowed_hosts, **options)
+                if result[0] == 429 or result[0] not in RETRY_STATUSES or attempt == 2:
                     return result
             except ssl.SSLError:
                 raise  # Certificate failures are never worked around.
@@ -76,7 +92,7 @@ def redirect_url(current, location, allowed_hosts):
     return result
 
 
-def fetch(url, allowed_hosts, *, with_url=False, timeout=45):
+def fetch(url, allowed_hosts, *, with_url=False, timeout=45, conditional=None, response_meta=None, stream_pdf=False):
     deadline = time.monotonic() + timeout
 
     def remaining():
@@ -87,6 +103,12 @@ def fetch(url, allowed_hosts, *, with_url=False, timeout=45):
 
     for _ in range(5):
         parts = checked_url(url, allowed_hosts)
+        if STATE.deferred(parts.hostname):
+            if response_meta is not None:
+                response_meta['deferred'] = True
+            result = (429, '', b'')
+            return (*result, url) if with_url else result
+        conditions = http_cache.headers(conditional, url)
         addresses = public_addresses(parts.hostname)
         for address in addresses:
             connection = http.client.HTTPSConnection(parts.hostname, timeout=remaining(), context=ssl.create_default_context())
@@ -100,7 +122,7 @@ def fetch(url, allowed_hosts, *, with_url=False, timeout=45):
                 raw = None
                 connection.sock.settimeout(remaining())
                 path = urllib.parse.urlunsplit(('', '', parts.path or '/', parts.query, ''))
-                connection.request('GET', path, headers={'User-Agent':'Polradar-Source-Watch/1.0', 'Accept-Encoding':'identity', 'Accept':'text/html,application/pdf;q=0.9,*/*;q=0.1'})
+                connection.request('GET', path, headers={'User-Agent':'Polradar-Source-Watch/1.0', 'Accept-Encoding':'identity', 'Accept':'text/html,application/pdf;q=0.9,*/*;q=0.1', **conditions})
                 response = connection.getresponse()
                 status = response.status
                 content_type = response.getheader('Content-Type', '').split(';')[0].lower()
@@ -109,26 +131,49 @@ def fetch(url, allowed_hosts, *, with_url=False, timeout=45):
                     # never make an HTTP request and never relax certificate checks.
                     url = redirect_url(url, response.getheader('Location', ''), allowed_hosts)
                     break
+                if status == 429:
+                    STATE.defer(parts.hostname, response.getheader('Retry-After'))
+                if status == 304 and not conditions:
+                    raise ValueError('Réponse 304 sans représentation locale validée')
+                if response_meta is not None:
+                    response_meta.update(entity=http_cache.key(url), etag=response.getheader('ETag'), modified=response.getheader('Last-Modified'))
                 if status != 200:
                     result = (status, content_type, b'')
                     return (*result, url) if with_url else result
                 if response.getheader('Content-Encoding', 'identity') not in ('identity', ''):
                     raise ValueError('Unexpected encoding')
-                length = response.getheader('Content-Length')
-                if length and int(length) > LIMIT:
-                    raise ValueError('Document too large')
+                limit = LARGE_PDF_LIMIT if stream_pdf and url in LARGE_PDF_URLS.values() else LIMIT
+                if stream_pdf and (response_meta is None or content_type != 'application/pdf'):
+                    raise ValueError('Expected a PDF')
+                length = response.getheader('Content-Length') or None
+                if length is not None and (not re.fullmatch(r'[0-9]{1,16}', length) or int(length) > limit):
+                    raise ValueError('Document too large or invalid length')
                 chunks, size = [], 0
+                digest = hashlib.sha256() if stream_pdf else None
+                signature = b''
                 # http.client releases connection.sock when the server requests
                 # Connection: close. The response still owns a readable socket.
                 while not response.isclosed():
                     tls.settimeout(remaining())
-                    chunk = response.read1(min(65536, LIMIT + 1 - size))
+                    chunk = response.read1(min(65536, limit + 1 - size))
                     if not chunk:
                         break
                     size += len(chunk)
-                    if size > LIMIT:
+                    if size > limit:
                         raise ValueError('Document too large')
-                    chunks.append(chunk)
+                    if stream_pdf:
+                        signature += chunk[:5 - len(signature)]
+                        if not b'%PDF-'.startswith(signature):
+                            raise ValueError('Invalid PDF')
+                        digest.update(chunk)
+                    else:
+                        chunks.append(chunk)
+                if length is not None and size != int(length):
+                    raise ValueError('Incomplete document')
+                if stream_pdf:
+                    if signature != b'%PDF-':
+                        raise ValueError('Invalid PDF')
+                    response_meta.update(pdf_sha256=digest.hexdigest(), size=size)
                 body = b''.join(chunks)
                 result = (status, content_type, body)
                 return (*result, url) if with_url else result
@@ -251,12 +296,35 @@ def inspect(source, previous, allowed_hosts):
             url, video = youtube_metadata_url(url, allowed_hosts)
         elif source.get('watchFormat') is not None:
             raise ValueError('Unsupported source format')
-        status, content_type, body = fetch_reliably(url, allowed_hosts)
-        row.update(httpStatus=status,contentType=content_type,bytes=len(body))
-        if status != 200:
+        purpose = 'veille-1:' + (source.get('watchContentClass') or '') + ':' + (source.get('watchFormat') or '')
+        cached = STATE.get(purpose, url) if STATE.path else {}
+        meta = {}
+        options = {'conditional':cached, 'response_meta':meta} if STATE.path else {}
+        stream_pdf = url == LARGE_PDF_URLS.get(source['id'])
+        if stream_pdf:
+            options.update(response_meta=meta, stream_pdf=True)
+        status, content_type, body = fetch_reliably(url, allowed_hosts, **options)
+        row.update(httpStatus=status,contentType=content_type,bytes=meta.get('size',len(body)))
+        if meta.get('deferred'):
+            row.update(httpStatus=None, status='bloque', message='Requête différée après une limitation HTTP 429 de cet éditeur')
+            return row
+        if status == 304 and http_cache.DIGEST.fullmatch(str(cached.get('digest', ''))):
+            digest = cached['digest']
+            changed = old is not None and digest != old
+            row.update(status='modifie' if changed else 'accessible', fingerprint=digest, message='Document inchangé depuis le contrôle HTTP précédent')
+            if not changed and previous.get('reviewedAt') and previous.get('reviewNote'):
+                row.update(reviewedAt=previous['reviewedAt'], reviewNote=previous['reviewNote'])
+        elif status != 200:
             row.update(status='bloque' if status in (401,403,429) else 'indisponible',message=f'Réponse HTTP {status}')
         else:
-            digest = youtube_metadata_fingerprint(content_type, body, video) if video else fingerprint(content_type, body, source.get('watchContentClass'))
+            if stream_pdf:
+                digest = meta['pdf_sha256']
+            elif video:
+                digest = youtube_metadata_fingerprint(content_type, body, video)
+            else:
+                digest = fingerprint(content_type, body, source.get('watchContentClass'))
+            if meta:
+                STATE.remember(purpose, url, meta, digest)
             changed = old is not None and digest != old
             message = 'Métadonnées de la vidéo modifiées' if changed else 'Vidéo disponible : métadonnées YouTube accessibles'
             row.update(status='modifie' if changed else 'accessible',fingerprint=digest,message=message if video else ('Contenu différent du dernier relevé validé' if changed else 'Document accessible lors du relevé'))
@@ -300,5 +368,8 @@ if __name__ == '__main__':
     parser.add_argument('--output',type=Path,default=ROOT/'artifacts/watch-report.json')
     parser.add_argument('--baseline',type=Path,default=ROOT/'src/data/watch.json')
     parser.add_argument('--source',action='append')
+    parser.add_argument('--cache',type=Path)
     args=parser.parse_args()
+    configure_cache(args.cache)
     run(args.output,args.baseline,args.source)
+    STATE.save()

@@ -47,8 +47,11 @@ export function makeDailyReport({
   attempt,
   at,
   history,
+  pollsOnly = false,
 }) {
-  const previous = history.find((h) => h.run !== run || h.attempt !== attempt);
+  const previous = history.filter(
+    (h) => h.run !== run || h.attempt !== attempt,
+  );
   const rows = [];
   function add(
     id,
@@ -61,7 +64,8 @@ export function makeDailyReport({
   ) {
     const lastChange = changes.length
       ? at
-      : (previous?.rows.find((r) => r.id === id)?.lastChange ?? null);
+      : (previous.map((h) => h.rows.find((r) => r.id === id)).find(Boolean)
+          ?.lastChange ?? null);
     rows.push({
       id,
       checked,
@@ -88,7 +92,7 @@ export function makeDailyReport({
   const scenarios = byId([...before.polls, ...after.polls]);
   add(
     'sondages',
-    polls?.checked ?? null,
+    polls?.checkedAt ?? polls?.checked ?? null,
     newest(after.polls.map((p) => p.fieldworkEnd)),
     [
       ...notices.map((id) => 'Notice · ' + (sourceNames.get(id) ?? id)),
@@ -101,6 +105,7 @@ export function makeDailyReport({
     polls?.status === 'available' ? [] : ['Index ou relevé indisponible'],
     polls?.status === 'available',
   );
+  if (pollsOnly) return { run, attempt, at, scope: 'sondages', rows };
   for (const id of Object.keys(labels)) {
     const observed = markets?.providers.find((p) => p.id === id);
     const old = before.markets.providers.find((p) => p.id === id);
@@ -287,6 +292,7 @@ async function main() {
     );
   }
   const report = makeDailyReport({
+    pollsOnly: process.argv.includes('--polls-only'),
     before,
     after,
     history,

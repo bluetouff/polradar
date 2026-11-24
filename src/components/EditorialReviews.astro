@@ -28,7 +28,9 @@ const labels = {
   <h2 id="revue-editoriale">Recherche éditoriale</h2>
   <p>
     GitHub Actions recherche chaque jour les publications des candidats, des
-    partis et des institutions. Le passage est programmé à 18 h, heure de Paris.
+    partis et des institutions. Les annonces officielles sont relevées à 8 h et
+    à 18 h, heure de Paris. La recherche par candidat et par rubrique a lieu à
+    18 h.
   </p>
   {reports.length === 0 && <p>Aucune revue publiée.</p>}
   {reports.length > 0 && (
@@ -46,7 +48,12 @@ const labels = {
           {formatTimestamp(report.checkedAt)} · Paris
         </time>
       </summary>
-      {report.hosted && <HostedEditorial hosted={report.hosted} />}
+      {report.hosted && (
+        <HostedEditorial
+          hosted={report.hosted}
+          priority={report.scope === 'annonces'}
+        />
+      )}
       {report.manualCheckedAt && (
         <p>
           Revue rédigée le {formatTimestamp(report.manualCheckedAt)} · heure de
@@ -66,63 +73,71 @@ const labels = {
           Collecte automatique consultée ↗
         </a>
       )}
-      <details class="review-candidates">
-        <summary>
-          {report.candidates.length} candidatures recherchées par nom
-        </summary>
-        <p>
-          {report.candidates
-            .map((id) => candidateById(id).name)
-            .sort((a, b) => a.localeCompare(b, 'fr'))
-            .join(', ') || 'Aucune recherche nominative consignée.'}
-        </p>
-      </details>
+      {report.scope !== 'annonces' && (
+        <details class="review-candidates">
+          <summary>
+            {report.candidates.length} candidatures recherchées par nom
+          </summary>
+          <p>
+            {report.candidates
+              .map((id) => candidateById(id).name)
+              .sort((a, b) => a.localeCompare(b, 'fr'))
+              .join(', ') || 'Aucune recherche nominative consignée.'}
+          </p>
+        </details>
+      )}
       <div class="review-grid">
-        {sections.map(([id, label]) => {
-          const row = report.sections.find((s) => s.id === id);
-          return (
-            <article>
-              <h3>{label}</h3>
-              {row ? (
-                <>
-                  <small>
-                    {labels[row.status]}
-                    {row.changes.length
-                      ? ' · Mise à jour publiée'
-                      : row.status === 'consulte'
-                        ? ' · Aucun ajout éditorial'
-                        : ''}
-                  </small>
-                  <p>{row.note}</p>
-                  {row.changes.length > 0 && (
-                    <ul>
-                      {row.changes.map((change) => (
-                        <li>
-                          <a href={change.path}>{change.title}</a>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  <details>
-                    <summary>Références ({row.sources.length})</summary>
-                    <ul>
-                      {row.sources.map((id) => {
-                        const s = sourceById(id);
-                        return (
+        {sections
+          .filter(
+            ([id]) =>
+              report.scope !== 'annonces' ||
+              report.sections.some((s) => s.id === id),
+          )
+          .map(([id, label]) => {
+            const row = report.sections.find((s) => s.id === id);
+            return (
+              <article>
+                <h3>{label}</h3>
+                {row ? (
+                  <>
+                    <small>
+                      {labels[row.status]}
+                      {row.changes.length
+                        ? ' · Mise à jour publiée'
+                        : row.status === 'consulte'
+                          ? ' · Aucun ajout éditorial'
+                          : ''}
+                    </small>
+                    <p>{row.note}</p>
+                    {row.changes.length > 0 && (
+                      <ul>
+                        {row.changes.map((change) => (
                           <li>
-                            <a href={s.url}>{s.title}</a>
+                            <a href={change.path}>{change.title}</a>
                           </li>
-                        );
-                      })}
-                    </ul>
-                  </details>
-                </>
-              ) : (
-                <small>Recherche non documentée pour ce passage</small>
-              )}
-            </article>
-          );
-        })}
+                        ))}
+                      </ul>
+                    )}
+                    <details>
+                      <summary>Références ({row.sources.length})</summary>
+                      <ul>
+                        {row.sources.map((id) => {
+                          const s = sourceById(id);
+                          return (
+                            <li>
+                              <a href={s.url}>{s.title}</a>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </details>
+                  </>
+                ) : (
+                  <small>Recherche non documentée pour ce passage</small>
+                )}
+              </article>
+            );
+          })}
       </div>
     </details>
   ))}

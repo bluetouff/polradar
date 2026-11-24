@@ -45,6 +45,7 @@ const published = z.strictObject({
     .nullable(),
 });
 const input = z.strictObject({
+  scope: z.enum(['annonces', 'complete']).optional(),
   checkedAt: z.iso.datetime({ offset: true }),
   since: dateSchema,
   queries: z
@@ -56,13 +57,22 @@ const input = z.strictObject({
         leads: z.array(editorialLead).max(2),
       }),
     )
-    .min(1)
     .max(500),
   checks: z
     .array(
       z.strictObject({
         source: idSchema,
         ok: z.boolean(),
+        issues: z
+          .array(
+            z.enum([
+              'flux-indisponible',
+              'article-indisponible',
+              'limite-editeur',
+            ]),
+          )
+          .max(3)
+          .optional(),
         url: publicUrlSchema.nullable(),
         publications: z.array(published).max(8),
         proposals: z
@@ -327,7 +337,10 @@ export function integrate(
     throw Error('Relevé périmé');
   const people = db.candidates.filter((c) => !c.withdrawnOn);
   const queries = new Map(report.queries.map((q) => [q.id, q.count]));
-  const desks = Object.keys(editorialSections);
+  const priority = report.scope === 'annonces';
+  const desks = priority
+    ? Object.keys(config.announcements)
+    : Object.keys(editorialSections);
   const owners = new Map();
   for (const c of people)
     for (const id of config.candidates[c.id] ?? [c.statusSource]) {
@@ -335,15 +348,19 @@ export function integrate(
       list.push(c.id);
       owners.set(id, list);
     }
-  const origins = new Set([
-    ...owners.keys(),
-    ...Object.values(config.sections).flatMap((d) => d.sources),
-    ...Object.keys(config.programmes),
-  ]);
+  const origins = new Set(
+    priority
+      ? Object.values(config.announcements).flat()
+      : [
+          ...owners.keys(),
+          ...Object.values(config.sections).flatMap((d) => d.sources),
+          ...Object.keys(config.programmes),
+        ],
+  );
   if (
     !sameKeys(
       report.queries.map((q) => q.id),
-      new Set([...people.map((c) => c.id), ...desks]),
+      new Set(priority ? [] : [...people.map((c) => c.id), ...desks]),
     ) ||
     !sameKeys(
       report.checks.map((c) => c.source),
@@ -364,7 +381,9 @@ export function integrate(
     )
       throw Error('Résultats de recherche incohérents');
   const previous = db.reviews.find(
-    (r) => civilDateInParis(new Date(r.checkedAt)) === day,
+    (r) =>
+      civilDateInParis(new Date(r.checkedAt)) === day &&
+      (r.scope === 'annonces') === priority,
   );
   if (
     previous?.hosted &&
@@ -379,6 +398,9 @@ export function integrate(
     const source = db.sources.find((s) => s.id === row.source);
     if (
       !source ||
+      (priority &&
+        (row.proposals.length ||
+          !['campagne', 'parti', 'institution'].includes(source.kind))) ||
       (!row.ok && (row.publications.length || row.proposals.length))
     )
       throw Error('Origine incohérente');
@@ -459,34 +481,47 @@ export function integrate(
     }
   }
   const machine = db.daily[0];
-  const checksForDesk = (id) => [
-    ...new Set([
-      ...config.sections[id].sources,
-      ...(id === 'propositions' ? Object.keys(config.programmes) : []),
-    ]),
-  ];
+  const checksForDesk = (id) =>
+    priority
+      ? config.announcements[id]
+      : [
+          ...new Set([
+            ...config.sections[id].sources,
+            ...(id === 'propositions' ? Object.keys(config.programmes) : []),
+          ]),
+        ];
+  const partial = new Set(
+    report.checks.filter((c) => c.issues?.length).map((c) => c.source),
+  );
   const sections = desks.map((id) => {
     const sources = checksForDesk(id),
       accessible = sources.filter((s) => checks.get(s)).length,
       count = queries.get(id);
     const status =
-      !accessible && count === null
+      !accessible && (priority || count === null)
         ? 'indisponible'
-        : !accessible || count === null || accessible < sources.length
+        : !accessible ||
+            count === null ||
+            accessible < sources.length ||
+            sources.some((s) => partial.has(s))
           ? 'partiel'
           : 'consulte';
-    const note =
-      (count === null
-        ? 'Recherche d’actualité indisponible.'
-        : count +
-          ' résultat' +
-          (count > 1 ? 's' : '') +
-          ' dans l’index d’actualité.') +
-      ' ' +
-      accessible +
-      ' sur ' +
-      sources.length +
-      ' références de la rubrique accessibles.';
+    const note = priority
+      ? accessible +
+        ' sur ' +
+        sources.length +
+        ' sources officielles accessibles.'
+      : (count === null
+          ? 'Recherche d’actualité indisponible.'
+          : count +
+            ' résultat' +
+            (count > 1 ? 's' : '') +
+            ' dans l’index d’actualité.') +
+        ' ' +
+        accessible +
+        ' sur ' +
+        sources.length +
+        ' références de la rubrique accessibles.';
     const earlier = previous?.hosted
       ? (previous.sections.find((s) => s.id === id)?.changes ?? [])
       : [];
@@ -500,7 +535,7 @@ export function integrate(
     };
   });
   const candidateIds = people
-    .filter((c) => queries.get(c.id) !== null)
+    .filter((c) => queries.has(c.id) && queries.get(c.id) !== null)
     .map((c) => c.id);
   const manual = previous && (!previous.hosted || previous.manualCheckedAt);
   const prevChanges = previous?.hosted?.changes ?? [];
@@ -509,13 +544,19 @@ export function integrate(
     attempt,
     since: report.since,
     queries: report.queries,
-    checks: report.checks.map((c) => ({ id: c.source, ok: c.ok, url: c.url })),
+    checks: report.checks.map((c) => ({
+      id: c.source,
+      ok: c.ok,
+      url: c.url,
+      ...(c.issues?.length ? { issues: c.issues } : {}),
+    })),
     publications: [
       ...new Set([...(previous?.hosted?.publications ?? []), ...refs]),
     ],
     changes: byPath([...prevChanges, ...Object.values(changes).flat()]),
   };
   const next = {
+    ...(priority ? { scope: 'annonces' } : {}),
     checkedAt: report.checkedAt,
     ...(machine
       ? { collection: { run: machine.run, attempt: machine.attempt } }
@@ -528,6 +569,7 @@ export function integrate(
     next.manualCheckedAt = previous.manualCheckedAt ?? previous.checkedAt;
   if (previous) db.reviews.splice(db.reviews.indexOf(previous), 1);
   db.reviews.unshift(next);
+  db.reviews.sort((a, b) => Date.parse(b.checkedAt) - Date.parse(a.checkedAt));
   editorialReviewSchema(db.candidates, db.sources).parse(db.reviews);
 }
 

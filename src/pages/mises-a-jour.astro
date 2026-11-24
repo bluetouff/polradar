@@ -7,6 +7,10 @@ import { dailyHistorySchema, families } from '../lib/daily-updates.mjs';
 import { formatDate, formatTimestamp, meta } from '../lib/data';
 const runs = dailyHistorySchema.parse(history);
 const latest = runs[0];
+const latestByFamily = Object.keys(families).flatMap((id) => {
+  const run = runs.find((run) => run.rows.some((row) => row.id === id));
+  return run ? [{ run, row: run.rows.find((row) => row.id === id)! }] : [];
+});
 const terms = {
   sondages: 'Fin du terrain le plus récent',
   economie: 'Dernière publication Eurostat',
@@ -67,7 +71,7 @@ const workflow = meta.repository + '/actions/workflows/watch.yml';
       </div>
     </div>
     <p>
-      Collecte quotidienne prévue à 05 h 23 UTC.
+      Collecte quotidienne à 8 h, nouvelles notices également à 18 h (Paris).
       <br />
       <a href={workflow}>Exécutions et éventuels échecs sur GitHub ↗</a>
     </p>
@@ -80,7 +84,7 @@ const workflow = meta.repository + '/actions/workflows/watch.yml';
   )}
   {latest && (
     <section aria-label="État des données" class="fresh-grid">
-      {latest.rows.map((row) => {
+      {latestByFamily.map(({ row }) => {
         const key = row.id as keyof typeof families;
         const [name, link, icon] = families[key];
         return (
@@ -151,7 +155,15 @@ const workflow = meta.repository + '/actions/workflows/watch.yml';
         </a>
         <div class="entry-list">
           {run.rows.map((row) => (
-            <article id={i === 0 ? 'journal-' + row.id : undefined}>
+            <article
+              id={
+                latestByFamily.some(
+                  (entry) => entry.run === run && entry.row.id === row.id,
+                )
+                  ? 'journal-' + row.id
+                  : undefined
+              }
+            >
               <h3>{families[row.id as keyof typeof families][0]}</h3>
               <p>
                 {row.changes.length} changement

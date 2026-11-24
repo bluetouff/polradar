@@ -33,7 +33,8 @@ export const dailyHistorySchema = z
       attempt: z.number().int().min(1),
       at: stamp,
       sourceChecks: z.array(sourceCheck).max(2000).optional(),
-      rows: z.array(row).length(Object.keys(families).length),
+      scope: z.literal('sondages').optional(),
+      rows: z.array(row).min(1).max(Object.keys(families).length),
     }),
   )
   .max(32)
@@ -46,6 +47,11 @@ export const dailyHistorySchema = z
       if (
         runs.has(key) ||
         instant > previous ||
+        (item.scope === 'sondages'
+          ? item.rows.length !== 1 ||
+            item.rows[0].id !== 'sondages' ||
+            Boolean(item.sourceChecks?.length)
+          : item.rows.length !== Object.keys(families).length) ||
         (item.sourceChecks &&
           (new Set(item.sourceChecks.map((c) => c.sourceId)).size !==
             item.sourceChecks.length ||

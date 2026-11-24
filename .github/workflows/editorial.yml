@@ -1,9 +1,17 @@
 name: Veille éditoriale
 on:
   schedule:
+    - cron: '0 8 * * *'
+      timezone: Europe/Paris
     - cron: '0 18 * * *'
       timezone: Europe/Paris
   workflow_dispatch:
+    inputs:
+      passage:
+        description: Recherche à effectuer
+        type: choice
+        options: [complet, annonces]
+        default: complet
 
 permissions: {}
 concurrency:
@@ -22,9 +30,26 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - name: Restaurer les validateurs HTTP (redaction)
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .cache/collecteurs/redaction.json
+          key: polradar-http-main-v1-redaction-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: polradar-http-main-v1-redaction-
       - name: Rechercher les annonces et ouvrir les sources
         shell: bash
-        run: python3 scripts/editorial-collect.py | tee -a "$GITHUB_STEP_SUMMARY"
+        env:
+          POLRADAR_ANNOUNCEMENTS_ONLY: ${{ github.event.schedule == '0 8 * * *' || inputs.passage == 'annonces' }}
+        run: |
+          set -euo pipefail
+          options=(--cache .cache/collecteurs/redaction.json)
+          if [[ "$POLRADAR_ANNOUNCEMENTS_ONLY" == true ]]; then options+=(--announcements-only); fi
+          python3 scripts/editorial-collect.py "${options[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Conserver les validateurs HTTP (redaction)
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .cache/collecteurs/redaction.json
+          key: polradar-http-main-v1-redaction-${{ github.run_id }}-${{ github.run_attempt }}
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: editorial-observations

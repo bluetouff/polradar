@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Transfer only the validated JSON inputs between the two daily workflow jobs."""
 import argparse
+import hashlib
+import re
 import json
 from pathlib import Path
 import subprocess
@@ -28,14 +30,25 @@ def pack():
     if len(changed) % 2:
         raise ValueError('Liste de fichiers modifiés invalide')
     files = {}
+    bases = {}
     for status, name in zip(changed[::2], changed[1::2]):
         path = Path(name)
         if status != 'M' or path.parent != Path('src/data') or path.name not in ALLOWED:
             raise ValueError('Modification hors des fichiers quotidiens')
-        files[path.name] = payload(ROOT / path)
+        raw = payload(ROOT / path)
+        base = subprocess.check_output(['git', 'show', 'HEAD:' + name], cwd=ROOT)
+        bases[path.name] = {'hash': hashlib.sha256(base).hexdigest()}
+        if path.name == 'sources.json':
+            original, new = json.loads(base), json.loads(raw)
+            if (not isinstance(original, list) or not isinstance(new, list)
+                    or new[:len(original)] != original or len(new) <= len(original)):
+                raise ValueError('Le collecteur peut uniquement ajouter des notices au catalogue des sources')
+            bases[path.name]['originalCount'] = len(original)
+        files[path.name] = raw
     if not files:
         return False
     ARTIFACT.mkdir(parents=True, exist_ok=False)
+    (ARTIFACT / 'bases.json').write_text(json.dumps(bases))
     for name, raw in files.items():
         (ARTIFACT / name).write_bytes(raw)
     return True
@@ -45,14 +58,43 @@ def apply():
     if ARTIFACT.is_symlink() or not ARTIFACT.is_dir():
         raise ValueError('Artefact quotidien absent ou indirect')
     files = {path.name: path for path in ARTIFACT.iterdir()}
-    if not files or not files.keys() <= ALLOWED:
+    manifest = files.pop('bases.json', None)
+    if not manifest or not files or not files.keys() <= ALLOWED:
         raise ValueError('Artefact hors des fichiers quotidiens')
-    inputs = [(name, payload(path)) for name, path in sorted(files.items())]
-    for name, raw in inputs:
+    bases = json.loads(payload(manifest))
+    if not isinstance(bases, dict) or bases.keys() != files.keys():
+        raise ValueError('Inventaire incohérent')
+    inputs = []
+    for name, path in sorted(files.items()):
+        raw = payload(path)
         target = DATA / name
-        if target.is_symlink() or not target.is_file():
-            raise ValueError('Destination quotidienne hors format')
-        target.write_bytes(raw)
+        existing = payload(target)
+        reference = bases[name]
+        if not isinstance(reference, dict) or not re.fullmatch(r'[0-9a-f]{64}', str(reference.get('hash', ''))):
+            raise ValueError('Référence de départ invalide')
+        if hashlib.sha256(existing).hexdigest() != reference['hash']:
+            if name != 'sources.json' or type(reference.get('originalCount')) is not int:
+                raise ValueError('Données modifiées durant la collecte ; relancer sur main')
+            previous, proposed = json.loads(existing), json.loads(raw)
+            count = reference['originalCount']
+            if not isinstance(previous, list) or not isinstance(proposed, list) or not 0 <= count < len(proposed):
+                raise ValueError('Ajout de sources invalide')
+            by_id = {s['id']: s for s in previous}
+            for row in proposed[count:]:
+                ident = row['id']
+                if not re.fullmatch(r'notice-commission-[0-9]{4,6}[a-z]?', ident) or row.get('kind') != 'institution' or not re.fullmatch(r'https://www\.commission-des-sondages\.fr/notices/medias/fichiers/add/[1-9][0-9]{0,6}', row.get('url','')):
+                    raise ValueError('Notice hors de la collection autorisée')
+                if ident in by_id and by_id[ident] != row:
+                    raise ValueError('Notice modifiée pendant la collecte')
+                if ident not in by_id:
+                    previous.append(row)
+                    by_id[ident] = row
+            raw = (json.dumps(previous, ensure_ascii=False, indent=2) + '\n').encode('utf-8')
+            if len(raw) > MAX_SIZE:
+                raise ValueError('Catalogue fusionné trop volumineux')
+        inputs.append((name, raw))
+    for name, raw in inputs:
+        (DATA / name).write_bytes(raw)
     subprocess.run(['git', 'add', '--', *[f'src/data/{name}' for name, _ in inputs]], cwd=ROOT, check=True)
 
 

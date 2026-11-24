@@ -1,14 +1,24 @@
 name: Veille des sources
 on:
   schedule:
-    - cron: '23 5 * * *'
+    - cron: '0 8 * * *'
+      timezone: Europe/Paris
+    - cron: '0 18 * * *'
+      timezone: Europe/Paris
   workflow_dispatch:
+    inputs:
+      passage:
+        description: Familles à relever
+        type: choice
+        options: [complet, notices]
+        default: complet
 permissions: {}
 concurrency:
   group: source-watch
   cancel-in-progress: false
 jobs:
   watch:
+    if: github.repository == 'bluetouff/polradar' && github.ref == 'refs/heads/main' && github.event.schedule != '0 18 * * *' && inputs.passage != 'notices'
     runs-on: ubuntu-latest
     timeout-minutes: 12
     permissions:
@@ -17,8 +27,19 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - name: Restaurer les validateurs HTTP (sources)
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .cache/collecteurs/sources.json
+          key: polradar-http-main-v1-sources-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: polradar-http-main-v1-sources-
       - name: Relever les sources autorisées
-        run: python3 scripts/watch-sources.py
+        run: python3 scripts/watch-sources.py --cache .cache/collecteurs/sources.json
+      - name: Conserver les validateurs HTTP (sources)
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .cache/collecteurs/sources.json
+          key: polradar-http-main-v1-sources-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Résumé de la veille
         run: cat artifacts/watch-report.md >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
@@ -31,6 +52,8 @@ jobs:
   refresh:
     name: Collecter les données publiques
     needs: watch
+    env:
+      POLRADAR_NOTICES_ONLY: ${{ github.event.schedule == '0 18 * * *' || inputs.passage == 'notices' }}
     if: ${{ !cancelled() && github.repository == 'bluetouff/polradar' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -51,10 +74,27 @@ jobs:
         run: |
           python3 -m venv "$RUNNER_TEMP/poll-reader"
           "$RUNNER_TEMP/poll-reader/bin/python" -m pip install --isolated --disable-pip-version-check --no-deps --require-hashes --only-binary=:all: -r scripts/requirements/poll-pdf.txt
-      - name: Relever les notices, marchés, séries et fichiers Arcom
+      - name: Restaurer les validateurs HTTP (sondages)
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .cache/collecteurs/sondages.json
+          key: polradar-http-main-v1-sondages-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: polradar-http-main-v1-sondages-
+      - name: Relever les nouvelles notices de la Commission
         run: |
           set -euo pipefail
-          "$RUNNER_TEMP/poll-reader/bin/python" scripts/collect-polls.py | tee -a "$GITHUB_STEP_SUMMARY"
+          options=(--cache .cache/collecteurs/sondages.json)
+          if [[ "$POLRADAR_NOTICES_ONLY" == true ]]; then options+=(--new-only); fi
+          "$RUNNER_TEMP/poll-reader/bin/python" scripts/collect-polls.py "${options[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Conserver les validateurs HTTP (sondages)
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .cache/collecteurs/sondages.json
+          key: polradar-http-main-v1-sondages-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Relever les marchés, séries et fichiers Arcom
+        if: env.POLRADAR_NOTICES_ONLY != 'true'
+        run: |
+          set -euo pipefail
           python3 scripts/collect-markets.py > artifacts/markets-review.txt || [[ $? == 1 ]]
           cat artifacts/markets-review.txt >> "$GITHUB_STEP_SUMMARY"
           python3 scripts/collect-economy.py
@@ -69,9 +109,14 @@ jobs:
           path: artifacts/
       - name: Intégrer les relevés validés
         run: |
-          node scripts/refresh-data.mjs
-          node scripts/import-airtime.mjs --refresh
-          node scripts/daily-report.mjs
+          if [[ "$POLRADAR_NOTICES_ONLY" == true ]]; then
+            node scripts/refresh-data.mjs --polls-only
+            node scripts/daily-report.mjs --polls-only
+          else
+            node scripts/refresh-data.mjs
+            node scripts/import-airtime.mjs --refresh
+            node scripts/daily-report.mjs
+          fi
           npx --no-install prettier --write src/data/{polls,poll-catalogue,sources,prediction-markets,economy,airtime,daily-updates}.json
           node scripts/validate-content.mjs
           git diff --check
@@ -102,7 +147,9 @@ jobs:
   update:
     name: Pousser les données validées
     needs: refresh
-    if: github.repository == 'bluetouff/polradar' && github.ref == 'refs/heads/main' && needs.refresh.outputs.changed == 'true'
+    if: >-
+      !cancelled() && needs.refresh.result == 'success' &&
+      github.repository == 'bluetouff/polradar' && github.ref == 'refs/heads/main' && needs.refresh.outputs.changed == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     environment: polradar-data-publish
@@ -114,6 +161,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: main
           persist-credentials: false
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:

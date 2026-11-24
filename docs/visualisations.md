@@ -20,7 +20,7 @@ Les correspondances de noms sont explicites dans `airtimeAliases`. Par exemple, 
 
 ### Relevé quotidien et intégration
 
-Le workflow `watch.yml` conserve son unique déclenchement quotidien à 05:23 UTC. Le collecteur Arcom réutilise le transport existant : HTTPS, hôte autorisé, contrôle des IP publiques et des redirections, limites de taille et de durée. Il lit les données JSON intégrées à la page officielle, sans exécuter son JavaScript. Il télécharge au plus les trois derniers mois complets et compare leurs empreintes à celles intégrées au site.
+Le workflow `watch.yml` consulte Arcom à 8 h, heure de Paris. Le passage de 18 h concerne les seules notices de sondage. Le collecteur Arcom réutilise le transport existant : HTTPS, hôte autorisé, contrôle des IP publiques et des redirections, limites de taille et de durée. Il lit les données JSON intégrées à la page officielle, sans exécuter son JavaScript. Il télécharge au plus les trois derniers mois complets et compare leurs empreintes à celles intégrées au site.
 
 Le dossier `airtime-review` de l’artefact `daily-data-review` contient les fichiers, un manifeste et un résumé. Si la collecte aboutit, le workflow valide le relevé puis intègre les nouveaux mois et les révisions. Une erreur conserve les données du site et signale l’indisponibilité dans le rapport. En début d’année, le collecteur consulte aussi l’index officiel de l’année précédente si moins de trois mois sont disponibles. Il peut ainsi intégrer un relevé de décembre publié en janvier.
 

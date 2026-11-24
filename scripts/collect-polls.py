@@ -113,12 +113,12 @@ class Catalogue(HTMLParser):
                 self.rejected += 1
 
 
-def catalogue_rows(body):
+def catalogue_rows(body, *, reject_invalid=True):
     if len(body) > transport.LIMIT:
         raise ValueError('Catalogue trop volumineux')
     catalogue = Catalogue()
     catalogue.feed(body.decode('utf-8', errors='strict'))
-    if not 1 <= len(catalogue.rows) <= 3000 or catalogue.rejected:
+    if not 1 <= len(catalogue.rows) <= 3000 or (reject_invalid and catalogue.rejected):
         raise ValueError('Catalogue de la Commission incomplet')
     result = {}
     for path, title, edition in catalogue.rows:
@@ -140,18 +140,19 @@ def catalogue_rows(body):
 
 
 def notices(body, today):
-    catalogue = Catalogue()
-    catalogue.feed(body.decode('utf-8', errors='strict'))
-    if not catalogue.rows:
-        raise ValueError('Catalogue de la Commission non reconnu')
+    return recent_notices(catalogue_rows(body, reject_invalid=False), today)
+
+
+def recent_notices(rows, today):
     recent = []
-    for path, label, edition in catalogue.rows:
+    for row in rows:
+        path = '/notices/medias/fichiers/add/' + row['downloadId']
+        label = row['label']
         identity = re.match(r'^(\d{4,6}[A-Z]?) (?:pres|presidentielle)\.?\s+(?:iv\b|intentions? de vote\b)', normalized(label), re.I)
-        issue = re.fullmatch(r'- ([a-z]+) (\d{4})', normalized(edition))
-        if not identity or not issue:
+        if not identity or not row['listedMonth']:
             continue
-        month, year = issue.groups()
-        listed_month = civil(1, month, year)
+        listed_month = date.fromisoformat(row['listedMonth'] + '-01')
+        year = listed_month.year
         if not (today - timedelta(days=21)).replace(day=1) <= listed_month <= today:
             continue
         written = re.search(r'\b(\d{1,2})(?:er)? ([a-z]+)(?: (\d{4}))?$', normalized(label))
@@ -425,7 +426,29 @@ def import_notice(notice, pages, identities, today):
     return source, rows
 
 
-def collect(today):
+def catalogue_key(rows):
+    return transport.http_cache.key(json.dumps(sorted(rows, key=lambda r: r['downloadId']), sort_keys=True, ensure_ascii=True))
+
+
+def read_catalogue(previous):
+    fields = ('downloadId', 'label', 'number', 'listedMonth')
+    stored = [{k: row[k] for k in fields} for row in previous['rows'] if row['lastListedAt'] == previous['lastSuccessAt']]
+    previous_digest = catalogue_key(stored)
+    prior = transport.STATE.get('index-v1', INDEX)
+    matches = bool(stored) and prior.get('digest') == previous_digest
+    meta = {}
+    status, mime, raw = transport.fetch_reliably(INDEX, HOSTS, conditional=prior if matches else None, response_meta=meta)
+    if status == 304 and matches:
+        return stored, stored
+    if status != 200 or mime not in ('text/html', 'application/xhtml+xml'):
+        raise ValueError('Catalogue indisponible')
+    rows = catalogue_rows(raw)
+    if meta:
+        transport.STATE.remember('index-v1', INDEX, meta, catalogue_key(rows))
+    return rows, stored
+
+
+def collect(today, *, new_only=False):
     checked_at = datetime.now(timezone.utc).isoformat(timespec='seconds').replace('+00:00', 'Z')
     output = {'checked': today.isoformat(), 'checkedAt': checked_at, 'status': 'available', 'sources': [], 'polls': [], 'review': []}
     polls = json.loads((ROOT / 'src/data/polls.json').read_text())
@@ -443,11 +466,12 @@ def collect(today):
         for row in [point for poll in polls for point in poll['results']] + candidate_rows
     }
     try:
-        status, mime, body = transport.fetch_reliably(INDEX, HOSTS)
-        if status != 200 or mime not in ('text/html', 'application/xhtml+xml'):
-            raise ValueError('Catalogue indisponible')
-        output['catalogue'] = catalogue_rows(body)
-        candidates = notices(body, today)
+        previous = json.loads((ROOT / 'src/data/poll-catalogue.json').read_text())
+        current, stored = read_catalogue(previous)
+        output['catalogue'] = current
+        before = {r['downloadId']:r for r in stored}
+        selected = [r for r in current if not new_only or before.get(r['downloadId']) != r]
+        candidates = recent_notices(selected, today)
     except (OSError, ValueError):
         output['status'] = 'unavailable'
         return output
@@ -485,14 +509,19 @@ def collect(today):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--pdf-layout', action='store_true', help=argparse.SUPPRESS)
-    if parser.parse_args().pdf_layout:
+    parser.add_argument('--new-only', action='store_true')
+    parser.add_argument('--cache', type=Path)
+    args = parser.parse_args()
+    if args.pdf_layout:
         extract_pdf()
         return
     if importlib.util.find_spec('pypdf') is None:
         raise SystemExit('Lecteur PDF absent de l’environnement de collecte.')
     output = ROOT / 'artifacts/polls-review'
     output.mkdir(parents=True, exist_ok=True)
-    data = collect(datetime.now(ZoneInfo('Europe/Paris')).date())
+    transport.configure_cache(args.cache)
+    data = collect(datetime.now(ZoneInfo('Europe/Paris')).date(), new_only=args.new_only)
+    transport.STATE.save()
     (output / 'review.json').write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(f"Sondages · {data['status']} · {len(data['sources'])} notices importables · {len(data['review'])} à relire.")
     for row in data['review']:
