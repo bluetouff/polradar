@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
+import { studioRights } from '../../lib/studio-rights';
 import { studioItems, studioFamilies } from '../../lib/studio';
 import '../../styles/studio.css';
 const first = studioItems.find((i) => i.id === 'economie-inflation')!;
@@ -165,6 +166,20 @@ const families = Object.entries(studioFamilies)
         </a>
       </details>
       <div id="studio-table" class="studio-table"></div>
+      <details class="studio-refs">
+        <summary>Crédit et réutilisation</summary>
+        <p>
+          Pour le SVG, le PNG ou le HTML, créditez Polradar (bluetouff) et{' '}
+          <a href={studioRights.workUrl} rel="noreferrer">
+            CC BY 4.0
+          </a>
+          . Indiquez vos adaptations. Pour le CSV, conservez les références et
+          vérifiez les droits de chaque producteur. La base originale de
+          Polradar est sous ODbL 1.0. Le nom, le logo et l’identité visuelle
+          sont réservés.
+        </p>
+        <a href="/licences/">Lire les licences</a>
+      </details>
     </article>
     <p id="studio-status" role="status" aria-live="polite"></p>
   </div>

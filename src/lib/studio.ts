@@ -1,3 +1,4 @@
+import { creditStudioGraphic, studioRights } from './studio-rights';
 import type { Graphic } from './chart-publication';
 import { editionId } from './chart-publication';
 import {
@@ -471,9 +472,12 @@ for (const provider of predictionMarkets.providers) {
 }
 export const studioItems = items;
 export function studioPublication(item: Item) {
+  const graphic = creditStudioGraphic(item.graphic);
   return {
     ...item,
-    edition: editionId(item.graphic),
+    graphic,
+    rights: studioRights,
+    edition: editionId(graphic),
     pageUrl: new URL(item.graphic.page, meta.site).href,
     liveUrl: new URL(item.live, meta.site).href,
   };

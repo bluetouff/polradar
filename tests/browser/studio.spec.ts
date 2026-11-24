@@ -44,6 +44,8 @@ test('les éditions du Studio gardent leurs chiffres, leurs sources et leurs dim
   const svg = (await grab('SVG')).toString();
   expect(svg).toContain('viewBox');
   expect(svg).toContain('Non publié');
+  expect(svg).toContain('CC BY 4.0');
+  expect(svg).toContain(record.source.url);
   expect(svg).toContain('width="640"');
   expect(svg).not.toContain('<script');
   const png = await grab('PNG');
@@ -62,6 +64,8 @@ test('les éditions du Studio gardent leurs chiffres, leurs sources et leurs dim
   expect(html).toContain('data:image/svg+xml;base64,');
   expect(html).not.toContain('<script');
   expect(html).toContain(record.source.url);
+  expect(html).toContain('creativecommons.org/licenses/by/4.0/');
+  expect(csv).toContain('polradar.fr/licences/');
   const preview = await context.newPage();
   await context.setOffline(true);
   await preview.setContent(html);
@@ -123,13 +127,9 @@ test('le Studio conserve son catalogue de SVG sans JavaScript', async ({
   try {
     const page = await context.newPage();
     await page.goto(testOrigin + '/studio/');
-    const menu = page
-      .locator('.studio-noscript details')
-      .filter({
-        has: page
-          .locator('summary')
-          .filter({ hasText: 'Votes parlementaires' }),
-      });
+    const menu = page.locator('.studio-noscript details').filter({
+      has: page.locator('summary').filter({ hasText: 'Votes parlementaires' }),
+    });
     await menu.locator('summary').click();
     const asset = await menu
       .locator('a[download]')

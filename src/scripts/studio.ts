@@ -121,9 +121,13 @@ function figure(
     ...(live ? [] : [escapeHtml(data.graphic.dateLabel)]),
     ...sources,
   ];
-  const description = caption.checked
-    ? '<figcaption>' + links.join(' · ') + '</figcaption>'
-    : '';
+  const credits =
+    'Graphique Polradar (bluetouff) · <a rel="noreferrer" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · <a rel="noreferrer" href="https://polradar.fr/licences/">Conditions de la base et des sources</a>';
+  const description =
+    '<figcaption>' +
+    (caption.checked ? links.join(' · ') + '<br>' : '') +
+    credits +
+    '</figcaption>';
   return (
     '<figure><img src="' +
     escapeHtml(image) +
@@ -357,7 +361,10 @@ function csv(data: Publication) {
     typeof v === 'number' ? String(v) : csvValue(v);
   return (
     '\uFEFF' +
-    [data.columns, ...data.rows]
+    [
+      [...data.columns, 'Préparation', 'Conditions de réutilisation'],
+      ...data.rows.map((r) => [...r, 'Polradar', data.rights.policy]),
+    ]
       .map((r) => r.map(field).join(';'))
       .join('\r\n') +
     '\r\n'
