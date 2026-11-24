@@ -26,6 +26,13 @@ const imported = [
   ['10166', 12],
   ['10007', 5],
   ['9916', 6],
+  ['10277', 7],
+  ['10239', 8],
+  ['9942', 4],
+  ['9913', 2],
+  ['10264', 1],
+  ['10024', 1],
+  ['10035', 4],
 ];
 
 test('Chaque notice relue couvre des scénarios traçables et rendus dans le Studio', () => {
@@ -159,4 +166,52 @@ test('Les vagues Elabe conservent les bases, les pages du rapport et les diverge
     april.uncertainty,
     /page 5 de la notice mentionne les législatives/,
   );
+});
+
+test('Deux publications de Verian utilisent un seul terrain et cinq configurations uniques', () => {
+  const wave = polls.filter(
+    (p) => p.surveyId === 'verian-lhemicycle-2025-11-20',
+  );
+  assert.equal(wave.length, 5);
+  assert.equal(
+    wave.filter(
+      (p) => p.scenario === 'Premier tour · Configuration de référence',
+    ).length,
+    1,
+  );
+  assert.deepEqual(
+    wave.map((p) => p.usefulSample),
+    [696, 696, 681, 690, 696],
+  );
+  assert.deepEqual(
+    wave.map((p) => p.resultPage),
+    [3, 6, 9, 12, 15],
+  );
+  assert.equal(wave[0].published, '2025-11-27');
+  assert.equal(wave[1].published, '2025-12-12');
+  assert.deepEqual(wave[2].margin, { min: 1.7, max: 3.9, confidence: 95 });
+});
+
+test('Deux vagues Harris préservent les bases exprimées et le sens des résultats publiés', () => {
+  const august = polls.filter((p) => p.surveyId === 'harris-commission-10239');
+  const september = polls.filter(
+    (p) => p.surveyId === 'harris-commission-10277',
+  );
+  assert.equal(august.length, 8);
+  assert.ok(august.every((p) => p.usefulSample === null));
+  assert.deepEqual(
+    september.map((p) => p.usefulSample),
+    [1242, 1227, 1216, 1219, 1223, 1055, 1125],
+  );
+  assert.ok(september.every((p) => p.question.base.includes('certains')));
+  assert.equal(september.filter((p) => p.round === 'second').length, 2);
+});
+
+test('L’enquête OpinionWay indique son commanditaire et conserve le score sous le seuil', () => {
+  const poll = polls.find((p) => p.surveyId === 'opinionway-commission-10264');
+  assert.equal(poll.commissioner, 'Sébastien Bonnal');
+  assert.match(poll.uncertainty, /date de première diffusion restent inconnus/);
+  const result = poll.results.find((p) => p.name === 'Sébastien Bonnal');
+  assert.equal(result.percentage, null);
+  assert.equal(result.below, 1);
 });
