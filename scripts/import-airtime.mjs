@@ -21,10 +21,28 @@ if (
   manifest.months.length > 3
 )
   throw new Error('Relevé indisponible ou invalide');
+const source = new URL('src/data/airtime.json', root);
+const previous = airtimeSchema.parse(
+  JSON.parse(await readFile(source, 'utf8')),
+);
 const months = [];
 for (const row of manifest.months) {
   if (!/^202[5-9]-(0[1-9]|1[0-2])$/.test(row.month))
     throw new Error('Période invalide');
+  if (row.reuse === true) {
+    const published = previous.months.find(
+      (item) =>
+        item.month === row.month &&
+        item.sourceUrl === row.sourceUrl &&
+        item.sha256 === row.sha256,
+    );
+    if (!published)
+      throw new Error(
+        'Relevé Arcom inchangé sans fichier publié correspondant',
+      );
+    months.push(published);
+    continue;
+  }
   const raw = await readFile(new URL(`${row.month}.csv`, directory));
   if (
     raw.length > 2000000 ||
@@ -40,11 +58,7 @@ for (const row of manifest.months) {
     ),
   });
 }
-const source = new URL('src/data/airtime.json', root);
 if (refresh) {
-  const previous = airtimeSchema.parse(
-    JSON.parse(await readFile(source, 'utf8')),
-  );
   if (manifest.checked < previous.checked)
     throw new Error('Consultation Arcom antérieure à la dernière publication');
   months.push(

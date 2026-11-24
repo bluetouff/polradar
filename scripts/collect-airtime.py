@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Collect official Arcom files for review. Never modify or publish site data."""
+import argparse
 import calendar
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -83,21 +84,48 @@ def recent_files(now):
     return sorted(files, key=lambda row: row['month'], reverse=True)[:3], unavailable
 
 
+def collect_month(row, known, purpose, output):
+    url = row['sourceUrl']
+    stored = transport.STATE.get(purpose, url)
+    same_source = known and known['sourceUrl'] == url and known['sha256'] == stored.get('digest')
+    conditions = stored if same_source else {}
+    metadata = {}
+    status, mime, raw = transport.fetch_reliably(url, HOSTS, conditional=conditions, response_meta=metadata)
+    if status == 304:
+        if not same_source:
+            raise ValueError('Arcom returned 304 without matching published data')
+        row.update(sha256=known['sha256'], reuse=True)
+        return
+    if status != 200 or mime not in ('text/csv', 'application/csv', 'text/plain', 'application/octet-stream', 'application/vnd.ms-excel'):
+        raise ValueError('Arcom CSV unavailable')
+    text = raw.decode('utf-8-sig', errors='strict')
+    if not text.startswith(';Appartenance;') or not 1000 <= len(raw) <= 2000000:
+        raise ValueError('Invalid Arcom CSV')
+    row['sha256'] = hashlib.sha256(raw).hexdigest()
+    (output / f"{row['month']}.csv").write_bytes(raw)
+    transport.STATE.remember(purpose, url, metadata, row['sha256'])
+
+
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--cache', type=Path)
+    args = parser.parse_args()
+    transport.configure_cache(args.cache)
+    # Recompile the source CSVs after a change to aliases or aggregation rules.
+    purpose = 'arcom-' + hashlib.sha256((ROOT / 'src/lib/airtime.mjs').read_bytes()).hexdigest()
     now = datetime.now(ZoneInfo('Europe/Paris'))
     output = ROOT / 'artifacts/airtime-review'; output.mkdir(parents=True, exist_ok=True)
     try:
         files, unavailable = recent_files(now)
-        for row in files:
-            status, mime, raw = transport.fetch_reliably(row['sourceUrl'], HOSTS)
-            if status != 200 or mime not in ('text/csv','application/csv','text/plain','application/octet-stream','application/vnd.ms-excel'): raise ValueError('Arcom CSV unavailable')
-            text = raw.decode('utf-8-sig', errors='strict')
-            if not text.startswith(';Appartenance;') or len(raw) < 1000: raise ValueError('Invalid Arcom CSV')
-            row['sha256'] = hashlib.sha256(raw).hexdigest()
-            (output / f"{row['month']}.csv").write_bytes(raw)
         previous = json.loads((ROOT / 'src/data/airtime.json').read_text())
-        known = {r['month']:r['sha256'] for r in previous['months']}
-        changed = any(known.get(row['month']) != row['sha256'] for row in files)
+        known = {row['month']: row for row in previous['months']}
+        for row in files:
+            collect_month(row, known.get(row['month']), purpose, output)
+        changed = any(
+            known.get(row['month'], {}).get('sha256') != row['sha256']
+            or known.get(row['month'], {}).get('sourceUrl') != row['sourceUrl']
+            for row in files
+        )
         manifest = {'version':1, 'checked':now.date().isoformat(), 'observedAt':now.isoformat(), 'status':'review' if changed else 'unchanged', 'months':files, 'unavailableYears':unavailable}
         (output / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2)+'\n')
         report = '# Relevés Arcom\n\n' + ('Nouveaux fichiers ou révisions à examiner.' if changed else 'Les trois derniers fichiers correspondent au relevé intégré.') + '\n\n' + '\n'.join(f"- [{r['month']}]({r['sourceUrl']})" for r in files) + '\n'
@@ -107,6 +135,7 @@ def main():
         # An unsuccessful run cannot leave a stale successful manifest behind.
         (output / 'manifest.json').write_text(json.dumps({'version':1,'checked':now.date().isoformat(),'status':'unavailable','months':[]})+'\n')
         report = '# Relevés Arcom\n\nSource indisponible ou format modifié. Le relevé intégré au site est conservé.\n'
+    transport.STATE.save()
     (output / 'report.md').write_text(report)
     print(report)
 

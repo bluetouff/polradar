@@ -2,6 +2,7 @@ import importlib.util
 from pathlib import Path
 from datetime import date, datetime
 import json
+from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
 
@@ -39,6 +40,25 @@ class AirtimeTests(unittest.TestCase):
         self.assertEqual([row['month'] for row in files], ['2026-12'])
         self.assertEqual(unavailable, [2027])
         self.assertTrue(fetch.call_args_list[1].args[0].endswith('/2026'))
+
+
+    def test_reuses_only_the_published_csv_for_the_same_url_and_compiler(self):
+        url = 'https://www.arcom.fr/sites/default/files/tphe/files/speaking_time_files/a.csv'
+        row = {'month': '2026-09', 'sourceUrl': url}
+        digest = 'a' * 64
+        with TemporaryDirectory() as folder:
+            output = Path(folder)
+            state = airtime.transport.http_cache.State(output / 'cache.json')
+            state.remember('compiler-v1', url, {'entity': airtime.transport.http_cache.key(url), 'etag': '"v1"'}, digest)
+            with patch.object(airtime.transport, 'STATE', state), patch.object(airtime.transport, 'fetch_reliably', return_value=(304, '', b'')) as fetch:
+                airtime.collect_month(row, {**row, 'sha256': digest}, 'compiler-v1', output)
+                self.assertTrue(row['reuse'])
+                self.assertEqual(fetch.call_args.kwargs['conditional']['digest'], digest)
+                self.assertFalse((output / '2026-09.csv').exists())
+                for known, purpose in [(None, 'compiler-v1'), ({**row, 'sha256': 'b' * 64}, 'compiler-v1'), ({**row, 'sha256': digest}, 'compiler-v2')]:
+                    with self.assertRaises(ValueError):
+                        airtime.collect_month(dict(row), known, purpose, output)
+                    self.assertEqual(fetch.call_args.kwargs['conditional'], {})
 
 
 if __name__=='__main__':unittest.main()
