@@ -130,3 +130,38 @@ test('le sitemap réserve lastmod aux dates éditoriales documentées', async ({
   expect(sitemap['https://polradar.fr/recherche/']).toBeUndefined();
   expect(sitemap['https://polradar.fr/404.html']).toBeUndefined();
 });
+
+test('la page d’accueil nomme le site et la fiche décrit sa propre URL', async ({
+  page,
+}) => {
+  for (const [path, type] of [
+    ['/', 'WebSite'],
+    ['/mesures/attal-csg-salaires/', 'WebPage'],
+  ]) {
+    await page.goto(path);
+    const item = page.locator('html[itemscope]');
+    await expect(item).toHaveAttribute(
+      'itemtype',
+      'https://schema.org/' + type,
+    );
+    await expect(item.locator('[itemprop=url]')).toHaveAttribute(
+      'content',
+      'https://polradar.fr' + path,
+    );
+    await expect(item.locator('[itemprop=description]')).toHaveAttribute(
+      'content',
+      /\S/,
+    );
+    if (type === 'WebSite')
+      await expect(item.locator('[itemprop=name]')).toHaveAttribute(
+        'content',
+        'Polradar',
+      );
+    else await expect(item.locator('[itemprop=name]')).toHaveText(/CSG/i);
+  }
+  await page.goto('/recherche/');
+  await expect(page.locator('meta[name=robots]')).toHaveAttribute(
+    'content',
+    /noindex/,
+  );
+});

@@ -39,12 +39,27 @@ const Footer =
     ? CompactFooter
     : SiteFooter;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+// News briefs and the dataset catalogue identify their more specific entities in the page.
+const specificSchema =
+  /^\/breves\/[^/]+\//.test(canonical.pathname) ||
+  canonical.pathname === '/donnees/';
+const schemaType =
+  noindex || specificSchema
+    ? undefined
+    : canonical.pathname === '/'
+      ? 'WebSite'
+      : 'WebPage';
 const social = socialImageFor(Astro.url.pathname);
 const socialImageUrl = new URL(social.url, Astro.site);
 ---
 
 <!doctype html>
-<html lang="fr" data-last-modified={lastModified}>
+<html
+  lang="fr"
+  data-last-modified={lastModified}
+  itemscope={Boolean(schemaType)}
+  itemtype={schemaType && 'https://schema.org/' + schemaType}
+>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -59,7 +74,9 @@ const socialImageUrl = new URL(social.url, Astro.site);
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href={menuStyle} />
-    <title>{title} · Polradar</title>
+    <title
+      itemprop={schemaType === 'WebPage' ? 'name' : undefined}
+    >{title} · Polradar</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex,follow" />}
     <link rel="canonical" href={canonical} />
@@ -83,9 +100,21 @@ const socialImageUrl = new URL(social.url, Astro.site);
     )}
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:title" content={`${title} · Polradar`} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:site_name" content="Polradar" />
+    <meta
+      property="og:description"
+      content={description}
+      itemprop={schemaType && 'description'}
+    />
+    <meta
+      property="og:url"
+      content={canonical}
+      itemprop={schemaType && 'url'}
+    />
+    <meta
+      property="og:site_name"
+      content="Polradar"
+      itemprop={schemaType === 'WebSite' ? 'name' : undefined}
+    />
     <meta property="og:image" content={socialImageUrl} />
     <meta property="og:image:secure_url" content={socialImageUrl} />
     <meta property="og:image:type" content="image/png" />
