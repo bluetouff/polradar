@@ -19,7 +19,7 @@ type dataArgs struct {
 	Fin              string `json:"fin,omitempty" jsonschema:"Dernière date incluse, AAAA-MM-JJ."`
 	Position         string `json:"position,omitempty" jsonschema:"Vote enregistré : pour, contre, abstention, non-votant ou non-votant-volontaire."`
 	Nature           string `json:"nature,omitempty" jsonschema:"vote, depot, cosignature, rapport, intervention ou mise-au-point."`
-	Theme            string `json:"theme,omitempty" jsonschema:"Thème d’un rapprochement éditorial explicite, dans la recherche parlementaire."`
+	Theme            string `json:"theme,omitempty" jsonschema:"Thème du registre parlementaire. Numérique inclut le classement par objet de l’acte."`
 	Periode          string `json:"periode,omitempty" jsonschema:"Sénat : année de début de session ; Parlement européen : date de la séance. Une liste sans période donne toutes les périodes couvertes."`
 	Query            string `json:"query,omitempty" jsonschema:"Mots du titre ou de l’URL pour les sources, du texte ou de son identifiant pour le Parlement."`
 	Collection       string `json:"collection" jsonschema:"Collection publique : sondages, economie, agenda, budgets, marches, parlement, sources, droit, financements, verifications, breves, arcom, graphiques, senat ou parlement-europeen."`

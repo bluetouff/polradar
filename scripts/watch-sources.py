@@ -75,7 +75,11 @@ def checked_url(url, allowed_hosts):
 
 def public_addresses(host):
     addresses = list(dict.fromkeys(item[4][0] for item in socket.getaddrinfo(host, 443, type=socket.SOCK_STREAM)))
-    if not addresses or any(not ipaddress.ip_address(address).is_global for address in addresses):
+    resolved = [ipaddress.ip_address(address) for address in addresses]
+    if not resolved or any(
+        not address.is_global or address.is_multicast or address.is_reserved
+        for address in resolved
+    ):
         raise ValueError('Non-public address')
     return addresses[:4]
 

@@ -242,6 +242,9 @@ def synchronize(args):
             extract_static(archive, temporary, sha)
             temporary.chmod(0o755)
             check_activation_window(document_root, temporary, state)
+            if api(args.repository, 'commits/main')['sha'] != sha:
+                print('Main changed during preparation. Waiting for the current release.')
+                return
             os.rename(temporary, target)
             try:
                 activate(document_root, target, state, sha)
@@ -249,11 +252,10 @@ def synchronize(args):
                 # The window began between the two checks, before the symlink switch.
                 os.rename(target, temporary)
                 raise
-        except Exception:
+        finally:
             if temporary.exists():
                 shutil.rmtree(temporary)
             # Preserve rejected completed releases for investigation; do not serve them.
-            raise
         (state / 'last-success.json').write_text(json.dumps({'sourceCommit': sha}) + '\n')
         print(f'Deployed {sha}; local HTTPS checks passed.')
 

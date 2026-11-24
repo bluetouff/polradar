@@ -32,6 +32,8 @@ npm run security:audit
 
 Le registre distingue candidature active ou retirée, mesures de campagne, textes de parti, orientations et archives. La date de consultation figure sur chaque référence. Une correction éditoriale et une évolution documentée du programme ont des historiques distincts. [Inventaire daté](AUDIT.md) · [Sources et droits](SOURCES.md) · [Règles d’attribution et de fraîcheur](DATA_QUALITY.md) · [Changements](CHANGELOG.md)
 
+Le [relevé de qualité](https://polradar.fr/statistiques/#qualite) détaille la couverture des sources, des notices et des scrutins. Le [bilan d’implémentation](docs/implementation-status.md) suit les écarts constatés dans la [matrice concurrentielle](docs/competitive-audit.md).
+
 Le registre des sondages indique le nombre d’enquêtes, d’instituts et de scénarios couverts. Chaque série conserve l’institut, le tour, la question, la population, la méthode, le scénario et la liste de candidatures. Les dates de terrain, les effectifs et les références renvoient aux notices de la Commission des sondages et, le cas échéant, aux résultats publiés par l’institut.
 
 Chaque vague de sondage et chaque fiche d’indicateur économique propose « Intégrer ce graphique ». La version actualisée charge un SVG de Polradar. Sa légende renvoie à la série et à sa méthode. La version figée conserve le SVG et les références dans le HTML copié. Elle fonctionne hors ligne. Le téléchargement permet aussi d’héberger le fichier chez l’éditeur. Aucun script, cookie ou identifiant de suivi n’est ajouté par l’intégration.

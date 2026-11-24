@@ -4,7 +4,20 @@ Le site statique, le serveur MCP et le rapport Search Console se déploient ind�
 
 ## Activer une version
 
-Sur Debian, télécharger `polradar-activer.sh` dans la release `services-<commit>` et vérifier son SHA-256. Lancer `sh polradar-activer.sh mcp` ou `sh polradar-activer.sh gsc`. Ce script contient le commit et les empreintes des trois archives publiées. Il sélectionne le paquet adapté à l’architecture de Zen. L’attestation GitHub du script ou de l’archive est vérifiable avec `gh attestation verify FICHIER --repo bluetouff/polradar --signer-workflow bluetouff/polradar/.github/workflows/services.yml --source-ref refs/heads/main --source-digest COMMIT`.
+Sur Debian, télécharger `polradar-activer.sh`, `polradar-activer.sha256` et `services.sigstore.json` dans la release `services-<commit>`. Utiliser le commit complet validé dans le workflow Services. Vérifier le SHA-256 et l’attestation du lanceur avant de l’exécuter.
+
+```sh
+revision='COMMIT_COMPLET_VALIDE'
+sha256sum --check polradar-activer.sha256 &&
+  gh attestation verify polradar-activer.sh --bundle services.sigstore.json \
+    --repo bluetouff/polradar \
+    --signer-workflow bluetouff/polradar/.github/workflows/services.yml \
+    --source-ref refs/heads/main --source-digest "$revision" \
+    --deny-self-hosted-runners &&
+  sh polradar-activer.sh mcp
+```
+
+Pour Search Console, remplacer `mcp` par `gsc` dans la dernière commande. Le lanceur sélectionne le paquet adapté à Zen et vérifie sa propre attestation de paquet avant l’installation.
 
 Lancer le script depuis le compte opérateur sur Zen. L’installation utilise un dossier temporaire privé de root, teste Apache et conserve les fichiers remplacés dans `/var/backups`. Une erreur d’activation déclenche la restauration de la configuration. La sortie indique le commit, l’URL et la sauvegarde.
 

@@ -10,7 +10,7 @@ Le site de production ne contient que les fichiers statiques de `dist/`. Le dép
 
 Les données éditoriales sont validées avant construction. Astro échappe les textes. Le comparateur crée ses éléments avec `textContent` et ne transforme jamais une recherche ou un paramètre d’URL en HTML. La CSP native Astro autorise les scripts et styles construits avec leurs empreintes ; elle n’autorise ni `unsafe-inline` ni `unsafe-eval`.
 
-Les jobs Actions ont des permissions explicites. Seul le job de publication d’un push sur `main` reçoit `contents: write`. Les actions tierces sont limitées aux actions officielles GitHub, fixées par commit. Les installations utilisent le verrou et désactivent les scripts npm de dépendances.
+Les jobs Actions ont des permissions explicites. Les jobs de publication des releases Site et Services reçoivent `contents: write` dans leurs conditions de publication sur `main`. Les actions GitHub sont fixées par commit. Les installations utilisent le verrou et désactivent les scripts npm de dépendances.
 
 Le serveur lit uniquement des versions publiques sur les domaines GitHub autorisés. Il contrôle le commit courant de `main`, le workflow réussi, l’empreinte de l’archive et le manifeste construit. Les liens symboliques, traversées de chemin, fichiers exécutables, extensions serveur et archives surdimensionnées sont refusés. Une erreur de vérification HTTPS après activation déclenche un retour arrière.
 
@@ -18,7 +18,7 @@ L’empreinte SHA-256 contrôle l’intégrité du transfert. Le modèle de conf
 
 ## Exploitation
 
-Le déploiement s’exécute sans root et sans clé SSH conservée dans GitHub. Le script de récupération n’est pas mis à jour automatiquement par le dépôt : une modification de ce script nécessite une revue et une installation distincte côté serveur.
+Le déploiement statique s’exécute sans root. Zen récupère des versions publiques par HTTPS. Les collectes qui publient des données ont une clé dédiée à ce seul dépôt, accessible à leur étape de publication sur `main`. Le script de récupération nécessite une revue et une installation distincte sur Zen.
 
 Les mises à jour de dépendances sont proposées par Dependabot ; elles doivent passer les mêmes contrôles. Activer l’authentification multifacteur sur les comptes mainteneurs. Ne jamais ajouter de clé, fichier `.env`, cookie ou adresse interne dans le code, une source éditoriale, un workflow ou un artefact.
 

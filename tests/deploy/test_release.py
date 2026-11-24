@@ -1,4 +1,5 @@
 import gzip
+import hashlib
 import importlib.util
 import io
 import json
@@ -8,6 +9,7 @@ import subprocess
 import sys
 import tarfile
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
@@ -173,6 +175,36 @@ class DeploymentTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 deployment.activate(current, release, base, SHA, verify=fail)
             self.assertEqual(current.resolve(), previous.resolve())
+
+    def test_release_is_discarded_if_main_changes_during_preparation(self):
+        packed = archive()
+        checksum = (hashlib.sha256(packed).hexdigest() + '  site.tar.gz\n').encode()
+        release = {
+            'tag_name': 'site-' + SHA,
+            'assets': [
+                {'name': 'site.tar.gz', 'size': len(packed), 'browser_download_url': 'archive'},
+                {'name': 'site.sha256', 'size': len(checksum), 'browser_download_url': 'checksum'},
+            ],
+        }
+        runs = {'workflow_runs': [{'head_sha': SHA, 'event': 'push', 'conclusion': 'success'}]}
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            current = root / 'site'
+            current.mkdir()
+            marker = current / 'build.json'
+            marker.write_text(json.dumps({'sourceCommit': 'b' * 40}))
+            args = SimpleNamespace(repository='bluetouff/polradar', document_root=current,
+                                   state_root=root / 'state', releases_root=root / 'releases')
+            with (
+                patch.object(deployment, 'api', side_effect=[release, {'sha': SHA}, runs, {'sha': 'c' * 40}]),
+                patch.object(deployment, 'download', side_effect=[checksum, packed]),
+                patch.object(deployment, 'activate') as activate,
+            ):
+                deployment.synchronize(args)
+            activate.assert_not_called()
+            self.assertEqual(json.loads(marker.read_text())['sourceCommit'], 'b' * 40)
+            self.assertEqual(list(args.releases_root.iterdir()), [])
+            self.assertFalse((args.state_root / 'last-success.json').exists())
 
     def test_untrusted_redirects_rejected(self):
         for url in ['http://github.com/file', 'https://github.com.evil.example/file', 'https://127.0.0.1/file', 'https://secret@github.com/file']:

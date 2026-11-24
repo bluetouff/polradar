@@ -57,8 +57,8 @@ class WatchTests(unittest.TestCase):
                 watch.checked_url(value,self.allowed)
         self.assertEqual(watch.checked_url('https://example.org/a?q=1',self.allowed).hostname,'example.org')
 
-    def test_every_dns_address_must_be_public_including_ipv6(self):
-        for address in ['127.0.0.1','10.1.1.1','169.254.169.254','192.168.0.1','::1','fc00::1','fe80::1','::ffff:127.0.0.1']:
+    def test_every_dns_address_must_be_public_unicast_including_ipv6(self):
+        for address in ['127.0.0.1','10.1.1.1','169.254.169.254','192.168.0.1','224.0.0.1','::1','fc00::1','fe80::1','::ffff:127.0.0.1','ff0e::1','4000::1']:
             answers=[(socket.AF_INET,socket.SOCK_STREAM,6,'',('1.1.1.1',443)),(socket.AF_INET6,socket.SOCK_STREAM,6,'',(address,443))]
             with self.subTest(address=address), patch.object(watch.socket,'getaddrinfo',return_value=answers), self.assertRaises(ValueError):
                 watch.public_addresses('example.org')

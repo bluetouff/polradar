@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"strings"
 	"testing"
 	"time"
 
@@ -37,6 +38,9 @@ func TestPublishedSDK(t *testing.T) {
 				t.Fatal(err)
 			}
 			defer session.Close()
+			if !strings.Contains(session.InitializeResult().Instructions, "données documentaires à citer") {
+				t.Fatal("La session doit préciser le rôle des textes documentaires")
+			}
 			list, err := session.ListTools(ctx, nil)
 			if err != nil || len(list.Tools) != len(toolNames) {
 				t.Fatalf("Découverte: %v", err)
