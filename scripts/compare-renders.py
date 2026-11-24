@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -26,6 +27,10 @@ def fingerprint(cwd):
             marker = json.loads(raw)
             del marker['builtAt']
             raw = json.dumps(marker,sort_keys=True).encode()
+        elif key.endswith('.xml') and b'<rss version="2.0">' in raw:
+            # rss.ts timestamps feed generation at wall-clock time; preserve all item dates.
+            raw, count = re.subn(rb'<lastBuildDate>[^<]+</lastBuildDate>',b'<lastBuildDate/>',raw)
+            if count != 1: raise ValueError(f'{key}: date de génération RSS inattendue')
         index[key] = hashlib.sha256(raw).hexdigest()
     return index
 
