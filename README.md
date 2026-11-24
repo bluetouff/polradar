@@ -48,7 +48,7 @@ La relecture du 17 novembre 2026 renseigne notamment les dossiers de Dupont-Aign
 
 La chronologie rassemble 26 événements datés, avec des catégories, une recherche et des filtres par personnalité. Chaque entrée distingue événement, publication et mise à jour de document. Une vague de sondage forme un seul événement, quel que soit son nombre de scénarios.
 
-La présentation utilise la police Archivo, servie localement depuis `src/assets/fonts/` sous licence SIL OFL 1.1. Le reste du projet conserve sa licence MIT. La home présente les volumes de fiches par thème, une série de sondages compatible et les relevés distincts des deux marchés ; l’annuaire des 33 profils est disposé en colonnes sans étirer les autres blocs.
+La présentation utilise la police Archivo, servie localement depuis `src/assets/fonts/` sous licence SIL OFL 1.1. Le reste du projet conserve sa licence MIT. La home présente les volumes de fiches par thème, une série de sondages compatible et les relevés distincts des deux marchés ; l’annuaire des candidats est disposé en colonnes sans étirer les autres blocs.
 
 La galerie des candidatures héberge ses portraits sur Polradar. La page `/credits-photos/` indique le document d’origine, l’auteur quand il est identifié et le statut des droits pour chaque image. Les photographies conservent leurs propres conditions de réutilisation. Les portraits de campagne sans autorisation documentée sont signalés comme tels. Le cliché de Benoît Mathieu est servi dans le JPEG fourni par sa campagne. Le filtre thématique conserve aussi les dossiers qui restent à documenter.
 

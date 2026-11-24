@@ -191,6 +191,32 @@ test('la home affiche les séries et les accès au corpus sans exemple nominatif
           name: String(active.length) + ' candidats suivis',
         }),
     ).toBeVisible();
+    const register = page.locator('.cover-register');
+    const metrics = await register.locator('a').evaluateAll((links) =>
+      links.map((link) => {
+        const card = link.getBoundingClientRect();
+        const value = link.querySelector('strong')!.getBoundingClientRect();
+        const label = link.querySelector('span')!;
+        const text = label.getBoundingClientRect();
+        return {
+          y: value.top,
+          inset: value.left - card.left,
+          below: text.top >= value.bottom,
+          fits:
+            link.scrollWidth <= link.clientWidth &&
+            value.right <= card.right &&
+            text.right <= card.right,
+          lines: text.height / parseFloat(getComputedStyle(label).lineHeight),
+        };
+      }),
+    );
+    expect(metrics).toHaveLength(3);
+    for (const metric of metrics) {
+      expect(metric.y).toBeCloseTo(metrics[0].y, 0);
+      expect(metric.inset).toBeGreaterThanOrEqual(8);
+      expect(metric.below && metric.fits).toBe(true);
+      expect(metric.lines).toBeLessThan(2.1);
+    }
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth),
     ).toBeLessThanOrEqual(width);

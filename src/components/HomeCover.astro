@@ -14,6 +14,7 @@ const month = new Intl.DateTimeFormat('fr-FR', {
   year: 'numeric',
   timeZone: 'Europe/Paris',
 });
+const number = new Intl.NumberFormat('fr-FR', { useGrouping: 'always' });
 const register = [
   {
     url: '/candidats/',
@@ -25,7 +26,7 @@ const register = [
     url: '/mesures/',
     icon: 'mesures',
     count: measures.filter(({ scope }) => scope !== 'archive').length,
-    label: 'fiches hors archives',
+    label: 'fiches hors\u00a0archives',
   },
   { url: '/sources/', icon: 'source', count: sources.length, label: 'sources' },
 ];
@@ -66,8 +67,9 @@ const register = [
   <nav class="cover-register" aria-label="Accès rapides">
     {register.map(({ url, icon, count, label }) => (
       <a href={url}>
+        <strong>{number.format(count)}</strong>
         <Icon name={icon} />
-        <strong>{count}</strong> <span>{label}</span>
+        <span>{label}</span>
       </a>
     ))}
   </nav>
@@ -76,6 +78,7 @@ const register = [
 <style>
   .election-cover {
     position: relative;
+    container-type: inline-size;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr);
     grid-template-areas: 'title art' 'calendar art' 'register register';
@@ -184,37 +187,48 @@ const register = [
     grid-area: register;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    background: linear-gradient(100deg, #c6d9de, #dbe7e9 55%, #bcced7);
-    border-top: 1px solid #a8c3cb;
+    border-top: 1px solid #496672;
+    background: linear-gradient(112deg, #102633, #173944 72%, #193e46);
   }
   .cover-register a {
-    display: flex;
-    align-items: center;
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto 1fr;
+    align-items: baseline;
     min-width: 0;
-    min-height: 3.35rem;
-    padding: 0.66rem clamp(0.7rem, 2.5vw, 2.4rem);
-    gap: 0.6rem;
-    color: #183744;
+    padding: 0.85rem clamp(0.65rem, 3.2cqi, 1.55rem) 0.95rem;
+    gap: 0.36rem 0.3rem;
+    color: #f1faf9;
     text-decoration: none;
-    line-height: 1.2;
-    font-size: 0.89rem;
   }
-  .cover-register a + a {
-    border-inline-start: 1px solid #a5bac3;
+  .cover-register a + a::before {
+    content: '';
+    position: absolute;
+    inset-block: 0.85rem;
+    inset-inline-start: 0;
+    border-inline-start: 1px solid #496773;
   }
   .cover-register :global(.icon) {
-    width: 1.15rem;
-    height: 1.15rem;
-    color: #355c6b;
-    flex-shrink: 0;
+    align-self: center;
+    width: 1rem;
+    height: 1rem;
+    color: #97cfcb;
   }
   .cover-register strong {
-    font: 640 clamp(1.25rem, 1.8vw, 1.62rem)/1 var(--sans);
-    letter-spacing: -0.04em;
+    font: 520 clamp(1.45rem, 5cqi, 2.05rem)/1 var(--sans);
+    letter-spacing: -0.045em;
     font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .cover-register span {
+    grid-column: 1 / -1;
+    color: #d0e2e4;
+    font: 500 0.82rem/1.28 var(--sans);
+    text-wrap: balance;
   }
   .cover-register a:hover {
-    background: #f3f9fa75;
+    background: #ffffff0d;
   }
   .cover-register a:hover span {
     text-decoration: underline;
@@ -223,7 +237,34 @@ const register = [
     outline-color: var(--ice);
   }
   .cover-register a:focus-visible {
+    outline: 2px solid #b3e6df;
     outline-offset: -3px;
+  }
+  @container (max-width: 28rem) {
+    .cover-register {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 0.8fr);
+    }
+  }
+  @container (max-width: 20rem) {
+    .cover-register a {
+      grid-template-columns: 1fr;
+      padding-inline: 0.6rem;
+    }
+    .cover-register :global(.icon) {
+      display: none;
+    }
+  }
+  @container (max-width: 16rem) {
+    .cover-register a {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      padding: 0.55rem 0.7rem;
+    }
+    .cover-register a + a::before {
+      content: none;
+    }
   }
   @media (max-width: 620px) {
     .election-cover {
@@ -244,21 +285,6 @@ const register = [
     .cover-calendar {
       margin: 0 0.82rem 0.9rem;
     }
-    .cover-register a {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      align-content: start;
-      gap: 0.35rem;
-      padding: 0.65rem 0.55rem;
-    }
-    .cover-register :global(.icon) {
-      width: 0.95rem;
-      height: 0.95rem;
-    }
-    .cover-register span {
-      grid-column: 1/-1;
-      font-size: 0.78rem;
-    }
   }
   @media print {
     .election-cover {
@@ -278,7 +304,8 @@ const register = [
     .cover-calendar time,
     .cover-calendar .day,
     .calendar-link,
-    .cover-register a {
+    .cover-register a,
+    .cover-register span {
       color: black;
     }
     .cover-register {
