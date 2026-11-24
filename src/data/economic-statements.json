@@ -289,5 +289,102 @@
     "assessment": "comparable",
     "context": "Dans sa comparaison historique, Selma Labib donne 55,3 % pour 2019. Le compte publié par l’Insee en mai 2026 donne 55,2 % pour cette même année. La lettre ne précise pas l’édition statistique utilisée.",
     "indicatorId": "depenses-publiques"
+  },
+  {
+    "id": "attal-garde-assistante-maternelle-2021",
+    "title": "Garde des enfants de moins de trois ans",
+    "speaker": "Programme de Gabriel Attal",
+    "candidate": "attal",
+    "theme": "social",
+    "quote": "20 % étaient pris en charge par une assistante maternelle",
+    "statement": {
+      "title": "Gabriel Attal · Travail et salaires",
+      "url": "https://attalpresident.fr/programme/travail-salaires",
+      "date": null
+    },
+    "period": "France métropolitaine · 2021 · mode de garde principal en semaine",
+    "unit": "%",
+    "claimed": "20",
+    "observed": "20",
+    "reference": {
+      "title": "DREES · Enquête Modes de garde, Études et Résultats n° 1257",
+      "url": "https://www.drees.solidarites-sante.gouv.fr/publications-communique-de-presse/etudes-et-resultats/la-part-des-enfants-de-moins-de-3-ans-confies",
+      "date": "2023-02-14"
+    },
+    "assessment": "comparable",
+    "context": "La DREES a interrogé les familles en 2021 et publié le résultat en 2023. Les 20 % concernent les moins de trois ans principalement accueillis chez une assistante maternelle du lundi au vendredi entre 8 h et 19 h."
+  },
+  {
+    "id": "attal-valeur-echanges-electricite-2025",
+    "title": "Valeur des échanges français d’électricité en 2025",
+    "speaker": "Programme de Gabriel Attal",
+    "candidate": "attal",
+    "theme": "climat",
+    "quote": "5,4 milliards d'euros de recettes",
+    "statement": {
+      "title": "Gabriel Attal · Dette écologique",
+      "url": "https://attalpresident.fr/programme/dette-ecologique",
+      "date": null
+    },
+    "period": "France · 2025 · échanges transfrontaliers d’électricité",
+    "unit": "Md€",
+    "claimed": "5.4",
+    "observed": "5.4",
+    "reference": {
+      "title": "RTE · Bilan électrique 2025, valorisation des exportations",
+      "url": "https://analysesetdonnees.rte-france.com/bilan-electrique-2025/echanges",
+      "date": null
+    },
+    "assessment": "perimetre",
+    "context": "Le programme emploie le mot « recettes ». RTE chiffre à 5,4 milliards la valeur nette des échanges, après déduction des achats d’électricité à l’étranger. Lire ce montant comme une recette du budget de l’État changerait son sens."
+  },
+  {
+    "id": "lisnard-poids-depenses-publiques",
+    "title": "Part des dépenses publiques dans le PIB",
+    "speaker": "Nouvelle Énergie · présentation du programme de David Lisnard",
+    "candidate": "lisnard",
+    "theme": "fiscalite",
+    "quote": "une dépense publique qui capte 57,5 % de la richesse produite",
+    "statement": {
+      "title": "Nouvelle Énergie · Présentation du chiffrage, mise à jour le 17 novembre 2026",
+      "url": "https://www.unenouvelleenergie.fr/questions/le-programme-de-david-lisnard-est-il-chiffre/",
+      "date": null
+    },
+    "period": "France · exercice cité non précisé · comparaison disponible pour 2025",
+    "unit": "% du PIB",
+    "claimed": "57.5",
+    "observed": "57.3",
+    "reference": {
+      "title": "Insee · Dépenses et recettes publiques, comptes annuels",
+      "url": "https://www.insee.fr/fr/statistiques/2381414",
+      "date": "2026-08-28"
+    },
+    "assessment": "perimetre",
+    "indicatorId": "depenses-publiques",
+    "context": "Le parti reprend un chiffre avancé au meeting de Benfeld du 25 septembre 2026 sans indiquer l’exercice retenu. L’Insee donne 57,3 % pour 2025 dans ses comptes provisoires. L’absence d’année empêche de conclure à un écart sur le même exercice."
+  },
+  {
+    "id": "roussel-ecart-salaires-femmes-hommes",
+    "title": "Écart de salaire entre femmes et hommes",
+    "speaker": "Fabien Roussel",
+    "candidate": "roussel",
+    "theme": "travail",
+    "quote": "des salaires 15 % plus bas que ceux des hommes",
+    "statement": {
+      "title": "Discours de Marseille du 23 novembre 2025, p. 8",
+      "url": "https://assets.nationbuilder.com/pcf/pages/35369/attachments/original/1764162032/Discours_FR_corrige%CC%81_241125.pdf#page=8",
+      "date": "2025-11-23"
+    },
+    "period": "France · année non précisée dans le discours · secteur privé en 2024 pour la référence",
+    "unit": "%",
+    "claimed": "15",
+    "observed": "13.0",
+    "reference": {
+      "title": "Insee · Les salaires dans le secteur privé en 2024",
+      "url": "https://www.insee.fr/fr/statistiques/8657156",
+      "date": "2025-10-23"
+    },
+    "assessment": "perimetre",
+    "context": "Dans le privé, les femmes gagnent en moyenne 13,0 % de moins que les hommes en 2024 à temps de travail équivalent. Le discours ne précise ni l’année, ni le secteur, ni le temps de travail retenu. La comparaison porte sur la taille de l’écart."
   }
 ]

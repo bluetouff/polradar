@@ -68566,5 +68566,548 @@
         }
       ]
     }
+  },
+  {
+    "id": "attal-mille-euros-par-nouveau-ne-v1",
+    "measureId": "attal-mille-euros-par-nouveau-ne",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T17:28:34Z",
+    "summary": "Première lecture de la fiche publiée sur le site de campagne de Gabriel Attal.",
+    "snapshot": {
+      "title": "Ouvrir un plan d’épargne retraite de 1 000 euros à chaque naissance",
+      "description": "L’État ouvrirait le plan au nom de l’enfant et y verserait 1 000 euros. Les parents et grands-parents pourraient l’alimenter jusqu’à ses 18 ans avec un avantage fiscal.",
+      "beneficiaries": "Chaque nouveau-né.",
+      "timing": null,
+      "financing": "Versement initial de l’État, puis abondements familiaux facultatifs.",
+      "metrics": [
+        {
+          "key": "valeur-annoncee",
+          "label": "Versement initial par enfant",
+          "unit": "euros",
+          "value": 1000,
+          "sourceId": "attal-mille-euros-par-nouveau-ne"
+        }
+      ],
+      "amounts": [
+        {
+          "label": "Versement de l’État par enfant",
+          "value": 1000,
+          "unit": "€",
+          "period": "ponctuel",
+          "basis": "non-applicable",
+          "sourceId": "attal-mille-euros-par-nouveau-ne"
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-mille-euros-par-nouveau-ne",
+          "locator": "Fiche officielle de campagne, présentation de la mesure."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "attal-fermer-cent-colleges-difficulte-v1",
+    "measureId": "attal-fermer-cent-colleges-difficulte",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T17:28:34Z",
+    "summary": "Première lecture de la fiche publiée sur le site de campagne de Gabriel Attal.",
+    "snapshot": {
+      "title": "Fermer les 100 collèges qui concentrent le plus de difficultés",
+      "description": "Le candidat propose de scolariser les élèves dans d’autres collèges pour favoriser la mixité sociale. Il vise les établissements cumulant difficultés scolaires et sociales.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "valeur-annoncee",
+          "label": "Collèges concernés",
+          "unit": "collèges",
+          "value": 100,
+          "sourceId": "attal-fermer-cent-colleges-difficulte"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-fermer-cent-colleges-difficulte",
+          "locator": "Fiche officielle de campagne, présentation de la mesure."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "attal-regle-d-or-constitution-v1",
+    "measureId": "attal-regle-d-or-constitution",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T17:28:34Z",
+    "summary": "Première lecture de la fiche publiée sur le site de campagne de Gabriel Attal.",
+    "snapshot": {
+      "title": "Soumettre à référendum une règle constitutionnelle d’équilibre budgétaire",
+      "description": "Gabriel Attal veut faire inscrire dans la Constitution une règle d’équilibre qui encadrerait les budgets des gouvernements successifs.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-regle-d-or-constitution",
+          "locator": "Fiche officielle de campagne, présentation de la mesure."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "attal-retenues-d-eau-agricoles-v1",
+    "measureId": "attal-retenues-d-eau-agricoles",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T17:28:34Z",
+    "summary": "Première lecture de la fiche publiée sur le site de campagne de Gabriel Attal.",
+    "snapshot": {
+      "title": "Soutenir les petites retenues d’eau agricoles",
+      "description": "Le plan eau de Gabriel Attal privilégie de petits ouvrages intégrés au paysage pour constituer des réserves en période de sécheresse.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-retenues-d-eau-agricoles",
+          "locator": "Fiche officielle de campagne, présentation de la mesure."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "attal-valoriser-dechets-nucleaires-v1",
+    "measureId": "attal-valoriser-dechets-nucleaires",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T17:28:34Z",
+    "summary": "Première lecture de la fiche publiée sur le site de campagne de Gabriel Attal.",
+    "snapshot": {
+      "title": "Financer la recherche sur la réutilisation du combustible nucléaire",
+      "description": "Le candidat prévoit dans son plan Messmer II un programme de recherche pour réutiliser une partie des matières issues du combustible et réduire les besoins en uranium importé.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-valoriser-dechets-nucleaires",
+          "locator": "Fiche officielle de campagne, présentation de la mesure."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "attal-reconversion-geoenergie-v1",
+    "measureId": "attal-reconversion-geoenergie",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T17:28:34Z",
+    "summary": "Première lecture de la fiche publiée sur le site de campagne de Gabriel Attal.",
+    "snapshot": {
+      "title": "Former et reconvertir des professionnels à la géoénergie dès 2027",
+      "description": "Le plan vise les métiers du forage, de l’installation et de la maintenance des équipements qui utilisent la chaleur ou la fraîcheur du sous-sol.",
+      "beneficiaries": null,
+      "timing": "Lancement annoncé pour 2027.",
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-reconversion-geoenergie",
+          "locator": "Fiche officielle de campagne, présentation de la mesure."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "attal-regulation-internationale-ia-v1",
+    "measureId": "attal-regulation-internationale-ia",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T17:28:34Z",
+    "summary": "Première lecture de la fiche publiée sur le site de campagne de Gabriel Attal.",
+    "snapshot": {
+      "title": "Négocier des règles internationales pour l’intelligence artificielle",
+      "description": "Gabriel Attal propose de s’inspirer de la coopération internationale sur le nucléaire pour convenir de règles communes au développement de l’IA.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-regulation-internationale-ia",
+          "locator": "Fiche officielle de campagne, présentation de la mesure."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "attal-boitiers-e85-v1",
+    "measureId": "attal-boitiers-e85",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T17:28:34Z",
+    "summary": "Première lecture de la fiche publiée sur le site de campagne de Gabriel Attal.",
+    "snapshot": {
+      "title": "Prendre en charge la moitié du coût d’installation d’un boîtier E85",
+      "description": "L’État financerait une partie de la conversion des voitures à essence au superéthanol. L’aide porterait sur l’installation du boîtier.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "valeur-annoncee",
+          "label": "Part du coût d’installation prise en charge",
+          "unit": "%",
+          "value": 50,
+          "sourceId": "attal-boitiers-e85"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-boitiers-e85",
+          "locator": "Fiche officielle de campagne, présentation de la mesure."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "attal-corps-professionnel-aesh-v1",
+    "measureId": "attal-corps-professionnel-aesh",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T17:28:34Z",
+    "summary": "Première lecture de la fiche publiée sur le site de campagne de Gabriel Attal.",
+    "snapshot": {
+      "title": "Créer un corps professionnel pour les accompagnants d’élèves en situation de handicap",
+      "description": "Les AESH auraient accès à la formation, aux promotions et à des passerelles vers d’autres métiers de l’Éducation nationale. Le candidat souhaite également poursuivre leur revalorisation salariale.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-corps-professionnel-aesh",
+          "locator": "Fiche officielle de campagne, présentation de la mesure."
+        },
+        {
+          "sourceId": "attal-aesh-cent-euros-corps-dedie",
+          "locator": "Fiche sur la rémunération des AESH, deuxième paragraphe."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "attal-darpa-europeenne-v1",
+    "measureId": "attal-darpa-europeenne",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T17:28:34Z",
+    "summary": "Première lecture de la fiche publiée sur le site de campagne de Gabriel Attal.",
+    "snapshot": {
+      "title": "Créer une agence européenne de recherche pour la défense",
+      "description": "Le candidat propose de mutualiser le financement de la recherche et de faciliter l’adoption par les armées des innovations développées par les entreprises européennes.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-darpa-europeenne",
+          "locator": "Fiche officielle de campagne, présentation de la mesure."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "attal-zero-papier-juridictions-v1",
+    "measureId": "attal-zero-papier-juridictions",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T17:28:34Z",
+    "summary": "Première lecture de la fiche publiée sur le site de campagne de Gabriel Attal.",
+    "snapshot": {
+      "title": "Dématérialiser les dossiers dans toutes les juridictions",
+      "description": "Les pièces de procédure circuleraient sous forme numérique entre les services. Le candidat veut aussi remplacer les systèmes d’antécédents qu’il juge obsolètes.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-zero-papier-juridictions",
+          "locator": "Fiche officielle de campagne, présentation de la mesure."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "attal-reutilisation-eaux-usees-v1",
+    "measureId": "attal-reutilisation-eaux-usees",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T17:28:34Z",
+    "summary": "Première lecture de la fiche publiée sur le site de campagne de Gabriel Attal.",
+    "snapshot": {
+      "title": "Faciliter la réutilisation des eaux usées traitées",
+      "description": "Gabriel Attal propose de lever des obstacles réglementaires pour permettre un second usage de l’eau, notamment pour l’irrigation et le nettoyage.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-reutilisation-eaux-usees",
+          "locator": "Fiche officielle de campagne, présentation de la mesure."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "attal-bonus-voiture-electrique-occasion-v1",
+    "measureId": "attal-bonus-voiture-electrique-occasion",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T17:28:34Z",
+    "summary": "Première lecture de la fiche publiée sur le site de campagne de Gabriel Attal.",
+    "snapshot": {
+      "title": "Étendre le bonus électrique aux voitures d’occasion",
+      "description": "Le candidat veut ouvrir l’aide à l’achat aux véhicules électriques de seconde main. Son plan prévoit également de leur ouvrir le leasing social.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-bonus-voiture-electrique-occasion",
+          "locator": "Fiche officielle de campagne, présentation de la mesure."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "attal-loi-programmation-logement-v1",
+    "measureId": "attal-loi-programmation-logement",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T17:28:34Z",
+    "summary": "Première lecture de la fiche publiée sur le site de campagne de Gabriel Attal.",
+    "snapshot": {
+      "title": "Programmer la politique du logement sur cinq ans",
+      "description": "Une loi fixerait sur cinq ans les orientations de la construction, de la rénovation et de la formation des futurs artisans du bâtiment.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "valeur-annoncee",
+          "label": "Durée de programmation",
+          "unit": "ans",
+          "value": 5,
+          "sourceId": "attal-loi-programmation-logement"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-loi-programmation-logement",
+          "locator": "Fiche officielle de campagne, présentation de la mesure."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "attal-assurance-vie-pme-v1",
+    "measureId": "attal-assurance-vie-pme",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T17:28:34Z",
+    "summary": "Première lecture de la fiche publiée sur le site de campagne de Gabriel Attal.",
+    "snapshot": {
+      "title": "Orienter une partie de l’assurance-vie vers les PME françaises",
+      "description": "Le candidat veut faciliter le financement des transmissions de PME par l’épargne placée en assurance-vie. La fiche cite les besoins de capital lors des changements de propriétaire.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-assurance-vie-pme",
+          "locator": "Fiche officielle de campagne, présentation de la mesure."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "lepen-logement-sru-v2",
+    "measureId": "lepen-logement-sru",
+    "number": 2,
+    "kind": "enrichissement",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T17:31:38Z",
+    "summary": "Ajout de la publication du 7 novembre d’Edwige Diaz, qui reprend cette position sur le logement.",
+    "snapshot": {
+      "title": "Abroger la loi SRU",
+      "description": "Supprimer les obligations de part minimale de logements sociaux et les amendes associées, en laissant la décision aux communes.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "rn-lettre-logement-2026",
+          "locator": "Lettre, paragraphe consacré à l’abrogation de la loi SRU"
+        },
+        {
+          "sourceId": "diaz-propositions-logement-2026",
+          "locator": "Section sur la relance du logement, abrogation de la loi SRU."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Lettre de campagne du 21 septembre 2026",
+      "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "lepen-logement-zan-v2",
+    "measureId": "lepen-logement-zan",
+    "number": 2,
+    "kind": "enrichissement",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T17:31:38Z",
+    "summary": "Ajout de la publication du 7 novembre d’Edwige Diaz, qui reprend cette position sur le logement.",
+    "snapshot": {
+      "title": "Supprimer le dispositif zéro artificialisation nette",
+      "description": "Redonner aux communes la maîtrise de leur foncier, en particulier dans les territoires ruraux, en supprimant le dispositif ZAN.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "rn-lettre-logement-2026",
+          "locator": "Lettre, paragraphe sur le ZAN"
+        },
+        {
+          "sourceId": "diaz-propositions-logement-2026",
+          "locator": "Passage sur le ZAN et la maîtrise du foncier par les maires."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Lettre de campagne du 21 septembre 2026",
+      "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "lepen-logement-priorite-nationale-v2",
+    "measureId": "lepen-logement-priorite-nationale",
+    "number": 2,
+    "kind": "enrichissement",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T17:31:38Z",
+    "summary": "Ajout de la publication du 7 novembre d’Edwige Diaz, qui reprend cette position sur le logement.",
+    "snapshot": {
+      "title": "Donner la priorité aux Français dans le logement social",
+      "description": "Appliquer une priorité de nationalité française pour l’accès au logement social et, pour les jeunes, au logement étudiant.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "rn-logement-priorite-2026",
+          "locator": "Pétition du RN, liste des demandes"
+        },
+        {
+          "sourceId": "diaz-propositions-logement-2026",
+          "locator": "Paragraphe sur la priorité dans le logement social. Le logement étudiant figure dans la pétition du RN."
+        }
+      ],
+      "scope": "parti",
+      "edition": "Propositions du Rassemblement national sur le logement",
+      "checked": "2026-11-24"
+    }
   }
 ]
