@@ -8520,5 +8520,825 @@
       }
     ],
     "historicalImport": true
+  },
+  {
+    "id": "cluster17-commission-10339-h1",
+    "surveyId": "cluster17-commission-10339",
+    "historicalImport": true,
+    "institute": "Cluster17",
+    "commissioner": "Politico",
+    "published": "2026-10-26",
+    "fieldworkStart": "2026-10-19",
+    "fieldworkEnd": "2026-10-22",
+    "sampleSize": 3000,
+    "registeredSample": 2817,
+    "usefulSample": 1920,
+    "noIntention": null,
+    "population": "Inscrits sur les listes électorales, pondération selon la probabilité de voter.",
+    "method": "Questionnaire en ligne, méthode des quotas.",
+    "uncertainty": "2523 inscrits ont exprimé un choix. Après pondération, l’effectif utile est de 1920. Pour cette base, la page 3 donne une marge de ±1 à ±2,2 points. Résultats de la colonne « Publié » de la notice.",
+    "margin": {
+      "min": 1.0,
+      "max": 2.2,
+      "confidence": null
+    },
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le 1er tour de l'élection présidentielle avait lieu dimanche prochain, pour quelle candidature voteriez-vous ?",
+      "base": "Inscrits exprimant un choix, avec pondération selon la probabilité de voter.",
+      "sourceId": "notice-commission-10339",
+      "page": 18,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Hypothèse 1 · Édouard Philippe",
+    "noticePage": 18,
+    "noticeSource": "notice-commission-10339",
+    "results": [
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8.0
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 16.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 18.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 33.0
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 2.0
+      },
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3.0
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 13.0
+      }
+    ]
+  },
+  {
+    "id": "cluster17-commission-10339-h2",
+    "surveyId": "cluster17-commission-10339",
+    "historicalImport": true,
+    "institute": "Cluster17",
+    "commissioner": "Politico",
+    "published": "2026-10-26",
+    "fieldworkStart": "2026-10-19",
+    "fieldworkEnd": "2026-10-22",
+    "sampleSize": 3000,
+    "registeredSample": 2817,
+    "usefulSample": 1889,
+    "noIntention": null,
+    "population": "Inscrits sur les listes électorales, pondération selon la probabilité de voter.",
+    "method": "Questionnaire en ligne, méthode des quotas.",
+    "uncertainty": "2505 inscrits ont exprimé un choix. Après pondération, l’effectif utile est de 1889. Pour cette base, la page 3 donne une marge de ±1 à ±2,2 points. Résultats de la colonne « Publié » de la notice.",
+    "margin": {
+      "min": 1.0,
+      "max": 2.2,
+      "confidence": null
+    },
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le 1er tour de l'élection présidentielle avait lieu dimanche prochain, pour quelle candidature voteriez-vous ?",
+      "base": "Inscrits exprimant un choix, avec pondération selon la probabilité de voter.",
+      "sourceId": "notice-commission-10339",
+      "page": 19,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Hypothèse 2 · Gabriel Attal",
+    "noticePage": 19,
+    "noticeSource": "notice-commission-10339",
+    "results": [
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.0
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 12.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 19.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 32.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 2.0
+      },
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 14.0
+      }
+    ]
+  },
+  {
+    "id": "cluster17-commission-10339-h3",
+    "surveyId": "cluster17-commission-10339",
+    "historicalImport": true,
+    "institute": "Cluster17",
+    "commissioner": "Politico",
+    "published": "2026-10-26",
+    "fieldworkStart": "2026-10-19",
+    "fieldworkEnd": "2026-10-22",
+    "sampleSize": 3000,
+    "registeredSample": 2817,
+    "usefulSample": 1917,
+    "noIntention": null,
+    "population": "Inscrits sur les listes électorales, pondération selon la probabilité de voter.",
+    "method": "Questionnaire en ligne, méthode des quotas.",
+    "uncertainty": "2525 inscrits ont exprimé un choix. Après pondération, l’effectif utile est de 1917. Pour cette base, la page 3 donne une marge de ±1 à ±2,2 points. Résultats de la colonne « Publié » de la notice.",
+    "margin": {
+      "min": 1.0,
+      "max": 2.2,
+      "confidence": null
+    },
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le 1er tour de l'élection présidentielle avait lieu dimanche prochain, pour quelle candidature voteriez-vous ?",
+      "base": "Inscrits exprimant un choix, avec pondération selon la probabilité de voter.",
+      "sourceId": "notice-commission-10339",
+      "page": 20,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Hypothèse 3 · David Lisnard, François Hollande, Édouard Philippe",
+    "noticePage": 20,
+    "noticeSource": "notice-commission-10339",
+    "results": [
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 7.0
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 8.0
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 17.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.0
+      },
+      {
+        "id": "sonde-francois-hollande",
+        "name": "François Hollande",
+        "percentage": 6.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 19.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 30.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 2.5
+      },
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.5
+      }
+    ]
+  },
+  {
+    "id": "cluster17-commission-10273-h1",
+    "surveyId": "cluster17-commission-10273",
+    "historicalImport": true,
+    "institute": "Cluster17",
+    "commissioner": "Politico",
+    "published": "2026-09-24",
+    "fieldworkStart": "2026-09-15",
+    "fieldworkEnd": "2026-09-16",
+    "sampleSize": 2045,
+    "registeredSample": 1943,
+    "usefulSample": 1337,
+    "noIntention": null,
+    "population": "Inscrits sur les listes électorales, pondération selon la probabilité de voter.",
+    "method": "Questionnaire en ligne, méthode des quotas.",
+    "uncertainty": "1733 inscrits ont exprimé un choix. Après pondération, l’effectif utile est de 1337. Pour cette base, la page 3 donne une marge de ±1,2 à ±2,7 points. Le rapport de l’institut donne les scores publiés. La notice présente les valeurs avant et après redressement.",
+    "margin": {
+      "min": 1.2,
+      "max": 2.7,
+      "confidence": null
+    },
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le 1er tour de l'élection présidentielle avait lieu dimanche prochain, pour quelle candidature voteriez-vous ?",
+      "base": "Inscrits exprimant un choix, avec pondération selon la probabilité de voter.",
+      "sourceId": "notice-commission-10273",
+      "page": 14,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Hypothèse 1 · Édouard Philippe",
+    "noticePage": 14,
+    "noticeSource": "notice-commission-10273",
+    "resultSource": "cluster17-rapport-10273",
+    "resultPage": 5,
+    "results": [
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 31
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 19
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 19
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 12
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 7.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 2.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      }
+    ]
+  },
+  {
+    "id": "cluster17-commission-10273-h2",
+    "surveyId": "cluster17-commission-10273",
+    "historicalImport": true,
+    "institute": "Cluster17",
+    "commissioner": "Politico",
+    "published": "2026-09-24",
+    "fieldworkStart": "2026-09-15",
+    "fieldworkEnd": "2026-09-16",
+    "sampleSize": 2045,
+    "registeredSample": 1943,
+    "usefulSample": 1342,
+    "noIntention": null,
+    "population": "Inscrits sur les listes électorales, pondération selon la probabilité de voter.",
+    "method": "Questionnaire en ligne, méthode des quotas.",
+    "uncertainty": "1723 inscrits ont exprimé un choix. Après pondération, l’effectif utile est de 1342. Pour cette base, la page 3 donne une marge de ±1,2 à ±2,7 points. Le rapport de l’institut donne les scores publiés. La notice présente les valeurs avant et après redressement.",
+    "margin": {
+      "min": 1.2,
+      "max": 2.7,
+      "confidence": null
+    },
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le 1er tour de l'élection présidentielle avait lieu dimanche prochain, pour quelle candidature voteriez-vous ?",
+      "base": "Inscrits exprimant un choix, avec pondération selon la probabilité de voter.",
+      "sourceId": "notice-commission-10273",
+      "page": 15,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Hypothèse 2 · Gabriel Attal",
+    "noticePage": 15,
+    "noticeSource": "notice-commission-10273",
+    "resultSource": "cluster17-rapport-10273",
+    "resultPage": 10,
+    "results": [
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 31
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 20
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 14
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 13.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 2.5
+      },
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      }
+    ]
+  },
+  {
+    "id": "cluster17-commission-10273-h3",
+    "surveyId": "cluster17-commission-10273",
+    "historicalImport": true,
+    "institute": "Cluster17",
+    "commissioner": "Politico",
+    "published": "2026-09-24",
+    "fieldworkStart": "2026-09-15",
+    "fieldworkEnd": "2026-09-16",
+    "sampleSize": 2045,
+    "registeredSample": 1943,
+    "usefulSample": 1341,
+    "noIntention": null,
+    "population": "Inscrits sur les listes électorales, pondération selon la probabilité de voter.",
+    "method": "Questionnaire en ligne, méthode des quotas.",
+    "uncertainty": "1729 inscrits ont exprimé un choix. Après pondération, l’effectif utile est de 1341. Pour cette base, la page 3 donne une marge de ±1,2 à ±2,7 points. Le rapport de l’institut donne les scores publiés. La notice présente les valeurs avant et après redressement.",
+    "margin": {
+      "min": 1.2,
+      "max": 2.7,
+      "confidence": null
+    },
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le 1er tour de l'élection présidentielle avait lieu dimanche prochain, pour quelle candidature voteriez-vous ?",
+      "base": "Inscrits exprimant un choix, avec pondération selon la probabilité de voter.",
+      "sourceId": "notice-commission-10273",
+      "page": 16,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Hypothèse 3 · David Lisnard, François Hollande, Édouard Philippe",
+    "noticePage": 16,
+    "noticeSource": "notice-commission-10273",
+    "resultSource": "cluster17-rapport-10273",
+    "resultPage": 15,
+    "results": [
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 30
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 19.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 19.5
+      },
+      {
+        "id": "sonde-francois-hollande",
+        "name": "François Hollande",
+        "percentage": 7.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 7.5
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 4
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      }
+    ]
+  },
+  {
+    "id": "cluster17-commission-10251-h1",
+    "surveyId": "cluster17-commission-10251",
+    "historicalImport": true,
+    "institute": "Cluster17",
+    "commissioner": "Le Point",
+    "published": "2026-09-05",
+    "fieldworkStart": "2026-08-31",
+    "fieldworkEnd": "2026-09-01",
+    "sampleSize": 1711,
+    "registeredSample": 1628,
+    "usefulSample": 1150,
+    "noIntention": null,
+    "population": "Inscrits sur les listes électorales, pondération selon la probabilité de voter.",
+    "method": "Questionnaire en ligne, méthode des quotas.",
+    "uncertainty": "1459 inscrits ont exprimé un choix. Après pondération, l’effectif utile est de 1150. Pour cette base, la page 3 donne une marge de ±1,2 à ±2,9 points. Le rapport de l’institut donne les scores publiés. La notice présente les valeurs avant et après redressement.",
+    "margin": {
+      "min": 1.2,
+      "max": 2.9,
+      "confidence": null
+    },
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le 1er tour de l'élection présidentielle avait lieu dimanche prochain, pour quelle candidature voteriez-vous ?",
+      "base": "Inscrits exprimant un choix, avec pondération selon la probabilité de voter.",
+      "sourceId": "notice-commission-10251",
+      "page": 19,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Hypothèse 1 · Édouard Philippe",
+    "noticePage": 19,
+    "noticeSource": "notice-commission-10251",
+    "resultSource": "cluster17-rapport-10251",
+    "resultPage": 6,
+    "results": [
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 30
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 18
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 18
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 7.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.5
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 3.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 2
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      }
+    ]
+  },
+  {
+    "id": "cluster17-commission-10251-h2",
+    "surveyId": "cluster17-commission-10251",
+    "historicalImport": true,
+    "institute": "Cluster17",
+    "commissioner": "Le Point",
+    "published": "2026-09-05",
+    "fieldworkStart": "2026-08-31",
+    "fieldworkEnd": "2026-09-01",
+    "sampleSize": 1711,
+    "registeredSample": 1628,
+    "usefulSample": 1131,
+    "noIntention": null,
+    "population": "Inscrits sur les listes électorales, pondération selon la probabilité de voter.",
+    "method": "Questionnaire en ligne, méthode des quotas.",
+    "uncertainty": "1451 inscrits ont exprimé un choix. Après pondération, l’effectif utile est de 1131. Pour cette base, la page 3 donne une marge de ±1,3 à ±3 points. Le rapport de l’institut donne les scores publiés. La notice présente les valeurs avant et après redressement.",
+    "margin": {
+      "min": 1.3,
+      "max": 3.0,
+      "confidence": null
+    },
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le 1er tour de l'élection présidentielle avait lieu dimanche prochain, pour quelle candidature voteriez-vous ?",
+      "base": "Inscrits exprimant un choix, avec pondération selon la probabilité de voter.",
+      "sourceId": "notice-commission-10251",
+      "page": 20,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Hypothèse 2 · Gabriel Attal",
+    "noticePage": 20,
+    "noticeSource": "notice-commission-10251",
+    "resultSource": "cluster17-rapport-10251",
+    "resultPage": 11,
+    "results": [
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 31.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 18
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 13.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 4
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 2.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      }
+    ]
+  },
+  {
+    "id": "cluster17-commission-10251-h3",
+    "surveyId": "cluster17-commission-10251",
+    "historicalImport": true,
+    "institute": "Cluster17",
+    "commissioner": "Le Point",
+    "published": "2026-09-05",
+    "fieldworkStart": "2026-08-31",
+    "fieldworkEnd": "2026-09-01",
+    "sampleSize": 1711,
+    "registeredSample": 1628,
+    "usefulSample": 1211,
+    "noIntention": null,
+    "population": "Inscrits sur les listes électorales, pondération selon la probabilité de voter.",
+    "method": "Questionnaire en ligne, méthode des quotas.",
+    "uncertainty": "1491 inscrits ont exprimé un choix. Après pondération, l’effectif utile est de 1211. Pour cette base, la page 3 donne une marge de ±1,2 à ±2,8 points. Le rapport de l’institut donne les scores publiés. La notice présente les valeurs avant et après redressement.",
+    "margin": {
+      "min": 1.2,
+      "max": 2.8,
+      "confidence": null
+    },
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le 1er tour de l'élection présidentielle avait lieu dimanche prochain, pour quelle candidature voteriez-vous ?",
+      "base": "Inscrits exprimant un choix, avec pondération selon la probabilité de voter.",
+      "sourceId": "notice-commission-10251",
+      "page": 21,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Hypothèse 3 · David Lisnard, François Ruffin, Édouard Philippe",
+    "noticePage": 21,
+    "noticeSource": "notice-commission-10251",
+    "resultSource": "cluster17-rapport-10251",
+    "resultPage": 16,
+    "results": [
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 29
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 17
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 6.5
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 4
+      },
+      {
+        "id": "ruffin",
+        "name": "François Ruffin",
+        "percentage": 4
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 3.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      }
+    ]
   }
 ]

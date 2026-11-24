@@ -556,5 +556,93 @@
       }
     ],
     "reason": "Les questions et les résultats publiés figurent aux pages 12 à 14. Les colonnes de données brutes et de redressements intermédiaires sont distinctes de la colonne « Publié »."
+  },
+  "2361": {
+    "number": "10339",
+    "checked": "2026-11-24",
+    "sha256": "598738fd569c6d9b764c7ba9f1305911a68a92898b46a3685e7a3731abf25c58",
+    "pages": [18, 19, 20],
+    "scenarios": [
+      {
+        "id": "cluster17-commission-10339-h1",
+        "page": 18
+      },
+      {
+        "id": "cluster17-commission-10339-h2",
+        "page": 19
+      },
+      {
+        "id": "cluster17-commission-10339-h3",
+        "page": 20
+      }
+    ],
+    "reason": "Trois hypothèses du premier tour dans la notice. Les pages 18 à 20 donnent la colonne des résultats publiés."
+  },
+  "2286": {
+    "number": "10273",
+    "checked": "2026-11-24",
+    "sha256": "67f0106bf17e6de74fa4728fb50d1917b3bb99dcb8240500785de2805eb1e7b1",
+    "pages": [14, 15, 16],
+    "scenarios": [
+      {
+        "id": "cluster17-commission-10273-h1",
+        "page": 14
+      },
+      {
+        "id": "cluster17-commission-10273-h2",
+        "page": 15
+      },
+      {
+        "id": "cluster17-commission-10273-h3",
+        "page": 16
+      }
+    ],
+    "reason": "Trois hypothèses du premier tour dans la notice. Les valeurs publiées sont reprises du rapport de l’institut, pages 5, 10, 15."
+  },
+  "2263": {
+    "number": "10251",
+    "checked": "2026-11-24",
+    "sha256": "26e5ace08cfb1237a22fca5f00facab844ea2c4d1c18c04f137064e745454175",
+    "pages": [19, 20, 21],
+    "scenarios": [
+      {
+        "id": "cluster17-commission-10251-h1",
+        "page": 19
+      },
+      {
+        "id": "cluster17-commission-10251-h2",
+        "page": 20
+      },
+      {
+        "id": "cluster17-commission-10251-h3",
+        "page": 21
+      }
+    ],
+    "reason": "Trois hypothèses du premier tour dans la notice. Les valeurs publiées sont reprises du rapport de l’institut, pages 6, 11, 16."
+  },
+  "2325": {
+    "number": "10310",
+    "checked": "2026-11-24",
+    "sha256": "a440565c8e31b8c3faedc7ba7baf3a53b317b1a4087fb868eaafec03928989b8",
+    "pages": [1],
+    "scenarios": [
+      {
+        "id": "odoxa-2026-10-14-philippe",
+        "page": 1
+      },
+      {
+        "id": "odoxa-2026-10-14-attal",
+        "page": 1
+      },
+      {
+        "id": "odoxa-2026-10-14-duel-melenchon",
+        "page": 1
+      },
+      {
+        "id": "odoxa-2026-10-14-duel-philippe",
+        "page": 1
+      }
+    ],
+    "reason": "La notice identifie deux hypothèses de premier tour et deux duels. Le rapport de l’institut les chiffre aux pages 12, 20, 22 et 25. Les tableaux régionaux et les reports de voix portent sur ces mêmes questions."
   }
 }
