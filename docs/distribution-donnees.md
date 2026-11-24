@@ -6,6 +6,8 @@ Le [catalogue JSON](https://polradar.fr/api/exports-v1.json) donne l’archive a
 
 ## Préparer la fiche data.gouv.fr
 
+L’index documentaire de Polradar est publié avec la licence ODbL 1.0. Les deux ressources de la fiche pointent vers le JSON actualisé et la documentation publique. [Fiche data.gouv.fr](https://www.data.gouv.fr/datasets/presidentielle-francaise-de-2027-index-documentaire-de-polradar)
+
 Chaque nouvelle release fournit `datagouv-documents.json` à côté de l’archive du corpus. Après le build, `node scripts/preparer-datagouv.mjs` produit le même fichier localement. La préparation et la livraison sur GitHub fonctionnent sans compte data.gouv.fr.
 
 1. Rechercher « Polradar » dans le catalogue du portail et reprendre la fiche de l’index si elle existe déjà. Les champs de `dataset` donnent le titre, la description, les mots-clés et la licence `odc-odbl`. L’index est enrichi quand de nouvelles références sont examinées, d’où la fréquence `irregular`. [Catalogue data.gouv.fr](https://www.data.gouv.fr/api/1/datasets/?q=polradar)
