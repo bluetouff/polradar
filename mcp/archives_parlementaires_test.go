@@ -46,12 +46,22 @@ func TestPublishedArchivesParlementaires(t *testing.T) {
 			t.Fatal("provenance absente", act.id)
 		}
 	}
+	index, err := c.archiveIndex()
+	if err != nil {
+		t.Fatal(err)
+	}
+	euroTotal := 0
+	for _, lot := range index.Lots {
+		if lot.Institution == "Parlement européen" {
+			euroTotal += lot.Nombre
+		}
+	}
 	for _, test := range []struct {
 		c, p  string
 		total int
 	}{
 		{"senat", "", 673}, {"senat", "2006", 129}, {"senat", "2022", 331}, {"senat", "2023", 213},
-		{"parlement-europeen", "", 299}, {"parlement-europeen", "2024-03-12", 0}, {"parlement-europeen", "2024-03-13", 132},
+		{"parlement-europeen", "", euroTotal}, {"parlement-europeen", "2024-03-12", 0}, {"parlement-europeen", "2024-03-13", 132},
 	} {
 		v, empty, e := c.publicData(dataArgs{Collection: test.c, Periode: test.p})
 		if e != nil || empty != (test.total == 0) {

@@ -131,6 +131,11 @@ const format = new Intl.NumberFormat('fr-FR');
               {b.decision && <strong>{b.decision} · </strong>}
               {b.pour} pour · {b.contre} contre · {b.abstentions} abstentions
             </p>
+            {b.totauxComptes?.length && (
+              <small>
+                Voix contre comptées dans la liste nominative complète.
+              </small>
+            )}
             <ul class="parl-positions">
               {b.positions.map((p) => (
                 <li>
@@ -178,6 +183,11 @@ const format = new Intl.NumberFormat('fr-FR');
             <a class="parl-source" href={b.source} rel="noreferrer">
               Relevé officiel n° {b.numero} ↗
             </a>
+            {b.procesVerbal?.map((url) => (
+              <a class="parl-source" href={url} rel="noreferrer">
+                Point du procès-verbal ↗
+              </a>
+            ))}
           </article>
         ))}
       </div>

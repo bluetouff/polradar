@@ -17,7 +17,17 @@ ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT/'src/data/parlement/senat-europe.json'
 SENATE = 'https://data.senat.fr/data/'
 EP = 'https://data.europarl.europa.eu/'
-MEETINGS = ('2024-03-12','2024-03-13','2024-03-14','2024-11-14','2024-12-19')
+# Sessions complètes choisies dans le calendrier public, dont celles sans mention individuelle.
+MEETINGS = (
+    '2024-03-12', '2024-03-13', '2024-03-14', '2024-04-23',
+    '2024-04-24', '2024-04-25', '2024-11-14', '2024-12-19',
+    '2025-06-16', '2025-06-17', '2025-06-18', '2025-06-19',
+    '2026-07-06', '2026-07-07', '2026-07-08', '2026-07-09',
+    '2026-09-14', '2026-09-15', '2026-09-16', '2026-09-17',
+    '2026-10-05', '2026-10-06', '2026-10-07', '2026-10-08',
+    '2026-10-19', '2026-10-20', '2026-10-21', '2026-10-22',
+    '2026-11-12',
+)
 SESSIONS = {'2006','2022','2023'}
 INPUTS = {
  'dosleg.zip': SENATE+'dosleg/dosleg.zip',
@@ -151,16 +161,32 @@ def european(cache):
             group=membership(day,'EU_POLITICAL_GROUP')
             identifier=b['activity_id']
             require(re.fullmatch('MTG-PL-'+day+r'-DEC-[0-9]+',identifier) and b['activity_date']==day,'Identifiant de séance inattendu')
-            totals={name:b['number_of_votes_'+key] for key,name in options.items()}
-            for key,name in options.items():
-                require(totals[name]==len(b.get('had_voter_'+key,[])), 'Désaccord entre total et liste européenne')
+            voter_ids = [member for key in options for member in b.get('had_voter_'+key,[])]
+            require(len(voter_ids)==len(set(voter_ids)), 'Personne dans plusieurs listes du scrutin')
+            totals, counted = {}, []
+            for key, name in options.items():
+                voters = b.get('had_voter_'+key, [])
+                total = b.get('number_of_votes_'+key)
+                if total is None:
+                    # Publish a missing zero only if all named votes account for the
+                    # published attendance and the missing category contains no voters.
+                    require(not voters and b.get('number_of_attendees') == len(voter_ids),
+                            'Effectif absent sans décompte complet du scrutin')
+                    total = 0
+                    counted.append(name)
+                require(total == len(voters), 'Désaccord entre total et liste européenne')
+                totals[name] = total
             outcome={'ADOPTED':'adopté','REJECTED':'rejeté'}[b['decision_outcome'].split('/')[-1]]
+            refs=b.get('recorded_in_a_realization_of',[])
+            pv=[s for s in refs if re.fullmatch(r'eli/dl/doc/PV-[0-9]+-'+day+r'-RCV-ITM-[0-9]+',s)]
+            require(len(pv)==len(refs),'Référence de procès-verbal européenne inconnue')
             rows.append({'id':identifier,'institution':'parlement-europeen','periode':mandate['organization'].split('-')[-1],
               'date':day,'numero':b['notation_votingId'],'objet':b['activity_label']['fr'],'decision':outcome,
               'pour':totals['pour'],'contre':totals['contre'],'abstentions':totals['abstention'],
               'positions':[{'candidat':'glucksmann','personne':'197694','vote':next(iter(choice),None),'mandat':mandate['id'],
                             'groupe':group['organization'],'intentions':intended}],
               'misesAuPoint':[],'textes':[EP+s for s in b.get('decided_on_a_realization_of',[])],
+              'procesVerbal':[EP+s for s in pv], **({'totauxComptes':counted} if counted else {}),
               'source':EP+'eli/dl/event/'+identifier})
     return rows,meta
 def main():

@@ -25,6 +25,17 @@ test('les deux chambres se parcourent sans JavaScript à 360 px', async ({
     await expect(
       page.getByText('Aucune position ni mise au point', { exact: false }),
     ).toBeVisible();
+    await page.getByRole('link', { name: 'Toutes les périodes' }).click();
+    await page.getByRole('link', { name: '21 octobre 2026' }).click();
+    await expect(
+      page
+        .locator('.parl-card')
+        .first()
+        .getByRole('link', { name: 'Point du procès-verbal' }),
+    ).toHaveAttribute(
+      'href',
+      'https://data.europarl.europa.eu/eli/dl/doc/PV-10-2026-10-21-RCV-ITM-136',
+    );
   } finally {
     await ctx.close();
   }

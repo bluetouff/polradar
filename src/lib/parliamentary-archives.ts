@@ -23,6 +23,8 @@ export interface ArchiveBallot {
   positions: Position[];
   misesAuPoint: { notice: string; source: string | null }[];
   textes?: string[];
+  procesVerbal?: string[];
+  totauxComptes?: string[];
   source: string;
 }
 interface Archive {
