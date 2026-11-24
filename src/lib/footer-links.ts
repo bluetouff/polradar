@@ -46,6 +46,7 @@ export const footerColumns = [
     title: 'Le projet',
     icon: 'source',
     links: [
+      ['/statistiques/', 'Le corpus en chiffres'],
       ['/transparence/', 'À propos de Polradar'],
       ['/methode/', 'Méthode'],
       ['/sources/', 'Catalogue des sources'],

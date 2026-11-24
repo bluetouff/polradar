@@ -1,0 +1,489 @@
+---
+import { civilDateInParis } from '../lib/schema.mjs';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { dataset, formatDate } from '../lib/data';
+import { corpusCounts, corpusActivity } from '../lib/corpus-counts.mjs';
+import { campaignBriefs } from '../lib/briefs';
+import { legislativeVotes } from '../lib/votes-data';
+import { evolution, financing } from '../lib/proposal-data';
+import { agenda, airtime, budgetAssessments } from '../lib/visual-data';
+import {
+  numericDivergences,
+  positionDivergences,
+} from '../lib/divergence-data';
+import { digitalCount } from '../lib/digital-data';
+import { pollCoverage } from '../lib/features.mjs';
+import { predictionMarkets } from '../lib/market-data';
+import { economy, statements } from '../lib/economy-data';
+import { questions } from '../lib/questions';
+import communes from '../data/communes-2022.json';
+import comptes from '../data/comptes-presidentielle-2022.json';
+import '../styles/corpus.css';
+
+const corpus = corpusCounts(dataset);
+const asOf = civilDateInParis();
+const activity = corpusActivity(dataset.versions, asOf);
+const activityMax = Math.max(
+  1,
+  ...activity.map((day) => day.added + day.revised),
+);
+const fmt = (n: number) => n.toLocaleString('fr-FR');
+const scopes = [
+  ['campagne', 'Propositions de campagne'],
+  ['parti', 'Propositions de parti'],
+  ['orientation', 'Orientations'],
+  ['archive', 'Archives de 2022'],
+] as const;
+const active = dataset.candidates.filter((c) => !c.withdrawnOn).length;
+const retired = dataset.candidates.length - active;
+const docs = await getCollection('articles', ({ data }) => !data.draft);
+const briefs = await campaignBriefs();
+const surveys = pollCoverage(dataset.polls);
+const sections = [
+  {
+    label: 'Programmes et comparaisons',
+    icon: 'mesures',
+    items: [
+      [
+        dataset.engagements.length,
+        'Dossiers par candidat, thème et auteur',
+        '/engagements/',
+      ],
+      [digitalCount, 'Fiches sur le numérique', '/numerique/'],
+      [questions.length, 'Questions comparées', '/questions/'],
+      [
+        numericDivergences.length + positionDivergences.length,
+        'Cartes de divergences',
+        '/divergences/',
+      ],
+      [evolution.tracks.length, 'Évolutions documentées', '/evolution/'],
+      [budgetAssessments.length, 'Montants annoncés', '/budget-programmes/'],
+      [financing.maps.length, 'Schémas de financement', '/financements/'],
+    ],
+  },
+  {
+    label: 'Campagne et votes',
+    icon: 'vote',
+    items: [
+      [briefs.length, 'Brèves publiées', '/breves/'],
+      [docs.length, 'Dossiers de la rédaction', '/dossiers/'],
+      [dataset.events.length, 'Événements dans la chronologie', '/campagne/'],
+      [agenda.events.length, 'Rendez-vous de campagne', '/agenda/'],
+      [
+        legislativeVotes.ballots.length,
+        'Scrutins nominatifs distincts',
+        '/votes/',
+      ],
+      [
+        legislativeVotes.cases.length,
+        'Dossiers reliant proposition et vote',
+        '/votes/',
+      ],
+      [comptes.length, 'Comptes de campagne de 2022', '/argent-des-campagnes/'],
+    ],
+  },
+  {
+    label: 'Opinion et données publiques',
+    icon: 'sondages',
+    items: [
+      [
+        surveys.documentedSurveys,
+        'Enquêtes de sondage identifiées',
+        '/sondages/',
+      ],
+      [surveys.observations, 'Scénarios de sondage', '/sondages/'],
+      [airtime.months.length, 'Mois de relevés Arcom', '/temps-de-parole/'],
+      [
+        predictionMarkets.providers.length,
+        'Plateformes de marchés suivies',
+        '/marches-predictifs/',
+      ],
+      [economy.length, 'Indicateurs économiques', '/economie/'],
+      [
+        statements.length,
+        'Déclarations chiffrées examinées',
+        '/economie/declarations/',
+      ],
+      [communes.count, 'Communes avec résultats de 2022', '/communes/'],
+    ],
+  },
+] as const;
+const nTheme = (counts: typeof corpus.counts) =>
+  counts.campagne + counts.parti + counts.orientation;
+const chartThemes = corpus.themes
+  .slice()
+  .sort(
+    (a, b) =>
+      nTheme(b.counts) - nTheme(a.counts) ||
+      a.label.localeCompare(b.label, 'fr'),
+  );
+const scale = Math.max(1, ...chartThemes.map((t) => nTheme(t.counts)));
+let start = 0;
+const slices = scopes.map(([id, label]) => {
+  const units = corpus.counts[id];
+  const share = corpus.total ? (100 * units) / corpus.total : 0;
+  const offset = start;
+  start += share;
+  return { id, label, units, share, offset };
+});
+---
+
+<Base
+  title="Le corpus de Polradar en chiffres"
+  section="/statistiques/"
+  description="Combien de propositions, de scrutins et de sources sur Polradar ? Explorez les chiffres par thème, candidat et type de document."
+>
+  <div class="corpus-dashboard">
+    <header class="corpus-hero">
+      <div class="corpus-intro">
+        <h1>Le corpus en chiffres</h1>
+        <p class="corpus-lead">
+          <strong data-proposal-total={corpus.proposals}>
+            {fmt(corpus.proposals)}
+          </strong>
+          <span>propositions de campagne ou de parti</span>
+        </p>
+        <p class="corpus-date">
+          <Icon name="clock" /> Compté le{' '}
+          <time datetime={asOf}>{formatDate(asOf)}</time>
+        </p>
+        <a class="corpus-link-light" href="/mesures/">
+          Parcourir les mesures <Icon name="arrow" />
+        </a>
+      </div>
+      <figure class="corpus-composition">
+        <div class="corpus-orbit">
+          <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+            <circle cx="60" cy="60" r="52" class="orbit-track" />
+            {slices
+              .filter((s) => s.units)
+              .map((s) => (
+                <circle
+                  class={'ring ring-' + s.id}
+                  cx="60"
+                  cy="60"
+                  r="46"
+                  pathLength="100"
+                  stroke-dasharray={s.share + ' ' + (100 - s.share)}
+                  stroke-dashoffset={-s.offset}
+                  transform="rotate(-90 60 60)"
+                />
+              ))}
+          </svg>
+          <span>
+            <strong>{fmt(corpus.total)}</strong>fiches
+          </span>
+        </div>
+        <figcaption>
+          <h2>Composition du corpus</h2>
+          <ul>
+            {slices.map((s) => (
+              <li>
+                <i class={'scope-dot surface-' + s.id} aria-hidden="true"></i>
+                <span>{s.label}</span>
+                <strong>{fmt(s.units)}</strong>
+              </li>
+            ))}
+          </ul>
+        </figcaption>
+      </figure>
+    </header>
+    <nav class="corpus-readouts" aria-label="Repères sur le corpus">
+      {(
+        [
+          [
+            dataset.candidates.length,
+            'Dossiers de candidats',
+            'people',
+            '#par-candidat',
+          ],
+          [dataset.themes.length, 'Thèmes', 'mesures', '#par-theme'],
+          [
+            dataset.sources.length,
+            'Sources référencées',
+            'source',
+            '/sources/',
+          ],
+          [
+            dataset.versions.length,
+            'Versions de fiches',
+            'historique',
+            '/historique/',
+          ],
+        ] as const
+      ).map(([value, label, icon, url]) => (
+        <a href={url}>
+          <Icon name={icon} />
+          <strong>{fmt(value)}</strong>
+          <span>{label}</span>
+        </a>
+      ))}
+    </nav>
+    <section class="corpus-section" id="par-theme" data-theme-chart>
+      <div class="corpus-heading">
+        <div>
+          <h2>Les thèmes les plus documentés</h2>
+          <p>Nombre de fiches classées dans chaque thème principal.</p>
+        </div>
+        <label class="scope-filter" hidden>
+          Fiches affichées{' '}
+          <select name="perimetre">
+            <option value="current">Toutes hors archives</option>
+            {scopes.map(([id, label]) => (
+              <option value={id}>{label}</option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <ul class="theme-histogram">
+        {chartThemes.map(({ id, label, counts }) => (
+          <li
+            data-theme={id}
+            data-current={nTheme(counts)}
+            data-campagne={counts.campagne}
+            data-parti={counts.parti}
+            data-orientation={counts.orientation}
+            data-archive={counts.archive}
+          >
+            <a href={'/themes/' + id + '/'}>
+              <Icon name={id} />
+              <span>{label}</span>
+            </a>
+            <svg
+              viewBox="0 0 100 6"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <rect width="100" height="6" rx="2" class="bar-track" />
+              <rect
+                width={(100 * nTheme(counts)) / scale}
+                height="6"
+                rx="2"
+                class="bar-fill"
+              />
+            </svg>
+            <strong>{fmt(nTheme(counts))}</strong>
+          </li>
+        ))}
+      </ul>
+      <p class="chart-sum" aria-live="polite">
+        <span>{fmt(corpus.current)}</span> fiches dans le périmètre affiché.
+      </p>
+    </section>
+    <section class="corpus-section" id="par-candidat">
+      <div class="corpus-heading">
+        <div>
+          <h2>Couverture par candidat</h2>
+          <p>
+            {active} candidatures suivies et {retired}{' '}
+            {retired === 1
+              ? 'candidature retirée conservée'
+              : 'candidatures retirées conservées'}{' '}
+            dans l’historique.
+          </p>
+        </div>
+      </div>
+      <details class="candidate-list">
+        <summary>
+          Voir les {corpus.candidates.length} dossiers et leurs chiffres
+        </summary>
+        <div class="candidate-counts">
+          {corpus.candidates.map((c) => (
+            <article>
+              <a href={'/candidats/' + c.id + '/'}>
+                {c.name}
+                <Icon name="arrow" />
+              </a>
+              {c.withdrawnOn && <small>Candidature retirée</small>}
+              <dl>
+                {scopes.map(([id, label]) => (
+                  <div>
+                    <dt>{label}</dt>
+                    <dd>{fmt(c.counts[id])}</dd>
+                  </div>
+                ))}
+              </dl>
+            </article>
+          ))}
+        </div>
+      </details>
+    </section>
+    <section
+      class="corpus-section corpus-ledger"
+      aria-labelledby="ledger-title"
+    >
+      <div class="corpus-heading">
+        <div>
+          <h2 id="ledger-title">Ajouts et révisions sur 14 jours</h2>
+          <p>
+            Chaque première fiche compte comme un ajout. Chaque version suivante
+            compte comme une révision.
+          </p>
+        </div>
+      </div>
+      <div class="ledger-key">
+        <span>
+          <i class="ledger-new"></i>
+          {fmt(activity.reduce((s, d) => s + d.added, 0))} ajouts
+        </span>
+        <span>
+          <i class="ledger-rev"></i>
+          {fmt(activity.reduce((s, d) => s + d.revised, 0))} révisions
+        </span>
+      </div>
+      <div class="ledger-plot" aria-hidden="true">
+        {activity.map((day, index) => {
+          const a = (day.added * 100) / activityMax,
+            r = (day.revised * 100) / activityMax;
+          return (
+            <div>
+              <svg viewBox="0 0 16 100" preserveAspectRatio="none">
+                <title>{formatDate(day.date)} · {day.added} ajouts, {day.revised} révisions</title>
+                <rect
+                  x="1"
+                  width="14"
+                  y={100 - a}
+                  height={a}
+                  class="ledger-added-bar"
+                />
+                <rect
+                  x="1"
+                  width="14"
+                  y={100 - a - r}
+                  height={r}
+                  class="ledger-revised-bar"
+                />
+              </svg>
+              <small>
+                {(index % 3 === 0 || index === activity.length - 1) &&
+                  day.date.slice(8)}
+              </small>
+            </div>
+          );
+        })}
+      </div>
+      <p class="ledger-period">
+        Du {formatDate(activity[0].date)} au{' '}
+        {formatDate(activity[activity.length - 1].date)}.
+      </p>
+      <details class="ledger-table">
+        <summary>Chiffres jour par jour</summary>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Ajouts</th>
+              <th scope="col">Révisions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {activity
+              .slice()
+              .reverse()
+              .map((d) => (
+                <tr>
+                  <th scope="row">
+                    <time datetime={d.date}>{formatDate(d.date)}</time>
+                  </th>
+                  <td>{fmt(d.added)}</td>
+                  <td>{fmt(d.revised)}</td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </details>
+    </section>
+    <section class="corpus-section" id="rubriques">
+      <div class="corpus-heading">
+        <div>
+          <h2>Les autres contenus du site</h2>
+          <p>Chaque compteur ouvre la rubrique correspondante.</p>
+        </div>
+      </div>
+      <div class="corpus-inventory">
+        {sections.map((section) => (
+          <article>
+            <h3>
+              <Icon name={section.icon} />
+              {section.label}
+            </h3>
+            <ul>
+              {section.items.map(([value, label, url]) => (
+                <li>
+                  <a href={url}>
+                    <strong>{fmt(value)}</strong>
+                    <span>{label}</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+    <footer class="corpus-note">
+      <h2>Comment les chiffres sont calculés</h2>
+      <p>
+        Chaque publication recompte les fiches dans leur dernière version. Le
+        total des propositions additionne les fiches de campagne et de parti.
+        Les orientations et les archives de 2022 ont leurs propres compteurs. Un
+        même sujet peut figurer dans plusieurs programmes.
+      </p>
+      <p>
+        Un texte collectif est rattaché à un dossier de candidat avec son auteur
+        affiché. Un même scrutin peut documenter plusieurs propositions, et une
+        enquête peut tester plusieurs scénarios.
+      </p>
+      <a href="/mises-a-jour/">Voir les dernières collectes</a> ·{' '}
+      <a href="/api/corpus.json">
+        Télécharger les fiches et leurs versions (JSON)
+      </a>
+    </footer>
+  </div>
+</Base>
+<script>
+  const chart = document.querySelector<HTMLElement>('[data-theme-chart]');
+  if (chart) {
+    const filter = chart.querySelector<HTMLSelectElement>('select')!;
+    const list = chart.querySelector('ul')!;
+    const rows = Array.from(list.querySelectorAll('li'));
+    const count = (row: HTMLElement) => Number(row.dataset[filter.value]);
+    function update() {
+      const values = rows.map(count);
+      const max = Math.max(1, ...values);
+      rows
+        .slice()
+        .sort(
+          (a, b) =>
+            count(b) - count(a) ||
+            a
+              .querySelector('a')!
+              .textContent!.localeCompare(
+                b.querySelector('a')!.textContent!,
+                'fr',
+              ),
+        )
+        .forEach((row) => {
+          const n = count(row);
+          const params = new URLSearchParams({ theme: row.dataset.theme! });
+          if (filter.value !== 'current') params.set('scope', filter.value);
+          row.querySelector('a')!.href = '/mesures/#' + params;
+          row.querySelector('strong')!.textContent = n.toLocaleString('fr-FR');
+          row
+            .querySelector('.bar-fill')!
+            .setAttribute('width', String((100 * n) / max));
+          list.append(row);
+        });
+      chart!.querySelector('.chart-sum span')!.textContent = values
+        .reduce((a, b) => a + b, 0)
+        .toLocaleString('fr-FR');
+    }
+    chart.querySelector<HTMLLabelElement>('.scope-filter')!.hidden = false;
+    filter.addEventListener('change', update);
+    update();
+  }
+</script>

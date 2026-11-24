@@ -205,7 +205,15 @@ const candidate = candidateById(measure.candidate),
             const credit = collective ? documentCredit(ref.sourceId) : null;
             return (
               <li>
-                <a href={source.url} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={
+                    ref.fragment
+                      ? source.url.split('#')[0] + '#' + ref.fragment
+                      : source.url
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {source.title}
                   <Icon name="external" />
                 </a>

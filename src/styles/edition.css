@@ -882,6 +882,11 @@
   }
 }
 
+#measure-filters:has(select[name='scope'] option:checked:not([value='']))
+  .check-label {
+  display: none;
+}
+
 .poll-reading-key {
   display: flex;
   flex-wrap: wrap;

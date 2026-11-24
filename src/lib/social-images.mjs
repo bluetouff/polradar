@@ -698,6 +698,15 @@ const defs = [
     bars(themeBars.slice(-6)),
   ],
   [
+    'statistiques',
+    '/statistiques/',
+    'Données',
+    'Le corpus\nen chiffres',
+    'Propositions, orientations et archives.',
+    'navy',
+    bars(themeBars.slice(0, 6)),
+  ],
+  [
     'transparence',
     '/transparence/',
     'Le projet',

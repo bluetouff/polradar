@@ -171,6 +171,10 @@ export const pollSchema = z.object({
 export const sourceRefSchema = z.object({
   sourceId: idSchema,
   locator: z.string().min(1).max(1000),
+  fragment: z
+    .string()
+    .regex(/^(?:page=|proposition-)[1-9]\d{0,3}$/)
+    .optional(),
 });
 export const metricSchema = z.object({
   key: idSchema,

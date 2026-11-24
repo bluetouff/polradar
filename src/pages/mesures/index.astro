@@ -72,9 +72,19 @@ const max = Math.max(
         placeholder="Une mesure, un chiffre…"
       />
     </label>
+    <label>
+      Type de fiche
+      <select name="scope">
+        <option value="">Tous les types</option>
+        <option value="campagne">Propositions de campagne</option>
+        <option value="parti">Propositions de parti</option>
+        <option value="orientation">Orientations</option>
+        <option value="archive">Archives de 2022 uniquement</option>
+      </select>
+    </label>
     <label class="check-label">
       <input type="checkbox" name="archives" value="1" />
-      Archives 2022
+      Inclure les archives 2022
     </label>
     <button type="submit" class="button">
       Filtrer

@@ -48,6 +48,7 @@ export const groups = [
     name: 'Données',
     icon: 'sondages',
     links: [
+      ['/statistiques/', 'Le corpus en chiffres', 'donnees'],
       ['/mises-a-jour/', 'Mises à jour', 'clock'],
       ['/economie/', 'Indicateurs économiques', 'markets'],
       [

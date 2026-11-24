@@ -178,7 +178,9 @@ export function filterEntries(entries, filters) {
         entry.themes?.includes(filters.theme)) &&
       (!filters.type || entry.type === filters.type) &&
       (!filters.year || entry.year === filters.year) &&
-      (filters.archives === '1' || entry.scope !== 'archive'),
+      (filters.scope
+        ? entry.scope === filters.scope
+        : filters.archives === '1' || entry.scope !== 'archive'),
   );
   const query = normalize(filters.q || '');
   if (!query) return selection;
