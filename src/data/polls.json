@@ -18147,5 +18147,6261 @@
       }
     ],
     "uncertainty": "La notice compte 1 345 intentions exprimées parmi les inscrits, dont 1 061 chez les personnes certaines d’aller voter. La plage reprend le repère publié en page 3 pour 1 300 personnes. L’Ifop signale un redressement fondé sur les électeurs certains d’aller voter."
+  },
+  {
+    "id": "ifop-commission-10193-p9",
+    "institute": "Ifop",
+    "commissioner": "LCI, Le Figaro et Sud Radio",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-26",
+    "fieldworkEnd": "2026-05-28",
+    "sampleSize": 1501,
+    "registeredSample": 1368,
+    "usefulSample": 1014,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10193",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10193",
+      "page": 9,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 9,
+    "noIntention": 25.9,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Édouard Philippe et Jordan Bardella",
+    "noticeSource": "notice-commission-10193",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 9
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 9
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 14
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 014 intentions exprimées parmi les inscrits et 825 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10193-p10",
+    "institute": "Ifop",
+    "commissioner": "LCI, Le Figaro et Sud Radio",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-26",
+    "fieldworkEnd": "2026-05-28",
+    "sampleSize": 1501,
+    "registeredSample": 1368,
+    "usefulSample": 1034,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10193",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10193",
+      "page": 10,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 10,
+    "noIntention": 24.4,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Bloc central Édouard Philippe seul",
+    "noticeSource": "notice-commission-10193",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 10
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 18
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 2.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.5
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 034 intentions exprimées parmi les inscrits et 840 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10193-p11",
+    "institute": "Ifop",
+    "commissioner": "LCI, Le Figaro et Sud Radio",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-26",
+    "fieldworkEnd": "2026-05-28",
+    "sampleSize": 1501,
+    "registeredSample": 1368,
+    "usefulSample": 1014,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10193",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10193",
+      "page": 11,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 11,
+    "noIntention": 25.9,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Bloc central Gabriel Attal seul",
+    "noticeSource": "notice-commission-10193",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 16
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 3
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2.5
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 014 intentions exprimées parmi les inscrits et 824 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10193-p12",
+    "institute": "Ifop",
+    "commissioner": "LCI, Le Figaro et Sud Radio",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-26",
+    "fieldworkEnd": "2026-05-28",
+    "sampleSize": 1501,
+    "registeredSample": 1368,
+    "usefulSample": 1019,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10193",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10193",
+      "page": 12,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 12,
+    "noIntention": 25.5,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Marine Le Pen avec Édouard Philippe",
+    "noticeSource": "notice-commission-10193",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 19
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 2
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 33
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 019 intentions exprimées parmi les inscrits et 825 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10193-p13",
+    "institute": "Ifop",
+    "commissioner": "LCI, Le Figaro et Sud Radio",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-26",
+    "fieldworkEnd": "2026-05-28",
+    "sampleSize": 1501,
+    "registeredSample": 1368,
+    "usefulSample": 1015,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10193",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10193",
+      "page": 13,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 13,
+    "noIntention": 25.8,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Marine Le Pen avec Gabriel Attal",
+    "noticeSource": "notice-commission-10193",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3.5
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 16
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 11.5
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 3
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 32
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 015 intentions exprimées parmi les inscrits et 827 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10193-p14",
+    "institute": "Ifop",
+    "commissioner": "LCI, Le Figaro et Sud Radio",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-26",
+    "fieldworkEnd": "2026-05-28",
+    "sampleSize": 1501,
+    "registeredSample": 1368,
+    "usefulSample": 1022,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10193",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10193",
+      "page": 14,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 14,
+    "noIntention": 25.3,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · François Hollande, gauche hors LFI désunie",
+    "noticeSource": "notice-commission-10193",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 14
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 4
+      },
+      {
+        "id": "sonde-francois-hollande",
+        "name": "François Hollande",
+        "percentage": 8
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 20
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.5
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 022 intentions exprimées parmi les inscrits et 827 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10193-p15",
+    "institute": "Ifop",
+    "commissioner": "LCI, Le Figaro et Sud Radio",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-26",
+    "fieldworkEnd": "2026-05-28",
+    "sampleSize": 1501,
+    "registeredSample": 1368,
+    "usefulSample": 997,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10193",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10193",
+      "page": 15,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 15,
+    "noIntention": 27.1,
+    "margin": {
+      "min": 1.4,
+      "max": 3.3,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · François Hollande, gauche hors LFI désunie, Gabriel Attal candidat du bloc central",
+    "noticeSource": "notice-commission-10193",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3.5
+      },
+      {
+        "id": "sonde-francois-hollande",
+        "name": "François Hollande",
+        "percentage": 8
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 5
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 18.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 35
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.5
+      }
+    ],
+    "uncertainty": "La note du tableau donne 997 intentions exprimées parmi les inscrits et 809 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 900 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10193-p16",
+    "institute": "Ifop",
+    "commissioner": "LCI, Le Figaro et Sud Radio",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-26",
+    "fieldworkEnd": "2026-05-28",
+    "sampleSize": 1501,
+    "registeredSample": 1368,
+    "usefulSample": 1054,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10193",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10193",
+      "page": 16,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 16,
+    "noIntention": 22.9,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · François Ruffin, gauche hors LFI désunie",
+    "noticeSource": "notice-commission-10193",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 12.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "ruffin",
+        "name": "François Ruffin",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 9
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 20
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 054 intentions exprimées parmi les inscrits et 844 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10193-p17",
+    "institute": "Ifop",
+    "commissioner": "LCI, Le Figaro et Sud Radio",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-26",
+    "fieldworkEnd": "2026-05-28",
+    "sampleSize": 1501,
+    "registeredSample": 1368,
+    "usefulSample": 1010,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10193",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10193",
+      "page": 17,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 17,
+    "noIntention": 26.2,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Olivier Faure, gauche hors LFI désunie",
+    "noticeSource": "notice-commission-10193",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 6
+      },
+      {
+        "id": "sonde-olivier-faure",
+        "name": "Olivier Faure",
+        "percentage": 4
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 21
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2.5
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 35
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.5
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 010 intentions exprimées parmi les inscrits et 817 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10193-p18",
+    "institute": "Ifop",
+    "commissioner": "LCI, Le Figaro et Sud Radio",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-26",
+    "fieldworkEnd": "2026-05-28",
+    "sampleSize": 1501,
+    "registeredSample": 1368,
+    "usefulSample": 1007,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10193",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10193",
+      "page": 18,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 18,
+    "noIntention": 26.4,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · François Hollande, gauche hors LFI unie",
+    "noticeSource": "notice-commission-10193",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "sonde-francois-hollande",
+        "name": "François Hollande",
+        "percentage": 11
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 22
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2.5
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 007 intentions exprimées parmi les inscrits et 808 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10193-p19",
+    "institute": "Ifop",
+    "commissioner": "LCI, Le Figaro et Sud Radio",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-26",
+    "fieldworkEnd": "2026-05-28",
+    "sampleSize": 1501,
+    "registeredSample": 1368,
+    "usefulSample": 1026,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10193",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10193",
+      "page": 19,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 19,
+    "noIntention": 25,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Raphaël Glucksmann, gauche hors LFI unie",
+    "noticeSource": "notice-commission-10193",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 12
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 22
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 33
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 026 intentions exprimées parmi les inscrits et 822 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10222-p8",
+    "institute": "Ifop",
+    "commissioner": "LCI et Le Figaro",
+    "published": "2026-07-08",
+    "fieldworkStart": "2026-07-07",
+    "fieldworkEnd": "2026-07-08",
+    "sampleSize": 1075,
+    "registeredSample": 984,
+    "usefulSample": 745,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10222",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10222",
+      "page": 8,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 8,
+    "noIntention": 25.7,
+    "margin": {
+      "min": 1.6,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Édouard Philippe",
+    "noticeSource": "notice-commission-10222",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 9
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 19
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 36
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "La note du tableau donne 745 intentions exprimées parmi les inscrits et 624 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 700 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10222-p9",
+    "institute": "Ifop",
+    "commissioner": "LCI et Le Figaro",
+    "published": "2026-07-08",
+    "fieldworkStart": "2026-07-07",
+    "fieldworkEnd": "2026-07-08",
+    "sampleSize": 1075,
+    "registeredSample": 984,
+    "usefulSample": 751,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10222",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10222",
+      "page": 9,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 9,
+    "noIntention": 24.2,
+    "margin": {
+      "min": 1.6,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Gabriel Attal",
+    "noticeSource": "notice-commission-10222",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 12
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 15
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 36
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.5
+      }
+    ],
+    "uncertainty": "La note du tableau donne 751 intentions exprimées parmi les inscrits et 625 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 700 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10222-p10",
+    "institute": "Ifop",
+    "commissioner": "LCI et Le Figaro",
+    "published": "2026-07-08",
+    "fieldworkStart": "2026-07-07",
+    "fieldworkEnd": "2026-07-08",
+    "sampleSize": 1075,
+    "registeredSample": 984,
+    "usefulSample": 719,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10222",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10222",
+      "page": 10,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 10,
+    "noIntention": 28.2,
+    "margin": {
+      "min": 1.6,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Édouard Philippe face à Marine Le Pen",
+    "noticeSource": "notice-commission-10222",
+    "results": [
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 46
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 54
+      }
+    ],
+    "uncertainty": "La note du tableau donne 719 intentions exprimées parmi les inscrits et 589 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 700 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10222-p11",
+    "institute": "Ifop",
+    "commissioner": "LCI et Le Figaro",
+    "published": "2026-07-08",
+    "fieldworkStart": "2026-07-07",
+    "fieldworkEnd": "2026-07-08",
+    "sampleSize": 1075,
+    "registeredSample": 984,
+    "usefulSample": 712,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10222",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10222",
+      "page": 11,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 11,
+    "noIntention": 29.2,
+    "margin": {
+      "min": 1.6,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Gabriel Attal face à Marine Le Pen",
+    "noticeSource": "notice-commission-10222",
+    "results": [
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 45
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 55
+      }
+    ],
+    "uncertainty": "La note du tableau donne 712 intentions exprimées parmi les inscrits et 581 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 700 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10222-p12",
+    "institute": "Ifop",
+    "commissioner": "LCI et Le Figaro",
+    "published": "2026-07-08",
+    "fieldworkStart": "2026-07-07",
+    "fieldworkEnd": "2026-07-08",
+    "sampleSize": 1075,
+    "registeredSample": 984,
+    "usefulSample": 601,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10222",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10222",
+      "page": 12,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 12,
+    "noIntention": 38.9,
+    "margin": {
+      "min": 1.8,
+      "max": 4.1,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Jean-Luc Mélenchon face à Marine Le Pen",
+    "noticeSource": "notice-commission-10222",
+    "results": [
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 30
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 70
+      }
+    ],
+    "uncertainty": "La note du tableau donne 601 intentions exprimées parmi les inscrits et 498 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 600 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10314-p9",
+    "institute": "Ifop",
+    "commissioner": "LCI et Sud Radio",
+    "published": "2026-10-14",
+    "fieldworkStart": "2026-10-12",
+    "fieldworkEnd": "2026-10-14",
+    "sampleSize": 1525,
+    "registeredSample": 1390,
+    "usefulSample": 1050,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10314",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10314",
+      "page": 9,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 9,
+    "noIntention": 24.5,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Édouard Philippe et Gabriel Attal candidats",
+    "noticeSource": "notice-commission-10314",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": null
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 2
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 14
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 6
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 14
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 6.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 050 intentions exprimées parmi les inscrits et 832 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10314-p10",
+    "institute": "Ifop",
+    "commissioner": "LCI et Sud Radio",
+    "published": "2026-10-14",
+    "fieldworkStart": "2026-10-12",
+    "fieldworkEnd": "2026-10-14",
+    "sampleSize": 1525,
+    "registeredSample": 1390,
+    "usefulSample": 1047,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10314",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10314",
+      "page": 10,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 10,
+    "noIntention": 24.7,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Édouard Philippe candidat du bloc central",
+    "noticeSource": "notice-commission-10314",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 2.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 13.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 18
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 6.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 35
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 047 intentions exprimées parmi les inscrits et 834 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10314-p11",
+    "institute": "Ifop",
+    "commissioner": "LCI et Sud Radio",
+    "published": "2026-10-14",
+    "fieldworkStart": "2026-10-12",
+    "fieldworkEnd": "2026-10-14",
+    "sampleSize": 1525,
+    "registeredSample": 1390,
+    "usefulSample": 1024,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10314",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10314",
+      "page": 11,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 11,
+    "noIntention": 26.3,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Gabriel Attal candidat du bloc central",
+    "noticeSource": "notice-commission-10314",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 2
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 16
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 13
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 36
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 024 intentions exprimées parmi les inscrits et 815 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10314-p12",
+    "institute": "Ifop",
+    "commissioner": "LCI et Sud Radio",
+    "published": "2026-10-14",
+    "fieldworkStart": "2026-10-12",
+    "fieldworkEnd": "2026-10-14",
+    "sampleSize": 1525,
+    "registeredSample": 1390,
+    "usefulSample": 1081,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10314",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10314",
+      "page": 12,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 12,
+    "noIntention": 22.2,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · François Ruffin, Dominique de Villepin et David Lisnard candidats",
+    "noticeSource": "notice-commission-10314",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": null
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "ruffin",
+        "name": "François Ruffin",
+        "percentage": 2
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 2
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11.5
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 13
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 1.5
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 6
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 32
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 081 intentions exprimées parmi les inscrits et 858 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-9944-p9",
+    "institute": "Ifop",
+    "commissioner": "Le Figaro et Sud Radio",
+    "published": "2025-05-21",
+    "fieldworkStart": "2025-05-19",
+    "fieldworkEnd": "2025-05-20",
+    "sampleSize": 2000,
+    "registeredSample": 1114,
+    "usefulSample": 801,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-9944",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-9944",
+      "page": 9,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 9,
+    "noIntention": 28.1,
+    "margin": {
+      "min": 1.5,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Marine Le Pen",
+    "noticeSource": "notice-commission-9944",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13.5
+      },
+      {
+        "id": "sonde-olivier-faure",
+        "name": "Olivier Faure",
+        "percentage": 4.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 21
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 16
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 31
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ],
+    "uncertainty": "La note du tableau donne 801 intentions exprimées parmi les inscrits et 633 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 800 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-9944-p10",
+    "institute": "Ifop",
+    "commissioner": "Le Figaro et Sud Radio",
+    "published": "2025-05-21",
+    "fieldworkStart": "2025-05-19",
+    "fieldworkEnd": "2025-05-20",
+    "sampleSize": 2000,
+    "registeredSample": 1114,
+    "usefulSample": 792,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-9944",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-9944",
+      "page": 10,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 10,
+    "noIntention": 28.9,
+    "margin": {
+      "min": 1.6,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Jordan Bardella",
+    "noticeSource": "notice-commission-9944",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13
+      },
+      {
+        "id": "sonde-olivier-faure",
+        "name": "Olivier Faure",
+        "percentage": 4.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 21
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 16
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 31
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.5
+      }
+    ],
+    "uncertainty": "La note du tableau donne 792 intentions exprimées parmi les inscrits et 624 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 700 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-9912-p9",
+    "institute": "Ifop",
+    "commissioner": "Le Journal du dimanche",
+    "published": "2025-03-30",
+    "fieldworkStart": "2025-03-26",
+    "fieldworkEnd": "2025-03-27",
+    "sampleSize": 1200,
+    "registeredSample": 1119,
+    "usefulSample": 756,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-9912",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-9912",
+      "page": 9,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 9,
+    "noIntention": 32.4,
+    "margin": {
+      "min": 1.6,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Olivier Faure, Édouard Philippe et Laurent Wauquiez",
+    "noticeSource": "notice-commission-9912",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 12
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 4
+      },
+      {
+        "id": "sonde-olivier-faure",
+        "name": "Olivier Faure",
+        "percentage": 4
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 25
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 4
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 36
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 5
+      }
+    ],
+    "uncertainty": "La note du tableau donne 756 intentions exprimées parmi les inscrits et 604 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 700 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-9912-p10",
+    "institute": "Ifop",
+    "commissioner": "Le Journal du dimanche",
+    "published": "2025-03-30",
+    "fieldworkStart": "2025-03-26",
+    "fieldworkEnd": "2025-03-27",
+    "sampleSize": 1200,
+    "registeredSample": 1119,
+    "usefulSample": 727,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-9912",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-9912",
+      "page": 10,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 10,
+    "noIntention": 35.1,
+    "margin": {
+      "min": 1.6,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Olivier Faure, Gabriel Attal et Laurent Wauquiez",
+    "noticeSource": "notice-commission-9912",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 4
+      },
+      {
+        "id": "sonde-olivier-faure",
+        "name": "Olivier Faure",
+        "percentage": 5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 20
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 8
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 37
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 5
+      }
+    ],
+    "uncertainty": "La note du tableau donne 727 intentions exprimées parmi les inscrits et 582 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 700 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-9912-p11",
+    "institute": "Ifop",
+    "commissioner": "Le Journal du dimanche",
+    "published": "2025-03-30",
+    "fieldworkStart": "2025-03-26",
+    "fieldworkEnd": "2025-03-27",
+    "sampleSize": 1200,
+    "registeredSample": 1119,
+    "usefulSample": 774,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-9912",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-9912",
+      "page": 11,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 11,
+    "noIntention": 30.8,
+    "margin": {
+      "min": 1.6,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Olivier Faure, Édouard Philippe et Bruno Retailleau",
+    "noticeSource": "notice-commission-9912",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "sonde-olivier-faure",
+        "name": "Olivier Faure",
+        "percentage": 5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 21
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 11
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 5
+      }
+    ],
+    "uncertainty": "La note du tableau donne 774 intentions exprimées parmi les inscrits et 614 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 700 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-9912-p12",
+    "institute": "Ifop",
+    "commissioner": "Le Journal du dimanche",
+    "published": "2025-03-30",
+    "fieldworkStart": "2025-03-26",
+    "fieldworkEnd": "2025-03-27",
+    "sampleSize": 1200,
+    "registeredSample": 1119,
+    "usefulSample": 777,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-9912",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-9912",
+      "page": 12,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 12,
+    "noIntention": 30.6,
+    "margin": {
+      "min": 1.6,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Raphaël Glucksmann, Édouard Philippe et Laurent Wauquiez",
+    "noticeSource": "notice-commission-9912",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 20
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 35
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6
+      }
+    ],
+    "uncertainty": "La note du tableau donne 777 intentions exprimées parmi les inscrits et 614 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 700 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10118-p9",
+    "institute": "Ifop",
+    "commissioner": "Sud Radio et Le Figaro",
+    "published": "2026-03-04",
+    "fieldworkStart": "2026-02-26",
+    "fieldworkEnd": "2026-02-27",
+    "sampleSize": 1500,
+    "registeredSample": 1393,
+    "usefulSample": 1009,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10118",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10118",
+      "page": 9,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 9,
+    "noIntention": 27.6,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Édouard Philippe et Jordan Bardella",
+    "noticeSource": "notice-commission-10118",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 11
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 10
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 16
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 3.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2.5
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 36
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 009 intentions exprimées parmi les inscrits et 784 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10118-p10",
+    "institute": "Ifop",
+    "commissioner": "Sud Radio et Le Figaro",
+    "published": "2026-03-04",
+    "fieldworkStart": "2026-02-26",
+    "fieldworkEnd": "2026-02-27",
+    "sampleSize": 1500,
+    "registeredSample": 1393,
+    "usefulSample": 1013,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10118",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10118",
+      "page": 10,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 10,
+    "noIntention": 27.3,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Édouard Philippe et Marine Le Pen",
+    "noticeSource": "notice-commission-10118",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 10
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 16
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 11
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 013 intentions exprimées parmi les inscrits et 793 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10118-p11",
+    "institute": "Ifop",
+    "commissioner": "Sud Radio et Le Figaro",
+    "published": "2026-03-04",
+    "fieldworkStart": "2026-02-26",
+    "fieldworkEnd": "2026-02-27",
+    "sampleSize": 1500,
+    "registeredSample": 1393,
+    "usefulSample": 1025,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10118",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10118",
+      "page": 11,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 11,
+    "noIntention": 26.4,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Gabriel Attal et Jordan Bardella",
+    "noticeSource": "notice-commission-10118",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 2
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 10
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 12
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 11
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 12
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 4
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 36
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 025 intentions exprimées parmi les inscrits et 795 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10118-p12",
+    "institute": "Ifop",
+    "commissioner": "Sud Radio et Le Figaro",
+    "published": "2026-03-04",
+    "fieldworkStart": "2026-02-26",
+    "fieldworkEnd": "2026-02-27",
+    "sampleSize": 1500,
+    "registeredSample": 1393,
+    "usefulSample": 1005,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10118",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10118",
+      "page": 12,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 12,
+    "noIntention": 27.9,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Gabriel Attal et Marine Le Pen",
+    "noticeSource": "notice-commission-10118",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 2
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 11
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 12
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4.5
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 10
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 12
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 4.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 35
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 005 intentions exprimées parmi les inscrits et 780 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10118-p13",
+    "institute": "Ifop",
+    "commissioner": "Sud Radio et Le Figaro",
+    "published": "2026-03-04",
+    "fieldworkStart": "2026-02-26",
+    "fieldworkEnd": "2026-02-27",
+    "sampleSize": 1500,
+    "registeredSample": 1393,
+    "usefulSample": 1000,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10118",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10118",
+      "page": 13,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 13,
+    "noIntention": 28.2,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Gérald Darmanin et Jordan Bardella",
+    "noticeSource": "notice-commission-10118",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 10
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 13
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "sonde-gerald-darmanin",
+        "name": "Gérald Darmanin",
+        "percentage": 8
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 13
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2.5
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 37
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 000 intentions exprimées parmi les inscrits et 770 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10118-p14",
+    "institute": "Ifop",
+    "commissioner": "Sud Radio et Le Figaro",
+    "published": "2026-03-04",
+    "fieldworkStart": "2026-02-26",
+    "fieldworkEnd": "2026-02-27",
+    "sampleSize": 1500,
+    "registeredSample": 1393,
+    "usefulSample": 1002,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10118",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10118",
+      "page": 14,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 14,
+    "noIntention": 28.1,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Sébastien Lecornu et Jordan Bardella",
+    "noticeSource": "notice-commission-10118",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 2
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 10
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 13
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4.5
+      },
+      {
+        "id": "sonde-sebastien-lecornu",
+        "name": "Sébastien Lecornu",
+        "percentage": 6
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 13
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 37
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.5
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 002 intentions exprimées parmi les inscrits et 771 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10118-p15",
+    "institute": "Ifop",
+    "commissioner": "Sud Radio et Le Figaro",
+    "published": "2026-03-04",
+    "fieldworkStart": "2026-02-26",
+    "fieldworkEnd": "2026-02-27",
+    "sampleSize": 1500,
+    "registeredSample": 1393,
+    "usefulSample": 1029,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10118",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10118",
+      "page": 15,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 15,
+    "noIntention": 26.1,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Édouard Philippe candidat du socle commun",
+    "noticeSource": "notice-commission-10118",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 2
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 12
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 23
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 37
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 5
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 029 intentions exprimées parmi les inscrits et 797 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10118-p16",
+    "institute": "Ifop",
+    "commissioner": "Sud Radio et Le Figaro",
+    "published": "2026-03-04",
+    "fieldworkStart": "2026-02-26",
+    "fieldworkEnd": "2026-02-27",
+    "sampleSize": 1500,
+    "registeredSample": 1393,
+    "usefulSample": 978,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10118",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10118",
+      "page": 16,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 16,
+    "noIntention": 29.8,
+    "margin": {
+      "min": 1.4,
+      "max": 3.3,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Bruno Retailleau candidat du socle commun",
+    "noticeSource": "notice-commission-10118",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 2
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 12
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 16
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 17
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 38
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "La note du tableau donne 978 intentions exprimées parmi les inscrits et 758 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 900 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10118-p17",
+    "institute": "Ifop",
+    "commissioner": "Sud Radio et Le Figaro",
+    "published": "2026-03-04",
+    "fieldworkStart": "2026-02-26",
+    "fieldworkEnd": "2026-02-27",
+    "sampleSize": 1500,
+    "registeredSample": 1393,
+    "usefulSample": 1045,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10118",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10118",
+      "page": 17,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 17,
+    "noIntention": 25,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · François Hollande et Édouard Philippe",
+    "noticeSource": "notice-commission-10118",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 2
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 11
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "sonde-francois-hollande",
+        "name": "François Hollande",
+        "percentage": 8
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 18
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 11
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 36
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 045 intentions exprimées parmi les inscrits et 806 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ifop-commission-10118-p18",
+    "institute": "Ifop",
+    "commissioner": "Sud Radio et Le Figaro",
+    "published": "2026-03-04",
+    "fieldworkStart": "2026-02-26",
+    "fieldworkEnd": "2026-02-27",
+    "sampleSize": 1500,
+    "registeredSample": 1393,
+    "usefulSample": 1021,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ifop-commission-10118",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales qui expriment un choix.",
+      "sourceId": "notice-commission-10118",
+      "page": 18,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales qui expriment un choix.",
+    "method": "Questionnaire en ligne, quotas avec stratification géographique.",
+    "noticePage": 18,
+    "noIntention": 26.7,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Olivier Faure et Édouard Philippe",
+    "noticeSource": "notice-commission-10118",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 2
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 11
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "sonde-olivier-faure",
+        "name": "Olivier Faure",
+        "percentage": 5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 19
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 11
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3.5
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 36
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4.5
+      }
+    ],
+    "uncertainty": "La note du tableau donne 1 021 intentions exprimées parmi les inscrits et 793 parmi les inscrits certains d’aller voter. Le repère à 95 % de la page 3 correspond à 1 000 personnes.",
+    "noIntentionNote": "Part calculée sur l’ensemble des inscrits interrogés."
+  },
+  {
+    "id": "ipsos-bva-commission-10195-p10",
+    "institute": "Ipsos BVA",
+    "commissioner": "Le Parisien",
+    "published": "2026-06-01",
+    "fieldworkStart": "2026-05-27",
+    "fieldworkEnd": "2026-05-28",
+    "sampleSize": 1500,
+    "registeredSample": 1500,
+    "usefulSample": 1079,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ipsos-bva-commission-10195",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… quel est celui pour lequel il y aurait le plus de chances que vous votiez au 1er tour ?",
+      "base": "Inscrits certains d’aller voter qui expriment un choix.",
+      "sourceId": "notice-commission-10195",
+      "page": 10,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits certains d’aller voter qui expriment un choix.",
+    "method": "Panel Ipsos interrogé sur Internet, méthode des quotas.",
+    "noticePage": 10,
+    "noIntention": 7,
+    "margin": {
+      "min": 0.6,
+      "max": 2.8,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Glucksmann, Attal, Philippe et Bardella",
+    "noticeSource": "notice-commission-10195",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 8.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 13
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 7.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.5
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 33.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "Les bornes résument les marges affichées pour les scores de cette hypothèse. La notice explique le repère théorique à 95 % en page 3.",
+    "noIntentionNote": "Part des inscrits certains d’aller voter.",
+    "resultSource": "rapport-ipsos-2026-06-01",
+    "resultPage": 6
+  },
+  {
+    "id": "ipsos-bva-commission-10195-p11",
+    "institute": "Ipsos BVA",
+    "commissioner": "Le Parisien",
+    "published": "2026-06-01",
+    "fieldworkStart": "2026-05-27",
+    "fieldworkEnd": "2026-05-28",
+    "sampleSize": 1500,
+    "registeredSample": 1500,
+    "usefulSample": 1073,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ipsos-bva-commission-10195",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… quel est celui pour lequel il y aurait le plus de chances que vous votiez au 1er tour ?",
+      "base": "Inscrits certains d’aller voter qui expriment un choix.",
+      "sourceId": "notice-commission-10195",
+      "page": 11,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits certains d’aller voter qui expriment un choix.",
+    "method": "Panel Ipsos interrogé sur Internet, méthode des quotas.",
+    "noticePage": 11,
+    "noIntention": 7,
+    "margin": {
+      "min": 0.6,
+      "max": 2.8,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Glucksmann, Attal, Philippe et Le Pen",
+    "noticeSource": "notice-commission-10195",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 8.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 14
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 31
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4.5
+      }
+    ],
+    "uncertainty": "Les bornes résument les marges affichées pour les scores de cette hypothèse. La notice explique le repère théorique à 95 % en page 3.",
+    "noIntentionNote": "Part des inscrits certains d’aller voter.",
+    "resultSource": "rapport-ipsos-2026-06-01",
+    "resultPage": 7
+  },
+  {
+    "id": "ipsos-bva-commission-10195-p12",
+    "institute": "Ipsos BVA",
+    "commissioner": "Le Parisien",
+    "published": "2026-06-01",
+    "fieldworkStart": "2026-05-27",
+    "fieldworkEnd": "2026-05-28",
+    "sampleSize": 1500,
+    "registeredSample": 1500,
+    "usefulSample": 1060,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ipsos-bva-commission-10195",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… quel est celui pour lequel il y aurait le plus de chances que vous votiez au 1er tour ?",
+      "base": "Inscrits certains d’aller voter qui expriment un choix.",
+      "sourceId": "notice-commission-10195",
+      "page": 12,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits certains d’aller voter qui expriment un choix.",
+    "method": "Panel Ipsos interrogé sur Internet, méthode des quotas.",
+    "noticePage": 12,
+    "noIntention": 9,
+    "margin": {
+      "min": 0.6,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Hollande, Attal, Philippe et Bardella",
+    "noticeSource": "notice-commission-10195",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 4
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "sonde-francois-hollande",
+        "name": "François Hollande",
+        "percentage": 7
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 9.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 13.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.5
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "Les bornes résument les marges affichées pour les scores de cette hypothèse. La notice explique le repère théorique à 95 % en page 3.",
+    "noIntentionNote": "Part des inscrits certains d’aller voter.",
+    "resultSource": "rapport-ipsos-2026-06-01",
+    "resultPage": 8
+  },
+  {
+    "id": "ipsos-bva-commission-10195-p13",
+    "institute": "Ipsos BVA",
+    "commissioner": "Le Parisien",
+    "published": "2026-06-01",
+    "fieldworkStart": "2026-05-27",
+    "fieldworkEnd": "2026-05-28",
+    "sampleSize": 1500,
+    "registeredSample": 1500,
+    "usefulSample": 1065,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ipsos-bva-commission-10195",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… quel est celui pour lequel il y aurait le plus de chances que vous votiez au 1er tour ?",
+      "base": "Inscrits certains d’aller voter qui expriment un choix.",
+      "sourceId": "notice-commission-10195",
+      "page": 13,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits certains d’aller voter qui expriment un choix.",
+    "method": "Panel Ipsos interrogé sur Internet, méthode des quotas.",
+    "noticePage": 13,
+    "noIntention": 8,
+    "margin": {
+      "min": 0.6,
+      "max": 2.8,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Hollande, Attal, Philippe et Le Pen",
+    "noticeSource": "notice-commission-10195",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 4
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "sonde-francois-hollande",
+        "name": "François Hollande",
+        "percentage": 7
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 9.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 14.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 32
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4.5
+      }
+    ],
+    "uncertainty": "Les bornes résument les marges affichées pour les scores de cette hypothèse. La notice explique le repère théorique à 95 % en page 3.",
+    "noIntentionNote": "Part des inscrits certains d’aller voter.",
+    "resultSource": "rapport-ipsos-2026-06-01",
+    "resultPage": 9
+  },
+  {
+    "id": "ipsos-bva-commission-10195-p14",
+    "institute": "Ipsos BVA",
+    "commissioner": "Le Parisien",
+    "published": "2026-06-01",
+    "fieldworkStart": "2026-05-27",
+    "fieldworkEnd": "2026-05-28",
+    "sampleSize": 1500,
+    "registeredSample": 1500,
+    "usefulSample": 1050,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ipsos-bva-commission-10195",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… quel est celui pour lequel il y aurait le plus de chances que vous votiez au 1er tour ?",
+      "base": "Inscrits certains d’aller voter qui expriment un choix.",
+      "sourceId": "notice-commission-10195",
+      "page": 14,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits certains d’aller voter qui expriment un choix.",
+    "method": "Panel Ipsos interrogé sur Internet, méthode des quotas.",
+    "noticePage": 14,
+    "noIntention": 9,
+    "margin": {
+      "min": 0.6,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Glucksmann, Attal et Bardella",
+    "noticeSource": "notice-commission-10195",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 14
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 14.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.5
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 35
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "Les bornes résument les marges affichées pour les scores de cette hypothèse. La notice explique le repère théorique à 95 % en page 3.",
+    "noIntentionNote": "Part des inscrits certains d’aller voter.",
+    "resultSource": "rapport-ipsos-2026-06-01",
+    "resultPage": 10
+  },
+  {
+    "id": "ipsos-bva-commission-10195-p15",
+    "institute": "Ipsos BVA",
+    "commissioner": "Le Parisien",
+    "published": "2026-06-01",
+    "fieldworkStart": "2026-05-27",
+    "fieldworkEnd": "2026-05-28",
+    "sampleSize": 1500,
+    "registeredSample": 1500,
+    "usefulSample": 1057,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ipsos-bva-commission-10195",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… quel est celui pour lequel il y aurait le plus de chances que vous votiez au 1er tour ?",
+      "base": "Inscrits certains d’aller voter qui expriment un choix.",
+      "sourceId": "notice-commission-10195",
+      "page": 15,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits certains d’aller voter qui expriment un choix.",
+    "method": "Panel Ipsos interrogé sur Internet, méthode des quotas.",
+    "noticePage": 15,
+    "noIntention": 9,
+    "margin": {
+      "min": 0.6,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Glucksmann, Philippe et Bardella",
+    "noticeSource": "notice-commission-10195",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 13
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 17.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.5
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "Les bornes résument les marges affichées pour les scores de cette hypothèse. La notice explique le repère théorique à 95 % en page 3.",
+    "noIntentionNote": "Part des inscrits certains d’aller voter.",
+    "resultSource": "rapport-ipsos-2026-06-01",
+    "resultPage": 11
+  },
+  {
+    "id": "ipsos-bva-commission-10195-p16",
+    "institute": "Ipsos BVA",
+    "commissioner": "Le Parisien",
+    "published": "2026-06-01",
+    "fieldworkStart": "2026-05-27",
+    "fieldworkEnd": "2026-05-28",
+    "sampleSize": 1500,
+    "registeredSample": 1500,
+    "usefulSample": 1037,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ipsos-bva-commission-10195",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… quel est celui pour lequel il y aurait le plus de chances que vous votiez au 1er tour ?",
+      "base": "Inscrits certains d’aller voter qui expriment un choix.",
+      "sourceId": "notice-commission-10195",
+      "page": 16,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits certains d’aller voter qui expriment un choix.",
+    "method": "Panel Ipsos interrogé sur Internet, méthode des quotas.",
+    "noticePage": 16,
+    "noIntention": 11,
+    "margin": {
+      "min": 0.6,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Hollande, Attal et Bardella",
+    "noticeSource": "notice-commission-10195",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 5
+      },
+      {
+        "id": "sonde-francois-hollande",
+        "name": "François Hollande",
+        "percentage": 8
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 17.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.5
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 36
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "Les bornes résument les marges affichées pour les scores de cette hypothèse. La notice explique le repère théorique à 95 % en page 3.",
+    "noIntentionNote": "Part des inscrits certains d’aller voter.",
+    "resultSource": "rapport-ipsos-2026-06-01",
+    "resultPage": 12
+  },
+  {
+    "id": "ipsos-bva-commission-10195-p17",
+    "institute": "Ipsos BVA",
+    "commissioner": "Le Parisien",
+    "published": "2026-06-01",
+    "fieldworkStart": "2026-05-27",
+    "fieldworkEnd": "2026-05-28",
+    "sampleSize": 1500,
+    "registeredSample": 1500,
+    "usefulSample": 1041,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "ipsos-bva-commission-10195",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… quel est celui pour lequel il y aurait le plus de chances que vous votiez au 1er tour ?",
+      "base": "Inscrits certains d’aller voter qui expriment un choix.",
+      "sourceId": "notice-commission-10195",
+      "page": 17,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits certains d’aller voter qui expriment un choix.",
+    "method": "Panel Ipsos interrogé sur Internet, méthode des quotas.",
+    "noticePage": 17,
+    "noIntention": 11,
+    "margin": {
+      "min": 0.6,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Hollande, Philippe et Bardella",
+    "noticeSource": "notice-commission-10195",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 4
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 5
+      },
+      {
+        "id": "sonde-francois-hollande",
+        "name": "François Hollande",
+        "percentage": 7.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 19
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.5
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 35.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "Les bornes résument les marges affichées pour les scores de cette hypothèse. La notice explique le repère théorique à 95 % en page 3.",
+    "noIntentionNote": "Part des inscrits certains d’aller voter.",
+    "resultSource": "rapport-ipsos-2026-06-01",
+    "resultPage": 13
+  },
+  {
+    "id": "opinionway-commission-10224-p14",
+    "institute": "OpinionWay",
+    "commissioner": "Les Échos et Radio Classique",
+    "published": "2026-07-09",
+    "fieldworkStart": "2026-07-08",
+    "fieldworkEnd": "2026-07-09",
+    "sampleSize": 1042,
+    "registeredSample": 963,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "opinionway-commission-10224",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains d’aller voter (notes 9 ou 10) qui expriment un choix.",
+      "sourceId": "notice-commission-10224",
+      "page": 14,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits certains d’aller voter (notes 9 ou 10) qui expriment un choix.",
+    "method": "Questionnaire en ligne, échantillon par quotas, redressement électoral.",
+    "noticePage": 14,
+    "noIntention": 14,
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Gabriel Attal et Édouard Philippe candidats du centre",
+    "noticeSource": "notice-commission-10224",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": null,
+        "below": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 9
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 7
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 18
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 35
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ],
+    "uncertainty": "La notice publie en page 4 un repère à 95 % pour 700 personnes. L’effectif des votes exprimés par hypothèse reste inconnu.",
+    "noIntentionNote": "Le document méthodologique indique une base ensemble pour la non-expression."
+  },
+  {
+    "id": "opinionway-commission-10224-p15",
+    "institute": "OpinionWay",
+    "commissioner": "Les Échos et Radio Classique",
+    "published": "2026-07-09",
+    "fieldworkStart": "2026-07-08",
+    "fieldworkEnd": "2026-07-09",
+    "sampleSize": 1042,
+    "registeredSample": 963,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "opinionway-commission-10224",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains d’aller voter (notes 9 ou 10) qui expriment un choix.",
+      "sourceId": "notice-commission-10224",
+      "page": 15,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits certains d’aller voter (notes 9 ou 10) qui expriment un choix.",
+    "method": "Questionnaire en ligne, échantillon par quotas, redressement électoral.",
+    "noticePage": 15,
+    "noIntention": 15,
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Gabriel Attal candidat du centre",
+    "noticeSource": "notice-commission-10224",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 10
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 16
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 12
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 36
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ],
+    "uncertainty": "La notice publie en page 4 un repère à 95 % pour 700 personnes. L’effectif des votes exprimés par hypothèse reste inconnu.",
+    "noIntentionNote": "Le document méthodologique indique une base ensemble pour la non-expression."
+  },
+  {
+    "id": "opinionway-commission-10224-p16",
+    "institute": "OpinionWay",
+    "commissioner": "Les Échos et Radio Classique",
+    "published": "2026-07-09",
+    "fieldworkStart": "2026-07-08",
+    "fieldworkEnd": "2026-07-09",
+    "sampleSize": 1042,
+    "registeredSample": 963,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "opinionway-commission-10224",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains d’aller voter (notes 9 ou 10) qui expriment un choix.",
+      "sourceId": "notice-commission-10224",
+      "page": 16,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits certains d’aller voter (notes 9 ou 10) qui expriment un choix.",
+    "method": "Questionnaire en ligne, échantillon par quotas, redressement électoral.",
+    "noticePage": 16,
+    "noIntention": 15,
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Édouard Philippe candidat du centre",
+    "noticeSource": "notice-commission-10224",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 9
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 22
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      }
+    ],
+    "uncertainty": "La notice publie en page 4 un repère à 95 % pour 700 personnes. L’effectif des votes exprimés par hypothèse reste inconnu.",
+    "noIntentionNote": "Le document méthodologique indique une base ensemble pour la non-expression."
+  },
+  {
+    "id": "opinionway-commission-10259-p13",
+    "institute": "OpinionWay",
+    "commissioner": "Les Échos et Radio Classique",
+    "published": "2026-09-10",
+    "fieldworkStart": "2026-09-08",
+    "fieldworkEnd": "2026-09-09",
+    "sampleSize": 1001,
+    "registeredSample": 948,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "opinionway-commission-10259",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains d’aller voter (notes 9 ou 10) qui expriment un choix.",
+      "sourceId": "notice-commission-10259",
+      "page": 13,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits certains d’aller voter (notes 9 ou 10) qui expriment un choix.",
+    "method": "Questionnaire en ligne, échantillon par quotas, redressement électoral.",
+    "noticePage": 13,
+    "noIntention": 15,
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Gabriel Attal et Édouard Philippe candidats du centre",
+    "noticeSource": "notice-commission-10259",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": null,
+        "below": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 9
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 8
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 15
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34
+      }
+    ],
+    "uncertainty": "La notice publie en page 4 un repère à 95 % pour 700 personnes. L’effectif des votes exprimés par hypothèse reste inconnu. Les deux libellés Le Pen et Zemmour divergent entre la page 13 de la notice et le récapitulatif de l’institut utilisé pour les scores.",
+    "noIntentionNote": "Le document méthodologique indique une base ensemble pour la non-expression.",
+    "resultSource": "rapport-opinionway-presitrack-septembre-2026",
+    "resultPage": 23
+  },
+  {
+    "id": "opinionway-commission-10259-p14",
+    "institute": "OpinionWay",
+    "commissioner": "Les Échos et Radio Classique",
+    "published": "2026-09-10",
+    "fieldworkStart": "2026-09-08",
+    "fieldworkEnd": "2026-09-09",
+    "sampleSize": 1001,
+    "registeredSample": 948,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "opinionway-commission-10259",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains d’aller voter (notes 9 ou 10) qui expriment un choix.",
+      "sourceId": "notice-commission-10259",
+      "page": 14,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits certains d’aller voter (notes 9 ou 10) qui expriment un choix.",
+    "method": "Questionnaire en ligne, échantillon par quotas, redressement électoral.",
+    "noticePage": 14,
+    "noIntention": 15,
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Gabriel Attal candidat du centre",
+    "noticeSource": "notice-commission-10259",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 12
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 14
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 12
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34
+      }
+    ],
+    "uncertainty": "La notice publie en page 4 un repère à 95 % pour 700 personnes. L’effectif des votes exprimés par hypothèse reste inconnu.",
+    "noIntentionNote": "Le document méthodologique indique une base ensemble pour la non-expression.",
+    "resultSource": "rapport-opinionway-presitrack-septembre-2026",
+    "resultPage": 23
+  },
+  {
+    "id": "opinionway-commission-10259-p15",
+    "institute": "OpinionWay",
+    "commissioner": "Les Échos et Radio Classique",
+    "published": "2026-09-10",
+    "fieldworkStart": "2026-09-08",
+    "fieldworkEnd": "2026-09-09",
+    "sampleSize": 1001,
+    "registeredSample": 948,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "opinionway-commission-10259",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains d’aller voter (notes 9 ou 10) qui expriment un choix.",
+      "sourceId": "notice-commission-10259",
+      "page": 15,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits certains d’aller voter (notes 9 ou 10) qui expriment un choix.",
+    "method": "Questionnaire en ligne, échantillon par quotas, redressement électoral.",
+    "noticePage": 15,
+    "noIntention": 15,
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Édouard Philippe candidat du centre",
+    "noticeSource": "notice-commission-10259",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 1
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 10
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 19
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34
+      }
+    ],
+    "uncertainty": "La notice publie en page 4 un repère à 95 % pour 700 personnes. L’effectif des votes exprimés par hypothèse reste inconnu.",
+    "noIntentionNote": "Le document méthodologique indique une base ensemble pour la non-expression.",
+    "resultSource": "rapport-opinionway-presitrack-septembre-2026",
+    "resultPage": 23
+  },
+  {
+    "id": "opinionway-commission-10318-p13",
+    "institute": "OpinionWay",
+    "commissioner": "Les Échos et Radio Classique",
+    "published": "2026-10-15",
+    "fieldworkStart": "2026-10-13",
+    "fieldworkEnd": "2026-10-14",
+    "sampleSize": 1001,
+    "registeredSample": 978,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "opinionway-commission-10318",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains d’aller voter (notes 9 ou 10) qui expriment un choix.",
+      "sourceId": "notice-commission-10318",
+      "page": 13,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits certains d’aller voter (notes 9 ou 10) qui expriment un choix.",
+    "method": "Questionnaire en ligne, échantillon par quotas, redressement électoral.",
+    "noticePage": 13,
+    "noIntention": 15,
+    "margin": {
+      "min": 1.6,
+      "max": 3.6,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Gabriel Attal et Édouard Philippe candidats du centre",
+    "noticeSource": "notice-commission-10318",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": null,
+        "below": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 14
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 13
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 7
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 12
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 7
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 35
+      }
+    ],
+    "uncertainty": "La notice publie en page 4 un repère à 95 % pour 731 personnes. L’effectif des votes exprimés par hypothèse reste inconnu.",
+    "noIntentionNote": "Le document méthodologique indique une base ensemble pour la non-expression."
+  },
+  {
+    "id": "opinionway-commission-10318-p14",
+    "institute": "OpinionWay",
+    "commissioner": "Les Échos et Radio Classique",
+    "published": "2026-10-15",
+    "fieldworkStart": "2026-10-13",
+    "fieldworkEnd": "2026-10-14",
+    "sampleSize": 1001,
+    "registeredSample": 978,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "opinionway-commission-10318",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains d’aller voter (notes 9 ou 10) qui expriment un choix.",
+      "sourceId": "notice-commission-10318",
+      "page": 14,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits certains d’aller voter (notes 9 ou 10) qui expriment un choix.",
+    "method": "Questionnaire en ligne, échantillon par quotas, redressement électoral.",
+    "noticePage": 14,
+    "noIntention": 16,
+    "margin": {
+      "min": 1.6,
+      "max": 3.6,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Gabriel Attal candidat du centre",
+    "noticeSource": "notice-commission-10318",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 16
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 11
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 37
+      }
+    ],
+    "uncertainty": "La notice publie en page 4 un repère à 95 % pour 731 personnes. L’effectif des votes exprimés par hypothèse reste inconnu.",
+    "noIntentionNote": "Le document méthodologique indique une base ensemble pour la non-expression."
+  },
+  {
+    "id": "opinionway-commission-10318-p15",
+    "institute": "OpinionWay",
+    "commissioner": "Les Échos et Radio Classique",
+    "published": "2026-10-15",
+    "fieldworkStart": "2026-10-13",
+    "fieldworkEnd": "2026-10-14",
+    "sampleSize": 1001,
+    "registeredSample": 978,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "opinionway-commission-10318",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains d’aller voter (notes 9 ou 10) qui expriment un choix.",
+      "sourceId": "notice-commission-10318",
+      "page": 15,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits certains d’aller voter (notes 9 ou 10) qui expriment un choix.",
+    "method": "Questionnaire en ligne, échantillon par quotas, redressement électoral.",
+    "noticePage": 15,
+    "noIntention": 15,
+    "margin": {
+      "min": 1.6,
+      "max": 3.6,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Édouard Philippe candidat du centre",
+    "noticeSource": "notice-commission-10318",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 15
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 15
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 35
+      }
+    ],
+    "uncertainty": "La notice publie en page 4 un repère à 95 % pour 731 personnes. L’effectif des votes exprimés par hypothèse reste inconnu.",
+    "noIntentionNote": "Le document méthodologique indique une base ensemble pour la non-expression."
+  },
+  {
+    "id": "harris-commission-10192-p36",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-25",
+    "fieldworkEnd": "2026-05-27",
+    "sampleSize": 2068,
+    "registeredSample": 1744,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-10192",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le premier tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-10192",
+      "page": 16,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 36,
+    "noIntention": null,
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Gabriel Attal, Édouard Philippe et Jordan Bardella",
+    "noticeSource": "notice-commission-10192",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 14
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 10
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 9
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 13
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 32
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 5
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 36. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-10192-p38",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-25",
+    "fieldworkEnd": "2026-05-27",
+    "sampleSize": 2068,
+    "registeredSample": 1744,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-10192",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le premier tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-10192",
+      "page": 17,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 38,
+    "noIntention": null,
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Édouard Philippe et Jordan Bardella",
+    "noticeSource": "notice-commission-10192",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 10
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 17
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 38. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-10192-p40",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-25",
+    "fieldworkEnd": "2026-05-27",
+    "sampleSize": 2068,
+    "registeredSample": 1744,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-10192",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le premier tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-10192",
+      "page": 18,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 40,
+    "noIntention": null,
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Gabriel Attal et Jordan Bardella",
+    "noticeSource": "notice-commission-10192",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 4
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 14
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 40. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-10192-p42",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-25",
+    "fieldworkEnd": "2026-05-27",
+    "sampleSize": 2068,
+    "registeredSample": 1744,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-10192",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le premier tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-10192",
+      "page": 19,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 42,
+    "noIntention": null,
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Édouard Philippe et Marine Le Pen",
+    "noticeSource": "notice-commission-10192",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 14
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 19
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 31
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 42. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-10192-p44",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-25",
+    "fieldworkEnd": "2026-05-27",
+    "sampleSize": 2068,
+    "registeredSample": 1744,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-10192",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le premier tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-10192",
+      "page": 20,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 44,
+    "noIntention": null,
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Gabriel Attal et Marine Le Pen",
+    "noticeSource": "notice-commission-10192",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 4
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 15
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 11
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 32
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 44. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-10192-p49",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-25",
+    "fieldworkEnd": "2026-05-27",
+    "sampleSize": 2068,
+    "registeredSample": 1744,
+    "usefulSample": null,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-10192",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le second tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-10192",
+      "page": 23,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 49,
+    "noIntention": null,
+    "margin": {
+      "min": 3.1,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Jordan Bardella et Jean-Luc Mélenchon",
+    "noticeSource": "notice-commission-10192",
+    "results": [
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 32
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 68
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 49. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-10192-p51",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-25",
+    "fieldworkEnd": "2026-05-27",
+    "sampleSize": 2068,
+    "registeredSample": 1744,
+    "usefulSample": null,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-10192",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le second tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-10192",
+      "page": 24,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 51,
+    "noIntention": null,
+    "margin": {
+      "min": 3.1,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Jordan Bardella et Gabriel Attal",
+    "noticeSource": "notice-commission-10192",
+    "results": [
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 43
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 57
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 51. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-10192-p53",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-25",
+    "fieldworkEnd": "2026-05-27",
+    "sampleSize": 2068,
+    "registeredSample": 1744,
+    "usefulSample": null,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-10192",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le second tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-10192",
+      "page": 25,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 53,
+    "noIntention": null,
+    "margin": {
+      "min": 3.1,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Jordan Bardella et Édouard Philippe",
+    "noticeSource": "notice-commission-10192",
+    "results": [
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 46
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 54
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 53. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-10192-p56",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-25",
+    "fieldworkEnd": "2026-05-27",
+    "sampleSize": 2068,
+    "registeredSample": 1744,
+    "usefulSample": null,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-10192",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le second tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-10192",
+      "page": 23,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 56,
+    "noIntention": null,
+    "margin": {
+      "min": 3.1,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Marine Le Pen et Jean-Luc Mélenchon",
+    "noticeSource": "notice-commission-10192",
+    "results": [
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 33
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 67
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 56. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-10192-p58",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-25",
+    "fieldworkEnd": "2026-05-27",
+    "sampleSize": 2068,
+    "registeredSample": 1744,
+    "usefulSample": null,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-10192",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le second tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-10192",
+      "page": 24,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 58,
+    "noIntention": null,
+    "margin": {
+      "min": 3.1,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Marine Le Pen et Gabriel Attal",
+    "noticeSource": "notice-commission-10192",
+    "results": [
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 46
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 54
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 58. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-10192-p60",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-05-29",
+    "fieldworkStart": "2026-05-25",
+    "fieldworkEnd": "2026-05-27",
+    "sampleSize": 2068,
+    "registeredSample": 1744,
+    "usefulSample": null,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-10192",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le second tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-10192",
+      "page": 25,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 60,
+    "noIntention": null,
+    "margin": {
+      "min": 3.1,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Marine Le Pen et Édouard Philippe",
+    "noticeSource": "notice-commission-10192",
+    "results": [
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 48
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 52
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 60. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-10180-p28",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-05-04",
+    "fieldworkStart": "2026-04-28",
+    "fieldworkEnd": "2026-04-30",
+    "sampleSize": 1989,
+    "registeredSample": 1725,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-10180",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le premier tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-10180",
+      "page": 13,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 28,
+    "noIntention": null,
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Édouard Philippe et Jordan Bardella",
+    "noticeSource": "notice-commission-10180",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 4
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 12
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 19
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 5
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 28. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-10180-p30",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-05-04",
+    "fieldworkStart": "2026-04-28",
+    "fieldworkEnd": "2026-04-30",
+    "sampleSize": 1989,
+    "registeredSample": 1725,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-10180",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le premier tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-10180",
+      "page": 14,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 30,
+    "noIntention": null,
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Gabriel Attal et Jordan Bardella",
+    "noticeSource": "notice-commission-10180",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 12
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 14
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 12
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 35
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 5
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 30. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-10180-p32",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-05-04",
+    "fieldworkStart": "2026-04-28",
+    "fieldworkEnd": "2026-04-30",
+    "sampleSize": 1989,
+    "registeredSample": 1725,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-10180",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le premier tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-10180",
+      "page": 15,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 32,
+    "noIntention": null,
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Édouard Philippe et Marine Le Pen",
+    "noticeSource": "notice-commission-10180",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 4
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 12
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 19
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 32
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 32. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-10180-p34",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-05-04",
+    "fieldworkStart": "2026-04-28",
+    "fieldworkEnd": "2026-04-30",
+    "sampleSize": 1989,
+    "registeredSample": 1725,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-10180",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le premier tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-10180",
+      "page": 16,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 34,
+    "noIntention": null,
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Gabriel Attal et Marine Le Pen",
+    "noticeSource": "notice-commission-10180",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 4
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 12
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 12
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 14
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 13
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 33
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 5
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 34. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-10165-p21",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-03-22",
+    "fieldworkStart": "2026-03-22",
+    "fieldworkEnd": "2026-03-22",
+    "sampleSize": 1062,
+    "registeredSample": 1000,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-10165",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le premier tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-10165",
+      "page": 12,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 21,
+    "noIntention": null,
+    "margin": {
+      "min": 1.8,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Édouard Philippe",
+    "noticeSource": "notice-commission-10165",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 11
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 14
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 18
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 7
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 35
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 5
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 21. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-10165-p23",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "M6 et RTL",
+    "published": "2026-03-22",
+    "fieldworkStart": "2026-03-22",
+    "fieldworkEnd": "2026-03-22",
+    "sampleSize": 1062,
+    "registeredSample": 1000,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-10165",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le premier tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-10165",
+      "page": 13,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 23,
+    "noIntention": null,
+    "margin": {
+      "min": 1.8,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Gabriel Attal",
+    "noticeSource": "notice-commission-10165",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 11
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 14
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 5
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 13
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 36
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 5
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 23. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-9995-p22",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "RTL",
+    "published": "2025-10-08",
+    "fieldworkStart": "2025-10-07",
+    "fieldworkEnd": "2025-10-07",
+    "sampleSize": 1289,
+    "registeredSample": 1124,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-9995",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le premier tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-9995",
+      "page": 13,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 22,
+    "noIntention": null,
+    "margin": {
+      "min": 1.8,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Édouard Philippe et Jordan Bardella",
+    "noticeSource": "notice-commission-9995",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 14
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 12
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 15
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 35
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 22. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-9995-p24",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "RTL",
+    "published": "2025-10-08",
+    "fieldworkStart": "2025-10-07",
+    "fieldworkEnd": "2025-10-07",
+    "sampleSize": 1289,
+    "registeredSample": 1124,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-9995",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le premier tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-9995",
+      "page": 14,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 24,
+    "noIntention": null,
+    "margin": {
+      "min": 1.8,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Édouard Philippe et Marine Le Pen",
+    "noticeSource": "notice-commission-9995",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 14
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 12
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 16
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 24. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-9995-p26",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "RTL",
+    "published": "2025-10-08",
+    "fieldworkStart": "2025-10-07",
+    "fieldworkEnd": "2025-10-07",
+    "sampleSize": 1289,
+    "registeredSample": 1124,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-9995",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le premier tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-9995",
+      "page": 15,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 26,
+    "noIntention": null,
+    "margin": {
+      "min": 1.8,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Gabriel Attal et Jordan Bardella",
+    "noticeSource": "notice-commission-9995",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 14
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 14
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 12
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 11
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 35
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 26. L’effectif des votes exprimés par hypothèse reste inconnu."
+  },
+  {
+    "id": "harris-commission-9995-p28",
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "RTL",
+    "published": "2025-10-08",
+    "fieldworkStart": "2025-10-07",
+    "fieldworkEnd": "2025-10-07",
+    "sampleSize": 1289,
+    "registeredSample": 1124,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "harris-commission-9995",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Parmi les candidats suivants, pour lequel y aurait-il le plus de chances que vous votiez si le premier tour… ?",
+      "base": "Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+      "sourceId": "notice-commission-9995",
+      "page": 16,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Inscrits sur les listes électorales, en pourcentage des votes exprimés.",
+    "method": "Questionnaire en ligne, échantillon par quotas et redressement électoral.",
+    "noticePage": 28,
+    "noIntention": null,
+    "margin": {
+      "min": 1.8,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Gabriel Attal et Marine Le Pen",
+    "noticeSource": "notice-commission-9995",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 14
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 14
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 12
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 11
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6
+      }
+    ],
+    "uncertainty": "La notice publie l’incertitude propre au scénario en page 28. L’effectif des votes exprimés par hypothèse reste inconnu."
   }
 ]
