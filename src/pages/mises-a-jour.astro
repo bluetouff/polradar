@@ -135,11 +135,20 @@ const workflow = meta.repository + '/actions/workflows/watch.yml';
       Les changements portent sur les données publiées. Les notices et documents
       signalés pour relecture restent en attente d’une décision éditoriale.
     </p>
-    {runs.map((run, i) => (
-      <details open={i === 0} class="daily-run">
+    {runs.map((run) => (
+      <details
+        open={latestByFamily.some((entry) => entry.run === run)}
+        class="daily-run"
+      >
         <summary>
           <Icon name="historique" />
           <time datetime={run.at}>{display(run.at)}</time>
+          <span>
+            ·{' '}
+            {run.scope === 'sondages'
+              ? 'Notices de sondage'
+              : 'Collecte quotidienne'}
+          </span>
         </summary>
         <a
           class="run-source"
@@ -332,6 +341,7 @@ const workflow = meta.repository + '/actions/workflows/watch.yml';
   .daily-run > summary {
     font-weight: 620;
     display: flex;
+    flex-wrap: wrap;
   }
   .run-source {
     display: inline-block;

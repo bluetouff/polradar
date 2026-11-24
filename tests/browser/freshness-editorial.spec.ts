@@ -59,8 +59,17 @@ test('le journal publie ses six contrôles et la date réelle de la dernière ex
     'polymarket',
     'kalshi',
     'sondages',
-  ])
+  ]) {
     await expect(page.locator('#journal-' + id)).toBeVisible();
+    const last = history.find((run) => run.rows.some((row) => row.id === id))!;
+    const run = page.locator('.daily-run').filter({
+      has: page.locator('#journal-' + id),
+    });
+    await expect(run.locator('summary > time')).toHaveAttribute(
+      'datetime',
+      last.at,
+    );
+  }
   await expect(
     page
       .locator('.daily-run')
@@ -75,9 +84,10 @@ test.describe('journal éditorial', () => {
   }) => {
     await page.goto('/mises-a-jour/#revue-editoriale');
     const section = page.getByRole('region', { name: 'Recherche éditoriale' });
-    const latest = [...editorial].sort(
-      (a, b) => Date.parse(b.checkedAt) - Date.parse(a.checkedAt),
-    )[0];
+    const displayed = [...editorial]
+      .sort((a, b) => Date.parse(b.checkedAt) - Date.parse(a.checkedAt))
+      .slice(0, 7);
+    const latest = displayed[0];
     await expect(section.locator('#last-editorial-review')).toHaveAttribute(
       'datetime',
       latest.checkedAt,
@@ -107,9 +117,25 @@ test.describe('journal éditorial', () => {
       await sources.locator('summary').click();
       await expect(sources.locator('li')).toHaveCount(hosted.checks.length);
     }
-    await expect(report.locator('.review-candidates > summary')).toContainText(
-      String(latest.candidates.length),
+    if ('scope' in latest && latest.scope === 'annonces') {
+      await expect(
+        report.getByRole('heading', { name: 'Annonces officielles' }),
+      ).toBeVisible();
+      await expect(report.locator('.review-candidates')).toHaveCount(0);
+      await expect(report.locator('.review-grid article')).toHaveCount(
+        latest.sections.length,
+      );
+    }
+    const completeIndex = displayed.findIndex(
+      (entry) => !('scope' in entry) || entry.scope !== 'annonces',
     );
+    if (completeIndex >= 0) {
+      const complete = section.locator('.edition-review').nth(completeIndex);
+      if (completeIndex > 0) await complete.locator(':scope > summary').click();
+      await expect(
+        complete.locator('.review-candidates > summary'),
+      ).toContainText(String(displayed[completeIndex].candidates.length));
+    }
     const references = report.locator('.review-grid article details').first();
     await references.locator('summary').click();
     await expect(references.getByRole('link').first()).toBeVisible();
