@@ -21,13 +21,12 @@ test('le catalogue documentaire expose chaque choix du Studio et les sources de 
   for (const family of families) {
     await page.locator('#studio-family').selectOption(family);
     values.push(
-      ...(await page
-        .locator('#studio-item option')
-        .evaluateAll((options) =>
-          options
-            .map((option) => (option as HTMLOptionElement).value)
-            .filter(Boolean),
-        )),
+      ...(await page.locator('#studio-item option').evaluateAll((options) =>
+        options
+          .filter((option) => !(option as HTMLOptionElement).dataset.poll)
+          .map((option) => (option as HTMLOptionElement).value)
+          .filter(Boolean),
+      )),
     );
   }
   const exposed = items.map((item: { studio: string }) =>
@@ -39,6 +38,75 @@ test('le catalogue documentaire expose chaque choix du Studio et les sources de 
   );
   expect(map.sources.length).toBeGreaterThan(0);
   expect((await request.get(new URL(map.donnees).pathname)).ok()).toBe(true);
+});
+
+test('les archives de sondage sont filtrables et gardent les seuils publiés', async ({
+  page,
+  request,
+}) => {
+  const { polls } = await (await request.get('/data/enquetes.json')).json();
+  const records = polls.filter(
+    (p: { historicalImport?: boolean }) => p.historicalImport,
+  );
+  const id = 'opinionway-commission-10333-p12';
+  expect(records.some((p: { id: string }) => p.id === id)).toBe(true);
+  await page.setViewportSize({ width: 375, height: 780 });
+  await page.goto('/studio/#sondages-archives');
+  await expect(page.locator('#studio-family')).toHaveValue('sondages-archives');
+  await expect(page.locator('#studio-item option[data-poll]')).toHaveCount(
+    records.length,
+  );
+  await page.locator('#studio-family').focus();
+  await page.keyboard.press('Tab');
+  await expect(page.getByLabel('Institut', { exact: true })).toBeFocused();
+  await page.getByLabel('Institut', { exact: true }).selectOption('OpinionWay');
+  await expect(page.locator('#studio-item option[data-poll]')).toHaveCount(
+    records.filter((p: { institute: string }) => p.institute === 'OpinionWay')
+      .length,
+  );
+  await page.locator('#studio-item').selectOption('sondages-archives-' + id);
+  await ready(page);
+  await expect(page.locator('#studio-title')).toContainText('OpinionWay');
+  await expect(page.locator('#studio-sources a').first()).toHaveAttribute(
+    'href',
+    /^https:\/\/.+#page=12$/,
+  );
+  await expect(
+    page.locator('#studio-mode option[value="actualisee"]'),
+  ).toBeDisabled();
+  await expect(page.locator('#studio-code')).toHaveValue(
+    /data:image\/svg\+xml;base64,/,
+  );
+  await page.getByText('Lire les données en tableau').click();
+  await expect(
+    page
+      .locator('#studio-table tr')
+      .filter({ hasText: 'Nathalie Arthaud' })
+      .locator('td')
+      .nth(1),
+  ).toHaveText('Non renseigné');
+  await expect(
+    page
+      .locator('#studio-table tr')
+      .filter({ hasText: 'Nathalie Arthaud' })
+      .locator('td')
+      .nth(2),
+  ).toHaveText('1');
+  await page.getByText('Télécharger l’édition').scrollIntoViewIfNeeded();
+  const wait = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'SVG', exact: true }).click();
+  const download = await wait;
+  const svg = await readFile((await download.path())!, 'utf8');
+  expect(svg).toContain('Moins de 1 %');
+  expect(svg).toContain('CC BY 4.0');
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth),
+  ).toBeLessThanOrEqual(376);
+  await page.reload();
+  await ready(page);
+  await expect(page.locator('#studio-item')).toHaveValue(
+    'sondages-archives-' + id,
+  );
 });
 
 async function drawingData(page: Page, id: string) {

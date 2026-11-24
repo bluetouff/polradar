@@ -1,8 +1,12 @@
 import type { studioPublication } from '../lib/studio';
+import type { PollArchiveData } from '../lib/studio-poll-archive';
 import { csvValue } from '../lib/features.mjs';
 import { isPublicSourceUrl } from '../lib/source-url.mjs';
 import { escapeHtml } from '../lib/escape-html.mjs';
-type Publication = ReturnType<typeof studioPublication>;
+type Publication = Pick<
+  ReturnType<typeof studioPublication>,
+  'id' | 'graphic' | 'rights' | 'edition' | 'pageUrl' | 'columns' | 'rows'
+> & { liveUrl?: string };
 const node = <T extends HTMLElement>(id: string) =>
   document.getElementById('studio-' + id) as T;
 const input = (id: string) => node<HTMLSelectElement>(id);
@@ -12,15 +16,27 @@ const family = input('family'),
   width = input('width'),
   mode = input('mode'),
   caption = node<HTMLInputElement>('caption');
+const site = new URL(document.getElementById('studio')!.dataset.site!).origin;
+const archives = 'sondages-archives';
+const institute = input('archive-institute');
+const liveOption = mode.querySelector<HTMLOptionElement>(
+  'option[value="actualisee"]',
+)!;
 const sets = [...item.querySelectorAll('optgroup')];
-const choices = new Map<string, { subject: string; drawing: boolean }>();
+const choices = new Map<
+  string,
+  { subject: string; drawing: boolean; poll?: string; institute?: string }
+>();
 for (const set of sets)
-  for (const opt of set.children)
-    choices.set((opt as HTMLOptionElement).value, {
+  for (const opt of set.querySelectorAll('option'))
+    choices.set(opt.value, {
       subject: set.dataset.family!,
       drawing: opt.hasAttribute('data-drawing'),
+      poll: opt.dataset.poll,
+      institute: opt.dataset.institute,
     });
 let selection: Publication | undefined;
+let pollArchiveData: PollArchiveData | undefined;
 let currentRequest: AbortController | undefined;
 let currentSvg = '',
   currentImage = '';
@@ -39,8 +55,10 @@ function dataUri(bytes: Blob): Promise<string> {
 function safeLinks(data: Publication) {
   if (
     !isPublicSourceUrl(data.pageUrl) ||
-    !isPublicSourceUrl(data.liveUrl) ||
-    new URL(data.pageUrl).origin !== new URL(data.liveUrl).origin ||
+    new URL(data.pageUrl).origin !== site ||
+    (data.liveUrl !== undefined &&
+      (!isPublicSourceUrl(data.liveUrl) ||
+        new URL(data.liveUrl).origin !== site)) ||
     !data.graphic.sources.every((s) => isPublicSourceUrl(s.url))
   )
     throw Error('Références invalides');
@@ -170,7 +188,7 @@ async function refresh() {
     'image/svg+xml',
   );
   const root = xml.documentElement;
-  // All drawings come from local build-time renderers. Only serialize passive SVG primitives.
+  // Serialize passive SVG primitives from the site's renderer.
   const primitives = new Set([
     'svg',
     'title',
@@ -218,16 +236,14 @@ async function refresh() {
   preview.width = w;
   preview.height = h;
   preview.alt = data.graphic.alt;
-  publishedCode = figure(
-    data,
-    mode.value === 'actualisee' ? data.liveUrl : image,
-    mode.value === 'actualisee',
-  );
+  const liveUrl = mode.value === 'actualisee' ? data.liveUrl : undefined;
+  publishedCode = figure(data, liveUrl ?? image, liveUrl !== undefined);
   node<HTMLTextAreaElement>('code').value = publishedCode;
-  node('mode-note').textContent =
-    mode.value === 'actualisee'
-      ? 'Le code charge la dernière édition de cette série depuis Polradar. L’aperçu et les fichiers ci-contre correspondent à l’édition choisie.'
-      : 'Le code contient cette image. La publication reste identique et fonctionne hors ligne.';
+  node('mode-note').textContent = liveUrl
+    ? 'Le code charge la dernière édition de cette série depuis Polradar. L’aperçu et les fichiers ci-contre correspondent à l’édition choisie.'
+    : data.liveUrl
+      ? 'Le code contient cette image. La publication reste identique et fonctionne hors ligne.'
+      : 'Ce graphique correspond à un scénario daté. Le code contient l’image et fonctionne hors ligne.';
   node('formats').hidden = false;
   node('copy').removeAttribute('disabled');
 }
@@ -253,37 +269,36 @@ function renderSelection(data: Publication) {
 async function select(id: string) {
   const choice = choices.get(id);
   if (!choice) return;
-  const { subject, drawing } = choice;
-  family.value = subject;
-  const group = sets.find((g) => g.dataset.family === subject)!;
-  item.replaceChildren(group);
-  item.value = id;
-  currentRequest?.abort();
+  const { subject, drawing, poll } = choice;
+  if (poll && institute.value && institute.value !== choice.institute)
+    institute.value = '';
+  showItems(subject, id);
+  clearSelection();
   const request = new AbortController();
   currentRequest = request;
-  selection = undefined;
-  rendering++;
-  currentSvg = '';
-  currentImage = '';
-  publishedCode = '';
-  node<HTMLTextAreaElement>('code').value = '';
-  node('copy').setAttribute('disabled', '');
-  node('formats').hidden = true;
   feedback('Chargement du graphique…');
   try {
-    const response = await fetch(
-      drawing
-        ? '/graphiques/studio/' + encodeURIComponent(id) + '.svg'
-        : '/studio/donnees/' + encodeURIComponent(id) + '.json',
-      {
+    const get = async (path: string) => {
+      const response = await fetch(path, {
         credentials: 'omit',
         referrerPolicy: 'no-referrer',
         signal: request.signal,
-      },
-    );
-    if (!response.ok) throw Error('Édition indisponible');
+      });
+      if (!response.ok) throw Error('Édition indisponible');
+      return response;
+    };
     let data: Publication;
-    if (drawing) {
+    if (poll) {
+      const { archivePollPublication } =
+        await import('../lib/studio-poll-archive');
+      pollArchiveData ??= (await (
+        await get('/data/enquetes.json')
+      ).json()) as PollArchiveData;
+      data = await archivePollPublication(id, poll, site, pollArchiveData);
+    } else if (drawing) {
+      const response = await get(
+        '/graphiques/studio/' + encodeURIComponent(id) + '.svg',
+      );
       const xml = new DOMParser().parseFromString(
         await response.text(),
         'image/svg+xml',
@@ -297,11 +312,17 @@ async function select(id: string) {
       data.graphic.svg = new XMLSerializer().serializeToString(
         xml.documentElement,
       );
-    } else data = await response.json();
+    } else {
+      data = await (
+        await get('/studio/donnees/' + encodeURIComponent(id) + '.json')
+      ).json();
+    }
     if (data.id !== id) throw Error('Identifiant invalide');
     safeLinks(data);
     if (request.signal.aborted) return;
     selection = data;
+    liveOption.disabled = data.liveUrl === undefined;
+    if (liveOption.disabled) mode.value = 'figee';
     await refresh();
     if (request.signal.aborted) return;
     renderSelection(data);
@@ -327,12 +348,7 @@ function navigate(id: string) {
 function hash() {
   return location.hash.slice(1);
 }
-family.addEventListener('change', () => {
-  const group = sets.find((g) => g.dataset.family === family.value)!;
-  if (group.children.length === 1) {
-    navigate((group.firstElementChild as HTMLOptionElement).value);
-    return;
-  }
+function clearSelection() {
   currentRequest?.abort();
   selection = undefined;
   rendering++;
@@ -342,23 +358,57 @@ family.addEventListener('change', () => {
   node<HTMLTextAreaElement>('code').value = '';
   node('copy').setAttribute('disabled', '');
   node('formats').hidden = true;
+}
+function showItems(subject: string, id = '') {
+  family.value = subject;
+  const group = sets.find((g) => g.dataset.family === subject)!;
+  node('archive-filters').hidden = subject !== archives;
+  let visible = group;
+  if (subject === archives && institute.value) {
+    visible = group.cloneNode(false) as HTMLOptGroupElement;
+    visible.append(
+      ...[...group.querySelectorAll('option')]
+        .filter((option) => option.dataset.institute === institute.value)
+        .map((option) => option.cloneNode(true)),
+    );
+  }
   const placeholder = element('option', 'Choisissez une série');
   placeholder.value = '';
   placeholder.disabled = true;
-  item.replaceChildren(placeholder, group);
-  item.value = '';
+  item.replaceChildren(...(id ? [] : [placeholder]), visible);
+  item.value = id;
+}
+function chooseFamily() {
+  const subject = family.value;
+  const group = sets.find((g) => g.dataset.family === subject)!;
+  if (subject !== archives && group.children.length === 1) {
+    navigate((group.firstElementChild as HTMLOptionElement).value);
+    return;
+  }
+  clearSelection();
+  showItems(subject);
   node('proof').hidden = true;
   node('prompt').hidden = false;
   const url = new URL(location.href);
-  url.hash = '';
+  url.hash = subject === archives ? archives : '';
   history.replaceState(null, '', url);
   feedback('');
+}
+function openHash() {
+  if (hash() === archives && sets.some((g) => g.dataset.family === archives)) {
+    family.value = archives;
+    chooseFamily();
+  } else {
+    void select(choices.has(hash()) ? hash() : 'economie-inflation');
+  }
+}
+family.addEventListener('change', () => {
+  institute.value = '';
+  chooseFamily();
 });
+institute.addEventListener('change', chooseFamily);
 item.addEventListener('change', () => navigate(item.value));
-window.addEventListener(
-  'hashchange',
-  () => void select(choices.has(hash()) ? hash() : 'economie-inflation'),
-);
+window.addEventListener('hashchange', openHash);
 for (const control of [shape, width, mode, caption])
   control.addEventListener('change', () => {
     void refresh().catch(() =>
@@ -471,4 +521,4 @@ for (const panel of node('controls').querySelectorAll<HTMLDetailsElement>(
 ))
   panel.open = !window.matchMedia('(max-width: 760px)').matches;
 node('controls').hidden = false;
-void select(choices.has(hash()) ? hash() : 'economie-inflation');
+openHash();

@@ -36,6 +36,16 @@ import { predictionMarkets } from './market-data';
 import { marketPercent } from './markets.mjs';
 import { labelPeriod } from './economy.mjs';
 
+export const studioPollArchives = polls
+  .filter((poll) => poll.historicalImport)
+  .sort(
+    (a, b) =>
+      b.published.localeCompare(a.published) ||
+      a.institute.localeCompare(b.institute, 'fr') ||
+      a.noticePage - b.noticePage ||
+      a.id.localeCompare(b.id),
+  );
+
 export const studioFamilies = {
   economie: 'Indicateurs économiques',
   sondages: 'Sondages',

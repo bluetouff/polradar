@@ -1,7 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
-import { studioItems, studioFamilies, studioDataPath } from '../../lib/studio';
+import {
+  studioItems,
+  studioFamilies,
+  studioDataPath,
+  studioPollArchives,
+} from '../../lib/studio';
 import '../../styles/studio.css';
 const families = Object.entries(studioFamilies)
   .map(([id, name]) => ({
@@ -33,6 +38,16 @@ const families = Object.entries(studioFamilies)
     </a>
   </header>
   <section class="studio-noscript">
+    {studioPollArchives.length > 0 && (
+      <p>
+        <a href="/studio/#sondages-archives">
+          Graphiques de sondage dans le Studio
+        </a>
+        {' · '}
+        {studioPollArchives.length} scénarios d’archives{' · '}
+        <a href="/sondages/notices/">Consulter les notices officielles</a>
+      </p>
+    )}
     {families.map((f) => (
       <details>
         <summary>

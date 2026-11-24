@@ -2,11 +2,23 @@
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import { studioRights } from '../../lib/studio-rights';
-import { studioItems, studioFamilies } from '../../lib/studio';
+import {
+  studioItems,
+  studioFamilies,
+  studioPollArchives,
+} from '../../lib/studio';
+import { formatDate, meta } from '../../lib/data';
 import '../../styles/studio.css';
 const first = studioItems.find((i) => i.id === 'economie-inflation')!;
+type Option = {
+  id: string;
+  label: string;
+  generated?: boolean;
+  poll?: string;
+  institute?: string;
+};
 const families = Object.entries(studioFamilies)
-  .map(([id, name]) => ({
+  .map(([id, name]): { id: string; name: string; items: Option[] } => ({
     id,
     name,
     items: studioItems
@@ -14,6 +26,27 @@ const families = Object.entries(studioFamilies)
       .sort((a, b) => a.label.localeCompare(b.label, 'fr')),
   }))
   .filter((f) => f.items.length);
+if (studioPollArchives.length)
+  families.splice(families.findIndex((f) => f.id === 'sondages') + 1, 0, {
+    id: 'sondages-archives',
+    name: 'Sondages · archives (' + studioPollArchives.length + ')',
+    items: studioPollArchives.map((poll) => ({
+      id: 'sondages-archives-' + poll.id,
+      label:
+        poll.institute +
+        ' · ' +
+        formatDate(poll.published) +
+        ' · ' +
+        poll.scenario +
+        ' · p. ' +
+        poll.noticePage,
+      poll: poll.id,
+      institute: poll.institute,
+    })),
+  });
+const institutes = [
+  ...new Set(studioPollArchives.map((poll) => poll.institute)),
+].sort((a, b) => a.localeCompare(b, 'fr'));
 ---
 
 <Base
@@ -36,7 +69,7 @@ const families = Object.entries(studioFamilies)
       Espace presse <Icon name="arrow" />
     </a>
   </header>
-  <div class="studio-desk" id="studio">
+  <div class="studio-desk" id="studio" data-site={meta.site}>
     <div class="studio-controls" id="studio-controls" hidden>
       <section>
         <h2>Données</h2>
@@ -46,6 +79,15 @@ const families = Object.entries(studioFamilies)
             <option value={f.id}>{f.name}</option>
           ))}
         </select>
+        <div id="studio-archive-filters" hidden>
+          <label for="studio-archive-institute">Institut</label>
+          <select id="studio-archive-institute">
+            <option value="">Tous les instituts</option>
+            {institutes.map((institute) => (
+              <option value={institute}>{institute}</option>
+            ))}
+          </select>
+        </div>
         <label for="studio-item">Série, dossier ou période</label>
         <select id="studio-item">
           {families.map((f) => (
@@ -54,6 +96,8 @@ const families = Object.entries(studioFamilies)
                 <option
                   value={i.id}
                   data-drawing={i.generated || undefined}
+                  data-poll={i.poll}
+                  data-institute={i.institute}
                   selected={i.id === first.id}
                 >
                   {i.label}
