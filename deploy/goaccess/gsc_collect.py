@@ -17,6 +17,9 @@ API = 'https://www.googleapis.com/webmasters/v3/sites/https%3A%2F%2Fpolradar.fr%
 TOKEN_URL = 'https://oauth2.googleapis.com/token'
 SCOPE = 'https://www.googleapis.com/auth/webmasters.readonly'
 MAX_ROWS = 1000
+MAX_PAIRS = 250
+PAIR = ('query', 'page')
+DIMENSIONS = {None: (), 'date': ('date',), 'query': ('query',), 'page': ('page',), PAIR: PAIR}
 STATE = Path('/var/lib/polradar-gsc')
 REPORT = Path('/var/lib/polradar-gsc-report/report.html')
 
@@ -31,7 +34,7 @@ def post(url, payload, headers):
         raise ValueError('Unexpected endpoint')
     opener = build_opener(ProxyHandler({}), NoRedirect())
     req = Request(url, data=payload, headers=headers, method='POST')
-    with opener.open(req, timeout=22) as response:
+    with opener.open(req, timeout=15) as response:
         if response.headers.get_content_type() != 'application/json':
             raise ValueError('Unexpected API response')
         raw = response.read(4_000_001)
@@ -58,48 +61,56 @@ def access_token(info, now):
 
 
 def search(token, start, end, dimension, limit):
+    dims = DIMENSIONS[dimension]
     payload = {'startDate': start.isoformat(), 'endDate': end.isoformat(), 'type': 'web', 'dataState': 'final',
-               'aggregationType': 'byPage' if dimension == 'page' else 'byProperty', 'rowLimit': limit}
-    if dimension:
-        payload['dimensions'] = [dimension]
+               'aggregationType': 'auto' if 'page' in dims else 'byProperty', 'rowLimit': limit}
+    if dims:
+        payload['dimensions'] = list(dims)
     return post(API, json.dumps(payload).encode('ascii'), {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token})
 
 
 def rows(reply, dimension, start, end, limit):
-    if not isinstance(reply, dict) or 'error' in reply or reply.get('responseAggregationType') != ('byPage' if dimension == 'page' else 'byProperty'):
+    dims = DIMENSIONS[dimension]
+    # With a page dimension Google groups by canonical URI. Its response may echo auto.
+    aggregations = ('byPage', 'auto') if 'page' in dims else ('byProperty',)
+    if not isinstance(reply, dict) or 'error' in reply or reply.get('responseAggregationType') not in aggregations:
         raise ValueError('Invalid Search Analytics response')
     raw_rows = reply.get('rows', [])
     if not isinstance(raw_rows, list) or len(raw_rows) > limit:
         raise ValueError('Invalid row count')
     seen, result = set(), []
     for row in raw_rows:
+        if not isinstance(row, dict):
+            raise ValueError('Invalid Search Analytics row')
         item = {}
         for field in ('clicks', 'impressions', 'ctr', 'position'):
-            v = row[field]
-            if type(v) not in (int, float) or not math.isfinite(v) or v < 0:
+            v = row.get(field)
+            if type(v) not in (int, float) or v < 0 or v > 2**53 - 1 or not math.isfinite(v):
                 raise ValueError('Invalid metric')
             if field in ('clicks', 'impressions'):
-                if v != int(v) or v > 2**53-1:
+                if v != int(v):
                     raise ValueError('Invalid count')
                 v = int(v)
             item[field] = v
         if item['ctr'] > 1 or item['clicks'] > item['impressions'] or (item['impressions'] and item['position'] < 1):
             raise ValueError('Invalid Search Analytics metrics')
         keys = row.get('keys', [])
-        if not isinstance(keys, list) or len(keys) != int(dimension is not None):
+        if not isinstance(keys, list) or len(keys) != len(dims):
             raise ValueError('Unexpected dimensions')
-        if dimension:
-            key = keys[0]
-            if not isinstance(key, str) or not key or len(key) > 4096 or any(ord(c) < 32 for c in key) or key in seen:
+        for field, key in zip(dims, keys):
+            if not isinstance(key, str) or not key or len(key) > 4096 or any(ord(c) < 32 or ord(c) == 127 for c in key):
                 raise ValueError('Invalid dimension value')
-            if dimension == 'date':
+            if field == 'date':
                 day = date.fromisoformat(key)
                 if key != day.isoformat() or not start <= day <= end:
                     raise ValueError('Date outside the requested period')
-            if dimension == 'page' and (not key.startswith(PROPERTY) or urlsplit(key).netloc != 'polradar.fr'):
+            if field == 'page' and (not key.startswith(PROPERTY) or urlsplit(key).netloc != 'polradar.fr'):
                 raise ValueError('Page outside the selected property')
-            item['key'] = key
-            seen.add(key)
+            item[field if len(dims) > 1 else 'key'] = key
+        identity = tuple(keys)
+        if identity in seen:
+            raise ValueError('Duplicate dimensions')
+        seen.add(identity)
         result.append(item)
     return result
 
@@ -122,8 +133,22 @@ def collect(query, now):
     queries, pages = rollup('query', MAX_ROWS), rollup('page', MAX_ROWS)
     if not totals and (series or queries or pages):
         raise ValueError('Missing property totals')
+    previous_end = start - timedelta(days=1)
+    previous_start = previous_end - timedelta(days=27)
+
+    def extra(first, final, dimension, limit):
+        # An unavailable optional breakdown must not discard the current property report.
+        try:
+            return rows(query(first, final, dimension, limit), dimension, first, final, limit)
+        except (ValueError, OSError):
+            return None
+
+    previous_pages = extra(previous_start, previous_end, 'page', MAX_ROWS)
+    pairs = extra(start, last, PAIR, MAX_PAIRS) if queries and pages else []
     return {'fetchedAt': now.isoformat(), 'startDate': start.isoformat(), 'endDate': last.isoformat(),
-            'daily': series, 'totals': totals[0] if totals else None, 'queries': queries, 'pages': pages}
+            'daily': series, 'totals': totals[0] if totals else None, 'queries': queries, 'pages': pages,
+            'previous': {'startDate': previous_start.isoformat(), 'endDate': previous_end.isoformat(),
+                         'pages': previous_pages}, 'queryPages': pairs}
 
 
 def publish(path, content, mode):

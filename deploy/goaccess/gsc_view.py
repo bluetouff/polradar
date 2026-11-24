@@ -112,7 +112,7 @@ def _table(caption, dimension, body):
             f'<thead><tr><th scope="col">{dimension}</th>{labels}</tr></thead><tbody>{body}</tbody></table>')
 
 
-def _ranked(raw, title, dimension, group):
+def _ranked(raw, title, dimension, group, empty="Google n’a fourni aucune ligne pour cette période."):
     records = []
     if isinstance(raw, list):
         for row in raw[:MAX_ROWS]:
@@ -121,7 +121,7 @@ def _ranked(raw, title, dimension, group):
                 records.append((key, _metrics(row)))
     count = len(records)
     if count:
-        # The API supplies click order; keep its tie order.
+        # Preserve the order selected by the caller.
         parts = []
         for offset in range(0, count, GROUP_SIZE):
             batch = records[offset:offset + GROUP_SIZE]
@@ -133,7 +133,7 @@ def _ranked(raw, title, dimension, group):
             parts.append(f'<details class="gsc-batch" name="{group}"{opened}><summary>{prefix} {rank}</summary>{table}</details>')
         contents = '<div class="gsc-groups">' + "".join(parts) + '</div>'
     else:
-        contents = '<p class="gsc-note">Google n’a fourni aucune ligne pour cette période.</p>'
+        contents = f'<p class="gsc-note">{escape(empty)}</p>'
     label = "ligne" if count == 1 else "lignes"
     return (f'<details class="chart-panel gsc-ranking"><summary><strong>{title}</strong>'
             f'<span>{_integer(count)} {label}</span></summary>{contents}</details>')
@@ -188,6 +188,106 @@ def _trend(days):
             f'<details class="gsc-history"><summary>Chiffres par jour</summary>{daily}</details></section>')
 
 
+def _keyed(raw):
+    if not isinstance(raw, list):
+        return {}
+    records = {}
+    for row in raw[:MAX_ROWS]:
+        if not isinstance(row, dict) or not isinstance(row.get("key"), str):
+            continue
+        values = _metrics(row)
+        if row["key"] and all(value is not None for value in values.values()) and values["clicks"] <= values["impressions"]:
+            records[row["key"]] = values
+    return records
+
+
+def _small_table(title, headings, rows, empty):
+    if not rows:
+        return f'<p class="gsc-note">{escape(empty)}</p>'
+    columns = "".join(f'<th scope="col">{escape(label)}</th>' for label in headings)
+    body = []
+    for row in rows:
+        cells = "".join(
+            f'<td><span class="gsc-cell-label" aria-hidden="true">{escape(label)}</span>{escape(str(value))}</td>'
+            for label, value in zip(headings[1:], row[1:])
+        )
+        body.append(f'<tr><th scope="row"><bdi>{escape(_key_text(row[0]))}</bdi></th>{cells}</tr>')
+    return (f'<table class="gsc-table"><caption class="gsc-sr">{escape(title)}</caption><thead><tr>{columns}</tr></thead>'
+            '<tbody>' + "".join(body) + '</tbody></table>')
+
+
+def _query_signals(queries):
+    by_impressions = sorted(_keyed(queries).items(), key=lambda i: (-i[1]["impressions"], i[0]))
+    ranked = [dict(values, key=key) for key, values in by_impressions if 4 <= values["position"] <= 20]
+    low_ctr = [dict(values, key=key) for key, values in by_impressions if values["impressions"] >= 100 and values["ctr"] <= 0.02]
+    question_words = ("qui ", "que ", "quel ", "quels ", "quelle ", "quelles ", "comment ", "quand ", "où ",
+                      "combien ", "pourquoi ", "est-ce ", "qu’est-ce ", "qu'est-ce ")
+    questions = [dict(values, key=key) for key, values in by_impressions
+                 if values["impressions"] >= 20 and values["clicks"] == 0
+                 and (key.strip().endswith("?") or key.strip().casefold().startswith(question_words))]
+    return ('<section class="gsc-rankings"><h2>Requêtes à examiner</h2>'
+            '<p class="gsc-note">Positions moyennes de 4 à 20 incluses. Le second tableau retient les requêtes ayant au moins '
+            '100 impressions et un taux de clic inférieur ou égal à 2 % sur 28 jours. Les tableaux présentent jusqu’à 25 requêtes '
+            'par impressions décroissantes parmi les lignes disponibles.</p><div class="gsc-rank-grid">'
+            + _ranked(ranked[:25], "Positions 4 à 20", "Requête", "gsc-position", "Aucune requête de la sélection dans cette plage de positions.")
+            + _ranked(low_ctr[:25], "Fortes impressions et faible taux de clic", "Requête", "gsc-ctr", "Aucune requête de la sélection ne remplit les deux seuils.")
+            + '</div><h3>Questions sans clic</h3><p class="gsc-note">Questions repérées par leur formulation, avec au moins '
+            '20 impressions et aucun clic. Ouvrir la page concernée pour vérifier si son contenu répond à la question.</p>'
+            + _ranked(questions[:25], "Questions à relire", "Recherche", "gsc-questions",
+                      "Aucune question ne remplit ces critères dans les lignes reçues.") + '</section>')
+
+
+def _page_changes(snapshot, start, end):
+    previous = snapshot.get("previous")
+    unavailable = '<p class="gsc-note">Comparaison des pages indisponible pour ces deux périodes.</p>'
+    if not isinstance(previous, dict) or not isinstance(previous.get("pages"), list):
+        return unavailable
+    before_start, before_end = _date(previous.get("startDate")), _date(previous.get("endDate"))
+    if (before_start is None or before_end is None or (end-start).days != 27
+            or (start-before_end).days != 1 or (before_end-before_start).days != 27):
+        return unavailable
+    current, before = _keyed(snapshot.get("pages")), _keyed(previous["pages"])
+    changes = [(key, current[key]["clicks"]-before[key]["clicks"], before[key]["clicks"], current[key]["clicks"])
+               for key in current.keys() & before.keys()]
+    def table(direction, title):
+        selected = sorted((r for r in changes if r[1]*direction > 0), key=lambda r: (-direction*r[1], r[0]))[:15]
+        rows = [(key, _integer(old), _integer(new), ("+" if diff > 0 else "−") + _integer(abs(diff)))
+                for key, diff, old, new in selected]
+        return (f'<article class="chart-panel"><h3>{title}</h3>'
+                + _small_table(title, ("Page", "Avant", "Après", "Écart"), rows,
+                               "Aucune page commune aux deux relevés dans ce sens de variation.") + '</article>')
+    return (f'<p class="gsc-note">Clics du {_date_label(before_start)} au {_date_label(before_end)}, '
+            f'puis du {_date_label(start)} au {_date_label(end)}. Jusqu’à 15 pages par sens de variation. '
+            'Seules les URL présentes dans les deux relevés sont comparées.</p><div class="gsc-rank-grid">'
+            + table(1, "Pages en progression") + table(-1, "Pages en recul") + '</div>')
+
+
+def _shared_queries(raw):
+    if not isinstance(raw, list):
+        return '<p class="gsc-note">Le relevé croisé des requêtes et pages est indisponible.</p>'
+    by_query = {}
+    for record in raw[:250]:
+        if not isinstance(record, dict):
+            continue
+        query, page = record.get("query"), record.get("page")
+        values = _metrics(record)
+        if (isinstance(query, str) and query and isinstance(page, str) and page
+                and values["impressions"] and values["clicks"] is not None):
+            by_query.setdefault(query, {})[page] = values
+    groups = sorted(((q, pages) for q, pages in by_query.items() if len(pages) >= 2),
+                    key=lambda item: (-len(item[1]), item[0]))[:15]
+    parts = []
+    for query, pages in groups:
+        ordered = sorted(pages.items(), key=lambda item: (-item[1]["impressions"], item[0]))
+        entries = [(page, _integer(v["clicks"]), _integer(v["impressions"])) for page, v in ordered]
+        parts.append(f'<details class="gsc-batch"><summary><bdi>{escape(_key_text(query))}</bdi> · {len(pages)} pages</summary>'
+                     + _small_table("Pages affichées pour la même requête", ("Page", "Clics", "Impressions"), entries, "") + '</details>')
+    return ('<p class="gsc-note">Jusqu’à 250 paires requête et page fournies par Google. Une requête présente sur plusieurs URL '
+            'invite à vérifier la réponse de chaque page et les liens entre elles.</p>'
+            + ("".join(parts) if parts else '<p class="gsc-note">Aucune requête associée à plusieurs pages dans ce relevé.</p>'))
+
+
+
 def render(snapshot, attempted_at, failed=False):
     """Return a complete private UTF-8 HTML page, including pending and stale states."""
     attempt = _stamp(attempted_at)
@@ -217,7 +317,12 @@ def render(snapshot, attempted_at, failed=False):
         contents = (f'{period}{status}<section class="metrics gsc-metrics" aria-label="Totaux sur la période">{metrics}</section>{trend}'
                     '<section class="gsc-rankings"><h2>Requêtes et pages dans les résultats Google</h2>'
                     '<p class="gsc-note">Jusqu’à 1&#8239;000 lignes par tableau, classées par clics. Google peut omettre des requêtes.</p>'
-                    f'<div class="gsc-rank-grid">{rankings}</div></section>')
+                    f'<div class="gsc-rank-grid">{rankings}</div></section>'
+                    + _query_signals(snapshot.get("queries"))
+                    + '<section class="gsc-rankings"><h2>Évolution des pages sur deux périodes de 28 jours</h2>'
+                    + _page_changes(snapshot, start, end) + '</section>'
+                    + '<section class="chart-panel"><h2>Plusieurs pages pour une même recherche</h2>'
+                    + _shared_queries(snapshot.get("queryPages")) + '</section>')
     html = ('''<!doctype html><html lang="fr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="referrer" content="no-referrer"><meta name="format-detection" content="telephone=no,email=no,address=no">

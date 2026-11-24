@@ -1,9 +1,10 @@
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 import json
 import runpy
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT=Path(__file__).resolve().parents[2]
 collector=runpy.run_path(str(ROOT/'deploy/goaccess/gsc_collect.py'))
@@ -24,10 +25,16 @@ class SearchReport(unittest.TestCase):
         if dim=='date':
             self.assertEqual(end,date(2026,8,2))  # August 3 in California
             data=[metrics('2026-07-31'),metrics('2026-08-02')]
+        elif dim == ('query', 'page'):
+            self.assertEqual((start, end, limit), (date(2026,7,6), date(2026,8,2), 250))
+            data = [dict(metrics(), keys=['<exemple & essai>', 'https://polradar.fr/mesures/'])]
+        elif dim == 'page' and end == date(2026,7,5):
+            self.assertEqual(start, date(2026,6,8))
+            data = [metrics('https://polradar.fr/mesures/')]
         else:
             self.assertEqual((start,end),(date(2026,7,6),date(2026,8,2)))
             data=[metrics({'page':'https://polradar.fr/mesures/', 'query':'<exemple & essai>'}.get(dim))]
-        return {'responseAggregationType':'byPage' if dim=='page' else 'byProperty','rows':data}
+        return {'responseAggregationType':'byPage' if dim in ('page', ('query','page')) else 'byProperty','rows':data}
 
     def test_real_dates_totals_and_escaped_rows(self):
         snap=collector['collect'](self.query,now)
@@ -52,6 +59,7 @@ class SearchReport(unittest.TestCase):
             ('date',{'rows':[metrics('2026-08-02')]*2,'responseAggregationType':'byProperty'}),
             (None,{'rows':[dict(metrics(),ctr=float('nan'))],'responseAggregationType':'byProperty'}),
             (None,{'error':'private text'}),
+            (None,{'rows':[dict(metrics(),position=10**400)],'responseAggregationType':'byProperty'}),
         ]:
             with self.assertRaises(ValueError):
                 collector['rows'](reply,dimension,start,end,100)
@@ -70,6 +78,85 @@ class SearchReport(unittest.TestCase):
             self.assertNotIn('private error',report.read_text())
             self.assertEqual((root/'last.json').stat().st_mode & 0o777,0o600)
             self.assertEqual(report.stat().st_mode & 0o777,0o640)
+
+    def test_daily_bounds_comparison_periods_and_optional_breakdowns(self):
+        calls = []
+        def query(start, end, dim, limit):
+            calls.append((start,end,dim,limit))
+            return self.query(start,end,dim,limit)
+        snap = collector['collect'](query, now)
+        self.assertEqual(len(calls), 6)
+        self.assertEqual(len(snap['queryPages']), 1)
+        current = date.fromisoformat(snap['startDate']), date.fromisoformat(snap['endDate'])
+        before = date.fromisoformat(snap['previous']['startDate']), date.fromisoformat(snap['previous']['endDate'])
+        self.assertEqual(current[0]-before[1], timedelta(days=1))
+        self.assertEqual(current[1]-current[0], before[1]-before[0])
+        def partial(start, end, dim, limit):
+            if dim == ('query','page') or end == before[1]:
+                raise OSError('fixture confidentielle')
+            return self.query(start,end,dim,limit)
+        snap = collector['collect'](partial, now)
+        html = render(snap, now.isoformat()).decode()
+        self.assertIsNone(snap['previous']['pages'])
+        self.assertIsNone(snap['queryPages'])
+        self.assertIn('Le relevé croisé des requêtes et pages est indisponible',html)
+        self.assertIn('Comparaison des pages indisponible',html)
+        self.assertNotIn('fixture confidentielle',html)
+        self.assertIsNotNone(snap['totals'])
+
+    def test_compound_dimensions_and_private_boundaries(self):
+        test_pairs = collector['rows']
+        first = dict(metrics(),keys=['question test', 'https://polradar.fr/a/'])
+        second = dict(metrics(),keys=['question test', 'https://polradar.fr/b/'])
+        def parse(records, agg='byPage'):
+            return test_pairs({'rows':records,'responseAggregationType':agg},('query','page'),now.date(),now.date(),250)
+        self.assertEqual(len(parse([first,second])),2)
+        self.assertEqual(len(parse([first],'auto')),1)
+        search=collector['search']
+        with patch.dict(search.__globals__,post=lambda url, payload, headers: json.loads(payload)):
+            request=search('fixture',now.date(),now.date(),('query','page'),250)
+        self.assertEqual(request['dimensions'],['query','page'])
+        self.assertEqual(request['aggregationType'],'auto')
+        self.assertEqual(request['rowLimit'],250)
+        self.assertEqual(request['dataState'],'final')
+        for bad in ([first, first], [dict(first,keys=first['keys'][::-1])],
+                    [dict(first,keys=['q', 'https://polradar.fr.invalid/'])],
+                    [dict(first,keys=['q', 'https://polradar.fr@invalid.test/'])],
+                    [dict(first,keys=['q'])], [dict(first,keys=[True, 'https://polradar.fr/'])]):
+            with self.assertRaises(ValueError): parse(bad)
+        with self.assertRaises(ValueError): parse([first],'byProperty')
+
+    def test_opportunities_thresholds_date_integrity_and_bounded_rank(self):
+        snap=collector['collect'](self.query,now)
+        def row(key, clicks, impressions, position):
+            return {'key':key, 'clicks':clicks, 'impressions':impressions, 'ctr':clicks/impressions, 'position':position}
+        snap['queries']=[row('limite basse',2,100,4),row('limite haute',0,99,20),row('hors seuil',3,100,20.1),
+                         row('Comment vérifier un exemple ?',0,20,21)]
+        snap['pages']=[row('https://polradar.fr/un/',8,100,5),row('https://polradar.fr/deux/',2,10,3),
+                       row('https://polradar.fr/absente/',1,10,3)]
+        snap['previous']['pages']=[row('https://polradar.fr/un/',4,100,4),row('https://polradar.fr/deux/',10,40,3)]
+        snap['queryPages']=[dict(row('',2,100,4),query='<q&>',page='https://polradar.fr/un/'),
+                            dict(row('',8,100,5),query='<q&>',page='https://polradar.fr/deux/')]
+        html=render(snap,now.isoformat()).decode()
+        positions=html.split('<strong>Positions 4 à 20</strong>')[1].split('<strong>Fortes impressions')[0]
+        self.assertIn('limite basse',positions)
+        self.assertIn('limite haute',positions)
+        self.assertNotIn('hors seuil',positions)
+        low=html.split('<strong>Fortes impressions et faible taux de clic</strong>')[1].split('<h2>Évolution des pages')[0]
+        self.assertIn('limite basse',low)
+        self.assertNotIn('limite haute',low)
+        self.assertNotIn('hors seuil',low)
+        questions=html.split('<strong>Questions à relire</strong>')[1].split('<h2>Évolution des pages')[0]
+        self.assertIn('Comment vérifier un exemple ?',questions)
+        self.assertNotIn('limite basse',questions)
+        changes=html.split('<h2>Évolution des pages sur deux périodes de 28 jours</h2>')[1].split('<h2>Plusieurs pages')[0]
+        self.assertIn('+4',changes)
+        self.assertIn('−8',changes)
+        self.assertNotIn('absente',changes)
+        self.assertIn('&lt;q&amp;&gt;',html)
+        self.assertNotIn('<q&>',html)
+        snap['previous']['startDate']='2026-06-09'
+        self.assertIn('Comparaison des pages indisponible',render(snap,now.isoformat()).decode())
 
     def test_static_and_private_routes_are_distinct(self):
         patched=ops['private_alias'](apache)
