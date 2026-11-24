@@ -23,7 +23,10 @@ test('les autres enquêtes se lisent sur mobile sans JavaScript et renvoient au 
     await expect(
       panel.getByRole('heading', { name: 'Participation des 18–29 ans' }),
     ).toBeVisible();
-    await panel.locator('summary').click();
+    const disclosure = panel.locator('summary');
+    await disclosure.focus();
+    await expect(disclosure).toBeFocused();
+    await disclosure.press('Enter');
     await expect(panel.getByText('55 %', { exact: true })).toBeVisible();
     await expect(
       panel.getByRole('link', { name: 'Résultats, p. 26' }),
