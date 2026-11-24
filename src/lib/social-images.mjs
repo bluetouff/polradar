@@ -816,7 +816,7 @@ const defs = [
     tiles(
       [
         ['Scénarios de sondage', polls.length],
-        ['Scrutins', votes.ballots.length],
+        ['Votes illustrés', votes.ballots.length],
         ['Séries Eurostat', read('economy-series').length],
         ['Générations', read('retirement-comparison').cohorts.length],
       ],
@@ -839,7 +839,7 @@ const defs = [
         ],
         ['Références', sources.length],
         ['Thèmes', themes.length],
-        ['Scrutins', votes.ballots.length],
+        ['Dossiers de vote', votes.cases.length],
       ],
       'Le corpus Polradar',
     ),
@@ -900,7 +900,7 @@ const defs = [
         ['Candidatures', candidates.length],
         ['Thèmes', themes.length],
         ['Fiches actuelles', current.length],
-        ['Scrutins documentés', votes.ballots.length],
+        ['Dossiers de vote', votes.cases.length],
       ],
       'Le corpus Polradar',
     ),
