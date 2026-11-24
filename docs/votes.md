@@ -67,3 +67,17 @@ python3 scripts/import-actes-senat-europe.py /tmp/polradar-archives-senat-europe
 ```
 
 Le contrôle traite le fichier SQL de DOSLEG comme une suite de lignes de données. Le Sénat remplace périodiquement ses exports. Une correction de la sélection historique ressort à la comparaison avec le fichier vérifié dans Git.
+
+## Textes signés au Sénat
+
+Le registre des dépôts réunit 261 propositions de loi, 54 autres textes et 19 rapports ou avis entre octobre 1986 et mai 2026. Les matricules 04033B et 86039K sont reliés aux codes d’auteur sénatorial de DOSLEG. Chaque signature indique le rôle que le Sénat attribue au déposant et son mandat à cette date. Dans un rapport, un président conserve cette qualité. Les statuts de campagne sont suivis dans le corpus des mesures. [Base DOSLEG](https://data.senat.fr/dosleg/) · [Annuaire des mandats](https://data.senat.fr/les-senateurs/)
+
+Les 337 lignes de signatures comprennent deux références orphelines de DOSLEG et deux références internes vers le même avis sur la nomination des présidents de l’audiovisuel public. L’export conserve les deux codes de cet avis et les deux références orphelines. Les 334 adresses de publication distinctes ont répondu le 24 novembre 2026. Les intitulés des textes reprennent le dossier de dépôt. Pour un rapport sans intitulé dans la base, l’import lit l’en-tête de sa publication au Sénat. [Avis n° 152](https://www.senat.fr/rap/a08-152/a08-152.html)
+
+```sh
+python3 scripts/import-textes-senat.py /tmp/polradar-archives-senat --telecharger --verifier
+```
+
+Une nouvelle vérification emploie un cache neuf. L’option `--consulte-le AAAA-MM-JJ` enregistre la date de ce nouveau relevé.
+
+[Parcourir les dépôts](https://polradar.fr/votes/textes-senat/) · [Télécharger l’export JSON](https://polradar.fr/api/parlement/textes-senat.json) · [Licence des données du Sénat](https://data.senat.fr/licence/)

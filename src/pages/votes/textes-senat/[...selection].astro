@@ -1,0 +1,189 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../../layouts/Base.astro';
+import { formatDate } from '../../../lib/data';
+import { senateGroups, senateRegister } from '../../../lib/senate-documents';
+import '../../../styles/parliamentary-register.css';
+
+const root = '/votes/textes-senat/';
+export const getStaticPaths = (() => [
+  { params: { selection: undefined }, props: { groupId: '', page: 1 } },
+  ...senateGroups.flatMap((g) =>
+    Array.from({ length: Math.ceil(g.rows.length / 24) }, (_, i) => ({
+      params: { selection: g.id + (i ? '/' + (i + 1) : '') },
+      props: { groupId: g.id, page: i + 1 },
+    })),
+  ),
+]) satisfies GetStaticPaths;
+interface Props {
+  groupId: string;
+  page: number;
+}
+const { groupId, page } = Astro.props;
+const current = senateGroups.find((g) => g.id === groupId);
+const total = current?.rows.length ?? 0;
+const pages = Math.ceil(total / 24);
+const rows = current?.rows.slice((page - 1) * 24, page * 24) ?? [];
+const pageLink = (n: number) =>
+  root + groupId + '/' + (n > 1 ? n + '/' : '') + '#documents';
+const first = senateRegister.documents.at(-1)!;
+const latest = senateRegister.documents[0];
+const title = current
+  ? current.title + ' · Textes du Sénat'
+  : 'Textes et rapports du Sénat';
+---
+
+<Base
+  title={page > 1 ? title + ' · page ' + page : title}
+  description="Retrouvez les propositions de loi, résolutions et rapports déposés au Sénat. Chaque fiche donne la date, le rôle du sénateur et le document d’origine."
+  section="/votes/"
+>
+  <header class="parl-head">
+    <a href={current ? root : '/votes/archives/'}>
+      {current
+        ? '← Tous les documents'
+        : '← Scrutins du Sénat et du Parlement européen'}
+    </a>
+    <h1>{current ? current.title : 'Textes et rapports du Sénat'}</h1>
+    {current ? (
+      <p>{total} documents · du plus récent au plus ancien.</p>
+    ) : (
+      <p>
+        Les documents déposés au Sénat que Jean-Luc Mélenchon ou Bruno
+        Retailleau ont signés, ou pour lesquels le Sénat indique un rôle de
+        président.
+      </p>
+    )}
+    {!current && (
+      <dl>
+        <div>
+          <dt>Documents</dt>
+          <dd>{senateRegister.documents.length}</dd>
+        </div>
+        <div>
+          <dt>Premier dépôt recensé</dt>
+          <dd>{first.dateDepot.slice(0, 4)}</dd>
+        </div>
+        <div>
+          <dt>Dernier dépôt recensé</dt>
+          <dd>{latest.dateDepot.slice(0, 4)}</dd>
+        </div>
+      </dl>
+    )}
+  </header>
+  {!current ? (
+    <section class="archive-sections">
+      {(['document', 'personne'] as const).map((type) => (
+        <section>
+          <h2>
+            {type === 'document' ? 'Par type de document' : 'Par sénateur'}
+          </h2>
+          <div class="parl-grid">
+            {senateGroups
+              .filter((g) => g.type === type)
+              .map((g) => (
+                <article class="parl-card">
+                  <h3>
+                    <a href={root + g.id + '/'}>{g.title} →</a>
+                  </h3>
+                  <p>{g.rows.length} documents</p>
+                </article>
+              ))}
+          </div>
+        </section>
+      ))}
+    </section>
+  ) : (
+    <section id="documents" aria-label="Documents par date de dépôt">
+      <div class="parl-grid senate-documents">
+        {rows.map((doc) => (
+          <article class="parl-card">
+            <div class="parl-card-meta">
+              <time datetime={doc.dateDepot}>{formatDate(doc.dateDepot)}</time>
+              <span>{doc.nature}</span>
+            </div>
+            <h2>
+              {doc.titre.charAt(0).toLocaleUpperCase('fr') + doc.titre.slice(1)}
+            </h2>
+            <ul>
+              {doc.signatures.map((s) => (
+                <li>
+                  <strong>
+                    <a href={'/candidats/' + s.candidat + '/'}>
+                      {senateRegister.personnes[s.personne].nom}
+                    </a>
+                  </strong>
+                  <span> · {s.role}</span>
+                </li>
+              ))}
+            </ul>
+            <a class="parl-source" href={doc.source} rel="noreferrer">
+              Document du Sénat n° {doc.numero} ↗
+            </a>
+          </article>
+        ))}
+      </div>
+      <nav class="parl-nav" aria-label="Pages des documents">
+        {page > 1 && (
+          <a class="button" href={pageLink(page - 1)}>
+            ← Page précédente
+          </a>
+        )}
+        <span>
+          Page {page} sur {pages}
+        </span>
+        {page < pages && (
+          <a class="button" href={pageLink(page + 1)}>
+            Page suivante →
+          </a>
+        )}
+      </nav>
+    </section>
+  )}
+  <aside class="parl-foot">
+    <h2>Sources du registre</h2>
+    <p>
+      Le Sénat rattache chaque signature au matricule de son auteur. Le registre
+      donne son rôle et son mandat au dépôt. Le relevé compte{' '}
+      {senateRegister.signaturesSansDocument.length} signatures dont le document
+      manque dans la base. Les engagements de la campagne présidentielle
+      figurent dans <a href="/mesures/">les programmes</a>.
+    </p>
+    <div>
+      <a
+        href="/api/parlement/textes-senat.json"
+        download="polradar-textes-senat.json"
+      >
+        Télécharger les documents et leurs signatures (JSON)
+      </a>
+      <a href="https://data.senat.fr/dosleg/" rel="noreferrer">
+        Base des travaux du Sénat ↗
+      </a>
+      <a href={senateRegister.licenceSource} rel="noreferrer">
+        Licence du Sénat ↗
+      </a>
+    </div>
+  </aside>
+</Base>
+<style>
+  .senate-documents {
+    margin-top: 1.25rem;
+  }
+  .senate-documents h2 {
+    font-size: 1.05rem;
+    line-height: 1.35;
+  }
+  .parl-card-meta {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.8rem;
+  }
+  .parl-card-meta span {
+    font-size: 0.78rem;
+    color: #405b67;
+  }
+  .archive-sections > section {
+    margin-block: 1.3rem;
+  }
+</style>

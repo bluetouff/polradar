@@ -59,7 +59,11 @@ const format = new Intl.NumberFormat('fr-FR');
     ) : (
       <p>
         Choisissez une session du Sénat ou une journée de séance du Parlement
-        européen.
+        européen.{' '}
+        <a href="/votes/textes-senat/">
+          Consulter aussi les textes et rapports du Sénat
+        </a>
+        .
       </p>
     )}
     {!group && (

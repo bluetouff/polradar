@@ -40,9 +40,9 @@ def atomic(path,content):
     finally: temporary.unlink(missing_ok=True)
 class NoRedirect(HTTPRedirectHandler):
     def redirect_request(self, *args): raise ValueError('Redirection non prévue')
-def prepare(cache,fetch):
+def prepare(cache,fetch,inputs=INPUTS):
     cache.mkdir(exist_ok=True,parents=True)
-    for name,url in INPUTS.items():
+    for name,url in inputs.items():
         path=cache/name
         if fetch and not path.exists():
             with build_opener(NoRedirect()).open(url,timeout=40) as reply:
@@ -64,7 +64,7 @@ def senate_url(url):
     if parsed.scheme in ('http','https') and parsed.netloc in ('www.senat.fr','senat.fr'):
         return parsed._replace(scheme='https').geturl()
     return None
-def senate(cache):
+def senate_terms(cache):
     starts=defaultdict(list); groups=defaultdict(list)
     for kind,output in [('mandats',starts),('groupes',groups)]:
         for row in csvrows(cache/('sen-'+kind+'.csv')):
@@ -75,6 +75,10 @@ def senate(cache):
             require(observed==(first,last),'Matricule et identité incohérents')
             if kind=='mandats': output[mid].append((row['Date de début de mandat'],row['Date de fin de mandat'],row['Identifiant mandat']))
             else: output[mid].append((row["Date de début d'appartenance"],row["Date de fin d'appartenance"],row['Code du groupe politique']))
+    return starts, groups
+
+def senate(cache):
+    starts, groups = senate_terms(cache)
     records={}; choices=defaultdict(dict); sums=defaultdict(Counter); amendments=defaultdict(list)
     kinds={'1':'pour','2':'contre','3':'abstention','4':'non-votant'}
     with ZipFile(cache/'dosleg.zip') as z:
