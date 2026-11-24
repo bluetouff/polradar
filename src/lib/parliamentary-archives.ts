@@ -37,8 +37,26 @@ interface Archive {
   >;
   sources: Record<string, string>;
   sessionsSenat: string[];
+  couvertureSenat: {
+    session: string;
+    debut: string;
+    fin: string;
+    scrutinsExamines: number;
+  }[];
   sessionsEurope: { date: string; decisions: number; nominaux: number }[];
   personnes: Record<string, { candidat: string; nom: string; source: string }>;
+  mandats: Record<
+    string,
+    {
+      candidat: string;
+      institution: ArchiveBallot['institution'];
+      debut: string;
+      fin: string | null;
+      legislature?: number;
+      scrutinsExamines: number;
+      source: string;
+    }
+  >;
   scrutins: ArchiveBallot[];
 }
 const data: Archive = JSON.parse(

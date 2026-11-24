@@ -125,10 +125,12 @@ def senate(cache):
                     require(key not in records,'Scrutin en double')
                     records[key]=cells
     rows=[]
+    days=defaultdict(list)
     for (yr,no),v in records.items():
         key=(yr,no)
-        if not choices[key]: continue
         day=date.fromisoformat(v[4][:10]).isoformat()
+        days[yr].append(day)
+        if not choices[key]: continue
         yes,no_count,voters,expressed=map(int,v[5:9])
         abst=sums[key]['abstention']
         require(yes==sums[key]['pour'] and no_count==sums[key]['contre'] and expressed+abst==voters,'Totaux et liste du Sénat incohérents')
@@ -141,7 +143,19 @@ def senate(cache):
         rows.append({'id':'senat-'+yr+'-'+no,'institution':'senat','periode':yr+'-'+str(int(yr)+1),'date':day,'numero':no,
                      'objet':senate_text(v[3]), 'decision':None,'pour':yes,'contre':no_count,'abstentions':abst,'positions':positions,
                      'misesAuPoint':[note for _,note in sorted(amendments[key],key=lambda item:item[0])],'source':f'https://www.senat.fr/scrutin-public/{yr}/scr{yr}-{no}.html'})
-    return rows
+    sessions=[
+        {'session': yr, 'debut': min(dates), 'fin': max(dates), 'scrutinsExamines': len(dates)}
+        for yr, dates in sorted(days.items())
+    ]
+    mandates={}
+    for mid, terms in starts.items():
+        for start,end,key in terms:
+            examined=sum(indates(day,start,end) for dates in days.values() for day in dates)
+            if examined:
+                mandates[key]={'candidat':PEOPLE[mid][0], 'institution':'senat',
+                               'debut':start[:10], 'fin':end[:10] or None,
+                               'scrutinsExamines':examined, 'source':PEOPLE[mid][3]}
+    return rows,sessions,mandates
 def european(cache):
     person=json.loads((cache/'ep-history.json').read_bytes())['data'][0]
     require((person['id'],person['familyName'],person['givenName'])==('person/197694','Glucksmann','Raphaël'),'Identité européenne incohérente')
@@ -150,18 +164,26 @@ def european(cache):
              indates(day,m['memberDuring']['startDate'],m['memberDuring'].get('endDate'))]
         require(len(out)==1,'Appartenance européenne ambiguë')
         return out[0]
-    rows=[]; meta=[]
+    rows=[]; meta=[]; mandates={}
     for day in MEETINGS:
         records=json.loads((cache/('ep-'+day+'.json')).read_bytes())['data']
         roll=[b for b in records if b.get('decision_method')=='def/ep-decision-methods/VOTE_ELECTRONIC_ROLLCALL']
         meta.append({'date':day,'decisions':len(records),'nominaux':len(roll)})
+        mandate=membership(day,'EU_INSTITUTION')
+        key=mandate['id']
+        if key not in mandates:
+            dates=mandate['memberDuring']
+            mandates[key]={'candidat':'glucksmann', 'institution':'parlement-europeen',
+                           'debut':dates['startDate'][:10], 'fin':(dates.get('endDate') or '')[:10] or None,
+                           'legislature':int(mandate['organization'].split('-')[-1]),
+                           'scrutinsExamines':0, 'source':INPUTS['ep-history.json']}
+        mandates[key]['scrutinsExamines']+=len(roll)
         for b in roll:
             options={'favor':'pour','against':'contre','abstention':'abstention'}
             choice=[v for k,v in options.items() if person['id'] in b.get('had_voter_'+k,[])]
             intended=[v for k,v in options.items() if person['id'] in b.get('had_voter_intended_'+k,[])]
             if not choice and not intended: continue
             require(len(choice)<=1 and len(intended)<=1,'Choix européen ambigu')
-            mandate=membership(day,'EU_INSTITUTION')
             group=membership(day,'EU_POLITICAL_GROUP')
             identifier=b['activity_id']
             require(re.fullmatch('MTG-PL-'+day+r'-DEC-[0-9]+',identifier) and b['activity_date']==day,'Identifiant de séance inattendu')
@@ -192,7 +214,7 @@ def european(cache):
               'misesAuPoint':[],'textes':[EP+s for s in b.get('decided_on_a_realization_of',[])],
               'procesVerbal':[EP+s for s in pv], **({'totauxComptes':counted} if counted else {}),
               'source':EP+'eli/dl/event/'+identifier})
-    return rows,meta
+    return rows,meta,mandates
 # Correspondances lues dans les annexes institutionnelles. Les titres seuls
 # et les chiffres seuls ne déclenchent aucun rapprochement.
 EUROPE_CONCORDANCES = {
@@ -325,16 +347,19 @@ def main():
         ceta(a.cache,a.telecharger,a.verifier,catalogue)
         return
     prepare(a.cache,a.telecharger)
-    europe,meetings=european(a.cache)
+    europe,meetings,european_mandates=european(a.cache)
     relier_scrutins_europe(europe, catalogue)
-    rows=senate(a.cache)+europe
+    senate_rows,senate_sessions,senate_mandates=senate(a.cache)
+    rows=senate_rows+europe
     require(len(rows)==len({r['id'] for r in rows}),'Identifiant dupliqué')
     rows.sort(key=lambda r:(r['date'],r['institution'],int(r['numero'])),reverse=True)
     persons={mid:{'candidat':p[0],'nom':p[1]+' '+p[2],'source':p[3]} for mid,p in PEOPLE.items()}
     persons['197694']={'candidat':'glucksmann','nom':'Raphaël Glucksmann','source':'https://www.europarl.europa.eu/meps/fr/197694/RAPHAEL_GLUCKSMANN/home'}
     result={'version':1,'consultation':'2026-11-24',
             'droitsSources':{'senat':{'producteur':'Sénat','miseAJour':'2026-11-24','licence':'https://data.senat.fr/licence/'},
-            'parlement-europeen':{'producteur':'Parlement européen','licence':'https://data.europarl.europa.eu/en/discover/rules-on-the-european-parliaments-open-data'}},'sources':INPUTS,'sessionsSenat':sorted(SESSIONS),'sessionsEurope':meetings,'personnes':persons}
+            'parlement-europeen':{'producteur':'Parlement européen','licence':'https://data.europarl.europa.eu/en/discover/rules-on-the-european-parliaments-open-data'}},'sources':INPUTS,
+            'sessionsSenat':sorted(SESSIONS),'couvertureSenat':senate_sessions,'sessionsEurope':meetings,
+            'personnes':persons,'mandats':dict(sorted((senate_mandates | european_mandates).items()))}
     compact=lambda d: json.dumps(d,ensure_ascii=False,separators=(',',':'))
     content=(compact(result)[:-1]+',"scrutins":[\n'+',\n'.join(compact(r) for r in rows)+'\n]}\n').encode()
     if a.verifier: require(DEST.read_bytes()==content,'Relevés historiques modifiés. Examiner les écarts avant de publier.')

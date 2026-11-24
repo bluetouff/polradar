@@ -38,12 +38,21 @@ interface Register {
     legislature: number;
     scrutinsExamines: number;
     congresExclus: number;
+    scrutinsParAnnee: Record<string, number>;
+    debut: string;
+    fin: string;
     archives: Record<string, { url: string; sha256: string }>;
   }[];
   personnes: Record<string, { id: string; source: string }>;
   mandats: Record<
     string,
-    { acteur: string; debut: string; fin: string | null }
+    {
+      acteur: string;
+      debut: string;
+      fin: string | null;
+      legislature: number;
+      scrutinsExamines: number;
+    }
   >;
   groupes: Record<string, { nom: string; sigle: string }>;
   scrutins: ParliamentaryBallot[];

@@ -52,6 +52,14 @@ class ParliamentaryRegisterTests(unittest.TestCase):
         self.assertEqual(fabien['misesAuPoint'],[{'vote':'non-votant','nature':'mise-au-point'}])
         self.assertTrue(any(p['vote'] is None and p['misesAuPoint'] for b in self.ballots.values() for p in b['positions']))
 
+    def test_coverage_denominators_come_from_the_term_and_mandate(self):
+        for item in self.data['sources']:
+            self.assertEqual(sum(item['scrutinsParAnnee'].values()), item['scrutinsExamines'])
+        self.assertEqual(self.data['sources'][-1]['scrutinsParAnnee'],
+                         {'2024': 525, '2025': 4422, '2026': 5154})
+        self.assertEqual(self.data['mandats']['PM797760']['scrutinsExamines'], 91)
+        self.assertEqual(self.data['mandats']['PM843659']['scrutinsExamines'], 10101)
+
     def test_motion_identifies_support_only_and_unknown_is_not_absence(self):
         row=self.ballots['VTANR5L16V1240']
         self.assertEqual((row['totaux']['pour'],row['totaux']['contre'],row['totaux']['abstention']),(278,None,None))

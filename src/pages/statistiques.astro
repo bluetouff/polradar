@@ -32,6 +32,13 @@ const activityMax = Math.max(
   ...activity.map((day) => day.added + day.revised),
 );
 const fmt = (n: number) => n.toLocaleString('fr-FR');
+const percent = new Intl.NumberFormat('fr-FR', {
+  style: 'percent',
+  maximumFractionDigits: 1,
+});
+const share = (recorded: number, examined: number) =>
+  examined ? percent.format(recorded / examined) : 'Sans scrutin';
+const candidateNames = new Map(dataset.candidates.map((c) => [c.id, c.name]));
 const scopes = [
   ['campagne', 'Propositions de campagne'],
   ['parti', 'Propositions de parti'],
@@ -420,6 +427,102 @@ const slices = scopes.map(([id, label]) => {
           </p>
         </article>
       </div>
+      <details class="ledger-table" id="couverture-parlementaire" open>
+        <summary>Couverture des archives parlementaires</summary>
+        <p>
+          Le taux rapporte les scrutins avec une position nominative aux
+          scrutins examinés dans les archives. Il inclut la mention « non-votant
+          ». Les chambres publient séparément les intentions et mises au point.
+          Les périodes ci-dessous délimitent les archives consultées.
+        </p>
+        <div class="parliament-coverage-grid">
+          {quality.parliament.byInstitution.map((institution) => (
+            <article class="parliament-coverage-card">
+              <h3>{institution.label}</h3>
+              <p class="parliament-coverage-head">
+                <strong>
+                  {share(
+                    institution.archiveBallotsWithPosition,
+                    institution.examinedArchiveBallots,
+                  )}
+                </strong>
+                <span>
+                  {fmt(institution.archiveBallotsWithPosition)} scrutins avec
+                  position sur {fmt(institution.examinedArchiveBallots)}{' '}
+                  examinés
+                </span>
+              </p>
+              <details>
+                <summary>Par période</summary>
+                <ul>
+                  {quality.parliament.byPeriod
+                    .filter((lot) => lot.institution === institution.id)
+                    .map((lot) => (
+                      <li>
+                        <a href={lot.source} rel="noreferrer">
+                          {lot.label}
+                          {lot.from === lot.to
+                            ? ' du ' + formatDate(lot.from)
+                            : ''}
+                        </a>
+                        <span>
+                          {fmt(lot.recorded)} / {fmt(lot.examined)} ·{' '}
+                          {share(lot.recorded, lot.examined)}
+                        </span>
+                        {lot.from !== lot.to && (
+                          <span>
+                            {formatDate(lot.from)} au {formatDate(lot.to)}
+                          </span>
+                        )}
+                        {lot.byYear.length > 0 && (
+                          <dl class="parliament-coverage-years">
+                            {lot.byYear.map((year) => (
+                              <div>
+                                <dt>{year.year}</dt>
+                                <dd>
+                                  {fmt(year.recorded)} / {fmt(year.examined)} ·{' '}
+                                  {share(year.recorded, year.examined)}
+                                </dd>
+                              </div>
+                            ))}
+                          </dl>
+                        )}
+                      </li>
+                    ))}
+                </ul>
+              </details>
+              <details>
+                <summary>Par mandat individuel</summary>
+                <ul>
+                  {quality.parliament.byMandate
+                    .filter((mandate) => mandate.institution === institution.id)
+                    .map((mandate) => (
+                      <li>
+                        <a href={mandate.source} rel="noreferrer">
+                          {candidateNames.get(mandate.candidate)}
+                        </a>
+                        <span>
+                          {mandate.term
+                            ? mandate.term + 'e législature · '
+                            : ''}
+                          {mandate.to
+                            ? formatDate(mandate.from) +
+                              ' au ' +
+                              formatDate(mandate.to)
+                            : 'Depuis le ' + formatDate(mandate.from)}
+                        </span>
+                        <span>
+                          {fmt(mandate.recorded)} / {fmt(mandate.examined)} ·{' '}
+                          {share(mandate.recorded, mandate.examined)}
+                        </span>
+                      </li>
+                    ))}
+                </ul>
+              </details>
+            </article>
+          ))}
+        </div>
+      </details>
       <details class="ledger-table">
         <summary>Statuts des candidatures</summary>
         <dl class="corpus-status-list">

@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Rebuild the historical roll-call register from the Assembly's pinned public archives."""
 import argparse
+from bisect import bisect_left, bisect_right
+from collections import Counter
 from contextlib import contextmanager
 from datetime import date
 from hashlib import sha256
@@ -240,6 +242,7 @@ def collect(cache, fetch=False):
         with archive(cache,term,'scrutins',fetch) as z:
             excluded=0
             selected_count=0
+            days=[]
             for item in sorted(z.namelist()):
                 b=json.loads(z.read(item))['scrutin']
                 check(item=='json/'+b['uid']+'.json' and b['uid'] not in seen,'ID de scrutin répété')
@@ -247,6 +250,7 @@ def collect(cache, fetch=False):
                 if b.get('lieuVote')=='Congrès':
                     excluded+=1
                     continue
+                days.append(date.fromisoformat(b['dateScrutin']).isoformat())
                 detailed = include_ballot(term,b,editorial_ids)
                 selected_count += int(detailed)
                 row=ballot(b,term,selected,offices,parties)
@@ -255,7 +259,14 @@ def collect(cache, fetch=False):
                     for p in row['positions']:
                         if p['groupe']:
                             groups[p['groupe']]=parties[p['groupe']]
-            sources.append({'legislature':term,'scrutinsExamines':len(z.namelist())-excluded,'congresExclus':excluded,
+            days.sort()
+            for mandate in offices.values():
+                start = bisect_left(days, mandate['debut'])
+                end = bisect_right(days, mandate['fin']) if mandate['fin'] else len(days)
+                mandate.update(legislature=term, scrutinsExamines=max(0, end-start))
+            years = Counter(day[:4] for day in days)
+            sources.append({'legislature':term,'scrutinsExamines':len(days),'congresExclus':excluded,
+                'scrutinsParAnnee': dict(years), 'debut':days[0], 'fin':days[-1],
                 **({'scrutinsDansArchive':len(z.namelist()),'examinesDansEditionDetaillee':selected_count,'selectionDetaillee':'Tous les scrutins depuis le 1er janvier 2026, les scrutins solennels, les motions de censure et les scrutins déjà documentés dans un dossier Polradar depuis le début de la législature.'} if term == 17 else {}),
                 'archives':{key:{'url':BASE+str(term)+'/'+location,'sha256':digest} for key,(location,digest) in archives.items()}})
     return {'version':1,'institution':'Assemblée nationale','licenceSource':LICENCE,'consultation':'2026-11-24',

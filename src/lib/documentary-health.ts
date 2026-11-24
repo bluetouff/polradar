@@ -7,6 +7,7 @@ import { documents } from './documents';
 import { pollCoverage } from './features.mjs';
 import { searchIndex } from './parliament-search';
 import { chamberLabels } from './parliament-search-types';
+import { parliamentaryCoverage } from './parliamentary-coverage';
 import { catalogue, noticeRows } from './poll-catalogue-data';
 
 export const documentaryCounts = corpusCounts(dataset);
@@ -101,7 +102,23 @@ export const documentaryHealth = {
   },
   parliament: {
     acts: searchIndex.actes.length,
-    byInstitution: [...institutions.values()],
+    byInstitution: [...institutions.values()].map((institution) => {
+      const lots = parliamentaryCoverage.byPeriod.filter(
+        (lot) => lot.institution === institution.id,
+      );
+      return {
+        ...institution,
+        examinedArchiveBallots: lots.reduce(
+          (sum, lot) => sum + lot.examined,
+          0,
+        ),
+        archiveBallotsWithPosition: lots.reduce(
+          (sum, lot) => sum + lot.recorded,
+          0,
+        ),
+      };
+    }),
+    ...parliamentaryCoverage,
   },
   collections: latestCollections(dailyHistorySchema.parse(history)).map(
     ({ row, run, attempted, succeeded }) => ({

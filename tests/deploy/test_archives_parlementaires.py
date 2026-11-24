@@ -31,6 +31,20 @@ class ArchivesParlementaires(unittest.TestCase):
         self.assertNotIn('misesAuPoint',b['positions'][0])
         self.assertEqual(b['source'],'https://www.senat.fr/scrutin-public/2022/scr2022-233.html')
 
+    def test_couverture_par_session_et_mandat(self):
+        self.assertEqual([(s['session'], s['scrutinsExamines']) for s in DATA['couvertureSenat']],
+                         [('2006', 129), ('2022', 331), ('2023', 213)])
+        self.assertEqual(DATA['mandats']['51908']['scrutinsExamines'], 544)
+        self.assertEqual(DATA['mandats']['membership/197694-f-169750']['scrutinsExamines'], 1621)
+        for row in DATA['scrutins']:
+            for position in row['positions']:
+                mandate = DATA['mandats'][position['mandat']]
+                self.assertEqual(mandate['candidat'], position['candidat'])
+                self.assertEqual(mandate['institution'], row['institution'])
+                self.assertGreaterEqual(row['date'], mandate['debut'])
+                if mandate['fin']:
+                    self.assertLessEqual(row['date'], mandate['fin'])
+
     def test_decisions_europeennes_et_absence(self):
         b=next(r for r in DATA['scrutins'] if r['id']=='MTG-PL-2024-03-13-DEC-166377')
         self.assertEqual((b['pour'],b['contre'],b['abstentions'],b['decision']),(262,351,8,'rejeté'))

@@ -134,6 +134,21 @@ test('le relevé de qualité recompte les notices et scrutins de la même révis
   ).length;
   expect(quality.polls.catalogue.byStatus.integree).toBe(verified);
   expect(quality.parliament.acts).toBe(register.actes.length);
+  const archive = quality.parliament.byPeriod as {
+    institution: string;
+    id: string;
+    examined: number;
+    recorded: number;
+  }[];
+  for (const lot of archive)
+    expect(lot.recorded).toBeLessThanOrEqual(lot.examined);
+  expect(archive.find((lot) => lot.id === 'assemblee-17')).toMatchObject({
+    examined: register.assembleeXVII.scrutinsExamines,
+  });
+  expect(archive.find((lot) => lot.id === 'europe-2026-11-12')).toMatchObject({
+    recorded: 0,
+    examined: 95,
+  });
   for (const institution of quality.parliament.byInstitution) {
     const ballots = register.actes.filter(
       (act: { institution: string; nature: string }) =>
@@ -163,4 +178,43 @@ test('le relevé de qualité recompte les notices et scrutins de la même révis
       .locator('#qualite')
       .getByRole('link', { name: /notices entièrement vérifiées/ }),
   ).toContainText(verified.toLocaleString('fr-FR'));
+});
+
+test('les périmètres parlementaires restent consultables au clavier à petite largeur', async ({
+  browser,
+}) => {
+  const context = await browser.newContext({
+    javaScriptEnabled: false,
+    viewport: { width: 360, height: 760 },
+  });
+  try {
+    const page = await context.newPage();
+    await page.goto('/statistiques/#couverture-parlementaire');
+    const explorer = page.locator('#couverture-parlementaire');
+    const european = explorer.getByRole('article').filter({
+      has: page.getByRole('heading', {
+        name: 'Parlement européen',
+        exact: true,
+      }),
+    });
+    const periods = european.getByText('Par période', { exact: true });
+    await periods.focus();
+    await periods.press('Enter');
+    const withoutMention = european.getByRole('link', {
+      name: 'Séance du 12 novembre 2026',
+    });
+    await expect(withoutMention).toBeVisible();
+    await expect(withoutMention.locator('..')).toContainText('0 / 95');
+    await european.getByText('Par mandat individuel', { exact: true }).click();
+    await expect(
+      european.getByRole('link', { name: 'Raphaël Glucksmann' }),
+    ).toHaveCount(2);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+  } finally {
+    await context.close();
+  }
 });
