@@ -66,6 +66,16 @@ class PollCollectorTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             polls.check_results([{'id': 'a', 'percentage': 60}, {'id': 'b', 'percentage': 45}], 'second', whole=True)
 
+    def test_legacy_yougov_explicit_raw_and_weighted_bases_are_not_interchanged(self):
+        table = ['Base brute       725       725', 'Base pondérée       689       689',
+                 'Marine Le Pen - RN         40%       36%', 'Édouard Philippe - Horizons         60%       64%']
+        base, points = polls.yougov_table(table, True, {})
+        self.assertEqual(base,725)
+        self.assertEqual([r['percentage'] for r in points],[36,64])
+        for replacement in ('Base pondérée   689   725','Base brute   689   689',''):
+            with self.subTest(replacement=replacement), self.assertRaises(ValueError):
+                polls.yougov_table([table[0],replacement,*table[2:]],True,{})
+
     def test_future_and_oversize_dates_are_not_admitted(self):
         self.assertEqual(polls.period('Terrain du 30 octobre au 2 novembre 2026'), (date(2026, 10, 30), date(2026, 11, 2)))
         with self.assertRaises(ValueError):

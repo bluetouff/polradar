@@ -215,7 +215,7 @@ def process_backfill(row, item, partial, last, identities, today, output):
     url = ORIGIN + '/notices/medias/fichiers/add/' + ident
     old_sha = (last or {}).get('sha256')
     cached = transport.STATE.get('historique-pdf-v1', url)
-    reusable = bool(old_sha and cached.get('digest') == old_sha and last['status'] != 'indisponible')
+    reusable = bool(old_sha and cached.get('digest') == old_sha and last['status'] in ('lecture-requise', 'importe'))
     info = {}
     try:
         status, mime, body = transport.fetch_reliably(url, HOSTS, conditional=cached if reusable else None, response_meta=info)
@@ -230,7 +230,7 @@ def process_backfill(row, item, partial, last, identities, today, output):
     digest = hashlib.sha256(body).hexdigest()
     if info.get('entity'):
         transport.STATE.remember('historique-pdf-v1', url, info, digest)
-    if old_sha == digest and last['status'] != 'indisponible':
+    if old_sha == digest and last['status'] in ('lecture-requise', 'importe'):
         return {**result, 'status': last['status'], 'sha256': digest}
     result.update(status='lecture-requise', sha256=digest)
     if partial or not item or not item['institute'] or not item['published']:
@@ -375,9 +375,19 @@ def yougov_table(lines, require_base, identities):
         cells.pop(0)
     base = None
     if require_base:
-        match = re.fullmatch(rf'Base\s{{2,}}({COUNT})\s{{2,}}({COUNT})', cells.pop(0))
+        if not cells:
+            raise ValueError('Base du tableau absente')
+        line = cells.pop(0)
+        match = re.fullmatch(rf'Base\s{{2,}}({COUNT})\s{{2,}}({COUNT})', line)
         if match is None:
-            raise ValueError('Base brute et base pondérée non reconnues')
+            # Earlier notices repeat both column bases on two distinctly labelled rows.
+            first = re.fullmatch(rf'Base brute\s{{2,}}({COUNT})\s{{2,}}({COUNT})', line)
+            while cells and not cells[0]:
+                cells.pop(0)
+            weighted = re.fullmatch(rf'Base pondérée\s{{2,}}({COUNT})\s{{2,}}({COUNT})', cells.pop(0)) if cells else None
+            if not first or not weighted or number(first[1]) != number(first[2]) or number(weighted[1]) != number(weighted[2]):
+                raise ValueError('Base brute et base pondérée non reconnues')
+            match = first
         base = number(match[1])
     rows = []
     for line in cells:
