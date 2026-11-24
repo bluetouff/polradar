@@ -34,3 +34,22 @@ Chaque dossier référence une entrée immuable de `versions.json`. Sa date de c
 Les anciens scrutins sont protégés par `scripts/check-history.mjs`. Une rectification impose un nouvel identifiant de relevé et une note explicite, puis la mise à jour du lien du dossier. Les versions déjà publiées restent conservées.
 
 La piste de la proposition de SMIC du 24 novembre 2022 a été écartée : le texte avait été retiré de l’ordre du jour. Les scrutins voisins sur d’autres textes et les noms approchants ont aussi été exclus. Un résultat de recherche ne suffit pas à qualifier un vote.
+
+## Registre des scrutins nominatifs de l’Assemblée
+
+Les archives complètes des XVe et XVIe législatures totalisent 8 522 scrutins de l’Assemblée examinés. Un vote du Congrès contenu dans la même livraison a été écarté. Au moins une position ou une mise au point de l’une des sept personnes identifiées dans Polradar figure dans 3 070 scrutins. Une même personne peut être mentionnée dans plusieurs relevés. La présence d’une intention déclarée après le scrutin est visible à côté du vote enregistré. Les autres choix d’une motion de censure sont indéterminés. Les groupes sont ceux du relevé de séance. Les députés absents des listes nominatives restent sans position attribuée.
+
+L’index public donne les identifiants des acteurs et des mandats, les groupes, les archives sources et leurs empreintes, la date de vérification et les liens vers les lots mensuels. Le champ `positions` de l’index compte les choix effectivement inscrits dans un relevé. Une mise au point seule possède une valeur `vote: null`. Les textes et les positions proviennent de l’Assemblée. La licence source figure dans l’index et les résultats renvoient au scrutin officiel. [Index](https://polradar.fr/api/parlement/index.json) · [Licence ouverte de l’Assemblée](https://data.assemblee-nationale.fr/licence-ouverte-open-licence)
+
+Les identifiants PA issus des fiches parlementaires déjà vérifiées sont recoupés avec l’annuaire de la législature, le mandat PM et la date de séance. L’appartenance à un groupe n’intervient jamais dans l’attribution du vote. [Votes de la XVe législature](https://data.assemblee-nationale.fr/archives-anterieures/archives-15e/scrutins) · [Annuaire de la XVe législature](https://data.assemblee-nationale.fr/archives-anterieures/archives-15e/deputes-senateurs-et-ministres) · [Votes de la XVIe législature](https://data.assemblee-nationale.fr/archives-16e/votes) · [Annuaire de la XVIe législature](https://data.assemblee-nationale.fr/archives-16e/deputes-senateurs-ministres)
+
+Le scrutin du 19 décembre 2023 en donne un exemple. Marine Le Pen figure dans les voix pour, Nicolas Dupont-Aignan parmi les abstentions. Le scrutin n°8 montre pourquoi conserver les mises au point. Fabien Roussel apparaît dans les voix pour et déclare n’avoir pas pris part au scrutin. [Immigration, scrutin 3213](https://www.assemblee-nationale.fr/dyn/16/scrutins/3213) · [Scrutin 8 et mise au point](https://www.assemblee-nationale.fr/dyn/16/scrutins/8)
+
+Pour rejouer l’import à partir des archives publiques épinglées, fournir un dossier de cache local. La seconde commande relit les quatre archives sans accès réseau et vérifie que la sortie est identique octet par octet.
+
+```sh
+python3 scripts/import-scrutins-assemblee.py /tmp/polradar-archives-an --telecharger
+python3 scripts/import-scrutins-assemblee.py /tmp/polradar-archives-an --verifier
+```
+
+Le registre factuel et les dossiers de rapprochement éditorial peuvent référencer le même scrutin. Leurs totaux ont des périmètres distincts. Les scrutins sélectionnés du Sénat et du Parlement européen figurent dans la rubrique Votes.
