@@ -138,7 +138,7 @@ test('chaque contrôle public garde uniquement le document, le statut et son heu
 test('le passage du soir date uniquement les sondages et conserve les relevés des autres familles', () => {
   const f = fixture();
   f.pollsOnly = true;
-  f.polls.checkedAt = at;
+  Object.assign(f.polls, { checkedAt: at });
   const report = makeDailyReport(f);
   assert.deepEqual(
     report.rows.map((r) => r.id),
