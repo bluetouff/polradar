@@ -99,12 +99,16 @@ func TestToolsAndPrivacy(t *testing.T) {
 			call(h, "GET", statsPath, "", nil)
 		}
 	}
-	r, err := openUsage(state, time.Now()).public(time.Now())
+	r, err := u.public(time.Now())
 	if err != nil || len(r.Days) != 1 || r.Days[0].counts != (counts{1, 1, 1}) {
 		t.Fatalf("compteurs %+v %v", r, err)
 	}
 	if err := u.checkpoint(); err != nil {
 		t.Fatal(err)
+	}
+	restored, err := openUsage(state, time.Now()).public(time.Now())
+	if err != nil || len(restored.Days) != 1 || restored.Days[0].counts != r.Days[0].counts {
+		t.Fatal("Le checkpoint doit restituer les compteurs publics")
 	}
 	saved, err := os.ReadFile(filepath.Join(state, "usage.json"))
 	if err != nil {
