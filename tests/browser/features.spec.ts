@@ -1,4 +1,14 @@
 import { test, expect } from '@playwright/test';
+import measures from '../../src/data/measures.json' with { type: 'json' };
+import { pageSize } from '../../src/lib/pagination';
+
+const retirementMeasures = measures.filter(
+  (m) =>
+    m.candidate === 'melenchon' &&
+    m.theme === 'retraites' &&
+    m.scope !== 'archive',
+);
+const retirementPageCount = Math.min(retirementMeasures.length, pageSize);
 
 test('les nouvelles vues restent lisibles de 320 à 1440 pixels', async ({
   page,
@@ -111,9 +121,16 @@ test('plusieurs mesures restent consultables pour un candidat et un thème', asy
   page,
 }) => {
   await page.goto('/mesures/#candidate=melenchon&theme=retraites');
-  await expect(page.locator('#measure-results .measure-row')).toHaveCount(2);
+  await expect(page.locator('#measure-results .measure-row')).toHaveCount(
+    retirementPageCount,
+  );
   await expect(page.locator('#measure-results')).toContainText('60 ans');
-  await page.locator('#measure-results h3 a').first().click();
+  await page
+    .getByRole('link', {
+      name: 'Retraite à 60 ans et 40 annuités',
+      exact: true,
+    })
+    .click();
   await expect(page.locator('.measure-number-grid')).toContainText('60');
   await expect(page.locator('.measure-number-grid')).toContainText('40');
   await expect(page.locator('.precise-sources')).toContainText('Garantir');
@@ -174,7 +191,9 @@ test('la recherche combine les facettes et exporte la sélection', async ({
   await form.locator('[name=candidate]').selectOption('melenchon');
   await form.locator('[name=theme]').selectOption('retraites');
   await form.locator('[name=type]').selectOption('mesure');
-  await expect(page.locator('#search-results .advanced-result')).toHaveCount(2);
+  await expect(page.locator('#search-results .advanced-result')).toHaveCount(
+    retirementPageCount,
+  );
   await page.getByRole('searchbox').fill('retraite');
   await expect(page).toHaveURL(/#.*candidate=melenchon/);
   expect(new URL(page.url()).search).toBe('');
@@ -185,7 +204,9 @@ test('la recherche combine les facettes et exporte la sélection', async ({
   const chunks: Buffer[] = [];
   for await (const chunk of stream) chunks.push(Buffer.from(chunk));
   const rows = JSON.parse(Buffer.concat(chunks).toString('utf8'));
-  expect(rows).toHaveLength(2);
+  expect(rows.map((row: { url: string }) => row.url).sort()).toEqual(
+    retirementMeasures.map((m) => `/mesures/${m.id}/`).sort(),
+  );
   expect(
     rows.every(
       (row: { candidate: string; theme: string }) =>
@@ -194,7 +215,9 @@ test('la recherche combine les facettes et exporte la sélection', async ({
   ).toBe(true);
   await page.reload();
   await expect(form.locator('[name=candidate]')).toHaveValue('melenchon');
-  await expect(page.locator('#search-results .advanced-result')).toHaveCount(2);
+  await expect(page.locator('#search-results .advanced-result')).toHaveCount(
+    retirementPageCount,
+  );
 });
 
 test('les paramètres de recherche hostiles restent inertes', async ({
