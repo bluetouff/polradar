@@ -16,6 +16,10 @@ export const portraitLinks = {
     label: 'Présentation illustrée du candidat',
     url: 'https://www.xn--lepeuplefranais2027-hyb.fr/',
   },
+  herlin: {
+    label: 'Portrait publié sur le site de campagne de Philippe Herlin',
+    url: 'https://www.herlin27.fr/',
+  },
   labib: {
     label: 'Portrait dans le tract du NPA',
     url: 'https://npa-revolutionnaires.org/wp-content/uploads/2026/09/260919_4p-campagne-A4.pdf#page=1',

@@ -26,6 +26,7 @@ import portrait23 from '../assets/portraits/mathieu.jpg';
 import billetdoux from '../assets/portraits/billetdoux.jpg';
 import cheve from '../assets/portraits/cheve.jpg';
 import collovati from '../assets/portraits/collovati.jpg';
+import herlin from '../assets/portraits/herlin.jpg';
 import labib from '../assets/portraits/labib.jpg';
 import legendre from '../assets/portraits/legendre.jpg';
 import markovic from '../assets/portraits/markovic.jpg';
@@ -61,6 +62,7 @@ export const portraitAssets: Record<string, ImageMetadata> = {
   'billetdoux.jpg': billetdoux,
   'cheve.jpg': cheve,
   'collovati.jpg': collovati,
+  'herlin.jpg': herlin,
   'labib.jpg': labib,
   'legendre.jpg': legendre,
   'markovic.jpg': markovic,

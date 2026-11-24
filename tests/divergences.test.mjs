@@ -26,10 +26,21 @@ test('les axes reprennent les chiffres et leurs fiches, sans archives ni mélang
       'retraites-age-depart',
       'retraites-annuites',
       'travail-smic-mensuel-net',
+      'travail-duree-hebdomadaire',
       'fiscalite-seuil-exoneration-heritage',
       'climat-nouveaux-epr2',
       'securite-places-prison-supplementaires',
     ]),
+  );
+  const hours = groups.find(
+    (group) => group.id === 'travail-duree-hebdomadaire',
+  );
+  assert.deepEqual(
+    hours.values.map((row) => [row.measureId, row.value]),
+    [
+      ['kazib-travail-temps', 28],
+      ['herlin-semaine-40-heures', 40],
+    ],
   );
   const prisons = groups.find(
     (group) => group.key === 'places-prison-supplementaires',

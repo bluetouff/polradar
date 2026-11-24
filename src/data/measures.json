@@ -54702,5 +54702,727 @@
     "scope": "campagne",
     "edition": "Réussir à nouveau · présidentielle 2027",
     "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-premier-mai",
+    "parentId": "herlin-travail",
+    "candidate": "herlin",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Retirer le 1er mai de la liste des jours fériés",
+    "description": "Sa déclaration de candidature propose de rendre cette journée travaillée.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-declaration",
+        "locator": "Déclaration du 1er mai, passage sur les jours fériés."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-semaine-40-heures",
+    "parentId": "herlin-travail",
+    "candidate": "herlin",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Porter la semaine de travail à 40 heures",
+    "description": "Philippe Herlin propose de remplacer la durée hebdomadaire de 35 heures par 40 heures.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "duree-hebdomadaire",
+        "label": "Durée proposée",
+        "value": 40,
+        "unit": "heures par semaine",
+        "sourceId": "herlin-economie"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-economie",
+        "locator": "Travail, chômage, premier paragraphe."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-assurance-chomage",
+    "parentId": "herlin-social",
+    "candidate": "herlin",
+    "theme": "social",
+    "revision": 1,
+    "title": "Associer cotisation chômage minimale et assurance facultative",
+    "description": "Une assurance privée permettrait de compléter librement la couverture de base.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-economie",
+        "locator": "Travail, chômage, second paragraphe."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-departs-fonction-publique",
+    "parentId": "herlin-travail",
+    "candidate": "herlin",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Indemniser les départs volontaires de la fonction publique",
+    "description": "Le candidat prévoit un chèque ou un logement social pour les agents qui démissionnent et passent dans le privé.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-economie",
+        "locator": "Dépenses publiques, paragraphe sur le départ volontaire."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-partage-economies",
+    "parentId": "herlin-fiscalite",
+    "candidate": "herlin",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Partager les économies entre déficit et baisses d’impôts",
+    "description": "La moitié de chaque économie irait à la réduction du déficit et l’autre moitié à une baisse d’impôt.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-economie",
+        "locator": "Dépenses publiques, deuxième règle."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-prelevements-obligatoires",
+    "parentId": "herlin-fiscalite",
+    "candidate": "herlin",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Ramener les prélèvements obligatoires à 35 % du PIB",
+    "description": "Le candidat fixe cette cible de prélèvements pour l’ensemble de l’économie.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "cible-prelevements",
+        "label": "Cible de prélèvements obligatoires",
+        "value": 35,
+        "unit": "% du PIB",
+        "sourceId": "herlin-economie"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-economie",
+        "locator": "Fiscalité, premier paragraphe."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-droits-succession",
+    "parentId": "herlin-fiscalite",
+    "candidate": "herlin",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Supprimer les droits de succession",
+    "description": "Le programme prévoit la suppression de l’impôt sur les transmissions par succession.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-economie",
+        "locator": "Fiscalité, liste des impôts visés."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-ifi",
+    "parentId": "herlin-fiscalite",
+    "candidate": "herlin",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Supprimer l’impôt sur la fortune immobilière",
+    "description": "L’IFI figure parmi les impôts que le candidat entend supprimer.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-economie",
+        "locator": "Fiscalité, liste des impôts visés."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-bitcoin-or",
+    "parentId": "herlin-fiscalite",
+    "candidate": "herlin",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Permettre les paiements en bitcoins ou en or",
+    "description": "Acheteur et vendeur pourraient convenir d’un paiement total ou partiel dans ces actifs. L’euro garderait cours légal.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-programme",
+        "locator": "Volet économique, Fiscalité, paragraphe sur les monnaies complémentaires."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-minage-bitcoin",
+    "parentId": "herlin-climat",
+    "candidate": "herlin",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Autoriser le minage de bitcoins par EDF",
+    "description": "Herlin prévoit aussi d’ouvrir cette activité aux autres opérateurs intéressés et de modifier la grille tarifaire de l’électricité.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-programme",
+        "locator": "Volet économique, Énergie, dernier paragraphe."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-extraction-hydrocarbures",
+    "parentId": "herlin-climat",
+    "candidate": "herlin",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Soumettre à référendum la relance de l’extraction d’hydrocarbures",
+    "description": "Il souhaite abroger la loi Hulot et exploiter le pétrole en Guyane ainsi que le gaz de schiste.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-economie",
+        "locator": "Énergie, passage sur la loi Hulot."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-demantelement-eolien-solaire",
+    "parentId": "herlin-climat",
+    "candidate": "herlin",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Démanteler les éoliennes et panneaux solaires installés",
+    "description": "La proposition vise les équipements déjà en place et la suppression des aides aux véhicules électriques.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-economie",
+        "locator": "Énergie, premier paragraphe."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-vente-hlm",
+    "parentId": "herlin-logement",
+    "candidate": "herlin",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Donner la priorité aux locataires lors de la vente des HLM",
+    "description": "Le candidat veut permettre la vente des logements sociaux en donnant priorité à leurs occupants.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-economie",
+        "locator": "Logement, dernière phrase."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-apl",
+    "parentId": "herlin-logement",
+    "candidate": "herlin",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Supprimer les APL après une libéralisation du logement",
+    "description": "Le programme conditionne la disparition des aides personnelles au logement à une réforme préalable du secteur.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-economie",
+        "locator": "Dépenses publiques, première règle."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-capitalisation",
+    "parentId": "herlin-retraites",
+    "candidate": "herlin",
+    "theme": "retraites",
+    "revision": 1,
+    "title": "Remplacer progressivement la répartition par la capitalisation",
+    "description": "Le candidat soumettrait la transition à référendum. Il compte sur des recettes tirées de ressources du sous-sol pour la financer.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": "Recettes envisagées du gaz de schiste, du pétrole de Guyane et d’autres ressources, dont l’hydrogène blanc.",
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-programme",
+        "locator": "Volet économique, Retraites, premier paragraphe."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-regimes-speciaux",
+    "parentId": "herlin-retraites",
+    "candidate": "herlin",
+    "theme": "retraites",
+    "revision": 1,
+    "title": "Supprimer les régimes spéciaux de retraite financés sur fonds publics",
+    "description": "Le texte vise les régimes spéciaux qui bénéficient d’un financement public.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-economie",
+        "locator": "Retraites, seconde proposition."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-choix-caisse",
+    "parentId": "herlin-sante",
+    "candidate": "herlin",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Permettre aux salariés de choisir leur caisse d’assurance maladie",
+    "description": "La cotisation santé resterait obligatoire. Les salariés choisiraient l’organisme chargé de leur couverture.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-economie",
+        "locator": "Santé, passage sur la cotisation et le choix de la caisse."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-hopitaux",
+    "parentId": "herlin-sante",
+    "candidate": "herlin",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Privatiser les hôpitaux",
+    "description": "Le candidat inscrit la privatisation des établissements hospitaliers dans son programme de santé.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-economie",
+        "locator": "Santé, passage sur les hôpitaux."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-ars",
+    "parentId": "herlin-sante",
+    "candidate": "herlin",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Supprimer les agences régionales de santé",
+    "description": "Le programme prévoit la suppression des ARS.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-economie",
+        "locator": "Santé, passage sur les agences régionales."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-cheque-scolaire",
+    "parentId": "herlin-education",
+    "candidate": "herlin",
+    "theme": "education",
+    "revision": 1,
+    "title": "Instaurer un chèque scolaire",
+    "description": "La mesure vise à mettre les établissements publics et privés en concurrence.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-economie",
+        "locator": "Enseignement, premier paragraphe."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-places-prison",
+    "parentId": "herlin-securite",
+    "candidate": "herlin",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Construire au moins 50 000 places de prison",
+    "description": "Le chiffre annoncé constitue un minimum de places à construire.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "places-prison-supplementaires-minimum",
+        "label": "Minimum annoncé",
+        "value": 50000,
+        "unit": "places",
+        "sourceId": "herlin-programme"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-programme",
+        "locator": "Volet régalien, Justice, première mesure."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-peines-planchers",
+    "parentId": "herlin-securite",
+    "candidate": "herlin",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Rétablir les peines planchers",
+    "description": "Le candidat inscrit le retour de peines minimales dans son volet consacré à la justice.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-programme",
+        "locator": "Volet régalien, Justice, deuxième mesure."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-peine-mort",
+    "parentId": "herlin-securite",
+    "candidate": "herlin",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Organiser un référendum sur le rétablissement de la peine de mort",
+    "description": "Le candidat présente le référendum comme la voie pour rétablir cette peine.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-programme",
+        "locator": "Volet régalien, Justice, passage sur la peine de mort."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-regroupement-familial",
+    "parentId": "herlin-immigration",
+    "candidate": "herlin",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Mettre fin au regroupement familial",
+    "description": "Le candidat veut supprimer cette voie de regroupement des familles.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-programme",
+        "locator": "Volet régalien, Immigration, première phrase."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-droit-sol",
+    "parentId": "herlin-immigration",
+    "candidate": "herlin",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Supprimer le droit du sol",
+    "description": "Le volet consacré à l’immigration propose la fin de ce mode d’accès à la nationalité.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-programme",
+        "locator": "Volet régalien, Immigration, première phrase."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-ric",
+    "parentId": "herlin-institutions",
+    "candidate": "herlin",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Ouvrir le référendum d’initiative citoyenne aux niveaux national et local",
+    "description": "Le volet institutionnel prévoit que les citoyens puissent prendre l’initiative d’un référendum aux deux échelons.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-programme",
+        "locator": "Volet régalien, Démocratie, premier paragraphe."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-septennat",
+    "parentId": "herlin-institutions",
+    "candidate": "herlin",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Rétablir le mandat présidentiel de sept ans",
+    "description": "Philippe Herlin propose le retour au septennat.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "duree-mandat",
+        "label": "Durée du mandat",
+        "value": 7,
+        "unit": "ans",
+        "sourceId": "herlin-programme"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-programme",
+        "locator": "Volet régalien, Démocratie, passage sur le septennat."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-arcom",
+    "parentId": "herlin-institutions",
+    "candidate": "herlin",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Supprimer l’Arcom",
+    "description": "Le candidat prévoit la disparition de l’autorité de régulation de la communication audiovisuelle et numérique.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-programme",
+        "locator": "Volet régalien, Démocratie, paragraphe sur la liberté d’expression."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-moderation-plateformes",
+    "parentId": "herlin-institutions",
+    "candidate": "herlin",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Limiter les restrictions d’expression imposées par les plateformes",
+    "description": "Selon sa proposition, les entreprises ne pourraient limiter l’expression au-delà des restrictions prévues par la loi.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-programme",
+        "locator": "Volet régalien, Démocratie, paragraphe citant YouTube et les réseaux sociaux."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "herlin-retrait-troupes",
+    "parentId": "herlin-europe",
+    "candidate": "herlin",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Retirer les troupes françaises de quatre pays",
+    "description": "Le candidat cite l’Irak, le Liban, la Roumanie et l’Estonie.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "herlin-programme",
+        "locator": "Volet régalien, Armée, dernière mesure."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Présidentielle 2027",
+    "checked": "2026-11-24"
   }
 ]

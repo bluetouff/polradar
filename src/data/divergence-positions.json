@@ -69,7 +69,7 @@
     "id": "retraites-financement-regimes",
     "theme": "retraites",
     "label": "Retraites · répartition et capitalisation",
-    "context": "Les projets portent sur un complément d’épargne ou sur des changements de recettes et de pilotage du régime par répartition.",
+    "context": "Les propositions portent sur le financement de la répartition, l’ajout d’un complément par capitalisation ou le remplacement progressif de la répartition.",
     "positions": [
       {
         "id": "capital",
@@ -90,6 +90,11 @@
           "tondelier-retraites-conference-repartition-v1",
           "ps-retraites-capital-recettes-v1"
         ]
+      },
+      {
+        "id": "transition-capitalisation",
+        "label": "Remplacer progressivement la répartition",
+        "versions": ["herlin-capitalisation-v1"]
       }
     ]
   },
@@ -155,7 +160,10 @@
       {
         "id": "allongement",
         "label": "Augmenter la durée de travail",
-        "versions": ["collovati-travail-semaine-39-heures-v1"]
+        "versions": [
+          "collovati-travail-semaine-39-heures-v1",
+          "herlin-semaine-40-heures-v1"
+        ]
       }
     ]
   },
@@ -177,7 +185,8 @@
           "legendre-institutions-referendums-v1",
           "rohou-institutions-ric-v1",
           "lalanne-institutions-ric-v1",
-          "villepin-referendum-citoyen-v1"
+          "villepin-referendum-citoyen-v1",
+          "herlin-ric-v1"
         ]
       },
       {
