@@ -108,3 +108,54 @@ test('Une tentative sans succès ne peut pas contenir des résultats antérieurs
     false,
   );
 });
+
+test('Le rattrapage reste attaché à la notice et sa relecture survit aux passages suivants', () => {
+  const when = new Date(
+    Date.parse(snapshot.checkedAt) + 86_400_000,
+  ).toISOString();
+  const { downloadId, number, label, listedMonth } = snapshot.rows.find(
+    (r) => r.number === '10333',
+  );
+  const row = { downloadId, number, label, listedMonth };
+  const report = { checkedAt: when, status: 'available', catalogue: [row] };
+  const entry = {
+    downloadId,
+    number,
+    status: 'lecture-requise',
+    sha256: 'a'.repeat(64),
+  };
+  const state = mergeCatalogue(snapshot, { ...report, backfill: [entry] });
+  const later = mergeCatalogue(state, report);
+  assert.deepEqual(
+    later.rows.find((r) => r.downloadId === downloadId).backfill,
+    { at: when, status: entry.status, sha256: entry.sha256 },
+  );
+  assert.equal(
+    mergeCatalogue(state, {
+      ...report,
+      catalogue: [{ ...row, label: label + ' (modifiée)' }],
+    }).rows.find((r) => r.downloadId === downloadId).backfill,
+    undefined,
+  );
+  assert.throws(() =>
+    mergeCatalogue(state, {
+      ...report,
+      backfill: [{ ...entry, sha256: undefined }],
+    }),
+  );
+  assert.throws(() =>
+    mergeCatalogue(state, { ...report, backfill: [entry, entry] }),
+  );
+  assert.throws(() =>
+    mergeCatalogue(state, {
+      ...report,
+      backfill: [{ ...entry, number: '55555' }],
+    }),
+  );
+  assert.throws(() =>
+    mergeCatalogue(state, {
+      ...report,
+      backfill: [{ ...entry, downloadId: '999998' }],
+    }),
+  );
+});

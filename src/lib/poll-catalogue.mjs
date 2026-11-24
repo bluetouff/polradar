@@ -33,6 +33,31 @@ const check = z.strictObject({
   at: timestamp,
   reason: z.enum(['notice-inaccessible', 'format-non-reconnu']),
 });
+const backfill = z.strictObject({
+  status: z.enum(['indisponible', 'format', 'lecture-requise', 'importe']),
+  sha256: z
+    .string()
+    .regex(/^[0-9a-f]{64}$/)
+    .optional(),
+});
+const attempts = z
+  .array(
+    backfill.extend({
+      downloadId: entry.shape.downloadId,
+      number: entry.shape.number.unwrap(),
+    }),
+  )
+  .max(2)
+  .refine(
+    (records) =>
+      new Set(records.map((r) => r.downloadId)).size === records.length,
+  );
+export const backfillLabels = {
+  indisponible: 'Téléchargement impossible',
+  format: 'Format à examiner',
+  'lecture-requise': 'PDF reçu, tableaux à vérifier',
+  importe: 'Scénarios extraits, couverture à vérifier',
+};
 export const catalogueSchema = z
   .strictObject({
     version: z.literal(1),
@@ -40,7 +65,13 @@ export const catalogueSchema = z
     lastSuccessAt: timestamp.nullable(),
     available: z.boolean(),
     rows: z
-      .array(entry.extend({ lastListedAt: timestamp, issue: check.optional() }))
+      .array(
+        entry.extend({
+          lastListedAt: timestamp,
+          issue: check.optional(),
+          backfill: backfill.extend({ at: timestamp }).optional(),
+        }),
+      )
       .max(3000),
   })
   .superRefine((d, ctx) => {
@@ -56,7 +87,8 @@ export const catalogueSchema = z
       d.rows.some(
         (r) =>
           Date.parse(r.lastListedAt) > Date.parse(d.lastSuccessAt ?? '') ||
-          (r.issue && Date.parse(r.issue.at) > Date.parse(d.checkedAt)),
+          (r.issue && Date.parse(r.issue.at) > Date.parse(d.checkedAt)) ||
+          (r.backfill && Date.parse(r.backfill.at) > Date.parse(d.checkedAt)),
       )
     )
       ctx.addIssue({
@@ -87,16 +119,38 @@ export function mergeCatalogue(previous, report) {
       )
       .map((r) => [r.url, r.reason]),
   );
+  const history = new Map();
+  for (const attempt of attempts.parse(report.backfill ?? [])) {
+    const { downloadId, number, status, sha256 } = attempt;
+    if (
+      !seen.some((r) => r.downloadId === downloadId && r.number === number) ||
+      (['lecture-requise', 'importe'].includes(status) && !sha256)
+    )
+      throw Error('Tentative de rattrapage incohérente avec le catalogue');
+    history.set(downloadId, {
+      at: when,
+      status,
+      ...(sha256 ? { sha256 } : {}),
+    });
+  }
   const imported = new Set((report.sources ?? []).map((r) => r.url));
   for (const row of seen) {
     const url = noticeUrl(row.downloadId),
       issue = issues.get(url);
-    const previousIssue = imported.has(url)
-      ? undefined
-      : old.get(row.downloadId)?.issue;
+    const prior = old.get(row.downloadId);
+    const same =
+      prior &&
+      prior.number === row.number &&
+      prior.label === row.label &&
+      prior.listedMonth === row.listedMonth;
+    const attempt = history.get(row.downloadId);
+    const previousIssue =
+      same && !imported.has(url) && !attempt ? prior.issue : undefined;
+    const historic = attempt ?? (same ? prior.backfill : undefined);
     old.set(row.downloadId, {
       ...row,
       lastListedAt: when,
+      ...(historic ? { backfill: historic } : {}),
       ...(issue
         ? { issue: { reason: issue, at: when } }
         : previousIssue
@@ -200,6 +254,9 @@ export function catalogueCoverage(snapshot, polls, sources, rawAudits) {
         audit.scenarios.every((s) => actual.get(s.id) === s.page);
       status = verified ? 'integree' : 'partielle';
     } else if (audit && !audit.pages.length) status = 'non_pertinente';
+    else if (r.backfill?.status === 'indisponible') status = 'inaccessible';
+    else if (r.backfill?.status === 'format') status = 'format';
+    else if (r.backfill?.status === 'lecture-requise') status = 'a_relire';
     else if (r.issue?.reason === 'notice-inaccessible') status = 'inaccessible';
     else if (r.issue?.reason === 'format-non-reconnu') status = 'format';
     else if (/\bIV\b|intentions? de vote/i.test(r.label)) status = 'a_relire';

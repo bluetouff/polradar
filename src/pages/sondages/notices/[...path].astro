@@ -4,6 +4,7 @@ import Pager from '../../../components/Pager.astro';
 import { formatTimestamp, formatDate } from '../../../lib/data';
 import {
   coverageLabels,
+  backfillLabels,
   commissionIndex,
   noticeUrl,
 } from '../../../lib/poll-catalogue.mjs';
@@ -106,6 +107,12 @@ const current = catalogue.rows.filter(
               ))}
             </ul>
           </details>
+        )}
+        {r.backfill && (
+          <p>
+            Rattrapage du {formatTimestamp(r.backfill.at)} ·{' '}
+            {(backfillLabels as Record<string, string>)[r.backfill.status]}.
+          </p>
         )}
         {r.issue && (
           <p>Vérification du fichier le {formatTimestamp(r.issue.at)}.</p>

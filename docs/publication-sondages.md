@@ -23,3 +23,9 @@ Ces mentions accompagnent le détail et l’export des résultats. Les images fi
 7. Soumettre à un juriste les marchés prédictifs et les contenus mixtes (sondage commenté avec des prix de contrats, résultats étrangers, rediffusion par un tiers). Le modèle de données conserve les cours de marché et les intentions de vote dans des collections distinctes.
 
 Un tableau de fenêtres vide signifie qu’aucun horaire vérifié n’a été saisi. Le test fixe des dates fictives uniquement dans la recette. Il vérifie les deux bornes, l’autorité de la source et les dates invalides.
+
+## Rattrapage des notices anciennes
+
+La collecte quotidienne réserve au plus deux des huit téléchargements de notices à l’historique. Elle traite d’abord les notices jamais tentées, hors documents déjà relus intégralement. Un second passage le même jour tient compte des tentatives enregistrées, en heure de Paris. Le passage du soir reste réservé aux entrées nouvelles ou modifiées.
+
+Chaque tentative conserve dans le catalogue son horodatage et son résultat. Le PDF reçu est identifié par SHA-256. La page des notices affiche séparément les scénarios importés et la couverture vérifiée par lecture des tableaux. Les notices déjà partiellement publiées rejoignent la file de relecture manuelle. Une indisponibilité peut être retentée après sept jours, les autres notices après trente jours. Le collecteur réutilise les validateurs HTTP et respecte le délai demandé par l’éditeur. Les PDF ne sont pas distribués dans le site.

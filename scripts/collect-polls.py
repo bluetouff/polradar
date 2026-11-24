@@ -4,6 +4,7 @@ import argparse
 from datetime import date, datetime, timedelta, timezone
 from decimal import Decimal
 from html.parser import HTMLParser
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -143,32 +144,104 @@ def notices(body, today):
     return recent_notices(catalogue_rows(body, reject_invalid=False), today)
 
 
+def notice_metadata(row, today, *, historical=False):
+    label = normalized(row['label'])
+    if not row['number'] or not re.search(r'\biv\b|intentions? de vote', label):
+        return None
+    if not historical and not re.match(r'^\d{4,6}[a-z]? (?:pres|presidentielle)\.?\s+(?:iv\b|intentions? de vote\b)', label):
+        return None
+    month = date.fromisoformat(row['listedMonth'] + '-01') if row['listedMonth'] else None
+    cutoff = today - timedelta(days=21)
+    if not historical and (month is None or not cutoff.replace(day=1) <= month <= today):
+        return None
+    written = re.search(r'\b(\d{1,2})(?:er)? ([a-z]+)(?: (\d{4}))?$', label)
+    published = None
+    if written and month and written[2] in MONTHS:
+        try:
+            day = civil(written[1], written[2], written[3] or month.year)
+        except ValueError:
+            day = None
+        if day and not historical and not cutoff <= day <= today:
+            return None
+        if day and day <= today and (day.month, day.year) == (month.month, month.year):
+            published = day
+    institute = re.search(r'\b(ifop|yougov)\b', label)
+    return {
+        'number': row['number'], 'url': ORIGIN + '/notices/medias/fichiers/add/' + row['downloadId'],
+        'published': published, 'institute': institute[1] if institute else None,
+    }
+
+
 def recent_notices(rows, today):
-    recent = []
-    for row in rows:
-        path = '/notices/medias/fichiers/add/' + row['downloadId']
-        label = row['label']
-        identity = re.match(r'^(\d{4,6}[A-Z]?) (?:pres|presidentielle)\.?\s+(?:iv\b|intentions? de vote\b)', normalized(label), re.I)
-        if not identity or not row['listedMonth']:
-            continue
-        listed_month = date.fromisoformat(row['listedMonth'] + '-01')
-        year = listed_month.year
-        if not (today - timedelta(days=21)).replace(day=1) <= listed_month <= today:
-            continue
-        written = re.search(r'\b(\d{1,2})(?:er)? ([a-z]+)(?: (\d{4}))?$', normalized(label))
-        published = None
-        if written and written.group(2) in MONTHS:
-            published = civil(written.group(1), written.group(2), written.group(3) or year)
-            if not today - timedelta(days=21) <= published <= today:
-                continue
-            if published.month != listed_month.month or published.year != listed_month.year:
-                published = None
-        institute = re.search(r'\b(ifop|yougov)\b', normalized(label))
-        recent.append({
-            'number': identity.group(1).lower(), 'url': ORIGIN + path,
-            'published': published, 'institute': institute.group(1) if institute else None,
-        })
+    recent = [item for row in rows if (item := notice_metadata(row, today))]
     return sorted(recent, key=lambda item: (item['published'] or today, item['number']), reverse=True)
+
+
+def paris_day(timestamp):
+    return datetime.fromisoformat(timestamp.replace('Z', '+00:00')).astimezone(ZoneInfo('Europe/Paris')).date()
+
+
+def backfill_queue(rows, previous, audited, today, exclude_urls, partial_urls, partial_ids):
+    prior = {r['downloadId']: r for r in previous['rows']}
+    # A repeated run on the same Paris calendar day cannot consume another batch.
+    budget = 2 - sum(paris_day(r['backfill']['at']) == today for r in prior.values() if r.get('backfill'))
+    if budget <= 0:
+        return []
+    pending = []
+    for row in rows:
+        ident = row['downloadId']
+        if not row['number'] or ident in audited:
+            continue
+        item = notice_metadata(row, today, historical=True)
+        url = ORIGIN + '/notices/medias/fichiers/add/' + ident
+        partial = url in partial_urls or 'notice-commission-' + row['number'] in partial_ids
+        if (item is None and not partial) or url in exclude_urls:
+            continue
+        old = prior.get(ident, {})
+        attempt = old.get('backfill') if all(row[k] == old.get(k) for k in ('number', 'listedMonth', 'label')) else None
+        last = ''
+        if attempt:
+            last = attempt['at']
+            delay = 7 if attempt['status'] == 'indisponible' else 30
+            if (today - paris_day(last)).days < delay:
+                continue
+        pending.append((last, -int(ident), row, item, partial, attempt))
+    return [(row, item, partial, attempt) for _, _, row, item, partial, attempt in sorted(pending, key=lambda e: e[:2])[:budget]]
+
+
+def process_backfill(row, item, partial, last, identities, today, output):
+    ident = row['downloadId']
+    result = {'downloadId': ident, 'number': row['number'], 'status': 'indisponible'}
+    url = ORIGIN + '/notices/medias/fichiers/add/' + ident
+    old_sha = (last or {}).get('sha256')
+    cached = transport.STATE.get('historique-pdf-v1', url)
+    reusable = bool(old_sha and cached.get('digest') == old_sha and last['status'] != 'indisponible')
+    info = {}
+    try:
+        status, mime, body = transport.fetch_reliably(url, HOSTS, conditional=cached if reusable else None, response_meta=info)
+    except (ValueError, OSError):
+        return result
+    if status == 304 and reusable:
+        return {**result, 'status': last['status'], 'sha256': old_sha}
+    if status != 200:
+        return result
+    if mime not in ('application/pdf', 'application/octet-stream') or not body.startswith(b'%PDF-') or len(body) > transport.LIMIT:
+        return {**result, 'status': 'format'}
+    digest = hashlib.sha256(body).hexdigest()
+    if info.get('entity'):
+        transport.STATE.remember('historique-pdf-v1', url, info, digest)
+    if old_sha == digest and last['status'] != 'indisponible':
+        return {**result, 'status': last['status'], 'sha256': digest}
+    result.update(status='lecture-requise', sha256=digest)
+    if partial or not item or not item['institute'] or not item['published']:
+        return result
+    try:
+        source, scenarios = import_notice(item, layout(body), identities, today)
+    except (OSError, ValueError, IndexError, StopIteration, subprocess.SubprocessError):
+        return {**result, 'status': 'format'}
+    output['sources'].append(source)
+    output['polls'].extend(scenarios)
+    return {**result, 'status': 'importe'}
 
 
 def layout(raw):
@@ -477,13 +550,20 @@ def collect(today, *, new_only=False):
         return output
     seen = set()
     downloads = 0
+    # Both passes retain the existing combined cap of eight document downloads.
+    recent_urls = {i['url'] for i in candidates if i['institute'] and i['published']
+                   and 'notice-commission-' + i['number'] not in committed_ids and i['url'] not in committed_urls}
+    queue = []
+    if not new_only:
+        audits = json.loads((ROOT / 'src/data/poll-notice-audits.json').read_text())
+        queue = backfill_queue(current, previous, audits, today, recent_urls, committed_urls, committed_ids)
     for item in candidates:
         identity = f"notice-commission-{item['number']}"
         if identity in committed_ids or item['url'] in committed_urls or identity in seen:
             continue
         seen.add(identity)
         pending = {'number': item['number'], 'url': item['url']}
-        if not item['institute'] or item['published'] is None or downloads >= 8:
+        if not item['institute'] or item['published'] is None or downloads >= 8 - len(queue):
             output['review'].append({**pending, 'reason': 'notice-a-relire'})
             continue
         downloads += 1
@@ -503,6 +583,9 @@ def collect(today, *, new_only=False):
             continue
         output['sources'].append(source)
         output['polls'].extend(rows)
+    if queue:
+        output['backfill'] = [process_backfill(row, item, partial, prior, identities, today, output)
+                              for row, item, partial, prior in queue]
     return output
 
 
@@ -524,6 +607,8 @@ def main():
     transport.STATE.save()
     (output / 'review.json').write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(f"Sondages · {data['status']} · {len(data['sources'])} notices importables · {len(data['review'])} à relire.")
+    for entry in data.get('backfill', []):
+        print(f"- Historique · notice {entry['number']} · {entry['status']}")
     for row in data['review']:
         print(f"- [Notice {row['number']}]({row['url']}) · {row['reason']}")
 

@@ -1,6 +1,7 @@
 import importlib.util
 from pathlib import Path
 from datetime import date
+from unittest.mock import Mock, patch
 import unittest
 
 
@@ -71,6 +72,55 @@ class PollCollectorTests(unittest.TestCase):
             polls.period('Terrain du 13 janvier au 16 novembre 2026')
         with self.assertRaises(ValueError):
             polls.layout(b'<html>not a notice</html>')
+
+    def test_history_rotates_without_reopening_already_checked_or_new_documents(self):
+        day = date(2026,11,24)
+        def make(i):
+            return {'number': str(10000 + i), 'downloadId': str(i), 'label': f'{10000+i} Pres IV YouGov 12 septembre', 'listedMonth': '2026-09'}
+        rows = [make(i) for i in range(1,7)]
+        rows[1].update(label='10002 Opinions sur les retraites')
+        old = {**rows[2], 'backfill': {'at': '2026-11-23T22:05:00Z','status':'lecture-requise'}}
+        reserved = polls.ORIGIN + '/notices/medias/fichiers/add/6'
+        args = ({'5':{}}, day, {reserved}, set(), set())
+        select = lambda state: [job[0]['downloadId'] for job in polls.backfill_queue(rows, {'rows':state}, *args)]
+        self.assertEqual(select([old]), ['4','1'])
+        done = [{**rows[i], 'backfill':{'at':'2026-11-23T23:30:00Z','status':'indisponible'}} for i in (0,3)]
+        self.assertEqual(select(done), [])
+        self.assertEqual(select([old,done[0]]), ['4'])
+        old['backfill'] = {'at':'2026-11-16T07:00:00Z','status':'indisponible'}
+        self.assertTrue(any(job[0]['downloadId']=='3' for job in polls.backfill_queue([rows[2]],{'rows':[old]},*args)))
+        self.assertEqual(polls.recent_notices(rows,day), [])
+        self.assertEqual(polls.notice_metadata(rows[0],day,historical=True)['published'], date(2026,9,12))
+
+    def test_historical_304_needs_matching_persisted_digest_and_partial_documents_never_duplicate_scenarios(self):
+        row = {'number':'10004', 'downloadId':'4', 'label':'10004 Pres IV YouGov 12 septembre', 'listedMonth':'2026-09'}
+        day = date(2026,11,24)
+        item = polls.notice_metadata(row,day,historical=True)
+        output = {'polls':[], 'sources':[]}
+        state = Mock()
+        data = b'%PDF-1.7 archived test fixture'
+        digest = polls.hashlib.sha256(data).hexdigest()
+        state.get.return_value = {'digest':digest, 'etag':'"archive"'}
+        with patch.object(polls.transport,'STATE',state), patch.object(polls,'import_notice',side_effect=AssertionError):
+            def read(status, content_type, body, last):
+                with patch.object(polls.transport,'fetch_reliably',return_value=(status,content_type,body)) as transfer:
+                    result = polls.process_backfill(row,item,True,last,{},day,output)
+                    return result,transfer.call_args.kwargs['conditional']
+            result, condition = read(200,'application/pdf',data,None)
+            self.assertEqual(result['status'],'lecture-requise')
+            self.assertEqual(result['sha256'],digest)
+            self.assertIsNone(condition)
+            unchanged, condition = read(304,'',b'',result)
+            self.assertEqual(result,unchanged)
+            self.assertEqual(condition,state.get.return_value)
+            state.get.return_value = {'digest':'a'*64}
+            invalid, condition = read(304,'',b'',result)
+            self.assertEqual(invalid['status'],'indisponible')
+            self.assertIsNone(condition)
+            self.assertEqual(read(200,'text/html',b'err',result)[0]['status'],'format')
+            self.assertEqual(read(429,'',b'',result)[0]['status'],'indisponible')
+            self.assertEqual(output, {'polls':[], 'sources':[]})
+
 
 
 class DailyTransferTests(unittest.TestCase):
