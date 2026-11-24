@@ -1,0 +1,109 @@
+---
+import Base from '../layouts/Base.astro';
+import { sourceCommit } from '../../scripts/release-revision.mjs';
+import { meta } from '../lib/data';
+const revision = sourceCommit ?? 'main';
+---
+
+<Base
+  title="Licences et réutilisation"
+  description="Réutiliser le code, citer la base Polradar et retrouver les conditions de chaque source."
+>
+  <header class="page-title">
+    <h1>Licences et réutilisation</h1>
+    <p>
+      Le code, la base de données et les documents cités ont chacun leurs
+      conditions de reprise.
+    </p>
+  </header>
+  <div class="rights-grid">
+    <section class="rights-card">
+      <h2>Réutiliser la base</h2>
+      <p>
+        Polradar distribue sa base originale sous{' '}
+        <strong>Open Database License 1.0</strong>. Vous pouvez l’extraire, la
+        modifier et l’utiliser dans une publication commerciale. Une base
+        dérivée rendue publique est soumise aux conditions de partage à
+        l’identique prévues par la licence.
+      </p>
+      <p>
+        <strong>Crédit suggéré</strong>
+        <br />
+        Données : Polradar, ODbL 1.0, édition du [date]. Ajoutez un lien vers la
+        base et indiquez vos transformations éventuelles.
+      </p>
+      <a href="/donnees/">Télécharger les données</a> ·{' '}
+      <a href="/licenses/ODbL-1.0.txt" download>
+        Texte intégral de l’ODbL
+      </a>
+    </section>
+    <section class="rights-card">
+      <h2>Réutiliser le code</h2>
+      <p>
+        © 2026 bluetouff et contributeurs. Le code original est publié sous{' '}
+        <strong>GNU Affero General Public License, version 3 uniquement</strong>
+        . Si vous modifiez le logiciel et l’exploitez sur un réseau, proposez le
+        code source correspondant aux utilisateurs qui interagissent avec cette
+        version.
+      </p>
+      <a href={meta.repository + '/tree/' + revision}>
+        Code source de cette édition
+      </a>{' '}
+      ·{' '}
+      <a href={meta.repository + '/blob/' + revision + '/LICENSE'}>
+        Texte intégral de l’AGPLv3
+      </a>
+    </section>
+    <section class="rights-card">
+      <h2>Reprendre une photo, un programme ou une série</h2>
+      <p>
+        Les producteurs conservent leurs droits sur les textes, portraits,
+        polices, marques, notices et séries importées. Retrouvez la pièce
+        d’origine dans la fiche et vérifiez les conditions du producteur pour
+        votre usage.
+      </p>
+      <a href="/credits-photos/">Crédits des portraits</a> ·{' '}
+      <a href="/sources/">Répertoire des sources</a>
+    </section>
+    <section class="rights-card">
+      <h2>Éditions antérieures</h2>
+      <p>
+        Les éditions déjà distribuées sous MIT conservent les droits accordés
+        avec cette licence. Pour reproduire un résultat, conservez la révision
+        Git ou l’archive de l’édition utilisée.
+      </p>
+      <a href="/licenses/polradar-legacy-MIT.txt">
+        Licence des éditions antérieures
+      </a>{' '}
+      ·{' '}
+      <a href="/licenses/REUTILISATION.txt" download>
+        Notice de réutilisation
+      </a>
+    </section>
+  </div>
+</Base>
+<style>
+  .rights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 25rem), 1fr));
+    gap: 1rem;
+  }
+  .rights-card {
+    padding: clamp(1.1rem, 2vw, 1.6rem);
+    border: 1px solid var(--line);
+    border-radius: 0.8rem;
+    background: var(--panel-gradient);
+  }
+  .rights-card h2 {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  .rights-card p {
+    line-height: 1.55;
+    max-width: 66ch;
+  }
+  .rights-card a {
+    color: var(--ink);
+    text-underline-offset: 0.2em;
+  }
+</style>
