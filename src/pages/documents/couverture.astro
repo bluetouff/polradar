@@ -1,0 +1,279 @@
+---
+import Base from '../../layouts/Base.astro';
+import { dataset, scopes, formatDate } from '../../lib/data';
+import {
+  matrixEditions,
+  matrixRows,
+  matrixTopics,
+} from '../../lib/coverage-data';
+import { documents } from '../../lib/documents';
+import { countCoverage } from '../../lib/coverage-matrix';
+const totals = countCoverage(matrixRows);
+const max = Math.max(1, ...Object.values(totals.byTheme));
+const audits = documents.filter((d) => d.coverage);
+---
+
+<Base
+  title="Couverture des propositions et des programmes"
+  description="Explorez les fiches par candidature, sujet, type et édition. Consultez les passages déjà traités et les unités à documenter."
+  section="/sources/"
+>
+  <header class="page-title">
+    <h1>Couverture des propositions</h1>
+    <p>
+      Combien de fiches et de documents pour chaque candidature, chaque sujet et
+      chaque édition du programme ?
+    </p>
+  </header>
+  <form id="matrix-filters" class="matrix-filters" hidden>
+    <label>
+      Candidature
+      <select name="candidate">
+        <option value="">Toutes les candidatures</option>
+        {dataset.candidates.map((c) => (
+          <option value={c.id}>{c.name}</option>
+        ))}
+      </select>
+    </label>
+    <label>
+      Thème
+      <select name="theme">
+        <option value="">Tous les thèmes</option>
+        {dataset.themes.map((t) => (
+          <option value={t.id}>{t.label}</option>
+        ))}
+      </select>
+    </label>
+    <label>
+      Sous-thème
+      <select name="topic">
+        <option value="">Tous les sous-thèmes</option>
+        {matrixTopics.map((t) => (
+          <option value={t.id}>{t.label}</option>
+        ))}
+        <option value="sans-classement">Sans sous-thème renseigné</option>
+      </select>
+    </label>
+    <label>
+      Type de fiche
+      <select name="scope">
+        <option value="">Tous les types</option>
+        {Object.entries(scopes).map(([id, label]) => (
+          <option value={id}>{label}</option>
+        ))}
+      </select>
+    </label>
+    <label>
+      Édition du document
+      <select name="edition">
+        <option value="">Toutes les éditions</option>
+        {matrixEditions.map((e) => (
+          <option>{e}</option>
+        ))}
+      </select>
+    </label>
+    <button type="reset" class="button">
+      Tout afficher
+    </button>
+  </form>
+  <p id="matrix-error" role="status" hidden></p>
+  <div class="matrix-summary" role="status" aria-live="polite">
+    <span>
+      <b data-count="measures">{totals.measures}</b> fiches
+    </span>
+    <span>
+      <b data-count="documents">{totals.documents}</b> références citées
+    </span>
+    <span>
+      <b data-count="candidates">{totals.candidates}</b> candidatures
+    </span>
+  </div>
+  <section aria-label="Nombre de fiches par thème" class="matrix-bars">
+    {dataset.themes.map((t) => (
+      <div data-theme={t.id}>
+        <strong>{t.label}</strong>
+        <meter
+          aria-label={t.label}
+          min="0"
+          max={max}
+          value={totals.byTheme[t.id] ?? 0}
+        ></meter>
+        <output>{totals.byTheme[t.id] ?? 0}</output>
+      </div>
+    ))}
+  </section>
+  <p>
+    Une fiche compte une fois dans la sélection, même si elle relève de
+    plusieurs sous-thèmes. Les barres comparent le nombre de fiches avec celui
+    du thème le plus représenté.
+  </p>
+  <h2>Sections vérifiées et passages restant à traiter</h2>
+  <p>
+    Le total porte sur les étapes ou demandes énumérées dans chaque section. Une
+    unité est reliée si une fiche en documente le sujet.
+  </p>
+  <section class="audit-cards" aria-label="Sections décomptées">
+    {audits.map(
+      (d) =>
+        d.coverage && (
+          <article>
+            <h3>{d.coverage.perimeter}</h3>
+            <a href={d.url} rel="noreferrer">
+              {d.title} ↗
+            </a>
+            <p>
+              <strong>
+                {d.coverage.linked}/{d.coverage.total}
+              </strong>{' '}
+              {d.coverage.unit}s reliées à une fiche · Lecture du{' '}
+              {formatDate(d.coverage.checked)}
+            </p>
+            {d.coverage.linked < d.coverage.total && (
+              <details>
+                <summary>Passages à documenter</summary>
+                <ul>
+                  {d.coverage.units
+                    .filter((u) => !u.measureIds.length)
+                    .map((u) => (
+                      <li>{u.title}</li>
+                    ))}
+                </ul>
+              </details>
+            )}
+          </article>
+        ),
+    )}
+  </section>
+  <p>
+    <a href="/api/couverture-documentaire.json">
+      Télécharger les liens entre fiches, documents et sous-thèmes (JSON)
+    </a>
+  </p>
+  <script>
+    import {
+      countCoverage,
+      type MatrixRecord,
+      type MatrixFilter,
+    } from '../../lib/coverage-matrix';
+    const form = document.querySelector<HTMLFormElement>('#matrix-filters')!;
+    const error = document.querySelector<HTMLElement>('#matrix-error')!;
+    let data: Promise<MatrixRecord[]> | undefined;
+    async function update() {
+      try {
+        data ??= fetch('/api/couverture-documentaire.json', {
+          credentials: 'omit',
+        }).then(async (r) => {
+          if (!r.ok) throw Error();
+          const d = await r.json();
+          if (d.version !== 1 || !Array.isArray(d.records)) throw Error();
+          return d.records;
+        });
+        const rows = await data;
+        const filters = Object.fromEntries(new FormData(form)) as MatrixFilter;
+        const stat = countCoverage(rows, filters);
+        for (const k of ['measures', 'documents', 'candidates'] as const)
+          document.querySelector('[data-count="' + k + '"]')!.textContent =
+            String(stat[k]);
+        const max = Math.max(1, ...Object.values(stat.byTheme));
+        for (const item of document.querySelectorAll<HTMLElement>(
+          '[data-theme]',
+        )) {
+          const value = stat.byTheme[item.dataset.theme ?? ''] ?? 0,
+            meter = item.querySelector('meter')!;
+          meter.max = max;
+          meter.value = value;
+          item.querySelector('output')!.textContent = String(value);
+        }
+        error.hidden = true;
+      } catch {
+        data = undefined;
+        error.textContent = 'Données indisponibles. Réessayez avec un filtre.';
+        error.hidden = false;
+      }
+    }
+    form.hidden = false;
+    form.addEventListener('change', update);
+    form.addEventListener('reset', () => queueMicrotask(update));
+  </script>
+</Base>
+<style>
+  .matrix-filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+    gap: 0.85rem;
+    margin: 1.1rem 0;
+    align-items: end;
+  }
+  .matrix-filters[hidden] {
+    display: none;
+  }
+  .matrix-filters label {
+    display: grid;
+    gap: 0.3rem;
+    font-weight: 650;
+    font-size: 0.87rem;
+  }
+  .matrix-filters select {
+    min-width: 0;
+    width: 100%;
+    padding: 0.6rem 2.1rem 0.6rem 0.7rem;
+  }
+  .matrix-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.6rem;
+    margin: 1.4rem 0;
+    padding: 1.2rem;
+    border-radius: 0.7rem;
+    background: linear-gradient(105deg, #102d3b, #23565c);
+    color: #f0fbfc;
+  }
+  .matrix-summary span {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+  .matrix-summary b {
+    font-size: 1.65rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .matrix-bars,
+  .audit-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    gap: 0.6rem 1rem;
+  }
+  .matrix-bars div {
+    display: grid;
+    grid-template-columns: minmax(8rem, 1fr) minmax(2rem, 0.7fr) 3ch;
+    gap: 0.55rem;
+    align-items: center;
+    padding: 0.6rem 0.2rem;
+    border-bottom: 1px solid #a9bec4;
+  }
+  .matrix-bars meter {
+    width: 100%;
+    accent-color: #32778b;
+  }
+  .matrix-bars output {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .audit-cards article {
+    padding: 1rem;
+    border-radius: 0.65rem;
+    border: 1px solid var(--panel-edge, #abc3cc);
+    background: var(--panel-gradient, #f6fafb);
+  }
+  .audit-cards h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.04rem;
+  }
+  .audit-cards p,
+  .audit-cards details {
+    font-size: 0.87rem;
+  }
+  .audit-cards summary {
+    cursor: pointer;
+  }
+</style>
