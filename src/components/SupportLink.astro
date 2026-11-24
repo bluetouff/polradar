@@ -1,0 +1,20 @@
+---
+interface Props {
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+---
+
+<a
+  href="https://l0g.fr/soutenir/"
+  class="support-link"
+  rel="external noreferrer"
+  aria-label="Soutenir Polradar sur l0g.fr"
+>
+  <span class="support-heart" aria-hidden="true">
+    ♥︎
+  </span>
+  <span class="support-label">
+    {compact ? 'Soutenir' : 'Soutenir Polradar'}
+  </span>
+</a>

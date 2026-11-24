@@ -1,0 +1,168 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { meta } from '../../lib/data';
+import {
+  pressDescription,
+  pressDate,
+  pressFigures,
+  pressNumber,
+  partnerMail,
+  correctionMail,
+  pressAddress,
+} from '../../lib/press';
+import '../../styles/presse.css';
+---
+
+<Base
+  title="Espace presse et partenariats médias"
+  section="/presse/"
+  description="Le médiakit Polradar, les chiffres du corpus, les graphiques et le contact pour proposer un partenariat à la rédaction."
+>
+  <div class="press-desk">
+    <header class="press-lead">
+      <div class="press-lead-copy">
+        <h1>Espace presse</h1>
+        <p>{pressDescription}</p>
+        <div class="press-actions">
+          <a href="#partenariat" class="press-primary">
+            <Icon name="mail" />
+            Proposer un partenariat
+          </a>
+          <a href="/presse/fiche-media.txt" download="polradar-fiche-media.txt">
+            <Icon name="download" />
+            Télécharger la fiche média <small>TXT</small>
+          </a>
+        </div>
+      </div>
+      <div class="press-snapshot">
+        <p>
+          Le corpus au <time datetime={meta.corpusUpdated}>{pressDate}</time>
+        </p>
+        <dl>
+          {pressFigures.map(({ value, label }) => (
+            <div>
+              <dt>{label}</dt>
+              <dd>{pressNumber(value)}</dd>
+            </div>
+          ))}
+        </dl>
+        <a href="/statistiques/">
+          Consulter les décomptes <Icon name="arrow" />
+        </a>
+      </div>
+    </header>
+
+    <section class="press-tools" aria-labelledby="formats-presse">
+      <h2 id="formats-presse">Pour votre rédaction</h2>
+      <div class="press-formats">
+        <article>
+          <Icon name="sondages" />
+          <h3>Illustrer un article</h3>
+          <p>
+            Publiez la courbe de l’inflation en France avec son unité, sa
+            période et la référence Eurostat. Choisissez l’édition figée pour
+            les archives ou la version actualisée pour un suivi.
+          </p>
+          <a href="/economie/inflation/#integrer">
+            Récupérer le graphique <Icon name="arrow" />
+          </a>
+        </article>
+        <article>
+          <Icon name="donnees" />
+          <h3>Alimenter un dossier</h3>
+          <p>
+            Les exports fournissent les identifiants des mesures, leur auteur et
+            les documents cités. L’archive versionnée permet de retrouver
+            l’édition utilisée dans votre article.
+          </p>
+          <a href="/api/">
+            Accéder aux données <Icon name="arrow" />
+          </a>
+        </article>
+        <article>
+          <Icon name="vote" />
+          <h3>Documenter un vote</h3>
+          <p>
+            Retrouvez l’objet du texte, la position nominative et le relevé de
+            l’institution. Les rapprochements avec un programme se lisent dans
+            les dossiers associés.
+          </p>
+          <a href="/votes/">
+            Ouvrir le registre des votes <Icon name="arrow" />
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <div class="press-split">
+      <section class="press-contact" aria-labelledby="partenariat">
+        <h2 id="partenariat">Devenir média partenaire</h2>
+        <p>
+          Vous préparez un dossier local, une chronique de données ou un suivi
+          des programmes&nbsp;? Proposez un sujet et un format. Nous pouvons
+          convenir d’une sélection de sources, d’un graphique à intégrer ou d’un
+          export à reprendre dans votre publication.
+        </p>
+        <p>
+          Indiquez votre média, votre calendrier et le nom de la personne à
+          contacter. Chaque rédaction conserve ses choix éditoriaux.
+        </p>
+        <a class="press-primary" href={partnerMail}>
+          <Icon name="mail" />
+          Écrire pour un partenariat
+        </a>
+        <small>{pressAddress}</small>
+      </section>
+      <section class="press-material" aria-labelledby="mediakit">
+        <h2 id="mediakit">Médiakit</h2>
+        <div class="press-assets">
+          <a href="/marque/polradar.svg" download="polradar-sur-fond-clair.svg">
+            <span class="brand-proof light">
+              <img src="/marque/polradar.svg" width="208" height="48" alt="" />
+            </span>
+            <span>
+              Sur fond clair <small>SVG</small>
+              <Icon name="download" />
+            </span>
+          </a>
+          <a
+            href="/marque/polradar-clair.svg"
+            download="polradar-sur-fond-sombre.svg"
+          >
+            <span class="brand-proof dark">
+              <img
+                src="/marque/polradar-clair.svg"
+                width="208"
+                height="48"
+                alt=""
+              />
+            </span>
+            <span>
+              Sur fond sombre <small>SVG</small>
+              <Icon name="download" />
+            </span>
+          </a>
+        </div>
+        <p>
+          <a href="/licences/">Conditions de réutilisation</a> ·{' '}
+          <a href="/methode/">Méthode éditoriale</a> ·{' '}
+          <a href="/mcp/documentation/">Guide pour les agents</a>
+        </p>
+      </section>
+    </div>
+    <section class="press-corrections">
+      <div>
+        <h2>Signaler une correction</h2>
+        <p>
+          Joignez l’adresse de la fiche, le passage à revoir et le document
+          d’origine. Les révisions publiées sont consultables dans{' '}
+          <a href="/historique/">l’historique du corpus</a>.
+        </p>
+      </div>
+      <a href={correctionMail}>
+        Écrire à la rédaction <Icon name="arrow" />
+      </a>
+    </section>
+  </div>
+</Base>

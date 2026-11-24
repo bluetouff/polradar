@@ -84,9 +84,6 @@
   background: #e7efe7;
   color: #214e54;
 }
-.mobile-search {
-  display: none;
-}
 /* Native links on detail pages reserve the same row as the enhanced menus. */
 .site-navigation > a,
 .site-navigation > noscript a {
@@ -123,17 +120,6 @@
     inset-inline: 0;
     width: 100%;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .mobile-search {
-    --pic-size: 1.15rem;
-    display: grid;
-    flex: 0 0 auto;
-    place-items: center;
-    min-width: 2.75rem;
-    min-height: 2.75rem;
-    margin-inline-start: auto;
-    border-radius: 5px;
-    background: #e7efe7;
   }
 }
 @media (max-width: 630px) {

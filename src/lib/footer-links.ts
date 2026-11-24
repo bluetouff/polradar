@@ -46,6 +46,7 @@ export const footerColumns = [
     title: 'Le projet',
     icon: 'source',
     links: [
+      ['/presse/', 'Espace presse et partenariats'],
       ['/statistiques/', 'Le corpus en chiffres'],
       ['/mcp/', 'Serveur MCP'],
       ['/api/', 'API et exports JSON'],

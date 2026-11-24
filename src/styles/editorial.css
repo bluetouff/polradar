@@ -578,10 +578,14 @@ select {
     gap: 14px;
   }
   .masthead-actions {
+    flex: none;
+    gap: 0.35rem;
+  }
+  .masthead-actions > time {
     display: none;
   }
   .publication-header .rail-brand {
-    width: 100%;
+    min-width: 0;
     gap: 16px;
     flex-wrap: nowrap;
   }

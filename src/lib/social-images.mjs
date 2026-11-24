@@ -773,6 +773,27 @@ const defs = [
     bars(themeBars.slice(0, 6)),
   ],
   [
+    'presse',
+    '/presse/',
+    'Présidentielle française 2027',
+    'Espace presse\net partenariats',
+    'Le médiakit, les graphiques et les données pour les rédactions.',
+    'navy',
+    tiles(
+      [
+        [
+          'Propositions',
+          measures.filter((m) => m.scope === 'campagne' || m.scope === 'parti')
+            .length,
+        ],
+        ['Références', sources.length],
+        ['Thèmes', themes.length],
+        ['Scrutins', votes.ballots.length],
+      ],
+      'Le corpus Polradar',
+    ),
+  ],
+  [
     'transparence',
     '/transparence/',
     'Le projet',

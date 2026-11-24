@@ -6,10 +6,10 @@ import { iconPaths } from './icons.mjs';
 const decorations: Record<string, string> = {
   chevron: '.site-navigation > details summary::after',
   share: '.page-share-label::before',
-  external: '.footer-meta a::after',
+  external: '.footer-meta a[rel~="noopener"]::after',
   mail: '.page-share a[data-share-platform="mail"]::before',
   suivi: '.footer-follow::before,.follow-button::before',
-  search: '.mobile-search::before,.masthead-actions>a::before',
+  search: '.masthead-search::before',
   arrow: '.footer-follow::after,.footer-bottom>a::after',
 };
 const icons = [
@@ -38,7 +38,7 @@ const digest = (value: string) =>
 const imageFile = digest(svg) + '.svg';
 const navLinks = groups.flatMap((group) => group.links);
 const css =
-  `:where(.site-navigation > details div a,.site-navigation > details summary,.footer-columns h2,.footer-follow,.follow-button,.mobile-search,.masthead-actions>a,.page-share-label,.page-share a[data-share-platform="mail"])::before,:where(.site-navigation > details summary,.footer-follow,.footer-meta a,.footer-bottom>a)::after{content:"";display:var(--pic-display,inline-block);flex:none;width:var(--pic-size,1rem);height:var(--pic-size,1rem);background:currentColor;mask-image:url("/pictos-menu/${imageFile}");mask-repeat:no-repeat;mask-size:100% auto;mask-position:0 var(--menu-y)}` +
+  `:where(.site-navigation > details div a,.site-navigation > details summary,.footer-columns h2,.footer-follow,.follow-button,.masthead-search,.page-share-label,.page-share a[data-share-platform="mail"])::before,:where(.site-navigation > details summary,.footer-follow,.footer-meta a[rel~="noopener"],.footer-bottom>a)::after{content:"";display:var(--pic-display,inline-block);flex:none;width:var(--pic-size,1rem);height:var(--pic-size,1rem);background:currentColor;mask-image:url("/pictos-menu/${imageFile}");mask-repeat:no-repeat;mask-size:100% auto;mask-position:0 var(--menu-y)}` +
   `i.icon{display:inline-block;background-color:currentColor;mask-image:url("/pictos-menu/${imageFile}");mask-repeat:no-repeat;mask-size:100% auto;mask-position:0 var(--icon-y)}` +
   icons
     .map(

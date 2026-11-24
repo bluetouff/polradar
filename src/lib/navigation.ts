@@ -70,6 +70,7 @@ export const groups = [
     name: 'Projet',
     icon: 'source',
     links: [
+      ['/presse/', 'Espace presse et partenariats', 'microphone'],
       ['/dossiers/', 'Dossiers', 'source'],
       ['/veille/', 'Veille quotidienne', 'veille'],
       ['/sources/', 'Catalogue des sources', 'source'],
