@@ -21,14 +21,12 @@ test('les dépôts et les rôles sénatoriaux se consultent sans JavaScript', as
       'Textes et rapports du Sénat',
     );
     await page.getByRole('link', { name: 'Rapports et avis' }).click();
-    const report = page
-      .locator('article')
-      .filter({
-        has: page.getByRole('heading', {
-          name: "La neutralité de l'Internet",
-          exact: true,
-        }),
-      });
+    const report = page.locator('article').filter({
+      has: page.getByRole('heading', {
+        name: "La neutralité de l'Internet",
+        exact: true,
+      }),
+    });
     await expect(report).toContainText('Bruno Retailleau');
     await expect(report).toContainText('signataire');
     await expect(
