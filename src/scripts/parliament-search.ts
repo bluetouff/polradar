@@ -6,6 +6,7 @@ import {
   coverageLabels,
   foldAct,
   findAct,
+  officialParliamentURL,
   pageSize,
 } from '../lib/parliament-search-types';
 import type {
@@ -48,23 +49,11 @@ const text = <T extends keyof HTMLElementTagNameMap>(
   if (cl) item.className = cl;
   return item;
 };
-const urlFor = (value: string, local = false) => {
+const dossierURL = (value: string) => {
   const url = new URL(value, location.origin);
   if (
-    local
-      ? url.origin === location.origin &&
-        url.pathname.startsWith('/votes/dossiers/')
-      : url.protocol === 'https:' &&
-        [
-          'www.assemblee-nationale.fr',
-          'questions.assemblee-nationale.fr',
-          'www.senat.fr',
-          'www.europarl.europa.eu',
-          'data.europarl.europa.eu',
-          'redmapl3.europarl.europa.eu',
-        ].includes(url.host) &&
-        !url.username &&
-        !url.password
+    url.origin === location.origin &&
+    url.pathname.startsWith('/votes/dossiers/')
   )
     return url.href;
   throw Error('Lien invalide');
@@ -102,13 +91,28 @@ function card(row: ParliamentaryAct, data: ActIndex) {
       ),
     );
   const source = text('a', 'Document officiel ↗', 'parl-source');
-  source.href = urlFor(row.source);
+  source.href = officialParliamentURL(row.source);
   source.rel = 'noreferrer';
   item.append(source);
   if (row.dossier) {
     const a = text('a', 'Dossier et scrutin', 'parl-source');
-    a.href = urlFor(row.dossier, true);
+    a.href = dossierURL(row.dossier);
     item.append(a);
+  }
+  if (row.documents?.length) {
+    const documents = text('details', '', 'parl-documents');
+    documents.append(text('summary', 'Textes et procès-verbaux'));
+    const links = text('ul', '');
+    for (const doc of row.documents) {
+      const link = text('a', doc.title);
+      link.href = officialParliamentURL(doc.url);
+      link.rel = 'noreferrer';
+      const li = text('li', '');
+      li.append(link);
+      links.append(li);
+    }
+    documents.append(links);
+    item.append(documents);
   }
   return item;
 }

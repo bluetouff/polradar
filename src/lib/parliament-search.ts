@@ -4,7 +4,7 @@ import { archiveBallots, archiveMetadata } from './parliamentary-archives';
 import { complementXVII, register } from './parliamentary-register';
 import { senateRegister } from './senate-documents';
 import { legislativeVotes, voteCases } from './votes-data';
-import { foldAct } from './parliament-search-types';
+import { foldAct, officialParliamentURL } from './parliament-search-types';
 import type {
   ActIndex,
   Mention,
@@ -13,26 +13,9 @@ import type {
 
 const rows = new Map<string, ParliamentaryAct>();
 const primarySources = new Map<string, string>();
-const officialHosts = new Set([
-  'www.assemblee-nationale.fr',
-  'questions.assemblee-nationale.fr',
-  'www.senat.fr',
-  'data.europarl.europa.eu',
-  'www.europarl.europa.eu',
-  'redmapl3.europarl.europa.eu',
-]);
 function add(row: ParliamentaryAct) {
-  const url = new URL(row.source);
-  if (
-    url.protocol !== 'https:' ||
-    !officialHosts.has(url.host) ||
-    url.username ||
-    url.password ||
-    rows.has(row.id)
-  )
-    throw new Error(
-      'Source institutionnelle ou identifiant invalide : ' + row.id,
-    );
+  officialParliamentURL(row.source);
+  if (rows.has(row.id)) throw new Error('Acte en double : ' + row.id);
   rows.set(row.id, row);
 }
 const detailedIDs = new Set(register.scrutins.map((b) => b.id));
@@ -71,6 +54,13 @@ for (const b of archiveBallots) {
     for (const position of p.intentions)
       mentions.push([p.candidat, position, 'note']);
   }
+  const documents = [
+    ...(b.textes ?? []).map((url) => ({ title: 'Texte soumis au vote', url })),
+    ...(b.procesVerbal ?? []).map((url) => ({
+      title: 'Point du procès-verbal',
+      url,
+    })),
+  ];
   add({
     id: b.id,
     date: b.date,
@@ -79,6 +69,7 @@ for (const b of archiveBallots) {
     titre: b.objet,
     source: b.source,
     mentions,
+    ...(documents.length ? { documents } : {}),
   });
   primarySources.set(b.source, b.id);
   if (b.scrutinEditorial) attached.set(b.scrutinEditorial, b.id);
@@ -139,6 +130,13 @@ for (const b of legislativeVotes.ballots) {
     throw new Error('Attribution discordante : ' + b.id);
   row.intitule = b.shortTitle;
   row.themes = references.get(b.id)?.sort();
+  if (b.documents?.length) {
+    row.documents = [
+      ...new Map(
+        [...(row.documents ?? []), ...b.documents].map((doc) => [doc.url, doc]),
+      ).values(),
+    ];
+  }
   const link = voteCases.find((c) => c.links.some((l) => l.ballotId === b.id));
   if (link) row.dossier = '/votes/dossiers/' + link.id + '/#scrutin-' + b.id;
   if (!linkedID) add(row);
@@ -167,6 +165,8 @@ const digitalSubjects = [
   /\b(?:internet|communications electroniques|telecommunications?|plateformes? en ligne|services? en ligne|reseaux sociaux|fibre optique|cryptoactifs?|blockchain)\b/u,
 ];
 for (const row of rows.values()) {
+  for (const document of row.documents ?? [])
+    officialParliamentURL(document.url);
   // The common ELAN bill title alone cannot identify the subject of an amendment.
   const subject = foldAct(row.titre + ' ' + (row.intitule ?? '')).replaceAll(
     'evolution du logement de l amenagement et du numerique',

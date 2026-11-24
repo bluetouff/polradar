@@ -23,6 +23,25 @@ export const mentionLabels: Record<string, string> = {
   président: 'Président',
   intervention: 'Intervention',
 };
+const officialHosts = new Set([
+  'www.assemblee-nationale.fr',
+  'questions.assemblee-nationale.fr',
+  'www.senat.fr',
+  'data.europarl.europa.eu',
+  'www.europarl.europa.eu',
+  'redmapl3.europarl.europa.eu',
+]);
+export function officialParliamentURL(value: string) {
+  const url = new URL(value);
+  if (
+    url.protocol !== 'https:' ||
+    !officialHosts.has(url.host) ||
+    url.username ||
+    url.password
+  )
+    throw new Error('Source institutionnelle invalide');
+  return url.href;
+}
 export type Mention = [
   person: string,
   choiceOrRole: string,
@@ -61,6 +80,7 @@ export interface ParliamentaryAct {
   intitule?: string;
   intervenant?: string;
   dossier?: string;
+  documents?: { title: string; url: string }[];
 }
 export interface ActIndex {
   version: number;

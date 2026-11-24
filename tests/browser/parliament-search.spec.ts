@@ -1,6 +1,33 @@
 import { expect, test } from '@playwright/test';
 import type { ActIndex } from '../../src/lib/parliament-search-types';
 
+test('un scrutin européen ouvre le texte soumis et le point exact du procès-verbal', async ({
+  page,
+}) => {
+  await page.goto('/votes/recherche/?query=MTG-PL-2024-03-13-DEC-166051');
+  const card = page.locator('[data-act-list] article');
+  await expect(card).toHaveCount(1);
+  await expect(
+    card.getByRole('link', { name: 'Dossier et scrutin' }),
+  ).toHaveAttribute(
+    'href',
+    /\/votes\/dossiers\/.*#scrutin-pe9-20240313-intelligence-artificielle$/,
+  );
+  await card.getByText('Textes et procès-verbaux', { exact: true }).click();
+  await expect(
+    card.getByRole('link', { name: 'Point du procès-verbal' }),
+  ).toHaveAttribute(
+    'href',
+    'https://data.europarl.europa.eu/eli/dl/doc/PV-9-2024-03-13-RCV-ITM-003',
+  );
+  await expect(
+    card.getByRole('link', { name: 'Texte soumis au vote' }).first(),
+  ).toHaveAttribute(
+    'href',
+    /^https:\/\/data\.europarl\.europa\.eu\/eli\/dl\/doc\//,
+  );
+});
+
 test('chercher un scrutin européen, retrouver les trois votes et partager les filtres', async ({
   page,
 }) => {

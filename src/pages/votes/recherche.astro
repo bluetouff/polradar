@@ -135,6 +135,25 @@ const total = new Intl.NumberFormat('fr-FR').format(searchIndex.actes.length);
           <a class="parl-source" href={row.source} rel="noreferrer">
             Document officiel ↗
           </a>
+          {row.dossier && (
+            <a class="parl-source" href={row.dossier}>
+              Dossier et scrutin
+            </a>
+          )}
+          {row.documents?.length && (
+            <details class="parl-documents">
+              <summary>Textes et procès-verbaux</summary>
+              <ul>
+                {row.documents.map((doc) => (
+                  <li>
+                    <a href={doc.url} rel="noreferrer">
+                      {doc.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
         </article>
       ))}
     </div>
