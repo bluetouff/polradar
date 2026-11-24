@@ -19,6 +19,11 @@ def main():
         raise ValueError("Archive trop volumineuse")
     with tempfile.TemporaryDirectory(prefix="polradar-contrat-") as directory:
         deploy["extract_static"](args.archive.read_bytes(), Path(directory), sha)
+        for name, limit in [('corpus',10<<20), ('dossiers',8<<20), ('territoires',5<<20)]:
+            used = (Path(directory)/'api'/(name+'.json')).stat().st_size
+            print(f'{name}: {used} / {limit} octets ({used/limit:.1%})', flush=True)
+            if used >= limit*0.8: print(f'::warning::{name} occupe au moins 80 % de son plafond')
+            if used > limit: raise ValueError('Limite de lecture MCP dépassée : '+name)
         env = dict(os.environ, POLRADAR_TEST_SITE=directory, POLRADAR_TEST_COMMIT=sha)
         subprocess.run(["go", "test", "-race", "-count=1", "-v", "-run", "^TestPublished", "."],
                        cwd=ROOT / "mcp", env=env, check=True)

@@ -12,7 +12,9 @@ var aliases = [][]string{
 	{"hlm", "habitation a loyer modere", "logements sociaux", "logement social"},
 	{"cybersecurite", "securite informatique", "securite numerique"},
 	{"chiffrement", "cryptographie"}, {"ehpad", "etablissement d hebergement pour personnes agees dependantes"},
-	{"pac", "politique agricole commune"},
+	{"pac", "politique agricole commune"}, {"onu", "nations unies", "organisation des nations unies"},
+	{"vaccination obligatoire", "obligations vaccinales", "obligation vaccinale"},
+	{"ponderer", "ponderation"},
 }
 
 func wordSet(text string) map[string]bool {
@@ -53,6 +55,10 @@ func indexRecord(m measure, candidate, theme string) lexicalRecord {
 	}
 	text := " " + normalize(strings.Join(fields, " ")) + " "
 	words := wordSet(text)
+	// Specific rail services can be found by their broader mode of transport.
+	if words["ter"] || strings.Contains(text, " fret ferroviaire ") || strings.Contains(text, " liaison ferroviaire ") {
+		words["transport"], words["ferroviaire"] = true, true
+	}
 	for _, group := range aliases {
 		found := false
 		for _, phrase := range group {

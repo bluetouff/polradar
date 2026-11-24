@@ -5,7 +5,14 @@ import DossierPicker from '../components/DossierPicker.astro';
 import Distribution from '../components/Distribution.astro';
 import DossierHeading from '../components/DossierHeading.astro';
 import ProposalSource from '../components/ProposalSource.astro';
-import { candidateById, themeById } from '../lib/data';
+import {
+  candidateById,
+  formatDate,
+  measureById,
+  sourceById,
+  themeById,
+  versions,
+} from '../lib/data';
 import { proposalTracks, evolution } from '../lib/proposal-data';
 import {
   evolutionKinds,
@@ -15,6 +22,18 @@ import {
   proposalComparison,
 } from '../lib/proposal-view.mjs';
 import '../styles/proposals.css';
+const revisions = evolution.versionDocuments
+  .filter((link) => !link.stateId)
+  .map((link) => ({
+    link,
+    version: versions.find((entry) => entry.id === link.versionId)!,
+    source: sourceById(link.sourceId),
+  }))
+  .sort(
+    (a, b) =>
+      b.link.date.localeCompare(a.link.date) ||
+      a.version.id.localeCompare(b.version.id),
+  );
 ---
 
 <Base
@@ -221,6 +240,37 @@ import '../styles/proposals.css';
       ))}
     </div>
   </div>
+  {revisions.length > 0 && (
+    <section class="document-revisions" aria-labelledby="documents-revises">
+      <h2 id="documents-revises">Documents de campagne modifiés</h2>
+      <div class="revisions-grid">
+        {revisions.map(({ link, version, source }) => (
+          <article>
+            <p>
+              {version.snapshot.partyAuthor ??
+                candidateById(measureById(version.measureId).candidate)
+                  .name}{' '}
+              · <time datetime={link.date}>{formatDate(link.date)}</time>
+            </p>
+            <h3>
+              <a
+                href={`/mesures/${version.measureId}/#version-${version.number}`}
+              >
+                {version.snapshot.title}
+              </a>
+            </h3>
+            <p>{version.summary}</p>
+            <footer>
+              <a href={source.url}>Document de campagne</a> · Relevé le{' '}
+              <time datetime={version.observedOn}>
+                {formatDate(version.observedOn)}
+              </time>
+            </footer>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
   <aside id="evolution-method" class="evidence-method">
     <Icon name="source" />
     <div>
@@ -253,3 +303,35 @@ import '../styles/proposals.css';
   </noscript>
 </Base>
 <script src="../scripts/proposals.ts"></script>
+<style>
+  .document-revisions {
+    margin-block: 2rem;
+  }
+  .document-revisions h2 {
+    margin-bottom: 0.9rem;
+  }
+  .revisions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: 1rem;
+  }
+  .revisions-grid article {
+    padding: clamp(1rem, 2vw, 1.5rem);
+    border: 1px solid var(--panel-edge);
+    border-radius: 0.75rem;
+    background: var(--panel-gradient);
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .revisions-grid :is(p, h3, footer) {
+    margin: 0;
+  }
+  .revisions-grid article > p:first-child,
+  .revisions-grid footer {
+    font-size: 0.85rem;
+  }
+  .revisions-grid footer {
+    margin-top: auto;
+  }
+</style>

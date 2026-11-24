@@ -91,6 +91,7 @@ type catalog struct {
 	Polls      []record
 }
 type snapshot struct {
+	contract    *dataContract
 	extraMu     sync.Mutex
 	editorial   *dossiers
 	territorial *territories
@@ -151,7 +152,14 @@ func (s *store) load() (*snapshot, error) {
 		return s.current, nil
 	}
 	c := &snapshot{commit: marker.Commit, root: root, byID: map[string]int{}, bySource: map[string]source{}}
-	if err := readData(filepath.Join(root, "api", "corpus.json"), 10<<20, &c.catalog); err != nil {
+	c.contract, err = loadContract(root)
+	if err != nil {
+		return nil, err
+	}
+	if err := c.contract.check("corpus"); err != nil {
+		return nil, err
+	}
+	if err := readData(filepath.Join(root, "api", "corpus.json"), corpusLimit, &c.catalog); err != nil {
 		return nil, invalidCorpus
 	}
 	if _, err = time.Parse(time.DateOnly, c.Meta.Updated); err != nil || len(c.Measures) == 0 || len(c.Candidates) == 0 || len(c.Sources) == 0 {
@@ -345,6 +353,11 @@ func (c *snapshot) detail(a measureArgs) (any, bool, error) {
 	row["montants"], row["beneficiaires"], row["echeance"], row["financement"] = m.Amounts, m.Beneficiaries, m.Timing, m.Financing
 	row["versions"], row["versionDemandee"] = hist, nullable(versionID)
 	row["liensDossier"] = map[string]any{"budgetEntryIds": links.BudgetEntryIDs, "voteCaseIds": links.VoteCaseIDs, "evolutionIds": links.EvolutionIDs}
+	row["liensDossierCourant"] = row["liensDossier"]
+	row["statutCandidatureActuel"] = c.people[m.Candidate].Status
+	if versionID != "" {
+		row["url"] = site + "/mesures/" + m.ID + "/#version-" + strconv.Itoa(a.Version)
+	}
 	refs := make([]map[string]any, 0, len(m.SourceRefs))
 	for _, r := range m.SourceRefs {
 		refs = append(refs, c.cited(r))
@@ -379,5 +392,5 @@ func (c *snapshot) counts(_ struct{}) (any, bool, error) {
 	for _, m := range c.Measures {
 		n[m.Scope]++
 	}
-	return map[string]any{"campagne": n["campagne"], "parti": n["parti"], "orientations": n["orientation"], "archives": n["archive"], "editionDocumentaire": c.Meta.Edition, "sources": len(c.Sources), "themes": c.Themes, "url": site + "/statistiques/"}, false, nil
+	return map[string]any{"campagne": n["campagne"], "parti": n["parti"], "orientations": n["orientation"], "archives": n["archive"], "editionDocumentaire": c.Meta.Edition, "sources": len(c.Sources), "themes": c.Themes, "contratsCollections": c.contract.status(), "url": site + "/statistiques/"}, false, nil
 }

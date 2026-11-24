@@ -116,6 +116,7 @@ for (const family of [
   'revenu revenus',
   'impot impots',
   'logement logements',
+  'ponderer ponderation',
   'entreprise entreprises',
 ]) {
   const forms = family.split(' ');
@@ -132,6 +133,11 @@ const officialTerms = [
   [/\btaxe sur la valeur ajoutee\b/g, 'tva'],
   [/\ballocation aux adultes handicapes\b/g, 'aah'],
   [/\breferendum d['’ ]initiative citoyenne\b/g, 'ric'],
+  [/\b(?:organisation des )?nations unies\b/g, 'onu'],
+  [
+    /\b(?:vaccination obligatoire|obligations? vaccinales?)\b/g,
+    'obligation vaccinale',
+  ],
   [/\beuros?\b/g, '€'],
 ];
 function searchTokens(text, index = false) {
@@ -139,8 +145,13 @@ function searchTokens(text, index = false) {
   let expanded = original;
   for (const [phrase, acronym] of officialTerms)
     expanded = expanded.replace(phrase, acronym);
-  const searchable =
+  let searchable =
     index && original !== expanded ? `${original} ${expanded}` : expanded;
+  if (
+    index &&
+    /\b(?:ter|fret ferroviaire|liaison ferroviaire)\b/.test(original)
+  )
+    searchable += ' transport ferroviaire';
   return (searchable.match(/[\p{L}\p{N}]+(?:[.,]\d+)?|[%€]/gu) || []).map(
     (word) => wordForms.get(word) ?? word.replace(/(\d),(\d)/g, '$1.$2'),
   );

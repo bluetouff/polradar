@@ -277,15 +277,20 @@ def activate(directory, kind, key_id=None):
     was_active=is_active(active)
     was_enabled=systemctl('is-enabled','--quiet',active,check=False).returncode==0
     was_worker=is_active(worker)
+    # Keep the systemd listening descriptor and its queue through a worker handover.
+    keep_socket = kind == 'mcp' and was_active
+    if keep_socket and (not snapshots[UNITS/active] or snapshots[UNITS/active][0] != files[active]):
+        raise ValueError('Modification du socket actif : migration opérateur distincte requise')
     try:
-        if was_active: systemctl('stop',active)
-        if was_worker: systemctl('stop',worker)
+        if was_active and not keep_socket: systemctl('stop',active)
+        if was_worker and not keep_socket: systemctl('stop',worker)
         for p,(data,mode) in changes.items():
             if snapshots[p] and p in shared: write(p,data,mode,snapshots[p][2],snapshots[p][3])
             else: write(p,data,mode)
         cmd(['/usr/sbin/apache2ctl','configtest'])
         systemctl('daemon-reload')
         systemctl('enable','--now',active)
+        if keep_socket: systemctl('restart',worker)
         if kind=='gsc': systemctl('start',worker)
         systemctl('reload','apache2')
         if kind=='gsc':
@@ -317,8 +322,9 @@ def activate(directory, kind, key_id=None):
                 raise ValueError('Accès aux propositions par l’API non confirmé')
             if STATS.exists(): require_private('/stats/')
     except BaseException as exc:
-        systemctl('stop',active,check=False)
-        systemctl('stop',worker,check=False)
+        if not keep_socket:
+            systemctl('stop',active,check=False)
+            systemctl('stop',worker,check=False)
         if not was_enabled: systemctl('disable',active,check=False)
         for p,old in snapshots.items():
             if old is None: p.unlink(missing_ok=True)
@@ -327,7 +333,8 @@ def activate(directory, kind, key_id=None):
         cmd(['/usr/sbin/apache2ctl','configtest'])
         systemctl('reload','apache2')
         if was_active: systemctl('start',active)
-        if was_worker: systemctl('start',worker)
+        if keep_socket: systemctl('restart',worker)
+        elif was_worker: systemctl('start',worker)
         # Command errors carry only fixed executable arguments, never third-party output.
         reason = ('commande '+str(exc.cmd[:3])) if isinstance(exc,subprocess.CalledProcessError) else type(exc).__name__
         raise ValueError(f'Activation interrompue ({reason}). Configuration restaurée. Sauvegarde : {backup}') from None

@@ -20,7 +20,10 @@ const evolution = evolutionSchema.parse(data('proposal-evolution'));
 const financing = financingSchema.parse(data('financing-maps'));
 const budgets = data('programme-budgets');
 const dataset = Object.fromEntries(
-  ['sources', 'candidates', 'themes', 'measures'].map((n) => [n, data(n)]),
+  ['sources', 'candidates', 'themes', 'measures', 'versions'].map((n) => [
+    n,
+    data(n),
+  ]),
 );
 const valid = (e = evolution, f = financing, b = budgets) =>
   validateProposalReferences(

@@ -35,6 +35,9 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 		return nil, false, errors.New("Collection, identifiant ou pagination invalide.")
 	}
 	var rows []record
+	if err := c.contract.check(a.Collection); err != nil {
+		return nil, false, err
+	}
 	var collected, checked *string
 	refs := c.bySource
 	if def.file == "" {

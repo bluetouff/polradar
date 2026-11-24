@@ -129,7 +129,7 @@ func serveData(w http.ResponseWriter, r *http.Request, data *store) {
 	}
 	c, err := data.load()
 	if err != nil {
-		apiError(w, r, 503, invalidCorpus.Error())
+		apiError(w, r, 503, err.Error())
 		return
 	}
 	if q.Has("expectedRevision") {
@@ -148,7 +148,7 @@ func serveData(w http.ResponseWriter, r *http.Request, data *store) {
 	case errors.Is(err, errResource):
 		apiError(w, r, 404, err.Error())
 	case errors.Is(err, invalidCorpus):
-		apiError(w, r, 503, invalidCorpus.Error())
+		apiError(w, r, 503, err.Error())
 	case err != nil:
 		apiError(w, r, 400, err.Error())
 	default:

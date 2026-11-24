@@ -75,20 +75,42 @@ const schemas = {
     consultation: date,
   }),
   Mesure: object({ ...fiche, source: ref('Source') }),
-  Fiche: object({
-    ...fiche,
-    description: str,
-    revision: count,
-    chiffres: { type: ['array', 'null'], items: { type: 'object' } },
-    montants: { type: ['array', 'null'], items: { type: 'object' } },
-    beneficiaires: maybeText,
-    echeance: maybeText,
-    financement: maybeText,
-    versions: array({ type: 'object' }),
-    liensDossier: { type: 'object' },
-    versionDemandee: maybeText,
-    sources: array(ref('Source')),
-  }),
+  Fiche: object(
+    {
+      ...fiche,
+      description: str,
+      revision: count,
+      chiffres: { type: ['array', 'null'], items: { type: 'object' } },
+      montants: { type: ['array', 'null'], items: { type: 'object' } },
+      beneficiaires: maybeText,
+      echeance: maybeText,
+      financement: maybeText,
+      versions: array({ type: 'object' }),
+      liensDossier: { type: 'object' },
+      liensDossierCourant: {
+        type: 'object',
+        description:
+          'Rapprochements disponibles dans l’édition courante du corpus.',
+      },
+      statutCandidatureActuel: str,
+      versionDemandee: maybeText,
+      sources: array(ref('Source')),
+    },
+    [
+      ...Object.keys(fiche),
+      'description',
+      'revision',
+      'chiffres',
+      'montants',
+      'beneficiaires',
+      'echeance',
+      'financement',
+      'versions',
+      'liensDossier',
+      'versionDemandee',
+      'sources',
+    ],
+  ),
   Candidat: object(
     {
       id: str,
@@ -107,15 +129,33 @@ const schemas = {
     openapi: url,
     ressources: array(str),
   }),
-  Corpus: object({
-    campagne: count,
-    parti: count,
-    orientations: count,
-    archives: count,
-    sources: count,
-    themes: array(object({ id: str, label: str })),
-    url,
-  }),
+  Corpus: object(
+    {
+      campagne: count,
+      parti: count,
+      orientations: count,
+      archives: count,
+      sources: count,
+      themes: array(object({ id: str, label: str })),
+      contratsCollections: {
+        type: 'object',
+        additionalProperties: object({
+          version: count,
+          compatible: { type: 'boolean' },
+        }),
+      },
+      url,
+    },
+    [
+      'campagne',
+      'parti',
+      'orientations',
+      'archives',
+      'sources',
+      'themes',
+      'url',
+    ],
+  ),
   Candidatures: object({ candidatures: array(ref('Candidat')) }),
   Mesures: object({ ...paging, resultats: array(ref('Mesure')) }),
   Publications: object({
@@ -261,13 +301,23 @@ function responses(data, head) {
     : {
         description: 'Réponse du corpus public.',
         content: json(
-          object({
-            corpusVerifieLe: date,
-            revisionDuSite: { ...str, pattern: '^[0-9a-f]{40}$' },
-            revisionDuService: maybeText,
-            sansResultat: { type: 'boolean' },
-            donnees: ref(data),
-          }),
+          object(
+            {
+              corpusVerifieLe: date,
+              versionContrat: { type: 'integer', minimum: 1 },
+              revisionDuSite: { ...str, pattern: '^[0-9a-f]{40}$' },
+              revisionDuService: maybeText,
+              sansResultat: { type: 'boolean' },
+              donnees: ref(data),
+            },
+            [
+              'corpusVerifieLe',
+              'revisionDuSite',
+              'revisionDuService',
+              'sansResultat',
+              'donnees',
+            ],
+          ),
         ),
       };
   return result;

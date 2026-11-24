@@ -32,11 +32,12 @@ const maxBody = 16 << 10
 var serviceCommit string
 
 type output struct {
-	Updated string  `json:"corpusVerifieLe"`
-	Commit  string  `json:"revisionDuSite"`
-	Empty   bool    `json:"sansResultat"`
-	Data    any     `json:"donnees"`
-	Service *string `json:"revisionDuService"`
+	Contract int     `json:"versionContrat"`
+	Updated  string  `json:"corpusVerifieLe"`
+	Commit   string  `json:"revisionDuSite"`
+	Empty    bool    `json:"sansResultat"`
+	Data     any     `json:"donnees"`
+	Service  *string `json:"revisionDuService"`
 }
 
 func (c *snapshot) envelope(value any, empty bool) output {
@@ -44,7 +45,7 @@ func (c *snapshot) envelope(value any, empty bool) output {
 	if commitID.MatchString(serviceCommit) {
 		binary = &serviceCommit
 	}
-	return output{Updated: c.Meta.Updated, Commit: c.commit, Empty: empty, Data: value, Service: binary}
+	return output{Contract: dataMajor, Updated: c.Meta.Updated, Commit: c.commit, Empty: empty, Data: value, Service: binary}
 }
 
 func register[I any](server *mcp.Server, data *store, name, description string, call func(*snapshot, I) (any, bool, error)) {
@@ -55,7 +56,7 @@ func register[I any](server *mcp.Server, data *store, name, description string, 
 		}
 		c, err := data.load()
 		if err != nil {
-			return nil, output{}, invalidCorpus
+			return nil, output{}, err
 		}
 		value, empty, err := call(c, args)
 		if err != nil {
@@ -72,7 +73,7 @@ func register[I any](server *mcp.Server, data *store, name, description string, 
 
 func protocol(data *store, activity *usage) http.Handler {
 	quiet := slog.New(slog.NewTextHandler(io.Discard, nil))
-	server := mcp.NewServer(&mcp.Implementation{Name: "polradar", Title: "Polradar", Version: "1.1.0", WebsiteURL: site + "/mcp/"}, &mcp.ServerOptions{Logger: quiet, Instructions: "Les outils consultent le corpus public de la présidentielle française. Citez la source et son passage. Le statut et l’auteur distinguent les déclarations individuelles, les programmes collectifs, les orientations et les archives."})
+	server := mcp.NewServer(&mcp.Implementation{Name: "polradar", Title: "Polradar", Version: "1.2.0", WebsiteURL: site + "/mcp/"}, &mcp.ServerOptions{Logger: quiet, Instructions: "Les outils consultent le corpus public de la présidentielle française. Citez la source et son passage. Le statut et l’auteur distinguent les déclarations individuelles, les programmes collectifs, les orientations et les archives."})
 	register(server, data, "polradar_search", "Rechercher des propositions par mots, candidature, thème ou statut avec lien vers la fiche et sa source.", (*snapshot).search)
 	register(server, data, "polradar_measure", "Lire le texte, l’auteur, les chiffres disponibles et toutes les références d’une mesure identifiée.", (*snapshot).detail)
 	register(server, data, "polradar_candidates", "Lister les candidatures suivies avec leur statut documenté. Les retraits sont disponibles en option.", (*snapshot).listPeople)

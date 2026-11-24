@@ -2,6 +2,7 @@
 """Unprivileged, fail-closed pull deployment. Python standard library only."""
 import argparse
 from contextlib import contextmanager
+from datetime import datetime, timezone
 import fcntl
 import gzip
 import hashlib
@@ -118,7 +119,49 @@ def check_live(sha):
     subprocess.run(['/usr/bin/curl', '--fail', '--silent', '--show-error', '--max-time', '20', '--resolve', 'polradar.fr:443:127.0.0.1', '--output', '/dev/null', 'https://polradar.fr/'], capture_output=True, check=True, timeout=25)
 
 
+class PublicationPaused(ValueError):
+    """A verified electoral window holds the currently served edition."""
+
+
+def check_activation_window(document_root, release, state_root, now=None):
+    now = now or datetime.now(timezone.utc)
+    allowed = {'www.legifrance.gouv.fr', 'www.conseil-constitutionnel.fr',
+               'www.commission-des-sondages.fr', 'www.interieur.gouv.fr'}
+    paths = [state_root / 'fenetres-sondages.json']
+    for root in (document_root, release):
+        calendar = root / 'api/fenetres-sondages.json'
+        if (root / 'api/contrat-donnees.json').exists() and not calendar.is_file():
+            raise ValueError('Calendrier manquant dans une édition versionnée')
+        paths.append(calendar)
+    for path in paths:
+        if not path.exists():
+            continue
+        with path.open('rb') as stream:
+            raw = stream.read(65537)
+        if len(raw) > 65536:
+            raise ValueError('Calendrier trop volumineux')
+        rules = json.loads(raw)
+        if type(rules.get('version')) is not int or rules['version'] != 1 or not isinstance(rules.get('fenetres'), list):
+            raise ValueError('Calendrier de publication invalide')
+        for window in rules['fenetres']:
+            source = urllib.parse.urlsplit(window['source'])
+            if (source.scheme != 'https' or source.netloc not in allowed or not source.path.strip('/')):
+                raise ValueError('Source du calendrier invalide')
+            instants = []
+            for key in ('debut', 'fin'):
+                value = window[key]
+                if not isinstance(value, str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z', value):
+                    raise ValueError('Date de publication invalide')
+                instants.append(datetime.strptime(value, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=timezone.utc))
+            start, end = instants
+            if end <= start:
+                raise ValueError('Fenêtre vide')
+            if start <= now < end:
+                raise PublicationPaused('Édition électorale gelée')
+
+
 def activate(document_root, release, state_root, sha, verify=check_live):
+    check_activation_window(document_root, release, state_root)
     previous_link = os.readlink(document_root) if document_root.is_symlink() else None
     backup = state_root / 'original-document-root'
     if previous_link is None and (not document_root.is_dir() or backup.exists()):
@@ -198,8 +241,14 @@ def synchronize(args):
         try:
             extract_static(archive, temporary, sha)
             temporary.chmod(0o755)
+            check_activation_window(document_root, temporary, state)
             os.rename(temporary, target)
-            activate(document_root, target, state, sha)
+            try:
+                activate(document_root, target, state, sha)
+            except PublicationPaused:
+                # The window began between the two checks, before the symlink switch.
+                os.rename(target, temporary)
+                raise
         except Exception:
             if temporary.exists():
                 shutil.rmtree(temporary)

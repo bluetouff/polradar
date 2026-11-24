@@ -52,6 +52,16 @@ const state = z.strictObject({
 export const evolutionSchema = z.strictObject({
   version: z.literal(1),
   checked: dateSchema,
+  versionDocuments: z
+    .array(
+      z.strictObject({
+        versionId: idSchema,
+        sourceId: idSchema,
+        date: dateSchema,
+        stateId: idSchema.optional(),
+      }),
+    )
+    .default([]),
   tracks: z
     .array(
       z.strictObject({
@@ -136,6 +146,34 @@ export function validateProposalReferences(
   const themes = new Set(dataset.themes.map((t) => t.id));
   const sources = new Map(dataset.sources.map((s) => [s.id, s]));
   const measures = new Map(dataset.measures.map((m) => [m.id, m]));
+  const links = evolution.versionDocuments ?? [];
+  unique(
+    links.map((link) => link.versionId),
+    'Versions de programme',
+  );
+  unique(
+    links.filter((link) => link.stateId).map((link) => link.stateId),
+    'États reliés',
+  );
+  for (const link of links) {
+    const version = dataset.versions.find((v) => v.id === link.versionId);
+    if (
+      !version ||
+      version.kind !== 'programme' ||
+      link.date > version.observedOn ||
+      !version.snapshot.sourceRefs.some((ref) => ref.sourceId === link.sourceId)
+    )
+      fail(`${link.versionId} : document de révision incohérent`);
+    if (
+      link.stateId &&
+      !evolution.tracks.some(
+        (t) =>
+          t.stateIds.slice(1).includes(link.stateId) &&
+          t.measureIds.includes(version?.measureId),
+      )
+    )
+      fail(`${link.versionId} : étape de trajectoire incohérente`);
+  }
   const assigned = [];
   const official = (id) => {
     const source = sources.get(id);

@@ -84,14 +84,22 @@ const steps = [
         Dans <code>polradar_question</code>, choisissez une question, puis
         passez son identifiant et deux à six identifiants de candidats à{' '}
         <code>polradar_comparer</code>. Chaque position cite l’auteur et la
-        version. Une case vide signale une réponse encore indocumentée.
+        version. Une comparaison affiche trois candidats à la fois, une question
+        quatre réponses à la fois. Passez <code>suivant</code> dans
+        <code>offset</code> avec la même <code>expectedRevision</code> pour lire
+        la suite. Si la révision change, reprenez depuis la première page.
       </p>
       <p>
         <code>polradar_votes</code> donne le texte, le choix nominatif et la
-        version rapprochée. Pour un avant/après,{' '}
-        <code>polradar_changements</code> accepte <code>programme</code> ou{' '}
-        <code>redaction</code> et une période. Une édition connue à l’année peut
-        chevaucher la fenêtre demandée.
+        version rapprochée. Dans le service 1.2,{' '}
+        <code>theme: "non-classe"</code>
+        réunit les scrutins indépendants. <code>polradar_changements</code>
+        distingue modification de programme, import, correction et
+        enrichissement. Le filtre <code>redaction</code> réunit les corrections
+        et enrichissements. Choisissez <code>dateBasis: "document"</code> pour
+        la date du texte ou
+        <code>dateBasis: "observation"</code> pour la date du relevé. Une
+        édition connue à l’année peut chevaucher la période demandée.
       </p>
       <p>
         <code>polradar_territoires</code> accepte un code INSEE.{' '}
@@ -157,10 +165,12 @@ const steps = [
       </p>
       <p>
         Demandez <code>scope: "archive"</code> pour consulter les promesses
-        d’une édition passée. Si <code>sansResultat</code> vaut{' '}
-        <code>true</code>, indiquez que votre recherche dans le corpus n’a
-        renvoyé aucune fiche. Une erreur d’outil est signalée par{' '}
-        <code>isError</code>.
+        d’une édition passée. Avec le service 1.2, la fiche historique renvoie à
+        son ancre de version. <code>liensDossierCourant</code> et
+        <code>statutCandidatureActuel</code> décrivent le dossier aujourd’hui.
+        Sur les listes, vérifiez <code>total</code> pour distinguer une
+        recherche vide d’une page située après le dernier résultat. Une erreur
+        d’outil est signalée par <code>isError</code>.
       </p>
     </section>
     <nav class="dev-links dev-related" aria-label="Documentation associée">

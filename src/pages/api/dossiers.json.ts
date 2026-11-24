@@ -1,11 +1,12 @@
 import { activeCandidates } from '../../lib/data';
 import { questions } from '../../lib/questions';
 import { voteCases, independentVotes } from '../../lib/votes-data';
-import { proposalTracks } from '../../lib/proposal-data';
+import { proposalTracks, evolution } from '../../lib/proposal-data';
 
 export function GET() {
   return Response.json({
     version: 1,
+    versionDocuments: evolution.versionDocuments,
     questions: questions.map((q) => ({
       id: q.id,
       title: q.title,
@@ -86,6 +87,7 @@ export function GET() {
           ballotId: b.id,
           candidate: candidate.id,
           theme: null,
+          classementThematique: 'non-classe',
           title: b.title,
           date: b.date,
           chamber: b.chamber,
@@ -113,6 +115,10 @@ export function GET() {
         kind: 'programme',
         date: after.date.value,
         dateKind: after.date.kind,
+        dateObservation: after.observedOn,
+        versionId:
+          evolution.versionDocuments.find((link) => link.stateId === after.id)
+            ?.versionId ?? null,
         before: t.states[i],
         after,
         context: t.note,

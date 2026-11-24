@@ -1,19 +1,18 @@
 name: Services Polradar
 on:
-  push:
+  workflow_run:
+    workflows: [Site]
+    types: [completed]
     branches: [main]
-    paths:
-      [
-        'mcp/**',
-        'deploy/operations/**',
-        'deploy/goaccess/**',
-        '.github/workflows/services.yml',
-        'tests/deploy/test_private_services.py',
-      ]
   pull_request:
     paths:
       [
         'mcp/**',
+        'scripts/test-mcp-compatibility.py',
+        'scripts/service-release-needed.py',
+        'scripts/test-apache-privacy.py',
+        'scripts/test-mcp-release.py',
+        'tests/deploy/test_socket_handover.py',
         'deploy/operations/**',
         'deploy/goaccess/**',
         '.github/workflows/services.yml',
@@ -22,7 +21,30 @@ on:
   workflow_dispatch:
 permissions: {}
 jobs:
+  qualify:
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'main' && github.event.workflow_run.head_sha == github.sha)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    outputs:
+      needed: ${{ steps.plan.outputs.needed }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - id: plan
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if [[ "$GITHUB_EVENT_NAME" != workflow_run ]]; then echo 'needed=true' >> "$GITHUB_OUTPUT"; exit 0; fi
+          gh release list --limit 100 --json tagName,isDraft,isPrerelease > "$RUNNER_TEMP/releases.json"
+          python3 scripts/service-release-needed.py "$RUNNER_TEMP/releases.json" >> "$GITHUB_OUTPUT"
   build:
+    needs: qualify
+    if: needs.qualify.outputs.needed == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 25
     permissions:
@@ -44,36 +66,27 @@ jobs:
           go test -race ./...
           cd ..
           python3 -m unittest discover -s tests/deploy -p test_private_services.py -v
+      - name: Vérifier les journaux Apache avec une requête témoin locale
+        run: |
+          if ! test -x /usr/sbin/apache2; then sudo apt-get update -qq && sudo apt-get install -y apache2; fi
+          python3 scripts/test-apache-privacy.py
       - name: Analyser les dépendances Go du service
         working-directory: mcp
         run: go run golang.org/x/vuln/cmd/govulncheck@v1.10.0 ./...
-      - name: Retrouver l’archive de la CI Site pour cette révision
+      - name: Télécharger l’archive validée du même commit
+        if: github.event_name != 'pull_request'
         env:
           GH_TOKEN: ${{ github.token }}
-          HEAD_REVISION: ${{ github.event.pull_request.head.sha || github.sha }}
-          EXPECTED_EVENT: ${{ github.event_name }}
+          SITE_RUN: ${{ github.event.workflow_run.id }}
         shell: bash
         run: |
           set -euo pipefail
-          destination="$RUNNER_TEMP/contrat-site"
-          mkdir -m 700 "$destination"
-          for attempt in {1..45}; do
-            runs="$(gh api --method GET "repos/$GITHUB_REPOSITORY/actions/workflows/site.yml/runs" -f head_sha="$HEAD_REVISION" -f per_page=20)"
-            run="$(jq -r --arg event "$EXPECTED_EVENT" --arg repo "$GITHUB_REPOSITORY" '.workflow_runs | map(select((.event == $event or ($event == "workflow_dispatch" and .event == "push")) and (.head_repository.full_name == $repo or $event == "pull_request"))) | first | .id // empty' <<<"$runs")"
-            if [[ "$run" =~ ^[0-9]+$ ]]; then
-              artifact="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run/artifacts" --jq '.artifacts[] | select(.name == "validated-site" and .expired == false) | .id')"
-              if [[ "$artifact" =~ ^[0-9]+$ ]]; then
-                gh run download "$run" --repo "$GITHUB_REPOSITORY" --name validated-site --dir "$destination"
-                python3 scripts/test-mcp-release.py "$destination/site.tar.gz"
-                exit 0
-              fi
-              state="$(jq -r --arg id "$run" '.workflow_runs[]|select((.id|tostring)==$id)|.conclusion // empty' <<<"$runs")"
-              if [[ -n "$state" && "$state" != success ]]; then echo "La validation du site a échoué."; exit 1; fi
-            fi
-            sleep 15
-          done
-          echo 'Archive vérifiée du même commit indisponible.'
-          exit 1
+          if [[ -z "$SITE_RUN" ]]; then
+            SITE_RUN="$(gh run list --workflow site.yml --branch main --commit "$GITHUB_SHA" --event push --status success --limit 1 --json databaseId --jq '.[0].databaseId // empty')"
+          fi
+          [[ "$SITE_RUN" =~ ^[0-9]+$ ]]
+          gh run download "$SITE_RUN" --repo "$GITHUB_REPOSITORY" --name validated-site --dir "$RUNNER_TEMP/contrat-site"
+          python3 scripts/test-mcp-release.py "$RUNNER_TEMP/contrat-site/site.tar.gz"
       - name: Préparer les paquets sans identifiants
         run: |
           set -euo pipefail

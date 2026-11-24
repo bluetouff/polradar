@@ -5,14 +5,20 @@ import (
 	"errors"
 	"path/filepath"
 	"regexp"
+	"slices"
 	"sort"
+	"strconv"
 	"strings"
 )
 
 type dossiers struct {
-	Questions  []record
-	Votes      []record
-	Evolutions []record
+	Questions        []record
+	Votes            []record
+	Evolutions       []record
+	VersionDocuments []struct {
+		VersionID string `json:"versionId"`
+		Date      string
+	}
 }
 type territories struct {
 	Names       map[string]string
@@ -38,14 +44,17 @@ func page[T any](rows []T, offset, limit int) map[string]any {
 	if end < len(rows) {
 		next = &end
 	}
-	return map[string]any{"total": len(rows), "offset": start, "suivant": next, "resultats": rows[start:end]}
+	return map[string]any{"total": len(rows), "offset": start, "suivant": next, "finDeListe": next == nil, "aucunResultat": len(rows) == 0, "resultats": rows[start:end]}
 }
 func (c *snapshot) dossiers() (*dossiers, error) {
+	if err := c.contract.check("dossiers"); err != nil {
+		return nil, err
+	}
 	c.extraMu.Lock()
 	defer c.extraMu.Unlock()
 	if c.editorial == nil {
 		var d dossiers
-		if readData(filepath.Join(c.root, "api", "dossiers.json"), 8<<20, &d) != nil || d.Questions == nil || d.Votes == nil || d.Evolutions == nil {
+		if readData(filepath.Join(c.root, "api", "dossiers.json"), dossiersLimit, &d) != nil || d.Questions == nil || d.Votes == nil || d.Evolutions == nil {
 			return nil, invalidCorpus
 		}
 		c.editorial = &d
@@ -173,7 +182,11 @@ func (c *snapshot) votes(a voteArgs) (any, bool, error) {
 	}
 	rows := []record{}
 	for _, v := range d.Votes {
-		if (a.Candidate == "" || a.Candidate == v.str("candidate")) && (a.Theme == "" || a.Theme == v.str("theme")) && (a.Ballot == "" || a.Ballot == v.str("ballotId")) {
+		theme := v.str("theme")
+		if theme == "" {
+			theme = "non-classe"
+		}
+		if (a.Candidate == "" || a.Candidate == v.str("candidate")) && (a.Theme == "" || a.Theme == theme) && (a.Ballot == "" || a.Ballot == v.str("ballotId")) {
 			rows = append(rows, v)
 		}
 	}
@@ -187,7 +200,8 @@ func (c *snapshot) votes(a voteArgs) (any, bool, error) {
 }
 
 type changeArgs struct {
-	Kind      string `json:"kind" jsonschema:"programme pour les documents de campagne, redaction pour les modifications de fiche."`
+	Kind      string `json:"kind" jsonschema:"programme, redaction (correction et enrichissement), correction, enrichissement ou import."`
+	DateBasis string `json:"dateBasis,omitempty" jsonschema:"observation ou document. Par défaut, date de l’étape pour les trajectoires et date d’observation pour les versions."`
 	From      string `json:"from,omitempty" jsonschema:"Début inclus au format AAAA-MM-JJ."`
 	To        string `json:"to,omitempty" jsonschema:"Fin incluse au format AAAA-MM-JJ."`
 	Candidate string `json:"candidate,omitempty"`
@@ -207,38 +221,83 @@ func (c *snapshot) changes(a changeArgs) (any, bool, error) {
 	if err := c.validatePage(a.pageArgs); err != nil {
 		return nil, false, err
 	}
-	if (a.Kind != "programme" && a.Kind != "redaction") || (a.From != "" && !dayOK(a.From)) || (a.To != "" && !dayOK(a.To)) || (a.From != "" && a.To != "" && a.From > a.To) || len(a.Candidate) > 96 || len(a.Theme) > 96 {
+	if !slices.Contains([]string{"programme", "redaction", "import", "correction", "enrichissement"}, a.Kind) || !slices.Contains([]string{"", "observation", "document"}, a.DateBasis) || (a.From != "" && !dayOK(a.From)) || (a.To != "" && !dayOK(a.To)) || (a.From != "" && a.To != "" && a.From > a.To) || len(a.Candidate) > 96 || len(a.Theme) > 96 {
 		return nil, false, errFilter
 	}
 	type diff struct {
 		id, date string
-		data     any
+		value    func() any
 	}
 	rows := []diff{}
 	match := func(candidate, theme, date string) bool {
 		return (a.Candidate == "" || candidate == a.Candidate) && (a.Theme == "" || theme == a.Theme) && dateOverlaps(date, a.From, a.To)
 	}
+	linked := map[string]bool{}
+	documentDates := map[string]string{}
 	if a.Kind == "programme" {
 		d, err := c.dossiers()
 		if err != nil {
 			return nil, false, err
 		}
 		for _, v := range d.Evolutions {
-			if match(v.str("candidate"), v.str("theme"), v.str("date")) {
-				rows = append(rows, diff{v.str("id"), v.str("date"), v})
+			if id := v.str("versionId"); id != "" {
+				linked[id] = true
+			}
+			date := v.str("date")
+			if a.DateBasis == "observation" {
+				var after record
+				if json.Unmarshal(v["after"], &after) == nil {
+					date = after.str("observedOn")
+				} else {
+					date = ""
+				}
+			} else if a.DateBasis == "document" && v.str("dateKind") == "consultation" {
+				date = ""
+			}
+			if match(v.str("candidate"), v.str("theme"), date) {
+				rows = append(rows, diff{v.str("id"), date, func() any {
+					out := make(map[string]any, len(v)+2)
+					for key, value := range v {
+						out[key] = value
+					}
+					kind := v.str("dateKind")
+					if a.DateBasis == "observation" {
+						kind = "observation"
+					}
+					out["dateFiltre"], out["typeDateFiltre"] = date, kind
+					return out
+				}})
 			}
 		}
-	} else {
-		for id, versions := range c.history {
-			m := c.Measures[c.byID[id]]
-			for j := 1; j < len(versions); j++ {
-				v := versions[j]
-				previous := versions[j-1]
-				if !match(m.Candidate, m.Theme, v.Observed) {
-					continue
-				}
-				rows = append(rows, diff{v.ID, v.Observed, map[string]any{"id": v.ID, "candidate": m.Candidate, "theme": m.Theme, "kind": "redaction", "nature": v.Kind, "dateObservation": v.Observed, "enregistreLe": v.Recorded, "resume": v.Summary, "avant": c.versionSummary(previous), "apres": c.versionSummary(v)}})
+		for _, item := range d.VersionDocuments {
+			documentDates[item.VersionID] = item.Date
+		}
+	}
+	for id, versions := range c.history {
+		m := c.Measures[c.byID[id]]
+		for j, v := range versions {
+			kind := v.Kind
+			if kind == "correction" || kind == "enrichissement" {
+				kind = "redaction"
 			}
+			if (kind != a.Kind && v.Kind != a.Kind) || linked[v.ID] {
+				continue
+			}
+			date := v.Observed
+			basis := "observation"
+			if a.DateBasis == "document" {
+				date, basis = documentDates[v.ID], "document"
+			}
+			if !match(m.Candidate, m.Theme, date) {
+				continue
+			}
+			rows = append(rows, diff{v.ID, date, func() any {
+				var previous any
+				if j > 0 {
+					previous = c.versionSummary(versions[j-1])
+				}
+				return map[string]any{"id": v.ID, "versionId": v.ID, "candidate": m.Candidate, "theme": m.Theme, "kind": kind, "nature": v.Kind, "date": date, "dateKind": basis, "dateFiltre": date, "typeDateFiltre": basis, "dateDocument": nullable(documentDates[v.ID]), "dateObservation": v.Observed, "enregistreLe": v.Recorded, "resume": v.Summary, "avant": previous, "apres": c.versionSummary(v)}
+			}})
 		}
 	}
 	sort.Slice(rows, func(i, j int) bool {
@@ -247,18 +306,21 @@ func (c *snapshot) changes(a changeArgs) (any, bool, error) {
 		}
 		return rows[i].id < rows[j].id
 	})
-	values := make([]any, len(rows))
-	for i, r := range rows {
-		values[i] = r.data
+	result := page(rows, a.Offset, 5)
+	window := result["resultats"].([]diff)
+	values := make([]any, len(window))
+	for i, r := range window {
+		values[i] = r.value()
 	}
-	return page(values, a.Offset, 5), a.Offset >= len(rows), nil
+	result["resultats"] = values
+	return result, a.Offset >= len(rows), nil
 }
 func (c *snapshot) versionSummary(v edition) map[string]any {
 	refs := []map[string]any{}
 	for _, s := range v.Snapshot.SourceRefs {
 		refs = append(refs, c.cited(s))
 	}
-	return map[string]any{"id": v.ID, "version": v.Number, "titre": v.Snapshot.Title, "texte": v.Snapshot.Description, "auteur": v.Author, "statut": v.Snapshot.Scope, "montants": v.Snapshot.Amounts, "chiffres": v.Snapshot.Metrics, "sources": refs, "url": site + "/mesures/" + v.MeasureID + "/"}
+	return map[string]any{"id": v.ID, "version": v.Number, "titre": v.Snapshot.Title, "texte": v.Snapshot.Description, "auteur": v.Author, "statut": v.Snapshot.Scope, "montants": v.Snapshot.Amounts, "chiffres": v.Snapshot.Metrics, "sources": refs, "url": site + "/mesures/" + v.MeasureID + "/#version-" + strconv.Itoa(v.Number)}
 }
 
 type territoryArgs struct {
@@ -272,11 +334,14 @@ func (c *snapshot) territory(a territoryArgs) (any, bool, error) {
 	if !communeCode.MatchString(code) {
 		return nil, false, errFilter
 	}
+	if err := c.contract.check("territoires"); err != nil {
+		return nil, false, err
+	}
 	c.extraMu.Lock()
 	defer c.extraMu.Unlock()
 	if c.territorial == nil {
 		var d territories
-		if readData(filepath.Join(c.root, "api", "territoires.json"), 5<<20, &d) != nil || d.Names == nil || d.SRU == nil || d.APL == nil || d.Definitions == nil {
+		if readData(filepath.Join(c.root, "api", "territoires.json"), territoriesLimit, &d) != nil || d.Names == nil || d.SRU == nil || d.APL == nil || d.Definitions == nil {
 			return nil, false, invalidCorpus
 		}
 		c.territorial = &d

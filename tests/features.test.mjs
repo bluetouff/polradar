@@ -23,6 +23,18 @@ import {
 } from '../src/lib/features.mjs';
 import { immutableHistoryErrors } from '../src/lib/history.mjs';
 
+test('la recherche locale retrouve une mesure au moyen de son sigle ou de sa formulation usuelle', () => {
+  for (const [title, q] of [
+    ['Supprimer le veto à l’ONU', 'veto Nations unies'],
+    ['Supprimer les obligations vaccinales', 'vaccination obligatoire'],
+    ['Pondérer les avis citoyens', 'pondération des avis'],
+    ['Renforcer les TER', 'transport ferroviaire'],
+  ]) {
+    const entry = { title, text: '', scope: 'campagne' };
+    assert.deepEqual(filterEntries([entry], { q }), [entry], q);
+  }
+});
+
 const original = Object.fromEntries(
   [
     'candidates',
