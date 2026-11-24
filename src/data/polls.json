@@ -28908,5 +28908,1850 @@
     "noIntentionNote": "Part sans intention dans le graphique de la page 18.",
     "resultSource": "verian-rapport-outsiders-2025",
     "resultPage": 15
+  },
+  {
+    "id": "odoxa-commission-10189-p2-q2",
+    "institute": "Odoxa",
+    "commissioner": "Mascaret, Public Sénat et presse régionale",
+    "published": "2026-05-26",
+    "fieldworkStart": "2026-05-20",
+    "fieldworkEnd": "2026-05-21",
+    "sampleSize": 1005,
+    "registeredSample": 928,
+    "usefulSample": 681,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "odoxa-commission-10189",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour laquelle des personnalités politiques suivantes y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales comptant aller voter à ce tour et exprimant un choix.",
+      "sourceId": "notice-commission-10189",
+      "page": 2,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Base d’intentions de vote restreinte aux inscrits.",
+    "method": "Enquête par Internet, échantillon établi par quotas. Les scores sont redressés.",
+    "noticePage": 2,
+    "noIntention": 23,
+    "margin": {
+      "min": 1.8,
+      "max": 4.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Philippe, Retailleau et Bardella",
+    "noticeSource": "notice-commission-10189",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 17
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 32
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6
+      }
+    ],
+    "uncertainty": "L’effectif utile varie selon le scénario. L’intervalle de marge d’erreur reprend les bornes publiées par Odoxa.",
+    "noIntentionNote": "Part sans intention de vote indiquée à côté du graphique d’Odoxa.",
+    "resultSource": "odoxa-rapport-10189",
+    "resultPage": 20
+  },
+  {
+    "id": "odoxa-commission-10189-p3-q4",
+    "institute": "Odoxa",
+    "commissioner": "Mascaret, Public Sénat et presse régionale",
+    "published": "2026-05-26",
+    "fieldworkStart": "2026-05-20",
+    "fieldworkEnd": "2026-05-21",
+    "sampleSize": 1005,
+    "registeredSample": 928,
+    "usefulSample": 630,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "odoxa-commission-10189",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour laquelle des personnalités politiques suivantes y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales comptant aller voter à ce tour et exprimant un choix.",
+      "sourceId": "notice-commission-10189",
+      "page": 3,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Base d’intentions de vote restreinte aux inscrits.",
+    "method": "Enquête par Internet, échantillon établi par quotas. Les scores sont redressés.",
+    "noticePage": 3,
+    "noIntention": 28,
+    "margin": {
+      "min": 1.8,
+      "max": 4.1,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Édouard Philippe face à Jordan Bardella",
+    "noticeSource": "notice-commission-10189",
+    "results": [
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 48
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 52
+      }
+    ],
+    "uncertainty": "L’effectif utile varie selon le scénario. L’intervalle de marge d’erreur reprend les bornes publiées par Odoxa.",
+    "noIntentionNote": "Part sans intention de vote indiquée à côté du graphique d’Odoxa.",
+    "resultSource": "odoxa-rapport-10189",
+    "resultPage": 23
+  },
+  {
+    "id": "odoxa-commission-10167-p2-q2hyp1",
+    "institute": "Odoxa",
+    "commissioner": "Mascaret, Public Sénat et presse régionale",
+    "published": "2026-03-31",
+    "fieldworkStart": "2026-03-25",
+    "fieldworkEnd": "2026-03-26",
+    "sampleSize": 1299,
+    "registeredSample": 1206,
+    "usefulSample": 853,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "odoxa-commission-10167",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour laquelle des personnalités politiques suivantes y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales comptant aller voter à ce tour et exprimant un choix.",
+      "sourceId": "notice-commission-10167",
+      "page": 2,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Base d’intentions de vote restreinte aux inscrits.",
+    "method": "Enquête par Internet, échantillon établi par quotas. Les scores sont redressés.",
+    "noticePage": 2,
+    "noIntention": 25,
+    "margin": {
+      "min": 1.5,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Philippe, Retailleau et Bardella",
+    "noticeSource": "notice-commission-10167",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 12
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 10
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 21
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 34
+      },
+      {
+        "id": "sonde-sarah-knafo",
+        "name": "Sarah Knafo",
+        "percentage": 5
+      }
+    ],
+    "uncertainty": "L’effectif utile varie selon le scénario. L’intervalle de marge d’erreur reprend les bornes publiées par Odoxa.",
+    "noIntentionNote": "Part sans intention de vote indiquée à côté du graphique d’Odoxa.",
+    "resultSource": "odoxa-rapport-10167",
+    "resultPage": 25
+  },
+  {
+    "id": "odoxa-commission-10167-p2-q2hyp2",
+    "institute": "Odoxa",
+    "commissioner": "Mascaret, Public Sénat et presse régionale",
+    "published": "2026-03-31",
+    "fieldworkStart": "2026-03-25",
+    "fieldworkEnd": "2026-03-26",
+    "sampleSize": 1299,
+    "registeredSample": 1206,
+    "usefulSample": 847,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "odoxa-commission-10167",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour laquelle des personnalités politiques suivantes y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales comptant aller voter à ce tour et exprimant un choix.",
+      "sourceId": "notice-commission-10167",
+      "page": 2,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Base d’intentions de vote restreinte aux inscrits.",
+    "method": "Enquête par Internet, échantillon établi par quotas. Les scores sont redressés.",
+    "noticePage": 2,
+    "noIntention": 25,
+    "margin": {
+      "min": 1.5,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Philippe et Bardella, sans Retailleau",
+    "noticeSource": "notice-commission-10167",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 10
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 25
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 38
+      },
+      {
+        "id": "sonde-sarah-knafo",
+        "name": "Sarah Knafo",
+        "percentage": 5
+      }
+    ],
+    "uncertainty": "L’effectif utile varie selon le scénario. L’intervalle de marge d’erreur reprend les bornes publiées par Odoxa.",
+    "noIntentionNote": "Part sans intention de vote indiquée à côté du graphique d’Odoxa.",
+    "resultSource": "odoxa-rapport-10167",
+    "resultPage": 27
+  },
+  {
+    "id": "odoxa-commission-10167-p3-q4",
+    "institute": "Odoxa",
+    "commissioner": "Mascaret, Public Sénat et presse régionale",
+    "published": "2026-03-31",
+    "fieldworkStart": "2026-03-25",
+    "fieldworkEnd": "2026-03-26",
+    "sampleSize": 1299,
+    "registeredSample": 1206,
+    "usefulSample": 812,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "odoxa-commission-10167",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour laquelle des personnalités politiques suivantes y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales comptant aller voter à ce tour et exprimant un choix.",
+      "sourceId": "notice-commission-10167",
+      "page": 3,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Base d’intentions de vote restreinte aux inscrits.",
+    "method": "Enquête par Internet, échantillon établi par quotas. Les scores sont redressés.",
+    "noticePage": 3,
+    "noIntention": 28,
+    "margin": {
+      "min": 1.5,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Édouard Philippe face à Jordan Bardella",
+    "noticeSource": "notice-commission-10167",
+    "results": [
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 52
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 48
+      }
+    ],
+    "uncertainty": "L’effectif utile varie selon le scénario. L’intervalle de marge d’erreur reprend les bornes publiées par Odoxa.",
+    "noIntentionNote": "Part sans intention de vote indiquée à côté du graphique d’Odoxa.",
+    "resultSource": "odoxa-rapport-10167",
+    "resultPage": 29
+  },
+  {
+    "id": "odoxa-commission-10023-p2-q2hyp1",
+    "institute": "Odoxa",
+    "commissioner": "Mascaret, Public Sénat et presse régionale",
+    "published": "2025-11-25",
+    "fieldworkStart": "2025-11-19",
+    "fieldworkEnd": "2025-11-20",
+    "sampleSize": 1300,
+    "registeredSample": 1206,
+    "usefulSample": 874,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "odoxa-commission-10023",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour laquelle des personnalités politiques suivantes y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales comptant aller voter à ce tour et exprimant un choix.",
+      "sourceId": "notice-commission-10023",
+      "page": 2,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Base d’intentions de vote restreinte aux inscrits.",
+    "method": "Enquête par Internet, échantillon établi par quotas. Les scores sont redressés.",
+    "noticePage": 2,
+    "noIntention": 23,
+    "margin": {
+      "min": 1.5,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Philippe, Retailleau et Bardella",
+    "noticeSource": "notice-commission-10023",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 11
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 6
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 13.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 17
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 35
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.5
+      }
+    ],
+    "uncertainty": "L’effectif utile varie selon le scénario. L’intervalle de marge d’erreur reprend les bornes publiées par Odoxa.",
+    "noIntentionNote": "Part sans intention de vote indiquée à côté du graphique d’Odoxa.",
+    "resultSource": "odoxa-rapport-10023",
+    "resultPage": 24
+  },
+  {
+    "id": "odoxa-commission-10023-p2-q2hyp2",
+    "institute": "Odoxa",
+    "commissioner": "Mascaret, Public Sénat et presse régionale",
+    "published": "2025-11-25",
+    "fieldworkStart": "2025-11-19",
+    "fieldworkEnd": "2025-11-20",
+    "sampleSize": 1300,
+    "registeredSample": 1206,
+    "usefulSample": 864,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "odoxa-commission-10023",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour laquelle des personnalités politiques suivantes y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales comptant aller voter à ce tour et exprimant un choix.",
+      "sourceId": "notice-commission-10023",
+      "page": 2,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Base d’intentions de vote restreinte aux inscrits.",
+    "method": "Enquête par Internet, échantillon établi par quotas. Les scores sont redressés.",
+    "noticePage": 2,
+    "noIntention": 24,
+    "margin": {
+      "min": 1.5,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Attal, Retailleau et Bardella",
+    "noticeSource": "notice-commission-10023",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 12
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 6.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 14.5
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 11
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 36
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ],
+    "uncertainty": "L’effectif utile varie selon le scénario. L’intervalle de marge d’erreur reprend les bornes publiées par Odoxa.",
+    "noIntentionNote": "Part sans intention de vote indiquée à côté du graphique d’Odoxa.",
+    "resultSource": "odoxa-rapport-10023",
+    "resultPage": 26
+  },
+  {
+    "id": "odoxa-commission-10023-p3-q4hyp1",
+    "institute": "Odoxa",
+    "commissioner": "Mascaret, Public Sénat et presse régionale",
+    "published": "2025-11-25",
+    "fieldworkStart": "2025-11-19",
+    "fieldworkEnd": "2025-11-20",
+    "sampleSize": 1300,
+    "registeredSample": 1206,
+    "usefulSample": 803,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "odoxa-commission-10023",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour laquelle des personnalités politiques suivantes y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales comptant aller voter à ce tour et exprimant un choix.",
+      "sourceId": "notice-commission-10023",
+      "page": 3,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Base d’intentions de vote restreinte aux inscrits.",
+    "method": "Enquête par Internet, échantillon établi par quotas. Les scores sont redressés.",
+    "noticePage": 3,
+    "noIntention": 29,
+    "margin": {
+      "min": 1.5,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Édouard Philippe face à Jordan Bardella",
+    "noticeSource": "notice-commission-10023",
+    "results": [
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 47
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 53
+      }
+    ],
+    "uncertainty": "L’effectif utile varie selon le scénario. L’intervalle de marge d’erreur reprend les bornes publiées par Odoxa.",
+    "noIntentionNote": "Part sans intention de vote indiquée à côté du graphique d’Odoxa.",
+    "resultSource": "odoxa-rapport-10023",
+    "resultPage": 29
+  },
+  {
+    "id": "odoxa-commission-10023-p4-q4hyp3",
+    "institute": "Odoxa",
+    "commissioner": "Mascaret, Public Sénat et presse régionale",
+    "published": "2025-11-25",
+    "fieldworkStart": "2025-11-19",
+    "fieldworkEnd": "2025-11-20",
+    "sampleSize": 1300,
+    "registeredSample": 1206,
+    "usefulSample": 795,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "odoxa-commission-10023",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour laquelle des personnalités politiques suivantes y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales comptant aller voter à ce tour et exprimant un choix.",
+      "sourceId": "notice-commission-10023",
+      "page": 4,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Base d’intentions de vote restreinte aux inscrits.",
+    "method": "Enquête par Internet, échantillon établi par quotas. Les scores sont redressés.",
+    "noticePage": 4,
+    "noIntention": 30,
+    "margin": {
+      "min": 1.5,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Raphaël Glucksmann face à Jordan Bardella",
+    "noticeSource": "notice-commission-10023",
+    "results": [
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 42
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 58
+      }
+    ],
+    "uncertainty": "L’effectif utile varie selon le scénario. L’intervalle de marge d’erreur reprend les bornes publiées par Odoxa.",
+    "noIntentionNote": "Part sans intention de vote indiquée à côté du graphique d’Odoxa.",
+    "resultSource": "odoxa-rapport-10023",
+    "resultPage": 30
+  },
+  {
+    "id": "odoxa-commission-10023-p4-q4hyp4",
+    "institute": "Odoxa",
+    "commissioner": "Mascaret, Public Sénat et presse régionale",
+    "published": "2025-11-25",
+    "fieldworkStart": "2025-11-19",
+    "fieldworkEnd": "2025-11-20",
+    "sampleSize": 1300,
+    "registeredSample": 1206,
+    "usefulSample": 689,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "odoxa-commission-10023",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour laquelle des personnalités politiques suivantes y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales comptant aller voter à ce tour et exprimant un choix.",
+      "sourceId": "notice-commission-10023",
+      "page": 4,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Base d’intentions de vote restreinte aux inscrits.",
+    "method": "Enquête par Internet, échantillon établi par quotas. Les scores sont redressés.",
+    "noticePage": 4,
+    "noIntention": 39,
+    "margin": {
+      "min": 1.5,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Jean-Luc Mélenchon face à Jordan Bardella",
+    "noticeSource": "notice-commission-10023",
+    "results": [
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 26
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 74
+      }
+    ],
+    "uncertainty": "L’effectif utile varie selon le scénario. L’intervalle de marge d’erreur reprend les bornes publiées par Odoxa.",
+    "noIntentionNote": "Part sans intention de vote indiquée à côté du graphique d’Odoxa.",
+    "resultSource": "odoxa-rapport-10023",
+    "resultPage": 31
+  },
+  {
+    "id": "odoxa-commission-10023-p3-q4hyp2",
+    "institute": "Odoxa",
+    "commissioner": "Mascaret, Public Sénat et presse régionale",
+    "published": "2025-11-25",
+    "fieldworkStart": "2025-11-19",
+    "fieldworkEnd": "2025-11-20",
+    "sampleSize": 1300,
+    "registeredSample": 1206,
+    "usefulSample": 776,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "odoxa-commission-10023",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour laquelle des personnalités politiques suivantes y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales comptant aller voter à ce tour et exprimant un choix.",
+      "sourceId": "notice-commission-10023",
+      "page": 3,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Base d’intentions de vote restreinte aux inscrits.",
+    "method": "Enquête par Internet, échantillon établi par quotas. Les scores sont redressés.",
+    "noticePage": 3,
+    "noIntention": 31,
+    "margin": {
+      "min": 1.5,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Gabriel Attal face à Jordan Bardella",
+    "noticeSource": "notice-commission-10023",
+    "results": [
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 44
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 56
+      }
+    ],
+    "uncertainty": "L’effectif utile varie selon le scénario. L’intervalle de marge d’erreur reprend les bornes publiées par Odoxa.",
+    "noIntentionNote": "Part sans intention de vote indiquée à côté du graphique d’Odoxa.",
+    "resultSource": "odoxa-rapport-10023",
+    "resultPage": 32
+  },
+  {
+    "id": "odoxa-commission-9925-p23",
+    "institute": "Odoxa",
+    "commissioner": "Public Sénat et presse régionale",
+    "published": "2025-04-29",
+    "fieldworkStart": "2025-04-23",
+    "fieldworkEnd": "2025-04-24",
+    "sampleSize": 1005,
+    "registeredSample": 929,
+    "usefulSample": 676,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "odoxa-commission-9925",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour laquelle des personnalités politiques suivantes y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales comptant aller voter à ce tour et exprimant un choix.",
+      "sourceId": "notice-commission-9925",
+      "page": 23,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Base d’intentions de vote restreinte aux inscrits.",
+    "method": "Enquête par Internet, échantillon établi par quotas. Les scores sont redressés.",
+    "noticePage": 23,
+    "noIntention": 23,
+    "margin": {
+      "min": 1.8,
+      "max": 4.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Philippe, Retailleau et Le Pen",
+    "noticeSource": "notice-commission-9925",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 2
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 12
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 20.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 32
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ],
+    "uncertainty": "L’effectif utile varie selon le scénario. L’intervalle de marge d’erreur reprend les bornes publiées par Odoxa.",
+    "noIntentionNote": "Part sans intention de vote indiquée à côté du graphique d’Odoxa.",
+    "resultSource": "odoxa-rapport-9925",
+    "resultPage": 23
+  },
+  {
+    "id": "odoxa-commission-9925-p24",
+    "institute": "Odoxa",
+    "commissioner": "Public Sénat et presse régionale",
+    "published": "2025-04-29",
+    "fieldworkStart": "2025-04-23",
+    "fieldworkEnd": "2025-04-24",
+    "sampleSize": 1005,
+    "registeredSample": 929,
+    "usefulSample": 667,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "odoxa-commission-9925",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour laquelle des personnalités politiques suivantes y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales comptant aller voter à ce tour et exprimant un choix.",
+      "sourceId": "notice-commission-9925",
+      "page": 24,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Base d’intentions de vote restreinte aux inscrits.",
+    "method": "Enquête par Internet, échantillon établi par quotas. Les scores sont redressés.",
+    "noticePage": 24,
+    "noIntention": 24,
+    "margin": {
+      "min": 1.8,
+      "max": 4.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Philippe, Retailleau et Bardella",
+    "noticeSource": "notice-commission-9925",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 2
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 12
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 12
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 20
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9.5
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 31.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ],
+    "uncertainty": "L’effectif utile varie selon le scénario. L’intervalle de marge d’erreur reprend les bornes publiées par Odoxa.",
+    "noIntentionNote": "Part sans intention de vote indiquée à côté du graphique d’Odoxa.",
+    "resultSource": "odoxa-rapport-9925",
+    "resultPage": 24
+  },
+  {
+    "id": "odoxa-commission-9925-p26",
+    "institute": "Odoxa",
+    "commissioner": "Public Sénat et presse régionale",
+    "published": "2025-04-29",
+    "fieldworkStart": "2025-04-23",
+    "fieldworkEnd": "2025-04-24",
+    "sampleSize": 1005,
+    "registeredSample": 929,
+    "usefulSample": 623,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "odoxa-commission-9925",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour laquelle des personnalités politiques suivantes y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales comptant aller voter à ce tour et exprimant un choix.",
+      "sourceId": "notice-commission-9925",
+      "page": 26,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Base d’intentions de vote restreinte aux inscrits.",
+    "method": "Enquête par Internet, échantillon établi par quotas. Les scores sont redressés.",
+    "noticePage": 26,
+    "noIntention": 29,
+    "margin": {
+      "min": 1.8,
+      "max": 4.1,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Édouard Philippe face à Marine Le Pen",
+    "noticeSource": "notice-commission-9925",
+    "results": [
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 54
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 46
+      }
+    ],
+    "uncertainty": "L’effectif utile varie selon le scénario. L’intervalle de marge d’erreur reprend les bornes publiées par Odoxa.",
+    "noIntentionNote": "Part sans intention de vote indiquée à côté du graphique d’Odoxa.",
+    "resultSource": "odoxa-rapport-9925",
+    "resultPage": 26
+  },
+  {
+    "id": "odoxa-commission-9925-p27",
+    "institute": "Odoxa",
+    "commissioner": "Public Sénat et presse régionale",
+    "published": "2025-04-29",
+    "fieldworkStart": "2025-04-23",
+    "fieldworkEnd": "2025-04-24",
+    "sampleSize": 1005,
+    "registeredSample": 929,
+    "usefulSample": 625,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "odoxa-commission-9925",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour laquelle des personnalités politiques suivantes y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales comptant aller voter à ce tour et exprimant un choix.",
+      "sourceId": "notice-commission-9925",
+      "page": 27,
+      "checked": "2026-11-24"
+    },
+    "population": "France, 18 ans et plus. Base d’intentions de vote restreinte aux inscrits.",
+    "method": "Enquête par Internet, échantillon établi par quotas. Les scores sont redressés.",
+    "noticePage": 27,
+    "noIntention": 28,
+    "margin": {
+      "min": 1.8,
+      "max": 4.1,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Édouard Philippe face à Jordan Bardella",
+    "noticeSource": "notice-commission-9925",
+    "results": [
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 54
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 46
+      }
+    ],
+    "uncertainty": "L’effectif utile varie selon le scénario. L’intervalle de marge d’erreur reprend les bornes publiées par Odoxa.",
+    "noIntentionNote": "Part sans intention de vote indiquée à côté du graphique d’Odoxa.",
+    "resultSource": "odoxa-rapport-9925",
+    "resultPage": 27
+  },
+  {
+    "id": "elabe-commission-10226-p7-q3",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-07-11",
+    "fieldworkStart": "2026-07-09",
+    "fieldworkEnd": "2026-07-10",
+    "sampleSize": 1503,
+    "registeredSample": 1390,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "elabe-commission-10226",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants voteriez-vous ?",
+      "base": "Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+      "sourceId": "notice-commission-10226",
+      "page": 2,
+      "checked": "2026-11-24"
+    },
+    "population": "France métropolitaine, 18 ans et plus. Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+    "method": "Questionnaire en ligne selon la notice, échantillon constitué par quotas.",
+    "noticePage": 7,
+    "noIntention": 14,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Tondelier, Glucksmann, Philippe et Le Pen",
+    "noticeSource": "notice-commission-10226",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 10.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 16.5
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 2.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 35
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ],
+    "uncertainty": "L’effectif qui a exprimé une intention par scénario n’est pas indiqué. La marge reprend l’intervalle publié par Elabe.",
+    "noIntentionNote": "Vote blanc ou nul et abstention, regroupés dans la notice.",
+    "resultSource": "elabe-rapport-10226",
+    "resultPage": 10
+  },
+  {
+    "id": "elabe-commission-10226-p7-q4",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-07-11",
+    "fieldworkStart": "2026-07-09",
+    "fieldworkEnd": "2026-07-10",
+    "sampleSize": 1503,
+    "registeredSample": 1390,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "elabe-commission-10226",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants voteriez-vous ?",
+      "base": "Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+      "sourceId": "notice-commission-10226",
+      "page": 2,
+      "checked": "2026-11-24"
+    },
+    "population": "France métropolitaine, 18 ans et plus. Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+    "method": "Questionnaire en ligne selon la notice, échantillon constitué par quotas.",
+    "noticePage": 7,
+    "noIntention": 14,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Tondelier, Glucksmann, Attal et Le Pen",
+    "noticeSource": "notice-commission-10226",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 14.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 13.5
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 3.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 11
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.5
+      }
+    ],
+    "uncertainty": "L’effectif qui a exprimé une intention par scénario n’est pas indiqué. La marge reprend l’intervalle publié par Elabe.",
+    "noIntentionNote": "Vote blanc ou nul et abstention, regroupés dans la notice.",
+    "resultSource": "elabe-rapport-10226",
+    "resultPage": 12
+  },
+  {
+    "id": "elabe-commission-10226-p7-q5",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-07-11",
+    "fieldworkStart": "2026-07-09",
+    "fieldworkEnd": "2026-07-10",
+    "sampleSize": 1503,
+    "registeredSample": 1390,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "elabe-commission-10226",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants voteriez-vous ?",
+      "base": "Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+      "sourceId": "notice-commission-10226",
+      "page": 2,
+      "checked": "2026-11-24"
+    },
+    "population": "France métropolitaine, 18 ans et plus. Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+    "method": "Questionnaire en ligne selon la notice, échantillon constitué par quotas.",
+    "noticePage": 7,
+    "noIntention": 14,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Ruffin, Hollande, Philippe et Le Pen",
+    "noticeSource": "notice-commission-10226",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 14.5
+      },
+      {
+        "id": "ruffin",
+        "name": "François Ruffin",
+        "percentage": 6
+      },
+      {
+        "id": "sonde-francois-hollande",
+        "name": "François Hollande",
+        "percentage": 9
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 19
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 35
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 2.5
+      }
+    ],
+    "uncertainty": "L’effectif qui a exprimé une intention par scénario n’est pas indiqué. La marge reprend l’intervalle publié par Elabe.",
+    "noIntentionNote": "Vote blanc ou nul et abstention, regroupés dans la notice.",
+    "resultSource": "elabe-rapport-10226",
+    "resultPage": 14
+  },
+  {
+    "id": "elabe-commission-10226-p8-q6",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-07-11",
+    "fieldworkStart": "2026-07-09",
+    "fieldworkEnd": "2026-07-10",
+    "sampleSize": 1503,
+    "registeredSample": 1390,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "elabe-commission-10226",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants voteriez-vous ?",
+      "base": "Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+      "sourceId": "notice-commission-10226",
+      "page": 3,
+      "checked": "2026-11-24"
+    },
+    "population": "France métropolitaine, 18 ans et plus. Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+    "method": "Questionnaire en ligne selon la notice, échantillon constitué par quotas.",
+    "noticePage": 8,
+    "noIntention": 15,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Ruffin, Hollande, Attal et Le Pen",
+    "noticeSource": "notice-commission-10226",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "ruffin",
+        "name": "François Ruffin",
+        "percentage": 6
+      },
+      {
+        "id": "sonde-francois-hollande",
+        "name": "François Hollande",
+        "percentage": 8
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 15.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 11
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 35.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.5
+      }
+    ],
+    "uncertainty": "L’effectif qui a exprimé une intention par scénario n’est pas indiqué. La marge reprend l’intervalle publié par Elabe.",
+    "noIntentionNote": "Vote blanc ou nul et abstention, regroupés dans la notice.",
+    "resultSource": "elabe-rapport-10226",
+    "resultPage": 16
+  },
+  {
+    "id": "elabe-commission-10226-p8-q7",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-07-11",
+    "fieldworkStart": "2026-07-09",
+    "fieldworkEnd": "2026-07-10",
+    "sampleSize": 1503,
+    "registeredSample": 1390,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "elabe-commission-10226",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants voteriez-vous ?",
+      "base": "Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+      "sourceId": "notice-commission-10226",
+      "page": 3,
+      "checked": "2026-11-24"
+    },
+    "population": "France métropolitaine, 18 ans et plus. Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+    "method": "Questionnaire en ligne selon la notice, échantillon constitué par quotas.",
+    "noticePage": 8,
+    "noIntention": 13,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Tondelier, Glucksmann, Attal, Philippe et Le Pen",
+    "noticeSource": "notice-commission-10226",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 14.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 8.5
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 7.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 14
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 35
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ],
+    "uncertainty": "L’effectif qui a exprimé une intention par scénario n’est pas indiqué. La marge reprend l’intervalle publié par Elabe.",
+    "noIntentionNote": "Vote blanc ou nul et abstention, regroupés dans la notice.",
+    "resultSource": "elabe-rapport-10226",
+    "resultPage": 18
+  },
+  {
+    "id": "elabe-commission-10226-p8-q8",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-07-11",
+    "fieldworkStart": "2026-07-09",
+    "fieldworkEnd": "2026-07-10",
+    "sampleSize": 1503,
+    "registeredSample": 1390,
+    "usefulSample": null,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "elabe-commission-10226",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants voteriez-vous ?",
+      "base": "Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+      "sourceId": "notice-commission-10226",
+      "page": 3,
+      "checked": "2026-11-24"
+    },
+    "population": "France métropolitaine, 18 ans et plus. Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+    "method": "Questionnaire en ligne selon la notice, échantillon constitué par quotas.",
+    "noticePage": 8,
+    "noIntention": 14,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Premier tour · Tondelier, Hollande, Philippe et Le Pen",
+    "noticeSource": "notice-commission-10226",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 2
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "sonde-francois-hollande",
+        "name": "François Hollande",
+        "percentage": 8
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 18
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 3
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ],
+    "uncertainty": "L’effectif qui a exprimé une intention par scénario n’est pas indiqué. La marge reprend l’intervalle publié par Elabe.",
+    "noIntentionNote": "Vote blanc ou nul et abstention, regroupés dans la notice.",
+    "resultSource": "elabe-rapport-10226",
+    "resultPage": 20
+  },
+  {
+    "id": "elabe-commission-10226-p9-q9",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-07-11",
+    "fieldworkStart": "2026-07-09",
+    "fieldworkEnd": "2026-07-10",
+    "sampleSize": 1503,
+    "registeredSample": 1390,
+    "usefulSample": null,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "elabe-commission-10226",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants voteriez-vous ?",
+      "base": "Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+      "sourceId": "notice-commission-10226",
+      "page": 3,
+      "checked": "2026-11-24"
+    },
+    "population": "France métropolitaine, 18 ans et plus. Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+    "method": "Questionnaire en ligne selon la notice, échantillon constitué par quotas.",
+    "noticePage": 9,
+    "noIntention": 29,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Jean-Luc Mélenchon face à Marine Le Pen",
+    "noticeSource": "notice-commission-10226",
+    "results": [
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 32.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 67.5
+      }
+    ],
+    "uncertainty": "L’effectif qui a exprimé une intention par scénario n’est pas indiqué. La marge reprend l’intervalle publié par Elabe.",
+    "noIntentionNote": "Vote blanc ou nul et abstention, regroupés dans la notice.",
+    "resultSource": "elabe-rapport-10226",
+    "resultPage": 22
+  },
+  {
+    "id": "elabe-commission-10226-p9-q10",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-07-11",
+    "fieldworkStart": "2026-07-09",
+    "fieldworkEnd": "2026-07-10",
+    "sampleSize": 1503,
+    "registeredSample": 1390,
+    "usefulSample": null,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "elabe-commission-10226",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants voteriez-vous ?",
+      "base": "Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+      "sourceId": "notice-commission-10226",
+      "page": 3,
+      "checked": "2026-11-24"
+    },
+    "population": "France métropolitaine, 18 ans et plus. Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+    "method": "Questionnaire en ligne selon la notice, échantillon constitué par quotas.",
+    "noticePage": 9,
+    "noIntention": 23,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Raphaël Glucksmann face à Marine Le Pen",
+    "noticeSource": "notice-commission-10226",
+    "results": [
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 41.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 58.5
+      }
+    ],
+    "uncertainty": "L’effectif qui a exprimé une intention par scénario n’est pas indiqué. La marge reprend l’intervalle publié par Elabe.",
+    "noIntentionNote": "Vote blanc ou nul et abstention, regroupés dans la notice.",
+    "resultSource": "elabe-rapport-10226",
+    "resultPage": 24
+  },
+  {
+    "id": "elabe-commission-10226-p9-q11",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-07-11",
+    "fieldworkStart": "2026-07-09",
+    "fieldworkEnd": "2026-07-10",
+    "sampleSize": 1503,
+    "registeredSample": 1390,
+    "usefulSample": null,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "elabe-commission-10226",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants voteriez-vous ?",
+      "base": "Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+      "sourceId": "notice-commission-10226",
+      "page": 4,
+      "checked": "2026-11-24"
+    },
+    "population": "France métropolitaine, 18 ans et plus. Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+    "method": "Questionnaire en ligne selon la notice, échantillon constitué par quotas.",
+    "noticePage": 9,
+    "noIntention": 24,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Gabriel Attal face à Marine Le Pen",
+    "noticeSource": "notice-commission-10226",
+    "results": [
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 46
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 54
+      }
+    ],
+    "uncertainty": "L’effectif qui a exprimé une intention par scénario n’est pas indiqué. La marge reprend l’intervalle publié par Elabe.",
+    "noIntentionNote": "Vote blanc ou nul et abstention, regroupés dans la notice.",
+    "resultSource": "elabe-rapport-10226",
+    "resultPage": 26
+  },
+  {
+    "id": "elabe-commission-10226-p9-q12",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-07-11",
+    "fieldworkStart": "2026-07-09",
+    "fieldworkEnd": "2026-07-10",
+    "sampleSize": 1503,
+    "registeredSample": 1390,
+    "usefulSample": null,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "elabe-commission-10226",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants voteriez-vous ?",
+      "base": "Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+      "sourceId": "notice-commission-10226",
+      "page": 4,
+      "checked": "2026-11-24"
+    },
+    "population": "France métropolitaine, 18 ans et plus. Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+    "method": "Questionnaire en ligne selon la notice, échantillon constitué par quotas.",
+    "noticePage": 9,
+    "noIntention": 22,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Édouard Philippe face à Marine Le Pen",
+    "noticeSource": "notice-commission-10226",
+    "results": [
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 48
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 52
+      }
+    ],
+    "uncertainty": "L’effectif qui a exprimé une intention par scénario n’est pas indiqué. La marge reprend l’intervalle publié par Elabe.",
+    "noIntentionNote": "Vote blanc ou nul et abstention, regroupés dans la notice.",
+    "resultSource": "elabe-rapport-10226",
+    "resultPage": 28
+  },
+  {
+    "id": "elabe-commission-10226-p9-q13",
+    "institute": "Elabe",
+    "commissioner": "BFMTV et La Tribune Dimanche",
+    "published": "2026-07-11",
+    "fieldworkStart": "2026-07-09",
+    "fieldworkEnd": "2026-07-10",
+    "sampleSize": 1503,
+    "registeredSample": 1390,
+    "usefulSample": null,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "surveyId": "elabe-commission-10226",
+    "historicalImport": true,
+    "question": {
+      "status": "verifiee",
+      "wording": "… pour lequel des candidats suivants voteriez-vous ?",
+      "base": "Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+      "sourceId": "notice-commission-10226",
+      "page": 4,
+      "checked": "2026-11-24"
+    },
+    "population": "France métropolitaine, 18 ans et plus. Inscrits de France métropolitaine exprimant un choix, avec une probabilité d’aller voter de 8 à 10 sur 10.",
+    "method": "Questionnaire en ligne selon la notice, échantillon constitué par quotas.",
+    "noticePage": 9,
+    "noIntention": 32,
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "scenario": "Second tour · Bruno Retailleau face à Marine Le Pen",
+    "noticeSource": "notice-commission-10226",
+    "results": [
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 44
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 56
+      }
+    ],
+    "uncertainty": "L’effectif qui a exprimé une intention par scénario n’est pas indiqué. La marge reprend l’intervalle publié par Elabe.",
+    "noIntentionNote": "Vote blanc ou nul et abstention, regroupés dans la notice.",
+    "resultSource": "elabe-rapport-10226",
+    "resultPage": 30
   }
 ]

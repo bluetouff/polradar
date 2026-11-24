@@ -33,6 +33,11 @@ const imported = [
   ['10264', 1],
   ['10024', 1],
   ['10035', 4],
+  ['9925', 4],
+  ['10023', 6],
+  ['10167', 3],
+  ['10189', 2],
+  ['10226', 11],
 ];
 
 test('Chaque notice relue couvre des scénarios traçables et rendus dans le Studio', () => {
@@ -214,4 +219,50 @@ test('L’enquête OpinionWay indique son commanditaire et conserve le score sou
   const result = poll.results.find((p) => p.name === 'Sébastien Bonnal');
   assert.equal(result.percentage, null);
   assert.equal(result.below, 1);
+});
+
+test('Odoxa et Elabe conservent le lien entre les questions, les scores et leurs bases de calcul', () => {
+  const november = polls.filter(
+    (poll) => poll.surveyId === 'odoxa-commission-10023',
+  );
+  assert.deepEqual(
+    november.map((poll) => poll.usefulSample),
+    [874, 864, 803, 795, 689, 776],
+  );
+  assert.deepEqual(
+    november.map((poll) => [poll.question.page, poll.resultPage]),
+    [
+      [2, 24],
+      [2, 26],
+      [3, 29],
+      [4, 30],
+      [4, 31],
+      [3, 32],
+    ],
+  );
+  assert.deepEqual(
+    november[3].results.map((result) => [result.name, result.percentage]),
+    [
+      ['Raphaël Glucksmann', 42],
+      ['Jordan Bardella', 58],
+    ],
+  );
+  const july = polls.filter(
+    (poll) => poll.surveyId === 'elabe-commission-10226',
+  );
+  assert.equal(july.filter((poll) => poll.round === 'premier').length, 6);
+  assert.equal(july.filter((poll) => poll.round === 'second').length, 5);
+  assert.ok(
+    july.every(
+      (poll) =>
+        poll.usefulSample === null && poll.question.base.includes('8 à 10'),
+    ),
+  );
+  assert.deepEqual(
+    july[6].results.map((result) => result.percentage),
+    [32.5, 67.5],
+  );
+  assert.equal(july[6].noIntention, 29);
+  assert.equal(july[6].noticePage, 9);
+  assert.equal(july[6].resultPage, 22);
 });
