@@ -56720,5 +56720,342 @@
     "edition": "Projet politique du MEI pour 2027",
     "checked": "2026-11-24",
     "partyAuthor": "Mouvement écologiste indépendant"
+  },
+  {
+    "id": "groupe-rn-tva-collecte-source",
+    "parentId": "groupe-rn-fiscalite",
+    "candidate": "lepen",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Prélever la TVA à la source",
+    "description": "Le groupe inscrit la collecte de la TVA à la source dans son contre-budget. La colonne 2027 lui attribue un montant négatif.",
+    "beneficiaries": null,
+    "timing": "Contre-budget pour 2027.",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "chiffrage-2027",
+        "label": "Chiffrage du groupe RN pour 2027",
+        "value": -0.1,
+        "unit": "Md€",
+        "sourceId": "groupe-rn-contre-budget-2027"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "groupe-rn-contre-budget-2027",
+        "fragment": "page=11",
+        "locator": "Tableau du contre-budget, page 11, colonne 2027 en milliards d’euros. Ligne : TVA à la source."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+    "checked": "2026-11-24",
+    "partyAuthor": "Groupe Rassemblement national"
+  },
+  {
+    "id": "groupe-rn-regime-mecenat",
+    "parentId": "groupe-rn-fiscalite",
+    "candidate": "lepen",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Changer le régime fiscal du mécénat d’entreprise",
+    "description": "Le groupe propose de passer à une déduction fiscale pour le mécénat des entreprises.",
+    "beneficiaries": null,
+    "timing": "Contre-budget pour 2027.",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "chiffrage-2027",
+        "label": "Chiffrage du groupe RN pour 2027",
+        "value": 0.523,
+        "unit": "Md€",
+        "sourceId": "groupe-rn-contre-budget-2027"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "groupe-rn-contre-budget-2027",
+        "fragment": "page=11",
+        "locator": "Tableau du contre-budget, page 11, colonne 2027 en milliards d’euros. Ligne : Mécénat des entreprises."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+    "checked": "2026-11-24",
+    "partyAuthor": "Groupe Rassemblement national"
+  },
+  {
+    "id": "groupe-rn-autorite-concurrence",
+    "parentId": "groupe-rn-travail-budget-2027",
+    "candidate": "lepen",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Renforcer l’Autorité de la concurrence",
+    "description": "Le contre-budget vise les ententes, les cartels et les pratiques de concurrence déloyale.",
+    "beneficiaries": null,
+    "timing": "Contre-budget pour 2027.",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "chiffrage-2027",
+        "label": "Chiffrage du groupe RN pour 2027",
+        "value": 1.2,
+        "unit": "Md€",
+        "sourceId": "groupe-rn-contre-budget-2027"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "groupe-rn-contre-budget-2027",
+        "fragment": "page=11",
+        "locator": "Tableau du contre-budget, page 11, colonne 2027 en milliards d’euros. Ligne : Autorité de la concurrence."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 du groupe RN à l’Assemblée nationale",
+    "checked": "2026-11-24",
+    "partyAuthor": "Groupe Rassemblement national"
+  },
+  {
+    "id": "groupe-rn-is-correction-chiffre-affaires",
+    "parentId": "groupe-rn-fiscalite",
+    "candidate": "lepen",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Fonder un correctif de l’impôt sur les sociétés sur le chiffre d’affaires",
+    "description": "Le groupe prévoit un mécanisme correcteur assis sur les ventes de l’entreprise. La ligne vise le calcul de ce correctif.",
+    "beneficiaries": null,
+    "timing": "Contre-budget pour 2027.",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "chiffrage-2027",
+        "label": "Chiffrage du groupe RN pour 2027",
+        "value": 3.75,
+        "unit": "Md€",
+        "sourceId": "groupe-rn-contre-budget-2027"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "groupe-rn-contre-budget-2027",
+        "fragment": "page=11",
+        "locator": "Tableau du contre-budget, page 11, colonne 2027 en milliards d’euros. Ligne : Correctif de l’impôt sur les sociétés."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+    "checked": "2026-11-24",
+    "partyAuthor": "Groupe Rassemblement national"
+  },
+  {
+    "id": "groupe-rn-export-electricite-edf",
+    "parentId": "groupe-rassemblement-national-climat-programme",
+    "candidate": "lepen",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Exporter en Europe le surplus français d’électricité",
+    "description": "Le groupe compte sur les dividendes d’EDF pour faire revenir au budget une partie du produit de ces ventes.",
+    "beneficiaries": null,
+    "timing": "Contre-budget pour 2027.",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "chiffrage-2027",
+        "label": "Chiffrage du groupe RN pour 2027",
+        "value": 3.7,
+        "unit": "Md€",
+        "sourceId": "groupe-rn-contre-budget-2027"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "groupe-rn-contre-budget-2027",
+        "fragment": "page=11",
+        "locator": "Tableau du contre-budget, page 11, colonne 2027 en milliards d’euros. Ligne : Exportations et dividendes d’EDF."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+    "checked": "2026-11-24",
+    "partyAuthor": "Groupe Rassemblement national"
+  },
+  {
+    "id": "groupe-rn-redevance-marches-energie",
+    "parentId": "groupe-rassemblement-national-climat-programme",
+    "candidate": "lepen",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Créer une redevance d’accès aux marchés historiques français du gaz et de l’électricité",
+    "description": "Le groupe prévoit de faire contribuer l’accès à ces deux marchés énergétiques.",
+    "beneficiaries": null,
+    "timing": "Contre-budget pour 2027.",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "chiffrage-2027",
+        "label": "Chiffrage du groupe RN pour 2027",
+        "value": 0.8,
+        "unit": "Md€",
+        "sourceId": "groupe-rn-contre-budget-2027"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "groupe-rn-contre-budget-2027",
+        "fragment": "page=11",
+        "locator": "Tableau du contre-budget, page 11, colonne 2027 en milliards d’euros. Ligne : Accès aux marchés électrique et gazier."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+    "checked": "2026-11-24",
+    "partyAuthor": "Groupe Rassemblement national"
+  },
+  {
+    "id": "groupe-rn-fiscalite-eolien-foncier-mer",
+    "parentId": "groupe-rassemblement-national-climat-programme",
+    "candidate": "lepen",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Relever la fiscalité de l’éolien",
+    "description": "Le groupe veut supprimer l’exonération de taxe foncière dont bénéficie l’éolien et augmenter la taxe sur l’éolien en mer.",
+    "beneficiaries": null,
+    "timing": "Contre-budget pour 2027.",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "chiffrage-2027",
+        "label": "Chiffrage du groupe RN pour 2027",
+        "value": 0.2,
+        "unit": "Md€",
+        "sourceId": "groupe-rn-contre-budget-2027"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "groupe-rn-contre-budget-2027",
+        "fragment": "page=11",
+        "locator": "Tableau du contre-budget, page 11, colonne 2027 en milliards d’euros. Ligne : Fiscalité de l’éolien."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+    "checked": "2026-11-24",
+    "partyAuthor": "Groupe Rassemblement national"
+  },
+  {
+    "id": "groupe-rn-timbre-visas-touristiques",
+    "parentId": "groupe-rn-immigration-budget-2027",
+    "candidate": "lepen",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Instaurer un droit de timbre sur les visas touristiques",
+    "description": "Le contre-budget propose un timbre pour les visas de tourisme. Le montant indiqué pour 2027 porte sur la ligne budgétaire entière.",
+    "beneficiaries": null,
+    "timing": "Contre-budget pour 2027.",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "chiffrage-2027",
+        "label": "Chiffrage du groupe RN pour 2027",
+        "value": 0.1,
+        "unit": "Md€",
+        "sourceId": "groupe-rn-contre-budget-2027"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "groupe-rn-contre-budget-2027",
+        "fragment": "page=11",
+        "locator": "Tableau du contre-budget, page 11, colonne 2027 en milliards d’euros. Ligne : Timbre sur les visas touristiques."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget 2027 du groupe RN à l’Assemblée nationale",
+    "checked": "2026-11-24",
+    "partyAuthor": "Groupe Rassemblement national"
+  },
+  {
+    "id": "groupe-rn-banques-accessibilite-bancaire",
+    "parentId": "lepen-social-mesures-complementaires-parti",
+    "candidate": "lepen",
+    "theme": "social",
+    "revision": 1,
+    "title": "Confier aux banques le financement de l’accessibilité bancaire",
+    "description": "Le groupe propose de transférer aux banques le coût de cette mission.",
+    "beneficiaries": null,
+    "timing": "Contre-budget pour 2027.",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "chiffrage-2027",
+        "label": "Chiffrage du groupe RN pour 2027",
+        "value": 0.3,
+        "unit": "Md€",
+        "sourceId": "groupe-rn-contre-budget-2027"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "groupe-rn-contre-budget-2027",
+        "fragment": "page=11",
+        "locator": "Tableau du contre-budget, page 11, colonne 2027 en milliards d’euros. Ligne : Financement de l’accessibilité bancaire."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget du groupe RN pour 2027",
+    "checked": "2026-11-24",
+    "partyAuthor": "Groupe Rassemblement national"
+  },
+  {
+    "id": "groupe-rn-successions-immobilier-300000",
+    "parentId": "groupe-rn-fiscalite",
+    "candidate": "lepen",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Exonérer jusqu’à 300 000 euros d’immobilier transmis par succession",
+    "description": "Le groupe propose une exonération sur le bien immobilier transmis. Il chiffre séparément les donations dans le même tableau.",
+    "beneficiaries": null,
+    "timing": "Contre-budget pour 2027.",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "exoneration-immobilier",
+        "label": "Montant immobilier exonéré",
+        "value": 300000,
+        "unit": "euros",
+        "sourceId": "groupe-rn-contre-budget-2027"
+      },
+      {
+        "key": "chiffrage-2027",
+        "label": "Chiffrage du groupe RN pour 2027",
+        "value": 1.2,
+        "unit": "Md€",
+        "sourceId": "groupe-rn-contre-budget-2027"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "groupe-rn-contre-budget-2027",
+        "fragment": "page=11",
+        "locator": "Tableau du contre-budget, page 11, colonne 2027 en milliards d’euros. Ligne : Immobilier transmis dans les successions."
+      }
+    ],
+    "scope": "parti",
+    "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+    "checked": "2026-11-24",
+    "partyAuthor": "Groupe Rassemblement national"
   }
 ]
