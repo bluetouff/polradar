@@ -57603,5 +57603,69 @@
     "scope": "orientation",
     "edition": "Entretien donné à Sud Radio en mai 2026",
     "checked": "2026-11-24"
+  },
+  {
+    "id": "dlf-contribution-europeenne",
+    "parentId": "dlf-fraudes-securite-sociale-dossier",
+    "candidate": "dupont-aignan",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Mettre fin à la contribution nette au budget de l’Union européenne",
+    "description": "Debout la France rattache cette économie à sa proposition de quitter l’Union européenne.",
+    "scope": "parti",
+    "partyAuthor": "Debout la France",
+    "edition": "Projet économique de Debout la France",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": "Le parti chiffre cet objectif à 15 milliards d’euros. Il ne précise pas l’horizon de ce montant.",
+    "metrics": [
+      {
+        "key": "objectif-annonce",
+        "label": "Économie avancée par le parti (horizon non précisé)",
+        "value": 15,
+        "unit": "Md€",
+        "sourceId": "dlf-economie-2026"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "dlf-economie-2026",
+        "locator": "Projet économique, troisième série sur les finances publiques, point 21."
+      }
+    ]
+  },
+  {
+    "id": "dlf-bercy-fraude-carrousel-tva",
+    "parentId": "dlf-fraudes-securite-sociale-dossier",
+    "candidate": "dupont-aignan",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Renforcer à Bercy la lutte contre les fraudes à la TVA",
+    "description": "Debout la France veut renforcer le pôle financier chargé de la fraude fiscale. Le parti vise en priorité les fraudes en carrousel à la TVA.",
+    "scope": "parti",
+    "partyAuthor": "Debout la France",
+    "edition": "Projet économique de Debout la France",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": "Le parti chiffre cet objectif à 20 milliards d’euros. Il ne précise pas l’horizon de ce montant.",
+    "metrics": [
+      {
+        "key": "objectif-annonce",
+        "label": "Objectif de lutte contre la fraude avancé par le parti (horizon non précisé)",
+        "value": 20,
+        "unit": "Md€",
+        "sourceId": "dlf-economie-2026"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "dlf-economie-2026",
+        "locator": "Projet économique, troisième série sur les finances publiques, point 27."
+      }
+    ]
   }
 ]
