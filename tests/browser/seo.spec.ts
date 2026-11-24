@@ -157,7 +157,10 @@ test('la page d’accueil nomme le site et la fiche décrit sa propre URL', asyn
         'content',
         'Polradar',
       );
-    else await expect(item.locator('[itemprop=name]')).toHaveText(/CSG/i);
+    else
+      expect(await item.locator('[itemprop=name]').textContent()).toMatch(
+        /CSG/i,
+      );
   }
   await page.goto('/recherche/');
   await expect(page.locator('meta[name=robots]')).toHaveAttribute(
