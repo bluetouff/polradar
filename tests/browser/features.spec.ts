@@ -376,6 +376,9 @@ test('les sondages séparent les tours et permettent de choisir une vague', asyn
   );
   await page.locator('#poll-options summary').click();
   await page.locator('#poll-round').selectOption('second');
+  await page
+    .locator('#poll-scenario')
+    .selectOption('elabe-2026-08-29-duel-glucksmann');
   await expect(page.locator('#poll-bars .poll-bar-row')).toHaveCount(2);
   await expect(page.locator('#poll-bars')).toContainText('Glucksmann');
   await expect(page.locator('#poll-method')).toContainText('952');
