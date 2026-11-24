@@ -6,7 +6,12 @@ import {
   pollGraphicCatalog,
   legacyPollGraphics,
 } from '../lib/poll-graphic.mjs';
-import { polls, sourceById, formatDate, type Poll } from '../lib/data';
+import {
+  documentedPolls as polls,
+  sourceById,
+  formatDate,
+  type DocumentedPoll,
+} from '../lib/data';
 import {
   pollSeries,
   pollCoverage,
@@ -17,7 +22,7 @@ import {
 const catalog = pollGraphicCatalog(polls);
 const legacy = legacyPollGraphics(polls, catalog);
 const currentSeries = new Map(catalog.map(({ id, latest }) => [latest.id, id]));
-const groups = pollSeries(polls) as Poll[][];
+const groups = pollSeries(polls) as DocumentedPoll[][];
 const initial = groups.find((rows) => rows[0].round === 'premier')!;
 const latest = initial.at(-1)!;
 const selected = rankedPollResults(latest)
@@ -300,6 +305,25 @@ const { institutes } = coverage;
       <div>
         <dt>Date de publication</dt>
         <dd>{formatDate(latest.published)}</dd>
+      </div>
+      <div>
+        <dt>Première diffusion</dt>
+        <dd>
+          {latest.firstPublication.status === 'verifiee' ? (
+            <>
+              {latest.firstPublication.media} ·{' '}
+              {formatDate(latest.firstPublication.date)}
+              {latest.firstPublication.localTime
+                ? ' à ' + latest.firstPublication.localTime
+                : ''}{' '}
+              <a href={latest.firstPublication.sourceUrl} rel="noreferrer">
+                Notice, p. {latest.firstPublication.page}
+              </a>
+            </>
+          ) : (
+            'Média et date non établis.'
+          )}
+        </dd>
       </div>
       <div>
         <dt>Échantillon global</dt>

@@ -7,7 +7,7 @@ import {
   chartGeometry,
   csvValue,
 } from '../lib/features.mjs';
-import type { Poll } from '../lib/data';
+import type { DocumentedPoll } from '../lib/data';
 const round = document.querySelector<HTMLSelectElement>('#poll-round')!,
   institute = document.querySelector<HTMLSelectElement>('#poll-institute')!,
   scenario = document.querySelector<HTMLSelectElement>('#poll-scenario')!,
@@ -27,10 +27,10 @@ const shortDate = (value: string) =>
   }).format(new Date(value + 'T12:00:00Z'));
 async function start() {
   const data = await publicData<{
-      polls: Poll[];
+      polls: DocumentedPoll[];
       sources: { id: string; url: string }[];
     }>('/data/enquetes.json'),
-    groups = pollSeries(data.polls) as Poll[][];
+    groups = pollSeries(data.polls) as DocumentedPoll[][];
   let rows = groups[0],
     active: string[] = [],
     index = rows.length - 1;
@@ -322,6 +322,10 @@ async function start() {
     }
     method.append(questionBlock);
     const dl = el('dl', undefined, 'poll-method-grid');
+    const publication = poll.firstPublication ?? {
+      status: 'inconnue' as const,
+    };
+    const publicationLabel = 'Première diffusion';
     const values = [
       ['Institut / commanditaire', `${poll.institute} / ${poll.commissioner}`],
       [
@@ -329,6 +333,15 @@ async function start() {
         `Du ${date(poll.fieldworkStart)} au ${date(poll.fieldworkEnd)}`,
       ],
       ['Date de publication', date(poll.published)],
+      [
+        publicationLabel,
+        publication.status === 'verifiee'
+          ? publication.media +
+            ' · ' +
+            date(publication.date) +
+            (publication.localTime ? ' à ' + publication.localTime : '')
+          : 'Média et date non établis.',
+      ],
       [
         'Échantillon global',
         `${number(poll.sampleSize)} personnes, dont ${number(poll.registeredSample)} inscrits`,
@@ -343,7 +356,13 @@ async function start() {
     ];
     for (const [label, value] of values) {
       const row = el('div');
-      row.append(el('dt', label), el('dd', value));
+      const detail = el('dd', value);
+      if (label === publicationLabel && publication.status === 'verifiee')
+        detail.append(
+          ' ',
+          anchor('Notice, p. ' + publication.page, publication.sourceUrl),
+        );
+      row.append(el('dt', label), detail);
       dl.append(row);
     }
     method.append(
@@ -385,6 +404,9 @@ async function start() {
     if (!rows.length) return;
     const poll = rows[index];
     const question = poll.question;
+    const publication = poll.firstPublication ?? {
+      status: 'inconnue' as const,
+    };
     const csv = [
       [
         'Institut',
@@ -403,6 +425,11 @@ async function start() {
         'Source de la question',
         'Vérification du libellé',
         'Statut documentaire',
+        'Première diffusion vérifiée',
+        'Média de première diffusion',
+        'Date de première diffusion',
+        'Heure locale indiquée',
+        'Source de la première diffusion',
       ],
       ...poll.results.map((result) => [
         poll.institute,
@@ -427,6 +454,15 @@ async function start() {
               'vérifiée',
             ]
           : ['', '', '', '', 'à relire']),
+        ...(publication.status === 'verifiee'
+          ? [
+              'Oui',
+              publication.media,
+              publication.date,
+              publication.localTime ?? '',
+              publication.sourceUrl,
+            ]
+          : ['Non établie', '', '', '', '']),
       ]),
     ]
       .map((row) => row.map(csvValue).join(';'))

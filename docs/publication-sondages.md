@@ -4,6 +4,10 @@ Pour la présidentielle, l’article 11 de la loi du 19 juillet 1977 fixe le dé
 
 Une enquête déjà diffusée avant la veille du vote peut continuer à être diffusée ou commentée sous les conditions de l’article 11. Le lecteur doit pouvoir lire le média de première publication ou diffusion, la date correspondante et le nom de l’institut. Le commanditaire et la date de terrain ne permettent pas à eux seuls d’établir ces mentions.
 
+Dans l’onglet Sondages, le détail « Première diffusion » indique le support et la date que l’institut déclare explicitement dans sa notice. Le lien mène à la page correspondante. Une heure est reproduite telle qu’indiquée. Le CSV de la sélection et le champ `polls[].firstPublication` du corpus JSON conservent ces références. Le statut `inconnue` signale que ces mentions restent à établir, même si la date de publication de l’enquête est connue.
+
+Ces mentions accompagnent le détail et l’export des résultats. Les images figées antérieures et les copies déjà distribuées hors du site gardent leur contenu d’origine. Un diffuseur qui souhaite les reprendre pendant la période réglementée doit vérifier et joindre les mentions applicables à sa propre publication.
+
 ## Préparer chaque tour
 
 1. La rédaction relève le texte de convocation et les horaires applicables, y compris les collectivités dont le vote finit plus tard. Elle conserve les références dans le dossier de l’édition. Pour une publication nationale commune, elle retient l’heure applicable la plus tardive. Jusqu’à confirmation, les dates annoncées à l’agenda gardent leur statut annoncé.

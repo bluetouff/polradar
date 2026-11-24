@@ -1,4 +1,6 @@
 import { checkPollPublication } from '../src/lib/poll-publication.mjs';
+import { withFirstPublications } from '../src/lib/poll-first-publications.mjs';
+import firstPublications from '../src/data/poll-first-publications.json' with { type: 'json' };
 import { readFile } from 'node:fs/promises';
 import documentAuthors from '../src/data/document-authors.json' with { type: 'json' };
 import {
@@ -84,6 +86,7 @@ const today = new Intl.DateTimeFormat('sv-SE', {
   timeZone: 'Europe/Paris',
 }).format(new Date());
 const sourceIds = new Set(dataset.sources.map((source) => source.id));
+withFirstPublications(dataset.polls, firstPublications, dataset.sources, today);
 for (const [id, credit] of Object.entries(
   documentAuthorsSchema.parse(documentAuthors),
 )) {

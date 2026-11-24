@@ -5,6 +5,8 @@ import documentAuthors from '../data/document-authors.json';
 import engagementRows from '../data/engagements.json';
 import eventRows from '../data/events.json';
 import pollRows from '../data/polls.json';
+import firstPublications from '../data/poll-first-publications.json';
+import { withFirstPublications } from './poll-first-publications.mjs';
 import budget from '../data/budget.json';
 import meta from '../data/meta.json';
 import measureRows from '../data/measures.json';
@@ -28,6 +30,14 @@ export const electionRounds = events
   .sort((a, b) => a.date.localeCompare(b.date));
 const engagements = engagementSchema.array().parse(engagementRows);
 const polls = pollSchema.array().parse(pollRows);
+const documentedPolls = withFirstPublications(
+  polls,
+  firstPublications,
+  sources,
+  new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Paris' }).format(
+    new Date(),
+  ),
+);
 const measures = measureSchema.array().parse(measureRows);
 const versions = versionSchema.array().parse(versionRows);
 const watch = watchSchema.array().parse(watchRows);
@@ -39,7 +49,7 @@ export const dataset = {
   sources,
   engagements,
   events,
-  polls,
+  polls: documentedPolls,
   budget,
   meta,
   measures,
@@ -55,6 +65,7 @@ export {
   engagements,
   events,
   polls,
+  documentedPolls,
   budget,
   meta,
   measures,
@@ -64,6 +75,7 @@ export {
 export type Measure = (typeof measures)[number];
 export type MeasureVersion = (typeof versions)[number];
 export type Poll = (typeof polls)[number];
+export type DocumentedPoll = (typeof documentedPolls)[number];
 export type Corpus = typeof dataset;
 export const measureById = (id: string) =>
   measures.find((measure) => measure.id === id)!;
