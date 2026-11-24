@@ -54,3 +54,47 @@ La [revue éditoriale quotidienne](https://polradar.fr/mises-a-jour/#revue-edito
 ## Suite du séquencement A à J du rapport
 
 Après la couverture et les dossiers de référence, le chantier électoral porte sur les parrainages et documents officiels. La diffusion passe par des exports documentés et des séances pédagogiques. Les simulations de revenu, les reports de voix et une éventuelle boussole nécessitent chacun leurs hypothèses, leurs cas de test et une méthode publique avant mise en ligne. [Relevé des quinze sites](audit-concurrence-2026-11-20.md)
+
+## Mesures de navigation du 24 novembre 2026
+
+La recette mobile de novembre porte sur des pages construites avec Astro, des polices locales et les données du corpus. Après `npm ci` et `npm run build`, exécuter `node scripts/audit-navigation.mjs dist`. Pour isoler un parcours, ajouter ses chemins après `dist`. Le rapport JSON conserve les trois observations brutes, les plus gros fichiers chargés et les écarts d’accessibilité ou de liens. Le serveur écoute uniquement sur la boucle locale. [Outil de mesure](../scripts/audit-navigation.mjs)
+
+### Chargement des pages sur mobile
+
+Tableau de la révision `d5c55b2`, sur Apple M3, Chromium 159.0.8154.6. Chaque page a été ouverte trois fois dans un contexte neuf de 390 × 844 pixels, densité 2. Le processeur est ralenti d’un facteur quatre, le débit réglé à 1,6 Mbit/s descendant et 0,75 Mbit/s montant, la latence à 60 ms. Les colonnes donnent le poids des corps de réponse en Kio. Le serveur de recette applique gzip niveau 6 aux ressources texte et livre les fichiers binaires dans leur format d’origine. Le total inclut les polices. Le LCP est le temps médian d’apparition du plus grand élément visible. Le DOM est compté après chargement.
+
+| Parcours               | HTML |   JS |  CSS | Images | JSON | Total (Kio) | Éléments DOM | LCP (ms) |
+| ---------------------- | ---: | ---: | ---: | -----: | ---: | ----------: | -----------: | -------: |
+| Accueil                |  8,1 | 12,8 | 30,8 |   10,3 |  0,0 |        96,1 |          604 |      900 |
+| Fiche CSG              |  4,2 | 12,8 | 22,7 |    3,3 |  0,3 |        77,4 |          303 |      660 |
+| Fiche de Jean Lassalle |  7,3 | 14,7 | 26,7 |   60,8 |  0,3 |       143,8 |          697 |      968 |
+| Votes                  | 38,0 | 15,2 | 28,9 |    3,4 |  0,0 |       119,6 |        4 037 |      828 |
+| Comparateur            |  5,7 | 14,4 | 22,3 |    3,4 |  0,0 |        80,0 |          383 |      684 |
+| Recherche              |  6,0 | 16,7 | 22,8 |    3,3 |  0,0 |        82,9 |          443 |      688 |
+| Sondages               | 12,9 | 16,3 | 22,1 |    3,3 |  8,7 |        97,3 |          807 |      660 |
+| Territoires            |  8,2 | 19,1 | 23,8 |    3,3 |  0,0 |        88,5 |          309 |      676 |
+| Carte des médecins     | 85,5 | 17,6 | 27,7 |    3,4 |  0,0 |       168,3 |        1 186 |      768 |
+| Studio                 | 12,9 | 17,1 | 23,6 |    5,7 |  3,8 |        97,2 |          344 |      744 |
+| Presse                 |  5,1 | 12,8 | 23,8 |    3,9 |  0,0 |        79,7 |          291 |      664 |
+| Documentation API      |  5,0 | 12,8 | 23,0 |    3,3 |  0,0 |        78,2 |          342 |      640 |
+| Présentation du MCP    |  4,4 | 12,8 | 22,7 |    3,3 |  0,0 |        77,3 |          282 |      628 |
+
+Le CLS médian est nul sur les treize parcours. Sur les 39 ouvertures, chaque page présente un titre principal, un lien d’évitement, un texte alternatif pour chaque image et un libellé pour chaque champ visible. Les contrôles ont relevé zéro débordement horizontal, lien interne manquant ou requête tierce. Ces mesures couvrent la navigation initiale. L’INP des visiteurs reste à documenter avec un échantillon de terrain. [Métriques Web Vitals](https://web.dev/articles/vitals)
+
+Le navigateur a reconnu la canonique propre à chaque parcours. L’accueil indique le nom Polradar et son URL dans un objet `WebSite`. Les pages indexables utilisent `WebPage`, les brèves rédigées `NewsArticle` et les jeux de données `Dataset`. Le moteur de recherche interne conserve sa directive `noindex`. Le contrôle de construction a également vérifié les liens internes, les ressources de partage et la présence de la CSP sur les 4 192 pages de cette édition. [Noms de sites selon Google](https://developers.google.com/search/docs/appearance/site-names?hl=fr)
+
+### Poids évité sur les consultations courantes
+
+Sur la branche de recette, avec le même corpus et le même profil de navigation, les réponses chargées à l’ouverture sont passées de 748,0 à 76,9 Kio sur la fiche CSG, de 750,4 à 79,5 Kio sur le comparateur vide et de 759,5 à 96,8 Kio sur les sondages. La fiche ne demande que les identifiants autorisés pour le suivi. Le comparateur attend la sélection de deux candidats. Les sondages reçoivent les enquêtes et les références de leurs notices et questionnaires. Les tests comparent chaque enquête et chaque URL à l’export complet.
+
+Le Studio publie 349 éditions figées avec 349 empreintes et 349 tableaux distincts. Il compte 343 adresses actualisées car plusieurs vagues partagent la même série de sondage. Les douze familles couvrent 77 contrats de marchés prédictifs, 65 chiffrages, 64 vagues ou scénarios de sondage, 41 éditions de temps de parole, 36 fenêtres de 18 indicateurs économiques, 33 scrutins, 20 dossiers d’évolution, huit générations pour la retraite, une comparaison de CSG et quatre cartes réparties entre élections, logement et soins. Les formats SVG, PNG, CSV et HTML sont des sorties de la même édition. [Catalogue du Studio](https://polradar.fr/studio/catalogue/)
+
+Le Studio et ses nouveaux SVG sont passés de 608 à 351 fichiers et de 7 063 552 à 4 668 416 octets dans le TAR d’essai, en comptant en-têtes et alignements. Le catalogue intégral reste consultable sans JavaScript. Sur la page de travail, le HTML descend de 136 512 à 62 570 octets et le DOM initial de 1 346 à 344 éléments. Dans l’archive complète d’intégration `4eb4123`, les 351 fichiers du Studio occupent 4 667 392 octets sur 124 600 320 de TAR. L’archive complète compte 5 358 fichiers et 22 834 047 octets gzip.
+
+Le prochain gabarit à alléger est celui des votes. Ses 4 037 éléments DOM incluent les frises et les sources des dossiers. Conserver la liste complète des dossiers et donner à chacun un permalien HTML permettrait d’ouvrir uniquement le détail choisi. [Page des votes](https://polradar.fr/votes/)
+
+### Recherche publique et mémoire du MCP
+
+Trois recherches séquentielles pour « chiffrement », limitées à trois résultats, ont été envoyées le 24 novembre depuis le même poste aux services publics sur la révision `8c88090`. Les six réponses HTTP 200 contenaient trois résultats. Les durées complètes ont été de 378, 65 et 94 ms en REST, puis de 329, 101 et 173 ms via l’outil MCP `polradar_search` (appels alternés). Elles incluent la connexion et le transfert. Les médianes sont 94 ms et 173 ms pour cet échantillon. [Documentation REST](https://polradar.fr/api/) · [Documentation MCP](https://polradar.fr/mcp/documentation/)
+
+Le test Go a chargé deux archives publiques validées, `8c88090` puis `4eb4123`. Le processus local occupait 13 536 Kio de mémoire résidente avant chargement, 35 840 après lecture du corpus, puis 49 760 avec les dossiers et les territoires. Après 64 recherches avec huit lecteurs, la mesure atteint 49 856 Kio. Pendant la bascule, avec les deux éditions en mémoire, elle atteint 77 392 Kio. Ces observations décrivent une exécution macOS arm64 avec Go 1.27.4. [Test de bascule](../mcp/footprint_test.go)
