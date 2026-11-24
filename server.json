@@ -1,0 +1,19 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.bluetouff/polradar",
+  "title": "Polradar",
+  "description": "French presidential election 2027: candidates, proposals, polls and official sources. Read-only.",
+  "version": "1.0.0",
+  "websiteUrl": "https://polradar.fr/mcp/",
+  "repository": {
+    "url": "https://github.com/bluetouff/polradar",
+    "source": "github",
+    "subfolder": "mcp"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://polradar.fr/api/mcp"
+    }
+  ]
+}

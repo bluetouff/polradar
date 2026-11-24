@@ -1,0 +1,60 @@
+name: Référencement MCP
+on: workflow_dispatch
+permissions: {}
+concurrency:
+  group: polradar-mcp-registry
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.repository == 'bluetouff/polradar' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          sparse-checkout: server.json
+          sparse-checkout-cone-mode: false
+      - uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
+      - name: Vérifier le serveur et publier sa fiche publique
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          stage="$(mktemp -d "$RUNNER_TEMP/registre.XXXXXXXX")"
+          cp server.json "$stage/"
+          cd "$stage"
+          jq -e '.name == "io.github.bluetouff/polradar" and .remotes == [{"type":"streamable-http","url":"https://polradar.fr/api/mcp"}] and (.version | test("^[0-9]+[.][0-9]+[.][0-9]+$"))' server.json >/dev/null
+          version="$(jq -r '.version' server.json)"
+          catalog="https://registry.modelcontextprotocol.io/v0.1/servers/io.github.bluetouff%2Fpolradar/versions/$version"
+          check_listing() {
+            jq -e --slurpfile wanted server.json '.server | {name, version, remotes, websiteUrl} == ($wanted[0] | {name, version, remotes, websiteUrl})' listing.json >/dev/null
+          }
+          code="$(curl -sS --proto '=https' --max-time 20 --output listing.json --write-out '%{http_code}' "$catalog")"
+          if [ "$code" = 200 ]; then check_listing; exit 0; fi
+          if [ "$code" != 404 ]; then echo "Registre indisponible ($code)."; exit 1; fi
+          curl -fsS --proto '=https' --max-time 15 -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' \
+            --data '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' https://polradar.fr/api/mcp \
+            | jq -e '.result.tools | length == 5 and all(.[]; .annotations.readOnlyHint == true)' >/dev/null
+          tag=v1.8.16
+          base="https://github.com/modelcontextprotocol/registry/releases/download/$tag"
+          archive=mcp-publisher_linux_amd64.tar.gz
+          for file in "$archive" "$archive.sigstore.json"; do
+            curl -fsSL --proto '=https' --proto-redir '=https' --max-time 60 -o "$file" "$base/$file"
+          done
+          printf '%s  %s\n' '6e2f799550cf843c6fd3350498d56cc49be3dc0af1e6237eb0e6435c7a9d5c05' "$archive" | sha256sum -c -
+          cosign verify-blob --bundle "$archive.sigstore.json" \
+            --certificate-identity "https://github.com/modelcontextprotocol/registry/.github/workflows/release.yml@refs/tags/$tag" \
+            --certificate-oidc-issuer https://token.actions.githubusercontent.com "$archive"
+          tar -xzf "$archive" --no-same-owner --no-same-permissions mcp-publisher
+          ./mcp-publisher login github-oidc >/dev/null
+          ./mcp-publisher publish
+          for attempt in {1..10}; do
+            if curl -fsS --proto '=https' --max-time 10 -o listing.json "$catalog" && check_listing; then exit 0; fi
+            sleep 3
+          done
+          echo 'Fiche non confirmée dans le registre.'
+          exit 1
