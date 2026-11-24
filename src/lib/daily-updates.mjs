@@ -13,6 +13,10 @@ const sourceCheck = z.strictObject({
   sourceId: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
   checkedAt: stamp,
   lastSuccessAt: stamp.optional(),
+  initialFingerprint: z
+    .string()
+    .regex(/^[a-f0-9]{64}$/)
+    .optional(),
   status: z.enum(['accessible', 'modifie', 'bloque', 'indisponible']),
 });
 const row = z.strictObject({

@@ -111,19 +111,26 @@ test('chaque contrôle public garde uniquement le document, le statut et son heu
       sourceId: 'campagne',
       status: 'indisponible',
       checkedAt: previous,
+      initialFingerprint: 'a'.repeat(64),
       message: 'diagnostic privé',
       httpStatus: 503,
     },
   ];
   const report = makeDailyReport(f);
   assert.deepEqual(report.sourceChecks, [
-    { sourceId: 'campagne', status: 'indisponible', checkedAt: previous },
+    {
+      sourceId: 'campagne',
+      status: 'indisponible',
+      checkedAt: previous,
+      initialFingerprint: 'a'.repeat(64),
+    },
   ]);
   assert.equal(dailyHistorySchema.safeParse([report]).success, true);
   for (const invalid of [
     [report.sourceChecks[0], report.sourceChecks[0]],
     [{ ...report.sourceChecks[0], checkedAt: '2026-12-01T00:00:00Z' }],
     [{ ...report.sourceChecks[0], status: 'suppose' }],
+    [{ ...report.sourceChecks[0], initialFingerprint: 'empreinte invalide' }],
   ])
     assert.equal(
       dailyHistorySchema.safeParse([{ ...report, sourceChecks: invalid }])

@@ -248,19 +248,22 @@ export function makeDailyReport({
   const priorChecks = sourceFreshness(
     history.flatMap((h) => h.sourceChecks ?? []),
   );
-  const sourceChecks = (watch ?? []).map(({ sourceId, checkedAt, status }) => {
-    const previousSuccess = priorChecks.get(sourceId)?.lastSuccessAt;
-    return {
-      sourceId,
-      checkedAt,
-      status,
-      ...(['bloque', 'indisponible'].includes(status) &&
-      previousSuccess &&
-      Date.parse(previousSuccess) <= Date.parse(checkedAt)
-        ? { lastSuccessAt: previousSuccess }
-        : {}),
-    };
-  });
+  const sourceChecks = (watch ?? []).map(
+    ({ sourceId, checkedAt, status, initialFingerprint }) => {
+      const previousSuccess = priorChecks.get(sourceId)?.lastSuccessAt;
+      return {
+        sourceId,
+        checkedAt,
+        status,
+        ...(initialFingerprint ? { initialFingerprint } : {}),
+        ...(['bloque', 'indisponible'].includes(status) &&
+        previousSuccess &&
+        Date.parse(previousSuccess) <= Date.parse(checkedAt)
+          ? { lastSuccessAt: previousSuccess }
+          : {}),
+      };
+    },
+  );
   return { run, attempt, at, sourceChecks, rows };
 }
 

@@ -347,6 +347,29 @@ def monitored(source):
     return source.get('watch', default)
 
 
+def initial_references(history):
+    refs = {}
+    for run in history:
+        for row in run.get('sourceChecks', []):
+            digest = row.get('initialFingerprint')
+            if isinstance(digest, str) and http_cache.DIGEST.fullmatch(digest):
+                refs.setdefault(row['sourceId'], digest)
+    return refs
+
+
+def compare_source(source, previous, refs, allowed_hosts):
+    # An accepted editorial baseline always wins over a first observation.
+    if previous.get('fingerprint') or previous.get('previousFingerprint'):
+        return inspect(source, previous, allowed_hosts)
+    first = refs.get(source['id'])
+    row = inspect(source, {'previousFingerprint': first}, allowed_hosts)
+    if not first and row['status'] == 'accessible':
+        first = row.get('fingerprint')
+    if first:
+        row['initialFingerprint'] = first
+    return row
+
+
 def run(output, baseline, selected=None):
     sources = json.loads((ROOT/'src/data/sources.json').read_text())
     allowed_hosts = {urllib.parse.urlsplit(source['url']).hostname for source in sources}
@@ -356,8 +379,10 @@ def run(output, baseline, selected=None):
             raise ValueError('Unknown source')
         targets = [source for source in targets if source['id'] in selected]
     previous = {row['sourceId']:row for row in json.loads(baseline.read_text())} if baseline.exists() else {}
+    history = ROOT / 'src/data/daily-updates.json'
+    refs = initial_references(json.loads(history.read_text())) if history.is_file() else {}
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
-        rows = list(executor.map(lambda source:inspect(source,previous.get(source['id'],{}),allowed_hosts),targets))
+        rows = list(executor.map(lambda source:compare_source(source, previous.get(source['id'],{}), refs, allowed_hosts), targets))
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n')
     counts = {status:sum(row['status']==status for row in rows) for status in ('accessible','modifie','indisponible','bloque')}

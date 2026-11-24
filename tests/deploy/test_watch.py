@@ -21,6 +21,27 @@ class WatchTests(unittest.TestCase):
         self.assertTrue(watch.monitored({**src, 'id': 'sondages'}))
         self.assertFalse(watch.monitored({**src, 'id': 'archive', 'kind': 'parti', 'watch': False}))
 
+    def test_first_observation_survives_a_change_an_outage_and_an_editorial_review(self):
+        source = {'id': 'source', 'url': 'https://example.org/page'}
+        old = b'<article>' + b'Programme initial et engagement chiffre distinct. ' * 6 + b'</article>'
+        new = b'<article>' + b'Nouvelle proposition avec un engagement different. ' * 6 + b'</article>'
+        with patch.object(watch, 'fetch_reliably', return_value=(200, 'text/html', old)):
+            first = watch.compare_source(source, {}, {}, {'example.org'})
+        refs = watch.initial_references([{'scope': 'sondages'}, {'sourceChecks': [first]}])
+        self.assertEqual(refs['source'], first['fingerprint'])
+        with patch.object(watch, 'fetch_reliably', return_value=(200, 'text/html', new)):
+            change = watch.compare_source(source, {}, refs, {'example.org'})
+        self.assertEqual(change['status'], 'modifie')
+        with patch.object(watch, 'fetch_reliably', return_value=(404, 'text/html', b'')):
+            outage = watch.compare_source(source, {}, refs, {'example.org'})
+        self.assertEqual(outage['initialFingerprint'], first['fingerprint'])
+        next_refs = watch.initial_references([{'sourceChecks':[outage, change]}])
+        self.assertEqual(next_refs, refs)
+        with patch.object(watch, 'fetch_reliably', return_value=(200, 'text/html', new)):
+            reviewed = watch.compare_source(source, {'status':'accessible', 'fingerprint':change['fingerprint']}, refs, {'example.org'})
+        self.assertEqual(reviewed['status'], 'accessible')
+        self.assertNotIn('initialFingerprint', reviewed)
+
     def setUp(self):
         self.sleep_patch=patch.object(watch.time,'sleep')
         self.sleep_patch.start()
