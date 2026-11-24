@@ -1,0 +1,154 @@
+import type { Corpus, Measure } from './data';
+import { dateSchema, idSchema } from './schema.mjs';
+import { z } from 'astro/zod';
+
+const auditedSection = z.strictObject({
+  sourceId: idSchema,
+  perimeter: z.string().trim().min(1).max(220),
+  unit: z.string().trim().min(1).max(30),
+  checked: dateSchema,
+  units: z
+    .array(
+      z.strictObject({
+        id: idSchema,
+        title: z.string().trim().min(1).max(180),
+        measureIds: z.array(idSchema),
+      }),
+    )
+    .min(1),
+});
+
+type Passage = {
+  measureId: string;
+  candidate: string;
+  theme: string;
+  scope: Measure['scope'];
+  locator: string;
+  fragment: string | null;
+};
+
+export function buildDocumentRegister(corpus: Corpus, auditInput: unknown) {
+  const sections = auditedSection.array().parse(auditInput);
+  const sourcesById = new Map(corpus.sources.map((s) => [s.id, s]));
+  const records = new Map(corpus.measures.map((m) => [m.id, m]));
+  const authors: Record<
+    string,
+    { author: string; locator: string; checked: string }
+  > = corpus.documentAuthors;
+  const audits = new Map<string, (typeof sections)[number]>();
+  for (const section of sections) {
+    if (!sourcesById.has(section.sourceId) || audits.has(section.sourceId))
+      throw new Error(
+        'Document absent ou périmètre répété : ' + section.sourceId,
+      );
+    const units = new Set<string>();
+    for (const unit of section.units) {
+      if (
+        units.has(unit.id) ||
+        new Set(unit.measureIds).size !== unit.measureIds.length
+      )
+        throw new Error(
+          'Étape ou fiche en double : ' + section.sourceId + '/' + unit.id,
+        );
+      units.add(unit.id);
+      for (const id of unit.measureIds) {
+        if (
+          !records
+            .get(id)
+            ?.sourceRefs.some((r) => r.sourceId === section.sourceId)
+        )
+          throw new Error('La fiche ne cite pas ce document : ' + id);
+      }
+    }
+    audits.set(section.sourceId, section);
+  }
+
+  const links = new Map(
+    corpus.sources.map((source) => [
+      source.id,
+      {
+        candidateIds: new Set<string>(),
+        themeIds: new Set<string>(),
+        passages: [] as Passage[],
+      },
+    ]),
+  );
+  for (const m of corpus.measures)
+    for (const ref of m.sourceRefs) {
+      const link = links.get(ref.sourceId)!;
+      link.candidateIds.add(m.candidate);
+      link.themeIds.add(m.theme);
+      link.passages.push({
+        measureId: m.id,
+        candidate: m.candidate,
+        theme: m.theme,
+        scope: m.scope,
+        locator: ref.locator,
+        fragment: ref.fragment ?? null,
+      });
+    }
+  for (const e of corpus.engagements)
+    for (const id of e.sources) {
+      links.get(id)!.candidateIds.add(e.candidate);
+      links.get(id)!.themeIds.add(e.theme);
+    }
+  for (const e of corpus.events)
+    for (const id of e.sources)
+      for (const candidate of e.candidates)
+        links.get(id)!.candidateIds.add(candidate);
+  for (const c of corpus.candidates)
+    links.get(c.statusSource)!.candidateIds.add(c.id);
+  const watches = new Map(corpus.watch.map((w) => [w.sourceId, w]));
+  return corpus.sources.map((source) => {
+    const related = links.get(source.id)!;
+    const review = audits.get(source.id);
+    const watch = watches.get(source.id);
+    return {
+      id: source.id,
+      title: source.title,
+      url: source.url,
+      previousUrl: source.previousUrl ?? null,
+      kind: source.kind,
+      format:
+        source.originalFormat ??
+        (/\.pdf$/i.test(new URL(source.url).pathname) ? 'pdf' : null),
+      author: authors[source.id] ?? null,
+      publisher: source.publisher ?? null,
+      publication: {
+        value: source.published ?? source.publishedYear ?? null,
+        precision: source.published
+          ? 'jour'
+          : source.publishedYear
+            ? 'année'
+            : 'inconnue',
+        reference: source.publicationReference ?? null,
+      },
+      checked: source.checked,
+      updated: source.updated ?? null,
+      watch: watch
+        ? {
+            checkedAt: watch.checkedAt,
+            status: watch.status,
+            fingerprint: watch.fingerprint,
+          }
+        : null,
+      candidates: [...related.candidateIds].sort(),
+      themes: [...related.themeIds].sort(),
+      measureCount: new Set(related.passages.map((p) => p.measureId)).size,
+      passages: related.passages,
+      coverage: review
+        ? {
+            perimeter: review.perimeter,
+            unit: review.unit,
+            checked: review.checked,
+            linked: review.units.filter((u) => u.measureIds.length > 0).length,
+            total: review.units.length,
+            units: review.units,
+          }
+        : null,
+    };
+  });
+}
+export type RegisteredDocument = ReturnType<
+  typeof buildDocumentRegister
+>[number];

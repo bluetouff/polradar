@@ -1,0 +1,101 @@
+[
+  {
+    "sourceId": "mathieu-projet-2027",
+    "perimeter": "Les cinq étapes du projet constituant",
+    "unit": "étape",
+    "checked": "2026-11-24",
+    "units": [
+      {
+        "id": "etape-1",
+        "title": "Tirage au sort des constituants",
+        "measureIds": ["mathieu-institutions-convention-500"]
+      },
+      {
+        "id": "etape-2",
+        "title": "Préparation du texte constitutionnel",
+        "measureIds": [
+          "mathieu-institutions-convention-500",
+          "mathieu-convention-controle-impartialite"
+        ]
+      },
+      {
+        "id": "etape-3",
+        "title": "Consultations dans les territoires",
+        "measureIds": ["mathieu-consultations-territoires"]
+      },
+      {
+        "id": "etape-4",
+        "title": "Référendums sur le projet",
+        "measureIds": ["mathieu-institutions-referendums-constitution"]
+      },
+      {
+        "id": "etape-5",
+        "title": "Transition vers les nouvelles institutions",
+        "measureIds": ["mathieu-continuite-transition-constituante"]
+      }
+    ]
+  },
+  {
+    "sourceId": "mlekuz-programme-2027",
+    "perimeter": "Les onze étapes du calendrier proposé pour 2027 à 2029",
+    "unit": "étape",
+    "checked": "2026-11-24",
+    "units": [
+      {
+        "id": "etape-1",
+        "title": "Référendum d’ouverture",
+        "measureIds": ["mlekuz-institutions-referendum-ouverture"]
+      },
+      {
+        "id": "etape-2",
+        "title": "Composition de l’assemblée citoyenne",
+        "measureIds": ["mlekuz-institutions-assemblee-tirage"]
+      },
+      {
+        "id": "etape-3",
+        "title": "Lancement des États généraux",
+        "measureIds": ["mlekuz-etats-generaux"]
+      },
+      {
+        "id": "etape-4",
+        "title": "Formation des membres de l’assemblée",
+        "measureIds": []
+      },
+      {
+        "id": "etape-5",
+        "title": "Contributions des États généraux",
+        "measureIds": ["mlekuz-etats-generaux"]
+      },
+      {
+        "id": "etape-6",
+        "title": "Fin des travaux de l’assemblée",
+        "measureIds": []
+      },
+      {
+        "id": "etape-7",
+        "title": "Présentation du projet constitutionnel",
+        "measureIds": []
+      },
+      {
+        "id": "etape-8",
+        "title": "Campagne référendaire",
+        "measureIds": []
+      },
+      {
+        "id": "etape-9",
+        "title": "Vote sur le projet constitutionnel",
+        "measureIds": ["mlekuz-institutions-referendum-final"]
+      },
+      {
+        "id": "etape-10",
+        "title": "Promulgation en cas d’adoption",
+        "measureIds": []
+      },
+      {
+        "id": "etape-11",
+        "title": "Élections suivant les nouvelles règles",
+        "measureIds": []
+      }
+    ]
+  }
+]
