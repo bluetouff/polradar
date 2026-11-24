@@ -1,0 +1,274 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { formatDate } from '../../lib/data';
+import { pollComparisonExport as report } from '../../lib/poll-comparison-data';
+
+const fmt = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 });
+const values = report.comparisons.flatMap((c) => c.estimates ?? []);
+const max = Math.max(
+  10,
+  Math.ceil(Math.max(0, ...values.map((row) => row.max ?? 0)) / 10) * 10,
+);
+const x = (value: number) => 6 + (value / max) * 228;
+const signed = (value: number) => fmt.format(value);
+const history = report.backtest;
+---
+
+<Base
+  title="Comparer les scénarios de sondage"
+  description="Comparer les intentions de vote sur les mêmes listes de candidats, puis ouvrir chaque notice à la page du résultat."
+  section="/sondages/"
+>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="sondages" />
+    </span>
+    <div>
+      <h1>Scénarios comparables</h1>
+      <p>
+        {report.comparisons.length} hypothèses rapprochées à partir des
+        questionnaires et des bases de réponse.
+      </p>
+    </div>
+    <a class="button" href="/api/scenarios-sondages.json">
+      <Icon name="download" /> Matrice et calculs JSON
+    </a>
+  </header>
+  <p class="comparison-key">
+    <span>
+      <i aria-hidden="true"></i> Moyenne des instituts
+    </span>
+    <span>
+      <b aria-hidden="true"></b> Plus bas et plus haut scores observés
+    </span>
+    <span>Échelle commune de 0 à {max} %</span>
+  </p>
+  <div class="scenario-comparisons">
+    {report.comparisons.map((comparison) => (
+      <section
+        class="scenario-comparison"
+        id={comparison.id}
+        aria-labelledby={comparison.id + '-title'}
+      >
+        <header>
+          <div class="small">
+            {comparison.round === 'premier' ? 'Premier tour' : 'Second tour'} ·{' '}
+            {comparison.inputs.length} instituts
+          </div>
+          <h2 id={comparison.id + '-title'}>{comparison.label}</h2>
+          <p class="small">
+            Terrains achevés du {formatDate(comparison.from)} au{' '}
+            {formatDate(comparison.through)}
+          </p>
+        </header>
+        {comparison.estimates ? (
+          <ul class="comparison-scores">
+            {comparison.estimates.map((result) => (
+              <li>
+                <span>{result.name}</span>
+                {result.mean !== null &&
+                result.min !== null &&
+                result.max !== null ? (
+                  <>
+                    <strong>{signed(result.mean)} %</strong>
+                    <svg
+                      viewBox="0 0 240 16"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <line
+                        class="comparison-track"
+                        x1="6"
+                        y1="8"
+                        x2="234"
+                        y2="8"
+                      />
+                      <line
+                        x1={x(result.min)}
+                        y1="8"
+                        x2={x(result.max)}
+                        y2="8"
+                      />
+                      <circle cx={x(result.mean)} cy="8" r="4" />
+                    </svg>
+                    <small>
+                      {signed(result.min)} à {signed(result.max)} %
+                    </small>
+                  </>
+                ) : (
+                  <small>Score incomplet</small>
+                )}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>Deux instituts sont nécessaires pour calculer une moyenne.</p>
+        )}
+        <details>
+          <summary>Terrains, effectifs et notices</summary>
+          <p>{comparison.base}</p>
+          <ul class="comparison-sources">
+            {comparison.inputs.map((input) => (
+              <li>
+                <a href={'/sondages/#enquete=' + input.id}>
+                  {input.institute} · {input.commissioner}
+                </a>
+                <p>
+                  Terrain du {formatDate(input.fieldworkStart)} au{' '}
+                  {formatDate(input.fieldworkEnd)}.
+                  {input.usefulSample === null
+                    ? ' Effectif utile non publié.'
+                    : ' ' +
+                      fmt.format(input.usefulSample) +
+                      ' répondants dans la base utile.'}
+                </p>
+                <a href={input.source + '#page=' + input.page} rel="noreferrer">
+                  Résultat, page {input.page}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      </section>
+    ))}
+  </div>
+  <section class="panel scenario-method" aria-labelledby="comparison-method">
+    <h2 id="comparison-method">Calcul et validation rétrospective</h2>
+    <p>
+      Chaque moyenne réunit le dernier terrain de chaque institut pour la même
+      liste de candidats, le même tour et la même base. Chaque institut pèse
+      autant. Les enquêtes entrent dans une fenêtre de {report.windowDays} jours
+      qui se termine au dernier terrain retenu.
+    </p>
+    {history.scenarios > 0 &&
+      history.meanError !== null &&
+      history.latestError !== null && (
+        <dl>
+          <div>
+            <dt>Terrains ultérieurs testés</dt>
+            <dd>{history.terrains}</dd>
+          </div>
+          <div>
+            <dt>Scénarios rejoués</dt>
+            <dd>{history.scenarios}</dd>
+          </div>
+          <div>
+            <dt>Écart absolu moyen, moyenne des vagues</dt>
+            <dd>{signed(history.meanError)} points</dd>
+          </div>
+          <div>
+            <dt>Écart absolu moyen, dernière vague seule</dt>
+            <dd>{signed(history.latestError)} points</dd>
+          </div>
+          <div>
+            <dt>Scores dans l’étendue des vagues antérieures</dt>
+            <dd>
+              {history.insideObservedRange} / {history.scores}
+            </dd>
+          </div>
+        </dl>
+      )}
+    <p>
+      Le test rejoue des séries d’un même institut en utilisant seulement les
+      vagues publiées avant le terrain à retrouver. Il mesure l’écart à une
+      autre enquête. Une calibration sur les résultats électoraux reste à
+      établir.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .comparison-key,
+  .scenario-method dl {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.4rem;
+  }
+  .comparison-key span {
+    display: inline-flex;
+    gap: 0.45rem;
+    align-items: center;
+  }
+  .comparison-key i,
+  .comparison-key b {
+    background: #166b78;
+    border-radius: 1rem;
+    width: 0.6rem;
+    height: 0.6rem;
+  }
+  .comparison-key b {
+    width: 1.1rem;
+    height: 0.2rem;
+  }
+  .scenario-comparisons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+    gap: 1rem;
+    margin-block: 1rem 1.5rem;
+  }
+  .scenario-comparison {
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    overflow: clip;
+    background: var(--panel-gradient);
+  }
+  .scenario-comparison header {
+    padding: 1rem;
+    background: linear-gradient(125deg, #142f40, #215862);
+    color: #f6fbfb;
+  }
+  .scenario-comparison h2 {
+    margin: 0.25rem 0;
+    font-size: 1.15rem;
+    color: inherit;
+  }
+  .scenario-comparison p {
+    margin-block: 0.25rem;
+  }
+  .comparison-scores,
+  .comparison-sources {
+    padding: 0 1rem;
+    list-style: none;
+    margin-block: 0.6rem;
+  }
+  .comparison-scores li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 0.8rem;
+    padding-block: 0.45rem;
+    border-bottom: 1px solid var(--line);
+    font-variant-numeric: tabular-nums;
+  }
+  .comparison-scores svg {
+    width: 100%;
+    height: 1.05rem;
+    fill: #166b78;
+    stroke: #166b78;
+    stroke-width: 3px;
+    stroke-linecap: round;
+  }
+  .comparison-scores .comparison-track {
+    stroke: #cbdcde;
+    stroke-width: 1.5px;
+  }
+  .scenario-comparison details {
+    padding: 0.5rem 1rem 1rem;
+  }
+  .scenario-comparison summary {
+    cursor: pointer;
+  }
+  .comparison-sources {
+    padding: 0;
+  }
+  .comparison-sources li + li {
+    margin-top: 0.65rem;
+  }
+  .scenario-method dt {
+    font-weight: 600;
+  }
+  .scenario-method dd {
+    margin: 0;
+  }
+</style>

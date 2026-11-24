@@ -128,6 +128,19 @@ const datasets = [
     ],
   },
   {
+    id: 'scenarios-sondages',
+    title: 'Comparabilité des scénarios de sondage',
+    path: '/api/scenarios-sondages.json',
+    description:
+      'Listes de candidats testés, comparaisons relues et tests rétrospectifs',
+    unit: 'Une hypothèse par tour et liste de candidats, avec ses terrains et instituts.',
+    provenance:
+      'Tables des résultats et bases des notices publiées par la Commission.',
+    limits:
+      'Les moyennes portent sur les hypothèses contrôlées. La dispersion publiée est celle des valeurs observées.',
+    fields: ['sourceCommit', 'windowDays', 'matrix', 'comparisons', 'backtest'],
+  },
+  {
     id: 'registre-assemblee',
     title: 'Scrutins de l’Assemblée nationale',
     path: '/api/parlement/assemblee.json',
