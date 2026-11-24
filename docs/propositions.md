@@ -8,6 +8,26 @@ Une édition 2022 ou 2024 conserve cette précision annuelle. Une consultation n
 
 Les pages sont statiques et lisibles sans JavaScript. Les contrôles n’affichent que les identifiants connus du corpus ; les données externes passent par les schémas et sont rendues comme texte. Les graphiques ont une échelle propre à chaque enveloppe et une présentation adaptée aux petites largeurs.
 
+## Formulations à relire
+
+Depuis la racine du dépôt, générer le relevé éditorial en JSON.
+
+```sh
+node scripts/rapprocher-formulations.mjs > /tmp/formulations-polradar.json
+```
+
+Le relevé examine les fiches courantes au sein d’un même thème. Après retrait des mots de liaison, une paire ressort lorsque ses titres partagent au moins trois termes et atteignent 0,80 de recouvrement, ou lorsque ses descriptions partagent au moins six termes et atteignent 0,84. Le recouvrement vaut deux fois le nombre de termes communs divisé par la somme du nombre de termes distincts des deux textes. Les paires sont triées par thème et identifiants. Le contrôle existant conserve les groupes strictement identiques.
+
+Chaque paire renvoie à deux fiches avec leur texte, leur version, leur auteur et les passages sources. Les écarts indiquent les chiffrages ou repères chiffrés, la portée renseignée par le type, l’échéance ou le financement, les auteurs, les dossiers, les bénéficiaires et les marqueurs de négation. Un champ inconnu reste vide. Les conditions formulées dans le texte et la portée d’un marqueur de négation demandent de lire les passages. Le script produit uniquement le fichier de relecture avec les empreintes SHA-256 des données utilisées.
+
+Sur l’édition du 24 novembre 2026 à la révision `01afe20`, le relevé a retenu 29 paires parmi 2 368 fiches courantes, soit 53 fiches à relire. Parmi ces paires, 14 ont des repères chiffrés différents, 17 diffèrent par le type, l’échéance ou le financement, une par les bénéficiaires et six par les marqueurs de négation. Les 29 paires ont des auteurs distincts.
+
+- Budget de l’Union européenne. Les fiches rapprochent deux titres, avec 2 % du PIB de l’Union en 2035 chez Les Écologistes et 3 % du PIB européen dans le projet du PS. [Programme des Écologistes, p. 190](https://lesecologistes.fr/document/3N4JsAEmq6vsx42IITGNZa/vdef-programme-1.pdf#page=190) · [Projet socialiste](https://projet-socialiste.fr/projet/vivre-libres/)
+- Gratuité des transports. La fiche de campagne de Francis Lalanne évoque les transports publics. L’orientation de Fabien Roussel précise l’échelle métropolitaine. [Projet de Francis Lalanne](https://dieudolalanne2027.com/programme/) · [Discours de Fabien Roussel](https://www.pcf.fr/discours_de_fabien_roussel_fete_huma_31)
+- Crédit d’impôt pour les bénéfices réinvestis en France. Les documents liés au même dossier sont respectivement attribués à Nicolas Dupont-Aignan et à Debout la France. [Cahier de Nicolas Dupont-Aignan](https://www.dupontaignan.fr/wp-content/uploads/2026/11/Cahier-rouge-2026_11-12.pdf) · [Projet de Debout la France](https://www.debout-la-france.fr/projet/economie-travail/)
+- Retraites. Les fiches rapprochent 60 ans et 40 annuités de 65 ans et 45 annuités. La seconde fiche documente des exceptions pour la santé et les carrières longues. [Programme de Jean-Luc Mélenchon](https://melenchon2027.fr/programme/livre/mettre-en-securite-sociale/chapitre1) · [Programme d’Édouard Philippe](https://www.edouardphilippe.fr/programme/retraites)
+- Revalorisation des enseignants. Le titre de la fiche de François Ruffin contient « sans contrepartie ». Le rapport signale ce marqueur et conserve le texte des deux fiches. [Propositions de François Ruffin](https://nouspresident.fr/education-une-ecole-de-tous-les-savoirs/) · [Programme d’Édouard Philippe](https://www.edouardphilippe.fr/programme)
+
 ## Enrichissement du 19 novembre 2026
 
 Les 19 dossiers rassemblent 41 états de propositions pour onze personnalités. Les frises précisent le scrutin ou la campagne d’origine, y compris pour les programmes collectifs des européennes et des législatives de 2024. Les deux amendements de Marine Le Pen sur la TVA des énergies sont datés de leur dépôt. Les passages sur le kérosène de la liste PS–Place publique et de la campagne de Raphaël Glucksmann sont comparés selon les vols et le territoire visés. Les dispositions publiées sans montant sont conservées sous forme de texte.
