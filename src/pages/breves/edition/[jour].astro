@@ -1,0 +1,95 @@
+---
+import Base from '../../../layouts/Base.astro';
+import BriefCards from '../../../components/BriefCards.astro';
+import { briefEditions } from '../../../lib/brief-editions';
+import { formatDate, formatTimestamp, sourceById } from '../../../lib/data';
+export async function getStaticPaths() {
+  return (await briefEditions()).map((edition) => ({
+    params: { jour: edition.day },
+    props: { edition },
+  }));
+}
+const { edition } = Astro.props;
+const status = { annonce: 'Annoncé', tenu: 'Tenu', annule: 'Annulé' };
+const title = 'Le point de campagne du ' + formatDate(edition.day);
+---
+
+<Base
+  title={title}
+  section="/breves/"
+  description={
+    'Brèves, enquêtes et rendez-vous documentés dans l’édition du ' +
+    formatDate(edition.day) +
+    '.'
+  }
+>
+  <nav class="breadcrumbs" aria-label="Fil d’Ariane">
+    <a href="/breves/">Toutes les brèves</a>
+  </nav>
+  <header class="page-title">
+    <h1>{title}</h1>
+    <p>Retrouvez les informations publiées ce jour et leurs sources.</p>
+  </header>
+  {edition.briefs.length > 0 ? (
+    <BriefCards items={edition.briefs} />
+  ) : (
+    <p>Aucune nouvelle brève confirmée dans cette édition.</p>
+  )}
+  {(edition.surveys.length > 0 || edition.meetings.length > 0) && (
+    <section class="day-facts">
+      <h2>Sondages et agenda du jour</h2>
+      <ul>
+        {edition.surveys.map((p) => (
+          <li>
+            <strong>Enquête publiée · {p.institute}</strong>{' '}
+            <a href={'/sondages/#enquete=' + p.id}>Voir les scénarios</a> ·{' '}
+            <a href={sourceById(p.noticeSource).url}>Notice officielle</a>
+          </li>
+        ))}
+        {edition.meetings.map((e) => (
+          <li>
+            <strong>
+              {status[e.status]} · {e.title}
+            </strong>{' '}
+            <a href={'/agenda/#' + e.id}>Agenda</a> ·{' '}
+            <a href={sourceById(e.source).url}>Source</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+  {edition.checkedAt && (
+    <aside class="day-facts">
+      <h2>Vérification des sources</h2>
+      <p>
+        Passage enregistré le {formatTimestamp(edition.checkedAt)}.{' '}
+        {edition.consulted !== null &&
+          `${edition.consulted} sources accessibles, ${edition.unavailable} indisponibles.`}
+      </p>
+      <a href="/mises-a-jour/#revue-editoriale">
+        Consulter le journal de veille
+      </a>
+    </aside>
+  )}
+</Base>
+<style>
+  .day-facts {
+    margin-block: 1.4rem;
+    border-top: 1px solid var(--line);
+    padding-block: 1rem;
+  }
+  .day-facts h2 {
+    font-size: 1.14rem;
+  }
+  .day-facts li {
+    margin: 0.65rem 0;
+  }
+  .day-facts p,
+  .day-facts li {
+    line-height: 1.5;
+  }
+  .day-facts a {
+    color: var(--ink);
+    text-underline-offset: 0.18em;
+  }
+</style>

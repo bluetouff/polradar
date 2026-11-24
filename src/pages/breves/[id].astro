@@ -23,17 +23,34 @@ const Content = entry ? (await render(entry)).Content : null;
   <nav class="breadcrumbs" aria-label="Fil d’Ariane">
     <a href="/breves/">Brèves de campagne</a>
   </nav>
-  <article class="brief-reading">
+  <article
+    class="brief-reading"
+    itemscope
+    itemtype="https://schema.org/NewsArticle"
+  >
+    <link
+      itemprop="mainEntityOfPage"
+      href={new URL(Astro.url.pathname, Astro.site).href}
+    />
+    <span
+      itemprop="publisher"
+      itemscope
+      itemtype="https://schema.org/Organization"
+    >
+      <meta itemprop="name" content="Polradar" />
+    </span>
     <header>
       <p class="brief-byline">
         {entry ? 'Rédaction Polradar' : 'Veille des publications officielles'} ·
         Publié le{' '}
-        <time datetime={article.data.published}>
+        <time itemprop="datePublished" datetime={article.data.published}>
           {formatDate(article.data.published)}
         </time>
       </p>
-      <h1>{article.data.title}</h1>
-      <p class="brief-deck">{article.data.description}</p>
+      <h1 itemprop="headline">{article.data.title}</h1>
+      <p class="brief-deck" itemprop="description">
+        {article.data.description}
+      </p>
     </header>
     {Content ? (
       <div class="prose">

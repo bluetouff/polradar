@@ -31,7 +31,12 @@ const icons: Record<string, string> = {
             <Icon name={icons[event.category]} />
             {labels[event.category]}
           </span>
-          <time datetime={event.date}>{formatDate(event.date)}</time>
+          <time
+            datetime={article.data.published}
+            aria-label={'Publié le ' + formatDate(article.data.published)}
+          >
+            {formatDate(article.data.published)}
+          </time>
         </span>
         <strong>{article.data.title}</strong>
         <span class="brief-summary">{article.data.description}</span>
