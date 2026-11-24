@@ -28,7 +28,7 @@ python3 install-user.py
 python3 "$HOME/.local/share/polradar/pull-release.py"
 ```
 
-L’installateur préserve les lignes existantes de la crontab. La version du déployeur de novembre 2026 accepte 64 Mio de TAR décompressé, dont les en-têtes et le bourrage, 12 Mio de gzip, 10 Mio par fichier et 3 000 fichiers. Elle décompresse par blocs dans un fichier temporaire privé. Le script installé n’est pas remplacé automatiquement par les versions du site. Pour remplacer uniquement le lecteur existant, exécuter `python3 -I install-user.py --update-only` depuis la copie privée des deux scripts vérifiés. Une mise à jour du déployeur suit une revue distincte et les tests `tests/deploy/`.
+L’installateur préserve les lignes existantes de la crontab. Le déployeur accepte un TAR de 128 Mio décompressés, en-têtes et bourrage compris. L’archive gzip est limitée à 24 Mio, le nombre de fichiers à 6 000 et chaque fichier à 10 Mio. La décompression se fait par blocs dans un fichier temporaire privé. Pour mettre à jour le déployeur, exécuter `python3 -I install-user.py --update-only` depuis la copie privée des deux scripts vérifiés. Cette opération est indépendante des publications du site et se vérifie avec les tests `tests/deploy/`.
 
 Au premier déploiement, le dossier d’origine est conservé dans le répertoire privé, puis remplacé par un lien vers la version validée. Aux suivants, le remplacement du lien est atomique. Le test local utilise HTTPS, le nom de domaine attendu et la vérification normale du certificat. Un échec restaure le dossier ou le lien précédent.
 
