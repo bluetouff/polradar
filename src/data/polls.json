@@ -6303,5 +6303,2176 @@
       "checked": "2026-11-24",
       "base": "Inscrits ayant l’intention d’aller voter, suffrages exprimés."
     }
+  },
+  {
+    "id": "opinionway-commission-10333-p12",
+    "surveyId": "opinionway-commission-10333",
+    "institute": "OpinionWay",
+    "commissioner": "CNEWS",
+    "published": "2026-10-22",
+    "fieldworkStart": "2026-10-21",
+    "fieldworkEnd": "2026-10-22",
+    "sampleSize": 1033,
+    "registeredSample": 973,
+    "usefulSample": 680,
+    "noIntention": 13.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,7 points pour 731 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10333",
+      "page": 12,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Candidatures testées",
+    "noticePage": 12,
+    "noticeSource": "notice-commission-10333",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": null,
+        "below": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 1.0
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 1.0
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 13.0
+      },
+      {
+        "id": "bouamrane",
+        "name": "Karim Bouamrane",
+        "percentage": null,
+        "below": 1.0
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 4.0
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 12.0
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 6.0
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 6.0
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 36.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10333-p13",
+    "surveyId": "opinionway-commission-10333",
+    "institute": "OpinionWay",
+    "commissioner": "CNEWS",
+    "published": "2026-10-22",
+    "fieldworkStart": "2026-10-21",
+    "fieldworkEnd": "2026-10-22",
+    "sampleSize": 1033,
+    "registeredSample": 973,
+    "usefulSample": 518,
+    "noIntention": 33.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,7 points pour 731 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "second",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10333",
+      "page": 13,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Second tour · Jean-Luc Mélenchon contre Marine Le Pen",
+    "noticePage": 13,
+    "noticeSource": "notice-commission-10333",
+    "results": [
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 31.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 69.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10333-p14",
+    "surveyId": "opinionway-commission-10333",
+    "institute": "OpinionWay",
+    "commissioner": "CNEWS",
+    "published": "2026-10-22",
+    "fieldworkStart": "2026-10-21",
+    "fieldworkEnd": "2026-10-22",
+    "sampleSize": 1033,
+    "registeredSample": 973,
+    "usefulSample": 574,
+    "noIntention": 28.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,7 points pour 731 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "second",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10333",
+      "page": 14,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Second tour · Édouard Philippe contre Marine Le Pen",
+    "noticePage": 14,
+    "noticeSource": "notice-commission-10333",
+    "results": [
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 44.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 56.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10333-p15",
+    "surveyId": "opinionway-commission-10333",
+    "institute": "OpinionWay",
+    "commissioner": "CNEWS",
+    "published": "2026-10-22",
+    "fieldworkStart": "2026-10-21",
+    "fieldworkEnd": "2026-10-22",
+    "sampleSize": 1033,
+    "registeredSample": 973,
+    "usefulSample": 603,
+    "noIntention": 24.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,7 points pour 731 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "second",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10333",
+      "page": 15,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Second tour · Raphaël Glucksmann contre Marine Le Pen",
+    "noticePage": 15,
+    "noticeSource": "notice-commission-10333",
+    "results": [
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 44.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 56.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10319-p12",
+    "surveyId": "opinionway-commission-10319",
+    "institute": "OpinionWay",
+    "commissioner": "CNEWS",
+    "published": "2026-10-15",
+    "fieldworkStart": "2026-10-13",
+    "fieldworkEnd": "2026-10-14",
+    "sampleSize": 1043,
+    "registeredSample": 978,
+    "usefulSample": null,
+    "noIntention": 15.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,7 points pour 731 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10319",
+      "page": 12,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Candidatures testées",
+    "noticePage": 12,
+    "noticeSource": "notice-commission-10319",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 1.0
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 2.0
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 13.0
+      },
+      {
+        "id": "bouamrane",
+        "name": "Karim Bouamrane",
+        "percentage": null,
+        "below": 1.0
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 5.0
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 12.0
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 6.0
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 4.0
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 1.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 5.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 35.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10319-p13",
+    "surveyId": "opinionway-commission-10319",
+    "institute": "OpinionWay",
+    "commissioner": "CNEWS",
+    "published": "2026-10-15",
+    "fieldworkStart": "2026-10-13",
+    "fieldworkEnd": "2026-10-14",
+    "sampleSize": 1043,
+    "registeredSample": 978,
+    "usefulSample": null,
+    "noIntention": 34.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,7 points pour 731 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "second",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10319",
+      "page": 13,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Second tour · Jean-Luc Mélenchon contre Marine Le Pen",
+    "noticePage": 13,
+    "noticeSource": "notice-commission-10319",
+    "results": [
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 32.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 68.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10319-p14",
+    "surveyId": "opinionway-commission-10319",
+    "institute": "OpinionWay",
+    "commissioner": "CNEWS",
+    "published": "2026-10-15",
+    "fieldworkStart": "2026-10-13",
+    "fieldworkEnd": "2026-10-14",
+    "sampleSize": 1043,
+    "registeredSample": 978,
+    "usefulSample": null,
+    "noIntention": 28.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,7 points pour 731 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "second",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10319",
+      "page": 14,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Second tour · Édouard Philippe contre Marine Le Pen",
+    "noticePage": 14,
+    "noticeSource": "notice-commission-10319",
+    "results": [
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 44.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 56.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10319-p15",
+    "surveyId": "opinionway-commission-10319",
+    "institute": "OpinionWay",
+    "commissioner": "CNEWS",
+    "published": "2026-10-15",
+    "fieldworkStart": "2026-10-13",
+    "fieldworkEnd": "2026-10-14",
+    "sampleSize": 1043,
+    "registeredSample": 978,
+    "usefulSample": null,
+    "noIntention": 25.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,7 points pour 731 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "second",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10319",
+      "page": 15,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Second tour · Raphaël Glucksmann contre Marine Le Pen",
+    "noticePage": 15,
+    "noticeSource": "notice-commission-10319",
+    "results": [
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 44.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 56.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10260-p12",
+    "surveyId": "opinionway-commission-10260",
+    "institute": "OpinionWay",
+    "commissioner": "CNEWS",
+    "published": "2026-09-11",
+    "fieldworkStart": "2026-09-09",
+    "fieldworkEnd": "2026-09-10",
+    "sampleSize": 1001,
+    "registeredSample": 935,
+    "usefulSample": null,
+    "noIntention": 14.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,7 points pour 690 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10260",
+      "page": 12,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · François Hollande candidat socialiste",
+    "noticePage": 12,
+    "noticeSource": "notice-commission-10260",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3.0
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3.0
+      },
+      {
+        "id": "sonde-francois-hollande",
+        "name": "François Hollande",
+        "percentage": 7.0
+      },
+      {
+        "id": "bouamrane",
+        "name": "Karim Bouamrane",
+        "percentage": 1.0
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 8.0
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 16.0
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 7.0
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 2.0
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 2.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 32.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10260-p13",
+    "surveyId": "opinionway-commission-10260",
+    "institute": "OpinionWay",
+    "commissioner": "CNEWS",
+    "published": "2026-09-11",
+    "fieldworkStart": "2026-09-09",
+    "fieldworkEnd": "2026-09-10",
+    "sampleSize": 1001,
+    "registeredSample": 935,
+    "usefulSample": null,
+    "noIntention": 15.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,7 points pour 690 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10260",
+      "page": 13,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Ségolène Royal candidate socialiste",
+    "noticePage": 13,
+    "noticeSource": "notice-commission-10260",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 4.0
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3.0
+      },
+      {
+        "id": "sonde-segolene-royal",
+        "name": "Ségolène Royal",
+        "percentage": 3.0
+      },
+      {
+        "id": "bouamrane",
+        "name": "Karim Bouamrane",
+        "percentage": 1.0
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 8.0
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 16.0
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 7.0
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 2.0
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 2.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 33.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10260-p14",
+    "surveyId": "opinionway-commission-10260",
+    "institute": "OpinionWay",
+    "commissioner": "CNEWS",
+    "published": "2026-09-11",
+    "fieldworkStart": "2026-09-09",
+    "fieldworkEnd": "2026-09-10",
+    "sampleSize": 1001,
+    "registeredSample": 935,
+    "usefulSample": null,
+    "noIntention": 15.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,7 points pour 690 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10260",
+      "page": 14,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Raphaël Glucksmann candidat socialiste",
+    "noticePage": 14,
+    "noticeSource": "notice-commission-10260",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": null,
+        "below": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.0
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3.0
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 9.0
+      },
+      {
+        "id": "bouamrane",
+        "name": "Karim Bouamrane",
+        "percentage": null,
+        "below": 1.0
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 7.0
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 15.0
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 7.0
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 2.0
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 2.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10260-p15",
+    "surveyId": "opinionway-commission-10260",
+    "institute": "OpinionWay",
+    "commissioner": "CNEWS",
+    "published": "2026-09-11",
+    "fieldworkStart": "2026-09-09",
+    "fieldworkEnd": "2026-09-10",
+    "sampleSize": 1001,
+    "registeredSample": 935,
+    "usefulSample": null,
+    "noIntention": 35.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,7 points pour 690 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "second",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10260",
+      "page": 15,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Second tour · Jean-Luc Mélenchon contre Marine Le Pen",
+    "noticePage": 15,
+    "noticeSource": "notice-commission-10260",
+    "results": [
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 33.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 67.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10260-p16",
+    "surveyId": "opinionway-commission-10260",
+    "institute": "OpinionWay",
+    "commissioner": "CNEWS",
+    "published": "2026-09-11",
+    "fieldworkStart": "2026-09-09",
+    "fieldworkEnd": "2026-09-10",
+    "sampleSize": 1001,
+    "registeredSample": 935,
+    "usefulSample": null,
+    "noIntention": 26.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,7 points pour 690 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "second",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10260",
+      "page": 16,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Second tour · Édouard Philippe contre Marine Le Pen",
+    "noticePage": 16,
+    "noticeSource": "notice-commission-10260",
+    "results": [
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 45.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 55.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10252-p12",
+    "surveyId": "opinionway-commission-10252",
+    "institute": "OpinionWay",
+    "commissioner": "Le Journal du dimanche",
+    "published": "2026-09-07",
+    "fieldworkStart": "2026-09-02",
+    "fieldworkEnd": "2026-09-03",
+    "sampleSize": 1003,
+    "registeredSample": 929,
+    "usefulSample": null,
+    "noIntention": 16.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,8 points pour 680 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10252",
+      "page": 12,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Gabriel Attal candidat du centre",
+    "noticePage": 12,
+    "noticeSource": "notice-commission-10252",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3.0
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4.0
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 13.0
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 13.0
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 11.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 35.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10252-p13",
+    "surveyId": "opinionway-commission-10252",
+    "institute": "OpinionWay",
+    "commissioner": "Le Journal du dimanche",
+    "published": "2026-09-07",
+    "fieldworkStart": "2026-09-02",
+    "fieldworkEnd": "2026-09-03",
+    "sampleSize": 1003,
+    "registeredSample": 929,
+    "usefulSample": null,
+    "noIntention": 15.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,8 points pour 680 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10252",
+      "page": 13,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Édouard Philippe candidat du centre",
+    "noticePage": 13,
+    "noticeSource": "notice-commission-10252",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3.0
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4.0
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 12.0
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 20.0
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 33.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10252-p14",
+    "surveyId": "opinionway-commission-10252",
+    "institute": "OpinionWay",
+    "commissioner": "Le Journal du dimanche",
+    "published": "2026-09-07",
+    "fieldworkStart": "2026-09-02",
+    "fieldworkEnd": "2026-09-03",
+    "sampleSize": 1003,
+    "registeredSample": 929,
+    "usefulSample": null,
+    "noIntention": 13.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,8 points pour 680 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10252",
+      "page": 14,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Gabriel Attal et Édouard Philippe candidats",
+    "noticePage": 14,
+    "noticeSource": "notice-commission-10252",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.0
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3.0
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11.0
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 7.0
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 15.0
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 7.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10252-p15",
+    "surveyId": "opinionway-commission-10252",
+    "institute": "OpinionWay",
+    "commissioner": "Le Journal du dimanche",
+    "published": "2026-09-07",
+    "fieldworkStart": "2026-09-02",
+    "fieldworkEnd": "2026-09-03",
+    "sampleSize": 1003,
+    "registeredSample": 929,
+    "usefulSample": null,
+    "noIntention": 27.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,8 points pour 680 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "second",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10252",
+      "page": 15,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Second tour · Gabriel Attal contre Marine Le Pen",
+    "noticePage": 15,
+    "noticeSource": "notice-commission-10252",
+    "results": [
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 45.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 55.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10252-p16",
+    "surveyId": "opinionway-commission-10252",
+    "institute": "OpinionWay",
+    "commissioner": "Le Journal du dimanche",
+    "published": "2026-09-07",
+    "fieldworkStart": "2026-09-02",
+    "fieldworkEnd": "2026-09-03",
+    "sampleSize": 1003,
+    "registeredSample": 929,
+    "usefulSample": null,
+    "noIntention": 24.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,8 points pour 680 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "second",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10252",
+      "page": 16,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Second tour · Édouard Philippe contre Marine Le Pen",
+    "noticePage": 16,
+    "noticeSource": "notice-commission-10252",
+    "results": [
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 48.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 52.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10252-p17",
+    "surveyId": "opinionway-commission-10252",
+    "institute": "OpinionWay",
+    "commissioner": "Le Journal du dimanche",
+    "published": "2026-09-07",
+    "fieldworkStart": "2026-09-02",
+    "fieldworkEnd": "2026-09-03",
+    "sampleSize": 1003,
+    "registeredSample": 929,
+    "usefulSample": null,
+    "noIntention": 31.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.8,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,8 points pour 680 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "second",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10252",
+      "page": 17,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Second tour · Jean-Luc Mélenchon contre Marine Le Pen",
+    "noticePage": 17,
+    "noticeSource": "notice-commission-10252",
+    "results": [
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 34.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 66.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-9889a-p12",
+    "surveyId": "opinionway-commission-9889a",
+    "institute": "OpinionWay",
+    "commissioner": "POLLitics",
+    "published": "2024-09-18",
+    "fieldworkStart": "2024-09-11",
+    "fieldworkEnd": "2024-09-12",
+    "sampleSize": 1009,
+    "registeredSample": 945,
+    "usefulSample": null,
+    "noIntention": 18.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.7,
+      "max": 3.9,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,7 à ±3,9 points pour 620 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-9889a",
+      "page": 12,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Gauche séparée, Gabriel Attal et Édouard Philippe candidats du centre",
+    "noticePage": 12,
+    "noticeSource": "notice-commission-9889a",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": null,
+        "below": 1.0
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": null,
+        "below": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 10.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3.0
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 12.0
+      },
+      {
+        "id": "sonde-sandrine-rousseau",
+        "name": "Sandrine Rousseau",
+        "percentage": 1.0
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 8.0
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 23.0
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 5.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-9889a-p13",
+    "surveyId": "opinionway-commission-9889a",
+    "institute": "OpinionWay",
+    "commissioner": "POLLitics",
+    "published": "2024-09-18",
+    "fieldworkStart": "2024-09-11",
+    "fieldworkEnd": "2024-09-12",
+    "sampleSize": 1009,
+    "registeredSample": 945,
+    "usefulSample": null,
+    "noIntention": 19.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.7,
+      "max": 3.9,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,7 à ±3,9 points pour 620 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-9889a",
+      "page": 13,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Gauche séparée, Édouard Philippe candidat du centre",
+    "noticePage": 13,
+    "noticeSource": "notice-commission-9889a",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": null,
+        "below": 1.0
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": null,
+        "below": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 10.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 4.0
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 14.0
+      },
+      {
+        "id": "sonde-sandrine-rousseau",
+        "name": "Sandrine Rousseau",
+        "percentage": 1.0
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 26.0
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 5.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 5.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 35.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-9889a-p14",
+    "surveyId": "opinionway-commission-9889a",
+    "institute": "OpinionWay",
+    "commissioner": "POLLitics",
+    "published": "2024-09-18",
+    "fieldworkStart": "2024-09-11",
+    "fieldworkEnd": "2024-09-12",
+    "sampleSize": 1009,
+    "registeredSample": 945,
+    "usefulSample": null,
+    "noIntention": 19.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.7,
+      "max": 3.9,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,7 à ±3,9 points pour 620 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-9889a",
+      "page": 14,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Gauche séparée, Michel Barnier candidat LR",
+    "noticePage": 14,
+    "noticeSource": "notice-commission-9889a",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": null,
+        "below": 1.0
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": null,
+        "below": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 10.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 4.0
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 14.0
+      },
+      {
+        "id": "sonde-sandrine-rousseau",
+        "name": "Sandrine Rousseau",
+        "percentage": 1.0
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 27.0
+      },
+      {
+        "id": "sonde-michel-barnier",
+        "name": "Michel Barnier",
+        "percentage": 4.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 36.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-9889a-p15",
+    "surveyId": "opinionway-commission-9889a",
+    "institute": "OpinionWay",
+    "commissioner": "POLLitics",
+    "published": "2024-09-18",
+    "fieldworkStart": "2024-09-11",
+    "fieldworkEnd": "2024-09-12",
+    "sampleSize": 1009,
+    "registeredSample": 945,
+    "usefulSample": null,
+    "noIntention": 25.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.7,
+      "max": 3.9,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,7 à ±3,9 points pour 620 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-9889a",
+      "page": 15,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Gauche unie, Gabriel Attal et Édouard Philippe candidats du centre",
+    "noticePage": 15,
+    "noticeSource": "notice-commission-9889a",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.0
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 2.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 14.0
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 10.0
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 25.0
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 6.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 38.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10166a-p11",
+    "surveyId": "opinionway-commission-10166a",
+    "institute": "OpinionWay",
+    "commissioner": "POLLitics",
+    "published": "2026-03-30",
+    "fieldworkStart": "2026-03-25",
+    "fieldworkEnd": "2026-03-26",
+    "sampleSize": 1051,
+    "registeredSample": 988,
+    "usefulSample": null,
+    "noIntention": 16.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.5,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,5 à ±3,5 points pour 788 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10166a",
+      "page": 11,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Raphaël Glucksmann candidat de la gauche et Édouard Philippe candidat du centre",
+    "noticePage": 11,
+    "noticeSource": "notice-commission-10166a",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13.0
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 15.0
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 18.0
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 11.0
+      },
+      {
+        "id": "sonde-sarah-knafo",
+        "name": "Sarah Knafo",
+        "percentage": 5.0
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 37.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10166a-p12",
+    "surveyId": "opinionway-commission-10166a",
+    "institute": "OpinionWay",
+    "commissioner": "POLLitics",
+    "published": "2026-03-30",
+    "fieldworkStart": "2026-03-25",
+    "fieldworkEnd": "2026-03-26",
+    "sampleSize": 1051,
+    "registeredSample": 988,
+    "usefulSample": null,
+    "noIntention": 17.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.5,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,5 à ±3,5 points pour 788 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10166a",
+      "page": 12,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Raphaël Glucksmann candidat de la gauche et Gabriel Attal candidat du centre",
+    "noticePage": 12,
+    "noticeSource": "notice-commission-10166a",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 14.0
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 15.0
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 15.0
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 12.0
+      },
+      {
+        "id": "sonde-sarah-knafo",
+        "name": "Sarah Knafo",
+        "percentage": 5.0
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 38.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10166a-p13",
+    "surveyId": "opinionway-commission-10166a",
+    "institute": "OpinionWay",
+    "commissioner": "POLLitics",
+    "published": "2026-03-30",
+    "fieldworkStart": "2026-03-25",
+    "fieldworkEnd": "2026-03-26",
+    "sampleSize": 1051,
+    "registeredSample": 988,
+    "usefulSample": null,
+    "noIntention": 16.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.5,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,5 à ±3,5 points pour 788 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10166a",
+      "page": 13,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · François Hollande candidat de la gauche et Édouard Philippe candidat du centre",
+    "noticePage": 13,
+    "noticeSource": "notice-commission-10166a",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 14.0
+      },
+      {
+        "id": "sonde-francois-hollande",
+        "name": "François Hollande",
+        "percentage": 11.0
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 20.0
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 13.0
+      },
+      {
+        "id": "sonde-sarah-knafo",
+        "name": "Sarah Knafo",
+        "percentage": 4.0
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 37.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10166a-p14",
+    "surveyId": "opinionway-commission-10166a",
+    "institute": "OpinionWay",
+    "commissioner": "POLLitics",
+    "published": "2026-03-30",
+    "fieldworkStart": "2026-03-25",
+    "fieldworkEnd": "2026-03-26",
+    "sampleSize": 1051,
+    "registeredSample": 988,
+    "usefulSample": null,
+    "noIntention": 19.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.5,
+      "max": 3.5,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,5 à ±3,5 points pour 788 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10166a",
+      "page": 14,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · François Hollande candidat de la gauche et Gabriel Attal candidat du centre",
+    "noticePage": 14,
+    "noticeSource": "notice-commission-10166a",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 14.0
+      },
+      {
+        "id": "sonde-francois-hollande",
+        "name": "François Hollande",
+        "percentage": 13.0
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 16.0
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 13.0
+      },
+      {
+        "id": "sonde-sarah-knafo",
+        "name": "Sarah Knafo",
+        "percentage": 5.0
+      },
+      {
+        "id": "sonde-jordan-bardella",
+        "name": "Jordan Bardella",
+        "percentage": 38.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10205-p12",
+    "surveyId": "opinionway-commission-10205",
+    "institute": "OpinionWay",
+    "commissioner": "Le Journal du dimanche",
+    "published": "2026-06-13",
+    "fieldworkStart": "2026-06-10",
+    "fieldworkEnd": "2026-06-11",
+    "sampleSize": 1001,
+    "registeredSample": 901,
+    "usefulSample": null,
+    "noIntention": 16.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,7 points pour 683 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10205",
+      "page": 12,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Gabriel Attal candidat du centre",
+    "noticePage": 12,
+    "noticeSource": "notice-commission-10205",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 4.0
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4.0
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 14.0
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 14.0
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9.0
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 4.0
+      },
+      {
+        "id": "sonde-le-pen-ou-bardella",
+        "name": "Marine Le Pen ou Jordan Bardella",
+        "percentage": 35.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10205-p13",
+    "surveyId": "opinionway-commission-10205",
+    "institute": "OpinionWay",
+    "commissioner": "Le Journal du dimanche",
+    "published": "2026-06-13",
+    "fieldworkStart": "2026-06-10",
+    "fieldworkEnd": "2026-06-11",
+    "sampleSize": 1001,
+    "registeredSample": 901,
+    "usefulSample": null,
+    "noIntention": 15.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,7 points pour 683 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10205",
+      "page": 13,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Édouard Philippe candidat du centre",
+    "noticePage": 13,
+    "noticeSource": "notice-commission-10205",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 13.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3.0
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 5.0
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 13.0
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 19.0
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 8.0
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.0
+      },
+      {
+        "id": "sonde-le-pen-ou-bardella",
+        "name": "Marine Le Pen ou Jordan Bardella",
+        "percentage": 33.0
+      }
+    ]
+  },
+  {
+    "id": "opinionway-commission-10205-p14",
+    "surveyId": "opinionway-commission-10205",
+    "institute": "OpinionWay",
+    "commissioner": "Le Journal du dimanche",
+    "published": "2026-06-13",
+    "fieldworkStart": "2026-06-10",
+    "fieldworkEnd": "2026-06-11",
+    "sampleSize": 1001,
+    "registeredSample": 901,
+    "usefulSample": null,
+    "noIntention": 16.0,
+    "noIntentionNote": "Part sans intention de vote dans la colonne « Publié ». La méthode distingue la base des intentions exprimées et celle des autres résultats.",
+    "population": "France, 18 ans et plus. Intentions exprimées des inscrits certains d’aller voter.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "margin": {
+      "min": 1.6,
+      "max": 3.7,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne un repère de ±1,6 à ±3,7 points pour 683 personnes, au niveau de confiance de 95 %. L’effectif qui exprime un choix varie selon l’hypothèse.",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "round": "premier",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains de voter (notes 9 ou 10) exprimant un choix. Résultat de la colonne « Publié ».",
+      "sourceId": "notice-commission-10205",
+      "page": 14,
+      "checked": "2026-11-24"
+    },
+    "scenario": "Premier tour · Édouard Philippe candidat du centre, pas de candidat communiste ou écologiste",
+    "noticePage": 14,
+    "noticeSource": "notice-commission-10205",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16.0
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 16.0
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 19.0
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9.0
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.0
+      },
+      {
+        "id": "sonde-le-pen-ou-bardella",
+        "name": "Marine Le Pen ou Jordan Bardella",
+        "percentage": 34.0
+      }
+    ]
   }
 ]
