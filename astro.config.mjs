@@ -13,6 +13,7 @@ export default defineConfig({
         "default-src 'none'",
         "img-src 'self' data:",
         "font-src 'self'",
+        "manifest-src 'self'",
         "connect-src 'self'",
         "object-src 'none'",
         "base-uri 'none'",

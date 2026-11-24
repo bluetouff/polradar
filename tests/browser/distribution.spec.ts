@@ -10,6 +10,9 @@ test('le manifeste et les icônes sont servis localement', async ({
     'href',
     '/manifest.json',
   );
+  await expect(
+    page.locator('meta[http-equiv="content-security-policy"]'),
+  ).toHaveAttribute('content', /(?:^|;)manifest-src 'self';/);
   const session = await context.newCDPSession(page);
   const response = await session.send('Page.getAppManifest');
   expect(response.errors).toEqual([]);
