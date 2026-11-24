@@ -300,7 +300,12 @@ def activate(directory, kind, key_id=None):
         else:
             if smoke('/api/mcp')[0]!=405: raise ValueError('Route MCP non activée')
             code,body=smoke('/api/mcp',{'jsonrpc':'2.0','id':1,'method':'tools/list','params':{}})
-            if code!=200 or not {'polradar_search','polradar_measure','polradar_candidates','polradar_corpus','polradar_donnees'}.issubset({tool['name'] for tool in json.loads(body)['result']['tools'] if tool.get('annotations',{}).get('readOnlyHint') is True}): raise ValueError('Catalogue MCP invalide')
+            tools = json.loads(body)['result']['tools'] if code == 200 else []
+            expected = ('polradar_candidates', 'polradar_changements', 'polradar_comparer', 'polradar_corpus', 'polradar_donnees', 'polradar_measure', 'polradar_methodologie', 'polradar_question', 'polradar_search', 'polradar_territoires', 'polradar_votes')
+            if (sorted(tool['name'] for tool in tools) != list(expected)
+                    or any(tool.get('annotations', {}).get('readOnlyHint') is not True
+                           or tool.get('annotations', {}).get('destructiveHint') is not False for tool in tools)):
+                raise ValueError('Catalogue MCP invalide')
             code,body=smoke('/api/mcp',{'jsonrpc':'2.0','id':2,'method':'tools/call','params':{'name':'polradar_corpus','arguments':{}}})
             if code!=200 or not json.loads(body).get('result',{}).get('content') or json.loads(body)['result'].get('isError'): raise ValueError('Corpus non lisible par MCP')
             code,body=smoke('/api/mcp-stats.json')
@@ -308,7 +313,7 @@ def activate(directory, kind, key_id=None):
             code,body=smoke('/api/v1/mesures?limit=1')
             api=json.loads(body) if code==200 else {}
             rows=api.get('donnees',{}).get('resultats',[])
-            if len(rows)!=1 or not rows[0].get('source',{}).get('url') or not re.fullmatch(r'[a-f0-9]{40}',api.get('revisionDuSite','')):
+            if api.get('revisionDuService') != manifest['sourceCommit'] or len(rows)!=1 or not rows[0].get('source',{}).get('url') or not re.fullmatch(r'[a-f0-9]{40}',api.get('revisionDuSite','')):
                 raise ValueError('Accès aux propositions par l’API non confirmé')
             if STATS.exists(): require_private('/stats/')
     except BaseException as exc:

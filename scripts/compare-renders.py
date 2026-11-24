@@ -1,5 +1,6 @@
 """Compare a cold Astro build to a warm one in a disposable checkout."""
 import argparse
+from datetime import date, timedelta
 import hashlib
 import json
 import re
@@ -66,10 +67,13 @@ def mutate(cwd, case):
         target=next(t for p in budget['profiles'] for e in p['entries'] for t in e.get('review',{}).get('targets',[]))
         target['locator']+=' (Recette locale.)';write('programme-budgets',budget)
     elif case=='edition':
-        meta=read('meta');meta['edition']=meta['corpusUpdated']='2026-11-23';write('meta',meta)
+        meta=read('meta');meta['edition']=meta['corpusUpdated']=(date.fromisoformat(meta['corpusUpdated'])-timedelta(days=1)).isoformat();write('meta',meta)
     elif case=='partage':
-        file=cwd/'src/lib/social-images.mjs'
-        file.write_text(file.read_text()+'\n// Recette du changement de gabarit OG.\n')
+        file=cwd/'src/lib/social-image-view.mjs'
+        original=file.read_text()
+        changed=original.replace('Assemblée nationale · scrutin n°', 'Assemblée nationale · vote n°')
+        if changed==original: raise ValueError('Gabarit des votes introuvable')
+        file.write_text(changed)
 
 def run(cases):
     rev=command(ROOT,'git','rev-parse','HEAD').strip()
@@ -79,6 +83,10 @@ def run(cases):
         command(cwd,'git','checkout','--quiet','--detach',rev)
         (cwd/'node_modules').symlink_to(ROOT/'node_modules',target_is_directory=True)
         shutil.copytree(ROOT/'public/og',cwd/'public/og',dirs_exist_ok=True)
+        def social(cold=False):
+            if cold: shutil.rmtree(cwd/'.cache/polradar-og',ignore_errors=True)
+            command(cwd,'node','scripts/render-social-images.mjs')
+
         def build(cold=False):
             start=time.monotonic()
             args=['node','scripts/build-pages.mjs']
@@ -92,9 +100,21 @@ def run(cases):
         build(True)
         for case in cases:
             command(cwd,'git','restore','--source',rev,'--','src')
+            if case=='suppression':
+                mutate(cwd,'ajout')
+                build()
+                command(cwd,'git','restore','--source',rev,'--','src')
             mutate(cwd,case)
+            if case=='partage':
+                social()
+                original_images={p.name:p.read_bytes() for p in (ROOT/'public/og').glob('*.png')}
+                changed=[p.name for p in (cwd/'public/og').glob('*.png') if p.name in original_images and original_images[p.name]!=p.read_bytes()]
+                if 'votes.png' not in changed: raise ValueError('Aperçu des votes inchangé')
+                for legacy in (cwd/'src/assets/social/anciens').glob('*.png'):
+                    if (cwd/'public/og'/legacy.name).read_bytes()!=legacy.read_bytes(): raise ValueError('Lien OG historique cassé')
             warm,stats=build()
             expected=fingerprint(cwd)
+            if case=='partage': social(True)
             cold,_=build(True)
             actual=fingerprint(cwd)
             differences=sorted(k for k in set(expected)|set(actual) if expected.get(k)!=actual.get(k))

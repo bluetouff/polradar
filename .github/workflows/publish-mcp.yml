@@ -33,11 +33,14 @@ jobs:
             jq -e --slurpfile wanted server.json '.server | {name, version, remotes, websiteUrl} == ($wanted[0] | {name, version, remotes, websiteUrl})' listing.json >/dev/null
           }
           code="$(curl -sS --proto '=https' --max-time 20 --output listing.json --write-out '%{http_code}' "$catalog")"
-          if [ "$code" = 200 ]; then check_listing; exit 0; fi
-          if [ "$code" != 404 ]; then echo "Registre indisponible ($code)."; exit 1; fi
+          if [ "$code" != 200 ] && [ "$code" != 404 ]; then echo "Registre indisponible ($code)."; exit 1; fi
           curl -fsS --proto '=https' --max-time 15 -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' \
             --data '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' https://polradar.fr/api/mcp \
-            | jq -e '.result.tools | length >= 5 and all(.[]; .annotations.readOnlyHint == true)' >/dev/null
+            | jq -e --argjson expected '["polradar_candidates","polradar_changements","polradar_comparer","polradar_corpus","polradar_donnees","polradar_measure","polradar_methodologie","polradar_question","polradar_search","polradar_territoires","polradar_votes"]' '.result.tools | (map(.name) | sort) == $expected and all(.[]; .annotations.readOnlyHint == true and .annotations.destructiveHint == false)' >/dev/null
+          curl -fsS --proto '=https' --max-time 15 -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' -H 'MCP-Protocol-Version: 2025-11-25' \
+            --data '{"jsonrpc":"2.0","id":2,"method":"initialize","params":{"protocolVersion":"2025-11-25","clientInfo":{"name":"polradar-registry","version":"1"},"capabilities":{}}}' https://polradar.fr/api/mcp \
+            | jq -e --arg version "$version" '.result.serverInfo.version == $version' >/dev/null
+          if [ "$code" = 200 ]; then check_listing; exit 0; fi
           tag=v1.8.16
           base="https://github.com/modelcontextprotocol/registry/releases/download/$tag"
           archive=mcp-publisher_linux_amd64.tar.gz
