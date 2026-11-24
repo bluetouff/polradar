@@ -1,3 +1,4 @@
+import { testOrigin } from './origin';
 import { test, expect } from '@playwright/test';
 
 test('le guide agent et la description de l’API restent lisibles sans JavaScript', async ({
@@ -9,7 +10,7 @@ test('le guide agent et la description de l’API restent lisibles sans JavaScri
   });
   const page = await context.newPage();
   try {
-    await page.goto('http://127.0.0.1:4321/mcp/');
+    await page.goto(`${testOrigin}/mcp/`);
     const guide = page.getByRole('link', {
       name: 'Guide de consultation pour les agents',
     });

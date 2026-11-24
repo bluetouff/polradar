@@ -1,3 +1,4 @@
+import { testOrigin } from './origin';
 import candidateRows from '../../src/data/candidates.json' with { type: 'json' };
 import { pageSize } from '../../src/lib/pagination';
 import { test, expect } from '@playwright/test';
@@ -71,7 +72,7 @@ test('la chronologie et les sources restent accessibles sans JavaScript', async 
 }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
-  await page.goto('http://127.0.0.1:4321/campagne/');
+  await page.goto(`${testOrigin}/campagne/`);
   await expect(page.locator('.campaign-entry')).toHaveCount(pastCount);
   await expect(page.locator('#campaign-filters')).toBeHidden();
   await expect(page.locator('#lepen-retraites-2026-11-17')).toContainText(
@@ -139,7 +140,7 @@ test('les fiches et la matrice de veille restent consultables sans JavaScript', 
 }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
-  await page.goto('http://127.0.0.1:4321/veille/');
+  await page.goto(`${testOrigin}/veille/`);
   await expect(page.locator('#watch-filters')).toBeHidden();
   await expect(page.locator('.watch-card:visible')).toHaveCount(watch.length);
   await expect(page.locator('.watch-cell:visible')).toHaveCount(watch.length);

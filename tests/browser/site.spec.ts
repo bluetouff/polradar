@@ -1,3 +1,4 @@
+import { testOrigin } from './origin';
 import { test, expect } from '@playwright/test';
 
 test('les pages restent lisibles sur mobile et bureau', async ({ page }) => {
@@ -59,7 +60,7 @@ test('recherche locale et absence de requêtes vers des tiers', async ({
 }) => {
   const external: string[] = [];
   page.on('request', (request) => {
-    if (!request.url().startsWith('http://127.0.0.1:4321/'))
+    if (!request.url().startsWith(`${testOrigin}/`))
       external.push(request.url());
   });
   await page.goto('/recherche/');
@@ -86,7 +87,7 @@ test('la comparaison initiale reste accessible sans JavaScript', async ({
 }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
-  await page.goto('http://127.0.0.1:4321/comparer/');
+  await page.goto(`${testOrigin}/comparer/`);
   await expect(page.locator('.comparison-card')).toHaveCount(0);
   await expect(page.locator('noscript')).toBeVisible();
   await context.close();

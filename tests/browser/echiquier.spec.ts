@@ -1,3 +1,4 @@
+import { testOrigin } from './origin';
 import { test, expect } from '@playwright/test';
 import wave from '../../src/data/ches-france-2024.json' with { type: 'json' };
 import votes from '../../src/data/legislative-votes.json' with { type: 'json' };
@@ -59,7 +60,7 @@ test('la carte, les textes et les candidats se consultent sans JavaScript', asyn
 }) => {
   const ctx = await browser.newContext({ javaScriptEnabled: false });
   const page = await ctx.newPage();
-  await page.goto('http://127.0.0.1:4321/echiquier/');
+  await page.goto(`${testOrigin}/echiquier/`);
   await page.getByRole('radio', { name: 'Intégration européenne' }).check();
   await expect(page.locator('.plot-europe')).toBeVisible();
   await page.locator('#question-europe-participation-union summary').click();

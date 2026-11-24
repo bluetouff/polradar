@@ -1,3 +1,4 @@
+import { testOrigin } from './origin';
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import { pageSize } from '../../src/lib/pagination';
@@ -10,7 +11,7 @@ test('le catalogue statique se parcourt sans JavaScript, y compris sa dernière 
 }) => {
   const context = await browser.newContext({
     javaScriptEnabled: false,
-    baseURL: 'http://127.0.0.1:4321',
+    baseURL: testOrigin,
   });
   const page = await context.newPage();
   for (const [path, selector] of [

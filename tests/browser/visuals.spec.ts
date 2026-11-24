@@ -1,3 +1,4 @@
+import { testOrigin } from './origin';
 import { pageSize } from '../../src/lib/pagination';
 import { test, expect } from '@playwright/test';
 import airtime from '../../src/data/airtime.json' with { type: 'json' };
@@ -22,7 +23,7 @@ test('les relevés Arcom filtrent média et personne sans perdre les durées man
   const external: string[] = [],
     errors: string[] = [];
   page.on('request', (r) => {
-    if (!r.url().startsWith('http://127.0.0.1:4321/')) external.push(r.url());
+    if (!r.url().startsWith(`${testOrigin}/`)) external.push(r.url());
   });
   page.on('pageerror', (e) => errors.push(e.message));
   await page.goto('/temps-de-parole/');
@@ -215,7 +216,7 @@ for (const route of ['/temps-de-parole/', '/budget-programmes/', '/agenda/']) {
   test(`${route} reste lisible sans JavaScript`, async ({ browser }) => {
     const context = await browser.newContext({ javaScriptEnabled: false });
     const page = await context.newPage();
-    await page.goto(`http://127.0.0.1:4321${route}`);
+    await page.goto(`${testOrigin}${route}`);
     await expect(page.locator('h1')).toBeVisible();
     await expect(page.locator('.visual-filters')).toBeHidden();
     if (route === '/agenda/')

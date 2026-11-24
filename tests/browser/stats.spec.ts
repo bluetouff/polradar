@@ -1,3 +1,4 @@
+import { testOrigin } from './origin';
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 const row = (label: string, hits: number) => ({
@@ -40,7 +41,7 @@ test('le lecteur GoAccess fonctionne sous CSP stricte et garde les entrées de j
   const external: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
   page.on('request', (r) => {
-    if (!r.url().startsWith('http://127.0.0.1:4321/')) external.push(r.url());
+    if (!r.url().startsWith(`${testOrigin}/`)) external.push(r.url());
   });
   await page.route('**/stats-qa/**', async (route) => {
     const file =

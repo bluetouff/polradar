@@ -1,3 +1,4 @@
+import { testOrigin } from './origin';
 import { expect, test } from '@playwright/test';
 import comptes from '../../src/data/comptes-presidentielle-2022.json' with { type: 'json' };
 import candidateRows from '../../src/data/candidates.json' with { type: 'json' };
@@ -97,7 +98,7 @@ test('les comparatifs agricoles distinguent les auteurs et donnent accès aux ch
   browser,
 }) => {
   const context = await browser.newContext({
-    baseURL: 'http://127.0.0.1:4321',
+    baseURL: testOrigin,
     javaScriptEnabled: false,
     viewport: { width: 320, height: 700 },
   });
@@ -141,7 +142,7 @@ test('les thèmes et les sources des questions sont consultables sans JavaScript
   const ctx = await browser.newContext({ javaScriptEnabled: false });
   const page = await ctx.newPage();
   try {
-    await page.goto('http://127.0.0.1:4321/questions/');
+    await page.goto(`${testOrigin}/questions/`);
     await page.locator('[data-theme="fiscalite"] summary').click();
     await page
       .getByRole('link', { name: /Faut-il baisser ou supprimer la CSG/ })

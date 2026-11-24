@@ -1,3 +1,4 @@
+import { testOrigin } from './origin';
 import { test, expect } from '@playwright/test';
 import snapshot from '../../src/data/prediction-markets.json' with { type: 'json' };
 import { normalize } from '../../src/lib/features.mjs';
@@ -9,7 +10,7 @@ test('les deux plateformes se consultent sans appel externe et la recherche rest
   const external: string[] = [];
   const errors: string[] = [];
   page.on('request', (request) => {
-    if (!request.url().startsWith('http://127.0.0.1:4321/'))
+    if (!request.url().startsWith(`${testOrigin}/`))
       external.push(request.url());
   });
   page.on('pageerror', (error) => errors.push(error.message));
@@ -57,7 +58,7 @@ test('les prix et les règles restent consultables sans JavaScript', async ({
 }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
-  await page.goto('http://127.0.0.1:4321/marches-predictifs/');
+  await page.goto(`${testOrigin}/marches-predictifs/`);
   await expect(page.locator('.market-board')).toHaveCount(2);
   await expect(page.locator('#market-filters')).toBeHidden();
   const initiallyVisible = snapshot.providers.reduce(

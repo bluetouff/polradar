@@ -1,3 +1,4 @@
+import { testOrigin } from './origin';
 import { test, expect } from '@playwright/test';
 import measures from '../../src/data/measures.json' with { type: 'json' };
 import { pageSize } from '../../src/lib/pagination';
@@ -431,7 +432,7 @@ test('les intégrations n’appellent aucun tiers et respectent la CSP', async (
   const external: string[] = [],
     csp: string[] = [];
   page.on('request', (request) => {
-    if (!request.url().startsWith('http://127.0.0.1:4321/'))
+    if (!request.url().startsWith(`${testOrigin}/`))
       external.push(request.url());
   });
   page.on('console', (message) => {
@@ -463,7 +464,7 @@ test('les vues initiales et les notices restent disponibles sans JavaScript', as
       viewport: { width: 320, height: 900 },
     }),
     page = await context.newPage();
-  await page.goto('http://127.0.0.1:4321/sondages/');
+  await page.goto(`${testOrigin}/sondages/`);
   await expect(page.locator('.poll-chart.chart-narrow')).toBeVisible();
   await expect(page.locator('#poll-bars .poll-bar-row').first()).toBeVisible();
   await expect(
@@ -471,7 +472,7 @@ test('les vues initiales et les notices restent disponibles sans JavaScript', as
       .locator('#poll-method')
       .getByRole('link', { name: /^Notice officielle, page \d+/ }),
   ).toBeVisible();
-  await page.goto('http://127.0.0.1:4321/mesures/melenchon-retraites-1/');
+  await page.goto(`${testOrigin}/mesures/melenchon-retraites-1/`);
   await expect(page.locator('.measure-number-grid')).toContainText('60');
   await expect(page.locator('.version-timeline li')).toHaveCount(2);
   await context.close();

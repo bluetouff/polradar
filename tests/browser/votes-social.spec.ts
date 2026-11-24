@@ -1,3 +1,4 @@
+import { testOrigin } from './origin';
 import { openDossier } from './dossier-directory';
 import { test, expect } from '@playwright/test';
 import legislativeVotes from '../../src/data/legislative-votes.json' with { type: 'json' };
@@ -220,8 +221,7 @@ test('les cinq liens de partage restent statiques, canoniques et sans appel aux 
   const external: string[] = [];
   const errors: string[] = [];
   page.on('request', (r) => {
-    if (new URL(r.url()).origin !== 'http://127.0.0.1:4321')
-      external.push(r.url());
+    if (new URL(r.url()).origin !== testOrigin) external.push(r.url());
   });
   page.on('pageerror', (e) => errors.push(e.message));
   await page.goto('/votes/?utm_source=secret#dossier=roussel-retraites');

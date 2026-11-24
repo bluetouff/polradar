@@ -1,3 +1,4 @@
+import { testOrigin } from './origin';
 import candidateRows from '../../src/data/candidates.json' with { type: 'json' };
 import { pageSize } from '../../src/lib/pagination';
 import { test, expect } from '@playwright/test';
@@ -139,7 +140,7 @@ test('les nouveaux parcours restent lisibles à 320 pixels et ne chargent aucun 
     external: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('request', (request) => {
-    if (!request.url().startsWith('http://127.0.0.1:4321/'))
+    if (!request.url().startsWith(`${testOrigin}/`))
       external.push(request.url());
   });
   for (const width of [320, 390, 768, 1440]) {

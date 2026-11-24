@@ -1,3 +1,4 @@
+import { testOrigin } from './origin';
 import { expect, test } from '@playwright/test';
 import events from '../../src/data/events.json' with { type: 'json' };
 import votes from '../../src/data/legislative-votes.json' with { type: 'json' };
@@ -13,7 +14,7 @@ test('le retrait quitte les candidatures en cours et conserve le dossier et la b
   });
   try {
     const page = await context.newPage();
-    await page.goto('http://127.0.0.1:4321/candidats/');
+    await page.goto(`${testOrigin}/candidats/`);
     await expect(
       page.locator('#candidate-list a[href="/candidats/ruffin/"]'),
     ).toHaveCount(0);

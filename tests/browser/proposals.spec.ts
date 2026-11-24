@@ -1,3 +1,4 @@
+import { testOrigin } from './origin';
 import { openDossier } from './dossier-directory';
 import financing from '../../src/data/financing-maps.json' with { type: 'json' };
 import { test, expect } from '@playwright/test';
@@ -172,7 +173,7 @@ test('tous les dossiers et les documents sont lisibles sans JavaScript', async (
     viewport: { width: 390, height: 900 },
   });
   const page = await context.newPage();
-  await page.goto('http://127.0.0.1:4321/evolution/');
+  await page.goto(`${testOrigin}/evolution/`);
   await expect(page.locator('.subject-card:visible')).toHaveCount(
     evolution.tracks.length,
   );
@@ -181,7 +182,7 @@ test('tous les dossiers et les documents sont lisibles sans JavaScript', async (
   await expect(page.locator('[data-proposal-state]:visible')).toHaveCount(
     evolution.tracks.find((t) => t.id === 'melenchon-smic')!.stateIds.length,
   );
-  await page.goto('http://127.0.0.1:4321/financements/');
+  await page.goto(`${testOrigin}/financements/`);
   await expect(page.locator('.subject-card:visible')).toHaveCount(
     financing.maps.length,
   );

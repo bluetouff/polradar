@@ -1,3 +1,4 @@
+import { testOrigin, testPort } from './tests/browser/origin';
 import { defineConfig } from '@playwright/test';
 import process from 'node:process';
 export default defineConfig({
@@ -7,13 +8,13 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   reporter: 'list',
   use: {
-    baseURL: 'http://127.0.0.1:4321',
+    baseURL: testOrigin,
     browserName: 'chromium',
     headless: true,
   },
   webServer: {
-    command: 'npm run preview -- --port 4321 --ignore-lock',
-    url: 'http://127.0.0.1:4321',
-    reuseExistingServer: !process.env.CI,
+    command: `npm run preview -- --port ${testPort} --ignore-lock`,
+    url: testOrigin,
+    reuseExistingServer: false,
   },
 });
