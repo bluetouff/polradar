@@ -332,7 +332,7 @@ async function start() {
         'Terrain',
         `Du ${date(poll.fieldworkStart)} au ${date(poll.fieldworkEnd)}`,
       ],
-      ['Date de publication', date(poll.published)],
+      ['Date de référence de l’enquête', date(poll.published)],
       [
         publicationLabel,
         publication.status === 'verifiee'
@@ -363,6 +363,29 @@ async function start() {
           anchor('Notice, p. ' + publication.page, publication.sourceUrl),
         );
       row.append(el('dt', label), detail);
+      dl.append(row);
+    }
+    if (poll.publicationDocuments?.length) {
+      const row = el('div');
+      const detail = el('dd');
+      const list = el('ul', undefined, 'poll-document-links');
+      for (const doc of poll.publicationDocuments) {
+        const item = el('li');
+        const reference = anchor(doc.label + ' · ' + doc.publisher, doc.url);
+        reference.rel = 'noreferrer';
+        const stamp = [
+          doc.date
+            ? date(doc.date) + (doc.localTime ? ' à ' + doc.localTime : '')
+            : '',
+          doc.page ? 'p. ' + doc.page : '',
+        ]
+          .filter(Boolean)
+          .join(' · ');
+        item.append(reference, el('span', stamp));
+        list.append(item);
+      }
+      detail.append(list);
+      row.append(el('dt', 'Publications retrouvées'), detail);
       dl.append(row);
     }
     method.append(
@@ -430,6 +453,7 @@ async function start() {
         'Date de première diffusion',
         'Heure locale indiquée',
         'Source de la première diffusion',
+        'Documents retrouvés (type, éditeur, date, heure de Paris, URL)',
       ],
       ...poll.results.map((result) => [
         poll.institute,
@@ -463,6 +487,13 @@ async function start() {
               publication.sourceUrl,
             ]
           : ['Non établie', '', '', '', '']),
+        (poll.publicationDocuments ?? [])
+          .map((doc) =>
+            [doc.label, doc.publisher, doc.date, doc.localTime, doc.url]
+              .filter(Boolean)
+              .join(' · '),
+          )
+          .join(' | '),
       ]),
     ]
       .map((row) => row.map(csvValue).join(';'))

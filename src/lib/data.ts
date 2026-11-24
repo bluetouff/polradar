@@ -6,6 +6,7 @@ import engagementRows from '../data/engagements.json';
 import eventRows from '../data/events.json';
 import pollRows from '../data/polls.json';
 import firstPublications from '../data/poll-first-publications.json';
+import publicationDocuments from '../data/poll-publication-documents.json';
 import { withFirstPublications } from './poll-first-publications.mjs';
 import budget from '../data/budget.json';
 import meta from '../data/meta.json';
@@ -37,6 +38,7 @@ const documentedPolls = withFirstPublications(
   new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Paris' }).format(
     new Date(),
   ),
+  publicationDocuments,
 );
 const measures = measureSchema.array().parse(measureRows);
 const versions = versionSchema.array().parse(versionRows);

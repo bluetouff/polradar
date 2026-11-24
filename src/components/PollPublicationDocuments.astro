@@ -1,0 +1,22 @@
+---
+import { formatDate, type DocumentedPoll } from '../lib/data';
+interface Props {
+  documents: DocumentedPoll['publicationDocuments'];
+}
+const { documents } = Astro.props;
+---
+
+<ul class="poll-document-links">
+  {documents.map((doc) => (
+    <li>
+      <a href={doc.url} rel="noreferrer">
+        {doc.label} · {doc.publisher}
+      </a>
+      <span>
+        {doc.date && <time datetime={doc.date}>{formatDate(doc.date)}</time>}
+        {doc.localTime && ' à ' + doc.localTime}
+        {doc.page && (doc.date ? ' · ' : '') + 'p. ' + doc.page}
+      </span>
+    </li>
+  ))}
+</ul>

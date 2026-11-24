@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import PollChart from '../components/PollChart.astro';
+import PollPublicationDocuments from '../components/PollPublicationDocuments.astro';
 import {
   pollGraphicCatalog,
   legacyPollGraphics,
@@ -30,6 +31,15 @@ const selected = rankedPollResults(latest)
   .map((row) => row.id);
 const coverage = pollCoverage(polls, groups);
 const { institutes } = coverage;
+const surveyed = [
+  ...new Map(
+    polls.filter((p) => p.surveyId).map((p) => [p.surveyId, p]),
+  ).values(),
+].sort(
+  (a, b) =>
+    b.fieldworkEnd.localeCompare(a.fieldworkEnd) ||
+    a.institute.localeCompare(b.institute, 'fr'),
+);
 ---
 
 <Base
@@ -303,7 +313,7 @@ const { institutes } = coverage;
         </dd>
       </div>
       <div>
-        <dt>Date de publication</dt>
+        <dt>Date de référence de l’enquête</dt>
         <dd>{formatDate(latest.published)}</dd>
       </div>
       <div>
@@ -325,6 +335,14 @@ const { institutes } = coverage;
           )}
         </dd>
       </div>
+      {latest.publicationDocuments.length > 0 && (
+        <div>
+          <dt>Publications retrouvées</dt>
+          <dd>
+            <PollPublicationDocuments documents={latest.publicationDocuments} />
+          </dd>
+        </div>
+      )}
       <div>
         <dt>Échantillon global</dt>
         <dd>
@@ -351,6 +369,39 @@ const { institutes } = coverage;
       {latest.margin.confidence} %.
     </p>
   </section>
+  <details class="reader-options" id="publications-enquetes">
+    <summary>Publications par enquête ({surveyed.length})</summary>
+    <ul class="poll-publication-register">
+      {surveyed.map((p) => (
+        <li data-survey={p.surveyId}>
+          <h3>
+            {p.institute} · {p.commissioner}
+          </h3>
+          <p>
+            Terrain du {formatDate(p.fieldworkStart)} au{' '}
+            {formatDate(p.fieldworkEnd)}.
+          </p>
+          {p.firstPublication.status === 'verifiee' ? (
+            <p>
+              Première diffusion ·{' '}
+              <a href={p.firstPublication.sourceUrl}>
+                {p.firstPublication.media}
+              </a>{' '}
+              · {formatDate(p.firstPublication.date)}
+              {p.firstPublication.localTime &&
+                ' à ' + p.firstPublication.localTime}
+              .
+            </p>
+          ) : (
+            <p>Première diffusion non établie.</p>
+          )}
+          {p.publicationDocuments.length > 0 && (
+            <PollPublicationDocuments documents={p.publicationDocuments} />
+          )}
+        </li>
+      ))}
+    </ul>
+  </details>
   <details class="poll-notices section-space">
     <summary>Notices et scénarios intégrés</summary>
     <ul>
@@ -390,3 +441,43 @@ const { institutes } = coverage;
   </noscript>
   <script src="../scripts/polls.ts"></script>
 </Base>
+
+<style is:global>
+  .poll-document-links,
+  .poll-publication-register {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .poll-document-links {
+    display: grid;
+    gap: 0.55rem;
+  }
+  .poll-document-links a,
+  .poll-document-links span {
+    display: block;
+  }
+  .poll-document-links span,
+  .poll-publication-register p {
+    color: var(--muted);
+  }
+  .poll-publication-register {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+  .poll-publication-register > li {
+    border: 1px solid var(--line);
+    border-radius: 0.55rem;
+    padding: 1rem;
+    background: var(--paper);
+  }
+  .poll-publication-register h3 {
+    margin: 0;
+    font-size: 1rem;
+  }
+  .poll-publication-register p {
+    margin: 0.5rem 0;
+  }
+</style>
