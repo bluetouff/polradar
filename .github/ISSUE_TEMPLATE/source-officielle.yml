@@ -1,0 +1,19 @@
+name: Proposer une source officielle
+description: Ajouter une référence institutionnelle au catalogue de Polradar.
+title: Proposition de source officielle
+labels: [source-officielle]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        La proposition est publique. Indiquez seulement l’adresse HTTPS du document.
+        Le traitement automatique accepte les scrutins de l’Assemblée présents dans le registre de Polradar,
+        les textes et scrutins du Sénat, les publications de l’Insee et les textes adoptés du Parlement européen.
+        GitHub affiche le résultat sur la proposition.
+  - type: input
+    id: url
+    attributes:
+      label: Adresse du document officiel
+      placeholder: https://www.senat.fr/leg/ppl21-852.html
+    validations:
+      required: true

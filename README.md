@@ -108,6 +108,10 @@ Le workflow vérifie les données en lecture seule, puis transmet uniquement les
 
 Sur GitHub, le bouton **Run workflow** de **Veille des sources**, avec la branche `main`, lance la même collecte à la demande.
 
+Le [formulaire public de suggestion](https://github.com/bluetouff/polradar/issues/new?template=source-officielle.yml) reçoit un lien par document. Les suggestions sont vérifiées à 8 h 20 et à 18 h 20 (heure de Paris). Le traitement reconnaît les scrutins de l’Assemblée déjà présents dans le registre, les textes et scrutins du Sénat, les publications de l’Insee et les textes adoptés du Parlement européen. Si la référence est nouvelle, son titre et sa date de publication éventuelle viennent du document institutionnel. L’ajout au catalogue suit le déploiement habituel.
+
+GitHub indique le résultat sur la proposition. Les libellés signalent un ajout, un doublon, une adresse hors périmètre, un format non reconnu ou une source indisponible. Une indisponibilité temporaire peut être retentée pendant trois jours.
+
 ### Recherche éditoriale
 
 Le workflow [Veille éditoriale](https://github.com/bluetouff/polradar/actions/workflows/editorial.yml) relève les annonces officielles à 8 h et mène la recherche complète à 18 h dans le fuseau `Europe/Paris`, été comme hiver. GitHub peut mettre une exécution en attente. Le journal affiche l’heure réelle de fin, le lien vers le passage et les incidents. Un lancement manuel depuis `main` suit le même circuit. Les deux veilles fonctionnent sur des runners GitHub hébergés.
