@@ -1,7 +1,7 @@
 ---
 import type { ParliamentaryBallot } from '../lib/parliamentary-register';
 import { register, registerIndex } from '../lib/parliamentary-register';
-import { choiceLabel } from '../lib/parliamentary-labels';
+import { choiceLabel, termLabel } from '../lib/parliamentary-labels';
 import { formatDate } from '../lib/data';
 interface Props {
   ballot: ParliamentaryBallot;
@@ -12,7 +12,7 @@ const { ballot: b } = Astro.props;
 <article class="parl-card">
   <div class="parl-meta">
     <time datetime={b.date}>{formatDate(b.date)}</time> ·{' '}
-    {b.legislature === 15 ? 'XVe' : 'XVIe'} législature · n° {b.numero}
+    {termLabel(b.legislature)} législature · n° {b.numero}
   </div>
   <h2>{b.objet}</h2>
   <p class="parl-result">

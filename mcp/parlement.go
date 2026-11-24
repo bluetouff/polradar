@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-var ballotPattern = regexp.MustCompile(`^VTANR5L(15|16)V([1-9][0-9]{0,5})$`)
+var ballotPattern = regexp.MustCompile(`^VTANR5L(15|16|17)V([1-9][0-9]{0,5})$`)
 
 type parliamentMonth struct {
 	Mois   string

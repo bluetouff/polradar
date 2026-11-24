@@ -22,14 +22,13 @@ const title = 'Registre des scrutins de l’Assemblée nationale';
 <Base
   title={page.currentPage === 1 ? title : `${title} · page ${page.currentPage}`}
   section="/votes/"
-  description="Retrouvez les positions individuelles de députés suivis par Polradar dans les scrutins de 2017 à 2024, avec les résultats, les mises au point et les relevés de séance."
+  description="Retrouvez les positions individuelles de députés suivis par Polradar dans les scrutins des XVe, XVIe et XVIIe législatures, avec les résultats, les mises au point et les relevés de séance."
 >
   <header class="parl-head">
     <a href="/votes/">← Propositions et votes passés</a>
     <h1>{title}</h1>
     <p>
-      De juillet 2017 à juin 2024, les votes enregistrés des députés suivis par
-      Polradar.
+      Les votes enregistrés depuis juillet 2017. Pour la XVIIe législature, tous les scrutins de 2026 sont examinés. En 2024 et 2025, la sélection couvre les scrutins solennels, les motions de censure et les scrutins des dossiers Polradar.
     </p>
     <dl>
       <div>
@@ -71,6 +70,7 @@ const title = 'Registre des scrutins de l’Assemblée nationale';
         <option value="">Toutes les législatures</option>
         <option value="15">XVe · 2017 à 2022</option>
         <option value="16">XVIe · 2022 à 2024</option>
+        <option value="17">XVIIe · depuis 2024</option>
       </select>
     </label>
     <button class="button" type="submit">

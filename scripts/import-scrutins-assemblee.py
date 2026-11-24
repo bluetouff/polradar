@@ -28,7 +28,14 @@ SOURCES = {
         'scrutins': (VOTES+'.json.zip','adc5e57d3ad5904fd11e176b531b3d525d4ecfdf78db9587f93a14452601126b'),
         'acteurs': (ACTORS+'.json.zip','522685d86886d8b54a75beee29b4891a4e5655f6d4871f44c59d70a7f28e759c'),
     },
+    17: {
+        'scrutins': (VOTES+'.json.zip','076a49b680aad04b68bce67c7ba40d5152d5fe3a22b50275ff63c532ff8b19bf'),
+        'acteurs': (ACTORS+'.json.zip','64bfa9b55ab5605f2d5c653bf5336df3e278f28a29df99814eb99a79c5e2bd8b'),
+    },
 }
+# Exact expanded source size from the reviewed November edition. Each member
+# is verified and read independently; no third-party archive is extracted.
+XVII_SOURCE_BYTES = 203731131
 CHOICES = {
     'pour':'pour','pours':'pour','contre':'contre','contres':'contre',
     'abstention':'abstention','abstentions':'abstention','nonVotants':'non-votant',
@@ -77,7 +84,8 @@ def archive(cache, term, kind, fetch):
         check(sha256(f.read(LIMIT_DOWNLOAD+1)).hexdigest() == expected, 'Archive différente de la version relue')
         with ZipFile(f) as z:
             files = z.infolist()
-            check(0 < len(files) <= 12000 and sum(i.file_size for i in files) <= LIMIT_ARCHIVE, 'Limite ZIP dépassée')
+            max_size = XVII_SOURCE_BYTES if (term, kind) == (17, 'scrutins') else LIMIT_ARCHIVE
+            check(0 < len(files) <= 12000 and sum(i.file_size for i in files) <= max_size, 'Limite ZIP dépassée')
             check(len(set(z.namelist())) == len(files), 'Fichier ZIP en double')
             for i in files:
                 check(i.file_size <= LIMIT_MEMBER and not i.flag_bits & 1 and
@@ -153,7 +161,8 @@ def integer(value):
 
 
 def ballot(b, term, known, mandates, groups):
-    number = integer(b['numero'])
+    check(isinstance(b['numero'], str) and re.fullmatch(r'[1-9]\d{0,5}', b['numero']), 'Numéro de scrutin invalide')
+    number = int(b['numero'])
     uid, day = b['uid'], b['dateScrutin']
     check(b['legislature'] == str(term) and uid == f'VTANR5L{term}V{number}' and
           b['modePublicationDesVotes'] == 'DecompteNominatif', 'Identifiant ou décompte nominatif inattendu')
@@ -203,7 +212,15 @@ def ballot(b, term, known, mandates, groups):
             'positions':[by_actor[a] for a in sorted(by_actor)]}
 
 
+def include_ballot(term, b, editorial_ids):
+    return (term != 17 or b['dateScrutin'] >= '2026-01-01' or
+            b['typeVote']['codeTypeVote'] in ('SPS','MOC') or b['uid'] in editorial_ids)
+
+
 def collect(cache, fetch=False):
+    editorial = json.loads((ROOT/'src/data/legislative-votes.json').read_bytes())
+    editorial_ids = {f"VTANR5L17V{b['number']}" for b in editorial['ballots']
+                     if b['chamber'] == 'assemblee' and b['term'] == '17e législature'}
     sources, actors, mandates, groups, rows = [], {}, {}, {}, []
     seen=set()
     for term, archives in SOURCES.items():
@@ -214,6 +231,7 @@ def collect(cache, fetch=False):
         mandates.update(offices)
         with archive(cache,term,'scrutins',fetch) as z:
             excluded=0
+            selected_count=0
             for item in sorted(z.namelist()):
                 b=json.loads(z.read(item))['scrutin']
                 check(item=='json/'+b['uid']+'.json' and b['uid'] not in seen,'ID de scrutin répété')
@@ -221,13 +239,17 @@ def collect(cache, fetch=False):
                 if b.get('lieuVote')=='Congrès':
                     excluded+=1
                     continue
+                if not include_ballot(term,b,editorial_ids):
+                    continue
+                selected_count+=1
                 row=ballot(b,term,selected,offices,parties)
                 if row:
                     rows.append(row)
                     for p in row['positions']:
                         if p['groupe']:
                             groups[p['groupe']]=parties[p['groupe']]
-            sources.append({'legislature':term,'scrutinsExamines':len(z.namelist())-excluded,'congresExclus':excluded,
+            sources.append({'legislature':term,'scrutinsExamines':selected_count,'congresExclus':excluded,
+                **({'scrutinsDansArchive':len(z.namelist()),'selection':'Tous les scrutins depuis le 1er janvier 2026, les scrutins solennels, les motions de censure et les scrutins déjà documentés dans un dossier Polradar depuis le début de la législature.'} if term == 17 else {}),
                 'archives':{key:{'url':BASE+str(term)+'/'+location,'sha256':digest} for key,(location,digest) in archives.items()}})
     return {'version':1,'institution':'Assemblée nationale','licenceSource':LICENCE,'consultation':'2026-11-24',
             'sources':sources,'personnes':dict(sorted(actors.items())),'mandats':dict(sorted(mandates.items())),

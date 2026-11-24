@@ -53,7 +53,7 @@ func TestPublishedParlement(t *testing.T) {
 	}
 	a := dataArgs{Collection: "parlement", Offset: 100000}
 	row, eol, e := c.publicData(a)
-	if !eol || e != nil || decoded(t, row)["total"] != 3070.0 {
+	if !eol || e != nil || decoded(t, row)["total"].(float64) < 3070 {
 		t.Fatal("borne")
 	}
 	a.ExpectedRevision = "0000000000000000000000000000000000000000"

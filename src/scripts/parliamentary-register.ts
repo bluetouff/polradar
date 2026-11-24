@@ -1,4 +1,4 @@
-import { choiceLabel } from '../lib/parliamentary-labels';
+import { choiceLabel, termLabel } from '../lib/parliamentary-labels';
 import type { ParliamentaryBallot } from '../lib/parliamentary-register';
 
 interface Register {
@@ -48,7 +48,7 @@ function ballotCard(b: ParliamentaryBallot, register: Register) {
   date.dateTime = b.date;
   meta.append(
     date,
-    ` · ${b.legislature === 15 ? 'XVe' : 'XVIe'} législature · n° ${b.numero}`,
+    ` · ${termLabel(b.legislature)} législature · n° ${b.numero}`,
   );
   const result = element('p', '', 'parl-result');
   result.append(

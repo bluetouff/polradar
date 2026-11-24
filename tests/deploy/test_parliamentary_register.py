@@ -31,6 +31,15 @@ class ParliamentaryRegisterTests(unittest.TestCase):
         self.assertEqual(self.data['mandats'][positions['lepen']['mandat']]['acteur'],'PA720614')
         self.assertEqual(self.data['groupes'][positions['lepen']['groupe']]['sigle'],'RN')
 
+    def test_seventeenth_legislature_uses_the_reviewed_archive_and_mandates(self):
+        source = self.data['sources'][-1]
+        self.assertEqual((source['legislature'], source['scrutinsDansArchive'], source['scrutinsExamines']), (17,10101,5206))
+        rows = [b for b in self.ballots.values() if b['legislature'] == 17]
+        self.assertEqual(len(rows),408)
+        b = self.ballots['VTANR5L17V9759']
+        self.assertEqual((b['date'], b['totaux']['pour'], b['totaux']['contre'], b['totaux']['abstention']), ('2026-11-04',0,458,2))
+        self.assertEqual({p['candidat']:p['vote'] for p in b['positions']}, {'attal':'contre','lepen':'contre'})
+
     def test_mises_au_point_preserve_recorded_vote(self):
         row=self.ballots['VTANR5L16V8']
         fabien=next(p for p in row['positions'] if p['candidat']=='roussel')

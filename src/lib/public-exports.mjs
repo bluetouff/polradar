@@ -112,7 +112,7 @@ const datasets = [
       'Scrutins avec une position ou une mise au point nominative documentée',
     unit: 'Un scrutin, avec les positions enregistrées et les éventuelles mises au point.',
     provenance:
-      'Archives des XVe et XVIe législatures de l’Assemblée nationale.',
+      'Archives des XVe, XVIe et XVIIe législatures de l’Assemblée nationale. Le périmètre de chaque édition figure dans sources.',
     limits:
       'Le registre porte sur les personnes et mandats identifiés. Une absence de position enregistrée ne permet pas de déduire une absence en séance.',
     fields: ['scrutins', 'personnes', 'mandats'],
