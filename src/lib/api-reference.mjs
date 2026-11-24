@@ -43,11 +43,20 @@ const offset = filter(
   'Position du premier résultat, à partir de zéro.',
 );
 const paging = { total: count, offset: count };
+const maybeText = { type: ['string', 'null'] };
+const revisionFilter = filter(
+  'expectedRevision',
+  { ...str, pattern: '^[0-9a-f]{40}$' },
+  'Révision rendue au premier appel. Une révision différente renvoie HTTP 409.',
+);
 const fiche = {
   id: str,
   titre: str,
   auteur: str,
   candidatureAssociee: str,
+  statutCandidature: str,
+  dateRetrait: maybeText,
+  sourceStatut: maybeText,
   theme: str,
   statut: scope,
   edition: str,
@@ -60,6 +69,9 @@ const schemas = {
     url,
     passage: str,
     publication: { type: ['string', 'null'], format: 'date' },
+    id: str,
+    anneePublication: maybeText,
+    justificatifPublication: maybeText,
     consultation: date,
   }),
   Mesure: object({ ...fiche, source: ref('Source') }),
@@ -68,6 +80,13 @@ const schemas = {
     description: str,
     revision: count,
     chiffres: { type: ['array', 'null'], items: { type: 'object' } },
+    montants: { type: ['array', 'null'], items: { type: 'object' } },
+    beneficiaires: maybeText,
+    echeance: maybeText,
+    financement: maybeText,
+    versions: array({ type: 'object' }),
+    liensDossier: { type: 'object' },
+    versionDemandee: maybeText,
     sources: array(ref('Source')),
   }),
   Candidat: object(
@@ -175,6 +194,16 @@ export const apiRoutes = [
       ),
       filter('scope', scope, 'Les archives sont exclues par défaut.'),
       filter(
+        'candidateStatus',
+        { ...str, enum: ['toutes', 'actives', 'retirees'], default: 'toutes' },
+        'Statut de la candidature associée. Le texte de parti conserve son auteur.',
+      ),
+      filter(
+        'sort',
+        { ...str, enum: ['pertinence', 'alphabetique'] },
+        'Ordre des résultats.',
+      ),
+      filter(
         'limit',
         { type: 'integer', minimum: 1, maximum: 25, default: 10 },
         'Nombre maximal de fiches renvoyées.',
@@ -187,7 +216,14 @@ export const apiRoutes = [
     key: 'mesure',
     title: 'Lire une proposition et toutes ses sources',
     returns: 'Fiche',
-    params: [id],
+    params: [
+      id,
+      filter(
+        'version',
+        { type: 'integer', minimum: 1 },
+        'Version historique de la mesure.',
+      ),
+    ],
   },
   {
     path: '/donnees/{collection}',
@@ -208,6 +244,7 @@ const errors = {
   400: 'Paramètres ou corps de requête invalides.',
   404: 'Identifiant ou ressource introuvable.',
   405: 'Méthode non autorisée.',
+  409: 'La révision du site a changé.',
   429: 'Quota atteint.',
   503: 'Service ou données temporairement indisponibles.',
 };
@@ -227,6 +264,7 @@ function responses(data, head) {
           object({
             corpusVerifieLe: date,
             revisionDuSite: { ...str, pattern: '^[0-9a-f]{40}$' },
+            revisionDuService: maybeText,
             sansResultat: { type: 'boolean' },
             donnees: ref(data),
           }),
@@ -252,7 +290,7 @@ export const openapi = {
     apiRoutes.map(({ path, key, title, returns, params }) => [
       path,
       {
-        parameters: params,
+        parameters: [...params, revisionFilter],
         get: {
           operationId: key,
           summary: title,

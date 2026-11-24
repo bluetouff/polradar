@@ -2,6 +2,8 @@ import type { APIRoute } from 'astro';
 import { pollCoverage } from '../../lib/features.mjs';
 import { budgetIdsByMeasure } from '../../lib/visual-data';
 import { attributionLabel } from '../../lib/attribution.mjs';
+import { voteCases } from '../../lib/votes-data';
+import { proposalTracks } from '../../lib/proposal-data';
 import {
   candidateById,
   dataset,
@@ -20,10 +22,26 @@ export const GET: APIRoute = () =>
       programmeBudgetsUrl: '/api/budgets-programmes.json',
       measures: dataset.measures.map((m) => ({
         ...credited(m),
+        voteCaseIds: voteCases
+          .filter((v) => v.measureId === m.id)
+          .map((v) => v.id),
+        evolutionIds: proposalTracks
+          .filter((t) => t.measureIds.includes(m.id))
+          .map((t) => t.id),
         ...(budgetIdsByMeasure.has(m.id)
           ? { budgetEntryIds: budgetIdsByMeasure.get(m.id) }
           : {}),
       })),
+      versions: dataset.versions.map((v) => {
+        const measure = dataset.measures.find((m) => m.id === v.measureId)!;
+        return {
+          ...v,
+          displayAuthor: attributionLabel(
+            v.snapshot,
+            candidateById(measure.candidate).name,
+          ),
+        };
+      }),
       engagements: dataset.engagements.map(credited),
     }),
     {

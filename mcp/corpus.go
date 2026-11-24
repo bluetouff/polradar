@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -32,11 +33,13 @@ type theme struct {
 	Label string `json:"label"`
 }
 type source struct {
-	ID        string  `json:"id"`
-	Title     string  `json:"title"`
-	URL       string  `json:"url"`
-	Published *string `json:"published"`
-	Checked   string  `json:"checked"`
+	ID                   string  `json:"id"`
+	Title                string  `json:"title"`
+	URL                  string  `json:"url"`
+	Published            *string `json:"published"`
+	PublishedYear        *string `json:"publishedYear"`
+	PublicationReference *string `json:"publicationReference,omitempty"`
+	Checked              string  `json:"checked"`
 }
 type reference struct {
 	SourceID string `json:"sourceId"`
@@ -44,27 +47,47 @@ type reference struct {
 	Fragment string `json:"fragment,omitempty"`
 }
 type measure struct {
-	ID            string            `json:"id"`
-	Title         string            `json:"title"`
-	Description   string            `json:"description"`
-	Candidate     string            `json:"candidate"`
-	DisplayAuthor string            `json:"displayAuthor"`
-	Theme         string            `json:"theme"`
-	Scope         string            `json:"scope"`
-	Edition       string            `json:"edition"`
-	Checked       string            `json:"checked"`
-	Revision      int               `json:"revision"`
-	SourceRefs    []reference       `json:"sourceRefs"`
-	Metrics       []json.RawMessage `json:"metrics"`
+	ID             string            `json:"id"`
+	Title          string            `json:"title"`
+	Description    string            `json:"description"`
+	Candidate      string            `json:"candidate"`
+	DisplayAuthor  string            `json:"displayAuthor"`
+	Theme          string            `json:"theme"`
+	Scope          string            `json:"scope"`
+	Edition        string            `json:"edition"`
+	Checked        string            `json:"checked"`
+	Revision       int               `json:"revision"`
+	SourceRefs     []reference       `json:"sourceRefs"`
+	Metrics        []json.RawMessage `json:"metrics"`
+	Amounts        []json.RawMessage `json:"amounts"`
+	Beneficiaries  *string           `json:"beneficiaries"`
+	Timing         *string           `json:"timing"`
+	Financing      *string           `json:"financing"`
+	BudgetEntryIDs []string          `json:"budgetEntryIds"`
+	VoteCaseIDs    []string          `json:"voteCaseIds"`
+	EvolutionIDs   []string          `json:"evolutionIds"`
+}
+type edition struct {
+	ID        string  `json:"id"`
+	MeasureID string  `json:"measureId"`
+	Number    int     `json:"number"`
+	Kind      string  `json:"kind"`
+	Observed  string  `json:"observedOn"`
+	Recorded  *string `json:"recordedAt"`
+	Summary   string  `json:"summary"`
+	Author    string  `json:"displayAuthor"`
+	Snapshot  measure `json:"snapshot"`
 }
 type catalog struct {
 	Meta struct {
 		Updated string `json:"corpusUpdated"`
+		Edition string `json:"edition"`
 	} `json:"meta"`
 	Candidates []candidate
 	Themes     []theme
 	Sources    []source
 	Measures   []measure
+	Versions   []edition
 	Polls      []record
 }
 type snapshot struct {
@@ -73,6 +96,8 @@ type snapshot struct {
 	root     string
 	byID     map[string]int
 	bySource map[string]source
+	people   map[string]candidate
+	history  map[string][]edition
 	words    []string
 }
 type store struct {
@@ -133,8 +158,10 @@ func (s *store) load() (*snapshot, error) {
 		c.bySource[v.ID] = v
 	}
 	names := map[string]string{}
+	c.people = make(map[string]candidate, len(c.Candidates))
 	for _, v := range c.Candidates {
 		names[v.ID] = v.Name
+		c.people[v.ID] = v
 	}
 	themes := map[string]string{}
 	for _, v := range c.Themes {
@@ -154,6 +181,17 @@ func (s *store) load() (*snapshot, error) {
 		c.byID[m.ID] = i
 		c.words[i] = normalize(strings.Join([]string{m.Title, m.Description, m.DisplayAuthor, names[m.Candidate], themes[m.Theme]}, " "))
 	}
+	c.history = make(map[string][]edition)
+	for _, v := range c.Versions {
+		if _, ok := c.byID[v.MeasureID]; !ok || v.Number < 1 || len(v.Snapshot.SourceRefs) == 0 {
+			return nil, invalidCorpus
+		}
+		c.history[v.MeasureID] = append(c.history[v.MeasureID], v)
+	}
+	for id := range c.history {
+		list := c.history[id]
+		sort.Slice(list, func(i, j int) bool { return list[i].Number < list[j].Number })
+	}
 	s.release, s.current = root, c
 	return c, nil
 }
@@ -164,29 +202,57 @@ func (c *snapshot) cited(ref reference) map[string]any {
 	if ref.Fragment != "" {
 		link = strings.SplitN(link, "#", 2)[0] + "#" + ref.Fragment
 	}
-	return map[string]any{"document": s.Title, "url": link, "passage": ref.Locator, "publication": s.Published, "consultation": s.Checked}
+	return map[string]any{"id": s.ID, "document": s.Title, "url": link, "passage": ref.Locator, "publication": s.Published, "anneePublication": s.PublishedYear, "justificatifPublication": s.PublicationReference, "consultation": s.Checked}
 }
 func (c *snapshot) card(m measure) map[string]any {
-	return map[string]any{"id": m.ID, "titre": m.Title, "auteur": m.DisplayAuthor, "candidatureAssociee": m.Candidate, "theme": m.Theme, "statut": m.Scope, "edition": m.Edition, "verifieLe": m.Checked, "url": site + "/mesures/" + m.ID + "/", "source": c.cited(m.SourceRefs[0])}
+	p := c.people[m.Candidate]
+	return map[string]any{"id": m.ID, "titre": m.Title, "auteur": m.DisplayAuthor, "candidatureAssociee": m.Candidate, "statutCandidature": p.Status, "dateRetrait": nullable(p.WithdrawnOn), "sourceStatut": nullable(c.bySource[p.StatusSource].URL), "theme": m.Theme, "statut": m.Scope, "edition": m.Edition, "verifieLe": m.Checked, "url": site + "/mesures/" + m.ID + "/", "source": c.cited(m.SourceRefs[0])}
 }
 
+func nullable(s string) *string {
+	if s == "" {
+		return nil
+	}
+	return &s
+}
+
+func (c *snapshot) checkRevision(want string) error {
+	if want != "" && want != c.commit {
+		return errRevision
+	}
+	return nil
+}
+
+var errRevision = errors.New("La révision demandée diffère de celle du site. Recommencez la pagination.")
+
 type searchArgs struct {
-	Query     string `json:"query,omitempty" jsonschema:"Mots à rechercher dans les propositions, jusqu’à 160 caractères."`
-	Candidate string `json:"candidate,omitempty" jsonschema:"Identifiant de la candidature associée, à retrouver avec polradar_candidates."`
-	Theme     string `json:"theme,omitempty" jsonschema:"Identifiant d’un thème, disponible via polradar_corpus."`
-	Scope     string `json:"scope,omitempty" jsonschema:"campagne, parti, orientation ou archive. Les archives nécessitent une sélection explicite."`
-	Offset    int    `json:"offset,omitempty" jsonschema:"Première ligne, à partir de zéro."`
-	Limit     int    `json:"limit,omitempty" jsonschema:"Nombre de lignes (10 par défaut, 25 au maximum)."`
+	Sort             string `json:"sort,omitempty" jsonschema:"pertinence ou alphabetique."`
+	CandidateStatus  string `json:"candidateStatus,omitempty" jsonschema:"toutes (défaut), actives ou retirees. Concerne le dossier associé, y compris pour un texte de parti."`
+	ExpectedRevision string `json:"expectedRevision,omitempty" jsonschema:"Révision du site renvoyée par la première page."`
+	Query            string `json:"query,omitempty" jsonschema:"Mots à rechercher dans les propositions, jusqu’à 160 caractères."`
+	Candidate        string `json:"candidate,omitempty" jsonschema:"Identifiant de la candidature associée, à retrouver avec polradar_candidates."`
+	Theme            string `json:"theme,omitempty" jsonschema:"Identifiant d’un thème, disponible via polradar_corpus."`
+	Scope            string `json:"scope,omitempty" jsonschema:"campagne, parti, orientation ou archive. Les archives nécessitent une sélection explicite."`
+	Offset           int    `json:"offset,omitempty" jsonschema:"Première ligne, à partir de zéro."`
+	Limit            int    `json:"limit,omitempty" jsonschema:"Nombre de lignes (10 par défaut, 25 au maximum)."`
 }
 
 func (c *snapshot) search(a searchArgs) (any, bool, error) {
-	if normalize(a.Query) == "" && a.Candidate == "" && a.Theme == "" && a.Scope == "" {
+	if normalize(a.Query) == "" && a.Candidate == "" && a.Theme == "" && a.Scope == "" && a.CandidateStatus == "" {
 		return nil, false, errors.New("Indiquez des mots, un candidat, un thème ou un statut.")
 	}
 	return c.matchMeasures(a)
 }
 
 func (c *snapshot) matchMeasures(a searchArgs) (any, bool, error) {
+	if err := c.checkRevision(a.ExpectedRevision); err != nil {
+		return nil, false, err
+	}
+	switch a.CandidateStatus {
+	case "", "toutes", "actives", "retirees":
+	default:
+		return nil, false, errors.New("Filtre de candidature inconnu.")
+	}
 	if len([]rune(a.Query)) > 160 || len(a.Candidate) > 96 || len(a.Theme) > 96 || a.Offset < 0 || a.Offset > 100000 || a.Limit < 0 || a.Limit > 25 {
 		return nil, false, errors.New("Vérifiez les filtres et les limites de pagination.")
 	}
@@ -200,6 +266,10 @@ func (c *snapshot) matchMeasures(a searchArgs) (any, bool, error) {
 	rows := make([]map[string]any, 0, a.Limit)
 	total := 0
 	for i, m := range c.Measures {
+		withdrawn := c.people[m.Candidate].WithdrawnOn != ""
+		if (a.CandidateStatus == "actives" && withdrawn) || (a.CandidateStatus == "retirees" && !withdrawn) {
+			continue
+		}
 		if (a.Candidate != "" && a.Candidate != m.Candidate) || (a.Theme != "" && a.Theme != m.Theme) || (a.Scope == "" && m.Scope == "archive") || (a.Scope != "" && a.Scope != m.Scope) {
 			continue
 		}
@@ -222,11 +292,12 @@ func (c *snapshot) matchMeasures(a searchArgs) (any, bool, error) {
 }
 
 type measureArgs struct {
-	ID string `json:"id" jsonschema:"Identifiant exact d’une fiche retournée par la recherche."`
+	ID      string `json:"id" jsonschema:"Identifiant exact d’une fiche retournée par la recherche."`
+	Version int    `json:"version,omitempty" jsonschema:"Numéro de version. Par défaut, fiche courante."`
 }
 
 func (c *snapshot) detail(a measureArgs) (any, bool, error) {
-	if a.ID == "" || len(a.ID) > 160 {
+	if a.ID == "" || len(a.ID) > 160 || a.Version < 0 {
 		return nil, false, errors.New("Identifiant de fiche invalide.")
 	}
 	i, ok := c.byID[a.ID]
@@ -234,11 +305,29 @@ func (c *snapshot) detail(a measureArgs) (any, bool, error) {
 		return map[string]any{"fiche": nil}, true, nil
 	}
 	m := c.Measures[i]
+	links := m
+	var versionID string
+	hist := make([]map[string]any, 0, len(c.history[m.ID]))
+	for _, v := range c.history[m.ID] {
+		hist = append(hist, map[string]any{"id": v.ID, "numero": v.Number, "nature": v.Kind, "observeLe": v.Observed, "enregistreLe": v.Recorded, "resume": v.Summary, "url": site + "/mesures/" + m.ID + "/#version-" + strconv.Itoa(v.Number)})
+		if a.Version == v.Number {
+			s := v.Snapshot
+			s.ID, s.Candidate, s.Theme, s.DisplayAuthor, s.Revision = m.ID, m.Candidate, m.Theme, v.Author, v.Number
+			m = s
+			versionID = v.ID
+		}
+	}
+	if a.Version > 0 && versionID == "" {
+		return map[string]any{"fiche": nil}, true, nil
+	}
 	row := c.card(m)
 	delete(row, "source")
 	row["description"] = m.Description
 	row["revision"] = m.Revision
 	row["chiffres"] = m.Metrics
+	row["montants"], row["beneficiaires"], row["echeance"], row["financement"] = m.Amounts, m.Beneficiaries, m.Timing, m.Financing
+	row["versions"], row["versionDemandee"] = hist, nullable(versionID)
+	row["liensDossier"] = map[string]any{"budgetEntryIds": links.BudgetEntryIDs, "voteCaseIds": links.VoteCaseIDs, "evolutionIds": links.EvolutionIDs}
 	refs := make([]map[string]any, 0, len(m.SourceRefs))
 	for _, r := range m.SourceRefs {
 		refs = append(refs, c.cited(r))
@@ -273,5 +362,5 @@ func (c *snapshot) counts(_ struct{}) (any, bool, error) {
 	for _, m := range c.Measures {
 		n[m.Scope]++
 	}
-	return map[string]any{"campagne": n["campagne"], "parti": n["parti"], "orientations": n["orientation"], "archives": n["archive"], "sources": len(c.Sources), "themes": c.Themes, "url": site + "/statistiques/"}, false, nil
+	return map[string]any{"campagne": n["campagne"], "parti": n["parti"], "orientations": n["orientation"], "archives": n["archive"], "editionDocumentaire": c.Meta.Edition, "sources": len(c.Sources), "themes": c.Themes, "url": site + "/statistiques/"}, false, nil
 }

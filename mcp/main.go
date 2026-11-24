@@ -49,7 +49,10 @@ func (c *snapshot) envelope(value any, empty bool) output {
 
 func register[I any](server *mcp.Server, data *store, name, description string, call func(*snapshot, I) (any, bool, error)) {
 	off := false
-	mcp.AddTool(server, &mcp.Tool{Name: name, Description: description, Annotations: &mcp.ToolAnnotations{ReadOnlyHint: true, IdempotentHint: true, DestructiveHint: &off, OpenWorldHint: &off}}, func(_ context.Context, _ *mcp.CallToolRequest, args I) (*mcp.CallToolResult, output, error) {
+	mcp.AddTool(server, &mcp.Tool{Name: name, Description: description, OutputSchema: toolOutput(name), Annotations: &mcp.ToolAnnotations{ReadOnlyHint: true, IdempotentHint: true, DestructiveHint: &off, OpenWorldHint: &off}}, func(ctx context.Context, _ *mcp.CallToolRequest, args I) (*mcp.CallToolResult, output, error) {
+		if err := ctx.Err(); err != nil {
+			return nil, output{}, err
+		}
 		c, err := data.load()
 		if err != nil {
 			return nil, output{}, invalidCorpus
@@ -58,7 +61,12 @@ func register[I any](server *mcp.Server, data *store, name, description string, 
 		if err != nil {
 			return nil, output{}, err
 		}
-		return nil, c.envelope(value, empty), nil
+		result := c.envelope(value, empty)
+		size, err := json.Marshal(result)
+		if err != nil || len(size) > 192<<10 {
+			return nil, output{}, errors.New("Réponse trop volumineuse. Consultez l’export de la rubrique ou précisez les filtres.")
+		}
+		return nil, result, ctx.Err()
 	})
 }
 

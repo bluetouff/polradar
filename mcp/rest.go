@@ -64,7 +64,7 @@ func (c *snapshot) resource(path string, q url.Values) (any, bool, error) {
 		}
 		return c.listPeople(candidateArgs{IncludeWithdrawn: option == "true"})
 	case "mesures":
-		if !allowedParams(q, "query", "candidate", "theme", "scope", "limit", "offset") {
+		if !allowedParams(q, "query", "candidate", "theme", "scope", "limit", "offset", "candidateStatus", "sort") {
 			return nil, false, errFilter
 		}
 		offset, okOffset := numberParam(q, "offset", 0, 0, 100000)
@@ -73,15 +73,16 @@ func (c *snapshot) resource(path string, q url.Values) (any, bool, error) {
 			return nil, false, errFilter
 		}
 		return c.matchMeasures(searchArgs{Query: q.Get("query"), Candidate: q.Get("candidate"),
-			Theme: q.Get("theme"), Scope: q.Get("scope"), Offset: offset, Limit: limit})
+			Theme: q.Get("theme"), Scope: q.Get("scope"), CandidateStatus: q.Get("candidateStatus"), Sort: q.Get("sort"), Offset: offset, Limit: limit})
 	}
 
 	parts := strings.Split(path, "/")
 	if len(parts) == 2 && parts[0] == "mesures" && parts[1] != "" && len(parts[1]) <= 160 {
-		if len(q) != 0 {
+		version, ok := numberParam(q, "version", 0, 1, 100000)
+		if !ok || !allowedParams(q, "version") {
 			return nil, false, errFilter
 		}
-		v, empty, err := c.detail(measureArgs{ID: parts[1]})
+		v, empty, err := c.detail(measureArgs{ID: parts[1], Version: version})
 		if empty {
 			return nil, false, errResource
 		}
@@ -130,6 +131,17 @@ func serveData(w http.ResponseWriter, r *http.Request, data *store) {
 	if err != nil {
 		apiError(w, r, 503, invalidCorpus.Error())
 		return
+	}
+	if q.Has("expectedRevision") {
+		if len(q["expectedRevision"]) != 1 || !commitID.MatchString(q.Get("expectedRevision")) {
+			apiError(w, r, 400, errFilter.Error())
+			return
+		}
+		if c.checkRevision(q.Get("expectedRevision")) != nil {
+			apiError(w, r, 409, errRevision.Error())
+			return
+		}
+		q.Del("expectedRevision")
 	}
 	v, empty, err := c.resource(strings.TrimPrefix(r.URL.Path, restPrefix), q)
 	switch {

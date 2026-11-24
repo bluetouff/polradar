@@ -11,9 +11,10 @@ type record map[string]json.RawMessage
 func (r record) str(key string) string { var s string; json.Unmarshal(r[key], &s); return s }
 
 type dataArgs struct {
-	Collection string `json:"collection" jsonschema:"Collection publique : sondages, economie, agenda, budgets ou marches."`
-	ID         string `json:"id,omitempty" jsonschema:"Identifiant exact retourné par la liste. Sans identifiant, retourne jusqu’à 15 entrées."`
-	Offset     int    `json:"offset,omitempty" jsonschema:"Position de départ pour la liste, à partir de zéro."`
+	Collection       string `json:"collection" jsonschema:"Collection publique : sondages, economie, agenda, budgets ou marches."`
+	ID               string `json:"id,omitempty" jsonschema:"Identifiant exact retourné par la liste. Sans identifiant, retourne jusqu’à 15 entrées."`
+	Offset           int    `json:"offset,omitempty" jsonschema:"Position de départ pour la liste, à partir de zéro."`
+	ExpectedRevision string `json:"expectedRevision,omitempty" jsonschema:"Révision du site renvoyée par la première page."`
 }
 type collection struct{ file, key, title, date, reference, page string }
 
@@ -26,11 +27,15 @@ var collections = map[string]collection{
 }
 
 func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
+	if err := c.checkRevision(a.ExpectedRevision); err != nil {
+		return nil, false, err
+	}
 	def, ok := collections[a.Collection]
 	if !ok || len(a.ID) > 160 || a.Offset < 0 || a.Offset > 100000 || (a.ID != "" && a.Offset != 0) {
 		return nil, false, errors.New("Collection, identifiant ou pagination invalide.")
 	}
 	var rows []record
+	var collected, checked *string
 	refs := c.bySource
 	if def.file == "" {
 		rows = c.Polls
@@ -39,6 +44,8 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 		if readData(c.root+"/api/"+def.file, 10<<20, &doc) != nil || json.Unmarshal(doc[def.key], &rows) != nil || rows == nil {
 			return nil, false, invalidCorpus
 		}
+		collected = nullable(record(doc).str("collectedAt"))
+		checked = nullable(record(doc).str("checked"))
 		if raw, ok := doc["sources"]; ok {
 			var items []source
 			if json.Unmarshal(raw, &items) != nil {
@@ -53,18 +60,32 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 	if a.ID != "" {
 		for _, r := range rows {
 			if r.str("id") == a.ID {
-				result := map[string]any{"collection": a.Collection, "publication": r, "rubrique": site + def.page}
+				result := map[string]any{"collection": a.Collection, "publication": r, "rubrique": site + def.page, "collecteLe": collected, "jeuVerifieLe": checked}
 				if def.reference != "" {
 					s, ok := refs[r.str(def.reference)]
 					if !ok {
 						return nil, false, invalidCorpus
 					}
 					result["source"] = s
+					sources := []source{s}
+					var extra []string
+					if raw := r["additionalSources"]; raw != nil && json.Unmarshal(raw, &extra) != nil {
+						return nil, false, invalidCorpus
+					}
+					for _, id := range extra {
+						s, ok := refs[id]
+						if !ok {
+							return nil, false, invalidCorpus
+						}
+						sources = append(sources, s)
+					}
+					result["sources"] = sources
 				}
 				if a.Collection == "economie" {
 					result["lectureObservations"] = "Chaque observation conserve la période, la valeur publiée et le code de statut fourni par la source. Les unités et la fréquence figurent dans la série."
 				}
 				if a.Collection == "marches" {
+					result["collecteLe"] = nullable(r.str("observedAt"))
 					result["lecture"] = "Cours observés sur la plateforme à la date indiquée. Les disponibilités et les prix manquants sont fournis par le relevé."
 				}
 				return result, false, nil
@@ -73,13 +94,14 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 		return map[string]any{"collection": a.Collection, "publication": nil}, true, nil
 	}
 	type entry struct {
-		ID    string `json:"id"`
-		Title string `json:"titre"`
-		Date  string `json:"date,omitempty"`
+		ID     string `json:"id"`
+		Title  string `json:"titre"`
+		Date   string `json:"date,omitempty"`
+		Status string `json:"disponibilite,omitempty"`
 	}
 	list := make([]entry, 0, len(rows))
 	for _, r := range rows {
-		list = append(list, entry{r.str("id"), r.str(def.title), r.str(def.date)})
+		list = append(list, entry{r.str("id"), r.str(def.title), r.str(def.date), r.str("status")})
 	}
 	sort.Slice(list, func(i, j int) bool {
 		if list[i].Date != list[j].Date {
@@ -89,5 +111,5 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 	})
 	start := min(a.Offset, len(list))
 	end := min(start+15, len(list))
-	return map[string]any{"collection": a.Collection, "total": len(list), "offset": start, "publications": list[start:end], "rubrique": site + def.page}, start == end, nil
+	return map[string]any{"collection": a.Collection, "total": len(list), "offset": start, "publications": list[start:end], "rubrique": site + def.page, "collecteLe": collected, "jeuVerifieLe": checked}, start == end, nil
 }
