@@ -34,4 +34,3 @@ class OperatorArchive(unittest.TestCase):
         self.assertLess(LAUNCHER.index('gh attestation verify "$package"'), LAUNCHER.index('sudo -v'))
         for flag in ('--source-ref refs/heads/main', '--deny-self-hosted-runners','--source-digest "$revision"','--signer-workflow bluetouff/polradar/.github/workflows/services.yml'):
             self.assertIn(flag, LAUNCHER)
-

@@ -128,9 +128,11 @@ test('les comparatifs agricoles distinguent les auteurs et donnent accès aux ch
       const figure = page.locator('figure.dossier-chart');
       await expect(figure.getByRole('img')).toHaveAccessibleName(/.+/);
       await expect(figure.locator('.chart-value')).toHaveText(example.values);
-      expect(
-        await page.evaluate(() => document.documentElement.scrollWidth),
-      ).toBeLessThanOrEqual(320);
+      await page.waitForLoadState('load');
+      await page.evaluate(() => document.fonts.ready.then(() => true));
+      await expect
+        .poll(() => page.evaluate(() => document.documentElement.scrollWidth))
+        .toBeLessThanOrEqual(320);
     }
   } finally {
     await context.close();

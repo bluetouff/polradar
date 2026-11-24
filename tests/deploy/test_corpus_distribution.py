@@ -34,4 +34,3 @@ class CorpusDistribution(unittest.TestCase):
             (api / "corpus.json").symlink_to(api / "hors-catalogue.json")
             with self.assertRaises(ValueError):
                 package["create"](root, out, sha)
-

@@ -134,4 +134,3 @@ if __name__=='__main__':
     args=parser.parse_args()
     if set(args.cases)-set(CASES): parser.error('Scénario inconnu')
     run(args.cases or CASES)
-

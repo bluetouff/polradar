@@ -64,4 +64,3 @@ def create(root, destination, revision):
 if __name__ == "__main__":
     sha = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     print(create(ROOT / "dist", ROOT / "artifacts", sha))
-
