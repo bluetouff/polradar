@@ -248,6 +248,8 @@ export function validateProposalReferences(
         'www.espoir-ric.fr',
         'solutiondemocratique.fr',
         'www.revolutionpermanente.fr',
+        'anasse2027.fr',
+        'les-patriotes.fr',
         'nouspresident.fr',
         'www.assemblee-nationale.fr',
       ].includes(new URL(s.source.url).hostname) &&

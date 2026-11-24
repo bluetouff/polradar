@@ -171,6 +171,39 @@ test('identités, sources, précision temporelle, domaines et bases incohérents
   copy.states[0].value = Infinity;
   assert.equal(evolutionSchema.safeParse(copy).success, false);
 });
+test('la commande publique, le pass jeunes et la durée du travail gardent leurs paramètres sourcés', () => {
+  const track = (id) => evolution.tracks.find((t) => t.id === id);
+  const states = (t) =>
+    t.stateIds.map((id) => evolution.states.find((s) => s.id === id));
+  const publicContracts = track('nda-marches-publics');
+  const [target, price] = states(publicContracts);
+  assert.match(target.label, /75 % des marchés/);
+  assert.match(price.label, /prix limité à 50 %/);
+  assert.equal(price.scope, 'parti');
+  assert.equal(proposalComparison(publicContracts, target, price).delta, null);
+  const mobility = track('glucksmann-tarification-transports');
+  const [european, national] = states(mobility);
+  assert.equal(european.scope, 'parti');
+  assert.equal(national.scope, 'campagne');
+  const pass = dataset.measures.find((m) => mobility.measureIds.includes(m.id));
+  assert.equal(pass.metrics[0].unit, '€ par jour');
+  assert.equal(pass.metrics[0].value, 1);
+  assert.equal(pass.sourceRefs[0].fragment, 'page=13');
+  assert.match(pass.beneficiaries, /moins de 25 ans/);
+  const workWeek = states(track('kazib-semaine-travail'));
+  assert.equal(workWeek[1].date.kind, 'consultation');
+  assert.equal(workWeek[1].source.published, null);
+  const frexit = states(track('philippot-sortie-union'));
+  assert.ok(
+    frexit.every(
+      (s) =>
+        s.scope === 'parti' &&
+        s.date.kind === 'edition' &&
+        s.source.published === null,
+    ),
+  );
+});
+
 test('une correction ne peut ni remplacer ni supprimer une capture déjà publiée', () => {
   const altered = structuredClone(evolution.states);
   altered[0].source.quote = 'autre texte';

@@ -58069,5 +58069,37 @@
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
     "checked": "2026-11-24"
+  },
+  {
+    "id": "glucksmann-pass-mobilite-jeunes",
+    "parentId": "glucksmann-climat",
+    "candidate": "glucksmann",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Un pass de transport à 1 € par jour pour les moins de 25 ans",
+    "description": "Raphaël Glucksmann et Yannick Jadot proposent un Pass Mobilité Durable Jeunes dans leur livret sur les transports du quotidien.",
+    "beneficiaries": "Jeunes de moins de 25 ans",
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "tarif-journalier-mobilite-jeunes",
+        "label": "Tarif proposé",
+        "value": 1,
+        "unit": "€ par jour",
+        "sourceId": "glucks-livret"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "glucks-livret",
+        "locator": "Livret de révolution écologique, page 13 du PDF, transports du quotidien.",
+        "fragment": "page=13"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Livret de Raphaël Glucksmann et Yannick Jadot, présenté le 9 novembre 2026",
+    "checked": "2026-11-24"
   }
 ]

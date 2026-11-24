@@ -267,6 +267,110 @@
         "groupe-rn-aide-medicale-2026"
       ],
       "measureIds": ["groupe-rn-ame-aide-urgence"]
+    },
+    {
+      "id": "arthaud-partage-travail",
+      "candidate": "arthaud",
+      "theme": "travail",
+      "title": "Partager le travail sans baisse de salaire",
+      "kind": "maintien",
+      "note": "La profession de foi de 2022 et le dépliant de Lutte ouvrière de 2026 reprennent la même condition de rémunération.",
+      "stateIds": [
+        "arthaud-partage-travail-2022",
+        "arthaud-partage-travail-2026"
+      ],
+      "measureIds": [
+        "arthaud-travail-partage",
+        "arthaud-travail-partage-travail"
+      ]
+    },
+    {
+      "id": "arthaud-comptes-entreprises",
+      "candidate": "arthaud",
+      "theme": "institutions",
+      "title": "Rendre les comptes des entreprises accessibles aux travailleurs",
+      "kind": "perimetre",
+      "note": "Les deux textes décrivent un contrôle des comptes par les travailleurs. Le dépliant de 2026 mentionne aussi les fortunes privées et le secret bancaire.",
+      "stateIds": [
+        "arthaud-comptes-entreprises-2022",
+        "arthaud-comptes-entreprises-2026"
+      ],
+      "measureIds": ["arthaud-institutions-comptes-publics"]
+    },
+    {
+      "id": "roussel-egalite-salariale",
+      "candidate": "roussel",
+      "theme": "travail",
+      "title": "Égalité salariale entre les femmes et les hommes",
+      "kind": "conditions",
+      "note": "En 2022, Fabien Roussel fixe un délai d’un an. Dans son discours de Marseille, il précise l’obligation qu’il souhaite inscrire dans la loi.",
+      "stateIds": [
+        "roussel-egalite-salariale-2022",
+        "roussel-egalite-salariale-2025"
+      ],
+      "measureIds": ["roussel-travail-egalite-salariale"]
+    },
+    {
+      "id": "nda-marches-publics",
+      "candidate": "dupont-aignan",
+      "theme": "travail",
+      "title": "Quelle préférence française pour les marchés publics ?",
+      "kind": "conditions",
+      "note": "La déclaration de 2022 fixe une part des marchés à réserver. Le projet économique de Debout la France précise un écart maximal de prix avec le produit étranger. Ces pourcentages mesurent deux choses différentes.",
+      "stateIds": ["nda-marches-publics-2022", "nda-marches-publics-2026"],
+      "measureIds": ["dupont-aignan-travail-commande"]
+    },
+    {
+      "id": "kazib-semaine-travail",
+      "candidate": "kazib",
+      "theme": "travail",
+      "title": "La semaine de travail proposée par Anasse Kazib",
+      "kind": "maintien",
+      "note": "Les premières mesures de septembre et la page de campagne consultée en novembre fixent la durée à 28 heures. La page de campagne précise la condition de salaire.",
+      "stateIds": [
+        "kazib-semaine-travail-septembre",
+        "kazib-semaine-travail-novembre"
+      ],
+      "measureIds": ["kazib-travail-temps"]
+    },
+    {
+      "id": "kazib-controle-secteurs",
+      "candidate": "kazib",
+      "theme": "travail",
+      "title": "L’expropriation des secteurs stratégiques",
+      "kind": "perimetre",
+      "note": "Les premières mesures mentionnent l’énergie et la santé. La page de campagne nomme également les transports et les banques. Les deux documents placent les secteurs concernés sous le contrôle des travailleurs.",
+      "stateIds": [
+        "kazib-controle-secteurs-septembre",
+        "kazib-controle-secteurs-novembre"
+      ],
+      "measureIds": ["kazib-travail-expropriation"]
+    },
+    {
+      "id": "glucksmann-tarification-transports",
+      "candidate": "glucksmann",
+      "theme": "climat",
+      "title": "Du Ticket climat au forfait de transport pour les jeunes",
+      "kind": "perimetre",
+      "note": "Le programme de la coalition PS–Place publique pour les européennes et le livret de campagne Glucksmann–Jadot concernent deux élections et deux périmètres de transport.",
+      "stateIds": [
+        "glucksmann-tarification-transports-2024",
+        "glucksmann-tarification-transports-2026"
+      ],
+      "measureIds": ["glucksmann-pass-mobilite-jeunes"]
+    },
+    {
+      "id": "philippot-sortie-union",
+      "candidate": "philippot",
+      "theme": "europe",
+      "title": "La sortie de la France de l’Union européenne",
+      "kind": "maintien",
+      "note": "Florian Philippot signe le tract sur l’Ukraine en qualité de président des Patriotes. Les grandes orientations du mouvement reprennent la sortie de l’Union européenne. Les dates correspondent aux éditions des fichiers PDF.",
+      "stateIds": [
+        "philippot-sortie-union-mars",
+        "philippot-sortie-union-septembre"
+      ],
+      "measureIds": ["philippot-europe-frexit"]
     }
   ],
   "states": [
@@ -1596,6 +1700,502 @@
         "sha256": "bc2bd4495154450ac5431c5b6346378d8736d6d7b6cf42a37002b2e85f80ca05",
         "quote": "les soins liés à la maternité et la prévention des maladies contagieuses",
         "locator": "P. 1 pour le rejet et les auteurs, p. 2 pour le périmètre des soins."
+      }
+    },
+    {
+      "id": "arthaud-partage-travail-2022",
+      "trackId": "arthaud-partage-travail",
+      "date": {
+        "value": "2022",
+        "kind": "edition"
+      },
+      "edition": "Profession de foi de Nathalie Arthaud",
+      "scope": "archive",
+      "observedOn": "2026-11-24",
+      "recordedAt": "2026-11-24T17:24:54Z",
+      "value": null,
+      "label": "Maintien du salaire",
+      "unit": "disposition",
+      "basisKey": "partage-travail-salaire",
+      "population": "Travailleurs en emploi et personnes au chômage",
+      "statement": "Nathalie Arthaud propose de répartir le travail existant entre tous les travailleurs en maintenant leur salaire.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "cnc-arthaud-2022",
+        "title": "CNCCEP : profession de foi de Nathalie Arthaud, premier tour 2022",
+        "url": "https://www.cnccep.fr/pdfs/Candidat-01-Nathalie-Arthaud-Declaration.pdf",
+        "authority": "institution",
+        "published": null,
+        "updated": null,
+        "sha256": "3f15e26228232909dc4745cd883fb952734407eb58e96414098e7d1a34a35c45",
+        "quote": "sans perte de salaire.",
+        "locator": "Profession de foi, page 2 du PDF, colonne sur le chômage."
+      }
+    },
+    {
+      "id": "arthaud-partage-travail-2026",
+      "trackId": "arthaud-partage-travail",
+      "date": {
+        "value": "2026-11-03",
+        "kind": "publication"
+      },
+      "edition": "Dépliant de Lutte ouvrière",
+      "scope": "parti",
+      "observedOn": "2026-11-24",
+      "recordedAt": "2026-11-24T17:24:54Z",
+      "value": null,
+      "label": "Maintien du salaire",
+      "unit": "disposition",
+      "basisKey": "partage-travail-salaire",
+      "population": "Travailleurs en emploi et personnes au chômage",
+      "statement": "Le dépliant de Lutte ouvrière associe le partage du travail au maintien du salaire pour combattre le chômage et la précarité.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "arthaud-depliant-2026-pdf",
+        "title": "Nathalie Arthaud : dépliant du 3 novembre 2026 (PDF)",
+        "url": "https://www.lutte-ouvriere.org/medias/document/fichiers/2026/11/Depliant-NA-3nov.pdf",
+        "authority": "parti",
+        "published": "2026-11-03",
+        "updated": null,
+        "sha256": "bb7c928b5fb8e5d9e01ebc17e8700f6ade2ab2ec24418115b00a57160ac4365e",
+        "quote": "DU TRAVAIL ENTRE TOUS,",
+        "locator": "Dépliant, page 2 du PDF, colonne de gauche et encadré sur la répartition du travail."
+      }
+    },
+    {
+      "id": "arthaud-comptes-entreprises-2022",
+      "trackId": "arthaud-comptes-entreprises",
+      "date": {
+        "value": "2022",
+        "kind": "edition"
+      },
+      "edition": "Profession de foi de Nathalie Arthaud",
+      "scope": "archive",
+      "observedOn": "2026-11-24",
+      "recordedAt": "2026-11-24T17:24:54Z",
+      "value": null,
+      "label": "Grandes entreprises",
+      "unit": "disposition",
+      "basisKey": "controle-comptes-travailleurs",
+      "population": "Travailleurs, entreprises et détenteurs des comptes visés",
+      "statement": "La candidate veut ouvrir aux travailleurs les comptes des grandes entreprises et mettre fin au secret industriel et commercial.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "cnc-arthaud-2022",
+        "title": "CNCCEP : profession de foi de Nathalie Arthaud, premier tour 2022",
+        "url": "https://www.cnccep.fr/pdfs/Candidat-01-Nathalie-Arthaud-Declaration.pdf",
+        "authority": "institution",
+        "published": null,
+        "updated": null,
+        "sha256": "3f15e26228232909dc4745cd883fb952734407eb58e96414098e7d1a34a35c45",
+        "quote": "COMPTES DES GRANDES ENTREPRISES",
+        "locator": "Profession de foi, page 3 du PDF, encadré sur les comptes des grandes entreprises."
+      }
+    },
+    {
+      "id": "arthaud-comptes-entreprises-2026",
+      "trackId": "arthaud-comptes-entreprises",
+      "date": {
+        "value": "2026-11-03",
+        "kind": "publication"
+      },
+      "edition": "Dépliant de Lutte ouvrière",
+      "scope": "parti",
+      "observedOn": "2026-11-24",
+      "recordedAt": "2026-11-24T17:24:54Z",
+      "value": null,
+      "label": "Entreprises et fortunes privées",
+      "unit": "disposition",
+      "basisKey": "controle-comptes-travailleurs",
+      "population": "Travailleurs, entreprises et détenteurs des comptes visés",
+      "statement": "Lutte ouvrière demande de rendre publics les comptes des entreprises et des fortunes privées et de supprimer le secret commercial et bancaire.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "arthaud-depliant-2026-pdf",
+        "title": "Nathalie Arthaud : dépliant du 3 novembre 2026 (PDF)",
+        "url": "https://www.lutte-ouvriere.org/medias/document/fichiers/2026/11/Depliant-NA-3nov.pdf",
+        "authority": "parti",
+        "published": "2026-11-03",
+        "updated": null,
+        "sha256": "bb7c928b5fb8e5d9e01ebc17e8700f6ade2ab2ec24418115b00a57160ac4365e",
+        "quote": "commercial et bancaire",
+        "locator": "Dépliant, page 2 du PDF, colonne centrale sur le contrôle de l’économie."
+      }
+    },
+    {
+      "id": "roussel-egalite-salariale-2022",
+      "trackId": "roussel-egalite-salariale",
+      "date": {
+        "value": "2022",
+        "kind": "edition"
+      },
+      "edition": "Profession de foi de Fabien Roussel",
+      "scope": "archive",
+      "observedOn": "2026-11-24",
+      "recordedAt": "2026-11-24T17:24:54Z",
+      "value": null,
+      "label": "Un an pour atteindre l’égalité",
+      "unit": "disposition",
+      "basisKey": "egalite-salariale-entreprises",
+      "population": "Femmes et hommes salariés",
+      "statement": "Fabien Roussel veut rendre effective en un an l’égalité des salaires entre les femmes et les hommes.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "cnc-roussel-2022",
+        "title": "CNCCEP : profession de foi de Fabien Roussel, premier tour 2022",
+        "url": "https://www.cnccep.fr/pdfs/Candidat-11-Fabien-Roussel-Declaration-accessible.pdf",
+        "authority": "institution",
+        "published": null,
+        "updated": null,
+        "sha256": "c37cd69cef21e85c4a1401d71c6d50d6f4a81c87350a5e5efe08d95b26632751",
+        "quote": "en un an.",
+        "locator": "Profession de foi, page 2 du PDF, colonne de droite."
+      }
+    },
+    {
+      "id": "roussel-egalite-salariale-2025",
+      "trackId": "roussel-egalite-salariale",
+      "date": {
+        "value": "2025-11-23",
+        "kind": "declaration"
+      },
+      "edition": "Discours de Marseille",
+      "scope": "campagne",
+      "observedOn": "2026-11-24",
+      "recordedAt": "2026-11-24T17:24:54Z",
+      "value": null,
+      "label": "Obligation légale pour les entreprises",
+      "unit": "disposition",
+      "basisKey": "egalite-salariale-entreprises",
+      "population": "Femmes et hommes salariés",
+      "statement": "Fabien Roussel annonce une loi obligeant les entreprises à garantir l’égalité salariale et professionnelle.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "pcf-work",
+        "title": "Fabien Roussel : discours de Marseille, PDF officiel",
+        "url": "https://assets.nationbuilder.com/pcf/pages/35369/attachments/original/1764162032/Discours_FR_corrige%CC%81_241125.pdf",
+        "authority": "campagne",
+        "published": "2025-11-26",
+        "updated": null,
+        "sha256": "7d457b67ecc81a12fb335b8bfebcd9d405a5874191a832068ade912d5df8ba68",
+        "quote": "nous obligerons par la loi les entreprises",
+        "locator": "Discours du 23 novembre 2025, page 8 du PDF."
+      }
+    },
+    {
+      "id": "nda-marches-publics-2022",
+      "trackId": "nda-marches-publics",
+      "date": {
+        "value": "2022",
+        "kind": "edition"
+      },
+      "edition": "Profession de foi de Nicolas Dupont-Aignan",
+      "scope": "archive",
+      "observedOn": "2026-11-24",
+      "recordedAt": "2026-11-24T17:24:54Z",
+      "value": null,
+      "label": "75 % des marchés publics",
+      "unit": "disposition",
+      "basisKey": "preference-commande-publique",
+      "population": "Entreprises fournissant des biens aux acheteurs publics",
+      "statement": "Le candidat propose de réserver 75 % des marchés publics aux fabrications françaises.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "cnc-nda-2022",
+        "title": "Nicolas Dupont-Aignan · déclaration du premier tour de 2022, archive de la CNCCEP",
+        "url": "https://www.cnccep.fr/pdfs/Candidat-02-Nicolas-Dupont-Aignan-Declaration-accessible.pdf",
+        "authority": "institution",
+        "published": null,
+        "updated": null,
+        "sha256": "5888d0bd6617b92dfa25d4453150781cef7f7c87054efe51283c82fc75840894",
+        "quote": "75 % des marchés publics",
+        "locator": "Profession de foi, page 2 du PDF, mesures concernant les entreprises."
+      }
+    },
+    {
+      "id": "nda-marches-publics-2026",
+      "trackId": "nda-marches-publics",
+      "date": {
+        "value": "2026-11-18",
+        "kind": "mise-a-jour"
+      },
+      "edition": "Projet économique de Debout la France",
+      "scope": "parti",
+      "observedOn": "2026-11-24",
+      "recordedAt": "2026-11-24T17:24:54Z",
+      "value": null,
+      "label": "Écart de prix limité à 50 %",
+      "unit": "disposition",
+      "basisKey": "preference-commande-publique",
+      "population": "Entreprises fournissant des biens aux acheteurs publics",
+      "statement": "Debout la France propose de réserver la commande aux entreprises qui fabriquent le bien en France si son prix ne dépasse pas de plus de 50 % celui du produit étranger.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "dlf-economie-2026",
+        "title": "Debout la France : économie et finances, trente mesures",
+        "url": "https://www.debout-la-france.fr/projet/economie-travail/",
+        "authority": "parti",
+        "published": "2022-09-15",
+        "updated": "2026-11-18",
+        "sha256": "291ec402e70cc3478d93fa0ffedd46624e170de1f005400a4e6f0fd851583683",
+        "quote": "50 % au produit étranger",
+        "locator": "Chapitre Économie et finances, mesure sur la préférence nationale dans les marchés publics."
+      }
+    },
+    {
+      "id": "kazib-semaine-travail-septembre",
+      "trackId": "kazib-semaine-travail",
+      "date": {
+        "value": "2026-09-16",
+        "kind": "publication"
+      },
+      "edition": "Présentation des premières mesures",
+      "scope": "campagne",
+      "observedOn": "2026-11-24",
+      "recordedAt": "2026-11-24T17:24:54Z",
+      "value": null,
+      "label": "28 heures par semaine",
+      "unit": "disposition",
+      "basisKey": "duree-semaine-salaries",
+      "population": "Travailleurs salariés",
+      "statement": "Révolution permanente rapporte qu’Anasse Kazib demande une durée hebdomadaire de travail de 28 heures.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "kazib-premieres-mesures-2027",
+        "title": "Anasse Kazib : premières mesures présentées par Révolution Permanente",
+        "url": "https://www.revolutionpermanente.fr/28h-expropriation-des-secteurs-strategiques-RP-presente-les-premieres-mesures-de-sa-candidature",
+        "authority": "campagne",
+        "published": "2026-09-16",
+        "updated": null,
+        "sha256": "ad17e868d6e51e5105b5fe63a6bbf9a0ba7efaa1fb761665eb5eb7bb883a51e0",
+        "quote": "semaine de 28 heures",
+        "locator": "Article du 16 septembre, passage sur les revendications centrales présentées par le candidat."
+      }
+    },
+    {
+      "id": "kazib-semaine-travail-novembre",
+      "trackId": "kazib-semaine-travail",
+      "date": {
+        "value": "2026-11-24",
+        "kind": "consultation"
+      },
+      "edition": "Propositions du site de campagne",
+      "scope": "campagne",
+      "observedOn": "2026-11-24",
+      "recordedAt": "2026-11-24T17:24:54Z",
+      "value": null,
+      "label": "28 heures par semaine",
+      "unit": "disposition",
+      "basisKey": "duree-semaine-salaries",
+      "population": "Travailleurs salariés",
+      "statement": "Le site de campagne propose de répartir le travail en limitant la semaine à 28 heures sans diminuer les salaires. Le programme est annoncé en cours d’élaboration.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "kazib-programme-campagne",
+        "title": "Anasse Kazib · premières mesures et programme de 2022 en archive",
+        "url": "https://anasse2027.fr/programme",
+        "authority": "campagne",
+        "published": null,
+        "updated": null,
+        "sha256": "4f6413f471ce505e3cf874b5c030778cff3e6bbba6c291520722a7703a2243d6",
+        "quote": "28h sans baisse de salaire",
+        "locator": "Rubrique Notre programme, point 2 sur le pouvoir des employeurs. Date de mise en ligne non indiquée."
+      }
+    },
+    {
+      "id": "kazib-controle-secteurs-septembre",
+      "trackId": "kazib-controle-secteurs",
+      "date": {
+        "value": "2026-09-16",
+        "kind": "publication"
+      },
+      "edition": "Présentation des premières mesures",
+      "scope": "campagne",
+      "observedOn": "2026-11-24",
+      "recordedAt": "2026-11-24T17:24:54Z",
+      "value": null,
+      "label": "Secteurs stratégiques et entreprises qui refuseraient les mesures",
+      "unit": "disposition",
+      "basisKey": "expropriation-controle-travailleurs",
+      "population": "Salariés des entreprises et secteurs concernés",
+      "statement": "En présentant la candidature, Révolution permanente demande d’exproprier sans indemnité ni rachat les secteurs stratégiques et les entreprises refusant les premières mesures.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "kazib-premieres-mesures-2027",
+        "title": "Anasse Kazib : premières mesures présentées par Révolution Permanente",
+        "url": "https://www.revolutionpermanente.fr/28h-expropriation-des-secteurs-strategiques-RP-presente-les-premieres-mesures-de-sa-candidature",
+        "authority": "campagne",
+        "published": "2026-09-16",
+        "updated": null,
+        "sha256": "ad17e868d6e51e5105b5fe63a6bbf9a0ba7efaa1fb761665eb5eb7bb883a51e0",
+        "quote": "sans indemnité ni rachat",
+        "locator": "Article du 16 septembre, passage sur l’expropriation et le contrôle des travailleurs."
+      }
+    },
+    {
+      "id": "kazib-controle-secteurs-novembre",
+      "trackId": "kazib-controle-secteurs",
+      "date": {
+        "value": "2026-11-24",
+        "kind": "consultation"
+      },
+      "edition": "Propositions du site de campagne",
+      "scope": "campagne",
+      "observedOn": "2026-11-24",
+      "recordedAt": "2026-11-24T17:24:54Z",
+      "value": null,
+      "label": "Énergie, transports, banques et santé",
+      "unit": "disposition",
+      "basisKey": "expropriation-controle-travailleurs",
+      "population": "Salariés des entreprises et secteurs concernés",
+      "statement": "Le site cite quatre secteurs à titre d’exemples et propose que les salariés en prennent le contrôle. Le programme est annoncé en cours d’élaboration.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "kazib-programme-campagne",
+        "title": "Anasse Kazib · premières mesures et programme de 2022 en archive",
+        "url": "https://anasse2027.fr/programme",
+        "authority": "campagne",
+        "published": null,
+        "updated": null,
+        "sha256": "4f6413f471ce505e3cf874b5c030778cff3e6bbba6c291520722a7703a2243d6",
+        "quote": "énergie, transports, banques, santé",
+        "locator": "Rubrique Notre programme, point 2 sur le pouvoir des employeurs. Date de mise en ligne non indiquée."
+      }
+    },
+    {
+      "id": "glucksmann-tarification-transports-2024",
+      "trackId": "glucksmann-tarification-transports",
+      "date": {
+        "value": "2024",
+        "kind": "edition"
+      },
+      "edition": "Européennes · programme PS–Place publique",
+      "scope": "parti",
+      "observedOn": "2026-11-24",
+      "recordedAt": "2026-11-24T17:24:54Z",
+      "value": null,
+      "label": "Ticket climat pour les transports en commun",
+      "unit": "disposition",
+      "basisKey": "tarification-transports",
+      "population": "Usagers des transports collectifs et, dans le livret de 2026, jeunes de moins de 25 ans",
+      "statement": "La coalition PS–Place publique propose un titre de transport permettant d’accéder à tous les transports en commun dans son programme pour les européennes.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "glucks-ps56-2024",
+        "title": "Réveiller l’Europe · programme de la liste PS et Place publique pour les européennes de 2024",
+        "url": "https://ps56.bzh/wp-content/uploads/2024/05/Programme-Europe-Puissance-210x145_IMP_FINAL-1.pdf",
+        "authority": "parti",
+        "published": null,
+        "updated": null,
+        "sha256": "529f965239e37a4600976739357de97925f736613ce6f2a49320efe1020cad0f",
+        "quote": "un Ticket climat",
+        "locator": "Programme Réveiller l’Europe, page 12 du PDF, passage sur les transports collectifs."
+      }
+    },
+    {
+      "id": "glucksmann-tarification-transports-2026",
+      "trackId": "glucksmann-tarification-transports",
+      "date": {
+        "value": "2026-11-09",
+        "kind": "publication"
+      },
+      "edition": "Livret écologique de Glucksmann et Jadot",
+      "scope": "campagne",
+      "observedOn": "2026-11-24",
+      "recordedAt": "2026-11-24T17:24:54Z",
+      "value": null,
+      "label": "1 € par jour pour les moins de 25 ans",
+      "unit": "disposition",
+      "basisKey": "tarification-transports",
+      "population": "Usagers des transports collectifs et, dans le livret de 2026, jeunes de moins de 25 ans",
+      "statement": "Le livret pour la présidentielle propose un Pass Mobilité Durable Jeunes à un euro par jour pour les moins de 25 ans.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "glucks-livret",
+        "title": "Glucksmann et Jadot : livret de révolution écologique (PDF)",
+        "url": "https://glucks2027.fr/wp-content/uploads/2026/11/livret_progr_revolution_ecologique_2027.pdf",
+        "authority": "campagne",
+        "published": "2026-11-09",
+        "updated": null,
+        "sha256": "a54cc24b8819f2d8d41bbfa5d23e861e8cc7629801d805fe7632069ab096eae0",
+        "quote": "à 1 euro par jour",
+        "locator": "Livret de révolution écologique, page 13 du PDF, paragraphe sur les transports du quotidien."
+      }
+    },
+    {
+      "id": "philippot-sortie-union-mars",
+      "trackId": "philippot-sortie-union",
+      "date": {
+        "value": "2026-03-12",
+        "kind": "edition"
+      },
+      "edition": "Tract signé par Florian Philippot",
+      "scope": "parti",
+      "observedOn": "2026-11-24",
+      "recordedAt": "2026-11-24T17:24:54Z",
+      "value": null,
+      "label": "Sortie de l’Union européenne",
+      "unit": "disposition",
+      "basisKey": "sortie-france-union-europeenne",
+      "population": "France en tant qu’État membre de l’Union européenne",
+      "statement": "Florian Philippot demande la sortie de la France de l’Union européenne dans un tract consacré à la guerre en Ukraine.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "philippot-tract-ukraine-defense",
+        "title": "Florian Philippot · tract signé sur l’Ukraine et la défense nationale",
+        "url": "https://les-patriotes.fr/wp-content/uploads/2026/03/tractmacronukraine.pdf",
+        "authority": "parti",
+        "published": null,
+        "updated": null,
+        "sha256": "1f446dd1be7a45a1b459725b9c0738c83f245998d569f051e518abad7847e6e6",
+        "quote": "la sortie de la France de l’UE",
+        "locator": "Tract, page 2 du PDF, dernière déclaration signée. Le fichier indique une création le 12 mars."
+      }
+    },
+    {
+      "id": "philippot-sortie-union-septembre",
+      "trackId": "philippot-sortie-union",
+      "date": {
+        "value": "2026-09-24",
+        "kind": "edition"
+      },
+      "edition": "Grandes orientations des Patriotes",
+      "scope": "parti",
+      "observedOn": "2026-11-24",
+      "recordedAt": "2026-11-24T17:24:54Z",
+      "value": null,
+      "label": "Sortie de l’Union européenne",
+      "unit": "disposition",
+      "basisKey": "sortie-france-union-europeenne",
+      "population": "France en tant qu’État membre de l’Union européenne",
+      "statement": "Le projet politique du mouvement consacre un chapitre à la sortie de la France de l’Union européenne et la présente comme préalable à ses autres orientations.",
+      "parameters": [],
+      "reported": false,
+      "source": {
+        "id": "patriotes-projet-2026-2027",
+        "title": "Les Patriotes : grandes orientations, édition 2026-2027",
+        "url": "https://les-patriotes.fr/wp-content/uploads/2026/09/Projet-pour-la-France-2026-v2.pdf",
+        "authority": "parti",
+        "published": null,
+        "updated": null,
+        "sha256": "90d0748445644a433b594864cf553a03245739e07cb65672f01c1c0b49be6f83",
+        "quote": "sortie de la France de l’Union européenne",
+        "locator": "Grandes orientations, édition 2026-2027, page 14 du PDF. Le fichier indique une modification le 24 septembre."
       }
     }
   ]

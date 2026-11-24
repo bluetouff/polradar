@@ -69109,5 +69109,41 @@
       "edition": "Propositions du Rassemblement national sur le logement",
       "checked": "2026-11-24"
     }
+  },
+  {
+    "id": "glucksmann-pass-mobilite-jeunes-v1",
+    "measureId": "glucksmann-pass-mobilite-jeunes",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T17:24:54Z",
+    "summary": "Première fiche publiée à partir du livret écologique de novembre 2026.",
+    "snapshot": {
+      "title": "Un pass de transport à 1 € par jour pour les moins de 25 ans",
+      "description": "Raphaël Glucksmann et Yannick Jadot proposent un Pass Mobilité Durable Jeunes dans leur livret sur les transports du quotidien.",
+      "beneficiaries": "Jeunes de moins de 25 ans",
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "tarif-journalier-mobilite-jeunes",
+          "label": "Tarif proposé",
+          "value": 1,
+          "unit": "€ par jour",
+          "sourceId": "glucks-livret"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "glucks-livret",
+          "locator": "Livret de révolution écologique, page 13 du PDF, transports du quotidien.",
+          "fragment": "page=13"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Livret de Raphaël Glucksmann et Yannick Jadot, présenté le 9 novembre 2026",
+      "checked": "2026-11-24"
+    }
   }
 ]
