@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { polls, sources } from '../../lib/data';
+import { documentedPolls as polls, sources } from '../../lib/data';
 
 export const GET: APIRoute = () => {
   const referenced = new Set(
