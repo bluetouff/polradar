@@ -1,0 +1,491 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Icon from '../../../components/Icon.astro';
+import { sourceById } from '../../../lib/data';
+import { euro } from '../../../lib/csg-paie.mjs';
+import {
+  electricityComparison,
+  electricityProfiles,
+  electricityPolicies,
+  electricitySources,
+} from '../../../lib/electricity-tax.mjs';
+
+const sample = electricityProfiles[0];
+const result = electricityComparison(sample.kva, sample.referenceKwh)!;
+const number = (n: number) => n.toLocaleString('fr-FR');
+---
+
+<Base
+  title="Simuler la TVA et l’accise sur votre consommation d’électricité"
+  description="Calculez l’effet de trois propositions fiscales sur la part consommation au tarif Bleu. Deux cas de la CRE et vos kWh, hors abonnement."
+  section="/economie/"
+  lastModified="2026-11-24"
+>
+  <nav class="breadcrumbs" aria-label="Fil d’Ariane">
+    <a href="/economie/">Économie</a>
+    <span aria-hidden="true">/</span>
+    <a href="/economie/simulateurs/">Simulateurs</a>
+  </nav>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="climat" />
+    </span>
+    <div>
+      <h1>L’effet des taxes sur votre consommation d’électricité</h1>
+      <p>
+        Comparez trois propositions sur les mêmes kilowattheures. Tarif Bleu,
+        option Base, en France métropolitaine continentale. Abonnement exclu.
+      </p>
+    </div>
+  </header>
+
+  <section class="electric-lab" aria-labelledby="volume-title">
+    <div class="inputs">
+      <h2 id="volume-title">Votre consommation annuelle</h2>
+      <p>
+        Sur votre facture, relevez la puissance du contrat et les kWh consommés
+        sur douze mois.
+      </p>
+      <form id="energy-form" hidden aria-labelledby="volume-title">
+        <label for="power">Puissance souscrite</label>
+        <select id="power">
+          {electricityProfiles.map((profile) => (
+            <option value={profile.kva}>{profile.kva} kVA</option>
+          ))}
+        </select>
+        <label for="volume">Consommation en kWh par an</label>
+        <input
+          id="volume"
+          type="text"
+          inputmode="numeric"
+          autocomplete="off"
+          maxlength="12"
+          aria-describedby="energy-error"
+          value={String(sample.referenceKwh)}
+        />
+        <p id="energy-error" role="alert" hidden></p>
+        <button type="submit" class="button">
+          Comparer les taxes
+        </button>
+        <fieldset>
+          <legend>Deux cas types de la CRE</legend>
+          {electricityProfiles.map((profile) => (
+            <button type="button" data-example={profile.kva}>
+              {number(profile.referenceKwh)} kWh · {profile.kva} kVA
+            </button>
+          ))}
+        </fieldset>
+      </form>
+      <noscript>
+        <p>
+          L’exemple affiché correspond au cas type de 2 200 kWh et 6 kVA publié
+          par la CRE.
+        </p>
+      </noscript>
+    </div>
+
+    <section class="bill" aria-labelledby="bill-title">
+      <header>
+        <h2 id="bill-title">Part consommation sur un an</h2>
+        <p id="energy-context" role="status" aria-live="polite">
+          {number(sample.referenceKwh)} kWh · {sample.kva} kVA · tarif du 1er
+          août 2026
+        </p>
+      </header>
+      <div id="energy-output">
+        <div class="baseline">
+          <div>
+            <strong>Au tarif de référence</strong>
+            <span>TVA à 20 % et accise à 30,62 €/MWh</span>
+          </div>
+          <strong id="energy-base">{euro(result.current)}</strong>
+        </div>
+        <svg
+          class="track baseline-track"
+          viewBox="0 0 100 4"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <rect width="100" height="4" />
+        </svg>
+        <p class="legend">
+          Chaque ligne applique une seule proposition au tarif de référence.
+        </p>
+        <div class="scenarios">
+          {electricityPolicies.map((policy, index) => {
+            const item = result.alternatives[index];
+            return (
+              <article data-case={item.measure}>
+                <div class="bill-row">
+                  <div>
+                    <h3>{policy.author}</h3>
+                    <span>{policy.label}</span>
+                  </div>
+                  <div class="numbers">
+                    <strong data-amount>{euro(item.amount)}</strong>
+                    <small data-difference>
+                      {euro(item.difference)} de moins
+                    </small>
+                  </div>
+                </div>
+                <svg
+                  class="track"
+                  viewBox="0 0 100 4"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <rect class="whole" width="100" height="4" />
+                  <rect
+                    data-bar
+                    width={(100 * item.amount) / result.current}
+                    height="4"
+                  />
+                </svg>
+                <p class="status">
+                  {policy.status} ·{' '}
+                  <a href={'/mesures/' + policy.measure + '/'}>
+                    Fiche de la proposition
+                  </a>
+                </p>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  </section>
+  <section class="methods" aria-labelledby="calculation">
+    <h2 id="calculation">Comment lire les écarts</h2>
+    <p>
+      Le calcul garde le prix avant TVA et accise, la consommation et les autres
+      prélèvements constants. Il suppose que le fournisseur répercute
+      intégralement chaque changement. Le résultat porte sur l’électricité
+      consommée, hors abonnement, chèque énergie et impôts de remplacement.
+    </p>
+    <details>
+      <summary>Tarifs, méthode et documents d’origine</summary>
+      <p>
+        La CRE donne un prix TTC de 0,2001 €/kWh en 6 kVA et 0,1985 €/kWh en 9
+        kVA au 1er août 2026. Le calcul applique ce barème sur douze mois à
+        volume constant. Les volumes de 2 200 et de 4 000 kWh sont deux cas
+        types utilisés par le régulateur pour comparer les offres. En 9 kVA,
+        l’option Base reste réservée aux contrats existants.{' '}
+        <a href={electricitySources.tariffs}>Historique de la CRE</a> ·{' '}
+        <a href={electricitySources.csv}>Tarif Base (CSV)</a> ·{' '}
+        <a href={electricitySources.profiles}>
+          Cas types de la CRE, annexe méthodologique (PDF)
+        </a>{' '}
+        ·{' '}
+        <a href="https://particulier.edf.fr/content/dam/2-Actifs/Documents/Offres/Grille_prix_Tarif_Bleu.pdf">
+          Grille EDF au 1er août (PDF)
+        </a>
+      </p>
+      <p>
+        Pour changer la TVA, Polradar divise le prix TTC par 1,20 puis applique
+        le taux proposé. Pour changer l’accise, il corrige le prix TTC de la
+        différence d’accise, TVA comprise. Le prix au kWh conserve sa précision
+        jusqu’à l’arrondi final au centime.{' '}
+        <a href={electricitySources.vat}>
+          Service Public · TVA sur l’électricité
+        </a>{' '}
+        ·{' '}
+        <a href={electricitySources.excise}>
+          CRE · accise applicable au 1er août 2026
+        </a>
+      </p>
+      <p>
+        Équinoxe part d’une accise de 30,04 €/MWh et annonce 108 € d’économie
+        pour 5 000 kWh. Avec l’accise de 30,62 €/MWh publiée par la CRE et la
+        cible de 12,04 €/MWh du parti, Polradar obtient 111,48 € sur le même
+        volume.{' '}
+        <a href={sourceById('equinoxe-contre-budget-2027').url}>
+          Contre-budget d’Équinoxe
+        </a>
+      </p>
+      <p>
+        Selma Labib propose de remplacer la TVA par un impôt progressif. Son
+        texte ne donne pas le barème de cet impôt. L’amendement de Marine Le Pen
+        visait aussi le gaz, le fioul et les carburants. L’Assemblée l’a rejeté.{' '}
+        <a href={sourceById('labib-lettre-finances-2026').url}>
+          Lettre de Selma Labib
+        </a>{' '}
+        ·{' '}
+        <a href={sourceById('an-lepen-i635-tva-energies').url}>
+          Amendement I-635 et résultat à l’Assemblée
+        </a>
+      </p>
+    </details>
+  </section>
+</Base>
+
+<script>
+  import {
+    electricityComparison,
+    electricityProfiles,
+    maxAnnualKwh,
+  } from '../../../lib/electricity-tax.mjs';
+  import { euro } from '../../../lib/csg-paie.mjs';
+  const form = document.querySelector<HTMLFormElement>('#energy-form')!;
+  const power = form.querySelector<HTMLSelectElement>('#power')!;
+  const volume = form.querySelector<HTMLInputElement>('#volume')!;
+  const error = form.querySelector<HTMLElement>('#energy-error')!;
+  const context = document.getElementById('energy-context')!;
+  const output = document.getElementById('energy-output')!;
+  function render() {
+    const text = volume.value.trim();
+    const valid = /^(?:\d+|\d{1,3}(?:[ \u00a0\u202f]\d{3})+)$/u.test(text);
+    const value = valid ? Number(text.replace(/[ \u00a0\u202f]/gu, '')) : NaN;
+    const kva = Number(power.value);
+    const comparison = electricityComparison(kva, value);
+    if (!comparison) {
+      volume.setAttribute('aria-invalid', 'true');
+      error.textContent =
+        'Saisissez un nombre entier entre 0 et ' +
+        maxAnnualKwh.toLocaleString('fr-FR') +
+        ' kWh.';
+      error.hidden = false;
+      output.hidden = true;
+      context.textContent = '';
+      volume.focus();
+      return;
+    }
+    error.hidden = true;
+    volume.removeAttribute('aria-invalid');
+    document.getElementById('energy-base')!.textContent = euro(
+      comparison.current,
+    );
+    output
+      .querySelector('.baseline-track rect')!
+      .setAttribute('width', comparison.current ? '100' : '0');
+    for (const item of comparison.alternatives) {
+      const row = output.querySelector('[data-case="' + item.measure + '"]')!;
+      row.querySelector('[data-amount]')!.textContent = euro(item.amount);
+      row.querySelector('[data-difference]')!.textContent =
+        euro(item.difference) + ' de moins';
+      row
+        .querySelector('[data-bar]')!
+        .setAttribute(
+          'width',
+          String(
+            comparison.current ? (100 * item.amount) / comparison.current : 0,
+          ),
+        );
+    }
+    output.hidden = false;
+    context.textContent =
+      value.toLocaleString('fr-FR') +
+      ' kWh · ' +
+      kva +
+      ' kVA · tarif du 1er août 2026';
+  }
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    render();
+  });
+  form.addEventListener('input', () => {
+    output.hidden = true;
+    error.hidden = true;
+    volume.removeAttribute('aria-invalid');
+    context.textContent = 'Validez pour afficher les montants.';
+  });
+  for (const button of form.querySelectorAll<HTMLButtonElement>(
+    '[data-example]',
+  )) {
+    button.addEventListener('click', () => {
+      const profile = electricityProfiles.find(
+        (p) => p.kva === Number(button.dataset.example),
+      )!;
+      volume.value = String(profile.referenceKwh);
+      power.value = String(profile.kva);
+      render();
+    });
+  }
+  form.hidden = false;
+</script>
+
+<style>
+  .electric-lab {
+    display: grid;
+    grid-template-columns: minmax(15rem, 0.75fr) minmax(0, 1.25fr);
+    gap: clamp(1rem, 3vw, 2.5rem);
+    align-items: start;
+    margin: 1.25rem 0;
+  }
+  .inputs,
+  .bill,
+  .methods {
+    border: 1px solid #a6bec6;
+    border-radius: 0.9rem;
+    padding: clamp(1rem, 2vw, 1.65rem);
+    min-width: 0;
+  }
+  .inputs,
+  .methods {
+    background: #f5f9fa;
+    color: #19333f;
+  }
+  .inputs h2,
+  .bill h2,
+  .methods h2 {
+    font-size: 1.18rem;
+    line-height: 1.25;
+    margin: 0 0 0.55rem;
+  }
+  .inputs p,
+  .methods p {
+    line-height: 1.5;
+    max-width: 75ch;
+  }
+  .inputs form {
+    display: grid;
+    gap: 0.5rem;
+    margin-block: 1rem 0;
+  }
+  .inputs label,
+  .inputs legend {
+    font-weight: 650;
+  }
+  .inputs input,
+  .inputs select {
+    min-width: 0;
+    width: 100%;
+    border: 1px solid #718b99;
+    border-radius: 0.45rem;
+    background: #fff;
+    color: inherit;
+    padding: 0.7rem;
+    font: inherit;
+  }
+  .inputs select {
+    margin-bottom: 0.4rem;
+    padding-inline-end: 2.5rem;
+  }
+  .inputs .button {
+    justify-self: start;
+    margin: 0.2rem 0;
+  }
+  .inputs fieldset {
+    min-width: 0;
+    border: 0;
+    border-top: 1px solid #b3c8ce;
+    padding: 0.75rem 0 0;
+    margin-top: 0.65rem;
+  }
+  .inputs legend {
+    padding-inline-end: 0.5rem;
+    font-size: 0.88rem;
+  }
+  .inputs button[data-example] {
+    font: inherit;
+    margin: 0.15rem 0.2rem 0.15rem 0;
+    padding: 0.5rem 0.65rem;
+    color: #214758;
+    background: #e4eef0;
+    border: 1px solid #94b1ba;
+    border-radius: 0.45rem;
+    cursor: pointer;
+  }
+  .bill {
+    background: linear-gradient(145deg, #102c38, #193e4b);
+    color: #f4fbff;
+  }
+  .bill h2,
+  .bill h3,
+  .bill strong {
+    color: #f4fbff;
+  }
+  .bill p,
+  .bill span {
+    color: #cee2e7;
+  }
+  .bill header p {
+    margin: 0.15rem 0 0.9rem;
+    font-size: 0.9rem;
+  }
+  .baseline,
+  .bill-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.9rem;
+  }
+  .baseline span,
+  .bill-row span,
+  .numbers small {
+    display: block;
+  }
+  .baseline strong:last-child,
+  .numbers strong {
+    font-size: 1.25rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .bill-row h3 {
+    font-size: 1rem;
+    margin: 0;
+  }
+  .numbers {
+    text-align: end;
+  }
+  .numbers small {
+    color: #b9ede1;
+    font-variant-numeric: tabular-nums;
+  }
+  .bill .track {
+    display: block;
+    width: 100%;
+    height: 0.45rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    fill: #9fdbd2;
+    margin: 0.5rem 0;
+  }
+  .whole {
+    fill: #355663;
+  }
+  .bill .baseline-track {
+    fill: #e2e9eb;
+  }
+  .bill article {
+    padding: 0.85rem 0;
+    border-top: 1px solid #486572;
+  }
+  .bill article:last-child {
+    padding-bottom: 0;
+  }
+  .bill .legend,
+  .bill .status {
+    font-size: 0.84rem;
+    line-height: 1.45;
+    margin: 0.5rem 0;
+  }
+  .bill .legend {
+    margin: 0.85rem 0;
+  }
+  .bill a {
+    color: #c5ecee;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+  .methods summary {
+    cursor: pointer;
+    font-weight: 650;
+  }
+  .electric-lab [hidden] {
+    display: none;
+  }
+  #energy-error {
+    margin: 0;
+    color: #8a3226;
+  }
+  @media (max-width: 720px) {
+    .electric-lab {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .numbers {
+      text-align: start;
+    }
+  }
+</style>

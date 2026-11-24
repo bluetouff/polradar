@@ -7,22 +7,34 @@ import { retirementUrl } from '../../lib/retirement-comparison.mjs';
 ---
 
 <Base
-  title="Simuler la CSG et les conditions de retraite"
+  title="Simuler l’électricité, la CSG et la retraite"
   section="/economie/"
-  description="Calculez la CSG de votre paie en 2026 ou comparez les règles de retraite applicables à votre génération aux programmes documentés."
+  description="Simulez les taxes sur votre consommation d’électricité, la CSG sur votre salaire ou les règles de retraite de votre génération."
 >
   <header class="page-title feature-title">
     <span class="feature-emblem">
       <Icon name="fiscalite" />
     </span>
     <div>
-      <h1>Simuler la CSG et la retraite</h1>
+      <h1>Simuler l’électricité, la CSG et la retraite</h1>
       <p>
-        Le salaire brut détermine la CSG. La génération détermine les conditions
-        de départ à la retraite.
+        Choisissez une dépense, un salaire ou une génération pour voir le calcul
+        et ses sources.
       </p>
     </div>
   </header>
+  <section class="panel power-link" aria-labelledby="sim-power">
+    <h2 id="sim-power">Taxes sur votre électricité</h2>
+    <p>
+      Combien coûterait la même consommation avec une TVA ou une accise
+      différente ? Trois propositions chiffrables sur vos kWh, au tarif Bleu du
+      1er août 2026.
+    </p>
+    <a href="/economie/simulateurs/electricite/">
+      Comparer les trois propositions sur l’électricité{' '}
+      <span aria-hidden="true">→</span>
+    </a>
+  </section>
   <SalaryCalculator />
   <section class="panel" aria-labelledby="sim-retraite">
     <h2 id="sim-retraite">Retraite par génération</h2>
@@ -39,6 +51,16 @@ import { retirementUrl } from '../../lib/retirement-comparison.mjs';
   </section>
 </Base>
 <style>
+  .power-link {
+    border-inline-start: 0.3rem solid #26777c;
+    padding: clamp(1rem, 2vw, 1.5rem);
+  }
+  .power-link h2 {
+    margin-top: 0;
+  }
+  .power-link p {
+    max-width: 70ch;
+  }
   .cohort-options {
     display: flex;
     flex-wrap: wrap;

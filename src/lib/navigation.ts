@@ -54,7 +54,11 @@ export const groups = [
       ['/mcp/statistiques/', 'Activité du serveur MCP', 'sondages'],
       ['/mises-a-jour/', 'Mises à jour', 'clock'],
       ['/economie/', 'Indicateurs économiques', 'markets'],
-      ['/economie/simulateurs/', 'Simuler la CSG et la retraite', 'fiscalite'],
+      [
+        '/economie/simulateurs/',
+        'Simuler l’électricité, la CSG et la retraite',
+        'fiscalite',
+      ],
       [
         '/economie/finances-publiques/',
         'Comptes publics de référence',

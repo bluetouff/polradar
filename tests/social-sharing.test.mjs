@@ -93,6 +93,7 @@ test('l’accueil et toutes les rubriques ont un PNG distinct et les sous-pages 
     '/economie/',
     '/economie/declarations/',
     '/economie/simulateurs/',
+    '/economie/simulateurs/electricite/',
     '/territoires/',
     '/economie/finances-publiques/',
     '/themes/',

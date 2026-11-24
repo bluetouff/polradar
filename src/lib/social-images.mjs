@@ -2,6 +2,11 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { francePath, projectFrance } from './campaign-visuals-view.mjs';
 import { divergenceGroups } from './divergences.mjs';
+import {
+  electricityComparison,
+  electricityPolicies,
+  electricityProfiles,
+} from './electricity-tax.mjs';
 const read = (name) =>
   JSON.parse(readFileSync(resolve('src/data', `${name}.json`), 'utf8'));
 // Astro executes a bundled copy in dist/.prerender. Build inputs stay in the
@@ -70,6 +75,11 @@ const bars = (rows, unit = 'fiches dans le corpus') => ({
   rows,
   unit,
 });
+const electricityProfile = electricityProfiles[0];
+const householdElectricity = electricityComparison(
+  electricityProfile.kva,
+  electricityProfile.referenceKwh,
+);
 const tiles = (rows, label) => ({
   kind: 'tiles',
   rows: rows.map(([label, value]) => ({ label, value: number(value) })),
@@ -140,19 +150,39 @@ const defs = [
   [
     'simulateurs',
     '/economie/simulateurs/',
-    'Droit en vigueur',
-    'Simuler la CSG\net la retraite',
-    'Le montant prélevé sur votre paie et les règles de votre génération.',
+    'Règles et propositions',
+    'Électricité, CSG\net retraite',
+    'Comparez les taxes sur vos kWh, les prélèvements sur la paie et les règles de retraite.',
     'navy',
     {
       kind: 'document',
       rows: [
-        'Salaire mensuel en euros',
-        'Assiette de la CSG',
-        'Part déductible',
-        'Part non déductible',
+        'Consommation électrique',
+        'Salaire brut mensuel',
+        'Âge et trimestres de retraite',
       ],
     },
+  ],
+  [
+    'electricite-taxes',
+    '/economie/simulateurs/electricite/',
+    'Tarif Bleu · Août 2026',
+    'Les taxes sur\nvotre électricité',
+    'Pour 2 200 kWh en un an, option Base 6 kVA, hors abonnement. Trois hypothèses à consommation égale.',
+    'sage',
+    bars(
+      [
+        {
+          label: 'Tarif de référence',
+          value: householdElectricity.current / 100,
+        },
+        ...householdElectricity.alternatives.map((row, index) => ({
+          label: electricityPolicies[index].label,
+          value: row.amount / 100,
+        })),
+      ],
+      'Part consommation en euros TTC',
+    ),
   ],
   [
     'communes',
