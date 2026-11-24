@@ -1,0 +1,167 @@
+{
+  "version": 1,
+  "questions": [
+    {
+      "id": "vote-cyber",
+      "question": "Comment Gabriel Attal a-t-il voté au scrutin n°9916 du 17 novembre 2026 à l’Assemblée nationale sur la cybersécurité des infrastructures critiques ? Le relevé indique-t-il une délégation de vote ?",
+      "reference": {
+        "famille": "recherche-parlementaire",
+        "arguments": { "query": "VTANR5L17V9916", "candidat": "attal" }
+      },
+      "etat": "documente",
+      "faits": [
+        ["pour", "pour l’adoption", "a voté pour"],
+        [
+          "oui",
+          "par délégation",
+          "oui, par délégation",
+          "vote par délégation",
+          "délégation de vote",
+          "oui, le relevé indique une délégation de vote"
+        ]
+      ],
+      "appels": [
+        {
+          "arguments": { "collection": "parlement" },
+          "attendus": {
+            "/publication/id": "VTANR5L17V9916",
+            "/publication/positions/*": {
+              "candidat": "attal",
+              "vote": "pour",
+              "delegation": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "fret-auteur",
+      "question": "Dans la première version de la fiche « Reconstituer Fret SNCF », quel auteur est indiqué ? Quel type de proposition Polradar lui attribue-t-il ?",
+      "reference": {
+        "famille": "programmes",
+        "arguments": { "id": "ps-reconstituer-fret-sncf", "version": 1 }
+      },
+      "etat": "documente",
+      "faits": [
+        ["Parti socialiste", "le Parti socialiste", "Parti socialiste (PS)"],
+        [
+          "parti",
+          "proposition de parti",
+          "programme de parti",
+          "proposition d’un parti",
+          "mesure de parti"
+        ]
+      ],
+      "adresses": [
+        "https://polradar.fr/mesures/ps-reconstituer-fret-sncf/#version-1"
+      ],
+      "appels": [
+        {
+          "arguments": { "id": "ps-reconstituer-fret-sncf" },
+          "attendus": {
+            "/versionDemandee": "ps-reconstituer-fret-sncf-v1",
+            "/auteur": "Parti socialiste",
+            "/statut": "parti"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sondage-seuil",
+      "question": "Dans le scénario de premier tour de l’enquête OpinionWay pour CNews des 21 et 22 octobre 2026, quel résultat est publié pour Nathalie Arthaud et combien de personnes expriment un vote dans le tableau ?",
+      "reference": {
+        "famille": "sondages-historiques",
+        "arguments": { "id": "opinionway-commission-10333-p12" }
+      },
+      "etat": "documente",
+      "faits": [
+        [
+          "moins de 1 %",
+          "< 1 %",
+          "inférieur à 1 %",
+          "strictement inférieur à 1 %",
+          "moins de 1 pour cent"
+        ],
+        [
+          "680",
+          "680 personnes",
+          "680 répondants",
+          "680 intentions exprimées",
+          "680 personnes expriment un vote"
+        ]
+      ],
+      "adresses": [
+        "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2352#page=12"
+      ],
+      "appels": [
+        {
+          "arguments": { "collection": "sondages" },
+          "attendus": {
+            "/publication/id": "opinionway-commission-10333-p12",
+            "/publication/usefulSample": 680,
+            "/publication/results/*": {
+              "id": "arthaud",
+              "percentage": null,
+              "below": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "seance-hors-registre",
+      "question": "Quel vote individuel de Raphaël Glucksmann le registre Polradar indique-t-il pour le 18 mars 2024 au Parlement européen ?",
+      "reference": {
+        "famille": "archives-parlement-europeen",
+        "arguments": { "periode": "2024-03-18" }
+      },
+      "etat": "indisponible",
+      "faits": [
+        [
+          "période non couverte",
+          "hors registre",
+          "période hors registre",
+          "date non couverte",
+          "date hors registre",
+          "séance non couverte",
+          "séance hors registre",
+          "séance hors périmètre",
+          "date hors périmètre",
+          "hors périmètre du registre",
+          "hors du registre",
+          "le 18 mars 2024 est hors du périmètre couvert par le registre",
+          "non couverte"
+        ]
+      ],
+      "adresses": [
+        "https://polradar.fr/votes/archives/",
+        "https://polradar.fr/votes/recherche/"
+      ],
+      "appels": [
+        {
+          "arguments": {
+            "collection": "parlement-europeen",
+            "periode": "2024-03-18"
+          },
+          "attendus": {
+            "/periodeDemandee": "2024-03-18",
+            "/couverture": "periode-non-couverte",
+            "/publication": null
+          }
+        },
+        {
+          "arguments": {
+            "collection": "parlement",
+            "institution": "parlement-europeen",
+            "debut": "2024-03-18",
+            "fin": "2024-03-18"
+          },
+          "attendus": {
+            "/couverture": "periode-hors-registre",
+            "/total": 0
+          }
+        }
+      ]
+    }
+  ]
+}
