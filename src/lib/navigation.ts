@@ -41,6 +41,7 @@ export const groups = [
       ['/argent-des-campagnes/', 'Argent des campagnes', 'euro'],
       ['/reperes/', 'Calendrier électoral', 'clock'],
       ['/communes/', 'Résultats par commune', 'institutions'],
+      ['/territoires/', 'Les chiffres de ma commune', 'map-pin'],
     ],
   },
   {
@@ -53,6 +54,7 @@ export const groups = [
       ['/mcp/statistiques/', 'Activité du serveur MCP', 'sondages'],
       ['/mises-a-jour/', 'Mises à jour', 'clock'],
       ['/economie/', 'Indicateurs économiques', 'markets'],
+      ['/economie/simulateurs/', 'Simuler la CSG et la retraite', 'fiscalite'],
       [
         '/economie/finances-publiques/',
         'Comptes publics de référence',

@@ -1,4 +1,5 @@
 ---
+import TerritoryContext from './TerritoryContext.astro';
 import annuaireUrl from '../data/territoires/annuaire.json?url';
 import sruUrl from '../data/territoires/sru.json?url';
 import aplUrl from '../data/territoires/apl.json?url';
@@ -13,8 +14,9 @@ import {
 import { sruPicture, sruImageUrl, sruEmbedCode } from '../lib/sru-graph';
 interface Props {
   mode: Indicator;
+  crosswalk?: boolean;
 }
-const { mode } = Astro.props;
+const { mode, crosswalk = false } = Astro.props;
 const housing = mode === 'sru';
 const initial = sruRows['75056'];
 const facts = localFacts(mode, '75056', housing ? initial : aplRows['75056']);
@@ -27,6 +29,7 @@ const sampleUrl = sruImageUrl(sample.svg);
   data-territory={mode}
   data-names={annuaireUrl}
   data-values={housing ? sruUrl : aplUrl}
+  data-cross-apl={crosswalk ? aplUrl : undefined}
   aria-label="Données communales"
 >
   <form role="search" hidden data-form>
@@ -98,6 +101,7 @@ const sampleUrl = sruImageUrl(sample.svg);
         </details>
       </figure>
     )}
+    {crosswalk && <TerritoryContext />}
   </div>
   <noscript>
     <p>

@@ -11,14 +11,41 @@ export const euro = (cents) =>
     minimumFractionDigits: cents % 100 === 0 ? 0 : 2,
   }).format(cents / 100);
 
-// One ordinary monthly salary, paid identically twelve times, expressed in cents.
-export function csgExample(gross) {
-  if (!Number.isSafeInteger(gross) || gross < 0 || gross * 12 > 19224000)
-    throw RangeError('Hors du cas de paie décrit');
-  const base = Math.floor((gross * 9825 + 5000) / 10000);
+// Four monthly social-security ceilings for one ordinary salary paid twelve times.
+const monthlyAbatementLimit = 4 * 4005 * 100;
+export function monthlyCsg2026(gross) {
+  if (
+    !Number.isSafeInteger(gross) ||
+    gross < 0 ||
+    gross > Math.floor((Number.MAX_SAFE_INTEGER - 500) / 68)
+  )
+    throw RangeError('Salaire hors plage de calcul');
+  const capped = Math.min(gross, monthlyAbatementLimit);
+  const base = Math.floor((capped * 9825 + 5000) / 10000) + (gross - capped);
   const deducted = Math.floor((base * 68 + 500) / 1000);
   const other = Math.floor((base * 24 + 500) / 1000);
   return { gross, base, deducted, other, total: deducted + other };
+}
+export function csgExample(gross) {
+  if (gross > monthlyAbatementLimit)
+    throw RangeError('Hors du cas de paie décrit');
+  return monthlyCsg2026(gross);
+}
+
+export function salaryCents(input) {
+  if (typeof input !== 'string' || input.length > 24) return null;
+  const match =
+    /^(0|[1-9]\d*|[1-9]\d{0,2}(?:[ \u00a0\u202f]\d{3})+)(?:[,.](\d{1,2}))?$/u.exec(
+      input.trim(),
+    );
+  if (!match) return null;
+  const amount =
+    Number(match[1].replace(/[ \u00a0\u202f]/gu, '')) * 100 +
+    Number((match[2] ?? '').padEnd(2, '0'));
+  return Number.isSafeInteger(amount) &&
+    amount <= Math.floor((Number.MAX_SAFE_INTEGER - 500) / 68)
+    ? amount
+    : null;
 }
 export const payrolls = [200000, 300000, 400000].map(csgExample);
 export function salaryGraphic() {

@@ -59,6 +59,11 @@ const links = [
     </div>
   </header>
   <DossierLinks communes />
+  <p>
+    <a href={'/territoires/' + communeLink(code)} id="commune-territory">
+      Logement et accès aux soins dans la commune ↗
+    </a>
+  </p>
   <div class="commune-picker">
     <form id="commune-search" role="search" hidden>
       <label for="commune-query">Nom de commune ou code Insee</label>

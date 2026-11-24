@@ -1,0 +1,35 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import DossierCommune from '../../components/DossierCommune.astro';
+import { sruSource, aplPage } from '../../lib/dossiers-territoriaux';
+import '../../styles/dossiers-terrain.css';
+---
+
+<Base
+  title="Les chiffres de ma commune"
+  section="/territoires/"
+  description="Logements sociaux, médecins généralistes, population, logements vacants et participation électorale par commune, avec les définitions, les millésimes et les propositions associées."
+>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="map-pin" />
+    </span>
+    <div>
+      <h1>Les chiffres de ma commune</h1>
+      <p>
+        Logement, accès aux médecins et participation électorale. Chaque chiffre
+        garde son année et son périmètre.
+      </p>
+    </div>
+  </header>
+  <section class="terrain-panel">
+    <DossierCommune mode="sru" crosswalk />
+    <p class="terrain-note">
+      <a href={sruSource} rel="noreferrer">
+        Ministère du Logement · inventaire SRU
+      </a>{' '}
+      · <a href={aplPage}>Carte de l’accès aux soins par département</a>
+    </p>
+  </section>
+</Base>

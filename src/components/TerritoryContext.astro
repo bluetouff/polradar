@@ -1,0 +1,134 @@
+---
+import areas from '../data/territoires/departements.json';
+import apl from '../data/territoires/apl.json';
+import elections from '../data/communes-2022.json';
+import sources from '../data/communes-2022-sources.json';
+import { readCommune } from '../lib/communes.mjs';
+import { aplPage, aplSource, sruPage } from '../lib/dossiers-territoriaux';
+import { localContext, territoryDepartment } from '../lib/local-context';
+const code = String(elections.preview.record[0]);
+const record = readCommune(
+  elections.preview.record,
+  code,
+  elections.rounds.map((r) => r.candidates.length),
+);
+const compact = areas.map(({ code, name, value }) => ({ code, name, value }));
+const fields = localContext(
+  apl[code as keyof typeof apl] ?? null,
+  territoryDepartment(code, compact),
+  record,
+);
+---
+
+<section
+  class="territory-context"
+  data-local-context
+  data-areas={JSON.stringify(compact)}
+  aria-label="Indicateurs de la commune"
+>
+  <h4>Soins, population et participation</h4>
+  <dl>
+    {fields.map((f) => (
+      <div data-context-field={f.key}>
+        <dt>
+          <span>{f.label}</span>
+          <small>{f.unit}</small>
+        </dt>
+        <dd>{f.value}</dd>
+      </div>
+    ))}
+  </dl>
+  <nav aria-label="Dossiers de la commune">
+    <a href={aplPage + '#commune=' + code} data-local-topic={aplPage}>
+      Propositions sur les médecins
+    </a>
+    <a href={sruPage + '#commune=' + code} data-local-topic={sruPage}>
+      Propositions sur le logement social
+    </a>
+    <a href={'/communes/#commune=' + code} data-local-election>
+      Résultats électoraux de 2022
+    </a>
+  </nav>
+  <details>
+    <summary>Définitions et sources</summary>
+    <p>
+      L’accessibilité mesure l’offre de consultations autour du domicile. Pour
+      Paris, Lyon et Marseille, les arrondissements sont pondérés par leur
+      population standardisée. Les chiffres du recensement et la participation
+      sont rapprochés uniquement lorsque le périmètre communal de 2022
+      correspond à celui de 2026.
+    </p>
+    <p>
+      <a href={aplSource} rel="noreferrer">
+        DREES · offre de soins de 2024
+      </a>{' '}
+      ·{' '}
+      <a
+        href={sources.find((s) => s.file === 'comparateur.zip')!.source}
+        rel="noreferrer"
+      >
+        Insee · comparateur de territoires
+      </a>{' '}
+      ·{' '}
+      <a
+        href={sources.find((s) => s.file === 't2-subcom.txt')!.source}
+        rel="noreferrer"
+      >
+        Intérieur · résultats du second tour
+      </a>
+    </p>
+  </details>
+</section>
+<style>
+  .territory-context {
+    grid-column: 1/-1;
+    margin-top: 0.7rem;
+  }
+  .territory-context h4 {
+    font-size: 1.15rem;
+    margin: 0.6rem 0;
+  }
+  .territory-context dl {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+    gap: 0.65rem;
+  }
+  .territory-context dl > div {
+    border: 1px solid #aac1c4;
+    border-radius: 0.55rem;
+    background: linear-gradient(145deg, #fafdfd, #e4efef);
+    padding: 0.85rem;
+    color: #143b46;
+  }
+  .territory-context dt,
+  .territory-context small {
+    font-size: 0.82rem;
+  }
+  .territory-context dt small {
+    display: block;
+    font-weight: 400;
+  }
+  .territory-context dd {
+    margin: 0.25rem 0;
+    font-size: 1.42rem;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+  }
+  .territory-context nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin: 0.8rem 0;
+  }
+  .territory-context nav a {
+    padding: 0.65rem 0.8rem;
+    border: 1px solid #a0b8be;
+    border-radius: 0.35rem;
+  }
+  .territory-context details {
+    padding: 0.4rem 0;
+  }
+  .territory-context [hidden] {
+    display: none;
+  }
+</style>

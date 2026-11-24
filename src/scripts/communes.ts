@@ -70,6 +70,12 @@ function showReport(name: string, record: ReturnType<typeof readCommune>) {
   updateText('#commune-code', code);
   updateText('#commune-name', name);
   permalink.href = communeLink(code);
+  const territory =
+    document.querySelector<HTMLAnchorElement>('#commune-territory');
+  if (territory)
+    territory.href = context
+      ? '/territoires/' + communeLink(code)
+      : '/territoires/';
   for (const [index, card] of roundCards.entries()) {
     const panel = panels[index];
     updateText('[data-participation]', panel.participants, card);

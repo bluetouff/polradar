@@ -1,0 +1,219 @@
+---
+import { euro, payrolls } from '../lib/csg-paie.mjs';
+const sample = payrolls[0];
+---
+
+<section class="pay-calc" aria-labelledby="calculer-csg">
+  <div>
+    <h2 id="calculer-csg">Calculez la CSG sur votre salaire</h2>
+    <p>
+      Barème 2026 pour un salarié du privé au régime général, payé douze mois à
+      l’identique. Saisissez le brut mensuel ordinaire, hors primes et
+      compléments. Le montant reste dans votre navigateur.
+    </p>
+    <form id="salary-form" hidden novalidate>
+      <label for="salary-gross">Salaire brut mensuel en euros</label>
+      <div>
+        <input
+          type="text"
+          inputmode="decimal"
+          id="salary-gross"
+          value="2 000"
+          maxlength="24"
+          autocomplete="off"
+          aria-describedby="salary-feedback"
+        />
+        <button type="submit" class="button">
+          Calculer
+        </button>
+      </div>
+    </form>
+    <p id="salary-feedback" role="status" aria-live="polite"></p>
+    <noscript>
+      <p>Exemple pour 2 000 € bruts par mois.</p>
+    </noscript>
+  </div>
+  <div>
+    <dl class="pay-values" id="salary-result">
+      <div>
+        <dt>CSG mensuelle</dt>
+        <dd id="salary-total">{euro(sample.total)}</dd>
+      </div>
+      <div>
+        <dt>Assiette retenue</dt>
+        <dd id="salary-base">{euro(sample.base)}</dd>
+      </div>
+      <div>
+        <dt>Déductible du revenu imposable</dt>
+        <dd id="salary-deducted">{euro(sample.deducted)}</dd>
+      </div>
+      <div>
+        <dt>Non déductible</dt>
+        <dd id="salary-other">{euro(sample.other)}</dd>
+      </div>
+    </dl>
+  </div>
+  <details>
+    <summary>Règles de calcul</summary>
+    <p>
+      La base retient 98,25 % du brut jusqu’à 192 240 € par an, soit 16 020 €
+      par mois avec douze paies égales. Au-delà, l’excédent entre en totalité
+      dans la base. Sur cette base, 6,8 points de CSG sont déductibles du revenu
+      imposable et 2,4 points sont non déductibles. Chaque ligne est arrondie au
+      centime.
+    </p>
+    <p>
+      Le calcul exclut la CRDS, les cotisations, les régimes particuliers et le
+      prélèvement à la source. La comparaison des projets des candidats figure
+      dans{' '}
+      <a href="/questions/fiscalite-csg-salaires/#couverture">
+        le dossier sur la CSG
+      </a>
+      .
+    </p>
+    <p>
+      <a
+        href="https://www.service-public.gouv.fr/particuliers/vosdroits/F2302"
+        rel="noreferrer"
+      >
+        Service Public · taux et assiette en 2026
+      </a>{' '}
+      ·{' '}
+      <a
+        href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053143451"
+        rel="noreferrer"
+      >
+        Légifrance · plafond 2026
+      </a>
+    </p>
+  </details>
+</section>
+<script>
+  import { euro, monthlyCsg2026, salaryCents } from '../lib/csg-paie.mjs';
+  const form = document.querySelector<HTMLFormElement>('#salary-form')!;
+  const field = document.querySelector<HTMLInputElement>('#salary-gross')!;
+  const result = document.getElementById('salary-result')!;
+  const message = document.getElementById('salary-feedback')!;
+  function calculate() {
+    const value = salaryCents(field.value);
+    if (value === null) {
+      field.setAttribute('aria-invalid', 'true');
+      result.hidden = true;
+      message.textContent =
+        'Saisissez un montant positif ou nul, avec au plus deux décimales.';
+      return;
+    }
+    field.removeAttribute('aria-invalid');
+    const amounts = monthlyCsg2026(value);
+    for (const field of ['total', 'base', 'deducted', 'other'] as const)
+      document.getElementById('salary-' + field)!.textContent = euro(
+        amounts[field],
+      );
+    result.hidden = false;
+    message.textContent =
+      euro(amounts.total) + ' de CSG pour ' + euro(value) + ' bruts par mois.';
+  }
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    calculate();
+  });
+  field.addEventListener('input', () => {
+    result.hidden = true;
+    message.textContent = '';
+    field.removeAttribute('aria-invalid');
+  });
+  form.hidden = false;
+</script>
+<style>
+  .pay-calc {
+    padding: clamp(1rem, 3vw, 2rem);
+    background: linear-gradient(120deg, #eff6f6, #dcecee);
+    border: 1px solid #91aeb5;
+    border-radius: 0.9rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1rem, 2.8vw, 2rem);
+    margin-block: 1.1rem;
+    color: #193847;
+  }
+  .pay-calc h2 {
+    margin: 0 0 0.5rem;
+  }
+  .pay-calc p {
+    max-width: 65ch;
+  }
+  .pay-calc label,
+  .pay-values dt,
+  .pay-calc summary {
+    font-weight: 600;
+  }
+  .pay-calc form > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.35rem;
+  }
+  .pay-calc input {
+    border: 1px solid #71959d;
+    border-radius: 0.35rem;
+    padding: 0.6rem;
+    max-width: 100%;
+    min-width: 0;
+    font: inherit;
+  }
+  .pay-calc details {
+    grid-column: 1/-1;
+    border-block-start: 1px solid #a7bfc2;
+    padding-top: 0.8rem;
+  }
+  .pay-calc summary {
+    cursor: pointer;
+  }
+  .pay-values {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .pay-values > div {
+    border-block-start: 1px solid #a7bfc2;
+    padding: 0.6rem 0;
+    min-width: 0;
+  }
+  .pay-values > div:first-child {
+    background: #153f4b;
+    color: #fff;
+    padding: 0.85rem;
+    border-radius: 0.45rem;
+    grid-column: 1/-1;
+  }
+  .pay-values dd {
+    font-variant-numeric: tabular-nums;
+    margin: 0.15rem 0 0;
+    font-size: 1.25rem;
+  }
+  .pay-values > div:first-child dd {
+    font-size: 1.65rem;
+  }
+  .pay-values dt {
+    font-size: 0.8rem;
+  }
+  .pay-calc [hidden] {
+    display: none;
+  }
+  .pay-calc [role='status'] {
+    font-size: 0.87rem;
+    min-height: 1.2rem;
+  }
+  @media (max-width: 700px) {
+    .pay-calc {
+      grid-template-columns: 1fr;
+    }
+    .pay-values {
+      gap: 0.3rem;
+    }
+    .pay-calc p {
+      margin-bottom: 0.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import SalaryCalculator from '../../components/SalaryCalculator.astro';
+import Icon from '../../components/Icon.astro';
+import comparison from '../../data/retirement-comparison.json';
+import { retirementUrl } from '../../lib/retirement-comparison.mjs';
+---
+
+<Base
+  title="Simuler la CSG et les conditions de retraite"
+  section="/economie/"
+  description="Calculez la CSG de votre paie en 2026 ou comparez les règles de retraite applicables à votre génération aux programmes documentés."
+>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="fiscalite" />
+    </span>
+    <div>
+      <h1>Simuler la CSG et la retraite</h1>
+      <p>
+        Le salaire brut détermine la CSG. La génération détermine les conditions
+        de départ à la retraite.
+      </p>
+    </div>
+  </header>
+  <SalaryCalculator />
+  <section class="panel" aria-labelledby="sim-retraite">
+    <h2 id="sim-retraite">Retraite par génération</h2>
+    <p>
+      Choisissez votre période de naissance pour voir l’âge légal, les
+      trimestres nécessaires et l’âge du taux plein dans le régime général, puis
+      les propositions documentées.
+    </p>
+    <nav class="cohort-options" aria-label="Période de naissance">
+      {comparison.cohorts.map((c) => (
+        <a href={retirementUrl(c.id)}>{c.label}</a>
+      ))}
+    </nav>
+  </section>
+</Base>
+<style>
+  .cohort-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.8rem 0;
+  }
+  .cohort-options a {
+    padding: 0.65rem 0.8rem;
+    border: 1px solid #91aab3;
+    border-radius: 0.35rem;
+    background: #f4f8f8;
+  }
+</style>

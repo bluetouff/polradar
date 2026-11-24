@@ -28,6 +28,13 @@ function start(root: HTMLElement) {
     facts = root.querySelector<HTMLElement>('[data-facts]')!,
     result = root.querySelector<HTMLElement>('.terrain-result')!;
   const copy = root.querySelector<HTMLButtonElement>('[data-copy]');
+  const contextArea = root.querySelector<HTMLElement>('[data-local-context]');
+  const extra =
+    contextArea && root.dataset.crossApl
+      ? import('./local-context').then(({ territoryContext }) =>
+          territoryContext(contextArea, root.dataset.crossApl!),
+        )
+      : undefined;
   const known = () =>
     Promise.all([
       loadFile(communeDataPath + 'index.json'),
@@ -75,6 +82,11 @@ function start(root: HTMLElement) {
         return;
       }
       const record = Object.hasOwn(data, code) ? data[code] : undefined;
+      if (extra) {
+        const update = await extra;
+        await update(code, () => seq === sequence);
+        if (seq !== sequence) return;
+      }
       const fragment = document.createDocumentFragment();
       for (const [label, val] of localFacts(mode, code, record)) {
         const div = document.createElement('div'),

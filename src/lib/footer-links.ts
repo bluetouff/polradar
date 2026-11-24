@@ -33,6 +33,7 @@ export const footerColumns = [
       ['/campagne/', 'Chronologie'],
       ['/agenda/', 'Carte des rendez-vous'],
       ['/communes/', 'Résultats par commune'],
+      ['/territoires/', 'Les chiffres de ma commune'],
       ['/sondages/', 'Sondages'],
       ['/economie/', 'Indicateurs économiques'],
       ['/economie/declarations/', 'Déclarations et chiffres publics'],

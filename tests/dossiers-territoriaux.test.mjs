@@ -2,7 +2,12 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { csgExample, salaryGraphic } from '../src/lib/csg-paie.mjs';
+import {
+  csgExample,
+  salaryGraphic,
+  monthlyCsg2026,
+  salaryCents,
+} from '../src/lib/csg-paie.mjs';
 import { updateCommuneIndex } from '../src/lib/communes.mjs';
 const read = (id) =>
   JSON.parse(
@@ -26,6 +31,23 @@ test('la paie distingue l’assiette, la CSG déductible et la part non déducti
   assert.throws(() => csgExample(-1));
   assert.throws(() => csgExample(1.5));
   assert.ok(salaryGraphic().svg.includes('180,78'));
+});
+test('le salaire mensuel conserve les centimes et applique le plafond 2026 à la seule fraction concernée', () => {
+  assert.equal(salaryCents('2 345,06'), 234506);
+  assert.equal(salaryCents('0'), 0);
+  for (const invalid of ['', '-1', '1e6', '2,345', '1 02', '7.00;1', '+-+-10'])
+    assert.equal(salaryCents(invalid), null);
+  assert.deepEqual(monthlyCsg2026(200000), csgExample(200000));
+  assert.equal(monthlyCsg2026(1602000).base, 1573965);
+  assert.equal(monthlyCsg2026(1602001).base, 1573966);
+  assert.deepEqual(monthlyCsg2026(2000000), {
+    gross: 2000000,
+    base: 1971965,
+    deducted: 134094,
+    other: 47327,
+    total: 181421,
+  });
+  assert.throws(() => monthlyCsg2026(Number.MAX_SAFE_INTEGER));
 });
 test('les éditions SRU et DREES conservent les bornes, les absences et les zéros observés', () => {
   const sru = read('sru'),
