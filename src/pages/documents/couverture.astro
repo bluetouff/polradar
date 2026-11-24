@@ -229,7 +229,7 @@ const audits = documents.filter((d) => d.coverage);
     if (location.hash) applyHash();
     window.addEventListener('hashchange', applyHash);
     form.addEventListener('change', syncHash);
-    form.addEventListener('reset', () => queueMicrotask(syncHash));
+    form.addEventListener('reset', () => setTimeout(syncHash, 0));
   </script>
 </Base>
 <style>
