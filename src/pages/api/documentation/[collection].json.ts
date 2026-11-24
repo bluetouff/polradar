@@ -10,6 +10,7 @@ import { financing, financingMaps } from '../../../lib/proposal-data';
 import { airtime } from '../../../lib/visual-data';
 import comparison from '../../../data/retirement-comparison.json';
 import { editionId, type Graphic } from '../../../lib/chart-publication';
+import { studioFamilies, studioItems } from '../../../lib/studio';
 import { salaryGraphic } from '../../../lib/csg-paie.mjs';
 import { economyGraphic } from '../../../lib/economy-graphic.mjs';
 import {
@@ -34,6 +35,13 @@ const standardGraphic = (id: string, graphic: Graphic, live: string) => ({
   actualise: url(live),
   fige: url('/graphiques/editions/' + editionId(graphic) + '.svg'),
 });
+function studioLinks(item: (typeof studioItems)[number]) {
+  return {
+    famille: studioFamilies[item.family],
+    studio: url('/studio/#' + item.id),
+    donnees: url('/studio/donnees/' + item.id + '.json'),
+  };
+}
 const collections = {
   sources: () => ({ items: sources }),
   droit: () => ({
@@ -110,8 +118,8 @@ const collections = {
       })),
     ),
   }),
-  graphiques: () => ({
-    items: [
+  graphiques: () => {
+    const published = [
       standardGraphic('csg', salaryGraphic(), '/graphiques/csg.svg'),
       ...economy.map((s) =>
         standardGraphic(
@@ -141,8 +149,38 @@ const collections = {
           fige: url(frozenGraphicPath(card.svg)),
         };
       }),
-    ],
-  }),
+    ];
+    const editions = new Map(studioItems.map((item) => [item.id, item]));
+    return {
+      items: [
+        ...published.map((entry) => {
+          // Ces identifiants et éditions restent valides pour les anciens lecteurs.
+          const studioId =
+            entry.id === 'csg'
+              ? 'fiscalite-csg'
+              : entry.id
+                  .replace(/^sondage-/, 'sondages-')
+                  .replace(/^retraite-/, 'retraites-');
+          const item = editions.get(studioId);
+          if (!item) throw Error('Édition absente du Studio : ' + entry.id);
+          return { ...entry, ...studioLinks(item) };
+        }),
+        ...studioItems
+          .filter((item) => item.generated)
+          .map((item) => ({
+            id: item.id,
+            title: item.graphic.title,
+            description: item.graphic.alt,
+            dateLabel: item.graphic.dateLabel,
+            sources: item.graphic.sources,
+            page: url(item.graphic.page),
+            actualise: url(item.live),
+            editionFigee: 'Fichier autonome à télécharger dans le Studio.',
+            ...studioLinks(item),
+          })),
+      ],
+    };
+  },
 };
 export const getStaticPaths = (() =>
   Object.keys(collections).map((collection) => ({

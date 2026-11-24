@@ -3,6 +3,44 @@ import { readFile } from 'node:fs/promises';
 import { testOrigin } from './origin';
 import votes from '../../src/data/legislative-votes.json' with { type: 'json' };
 
+test('le catalogue documentaire expose chaque choix du Studio et les sources de ses cartes', async ({
+  page,
+  request,
+}) => {
+  const result = await request.get('/api/documentation/graphiques.json');
+  expect(result.ok()).toBe(true);
+  const { items } = await result.json();
+  await page.goto('/studio/');
+  await ready(page);
+  const families = await page
+    .locator('#studio-family option')
+    .evaluateAll((options) =>
+      options.map((option) => (option as HTMLOptionElement).value),
+    );
+  const values: string[] = [];
+  for (const family of families) {
+    await page.locator('#studio-family').selectOption(family);
+    values.push(
+      ...(await page
+        .locator('#studio-item option')
+        .evaluateAll((options) =>
+          options
+            .map((option) => (option as HTMLOptionElement).value)
+            .filter(Boolean),
+        )),
+    );
+  }
+  const exposed = items.map((item: { studio: string }) =>
+    new URL(item.studio).hash.slice(1),
+  );
+  expect([...new Set(exposed)].sort()).toEqual([...new Set(values)].sort());
+  const map = items.find(
+    (item: { famille: string }) => item.famille === 'Accès aux soins',
+  );
+  expect(map.sources.length).toBeGreaterThan(0);
+  expect((await request.get(new URL(map.donnees).pathname)).ok()).toBe(true);
+});
+
 async function ready(page: Page) {
   await expect(page.locator('#studio-code')).toHaveValue(/<figure>/);
   await expect(page.locator('#studio-img')).toHaveAttribute(
