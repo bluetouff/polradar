@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checked": "2026-11-23",
+  "checked": "2026-11-24",
   "readingSources": [
     {
       "ballotId": "pe8-20170215-ceta",
@@ -1337,6 +1337,209 @@
         }
       ],
       "rectification": null
+    },
+    {
+      "id": "an15-389",
+      "chamber": "assemblee",
+      "term": "15e législature",
+      "number": 389,
+      "date": "2018-02-13",
+      "dateKind": "seance",
+      "title": "Ensemble du projet de loi relatif à la protection des données personnelles en première lecture",
+      "shortTitle": "Protection des données personnelles",
+      "kind": "ensemble",
+      "decision": "adopte",
+      "context": "Le projet adapte la loi Informatique et Libertés au cadre européen et modifie les missions de la CNIL. Le scrutin porte sur le projet entier en première lecture.",
+      "tally": {
+        "voters": 547,
+        "expressed": 523,
+        "majority": 262,
+        "for": 505,
+        "against": 18,
+        "abstained": 24,
+        "nonVoters": null
+      },
+      "source": {
+        "title": "Assemblée nationale · scrutin public n° 389",
+        "url": "https://www.assemblee-nationale.fr/dyn/15/scrutins/389",
+        "locator": "Synthèse du vote et analyse nominative par groupe, séance du 13 février 2018.",
+        "checkedAt": "2026-11-24T12:41:30.894867+00:00",
+        "sha256": "4fa2e6eb7aa4a8411aa2744547fc8fc6747ae969fed61a69219e8d58dc7da702"
+      },
+      "documents": [
+        {
+          "title": "Dossier législatif · Protection des données personnelles",
+          "url": "https://www.assemblee-nationale.fr/dyn/15/dossiers/donnees_personnelles_protection"
+        }
+      ],
+      "positions": [
+        {
+          "candidate": "attal",
+          "officialName": "Gabriel Attal",
+          "officialId": "PA722190",
+          "profileUrl": "https://www.assemblee-nationale.fr/dyn/deputes/PA722190",
+          "choice": "pour",
+          "groupAtTime": "La République en Marche"
+        },
+        {
+          "candidate": "melenchon",
+          "officialName": "Jean-Luc Mélenchon",
+          "officialId": "PA2150",
+          "profileUrl": "https://www.assemblee-nationale.fr/dyn/deputes/PA2150",
+          "choice": "contre",
+          "groupAtTime": "La France insoumise"
+        },
+        {
+          "candidate": "ruffin",
+          "officialName": "François Ruffin",
+          "officialId": "PA722142",
+          "profileUrl": "https://www.assemblee-nationale.fr/dyn/deputes/PA722142",
+          "choice": "contre",
+          "groupAtTime": "La France insoumise"
+        },
+        {
+          "candidate": "roussel",
+          "officialName": "Fabien Roussel",
+          "officialId": "PA720692",
+          "profileUrl": "https://www.assemblee-nationale.fr/dyn/deputes/PA720692",
+          "choice": "abstention",
+          "groupAtTime": "Gauche démocrate et républicaine"
+        },
+        {
+          "candidate": "lepen",
+          "officialName": "Marine Le Pen",
+          "officialId": "PA720614",
+          "profileUrl": "https://www.assemblee-nationale.fr/dyn/deputes/PA720614",
+          "choice": "pour",
+          "groupAtTime": "Députés non inscrits"
+        },
+        {
+          "candidate": "dupont-aignan",
+          "officialName": "Nicolas Dupont-Aignan",
+          "officialId": "PA1206",
+          "profileUrl": "https://www.assemblee-nationale.fr/dyn/deputes/PA1206",
+          "choice": "abstention",
+          "groupAtTime": "Députés non inscrits"
+        },
+        {
+          "candidate": "lassalle",
+          "officialName": "Jean Lassalle",
+          "officialId": "PA1838",
+          "profileUrl": "https://www.assemblee-nationale.fr/dyn/deputes/PA1838",
+          "choice": "abstention",
+          "groupAtTime": "Députés non inscrits"
+        }
+      ],
+      "rectification": "La rubrique « Mises au point » enregistre des intentions ultérieures de neuf autres députés.",
+      "speeches": [
+        {
+          "speaker": "Loïc Prud’homme",
+          "group": "La France insoumise",
+          "summary": "Il conteste la procédure accélérée et le recours aux ordonnances pour réécrire la loi de 1978. Il demande un débat public sur l’utilisation des données personnelles.",
+          "locator": "Protection des données personnelles, explications de vote du groupe La France insoumise.",
+          "url": "https://www.assemblee-nationale.fr/dyn/15/comptes-rendus/seance/session-ordinaire-de-2017-2018/premiere-seance-du-mardi-13-fevrier-2018"
+        },
+        {
+          "speaker": "Rémy Rebeyrotte",
+          "group": "La République en marche",
+          "summary": "Il soutient le texte et met en avant la réparation des préjudices par l’action de groupe et la possibilité, pour les présidents de groupe, de saisir la CNIL.",
+          "locator": "Protection des données personnelles, explications de vote du groupe La République en marche.",
+          "url": "https://www.assemblee-nationale.fr/dyn/15/comptes-rendus/seance/session-ordinaire-de-2017-2018/premiere-seance-du-mardi-13-fevrier-2018"
+        }
+      ]
+    },
+    {
+      "id": "sen2017-98-donnees",
+      "chamber": "senat",
+      "term": "Session 2017-2018",
+      "number": 98,
+      "date": "2018-04-19",
+      "dateKind": "seance",
+      "title": "Ensemble du projet de loi relatif à la protection des données personnelles en nouvelle lecture",
+      "shortTitle": "Données personnelles en nouvelle lecture",
+      "kind": "ensemble",
+      "decision": "adopte",
+      "context": "Vote du Sénat sur le texte en nouvelle lecture, après son examen par l’Assemblée nationale.",
+      "tally": {
+        "voters": 343,
+        "expressed": 307,
+        "majority": null,
+        "for": 307,
+        "against": 0,
+        "abstained": 36,
+        "nonVoters": 4
+      },
+      "source": {
+        "title": "Sénat · scrutin public n° 98",
+        "url": "https://www.senat.fr/scrutin-public/2017/scr2017-98.html",
+        "locator": "Résultat et liste nominative du groupe Les Républicains, voix pour.",
+        "checkedAt": "2026-11-24T12:41:30.031639+00:00",
+        "sha256": "bc4dfd58f547151d7f4e0cba1b1666cbc9aee30e99596b4d4866cacc4adbbf3f"
+      },
+      "documents": [
+        {
+          "title": "Compte rendu de la séance du 19 avril 2018",
+          "url": "https://www.senat.fr/seances/s201804/s20180419/s20180419.pdf"
+        }
+      ],
+      "positions": [
+        {
+          "candidate": "retailleau",
+          "officialName": "Bruno Retailleau",
+          "officialId": null,
+          "profileUrl": null,
+          "choice": "pour",
+          "groupAtTime": "Les Républicains"
+        }
+      ],
+      "rectification": null,
+      "contextOnly": true
+    },
+    {
+      "id": "pe9-20240313-intelligence-artificielle",
+      "chamber": "parlement-europeen",
+      "term": "9e législature européenne",
+      "number": null,
+      "date": "2024-03-13",
+      "dateKind": "seance",
+      "title": "Règlement sur l’intelligence artificielle, accord provisoire soumis au vote en plénière",
+      "shortTitle": "Règlement européen sur l’intelligence artificielle",
+      "kind": "ensemble",
+      "decision": "adopte",
+      "context": "L’appel nominal porte sur l’accord provisoire en entier (amendement 808). Le vote ne distingue pas les avis sur les différentes obligations du règlement.",
+      "tally": {
+        "voters": 618,
+        "expressed": 569,
+        "majority": null,
+        "for": 523,
+        "against": 46,
+        "abstained": 49,
+        "nonVoters": null
+      },
+      "source": {
+        "title": "Parlement européen · annexe des votes par appel nominal du 13 mars 2024",
+        "url": "https://redmapl3.europarl.europa.eu/RedmapFront/media/reds_iPlPv_Rcv/PV-9-2024-03-13-RCV/PV-9-2024-03-13-RCV-FNL_en.pdf",
+        "locator": "Pages 11 et 12, vote 2.1, rapport A9-0188/2023, accord provisoire, amendement 808. Groupe S&D, liste des voix pour.",
+        "checkedAt": "2026-11-24T12:43:38.384362+00:00",
+        "sha256": "e5ca6fe77629e38403fc34c5663cc2131ae05ec97ea8e8941c0e1df9bb204802"
+      },
+      "documents": [
+        {
+          "title": "Résultats des votes · rubrique 2, accord provisoire",
+          "url": "https://www.europarl.europa.eu/doceo/document/PV-9-2024-03-13-VOT_FR.pdf"
+        }
+      ],
+      "positions": [
+        {
+          "candidate": "glucksmann",
+          "officialName": "Raphaël Glucksmann",
+          "officialId": null,
+          "profileUrl": null,
+          "choice": "pour",
+          "groupAtTime": "S&D"
+        }
+      ],
+      "rectification": null
     }
   ],
   "cases": [
@@ -1797,6 +2000,36 @@
           "ballotId": "an17-456",
           "relation": "texte-plus-large",
           "context": "Le vote concernait la position de la France dans la négociation. Il ne portait ni sur la ratification d’un traité ni sur les moyens de la politique agricole commune que Gabriel Attal aborde aussi dans sa proposition."
+        }
+      ]
+    },
+    {
+      "id": "melenchon-controle-cnil",
+      "candidate": "melenchon",
+      "measureId": "melenchon-cnil-controle-securite",
+      "versionId": "melenchon-cnil-controle-securite-v1",
+      "title": "Pouvoirs de la CNIL et protection des données",
+      "note": "La proposition concerne le contrôle des services de sécurité par la CNIL. Le scrutin de 2018 porte sur une réforme plus large de la protection des données.",
+      "links": [
+        {
+          "ballotId": "an15-389",
+          "relation": "texte-plus-large",
+          "context": "La proposition concerne le contrôle des services de sécurité par la CNIL. Le scrutin de 2018 porte sur une réforme plus large de la protection des données."
+        }
+      ]
+    },
+    {
+      "id": "glucksmann-ia-transparence",
+      "candidate": "glucksmann",
+      "measureId": "ps-signaler-les-images-sons-et-videos-produits-par-une-intelligence-artificielle",
+      "versionId": "ps-signaler-les-images-sons-et-videos-produits-par-une-intelligence-artificielle-v1",
+      "title": "Transparence des contenus produits par IA",
+      "note": "La proposition est celle du Parti socialiste. Le vote individuel de Raphaël Glucksmann concerne l’ensemble du règlement européen.",
+      "links": [
+        {
+          "ballotId": "pe9-20240313-intelligence-artificielle",
+          "relation": "texte-plus-large",
+          "context": "La proposition est celle du Parti socialiste. Le vote individuel de Raphaël Glucksmann concerne l’ensemble du règlement européen."
         }
       ]
     }

@@ -8,7 +8,11 @@ import Distribution from '../components/Distribution.astro';
 import BallotChart from '../components/BallotChart.astro';
 import SourceLinks from '../components/SourceLinks.astro';
 import { formatDate, formatTimestamp, themeById } from '../lib/data';
-import { legislativeVotes, voteCases } from '../lib/votes-data';
+import {
+  legislativeVotes,
+  voteCases,
+  independentVotes,
+} from '../lib/votes-data';
 import {
   ballotKinds,
   chambers,
@@ -131,6 +135,28 @@ import { sameSentence } from '../lib/measure-text';
                     </span>
                     <p>{ballot.link.context}</p>
                   </div>
+                  {ballot.speeches && (
+                    <details class="vote-source">
+                      <summary>
+                        <Icon name="source" />
+                        Prises de parole en séance
+                        <Icon name="chevron" />
+                      </summary>
+                      <div>
+                        {ballot.speeches.map((speech) => (
+                          <article>
+                            <h4>
+                              {speech.speaker} · {speech.group}
+                            </h4>
+                            <p>{speech.summary}</p>
+                            <a href={speech.url} rel="noreferrer">
+                              {speech.locator} <Icon name="external" />
+                            </a>
+                          </article>
+                        ))}
+                      </div>
+                    </details>
+                  )}
                   <details class="vote-source">
                     <summary>
                       <Icon name="source" />
@@ -285,5 +311,46 @@ import { sameSentence } from '../lib/measure-text';
   <noscript>
     <p>Choisissez le sujet dans le répertoire pour rejoindre son dossier.</p>
   </noscript>
+  {independentVotes.length > 0 && (
+    <section class="section-space">
+      <h2>Autres votes nominatifs documentés</h2>
+      <p>
+        Ces scrutins ont une source nominative. Le rapprochement avec une mesure
+        reste à établir.
+      </p>
+      <div class="roll-cards">
+        {independentVotes.map(({ id, ballot, position, candidate, source }) => (
+          <article class="panel" id={id}>
+            <small>
+              {chambers[ballot.chamber]} ·{' '}
+              <time datetime={ballot.date}>{formatDate(ballot.date)}</time>
+            </small>
+            <h3>{ballot.shortTitle}</h3>
+            <p>
+              {candidate.name} ·{' '}
+              <strong>{positionLabel(position, ballot)}</strong>
+            </p>
+            <a href={source.url} rel="noreferrer">
+              Liste nominative officielle ↗
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
 </Base>
 <script src="../scripts/votes.ts"></script>
+
+<style>
+  .roll-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    gap: 1rem;
+  }
+  .roll-cards article {
+    padding: 1.15rem;
+  }
+  .roll-cards h3 {
+    margin-block: 0.6rem;
+  }
+</style>

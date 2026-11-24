@@ -84,7 +84,7 @@ async function buildSearchIndex(): Promise<SearchEntry[]> {
         item.candidateRecord.name,
         ...item.ballots.map(
           (b) =>
-            `${chambers[b.chamber]}, scrutin n° ${b.number} du ${formatDate(b.date)}. ${b.shortTitle}. ${positionLabel(b.position, b)}. ${b.title}`,
+            `${chambers[b.chamber]}, scrutin${b.number === null ? '' : ' n° ' + b.number} du ${formatDate(b.date)}. ${b.shortTitle}. ${positionLabel(b.position, b)}. ${b.title}`,
         ),
         item.note,
       ].join(' '),

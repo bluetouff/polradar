@@ -16,6 +16,16 @@ const x = (number: number) => 6 + number * 288;
   <div class="market-identity">
     <span class="market-rank">{String(rank).padStart(2, '0')}</span>
     <strong>{row.label}</strong>
+    <small class="quote-date">
+      {row.updatedAt ? (
+        <>
+          Fiche du contrat ·{' '}
+          <time datetime={row.updatedAt}>{formatTimestamp(row.updatedAt)}</time>
+        </>
+      ) : (
+        'Date du contrat inconnue'
+      )}
+    </small>
   </div>
   <div class="market-price">
     <strong>{marketPercent(value)}</strong>
@@ -79,14 +89,6 @@ const x = (number: number) => 6 + number * 288;
           par ce flux
         </dd>
       </div>
-      <div>
-        <dt>Fiche du contrat modifiée</dt>
-        <dd>
-          {row.updatedAt
-            ? formatTimestamp(row.updatedAt)
-            : 'Horodatage non fourni'}
-        </dd>
-      </div>
     </dl>
     {row.rules && (
       <p class="market-rules" lang="en">
@@ -98,3 +100,15 @@ const x = (number: number) => 6 + number * 288;
     </p>
   </details>
 </li>
+
+<style>
+  .market-identity .quote-date {
+    display: block;
+    grid-column: 2/-1;
+    font-size: 0.73rem;
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+  }
+</style>

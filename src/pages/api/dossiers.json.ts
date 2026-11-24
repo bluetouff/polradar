@@ -1,6 +1,6 @@
 import { activeCandidates } from '../../lib/data';
 import { questions } from '../../lib/questions';
-import { voteCases } from '../../lib/votes-data';
+import { voteCases, independentVotes } from '../../lib/votes-data';
 import { proposalTracks } from '../../lib/proposal-data';
 
 export function GET() {
@@ -50,34 +50,60 @@ export function GET() {
           })),
       })),
     })),
-    votes: voteCases.flatMap((v) =>
-      v.ballots.map((b) => ({
-        id: v.id + '--' + b.id,
-        dossier: v.id,
-        ballotId: b.id,
-        candidate: v.candidate,
-        theme: v.measure.theme,
-        title: b.title,
-        date: b.date,
-        chamber: b.chamber,
-        context: b.context,
-        position: b.position,
-        decision: b.decision,
-        tally: b.tally,
-        relation: b.link,
-        rectification: b.rectification,
-        source: b.source,
-        rollCall: b.rollCall,
-        measureId: v.measureId,
-        versionId: v.versionId,
-        url: 'https://polradar.fr/votes/#dossier=' + v.id,
-        measureUrl:
-          'https://polradar.fr/mesures/' +
-          v.measureId +
-          '/#version-' +
-          v.version.number,
-      })),
-    ),
+    votes: [
+      ...voteCases.flatMap((v) =>
+        v.ballots.map((b) => ({
+          id: v.id + '--' + b.id,
+          dossier: v.id,
+          ballotId: b.id,
+          candidate: v.candidate,
+          theme: v.measure.theme,
+          title: b.title,
+          date: b.date,
+          chamber: b.chamber,
+          context: b.context,
+          position: b.position,
+          decision: b.decision,
+          tally: b.tally,
+          speeches: b.speeches ?? [],
+          relation: b.link,
+          rectification: b.rectification,
+          source: b.source,
+          rollCall: b.rollCall,
+          measureId: v.measureId,
+          versionId: v.versionId,
+          url: 'https://polradar.fr/votes/#dossier=' + v.id,
+          measureUrl:
+            'https://polradar.fr/mesures/' +
+            v.measureId +
+            '/#version-' +
+            v.version.number,
+        })),
+      ),
+      ...independentVotes.map(
+        ({ id, ballot: b, position, source, candidate }) => ({
+          id,
+          ballotId: b.id,
+          candidate: candidate.id,
+          theme: null,
+          title: b.title,
+          date: b.date,
+          chamber: b.chamber,
+          context: b.context,
+          position,
+          decision: b.decision,
+          tally: b.tally,
+          speeches: b.speeches ?? [],
+          source: b.source,
+          rollCall: source,
+          relation: null,
+          measureId: null,
+          versionId: null,
+          rectification: b.rectification,
+          url: 'https://polradar.fr/votes/#' + id,
+        }),
+      ),
+    ],
     evolutions: proposalTracks.flatMap((t) =>
       t.states.slice(1).map((after, i) => ({
         id: t.id + '--' + after.id,

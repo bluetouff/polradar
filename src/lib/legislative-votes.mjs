@@ -27,7 +27,20 @@ export const legislativeVotesSchema = z.strictObject({
         id: idSchema,
         chamber: z.enum(['assemblee', 'senat', 'parlement-europeen']),
         term: text,
-        number: z.number().int().positive(),
+        number: z.number().int().positive().nullable(),
+        contextOnly: z.boolean().optional(),
+        speeches: z
+          .array(
+            z.strictObject({
+              speaker: text,
+              group: text,
+              summary: text,
+              locator: text,
+              url: publicUrlSchema,
+            }),
+          )
+          .max(20)
+          .optional(),
         date: dateSchema,
         dateKind: z.literal('seance'),
         title: text,
@@ -114,7 +127,10 @@ const chamberHosts = {
     'www2.assemblee-nationale.fr',
   ]),
   senat: new Set(['www.senat.fr', 'extranet.senat.fr']),
-  'parlement-europeen': new Set(['www.europarl.europa.eu']),
+  'parlement-europeen': new Set([
+    'www.europarl.europa.eu',
+    'redmapl3.europarl.europa.eu',
+  ]),
 };
 export function validateLegislativeReferences(data, dataset, now = new Date()) {
   const errors = [],
@@ -165,6 +181,8 @@ export function validateLegislativeReferences(data, dataset, now = new Date()) {
   }
   const assigned = new Set();
   for (const b of data.ballots) {
+    if (b.number === null && b.chamber !== 'parlement-europeen')
+      fail(`${b.id} : numéro de scrutin national manquant`);
     if (b.kind === 'motion-censure') {
       if (
         b.tally.for !== b.tally.voters ||
@@ -193,7 +211,7 @@ export function validateLegislativeReferences(data, dataset, now = new Date()) {
       civilDateInParis(checked) > data.checked
     )
       fail(`${b.id} : dates incohérentes`);
-    for (const ref of [b.source, ...b.documents])
+    for (const ref of [b.source, ...b.documents, ...(b.speeches ?? [])])
       if (!chamberHosts[b.chamber].has(new URL(ref.url).hostname))
         fail(`${b.id} : domaine institutionnel incohérent`);
     unique(
@@ -256,7 +274,8 @@ export function validateLegislativeReferences(data, dataset, now = new Date()) {
     }
   }
   for (const b of data.ballots)
-    if (!assigned.has(b.id)) fail(`${b.id} : scrutin sans dossier`);
+    if (!assigned.has(b.id) && !b.contextOnly)
+      fail(`${b.id} : scrutin sans dossier`);
   return errors;
 }
 

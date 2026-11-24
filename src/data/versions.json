@@ -65917,5 +65917,98 @@
       "edition": "Présidentielle 2027",
       "checked": "2026-11-24"
     }
+  },
+  {
+    "id": "retailleau-institutions-derogations-ia-rgpd-v2",
+    "measureId": "retailleau-institutions-derogations-ia-rgpd",
+    "number": 2,
+    "kind": "programme",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T13:10:13Z",
+    "summary": "La mesure 97 modifiée le 23 novembre confie l’examen de la déclaration au délégué interministériel à l’intelligence artificielle.",
+    "snapshot": {
+      "title": "Créer un régime expérimental de dérogation au RGPD et au règlement sur l’IA",
+      "description": "La campagne propose une dérogation pour la recherche, les tests et les projets d’innovation à fort enjeu stratégique lorsque les règlements les entravent directement. Le délégué interministériel à l’intelligence artificielle, placé auprès du Premier ministre, apprécierait l’enjeu après déclaration préalable.",
+      "beneficiaries": null,
+      "timing": "Régime expérimental de trois ans.",
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "retailleau-innovation-ia",
+          "locator": "Mesure 97, régime expérimental et déclaration préalable"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne 2027",
+      "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "retailleau-institutions-assistant-ia-agents-v2",
+    "measureId": "retailleau-institutions-assistant-ia-agents",
+    "number": 2,
+    "kind": "programme",
+    "observedOn": "2026-11-24",
+    "recordedAt": "2026-11-24T13:10:13Z",
+    "summary": "La mesure 102 mise à jour le 23 novembre porte le temps que la campagne vise à libérer de 250 000 à 300 000 équivalents temps plein. La présente fiche détaille les deux usages de ce temps et les montants annoncés.",
+    "snapshot": {
+      "title": "Fournir un assistant d’IA sécurisé aux agents publics",
+      "description": "Doter chaque agent public d’un assistant d’IA sécurisé. La campagne vise, pour 2032, un gain de temps équivalent à 300 000 emplois à temps plein. Elle prévoit de redéployer 150 000 agents et de ne pas remplacer 150 000 départs à la retraite.",
+      "beneficiaries": null,
+      "timing": "Objectif à l’horizon 2032. La campagne prévoit un bilan annuel des gains par service.",
+      "financing": "La campagne estime les économies à environ 15 milliards d’euros par an à terme, affectés à la réduction du déficit. Elle prévoit 5 milliards d’euros pour la transformation sur le quinquennat.",
+      "metrics": [
+        {
+          "key": "temps-libere",
+          "label": "Temps de travail que la campagne vise à libérer",
+          "value": 300000,
+          "unit": "équivalents temps plein",
+          "sourceId": "retailleau-ia-services-publics"
+        },
+        {
+          "key": "agents-redeployes",
+          "label": "Agents à redéployer",
+          "value": 150000,
+          "unit": "agents",
+          "sourceId": "retailleau-ia-services-publics"
+        },
+        {
+          "key": "departs-non-remplaces",
+          "label": "Départs à la retraite non remplacés",
+          "value": 150000,
+          "unit": "départs",
+          "sourceId": "retailleau-ia-services-publics"
+        }
+      ],
+      "amounts": [
+        {
+          "label": "Économies annuelles estimées à terme, environ",
+          "value": 15000000000,
+          "unit": "€",
+          "period": "an",
+          "basis": "non-applicable",
+          "sourceId": "retailleau-ia-services-publics"
+        },
+        {
+          "label": "Budget de transformation sur le quinquennat",
+          "value": 5000000000,
+          "unit": "€",
+          "period": "mandat",
+          "basis": "non-applicable",
+          "sourceId": "retailleau-ia-services-publics"
+        }
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "retailleau-ia-services-publics",
+          "locator": "Mesure sur les démarches administratives, pilotage et suivi"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne 2027",
+      "checked": "2026-11-24"
+    }
   }
 ]

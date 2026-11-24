@@ -31,3 +31,19 @@ export const voteCases = legislativeVotes.cases.map((record) => ({
     })
     .sort((a, b) => a.date.localeCompare(b.date)),
 }));
+
+// A recorded vote can exist without a contemporary proposal on the same object.
+const linked = new Set(
+  voteCases.flatMap((v) => v.ballots.map((b) => b.id + '/' + v.candidate)),
+);
+export const independentVotes = legislativeVotes.ballots.flatMap((b) =>
+  b.positions
+    .filter((p) => !linked.has(b.id + '/' + p.candidate))
+    .map((p) => ({
+      ballot: b,
+      position: p,
+      candidate: dataset.candidates.find((c) => c.id === p.candidate)!,
+      id: b.id + '--' + p.candidate,
+      source: readingSources.get(b.id) ?? b.source,
+    })),
+);

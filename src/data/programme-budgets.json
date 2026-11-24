@@ -1105,7 +1105,7 @@
     {
       "candidate": "retailleau",
       "scope": "campagne",
-      "note": "Objectif d’économies à l’horizon 2032. Les deux affectations ci-dessous sont incluses dans les 197 milliards annoncés.",
+      "note": "La trajectoire globale vise 2032. Dans la mesure sur l’IA, les économies sont exprimées par an à terme et le budget de transformation couvre le quinquennat. Ces montants ne se cumulent pas.",
       "entries": [
         {
           "id": "retailleau-trajectoire",
@@ -1194,6 +1194,62 @@
               {
                 "entryId": "retailleau-trajectoire",
                 "reason": "La mesure 119 appartient au volet des comptes publics dont la trajectoire présente l’objectif global."
+              }
+            ]
+          }
+        },
+        {
+          "id": "retailleau-ia-economies-terme",
+          "label": "Services publics et IA, économies annuelles estimées à terme",
+          "euros": 15000000000,
+          "kind": "economie",
+          "period": "annuel",
+          "horizon": "Par an à terme dans la mesure 102",
+          "approximate": true,
+          "funding": null,
+          "source": "retailleau-ia-services-publics",
+          "locator": "Mesure 102, « Le financement », mise à jour du 23 novembre 2026.",
+          "allocationUnit": null,
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-24",
+            "estimator": "Bruno Retailleau",
+            "origin": "annonce",
+            "publicScope": "Masse salariale, achats publics et lutte contre la fraude",
+            "assumptions": "La campagne distingue ces économies du redéploiement des agents qui continueraient à être payés. Elle affecte les économies au déficit.",
+            "targets": [
+              {
+                "versionId": "retailleau-institutions-assistant-ia-agents-v2",
+                "locator": "Mesure 102, paragraphes sur l’engagement et le financement."
+              }
+            ]
+          }
+        },
+        {
+          "id": "retailleau-ia-transformation",
+          "label": "Services publics et IA, budget de transformation",
+          "euros": 5000000000,
+          "kind": "depense",
+          "period": "pluriannuel",
+          "horizon": "Sur le quinquennat",
+          "approximate": false,
+          "funding": null,
+          "source": "retailleau-ia-services-publics",
+          "locator": "Mesure 102, « Le financement », mise à jour du 23 novembre 2026.",
+          "allocationUnit": null,
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-24",
+            "estimator": "Bruno Retailleau",
+            "origin": "annonce",
+            "publicScope": "Transformation des services publics prévue dans la mesure 102",
+            "assumptions": "La campagne chiffre une enveloppe pour le quinquennat sans préciser de répartition annuelle.",
+            "targets": [
+              {
+                "versionId": "retailleau-institutions-assistant-ia-agents-v2",
+                "locator": "Mesure 102, paragraphes sur l’engagement et le financement."
               }
             ]
           }

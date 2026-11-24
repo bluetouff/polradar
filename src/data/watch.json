@@ -517,16 +517,16 @@
   },
   {
     "sourceId": "philippe-securite",
-    "checkedAt": "2026-11-22T10:35:58.323438Z",
+    "checkedAt": "2026-11-24T12:50:24.556320Z",
     "status": "accessible",
     "httpStatus": 200,
-    "fingerprint": "33267fadf785200c0a21956247dcf875294ed6ab20c22707986f6a8c4b8a5d30",
-    "previousFingerprint": "8447fc06a09343d6c1a64ebc80fd60b89dd3f5fd1eaf20a9188eeabcff654293",
-    "bytes": 109496,
+    "fingerprint": "6f2c15a67bb1f4e2dc206b35950f5a7893ba2de26a2da44b4d8de09f67e3035a",
+    "previousFingerprint": "33267fadf785200c0a21956247dcf875294ed6ab20c22707986f6a8c4b8a5d30",
+    "bytes": 109509,
     "contentType": "text/html",
-    "message": "Document consulté et relu.",
-    "reviewedAt": "2026-11-22T10:35:58.323438Z",
-    "reviewNote": "Relecture du volet sécurité publié dans le premier volume du programme."
+    "message": "Passage modifié contrôlé dans la source.",
+    "reviewedAt": "2026-11-24T13:10:13Z",
+    "reviewNote": "Comparaison avec la version conservée. L’ajout « et universel » concerne le titre du renvoi vers le service national. Les passages sur la sécurité ont été relus."
   },
   {
     "sourceId": "lisnard-ecole",
@@ -803,14 +803,16 @@
   },
   {
     "sourceId": "agenda-labib-paris",
-    "checkedAt": "2026-11-21T13:38:33.610886Z",
+    "checkedAt": "2026-11-24T12:50:24.809778Z",
     "status": "accessible",
     "httpStatus": 200,
-    "fingerprint": "a954093bb9f24b76fbe2b6dfe7a3feff6bd706c8991ebbc7a8f3c3e158bc9610",
-    "previousFingerprint": null,
-    "bytes": 28002,
+    "fingerprint": "964e1e92aacd6f1477643ad8beacd89028775132755c810034b165e06737be40",
+    "previousFingerprint": "a954093bb9f24b76fbe2b6dfe7a3feff6bd706c8991ebbc7a8f3c3e158bc9610",
+    "bytes": 28988,
     "contentType": "text/html",
-    "message": "Document accessible lors du relevé"
+    "message": "Rendez-vous relu dans l’annonce officielle.",
+    "reviewedAt": "2026-11-24T13:12:03Z",
+    "reviewNote": "L’appel maintient le 28 novembre à 17 h 30 à l’Espace Charenton. L’ajout de liens vers des articles plus récents ne modifie pas ce rendez-vous."
   },
   {
     "sourceId": "agenda-glucksmann-paris",
@@ -1038,36 +1040,42 @@
   },
   {
     "sourceId": "agenda-kazib-paris",
-    "checkedAt": "2026-11-21T13:39:00.167610Z",
+    "checkedAt": "2026-11-24T12:50:26.960911Z",
     "status": "accessible",
     "httpStatus": 200,
-    "fingerprint": "f639d09742a29b8132cfd699dd84c9461704735e13220c1d968dcb3a45cfe977",
-    "previousFingerprint": null,
+    "fingerprint": "b1a21ee307edccb36aaf61059300b21c83f456608ff2d4c55e2a0a98589e8e7c",
+    "previousFingerprint": "f639d09742a29b8132cfd699dd84c9461704735e13220c1d968dcb3a45cfe977",
     "bytes": 46036,
     "contentType": "text/html",
-    "message": "Document accessible lors du relevé"
+    "message": "Rendez-vous relu dans l’annonce officielle.",
+    "reviewedAt": "2026-11-24T13:12:03Z",
+    "reviewNote": "Le meeting de Paris reste daté du 21 novembre à 18 h. Un lien conduit à la nouvelle annonce officielle de Toulouse du 27 novembre, ajoutée séparément à l’agenda."
   },
   {
     "sourceId": "agenda-lisnard-chassieu",
-    "checkedAt": "2026-11-21T13:39:00.288942Z",
+    "checkedAt": "2026-11-24T12:50:27.073943Z",
     "status": "accessible",
     "httpStatus": 200,
-    "fingerprint": "1f5894783d3ae088a3c3ef3c029680377516516787e7c2f255d8d215657c56bb",
-    "previousFingerprint": null,
-    "bytes": 94386,
+    "fingerprint": "74077ab1734a3c48797f4b2c2652cc02dd0fd5fa52428062d5e6e5fd883781d3",
+    "previousFingerprint": "1f5894783d3ae088a3c3ef3c029680377516516787e7c2f255d8d215657c56bb",
+    "bytes": 119546,
     "contentType": "text/html",
-    "message": "Document accessible lors du relevé"
+    "message": "Rendez-vous relu dans l’annonce officielle.",
+    "reviewedAt": "2026-11-24T13:12:03Z",
+    "reviewNote": "La page confirme le dimanche 13 décembre à 15 h, à Eurexpo Lyon, commune de Chassieu. La campagne affiche aussi une liste d’attente."
   },
   {
     "sourceId": "agenda-melenchon-paris",
-    "checkedAt": "2026-11-21T13:39:00.997599Z",
+    "checkedAt": "2026-11-24T12:50:27.395183Z",
     "status": "accessible",
     "httpStatus": 200,
-    "fingerprint": "62151f9e688f0b88ba699421cb9f97f0c578e9183f5b4fd65a853d5c1b161673",
-    "previousFingerprint": null,
-    "bytes": 190027,
+    "fingerprint": "659a4ad285893824bd766f810758da3428b370b7c2b8d027ed02962f400bc967",
+    "previousFingerprint": "62151f9e688f0b88ba699421cb9f97f0c578e9183f5b4fd65a853d5c1b161673",
+    "bytes": 189414,
     "contentType": "text/html",
-    "message": "Document accessible lors du relevé"
+    "message": "Rendez-vous relu dans l’annonce officielle.",
+    "reviewedAt": "2026-11-24T13:12:03Z",
+    "reviewNote": "Conférence annoncée le 19 novembre à 19 h, rue Mercœur à Paris. La page consultée documente l’annonce."
   },
   {
     "sourceId": "agenda-melenchon-havre",
@@ -1345,14 +1353,16 @@
   },
   {
     "sourceId": "retailleau-innovation-ia",
-    "checkedAt": "2026-11-21T13:40:29.622637Z",
+    "checkedAt": "2026-11-24T12:50:29.895740Z",
     "status": "accessible",
     "httpStatus": 200,
-    "fingerprint": "fee6671d8c38a60e1797ba958801877ae8274d68e7950e743517058c4837827a",
-    "previousFingerprint": null,
-    "bytes": 310472,
+    "fingerprint": "1c4fdd0f37d22e81630d0addbfd6c9f15f3beda78c548de85833a0329bc9d7e7",
+    "previousFingerprint": "fee6671d8c38a60e1797ba958801877ae8274d68e7950e743517058c4837827a",
+    "bytes": 311015,
     "contentType": "text/html",
-    "message": "Document accessible lors du relevé"
+    "message": "Passage modifié contrôlé dans la source.",
+    "reviewedAt": "2026-11-24T13:10:13Z",
+    "reviewNote": "La mesure 97 du 23 novembre désigne le délégué interministériel. La fiche de dérogations intègre cette modification en version 2."
   },
   {
     "sourceId": "retailleau-formation-actifs-ia",
@@ -1444,14 +1454,16 @@
   },
   {
     "sourceId": "retailleau-ia-services-publics",
-    "checkedAt": "2026-11-21T13:41:22.431881Z",
+    "checkedAt": "2026-11-24T12:50:29.968694Z",
     "status": "accessible",
     "httpStatus": 200,
-    "fingerprint": "9b5422d0564718300f49ab48fd80050c7c931a2adc13c11e43ae99d8da7fc9cc",
-    "previousFingerprint": null,
-    "bytes": 314829,
+    "fingerprint": "07ed7ab3f2b10917e3a9f5e0b79ad25081bf7ce51f6adec8d525b280cecc6a06",
+    "previousFingerprint": "9b5422d0564718300f49ab48fd80050c7c931a2adc13c11e43ae99d8da7fc9cc",
+    "bytes": 316092,
     "contentType": "text/html",
-    "message": "Document accessible lors du relevé"
+    "message": "Passage modifié contrôlé dans la source.",
+    "reviewedAt": "2026-11-24T13:10:13Z",
+    "reviewNote": "La mesure 102 du 23 novembre porte la cible à 300 000 équivalents temps plein et précise le pilotage. Les montants et les échéances figurent dans la version 2 de la fiche."
   },
   {
     "sourceId": "retailleau-marianne",
