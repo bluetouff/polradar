@@ -10,6 +10,7 @@ import {
   meta,
 } from '../lib/data';
 import '../styles/watch.css';
+import { technicalFreshness } from '../lib/source-freshness';
 
 const labels: Record<string, string> = {
   accessible: 'Accessible',
@@ -23,22 +24,34 @@ const formats: Record<string, string> = {
   video: 'Vidéo',
   autre: 'Autre',
 };
-const rows = watch.map((row) => {
-  const source = sources.find((source) => source.id === row.sourceId)!;
+const baselines = new Map(watch.map((row) => [row.sourceId, row]));
+const sourceMap = new Map(sources.map((s) => [s.id, s]));
+const rows = [...technicalFreshness.values()].flatMap((row) => {
+  const source = sourceMap.get(row.sourceId);
+  if (!source) return [];
+  const previous = baselines.get(row.sourceId);
+  const detailed = previous?.checkedAt === row.checkedAt ? previous : null;
+  const path = new URL(source.url).pathname;
   const format =
     source.watchFormat === 'youtube-oembed'
       ? 'video'
-      : row.contentType.includes('pdf')
+      : /\.pdf$/i.test(path) || detailed?.contentType.includes('pdf')
         ? 'pdf'
-        : row.contentType.includes('html')
+        : detailed?.contentType.includes('html')
           ? 'web'
           : 'autre';
-  return {
-    ...row,
-    source,
-    format,
-    host: new URL(source.url).hostname.replace(/^www\./, ''),
-  };
+  return [
+    {
+      ...row,
+      source,
+      format,
+      host: new URL(source.url).hostname.replace(/^www\./, ''),
+      message: detailed?.message,
+      httpStatus: detailed?.httpStatus,
+      reviewNote: previous?.reviewNote,
+      reviewedAt: previous?.reviewedAt,
+    },
+  ];
 });
 const states = [
   {
@@ -268,14 +281,22 @@ let stateOffset = 0;
             </span>
             <p class="watch-card-time">
               <Icon name="clock" />
+              Dernière tentative{' '}
               <time datetime={row.checkedAt}>
                 {formatTimestamp(row.checkedAt)} (Paris)
               </time>
             </p>
             <details class="watch-card-details">
               <summary>Détail du contrôle</summary>
-              <p>{row.message}</p>
-              {row.httpStatus !== null && (
+              <p>
+                {row.lastSuccessAt
+                  ? 'Dernier accès réussi le ' +
+                    formatTimestamp(row.lastSuccessAt) +
+                    ' (Paris).'
+                  : 'Aucun accès réussi daté dans les relevés disponibles.'}
+              </p>
+              {row.message && <p>{row.message}</p>}
+              {row.httpStatus != null && (
                 <p>Réponse HTTP : {row.httpStatus}.</p>
               )}
               {row.reviewNote && <p>{row.reviewNote}</p>}

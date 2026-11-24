@@ -2,7 +2,10 @@ import { readFile, writeFile, rename } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import { isDeepStrictEqual } from 'node:util';
 import { pathToFileURL } from 'node:url';
-import { dailyHistorySchema } from '../src/lib/daily-updates.mjs';
+import {
+  dailyHistorySchema,
+  sourceFreshness,
+} from '../src/lib/daily-updates.mjs';
 
 const json = async (path) => JSON.parse(await readFile(path, 'utf8'));
 async function optional(path) {
@@ -237,11 +240,22 @@ export function makeDailyReport({
     incidents,
     !!watch?.some((w) => ['accessible', 'modifie'].includes(w.status)),
   );
-  const sourceChecks = (watch ?? []).map(({ sourceId, checkedAt, status }) => ({
-    sourceId,
-    checkedAt,
-    status,
-  }));
+  const priorChecks = sourceFreshness(
+    history.flatMap((h) => h.sourceChecks ?? []),
+  );
+  const sourceChecks = (watch ?? []).map(({ sourceId, checkedAt, status }) => {
+    const previousSuccess = priorChecks.get(sourceId)?.lastSuccessAt;
+    return {
+      sourceId,
+      checkedAt,
+      status,
+      ...(['bloque', 'indisponible'].includes(status) &&
+      previousSuccess &&
+      Date.parse(previousSuccess) <= Date.parse(checkedAt)
+        ? { lastSuccessAt: previousSuccess }
+        : {}),
+    };
+  });
   return { run, attempt, at, sourceChecks, rows };
 }
 

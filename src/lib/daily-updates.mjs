@@ -12,6 +12,7 @@ const stamp = z.iso.datetime({ offset: true });
 const sourceCheck = z.strictObject({
   sourceId: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
   checkedAt: stamp,
+  lastSuccessAt: stamp.optional(),
   status: z.enum(['accessible', 'modifie', 'bloque', 'indisponible']),
 });
 const row = z.strictObject({
@@ -49,7 +50,10 @@ export const dailyHistorySchema = z
           (new Set(item.sourceChecks.map((c) => c.sourceId)).size !==
             item.sourceChecks.length ||
             item.sourceChecks.some(
-              (c) => Date.parse(c.checkedAt) > instant,
+              (c) =>
+                Date.parse(c.checkedAt) > instant ||
+                (c.lastSuccessAt &&
+                  Date.parse(c.lastSuccessAt) > Date.parse(c.checkedAt)),
             ))) ||
         new Set(item.rows.map((r) => r.id)).size !== item.rows.length ||
         item.rows.some(
@@ -64,3 +68,29 @@ export const dailyHistorySchema = z
       previous = instant;
     }
   });
+
+/** @param {z.infer<typeof sourceCheck>[]} checks */
+export function sourceFreshness(checks) {
+  /** @type {Map<string,{sourceId:string,checkedAt:string,status:z.infer<typeof sourceCheck>['status'],lastSuccessAt:string|null}>} */
+  const result = new Map();
+  for (const row of checks) {
+    const old = result.get(row.sourceId);
+    const success = ['accessible', 'modifie'].includes(row.status)
+      ? row.checkedAt
+      : (row.lastSuccessAt ?? null);
+    const lastSuccessAt =
+      !old?.lastSuccessAt ||
+      (success && Date.parse(success) > Date.parse(old.lastSuccessAt))
+        ? success
+        : old.lastSuccessAt;
+    const attempt =
+      !old || Date.parse(row.checkedAt) > Date.parse(old.checkedAt) ? row : old;
+    result.set(row.sourceId, {
+      sourceId: row.sourceId,
+      checkedAt: attempt.checkedAt,
+      status: attempt.status,
+      lastSuccessAt,
+    });
+  }
+  return result;
+}

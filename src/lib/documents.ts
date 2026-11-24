@@ -2,7 +2,24 @@ import { dataset } from './data';
 import sections from '../data/document-coverage.json';
 import { buildDocumentRegister } from './document-register';
 
-export const documents = buildDocumentRegister(dataset, sections);
+import { technicalFreshness } from './source-freshness';
+export const documents = buildDocumentRegister(dataset, sections).map((d) => {
+  const current = technicalFreshness.get(d.id);
+  return {
+    ...d,
+    watch: current
+      ? {
+          checkedAt: current.checkedAt,
+          lastSuccessAt: current.lastSuccessAt,
+          status: current.status,
+          fingerprint:
+            d.watch?.checkedAt === current.checkedAt
+              ? d.watch.fingerprint
+              : null,
+        }
+      : null,
+  };
+});
 const ordered = documents
   .slice()
   .sort(
