@@ -1,0 +1,187 @@
+{
+  "observeLe": "2026-11-24T15:33:02+00:00",
+  "depot": "cdaae3bff0fd82a0676242b6123c8b93f0c47aa9",
+  "site": "cdaae3bff0fd82a0676242b6123c8b93f0c47aa9",
+  "service": "cdaae3bff0fd82a0676242b6123c8b93f0c47aa9",
+  "versionService": "1.2.0",
+  "comptages": {
+    "campagne": 1281,
+    "parti": 938,
+    "orientations": 90,
+    "archives": 25,
+    "sources": 584,
+    "propositions": 2219,
+    "fichesTotal": 2334
+  },
+  "exports": [
+    "corpus",
+    "dossiers",
+    "territoires",
+    "economie",
+    "budgets",
+    "agenda",
+    "marches"
+  ],
+  "outils": [
+    {
+      "nom": "polradar_candidates",
+      "lectureSeule": true
+    },
+    {
+      "nom": "polradar_changements",
+      "lectureSeule": true
+    },
+    {
+      "nom": "polradar_comparer",
+      "lectureSeule": true
+    },
+    {
+      "nom": "polradar_corpus",
+      "lectureSeule": true
+    },
+    {
+      "nom": "polradar_donnees",
+      "lectureSeule": true
+    },
+    {
+      "nom": "polradar_measure",
+      "lectureSeule": true
+    },
+    {
+      "nom": "polradar_methodologie",
+      "lectureSeule": true
+    },
+    {
+      "nom": "polradar_question",
+      "lectureSeule": true
+    },
+    {
+      "nom": "polradar_search",
+      "lectureSeule": true
+    },
+    {
+      "nom": "polradar_territoires",
+      "lectureSeule": true
+    },
+    {
+      "nom": "polradar_votes",
+      "lectureSeule": true
+    }
+  ],
+  "contrats": {
+    "agenda": {
+      "compatible": true,
+      "version": 1
+    },
+    "budgets": {
+      "compatible": true,
+      "version": 1
+    },
+    "corpus": {
+      "compatible": true,
+      "version": 1
+    },
+    "dossiers": {
+      "compatible": true,
+      "version": 1
+    },
+    "economie": {
+      "compatible": true,
+      "version": 1
+    },
+    "marches": {
+      "compatible": true,
+      "version": 1
+    },
+    "sondages": {
+      "compatible": true,
+      "version": 1
+    },
+    "territoires": {
+      "compatible": true,
+      "version": 1
+    }
+  },
+  "workflowsRecents": [
+    {
+      "nom": "Référencement MCP",
+      "revision": "cdaae3bff0fd82a0676242b6123c8b93f0c47aa9",
+      "conclusion": "success",
+      "url": "https://github.com/bluetouff/polradar/actions/runs/45421733670"
+    },
+    {
+      "nom": "Services Polradar",
+      "revision": "cdaae3bff0fd82a0676242b6123c8b93f0c47aa9",
+      "conclusion": "success",
+      "url": "https://github.com/bluetouff/polradar/actions/runs/45420749211"
+    },
+    {
+      "nom": "Site",
+      "revision": "cdaae3bff0fd82a0676242b6123c8b93f0c47aa9",
+      "conclusion": "success",
+      "url": "https://github.com/bluetouff/polradar/actions/runs/45419803105"
+    },
+    {
+      "nom": "Référencement MCP",
+      "revision": "e4e4939a2df6aafd6e22d90b4c0a8b1b645efa44",
+      "conclusion": "success",
+      "url": "https://github.com/bluetouff/polradar/actions/runs/45406222456"
+    },
+    {
+      "nom": "Site",
+      "revision": "e4e4939a2df6aafd6e22d90b4c0a8b1b645efa44",
+      "conclusion": "success",
+      "url": "https://github.com/bluetouff/polradar/actions/runs/45403670553"
+    },
+    {
+      "nom": "Services Polradar",
+      "revision": "e4e4939a2df6aafd6e22d90b4c0a8b1b645efa44",
+      "conclusion": "success",
+      "url": "https://github.com/bluetouff/polradar/actions/runs/45403670415"
+    },
+    {
+      "nom": "Référencement MCP",
+      "revision": "29a14ebfa4dd3aa0ae0e1f16d09b0fd2f0c825fb",
+      "conclusion": "success",
+      "url": "https://github.com/bluetouff/polradar/actions/runs/45390508945"
+    },
+    {
+      "nom": "Site",
+      "revision": "29a14ebfa4dd3aa0ae0e1f16d09b0fd2f0c825fb",
+      "conclusion": "success",
+      "url": "https://github.com/bluetouff/polradar/actions/runs/45390480242"
+    },
+    {
+      "nom": "Référencement MCP",
+      "revision": "bb26dae0e778ea45ff0edf10a9ed50602500aee1",
+      "conclusion": "startup_failure",
+      "url": "https://github.com/bluetouff/polradar/actions/runs/45389676995"
+    },
+    {
+      "nom": "Site",
+      "revision": "bb26dae0e778ea45ff0edf10a9ed50602500aee1",
+      "conclusion": "success",
+      "url": "https://github.com/bluetouff/polradar/actions/runs/45389630077"
+    },
+    {
+      "nom": "Services Polradar",
+      "revision": "bb26dae0e778ea45ff0edf10a9ed50602500aee1",
+      "conclusion": "success",
+      "url": "https://github.com/bluetouff/polradar/actions/runs/45389629908"
+    },
+    {
+      "nom": "Graph Update: go_modules in /mcp #1727453989",
+      "revision": "dd03a043d877174f569f0cf7030658a58673f51c",
+      "conclusion": "success",
+      "url": "https://github.com/bluetouff/polradar/actions/runs/45381442640"
+    }
+  ],
+  "sources": [
+    "https://polradar.fr/build.json",
+    "https://polradar.fr/api/v1/corpus",
+    "https://polradar.fr/api/exports-v1.json",
+    "https://polradar.fr/api/mcp",
+    "https://api.github.com/repos/bluetouff/polradar/branches/main"
+  ],
+  "perimetre": "Les mesures comptent les fiches et les outils effectivement servis au moment du relevé."
+}
