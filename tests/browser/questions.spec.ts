@@ -93,6 +93,48 @@ test('les positions agricoles gardent leur auteur et leur périmètre', async ({
     'nouvelles techniques génomiques',
   );
 });
+test('les comparatifs agricoles distinguent les auteurs et donnent accès aux chiffres sur mobile', async ({
+  browser,
+}) => {
+  const context = await browser.newContext({
+    baseURL: 'http://127.0.0.1:4321',
+    javaScriptEnabled: false,
+    viewport: { width: 320, height: 700 },
+  });
+  try {
+    const page = await context.newPage();
+    for (const example of [
+      {
+        question: 'agriculture-remuneration-contrats',
+        dossier: 'revenu-agricole-prix-contrats',
+        values: ['+4,9 %', '+10,5 %'],
+      },
+      {
+        question: 'agriculture-cantines',
+        dossier: 'cantines-achats-menus-prix',
+        values: ['31,10 €', '12,10 €'],
+      },
+    ]) {
+      await page.goto('/questions/' + example.question + '/');
+      const bylines = page.locator('#candidat-glucksmann .q-byline');
+      await expect(
+        bylines.filter({ hasText: 'Parti socialiste' }),
+      ).toBeVisible();
+      await expect(bylines.filter({ hasText: 'Place publique' })).toBeVisible();
+      await page
+        .locator('.q-related a[href="/dossiers/' + example.dossier + '/"]')
+        .click();
+      const figure = page.locator('figure.dossier-chart');
+      await expect(figure.getByRole('img')).toHaveAccessibleName(/.+/);
+      await expect(figure.locator('.chart-value')).toHaveText(example.values);
+      expect(
+        await page.evaluate(() => document.documentElement.scrollWidth),
+      ).toBeLessThanOrEqual(320);
+    }
+  } finally {
+    await context.close();
+  }
+});
 test('les thèmes et les sources des questions sont consultables sans JavaScript', async ({
   browser,
 }) => {

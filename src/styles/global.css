@@ -1128,6 +1128,81 @@
   .prose li {
     margin-bottom: 10px;
   }
+  .prose .dossier-chart {
+    container: dossier-figure / inline-size;
+    max-width: 36rem;
+    margin-block: 1.25rem 1.5rem;
+    padding: clamp(1rem, 3vw, 1.65rem);
+    background: linear-gradient(125deg, #112634, #1c4350);
+    border: 1px solid #315764;
+    border-radius: 0.85rem;
+    color: #f4fafb;
+    break-inside: avoid;
+  }
+  .dossier-chart figcaption {
+    display: grid;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  .dossier-chart figcaption strong {
+    font-size: 1.12rem;
+  }
+  .dossier-chart figcaption span {
+    color: #c4dce1;
+    font-size: 0.85rem;
+  }
+  .dossier-chart svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    font: 14px var(--sans);
+    fill: currentColor;
+  }
+  .dossier-chart .chart-track {
+    fill: #355260;
+  }
+  .dossier-chart .chart-first {
+    fill: #80d1cc;
+  }
+  .dossier-chart .chart-second {
+    fill: #efba85;
+  }
+  .dossier-chart .chart-value {
+    font-weight: 700;
+  }
+  .dossier-chart .chart-axis {
+    fill: #c4dce1;
+    font-size: 11px;
+  }
+  @container dossier-figure (max-width: 20rem) {
+    .dossier-chart svg {
+      font-size: 16.5px;
+    }
+    .dossier-chart .chart-axis {
+      font-size: 14px;
+    }
+  }
+  @media print {
+    .prose .dossier-chart {
+      color: #173746;
+      background: white;
+    }
+    .dossier-chart figcaption span,
+    .dossier-chart .chart-axis {
+      color: #374e56;
+      fill: #374e56;
+    }
+    .dossier-chart .chart-track {
+      fill: #d6dfe1;
+    }
+    .dossier-chart .chart-first {
+      fill: #176e70;
+    }
+    .dossier-chart .chart-second {
+      fill: #934c15;
+    }
+  }
   .prose blockquote {
     border-left: 2px solid var(--line);
     margin: 20px 0;

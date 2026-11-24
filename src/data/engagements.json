@@ -24,7 +24,7 @@
   {
     "candidate": "melenchon",
     "theme": "travail",
-    "title": "Salaires, temps de travail et filières industrielles",
+    "title": "Salaires, temps de travail, industrie et revenus agricoles",
     "bullets": [
       "Relever immédiatement le SMIC mensuel et indexer les salaires sur l’inflation.",
       "Favoriser les 32 heures par négociation ; les appliquer aux métiers pénibles ou de nuit.",
@@ -32,19 +32,23 @@
       "Étendre ce droit à l’ensemble des salariés.",
       "Bloquer les marges des grandes entreprises agroalimentaires",
       "Réorienter la filière automobile vers les véhicules électriques légers",
-      "Relocaliser une filière textile et développer le réemploi"
+      "Relocaliser une filière textile et développer le réemploi",
+      "Instaurer des prix planchers pour les agriculteurs",
+      "Reprendre les dettes des exploitants passés entièrement au bio",
+      "Donner la priorité aux nouveaux paysans lors de la vente de terres"
     ],
     "sources": [
       "lfi-tax",
       "lfi-social",
       "lci-restos-debat-16-novembre",
       "lfi-investissement-auto-2026",
-      "lfi-investissement-textile-2026"
+      "lfi-investissement-textile-2026",
+      "lfi-2027-conditions-elevage"
     ],
     "scope": "campagne",
     "edition": "L’Avenir en commun 2027",
-    "note": "Le montant est annoncé en net. La version antérieure de Polradar indiquait 1 600 €.",
-    "checked": "2026-11-23",
+    "note": "Le Smic est annoncé en net. Une version antérieure de Polradar indiquait 1 600 €.",
+    "checked": "2026-11-24",
     "id": "melenchon-travail",
     "history": [
       {
@@ -66,6 +70,11 @@
         "date": "2026-11-23",
         "event": "Lecture du chiffrage",
         "summary": "Ajout des propositions précisées dans les documents budgétaires cités."
+      },
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des sources",
+        "summary": "Ajout de 3 fiches à partir des passages cités."
       }
     ]
   },
@@ -4131,24 +4140,33 @@
     "id": "ps-travail",
     "candidate": "glucksmann",
     "theme": "travail",
-    "title": "Projet du PS sur les salaires et l’emploi",
+    "title": "Salaires, emploi et revenus agricoles dans le projet du PS",
     "bullets": [
       "Relever le salaire minimum et ouvrir une conférence sociale sur l’augmentation des salaires au-dessus du SMIC.",
       "Limiter le rapport de rémunération au sein d’un groupe consolidé. Dans les entreprises d’au moins dix salariés, conditionner le versement de dividendes à un partage de valeur avec les salariés.",
       "Porter à la moitié la représentation et les droits de vote des salariés au conseil d’administration ou de surveillance des entreprises de plus de 500 salariés.",
-      "Publier les critères utilisés pour orienter, évaluer ou sanctionner les demandeurs d’emploi et ouvrir un recours humain suspensif avant sanction."
+      "Publier les critères utilisés pour orienter, évaluer ou sanctionner les demandeurs d’emploi et ouvrir un recours humain suspensif avant sanction.",
+      "Garantir un prix minimum fondé sur les coûts réels des agriculteurs",
+      "Renforcer les services qui remplacent un agriculteur pendant son absence",
+      "Faciliter l’achat de terres par les nouveaux agriculteurs",
+      "Nationaliser les assurances agricoles et créer un fonds pour les catastrophes climatiques"
     ],
-    "sources": ["ps-projet-2027-vivre-libres"],
+    "sources": ["ps-projet-2027-vivre-libres", "ps-projet-agriculture-nature"],
     "scope": "parti",
     "partyAuthor": "Parti socialiste",
     "edition": "Projet du Parti socialiste adopté le 25 juin 2026",
     "note": "",
-    "checked": "2026-11-19",
+    "checked": "2026-11-24",
     "history": [
       {
         "date": "2026-11-19",
         "event": "Publication du dossier",
         "summary": "Premières propositions issues du document cité."
+      },
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des sources",
+        "summary": "Ajout de 4 fiches à partir des passages cités."
       }
     ]
   },
@@ -4179,23 +4197,29 @@
     "id": "ps-climat",
     "candidate": "glucksmann",
     "theme": "climat",
-    "title": "Projet du PS sur la production et le prix de l’électricité",
+    "title": "Électricité et débouchés de la pêche locale dans le projet du PS",
     "bullets": [
       "Organiser le débat avec les citoyens, les collectivités et les parties prenantes, puis faire décider le Parlement de la planification d’un mix décarboné en 2050.",
       "Étendre ces tarifs aux particuliers, aux entreprises et aux services publics, et réserver les mécanismes de marché aux échanges transfrontaliers.",
-      "Demander aux nouveaux centres de données et autres installations très énergivores de développer une production locale d’électricité renouvelable couvrant la majorité de leurs besoins."
+      "Demander aux nouveaux centres de données et autres installations très énergivores de développer une production locale d’électricité renouvelable couvrant la majorité de leurs besoins.",
+      "Donner un débouché à la pêche locale dans les établissements scolaires"
     ],
-    "sources": ["ps-projet-2027-vivre-libres"],
+    "sources": ["ps-projet-2027-vivre-libres", "ps-projet-agriculture-nature"],
     "scope": "parti",
     "partyAuthor": "Parti socialiste",
     "edition": "Projet du Parti socialiste adopté le 25 juin 2026",
     "note": "",
-    "checked": "2026-11-19",
+    "checked": "2026-11-24",
     "history": [
       {
         "date": "2026-11-19",
         "event": "Publication du dossier",
         "summary": "Premières propositions issues du document cité."
+      },
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des sources",
+        "summary": "Ajout de 1 fiche à partir des passages cités."
       }
     ]
   },
@@ -5934,20 +5958,31 @@
     "id": "dupont-aignan-travail-presidentielle",
     "candidate": "dupont-aignan",
     "theme": "travail",
-    "title": "Cotisations et embauche en CDI",
+    "title": "Embauche, trésorerie agricole et prix des fruits et légumes",
     "bullets": [
-      "L’exonération durerait trois mois. Le cahier prévoit aussi une exonération de deux ans pour le CDI d’une personne au chômage depuis cinq ans."
+      "L’exonération durerait trois mois. Le cahier prévoit aussi une exonération de deux ans pour le CDI d’une personne au chômage depuis cinq ans.",
+      "Faire payer par l’État les intérêts des prêts agricoles",
+      "Afficher le prix payé au producteur à côté du prix de vente des fruits et légumes",
+      "Baisser la taxe sur le gazole non routier agricole"
     ],
-    "sources": ["nda-cahier-rouge-novembre"],
+    "sources": [
+      "nda-cahier-rouge-novembre",
+      "dupont-aignan-sauvetage-agriculture"
+    ],
     "scope": "campagne",
-    "edition": "Projet économique présidentiel du 12 novembre 2026",
+    "edition": "Projet économique du 12 novembre et plan agricole du 19 novembre 2026",
     "note": "",
-    "checked": "2026-11-19",
+    "checked": "2026-11-24",
     "history": [
       {
         "date": "2026-11-19",
         "event": "Publication du dossier",
         "summary": "Mesures relevées dans le cahier économique du 12 novembre."
+      },
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des sources",
+        "summary": "Ajout de 3 fiches à partir des passages cités."
       }
     ]
   },
@@ -6629,21 +6664,24 @@
     "id": "villepin-climat",
     "candidate": "villepin",
     "theme": "climat",
-    "title": "Climat, énergie et mobilités électriques",
+    "title": "Climat, mobilités électriques et conversion agricole",
     "bullets": [
       "Une révision de la Charte de l’environnement fixerait aussi un objectif d’empreinte carbone de deux tonnes équivalent CO₂ par habitant.",
       "Les fournisseurs devraient communiquer au consommateur final les coûts énergétiques liés aux unités de texte que traitent leurs modèles.",
-      "Proposer un million de voitures électriques en leasing social"
+      "Proposer un million de voitures électriques en leasing social",
+      "Affecter 1,5 milliard d’euros supplémentaires par an à la transformation agricole",
+      "Financer les premières années de conversion au bio"
     ],
     "sources": [
       "villepin-chapitre-1",
       "villepin-chapitre-4",
-      "villepin-chapitre-12"
+      "villepin-chapitre-12",
+      "villepin-programme-reconciliation-agricole"
     ],
     "scope": "campagne",
     "edition": "Réussir à nouveau · présidentielle 2027",
     "note": "",
-    "checked": "2026-11-23",
+    "checked": "2026-11-24",
     "history": [
       {
         "date": "2026-11-22",
@@ -6654,6 +6692,11 @@
         "date": "2026-11-23",
         "event": "Lecture du document",
         "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      },
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des sources",
+        "summary": "Ajout de 2 fiches à partir des passages cités."
       }
     ]
   },
@@ -6661,20 +6704,32 @@
     "id": "villepin-travail",
     "candidate": "villepin",
     "theme": "travail",
-    "title": "Calcul et intelligence artificielle",
+    "title": "Intelligence artificielle, revenus et crédit agricoles",
     "bullets": [
-      "Chaque membre apporterait un milliard d’euros au départ. Le projet prévoit des achats communs de puissance de calcul et le recours à l’emprunt européen."
+      "Chaque membre apporterait un milliard d’euros au départ. Le projet prévoit des achats communs de puissance de calcul et le recours à l’emprunt européen.",
+      "Négocier les prix et les volumes par filière sur plusieurs années",
+      "Créer un statut de ferme familiale avec un plan de revenu minimum",
+      "Ouvrir les prêts garantis par Bpifrance aux fermes au régime micro-BA"
     ],
-    "sources": ["villepin-chapitre-4"],
+    "sources": [
+      "villepin-chapitre-4",
+      "villepin-chapitre-12",
+      "villepin-programme-reconciliation-agricole"
+    ],
     "scope": "campagne",
     "edition": "Réussir à nouveau · présidentielle 2027",
     "note": "",
-    "checked": "2026-11-22",
+    "checked": "2026-11-24",
     "history": [
       {
         "date": "2026-11-22",
         "event": "Intégration du programme",
         "summary": "Lecture des propositions numérotées du programme publié le 20 novembre."
+      },
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des sources",
+        "summary": "Ajout de 3 fiches à partir des passages cités."
       }
     ]
   },
@@ -7072,13 +7127,15 @@
     "bullets": [
       "Contractualiser avec les agriculteurs la protection de l’eau et des sols",
       "Renforcer la protection des terres agricoles autour des villes",
-      "Restaurer les cours d’eau et protéger les captages et les zones humides"
+      "Restaurer les cours d’eau et protéger les captages et les zones humides",
+      "Développer le maraîchage autour des villes et les circuits courts",
+      "Orienter la recherche agronomique vers des fermes moins dépendantes de l’énergie fossile"
     ],
     "sources": ["mei-projet-2027"],
     "scope": "parti",
     "edition": "Projet du MEI pour 2027",
     "note": "",
-    "checked": "2026-11-23",
+    "checked": "2026-11-24",
     "history": [
       {
         "date": "2026-11-23",
@@ -7089,6 +7146,11 @@
         "date": "2026-11-23",
         "event": "Lecture du document",
         "summary": "Ajout de propositions après vérification du passage cité."
+      },
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des sources",
+        "summary": "Ajout de 2 fiches à partir des passages cités."
       }
     ],
     "partyAuthor": "Mouvement écologiste indépendant"
@@ -7364,18 +7426,24 @@
     "theme": "social",
     "title": "Usage des compagnons d’IA par les mineurs",
     "bullets": [
-      "Soumettre les compagnons d’IA à l’accord des parents avant 16 ans"
+      "Soumettre les compagnons d’IA à l’accord des parents avant 16 ans",
+      "Inscrire le droit à une alimentation durable dans la Constitution"
     ],
     "sources": ["equinoxe-programme-synthetique"],
     "scope": "parti",
     "edition": "Renouer · Programme présidentiel d’Équinoxe",
     "note": "",
-    "checked": "2026-11-23",
+    "checked": "2026-11-24",
     "history": [
       {
         "date": "2026-11-23",
         "event": "Lecture du document",
         "summary": "Ajout de propositions après vérification du passage cité."
+      },
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des sources",
+        "summary": "Ajout de 1 fiche à partir des passages cités."
       }
     ],
     "partyAuthor": "Équinoxe"
@@ -7533,13 +7601,14 @@
       "Donner à chaque territoire de « pays » une gare connectée d’ici à 2040",
       "Servir au moins deux repas végétariens par semaine en restauration collective",
       "Publier les marges de la grande distribution et ses sources d’approvisionnement",
-      "Mettre fin aux dérogations d’urgence sur les pesticides interdits"
+      "Mettre fin aux dérogations d’urgence sur les pesticides interdits",
+      "Aider les collectivités à ouvrir des légumeries et des conserveries locales"
     ],
     "sources": ["equinoxe-programme-synthetique"],
     "scope": "parti",
     "edition": "Renouer · Programme présidentiel d’Équinoxe",
     "note": "",
-    "checked": "2026-11-23",
+    "checked": "2026-11-24",
     "history": [
       {
         "date": "2026-11-23",
@@ -7550,6 +7619,11 @@
         "date": "2026-11-23",
         "event": "Lecture des sources",
         "summary": "Ajout de 3 fiches à partir des passages cités."
+      },
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des sources",
+        "summary": "Ajout de 1 fiche à partir des passages cités."
       }
     ],
     "partyAuthor": "Équinoxe"
@@ -7766,5 +7840,120 @@
       }
     ],
     "partyAuthor": "Groupe Rassemblement national"
+  },
+  {
+    "id": "villepin-securite-alimentaire-numerique",
+    "candidate": "villepin",
+    "theme": "securite",
+    "title": "Protection informatique de la chaîne alimentaire",
+    "scope": "campagne",
+    "edition": "Réussir à nouveau · présidentielle 2027",
+    "note": "",
+    "bullets": [
+      "Protéger la chaîne d’approvisionnement alimentaire contre les cyberattaques"
+    ],
+    "sources": ["villepin-programme-reconciliation-agricole"],
+    "checked": "2026-11-24",
+    "history": [
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des sources",
+        "summary": "Ajout de 1 fiche à partir des passages cités."
+      }
+    ]
+  },
+  {
+    "id": "lr-agriculture-foncier-contrats",
+    "candidate": "retailleau",
+    "theme": "travail",
+    "title": "Contrats agricoles et reprise des exploitations",
+    "scope": "parti",
+    "edition": "Réarmer notre agriculture · projet des Républicains, 2026",
+    "note": "",
+    "bullets": [
+      "Inscrire les volumes dans les contrats et sanctionner les remises qui contournent le prix agricole",
+      "Permettre à un jeune agriculteur de louer la terre et d’acheter ses bâtiments",
+      "Différer l’impôt sur la transmission d’une ferme tant qu’elle produit"
+    ],
+    "sources": [
+      "lr-rearmer-agriculture",
+      "retailleau-presentation-agriculture"
+    ],
+    "checked": "2026-11-24",
+    "history": [
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des sources",
+        "summary": "Ajout de 3 fiches à partir des passages cités."
+      }
+    ],
+    "partyAuthor": "Les Républicains"
+  },
+  {
+    "id": "lr-commandes-restauration-collective",
+    "candidate": "retailleau",
+    "theme": "climat",
+    "title": "Achats alimentaires des collectivités",
+    "scope": "parti",
+    "edition": "Réarmer notre agriculture · projet des Républicains, 2026",
+    "note": "",
+    "bullets": [
+      "Découper les marchés des cantines pour permettre aux producteurs de répondre"
+    ],
+    "sources": ["lr-rearmer-agriculture"],
+    "checked": "2026-11-24",
+    "history": [
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des sources",
+        "summary": "Ajout de 1 fiche à partir des passages cités."
+      }
+    ],
+    "partyAuthor": "Les Républicains"
+  },
+  {
+    "id": "place-publique-alimentation-revenus",
+    "candidate": "glucksmann",
+    "theme": "travail",
+    "title": "Rémunération des producteurs et achats de la restauration collective",
+    "scope": "parti",
+    "edition": "Texte de Place publique pour le Salon de l’agriculture, février 2026",
+    "note": "",
+    "bullets": [
+      "Privilégier les circuits courts pour les repas des écoles, hôpitaux et administrations",
+      "Renforcer la régulation des acheteurs dominants de produits agricoles"
+    ],
+    "sources": ["place-publique-agriculture-fevrier"],
+    "checked": "2026-11-24",
+    "history": [
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des sources",
+        "summary": "Ajout de 2 fiches à partir des passages cités."
+      }
+    ],
+    "partyAuthor": "Place publique"
+  },
+  {
+    "id": "equinoxe-education-alimentaire",
+    "candidate": "mikolajczak",
+    "theme": "education",
+    "title": "Éducation à l’alimentation à l’école primaire",
+    "scope": "parti",
+    "edition": "Renouer · Programme présidentiel d’Équinoxe",
+    "note": "",
+    "bullets": [
+      "Associer l’éducation à l’alimentation à des jardins pédagogiques en primaire"
+    ],
+    "sources": ["equinoxe-programme-synthetique"],
+    "checked": "2026-11-24",
+    "history": [
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des sources",
+        "summary": "Ajout de 1 fiche à partir des passages cités."
+      }
+    ],
+    "partyAuthor": "Équinoxe"
   }
 ]

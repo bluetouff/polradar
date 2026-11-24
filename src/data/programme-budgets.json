@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checked": "2026-11-23",
+  "checked": "2026-11-24",
   "profiles": [
     {
       "candidate": "asselineau",
@@ -495,6 +495,39 @@
               {
                 "entryId": "dupont-aignan-fraude-sociale",
                 "reason": "Le cahier de campagne et le projet du parti reprennent ce levier. Leurs objectifs décrivent deux présentations du programme."
+              }
+            ]
+          }
+        },
+        {
+          "id": "dupont-aignan-plan-secours-agricole",
+          "label": "Plan de sauvetage agricole",
+          "euros": 2100000000,
+          "scope": "campagne",
+          "kind": "depense",
+          "period": "annuel",
+          "horizon": "Montant annuel annoncé pour le plan agricole",
+          "approximate": false,
+          "funding": null,
+          "source": "dupont-aignan-sauvetage-agriculture",
+          "locator": "Communiqué signé du 19 novembre, paragraphe donnant le coût annuel pour l’État, puis liste des mesures.",
+          "allocationUnit": null,
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-24",
+            "estimator": "Nicolas Dupont-Aignan",
+            "origin": "annonce",
+            "publicScope": "Coût annuel annoncé pour l’État",
+            "assumptions": "Le montant porte sur l’ensemble du plan. La prise en charge des intérêts en est une composante. Les gains attendus pour les exploitations mesurent autre chose.",
+            "targets": [
+              {
+                "versionId": "dupont-aignan-interets-prets-agricoles-v1",
+                "locator": "Premier point du plan, intérêts bancaires."
+              },
+              {
+                "versionId": "dupont-aignan-gazole-agricole-plan-v1",
+                "locator": "Troisième point du plan, gazole non routier."
               }
             ]
           }
@@ -2370,6 +2403,42 @@
               {
                 "versionId": "zemmour-csg-activite-v3",
                 "locator": "Entretien d’Éric Zemmour au Journal du dimanche du 15 novembre 2026, financement des baisses d’impôts et suppression de la CSG sur les revenus d’activité."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "villepin",
+      "scope": "campagne",
+      "note": "Montants annoncés par Dominique de Villepin dans son programme présidentiel. Chaque ligne indique la période et les bénéficiaires.",
+      "entries": [
+        {
+          "id": "villepin-strategie-agricole",
+          "label": "Transformation de l’agriculture",
+          "euros": 1500000000,
+          "scope": "campagne",
+          "kind": "depense",
+          "period": "annuel",
+          "horizon": "Montant annuel annoncé pour le plan agricole",
+          "approximate": false,
+          "funding": null,
+          "source": "villepin-programme-reconciliation-agricole",
+          "locator": "Chapitre 22, proposition 222, enveloppe annuelle supplémentaire et contrats territoriaux.",
+          "allocationUnit": null,
+          "allocation": [],
+          "review": {
+            "status": "reliee",
+            "checked": "2026-11-24",
+            "estimator": "Dominique de Villepin",
+            "origin": "annonce",
+            "publicScope": "Enveloppe annuelle supplémentaire de la stratégie agricole",
+            "assumptions": "Le chapitre annonce des contrats par terroir. Il ne répartit pas l’enveloppe entre territoires et ne donne pas de ventilation par dépense.",
+            "targets": [
+              {
+                "versionId": "villepin-budget-transformation-agriculture-v1",
+                "locator": "Chapitre 22, proposition 222, enveloppe annuelle supplémentaire et contrats territoriaux."
               }
             ]
           }

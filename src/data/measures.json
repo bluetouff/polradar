@@ -23641,5 +23641,702 @@
       }
     ],
     "partyAuthor": "Groupe Rassemblement national"
+  },
+  {
+    "id": "dupont-aignan-interets-prets-agricoles",
+    "parentId": "dupont-aignan-travail-presidentielle",
+    "candidate": "dupont-aignan",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Faire payer par l’État les intérêts des prêts agricoles",
+    "description": "Nicolas Dupont-Aignan chiffre à 1,8 milliard d’euros les intérêts que l’État prendrait en charge. Il demanderait aussi aux banques de reporter d’un an les remboursements, sauf pour les exploitations en bonne santé financière.",
+    "scope": "campagne",
+    "edition": "Plan agricole du 19 novembre 2026",
+    "checked": "2026-11-24",
+    "beneficiaries": "Exploitations agricoles endettées.",
+    "timing": "Un an de report pour les exploitations concernées.",
+    "financing": "Prise en charge des intérêts par l’État, incluse dans le coût total annoncé du plan.",
+    "metrics": [
+      {
+        "key": "report-annuites",
+        "label": "Report des remboursements",
+        "value": 1,
+        "unit": "an",
+        "sourceId": "dupont-aignan-sauvetage-agriculture"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "dupont-aignan-sauvetage-agriculture",
+        "locator": "Communiqué signé du 19 novembre, premier point du plan, sur les intérêts bancaires et le report des remboursements."
+      }
+    ]
+  },
+  {
+    "id": "dupont-aignan-double-prix-fruits-legumes",
+    "parentId": "dupont-aignan-travail-presidentielle",
+    "candidate": "dupont-aignan",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Afficher le prix payé au producteur à côté du prix de vente des fruits et légumes",
+    "description": "Dans les supermarchés et les épiceries, l’étiquette donnerait le prix d’achat en vrac à l’agriculteur et le prix de vente au client. Le gouvernement publierait des repères sur le rapport entre ces deux prix.",
+    "scope": "campagne",
+    "edition": "Plan agricole du 19 novembre 2026",
+    "checked": "2026-11-24",
+    "beneficiaries": "Producteurs de fruits et légumes, commerces et clients.",
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "dupont-aignan-sauvetage-agriculture",
+        "locator": "Communiqué du 19 novembre, dernier point du plan, consacré au double affichage."
+      }
+    ]
+  },
+  {
+    "id": "dupont-aignan-gazole-agricole-plan",
+    "parentId": "dupont-aignan-travail-presidentielle",
+    "candidate": "dupont-aignan",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Baisser la taxe sur le gazole non routier agricole",
+    "description": "Nicolas Dupont-Aignan propose une baisse supplémentaire de 10 centimes. Il évalue à 300 millions d’euros l’économie pour les agriculteurs.",
+    "scope": "campagne",
+    "edition": "Plan agricole du 19 novembre 2026",
+    "checked": "2026-11-24",
+    "beneficiaries": "Agriculteurs utilisant du gazole non routier.",
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "dupont-aignan-sauvetage-agriculture",
+        "locator": "Communiqué du 19 novembre, point sur le gazole non routier."
+      }
+    ]
+  },
+  {
+    "id": "villepin-contrats-prix-volumes-agricoles",
+    "parentId": "villepin-travail",
+    "candidate": "villepin",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Négocier les prix et les volumes par filière sur plusieurs années",
+    "description": "Dominique de Villepin propose que l’État réunisse agriculteurs, coopératives, industriels et distributeurs. Les contrats intégreraient les coûts de production et le risque climatique. Il veut aussi étendre les contrats écrits aux céréales et aux fruits et légumes.",
+    "scope": "campagne",
+    "edition": "Réussir à nouveau · présidentielle 2027",
+    "checked": "2026-11-24",
+    "beneficiaries": "Producteurs et acheteurs des grandes filières agricoles.",
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "villepin-chapitre-12",
+        "locator": "Chapitre 12, propositions 119 et 120 sur les contrats écrits et les accords de long terme."
+      }
+    ]
+  },
+  {
+    "id": "villepin-statut-fermes-familiales",
+    "parentId": "villepin-travail",
+    "candidate": "villepin",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Créer un statut de ferme familiale avec un plan de revenu minimum",
+    "description": "Le statut donnerait accès à une foncière publique, à des prêts et à des débouchés en restauration publique de proximité. Les collectivités rémunéreraient des services environnementaux. Le candidat vise 400 000 exploitations familiales à la fin du quinquennat.",
+    "scope": "campagne",
+    "edition": "Réussir à nouveau · présidentielle 2027",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": "Objectif à la fin du quinquennat.",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "objectif-exploitations-familiales",
+        "label": "Objectif de maintien",
+        "value": 400000,
+        "unit": "exploitations familiales",
+        "sourceId": "villepin-programme-reconciliation-agricole"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "villepin-programme-reconciliation-agricole",
+        "locator": "Chapitre 22, proposition 223. Le revenu minimum est prévu sur une base annuelle et individualisée."
+      }
+    ]
+  },
+  {
+    "id": "villepin-prets-garantis-toutes-fermes",
+    "parentId": "villepin-travail",
+    "candidate": "villepin",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Ouvrir les prêts garantis par Bpifrance aux fermes au régime micro-BA",
+    "description": "Le programme ouvrirait les prêts de consolidation à toutes les fermes, y compris celles au régime du micro-bénéfice agricole. Il prévoit également un accord avec les banques pour reporter d’un an, sans frais, les remboursements de capital.",
+    "scope": "campagne",
+    "edition": "Réussir à nouveau · présidentielle 2027",
+    "checked": "2026-11-24",
+    "beneficiaries": "Exploitations agricoles, y compris celles au régime micro-BA.",
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "villepin-programme-reconciliation-agricole",
+        "locator": "Chapitre 22, proposition 226, prêts de consolidation, caution personnelle et annuités en capital."
+      }
+    ]
+  },
+  {
+    "id": "villepin-budget-transformation-agriculture",
+    "parentId": "villepin-climat",
+    "candidate": "villepin",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Affecter 1,5 milliard d’euros supplémentaires par an à la transformation agricole",
+    "description": "Le programme confie à l’État, aux agriculteurs et aux chambres d’agriculture la préparation de contrats adaptés à chaque terroir. Les objectifs locaux seraient alignés sur la stratégie nationale de réduction des émissions.",
+    "scope": "campagne",
+    "edition": "Réussir à nouveau · présidentielle 2027",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [
+      {
+        "label": "Enveloppe supplémentaire annoncée",
+        "value": 1500000000,
+        "unit": "€",
+        "period": "an",
+        "basis": "non-applicable",
+        "sourceId": "villepin-programme-reconciliation-agricole"
+      }
+    ],
+    "sourceRefs": [
+      {
+        "sourceId": "villepin-programme-reconciliation-agricole",
+        "locator": "Chapitre 22, proposition 222, enveloppe annuelle supplémentaire et contrats territoriaux."
+      }
+    ]
+  },
+  {
+    "id": "villepin-fonds-conversion-bio-fermes",
+    "parentId": "villepin-climat",
+    "candidate": "villepin",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Financer les premières années de conversion au bio",
+    "description": "Un fonds proposerait des avances remboursables, des prêts à taux nul et des garanties. Dominique de Villepin fixe un objectif de 20 % des exploitations en bio à la fin du quinquennat.",
+    "scope": "campagne",
+    "edition": "Réussir à nouveau · présidentielle 2027",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": "Soutien aux trois premières années de conversion.",
+    "financing": "Le Fonds France contribuerait au fonds national de transition agricole.",
+    "metrics": [
+      {
+        "key": "exploitations-bio",
+        "label": "Part des exploitations visée",
+        "value": 20,
+        "unit": "%",
+        "sourceId": "villepin-programme-reconciliation-agricole"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "villepin-programme-reconciliation-agricole",
+        "locator": "Chapitre 22, proposition 225, trois premières années de conversion et objectif en nombre d’exploitations."
+      }
+    ]
+  },
+  {
+    "id": "villepin-cybersecurite-chaine-alimentaire",
+    "parentId": "villepin-securite-alimentaire-numerique",
+    "candidate": "villepin",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Protéger la chaîne d’approvisionnement alimentaire contre les cyberattaques",
+    "description": "Dominique de Villepin propose d’identifier avec les ministères concernés les opérateurs d’importance vitale de l’agroalimentaire. Il vise les infrastructures d’acheminement, de stockage et de distribution des denrées face aux cyberattaques.",
+    "scope": "campagne",
+    "edition": "Réussir à nouveau · présidentielle 2027",
+    "checked": "2026-11-24",
+    "beneficiaries": "Opérateurs de la chaîne d’approvisionnement alimentaire.",
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "villepin-programme-reconciliation-agricole",
+        "locator": "Chapitre 22, proposition 227, opérateurs agroalimentaires et continuité de l’acheminement."
+      }
+    ]
+  },
+  {
+    "id": "melenchon-prix-planchers-producteurs",
+    "parentId": "melenchon-travail",
+    "candidate": "melenchon",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Instaurer des prix planchers pour les agriculteurs",
+    "description": "Le programme de Jean-Luc Mélenchon veut garantir aux producteurs une rémunération minimale par un plancher sur le prix de leurs produits. Le chapitre ne fixe ni tarif par filière ni formule d’indexation.",
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-2027-conditions-elevage",
+        "locator": "Chapitre 3, rubrique Souveraineté alimentaire et révolution agricole, point sur les prix rémunérateurs."
+      }
+    ]
+  },
+  {
+    "id": "melenchon-reprise-dettes-fermes-bio",
+    "parentId": "melenchon-travail",
+    "candidate": "melenchon",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Reprendre les dettes des exploitants passés entièrement au bio",
+    "description": "Le programme prévoit une caisse dédiée pour reprendre les dettes agricoles des exploitants qui ont converti la totalité de leur activité au bio.",
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
+    "checked": "2026-11-24",
+    "beneficiaries": "Exploitants entièrement convertis à l’agriculture biologique.",
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-2027-conditions-elevage",
+        "locator": "Chapitre 3, rubrique Souveraineté alimentaire et révolution agricole, même point, seconde disposition sur la caisse de défaisance."
+      }
+    ]
+  },
+  {
+    "id": "melenchon-preemption-installation-fermes",
+    "parentId": "melenchon-travail",
+    "candidate": "melenchon",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Donner la priorité aux nouveaux paysans lors de la vente de terres",
+    "description": "Le programme renforcerait le droit de préemption pour permettre l’installation de nouvelles exploitations à taille humaine.",
+    "scope": "campagne",
+    "edition": "L’Avenir en commun 2027",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lfi-2027-conditions-elevage",
+        "locator": "Chapitre 3, rubrique Souveraineté alimentaire et révolution agricole, point sur la réforme agraire et la préemption des terres."
+      }
+    ]
+  },
+  {
+    "id": "ps-prix-minimums-agricoles",
+    "parentId": "ps-travail",
+    "candidate": "glucksmann",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Garantir un prix minimum fondé sur les coûts réels des agriculteurs",
+    "description": "Le Parti socialiste propose un prix garanti au producteur et un encadrement des marges de l’industrie agroalimentaire et de la grande distribution.",
+    "scope": "parti",
+    "edition": "Projet du Parti socialiste adopté le 25 juin 2026",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "ps-projet-agriculture-nature",
+        "locator": "Vivre avec la nature, chapitre 14, Une agriculture durable et un revenu digne pour tous les paysans, rubrique Un revenu digne pour tous les paysans, proposition sur les prix minimums."
+      }
+    ],
+    "partyAuthor": "Parti socialiste"
+  },
+  {
+    "id": "ps-remplacement-agriculteurs",
+    "parentId": "ps-travail",
+    "candidate": "glucksmann",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Renforcer les services qui remplacent un agriculteur pendant son absence",
+    "description": "Le PS propose de développer ces services pour permettre aux exploitants de s’absenter en maintenant l’activité de la ferme. Il y associe un accès facilité aux soins psychologiques.",
+    "scope": "parti",
+    "edition": "Projet du Parti socialiste adopté le 25 juin 2026",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "ps-projet-agriculture-nature",
+        "locator": "Vivre avec la nature, chapitre 14, Une agriculture durable et un revenu digne pour tous les paysans, passage sur la santé mentale et les services de remplacement."
+      }
+    ],
+    "partyAuthor": "Parti socialiste"
+  },
+  {
+    "id": "ps-foncier-premiere-installation",
+    "parentId": "ps-travail",
+    "candidate": "glucksmann",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Faciliter l’achat de terres par les nouveaux agriculteurs",
+    "description": "Le PS propose une loi foncière avec des prêts avantageux pour les jeunes et les nouveaux exploitants. Elle rendrait plus transparentes les acquisitions de terres par l’intermédiaire de sociétés.",
+    "scope": "parti",
+    "edition": "Projet du Parti socialiste adopté le 25 juin 2026",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "ps-projet-agriculture-nature",
+        "locator": "Vivre avec la nature, chapitre 14, Une agriculture durable et un revenu digne pour tous les paysans, rubrique sur la reprise des fermes, la loi foncière et l’accès aux prêts."
+      }
+    ],
+    "partyAuthor": "Parti socialiste"
+  },
+  {
+    "id": "ps-assurances-agricoles-publiques",
+    "parentId": "ps-travail",
+    "candidate": "glucksmann",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Nationaliser les assurances agricoles et créer un fonds pour les catastrophes climatiques",
+    "description": "Le PS veut protéger les exploitations contre la hausse des cotisations consécutive aux pertes climatiques. Il propose de compléter l’assurance publique par un fonds national.",
+    "scope": "parti",
+    "edition": "Projet du Parti socialiste adopté le 25 juin 2026",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "ps-projet-agriculture-nature",
+        "locator": "Vivre avec la nature, chapitre 14, Une agriculture durable et un revenu digne pour tous les paysans, proposition sur les assurances agricoles et le fonds de catastrophe climatique."
+      }
+    ],
+    "partyAuthor": "Parti socialiste"
+  },
+  {
+    "id": "ps-peche-locale-etablissements-scolaires",
+    "parentId": "ps-climat",
+    "candidate": "glucksmann",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Donner un débouché à la pêche locale dans les établissements scolaires",
+    "description": "Le PS propose de faire servir les produits de la pêche locale à l’école, de les identifier par des marques ou labels et de soutenir les entreprises qui les transforment et les commercialisent sur place.",
+    "scope": "parti",
+    "edition": "Projet du Parti socialiste adopté le 25 juin 2026",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "ps-projet-agriculture-nature",
+        "locator": "Vivre avec la nature, chapitre 14, Une agriculture durable et un revenu digne pour tous les paysans, rubrique sur la pêche française, passage sur les établissements scolaires et les entreprises locales."
+      }
+    ],
+    "partyAuthor": "Parti socialiste"
+  },
+  {
+    "id": "lr-contrats-volumes-prix-agricoles",
+    "parentId": "lr-agriculture-foncier-contrats",
+    "candidate": "retailleau",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Inscrire les volumes dans les contrats et sanctionner les remises qui contournent le prix agricole",
+    "description": "Les Républicains veulent renforcer les contrats écrits et protéger la part du prix liée à la matière première. Ils fixent au 31 décembre la date limite des négociations commerciales.",
+    "scope": "parti",
+    "edition": "Réarmer notre agriculture · projet des Républicains, 2026",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lr-rearmer-agriculture",
+        "locator": "Réarmer notre agriculture, p. 33, Rééquilibrer durablement la chaîne de valeur au bénéfice des producteurs."
+      },
+      {
+        "sourceId": "retailleau-presentation-agriculture",
+        "locator": "Présentation publique du livret par Bruno Retailleau, 24 février 2026, partie sur les revenus."
+      }
+    ],
+    "partyAuthor": "Les Républicains"
+  },
+  {
+    "id": "lr-louer-terres-acquerir-equipement",
+    "parentId": "lr-agriculture-foncier-contrats",
+    "candidate": "retailleau",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Permettre à un jeune agriculteur de louer la terre et d’acheter ses bâtiments",
+    "description": "Le livret propose qu’un organisme comme la Safer porte le foncier. Le jeune exploitant pourrait louer durablement la terre, acheter les équipements et acquérir le terrain progressivement ou au terme du bail.",
+    "scope": "parti",
+    "edition": "Réarmer notre agriculture · projet des Républicains, 2026",
+    "checked": "2026-11-24",
+    "beneficiaries": "Jeunes agriculteurs qui s’installent.",
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lr-rearmer-agriculture",
+        "locator": "Réarmer notre agriculture, p. 23, dissociation du foncier et de l’outil de production."
+      }
+    ],
+    "partyAuthor": "Les Républicains"
+  },
+  {
+    "id": "lr-transmission-fermes-impot-differe",
+    "parentId": "lr-agriculture-foncier-contrats",
+    "candidate": "retailleau",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Différer l’impôt sur la transmission d’une ferme tant qu’elle produit",
+    "description": "Les Républicains proposent une option en plus du pacte Dutreil. L’impôt serait exigible lors de la cession ou de la liquidation, avec prise en compte des moins-values ultérieures.",
+    "scope": "parti",
+    "edition": "Réarmer notre agriculture · projet des Républicains, 2026",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lr-rearmer-agriculture",
+        "locator": "Réarmer notre agriculture, p. 23, réforme de la transmission du capital agricole."
+      }
+    ],
+    "partyAuthor": "Les Républicains"
+  },
+  {
+    "id": "lr-marches-publics-cantines-lots",
+    "parentId": "lr-commandes-restauration-collective",
+    "candidate": "retailleau",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Découper les marchés des cantines pour permettre aux producteurs de répondre",
+    "description": "Les Républicains proposent de diviser les marchés alimentaires en lots lorsque c’est pertinent. Fraîcheur, saison, traçabilité et continuité des livraisons compteraient dans le choix du fournisseur.",
+    "scope": "parti",
+    "edition": "Réarmer notre agriculture · projet des Républicains, 2026",
+    "checked": "2026-11-24",
+    "beneficiaries": "Agriculteurs, PME et entreprises de taille intermédiaire répondant aux achats publics.",
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lr-rearmer-agriculture",
+        "locator": "Réarmer notre agriculture, p. 28, Mobiliser la commande publique comme levier industriel et agricole."
+      }
+    ],
+    "partyAuthor": "Les Républicains"
+  },
+  {
+    "id": "place-publique-achats-circuits-courts",
+    "parentId": "place-publique-alimentation-revenus",
+    "candidate": "glucksmann",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Privilégier les circuits courts pour les repas des écoles, hôpitaux et administrations",
+    "description": "Place publique veut que les établissements achètent auprès de filières qui rémunèrent les producteurs. Le parti associe ces débouchés à une logistique locale et à un approvisionnement de proximité.",
+    "scope": "parti",
+    "edition": "Texte de Place publique pour le Salon de l’agriculture, février 2026",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "place-publique-agriculture-fevrier",
+        "locator": "Texte du 23 février, rubrique Mieux nourrir, deux paragraphes sur les débouchés et la restauration collective."
+      }
+    ],
+    "partyAuthor": "Place publique"
+  },
+  {
+    "id": "place-publique-regulation-revenus-agricoles",
+    "parentId": "place-publique-alimentation-revenus",
+    "candidate": "glucksmann",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Renforcer la régulation des acheteurs dominants de produits agricoles",
+    "description": "Pour sécuriser les revenus, Place publique propose une régulation plus ferme des industriels et des distributeurs dominants. Son texte ne donne pas de prix plancher.",
+    "scope": "parti",
+    "edition": "Texte de Place publique pour le Salon de l’agriculture, février 2026",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "place-publique-agriculture-fevrier",
+        "locator": "Texte du 23 février, rubrique Mieux rémunérer."
+      }
+    ],
+    "partyAuthor": "Place publique"
+  },
+  {
+    "id": "equinoxe-legumeries-conserveries-locales",
+    "parentId": "mikolajczak-climat-mesures-complementaires-parti",
+    "candidate": "mikolajczak",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Aider les collectivités à ouvrir des légumeries et des conserveries locales",
+    "description": "Équinoxe prévoit un appui financier et humain de l’État pour développer de petits ateliers de transformation. Les collectivités pourraient aussi faciliter l’installation de fermes en agroécologie et ouvrir des lieux de vente là où ils manquent.",
+    "scope": "parti",
+    "edition": "Renouer · Programme présidentiel d’Équinoxe",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "equinoxe-programme-synthetique",
+        "locator": "Renouer, programme synthétique, p. 44, Nos propositions, passage sur les politiques alimentaires territoriales."
+      }
+    ],
+    "partyAuthor": "Équinoxe"
+  },
+  {
+    "id": "equinoxe-jardins-alimentation-primaire",
+    "parentId": "equinoxe-education-alimentaire",
+    "candidate": "mikolajczak",
+    "theme": "education",
+    "revision": 1,
+    "title": "Associer l’éducation à l’alimentation à des jardins pédagogiques en primaire",
+    "description": "Équinoxe propose de faire entrer l’éducation alimentaire et les jardins pédagogiques à l’école primaire.",
+    "scope": "parti",
+    "edition": "Renouer · Programme présidentiel d’Équinoxe",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "equinoxe-programme-synthetique",
+        "locator": "Renouer, programme synthétique, p. 44, Nos propositions, liste sur les habitudes alimentaires, point sur l’école primaire."
+      }
+    ],
+    "partyAuthor": "Équinoxe"
+  },
+  {
+    "id": "equinoxe-droit-alimentation-durable",
+    "parentId": "mikolajczak-social-mesures-complementaires-parti",
+    "candidate": "mikolajczak",
+    "theme": "social",
+    "revision": 1,
+    "title": "Inscrire le droit à une alimentation durable dans la Constitution",
+    "description": "Équinoxe veut faire de l’alimentation durable un droit constitutionnel, à mettre en œuvre par des politiques nationales et territoriales.",
+    "scope": "parti",
+    "edition": "Renouer · Programme présidentiel d’Équinoxe",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "equinoxe-programme-synthetique",
+        "locator": "Renouer, programme synthétique, p. 44, Nos propositions, premier paragraphe sur le droit à l’alimentation."
+      }
+    ],
+    "partyAuthor": "Équinoxe"
+  },
+  {
+    "id": "mei-maraichage-periurbain",
+    "parentId": "rohou-agriculture-eau-sols",
+    "candidate": "rohou",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Développer le maraîchage autour des villes et les circuits courts",
+    "description": "Le Mouvement écologiste indépendant veut rapprocher lieux de production et de consommation en relançant les productions locales autour des villes.",
+    "scope": "parti",
+    "edition": "Projet du MEI pour 2027",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mei-projet-2027",
+        "locator": "Projet politique du MEI pour 2027, axe 03, priorité Relancer l’agriculture de proximité."
+      }
+    ],
+    "partyAuthor": "Mouvement écologiste indépendant"
+  },
+  {
+    "id": "mei-recherche-agricole-fossiles",
+    "parentId": "rohou-agriculture-eau-sols",
+    "candidate": "rohou",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Orienter la recherche agronomique vers des fermes moins dépendantes de l’énergie fossile",
+    "description": "Le MEI propose que la recherche accompagne les agriculteurs dans des pratiques qui réduisent leur consommation d’énergie fossile et préservent l’eau, les sols et la biodiversité.",
+    "scope": "parti",
+    "edition": "Projet du MEI pour 2027",
+    "checked": "2026-11-24",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mei-projet-2027",
+        "locator": "Projet politique du MEI pour 2027, axe 03, priorité Développer une agriculture plus autonome."
+      }
+    ],
+    "partyAuthor": "Mouvement écologiste indépendant"
   }
 ]

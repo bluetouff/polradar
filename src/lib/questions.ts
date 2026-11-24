@@ -259,11 +259,55 @@ const additions = [
     theme: 'agriculture',
     title: 'Comment améliorer la rémunération des agriculteurs ?',
     terms:
-      'agriculture prix planchers contrats producteurs revenus aides environnement pratiques agricoles grande distribution',
+      'agriculture prix planchers coûts de production contrats volumes producteurs revenus aides environnement grande distribution fruits légumes transparence',
+    related: {
+      label: 'Lire le dossier sur le prix payé aux agriculteurs',
+      href: '/dossiers/revenu-agricole-prix-contrats/',
+    },
     versions: [
       'attal-prix-planchers-agricoles-v1',
       'billetdoux-remuneration-agriculteurs-v1',
+      'dupont-aignan-double-prix-fruits-legumes-v1',
+      'lr-contrats-volumes-prix-agricoles-v1',
       'mei-contrats-eau-sols-agriculteurs-v1',
+      'melenchon-prix-planchers-producteurs-v1',
+      'place-publique-regulation-revenus-agricoles-v1',
+      'ps-prix-minimums-agricoles-v1',
+      'villepin-contrats-prix-volumes-agricoles-v1',
+      'villepin-statut-fermes-familiales-v1',
+    ],
+  },
+  {
+    id: 'agriculture-cantines',
+    theme: 'agriculture',
+    title: 'Qui paierait la cantine et quels produits y servirait-on ?',
+    terms:
+      'cantines scolaires gratuité prix repas végétariens menus circuits courts achats publics restauration collective produits locaux poisson bio',
+    related: {
+      label: 'Voir les achats réels et les règles des cantines',
+      href: '/dossiers/cantines-achats-menus-prix/',
+    },
+    versions: [
+      'equinoxe-repas-vegetariens-collectivite-v1',
+      'lr-marches-publics-cantines-lots-v1',
+      'melenchon-education-1-v1',
+      'place-publique-achats-circuits-courts-v1',
+      'ps-peche-locale-etablissements-scolaires-v1',
+    ],
+  },
+  {
+    id: 'agriculture-installation-fermes',
+    theme: 'agriculture',
+    title: 'Comment reprendre une ferme ou accéder à la terre ?',
+    terms:
+      'jeunes agriculteurs installation reprise transmission foncier terres bail rural Safer préemption prêts ferme familiale',
+    versions: [
+      'attal-extension-batiments-elevage-v1',
+      'lr-louer-terres-acquerir-equipement-v1',
+      'lr-transmission-fermes-impot-differe-v1',
+      'melenchon-preemption-installation-fermes-v1',
+      'ps-foncier-premiere-installation-v1',
+      'villepin-statut-fermes-familiales-v1',
     ],
   },
   {
