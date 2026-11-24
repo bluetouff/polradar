@@ -1,0 +1,96 @@
+---
+import Base from '../layouts/Base.astro';
+import { publicExports, dataLicence } from '../lib/public-exports.mjs';
+import { meta, formatDate } from '../lib/data';
+import { sourceCommit } from '../../scripts/release-revision.mjs';
+const archive = sourceCommit
+  ? `https://github.com/bluetouff/polradar/releases/download/site-${sourceCommit}/corpus-v1.tar.gz`
+  : null;
+---
+
+<Base
+  title="Télécharger les données de Polradar"
+  description="Les exports de la campagne avec leur unité, leur provenance et leurs limites de réutilisation."
+>
+  <header class="page-title">
+    <h1>Données ouvertes</h1>
+    <p>
+      Édition du {formatDate(meta.edition)}. Chaque export s’ouvre sans compte.
+      La base originale est sous <a href="/licences/">ODbL 1.0</a>.
+    </p>
+  </header>
+  <nav aria-label="Téléchargements du corpus" class="downloads">
+    {archive && (
+      <a href={archive}>Télécharger cette édition complète (.tar.gz)</a>
+    )}{' '}
+    <a href="/api/exports-v1.json">Catalogue JSON</a>{' '}
+    <a href="/api/">Interroger l’API</a>
+  </nav>
+  <div class="datasets">
+    {publicExports.map((j) => (
+      <section id={j.id} itemscope itemtype="https://schema.org/Dataset">
+        <h2 itemprop="name">{j.title}</h2>
+        <p itemprop="description">
+          {j.description}. {j.unit}
+        </p>
+        <dl>
+          <dt>Provenance</dt>
+          <dd>{j.provenance}</dd>
+          <dt>À prendre en compte</dt>
+          <dd>{j.limits}</dd>
+        </dl>
+        <link itemprop="license" href={dataLicence.texte} />
+        <meta itemprop="dateModified" content={meta.edition} />
+        <span
+          itemprop="distribution"
+          itemscope
+          itemtype="https://schema.org/DataDownload"
+        >
+          <meta itemprop="encodingFormat" content="application/json" />
+          <a itemprop="contentUrl" href={j.path} download>
+            Télécharger le JSON
+          </a>
+        </span>
+      </section>
+    ))}
+  </div>
+</Base>
+<style>
+  .downloads {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem 1.4rem;
+    margin: 1.25rem 0;
+  }
+  .downloads a,
+  .datasets a {
+    color: var(--ink);
+    text-underline-offset: 0.2em;
+  }
+  .datasets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    gap: 1rem;
+  }
+  .datasets section {
+    padding: clamp(1rem, 2vw, 1.5rem);
+    background: var(--panel-gradient);
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+  }
+  .datasets h2 {
+    margin: 0;
+    font-size: 1.16rem;
+  }
+  .datasets p,
+  .datasets dd {
+    line-height: 1.5;
+  }
+  .datasets dt {
+    margin-top: 0.7rem;
+    font-weight: 620;
+  }
+  .datasets dd {
+    margin: 0.2rem 0;
+  }
+</style>

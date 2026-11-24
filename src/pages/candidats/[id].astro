@@ -231,6 +231,14 @@ const votesLink = voteCases.find((v) => v.candidate === candidate.id);
       )}
       <CandidateActivity candidate={candidate} />
       <p>
+        <a
+          class="inline-action"
+          href={'/documents/candidats/' + candidate.id + '/'}
+        >
+          Documents et passages cités dans ce dossier ↗
+        </a>
+      </p>
+      <p>
         <a class="inline-action" href={`/numerique/candidats/#${candidate.id}`}>
           Numérique · mesures et documents examinés ↗
         </a>

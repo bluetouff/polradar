@@ -4,6 +4,8 @@ import BriefCards from '../../components/BriefCards.astro';
 import Icon from '../../components/Icon.astro';
 import Pager from '../../components/Pager.astro';
 import { campaignBriefs } from '../../lib/briefs';
+import { briefEditions } from '../../lib/brief-editions';
+import { formatDate } from '../../lib/data';
 import { pageRange } from '../../lib/pagination';
 import '../../styles/pagination.css';
 interface Props {
@@ -12,6 +14,7 @@ interface Props {
 const { page = 1 } = Astro.props;
 const briefs = await campaignBriefs();
 const range = pageRange(briefs.length, page);
+const editions = page === 1 ? (await briefEditions()).slice(0, 7) : [];
 ---
 
 <Base
@@ -36,8 +39,43 @@ const range = pageRange(briefs.length, page);
       <Icon name="rss" /> Flux RSS
     </a>
   </header>
+  {editions.length > 0 && (
+    <nav class="brief-days" aria-label="Éditions quotidiennes">
+      <h2>Par jour</h2>
+      {editions.map((e) => (
+        <a href={'/breves/edition/' + e.day + '/'}>
+          <time datetime={e.day}>{formatDate(e.day)}</time>
+        </a>
+      ))}
+    </nav>
+  )}
   <div id="resultats" tabindex="-1">
     <BriefCards items={briefs.slice(range.start, range.end)} />
     {range.pages > 1 && <Pager range={range} base="/breves/" />}
   </div>
 </Base>
+<style>
+  .brief-days {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.45rem 0.7rem;
+    padding-block: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .brief-days h2 {
+    font-size: 1rem;
+    margin: 0 0.3rem 0 0;
+  }
+  .brief-days a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.6rem;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: 0.5rem;
+    background: var(--panel-gradient);
+    color: var(--ink);
+    text-underline-offset: 0.18em;
+  }
+</style>

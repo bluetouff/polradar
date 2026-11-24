@@ -1,4 +1,5 @@
 ---
+import SupportLink from './SupportLink.astro';
 import BrandLogo from './BrandLogo.astro';
 import { meta, formatDate } from '../lib/data';
 import { footerColumns as columns } from '../lib/footer-links';
@@ -43,9 +44,13 @@ import { footerColumns as columns } from '../lib/footer-links';
         </time>
         <span> · Sélection non exhaustive</span>
       </p>
-      <a href={meta.repository} target="_blank" rel="noopener noreferrer">
-        GitHub · Licence MIT
-      </a>
+      <div class="footer-resources">
+        <SupportLink />
+        <a href="/licences/">Licences et crédits</a>
+        <a href={meta.repository} target="_blank" rel="noopener noreferrer">
+          GitHub
+        </a>
+      </div>
     </div>
     <div class="footer-bottom">
       <span class="footer-credit">

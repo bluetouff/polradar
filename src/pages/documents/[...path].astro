@@ -1,0 +1,337 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import Pager from '../../components/Pager.astro';
+import { allDocuments, documentFacets, documents } from '../../lib/documents';
+import { formatDate, sourceKinds } from '../../lib/data';
+import { pageRange, pagesFor } from '../../lib/pagination';
+
+export function getStaticPaths() {
+  return [allDocuments, ...documentFacets].flatMap((facet) =>
+    pagesFor(facet.rows.length).map((page) => ({
+      params: {
+        path:
+          [facet.path, page > 1 ? 'page/' + page : '']
+            .filter(Boolean)
+            .join('/') || undefined,
+      },
+      props: { facet, page },
+    })),
+  );
+}
+const { facet, page } = Astro.props;
+const base = '/documents/' + (facet.path ? facet.path + '/' : '');
+const range = pageRange(facet.rows.length, page);
+const title = facet.path
+  ? 'Documents · ' + facet.label
+  : 'Registre des documents';
+const audited = documents.filter((d) => d.coverage);
+const names = new Map(
+  documentFacets
+    .filter((f) => f.group === 'Candidatures')
+    .map((f) => [f.path.slice(10), f.label]),
+);
+---
+
+<Base
+  title={title + (page > 1 ? ' · page ' + page : '')}
+  description="Retrouvez les documents cités, les passages utilisés et les sections de programme examinées."
+>
+  <header class="page-title">
+    <h1>{title}</h1>
+    <p>
+      {facet.path
+        ? facet.rows.length + ' références rattachées à ce dossier.'
+        : documents.length +
+          ' références. Retrouvez qui a publié un document, quand et quelles fiches le citent.'}
+    </p>
+    <a class="inline-action" href="/api/documents.json">
+      <Icon name="download" /> Télécharger le registre (JSON)
+    </a>
+  </header>
+  <nav class="document-facets" aria-label="Explorer le registre">
+    {['Candidatures', 'Thèmes', 'Auteurs vérifiés'].map((group) => (
+      <details>
+        <summary>{group}</summary>
+        <ul>
+          {documentFacets
+            .filter((f) => f.group === group)
+            .map((f) => (
+              <li>
+                <a
+                  aria-current={facet.path === f.path ? 'page' : undefined}
+                  href={'/documents/' + f.path + '/'}
+                >
+                  {f.label} <small>{f.rows.length}</small>
+                </a>
+              </li>
+            ))}
+        </ul>
+      </details>
+    ))}
+  </nav>
+  <div class="section-heading" id="resultats">
+    <h2>{facet.path ? facet.label : 'Documents du corpus'}</h2>
+    {facet.path ? (
+      <a href="/documents/">Tout le registre</a>
+    ) : (
+      <span>{audited.length} sections dépouillées</span>
+    )}
+  </div>
+  <section class="document-cards" aria-label="Documents">
+    {facet.rows.slice(range.start, range.end).map((d) => (
+      <article id={d.id} class="document-card">
+        <div class="doc-kind">
+          {sourceKinds[d.kind]} <span>· {new URL(d.url).hostname}</span>
+        </div>
+        <h2>
+          <a href={d.url} rel="noreferrer">
+            {d.title}
+            <span aria-hidden="true"> ↗</span>
+          </a>
+        </h2>
+        <dl>
+          <div>
+            <dt>Publication</dt>
+            <dd>
+              {d.publication.precision === 'jour'
+                ? formatDate(d.publication.value)
+                : (d.publication.value ?? 'Date inconnue')}
+            </dd>
+          </div>
+          <div>
+            <dt>Consultation</dt>
+            <dd>{formatDate(d.checked)}</dd>
+          </div>
+          {d.author && (
+            <div>
+              <dt>Auteur</dt>
+              <dd>{d.author.author}</dd>
+            </div>
+          )}
+          {d.publisher && (
+            <div>
+              <dt>Éditeur</dt>
+              <dd>{d.publisher}</dd>
+            </div>
+          )}
+        </dl>
+        {d.candidates.length > 0 && (
+          <p class="doc-candidates">
+            {d.candidates
+              .map((c) => names.get(c))
+              .filter(Boolean)
+              .slice(0, 3)
+              .join(' · ')}
+            {d.candidates.length > 3
+              ? ' et ' + (d.candidates.length - 3) + ' autres dossiers'
+              : ''}
+          </p>
+        )}
+        {d.coverage && (
+          <details class="doc-coverage">
+            <summary>
+              {d.coverage.linked}/{d.coverage.total} {d.coverage.unit}s reliées
+              à une fiche
+            </summary>
+            <p>
+              {d.coverage.perimeter}. Lecture du{' '}
+              {formatDate(d.coverage.checked)}.
+            </p>
+            <ol>
+              {d.coverage.units.map((u) => (
+                <li>
+                  {u.title}{' '}
+                  {u.measureIds.length ? (
+                    u.measureIds.map((id, i) => (
+                      <a href={'/mesures/' + id + '/'}>
+                        Fiche {u.measureIds.length > 1 ? i + 1 : ''}
+                      </a>
+                    ))
+                  ) : (
+                    <em>À documenter</em>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </details>
+        )}
+        {d.measureCount > 0 && (
+          <details class="doc-passages" data-source={d.id}>
+            <summary>
+              {d.measureCount}{' '}
+              {d.measureCount === 1 ? 'fiche cite' : 'fiches citent'} ce
+              document
+            </summary>
+            <ul data-passages>
+              {d.passages.slice(0, 2).map((p) => (
+                <li>
+                  <a href={'/mesures/' + p.measureId + '/'}>{p.locator}</a>
+                </li>
+              ))}
+            </ul>
+            {d.passages.length > 2 && (
+              <button type="button" class="button" data-all hidden>
+                Afficher tous les passages
+              </button>
+            )}
+          </details>
+        )}
+      </article>
+    ))}
+  </section>
+  <Pager range={range} base={base} />
+  <script>
+    import type { RegisteredDocument } from '../../lib/document-register';
+    let request: Promise<Map<string, RegisteredDocument>> | undefined;
+    for (const details of document.querySelectorAll<HTMLElement>(
+      '.doc-passages',
+    )) {
+      const button = details.querySelector<HTMLButtonElement>('[data-all]');
+      const list = details.querySelector<HTMLUListElement>('[data-passages]');
+      if (!button || !list) continue;
+      button.hidden = false;
+      button.addEventListener('click', async () => {
+        button.disabled = true;
+        try {
+          request ??= fetch('/api/documents.json', {
+            credentials: 'omit',
+          }).then(async (r) => {
+            if (!r.ok) throw new Error();
+            const data = (await r.json()) as {
+              documents: RegisteredDocument[];
+            };
+            return new Map(data.documents.map((d) => [d.id, d]));
+          });
+          const row = (await request).get(details.dataset.source || '');
+          if (!row) throw new Error();
+          const nodes = row.passages.map((p) => {
+            const li = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = '/mesures/' + encodeURIComponent(p.measureId) + '/';
+            link.textContent = p.locator;
+            li.append(link);
+            return li;
+          });
+          list.replaceChildren(...nodes);
+          button.hidden = true;
+        } catch {
+          request = undefined;
+          button.textContent = 'Réessayer le chargement des passages';
+          button.disabled = false;
+        }
+      });
+    }
+  </script>
+</Base>
+<style>
+  .document-facets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin: 1.5rem 0;
+    align-items: start;
+  }
+  .document-facets details {
+    padding: 0.55rem 0.9rem;
+    border: 1px solid var(--rule, #a4bbc4);
+    border-radius: 0.55rem;
+    background: var(--surface, #fff);
+  }
+  .document-facets summary,
+  .document-card summary {
+    cursor: pointer;
+    font-weight: 650;
+  }
+  .document-facets ul {
+    list-style: none;
+    margin: 0.7rem 0;
+    padding: 0;
+    columns: 2;
+  }
+  .document-facets li {
+    break-inside: avoid;
+    padding: 0.25rem 0.75rem 0.25rem 0;
+  }
+  .document-facets small {
+    font-variant-numeric: tabular-nums;
+  }
+  .document-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .document-card {
+    min-width: 0;
+    padding: clamp(1rem, 2.2vw, 1.5rem);
+    background: var(--panel-gradient, #f5fafb);
+    border: 1px solid var(--panel-edge, #a4bbc4);
+    border-radius: 0.8rem;
+    overflow-wrap: anywhere;
+  }
+  .document-card .doc-kind {
+    font-size: 0.8rem;
+    color: #235565;
+  }
+  .document-card .doc-kind span {
+    color: #4a6170;
+  }
+  .document-card h2 {
+    font-size: 1.12rem;
+    line-height: 1.35;
+    margin: 0.55rem 0 1rem;
+  }
+  .document-card dl {
+    display: grid;
+    gap: 0.35rem;
+    margin: 0;
+  }
+  .document-card dl div {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+    border-bottom: 1px solid #cfdee2;
+    padding-bottom: 0.3rem;
+  }
+  .document-card dd {
+    text-align: right;
+    margin: 0;
+  }
+  .doc-candidates,
+  .document-card dl,
+  .document-card details {
+    font-size: 0.87rem;
+  }
+  .document-card details {
+    margin-top: 0.8rem;
+  }
+  .document-card li {
+    margin: 0.35rem 0;
+  }
+  .document-card li a + a {
+    margin-left: 0.5rem;
+  }
+  .doc-coverage {
+    padding: 0.65rem;
+    background: #dfefed;
+    border-radius: 0.4rem;
+  }
+  .doc-candidates {
+    color: #375664;
+  }
+  .document-card [hidden] {
+    display: none;
+  }
+  @media (max-width: 35rem) {
+    .document-facets ul {
+      columns: 1;
+    }
+    .document-facets {
+      gap: 0.4rem;
+    }
+    .document-card {
+      padding: 1rem;
+    }
+  }
+</style>

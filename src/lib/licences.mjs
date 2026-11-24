@@ -1,0 +1,58 @@
+export const rights = [
+  {
+    id: 'astro',
+    objet: 'Site Astro',
+    licence: 'AGPL-3.0-only',
+    texte: 'https://www.gnu.org/licenses/agpl-3.0.html',
+    icon: 'candidats',
+  },
+  {
+    id: 'services',
+    objet: 'Serveur MCP et API REST en Go',
+    licence: 'AGPL-3.0-only',
+    texte: 'https://www.gnu.org/licenses/agpl-3.0.html',
+    icon: 'donnees',
+  },
+  {
+    id: 'collecte',
+    objet: 'Collecteurs, moteurs d’analyse et pipelines',
+    licence: 'AGPL-3.0-only',
+    texte: 'https://www.gnu.org/licenses/agpl-3.0.html',
+    icon: 'layers',
+  },
+  {
+    id: 'corpus',
+    objet: 'Base documentaire originale',
+    licence: 'ODbL-1.0',
+    texte: 'https://opendatacommons.org/licenses/odbl/1-0/',
+    icon: 'source',
+  },
+  {
+    id: 'editions',
+    objet: 'Articles, illustrations et graphiques originaux',
+    licence: 'CC-BY-4.0',
+    texte: 'https://creativecommons.org/licenses/by/4.0/deed.fr',
+    icon: 'sondages',
+  },
+  {
+    id: 'integration',
+    objet: 'SDK et exemples d’intégration externes',
+    licence: 'MIT',
+    texte: 'https://opensource.org/license/mit',
+    icon: 'external',
+  },
+  {
+    id: 'identite',
+    objet: 'Nom, logo et identité Polradar',
+    licence: 'Droits réservés',
+    texte: null,
+    icon: 'suivi',
+  },
+  {
+    id: 'tiers',
+    objet: 'Données et documents de tiers',
+    licence: 'Licences d’origine',
+    texte: null,
+    icon: 'source',
+  },
+];

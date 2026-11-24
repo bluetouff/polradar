@@ -33,7 +33,11 @@ def create(root, destination, revision):
     if (catalog["version"] != 1 or catalog["sourceCommit"] != revision or sorted(advertised) != sorted(
             "https://polradar.fr/api/" + key + ".json" for key in DATA)):
         raise ValueError("Le catalogue et les fichiers livrés diffèrent")
-    files["LICENSE"] = (ROOT / "LICENSE").read_bytes()
+    if catalog["licence"].get("originaux") != "ODbL-1.0":
+        raise ValueError("Licence de la base incohérente")
+    files["LICENSE"] = (ROOT / "public/licenses/ODbL-1.0.txt").read_bytes()
+    files["CC-BY-4.0.txt"] = (ROOT / "public/licenses/CC-BY-4.0.txt").read_bytes()
+    files["REUTILISATION.txt"] = (ROOT / "public/licenses/REUTILISATION.txt").read_bytes()
     manifest = {"version": 1, "sourceCommit": revision, "edition": catalog["edition"],
                 "licence": catalog["licence"], "sha256": {
                     name: hashlib.sha256(data).hexdigest() for name, data in sorted(files.items())}}

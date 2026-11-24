@@ -1,4 +1,5 @@
 ---
+import SupportLink from './SupportLink.astro';
 import { meta, formatDate } from '../lib/data';
 ---
 
@@ -24,8 +25,10 @@ import { meta, formatDate } from '../lib/data';
       </span>
       <a href="/suivi/">Mon suivi</a>
       <a href="/reperes/">Calendrier électoral</a>
+      <SupportLink />
+      <a href="/licences/">Licences et crédits</a>
       <a href={meta.repository} target="_blank" rel="noopener noreferrer">
-        GitHub · Licence MIT
+        GitHub
       </a>
       <small>
         Corpus du{' '}

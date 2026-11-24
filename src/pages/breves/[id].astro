@@ -23,18 +23,48 @@ const Content = entry ? (await render(entry)).Content : null;
   <nav class="breadcrumbs" aria-label="Fil d’Ariane">
     <a href="/breves/">Brèves de campagne</a>
   </nav>
-  <article class="brief-reading">
+  <article
+    class="brief-reading"
+    itemscope
+    itemtype="https://schema.org/NewsArticle"
+  >
+    <link
+      itemprop="mainEntityOfPage"
+      href={new URL(Astro.url.pathname, Astro.site).href}
+    />
+    <span
+      itemprop="publisher"
+      itemscope
+      itemtype="https://schema.org/Organization"
+    >
+      <meta itemprop="name" content="Polradar" />
+    </span>
     <header>
       <p class="brief-byline">
         {entry ? 'Rédaction Polradar' : 'Veille des publications officielles'} ·
         Publié le{' '}
-        <time datetime={article.data.published}>
+        <time itemprop="datePublished" datetime={article.data.published}>
           {formatDate(article.data.published)}
         </time>
       </p>
-      <h1>{article.data.title}</h1>
-      <p class="brief-deck">{article.data.description}</p>
+      <h1 itemprop="headline">{article.data.title}</h1>
+      <p class="brief-deck" itemprop="description">
+        {article.data.description}
+      </p>
     </header>
+    {entry?.data.reperes && (
+      <section class="brief-dates" aria-label="Chronologie du dossier">
+        <h2>Les dates du dossier</h2>
+        <ol>
+          {entry.data.reperes.map((r) => (
+            <li>
+              <strong>{r.periode}</strong>
+              <span>{r.fait}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+    )}
     {Content ? (
       <div class="prose">
         <Content />
@@ -43,6 +73,13 @@ const Content = entry ? (await render(entry)).Content : null;
       <p>
         Le document d’origine est daté du{' '}
         <time datetime={event.date}>{formatDate(event.date)}</time>.
+      </p>
+    )}
+    {entry && (
+      <p class="brief-byline">
+        <a rel="license" href="/licences/#editions">
+          Texte de Polradar · CC BY 4.0
+        </a>
       </p>
     )}
     <section class="article-sources">
@@ -96,5 +133,45 @@ const Content = entry ? (await render(entry)).Content : null;
   }
   .brief-links a {
     text-underline-offset: 0.2em;
+  }
+  .brief-dates {
+    margin: 1.25rem 0 1.5rem;
+    border: 1px solid #9cbac3;
+    border-radius: 0.8rem;
+    background: linear-gradient(120deg, #142d3b, #204e5b);
+    padding: clamp(1rem, 3vw, 1.45rem);
+    color: #f3fafb;
+  }
+  .brief-dates h2 {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    color: #f3fafb;
+  }
+  .brief-dates ol {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
+    gap: 0.9rem 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .brief-dates li {
+    padding-top: 0.6rem;
+    border-top: 2px solid #72a9b4;
+    min-width: 0;
+  }
+  .brief-dates strong,
+  .brief-dates span {
+    display: block;
+  }
+  .brief-dates strong {
+    font-size: 0.92rem;
+    color: #b6e4e8;
+  }
+  .brief-dates span {
+    margin-top: 0.35rem;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: #e7eff2;
   }
 </style>

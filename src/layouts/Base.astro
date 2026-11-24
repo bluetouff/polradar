@@ -7,6 +7,7 @@ import '../styles/cards.css';
 import { navigationFor } from '../lib/navigation';
 import SiteFooter from '../components/SiteFooter.astro';
 import CompactFooter from '../components/CompactFooter.astro';
+import SupportLink from '../components/SupportLink.astro';
 import BrandLogo from '../components/BrandLogo.astro';
 import SiteNavigation from '../components/SiteNavigation.astro';
 import { menuStyle } from '../lib/menu-sprite';
@@ -112,11 +113,6 @@ const socialImageUrl = new URL(social.url, Astro.site);
               <span class="election-context">Présidentielle française</span>
               <span class="election-year">2027</span>
             </p>
-            <a
-              href="/recherche/"
-              class="mobile-search"
-              aria-label="Rechercher"
-            ></a>
           </div>
           <div class="masthead-actions">
             <time data-polradar-date="edition" datetime={meta.edition}>
@@ -124,7 +120,14 @@ const socialImageUrl = new URL(social.url, Astro.site);
               <br />
               {formatDate(meta.edition)}
             </time>
-            <a href="/recherche/">Rechercher</a>
+            <SupportLink compact />
+            <a
+              href="/recherche/"
+              class="masthead-search"
+              aria-label="Rechercher"
+            >
+              <span>Rechercher</span>
+            </a>
           </div>
         </div>
         {!publicationTool && <SiteNavigation current={navigation.current} />}

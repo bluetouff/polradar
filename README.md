@@ -48,7 +48,7 @@ La relecture du 17 novembre 2026 renseigne notamment les dossiers de Dupont-Aign
 
 La chronologie rassemble 26 événements datés, avec des catégories, une recherche et des filtres par personnalité. Chaque entrée distingue événement, publication et mise à jour de document. Une vague de sondage forme un seul événement, quel que soit son nombre de scénarios.
 
-La présentation utilise la police Archivo, servie localement depuis `src/assets/fonts/` sous licence SIL OFL 1.1. Le reste du projet conserve sa licence MIT. La home présente les volumes de fiches par thème, une série de sondages compatible et les relevés distincts des deux marchés ; l’annuaire des candidats est disposé en colonnes sans étirer les autres blocs.
+La présentation utilise la police Archivo, servie localement depuis `src/assets/fonts/` sous licence SIL OFL 1.1. Les licences du code et de la base sont précisées ci-dessous. La home présente les volumes de fiches par thème, une série de sondages compatible et les relevés distincts des deux marchés ; l’annuaire des candidats est disposé en colonnes sans étirer les autres blocs.
 
 La galerie des candidatures héberge ses portraits sur Polradar. La page `/credits-photos/` indique le document d’origine, l’auteur quand il est identifié et le statut des droits pour chaque image. Les photographies conservent leurs propres conditions de réutilisation. Les portraits de campagne sans autorisation documentée sont signalés comme tels. Le cliché de Benoît Mathieu est servi dans le JPEG fourni par sa campagne. Le filtre thématique conserve aussi les dossiers qui restent à documenter.
 
@@ -135,7 +135,7 @@ Voir [CONTRIBUTING.md](CONTRIBUTING.md) et [SECURITY.md](SECURITY.md). Les corre
 
 ## Licence
 
-[MIT](LICENSE), pour le code et les contenus originaux du projet. Les documents de tiers cités, les noms et les marques restent soumis à leurs propres droits. La licence du dépôt ne les relicencie pas.
+Le code original de Polradar est distribué sous [GNU AGPL version 3](LICENSE) (`AGPL-3.0-only`). La base originale est distribuée sous [ODbL 1.0](public/licenses/ODbL-1.0.txt). Les articles, illustrations et graphiques originaux sont sous [CC BY 4.0](public/licenses/CC-BY-4.0.txt), le [SDK et les exemples externes](integrations/) sous [MIT](integrations/LICENSE). Le nom, le logo et l’identité Polradar sont réservés. Les sources, les photos de tiers, les polices et les données importées conservent leurs propres droits. Les [conditions de réutilisation](public/licenses/REUTILISATION.txt) précisent l’attribution et le régime des éditions antérieures.
 
 ### Séries économiques
 
