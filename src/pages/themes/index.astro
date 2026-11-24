@@ -2,6 +2,13 @@
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import { themes, measures } from '../../lib/data';
+
+const counts = new Map<string, number>();
+for (const measure of measures) {
+  if (measure.scope !== 'archive')
+    counts.set(measure.theme, (counts.get(measure.theme) ?? 0) + 1);
+}
+const maximum = Math.max(1, ...counts.values());
 ---
 
 <Base
@@ -10,28 +17,35 @@ import { themes, measures } from '../../lib/data';
 >
   <header class="page-title">
     <h1>Programmes par thème</h1>
-    <p>Retraites, travail, fiscalité, climat et autres thèmes du corpus.</p>
+    <p>Nombre de fiches hors archives par thème, à la même échelle.</p>
     <a class="inline-action" href="/numerique/">
       Propositions sur le numérique ↗
     </a>
   </header>
-  <div class="topic-grid">
+  <div class="topic-grid topic-atlas">
     {themes.map((theme) => (
       <a class="topic-card" href={`/themes/${theme.id}/`}>
-        <Icon name={theme.id} />
-        <div>
+        <div class="atlas-heading">
+          <Icon name={theme.id} />
           <h2>{theme.label}</h2>
-          <p>
-            {theme.short} ·{' '}
-            {
-              measures.filter(
-                (e) => e.theme === theme.id && e.scope !== 'archive',
-              ).length
-            }{' '}
-            fiches hors archives
-          </p>
         </div>
-        <span aria-hidden="true">↗</span>
+        <p>{theme.short}</p>
+        <span class="atlas-count">
+          <b>{counts.get(theme.id) ?? 0}</b> fiches
+        </span>
+        <svg
+          viewBox={`0 0 ${maximum} 4`}
+          preserveAspectRatio="none"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <rect class="atlas-track" width={maximum} height="4" />
+          <rect
+            class="atlas-value"
+            width={counts.get(theme.id) ?? 0}
+            height="4"
+          />
+        </svg>
       </a>
     ))}
   </div>

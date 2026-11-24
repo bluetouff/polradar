@@ -2,16 +2,13 @@
 import Icon from './Icon.astro';
 import {
   activeCandidates as candidates,
-  events,
+  electionRounds,
   measures,
   sources,
 } from '../lib/data';
 import smallCover from '../assets/edition/scrutin-480.webp?url';
 import largeCover from '../assets/edition/scrutin-1200.webp?url';
 
-const dates = events.filter(({ id }) =>
-  ['premier-tour', 'second-tour'].includes(id),
-);
 const month = new Intl.DateTimeFormat('fr-FR', {
   month: 'long',
   year: 'numeric',
@@ -53,7 +50,7 @@ const register = [
       <Icon name="clock" /> Calendrier électoral
     </a>
     <dl>
-      {dates.map((event) => (
+      {electionRounds.map((event) => (
         <div>
           <dt>{event.title}</dt>
           <dd>

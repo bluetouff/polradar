@@ -7,6 +7,43 @@ import watch from '../../src/data/watch.json' with { type: 'json' };
 
 const active = candidateRows.filter((c) => !c.withdrawnOn);
 
+test('les dates du scrutin correspondent aux deux tours sur les trois pages', async ({
+  page,
+}) => {
+  const rounds = ['premier-tour', 'second-tour'].map((id) =>
+    campaignEvents.find((event) => event.id === id)!,
+  );
+  for (const [route, selector] of [
+    ['/reperes/', '.ballot-month'],
+    ['/campagne/', '.campaign-election'],
+    ['/', '.cover-calendar dl > div'],
+  ]) {
+    await page.goto(route);
+    const cards = page.locator(selector);
+    await expect(cards).toHaveCount(2);
+    for (const [index, round] of rounds.entries()) {
+      await expect(cards.nth(index)).toContainText(round.title);
+      await expect(cards.nth(index).locator('time')).toHaveAttribute(
+        'datetime',
+        round.date,
+      );
+    }
+  }
+  await page.setViewportSize({ width: 320, height: 850 });
+  await page.goto('/reperes/');
+  for (const [index, round] of rounds.entries())
+    await expect(page.locator('.ballot-mark').nth(index)).toHaveText(
+      String(Number(round.date.slice(-2))),
+    );
+  const overseas = page.locator('.ballot-overseas summary');
+  await overseas.focus();
+  await page.keyboard.press('Enter');
+  await expect(page.getByText(/En Guadeloupe, en Martinique/)).toBeVisible();
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth),
+  ).toBeLessThanOrEqual(320);
+});
+
 test('la chronologie combine les filtres, gère une recherche vide et se réinitialise', async ({
   page,
 }) => {

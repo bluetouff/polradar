@@ -5,7 +5,13 @@ import Icon from '../components/Icon.astro';
 import SourceLinks from '../components/SourceLinks.astro';
 import { campaignBriefs } from '../lib/briefs';
 import CandidatePortrait from '../components/CandidatePortrait.astro';
-import { events, candidates, candidateById, formatDate } from '../lib/data';
+import {
+  events,
+  electionRounds,
+  candidates,
+  candidateById,
+  formatDate,
+} from '../lib/data';
 import '../styles/campaign.css';
 
 const categories: Record<string, { label: string; icon: string }> = {
@@ -28,9 +34,6 @@ const past = events
     (a, b) =>
       b.date.localeCompare(a.date) || a.title.localeCompare(b.title, 'fr'),
   );
-const upcoming = events
-  .filter((event) => event.kind === 'announced')
-  .sort((a, b) => a.date.localeCompare(b.date));
 const months = [...new Set(past.map((event) => event.date.slice(0, 7)))].map(
   (id) => ({
     id,
@@ -134,11 +137,9 @@ let categoryOffset = 0;
         <Icon name="institutions" /> Le scrutin de 2027
       </h2>
       <div class="campaign-election-pair">
-        {upcoming.map((event) => (
+        {electionRounds.map((event) => (
           <div class="campaign-election">
-            <span>
-              {event.id === 'premier-tour' ? 'Premier tour' : 'Second tour'}
-            </span>
+            <span>{event.title}</span>
             <time datetime={event.date}>
               <b>{event.date.slice(-2)}</b>
               <span>
@@ -154,7 +155,10 @@ let categoryOffset = 0;
       </div>
       <details class="campaign-calendar-source">
         <summary>Dates annoncées par le gouvernement</summary>
-        <SourceLinks ids={['calendar']} compact />
+        <SourceLinks
+          ids={[...new Set(electionRounds.flatMap((event) => event.sources))]}
+          compact
+        />
       </details>
       <a class="campaign-agenda-link" href="/agenda/">
         <Icon name="map-pin" /> Carte et agenda des rendez-vous{' '}

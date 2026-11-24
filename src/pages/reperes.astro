@@ -1,110 +1,424 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import '../styles/questions.css';
 import SourceLinks from '../components/SourceLinks.astro';
-import { events, formatDate } from '../lib/data';
+import { electionRounds } from '../lib/data';
+
+const monthName = new Intl.DateTimeFormat('fr-FR', {
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+const weekdayName = new Intl.DateTimeFormat('fr-FR', {
+  weekday: 'long',
+  timeZone: 'UTC',
+});
+const months = electionRounds.map((round) => {
+  const [year, month, day] = round.date.split('-').map(Number);
+  const first = new Date(Date.UTC(year, month - 1, 1));
+  const length = new Date(Date.UTC(year, month, 0)).getUTCDate();
+  const offset = (first.getUTCDay() + 6) % 7;
+  return {
+    round,
+    day,
+    month: monthName.format(first),
+    weekday: weekdayName.format(new Date(Date.UTC(year, month - 1, day))),
+    cells: Array.from({ length: offset + length }, (_, i) =>
+      i < offset ? null : i - offset + 1,
+    ),
+  };
+});
+const roundSources = [
+  ...new Set(electionRounds.flatMap((round) => round.sources)),
+];
 ---
 
 <Base
   title="Présidentielle 2027 : calendrier électoral et démarches"
-  description="Suivez les étapes du scrutin et de validation des candidatures. Retrouvez les démarches pour vérifier votre inscription, trouver votre bureau et voter par procuration."
+  description="Les dates annoncées des deux tours de la présidentielle de 2027. Vérifiez votre inscription, trouvez votre bureau de vote ou préparez une procuration."
 >
-  <header class="page-title">
+  <header class="ballot-head">
+    <span class="ballot-emblem" aria-hidden="true">
+      <Icon name="vote" />
+    </span>
     <h1>Calendrier électoral</h1>
-    <p>Dates du scrutin et étapes de validation des candidatures.</p>
   </header>
-  <section class="q-coverage" id="voter">
-    <h2>Préparer mon vote</h2>
-    <div class="q-answers">
-      <article class="q-answer">
-        <header>
-          <Icon name="map-pin" />
-          <h3>Trouver mon bureau</h3>
-        </header>
+  <section class="ballot-board" aria-labelledby="dates-scrutin">
+    <h2 id="dates-scrutin">Dates du scrutin</h2>
+    <div class="ballot-pair">
+      {months.map(({ round, day, month, weekday, cells }) => (
+        <article class="ballot-month">
+          <div class="ballot-round">
+            <h3>{round.title}</h3>
+            <time datetime={round.date}>
+              <span class="ballot-weekday">{weekday}</span>
+              <strong>{day}</strong>
+              <span class="ballot-month-name">{month}</span>
+            </time>
+          </div>
+          <div class="ballot-matrix" aria-hidden="true">
+            {['L', 'M', 'M', 'J', 'V', 'S', 'D'].map((label) => (
+              <span class="ballot-weekhead">{label}</span>
+            ))}
+            {cells.map((number) => (
+              <span
+                class:list={['ballot-cell', { 'ballot-mark': number === day }]}
+              >
+                {number}
+              </span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="ballot-source">
+      <Icon name="source" />
+      <SourceLinks ids={roundSources} compact />
+    </div>
+    <details class="ballot-overseas">
+      <summary>Où vote-t-on le samedi ?</summary>
+      <p>
+        En Guadeloupe, en Martinique, en Guyane, à Saint-Pierre-et-Miquelon, à
+        Saint-Barthélemy, à Saint-Martin et en Polynésie française, le scrutin a
+        lieu la veille. Cette règle vaut aussi pour les électeurs qui votent
+        dans une ambassade ou un consulat français sur le continent américain.
+        <a href="https://qpc360.conseil-constitutionnel.fr/commentaire-decision-2006-536-dc">
+          Lire l’explication du Conseil constitutionnel
+        </a>
+      </p>
+    </details>
+  </section>
+  <section class="ballot-guides" id="voter" aria-labelledby="preparer-vote">
+    <h2 id="preparer-vote">Préparer mon vote</h2>
+    <div class="ballot-actions">
+      <article>
+        <Icon name="map-pin" />
+        <h3>Trouver mon bureau</h3>
         <p>
-          Service Public permet de vérifier son inscription, l’adresse de son
-          bureau de vote et son numéro national d’électeur.
+          Vérifiez votre inscription, l’adresse de votre bureau et votre numéro
+          d’électeur.
         </p>
         <a href="https://www.service-public.gouv.fr/particuliers/vosdroits/R51788">
-          Vérifier mon inscription ↗
+          Vérifier mon inscription
         </a>
       </article>
-      <article class="q-answer">
-        <header>
-          <Icon name="vote" />
-          <h3>Faire une procuration</h3>
-        </header>
+      <article>
+        <Icon name="vote" />
+        <h3>Faire une procuration</h3>
         <p>
-          Munissez-vous des informations de la personne qui votera pour vous. Le
-          service du ministère de l’Intérieur indique comment faire vérifier
-          votre identité.
+          Préparez les informations de la personne qui votera pour vous et
+          vérifiez comment faire attester votre identité.
         </p>
-        <a href="https://www.maprocuration.gouv.fr/">
-          Accéder à MaProcuration ↗
-        </a>
+        <a href="https://www.maprocuration.gouv.fr/">Accéder à MaProcuration</a>
       </article>
-      <article class="q-answer">
-        <header>
-          <Icon name="source" />
-          <h3>Quels papiers présenter ?</h3>
-        </header>
+      <article>
+        <Icon name="source" />
+        <h3>Quels papiers présenter ?</h3>
         <p>
-          La liste des justificatifs dépend du lieu où vous votez. Service
-          Public détaille les documents acceptés en France et à l’étranger.
+          Les justificatifs acceptés dépendent de votre lieu de vote, en France
+          ou à l’étranger.
         </p>
         <a href="https://www.service-public.gouv.fr/particuliers/vosdroits/F1361">
-          Consulter les justificatifs acceptés ↗
+          Consulter les justificatifs
         </a>
       </article>
     </div>
   </section>
-  <div class="three-col section-space">
-    <article class="panel">
-      <p class="eyebrow">01</p>
-      <h2>Se déclarer</h2>
-      <p>
-        Une personne annonce son intention de concourir. La déclaration lance
-        une campagne ; elle ne constitue pas une admission au scrutin.
-      </p>
-    </article>
-    <article class="panel">
-      <p class="eyebrow">02</p>
-      <h2>Être investi</h2>
-      <p>
-        Un parti ou une primaire désigne la personne qui portera ses couleurs.
-        Cette étape doit être distinguée de la validation de la candidature.
-      </p>
-    </article>
-    <article class="panel">
-      <p class="eyebrow">03</p>
-      <h2>Être admis</h2>
-      <p>
-        Le Conseil constitutionnel établit la liste officielle des candidatures.
-        Les conditions de présentation relèvent du cadre électoral.
-      </p>
-      <SourceLinks ids={['cc']} compact />
-    </article>
-  </div>
-  <section class="section-space">
-    <div class="section-heading">
+  <section class="ballot-guides" aria-labelledby="candidatures">
+    <h2 id="candidatures">Comment une candidature devient-elle officielle ?</h2>
+    <dl class="ballot-definitions">
       <div>
-        <h2>Dates du scrutin</h2>
+        <dt>
+          <Icon name="microphone" />
+          Déclaration
+        </dt>
+        <dd>La personne annonce publiquement son intention de se présenter.</dd>
       </div>
-    </div>
-    <div class="two-col">
-      {events
-        .filter((e) => e.kind === 'announced')
-        .map((event) => (
-          <article class="panel">
-            <time class="eyebrow" datetime={event.date}>
-              {formatDate(event.date)}
-            </time>
-            <h3>{event.title}</h3>
-            <p>{event.description}</p>
-            <SourceLinks ids={event.sources} compact />
-          </article>
-        ))}
-    </div>
+      <div>
+        <dt>
+          <Icon name="people" />
+          Investiture
+        </dt>
+        <dd>
+          Un parti peut désigner son candidat, directement ou à l’issue d’une
+          primaire.
+        </dd>
+      </div>
+      <div>
+        <dt>
+          <Icon name="institutions" />
+          Liste officielle
+        </dt>
+        <dd>
+          Le Conseil constitutionnel arrête la liste des personnes admises à se
+          présenter.
+          <SourceLinks ids={['cc']} compact />
+        </dd>
+      </div>
+    </dl>
   </section>
 </Base>
+
+<style>
+  .ballot-head {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0.35rem 0 1rem;
+  }
+  .ballot-head h1 {
+    font-size: clamp(1.5rem, 3vw, 1.75rem);
+    letter-spacing: -0.04em;
+  }
+  .ballot-emblem {
+    display: grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border: 1px solid #adc4c7;
+    border-radius: 0.75rem;
+    background: #d7e8e7;
+    color: #18565b;
+  }
+  .ballot-board {
+    --text-light: #f0f8f8;
+    --calendar-accent: #ade2d4;
+    padding: clamp(1rem, 2.5vw, 2.15rem);
+    border: 1px solid #2b535a;
+    border-radius: 1.1rem;
+    color: var(--text-light);
+    background:
+      radial-gradient(ellipse at 100% 0, #244e57, transparent 62%),
+      linear-gradient(112deg, #112536, #183645 73%);
+    box-shadow: 0 0.55rem 1.5rem #16364619;
+  }
+  .ballot-board h2,
+  .ballot-guides h2 {
+    font-size: clamp(1.12rem, 2vw, 1.36rem);
+    letter-spacing: -0.025em;
+    margin: 0 0 0.9rem;
+  }
+  .ballot-pair {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
+    gap: 0.8rem;
+  }
+  .ballot-month {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+    gap: clamp(0.5rem, 2vw, 2rem);
+    align-items: center;
+    padding: clamp(0.85rem, 2.5vw, 2rem);
+    border: 1px solid #60858a;
+    border-radius: 0.75rem;
+    background: linear-gradient(122deg, #21444b, #142e3e 80%);
+  }
+  .ballot-month:nth-child(2) {
+    --calendar-accent: #c3ddf4;
+    background: linear-gradient(122deg, #2d495e, #1a3243 80%);
+    border-color: #617f94;
+  }
+  .ballot-round {
+    min-width: 0;
+  }
+  .ballot-round h3 {
+    margin: 0 0 0.85rem;
+    font-size: clamp(0.9rem, 1.6vw, 1.07rem);
+    line-height: 1.25;
+    font-weight: 580;
+    color: var(--calendar-accent);
+  }
+  .ballot-round time {
+    display: grid;
+    justify-items: start;
+    line-height: 1.15;
+    color: var(--text-light);
+  }
+  .ballot-weekday {
+    font-size: 0.9rem;
+    text-transform: capitalize;
+  }
+  .ballot-round time strong {
+    font: 480 clamp(3.1rem, 5vw, 4.2rem)/1.04 var(--sans);
+    letter-spacing: -0.065em;
+    font-variant-numeric: tabular-nums;
+  }
+  .ballot-month-name {
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+  }
+  .ballot-matrix {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    column-gap: 0.06rem;
+    row-gap: 0.1rem;
+    max-width: 13rem;
+    width: 100%;
+    justify-self: end;
+    font-variant-numeric: tabular-nums;
+  }
+  .ballot-matrix span {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    min-width: 0;
+  }
+  .ballot-weekhead {
+    color: #c5d8df;
+    border-bottom: 1px solid #597884;
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.15rem;
+    font: 500 0.78rem var(--sans);
+  }
+  .ballot-cell {
+    font-size: clamp(0.75rem, 1.2vw, 0.91rem);
+    min-height: 1.48rem;
+    color: #e7f0f2;
+    line-height: 1;
+  }
+  .ballot-mark {
+    color: #102e36;
+    background: var(--calendar-accent);
+    border-radius: 0.3rem;
+    font-weight: 700;
+    outline: 1px solid var(--calendar-accent);
+  }
+  .ballot-source {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    color: #d3e4e7;
+  }
+  .ballot-source .icon {
+    width: 1rem;
+    height: 1rem;
+    margin-top: 0.2rem;
+    flex: none;
+  }
+  .ballot-source :global(.source-links) {
+    margin: 0;
+    padding: 0;
+    font-size: 0.88rem;
+  }
+  .ballot-source :global(a),
+  .ballot-overseas a,
+  .ballot-overseas summary {
+    color: #d8eef1;
+  }
+  .ballot-source :global(a:focus-visible),
+  .ballot-overseas summary:focus-visible {
+    outline-color: #b4e9dc;
+  }
+  .ballot-overseas {
+    margin-top: 0.45rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .ballot-overseas summary {
+    width: fit-content;
+    padding: 0.5rem 0.2rem;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .ballot-overseas p {
+    color: #e5f1f2;
+    max-width: 82ch;
+    margin-top: 0.4rem;
+  }
+  .ballot-guides {
+    margin-top: clamp(1.5rem, 3vw, 2.3rem);
+  }
+  .ballot-actions,
+  .ballot-definitions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+    gap: 0.8rem;
+    margin: 0;
+  }
+  .ballot-actions article {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    gap: 0.5rem;
+    align-items: start;
+    justify-items: start;
+    min-width: 0;
+    padding: clamp(1rem, 2vw, 1.4rem);
+  }
+  .ballot-actions article > :global(.icon) {
+    box-sizing: content-box;
+    width: 1.45rem;
+    height: 1.45rem;
+    margin-bottom: 0.3rem;
+    color: #17616a;
+  }
+  .ballot-actions h3,
+  .ballot-definitions dt {
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin: 0;
+    font-weight: 620;
+  }
+  .ballot-actions p,
+  .ballot-definitions dd {
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.52;
+  }
+  .ballot-actions a {
+    min-height: 2.75rem;
+    align-content: center;
+    margin-top: 0.3rem;
+    font-weight: 600;
+    color: var(--blue);
+  }
+  .ballot-definitions > div {
+    padding: 0.65rem 0.8rem 0.8rem;
+    min-width: 0;
+    border-inline-start: 2px solid var(--panel-edge);
+  }
+  .ballot-definitions dt {
+    display: flex;
+    align-items: center;
+    gap: 0.48rem;
+    margin-bottom: 0.4rem;
+  }
+  .ballot-definitions dt :global(.icon) {
+    width: 1rem;
+    height: 1rem;
+    color: var(--accent);
+  }
+  .ballot-definitions dd :global(ul) {
+    margin-top: 0.45rem;
+    font-size: 0.85rem;
+  }
+  @media (max-width: 380px) {
+    .ballot-month {
+      padding: 0.8rem 0.65rem;
+      grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+    }
+    .ballot-cell {
+      min-height: 1.28rem;
+    }
+  }
+  @media (forced-colors: active) {
+    .ballot-mark {
+      outline: 2px solid Highlight;
+    }
+  }
+  @media print {
+    .ballot-board,
+    .ballot-month {
+      background: white;
+      color: black;
+      border-color: #555;
+    }
+    .ballot-board :is(h2, h3, time, span, p, summary),
+    .ballot-source :global(a) {
+      color: black;
+    }
+    .ballot-mark {
+      outline: 1px solid black;
+    }
+  }
+</style>

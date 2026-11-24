@@ -14,33 +14,45 @@
     --sheet: #f1f5f6;
     --tint: #c2d7dd;
     --section-ink: #547b89;
-    --panel-gradient: linear-gradient(135deg, #f7fafb, #eaf1f3);
+    --panel-gradient:
+      radial-gradient(
+        ellipse at 105% -25%,
+        var(--card-wash, #d3e2e6),
+        transparent 62%
+      ),
+      linear-gradient(150deg, #fbfcfa, #edf3f3);
     --night-gradient: linear-gradient(112deg, #10202e 2%, #183848 72%, #214b53);
-    --panel-edge: #b0c4cc;
-    --card-radius: 0.7rem;
-    --panel-shadow: 0 3px 12px #1735410c, inset 0 1px 0 #ffffffa8;
+    --panel-edge: #aac0c7;
+    --card-radius: 0.9rem;
+    --panel-shadow:
+      0 2px 3px #172f3d09, 0 7px 18px -11px #14344138, inset 0 1px 0 #ffffffd9;
   }
   [data-desk='programmes'] {
+    --card-wash: #cadfdd;
     --tint: #c0d6d9;
     --section-ink: #477681;
     --section-art: url('../assets/edition/programmes.svg?no-inline');
   }
   [data-desk='candidats'] {
+    --card-wash: #d1dfeb;
     --tint: #c6d5e1;
     --section-ink: #526f89;
     --section-art: url('../assets/edition/candidats.svg?no-inline');
   }
   [data-desk='campagne'] {
+    --card-wash: #ccdfd6;
     --tint: #bed5d0;
     --section-ink: #4b746e;
     --section-art: url('../assets/edition/campagne.svg?no-inline');
   }
   [data-desk='donnees'] {
+    --card-wash: #c8dee5;
     --tint: #bed2de;
     --section-ink: #4b748a;
     --section-art: url('../assets/edition/donnees.svg?no-inline');
   }
   [data-desk='projet'] {
+    --card-wash: #d9dedb;
     --tint: #cbd7dc;
     --section-ink: #596f7e;
     --section-art: url('../assets/edition/projet.svg?no-inline');
@@ -231,11 +243,9 @@
     position: relative;
     padding: 1.05rem;
     background: var(--panel-gradient);
-    border: 1px solid #b4c6cc;
-    border-radius: 0.65rem;
-    box-shadow:
-      0 3px 10px #122a3508,
-      inset 0 1px 0 #ffffffc0;
+    border: 1px solid var(--panel-edge);
+    border-radius: var(--card-radius);
+    box-shadow: var(--panel-shadow);
   }
   .measure-list > .measure-row:is(:hover, :focus-within),
   :is(

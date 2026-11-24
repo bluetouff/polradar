@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Filter from '../components/Filter.astro';
+import Icon from '../components/Icon.astro';
+import { sourceIcons } from '../lib/labels';
 import { sources, sourceKinds, formatDate } from '../lib/data';
 import PagedResults from '../components/PagedResults.astro';
 import { pageRange } from '../lib/pagination';
@@ -29,6 +31,7 @@ const range = pageRange(sources.length, page);
       {sources.slice(range.start, range.end).map((source) => (
         <article class="source-card">
           <span class:list={['tag', { archive: source.kind === 'archive' }]}>
+            <Icon name={sourceIcons[source.kind]} />
             {sourceKinds[source.kind]}
           </span>
           <h2>

@@ -11,3 +11,10 @@ export const sourceKinds: Record<string, string> = {
   presse: 'Presse',
   archive: 'Archive',
 };
+export const sourceIcons: Record<string, string> = {
+  campagne: 'microphone',
+  parti: 'people',
+  institution: 'institutions',
+  presse: 'source',
+  archive: 'historique',
+};

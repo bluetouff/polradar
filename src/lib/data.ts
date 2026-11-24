@@ -23,6 +23,9 @@ import {
 } from './schema.mjs';
 const sources = sourceSchema.array().parse(sourceRows);
 const events = eventSchema.array().parse(eventRows);
+export const electionRounds = events
+  .filter(({ id }) => id === 'premier-tour' || id === 'second-tour')
+  .sort((a, b) => a.date.localeCompare(b.date));
 const engagements = engagementSchema.array().parse(engagementRows);
 const polls = pollSchema.array().parse(pollRows);
 const measures = measureSchema.array().parse(measureRows);

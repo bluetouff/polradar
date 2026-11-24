@@ -3,7 +3,7 @@ import { catalogue } from './catalogue';
 import { el, anchor, icon, date, corpus } from './ui';
 import { normalize } from '../lib/features.mjs';
 import type { Engagement, Corpus } from '../lib/data';
-import { scopes, sourceKinds } from '../lib/labels';
+import { scopes, sourceKinds, sourceIcons } from '../lib/labels';
 function directory<T>(
   id: string,
   load: () => Promise<T[]>,
@@ -63,16 +63,13 @@ if (document.getElementById('sources-list')) {
           );
         dl.append(div);
       }
-      card.append(
-        el(
-          'span',
-          sourceKinds[s.kind],
-          s.kind === 'archive' ? 'tag archive' : 'tag',
-        ),
-        h,
-        el('p', new URL(s.url).hostname),
-        dl,
+      const kind = el(
+        'span',
+        sourceKinds[s.kind],
+        s.kind === 'archive' ? 'tag archive' : 'tag',
       );
+      kind.prepend(icon(sourceIcons[s.kind]));
+      card.append(kind, h, el('p', new URL(s.url).hostname), dl);
       if (s.previousUrl) {
         const details = el('details');
         details.append(
