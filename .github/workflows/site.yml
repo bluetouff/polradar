@@ -66,6 +66,7 @@ jobs:
           python3 scripts/package-release.py
           python3 scripts/package-stats.py
           python3 scripts/package-corpus.py
+          node scripts/preparer-datagouv.mjs > artifacts/datagouv-documents.json
       - uses: actions/setup-go@d8cbb8045d7f43706b9177cceb36c1f91a6644d5 # v7.1.0
         with:
           go-version-file: mcp/go.mod
@@ -119,6 +120,6 @@ jobs:
             echo 'This commit already has a release; no asset is overwritten.'
             exit 0
           fi
-          gh release create "$tag" site.tar.gz site.sha256 polradar-goaccess.tar.gz polradar-goaccess.sha256 corpus-v1.tar.gz corpus-v1.sha256 \
+          gh release create "$tag" site.tar.gz site.sha256 polradar-goaccess.tar.gz polradar-goaccess.sha256 corpus-v1.tar.gz corpus-v1.sha256 datagouv-documents.json \
             --target "$SOURCE_SHA" --title "Site ${SOURCE_SHA:0:12}" \
             --notes "Static site built and checked from commit ${SOURCE_SHA}." --latest
