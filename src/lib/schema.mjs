@@ -101,6 +101,7 @@ export const eventSchema = z.object({
     'sondage',
     'meeting',
     'calendrier',
+    'justice',
   ]),
   dateKind: z.enum(['evenement', 'publication', 'mise-a-jour']),
   publicationBrief: dateSchema.optional(),

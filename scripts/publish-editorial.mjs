@@ -133,6 +133,13 @@ function recordBrief(db, article, ref, day) {
   if (db.events.some((e) => e.id === id || e.sources.includes(ref.id))) return;
   const title = '« ' + article.title + ' »';
   const headline = fold(article.title);
+  // A headline from a campaign cannot establish the scope of a judicial proceeding.
+  if (
+    /\b(plainte|detournement de fonds|enquete (preliminaire|judiciaire)|information judiciaire|mise? en examen|temoin assiste|condamnation|poursuites penales)\b/.test(
+      headline,
+    )
+  )
+    return;
   // Relative invitations can already have expired when a feed is indexed.
   if (/\b(rendez vous|venez|rejoignez nous|inscrivez vous)\b/.test(headline)) {
     if (!article.event || article.event.status === 'EventCancelled') return;

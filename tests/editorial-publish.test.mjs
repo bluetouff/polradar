@@ -75,6 +75,17 @@ function report() {
     ],
   };
 }
+test('un titre partisan sur une procédure reste à vérifier en rédaction', () => {
+  const db = data(),
+    r = report();
+  const article = r.checks[0].publications[0];
+  article.event = null;
+  article.title = 'Retrait de candidature demandé après une plainte';
+  integrate(r, db, '1234', 1, now, config);
+  assert.equal(db.events.length, 0);
+  assert.ok(db.sources.some((s) => s.url === article.url));
+});
+
 test('la reprise conserve les ajouts, les versions et la revue signée du jour', () => {
   const db = data(),
     r = report();
