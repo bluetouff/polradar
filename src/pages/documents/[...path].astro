@@ -75,7 +75,7 @@ const names = new Map(
     {facet.path ? (
       <a href="/documents/">Tout le registre</a>
     ) : (
-      <span>{audited.length} sections vérifiées étape par étape</span>
+      <span>{audited.length} sections dépouillées</span>
     )}
   </div>
   <section class="document-cards" aria-label="Documents">
@@ -131,7 +131,8 @@ const names = new Map(
         {d.coverage && (
           <details class="doc-coverage">
             <summary>
-              {d.coverage.linked}/{d.coverage.total} étapes reliées à une fiche
+              {d.coverage.linked}/{d.coverage.total} {d.coverage.unit}s reliées
+              à une fiche
             </summary>
             <p>
               {d.coverage.perimeter}. Lecture du{' '}

@@ -59,7 +59,7 @@
       {
         "id": "etape-4",
         "title": "Formation des membres de l’assemblée",
-        "measureIds": []
+        "measureIds": ["mlekuz-formation-constituants"]
       },
       {
         "id": "etape-5",
@@ -74,12 +74,12 @@
       {
         "id": "etape-7",
         "title": "Présentation du projet constitutionnel",
-        "measureIds": []
+        "measureIds": ["mlekuz-publication-projet-lois"]
       },
       {
         "id": "etape-8",
         "title": "Campagne référendaire",
-        "measureIds": []
+        "measureIds": ["mlekuz-institutions-referendum-final"]
       },
       {
         "id": "etape-9",
@@ -94,7 +94,83 @@
       {
         "id": "etape-11",
         "title": "Élections suivant les nouvelles règles",
-        "measureIds": []
+        "measureIds": ["mlekuz-elections-nouvelles-regles"]
+      }
+    ]
+  },
+  {
+    "sourceId": "animalistes-abandons-2026",
+    "perimeter": "Les demandes énumérées dans le communiqué du parti",
+    "unit": "demande",
+    "checked": "2026-11-24",
+    "units": [
+      {
+        "id": "demande-1",
+        "title": "Aide fiscale aux soins",
+        "measureIds": [
+          "markovic-parti-credit-impot-identification-sterilisation"
+        ]
+      },
+      {
+        "id": "demande-2",
+        "title": "Campagnes de stérilisation",
+        "measureIds": ["markovic-parti-campagnes-sterilisation"]
+      },
+      {
+        "id": "demande-3",
+        "title": "Règles applicables en fourrière",
+        "measureIds": ["markovic-parti-fourriere-raison-medicale"]
+      }
+    ]
+  },
+  {
+    "sourceId": "animalistes-esod-2026",
+    "perimeter": "Les demandes énumérées dans le communiqué du parti",
+    "unit": "demande",
+    "checked": "2026-11-24",
+    "units": [
+      {
+        "id": "demande-1",
+        "title": "Suppression du classement ESOD",
+        "measureIds": ["markovic-parti-fin-classement-esod"]
+      },
+      {
+        "id": "demande-2",
+        "title": "Fin des méthodes létales liées au classement",
+        "measureIds": ["markovic-parti-fin-classement-esod"]
+      },
+      {
+        "id": "demande-3",
+        "title": "Prévention des dégâts",
+        "measureIds": ["markovic-parti-prevention-degats-faune"]
+      },
+      {
+        "id": "demande-4",
+        "title": "Évaluation de la politique publique",
+        "measureIds": ["markovic-parti-evaluation-politique-destruction"]
+      }
+    ]
+  },
+  {
+    "sourceId": "animalistes-chasse-climat-2026",
+    "perimeter": "Les demandes énumérées dans le communiqué du parti",
+    "unit": "demande",
+    "checked": "2026-11-24",
+    "units": [
+      {
+        "id": "demande-1",
+        "title": "Ouverture de la chasse",
+        "measureIds": ["markovic-parti-chasse-suspension-climat"]
+      },
+      {
+        "id": "demande-2",
+        "title": "Évaluation indépendante",
+        "measureIds": ["markovic-parti-evaluer-faune-reprise-chasse"]
+      },
+      {
+        "id": "demande-3",
+        "title": "Plan d’urgence pour la faune",
+        "measureIds": ["markovic-parti-refuges-faune-climat"]
       }
     ]
   }

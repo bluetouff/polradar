@@ -5,6 +5,6 @@ export const GET: APIRoute = () =>
     schemaVersion: 1,
     unit: 'référence documentaire du corpus Polradar',
     coverageUnit:
-      'étape de la section indiquée dont le sujet est relié à au moins une fiche',
+      'unité de la section indiquée dont le sujet est relié à au moins une fiche',
     documents,
   });
