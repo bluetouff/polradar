@@ -15105,5 +15105,634 @@
         "percentage": 51
       }
     ]
+  },
+  {
+    "id": "ipsos-bva-commission-10250-h1",
+    "surveyId": "ipsos-bva-commission-10250",
+    "institute": "Ipsos BVA",
+    "commissioner": "Le Parisien, avec CESI École d’ingénieurs",
+    "published": "2026-09-05",
+    "fieldworkStart": "2026-08-31",
+    "fieldworkEnd": "2026-09-02",
+    "sampleSize": 1500,
+    "registeredSample": 1500,
+    "usefulSample": 1020,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "historicalImport": true,
+    "scenario": "Premier tour · Glucksmann, Attal et Philippe",
+    "noticeSource": "notice-commission-10250",
+    "noticePage": 13,
+    "resultSource": "ipsos-bva-rapport-10250",
+    "resultPage": 9,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le 1er tour de l’élection présidentielle avait lieu dimanche prochain et si vous aviez le choix entre les candidats suivants, quel est celui pour lequel il y aurait le plus de chances que vous votiez au 1er tour ?",
+      "base": "Inscrits certains d’aller voter ayant exprimé une intention pour un candidat.",
+      "sourceId": "notice-commission-10250",
+      "page": 13,
+      "checked": "2026-11-24"
+    },
+    "population": "Population française âgée de 18 ans et plus, inscrite sur les listes électorales.",
+    "method": "Panel Ipsos en ligne. Quotas de sexe, âge, profession, catégorie d’agglomération et région. Redressement sociodémographique et politique.",
+    "noIntention": 7,
+    "noIntentionNote": "Parmi les inscrits certains d’aller voter.",
+    "margin": {
+      "min": 0.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "uncertainty": "La page du scénario indique une marge théorique par candidat. La plage reprend la plus petite et la plus grande des marges indiquées pour cette hypothèse.",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3.5
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11.5
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 7.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 14.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 6
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ]
+  },
+  {
+    "id": "ipsos-bva-commission-10250-h2",
+    "surveyId": "ipsos-bva-commission-10250",
+    "institute": "Ipsos BVA",
+    "commissioner": "Le Parisien, avec CESI École d’ingénieurs",
+    "published": "2026-09-05",
+    "fieldworkStart": "2026-08-31",
+    "fieldworkEnd": "2026-09-02",
+    "sampleSize": 1500,
+    "registeredSample": 1500,
+    "usefulSample": 1005,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "historicalImport": true,
+    "scenario": "Premier tour · Glucksmann et Philippe",
+    "noticeSource": "notice-commission-10250",
+    "noticePage": 15,
+    "resultSource": "ipsos-bva-rapport-10250",
+    "resultPage": 11,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le 1er tour de l’élection présidentielle avait lieu dimanche prochain et si vous aviez le choix entre les candi dats suivants, quel est celui pour lequel il y aurait le plus de chances que vous votiez au 1er tour ?",
+      "base": "Inscrits certains d’aller voter ayant exprimé une intention pour un candidat.",
+      "sourceId": "notice-commission-10250",
+      "page": 15,
+      "checked": "2026-11-24"
+    },
+    "population": "Population française âgée de 18 ans et plus, inscrite sur les listes électorales.",
+    "method": "Panel Ipsos en ligne. Quotas de sexe, âge, profession, catégorie d’agglomération et région. Redressement sociodémographique et politique.",
+    "noIntention": 9,
+    "noIntentionNote": "Parmi les inscrits certains d’aller voter.",
+    "margin": {
+      "min": 0.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "uncertainty": "La page du scénario indique une marge théorique par candidat. La plage reprend la plus petite et la plus grande des marges indiquées pour cette hypothèse.",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 12
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 19
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 7.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ]
+  },
+  {
+    "id": "ipsos-bva-commission-10250-h3",
+    "surveyId": "ipsos-bva-commission-10250",
+    "institute": "Ipsos BVA",
+    "commissioner": "Le Parisien, avec CESI École d’ingénieurs",
+    "published": "2026-09-05",
+    "fieldworkStart": "2026-08-31",
+    "fieldworkEnd": "2026-09-02",
+    "sampleSize": 1500,
+    "registeredSample": 1500,
+    "usefulSample": 999,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "historicalImport": true,
+    "scenario": "Premier tour · Glucksmann et Attal",
+    "noticeSource": "notice-commission-10250",
+    "noticePage": 17,
+    "resultSource": "ipsos-bva-rapport-10250",
+    "resultPage": 13,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le 1er tour de l’élection présidentielle avait lieu dimanche prochain et si vous aviez le choix entre les candi dats suivants, quel est celui pour lequel il y aurait le plus de chances que vous votiez au 1er tour ?",
+      "base": "Inscrits certains d’aller voter ayant exprimé une intention pour un candidat.",
+      "sourceId": "notice-commission-10250",
+      "page": 17,
+      "checked": "2026-11-24"
+    },
+    "population": "Population française âgée de 18 ans et plus, inscrite sur les listes électorales.",
+    "method": "Panel Ipsos en ligne. Quotas de sexe, âge, profession, catégorie d’agglomération et région. Redressement sociodémographique et politique.",
+    "noIntention": 9,
+    "noIntentionNote": "Parmi les inscrits certains d’aller voter.",
+    "margin": {
+      "min": 0.4,
+      "max": 3,
+      "confidence": 95
+    },
+    "uncertainty": "La page du scénario indique une marge théorique par candidat. La plage reprend la plus petite et la plus grande des marges indiquées pour cette hypothèse.",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 4
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 14
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 14
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 9.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 35
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ]
+  },
+  {
+    "id": "ipsos-bva-commission-10250-h4",
+    "surveyId": "ipsos-bva-commission-10250",
+    "institute": "Ipsos BVA",
+    "commissioner": "Le Parisien, avec CESI École d’ingénieurs",
+    "published": "2026-09-05",
+    "fieldworkStart": "2026-08-31",
+    "fieldworkEnd": "2026-09-02",
+    "sampleSize": 1500,
+    "registeredSample": 1500,
+    "usefulSample": 1004,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "historicalImport": true,
+    "scenario": "Premier tour · Faure, Attal et Philippe",
+    "noticeSource": "notice-commission-10250",
+    "noticePage": 19,
+    "resultSource": "ipsos-bva-rapport-10250",
+    "resultPage": 15,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le 1er tour de l’élection présidentielle avait lieu dimanche prochain et si vous aviez le choix entre les candi dats suivants, quel est celui pour lequel il y aurait le plus de chances que vous votiez au 1er tour ?",
+      "base": "Inscrits certains d’aller voter ayant exprimé une intention pour un candidat.",
+      "sourceId": "notice-commission-10250",
+      "page": 19,
+      "checked": "2026-11-24"
+    },
+    "population": "Population française âgée de 18 ans et plus, inscrite sur les listes électorales.",
+    "method": "Panel Ipsos en ligne. Quotas de sexe, âge, profession, catégorie d’agglomération et région. Redressement sociodémographique et politique.",
+    "noIntention": 9,
+    "noIntentionNote": "Parmi les inscrits certains d’aller voter.",
+    "margin": {
+      "min": 0.6,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "uncertainty": "La page du scénario indique une marge théorique par candidat. La plage reprend la plus petite et la plus grande des marges indiquées pour cette hypothèse.",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 5
+      },
+      {
+        "id": "sonde-olivier-faure",
+        "name": "Olivier Faure",
+        "percentage": 4.5
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 8.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 16.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 6
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ]
+  },
+  {
+    "id": "ipsos-bva-commission-10250-h5",
+    "surveyId": "ipsos-bva-commission-10250",
+    "institute": "Ipsos BVA",
+    "commissioner": "Le Parisien, avec CESI École d’ingénieurs",
+    "published": "2026-09-05",
+    "fieldworkStart": "2026-08-31",
+    "fieldworkEnd": "2026-09-02",
+    "sampleSize": 1500,
+    "registeredSample": 1500,
+    "usefulSample": 992,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "historicalImport": true,
+    "scenario": "Premier tour · Faure et Philippe",
+    "noticeSource": "notice-commission-10250",
+    "noticePage": 21,
+    "resultSource": "ipsos-bva-rapport-10250",
+    "resultPage": 17,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le 1er tour de l’élection présidentielle avait lieu dimanche prochain et si vous aviez le choix entre les candi dats suivants, quel est celui pour lequel il y aurait le plus de chances que vous votiez au 1er tour ?",
+      "base": "Inscrits certains d’aller voter ayant exprimé une intention pour un candidat.",
+      "sourceId": "notice-commission-10250",
+      "page": 21,
+      "checked": "2026-11-24"
+    },
+    "population": "Population française âgée de 18 ans et plus, inscrite sur les listes électorales.",
+    "method": "Panel Ipsos en ligne. Quotas de sexe, âge, profession, catégorie d’agglomération et région. Redressement sociodémographique et politique.",
+    "noIntention": 10,
+    "noIntentionNote": "Parmi les inscrits certains d’aller voter.",
+    "margin": {
+      "min": 0.6,
+      "max": 3,
+      "confidence": 95
+    },
+    "uncertainty": "La page du scénario indique une marge théorique par candidat. La plage reprend la plus petite et la plus grande des marges indiquées pour cette hypothèse.",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16.5
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 5
+      },
+      {
+        "id": "sonde-olivier-faure",
+        "name": "Olivier Faure",
+        "percentage": 4.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 22.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 7.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 34.5
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ]
+  },
+  {
+    "id": "ipsos-bva-commission-10250-h6",
+    "surveyId": "ipsos-bva-commission-10250",
+    "institute": "Ipsos BVA",
+    "commissioner": "Le Parisien, avec CESI École d’ingénieurs",
+    "published": "2026-09-05",
+    "fieldworkStart": "2026-08-31",
+    "fieldworkEnd": "2026-09-02",
+    "sampleSize": 1500,
+    "registeredSample": 1500,
+    "usefulSample": 979,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "historicalImport": true,
+    "scenario": "Premier tour · Faure et Attal",
+    "noticeSource": "notice-commission-10250",
+    "noticePage": 23,
+    "resultSource": "ipsos-bva-rapport-10250",
+    "resultPage": 19,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le 1er tour de l’élection présidentielle avait lieu dimanche prochain et si vous aviez le choix entre les candi dats suivants, quel est celui pour lequel il y aurait le plus de chances que vous votiez au 1er tour ?",
+      "base": "Inscrits certains d’aller voter ayant exprimé une intention pour un candidat.",
+      "sourceId": "notice-commission-10250",
+      "page": 23,
+      "checked": "2026-11-24"
+    },
+    "population": "Population française âgée de 18 ans et plus, inscrite sur les listes électorales.",
+    "method": "Panel Ipsos en ligne. Quotas de sexe, âge, profession, catégorie d’agglomération et région. Redressement sociodémographique et politique.",
+    "noIntention": 11,
+    "noIntentionNote": "Parmi les inscrits certains d’aller voter.",
+    "margin": {
+      "min": 0.6,
+      "max": 3,
+      "confidence": 95
+    },
+    "uncertainty": "La page du scénario indique une marge théorique par candidat. La plage reprend la plus petite et la plus grande des marges indiquées pour cette hypothèse.",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 3.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 5.5
+      },
+      {
+        "id": "sonde-olivier-faure",
+        "name": "Olivier Faure",
+        "percentage": 5.5
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 15.5
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 10
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 36
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.5
+      }
+    ]
+  },
+  {
+    "id": "verian-commission-10225-premier",
+    "surveyId": "verian-commission-10225",
+    "institute": "Verian",
+    "commissioner": "L’Hémicycle",
+    "published": "2026-07-10",
+    "fieldworkStart": "2026-07-08",
+    "fieldworkEnd": "2026-07-10",
+    "sampleSize": 1047,
+    "registeredSample": 987,
+    "usefulSample": 818,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "historicalImport": true,
+    "scenario": "Premier tour · Le Pen, Philippe, Attal et Glucksmann",
+    "noticeSource": "notice-commission-10225",
+    "noticePage": 17,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l'élection présidentielle avait lieu dimanche prochain et que vous aviez le choix entre les candidats suivants pour qui y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales. Les scores portent sur les votes exprimés.",
+      "sourceId": "notice-commission-10225",
+      "page": 17,
+      "checked": "2026-11-24"
+    },
+    "population": "Population française de 18 ans et plus, dont 987 inscrits interrogés sur le premier tour.",
+    "method": "Questionnaire en ligne sur panel, par quotas de sexe, âge, profession et région. Redressement sociodémographique et par vote aux européennes de 2024 et au premier tour présidentiel de 2022.",
+    "noIntention": 23,
+    "noIntentionNote": "La page 17 donne 23 % sans intention parmi les 987 inscrits. Les pages 18 à 20 indiquent expressément une base de 818 répondants ayant exprimé un choix.",
+    "rounding": "unite",
+    "margin": {
+      "min": 1.5,
+      "max": 3.4,
+      "confidence": 95
+    },
+    "uncertainty": "Pour la même ligne de 818 répondants, la notice présente deux plages théoriques à 95 %. La méthodologie en page 3 indique de ±1,5 à ±3,4 points, valeurs affichées ici. L’annexe en page 21 indique de ±1,6 à ±3,8 points.",
+    "results": [
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 8
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 17
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 7
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 37
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      }
+    ]
   }
 ]

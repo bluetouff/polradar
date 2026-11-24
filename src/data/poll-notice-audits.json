@@ -1082,5 +1082,51 @@
       }
     ],
     "reason": "Le questionnaire des pages 10 à 12 est rapproché des cinq hypothèses du premier tour (récapitulatif page 33) et des trois duels (page 46). Chaque scénario renvoie à son tableau détaillé."
+  },
+  "2262": {
+    "number": "10250",
+    "checked": "2026-11-24",
+    "sha256": "85895ae3d08bb74da9c0da8f6be6ab409607207525f85ce35268c86c4433fc90",
+    "pages": [13, 15, 17, 19, 21, 23],
+    "scenarios": [
+      {
+        "id": "ipsos-bva-commission-10250-h1",
+        "page": 13
+      },
+      {
+        "id": "ipsos-bva-commission-10250-h2",
+        "page": 15
+      },
+      {
+        "id": "ipsos-bva-commission-10250-h3",
+        "page": 17
+      },
+      {
+        "id": "ipsos-bva-commission-10250-h4",
+        "page": 19
+      },
+      {
+        "id": "ipsos-bva-commission-10250-h5",
+        "page": 21
+      },
+      {
+        "id": "ipsos-bva-commission-10250-h6",
+        "page": 23
+      }
+    ],
+    "reason": "Six hypothèses distinctes de premier tour. Le récapitulatif de la page 12 et les six pages du rapport original d’Ipsos corroborent les scores. Les pages de transferts par vote de 2022 recoupent les mêmes hypothèses."
+  },
+  "2230": {
+    "number": "10225",
+    "checked": "2026-11-24",
+    "sha256": "23c3569cf7d03f4e3a8468f71b4b7987314076bfd4b9d16588b0f1ed63733329",
+    "pages": [17],
+    "scenarios": [
+      {
+        "id": "verian-commission-10225-premier",
+        "page": 17
+      }
+    ],
+    "reason": "Une hypothèse de premier tour en page 17. Les pages 18 à 20 croisent la même question, avec un effectif exprimé de 818. Les préférences entre Marine Le Pen et Jordan Bardella relèvent d’une autre question."
   }
 }
