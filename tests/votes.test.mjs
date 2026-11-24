@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import {
   legislativeVotesSchema,
+  withArchivedEuropeanPositions,
   validateLegislativeReferences,
   positionLabel,
   decisionLabel,
@@ -23,6 +24,61 @@ const valid = (d = data) =>
     dataset,
     new Date(`${data.checked}T23:59:59Z`),
   );
+test('les anciens identifiants du CETA complètent le même scrutin sans créer de dossier de campagne', () => {
+  const archive = read('parlement/ceta-2017');
+  const result = withArchivedEuropeanPositions(data, archive);
+  assert.deepEqual(valid(legislativeVotesSchema.parse(result)), []);
+  assert.equal(result.ballots.length, data.ballots.length);
+  assert.deepEqual(result.cases, data.cases);
+  const ballot = result.ballots.find((b) => b.id === archive.ballotId);
+  assert.deepEqual(ballot.tally, {
+    voters: 695,
+    expressed: 662,
+    majority: null,
+    for: 408,
+    against: 254,
+    abstained: 33,
+    nonVoters: null,
+  });
+  assert.deepEqual(
+    archive.positions.map((p) => [p.officialId, p.archiveId, p.choice]),
+    [
+      ['28210', '5332', 'contre'],
+      ['96742', '5916', 'contre'],
+      ['110977', '6474', 'contre'],
+    ],
+  );
+  assert.equal(ballot.positions.length, 3);
+  assert.equal(
+    data.ballots.find((b) => b.id === archive.ballotId).positions.length,
+    1,
+  );
+  for (const modify of [
+    (a) => {
+      a.source = 'https://example.com/';
+    },
+    (a) => {
+      a.number = 77144;
+    },
+    (a) => {
+      a.positions[0].archiveId = a.positions[1].archiveId;
+    },
+    (a) => {
+      a.positions[1].mandateId = a.positions[0].mandateId;
+    },
+    (a) => {
+      a.positions[0].confirmationUrl = 'https://example.com/meps/fr/28210';
+    },
+    (a) => {
+      a.positions[2].choice = 'pour';
+    },
+  ]) {
+    const changed = structuredClone(archive);
+    modify(changed);
+    assert.throws(() => withArchivedEuropeanPositions(data, changed));
+  }
+});
+
 test('les dossiers relient des propositions figées à des scrutins nominatifs institutionnels', () => {
   assert.deepEqual(valid(), []);
   for (const id of [

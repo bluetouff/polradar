@@ -1,10 +1,21 @@
 import rows from '../data/legislative-votes.json';
+import ceta from '../data/parlement/ceta-2017.json';
 import {
   legislativeVotesSchema,
+  withArchivedEuropeanPositions,
   validateLegislativeReferences,
 } from './legislative-votes.mjs';
 import { dataset } from './data';
-export const legislativeVotes = legislativeVotesSchema.parse(rows);
+
+export const legislativeVotes = legislativeVotesSchema.parse(
+  withArchivedEuropeanPositions(rows, ceta),
+);
+export const cetaArchive = ceta;
+export function historicReceipt(id: string, candidate: string) {
+  if (id !== ceta.ballotId) return null;
+  return ceta.positions.find((p) => p.candidate === candidate) ?? null;
+}
+
 const errors = validateLegislativeReferences(legislativeVotes, dataset);
 if (errors.length) throw new Error(errors.join('\n'));
 const readingSources = new Map(
@@ -39,11 +50,17 @@ const linked = new Set(
 export const independentVotes = legislativeVotes.ballots.flatMap((b) =>
   b.positions
     .filter((p) => !linked.has(b.id + '/' + p.candidate))
-    .map((p) => ({
-      ballot: b,
-      position: p,
-      candidate: dataset.candidates.find((c) => c.id === p.candidate)!,
-      id: b.id + '--' + p.candidate,
-      source: readingSources.get(b.id) ?? b.source,
-    })),
+    .map((p) => {
+      const archive = historicReceipt(b.id, p.candidate);
+      return {
+        ballot: b,
+        position: p,
+        candidate: dataset.candidates.find((c) => c.id === p.candidate)!,
+        id: b.id + '--' + p.candidate,
+        source: archive
+          ? { ...b.source, locator: archive.locator }
+          : (readingSources.get(b.id) ?? b.source),
+        archive,
+      };
+    }),
 );

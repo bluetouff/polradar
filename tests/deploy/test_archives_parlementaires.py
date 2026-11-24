@@ -1,4 +1,6 @@
 import copy
+import gzip
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -75,6 +77,16 @@ class ArchivesParlementaires(unittest.TestCase):
                 next(row for row in changed if row['numero'] == '166051')[field] = wrong
                 with self.assertRaises(ValueError):
                     module.relier_scrutins_europe(changed, catalogue)
+
+    def test_annexe_europeenne_reproduite_integralement(self):
+        supplement = json.loads((ROOT/'src/data/parlement/ceta-2017.json').read_text())
+        catalogue = json.loads((ROOT/'src/data/legislative-votes.json').read_text())
+        ballot = next(b for b in catalogue['ballots'] if b['id'] == supplement['ballotId'])
+        with gzip.open(ROOT/'scripts/archives-parlementaires/pe8-ceta-2017-02-15.xml.gz', 'rb') as archive:
+            source = archive.read(16*1024*1024 + 1)
+        self.assertEqual(len(source), 6239762)
+        self.assertEqual(hashlib.sha256(source).hexdigest(), ballot['source']['sha256'])
+        self.assertEqual(supplement['sha256'], ballot['source']['sha256'])
 
 if __name__=='__main__':
     unittest.main()

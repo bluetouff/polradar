@@ -2,6 +2,8 @@
 """Produce a reviewed Senate / European Parliament selection from public institutional files."""
 import argparse
 import csv
+import gzip
+import hashlib
 import json
 import os
 import re
@@ -10,8 +12,9 @@ from datetime import date
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 from urllib.parse import urlsplit
-from urllib.request import HTTPRedirectHandler, build_opener
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 from zipfile import ZipFile
+from xml.etree import ElementTree
 
 ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT/'src/data/parlement/senat-europe.json'
@@ -55,7 +58,8 @@ def prepare(cache,fetch,inputs=INPUTS):
     for name,url in inputs.items():
         path=cache/name
         if fetch and not path.exists():
-            with build_opener(NoRedirect()).open(url,timeout=40) as reply:
+            request = Request(url, headers={'User-Agent':'Polradar/archives-parlementaires (+https://polradar.fr/)'})
+            with build_opener(NoRedirect()).open(request,timeout=40) as reply:
                 content=reply.read(32*1024*1024+1)
             require(0<len(content)<=32*1024*1024,'Taille du téléchargement inattendue')
             atomic(path,content)
@@ -222,12 +226,107 @@ def relier_scrutins_europe(rows, catalogue):
                 'Position nominative discordante : ' + key)
         b['scrutinEditorial'] = key
 
+# Une même séance historique emploie un identifiant pour le relevé du vote
+# et un autre pour l’annuaire des députés. Ces paires ont été vérifiées
+# individuellement dans les pièces du 15 février, sans recherche par patronyme.
+CETA_MEMBERS = [
+    ('lepen', '28210', '5332', 'Marine', 'Le Pen', 'Le Pen Marine', 'ENF', '4908',
+     'MARINE_LE%20PEN', 'Débat du 15 février 2017, intervention 3-026-0000',
+     'https://www.europarl.europa.eu/meps/en/28210/MARINE_LE%2BPEN/all-activities/plenary-speeches/8'),
+    ('melenchon', '96742', '5916', 'Jean-Luc', 'Mélenchon', 'Mélenchon', 'GUE/NGL', '4281',
+     'JEAN-LUC_MELENCHON', 'Explication de vote sur le rapport A8-0009/2017',
+     'https://www.europarl.europa.eu/meps/fr/96742/JEAN-LUC_MELENCHON/all-activities/written-explanations/8'),
+    ('philippot', '110977', '6474', 'Florian', 'Philippot', 'Philippot', 'ENF', '4908',
+     'FLORIAN_PHILIPPOT', 'Mandat de la huitième législature',
+     'https://www.europarl.europa.eu/meps/fr/110977/FLORIAN_PHILIPPOT/history/8'),
+]
+
+def ceta(cache, fetch, verify, catalogue):
+    ballot, = [b for b in catalogue['ballots'] if b['id'] == 'pe8-20170215-ceta']
+    day = ballot['date']
+    xml_url = 'https://www.europarl.europa.eu/RegData/seance_pleniere/proces_verbal/2017/02-15/liste_presence/P8_PV(2017)02-15(RCV)_XC.xml'
+    require(ballot['source']['url'] == xml_url, 'Annexe CETA inattendue')
+    sources = {'rcv20170215.xml': xml_url}
+    for _, person, _, _, _, _, _, group, *_ in CETA_MEMBERS:
+        sources['ep-'+person+'.json'] = EP+'api/v2/meps/'+person+'?format=application%2Fld%2Bjson'
+        sources['org-'+group+'.json'] = EP+'api/v2/corporate-bodies/'+group+'?format=application%2Fld%2Bjson'
+    # Archived plenary files may refuse automated downloads. The unmodified
+    # 2017 sitting is preserved with its published digest; no bypass or
+    # alternative identity is used. Only the five public directory files
+    # need a network connection when the cache is empty.
+    if not (cache/'rcv20170215.xml').exists():
+        with gzip.open(ROOT/'scripts/archives-parlementaires/pe8-ceta-2017-02-15.xml.gz','rb') as saved:
+            seed = saved.read(16*1024*1024 + 1)
+        require(len(seed)<=16*1024*1024 and hashlib.sha256(seed).hexdigest()==ballot['source']['sha256'],
+                'Copie officielle du procès-verbal du CETA endommagée')
+        cache.mkdir(parents=True,exist_ok=True)
+        atomic(cache/'rcv20170215.xml',seed)
+    prepare(cache, fetch, sources)
+    xml = (cache/'rcv20170215.xml').read_bytes()
+    digest = hashlib.sha256(xml).hexdigest()
+    require(digest == ballot['source']['sha256'], 'Édition du procès-verbal CETA modifiée')
+    root = ElementTree.fromstring(xml)
+    require(root.get('Sitting.Date') == day and root.get('EP.Reference') == 'P8_PV(2017)02-15', 'Autre séance')
+    vote, = root.findall("RollCallVote.Result[@Identifier='77143']")
+    title = ''.join(vote.find('RollCallVote.Description.Text').itertext())
+    require('A8-0009/2017' in title and 'approbation' in title
+            and vote.get('Date','').startswith(day+' '), 'Autre vote que l’approbation du CETA')
+    voters = {}
+    for tag, tally_key, choice in [('For','for','pour'), ('Against','against','contre'), ('Abstention','abstained','abstention')]:
+        section = vote.find('Result.' + tag)
+        groups = section.findall('Result.PoliticalGroup.List')
+        named = [(n,g.get('Identifier')) for g in groups for n in g.findall('PoliticalGroup.Member.Name')]
+        require(len(named) == int(section.get('Number')) == ballot['tally'][tally_key], 'Effectif CETA discordant')
+        for n, code in named:
+            key = n.get('MepId')
+            require(key and key not in voters,'Identifiant de vote individuel dupliqué ou vide')
+            voters[key] = (n.text, code, choice)
+    require(len(voters) == ballot['tally']['voters'], 'Décompte CETA incomplet')
+    positions = []
+    for candidate, person, archive, given, family, label, group, org, slug, extra, link in CETA_MEMBERS:
+        member, = json.loads((cache/('ep-'+person+'.json')).read_bytes())['data']
+        require((member['id'],member['notation_codictPersonId'],member['givenName'],member['familyName'])
+                == ('person/'+person,person,given,family),'Identité de l’annuaire discordante')
+        active = [m for m in member['hasMembership'] if
+                  indates(day,m['memberDuring']['startDate'],m['memberDuring'].get('endDate'))]
+        term, = [m for m in active if m.get('membershipClassification','').endswith('/EU_INSTITUTION')]
+        faction, = [m for m in active if m.get('membershipClassification','').endswith('/EU_POLITICAL_GROUP')]
+        require(term['organization'] == 'org/ep-8' and faction['organization'] == 'org/'+org,
+                'Mandat ou groupe différent à la date du vote')
+        group_data, = json.loads((cache/('org-'+org+'.json')).read_bytes())['data']
+        require((group_data['id'],group_data['isVersionOf'],group_data['classification']) ==
+                ('org/'+org,'org/'+group.replace('/','-'),'def/ep-entities/EU_POLITICAL_GROUP'),
+                'Code de groupe CETA discordant')
+        xml_name, xml_group, choice = voters[archive]
+        require((xml_name,xml_group) == (label,group), 'Identité ou groupe du relevé discordant')
+        require(choice == 'contre','Divergence avec la lecture du procès-verbal du CETA')
+        positions.append({'candidate':candidate,'officialId':person,'officialName':given+' '+family,
+                          'profileUrl':'https://www.europarl.europa.eu/meps/fr/'+person+'/'+slug+'/history/8',
+                          'choice':choice,'groupAtTime':group_data['prefLabel']['fr'],
+                          'archiveId':archive,'groupCode':group,'mandateId':term['id'],
+                          'groupId':faction['organization'],'groupMembershipId':faction['id'],
+                          'locator':'Annexe du 15 février 2017, scrutin 77143, voix contre, groupe '+group+', ligne « '+label+' », MepId '+archive+'.',
+                          'confirmationTitle':extra,'confirmationUrl':link})
+    result={'version':1,'checked':'2026-11-24','ballotId':ballot['id'],'date':day,'number':ballot['number'],
+            'report':'A8-0009/2017','source':xml_url,'sha256':digest,'positions':positions}
+    output=ROOT/'src/data/parlement/ceta-2017.json'
+    content=(json.dumps(result,ensure_ascii=False,indent=2)+'\n').encode()
+    if verify: require(output.read_bytes()==content, 'Compléments nominatifs CETA modifiés')
+    else: atomic(output,content)
+    print(f"{len(positions)} positions nominatives recoupées sur le scrutin du CETA.")
+
 def main():
     cli=argparse.ArgumentParser(description=__doc__)
     cli.add_argument('cache',type=Path); cli.add_argument('--telecharger',action='store_true'); cli.add_argument('--verifier',action='store_true')
-    a=cli.parse_args();prepare(a.cache,a.telecharger)
+    cli.add_argument('--ceta',action='store_true',help='Vérifier les trois positions de la séance du 15 février 2017')
+    a=cli.parse_args()
+    catalogue=json.loads((ROOT/'src/data/legislative-votes.json').read_bytes())
+    if a.ceta:
+        ceta(a.cache,a.telecharger,a.verifier,catalogue)
+        return
+    prepare(a.cache,a.telecharger)
     europe,meetings=european(a.cache)
-    relier_scrutins_europe(europe, json.loads((ROOT/'src/data/legislative-votes.json').read_bytes()))
+    relier_scrutins_europe(europe, catalogue)
     rows=senate(a.cache)+europe
     require(len(rows)==len({r['id'] for r in rows}),'Identifiant dupliqué')
     rows.sort(key=lambda r:(r['date'],r['institution'],int(r['numero'])),reverse=True)

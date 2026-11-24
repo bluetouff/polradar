@@ -7,11 +7,16 @@ import Distribution from '../components/Distribution.astro';
 import { formatDate, themeById } from '../lib/data';
 import {
   legislativeVotes,
+  cetaArchive,
   voteCases,
   independentVotes,
 } from '../lib/votes-data';
 import { chambers, positionLabel } from '../lib/legislative-votes.mjs';
 import '../styles/votes.css';
+const independentGroups = legislativeVotes.ballots.flatMap((ballot) => {
+  const records = independentVotes.filter((v) => v.ballot.id === ballot.id);
+  return records.length ? [{ ballot, records }] : [];
+});
 ---
 
 <Base
@@ -116,20 +121,29 @@ import '../styles/votes.css';
         reste à établir.
       </p>
       <div class="roll-cards">
-        {independentVotes.map(({ id, ballot, position, candidate, source }) => (
-          <article class="panel" id={id}>
+        {independentGroups.map(({ ballot, records }) => (
+          <article class="panel" id={records[0].id}>
             <small>
               {chambers[ballot.chamber]} ·{' '}
               <time datetime={ballot.date}>{formatDate(ballot.date)}</time>
             </small>
             <h3>{ballot.shortTitle}</h3>
-            <p>
-              {candidate.name} ·{' '}
-              <strong>{positionLabel(position, ballot)}</strong>
-            </p>
-            <a href={source.url} rel="noreferrer">
+            {records.map(({ id, position, candidate }, i) => (
+              <p id={i > 0 ? id : undefined}>
+                {candidate.name} ·{' '}
+                <strong>{positionLabel(position, ballot)}</strong>
+              </p>
+            ))}
+            <a href={records[0].source.url} rel="noreferrer">
               Liste nominative officielle ↗
             </a>
+            {ballot.id === cetaArchive.ballotId && (
+              <p>
+                <a href="/votes/dossiers/philippot-commerce-ceta/#votes-ceta">
+                  Les trois votes documentés sur le CETA →
+                </a>
+              </p>
+            )}
             {archivesByEditorialBallot.get(ballot.id) && (
               <p>
                 <a href={archivesByEditorialBallot.get(ballot.id)!.url}>

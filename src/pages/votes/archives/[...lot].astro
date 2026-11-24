@@ -117,6 +117,14 @@ const format = new Intl.NumberFormat('fr-FR');
       {['Sénat', 'Parlement européen'].map((institution) => (
         <section>
           <h2>{institution}</h2>
+          {institution === 'Parlement européen' && (
+            <p>
+              <a href="/votes/dossiers/philippot-commerce-ceta/#votes-ceta">
+                15 février 2017 · votes individuels sur l’accord commercial avec
+                le Canada →
+              </a>
+            </p>
+          )}
           <div class="parl-grid">
             {archiveIndex.lots
               .filter((p) => p.institution === institution)

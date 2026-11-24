@@ -67,3 +67,40 @@ test('le dossier sur le règlement IA rejoint le point individuel du procès-ver
     /\/votes\/dossiers\/glucksmann-ia-transparence\/$/u,
   );
 });
+
+test('le vote de 2017 sur le CETA rassemble trois élus et garde un seul scrutin collectif', async ({
+  page,
+}) => {
+  await page.goto(testOrigin + '/votes/archives/');
+  await page
+    .getByRole('link', { name: '15 février 2017 · votes individuels' })
+    .click();
+  const section = page.getByRole('region', {
+    name: 'Votes individuels sur le CETA',
+  });
+  await expect(section.getByRole('listitem')).toHaveCount(3);
+  for (const name of [
+    'Marine Le Pen',
+    'Jean-Luc Mélenchon',
+    'Florian Philippot',
+  ]) {
+    await expect(
+      section
+        .getByRole('listitem')
+        .filter({ has: page.getByRole('link', { name, exact: true }) }),
+    ).toContainText('contre');
+  }
+  const response = await page.request.get(testOrigin + '/api/dossiers.json');
+  const report = await response.json();
+  const recorded = report.votes.filter(
+    (v: { ballotId: string }) => v.ballotId === 'pe8-20170215-ceta',
+  );
+  expect(
+    new Set(recorded.map((v: { candidate: string }) => v.candidate)),
+  ).toEqual(new Set(['lepen', 'melenchon', 'philippot']));
+  for (const row of recorded) {
+    expect(row.tally.for).toBe(408);
+    expect(row.archiveNominale.mandat).toContain(row.position.officialId);
+    if (row.candidate !== 'philippot') expect(row.relation).toBe(null);
+  }
+});

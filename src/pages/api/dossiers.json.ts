@@ -1,9 +1,26 @@
 import { activeCandidates } from '../../lib/data';
 import { questions } from '../../lib/questions';
 import { voteCasePath } from '../../lib/legislative-votes.mjs';
-import { voteCases, independentVotes } from '../../lib/votes-data';
+import {
+  voteCases,
+  independentVotes,
+  historicReceipt,
+} from '../../lib/votes-data';
 import { proposalTracks, evolution } from '../../lib/proposal-data';
 
+function archiveFields(archive: ReturnType<typeof historicReceipt>) {
+  return archive
+    ? {
+        archiveNominale: {
+          identifiantDansAnnexe: archive.archiveId,
+          mandat: archive.mandateId,
+          groupe: archive.groupId,
+          appartenance: archive.groupMembershipId,
+          sourceAttribution: archive.confirmationUrl,
+        },
+      }
+    : {};
+}
 export function GET() {
   return Response.json({
     version: 1,
@@ -65,6 +82,7 @@ export function GET() {
           chamber: b.chamber,
           context: b.context,
           position: b.position,
+          ...archiveFields(historicReceipt(b.id, v.candidate)),
           decision: b.decision,
           tally: b.tally,
           speeches: b.speeches ?? [],
@@ -83,7 +101,7 @@ export function GET() {
         })),
       ),
       ...independentVotes.map(
-        ({ id, ballot: b, position, source, candidate }) => ({
+        ({ id, ballot: b, position, source, candidate, archive }) => ({
           id,
           ballotId: b.id,
           candidate: candidate.id,
@@ -97,8 +115,9 @@ export function GET() {
           decision: b.decision,
           tally: b.tally,
           speeches: b.speeches ?? [],
-          source: b.source,
+          source: archive ? source : b.source,
           rollCall: source,
+          ...archiveFields(archive),
           relation: null,
           measureId: null,
           versionId: null,

@@ -116,6 +116,74 @@ export const legislativeVotesSchema = z.strictObject({
     .max(1000),
 });
 
+// The old XML uses a separate identifier for voting. Only explicit,
+// individually reviewed additions can complete a frozen ballot.
+export function withArchivedEuropeanPositions(data, archive) {
+  const ballot = data.ballots.find((b) => b.id === archive.ballotId);
+  if (
+    !ballot ||
+    ballot.chamber !== 'parlement-europeen' ||
+    ballot.number !== archive.number ||
+    ballot.date !== archive.date ||
+    ballot.source.url !== archive.source ||
+    ballot.source.sha256 !== archive.sha256 ||
+    !Array.isArray(archive.positions) ||
+    !archive.positions.length
+  )
+    throw Error('Complément nominatif sans scrutin européen concordant');
+  const rows = [];
+  const persons = new Set(),
+    legacy = new Set(),
+    candidates = new Set();
+  for (const p of archive.positions) {
+    if (
+      !/^\d+$/.test(p.officialId) ||
+      !/^\d+$/.test(p.archiveId) ||
+      !p.mandateId.startsWith('membership/' + p.officialId + '-') ||
+      !p.groupMembershipId.startsWith('membership/' + p.officialId + '-') ||
+      !/^org\/[0-9]+$/.test(p.groupId) ||
+      !p.groupCode ||
+      !p.locator ||
+      ![p.confirmationUrl, p.profileUrl].every((url) => {
+        const u = new URL(url);
+        return (
+          u.origin === 'https://www.europarl.europa.eu' &&
+          u.pathname.split('/')[3] === p.officialId &&
+          !u.username &&
+          !u.password
+        );
+      }) ||
+      persons.has(p.officialId) ||
+      legacy.has(p.archiveId) ||
+      candidates.has(p.candidate)
+    )
+      throw Error('Identité ou source du complément nominatif incohérente');
+    persons.add(p.officialId);
+    legacy.add(p.archiveId);
+    candidates.add(p.candidate);
+    const known = ballot.positions.find((r) => r.candidate === p.candidate);
+    if (known) {
+      if (known.officialId !== p.officialId || known.choice !== p.choice)
+        throw Error('Le complément contredit le relevé publié');
+    } else {
+      rows.push({
+        candidate: p.candidate,
+        officialName: p.officialName,
+        officialId: p.officialId,
+        profileUrl: p.profileUrl,
+        choice: p.choice,
+        groupAtTime: p.groupAtTime,
+      });
+    }
+  }
+  return {
+    ...data,
+    ballots: data.ballots.map((b) =>
+      b.id === ballot.id ? { ...b, positions: [...b.positions, ...rows] } : b,
+    ),
+  };
+}
+
 const normalizedName = (s) =>
   s
     .replace(/^(?:M\.|Mme|MM\.)\s*/u, '')
