@@ -127,6 +127,7 @@ export const pollSchema = z.object({
   round: z.enum(['premier', 'second']),
   questionKey: idSchema,
   surveyId: idSchema.optional(),
+  historicalImport: z.literal(true).optional(),
   question: z
     .discriminatedUnion('status', [
       z.strictObject({ status: z.literal('a-relire') }),
@@ -149,7 +150,7 @@ export const pollSchema = z.object({
   margin: z.object({
     min: z.number().nonnegative().max(100),
     max: z.number().nonnegative().max(100),
-    confidence: z.number().positive().max(100),
+    confidence: z.number().positive().max(100).nullable(),
   }),
   scenario: text,
   noticeSource: idSchema,

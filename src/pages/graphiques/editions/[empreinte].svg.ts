@@ -9,7 +9,9 @@ import { economyGraphic } from '../../../lib/economy-graphic.mjs';
 export const getStaticPaths = (() =>
   [
     salaryGraphic(),
-    ...polls.map((poll) => pollGraphic(poll, sources)),
+    ...polls
+      .filter((poll) => !poll.historicalImport)
+      .map((poll) => pollGraphic(poll, sources)),
     ...economy.map(({ id }) => economyGraphic(economy, id)),
   ].map((graphic) => ({
     params: { empreinte: editionId(graphic) },

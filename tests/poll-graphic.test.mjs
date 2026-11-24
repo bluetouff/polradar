@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import {
   pollGraphic,
   pollGraphicCatalog,
+  pollEmbeds,
   pollGraphicSeriesId,
 } from '../src/lib/poll-graphic.mjs';
 
@@ -233,5 +234,15 @@ test('la formulation et la base déterminent les courbes, le périmètre des anc
   assert.equal(
     pollGraphic(first, sources).svg.includes('Vérification ' + q.checked),
     false,
+  );
+});
+
+test('La reprise historique garde le lecteur complet et toutes les éditions du flux courant', () => {
+  const current = polls.filter((p) => !p.historicalImport);
+  assert.ok(polls.length > current.length);
+  assert.deepEqual(pollEmbeds(polls), pollGraphicCatalog(current));
+  assert.equal(
+    pollGraphicCatalog(polls).flatMap((s) => s.waves).length,
+    polls.length,
   );
 });

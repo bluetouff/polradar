@@ -14,7 +14,7 @@ import {
 } from './data';
 import { economy } from './economy-data';
 import { economyGraphic } from './economy-graphic.mjs';
-import { pollGraphic, pollGraphicCatalog } from './poll-graphic.mjs';
+import { pollGraphic, pollEmbeds } from './poll-graphic.mjs';
 import { payrolls, salaryGraphic, salaryImage } from './csg-paie.mjs';
 import comparison from '../data/retirement-comparison.json';
 import {
@@ -135,7 +135,7 @@ for (const series of economy) {
     rows(observations),
   );
 }
-for (const series of pollGraphicCatalog(polls)) {
+for (const series of pollEmbeds(polls)) {
   for (const wave of series.waves) {
     const graphic = pollGraphic(wave, sources);
     publish(

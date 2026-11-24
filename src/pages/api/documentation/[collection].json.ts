@@ -134,13 +134,15 @@ const collections = {
           '/graphiques/economie/' + s.id + '.svg',
         ),
       ),
-      ...polls.map((p) =>
-        standardGraphic(
-          'sondage-' + p.id,
-          pollGraphic(p, sources),
-          '/graphiques/sondages/' + pollGraphicSeriesId(p) + '.svg',
+      ...polls
+        .filter((p) => !p.historicalImport)
+        .map((p) =>
+          standardGraphic(
+            'sondage-' + p.id,
+            pollGraphic(p, sources),
+            '/graphiques/sondages/' + pollGraphicSeriesId(p) + '.svg',
+          ),
         ),
-      ),
       ...comparison.cohorts.map((c) => {
         const card = retirementCard(comparison, c, dataset);
         return {

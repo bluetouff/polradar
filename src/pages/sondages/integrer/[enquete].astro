@@ -2,9 +2,9 @@
 import Base from '../../../layouts/Base.astro';
 import DataGraphicEmbed from '../../../components/DataGraphicEmbed.astro';
 import { polls, sources, formatDate } from '../../../lib/data';
-import { pollGraphic, pollGraphicCatalog } from '../../../lib/poll-graphic.mjs';
+import { pollGraphic, pollEmbeds } from '../../../lib/poll-graphic.mjs';
 export function getStaticPaths() {
-  return pollGraphicCatalog(polls).flatMap(({ id, waves, latest }) =>
+  return pollEmbeds(polls).flatMap(({ id, waves, latest }) =>
     waves.map((wave: (typeof polls)[number]) => ({
       params: { enquete: wave.id },
       props: { wave, latest, id },

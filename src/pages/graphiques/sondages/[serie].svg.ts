@@ -2,12 +2,12 @@ import type { APIRoute, GetStaticPaths } from 'astro';
 import { polls, sources } from '../../../lib/data';
 import {
   pollGraphic,
-  pollGraphicCatalog,
+  pollEmbeds,
   legacyPollGraphics,
 } from '../../../lib/poll-graphic.mjs';
 
 export const getStaticPaths = (() => {
-  const current = pollGraphicCatalog(polls);
+  const current = pollEmbeds(polls);
   return [...current, ...legacyPollGraphics(polls, current)].map(
     ({ id, latest }) => ({
       params: { serie: id },

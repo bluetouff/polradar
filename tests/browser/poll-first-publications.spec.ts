@@ -88,3 +88,34 @@ test('l’article de Sud Radio et son horodatage figurent dans le scénario, le 
     await withoutJs.close();
   }
 });
+
+test('un scénario historique s’ouvre dans le graphique et le téléchargement JSON porte sur la sélection', async ({
+  page,
+}) => {
+  const id = 'opinionway-commission-10333-p13';
+  await page.goto('/sondages/');
+  const list = page
+    .locator('details')
+    .filter({
+      has: page.locator('summary', {
+        hasText: 'Notices et scénarios intégrés',
+      }),
+    });
+  await list.locator('summary').click();
+  await list.locator(`a[href="#enquete=${id}"]`).click();
+  await expect(page.locator('#poll-bar-date')).toContainText(
+    'Jean-Luc Mélenchon contre Marine Le Pen',
+  );
+  await expect(page.locator('#poll-embed-link')).toBeHidden();
+  await expect(page.locator('#poll-bars')).toContainText('69');
+  const downloaded = page.waitForEvent('download');
+  await page.locator('#poll-export-json').click();
+  const file = await downloaded;
+  const data = JSON.parse(await readFile((await file.path())!, 'utf8'));
+  expect(data.scenario.id).toBe(id);
+  expect(
+    data.scenario.results.find((r: { id: string }) => r.id === 'lepen')
+      .percentage,
+  ).toBe(69);
+  expect(data.sources[0].url).toMatch(/commission-des-sondages.fr/);
+});

@@ -237,7 +237,9 @@ async function start() {
       return;
     }
     const poll = rows[index];
-    embedLink.href = `/sondages/integrer/${poll.id}/`;
+    embedLink.hidden = Boolean(poll.historicalImport);
+    if (poll.historicalImport) embedLink.removeAttribute('href');
+    else embedLink.href = `/sondages/integrer/${poll.id}/`;
     document.querySelector('#poll-wave-total')!.textContent =
       `${rows.length} observation${rows.length > 1 ? 's' : ''}`;
     document.querySelector('#poll-selected-date')!.textContent = date(
@@ -393,7 +395,12 @@ async function start() {
       dl,
       el(
         'p',
-        `${poll.uncertainty} Niveau de confiance indiqué : ${poll.margin.confidence} %.`,
+        [
+          poll.uncertainty,
+          poll.margin.confidence === null
+            ? 'Niveau de confiance non précisé.'
+            : `Niveau de confiance indiqué : ${poll.margin.confidence} %.`,
+        ].join(' '),
       ),
     );
     if (poll.resultSource) {
@@ -504,22 +511,45 @@ async function start() {
       `polradar-${poll.id}.csv`,
     );
   });
-  const fragment = location.hash.slice(1);
-  const requested =
-      new URLSearchParams(fragment).get('enquete') ??
-      document.getElementById(fragment)?.dataset.vague,
-    poll = data.polls.find((poll) => poll.id === requested);
-  if (poll) {
-    round.value = poll.round;
-    institute.value = poll.institute;
-    const group = groups.find((group) =>
-      group.some((row) => row.id === poll.id),
-    )!;
-    selectGroups(group[0].id);
-    index = rows.findIndex((row) => row.id === poll.id);
-    range.value = String(index);
-    render();
-  } else selectGroups();
+  document.getElementById('poll-export-json')!.addEventListener('click', () => {
+    const poll = rows[index];
+    if (!poll) return;
+    const ids = [
+      poll.noticeSource,
+      poll.resultSource,
+      poll.question?.status === 'verifiee' ? poll.question.sourceId : undefined,
+    ];
+    const sources = data.sources.filter((s) => ids.includes(s.id));
+    download(
+      JSON.stringify({ scenario: poll, sources }, null, 2),
+      'application/json',
+      `polradar-${poll.id}.json`,
+    );
+  });
+  function openFragment() {
+    const fragment = location.hash.slice(1);
+    const requested =
+        new URLSearchParams(fragment).get('enquete') ??
+        document.getElementById(fragment)?.dataset.vague,
+      poll = data.polls.find((poll) => poll.id === requested);
+    if (poll) {
+      round.value = poll.round;
+      institute.value = poll.institute;
+      const group = groups.find((group) =>
+        group.some((row) => row.id === poll.id),
+      )!;
+      selectGroups(group[0].id);
+      index = rows.findIndex((row) => row.id === poll.id);
+      range.value = String(index);
+      render();
+    }
+    return Boolean(poll);
+  }
+  if (!openFragment()) selectGroups();
+  window.addEventListener('hashchange', () => {
+    if (openFragment())
+      document.getElementById('poll-results-heading')?.focus();
+  });
   let lastWidth = plot.clientWidth;
   new ResizeObserver(() => {
     if (Math.abs(plot.clientWidth - lastWidth) > 1) {

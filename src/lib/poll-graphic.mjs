@@ -53,6 +53,12 @@ export function pollGraphicCatalog(polls) {
     .sort((a, b) => comparePollWaves(b.latest, a.latest));
 }
 
+// Retrospective tables are drawn in the survey reader. Published image URLs
+// continue to follow only the original stream and later routine waves.
+export function pollEmbeds(polls) {
+  return pollGraphicCatalog(polls.filter((p) => !p.historicalImport));
+}
+
 function sourceLink(sources, id, page, label) {
   const source = sources.find((item) => item.id === id);
   if (

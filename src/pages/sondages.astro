@@ -3,10 +3,7 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import PollChart from '../components/PollChart.astro';
 import PollPublicationDocuments from '../components/PollPublicationDocuments.astro';
-import {
-  pollGraphicCatalog,
-  legacyPollGraphics,
-} from '../lib/poll-graphic.mjs';
+import { pollEmbeds, legacyPollGraphics } from '../lib/poll-graphic.mjs';
 import {
   documentedPolls as polls,
   sourceById,
@@ -20,7 +17,7 @@ import {
   pollScoreLabel,
   rankedPollResults,
 } from '../lib/features.mjs';
-const catalog = pollGraphicCatalog(polls);
+const catalog = pollEmbeds(polls);
 const legacy = legacyPollGraphics(polls, catalog);
 const currentSeries = new Map(catalog.map(({ id, latest }) => [latest.id, id]));
 const groups = pollSeries(polls) as DocumentedPoll[][];
@@ -108,10 +105,15 @@ const surveyed = [
   <section class="poll-workspace">
     <section class="poll-breakdown" aria-labelledby="poll-results-heading">
       <div class="register-heading">
-        <h2 id="poll-results-heading">Intentions de vote</h2>
+        <h2 id="poll-results-heading" tabindex="-1">
+          Intentions de vote
+        </h2>
         <button type="button" class="button small" id="poll-export">
           <Icon name="download" />
           CSV
+        </button>
+        <button type="button" class="button small" id="poll-export-json">
+          JSON
         </button>
       </div>
       <p id="poll-bar-date" class="poll-context">
@@ -169,7 +171,12 @@ const surveyed = [
       <a
         class="button small"
         id="poll-embed-link"
-        href={'/sondages/integrer/' + latest.id + '/'}
+        hidden={latest.historicalImport}
+        href={
+          latest.historicalImport
+            ? undefined
+            : '/sondages/integrer/' + latest.id + '/'
+        }
       >
         <Icon name="source" /> Intégrer ce graphique
       </a>
@@ -365,8 +372,10 @@ const surveyed = [
       </div>
     </dl>
     <p>
-      {latest.uncertainty} Niveau de confiance indiqué :{' '}
-      {latest.margin.confidence} %.
+      {latest.uncertainty}{' '}
+      {latest.margin.confidence === null
+        ? 'Niveau de confiance non précisé.'
+        : `Niveau de confiance indiqué : ${latest.margin.confidence} %.`}
     </p>
   </section>
   <details class="reader-options" id="publications-enquetes">
@@ -428,7 +437,13 @@ const surveyed = [
           >
             Notice, page {poll.noticePage} ↗
           </a>
-          <a href={'/sondages/integrer/' + poll.id + '/'}>Intégrer la vague</a>
+          {poll.historicalImport ? (
+            <a href={'#enquete=' + poll.id}>Afficher ce scénario</a>
+          ) : (
+            <a href={'/sondages/integrer/' + poll.id + '/'}>
+              Intégrer la vague
+            </a>
+          )}
         </li>
       ))}
     </ul>

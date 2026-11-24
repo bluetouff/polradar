@@ -240,7 +240,7 @@ def process_backfill(row, item, partial, last, identities, today, output):
     except (OSError, ValueError, IndexError, StopIteration, subprocess.SubprocessError):
         return {**result, 'status': 'format'}
     output['sources'].append(source)
-    output['polls'].extend(scenarios)
+    output['polls'].extend({**p, 'historicalImport': True} for p in scenarios)
     return {**result, 'status': 'importe'}
 
 
