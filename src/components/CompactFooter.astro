@@ -1,9 +1,10 @@
 ---
 import SupportLink from './SupportLink.astro';
 import { meta, formatDate } from '../lib/data';
+const { language } = Astro.props as { language?: 'fr' };
 ---
 
-<footer class="publication-footer">
+<footer class="publication-footer" lang={language}>
   <div class="footer-inner">
     <nav
       class="footer-columns"

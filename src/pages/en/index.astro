@@ -1,0 +1,93 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+
+const routes = [
+  {
+    label: 'Candidates and policy proposals',
+    icon: 'candidats',
+    href: '/candidats/',
+    summary:
+      'Read candidate dossiers and identify the author and source of each proposal.',
+  },
+  {
+    label: 'Polling and scenarios',
+    icon: 'sondages',
+    href: '/sondages/',
+    summary:
+      'Explore the fieldwork dates, candidates tested and published notices behind each figure.',
+  },
+  {
+    label: 'Parliamentary votes',
+    icon: 'vote',
+    href: '/votes/recherche/',
+    summary:
+      'Find official votes, reports and bills, with the positions recorded for named office holders.',
+  },
+  {
+    label: 'Open data and MCP',
+    icon: 'source',
+    href: '/en/data/',
+    summary: 'Download datasets and connect to the public read-only service.',
+  },
+] as const;
+---
+
+<Base
+  language="en"
+  title="French presidential election 2027"
+  description="A guide to Polradar’s candidate dossiers, policy proposals, polling and open data."
+>
+  <header class="page-title feature-title">
+    <div>
+      <h1>French presidential election 2027</h1>
+      <p>
+        Polradar tracks candidates, proposals, polling and the election
+        calendar. The records link to their original sources.
+      </p>
+    </div>
+    <a href="/" lang="fr" hreflang="fr">
+      Voir le site en français
+    </a>
+  </header>
+  <nav aria-label="Election information" class="language-routes">
+    {routes.map((route) => (
+      <a
+        class="panel"
+        href={route.href}
+        hreflang={route.href.startsWith('/en/') ? 'en' : 'fr'}
+      >
+        <Icon name={route.icon} />
+        <div>
+          <h2>{route.label}</h2>
+          <p>{route.summary}</p>
+        </div>
+      </a>
+    ))}
+  </nav>
+</Base>
+
+<style>
+  .language-routes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: 0.8rem;
+  }
+  .language-routes a {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .language-routes a:is(:hover, :focus-visible) h2 {
+    text-decoration: underline;
+  }
+  .language-routes h2 {
+    font-size: 1.15rem;
+    margin: 0;
+  }
+  .language-routes p {
+    margin: 0.4rem 0 0;
+  }
+</style>

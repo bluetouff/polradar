@@ -1,0 +1,68 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { sourceCommit } from '../../../scripts/release-revision.mjs';
+
+const archive = sourceCommit
+  ? `https://github.com/bluetouff/polradar/releases/download/site-${sourceCommit}/corpus-v1.tar.gz`
+  : null;
+---
+
+<Base
+  language="en"
+  title="Open data and MCP for the French presidential election"
+  description="Download a versioned copy of Polradar’s data or read it through the public REST and MCP services."
+>
+  <header class="page-title feature-title">
+    <div>
+      <h1>Open data and MCP</h1>
+      <p>
+        Download the French-language data or query the public read-only services
+        directly.
+      </p>
+    </div>
+    <a href="/en/">English guide</a>
+  </header>
+  <section class="panel section-space" aria-labelledby="download-heading">
+    <h2 id="download-heading">
+      <Icon name="download" /> Download an edition
+    </h2>
+    <p>
+      The <a href="/api/exports-v1.json">JSON catalogue</a> lists the datasets
+      and their sources. The full archive includes the file checksums and its
+      edition identifier.
+    </p>
+    {archive && <a href={archive}>Download this edition (.tar.gz)</a>}
+    <p>
+      The original database is available under ODbL 1.0. The catalogue records
+      the terms for each dataset and the rights of source publishers.{' '}
+      <a href="/licences/" hreflang="fr">
+        Licences and credits in French
+      </a>
+    </p>
+  </section>
+  <section class="panel section-space" aria-labelledby="query-heading">
+    <h2 id="query-heading">
+      <Icon name="source" /> Query the data
+    </h2>
+    <ul>
+      <li>
+        <a href="/api/openapi.json">REST API specification</a>
+      </li>
+      <li>
+        <a href="/mcp/" hreflang="fr">
+          MCP setup and references in French
+        </a>
+      </li>
+      <li>
+        <a href="/api/qualite-documentaire.json">
+          Coverage and data freshness for this edition
+        </a>
+      </li>
+    </ul>
+    <p>
+      Use <code>https://polradar.fr/api/mcp</code> as the Streamable HTTP
+      endpoint in an MCP client. The public service uses read-only tools.
+    </p>
+  </section>
+</Base>

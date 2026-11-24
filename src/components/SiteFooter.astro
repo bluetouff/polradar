@@ -3,9 +3,10 @@ import SupportLink from './SupportLink.astro';
 import BrandLogo from './BrandLogo.astro';
 import { meta, formatDate } from '../lib/data';
 import { footerColumns as columns } from '../lib/footer-links';
+const { language } = Astro.props as { language?: 'fr' };
 ---
 
-<footer class="publication-footer">
+<footer class="publication-footer" lang={language}>
   <div class="footer-inner">
     <div class="footer-intro">
       <div>
@@ -46,6 +47,9 @@ import { footerColumns as columns } from '../lib/footer-links';
       </p>
       <div class="footer-resources">
         <SupportLink />
+        <a href="/en/" hreflang="en" lang="en">
+          English
+        </a>
         <a href="/licences/">Licences et crédits</a>
         <a href={meta.repository} target="_blank" rel="noopener noreferrer">
           GitHub
