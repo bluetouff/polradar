@@ -1,5 +1,6 @@
 import { activeCandidates } from '../../lib/data';
 import { questions } from '../../lib/questions';
+import { voteCasePath } from '../../lib/legislative-votes.mjs';
 import { voteCases, independentVotes } from '../../lib/votes-data';
 import { proposalTracks, evolution } from '../../lib/proposal-data';
 
@@ -73,7 +74,7 @@ export function GET() {
           rollCall: b.rollCall,
           measureId: v.measureId,
           versionId: v.versionId,
-          url: 'https://polradar.fr/votes/#dossier=' + v.id,
+          url: 'https://polradar.fr' + voteCasePath(v.id),
           measureUrl:
             'https://polradar.fr/mesures/' +
             v.measureId +

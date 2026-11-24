@@ -12,6 +12,7 @@ import { candidates, measures, themes } from '../../lib/data';
 import { portraitLinks } from '../../lib/portrait-links.mjs';
 import { portraitFor } from '../../lib/portraits';
 import { proposalTracks, financingMaps } from '../../lib/proposal-data';
+import { voteCasePath } from '../../lib/legislative-votes.mjs';
 import { voteCases } from '../../lib/votes-data';
 import '../../styles/candidates.css';
 export function getStaticPaths() {
@@ -148,7 +149,7 @@ const votesLink = voteCases.find((v) => v.candidate === candidate.id);
             aria-label="Analyses du programme"
           >
             {votesLink && (
-              <a href={`/votes/#dossier=${votesLink.id}`}>
+              <a href={voteCasePath(votesLink.id)}>
                 <Icon name="vote" />
                 <span>Propositions et votes passés</span>
                 <Icon name="arrow" />

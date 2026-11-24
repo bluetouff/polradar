@@ -5,6 +5,10 @@ import {
   publicUrlSchema,
   civilDateInParis,
 } from './schema.mjs';
+export function voteCasePath(id) {
+  return `/votes/dossiers/${encodeURIComponent(id)}/`;
+}
+
 const text = z.string().trim().min(1).max(1800);
 const count = z.number().int().nonnegative().max(1500);
 const choice = z.enum(['pour', 'contre', 'abstention', 'non-votant']);

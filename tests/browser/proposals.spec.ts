@@ -20,12 +20,15 @@ test('les sélecteurs mobiles ouvrent les nouveaux dossiers et conservent le cho
     const chooser = page.locator(`[${select}]`);
     const first = await chooser.inputValue();
     await chooser.selectOption(target);
-    await expect(page).toHaveURL(new RegExp(`#dossier=${target}$`));
+    const destination =
+      route === 'votes' ? `/votes/dossiers/${target}/$` : `#dossier=${target}$`;
+    await expect(page).toHaveURL(new RegExp(destination));
     await expect(page.locator(`section[id="dossier=${target}"]`)).toContainText(
       expected,
     );
     await page.reload();
-    await expect(chooser).toHaveValue(target);
+    await expect(page).toHaveURL(new RegExp(destination));
+    if (route === 'evolution') await expect(chooser).toHaveValue(target);
     await page.goBack();
     await expect(chooser).toHaveValue(first);
   }

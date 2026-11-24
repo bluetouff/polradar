@@ -54,12 +54,14 @@ test('la frise conserve les objets des motions, les sources et les liens directs
   page,
 }) => {
   await page.goto('/votes/');
-  await expect(page.locator('[data-vote-case]:visible')).toHaveCount(0);
+  await expect(page.locator('[data-vote-case]')).toHaveCount(0);
+  await expect(page.locator('.dossier-directory img')).toHaveCount(0);
   await expect(page.locator('.subject-card:visible')).toHaveCount(12);
   await expect(page.locator('.subject-card')).toHaveCount(
     legislativeVotes.cases.length,
   );
   await openDossier(page, '[data-vote-tab="melenchon-isf"]');
+  await expect(page).toHaveURL(/\/votes\/dossiers\/melenchon-isf\/$/);
   const dossier = page.locator('[data-vote-case]:visible');
   await expect(dossier).toContainText('Jean-Luc Mélenchon');
   await expect(dossier.locator('.personal-choice')).toHaveText([
@@ -74,6 +76,7 @@ test('la frise conserve les objets des motions, les sources et les liens directs
     'href',
     'https://www.assemblee-nationale.fr/dyn/15/scrutins/169',
   );
+  await page.getByRole('link', { name: 'Tous les dossiers de vote' }).click();
   await openDossier(page, '[data-vote-tab="roussel-retraites"]');
   await expect(page.locator('[data-vote-case]:visible')).toContainText(
     'Pour la motion',
@@ -90,9 +93,21 @@ test('la frise conserve les objets des motions, les sources et les liens directs
     278,
   );
   await page.reload();
-  await expect(
-    page.locator('[data-vote-tab="roussel-retraites"]'),
-  ).toHaveAttribute('aria-current', 'true');
+  await expect(page.locator('h1')).toHaveText(
+    legislativeVotes.cases.find((c) => c.id === 'roussel-retraites')!.title,
+  );
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    'https://polradar.fr/votes/dossiers/roussel-retraites/',
+  );
+  await page.goto('/votes/#dossier=melenchon-isf&scrutin=an15-1716');
+  await expect(page).toHaveURL(
+    /\/votes\/dossiers\/melenchon-isf\/#scrutin-an15-1716$/,
+  );
+  await expect(page.locator(':target')).toHaveAttribute(
+    'data-ballot',
+    'an15-1716',
+  );
   await page.goto('/votes/#dossier=%3Cimg%20src=x%20onerror=alert(1)%3E');
   await expect(page.locator('[data-vote-case]:visible')).toHaveCount(0);
   await expect(page.locator('[data-votes-workspace] img[src="x"]')).toHaveCount(
@@ -120,7 +135,7 @@ test.describe('scrutins sur les fiches de mesures', () => {
       );
       for (const record of records) {
         const group = section.locator('.vote-case').filter({
-          has: page.locator(`a[href="/votes/#dossier=${record.id}"]`),
+          has: page.locator(`a[href="/votes/dossiers/${record.id}/"]`),
         });
         for (const link of record.links) {
           const b = legislativeVotes.ballots.find(
@@ -159,6 +174,56 @@ test.describe('scrutins sur les fiches de mesures', () => {
     await page.goto('/mesures/melenchon-retraites-1/');
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     await expect(page.locator('#scrutins')).toHaveCount(0);
+  });
+
+  test('chaque dossier publie sa frise, sa version et toutes les sources dans le HTML', async ({
+    page,
+  }) => {
+    for (const record of legislativeVotes.cases) {
+      const path = '/votes/dossiers/' + record.id + '/';
+      const response = await page.goto(path);
+      expect(response?.status()).toBe(200);
+      await expect(page.locator('h1')).toHaveText(record.title);
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+        'href',
+        'https://polradar.fr' + path,
+      );
+      const timeline = page.locator('.vote-timeline');
+      await expect(timeline.locator('article[data-ballot]')).toHaveCount(
+        record.links.length,
+      );
+      await expect(timeline.locator('.vote-measure-link')).toHaveAttribute(
+        'href',
+        '/mesures/' + record.measureId + '/#scrutins',
+      );
+      for (const link of record.links) {
+        const ballot = legislativeVotes.ballots.find(
+          (b) => b.id === link.ballotId,
+        )!;
+        const article = timeline.locator('[id="scrutin-' + ballot.id + '"]');
+        const source =
+          legislativeVotes.readingSources.find(
+            (s) => s.ballotId === ballot.id,
+          ) ?? ballot.source;
+        await expect(article).toContainText(link.context);
+        await expect(
+          article.getByRole('link', {
+            name: 'Scrutin et liste nominative',
+            includeHidden: true,
+          }),
+        ).toHaveAttribute('href', source.url);
+      }
+    }
+    await page.goto('/votes/');
+    const independent = page.locator('.roll-cards article[id]').first();
+    const id = await independent.getAttribute('id');
+    await page.goto('/votes/#' + id);
+    await expect(page.locator(':target')).toHaveAttribute('id', id!);
+    await expect(
+      page
+        .locator(':target')
+        .getByRole('link', { name: /Liste nominative officielle/ }),
+    ).toBeVisible();
   });
 
   test('la fiche et le dossier exact se rejoignent au clavier sur mobile, y compris pour une version antérieure', async ({
@@ -202,11 +267,14 @@ test('les votes restent accessibles sans JavaScript', async ({ browser }) => {
   await expect(page.locator('.subject-card:visible')).toHaveCount(
     legislativeVotes.cases.length,
   );
-  await page.locator('[data-vote-tab="melenchon-isf"]').click();
-  await expect(page.locator('[data-vote-case]:visible')).toHaveCount(1);
-  await expect(page.locator('.vote-proposal')).toHaveCount(
-    legislativeVotes.cases.length,
+  await page.goto('/votes/#dossier=melenchon-isf');
+  await expect(page.locator(':target')).toHaveAttribute(
+    'href',
+    '/votes/dossiers/melenchon-isf/',
   );
+  await page.locator(':target').click();
+  await expect(page.locator('[data-vote-case]:visible')).toHaveCount(1);
+  await expect(page.locator('.vote-proposal')).toHaveCount(1);
   await page
     .locator('[data-vote-case]:visible .vote-source summary')
     .first()
@@ -225,6 +293,7 @@ test('les cinq liens de partage restent statiques, canoniques et sans appel aux 
   });
   page.on('pageerror', (e) => errors.push(e.message));
   await page.goto('/votes/?utm_source=secret#dossier=roussel-retraites');
+  await expect(page).toHaveURL(/\/votes\/dossiers\/roussel-retraites\/$/);
   const links = page.locator('.page-share a');
   await expect(links).toHaveCount(5);
   const hrefs = await links.evaluateAll((nodes) =>
@@ -237,9 +306,11 @@ test('les cinq liens de partage restent statiques, canoniques et sans appel aux 
   for (const link of hrefs) {
     const url = new URL(link.href);
     const values = [...url.searchParams.values()].join(' ');
-    expect(values).toContain('https://polradar.fr/votes/');
+    expect(values).toContain(
+      'https://polradar.fr/votes/dossiers/roussel-retraites/',
+    );
     expect(values).not.toContain('secret');
-    expect(values).not.toContain('roussel-retraites');
+    expect(values).not.toContain('#dossier');
     expect(link.rel).toContain('noreferrer');
     expect(link.referrer).toBe('no-referrer');
   }
@@ -294,6 +365,8 @@ test('la frise et les partages gardent leurs marges de 320 à 1800 pixels', asyn
       '/',
     ]) {
       await page.goto(route);
+      if (route.startsWith('/votes/'))
+        await expect(page).toHaveURL(/\/votes\/dossiers\/[a-z-]+\/$/);
       await page.evaluate(() => document.fonts.ready);
       expect(
         await page.evaluate(

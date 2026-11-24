@@ -1,7 +1,11 @@
 ---
 import Icon from './Icon.astro';
 import { events, formatDate, sources, type Candidate } from '../lib/data';
-import { chambers, positionLabel } from '../lib/legislative-votes.mjs';
+import {
+  chambers,
+  positionLabel,
+  voteCasePath,
+} from '../lib/legislative-votes.mjs';
 import { legislativeVotes, voteCases } from '../lib/votes-data';
 import { agenda } from '../lib/visual-data';
 import { agendaDateLabel } from '../lib/campaign-visuals-view.mjs';
@@ -36,7 +40,9 @@ const ballots = legislativeVotes.ballots
     return {
       date: b.date,
       title: b.shortTitle,
-      href: dossier ? `/votes/#dossier=${dossier.id}` : b.source.url,
+      href: dossier
+        ? `${voteCasePath(dossier.id)}#scrutin-${b.id}`
+        : b.source.url,
       label: positionLabel(position, b),
       kind: position.choice,
       detail: chambers[b.chamber],

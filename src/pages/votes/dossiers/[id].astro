@@ -1,0 +1,284 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Icon from '../../../components/Icon.astro';
+import DossierHeading from '../../../components/DossierHeading.astro';
+import BallotChart from '../../../components/BallotChart.astro';
+import SourceLinks from '../../../components/SourceLinks.astro';
+import { attributionLabel } from '../../../lib/attribution.mjs';
+import { formatDate, formatTimestamp, themeById } from '../../../lib/data';
+import {
+  ballotKinds,
+  chambers,
+  positionLabel,
+  decisionLabel,
+} from '../../../lib/legislative-votes.mjs';
+import { sameSentence } from '../../../lib/measure-text';
+import { voteCases } from '../../../lib/votes-data';
+import '../../../styles/votes.css';
+
+export function getStaticPaths() {
+  return voteCases.map((record) => ({
+    params: { id: record.id },
+    props: { record },
+  }));
+}
+const { record } = Astro.props;
+---
+
+<Base title={record.title} description={record.note} section="/votes/">
+  <nav class="vote-directory-back" aria-label="Retour aux dossiers de vote">
+    <a href="/votes/">
+      <Icon name="arrow" /> Tous les dossiers de vote
+    </a>
+  </nav>
+  <div class="vote-stage">
+    <section
+      id={`dossier=${record.id}`}
+      data-vote-case={record.id}
+      tabindex="-1"
+      aria-labelledby={`vote-title-${record.id}`}
+    >
+      <DossierHeading
+        pageTitle
+        candidate={record.candidateRecord}
+        theme={themeById(record.measure.theme)}
+        title={record.title}
+        id={`vote-title-${record.id}`}
+      />
+      <p class="vote-case-note">{record.note}</p>
+      <h2 class="vote-steps-heading">
+        {record.ballots.length}{' '}
+        {record.ballots.length === 1 ? 'scrutin' : 'scrutins'} et une
+        proposition
+      </h2>
+      <ol class="vote-timeline" data-steps={record.ballots.length + 1}>
+        {record.ballots.map((ballot) => (
+          <li class="vote-timeline-item">
+            <div class="vote-rail" aria-hidden="true">
+              <span class="vote-timeline-node" aria-hidden="true">
+                <Icon name="vote" />
+              </span>
+            </div>
+            <div class="vote-date">
+              <a
+                href={`#scrutin-${ballot.id}`}
+                aria-label={`Lien vers le scrutin du ${formatDate(ballot.date)} · ${ballot.shortTitle}`}
+              >
+                Séance du{' '}
+                <time datetime={ballot.date}>{formatDate(ballot.date)}</time>
+              </a>
+              <span class="vote-object">{ballotKinds[ballot.kind]}</span>
+            </div>
+            <article
+              class="vote-record"
+              id={`scrutin-${ballot.id}`}
+              data-ballot={ballot.id}
+            >
+              <div class="vote-record-content">
+                <p class="vote-institution">
+                  {chambers[ballot.chamber]} ·{' '}
+                  {ballot.chamber === 'parlement-europeen'
+                    ? ballot.term
+                    : `n°${ballot.number}`}
+                </p>
+                <h3>{ballot.shortTitle}</h3>
+                <p class="vote-choice-label">
+                  Vote de {record.candidateRecord.name}
+                </p>
+                <p class={`personal-choice choice-${ballot.position.choice}`}>
+                  <Icon
+                    name={ballot.position.choice === 'pour' ? 'check' : 'vote'}
+                  />
+                  {positionLabel(ballot.position, ballot)}
+                </p>
+                <p class="vote-group">
+                  Groupe lors du scrutin : {ballot.position.groupAtTime}
+                </p>
+                <p class="vote-result">
+                  <span>Issue du scrutin</span> {decisionLabel(ballot)}
+                </p>
+              </div>
+              <BallotChart ballot={ballot} />
+              <div class="vote-context">
+                <span>
+                  {ballot.link.relation === 'texte-plus-large'
+                    ? 'Portée plus large'
+                    : 'Sujet commun'}
+                </span>
+                <p>{ballot.link.context}</p>
+              </div>
+              {ballot.speeches && (
+                <details class="vote-source">
+                  <summary>
+                    <Icon name="source" />
+                    Prises de parole en séance
+                    <Icon name="chevron" />
+                  </summary>
+                  <div>
+                    {ballot.speeches.map((speech) => (
+                      <article>
+                        <h4>
+                          {speech.speaker} · {speech.group}
+                        </h4>
+                        <p>{speech.summary}</p>
+                        <a href={speech.url} rel="noreferrer">
+                          {speech.locator} <Icon name="external" />
+                        </a>
+                      </article>
+                    ))}
+                  </div>
+                </details>
+              )}
+              <details class="vote-source">
+                <summary>
+                  <Icon name="source" />
+                  Objet du scrutin et sources officielles
+                  <Icon name="chevron" />
+                </summary>
+                <div>
+                  <p>
+                    <strong>{ballot.title}</strong>
+                  </p>
+                  <p>{ballot.context}</p>
+                  {ballot.rectification && <p>{ballot.rectification}</p>}
+                  <ul>
+                    <li>
+                      <a
+                        href={ballot.rollCall.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Scrutin et liste nominative <Icon name="external" />
+                      </a>
+                    </li>
+                    {ballot.documents.map((d) => (
+                      <li>
+                        <a
+                          href={d.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {d.title} <Icon name="external" />
+                        </a>
+                      </li>
+                    ))}
+                    {ballot.position.profileUrl && (
+                      <li>
+                        <a
+                          href={ballot.position.profileUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Fiche parlementaire de {ballot.position.officialName}{' '}
+                          <Icon name="external" />
+                        </a>
+                      </li>
+                    )}
+                  </ul>
+                  <p class="vote-source-meta">
+                    {ballot.term} · {ballot.rollCall.locator}
+                    <br />
+                    Consulté le {formatTimestamp(
+                      ballot.rollCall.checkedAt,
+                    )}{' '}
+                    (heure de Paris)
+                  </p>
+                </div>
+              </details>
+            </article>
+          </li>
+        ))}
+        <li class="vote-timeline-item vote-proposal-item">
+          <div class="vote-rail" aria-hidden="true">
+            <span class="vote-timeline-node" aria-hidden="true">
+              <Icon name="mesures" />
+            </span>
+          </div>
+          <div class="vote-date">
+            <span>
+              Proposition consultée le
+              <time datetime={record.version.snapshot.checked}>
+                {formatDate(record.version.snapshot.checked)}
+              </time>
+            </span>
+            <span class="vote-object">{record.version.snapshot.edition}</span>
+          </div>
+          <article class="vote-proposal">
+            <span class="eyebrow">
+              {record.version.snapshot.scope === 'archive'
+                ? 'Archive présidentielle 2022'
+                : record.version.snapshot.scope === 'parti'
+                  ? 'Projet du parti'
+                  : 'Proposition documentée'}
+            </span>
+            <h3>{record.version.snapshot.title}</h3>
+            <p class="vote-proposal-edition">
+              {attributionLabel(
+                record.version.snapshot,
+                record.candidateRecord.name,
+              )}{' '}
+              ·{record.version.snapshot.edition}
+            </p>
+            {!sameSentence(
+              record.version.snapshot.description,
+              record.version.snapshot.title,
+            ) && <p>{record.version.snapshot.description}</p>}
+            {record.version.snapshot.metrics.length > 0 && (
+              <div class="vote-proposal-metrics">
+                {record.version.snapshot.metrics.map((m) => (
+                  <span>
+                    <strong>
+                      {m.value} <small>{m.unit}</small>
+                    </strong>
+                    {m.label}
+                  </span>
+                ))}
+              </div>
+            )}
+            <SourceLinks
+              ids={record.version.snapshot.sourceRefs.map((s) => s.sourceId)}
+            />
+            <a
+              class="vote-measure-link"
+              href={`/mesures/${record.measureId}/#scrutins`}
+            >
+              Fiche de la proposition <Icon name="arrow" />
+            </a>
+            <small class="vote-version">
+              Version éditoriale {record.version.number} · consultation, pas
+              date d’annonce
+            </small>
+          </article>
+        </li>
+      </ol>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .vote-directory-back {
+    margin-block: 0 0.8rem;
+  }
+  .vote-directory-back a {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding-block: 0.45rem;
+  }
+  .vote-directory-back :global(.icon) {
+    width: 1rem;
+    transform: rotate(180deg);
+  }
+  .vote-steps-heading {
+    margin-block: 1.25rem 0;
+    font-size: 1.12rem;
+  }
+  .vote-date a {
+    color: inherit;
+    text-underline-offset: 0.2em;
+  }
+  .vote-record:target {
+    outline: 2px solid var(--accent);
+    outline-offset: 0.15rem;
+  }
+</style>

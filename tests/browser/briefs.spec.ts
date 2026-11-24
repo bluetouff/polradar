@@ -58,7 +58,7 @@ test('la recherche expose chaque dossier de votes, évolution, rendez-vous et br
   expect(result.ok()).toBe(true);
   const entries = (await result.json()) as { type: string; url: string }[];
   for (const [type, paths] of [
-    ['vote', votes.cases.map((v) => '/votes/#dossier=' + v.id)],
+    ['vote', votes.cases.map((v) => `/votes/dossiers/${v.id}/`)],
     ['evolution', evolution.tracks.map((v) => '/evolution/#dossier=' + v.id)],
     ['agenda', agenda.events.map((e) => '/agenda/#' + e.id)],
   ] as const) {

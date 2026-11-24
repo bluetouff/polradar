@@ -91,7 +91,7 @@ Le Studio publie 349 éditions figées avec 349 empreintes et 349 tableaux disti
 
 Le Studio et ses nouveaux SVG sont passés de 608 à 351 fichiers et de 7 063 552 à 4 668 416 octets dans le TAR d’essai, en comptant en-têtes et alignements. Le catalogue intégral reste consultable sans JavaScript. Sur la page de travail, le HTML descend de 136 512 à 62 570 octets et le DOM initial de 1 346 à 344 éléments. Dans l’archive complète d’intégration `4eb4123`, les 351 fichiers du Studio occupent 4 667 392 octets sur 124 600 320 de TAR. L’archive complète compte 5 358 fichiers et 22 834 047 octets gzip.
 
-Le prochain gabarit à alléger est celui des votes. Ses 4 037 éléments DOM incluent les frises et les sources des dossiers. Conserver la liste complète des dossiers et donner à chacun un permalien HTML permettrait d’ouvrir uniquement le détail choisi. [Page des votes](https://polradar.fr/votes/)
+Les 31 dossiers de votes disposent désormais chacun d’une adresse HTML. Sur le même banc mobile, le répertoire passe de 4 037 à 861 éléments DOM et de 38,2 à 10,4 Kio de HTML gzip face à la livraison `94edb91`. Le chargement initial complet passe de 119,8 à 91,1 Kio. La frise sur l’ISF compte 351 éléments, celle sur la motion de censure liée aux retraites en compte 300. Les anciens favoris `#dossier=` restent utilisables. Sans JavaScript, ils ciblent la carte qui ouvre le dossier. [Répertoire des dossiers de vote](https://polradar.fr/votes/)
 
 ### Recherche publique et mémoire du MCP
 

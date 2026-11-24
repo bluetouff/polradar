@@ -1,6 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import PagedResults from './PagedResults.astro';
+import { voteCasePath } from '../lib/legislative-votes.mjs';
 import type { voteCases } from '../lib/votes-data';
 import type { Candidate } from '../lib/data';
 interface Props {
@@ -13,6 +14,7 @@ interface Props {
     icon: string;
     detail: string;
     subject?: string;
+    ballotIds?: string[];
     ballot?: (typeof voteCases)[number]['ballots'][number];
     comparison?: { first: string; last: string; note: string };
     amount?: { value: string; horizon: string };
@@ -55,7 +57,9 @@ const ordered = [...choices].sort(
           <a
             class="subject-card"
             data-page-item
-            href={`#${key}=${choice.id}`}
+            href={votes ? voteCasePath(choice.id) : `#${key}=${choice.id}`}
+            id={votes ? `dossier=${choice.id}` : undefined}
+            data-ballots={votes ? choice.ballotIds?.join(' ') : undefined}
             data-vote-tab={votes ? choice.id : undefined}
             data-evidence-tab={!votes ? choice.id : undefined}
           >
@@ -138,6 +142,11 @@ const ordered = [...choices].sort(
 </nav>
 <script src="../scripts/document-pages.ts"></script>
 <style>
+  .subject-card:target {
+    outline: 2px solid var(--accent);
+    outline-offset: 0.15rem;
+    scroll-margin-block: 1rem;
+  }
   .vote-preview,
   .track-preview,
   .amount-preview {

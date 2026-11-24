@@ -19,6 +19,7 @@ import {
 } from '../../lib/questions';
 import { digitalLawSections } from '../../lib/digital-law-data';
 import { sameSentence } from '../../lib/measure-text';
+import { voteCasePath } from '../../lib/legislative-votes.mjs';
 import { voteCases } from '../../lib/votes-data';
 import { proposalTracks } from '../../lib/proposal-data';
 import { retirementPath } from '../../lib/retirement-comparison.mjs';
@@ -307,7 +308,7 @@ const checkLabels = {
       <ul>
         {votes.map((v) => (
           <li>
-            <a href={'/votes/#dossier=' + v.id}>{v.title} · scrutin ↗</a>
+            <a href={voteCasePath(v.id)}>{v.title} · scrutin ↗</a>
           </li>
         ))}
         {tracks.map((v) => (

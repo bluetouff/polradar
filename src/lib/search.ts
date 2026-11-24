@@ -2,7 +2,7 @@ import { attributionLabel } from './attribution.mjs';
 import { getCollection } from 'astro:content';
 import { candidates, themes, measures, sources, polls, events } from './data';
 import { voteCases } from './votes-data';
-import { chambers, positionLabel } from './legislative-votes.mjs';
+import { chambers, positionLabel, voteCasePath } from './legislative-votes.mjs';
 import { proposalTracks } from './proposal-data';
 import { agenda } from './visual-data';
 import { statements } from './economy-data';
@@ -88,7 +88,7 @@ async function buildSearchIndex(): Promise<SearchEntry[]> {
         ),
         item.note,
       ].join(' '),
-      url: '/votes/#dossier=' + item.id,
+      url: voteCasePath(item.id),
       candidate: item.candidate,
       theme: item.measure.theme,
       year: '',

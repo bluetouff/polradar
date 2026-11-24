@@ -1,7 +1,7 @@
 import { evidenceDate, evolutionKinds } from './proposal-view.mjs';
 import { sourceLinks } from './follow-measures.mjs';
 import { agendaDateLabel } from './campaign-visuals-view.mjs';
-import { positionLabel, chambers } from './legislative-votes.mjs';
+import { positionLabel, chambers, voteCasePath } from './legislative-votes.mjs';
 import { civilDateInParis, publicUrlSchema } from './schema.mjs';
 
 const statuses = { annonce: 'Annoncé', tenu: 'Tenu', annule: 'Annulé' };
@@ -74,7 +74,7 @@ export function ballotStates(data, measures) {
           chambers[ballot.chamber] +
           ' · scrutin du ' +
           agendaDateLabel(ballot.date),
-        href: '/votes/#dossier=' + dossier.id,
+        href: voteCasePath(dossier.id),
         state: {
           fields: [
             {

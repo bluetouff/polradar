@@ -1,7 +1,11 @@
 ---
 import Icon from './Icon.astro';
 import { formatDate } from '../lib/data';
-import { chambers, positionLabel } from '../lib/legislative-votes.mjs';
+import {
+  chambers,
+  positionLabel,
+  voteCasePath,
+} from '../lib/legislative-votes.mjs';
 import type { voteCases } from '../lib/votes-data';
 
 interface Props {
@@ -46,7 +50,7 @@ const { records, revision } = Astro.props;
         ))}
       </ul>
       <div class="case-links">
-        <a href={`/votes/#dossier=${record.id}`}>
+        <a href={voteCasePath(record.id)}>
           Dossier de vote · {record.title} <Icon name="arrow" />
         </a>
         <span>

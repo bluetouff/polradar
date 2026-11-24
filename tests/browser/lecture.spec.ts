@@ -11,7 +11,7 @@ test('les premières données sont visibles sur un téléphone sans défiler', a
     ['/sondages/', '#poll-bars .poll-bar-row'],
     ['/mesures/', '#measure-results h3'],
     ['/numerique/ce-qui-changerait/', '.law-card h3'],
-    ['/votes/', '.distribution li'],
+    ['/votes/', '.subject-card .vote-preview strong'],
     ['/evolution/', '.distribution li'],
     ['/budget-programmes/', '.budget-number'],
     ['/recherche/', '#search-results h2'],
@@ -55,7 +55,7 @@ test('les graphiques de synthèse comptent chaque scrutin et chaque dossier une 
   await expect(link.locator('.vote-preview')).toBeVisible();
   await link.click();
   await expect(
-    page.locator('[data-vote-case]:target .ballot-chart').first(),
+    page.locator('[data-vote-case] .ballot-chart').first(),
   ).toBeVisible();
   await page.goto('/mesures/');
   await page.locator('a[data-filter-theme="retraites"]').click();
