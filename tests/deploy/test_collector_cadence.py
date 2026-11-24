@@ -157,3 +157,13 @@ class ConcurrentPublication(unittest.TestCase):
                 with self.assertRaises(ValueError): transfer.apply()
                 self.assertEqual(json.loads((dest/'sources.json').read_bytes()),current)
                 self.assertEqual(json.loads((dest/'polls.json').read_bytes()),['new main'])
+
+                (packet / 'polls.json').unlink()
+                (packet / 'bases.json').write_text(json.dumps({'sources.json':record}))
+                (dest / 'sources.json').write_bytes(encoded(original))
+                for rows in ([{'id':'substitue'}, adding], [*original,{**adding,'url':'https://ailleurs.example/notice'}],
+                             [*original,adding,adding]):
+                    (packet / 'sources.json').write_bytes(encoded(rows))
+                    with self.subTest(rows=rows), self.assertRaises(ValueError):
+                        transfer.apply()
+                    self.assertEqual(json.loads((dest/'sources.json').read_bytes()),original)
