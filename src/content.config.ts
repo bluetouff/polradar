@@ -62,6 +62,16 @@ export const collections = {
           .string()
           .refine((id) => knownEvents.has(id), 'Événement inconnu'),
         published: dateSchema,
+        reperes: z
+          .array(
+            z.object({
+              periode: z.string().min(1).max(45),
+              fait: z.string().min(1).max(150),
+            }),
+          )
+          .min(2)
+          .max(5)
+          .optional(),
         draft: z.boolean().default(false),
       })
       .refine(

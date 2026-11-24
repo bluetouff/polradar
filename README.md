@@ -135,7 +135,7 @@ Voir [CONTRIBUTING.md](CONTRIBUTING.md) et [SECURITY.md](SECURITY.md). Les corre
 
 ## Licence
 
-Le code original de Polradar est distribué sous [GNU AGPL version 3](LICENSE) (`AGPL-3.0-only`). La base originale est distribuée sous [ODbL 1.0](public/licenses/ODbL-1.0.txt). Les sources, les photos, les polices et les données importées conservent leurs propres droits. Les [conditions de réutilisation](public/licenses/REUTILISATION.txt) précisent l’attribution et le régime des éditions antérieures.
+Le code original de Polradar est distribué sous [GNU AGPL version 3](LICENSE) (`AGPL-3.0-only`). La base originale est distribuée sous [ODbL 1.0](public/licenses/ODbL-1.0.txt). Les articles, illustrations et graphiques originaux sont sous [CC BY 4.0](public/licenses/CC-BY-4.0.txt), le [SDK et les exemples externes](integrations/) sous [MIT](integrations/LICENSE). Le nom, le logo et l’identité Polradar sont réservés. Les sources, les photos de tiers, les polices et les données importées conservent leurs propres droits. Les [conditions de réutilisation](public/licenses/REUTILISATION.txt) précisent l’attribution et le régime des éditions antérieures.
 
 ### Séries économiques
 

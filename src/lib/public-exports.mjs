@@ -85,6 +85,8 @@ export const dataLicence = {
   originaux: 'ODbL-1.0',
   texte: 'https://opendatacommons.org/licenses/odbl/1-0/',
   conditions: 'https://polradar.fr/licences/',
+  matrice: 'https://polradar.fr/api/licences.json',
+  oeuvresOriginales: 'CC-BY-4.0',
   tiers:
     'Chaque document, série importée et photographie conserve les conditions de son producteur.',
 };

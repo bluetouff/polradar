@@ -29,6 +29,7 @@ class CorpusDistribution(unittest.TestCase):
                 self.assertNotIn("api/hors-catalogue.json", archive.getnames())
                 self.assertEqual(archive.extractfile("LICENSE").read(), (package["ROOT"] / "public/licenses/ODbL-1.0.txt").read_bytes())
                 self.assertIn(b"Polradar", archive.extractfile("REUTILISATION.txt").read())
+                self.assertIn(b"Attribution 4.0 International", archive.extractfile("CC-BY-4.0.txt").read())
                 self.assertEqual(json.load(archive.extractfile("manifest.json"))["sourceCommit"], sha)
             with self.assertRaises(ValueError):
                 package["create"](root, out, "b"*40)
