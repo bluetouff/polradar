@@ -14,6 +14,7 @@ import {
 } from '../../../lib/legislative-votes.mjs';
 import { sameSentence } from '../../../lib/measure-text';
 import { voteCases } from '../../../lib/votes-data';
+import { archivesByEditorialBallot } from '../../../lib/parliamentary-archives';
 import '../../../styles/votes.css';
 
 export function getStaticPaths() {
@@ -151,6 +152,13 @@ const { record } = Astro.props;
                         Scrutin et liste nominative <Icon name="external" />
                       </a>
                     </li>
+                    {archivesByEditorialBallot.get(ballot.id) && (
+                      <li>
+                        <a href={archivesByEditorialBallot.get(ballot.id)!.url}>
+                          Relevé nominatif et point du procès-verbal →
+                        </a>
+                      </li>
+                    )}
                     {ballot.documents.map((d) => (
                       <li>
                         <a

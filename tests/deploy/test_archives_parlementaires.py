@@ -1,3 +1,5 @@
+import copy
+import importlib.util
 import json
 from pathlib import Path
 import unittest
@@ -53,6 +55,26 @@ class ArchivesParlementaires(unittest.TestCase):
         self.assertTrue(b['procesVerbal'][0].endswith('/PV-10-2026-10-21-RCV-ITM-136'))
         self.assertFalse(any(r['date']=='2026-11-12' for r in votes))
         self.assertIn({'date':'2026-11-12','decisions':226,'nominaux':95}, DATA['sessionsEurope'])
+
+    def test_concordance_des_annexes_de_mars(self):
+        rows = [b for b in DATA['scrutins'] if b.get('scrutinEditorial')]
+        self.assertEqual(len(rows), 4)
+        self.assertEqual({b['numero'] for b in rows}, {'166051', '166183', '166083', '166086'})
+        b = next(r for r in rows if r['numero'] == '166051')
+        self.assertEqual(b['scrutinEditorial'], 'pe9-20240313-intelligence-artificielle')
+        self.assertEqual(b['positions'][0]['personne'], '197694')
+        self.assertEqual(b['procesVerbal'], ['https://data.europarl.europa.eu/eli/dl/doc/PV-9-2024-03-13-RCV-ITM-003'])
+        spec = importlib.util.spec_from_file_location('importeur_europe', ROOT/'scripts/import-actes-senat-europe.py')
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        catalogue = json.loads((ROOT/'src/data/legislative-votes.json').read_text())
+        for field, wrong in [('pour', 524), ('objet', 'A9-0188/2023 - Am 807'),
+                             ('procesVerbal', ['https://data.europarl.europa.eu/eli/dl/doc/PV-9-2024-03-13-RCV-ITM-004'])]:
+            with self.subTest(field=field):
+                changed = copy.deepcopy(rows)
+                next(row for row in changed if row['numero'] == '166051')[field] = wrong
+                with self.assertRaises(ValueError):
+                    module.relier_scrutins_europe(changed, catalogue)
 
 if __name__=='__main__':
     unittest.main()

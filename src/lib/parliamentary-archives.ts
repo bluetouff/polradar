@@ -24,6 +24,7 @@ export interface ArchiveBallot {
   misesAuPoint: { notice: string; source: string | null }[];
   textes?: string[];
   procesVerbal?: string[];
+  scrutinEditorial?: string;
   totauxComptes?: string[];
   source: string;
 }
@@ -77,3 +78,28 @@ export const archiveIndex = {
     url: 'https://polradar.fr/api/parlement/archives/' + g.id + '.json',
   })),
 };
+
+export const archivePageSize = 30;
+export const archivesByEditorialBallot = new Map(
+  archiveGroups.flatMap((group) =>
+    group.rows.flatMap((row, index) => {
+      if (!row.scrutinEditorial) return [];
+      const page = Math.floor(index / archivePageSize) + 1;
+      return [
+        [
+          row.scrutinEditorial,
+          {
+            row,
+            url:
+              '/votes/archives/' +
+              group.id +
+              '/' +
+              (page > 1 ? page + '/' : '') +
+              '#' +
+              row.id,
+          },
+        ] as const,
+      ];
+    }),
+  ),
+);

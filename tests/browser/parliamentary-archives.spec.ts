@@ -40,3 +40,30 @@ test('les deux chambres se parcourent sans JavaScript à 360 px', async ({
     await ctx.close();
   }
 });
+
+test('le dossier sur le règlement IA rejoint le point individuel du procès-verbal', async ({
+  page,
+}) => {
+  await page.goto(testOrigin + '/votes/dossiers/glucksmann-ia-transparence/');
+  await page.getByText('Objet du scrutin et sources officielles').click();
+  await page
+    .getByRole('link', { name: 'Relevé nominatif et point du procès-verbal' })
+    .click();
+  await expect(page).toHaveURL(/#MTG-PL-2024-03-13-DEC-166051$/u);
+  const ballot = page.locator('#MTG-PL-2024-03-13-DEC-166051');
+  await expect(ballot.getByRole('heading')).toContainText('Am 808');
+  await expect(
+    ballot.getByRole('link', { name: 'Point du procès-verbal' }),
+  ).toHaveAttribute(
+    'href',
+    'https://data.europarl.europa.eu/eli/dl/doc/PV-9-2024-03-13-RCV-ITM-003',
+  );
+  await ballot
+    .getByRole('link', {
+      name: 'Transparence des contenus produits par IA sur Polradar',
+    })
+    .click();
+  await expect(page).toHaveURL(
+    /\/votes\/dossiers\/glucksmann-ia-transparence\/$/u,
+  );
+});

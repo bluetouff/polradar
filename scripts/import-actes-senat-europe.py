@@ -189,11 +189,46 @@ def european(cache):
               'procesVerbal':[EP+s for s in pv], **({'totauxComptes':counted} if counted else {}),
               'source':EP+'eli/dl/event/'+identifier})
     return rows,meta
+# Correspondances lues dans les annexes institutionnelles. Les titres seuls
+# et les chiffres seuls ne déclenchent aucun rapprochement.
+EUROPE_CONCORDANCES = {
+    'pe9-20240313-intelligence-artificielle': ('MTG-PL-2024-03-13-DEC-166051', 'A9-0188/2023', '003', '808'),
+    'pe9-20240313-liberte-medias': ('MTG-PL-2024-03-13-DEC-166183', 'A9-0264/2023', '002', '332'),
+    'pe9-20240313-litiges-consommation': ('MTG-PL-2024-03-13-DEC-166083', 'A9-0060/2024', '004', None),
+    'pe9-20240313-plateforme-litiges': ('MTG-PL-2024-03-13-DEC-166086', 'A9-0058/2024', '005', None),
+}
+
+def relier_scrutins_europe(rows, catalogue):
+    decisions = {row['id']:row for row in rows}
+    editorial = {row['id']:row for row in catalogue['ballots']}
+    for key, (identifier, report, point, amendment) in EUROPE_CONCORDANCES.items():
+        b, e = decisions[identifier], editorial[key]
+        context = e['source']['locator']
+        require(b['date'] == e['date'] and b['institution'] == e['chamber']
+                and report in b['objet'] and report in context,
+                'Objet ou institution du scrutin discordants : ' + key)
+        if amendment:
+            require(b['objet'].endswith('Am ' + amendment) and 'amendement ' + amendment in context,
+                    'Amendement discordant : ' + key)
+        expected_pv = EP + 'eli/dl/doc/PV-' + b['periode'] + '-' + b['date'] + '-RCV-ITM-' + point
+        require(b['procesVerbal'] == [expected_pv], 'Point du PV discordant : ' + key)
+        require((b['pour'], b['contre'], b['abstentions']) ==
+                (e['tally']['for'], e['tally']['against'], e['tally']['abstained']),
+                'Résultat collectif discordant : ' + key)
+        position, = b['positions']
+        original, = e['positions']
+        require(position['personne'] == '197694' and position['candidat'] == original['candidate']
+                and position['vote'] == original['choice'],
+                'Position nominative discordante : ' + key)
+        b['scrutinEditorial'] = key
+
 def main():
     cli=argparse.ArgumentParser(description=__doc__)
     cli.add_argument('cache',type=Path); cli.add_argument('--telecharger',action='store_true'); cli.add_argument('--verifier',action='store_true')
     a=cli.parse_args();prepare(a.cache,a.telecharger)
-    europe,meetings=european(a.cache); rows=senate(a.cache)+europe
+    europe,meetings=european(a.cache)
+    relier_scrutins_europe(europe, json.loads((ROOT/'src/data/legislative-votes.json').read_bytes()))
+    rows=senate(a.cache)+europe
     require(len(rows)==len({r['id'] for r in rows}),'Identifiant dupliqué')
     rows.sort(key=lambda r:(r['date'],r['institution'],int(r['numero'])),reverse=True)
     persons={mid:{'candidat':p[0],'nom':p[1]+' '+p[2],'source':p[3]} for mid,p in PEOPLE.items()}

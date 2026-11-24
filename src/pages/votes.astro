@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import { archivesByEditorialBallot } from '../lib/parliamentary-archives';
 import Icon from '../components/Icon.astro';
 import DossierPicker from '../components/DossierPicker.astro';
 import Distribution from '../components/Distribution.astro';
@@ -129,6 +130,13 @@ import '../styles/votes.css';
             <a href={source.url} rel="noreferrer">
               Liste nominative officielle ↗
             </a>
+            {archivesByEditorialBallot.get(ballot.id) && (
+              <p>
+                <a href={archivesByEditorialBallot.get(ballot.id)!.url}>
+                  Relevé du scrutin dans le registre →
+                </a>
+              </p>
+            )}
           </article>
         ))}
       </div>
