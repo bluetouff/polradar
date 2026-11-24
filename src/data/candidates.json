@@ -14,8 +14,12 @@
     "party": "Union populaire républicaine",
     "color": "#b7a1dc",
     "status": "Déclarée",
-    "note": "Engagements de l’UPR disponibles ; programme présidentiel 2027 annoncé en préparation.",
-    "statusSource": "upr"
+    "note": "François Asselineau promet de lancer le Frexit dès sa première semaine de mandat. Son discours de rentrée détaille aussi le retrait de l’OTAN et ses réformes des institutions.",
+    "statusSource": "upr",
+    "programmeReview": {
+      "checked": "2026-11-24",
+      "sources": ["asselineau-discours-rentree-2026", "upr"]
+    }
   },
   {
     "id": "attal",
@@ -50,8 +54,12 @@
     "party": "La France adulte",
     "color": "#8fa7b8",
     "status": "Déclarée",
-    "note": "Joël Chevé propose de diviser l’exécutif en deux et de permettre aux citoyens de déposer des propositions argumentées auprès du gouvernement.",
-    "statusSource": "cheve-projet-resume-electeurs"
+    "note": "Joël Chevé propose de répartir le pouvoir exécutif entre deux instances et d’ouvrir aux citoyens sept voies pour interpeller les pouvoirs publics. Il présente ce projet dans son avant-propos du 31 octobre 2026.",
+    "statusSource": "cheve-projet-resume-electeurs",
+    "programmeReview": {
+      "checked": "2026-11-24",
+      "sources": ["cheve-projet-resume-electeurs", "cheve-remontee-citoyenne"]
+    }
   },
   {
     "id": "collovati",
@@ -140,8 +148,16 @@
     "party": "Résistons",
     "color": "#8fa7b8",
     "status": "Déclarée",
-    "note": "Jean Lassalle défend une banque pour les petits partis dans son entretien de juillet 2026. Au Sommet de l’élevage, en octobre, il propose notamment de rémunérer à hauteur du SMIC le conjoint qui s’occupe du foyer.",
-    "statusSource": "lcp-candidatures-novembre"
+    "note": "Jean Lassalle défend une banque pour les petits partis et un SMIC pour la personne qui tient le foyer d’une famille d’éleveurs. Le 8 octobre, il disait encore réfléchir à sa candidature. Sa profession de foi disponible ici date de 2022.",
+    "statusSource": "lcp-candidatures-novembre",
+    "programmeReview": {
+      "checked": "2026-11-24",
+      "sources": [
+        "lassalle-pleinchamp-elevage-2026",
+        "lassalle-ici-bearn-juillet",
+        "lassalle-profession-de-foi-2022"
+      ]
+    }
   },
   {
     "id": "legendre",
@@ -176,8 +192,12 @@
     "party": "Parti animaliste",
     "color": "#8fa7b8",
     "status": "Investie par son parti",
-    "note": "Investie par le Parti animaliste le 2 octobre 2026, Mira Markovic a détaillé ses propositions sur l’agriculture et la condition animale dans un entretien du 1er novembre.",
-    "statusSource": "animaliste-markovic-2026"
+    "note": "Investie le 2 octobre 2026 par le Parti animaliste, Mira Markovic détaille ses engagements dans un entretien du 1er novembre. Elle y défend notamment la reconversion des éleveurs et la prise en charge des animaux lors des incendies.",
+    "statusSource": "animaliste-markovic-2026",
+    "programmeReview": {
+      "checked": "2026-11-24",
+      "sources": ["markovic-entretien-tf1-2026", "animaliste-markovic-2026"]
+    }
   },
   {
     "id": "mathieu",
@@ -230,8 +250,16 @@
     "party": "Les Patriotes",
     "color": "#8fa7b8",
     "status": "Déclarée",
-    "note": "Florian Philippot défend le parrainage citoyen. Dans un tract signé en 2026, il précise ses positions sur la dissuasion nucléaire, l’aide à l’Ukraine et les relations avec la Russie.",
-    "statusSource": "lcp-candidatures-novembre"
+    "note": "Pour présenter une candidature à la présidentielle, Florian Philippot propose 150 000 signatures d’électeurs, contre 100 000 dans sa lettre aux maires de 2025. Il expose ses positions sur l’OTAN et l’Ukraine dans d’autres déclarations.",
+    "statusSource": "lcp-candidatures-novembre",
+    "programmeReview": {
+      "checked": "2026-11-24",
+      "sources": [
+        "philippot-europe1-parrainage-video",
+        "philippot-lettre-parrainage-2025",
+        "philippot-tract-ukraine-defense"
+      ]
+    }
   },
   {
     "id": "polony",
@@ -239,8 +267,17 @@
     "party": "Nous sommes la France",
     "color": "#8fa7b8",
     "status": "Déclarée",
-    "note": "Déclaration du 14 octobre 2026. Première sélection des orientations publiées sur son site de campagne.",
-    "statusSource": "polony-declaration"
+    "note": "Candidate depuis le 14 octobre 2026, Natacha Polony s’engage à encadrer les passages entre hauts postes publics et intérêts privés. Son cahier de doléances recueille les propositions des citoyens.",
+    "statusSource": "polony-declaration",
+    "programmeReview": {
+      "checked": "2026-11-24",
+      "sources": [
+        "polony-vision",
+        "polony-propriete-jeux-2026",
+        "polony-cahier-doleances",
+        "polony-declaration"
+      ]
+    }
   },
   {
     "id": "retailleau",
@@ -257,8 +294,15 @@
     "party": "Affiliation non renseignée",
     "color": "#8fa7b8",
     "status": "Déclarée",
-    "note": "Teddy Riner s’est exprimé sur les salaires et les retraites lors de sa candidature. Après ses déplacements à l’hôpital Delafontaine et au salon du Made in France, il a défendu une simplification des démarches pour les producteurs.",
-    "statusSource": "riner-annonce-personnelle"
+    "note": "Teddy Riner s’engage à conserver la retraite par répartition. Dans son entretien de candidature, il veut aussi permettre de travailler davantage sur la base du volontariat.",
+    "statusSource": "riner-annonce-personnelle",
+    "programmeReview": {
+      "checked": "2026-11-24",
+      "sources": [
+        "riner-entretien-parisien-novembre",
+        "riner-lcp-orientations-novembre"
+      ]
+    }
   },
   {
     "id": "rohou",
@@ -266,8 +310,12 @@
     "party": "Mouvement écologiste indépendant",
     "color": "#8fa7b8",
     "status": "Investi par son parti",
-    "note": "Le MEI a lancé la campagne d’Erwan Rohou à Strasbourg. Dans sa tribune du 29 septembre 2026, il expose ses choix sur la chaleur renouvelable, la rénovation thermique et les nouveaux moyens de production.",
-    "statusSource": "mei-candidat-rohou-2027"
+    "note": "Erwan Rohou veut maintenir la centrale de Cattenom en activité. Sa tribune signée en tant que candidat du Mouvement écologiste indépendant détaille ses choix sur la production d’énergie, la rénovation thermique et la chaleur renouvelable.",
+    "statusSource": "mei-candidat-rohou-2027",
+    "programmeReview": {
+      "checked": "2026-11-24",
+      "sources": ["rohou-entretien-tageblatt-2026", "rohou-tribune-energie"]
+    }
   },
   {
     "id": "roussel",
@@ -275,8 +323,16 @@
     "party": "Parti communiste français",
     "color": "#dc9594",
     "status": "Investie par son parti",
-    "note": "Candidature validée en septembre. Discours et orientations publiques repris avec leur millésime.",
-    "statusSource": "pcf-status"
+    "note": "Investi par le PCF en septembre, Fabien Roussel veut recruter dans les services publics et relever de 10 % le point d’indice des fonctionnaires dès le début du mandat.",
+    "statusSource": "pcf-status",
+    "programmeReview": {
+      "checked": "2026-11-24",
+      "sources": [
+        "roussel-franceinfo-services-publics",
+        "pcf-rhone-agents-publics-2026",
+        "roussel-pacte-2026"
+      ]
+    }
   },
   {
     "id": "ruffin",

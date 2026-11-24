@@ -46,10 +46,22 @@ test('Le registre conserve chaque référence, chaque passage et la précision d
   assert.ok(result.some((d) => d.measureCount === 0 && d.candidates.length));
   const mathieu = result.find((d) => d.id === 'mathieu-projet-2027');
   assert.deepEqual([mathieu.coverage.linked, mathieu.coverage.total], [5, 5]);
-  assert.ok(
-    result.some((d) =>
-      d.coverage?.units.some((u) => u.measureIds.length === 0),
-    ),
+  const calendrier = result.find((d) => d.id === 'mlekuz-programme-2027');
+  assert.deepEqual(
+    [calendrier.coverage.linked, calendrier.coverage.total],
+    [11, 11],
+  );
+});
+test('une étape documentaire encore à relier reste visible dans le registre', () => {
+  const section = structuredClone(audits[0]);
+  section.units[0].measureIds = [];
+  const record = buildDocumentRegister(corpus, [section]).find(
+    (d) => d.id === section.sourceId,
+  );
+  assert.deepEqual(record.coverage.units[0].measureIds, []);
+  assert.equal(
+    record.coverage.linked,
+    section.units.filter((u) => u.measureIds.length > 0).length,
   );
 });
 test('Les doubles comptes et les rapprochements sans citation du document échouent', () => {

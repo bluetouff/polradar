@@ -8,7 +8,7 @@ import CandidatePortrait from '../../components/CandidatePortrait.astro';
 import { campaignBriefs } from '../../lib/briefs';
 import CandidateActivity from '../../components/CandidateActivity.astro';
 import Icon from '../../components/Icon.astro';
-import { candidates, measures, themes } from '../../lib/data';
+import { candidates, formatDate, measures, themes } from '../../lib/data';
 import { portraitLinks } from '../../lib/portrait-links.mjs';
 import { portraitFor } from '../../lib/portraits';
 import { proposalTracks, financingMaps } from '../../lib/proposal-data';
@@ -179,6 +179,23 @@ const votesLink = voteCases.find((v) => v.candidate === candidate.id);
           Périmètre du suivi ↗
         </a>
       </section>
+      {candidate.programmeReview && (
+        <details class="profile-topic-index">
+          <summary>
+            <Icon name="source" />
+            Sources du programme
+            <Icon name="chevron" />
+          </summary>
+          <p>
+            Vérifiées le{' '}
+            <time datetime={candidate.programmeReview.checked}>
+              {formatDate(candidate.programmeReview.checked)}
+            </time>
+            .
+          </p>
+          <SourceLinks ids={candidate.programmeReview.sources} compact />
+        </details>
+      )}
     </aside>
     <div>
       <div class="section-heading">

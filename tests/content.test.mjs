@@ -35,6 +35,23 @@ const changed = (fn) => {
 
 test('le corpus livré passe les contrôles', () =>
   assert.deepEqual(validateDataset(original), []));
+test('une revue de programme relie des sources distinctes à une date de consultation valide', () => {
+  const candidate = original.candidates.find((item) => item.programmeReview);
+  assert.ok(candidate);
+  for (const invalid of [
+    { sources: ['source-inconnue'] },
+    { sources: [candidate.statusSource, candidate.statusSource] },
+    { checked: '2999-01-01' },
+  ]) {
+    const errors = changed((data) => {
+      const review = data.candidates.find(
+        (item) => item.id === candidate.id,
+      ).programmeReview;
+      Object.assign(review, invalid);
+    });
+    assert.ok(errors.includes(candidate.id + ': revue de programme invalide'));
+  }
+});
 test('une archive collective conserve son auteur et exige une source de parti', () => {
   const archive = original.engagements.find(
     (row) => row.scope === 'archive' && row.partyAuthor,

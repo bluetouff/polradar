@@ -1676,7 +1676,11 @@
       "Reconstituer une filière française d’engrais azotés décarbonés",
       "Réunir plusieurs activités agricoles sous un même statut d’exploitation"
     ],
-    "sources": ["lisnard-project", "nouvelle-energie-agriculture-2027"],
+    "sources": [
+      "lisnard-project",
+      "nouvelle-energie-agriculture-2027",
+      "nouvelle-energie-livret-agriculture-2026"
+    ],
     "scope": "parti",
     "edition": "Projet de Nouvelle Énergie",
     "note": "",
@@ -1762,7 +1766,7 @@
       "Faciliter les passerelles entre employeurs publics et privés dans la santé",
       "Créer en France des pôles de biotechnologie et de médecine génomique"
     ],
-    "sources": ["lisnard-health"],
+    "sources": ["lisnard-health", "nouvelle-energie-livret-sante-2026"],
     "scope": "parti",
     "edition": "Projet de Nouvelle Énergie",
     "note": "",
@@ -1825,7 +1829,11 @@
       "Réduire les interventions de l’État et décentraliser des responsabilités.",
       "Transférer une partie des charges agricoles vers la valeur ajoutée"
     ],
-    "sources": ["lisnard-project", "nouvelle-energie-agriculture-2027"],
+    "sources": [
+      "lisnard-project",
+      "nouvelle-energie-agriculture-2027",
+      "nouvelle-energie-livret-agriculture-2026"
+    ],
     "scope": "parti",
     "edition": "Projet de Nouvelle Énergie",
     "note": "Aucun total d’économies n’est calculé à partir de cette seule orientation.",
@@ -1847,16 +1855,22 @@
   {
     "candidate": "roussel",
     "theme": "travail",
-    "title": "Revaloriser et indexer les salaires",
+    "title": "Salaires et emploi dans les services publics",
     "bullets": [
       "Augmenter le SMIC et rétablir une indexation des salaires sur l’inflation.",
-      "Obliger légalement les entreprises à garantir l’égalité entre femmes et hommes."
+      "Obliger légalement les entreprises à garantir l’égalité entre femmes et hommes.",
+      "Recruter des agents dans les services publics",
+      "Relever de 10 % le point d’indice des fonctionnaires"
     ],
-    "sources": ["pcf-work"],
+    "sources": [
+      "pcf-work",
+      "roussel-franceinfo-services-publics",
+      "pcf-rhone-agents-publics-2026"
+    ],
     "scope": "orientation",
-    "edition": "Discours du 23 novembre 2025",
+    "edition": "Discours de novembre 2025 et entretien à Franceinfo de novembre 2026",
     "note": "Position antérieure à la désignation de septembre 2026, conservée avec sa date.",
-    "checked": "2026-11-17",
+    "checked": "2026-11-24",
     "id": "roussel-travail",
     "history": [
       {
@@ -1868,6 +1882,11 @@
         "date": "2026-11-17",
         "event": "Fiche complétée",
         "summary": "Ajout de mesures distinctes et de références précises après lecture des documents."
+      },
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des déclarations du candidat",
+        "summary": "Recruter des agents dans les services publics / Relever de 10 % le point d’indice des fonctionnaires."
       }
     ]
   },
@@ -2119,11 +2138,11 @@
     "bullets": [
       "Reprendre une souveraineté nationale hors de ces trois cadres."
     ],
-    "sources": ["upr"],
+    "sources": ["upr", "asselineau-discours-rentree-2026"],
     "scope": "parti",
     "edition": "Engagements publics de l’UPR",
     "note": "Le programme présidentiel 2027 détaillé est annoncé en préparation sur la page dédiée.",
-    "checked": "2026-11-16",
+    "checked": "2026-11-24",
     "id": "asselineau-europe",
     "history": [
       {
@@ -2140,11 +2159,11 @@
     "bullets": [
       "Reconnaître le vote blanc et recourir au référendum sur de grands choix nationaux."
     ],
-    "sources": ["upr"],
+    "sources": ["upr", "asselineau-discours-rentree-2026"],
     "scope": "parti",
     "edition": "Engagements publics de l’UPR",
     "note": "",
-    "checked": "2026-11-16",
+    "checked": "2026-11-24",
     "id": "asselineau-institutions",
     "history": [
       {
@@ -2944,17 +2963,18 @@
     "id": "polony-institutions",
     "candidate": "polony",
     "theme": "institutions",
-    "title": "Encadrer les passages entre fonctions publiques et intérêts privés",
+    "title": "Conflits d’intérêts, participation citoyenne et droits numériques",
     "bullets": [
       "Renforcer la lutte contre les conflits d’intérêts et la protection des lanceurs d’alerte.",
       "Consulter le peuple par référendum et respecter le résultat des consultations.",
-      "Natacha Polony rattache la protection des lanceurs d’alerte à son projet de lutte contre la corruption. Elle ne précise pas de dispositif juridique dans ce texte."
+      "Natacha Polony rattache la protection des lanceurs d’alerte à son projet de lutte contre la corruption. Elle ne précise pas de dispositif juridique dans ce texte.",
+      "Défendre la propriété des jeux vidéo achetés"
     ],
-    "sources": ["polony-vision"],
+    "sources": ["polony-vision", "polony-propriete-jeux-2026"],
     "scope": "orientation",
-    "edition": "Orientations de campagne 2027",
+    "edition": "Déclarations de campagne 2027",
     "note": "Première sélection des orientations publiées par la campagne.",
-    "checked": "2026-11-19",
+    "checked": "2026-11-24",
     "history": [
       {
         "date": "2026-11-17",
@@ -2965,6 +2985,11 @@
         "date": "2026-11-19",
         "event": "Ajout de mesures",
         "summary": "Le dossier intègre de nouvelles propositions tirées des documents cités."
+      },
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des déclarations du candidat",
+        "summary": "Défendre la propriété des jeux vidéo achetés."
       }
     ]
   },
@@ -5523,7 +5548,8 @@
       "Obliger l’autorité compétente à répondre aux questions citoyennes recevables",
       "Permettre de déposer une doléance ou de soutenir celle d’un autre citoyen",
       "Limiter la fréquence des avis, propositions et questions adressés à l’État",
-      "Pondérer les avis citoyens selon leur rapport avec les compétences de leur auteur"
+      "Pondérer les avis citoyens selon leur rapport avec les compétences de leur auteur",
+      "Permettre à chacun de signaler un droit inappliqué"
     ],
     "sources": ["cheve-remontee-citoyenne", "cheve-projet-resume-electeurs"],
     "scope": "orientation",
@@ -5550,6 +5576,11 @@
         "date": "2026-11-24",
         "event": "Lecture du document",
         "summary": "2 fiches documentées."
+      },
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des déclarations du candidat",
+        "summary": "Permettre à chacun de signaler un droit inappliqué."
       }
     ]
   },
@@ -6264,7 +6295,8 @@
       "Dans son entretien à RTL Infos, Erwan Rohou propose de réduire la pression sur les ressources naturelles. Il privilégie l’accompagnement et ne donne pas de cible chiffrée.",
       "Rohou estime que le parc éolien déjà installé ou en projet permet d’attendre la mise en service des futurs EPR2. Il distingue les panneaux solaires posés sur des sols déjà artificialisés et non renaturalisables.",
       "Il préconise de recourir aussi à la biomasse durable, au biogaz, au solaire thermique et aux pompes à chaleur.",
-      "Erwan Rohou demande que soient rendues publiques les capacités réellement en portefeuille pour chaque filière afin d’éclairer les objectifs énergétiques."
+      "Erwan Rohou demande que soient rendues publiques les capacités réellement en portefeuille pour chaque filière afin d’éclairer les objectifs énergétiques.",
+      "Associer le public aux décisions sur l’énergie"
     ],
     "sources": [
       "rohou-entretien-tageblatt-2026",
@@ -6274,7 +6306,7 @@
     "scope": "orientation",
     "edition": "Entretiens et tribune énergétique, automne 2026",
     "note": "",
-    "checked": "2026-11-20",
+    "checked": "2026-11-24",
     "history": [
       {
         "date": "2026-11-19",
@@ -6285,6 +6317,11 @@
         "date": "2026-11-20",
         "event": "Ajout de mesures",
         "summary": "Nouvelles orientations relevées dans la déclaration citée."
+      },
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des déclarations du candidat",
+        "summary": "Associer le public aux décisions sur l’énergie."
       }
     ]
   },
@@ -6300,12 +6337,13 @@
     "sources": [
       "philippot-parrainages-europe1-2026",
       "philippot-lettre-parrainage-2025",
-      "philippot-appel-primaire-souverainistes"
+      "philippot-appel-primaire-souverainistes",
+      "philippot-europe1-parrainage-video"
     ],
     "scope": "orientation",
     "edition": "Entretien sur le parrainage présidentiel · novembre 2026",
     "note": "",
-    "checked": "2026-11-20",
+    "checked": "2026-11-24",
     "history": [
       {
         "date": "2026-11-19",
@@ -6472,20 +6510,26 @@
     "id": "markovic-securite-animal",
     "candidate": "markovic",
     "theme": "securite",
-    "title": "Créer un statut juridique de personne non humaine pour les animaux",
+    "title": "Droit et protection des animaux",
     "bullets": [
-      "La candidate veut sortir les animaux du régime des biens et leur reconnaître un statut propre."
+      "La candidate veut sortir les animaux du régime des biens et leur reconnaître un statut propre.",
+      "Inclure les animaux dans les plans de secours"
     ],
     "sources": ["markovic-entretien-tf1-2026"],
     "scope": "orientation",
     "edition": "Entretien de Mira Markovic à TF1 INFO, novembre 2026",
     "note": "",
-    "checked": "2026-11-19",
+    "checked": "2026-11-24",
     "history": [
       {
         "date": "2026-11-19",
         "event": "Publication du dossier",
         "summary": "Mesures relevées dans les documents cités."
+      },
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des déclarations du candidat",
+        "summary": "Inclure les animaux dans les plans de secours."
       }
     ]
   },
@@ -8972,15 +9016,22 @@
     "edition": "Discours de rentrée, synthèse publiée le 30 septembre 2026",
     "note": "",
     "bullets": [
-      "Inscrire dans la Constitution une protection de la liberté d’expression inspirée des États-Unis"
+      "Inscrire dans la Constitution une protection de la liberté d’expression inspirée des États-Unis",
+      "Mettre fin au statut officieux de Première dame",
+      "Inscrire la tradition chrétienne dans la Constitution"
     ],
     "sources": ["asselineau-discours-rentree-2026"],
-    "checked": "2026-11-23",
+    "checked": "2026-11-24",
     "history": [
       {
         "date": "2026-11-23",
         "event": "Lecture des sources",
         "summary": "Ajout de 1 fiche à partir des passages cités."
+      },
+      {
+        "date": "2026-11-24",
+        "event": "Lecture des déclarations du candidat",
+        "summary": "Mettre fin au statut officieux de Première dame / Inscrire la tradition chrétienne dans la Constitution."
       }
     ]
   },
@@ -10478,7 +10529,10 @@
       "Imposer aux importations agricoles les normes exigées des producteurs européens",
       "Réorienter la PAC vers la production et les exportations agricoles"
     ],
-    "sources": ["nouvelle-energie-agriculture-2027"],
+    "sources": [
+      "nouvelle-energie-agriculture-2027",
+      "nouvelle-energie-livret-agriculture-2026"
+    ],
     "scope": "parti",
     "edition": "Programme de Nouvelle Énergie pour 2027",
     "note": "",
@@ -10504,7 +10558,10 @@
       "Soutenir les capteurs, les robots et l’IA pour la gestion des cultures",
       "Autoriser les réserves d’eau agricoles sur décision locale"
     ],
-    "sources": ["nouvelle-energie-agriculture-2027"],
+    "sources": [
+      "nouvelle-energie-agriculture-2027",
+      "nouvelle-energie-livret-agriculture-2026"
+    ],
     "scope": "parti",
     "edition": "Programme de Nouvelle Énergie pour 2027",
     "note": "",
@@ -10526,7 +10583,10 @@
     "bullets": [
       "Créer un guichet numérique unique pour les exploitations agricoles"
     ],
-    "sources": ["nouvelle-energie-agriculture-2027"],
+    "sources": [
+      "nouvelle-energie-agriculture-2027",
+      "nouvelle-energie-livret-agriculture-2026"
+    ],
     "scope": "parti",
     "edition": "Programme de Nouvelle Énergie pour 2027",
     "note": "",

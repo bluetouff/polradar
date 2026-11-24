@@ -119,7 +119,8 @@ export function buildDocumentRegister(
       for (const candidate of e.candidates)
         links.get(id)!.candidateIds.add(candidate);
   for (const c of corpus.candidates)
-    links.get(c.statusSource)!.candidateIds.add(c.id);
+    for (const id of [c.statusSource, ...(c.programmeReview?.sources ?? [])])
+      links.get(id)!.candidateIds.add(c.id);
   const watches = new Map(corpus.watch.map((w) => [w.sourceId, w]));
   return corpus.sources.map((source) => {
     const related = links.get(source.id)!;

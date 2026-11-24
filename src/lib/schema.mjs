@@ -65,6 +65,12 @@ export const candidateSchema = z.object({
   status: text,
   note: text,
   statusSource: idSchema,
+  programmeReview: z
+    .object({
+      checked: dateSchema,
+      sources: z.array(idSchema).min(1).max(8),
+    })
+    .optional(),
   withdrawnOn: dateSchema.optional(),
 });
 export const themeSchema = z.object({
@@ -462,6 +468,15 @@ export function validateDataset(dataset) {
       errors.push(`${candidate.id}: retrait futur`);
     if (!sourceIds.has(candidate.statusSource))
       errors.push(`${candidate.id}: statut sans source existante`);
+    if (candidate.programmeReview) {
+      const { checked, sources } = candidate.programmeReview;
+      if (
+        checked > today ||
+        new Set(sources).size !== sources.length ||
+        sources.some((id) => !sourceIds.has(id))
+      )
+        errors.push(`${candidate.id}: revue de programme invalide`);
+    }
   }
   for (const item of dataset.engagements) {
     if (item.checked > today) errors.push(`${item.id}: consultation future`);
