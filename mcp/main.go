@@ -281,13 +281,28 @@ func main() {
 	srv := &http.Server{Handler: handler(data, activity), ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 10 * time.Second, WriteTimeout: 15 * time.Second, IdleTimeout: 15 * time.Second, MaxHeaderBytes: 16 << 10, ErrorLog: log.New(io.Discard, "", 0)}
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGTERM, os.Interrupt)
 	defer stop()
+	drained := make(chan struct{})
 	go func() {
-		<-ctx.Done()
+		ticker := time.NewTicker(15 * time.Second)
+		defer ticker.Stop()
+		defer close(drained)
+		for ctx.Err() == nil {
+			select {
+			case <-ctx.Done():
+			case <-ticker.C:
+				_ = activity.checkpoint()
+			}
+		}
 		shutdown, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 		defer cancel()
 		srv.Shutdown(shutdown)
 	}()
 	if err := srv.Serve(ln); err != nil && err != http.ErrServerClosed {
-		log.Fatal("Service MCP interrompu.")
+		log.Print("Service MCP interrompu.")
+	}
+	stop()
+	<-drained
+	if err := activity.checkpoint(); err != nil {
+		log.Print("Dernière écriture des compteurs indisponible.")
 	}
 }

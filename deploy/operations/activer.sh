@@ -29,11 +29,32 @@ case "$revision$digest" in *[!0123456789abcdef]*) exit 2 ;; esac
 [ "${#revision}" -eq 40 ] && [ "${#digest}" -eq 64 ] || exit 2
 
 work=$(mktemp -d /tmp/polradar-operateur.XXXXXXXX)
+root_stage=''
+cleanup() {
+  if [ -n "$root_stage" ]; then
+    sudo find "$root_stage" -mindepth 1 -maxdepth 1 -type f -delete
+    sudo rmdir "$root_stage"
+  fi
+  cd /
+  find "$work" -mindepth 1 -maxdepth 1 -type f -delete
+  rmdir "$work"
+}
+trap cleanup EXIT
+trap 'exit 1' HUP INT TERM
 cd "$work"
 curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' \
-  --max-time 120 --output "$package" \
+  --max-time 120 --max-filesize 16777216 --output "$package" \
   "https://github.com/bluetouff/polradar/releases/download/services-$revision/$package"
 printf '%s  %s\n' "$digest" "$package" | sha256sum --check -
+
+# The bundle is public. Sigstore checks its identity against the fixed workflow and source.
+command -v gh >/dev/null || { echo "GitHub CLI avec attestation verify est requis." >&2; exit 1; }
+curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' \
+  --max-time 60 --max-filesize 4194304 --output services.sigstore.json \
+  "https://github.com/bluetouff/polradar/releases/download/services-$revision/services.sigstore.json"
+gh attestation verify "$package" --bundle services.sigstore.json --repo bluetouff/polradar \
+  --signer-workflow bluetouff/polradar/.github/workflows/services.yml --source-ref refs/heads/main \
+  --source-digest "$revision" --deny-self-hosted-runners
 
 # Google exposes only public certificates here. Match the DER bytes, not the subject or a guessed key ID.
 stage="$HOME/.polradar-gsc-enrollment"
@@ -54,14 +75,34 @@ PY
 fi
 sudo -v
 root_stage=$(sudo mktemp -d /run/polradar-paquet.XXXXXXXX)
-cleanup() {
-  sudo find "$root_stage" -mindepth 1 -maxdepth 1 -type f -delete
-  sudo rmdir "$root_stage"
-}
-trap cleanup EXIT
 sudo install -o root -g root -m 0600 "$work/$package" "$root_stage/paquet.tar.gz"
 printf '%s  %s\n' "$digest" "$root_stage/paquet.tar.gz" | sudo sha256sum --check --status -
-sudo tar --extract --gzip --file "$root_stage/paquet.tar.gz" --directory "$root_stage" --no-same-owner --no-same-permissions
+sudo /usr/bin/python3 -I - "$root_stage" "$component" <<'PYTHON_ARCHIVE'
+import gzip, io, sys, tarfile
+from pathlib import Path
+root = Path(sys.argv[1])
+expected = {'manifest.json', 'LICENSE', 'install.py'}
+expected.update({'apache.conf', 'polradar-mcp', 'polradar-mcp.service', 'polradar-mcp.socket'} if sys.argv[2] == 'mcp'
+                else {'gsc_collect.py', 'gsc_view.py', 'polradar-gsc.service', 'polradar-gsc.timer', 'index.html', 'viewer.css', 'viewer.mjs'})
+cap = 32 << 20
+with gzip.open(root / 'paquet.tar.gz', 'rb') as stream:
+    raw = stream.read(cap + 1)
+if len(raw) > cap:
+    raise SystemExit('Archive décompressée trop grande')
+with tarfile.open(fileobj=io.BytesIO(raw), mode='r:') as archive:
+    seen = set()
+    for member in archive:
+        if member.name not in expected or member.name in seen or member.type != tarfile.REGTYPE or member.pax_headers:
+            raise SystemExit('Membre du paquet inattendu')
+        if member.size <= 0 or member.size > (24 << 20 if member.name == 'polradar-mcp' else 512 << 10):
+            raise SystemExit('Taille de membre invalide')
+        seen.add(member.name)
+    if seen != expected:
+        raise SystemExit('Paquet incomplet')
+    for name in sorted(seen):
+        with (root / name).open('xb') as out:
+            out.write(archive.extractfile(name).read())
+PYTHON_ARCHIVE
 if [ "$component" = gsc ]; then
   if ! /usr/bin/python3 -I -c 'from google.auth import crypt, jwt' 2>/dev/null; then
     sudo apt-get install --no-install-recommends -y python3-google-auth

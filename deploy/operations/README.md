@@ -10,7 +10,9 @@ Lancer le script depuis le compte opérateur sur Zen. L’installation utilise u
 
 ## Serveur MCP et API HTTP
 
-Apache transmet `/api/mcp`, `/api/mcp-stats.json` et les ressources sous `/api/v1/` à la même socket Unix. Les clients HTTP consultent les propositions et les données avec GET ou HEAD. Le proxy retire les cookies et les identifiants HTTP de ces requêtes publiques. Le processus lit les fichiers du site publié. Il écrit ses compteurs dans `/var/lib/polradar-mcp`. Les compteurs agrègent les appels aux cinq outils par jour UTC et par résultat sur trente jours. Les consultations de l’API HTTP, la lecture du graphique et la découverte du protocole sont exclues des compteurs MCP. [Statistiques MCP](https://polradar.fr/mcp/statistiques/)
+Apache transmet `/api/mcp`, `/api/mcp-stats.json` et les ressources sous `/api/v1/` à la même socket Unix. Les clients HTTP consultent les propositions et les données avec GET ou HEAD. Le proxy retire les cookies et les identifiants HTTP de ces requêtes publiques. Le processus lit les fichiers du site publié. Il écrit ses compteurs dans `/var/lib/polradar-mcp`. Les compteurs agrègent les appels aux outils déclarés par jour UTC et par résultat sur trente jours. Les consultations de l’API HTTP, la lecture du graphique et la découverte du protocole sont exclues des compteurs MCP. [Statistiques MCP](https://polradar.fr/mcp/statistiques/)
+
+Les appels sont agrégés en mémoire par outil et par jour UTC. Le compteur écrit un point de reprise toutes les quinze secondes et à l’arrêt normal. Un arrêt brutal peut perdre les appels depuis la dernière écriture réussie. Un échec de stockage rend le rapport indisponible jusqu’à la reprise. Les tests et les appels répétés comptent aussi. Le lanceur exige GitHub CLI avec prise en charge de `gh attestation verify`, vérifie la provenance du paquet par révision avant sudo et contrôle la liste fermée de ses fichiers.
 
 ## Recherche Google
 

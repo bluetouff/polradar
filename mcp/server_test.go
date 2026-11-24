@@ -103,6 +103,9 @@ func TestToolsAndPrivacy(t *testing.T) {
 	if err != nil || len(r.Days) != 1 || r.Days[0].counts != (counts{1, 1, 1}) {
 		t.Fatalf("compteurs %+v %v", r, err)
 	}
+	if err := u.checkpoint(); err != nil {
+		t.Fatal(err)
+	}
 	saved, err := os.ReadFile(filepath.Join(state, "usage.json"))
 	if err != nil {
 		t.Fatal(err)
@@ -203,6 +206,9 @@ func TestUsageContinuity(t *testing.T) {
 	g.Wait()
 	later := now.AddDate(0, 0, 30)
 	u.record("polradar_measure", counts{Empty: 1}, later)
+	if err := u.checkpoint(); err != nil {
+		t.Fatal(err)
+	}
 	r, err := openUsage(dir, later).public(later)
 	if err != nil || len(r.Days) != 30 || r.Days[0].counts != (counts{}) || r.Days[29].Empty != 1 {
 		t.Fatal(r, err)

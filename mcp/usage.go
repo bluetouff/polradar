@@ -45,6 +45,8 @@ type usage struct {
 	path        string
 	records     usageFile
 	unavailable bool
+	dirty       bool
+	saveFailed  bool
 }
 
 func dateKey(t time.Time) string { return t.UTC().Format(time.DateOnly) }
@@ -99,7 +101,15 @@ func (u *usage) save() error {
 	if closeErr != nil {
 		return closeErr
 	}
-	return os.Rename(f.Name(), u.path)
+	if err := os.Rename(f.Name(), u.path); err != nil {
+		return err
+	}
+	dir, err := os.Open(filepath.Dir(u.path))
+	if err != nil {
+		return err
+	}
+	defer dir.Close()
+	return dir.Sync()
 }
 func (u *usage) record(name string, outcome counts, now time.Time) {
 	if !slices.Contains(toolNames, name) {
@@ -126,16 +136,32 @@ func (u *usage) record(name string, outcome counts, now time.Time) {
 	}
 	n := u.records.Days[key][name]
 	n.add(outcome)
-	u.records.Days[key][name] = n
-	if u.save() != nil {
+	if n.Success > 1e9 || n.Error > 1e9 || n.Empty > 1e9 {
 		u.unavailable = true
+		return
 	}
+	u.records.Days[key][name] = n
+	u.dirty = true
+}
+func (u *usage) checkpoint() error {
+	u.mu.Lock()
+	defer u.mu.Unlock()
+	if u.unavailable {
+		return errors.New("Compteurs indisponibles.")
+	}
+	if !u.dirty {
+		return nil
+	}
+	err := u.save()
+	u.saveFailed = err != nil
+	u.dirty = u.saveFailed
+	return err
 }
 func (u *usage) public(now time.Time) (report, error) {
 	u.mu.Lock()
 	defer u.mu.Unlock()
 	today := dateKey(now)
-	if u.unavailable || u.records.First > today {
+	if u.unavailable || u.saveFailed || u.records.First > today {
 		return report{}, errors.New("Comptage indisponible.")
 	}
 	first := max(u.records.First, dateKey(now.UTC().AddDate(0, 0, -29)))

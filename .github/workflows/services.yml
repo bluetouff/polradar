@@ -106,7 +106,8 @@ jobs:
         with:
           name: services-operateur
           path: artifacts
-      - uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+      - id: provenance
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
         with:
           subject-path: |
             artifacts/*.tar.gz
@@ -116,9 +117,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
+          ATTESTATION: ${{ steps.provenance.outputs.bundle-path }}
         run: |
           set -euo pipefail
           sha256sum --check ./*.sha256
           tag="services-$GITHUB_SHA"
           if gh release view "$tag" >/dev/null 2>&1; then exit 0; fi
-          gh release create "$tag" ./*.tar.gz ./*.sha256 polradar-activer.sh --target "$GITHUB_SHA" --latest=false --title "Services ${GITHUB_SHA:0:12}" --notes "Serveur MCP public en lecture seule et rapport Search Console privé. Activation par l’opérateur."
+          cp -- "$ATTESTATION" services.sigstore.json
+          gh release create "$tag" ./*.tar.gz ./*.sha256 polradar-activer.sh services.sigstore.json --target "$GITHUB_SHA" --latest=false --title "Services ${GITHUB_SHA:0:12}" --notes "Serveur MCP public en lecture seule et rapport Search Console privé. Activation par l’opérateur."

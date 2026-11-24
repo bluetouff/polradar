@@ -94,6 +94,13 @@ def bundle(directory, kind):
 def patched_vhost(text):
     if len(re.findall(r'(?i)<VirtualHost\s+[^>]*:443\s*>',text))!=1 or len(re.findall(r'(?i)<VirtualHost\b',text))!=1 or len(re.findall(r'(?i)</VirtualHost>',text))!=1 or not re.search(r'(?m)^\s*ServerName\s+polradar\.fr\s*$',text):
         raise ValueError('Vhost HTTPS Polradar attendu')
+    # A vhost without any CustomLog would inherit the global access log.
+    existing_logs = re.findall(r'(?im)^\s*CustomLog\s+[^\n]+', text)
+    if any(not line.rstrip().endswith(' env=!polradar_stats_request') for line in existing_logs):
+        raise ValueError('Le CustomLog de Polradar doit exclure polradar_stats_request')
+    has_stats = bool(re.search(r'(?im)^\s*Include\s+/etc/apache2/polradar-stats\.conf\s*$',text))
+    if not existing_logs and not has_stats:
+        text = re.sub(r'(?i)</VirtualHost>', '    CustomLog ${APACHE_LOG_DIR}/access.log combined env=!polradar_stats_request\n</VirtualHost>', text, count=1)
     if MCP_INCLUDE in text:
         if text.count(MCP_INCLUDE)!=1 or not re.search(r'(?m)^\s*'+re.escape(MCP_INCLUDE)+r'\s*$',text):
             raise ValueError('Include MCP ambigu')
@@ -217,6 +224,11 @@ def activate(directory, kind, key_id=None):
         previous=json.loads(marker.read_bytes()).get('managed',{})
     modules=cmd(['/usr/sbin/apache2ctl','-M']).stdout.decode()
     if kind=='mcp':
+        if STATS.exists():
+            safe_file(STATS)
+            logs = re.findall(r'(?im)^\s*CustomLog\s+[^\n]+', STATS.read_text())
+            if not logs or any(not line.rstrip().endswith(' env=!polradar_stats_request') for line in logs):
+                raise ValueError('Le journal GoAccess doit exclure les appels MCP et API')
         needed=('proxy_module','proxy_http_module','headers_module','setenvif_module')
         active='polradar-mcp.socket'
         worker='polradar-mcp.service'
