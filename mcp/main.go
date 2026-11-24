@@ -24,6 +24,7 @@ import (
 
 const endpoint = "/api/mcp"
 const statsPath = "/api/mcp-stats.json"
+const restPrefix = "/api/v1/"
 const socketPath = "/run/polradar-mcp.sock"
 const maxBody = 16 << 10
 
@@ -142,31 +143,44 @@ func handler(data *store, activity *usage) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Cache-Control", "no-store")
 		w.Header().Set("X-Content-Type-Options", "nosniff")
-		if (r.Host != "polradar.fr" && r.Host != "polradar.fr:443") || (len(r.Header.Values("Origin")) > 0 && (len(r.Header.Values("Origin")) != 1 || r.Header.Get("Origin") != site)) {
+		api := strings.HasPrefix(r.URL.Path, restPrefix)
+		if (r.Host != "polradar.fr" && r.Host != "polradar.fr:443") || (!api && len(r.Header.Values("Origin")) > 0 && (len(r.Header.Values("Origin")) != 1 || r.Header.Get("Origin") != site)) {
 			http.Error(w, "Origine refusée.", 403)
 			return
 		}
-		if r.URL.RawQuery != "" || r.URL.ForceQuery || r.URL.EscapedPath() != r.URL.Path {
+		if (!api && (r.URL.RawQuery != "" || r.URL.ForceQuery)) || r.URL.EscapedPath() != r.URL.Path {
 			http.NotFound(w, r)
 			return
 		}
 		allowed := "POST"
-		switch r.URL.Path {
-		case statsPath:
+		switch {
+		case api:
+			allowed = "GET, HEAD"
+			w.Header().Set("Content-Type", "application/json; charset=utf-8")
+			w.Header().Set("Access-Control-Allow-Origin", "*")
+			w.Header().Set("Access-Control-Expose-Headers", "Retry-After")
+		case r.URL.Path == statsPath:
 			allowed = "GET"
-		case endpoint:
+		case r.URL.Path == endpoint:
 		default:
 			http.NotFound(w, r)
 			return
 		}
-		if r.Method != allowed {
+		reject := func(code int, message string) {
+			if api {
+				apiError(w, r, code, message)
+				return
+			}
+			w.WriteHeader(code)
+		}
+		if (!api && r.Method != allowed) || (api && r.Method != "GET" && r.Method != "HEAD") {
 			w.Header().Set("Allow", allowed)
-			w.WriteHeader(405)
+			reject(405, "Lecture par GET ou HEAD uniquement.")
 			return
 		}
 		if !limit.allow(r.Header.Get("X-Polradar-Client"), time.Now()) {
 			w.Header().Set("Retry-After", "60")
-			w.WriteHeader(429)
+			reject(429, "Quota atteint.")
 			return
 		}
 		select {
@@ -174,7 +188,11 @@ func handler(data *store, activity *usage) http.Handler {
 			defer func() { <-slots }()
 		default:
 			w.Header().Set("Retry-After", "2")
-			w.WriteHeader(503)
+			reject(503, "Serveur occupé.")
+			return
+		}
+		if api {
+			serveData(w, r, data)
 			return
 		}
 		if r.URL.Path == statsPath {

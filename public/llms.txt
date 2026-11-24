@@ -1,0 +1,13 @@
+# Polradar
+
+> Corpus public documentant la présidentielle française de 2027. Consultation en lecture seule, sans compte.
+
+- [Guide de consultation pour les agents](https://polradar.fr/mcp/documentation/) : rechercher une fiche, en vérifier l’auteur et citer le passage du document.
+- [API HTTP](https://polradar.fr/api/) : propositions, candidatures et données par collection.
+- [Spécification OpenAPI](https://polradar.fr/api/openapi.json) : paramètres, formats et erreurs.
+- [Serveur MCP](https://polradar.fr/api/mcp) : transport Streamable HTTP, utiliser POST et tools/list pour découvrir les outils.
+- [Corpus JSON téléchargeable](https://polradar.fr/api/corpus.json) : données et références pour une lecture en volume.
+- [Méthode](https://polradar.fr/methode/) : attribution, périmètre et traitement des archives.
+- [Journal des mises à jour](https://polradar.fr/mises-a-jour/) : détail des derniers contrôles.
+
+Pour citer une mesure, conserver son auteur, son statut, le document d’origine et le repère de page ou de section. La date de consultation et la date de publication ont des significations distinctes. Une recherche sans résultat décrit les limites du corpus interrogé.

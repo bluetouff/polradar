@@ -48,6 +48,7 @@ export const footerColumns = [
     links: [
       ['/statistiques/', 'Le corpus en chiffres'],
       ['/mcp/', 'Serveur MCP'],
+      ['/api/', 'API et exports JSON'],
       ['/mcp/statistiques/', 'Statistiques du MCP'],
       ['/transparence/', 'À propos de Polradar'],
       ['/methode/', 'Méthode'],

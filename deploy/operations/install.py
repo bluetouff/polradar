@@ -293,6 +293,11 @@ def activate(directory, kind, key_id=None):
             if code!=200 or not json.loads(body).get('result',{}).get('content') or json.loads(body)['result'].get('isError'): raise ValueError('Corpus non lisible par MCP')
             code,body=smoke('/api/mcp-stats.json')
             if code!=200 or json.loads(body).get('status')!='available': raise ValueError('Compteurs MCP indisponibles')
+            code,body=smoke('/api/v1/mesures?limit=1')
+            api=json.loads(body) if code==200 else {}
+            rows=api.get('donnees',{}).get('resultats',[])
+            if len(rows)!=1 or not rows[0].get('source',{}).get('url') or not re.fullmatch(r'[a-f0-9]{40}',api.get('revisionDuSite','')):
+                raise ValueError('Accès aux propositions par l’API non confirmé')
             if STATS.exists(): require_private('/stats/')
     except BaseException as exc:
         systemctl('stop',active,check=False)

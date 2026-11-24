@@ -1,0 +1,138 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import '../../styles/developer-docs.css';
+
+const url = 'https://polradar.fr/api/mcp';
+const example = {
+  jsonrpc: '2.0',
+  id: 1,
+  method: 'tools/call',
+  params: {
+    name: 'polradar_search',
+    arguments: { query: 'chiffrement', limit: 3 },
+  },
+};
+const curl = [
+  'curl -fsS ' + url,
+  "  -H 'Content-Type: application/json'",
+  "  -H 'Accept: application/json, text/event-stream'",
+  "  --data '" + JSON.stringify(example) + "'",
+].join(' ' + String.fromCharCode(92) + '\n');
+const steps = [
+  [
+    'search',
+    'Rechercher',
+    'polradar_search',
+    'Indiquez des mots, un thème, une candidature ou un statut. Récupérez l’identifiant de la fiche dans donnees.resultats.',
+  ],
+  [
+    'mesures',
+    'Lire la fiche',
+    'polradar_measure',
+    'Passez cet identifiant dans id. Lisez la description, le champ auteur et le statut avant d’attribuer la proposition.',
+  ],
+  [
+    'source',
+    'Citer le document',
+    'sources',
+    'Suivez l’URL du document et son repère de page ou de section dans passage. Reprenez la date de publication si elle est renseignée.',
+  ],
+];
+---
+
+<Base
+  title="Guide de consultation pour les agents MCP"
+  description="Connecter un agent au corpus de Polradar, trouver une proposition, en vérifier l’attribution et citer le document d’origine."
+>
+  <header class="page-title">
+    <h1>Consulter Polradar avec un agent MCP</h1>
+    <p>
+      Connectez votre client en HTTP au serveur <code>{url}</code>. Les cinq
+      outils donnent accès au corpus public en lecture seule.
+    </p>
+  </header>
+  <div class="dev-guide">
+    <section aria-labelledby="source">
+      <h2 id="source">De la recherche au document d’origine</h2>
+      <ol class="dev-steps">
+        {steps.map(([icon, title, key, description]) => (
+          <li>
+            <Icon name={icon} />
+            <h3>{title}</h3>
+            <code>{key}</code>
+            <p>{description}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+    <section class="dev-example" aria-labelledby="mcp-example">
+      <div class="dev-heading">
+        <Icon name="layers" />
+        <h2 id="mcp-example">Essayer une recherche sur le chiffrement</h2>
+      </div>
+      <pre><code>{curl}</code></pre>
+      <p>
+        Les données sont dans <code>result.structuredContent</code>. Utilisez{' '}
+        <code>tools/list</code> pour lire les paramètres acceptés par les
+        outils.
+      </p>
+    </section>
+    <div class="dev-pair">
+      <section class="dev-note">
+        <div class="dev-heading">
+          <Icon name="people" />
+          <h2>Identifier l’auteur</h2>
+        </div>
+        <p>
+          <code>polradar_candidates</code> donne les identifiants et le statut
+          des candidatures. L’option <code>includeWithdrawn</code> inclut les
+          retraits documentés.
+        </p>
+        <p>
+          Une fiche de statut <code>parti</code> porte le nom de l’auteur
+          collectif dans <code>auteur</code>. <code>candidatureAssociee</code>{' '}
+          indique la candidature à laquelle la fiche est rattachée.
+        </p>
+      </section>
+      <section class="dev-note">
+        <div class="dev-heading">
+          <Icon name="donnees" />
+          <h2>Lire les chiffres</h2>
+        </div>
+        <p>
+          <code>polradar_corpus</code> compte les fiches et liste les thèmes.{' '}
+          <code>polradar_donnees</code> ouvre une collection de sondages,
+          d’indicateurs économiques, de budgets, d’événements ou de marchés
+          prédictifs.
+        </p>
+        <p>
+          Demandez d’abord la collection, puis le détail avec son{' '}
+          <code>id</code>. Pour une valeur, citez sa source, son unité et sa
+          période. Une valeur absente reste inconnue.
+        </p>
+      </section>
+    </div>
+    <section aria-labelledby="empty">
+      <h2 id="empty">Dates, archives et recherches sans résultat</h2>
+      <p>
+        La consultation d’une source et la publication du document ont chacune
+        leur date. <code>verifieLe</code> date la vérification de la fiche. Le
+        champ <code>passage</code> situe l’information dans le document.
+      </p>
+      <p>
+        Demandez <code>scope: "archive"</code> pour consulter les promesses
+        d’une édition passée. Si <code>sansResultat</code> vaut{' '}
+        <code>true</code>, indiquez que votre recherche dans le corpus n’a
+        renvoyé aucune fiche. Une erreur d’outil est signalée par{' '}
+        <code>isError</code>.
+      </p>
+    </section>
+    <nav class="dev-links dev-related" aria-label="Documentation associée">
+      <a href="/api/">API HTTP et exports JSON</a>
+      <a href="/mcp/statistiques/">Activité du MCP</a>
+      <a href="/methode/">Méthode éditoriale</a>
+      <a href="/llms.txt">Guide en texte brut</a>
+    </nav>
+  </div>
+</Base>

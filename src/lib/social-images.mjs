@@ -713,6 +713,40 @@ const defs = [
     },
   ],
   [
+    'api',
+    '/api/',
+    'Données ouvertes',
+    'API publique\nde Polradar',
+    'Propositions, candidatures et relevés de campagne en JSON.',
+    'navy',
+    {
+      kind: 'document',
+      rows: [
+        'Recherche de mesures',
+        'Documents et références',
+        'Séries économiques',
+        'Exports JSON',
+      ],
+    },
+  ],
+  [
+    'guide-mcp',
+    '/mcp/documentation/',
+    'Consultation agentique',
+    'Consulter\nle corpus',
+    'Retrouver l’auteur, le document et le passage cité.',
+    'sage',
+    {
+      kind: 'document',
+      rows: [
+        'Chercher une proposition',
+        'Lire la fiche',
+        'Identifier l’auteur',
+        'Citer le document',
+      ],
+    },
+  ],
+  [
     'mcp-statistiques',
     '/mcp/statistiques/',
     'Données publiques',

@@ -74,6 +74,7 @@ export const groups = [
       ['/veille/', 'Veille quotidienne', 'veille'],
       ['/sources/', 'Catalogue des sources', 'source'],
       ['/mcp/', 'Serveur MCP', 'layers'],
+      ['/api/', 'API publique', 'donnees'],
       ['/historique/', 'Historique du corpus', 'historique'],
       ['/methode/', 'Méthode', 'check'],
       ['/transparence/', 'À propos de Polradar', 'institutions'],

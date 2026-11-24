@@ -8,9 +8,9 @@ Sur Debian, télécharger `polradar-activer.sh` dans la release `services-<commi
 
 Lancer le script depuis le compte opérateur sur Zen. L’installation utilise un dossier temporaire privé de root, teste Apache et conserve les fichiers remplacés dans `/var/backups`. Une erreur d’activation déclenche la restauration de la configuration. La sortie indique le commit, l’URL et la sauvegarde.
 
-## Serveur MCP
+## Serveur MCP et API HTTP
 
-Apache transmet les deux chemins exacts `/api/mcp` et `/api/mcp-stats.json` à une socket Unix locale. Le processus lit les fichiers du site publié. Il écrit ses compteurs dans `/var/lib/polradar-mcp`. Les compteurs agrègent les appels aux cinq outils par jour UTC et par résultat sur trente jours. Les tests de connexion, la lecture du graphique et la découverte du protocole sont exclus. [Statistiques MCP](https://polradar.fr/mcp/statistiques/)
+Apache transmet `/api/mcp`, `/api/mcp-stats.json` et les ressources sous `/api/v1/` à la même socket Unix. Les clients HTTP consultent les propositions et les données avec GET ou HEAD. Le proxy retire les cookies et les identifiants HTTP de ces requêtes publiques. Le processus lit les fichiers du site publié. Il écrit ses compteurs dans `/var/lib/polradar-mcp`. Les compteurs agrègent les appels aux cinq outils par jour UTC et par résultat sur trente jours. Les consultations de l’API HTTP, la lecture du graphique et la découverte du protocole sont exclues des compteurs MCP. [Statistiques MCP](https://polradar.fr/mcp/statistiques/)
 
 ## Recherche Google
 

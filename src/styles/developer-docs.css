@@ -1,0 +1,181 @@
+.dev-guide {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1.1rem, 2.6vw, 2.1rem);
+  margin: 1.2rem auto 2rem;
+  min-width: 0;
+}
+.dev-guide > * {
+  min-width: 0;
+}
+.dev-guide h2,
+.dev-guide h3 {
+  margin: 0;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+.dev-guide h2 {
+  font-size: 1.16rem;
+}
+.dev-guide h3 {
+  font-size: 1rem;
+}
+.dev-guide p {
+  max-width: 78ch;
+  margin: 0.55rem 0 0;
+  line-height: 1.55;
+}
+.dev-guide code,
+.page-title p code {
+  font-family: var(--mono);
+  font-size: 0.91em;
+  overflow-wrap: anywhere;
+}
+.dev-example,
+.dev-note,
+.dev-steps li {
+  padding: clamp(1rem, 2.3vw, 1.6rem);
+  border: 1px solid var(--panel-edge);
+  border-radius: var(--card-radius);
+  min-width: 0;
+}
+.dev-example {
+  background: var(--night-gradient);
+  color: #e6f1f3;
+  border-color: #446570;
+}
+.dev-example h2,
+.dev-example a {
+  color: #f6fbfb;
+}
+.dev-example p {
+  color: #d1e6e8;
+}
+.dev-example pre {
+  margin: 0.9rem 0;
+  padding: 0.85rem 1rem;
+  background: #0e222e;
+  border: 1px solid #43616b;
+  border-radius: 0.45rem;
+  color: #d5f3eb;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.55;
+}
+.dev-heading,
+.dev-next {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+.dev-heading .icon,
+.dev-next .icon {
+  align-self: center;
+  flex: none;
+  color: var(--accent);
+}
+.dev-example .dev-heading .icon {
+  color: #a8d8d3;
+}
+.dev-links {
+  display: flex;
+  gap: 0.5rem 1.35rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.dev-links a,
+.dev-next {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  text-underline-offset: 0.25em;
+}
+.dev-example a:focus-visible {
+  outline-color: #b7eee0;
+}
+.dev-routes {
+  margin: 0.85rem 0 0;
+}
+.dev-routes div {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.65fr) minmax(0, 1fr);
+  gap: 0.25rem 1rem;
+  padding: 0.7rem 0.15rem;
+  border-top: 1px solid var(--line);
+}
+.dev-routes dt {
+  font-weight: 600;
+  color: var(--ink);
+}
+.dev-routes dd {
+  margin: 0;
+  color: var(--muted);
+}
+.dev-pair,
+.dev-steps,
+.dev-files {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 0.75rem;
+}
+.dev-steps {
+  margin: 0.85rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.dev-note,
+.dev-steps li,
+.dev-files a {
+  background: var(--panel-gradient);
+}
+.dev-steps li {
+  display: grid;
+  align-content: start;
+  align-items: start;
+  justify-items: start;
+  gap: 0.4rem;
+}
+.dev-steps li > .icon {
+  color: var(--accent);
+  width: 1.35rem;
+  height: 1.35rem;
+  margin-bottom: 0.2rem;
+}
+.dev-steps li > code {
+  color: var(--accent);
+}
+.dev-steps p {
+  margin: 0;
+}
+.dev-files {
+  margin-top: 0.75rem;
+}
+.dev-files a {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 2.8rem;
+  border: 1px solid var(--panel-edge);
+  border-radius: 0.45rem;
+  padding: 0.65rem 0.85rem;
+  text-underline-offset: 0.2em;
+}
+.dev-files a .icon {
+  color: var(--accent);
+}
+.dev-files a span {
+  margin-inline-start: auto;
+  font: 0.74rem var(--mono);
+  color: var(--muted);
+}
+.dev-related,
+.dev-next {
+  border-top: 1px solid var(--line);
+  padding-top: 0.65rem;
+}
+@media (max-width: 42rem) {
+  .dev-routes div {
+    grid-template-columns: 1fr;
+  }
+}

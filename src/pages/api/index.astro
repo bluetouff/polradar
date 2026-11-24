@@ -1,0 +1,131 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { apiRoutes } from '../../lib/api-reference.mjs';
+import '../../styles/developer-docs.css';
+
+const endpoint = 'https://polradar.fr/api/v1';
+const example = endpoint + '/mesures?query=chiffrement&limit=3';
+const exports = [
+  ['Corpus complet', '/api/corpus.json'],
+  ['Index des propositions', '/api/recherche.json'],
+  ['Économie', '/api/economie.json'],
+  ['Agenda', '/api/agenda.json'],
+  ['Budgets', '/api/budgets-programmes.json'],
+  ['Marchés prédictifs', '/api/marches-predictifs.json'],
+];
+---
+
+<Base
+  title="API publique de Polradar"
+  description="Recherchez une proposition et sa source, consultez les sondages et les indicateurs économiques ou téléchargez le corpus en JSON."
+>
+  <header class="page-title">
+    <h1>API publique de Polradar</h1>
+    <p>
+      Consultez les données de la campagne en JSON. Accès en lecture seule, sans
+      compte ni clé.
+    </p>
+  </header>
+  <div class="dev-guide">
+    <section class="dev-example" aria-labelledby="try-api">
+      <div class="dev-heading">
+        <Icon name="mesures" />
+        <h2 id="try-api">Rechercher une proposition sur le chiffrement</h2>
+      </div>
+      <pre><code>{'curl -fsS ' + "'" + example + "'"}</code></pre>
+      <div class="dev-links">
+        <a href={example}>
+          Ouvrir la réponse JSON <Icon name="arrow" />
+        </a>
+        <a href="/api/openapi.json" download="polradar-openapi.json">
+          Télécharger la spécification OpenAPI
+        </a>
+      </div>
+    </section>
+    <section aria-labelledby="routes">
+      <h2 id="routes">Adresses disponibles</h2>
+      <p>
+        Ajoutez le chemin à <code>{endpoint}</code>. Chaque adresse accepte{' '}
+        <code>GET</code> et <code>HEAD</code>.
+      </p>
+      <dl class="dev-routes">
+        {apiRoutes.map((route) => (
+          <div>
+            <dt>
+              <code>{route.path}</code>
+            </dt>
+            <dd>{route.title}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+    <div class="dev-pair">
+      <section class="dev-note">
+        <div class="dev-heading">
+          <Icon name="search" />
+          <h2>Filtres et pagination</h2>
+        </div>
+        <p>
+          Sur <code>/mesures</code>, combinez <code>query</code>,{' '}
+          <code>candidate</code>, <code>theme</code> et <code>scope</code>. Les
+          identifiants se trouvent dans <code>/candidats</code> et{' '}
+          <code>/corpus</code>.
+        </p>
+        <p>
+          La recherche renvoie 10 fiches par défaut, jusqu’à 25 avec{' '}
+          <code>limit</code>. Avancez <code>offset</code> du nombre de résultats
+          lus. Les archives se consultent avec <code>scope=archive</code>.
+        </p>
+      </section>
+      <section class="dev-note">
+        <div class="dev-heading">
+          <Icon name="donnees" />
+          <h2>Sondages et séries publiques</h2>
+        </div>
+        <p>
+          Choisissez une collection parmi <code>sondages</code>,{' '}
+          <code>economie</code>, <code>agenda</code>, <code>budgets</code> et{' '}
+          <code>marches</code>. La liste fournit les identifiants par pages de
+          15, du plus récent au plus ancien lorsque la date est connue.
+        </p>
+        <p>
+          Le détail conserve les dates et les unités du relevé. Une valeur{' '}
+          <code>null</code> indique une donnée manquante.
+        </p>
+      </section>
+    </div>
+    <section aria-labelledby="reading">
+      <h2 id="reading">Lire la réponse</h2>
+      <p>
+        <code>donnees</code> contient le résultat. La fiche d’une mesure indique
+        son auteur, son statut et les références dans <code>sources</code>.{' '}
+        <code>corpusVerifieLe</code> date le corpus publié.{' '}
+        <code>revisionDuSite</code> identifie la version du site.
+      </p>
+      <p>
+        Une recherche vide renvoie <code>200</code> et{' '}
+        <code>sansResultat: true</code>. Un identifiant absent renvoie{' '}
+        <code>404</code>, un paramètre invalide <code>400</code>. Pour{' '}
+        <code>429</code>, attendez le délai en secondes de l’en-tête{' '}
+        <code>Retry-After</code>. Pour un traitement en volume, utilisez les
+        exports.
+      </p>
+    </section>
+    <section aria-labelledby="exports">
+      <h2 id="exports">Télécharger les données complètes</h2>
+      <div class="dev-files">
+        {exports.map(([label, href]) => (
+          <a href={href}>
+            <Icon name="source" />
+            {label}
+            <span>JSON</span>
+          </a>
+        ))}
+      </div>
+    </section>
+    <a class="dev-next" href="/mcp/documentation/">
+      Utiliser ces données avec un agent MCP <Icon name="arrow" />
+    </a>
+  </div>
+</Base>

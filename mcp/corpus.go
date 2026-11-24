@@ -180,6 +180,13 @@ type searchArgs struct {
 }
 
 func (c *snapshot) search(a searchArgs) (any, bool, error) {
+	if normalize(a.Query) == "" && a.Candidate == "" && a.Theme == "" && a.Scope == "" {
+		return nil, false, errors.New("Indiquez des mots, un candidat, un thème ou un statut.")
+	}
+	return c.matchMeasures(a)
+}
+
+func (c *snapshot) matchMeasures(a searchArgs) (any, bool, error) {
 	if len([]rune(a.Query)) > 160 || len(a.Candidate) > 96 || len(a.Theme) > 96 || a.Offset < 0 || a.Offset > 100000 || a.Limit < 0 || a.Limit > 25 {
 		return nil, false, errors.New("Vérifiez les filtres et les limites de pagination.")
 	}
@@ -187,9 +194,6 @@ func (c *snapshot) search(a searchArgs) (any, bool, error) {
 		return nil, false, errors.New("Statut inconnu.")
 	}
 	terms := strings.Fields(normalize(a.Query))
-	if len(terms) == 0 && a.Candidate == "" && a.Theme == "" && a.Scope == "" {
-		return nil, false, errors.New("Indiquez des mots, un candidat, un thème ou un statut.")
-	}
 	if a.Limit == 0 {
 		a.Limit = 10
 	}
