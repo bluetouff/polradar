@@ -12,6 +12,8 @@ import {
 import {
   economyGroups,
   frequencyLabels,
+  economyUnitLabel,
+  observationFlag,
   labelPeriod,
   printedNumber,
 } from '../../lib/economy.mjs';
@@ -33,7 +35,6 @@ const groups = Object.entries(economyGroups).map(([id, group]) => ({
   ...group,
   rows: economy.filter((row) => row.group === id),
 }));
-const flagged = (flag: string) => (flag ? `Statut Eurostat ${flag}` : '');
 const dateTime = new Intl.DateTimeFormat('fr-FR', {
   dateStyle: 'medium',
   timeStyle: 'short',
@@ -59,20 +60,28 @@ const flaggedLatest = series?.latest[2];
       <span>{series.title}</span>
     </div>
   )}
-  <header class="page-title feature-title">
-    <span class="feature-emblem">
-      <Icon name={series ? economyGroups[series.group].icon : 'markets'} />
-    </span>
+  <header
+    class:list={[series ? 'page-title feature-title' : 'economy-atlas-title']}
+  >
+    {series && (
+      <span class="feature-emblem">
+        <Icon name={series ? economyGroups[series.group].icon : 'markets'} />
+      </span>
+    )}
     <div>
+      {!series && <p class="economy-place">France · Eurostat</p>}
       <h1>{series?.title ?? 'Indicateurs économiques'}</h1>
-      <p>
-        {series?.description ??
-          'France · Prix, emploi, revenus, activité et finances publiques.'}
-      </p>
+      {series && <p>{series.description}</p>}
     </div>
+    {!series && (
+      <p class="economy-stamp">
+        {economy.length} séries · Relevé du{' '}
+        <time datetime={economyCollectedAt}>{collected}</time> (Paris)
+      </p>
+    )}
   </header>
 
-  <div class="economy">
+  <div class:list={['economy', { 'economy-atlas': !series }]}>
     <nav class="economy-nav" aria-label="Données et déclarations">
       <a href="/economie/" aria-current={!series ? 'page' : undefined}>
         <Icon name="markets" /> Indicateurs
@@ -101,12 +110,12 @@ const flaggedLatest = series?.latest[2];
               <h2 id="economy-series-title">Série publiée</h2>
               <div class="economy-reading">
                 <strong>{printedNumber(series.latest[1]!)}</strong>
-                <span>{series.unit}</span>
+                <span>{economyUnitLabel(series)}</span>
               </div>
               <p>
                 {labelPeriod(series.latest[0])} ·{' '}
                 {frequencyLabels[series.frequency]}
-                {flaggedLatest && ` · ${flagged(flaggedLatest)}`}
+                {flaggedLatest && ` · ${observationFlag(flaggedLatest)}`}
               </p>
             </div>
             <p>
@@ -178,7 +187,7 @@ const flaggedLatest = series?.latest[2];
                     <td>
                       {value === null ? 'Indisponible' : printedNumber(value)}
                     </td>
-                    <td>{flag || '—'}</td>
+                    <td>{flag ? observationFlag(flag) : ' '}</td>
                   </tr>
                 ))}
             </tbody>
@@ -197,11 +206,6 @@ const flaggedLatest = series?.latest[2];
           ))}
         </nav>
 
-        <p class="economy-meta">
-          Eurostat · {economy.length} séries · Relevé du{' '}
-          <time datetime={economyCollectedAt}>{collected}</time> (heure de
-          Paris)
-        </p>
         {groups.map((group) => (
           <section
             class="economy-group"
@@ -222,12 +226,12 @@ const flaggedLatest = series?.latest[2];
                   </h3>
                   <div class="economy-reading">
                     <strong>{printedNumber(row.latest[1]!)}</strong>
-                    <span>{row.unit}</span>
+                    <span>{economyUnitLabel(row)}</span>
                   </div>
                   <p>
                     {labelPeriod(row.latest[0])} ·{' '}
                     {frequencyLabels[row.frequency]}
-                    {row.latest[2] && ` · ${row.latest[2]}`}
+                    {row.latest[2] && ` · ${observationFlag(row.latest[2])}`}
                   </p>
                   <EconomyCurve
                     title={row.title}
@@ -236,6 +240,8 @@ const flaggedLatest = series?.latest[2];
                     )}
                     frequency={row.frequency}
                     compact
+                    showScale
+                    shade
                   />
                 </article>
               ))}

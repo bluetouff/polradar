@@ -1,0 +1,144 @@
+---
+interface Props {
+  rows: {
+    year: number;
+    values: { spending: number; revenue: number; debt: number };
+  }[];
+  kind: 'flows' | 'debt';
+}
+const { rows, kind } = Astro.props;
+const keys =
+  kind === 'flows' ? (['spending', 'revenue'] as const) : (['debt'] as const);
+const values = rows.flatMap((row) => keys.map((key) => row.values[key]));
+const step = 5;
+const low = step * Math.floor(Math.min(...values) / step);
+const high = Math.max(low + step, step * Math.ceil(Math.max(...values) / step));
+const ticks = Array.from(
+  { length: (high - low) / step + 1 },
+  (_, i) => high - i * step,
+);
+const x = (year: number) =>
+  (100 * (year - rows[0].year)) /
+  Math.max(1, rows[rows.length - 1].year - rows[0].year);
+const y = (value: number) => (100 * (high - value)) / (high - low);
+const traces = keys.map((key) => ({
+  key,
+  points: rows.map((row) => x(row.year) + ',' + y(row.values[key])),
+}));
+const title =
+  kind === 'flows'
+    ? 'Dépenses et recettes publiques'
+    : 'Dette publique brute en fin d’année';
+---
+
+<figure class="accounts-chart" aria-label={title + ', en pourcentage du PIB'}>
+  <span class="chart-unit">% du PIB</span>
+  <div class="chart-field">
+    <div class="chart-scale" aria-hidden="true">
+      {ticks.map((tick) => (
+        <span>{tick}</span>
+      ))}
+    </div>
+    <svg
+      viewBox="-1 -3 102 106"
+      preserveAspectRatio="none"
+      role="img"
+      aria-label={
+        title +
+        ' de ' +
+        rows[0].year +
+        ' à ' +
+        rows[rows.length - 1].year +
+        '. Valeurs dans le tableau des comptes annuels.'
+      }
+    >
+      {ticks.map((tick) => (
+        <line class="chart-rule" x1="0" x2="100" y1={y(tick)} y2={y(tick)} />
+      ))}
+      {kind === 'flows' && (
+        <polygon
+          class="chart-band"
+          points={[
+            ...traces[0].points,
+            ...[...traces[1].points].reverse(),
+          ].join(' ')}
+        />
+      )}
+      {traces.map(({ key, points }) => (
+        <polyline class={key} points={points.join(' ')} />
+      ))}
+    </svg>
+  </div>
+  <figcaption>
+    {rows.map((row) => (
+      <span>{row.year}</span>
+    ))}
+  </figcaption>
+</figure>
+<style>
+  .accounts-chart {
+    min-width: 0;
+    margin: 0;
+  }
+  .chart-unit,
+  figcaption,
+  .chart-scale {
+    color: var(--chart-muted);
+    font: 550 0.76rem/1.2 var(--sans);
+    font-variant-numeric: tabular-nums;
+  }
+  .chart-unit {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  .chart-field {
+    display: grid;
+    grid-template-columns: 2.1rem minmax(0, 1fr);
+  }
+  .chart-scale {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: right;
+    padding-right: 0.45rem;
+  }
+  svg {
+    width: 100%;
+    height: clamp(6.5rem, 11vw, 9.5rem);
+  }
+  .chart-rule,
+  polyline {
+    vector-effect: non-scaling-stroke;
+    fill: none;
+  }
+  .chart-rule {
+    stroke: var(--chart-grid);
+    stroke-width: 1;
+    stroke-dasharray: 2 4;
+  }
+  polyline {
+    stroke-width: 3;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+  .spending {
+    stroke: var(--spending);
+  }
+  .revenue {
+    stroke: var(--revenue);
+    stroke-dasharray: 6 5;
+  }
+  .debt {
+    stroke: var(--debt-line);
+  }
+  .chart-band {
+    fill: var(--spending);
+    opacity: 0.12;
+  }
+  figcaption {
+    display: flex;
+    justify-content: space-between;
+    padding-inline-start: 2.1rem;
+    margin-top: 0.4rem;
+  }
+</style>

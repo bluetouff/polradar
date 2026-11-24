@@ -7,6 +7,7 @@ interface Props {
   points: [string, string | null, string][];
   compact?: boolean;
   showScale?: boolean;
+  shade?: boolean;
 }
 const {
   title,
@@ -14,6 +15,7 @@ const {
   points,
   compact = false,
   showScale = false,
+  shade = false,
 } = Astro.props;
 const width = compact ? 280 : 640;
 const height = compact ? 76 : 188;
@@ -50,6 +52,19 @@ const label =
       {chart.zero !== null && (
         <path class="economy-zero" d={`M5 ${chart.zero}H${width - 5}`} />
       )}
+      {shade &&
+        chart.segments
+          .filter((segment) => segment.length > 1)
+          .map((segment) => (
+            <polygon
+              class="economy-area"
+              points={[
+                segment[0].x + ',' + (height - 5),
+                ...segment.map(({ x, y }) => x + ',' + y),
+                segment[segment.length - 1].x + ',' + (height - 5),
+              ].join(' ')}
+            />
+          ))}
       {chart.segments.map((segment) =>
         segment.length === 1 ? (
           <circle

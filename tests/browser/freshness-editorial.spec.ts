@@ -173,7 +173,7 @@ test('les encadrés de méthode gardent un retrait sur les quatre côtés', asyn
     ['/temps-de-parole/', '.visual-method'],
     ['/sondages/', '.poll-method'],
     ['/marches-predictifs/', '.poll-method'],
-    ['/economie/finances-publiques/', '.panel.dark-panel'],
+    ['/economie/finances-publiques/', '.accounts article'],
   ];
   for (const width of [320, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 });

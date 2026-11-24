@@ -597,17 +597,29 @@ export function validateDataset(dataset) {
       budget.published > today
     )
       errors.push('budget: date de publication invalide');
-    if (
-      !['provisional', 'semi-definitive', 'definitive'].includes(budget.status)
-    )
-      errors.push('budget: statut de révision invalide');
     if (budget.unit !== '% du PIB' || !sourceIds.has(budget.sourceId))
       errors.push('budget: unité ou source invalide');
-    const { spending, revenue, deficit, debt } = budget.values;
-    if (![spending, revenue, deficit, debt].every(Number.isFinite))
-      errors.push('budget: valeur non numérique');
-    if (Math.abs(spending - revenue - deficit) > 0.11)
-      errors.push('budget: dépenses, recettes et déficit incompatibles');
+    const history = budget.history ?? [];
+    for (const [i, row] of [...history, budget].entries()) {
+      if (
+        !Number.isInteger(row.year) ||
+        row.year < 1900 ||
+        (i > 0 && row.year !== history[i - 1].year + 1)
+      )
+        errors.push('budget: exercices historiques discontinus ou désordonnés');
+      if (
+        !['provisional', 'semi-definitive', 'definitive'].includes(row.status)
+      )
+        errors.push('budget: statut de révision invalide');
+      const { spending, revenue, deficit, debt } = row.values;
+      if (
+        ![spending, revenue, deficit, debt].every(Number.isFinite) ||
+        Math.min(debt, spending, revenue) < 0
+      )
+        errors.push('budget: valeur numérique invalide');
+      if (Math.abs(spending - revenue - deficit) > 0.11)
+        errors.push('budget: dépenses, recettes et déficit incompatibles');
+    }
   }
   return errors;
 }

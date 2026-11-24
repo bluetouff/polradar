@@ -1,107 +1,432 @@
 ---
 import Base from '../../layouts/Base.astro';
-import MeasureCard from '../../components/MeasureCard.astro';
-import SourceLinks from '../../components/SourceLinks.astro';
-import { budget, measures, formatDate } from '../../lib/data';
+import Icon from '../../components/Icon.astro';
+import PublicAccountsChart from '../../components/PublicAccountsChart.astro';
+import { budget, measures, formatDate, sourceById } from '../../lib/data';
 const number = (value: number) => value.toLocaleString('fr-FR');
-const budgetStatus: Record<string, string> = {
-  provisional: 'Données provisoires',
-  'semi-definitive': 'Données semi-définitives',
-  definitive: 'Données définitives',
+const statuses: Record<string, string> = {
+  provisional: 'Provisoires',
+  'semi-definitive': 'Semi-définitives',
+  definitive: 'Définitives',
 };
-const values = [
-  ['Déficit public', budget.values.deficit, `Flux annuel · ${budget.year}`],
-  ['Dette publique', budget.values.debt, `Stock à fin ${budget.year}`],
-  ['Dépenses', budget.values.spending, `Flux annuel · ${budget.year}`],
-  ['Recettes', budget.values.revenue, `Flux annuel · ${budget.year}`],
-];
-const records = measures.filter(
-  (e) => e.theme === 'fiscalite' && e.scope !== 'archive',
-);
+const years = [...budget.history, budget];
+const source = sourceById(budget.sourceId);
+const count = measures.filter(
+  (measure) => measure.theme === 'fiscalite' && measure.scope !== 'archive',
+).length;
+const balanceLabel =
+  budget.values.deficit < 0 ? 'Excédent public' : 'Déficit public';
 ---
 
 <Base
   title="Finances publiques et programmes"
   section="/economie/finances-publiques/"
+  description="Dépenses, recettes, déficit et dette de la France selon l’Insee. Consultez les comptes annuels et les propositions fiscales des candidats."
 >
-  <header class="page-title">
-    <h1>Finances publiques et programmes</h1>
-    <p>Comptes publics et propositions fiscales des candidats.</p>
-    <a href="/budget-programmes/" class="inline-action">
-      Montants et graphiques des programmes ↗
+  <header class="accounts-heading">
+    <div>
+      <p class="accounts-place">France · Comptes nationaux</p>
+      <h1>Finances publiques et programmes</h1>
+    </div>
+    <a class="accounts-source" href={source.url}>
+      <Icon name="source" /> Tableau de l’Insee ↗
     </a>
   </header>
-  <div class="section-heading">
-    <div>
-      <h2>Finances publiques en {budget.year}</h2>
-    </div>
-    <span class="tag">{budgetStatus[budget.status]}</span>
-  </div>
-  <p class="section-description">
-    {budget.scope} Publication du {formatDate(budget.published)}. Ces données
-    annuelles décrivent l’exercice {budget.year}.
-  </p>
-  <div class="budget-kpis">
-    {values.map(([label, value, note]) => (
-      <article>
-        <p>{label}</p>
-        <strong>
-          {Number(value).toLocaleString('fr-FR')}
-          <span> %</span>
-        </strong>
-        <p>du PIB</p>
-        <small>{note}</small>
-      </article>
-    ))}
-  </div>
-  <SourceLinks ids={[budget.sourceId]} compact />
-  <div class="two-col section-space">
-    <article class="panel">
-      <h2>Périmètres des chiffrages</h2>
-      <ul class="reading-list">
-        <li>
-          Un montant annuel et un investissement sur cinq ans conservent des
-          calendriers distincts.
-        </li>
-        <li>
-          Une baisse d’impôt doit être lue avec son assiette et le financement
-          annoncé.
-        </li>
-        <li>
-          Un chiffrage de campagne atteste une estimation attribuée à son
-          auteur.
-        </li>
-        <li>
-          Dette et déficit décrivent un stock et un flux. Leurs ratios ne
-          s’additionnent pas.
-        </li>
-      </ul>
-    </article>
-    <article class="panel dark-panel">
-      <h2>{number(budget.values.deficit)} points de PIB</h2>
+  <section class="accounts" aria-labelledby="accounts-title">
+    <div class="accounts-sub">
+      <h2 id="accounts-title">Comptes publics de {budget.year}</h2>
       <p>
-        En {budget.year}, {number(budget.values.spending)} % de dépenses
-        publiques et
-        {number(budget.values.revenue)} % de recettes : l’écart annuel
-        représente
-        {number(budget.values.deficit)} points de PIB.
+        Insee · Données {statuses[budget.status].toLocaleLowerCase('fr-FR')} ·{' '}
+        <time datetime={budget.published}>{formatDate(budget.published)}</time>
       </p>
-      <a href="/dossiers/lire-un-programme/" class="text-link">
-        Comment lire un engagement économique ↗
-      </a>
-    </article>
-  </div>
-  <div class="section-heading">
-    <div>
-      <h2>Propositions fiscales</h2>
     </div>
-    <a href="/comparer/?theme=fiscalite" class="text-link">
-      Comparer sur ce sujet ↗
+    <div class="accounts-pair">
+      <article class="accounts-flows">
+        <header>
+          <span class="account-icon">
+            <Icon name="exchange" />
+          </span>
+          <h3>Recettes et dépenses de l’année</h3>
+        </header>
+        <div class="flow-numbers">
+          <div>
+            <span>
+              <i class="sample spending-sample"></i>Dépenses
+            </span>
+            <strong>
+              {number(budget.values.spending)} <small>% du PIB</small>
+            </strong>
+          </div>
+          <div>
+            <span>
+              <i class="sample revenue-sample"></i>Recettes
+            </span>
+            <strong>
+              {number(budget.values.revenue)} <small>% du PIB</small>
+            </strong>
+          </div>
+        </div>
+        <PublicAccountsChart rows={years} kind="flows" />
+        <div class="flow-balance">
+          <Icon name="fiscalite" />
+          <span>
+            {balanceLabel} en {budget.year}
+          </span>
+          <strong>{number(Math.abs(budget.values.deficit))} % du PIB</strong>
+        </div>
+      </article>
+      <article class="accounts-debt">
+        <header>
+          <span class="account-icon">
+            <Icon name="layers" />
+          </span>
+          <h3>Dette en fin d’année</h3>
+        </header>
+        <div class="debt-number">
+          <span>Dette brute au sens de Maastricht</span>
+          <strong>
+            {number(budget.values.debt)} <small>% du PIB</small>
+          </strong>
+        </div>
+        <PublicAccountsChart rows={years} kind="debt" />
+        <p>
+          Encours de dette des administrations publiques à la fin de{' '}
+          {budget.year}.
+        </p>
+      </article>
+    </div>
+    <details class="accounts-values">
+      <summary>
+        Tableau des comptes annuels · {years[0].year} à {budget.year}
+      </summary>
+      <p>
+        {budget.scope} Chaque valeur est exprimée en pourcentage du PIB. Un
+        solde négatif correspond à un déficit.
+      </p>
+      <div
+        class="accounts-scroll"
+        role="region"
+        aria-label="Valeurs des comptes annuels"
+        tabindex="0"
+      >
+        <table>
+          <caption>Finances publiques françaises · % du PIB</caption>
+          <thead>
+            <tr>
+              {[
+                'Année',
+                'Dépenses',
+                'Recettes',
+                'Solde',
+                'Dette brute',
+                'Données',
+              ].map((label) => (
+                <th scope="col">{label}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {years.map((row) => (
+              <tr>
+                <th scope="row">{row.year}</th>
+                <td>{number(row.values.spending)}</td>
+                <td>{number(row.values.revenue)}</td>
+                <td>{number(-row.values.deficit)}</td>
+                <td>{number(row.values.debt)}</td>
+                <td>{statuses[row.status]}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </section>
+  <section aria-labelledby="tax-links" class="accounts-programmes">
+    <h2 id="tax-links">Fiscalité et budgets des programmes</h2>
+    <nav aria-label="Explorer les propositions fiscales">
+      <a href="/themes/fiscalite/">
+        <Icon name="mesures" />
+        <span>
+          <strong>Propositions fiscales</strong>
+          <small>{number(count)} fiches hors archives</small>
+        </span>
+        <Icon name="arrow" />
+      </a>
+      <a href="/comparer/?theme=fiscalite">
+        <Icon name="exchange" />
+        <span>
+          <strong>Comparer les programmes</strong>
+          <small>Choisir les candidats</small>
+        </span>
+        <Icon name="arrow" />
+      </a>
+      <a href="/budget-programmes/">
+        <Icon name="euro" />
+        <span>
+          <strong>Chiffrages des programmes</strong>
+          <small>Montants, périodes et financements annoncés</small>
+        </span>
+        <Icon name="arrow" />
+      </a>
+    </nav>
+    <a class="accounts-method" href="/dossiers/lire-un-programme/">
+      Comment lire un engagement économique ↗
     </a>
-  </div>
-  <div class="measure-list">
-    {records.map((item) => (
-      <MeasureCard measure={item} showAuthor />
-    ))}
-  </div>
+  </section>
 </Base>
+<style>
+  .accounts-heading,
+  .accounts-sub,
+  .accounts article header,
+  .accounts-source,
+  .accounts-programmes a {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+  .accounts-heading,
+  .accounts-sub {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .accounts-heading {
+    padding: 0.3rem 0 1rem;
+    border-bottom: 1px solid #9bb0b7;
+  }
+  .accounts-place {
+    margin: 0 0 0.15rem;
+    font: 0.83rem/1.5 var(--mono);
+    color: #325e6c;
+  }
+  .accounts-heading h1 {
+    font-size: clamp(1.5rem, 2.1vw, 1.75rem);
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+  }
+  .accounts-source {
+    min-height: 2.6rem;
+    border: 1px solid #9ab6bb;
+    border-radius: 0.55rem;
+    padding: 0.38rem 0.75rem;
+    font-size: 0.85rem;
+    background: #f7faf9;
+    font-weight: 620;
+    text-decoration: none;
+  }
+  .accounts-source:hover {
+    color: #084c56;
+    text-decoration: underline;
+  }
+  .accounts {
+    margin: 1.3rem 0;
+  }
+  .accounts-sub {
+    align-items: baseline;
+    margin-bottom: 0.7rem;
+  }
+  .accounts-sub h2,
+  .accounts-programmes h2 {
+    font-size: 1.17rem;
+  }
+  .accounts-sub p,
+  .accounts-method {
+    color: #425e6a;
+    font-size: 0.84rem;
+  }
+  .accounts-pair {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+    gap: 0.9rem;
+  }
+  .accounts article {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: clamp(1rem, 2.2vw, 1.65rem);
+    border-radius: 0.95rem;
+  }
+  .accounts-flows {
+    --spending: #0a6568;
+    --revenue: #2b527c;
+    --chart-muted: #405d68;
+    --chart-grid: #aabfc2;
+    border: 1px solid #a9bfc5;
+    background: linear-gradient(135deg, #fbfdfb, #eef5f4);
+    color: #183847;
+  }
+  .accounts-flows .account-icon {
+    color: #105e62;
+    background: #d7ece6;
+  }
+  .accounts-debt {
+    --debt-line: #8de3d2;
+    --chart-muted: #cbdde0;
+    --chart-grid: #52717f;
+    border: 1px solid #33545d;
+    background: linear-gradient(125deg, #112d3a 12%, #1c4650);
+    color: #f1f8f7;
+  }
+  .accounts-debt .account-icon {
+    color: #ace8dc;
+    background: #285461;
+  }
+  .account-icon {
+    padding: 0.42rem;
+    display: grid;
+    border-radius: 0.5rem;
+  }
+  .account-icon .icon {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+  .accounts article h3 {
+    font-size: 1.08rem;
+    font-weight: 630;
+    line-height: 1.25;
+  }
+  .flow-numbers {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: clamp(1rem, 4vw, 3rem);
+    row-gap: 0.3rem;
+  }
+  .flow-numbers div,
+  .debt-number {
+    display: grid;
+    gap: 0.1rem;
+  }
+  .flow-numbers span,
+  .debt-number span {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    font-size: 0.86rem;
+  }
+  .flow-numbers strong,
+  .debt-number strong {
+    color: inherit;
+    font-size: clamp(1.85rem, 3.4vw, 2.8rem);
+    line-height: 1.12;
+    font-weight: 580;
+    letter-spacing: -0.045em;
+    font-variant-numeric: tabular-nums;
+  }
+  .flow-numbers strong small,
+  .debt-number strong small {
+    font-size: 0.87rem;
+    font-weight: 550;
+    letter-spacing: 0;
+  }
+  .debt-number strong {
+    color: var(--debt-line);
+  }
+  .sample {
+    width: 1rem;
+    border-top: 3px solid var(--spending);
+  }
+  .revenue-sample {
+    border-color: var(--revenue);
+    border-top-style: dashed;
+  }
+  .flow-balance,
+  .accounts-debt > p {
+    margin-top: auto;
+    padding-top: 0.65rem;
+    border-top: 1px solid var(--chart-grid);
+    font-size: 0.86rem;
+  }
+  .flow-balance {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .flow-balance strong {
+    margin-inline-start: auto;
+    font-variant-numeric: tabular-nums;
+  }
+  .accounts-values {
+    margin-top: 0.65rem;
+    padding: 0.35rem 0.85rem;
+    background: #f3f7f6;
+    border: 1px solid #b6c7cb;
+    border-radius: 0.55rem;
+  }
+  .accounts-values summary {
+    cursor: pointer;
+    padding: 0.45rem 0;
+    font-size: 0.89rem;
+    font-weight: 600;
+  }
+  .accounts-values p,
+  .accounts-values caption {
+    font-size: 0.85rem;
+    color: #3b5965;
+    text-align: left;
+  }
+  .accounts-scroll {
+    overflow-x: auto;
+  }
+  .accounts-values table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .accounts-values :is(th, td, caption) {
+    padding: 0.4rem 0.45rem;
+  }
+  .accounts-values :is(th, td) {
+    border-bottom: 1px solid #cad6d8;
+    text-align: right;
+  }
+  .accounts-values :is(th, td):first-child,
+  .accounts-values :is(th, td):last-child {
+    text-align: left;
+  }
+  .accounts-programmes nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 0.6rem;
+    margin: 0.6rem 0;
+  }
+  .accounts-programmes nav a {
+    padding: 0.85rem;
+    background: #f7faf9;
+    border: 1px solid #abc0c6;
+    border-radius: 0.65rem;
+    text-decoration: none;
+  }
+  .accounts-programmes a span {
+    display: grid;
+  }
+  .accounts-programmes a small {
+    color: #435d69;
+    line-height: 1.35;
+  }
+  .accounts-programmes a .icon {
+    flex: none;
+    color: #22616a;
+  }
+  .accounts-programmes a .icon:last-child {
+    margin-left: auto;
+  }
+  .accounts-programmes a:hover strong {
+    text-decoration: underline;
+  }
+  @media (max-width: 46rem) {
+    .accounts-pair {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media print {
+    .accounts-debt {
+      --debt-line: #124253;
+      --chart-muted: #243d42;
+      --chart-grid: #8a9aa1;
+      color: #142e3b;
+      background: white;
+    }
+  }
+</style>

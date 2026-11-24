@@ -121,6 +121,23 @@ test('les unités et la cohérence des comptes sont contrôlées', () => {
     }).length,
   );
 });
+test('la série Insee conserve un exercice par an et le solde publié pour chaque exercice', () => {
+  assert.ok(
+    changed((d) => {
+      d.budget.history[1].year = d.budget.history[0].year;
+    }).length,
+  );
+  assert.ok(
+    changed((d) => {
+      d.budget.history.at(-1).values.deficit = 0;
+    }).length,
+  );
+  assert.ok(
+    changed((d) => {
+      d.budget.history[0].status = 'estimé';
+    }).length,
+  );
+});
 test('les mises à jour conservent des dates et des exercices annuels cohérents', () => {
   assert.ok(
     changed((d) => {

@@ -179,6 +179,32 @@ export function validateEconomy(
   return errors;
 }
 
+const unitReadings = {
+  RCH_A: '% sur un an',
+  PCH_SM: '% sur un an',
+  PC_ACT: '% des actifs',
+  PC_POP: '% de la population de cet âge',
+  CLV_PCH_PRE: '% sur un trimestre',
+};
+export function economyUnitLabel(series) {
+  if (series.id === 'revenu-reel') return '% sur un trimestre';
+  if (series.id === 'epargne-menages') return '% du revenu disponible';
+  return unitReadings[series.filters.unit] ?? series.unit;
+}
+const flags = {
+  b: 'rupture de série',
+  d: 'définition différente',
+  p: 'provisoire',
+  e: 'estimation',
+};
+export function observationFlag(raw) {
+  return raw
+    .trim()
+    .split(/ +/)
+    .filter(Boolean)
+    .map((flag) => flags[flag] ?? 'statut Eurostat ' + flag)
+    .join(', ');
+}
 export const frequencyLabels = { A: 'Annuel', M: 'Mensuel', Q: 'Trimestriel' };
 
 export function eurostatLinks(series, since) {
