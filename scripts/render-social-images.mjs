@@ -234,8 +234,9 @@ try {
         .png({
           palette: true,
           colours: 256,
-          dither: 0.5,
-          effort: 7,
+          quality: 88,
+          dither: 0.18,
+          effort: 9,
           compressionLevel: 9,
           // Indexed PNGs compress better when their palette indices are left unfiltered.
           adaptiveFiltering: false,
