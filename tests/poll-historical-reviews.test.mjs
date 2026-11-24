@@ -38,6 +38,10 @@ const imported = [
   ['10167', 3],
   ['10189', 2],
   ['10226', 11],
+  ['10325', 5],
+  ['9990', 4],
+  ['9987', 6],
+  ['9930', 13],
 ];
 
 test('Chaque notice relue couvre des scénarios traçables et rendus dans le Studio', () => {
@@ -265,4 +269,71 @@ test('Odoxa et Elabe conservent le lien entre les questions, les scores et leurs
   assert.equal(july[6].noIntention, 29);
   assert.equal(july[6].noticePage, 9);
   assert.equal(july[6].resultPage, 22);
+});
+
+test('Cluster17 garde les scores publiés et laisse indéterminé un effectif pondéré ambigu', () => {
+  const october = polls.filter(
+    (p) => p.surveyId === 'cluster17-commission-10325',
+  );
+  assert.deepEqual(
+    october.map((p) => p.usefulSample),
+    [852, 828, 821, 813, 821],
+  );
+  assert.deepEqual(
+    october.map((p) => p.resultPage),
+    [5, 11, 17, 23, 29],
+  );
+  assert.equal(
+    october[0].results.find((r) => r.id === 'melenchon').percentage,
+    18,
+  );
+  const previous = polls.filter(
+    (p) => p.surveyId === 'cluster17-commission-9990',
+  );
+  assert.deepEqual(
+    previous.map((p) => p.usefulSample),
+    [924, 907, 911, null],
+  );
+  assert.match(
+    previous[3].uncertainty,
+    /deux effectifs pondérés au scénario 3/,
+  );
+  assert.equal(previous[3].noIntention, null);
+});
+
+test('Ifop distingue les deux périodes et les bases exprimées des tableaux disponibles', () => {
+  const first = polls.filter(
+    (p) => p.surveyId === 'ifop-commission-9930-terrain-1',
+  );
+  const second = polls.filter(
+    (p) => p.surveyId === 'ifop-commission-9930-terrain-2',
+  );
+  assert.equal(first.length, 10);
+  assert.ok(
+    first.every(
+      (p) => p.sampleSize === 10000 && p.fieldworkEnd === '2025-04-18',
+    ),
+  );
+  assert.deepEqual(
+    first.map((p) => p.usefulSample),
+    [5454, 5537, 5525, 5459, 5492, 5415, 5059, 4420, 4952, 4090],
+  );
+  assert.deepEqual(
+    second.map((p) => p.usefulSample),
+    [1078, 1069, 1001],
+  );
+  assert.ok(
+    second.every(
+      (p) => p.registeredSample === 1838 && p.fieldworkStart === '2025-04-29',
+    ),
+  );
+  assert.equal(second[1].noticePage, 27);
+  assert.equal(second[1].resultPage, undefined);
+  assert.match(second[2].uncertainty, /premier tour/);
+  const september = polls.filter((p) => p.surveyId === 'ifop-commission-9987');
+  assert.ok(september.every((p) => p.usefulSample === null));
+  assert.deepEqual(
+    september.map((p) => p.noIntention),
+    [29.7, 29.1, 30.3, 31.5, 32, 32.4],
+  );
 });
