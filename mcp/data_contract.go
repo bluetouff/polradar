@@ -12,7 +12,7 @@ const corpusLimit = 10 << 20
 const dossiersLimit = 8 << 20
 const territoriesLimit = 5 << 20
 
-var collectionNames = [...]string{"corpus", "dossiers", "territoires", "sondages", "economie", "agenda", "budgets", "marches"}
+var collectionNames = [...]string{"corpus", "dossiers", "territoires", "sondages", "economie", "agenda", "budgets", "marches", "parlement", "sources", "droit", "verifications", "breves", "financements", "arcom", "graphiques"}
 
 type dataContract struct {
 	Version     int            `json:"version"`
@@ -22,7 +22,7 @@ type dataContract struct {
 func loadContract(root string) (*dataContract, error) {
 	path := filepath.Join(root, "api", "contrat-donnees.json")
 	if _, err := os.Stat(path); errors.Is(err, os.ErrNotExist) {
-		// The 1.1 release predates the manifest and uses version 1 for every collection.
+		// The 1.1 release predates the manifest. Only its original collections exist.
 		return nil, nil
 	}
 	var result dataContract
@@ -34,7 +34,11 @@ func loadContract(root string) (*dataContract, error) {
 
 func (c *dataContract) major(name string) int {
 	if c == nil {
-		return dataMajor
+		switch name {
+		case "corpus", "dossiers", "territoires", "sondages", "economie", "agenda", "budgets", "marches":
+			return dataMajor
+		}
+		return 0
 	}
 	return c.Collections[name]
 }

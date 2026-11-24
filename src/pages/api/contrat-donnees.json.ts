@@ -10,6 +10,14 @@ export function GET() {
       agenda: 1,
       budgets: 1,
       marches: 1,
+      parlement: 1,
+      sources: 1,
+      droit: 1,
+      verifications: 1,
+      breves: 1,
+      financements: 1,
+      arcom: 1,
+      graphiques: 1,
     },
   });
 }

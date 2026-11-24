@@ -84,6 +84,16 @@ export const registerIndex = {
   lots: Array.from(ballotsByMonth, ([mois, rows]) => ({
     mois,
     nombre: rows.length,
+    plages: [...new Set(rows.map((b) => b.legislature))].map((legislature) => {
+      const numbers = rows
+        .filter((b) => b.legislature === legislature)
+        .map((b) => b.numero);
+      return {
+        legislature,
+        premier: Math.min(...numbers),
+        dernier: Math.max(...numbers),
+      };
+    }),
     url: `https://polradar.fr/api/parlement/${mois}.json`,
   })),
 };

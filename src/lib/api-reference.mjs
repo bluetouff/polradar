@@ -31,7 +31,21 @@ const id = segment(
   { ...str, minLength: 1, maxLength: 160 },
   'Identifiant exact obtenu dans la liste.',
 );
-const collections = ['sondages', 'economie', 'agenda', 'budgets', 'marches'];
+const collections = [
+  'sondages',
+  'economie',
+  'agenda',
+  'budgets',
+  'marches',
+  'parlement',
+  'sources',
+  'droit',
+  'verifications',
+  'breves',
+  'financements',
+  'arcom',
+  'graphiques',
+];
 const collection = segment(
   'collection',
   { ...str, enum: collections },
@@ -270,7 +284,15 @@ export const apiRoutes = [
     key: 'publications',
     title: 'Parcourir un jeu de données, 15 entrées par page',
     returns: 'Publications',
-    params: [collection, offset],
+    params: [
+      collection,
+      offset,
+      filter(
+        'query',
+        { ...str, maxLength: 160 },
+        'Pour la collection sources, mots du titre ou de l’adresse du document.',
+      ),
+    ],
   },
   {
     path: '/donnees/{collection}/{id}',

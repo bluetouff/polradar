@@ -121,6 +121,48 @@ const steps = [
         <code>version</code>.
       </p>
     </section>
+    <section class="dev-note">
+      <h2>Interroger les collections documentaires</h2>
+      <p>
+        Les collections disponibles sur l’édition consultée sont indiquées dans{' '}
+        <code>polradar_corpus</code>, champ <code>contratsCollections</code>. Le
+        service 1.3 ajoute ces collections à <code>polradar_donnees</code> et à{' '}
+        <code>/api/v1/donnees/</code>.
+      </p>
+      <ul>
+        <li>
+          <code>parlement</code> retourne les scrutins de l’Assemblée.
+          L’identifiant <code>VTANR5L16V3213</code> donne le vote sur
+          l’immigration du 19 décembre 2023, les positions individuelles, les
+          groupes et le lien vers le relevé officiel.
+        </li>
+        <li>
+          <code>sources</code> accepte <code>query</code> pour rechercher un
+          titre ou une adresse. Le détail précise la publication et la
+          consultation du document.
+        </li>
+        <li>
+          <code>droit</code> donne les textes applicables aux sujets numériques
+          et aux retraites. <code>verifications</code> relie une déclaration
+          économique à la statistique officielle de la même période.
+        </li>
+        <li>
+          <code>breves</code> distingue la publication et la date de
+          l’événement. <code>arcom</code> donne les secondes publiées pour un
+          média et un mois. Une cellule absente conserve la valeur{' '}
+          <code>null</code>.
+        </li>
+        <li>
+          <code>financements</code> donne les montants et leurs hypothèses.{' '}
+          <code>graphiques</code> fournit les liens vers chaque version figée et
+          actualisée avec les sources.
+        </li>
+      </ul>
+      <p>
+        Demandez la liste, puis transmettez son <code>id</code> pour lire une
+        fiche. <a href="/votes/registre/">Consulter le registre des scrutins</a>
+      </p>
+    </section>
     <div class="dev-pair">
       <section class="dev-note">
         <div class="dev-heading">

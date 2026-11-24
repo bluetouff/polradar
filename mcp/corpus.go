@@ -95,6 +95,7 @@ type snapshot struct {
 	extraMu     sync.Mutex
 	editorial   *dossiers
 	territorial *territories
+	parliament  parliamentCache
 	lexical     []lexicalRecord
 	catalog
 	commit   string

@@ -80,6 +80,9 @@ func TestPublishedCorpus(t *testing.T) {
 	t.Logf("%d fiches lues sur le commit %s", len(c.Measures), c.commit)
 	for kind := range collections {
 		t.Run(kind, func(t *testing.T) {
+			if c.contract.check(kind) != nil {
+				t.Skip("collection absente de cette édition")
+			}
 			seen := map[string]bool{}
 			total := -1
 			for offset := 0; offset == 0 || offset < total; offset += 15 {

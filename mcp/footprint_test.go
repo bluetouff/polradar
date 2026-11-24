@@ -43,8 +43,14 @@ func TestLocalSnapshotFootprint(t *testing.T) {
 		if _, e := c.dossiers(); e != nil {
 			return e
 		}
-		_, _, e := c.territory(territoryArgs{"75056"})
-		return e
+		if _, _, e := c.territory(territoryArgs{"75056"}); e != nil {
+			return e
+		}
+		if c.contract.major("parlement") == dataMajor {
+			_, _, e := c.publicData(dataArgs{Collection: "parlement", ID: "VTANR5L16V3213"})
+			return e
+		}
+		return nil
 	}
 	if e := warm(c); e != nil {
 		t.Fatal(e)

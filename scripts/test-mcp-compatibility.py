@@ -8,8 +8,8 @@ import subprocess
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-PREVIOUS = 'e4e4939a2df6aafd6e22d90b4c0a8b1b645efa44'
-DIGEST = 'e68e66e8a94fae544adfa2cbc19f048c54b2e1b551df0afa02be5d1328051b3e'
+PREVIOUS = 'cdaae3bff0fd82a0676242b6123c8b93f0c47aa9'
+DIGEST = 'd222b11c91073bab36653a685a2d4307c2be4f3307ab01c5a531d77c6edb4b4e'
 DEPLOY = runpy.run_path(str(ROOT/'deploy/pull-release.py'))
 
 
