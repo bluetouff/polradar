@@ -11,7 +11,7 @@ import tempfile
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
-CASES = ('identique','correction','ajout','suppression','candidature','source','budget','edition','partage')
+CASES = ('identique','correction','ajout','suppression','candidature','source','budget','edition','migration','partage')
 
 def command(cwd, *args, log=None):
     return subprocess.run(args, cwd=cwd, check=True, text=True,
@@ -68,6 +68,12 @@ def mutate(cwd, case):
         target['locator']+=' (Recette locale.)';write('programme-budgets',budget)
     elif case=='edition':
         meta=read('meta');meta['edition']=meta['corpusUpdated']=(date.fromisoformat(meta['corpusUpdated'])-timedelta(days=1)).isoformat();write('meta',meta)
+    elif case=='migration':
+        migration=read('poll-graphic-migration')
+        alias='a'*64
+        if alias in migration: raise ValueError('Collision avec une série existante')
+        migration[alias]=next(iter(migration.values())).copy()
+        write('poll-graphic-migration',migration)
     elif case=='partage':
         file=cwd/'src/lib/social-image-view.mjs'
         original=file.read_text()
@@ -114,6 +120,8 @@ def run(cases):
                     if (cwd/'public/og'/legacy.name).read_bytes()!=legacy.read_bytes(): raise ValueError('Lien OG historique cassé')
             warm,stats=build()
             expected=fingerprint(cwd)
+            if case=='migration' and not any('a'*64 in name for name in expected):
+                raise ValueError('La migration de recette doit produire le graphique de l’ancienne adresse')
             if case=='partage': social(True)
             cold,_=build(True)
             actual=fingerprint(cwd)
