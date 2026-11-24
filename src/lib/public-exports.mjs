@@ -136,6 +136,18 @@ const datasets = [
     ],
   },
   {
+    id: 'textes-senat',
+    title: 'Propositions de loi, résolutions et rapports du Sénat',
+    path: '/api/parlement/textes-senat.json',
+    description:
+      'Textes parlementaires et rôles de signature établis par DOSLEG',
+    unit: 'Un document relié aux signatures nominatives de la sélection.',
+    provenance: 'Sénat, base DOSLEG et liens vers les dépôts ou rapports.',
+    limits:
+      'La date de dépôt, la qualité de signataire et le type de document précisent le rôle tenu. Le lien vers le dépôt permet de lire le texte signé.',
+    fields: ['documents'],
+  },
+  {
     id: 'registre-parlement-europeen',
     title: 'Votes du Parlement européen',
     path: '/api/parlement/archives/parlement-europeen.json',
@@ -239,6 +251,12 @@ const upstreamData = {
   scope:
     'Chaque série ou relevé conserve les conditions de son producteur, identifié dans le fichier.',
 };
+const senateRights = {
+  label: 'Licence ouverte du Sénat',
+  url: 'https://data.senat.fr/licence/',
+  scope:
+    'Citer le Sénat. Les liens vers les données d’origine permettent de retrouver la version publiée par le producteur.',
+};
 const rightsByDataset = new Map([
   [
     'registre-assemblee',
@@ -249,15 +267,8 @@ const rightsByDataset = new Map([
         'Scrutins et mandats publiés par l’Assemblée nationale. Citer l’Assemblée et la version des archives utilisées.',
     },
   ],
-  [
-    'registre-senat',
-    {
-      label: 'Licence ouverte du Sénat',
-      url: 'https://data.senat.fr/licence/',
-      scope:
-        'Mentionner le Sénat et la date de mise à jour indiquée dans le fichier.',
-    },
-  ],
+  ['registre-senat', senateRights],
+  ['textes-senat', senateRights],
   [
     'registre-parlement-europeen',
     {
