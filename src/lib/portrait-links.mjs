@@ -46,4 +46,20 @@ export const portraitLinks = {
     label: 'Portrait sur le site du MEI',
     url: 'https://les-ecologistes-mei.org/erwan-rohou/',
   },
+  bonnal: {
+    label: 'Portrait d’auteur chez Librinova',
+    url: 'https://www.librinova.com/librairie/sebastien-bonnal/un-chemin-2',
+  },
+  delmur: {
+    label: 'Entretien et photographie de Mélody Delmur publiés par Sud Radio',
+    url: 'https://www.sudradio.fr/sud-radio/a-20-ans-cette-fille-dagriculteurs-se-lance-dans-la-course-a-lelysee',
+  },
+  dubuisson: {
+    label: 'Photothèque de la campagne Dubuisson',
+    url: 'https://www.dubuisson2027.fr/presse',
+  },
+  'revillon-apreval': {
+    label: 'Portrait sur le site de candidature de Rémi Revillon d’Apreval',
+    url: 'https://2027.odanie.org/',
+  },
 };

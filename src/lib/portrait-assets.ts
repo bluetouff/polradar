@@ -34,6 +34,15 @@ import mikolajczak from '../assets/portraits/mikolajczak.jpg';
 import mlekuz from '../assets/portraits/mlekuz.jpg';
 import rohou from '../assets/portraits/rohou.jpg';
 import villepin from '../assets/portraits/villepin.jpg';
+import batho from '../assets/portraits/batho.jpg';
+import becht from '../assets/portraits/becht.jpg';
+import bonnal from '../assets/portraits/bonnal.jpg';
+import bouamrane from '../assets/portraits/bouamrane.jpg';
+import delmur from '../assets/portraits/delmur.jpg';
+import dubuisson from '../assets/portraits/dubuisson.jpg';
+import platret from '../assets/portraits/platret.jpg';
+import revillonApreval from '../assets/portraits/revillon-apreval.jpg';
+import saforcada from '../assets/portraits/saforcada.jpg';
 export const portraitAssets: Record<string, ImageMetadata> = {
   'arthaud.jpg': portrait0,
   'asselineau.jpg': portrait1,
@@ -70,4 +79,13 @@ export const portraitAssets: Record<string, ImageMetadata> = {
   'mlekuz.jpg': mlekuz,
   'rohou.jpg': rohou,
   'villepin.jpg': villepin,
+  'batho.jpg': batho,
+  'becht.jpg': becht,
+  'bonnal.jpg': bonnal,
+  'bouamrane.jpg': bouamrane,
+  'delmur.jpg': delmur,
+  'dubuisson.jpg': dubuisson,
+  'platret.jpg': platret,
+  'revillon-apreval.jpg': revillonApreval,
+  'saforcada.jpg': saforcada,
 };

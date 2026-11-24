@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checked": "2026-11-24",
+  "checked": "2026-11-25",
   "cities": [
     {
       "id": "paris",
@@ -225,6 +225,27 @@
       "code": "76540",
       "coordinates": [1.0912, 49.4412],
       "sourceUrl": "https://geo.api.gouv.fr/communes/76540?fields=nom,code,centre"
+    },
+    {
+      "id": "dijon",
+      "name": "Dijon",
+      "code": "21231",
+      "coordinates": [5.0322, 47.3319],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/21231?fields=nom,code,centre"
+    },
+    {
+      "id": "saint-ouen-sur-seine",
+      "name": "Saint-Ouen-sur-Seine",
+      "code": "93070",
+      "coordinates": [2.3329, 48.9118],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/93070?fields=nom,code,centre"
+    },
+    {
+      "id": "chalon-sur-saone",
+      "name": "Chalon-sur-Saône",
+      "code": "71076",
+      "coordinates": [4.8509, 46.7896],
+      "sourceUrl": "https://geo.api.gouv.fr/communes/71076?fields=nom,code,centre"
     }
   ],
   "events": [
@@ -860,6 +881,278 @@
       "note": "Révolution Permanente annonce une rencontre avec le candidat sur les mobilisations de la jeunesse et des travailleurs.",
       "source": "agenda-kazib-toulouse",
       "status": "annonce"
+    },
+    {
+      "id": "batho-salon-maires-20261124",
+      "candidate": "batho",
+      "date": "2026-11-24",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": "paris",
+      "title": "Salon des maires et des collectivités locales",
+      "venue": "Parc des expositions de la porte de Versailles, 1 place de la Porte de Versailles",
+      "note": "La campagne annonce une présence pendant le salon, du 24 au 26 novembre, sans préciser de créneau.",
+      "source": "agenda-batho-salon-maires",
+      "status": "annonce",
+      "latestPossibleDate": "2026-11-26"
+    },
+    {
+      "id": "batho-dijon-one-health-20261127",
+      "candidate": "batho",
+      "date": "2026-11-27",
+      "time": "14:30",
+      "timezone": "Europe/Paris",
+      "city": "dijon",
+      "title": "Table ronde sur la santé et l’environnement",
+      "venue": "36 rue Chabot Charny, salle 102 bis",
+      "note": "Le programme des Journées de l’économie autrement prévoit la table ronde de 14 h 30 à 16 h.",
+      "source": "agenda-batho-dijon",
+      "status": "annonce",
+      "additionalSources": ["agenda-batho-jea"]
+    },
+    {
+      "id": "batho-dijon-dedicace-20261127",
+      "candidate": "batho",
+      "date": "2026-11-27",
+      "time": "16:15",
+      "timezone": "Europe/Paris",
+      "city": "dijon",
+      "title": "Dédicace de La Politique de la beauté",
+      "venue": "Palais des Ducs, espace librairie des JEA",
+      "note": "Horaire annoncé pour le début de la dédicace.",
+      "source": "agenda-batho-jea",
+      "status": "annonce"
+    },
+    {
+      "id": "batho-femmes-elues-20261128",
+      "candidate": "batho",
+      "date": "2026-11-28",
+      "time": "09:30",
+      "timezone": "Europe/Paris",
+      "city": "paris",
+      "title": "Journées nationales des femmes élues",
+      "venue": "NewCap Event Center, 3 quai de Grenelle",
+      "note": "Intervention sur l’accès des femmes aux responsabilités. Événement sur inscription.",
+      "source": "agenda-batho-femmes-elues",
+      "status": "annonce"
+    },
+    {
+      "id": "batho-batir-climat-20261203",
+      "candidate": "batho",
+      "date": "2026-12-03",
+      "time": "09:45",
+      "timezone": "Europe/Paris",
+      "city": "paris",
+      "title": "Journée Bâtir pour le climat",
+      "venue": "Parc des Princes, 24 rue du Commandant Guilbaud",
+      "note": "Le créneau de présence annoncé va de 9 h 45 à 14 h 45. Deux tables rondes portent sur l’économie circulaire et la rénovation des logements.",
+      "source": "agenda-batho-batir-climat",
+      "status": "annonce"
+    },
+    {
+      "id": "bouamrane-lancement-livre-20261104",
+      "candidate": "bouamrane",
+      "date": "2026-11-04",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": "saint-ouen-sur-seine",
+      "title": "Avant-première de L’Espoir ou le Mépris",
+      "venue": "Communale, 10 bis rue de l’Hippodrome",
+      "note": "Karim Bouamrane évoque la soirée de lancement dans son entretien du 9 novembre.",
+      "source": "bouamrane-candidature-2027",
+      "status": "tenu",
+      "additionalSources": ["agenda-bouamrane-retour-livre"]
+    },
+    {
+      "id": "platret-reunion-colisee-20261008",
+      "candidate": "platret",
+      "date": "2026-10-08",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": "chalon-sur-saone",
+      "title": "Réunion publique « Parlons de la France »",
+      "venue": "Salons du Colisée",
+      "note": "La réunion avec les soutiens a précédé la diffusion du communiqué de candidature du 9 octobre.",
+      "source": "agenda-platret-colisee",
+      "status": "tenu",
+      "additionalSources": ["platret-communique-candidature"]
+    },
+    {
+      "id": "becht-tour-haut-rhin",
+      "candidate": "becht",
+      "date": "2026-11-12",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": null,
+      "title": "Tour de France · Haut-Rhin",
+      "venue": "Altkirch et Mulhouse",
+      "note": "L’itinéraire et le récit de la journée sont publiés par la campagne.",
+      "source": "agenda-becht-etapes",
+      "status": "tenu",
+      "additionalSources": ["agenda-becht-journal"]
+    },
+    {
+      "id": "becht-tour-bas-rhin",
+      "candidate": "becht",
+      "date": "2026-11-13",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": null,
+      "title": "Tour de France · Bas-Rhin",
+      "venue": "Haguenau, Strasbourg, Molsheim et Dorlisheim",
+      "note": "L’itinéraire et le récit de la journée sont publiés par la campagne.",
+      "source": "agenda-becht-etapes",
+      "status": "tenu",
+      "additionalSources": ["agenda-becht-journal"]
+    },
+    {
+      "id": "becht-tour-moselle",
+      "candidate": "becht",
+      "date": "2026-11-14",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": null,
+      "title": "Tour de France · Moselle",
+      "venue": "Sarreguemines, Thionville et Saint-Avold",
+      "note": "L’itinéraire et le récit de la journée sont publiés par la campagne.",
+      "source": "agenda-becht-etapes",
+      "status": "tenu",
+      "additionalSources": ["agenda-becht-journal"]
+    },
+    {
+      "id": "becht-tour-meurthe-moselle",
+      "candidate": "becht",
+      "date": "2026-11-16",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": null,
+      "title": "Tour de France · Meurthe-et-Moselle",
+      "venue": "Nancy, Vandœuvre-lès-Nancy et Toul",
+      "note": "L’itinéraire et le récit de la journée sont publiés par la campagne.",
+      "source": "agenda-becht-etapes",
+      "status": "tenu",
+      "additionalSources": ["agenda-becht-journal"]
+    },
+    {
+      "id": "becht-tour-meuse",
+      "candidate": "becht",
+      "date": "2026-11-17",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": null,
+      "title": "Tour de France · Meuse",
+      "venue": "Contrisson et Verdun",
+      "note": "L’itinéraire et le récit de la journée sont publiés par la campagne.",
+      "source": "agenda-becht-etapes",
+      "status": "tenu",
+      "additionalSources": ["agenda-becht-journal"]
+    },
+    {
+      "id": "becht-tour-ardennes",
+      "candidate": "becht",
+      "date": "2026-11-19",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": null,
+      "title": "Tour de France · Ardennes",
+      "venue": "Rethel, Sedan et Charleville-Mézières",
+      "note": "L’itinéraire et le récit de la journée sont publiés par la campagne.",
+      "source": "agenda-becht-etapes",
+      "status": "tenu",
+      "additionalSources": ["agenda-becht-journal"]
+    },
+    {
+      "id": "becht-tour-nord",
+      "candidate": "becht",
+      "date": "2026-11-20",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": null,
+      "title": "Tour de France · Nord",
+      "venue": "Avesnes-sur-Helpe, Cambrai, Lille et Dunkerque",
+      "note": "L’itinéraire et le récit de la journée sont publiés par la campagne.",
+      "source": "agenda-becht-etapes",
+      "status": "tenu",
+      "additionalSources": ["agenda-becht-journal"]
+    },
+    {
+      "id": "becht-tour-pas-de-calais",
+      "candidate": "becht",
+      "date": "2026-11-21",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": null,
+      "title": "Tour de France · Pas-de-Calais",
+      "venue": "Calais, Saint-Omer, Béthune, Hénin-Beaumont et Lens",
+      "note": "L’itinéraire et le récit de la journée sont publiés par la campagne.",
+      "source": "agenda-becht-etapes",
+      "status": "tenu",
+      "additionalSources": ["agenda-becht-journal"]
+    },
+    {
+      "id": "becht-tour-somme",
+      "candidate": "becht",
+      "date": "2026-11-23",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": null,
+      "title": "Tour de France · Somme",
+      "venue": "Montdidier, Péronne, Abbeville et Amiens",
+      "note": "Lieux indiqués par la campagne pour cette étape. Les horaires et les adresses des arrêts restent à préciser.",
+      "source": "agenda-becht-etapes",
+      "status": "annonce"
+    },
+    {
+      "id": "becht-tour-seine-maritime",
+      "candidate": "becht",
+      "date": "2026-11-24",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": null,
+      "title": "Tour de France · Seine-Maritime",
+      "venue": "Dieppe, Le Havre et Rouen",
+      "note": "Lieux indiqués par la campagne pour cette étape. Les horaires et les adresses des arrêts restent à préciser.",
+      "source": "agenda-becht-etapes",
+      "status": "annonce"
+    },
+    {
+      "id": "becht-tour-calvados",
+      "candidate": "becht",
+      "date": "2026-11-26",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": null,
+      "title": "Tour de France · Calvados",
+      "venue": "Lisieux, Bayeux, Caen et Vire",
+      "note": "Lieux indiqués par la campagne pour cette étape. Les horaires et les adresses des arrêts restent à préciser.",
+      "source": "agenda-becht-etapes",
+      "status": "annonce"
+    },
+    {
+      "id": "becht-tour-manche",
+      "candidate": "becht",
+      "date": "2026-11-27",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": null,
+      "title": "Tour de France · Manche",
+      "venue": "Avranches, Coutances, Cherbourg-en-Cotentin et Saint-Lô",
+      "note": "Lieux indiqués par la campagne pour cette étape. Les horaires et les adresses des arrêts restent à préciser.",
+      "source": "agenda-becht-etapes",
+      "status": "annonce"
+    },
+    {
+      "id": "becht-tour-eure",
+      "candidate": "becht",
+      "date": "2026-11-28",
+      "time": null,
+      "timezone": "Europe/Paris",
+      "city": null,
+      "title": "Tour de France · Étape autour de l’Eure",
+      "venue": "Bernay, Les Andelys, Dreux et Évreux",
+      "note": "Lieux indiqués par la campagne pour cette étape. Les horaires et les adresses des arrêts restent à préciser.",
+      "source": "agenda-becht-etapes",
+      "status": "annonce"
     }
   ],
   "sourceChecks": [
@@ -874,6 +1167,24 @@
       "checked": "2026-11-20",
       "source": "cheve-appel-rencontrez-elus",
       "note": "Joël Chevé invite ses soutiens à rencontrer leurs élus avant février 2027. Son appel ne fixe ni réunion publique ni date de déplacement personnel."
+    },
+    {
+      "candidate": "batho",
+      "source": "agenda-batho-jea",
+      "note": "Dates de la campagne recoupées avec le programme de l’organisateur pour les rencontres à Dijon.",
+      "checked": "2026-11-25"
+    },
+    {
+      "candidate": "becht",
+      "source": "agenda-becht-etapes",
+      "note": "Dates du Tour de France reprises de l’itinéraire. Le journal de campagne établit les premières étapes déjà effectuées.",
+      "checked": "2026-11-25"
+    },
+    {
+      "candidate": "saforcada",
+      "source": "agenda-saforcada-deplacements",
+      "note": "Le calendrier indique des jours et des mois. L’année de ces déplacements reste à confirmer.",
+      "checked": "2026-11-25"
     }
   ]
 }
