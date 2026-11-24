@@ -126,6 +126,9 @@ function catalogue() {
         m,
         history.get(m.id),
         m.sourceRefs.map((ref) => sourceById.get(ref.sourceId)),
+        (history.get(m.id) ?? []).flatMap((v) =>
+          v.snapshot.sourceRefs.map((ref) => sourceById.get(ref.sourceId)),
+        ),
       ]),
     );
   }
@@ -196,9 +199,6 @@ if (
   previous.shared === common &&
   previous.refs &&
   previous.pages &&
-  Object.entries(previous.pages).every(
-    ([id, entry]) => entry?.input && entry.input === signatures[id],
-  ) &&
   Object.entries(previous.refs).every(([id, digest]) => refs[id] === digest)
 ) {
   for (const id of ids) {
