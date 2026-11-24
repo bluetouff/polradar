@@ -1,0 +1,148 @@
+---
+import type { GetStaticPaths, Page } from 'astro';
+import Base from '../../../layouts/Base.astro';
+import ParliamentaryCard from '../../../components/ParliamentaryCard.astro';
+import { register, registerIndex } from '../../../lib/parliamentary-register';
+import type { ParliamentaryBallot } from '../../../lib/parliamentary-register';
+import '../../../styles/parliamentary-register.css';
+
+export const getStaticPaths = (({ paginate }) =>
+  paginate(register.scrutins, { pageSize: 30 })) satisfies GetStaticPaths;
+interface Props {
+  page: Page<ParliamentaryBallot>;
+}
+const { page } = Astro.props;
+const counts = new Intl.NumberFormat('fr-FR');
+const people = Object.entries(registerIndex.personnes).sort(([, a], [, b]) =>
+  a.nom.localeCompare(b.nom, 'fr'),
+);
+const title = 'Registre des scrutins de l’Assemblée nationale';
+---
+
+<Base
+  title={page.currentPage === 1 ? title : `${title} · page ${page.currentPage}`}
+  section="/votes/"
+  description="Retrouvez les positions individuelles de députés suivis par Polradar dans les scrutins de 2017 à 2024, avec les résultats, les mises au point et les relevés de séance."
+>
+  <header class="parl-head">
+    <a href="/votes/">← Propositions et votes passés</a>
+    <h1>{title}</h1>
+    <p>
+      De juillet 2017 à juin 2024, les votes enregistrés des députés suivis par
+      Polradar.
+    </p>
+    <dl>
+      <div>
+        <dt>Scrutins</dt>
+        <dd>{counts.format(registerIndex.scrutins)}</dd>
+      </div>
+      <div>
+        <dt>Positions nominatives</dt>
+        <dd>{counts.format(registerIndex.positions)}</dd>
+      </div>
+      <div>
+        <dt>Députés documentés</dt>
+        <dd>{people.length}</dd>
+      </div>
+    </dl>
+  </header>
+  <form class="parl-search" data-parl-search hidden>
+    <label>
+      Objet ou numéro du scrutin
+      <input
+        name="objet"
+        type="search"
+        maxlength="160"
+        placeholder="Immigration, retraites, 3213…"
+      />
+    </label>
+    <label>
+      Député
+      <select name="depute">
+        <option value="">Tous les députés</option>
+        {people.map(([id, p]) => (
+          <option value={id}>{p.nom}</option>
+        ))}
+      </select>
+    </label>
+    <label>
+      Législature
+      <select name="legislature">
+        <option value="">Toutes les législatures</option>
+        <option value="15">XVe · 2017 à 2022</option>
+        <option value="16">XVIe · 2022 à 2024</option>
+      </select>
+    </label>
+    <button class="button" type="submit">
+      Rechercher
+    </button>
+    <button class="button" type="reset">
+      Effacer
+    </button>
+  </form>
+  <section aria-label="Scrutins" id="resultats">
+    <p role="status" class="parl-status" data-parl-status aria-live="polite">
+      Du plus récent au plus ancien · page {page.currentPage} sur{' '}
+      {page.lastPage}
+    </p>
+    <div data-parl-static>
+      <div class="parl-grid">
+        {page.data.map((ballot) => (
+          <ParliamentaryCard ballot={ballot} />
+        ))}
+      </div>
+      <nav class="parl-nav" aria-label="Pages du registre">
+        {page.url.prev && (
+          <a class="button" href={`${page.url.prev}#resultats`}>
+            ← Page précédente
+          </a>
+        )}
+        <span>
+          Page {page.currentPage} sur {page.lastPage}
+        </span>
+        {page.url.next && (
+          <a class="button" href={`${page.url.next}#resultats`}>
+            Page suivante →
+          </a>
+        )}
+      </nav>
+    </div>
+    <div data-parl-filtered hidden>
+      <div class="parl-grid" data-parl-grid></div>
+      <nav class="parl-nav" aria-label="Pages des résultats" data-parl-nav>
+        <button type="button" class="button" data-parl-prev>
+          ← Page précédente
+        </button>
+        <span data-parl-current></span>
+        <button type="button" class="button" data-parl-next>
+          Page suivante →
+        </button>
+      </nav>
+    </div>
+  </section>
+  <aside class="parl-foot">
+    <h2>Lire et réutiliser les votes</h2>
+    <p>
+      Chaque position reprend le relevé de séance et le groupe du député à cette
+      date. Une mise au point ultérieure figure à côté du vote enregistré. Pour
+      une motion de censure, l’Assemblée recense uniquement les voix favorables.
+    </p>
+    <div>
+      <a href="/api/parlement/index.json">
+        Index et archives mensuelles (JSON)
+      </a>
+      <a
+        href="/api/parlement/assemblee.json"
+        download="polradar-scrutins-assemblee.json"
+      >
+        Télécharger tous les scrutins (JSON)
+      </a>
+      <a href={register.licenceSource} rel="noreferrer">
+        Licence des données de l’Assemblée ↗
+      </a>
+    </div>
+  </aside>
+</Base>
+<script>
+  import '../../../scripts/parliamentary-register';
+</script>
