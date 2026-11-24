@@ -323,4 +323,22 @@ document.querySelector('#referral-more').addEventListener('click', () => {
   referralLimit += 20;
   if (snapshot) render();
 });
+// A GoAccess-only installation has no Search Console report.
+const googleReport = document.getElementById('google-report');
+if (googleReport) {
+  fetch('google.html', {
+    method: 'HEAD',
+    cache: 'no-store',
+    credentials: 'same-origin',
+    redirect: 'error',
+  })
+    .then((response) => {
+      if (
+        response.ok &&
+        response.headers.get('Content-Type')?.startsWith('text/html')
+      )
+        googleReport.hidden = false;
+    })
+    .catch(() => {});
+}
 load();

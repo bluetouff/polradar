@@ -1,0 +1,10 @@
+[Unit]
+Description=Actualisation quotidienne de Google Search Console pour Polradar
+
+[Timer]
+OnCalendar=*-*-* 18:15:00 Europe/Paris
+Persistent=true
+AccuracySec=1min
+
+[Install]
+WantedBy=timers.target

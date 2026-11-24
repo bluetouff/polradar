@@ -1,0 +1,685 @@
+<section class="mcp-usage" data-mcp-usage aria-label="Appels aux outils">
+  <header class="mcp-usage-head">
+    <div>
+      <h2>Appels aux outils</h2>
+      <p data-period role="status">
+        Les graphiques nécessitent JavaScript.
+      </p>
+    </div>
+    <a href="https://polradar.fr/api/mcp-stats.json">Données JSON</a>
+  </header>
+  <div class="mcp-usage-panels" data-panels hidden>
+    <section class="mcp-days" aria-label="Activité quotidienne">
+      <header class="mcp-days-head">
+        <h3>Appels par jour</h3>
+        <p>
+          <strong data-total></strong> <span data-total-label></span>
+        </p>
+      </header>
+      <div class="mcp-graph" data-graph aria-hidden="true">
+        <div class="mcp-y" data-axis></div>
+        <svg
+          class="mcp-plot"
+          viewBox="0 0 1000 160"
+          preserveAspectRatio="none"
+          focusable="false"
+          data-plot
+        ></svg>
+        <div class="mcp-x" data-dates></div>
+      </div>
+      <p class="mcp-zero" data-zero hidden>
+        Aucun appel enregistré sur cette période.
+      </p>
+      <ul class="mcp-legend" data-legend aria-label="Appels par résultat"></ul>
+      <details class="mcp-history">
+        <summary>Voir les chiffres par jour</summary>
+        <table>
+          <caption class="mcp-sr">
+            Nombre d’appels par jour UTC et par résultat
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Avec résultat</th>
+              <th scope="col">Sans résultat</th>
+              <th scope="col">Erreurs</th>
+            </tr>
+          </thead>
+          <tbody data-history></tbody>
+        </table>
+      </details>
+    </section>
+    <section class="mcp-tools" aria-label="Appels par outil">
+      <h3>Par outil</h3>
+      <ul data-tools></ul>
+    </section>
+  </div>
+</section>
+
+<script>
+  const outcomes = [
+    { key: 'success', label: 'Avec résultat' },
+    { key: 'empty', label: 'Sans résultat' },
+    { key: 'error', label: 'Erreurs' },
+  ] as const;
+  const names = new Map([
+    ['polradar_search', 'Recherche dans le corpus'],
+    ['polradar_measure', 'Fiche d’une mesure'],
+    ['polradar_candidates', 'Liste des candidats'],
+    ['polradar_corpus', 'Vue d’ensemble du corpus'],
+    ['polradar_donnees', 'Sondages, économie, agenda et budgets'],
+  ]);
+  type Counts = Record<(typeof outcomes)[number]['key'], number>;
+  type Day = Counts & { date: string };
+  type Tool = Counts & { name: string };
+  const dayMs = 86400000;
+  const number = new Intl.NumberFormat('fr-FR');
+  const compact = new Intl.NumberFormat('fr-FR', { notation: 'compact' });
+  const shortDate = new Intl.DateTimeFormat('fr-FR', {
+    day: 'numeric',
+    month: 'short',
+    timeZone: 'UTC',
+  });
+  const longDate = new Intl.DateTimeFormat('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+  const total = (row: Counts) => row.success + row.empty + row.error;
+
+  function record(value: unknown): value is Record<string, unknown> {
+    return value !== null && typeof value === 'object' && !Array.isArray(value);
+  }
+
+  function validCounts(
+    value: unknown,
+  ): value is Counts & Record<string, unknown> {
+    if (!record(value)) return false;
+    return (
+      outcomes.every(
+        ({ key }) =>
+          typeof value[key] === 'number' &&
+          Number.isSafeInteger(value[key]) &&
+          value[key] >= 0,
+      ) && Number.isSafeInteger(total(value as Counts))
+    );
+  }
+
+  function utcTime(value: unknown) {
+    if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value))
+      return NaN;
+    const time = Date.parse(value + 'T00:00:00Z');
+    return Number.isFinite(time) &&
+      new Date(time).toISOString().slice(0, 10) === value
+      ? time
+      : NaN;
+  }
+
+  function readReport(value: unknown) {
+    if (
+      !record(value) ||
+      value.status !== 'available' ||
+      !Array.isArray(value.days) ||
+      !Array.isArray(value.tools)
+    )
+      return;
+    const since = utcTime(value.since),
+      through = utcTime(value.through);
+    const span = 1 + (through - since) / dayMs;
+    if (
+      !Number.isInteger(span) ||
+      span < 1 ||
+      span > 30 ||
+      value.days.length !== span ||
+      value.tools.length > names.size
+    )
+      return;
+    const days: Day[] = [],
+      tools: Tool[] = [];
+    for (const row of value.days) {
+      if (
+        !validCounts(row) ||
+        typeof row.date !== 'string' ||
+        !Number.isFinite(utcTime(row.date))
+      )
+        return;
+      days.push({
+        date: row.date,
+        success: row.success,
+        empty: row.empty,
+        error: row.error,
+      });
+    }
+    days.sort((a, b) => a.date.localeCompare(b.date));
+    if (days.some((row, i) => utcTime(row.date) !== since + i * dayMs)) return;
+    const seen = new Set<string>();
+    for (const row of value.tools) {
+      if (
+        !validCounts(row) ||
+        typeof row.name !== 'string' ||
+        !names.has(row.name) ||
+        seen.has(row.name)
+      )
+        return;
+      seen.add(row.name);
+      tools.push({
+        name: row.name,
+        success: row.success,
+        empty: row.empty,
+        error: row.error,
+      });
+    }
+    const totals: Counts = { success: 0, empty: 0, error: 0 };
+    for (const day of days)
+      for (const { key } of outcomes) totals[key] += day[key];
+    if (!Number.isSafeInteger(total(totals))) return;
+    for (const { key } of outcomes) {
+      const byTool = tools.reduce((sum, row) => sum + row[key], 0);
+      if (
+        byTool > totals[key] ||
+        (tools.length === names.size && byTool !== totals[key])
+      )
+        return;
+    }
+    return { since, through, days, tools, totals };
+  }
+
+  function html<K extends keyof HTMLElementTagNameMap>(tag: K, text?: string) {
+    const element = document.createElement(tag);
+    if (text !== undefined) element.textContent = text;
+    return element;
+  }
+
+  function svg<K extends keyof SVGElementTagNameMap>(
+    tag: K,
+    attributes: Record<string, number | string> = {},
+  ) {
+    const element = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (const [key, value] of Object.entries(attributes))
+      element.setAttribute(key, String(value));
+    return element;
+  }
+
+  function drawDays(panel: HTMLElement, days: Day[]) {
+    const plot = panel.querySelector<SVGSVGElement>('[data-plot]')!;
+    const axis = panel.querySelector<HTMLElement>('[data-axis]')!;
+    const dates = panel.querySelector<HTMLElement>('[data-dates]')!;
+    const peak = Math.max(...days.map(total));
+    if (!peak) {
+      panel.querySelector<HTMLElement>('[data-graph]')!.hidden = true;
+      panel.querySelector<HTMLElement>('[data-zero]')!.hidden = false;
+      return;
+    }
+    const ceiling = peak === 1 ? 1 : Math.ceil(peak / 2) * 2;
+    for (const tick of ceiling === 1 ? [1, 0] : [ceiling, ceiling / 2, 0]) {
+      const y = 160 * (1 - tick / ceiling);
+      const label = html(
+        'span',
+        tick >= 10000 ? compact.format(tick) : number.format(tick),
+      );
+      label.title = number.format(tick);
+      axis.append(label);
+      plot.append(svg('line', { x1: 0, y1: y, x2: 1000, y2: y }));
+    }
+    const slot = 1000 / days.length,
+      width = Math.min(64, slot * 0.68);
+    days.forEach((day, i) => {
+      const group = svg('g');
+      const tooltip = svg('title');
+      tooltip.textContent =
+        longDate.format(utcTime(day.date)) +
+        ' · ' +
+        outcomes
+          .map(({ key, label }) => label + ' ' + number.format(day[key]))
+          .join(' · ');
+      group.append(tooltip);
+      let stacked = 0;
+      for (const { key } of outcomes) {
+        if (day[key] === 0) continue;
+        stacked += day[key];
+        group.append(
+          svg('rect', {
+            x: (i + 0.5) * slot - width / 2,
+            y: 160 * (1 - stacked / ceiling),
+            width,
+            height: (160 * day[key]) / ceiling,
+            class: 'mcp-fill-' + key,
+          }),
+        );
+      }
+      plot.append(group);
+      const marker = html('span');
+      if (
+        i === 0 ||
+        i === days.length - 1 ||
+        (days.length >= 7 && i === Math.floor(days.length / 2))
+      ) {
+        const time = html('time', shortDate.format(utcTime(day.date)));
+        time.dateTime = day.date;
+        marker.append(time);
+      }
+      dates.append(marker);
+    });
+    dates.toggleAttribute('data-many', days.length > 5);
+  }
+
+  function drawTools(panel: HTMLElement, tools: Tool[]) {
+    const list = panel.querySelector<HTMLElement>('[data-tools]')!;
+    const byName = new Map(tools.map((row) => [row.name, row]));
+    const peak = Math.max(0, ...tools.map(total));
+    const entries = [...names].sort(
+      ([a], [b]) =>
+        (byName.has(b) ? total(byName.get(b)!) : -1) -
+        (byName.has(a) ? total(byName.get(a)!) : -1),
+    );
+    for (const [name, label] of entries) {
+      const item = html('li'),
+        row = byName.get(name);
+      if (!row) {
+        const missing = html('p');
+        missing.append(html('span', label), html('small', 'Non renseigné'));
+        item.append(missing);
+      } else {
+        const detail = html('details'),
+          summary = html('summary'),
+          tally = html('strong', number.format(total(row)));
+        tally.append(
+          Object.assign(html('span', total(row) === 1 ? ' appel' : ' appels'), {
+            className: 'mcp-sr',
+          }),
+        );
+        const bar = svg('svg', {
+          viewBox: '0 0 100 4',
+          preserveAspectRatio: 'none',
+          'aria-hidden': 'true',
+          focusable: 'false',
+        });
+        bar.append(
+          svg('rect', {
+            x: 0,
+            y: 0,
+            width: peak ? (100 * total(row)) / peak : 0,
+            height: 4,
+          }),
+        );
+        summary.append(html('span', label), tally, bar);
+        const breakdown = html('dl');
+        for (const { key, label: status } of outcomes) {
+          const pair = html('div');
+          pair.append(html('dt', status), html('dd', number.format(row[key])));
+          breakdown.append(pair);
+        }
+        detail.append(summary, breakdown);
+        item.append(detail);
+      }
+      list.append(item);
+    }
+  }
+
+  async function loadReport(panel: HTMLElement) {
+    const status = panel.querySelector<HTMLElement>('[data-period]')!;
+    status.textContent = 'Chargement des statistiques…';
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), 8000);
+    try {
+      const response = await fetch('/api/mcp-stats.json', {
+        credentials: 'omit',
+        redirect: 'error',
+        referrerPolicy: 'no-referrer',
+        signal: controller.signal,
+      });
+      if (!response.ok) throw new Error();
+      const report = readReport(await response.json());
+      if (!report) throw new Error();
+      const { since, through, days, tools, totals } = report;
+      const n = total(totals);
+      panel.querySelector<HTMLElement>('[data-total]')!.textContent =
+        number.format(n);
+      panel.querySelector<HTMLElement>('[data-total-label]')!.textContent =
+        n > 1 ? 'appels sur la période' : 'appel sur la période';
+      const legend = panel.querySelector<HTMLElement>('[data-legend]')!;
+      for (const { key, label } of outcomes) {
+        const item = html('li');
+        item.className = 'mcp-key-' + key;
+        item.append(html('span', label), html('b', number.format(totals[key])));
+        legend.append(item);
+      }
+      drawDays(panel, days);
+      const body =
+        panel.querySelector<HTMLTableSectionElement>('[data-history]')!;
+      for (const day of [...days].reverse()) {
+        const row = body.insertRow(),
+          head = html('th');
+        head.scope = 'row';
+        const time = html('time', shortDate.format(utcTime(day.date)));
+        time.dateTime = day.date;
+        head.append(time);
+        row.append(head);
+        for (const { key } of outcomes)
+          row.insertCell().textContent = number.format(day[key]);
+      }
+      drawTools(panel, tools);
+      status.textContent =
+        longDate
+          .formatRangeToParts(since, through)
+          .map((part) =>
+            part.type === 'day' && part.value === '1' ? '1er' : part.value,
+          )
+          .join('') + ' · UTC';
+      panel.querySelector<HTMLElement>('[data-panels]')!.hidden = false;
+    } catch {
+      status.textContent =
+        'Les statistiques d’usage sont momentanément indisponibles.';
+    } finally {
+      window.clearTimeout(timer);
+    }
+  }
+
+  document
+    .querySelectorAll<HTMLElement>('[data-mcp-usage]')
+    .forEach(loadReport);
+</script>
+
+<style is:global>
+  .mcp-usage {
+    margin-block: clamp(1.25rem, 3vw, 2.3rem);
+    color: var(--ink);
+  }
+  .mcp-usage [hidden] {
+    display: none !important;
+  }
+  .mcp-usage-head,
+  .mcp-days-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.45rem 1.1rem;
+  }
+  .mcp-usage-head {
+    margin-bottom: 1rem;
+  }
+  .mcp-usage h2,
+  .mcp-usage h3,
+  .mcp-usage-head p,
+  .mcp-days-head p {
+    margin: 0;
+  }
+  .mcp-usage h3 {
+    font-size: 1.05rem;
+  }
+  .mcp-usage-head p,
+  .mcp-usage-head a {
+    font-size: 0.87rem;
+  }
+  .mcp-usage-head p {
+    margin-top: 0.3rem;
+    color: var(--muted);
+  }
+  .mcp-usage-head a {
+    color: var(--blue);
+    text-underline-offset: 0.22em;
+  }
+  .mcp-usage-panels {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 1rem;
+  }
+  .mcp-days,
+  .mcp-tools {
+    min-width: 0;
+    padding: clamp(1rem, 2.6vw, 1.55rem);
+    border-radius: var(--card-radius, 0.9rem);
+  }
+  .mcp-days {
+    color: #f0faf9;
+    background: linear-gradient(120deg, #0f2836, #153e49);
+    border: 1px solid #2b535f;
+  }
+  .mcp-days h3 {
+    color: inherit;
+  }
+  .mcp-days-head {
+    align-items: center;
+  }
+  .mcp-days-head p {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    color: #c5dadd;
+    font-size: 0.8rem;
+  }
+  .mcp-days-head strong {
+    color: #f2faf9;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .mcp-graph {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 0.5rem 0.65rem;
+    margin: 1.35rem 0 1rem;
+  }
+  .mcp-y,
+  .mcp-x {
+    color: #c5dadd;
+    font: 0.72rem/1 var(--mono, monospace);
+  }
+  .mcp-y {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .mcp-y span:first-child {
+    transform: translateY(-50%);
+  }
+  .mcp-y span:last-child {
+    transform: translateY(50%);
+  }
+  .mcp-plot {
+    width: 100%;
+    height: 8.2rem;
+    overflow: visible;
+  }
+  .mcp-plot line {
+    stroke: #71919a;
+    stroke-width: 1;
+    stroke-opacity: 0.65;
+    vector-effect: non-scaling-stroke;
+  }
+  .mcp-fill-success {
+    fill: #67d1c0;
+  }
+  .mcp-fill-empty {
+    fill: #9dbbdb;
+  }
+  .mcp-fill-error {
+    fill: #f2a77f;
+  }
+  .mcp-x {
+    grid-column: 2;
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+  }
+  .mcp-x span {
+    display: flex;
+    white-space: nowrap;
+    justify-content: center;
+  }
+  .mcp-x[data-many] span:first-child {
+    justify-content: start;
+  }
+  .mcp-x[data-many] span:last-child {
+    justify-content: end;
+  }
+  .mcp-zero {
+    color: #d4e4e6;
+    margin: 1.2rem 0;
+  }
+  .mcp-legend,
+  .mcp-tools ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .mcp-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem 1.1rem;
+  }
+  .mcp-legend li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.78rem;
+    color: #deedef;
+  }
+  .mcp-legend li::before {
+    content: '';
+    width: 0.52rem;
+    height: 0.52rem;
+    border-radius: 2px;
+    background: var(--marker);
+  }
+  .mcp-key-success {
+    --marker: #67d1c0;
+  }
+  .mcp-key-empty {
+    --marker: #9dbbdb;
+  }
+  .mcp-key-error {
+    --marker: #f2a77f;
+  }
+  .mcp-history {
+    margin-top: 1rem;
+    border-top: 1px solid #48666f;
+    color: #e1eff0;
+  }
+  .mcp-history summary {
+    padding-top: 0.67rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+  }
+  .mcp-history summary:focus-visible {
+    outline-color: #9be3da;
+  }
+  .mcp-history table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.8rem 0 0;
+    font-size: 0.82rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .mcp-history th,
+  .mcp-history td {
+    padding: 0.48rem 0.18rem;
+    color: inherit;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #49636e;
+    text-align: right;
+  }
+  .mcp-history th:first-child {
+    text-align: left;
+  }
+  .mcp-tools {
+    background: var(--panel-gradient, #f3f8f8);
+    border: 1px solid var(--panel-edge, #a9bfc5);
+    color: var(--ink);
+  }
+  .mcp-tools h3 {
+    margin-bottom: 0.5rem;
+  }
+  .mcp-tools li + li {
+    border-top: 1px solid var(--line);
+  }
+  .mcp-tools summary,
+  .mcp-tools li > p {
+    display: grid;
+    align-items: baseline;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 0.4rem 0.6rem;
+    margin: 0;
+    padding: 0.7rem 0;
+    font-size: 0.91rem;
+  }
+  .mcp-tools summary {
+    cursor: pointer;
+    list-style: none;
+  }
+  .mcp-tools summary::-webkit-details-marker {
+    display: none;
+  }
+  .mcp-tools summary::after {
+    content: '';
+    width: 0.42rem;
+    height: 0.42rem;
+    border: solid var(--muted);
+    border-width: 0 1.5px 1.5px 0;
+    transform: translateY(-0.18em) rotate(45deg);
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .mcp-tools details[open] summary::after {
+    transform: rotate(225deg);
+  }
+  .mcp-tools strong {
+    font-variant-numeric: tabular-nums;
+  }
+  .mcp-tools summary svg {
+    width: 100%;
+    height: 0.28rem;
+    grid-column: 1 / -1;
+    border-radius: 0.3rem;
+    background: #d4e1e3;
+    fill: #287580;
+    display: block;
+  }
+  .mcp-tools dl {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem 1rem;
+    margin: 0 0 0.8rem;
+  }
+  .mcp-tools dt,
+  .mcp-tools small {
+    color: var(--muted);
+    font-size: 0.74rem;
+  }
+  .mcp-tools dd {
+    margin: 0;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .mcp-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+  @media (max-width: 52rem) {
+    .mcp-usage-panels {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media (forced-colors: active) {
+    .mcp-plot line {
+      stroke: GrayText;
+    }
+    .mcp-plot rect,
+    .mcp-tools rect {
+      fill: CanvasText;
+    }
+  }
+</style>

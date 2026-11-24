@@ -1,0 +1,93 @@
+name: Services Polradar
+on:
+  push:
+    branches: [main]
+    paths:
+      [
+        'mcp/**',
+        'deploy/operations/**',
+        'deploy/goaccess/**',
+        '.github/workflows/services.yml',
+        'tests/deploy/test_private_services.py',
+      ]
+  pull_request:
+    paths:
+      [
+        'mcp/**',
+        'deploy/operations/**',
+        'deploy/goaccess/**',
+        '.github/workflows/services.yml',
+        'tests/deploy/test_private_services.py',
+      ]
+  workflow_dispatch:
+permissions: {}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@d8cbb8045d7f43706b9177cceb36c1f91a6644d5 # v7.1.0
+        with:
+          go-version-file: mcp/go.mod
+          cache-dependency-path: mcp/go.sum
+      - name: Vérifier le service et le rapport privé
+        run: |
+          cd mcp
+          go mod verify
+          go vet ./...
+          go test -race ./...
+          cd ..
+          python3 -m unittest discover -s tests/deploy -p test_private_services.py -v
+      - name: Préparer les paquets sans identifiants
+        run: |
+          set -euo pipefail
+          for arch in amd64 arm64; do
+            (cd mcp && CGO_ENABLED=0 GOOS=linux GOARCH="$arch" go build -trimpath -ldflags='-s -w' -o "$RUNNER_TEMP/mcp-$arch" .)
+            python3 deploy/operations/package.py mcp --out artifacts/ --arch "$arch" --binary "$RUNNER_TEMP/mcp-$arch"
+          done
+          python3 deploy/operations/package.py gsc --out artifacts/
+          python3 deploy/operations/package.py launcher --out artifacts/
+          cd artifacts
+          sha256sum --check ./*.sha256
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        with:
+          name: services-operateur
+          path: artifacts/
+          retention-days: 7
+  publish:
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+      artifact-metadata: write
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: services-operateur
+          path: artifacts
+      - uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+        with:
+          subject-path: |
+            artifacts/*.tar.gz
+            artifacts/polradar-activer.sh
+      - name: Publier les paquets opérateur
+        working-directory: artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          sha256sum --check ./*.sha256
+          tag="services-$GITHUB_SHA"
+          if gh release view "$tag" >/dev/null 2>&1; then exit 0; fi
+          gh release create "$tag" ./*.tar.gz ./*.sha256 polradar-activer.sh --target "$GITHUB_SHA" --latest=false --title "Services ${GITHUB_SHA:0:12}" --notes "Serveur MCP public en lecture seule et rapport Search Console privé. Activation par l’opérateur."

@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import McpUsageChart from '../../components/McpUsageChart.astro';
+---
+
+<Base
+  title="Statistiques publiques du serveur MCP"
+  description="Appels traités par les outils MCP de Polradar sur les 30 derniers jours, par jour et par outil."
+>
+  <header class="page-title">
+    <h1>Activité du serveur MCP</h1>
+    <p>
+      Appels aux outils de Polradar sur les 30 derniers jours, en temps
+      universel (UTC).
+    </p>
+    <a class="inline-action" href="/mcp/">
+      Connecter un client MCP ↗
+    </a>
+  </header>
+  <McpUsageChart />
+  <section class="method" aria-labelledby="counted">
+    <h2 id="counted">Que compte le graphique ?</h2>
+    <p>
+      Chaque appel traité par un outil connu compte une fois, y compris les
+      tests techniques. Un même client peut effectuer plusieurs appels. Les
+      visites du site et les demandes de connexion au serveur sont exclues.
+    </p>
+    <p>
+      Les compteurs conservent le jour, le nom de l’outil et l’issue de l’appel.
+      Les recherches, les identifiants de fiches et les adresses IP ne figurent
+      pas dans les statistiques.
+    </p>
+  </section>
+</Base>
+<style>
+  .method {
+    margin-block: 1.35rem;
+    padding: clamp(1rem, 2vw, 1.6rem);
+    border-inline-start: 3px solid var(--accent);
+    background: var(--panel-gradient);
+    border-radius: 0.45rem;
+  }
+  .method h2 {
+    font-size: 1.12rem;
+    margin: 0 0 0.55rem;
+  }
+  .method p {
+    max-width: 86ch;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  .method p + p {
+    margin-top: 0.45rem;
+  }
+</style>

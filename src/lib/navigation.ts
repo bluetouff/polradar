@@ -49,6 +49,7 @@ export const groups = [
     icon: 'sondages',
     links: [
       ['/statistiques/', 'Le corpus en chiffres', 'donnees'],
+      ['/mcp/statistiques/', 'Activité du serveur MCP', 'sondages'],
       ['/mises-a-jour/', 'Mises à jour', 'clock'],
       ['/economie/', 'Indicateurs économiques', 'markets'],
       [
@@ -72,6 +73,7 @@ export const groups = [
       ['/dossiers/', 'Dossiers', 'source'],
       ['/veille/', 'Veille quotidienne', 'veille'],
       ['/sources/', 'Catalogue des sources', 'source'],
+      ['/mcp/', 'Serveur MCP', 'layers'],
       ['/historique/', 'Historique du corpus', 'historique'],
       ['/methode/', 'Méthode', 'check'],
       ['/transparence/', 'À propos de Polradar', 'institutions'],

@@ -1,0 +1,14 @@
+[Unit]
+Description=Socket locale du serveur MCP de Polradar
+
+[Socket]
+ListenStream=/run/polradar-mcp.sock
+SocketUser=root
+SocketGroup=www-data
+SocketMode=0660
+Accept=no
+RemoveOnStop=yes
+Backlog=64
+
+[Install]
+WantedBy=sockets.target

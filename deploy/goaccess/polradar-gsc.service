@@ -1,0 +1,30 @@
+[Unit]
+Description=Recherche Google, rapport privé quotidien de Polradar
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=polradargsc
+Group=polradargsc
+ExecStart=/usr/bin/python3 -I /usr/local/lib/polradar-gsc/gsc_collect.py
+LoadCredential=reader.json:/etc/polradar-gsc/reader.json
+StateDirectory=polradar-gsc
+StateDirectoryMode=0700
+ReadWritePaths=/var/lib/polradar-gsc-report
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+CapabilityBoundingSet=
+LockPersonality=true
+RestrictSUIDSGID=true
+InaccessiblePaths=-/etc/apache2 -/var/log/polradar -/var/lib/polradar-stats -/var/lib/polradar-mcp
+TimeoutStartSec=150
+MemoryMax=128M
