@@ -1,0 +1,196 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { studioItems, studioFamilies } from '../../lib/studio';
+import '../../styles/studio.css';
+const first = studioItems.find((i) => i.id === 'economie-inflation')!;
+const families = Object.entries(studioFamilies)
+  .map(([id, name]) => ({
+    id,
+    name,
+    items: studioItems
+      .filter((i) => i.family === id)
+      .sort((a, b) => a.label.localeCompare(b.label, 'fr')),
+  }))
+  .filter((f) => f.items.length);
+---
+
+<Base
+  title="Studio graphique"
+  section="/studio/"
+  description="Préparer un graphique de la présidentielle, télécharger ses données et publier une édition datée ou actualisée."
+>
+  <header class="studio-title">
+    <span class="studio-mark">
+      <Icon name="sondages" />
+    </span>
+    <div>
+      <h1>Studio graphique</h1>
+      <p>
+        Un graphique pour votre article, votre cours ou votre dossier.
+        Choisissez les données et le format.
+      </p>
+    </div>
+    <a href="/presse/">
+      Espace presse <Icon name="arrow" />
+    </a>
+  </header>
+  <div class="studio-desk" id="studio">
+    <div class="studio-controls" id="studio-controls" hidden>
+      <section>
+        <h2>Données</h2>
+        <label for="studio-family">Sujet</label>
+        <select id="studio-family">
+          {families.map((f) => (
+            <option value={f.id}>{f.name}</option>
+          ))}
+        </select>
+        <label for="studio-item">Série, dossier ou période</label>
+        <select id="studio-item">
+          {families.map((f) => (
+            <optgroup label={f.name} data-family={f.id}>
+              {f.items.map((i) => (
+                <option value={i.id} selected={i.id === first.id}>
+                  {i.label}
+                </option>
+              ))}
+            </optgroup>
+          ))}
+        </select>
+      </section>
+      <section>
+        <h2>Mise en page</h2>
+        <div class="studio-pair">
+          <label>
+            Format
+            <select id="studio-shape">
+              <option value="source">Original</option>
+              <option value="horizontal">Horizontal · 16∶9</option>
+              <option value="carre">Carré · 1∶1</option>
+              <option value="vertical">Vertical · 4∶5</option>
+            </select>
+          </label>
+          <label>
+            Largeur
+            <select id="studio-width">
+              <option value="640">640 px</option>
+              <option value="960" selected>
+                960 px
+              </option>
+              <option value="1200">1 200 px</option>
+            </select>
+          </label>
+        </div>
+        <label class="studio-check">
+          <input id="studio-caption" type="checkbox" checked /> Légende et liens
+          dans le HTML
+        </label>
+      </section>
+      <section>
+        <h2>Publier le graphique</h2>
+        <label for="studio-mode">Édition à intégrer</label>
+        <select id="studio-mode">
+          <option value="figee">Figée · données de cette édition</option>
+          <option value="actualisee">Actualisée · lien permanent</option>
+        </select>
+        <p id="studio-mode-note">
+          L’édition figée conserve l’image de cette publication.
+        </p>
+        <label for="studio-code">Code à intégrer</label>
+        <textarea
+          id="studio-code"
+          rows="2"
+          readonly
+          spellcheck="false"
+        ></textarea>
+        <button type="button" id="studio-copy">
+          <Icon name="source" />
+          Copier le code
+        </button>
+      </section>
+    </div>
+    <p class="studio-prompt" id="studio-prompt" hidden>
+      Choisissez une série, un dossier ou une période pour afficher son
+      graphique.
+    </p>
+    <article class="studio-proof" id="studio-proof">
+      <div class="studio-proof-head">
+        <div>
+          <p>Aperçu de l’édition</p>
+          <h2 id="studio-title">{first.graphic.title}</h2>
+        </div>
+        <span id="studio-date">{first.graphic.dateLabel}</span>
+      </div>
+      <figure>
+        <img
+          id="studio-img"
+          src={first.live}
+          width={first.graphic.width}
+          height={first.graphic.height}
+          alt={first.graphic.alt}
+        />
+      </figure>
+      <div class="studio-save">
+        <h3>Télécharger l’édition</h3>
+        <div id="studio-formats" hidden>
+          {['SVG', 'PNG', 'CSV', 'HTML autonome'].map((f, i) => (
+            <button
+              type="button"
+              data-format={['svg', 'png', 'csv', 'html'][i]}
+            >
+              <Icon name="download" />
+              {f}
+            </button>
+          ))}
+        </div>
+        <noscript>
+          <a href={first.live} download="polradar-inflation.svg">
+            Télécharger le SVG de l’inflation
+          </a>
+        </noscript>
+      </div>
+      <details class="studio-refs" open>
+        <summary>Sources et méthode</summary>
+        <ul id="studio-sources">
+          {first.graphic.sources.map((s) => (
+            <li>
+              <a href={s.url} rel="noreferrer">
+                {s.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a id="studio-page" href={first.graphic.page}>
+          Lire le dossier Polradar <Icon name="arrow" />
+        </a>
+      </details>
+      <div id="studio-table" class="studio-table"></div>
+    </article>
+    <p id="studio-status" role="status" aria-live="polite"></p>
+  </div>
+  <noscript>
+    <section class="studio-noscript">
+      <h2>Graphiques à télécharger</h2>
+      {families.map((f) => (
+        <details>
+          <summary>
+            {f.name} ({f.items.length})
+          </summary>
+          <ul>
+            {f.items.map((i) => (
+              <li>
+                <a href={i.live} download>
+                  {i.label} · SVG
+                </a>{' '}
+                · <a href={i.graphic.page}>Dossier et sources</a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      ))}
+    </section>
+  </noscript>
+</Base>
+<script>
+  import '../../scripts/studio';
+</script>

@@ -1,0 +1,313 @@
+.studio-title {
+  border-radius: 1rem;
+  background: linear-gradient(110deg, #112a3a, #174851 76%, #21616b);
+  padding: clamp(1.2rem, 3vw, 2.3rem);
+  color: #f2fbfc;
+  display: flex;
+  gap: 1.15rem;
+  align-items: center;
+  margin-bottom: 1.1rem;
+}
+.studio-title h1,
+.studio-title h2 {
+  color: #fff;
+  margin: 0;
+}
+.studio-title h1 {
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
+}
+.studio-title p {
+  margin: 0.35rem 0 0;
+  color: #c1dce0;
+  max-width: 56ch;
+}
+.studio-title > a {
+  margin-left: auto;
+  color: #d2edf0;
+  white-space: nowrap;
+}
+.studio-title a,
+.studio-refs > a,
+.studio-save button,
+.studio-controls button {
+  display: inline-flex;
+  gap: 0.45rem;
+  align-items: center;
+}
+.studio-title .icon,
+.studio-save .icon,
+.studio-refs .icon,
+.studio-controls .icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  flex: none;
+}
+.studio-mark {
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid #49818a;
+  display: grid;
+  place-items: center;
+  border-radius: 0.65rem;
+}
+.studio-mark .icon {
+  width: 1.7rem;
+  height: 1.7rem;
+  color: #9ed8da;
+}
+.studio-desk {
+  display: grid;
+  grid-template-columns: minmax(15.5rem, 0.78fr) minmax(0, 1.8fr);
+  align-items: start;
+  gap: clamp(0.85rem, 2vw, 1.7rem);
+}
+.studio-controls,
+.studio-proof,
+.studio-noscript {
+  background: #f9fcfc;
+  border: 1px solid #aac1c7;
+  border-radius: 0.85rem;
+  min-width: 0;
+}
+.studio-controls section,
+.studio-save,
+.studio-refs,
+.studio-proof-head,
+.studio-table > details,
+.studio-noscript {
+  padding: clamp(1rem, 2vw, 1.55rem);
+}
+.studio-controls section + section,
+.studio-save,
+.studio-refs,
+.studio-table > details {
+  border-top: 1px solid #cedde0;
+}
+.studio-controls h2,
+.studio-proof h2,
+.studio-save h3,
+.studio-noscript h2 {
+  margin: 0;
+  font-size: 1.12rem;
+}
+.studio-controls label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.86rem;
+  margin-top: 0.8rem;
+}
+.studio-controls select,
+.studio-controls textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin: 0.25rem 0 0;
+  border: 1px solid #95afb6;
+  background-color: white;
+  color: #173543;
+  border-radius: 0.35rem;
+}
+.studio-controls select {
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 0.63rem 2rem 0.63rem 0.65rem;
+  min-height: 44px;
+}
+.studio-controls textarea {
+  padding: 0.55rem;
+  font: 0.75rem/1.45 var(--mono);
+  resize: vertical;
+}
+.studio-pair {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  gap: 0.55rem;
+}
+.studio-controls .studio-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  font-weight: 450;
+}
+.studio-check input {
+  width: 1.2rem;
+  height: 1.2rem;
+  accent-color: #155864;
+}
+.studio-controls button,
+.studio-save button {
+  margin-top: 0.65rem;
+  padding: 0.5rem 0.76rem;
+  background: #e8f2f3;
+  border: 1px solid #93b2b7;
+  border-radius: 0.35rem;
+  font: inherit;
+  font-size: 0.88rem;
+  color: #173e49;
+  min-height: 44px;
+  cursor: pointer;
+}
+.studio-controls button:hover,
+.studio-save button:hover {
+  background: #d6e9ea;
+}
+.studio-controls p,
+.studio-refs li,
+.studio-refs > a {
+  font-size: 0.87rem;
+}
+.studio-controls p {
+  margin: 0.6rem 0;
+  color: #47626f;
+}
+.studio-proof-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.studio-proof-head p {
+  margin: 0 0 0.3rem;
+  color: #34636d;
+  font: 0.77rem var(--mono);
+}
+.studio-proof-head h2 {
+  font-size: clamp(1.05rem, 2.1vw, 1.6rem);
+  overflow-wrap: anywhere;
+}
+.studio-proof-head > span {
+  color: #405e67;
+  font: 0.75rem var(--mono);
+  text-align: right;
+  max-width: 40%;
+}
+.studio-proof figure {
+  padding: clamp(0.65rem, 2vw, 1.55rem);
+  margin: 0;
+  background-color: #dce8e9;
+  background-image: linear-gradient(135deg, #e5eeed, #c6dadd);
+  display: grid;
+  place-items: center;
+  border-block: 1px solid #bdd1d4;
+}
+.studio-proof figure img {
+  width: 100%;
+  max-width: 40rem;
+  max-height: 36rem;
+  object-fit: contain;
+}
+.studio-save {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+.studio-save button {
+  margin: 0;
+}
+.studio-save > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+.studio-refs summary,
+.studio-table summary,
+.studio-noscript summary {
+  font-weight: 600;
+  cursor: pointer;
+}
+.studio-refs ul {
+  margin: 0.6rem 0;
+  padding-left: 1.15rem;
+}
+.studio-refs a {
+  overflow-wrap: anywhere;
+}
+.studio-refs > a {
+  margin-top: 0.3rem;
+}
+.studio-table .studio-scroll {
+  max-height: 25rem;
+  overflow: auto;
+  margin-top: 0.75rem;
+}
+.studio-table table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.82rem;
+}
+.studio-table th,
+.studio-table td {
+  padding: 0.45rem 0.55rem;
+  text-align: left;
+  border-bottom: 1px solid #c7d6da;
+}
+.studio-table td {
+  max-width: 26rem;
+  overflow-wrap: anywhere;
+}
+.studio-table td a {
+  font-size: 0.76rem;
+}
+.studio-desk > [role='status'] {
+  grid-column: 1/-1;
+  margin: 0;
+  color: #1a5965;
+  min-height: 1.3rem;
+}
+.studio-desk [hidden] {
+  display: none;
+}
+.studio-noscript {
+  margin: 1rem 0;
+}
+.studio-noscript details {
+  padding: 0.65rem 0;
+}
+.studio-proof:first-child,
+.studio-controls[hidden] + .studio-proof {
+  grid-column: 1/-1;
+}
+@media (max-width: 760px) {
+  .studio-desk {
+    grid-template-columns: 1fr;
+  }
+  .studio-title {
+    align-items: start;
+    flex-wrap: wrap;
+  }
+  .studio-title > div {
+    flex: 1;
+    min-width: 9rem;
+  }
+  .studio-title > a {
+    margin-left: 0;
+  }
+  .studio-proof figure img {
+    max-height: 32rem;
+  }
+  .studio-controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  }
+  .studio-controls section + section {
+    border-top: 1px solid #cedde0;
+  }
+  .studio-proof-head > span {
+    max-width: 37%;
+  }
+}
+.studio-desk:has(.studio-controls[hidden]) > .studio-proof {
+  grid-column: 1/-1;
+}
+.studio-prompt {
+  border: 1px dashed #91aeb4;
+  border-radius: 0.75rem;
+  background: #eef5f5;
+  padding: 2rem;
+  margin: 0;
+  color: #31535e;
+  align-self: start;
+}

@@ -773,6 +773,23 @@ const defs = [
     bars(themeBars.slice(0, 6)),
   ],
   [
+    'studio',
+    '/studio/',
+    'Graphiques à publier',
+    'Studio\ngraphique',
+    'Une édition datée ou actualisée pour vos publications.',
+    'navy',
+    tiles(
+      [
+        ['Scénarios de sondage', polls.length],
+        ['Scrutins', votes.ballots.length],
+        ['Séries Eurostat', read('economy-series').length],
+        ['Générations', read('retirement-comparison').cohorts.length],
+      ],
+      'Graphiques disponibles',
+    ),
+  ],
+  [
     'presse',
     '/presse/',
     'Présidentielle française 2027',

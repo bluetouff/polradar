@@ -48,6 +48,7 @@ export const groups = [
     name: 'Données',
     icon: 'sondages',
     links: [
+      ['/studio/', 'Studio graphique', 'sondages'],
       ['/statistiques/', 'Le corpus en chiffres', 'donnees'],
       ['/mcp/statistiques/', 'Activité du serveur MCP', 'sondages'],
       ['/mises-a-jour/', 'Mises à jour', 'clock'],
