@@ -1,5 +1,1170 @@
 [
   {
+    "checkedAt": "2026-11-24T03:10:42.101Z",
+    "collection": {
+      "run": "45214287061",
+      "attempt": 1
+    },
+    "candidates": [
+      "arthaud",
+      "asselineau",
+      "attal",
+      "billetdoux",
+      "branco",
+      "cheve",
+      "collovati",
+      "dupont-aignan",
+      "durif",
+      "egger",
+      "glucksmann",
+      "kazib",
+      "labib",
+      "lalanne",
+      "lassalle",
+      "legendre",
+      "lepen",
+      "lisnard",
+      "markovic",
+      "mathieu",
+      "melenchon",
+      "mikolajczak",
+      "mlekuz",
+      "philippe",
+      "philippot",
+      "polony",
+      "retailleau",
+      "riner",
+      "rohou",
+      "roussel",
+      "tondelier",
+      "villepin",
+      "zemmour"
+    ],
+    "sections": [
+      {
+        "id": "candidatures",
+        "status": "partiel",
+        "note": "99 résultats dans l’index d’actualité. 1 sur 2 références de la rubrique accessibles.",
+        "sources": ["lcp-candidatures-novembre", "cazeneuve-lettre"],
+        "changes": []
+      },
+      {
+        "id": "propositions",
+        "status": "partiel",
+        "note": "43 résultats dans l’index d’actualité. 12 sur 13 références de la rubrique accessibles.",
+        "sources": [
+          "villepin-chapitre-12",
+          "kazib-programme-campagne",
+          "lfi-health",
+          "lfi-school",
+          "lfi-climate",
+          "attal-school",
+          "attal-budget",
+          "philippe-pension",
+          "philippe-ecole",
+          "philippe-famille",
+          "retailleau-pension",
+          "retailleau-logement",
+          "retailleau-budget"
+        ],
+        "changes": []
+      },
+      {
+        "id": "agenda",
+        "status": "consulte",
+        "note": "28 résultats dans l’index d’actualité. 2 sur 2 références de la rubrique accessibles.",
+        "sources": ["agenda-kazib-paris", "pcf-loos-avion-decembre"],
+        "changes": []
+      },
+      {
+        "id": "breves",
+        "status": "consulte",
+        "note": "99 résultats dans l’index d’actualité. 5 sur 5 références de la rubrique accessibles.",
+        "sources": [
+          "lcp-candidatures-novembre",
+          "reconquete-paroles",
+          "npar-campagne-presidentielle",
+          "lo-actualites-presidentielle",
+          "attal-actualites-campagne"
+        ],
+        "changes": [
+          {
+            "title": "Réunion publique de François Asselineau à Carros (06) le 28/11/2026",
+            "path": "/breves/veille-233537b15f326bfe3e32/"
+          },
+          {
+            "title": "Samedi 28 novembre, conférence de presse et meeting du NPA-R de lancement de campagne : Selma Labib, une candidate ouvrière et révolutionnaire pour en finir avec le capitalisme !",
+            "path": "/breves/veille-894cb915038129bb6b69/"
+          },
+          {
+            "title": "Réunion publique à Lille, avec Selma Labib et Gaël Quirante",
+            "path": "/breves/veille-ff5018354e92a975326f/"
+          }
+        ]
+      },
+      {
+        "id": "votes",
+        "status": "consulte",
+        "note": "71 résultats dans l’index d’actualité. 2 sur 2 références de la rubrique accessibles.",
+        "sources": ["an-index-scrutins", "senat-seance-20-novembre"],
+        "changes": []
+      },
+      {
+        "id": "financements",
+        "status": "consulte",
+        "note": "24 résultats dans l’index d’actualité. 2 sur 2 références de la rubrique accessibles.",
+        "sources": ["cnccfp", "senat-budget-2027-contexte"],
+        "changes": []
+      },
+      {
+        "id": "droit",
+        "status": "consulte",
+        "note": "18 résultats dans l’index d’actualité. 4 sur 4 références de la rubrique accessibles.",
+        "sources": [
+          "service-public-dates-scrutins",
+          "cnil-actualites",
+          "assurance-retraite-age",
+          "service-public-csg-salaires"
+        ],
+        "changes": []
+      },
+      {
+        "id": "reperes",
+        "status": "consulte",
+        "note": "38 résultats dans l’index d’actualité. 2 sur 2 références de la rubrique accessibles.",
+        "sources": ["interieur-resultats-2022-t1", "ches-catalogue-europe"],
+        "changes": []
+      },
+      {
+        "id": "donnees",
+        "status": "partiel",
+        "note": "20 résultats dans l’index d’actualité. 4 sur 5 références de la rubrique accessibles.",
+        "sources": [
+          "sondages",
+          "eurostat-euro-indicateurs",
+          "arcom-hors-elections",
+          "inventaire-sru-2026",
+          "drees-apl-premier-recours-2024"
+        ],
+        "changes": []
+      },
+      {
+        "id": "declarations",
+        "status": "consulte",
+        "note": "16 résultats dans l’index d’actualité. 2 sur 2 références de la rubrique accessibles.",
+        "sources": ["insee-chomage-t3-2026", "senat-budget-2027-contexte"],
+        "changes": []
+      }
+    ],
+    "hosted": {
+      "run": "45317417658",
+      "attempt": 1,
+      "since": "2026-11-20",
+      "queries": [
+        {
+          "id": "arthaud",
+          "count": 8,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Perpignan/ Mercredi 25 novembre, 18H 30 : réunion publique de Nathalie Arthaud, porte-parole de Lutte ouvrière et candidate à l’élection présidentielle - Ouillade",
+              "date": "2026-11-23",
+              "article": "CBMiiwJBVV95cUxQQkV6cDlEV2g1SmIxZUlKZUJZRVNiT04xYS10Vlk0MUl6cndzb0NxeVQxWXhQbTRnQm1ya2hjc0pQOVdLRTk1Q0g4eURYSHd1cnNKeUxYQlpVUWlDWVU4MGZjLW9xR2NsNFpsbno3OGktb0Z0UjVTNkVDdnQxdTFudk5fRktsbzdIdzg3S3FLMERqQnIycWFQQUlBajR5Z3YyN0pMT2VxR0hCalhhcXJnbFhjM0ZMZmlXU2EyVzVfVkQ3VTZDaldWQm5DMXpBeTl1U2l1MXJGWjZHYzhvMTZ1SUtuVHFzajh2SGNoN1JRTjZ1WXFvTGlZMGw4SjFKUTlPSDJ3MzBMU3JBems",
+              "publisher": "ouillade.eu"
+            },
+            {
+              "title": "Nathalie Arthaud, candidate LO à la présidentielle 2027 : « Ce n’est pas tant la filière du bâtiment artisanal qu’il faut soutenir que la situation des travailleurs qu’elle menace. » - Le Moniteur",
+              "date": "2026-11-20",
+              "article": "CBMi2gJBVV95cUxNeXl3SXVlaVVleFNBRktFa1JSQ2UxZEVIVmZYdFRZUHlzTG5pUlVRREE3U056d1YtNGQzM19PUWo1d1FxUkxYbmNOQUdsWkc1QUhZU0Rkc29TSFhlY3N6U3QxS24wYUFfdG1kTU9QQ0N0X0E1dkJsWU5aN0cxMGRyVXVDODQ5NVVfVzNOUXdNTkxtbllWZ3NJVHhsdm5EWlppZUEtaDAxeWJrX2dmWmJORHNSWUxLLU5KVXBwdkEzbXl5TDQtWE1hRnl3ZzdubHVJMk5IRk1tV3V1WnJ0VHZCLS1RVDFYMlN3V0NGN1BSZHVGVVR3VWdPMndKUy1pOHZCV2otb2VQTnA1Z3BXQ1drd3RzZUMyTWxIWnRxWDFhQVpTZ0puZXJ1M1FheUtxelQ4ay0zV1R6UDJFSDNaaWJUWGN6TXZRLU5hTm5PZ2hSeVNoeExNUTBwVktB",
+              "publisher": "www.lemoniteur.fr"
+            }
+          ]
+        },
+        {
+          "id": "asselineau",
+          "count": 9,
+          "engine": "google",
+          "leads": []
+        },
+        {
+          "id": "attal",
+          "count": 37,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Edouard Philippe va déjeuner avec des députés du groupe de Gabriel Attal - l'Opinion",
+              "date": "2026-11-23",
+              "article": "CBMiqgFBVV95cUxPa1JrSnBRbm1IM3hNcnVFRTZsQWg2NjhpMU9JTTNSNzRwMUMzOG9weVN3WVBYcXZ4dEhkZnotbzFqejd2bV9MQ2w5Q0dUTmttNHlEWUpnWUNDRjBFTG5SbTFtQWplRWFWUWFBNFdLcVJFYndiY2dPdmZjY2poZHRsYU5EYnFqdklJR2ZZekNmTVJVenBmZmZ5LWVXSmNUb1FVMHZfczlKcllPUQ",
+              "publisher": "www.lopinion.fr"
+            },
+            {
+              "title": "Gabriel Attal, Édouard Philippe, Bruno Retailleau, David Lisnard: \"J'ai la conviction profonde qu'ils se regrouperont\", lance Jean-François Copé, maire LR de Meaux - BFM",
+              "date": "2026-11-23",
+              "article": "CBMi2wJBVV95cUxNUUxrd2FJT3FWdWhpeldHdVRRRC1fS1ZlUXc5UjllU1U4N3hON1VDemlyb05OUW5ibHRjQktyZWpXaVh5X2diX2tWcmxqMGZPRF9TUVRMZXFYQS1aeWwxYWpCenJIeUhPend6RWc4TEtOVHh1dXNNNmVIdmJSQXhVNE41dk94ZmpZa2FYWWRoVzduQ1JuZTFLTkJfTWpjNTdDOXc3U3ZCaGFLU1RGUkgyTURHdlF4Um1ldlQtM1FBbGY5cGdwQlQxcUNHaDVWRURQWVVEa1c2YlV2SER1ZmNNNzJ1YVdCVXpTMk5HMlJzQndsYUlFOXFFejQ5NXpjVEJvNHItMnlsYVl2X1FrZmNROWlpUkptdFpWQWl4MHJDZWliZ0JqRGRRTFNLMjZTa3MzQmxZUFRPTy1WTHVKQWdkaXNDeGJuSkxTSDVSWVkxX0wwd1hmRjl5dkNGUQ",
+              "publisher": "www.bfmtv.com"
+            }
+          ]
+        },
+        {
+          "id": "billetdoux",
+          "count": 0,
+          "engine": "google",
+          "leads": []
+        },
+        {
+          "id": "branco",
+          "count": 5,
+          "engine": "google",
+          "leads": []
+        },
+        {
+          "id": "cheve",
+          "count": 0,
+          "engine": "google",
+          "leads": []
+        },
+        {
+          "id": "collovati",
+          "count": 1,
+          "engine": "google",
+          "leads": []
+        },
+        {
+          "id": "dupont-aignan",
+          "count": 26,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Guerre en Ukraine, crise sociale, sortie de l'UE... Le 8h30 franceinfo de Nicolas Dupont-Aignan - Franceinfo",
+              "date": "2026-11-22",
+              "article": "CBMi8wFBVV95cUxNeF9iR21Bd193dktvX0tUamVvODJFVzNxcTc2MW5GZHl0TWViWDU2T2xPTmxBYUhkRGpQaWVGcl9nU2lkdDkyemJtWF9PTTJWY0poa3l2dUJiRXFQeUpoXzliem8xTGRNZXhsSjV5WEVkMDB3dTRreWktS0dSTUVkQ1NMTnZmY2lncDdqWEJkeGlZdmVINHNiVWRXZXBHM0dsYXF5azkydGFUY1h1V1lkQnprbmxfRmVELUZrZi1hcjhKYzJHci1PRTJkN29sdEp3M0ZRQ1UtX2o5dkhFSV9ITldrREdSUW1Ma1VBWlBFTl94Mm8",
+              "publisher": "www.franceinfo.fr"
+            },
+            {
+              "title": "L'Union européenne \"sabote la paix\" en Ukraine, selon Nicolas Dupont-Aignan - Franceinfo",
+              "date": "2026-11-22",
+              "article": "CBMi5AFBVV95cUxOMjdJQmwyNG5hb3FfRGVveG9oTHotc0Q3M3ZfdlVOaG01T1NyNXI3Z1piMk5nSk0tc0NTX01KWGc4dXgtOHV1d2laSGVqamJ6OXY4V1JGRUVuU3RwWTMxSUdXcnFXejIyZ2tqRUo1UmZPS2RRdTJTQzBuNERsdGk4NHZuYjVwX2FJT3N2MjdOXzJiZ0tKWnFBMEN2bzUzOVREb0o3MkRqX0pQRGF3YTA3Z3RmTFk0NExfUjJGTmpyVlFGUWhudnR2Y1R3Y2l5eGVVSThsZW5sdEpkN3o4Yno3SHlueGY",
+              "publisher": "www.franceinfo.fr"
+            }
+          ]
+        },
+        {
+          "id": "durif",
+          "count": 34,
+          "engine": "google",
+          "leads": []
+        },
+        {
+          "id": "egger",
+          "count": 4,
+          "engine": "google",
+          "leads": []
+        },
+        {
+          "id": "glucksmann",
+          "count": 67,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Présidentielle 2027: \"quand on est antifasciste, on vote Raphaël Glucksmann\", lance Boris Vallaud, député PS - BFM",
+              "date": "2026-11-23",
+              "article": "CBMilAJBVV95cUxNYWhCRHBMWU1PanJTcUg4ZzAyNkhkZUtEOXY5eWlVZy1OVmo2V2RyU09zbHJYdTV6UVJhWGFXY193X2NJN1hBeTh5U1Q1cmlIeUc1aC1NMVQtWV9HN2wwWHpVZDdMU0xEYXBuSFZEWm1maUtMVXBpQ29TNU9MLWlJcmFQbTNsVUtYUXhUVTJrd0JHWDlENkU2RnRhazMwazBkMG9hLTFlbW03UFB3MVRfNldkcGZya1JXRm44NmdPTGlFOUFkYUN5U3dDRmFjWS1sc1ctVzhnSFhGSUh1UmdBNWNqcVpQYUxFVlVEUXNyMWdJQXdVVi1zTFFpVVlkSTJkaElHWl9nX1pxNUFEMDU5ZENnVVk",
+              "publisher": "www.bfmtv.com"
+            },
+            {
+              "title": "Présidentielle 2027 : Raphaël Glucksmann salue le « combat » de François Ruffin et « espère rassembler au maximum » - Le Parisien",
+              "date": "2026-11-23",
+              "article": "CBMipAJBVV95cUxNZzhYWDRGY2liSXczQU5jZjk4WEROWWxraGg1NUx5akg2cmpsazBzd2pmZ3diVXhXRU9RTWpDRTI3RXllQ0FEelRSMWgtSzNSRVgxb3BvQ2wzaUgtemZtV1hNTGNhelRMaGhvNjlOcmEyemRYbU5XaDlFMUc3bVZLVzE4UDV0LThPd1B1RDEtMlFDaDVrLWNLQXlJV2VhSk5oTG5kZjd3aVZlZzZJcWhjUWZsSko1dkJtbHRmTFg3U1V4bU1xT2otQVhLY0U4djBwTzZNSm05WHJEdHpsRmxtd3V1TFFHMkJKbGhPS280SkpCUEhiWF9TNHVrZGwwMDZMMGhxalpvaG5KQnpVWmVaWldsRVFWV0dpaWlreUxtRU5WclJr",
+              "publisher": "www.leparisien.fr"
+            }
+          ]
+        },
+        {
+          "id": "kazib",
+          "count": 10,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Toulouse : 4 raisons de venir à la réunion publique avec Anasse Kazib ce vendredi, salle Barcelone ! - Revolution Permanente",
+              "date": "2026-11-23",
+              "article": "CBMiywFBVV95cUxNeHR0LU1UNXk5TlVZbE5kZDVlREFmYVhjWFc5LXZhYm1teWF1SFdFaGpPTXI0aVg5aG53ajN2NjV2emRYNFFKVS1wUU1wUG13d0sta2VQSDc0QlpkdjFyNUhfSWZ4NC05OVFnS0V0QjRvVWo1ai1tVVpZejBpUTU0SjRsU1RSdTNwSlllYTc2dXFub21zRGRGcTJ5c0pVVUt2Rm82S0U4S2xKVHZTT3ZjOU5lNHQxRlViRXF0VUd2RzRxcUpCZWVVS3pvRdIB0wFBVV95cUxNRGRxZkNyS0xCcVRYYUVFN3hXWXprUGlPRkJmMHZhZVY0c2hCOFpqbXJrX0RENnRmbTQwVjRxNVpLYzFQLXh4dWZtM0lGdExBc0hvVkVMbG56SkNoVHU2Z0JzRk1MbzJYUTZWcE84aUZpam9RRHgwVXhSWDI2ZDRETnMzTDB5cE8yRTBrYTNuQmQ5bmc2YklSeERFZjExZFJ6VWNNb2hTRXhFcTZULXpEQlRnN28tWkU3cEJsLV9GSzFwTm1Ib2pJYm9QYzB5d3RyMUpN",
+              "publisher": "www.revolutionpermanente.fr"
+            },
+            {
+              "title": "À Paris, Anasse Kazib défend l’impératif d’une « candidature révolutionnaire » - Mediapart",
+              "date": "2026-11-22",
+              "article": "CBMivgFBVV95cUxPckhEd0dZTFI0WGZFaGpWSGk4OTFITkNqYlNuUzJJS2FYaGpBUllKdmU4eXRXSjdhX0xxd095RFRQaVFXX2k5ekhyXzBMNmdPVVlub2xjVkJiSm1SdTJhSXYwTkpaaEUwbjlwY0UxWXl4NmFJNHhaSi04TE15YXlDQ2h1ZTBxZmlPdVpSZGwzT0Jkd05uOE5WR21nY055cHlYdVJfY0ZyWTF2TGNUZHVaanZCQkJTT2k2QVZmRlhR",
+              "publisher": "www.mediapart.fr"
+            }
+          ]
+        },
+        {
+          "id": "labib",
+          "count": 8,
+          "engine": "google",
+          "leads": []
+        },
+        {
+          "id": "lalanne",
+          "count": 43,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "FRANCIS LALANNE défie la PRÉFECTURE et brise les tentatives de CENSURE ! - Agoravox TV",
+              "date": "2026-11-21",
+              "article": "CBMigwFBVV95cUxORGdkTzR5N1otOHpvYnJWZVNxb1dYZldWcGozc1RtTEI2Tk5mc2ZabDhRMFN4T1JmOHh0TFZfdnRBeWxSR1NiS2J4YlZVNTVwMjYwYk5NRWN4SVNXRmRSQi1xT0h6RVJBM1kybHBZaWs4ZXBKTkVFMmNRR1lRTm94SS1SQQ",
+              "publisher": "www.agoravox.tv"
+            },
+            {
+              "title": "Francis Lalanne à Montauban : ce qui s'est passé lors de son meeting interdit par la mairie - L'Opinion Indépendante",
+              "date": "2026-11-20",
+              "article": "CBMizwFBVV95cUxOamtzV2RZdTNtOHBxT2lJWUZqYnlBeDBjX0I4T0xjMVRybmw1ZFJoTlpySDZRUnFUVHp3TWE0a0lPVnoybkJPR1dVcm1seENNMVZOTXY5c1BQN2pzeld5cDhkZHpOaE1RZ1BTNmNSbHNhS1BMVUFhRXJMLWxMandZSURYSnE4SXdYTWNwRWZqUVo1NGhhekxIRDlfMFRxWHRYbFBEd3pQTjFIQ29GNzREeXJ3RzhHaXVRNkRUYlFjV2sxYUhxQlFfY0xqRFV6N2fSAdQBQVVfeXFMTURzTGpWSndKWXgyLTRpQktoUFhOX2pZUzQ2VlN4TVJNYnVjUTVWV0wyTzJ5SExCbnpnQXJnWm9FalBabE5qbjZoNUowck5iOU93ZGgwa216TnFWQWpvS2ZHOGVXTUdjS0VBVTh5b2tuOERkUUVNLTE1R0pUMXMzYVNjZXpxRGlHb0dQZFg3Sl9wV1kzRkFDeWtyNEVVWVFhWmtxSWg5OEdlMk4yZXlqZ2lLSW1CcGZoNEJNOWt0TGtkZ1BuOWxISmcwcnFTQ1htVUZQYUY",
+              "publisher": "lopinion.com"
+            }
+          ]
+        },
+        {
+          "id": "lassalle",
+          "count": 6,
+          "engine": "google",
+          "leads": []
+        },
+        {
+          "id": "legendre",
+          "count": 1,
+          "engine": "google",
+          "leads": []
+        },
+        {
+          "id": "lepen",
+          "count": 98,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Présidentielle 2027 : Marine Le Pen et le RN, cernés par les procédures, misent sur l’indifférence présumée des électeurs pour les affaires judiciaires - Le Monde.fr",
+              "date": "2026-11-23",
+              "article": "CBMi1wFBVV95cUxNMWNMNWctREtqbDhvYmRiSTVtMnNxelZuelpCNU1sb0U3SGZFYzdKSVVxUktPNE5TdGNiOFZlOXc4VDVub0RTSlphek5WMzhsejBGWHhhNFJzeVJWbUxMRDQwQm05YW1kTHVVT1pwSUxraWRCdnlaVUZBUDBHTEhyMGFGaVJNZ2xCTjZuQXJ2aDVsbEt4RXZGNmhYTl9vTS1lVDdvWC0xbUVXUjZnajhKaXhOWnAtZkpQajUyVGNzV2ZLNGdhYTJkTEFPdnFTM2xBeVdycjRNVQ",
+              "publisher": "www.lemonde.fr"
+            },
+            {
+              "title": "L'ascension de David Lisnard, le recul de Marine Le Pen : les enseignements du baromètre Toluna-Harris Interactive-M6-RTL-L’Express - L'Express",
+              "date": "2026-11-23",
+              "article": "CBMi_wFBVV95cUxOUnlORkM0SEprbjJOV0tIQWRXU08zTmdvQ2tpaEptUVJIcUJjWkVrOWQ0NTFUVERYOWphWUhDeWxvd0pQQWkyRjhxWXZoX3M5RkVXUTBfdlBHR21PMmJUV2hfUDU1c3Znd0pZS1BnS21ibVlIMllILVQwakhfYmR1TTlnMi00Njlxb0RoRXM2dUkyN0Vpb3FoLVFmTnhrSXdVa2h0cjQwYXBtMGdDSVRLbWJ6eXZQR2llcEdrNk51bUwzeVRZU0E5enRNRFY3b3lkdHFkVWhsakg2YnRuT2ExLVh5RGZibHE0QzlQMDVTczFPQ1VTc0VkMVdCamRwdm8",
+              "publisher": "www.lexpress.fr"
+            }
+          ]
+        },
+        {
+          "id": "lisnard",
+          "count": 100,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Congrès des maires France : David Lisnard candidat à ... - Sud Radio",
+              "date": "2026-11-24",
+              "article": "CBMimgFBVV95cUxNWkN3Ml91R2haNHZJak9YN2w1MjcyX2xTV1hhV2JqRGZQMUNHMFhqc2hyQkV5SWtTdndwRmZnZWNlTWo4X2htSG9TYlZYM04tQmpuMF82eTVUd0taNWRkSHpLQVZZbDVsQ0xyOTVXR1B5eXZOUzFtVkxKUnRGQ0puNXdnRW1NNk5BX05uazBWQldKXzdSSVlLR3Rn",
+              "publisher": "www.sudradio.fr"
+            },
+            {
+              "title": "David Lisnard présidentielle 2027 : programme, sondages et actualité - L'Hémicycle",
+              "date": "2026-11-23",
+              "article": "CBMiWkFVX3lxTFB3UFpya1FSbEdreWxsaWZRdzI4OTJoRzRyR3dLQ3YyTlBkd2ktb3dKeVJ3Y29zU0ZJRVYwTEN3Tk9TdEh1WUFmbkt1V21rTW9pcUZNY1pLY0pIUQ",
+              "publisher": "lhemicycle.com"
+            }
+          ]
+        },
+        {
+          "id": "markovic",
+          "count": 3,
+          "engine": "google",
+          "leads": []
+        },
+        {
+          "id": "mathieu",
+          "count": 2,
+          "engine": "google",
+          "leads": []
+        },
+        {
+          "id": "melenchon",
+          "count": 94,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Présidentielle: Génération.s officialise son soutien à Jean-Luc Mélenchon - LCP-Assemblée nationale",
+              "date": "2026-11-23",
+              "article": "CBMipwFBVV95cUxQOXVGcFcyeFItNnl2S2M2STFhUEpTUlp3YTVzb2tDNDJrLU9OTkV4bXhZbldXUmtpZVpHbUtzMFo2ZzNSRFlTMkFRQjNZbWVBWThUZWVVNzUzWHZnXzlhakxvOGJkc0tPSUdsMzBLT25CS1dOMHZtcHhHeGxXMlp6akVsendvdEtONVVsakpZRkxVMmt6Y3RrWW9uNUZ2UldOdVNrUmRnVQ",
+              "publisher": "lcp.fr"
+            },
+            {
+              "title": "Présidentielle 2027: \"Le ralliement de Marine Tondelier [à Jean-Luc Mélenchon], il y a une sorte de fatalisme\", analyse Boris Vallaud, député PS - BFM",
+              "date": "2026-11-23",
+              "article": "CBMiwgJBVV95cUxNcEUxT2t4MHU3NjQ1Qm1YNXBhX2ZVeHpLQ3VSV3ZvdUdKNzdXRUhIYkRTZTZCMDFGNTVhMzJTZFdTaDJUTXItNVdkU3NLYlRHRk56ZXVPak5TTUswZjBYMDlXWDVzdTJzcVBFX29vRlk0ZC1lSFJHU043eEVkR2NjVlFDZnNRbE1SVUdmQWdfMzlmR2lGMU9vTzdLdEpCc2wzUkdWekV5MWJZdU5XZ19xYnNhOGsxVm5UWTBoaHp3UThZTnFGT2JQSGhFdXljTU8tVk5Ub3daOUllOTVWdjdGakkyUGlrc3hEaHVrLTkyVkJ3ckxzamtaMjBYRG5xd1p5aS1tUXpONXRnaXJheFpHSGhicnlOaHIxUEdNS0JqX093UzM4SGJfSEJURWJWSUlON0lPMXUzTFVuSDIySklyYl9n",
+              "publisher": "www.bfmtv.com"
+            }
+          ]
+        },
+        {
+          "id": "mikolajczak",
+          "count": 1,
+          "engine": "google",
+          "leads": []
+        },
+        {
+          "id": "mlekuz",
+          "count": 1,
+          "engine": "google",
+          "leads": []
+        },
+        {
+          "id": "philippe",
+          "count": 77,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "SONDAGE RTL - Présidentielle 2027 : David Lisnard confirme sa percée et dépasse Édouard Philippe, le duel Mélenchon-Le Pen se consolide - RTL",
+              "date": "2026-11-23",
+              "article": "CBMihgJBVV95cUxOTGthTVJGQnVoVTZpdFNsRno4cU9RV01uN0s4R01jOGdyZDliSDVMbGU1b29XanlNSW9acjFmMkN4c2JzRUctYUwtODA3VkNHY3IwNEpLUVQxZ0FSSl96cVpRRTcyYk05QXFwaTJyRlBfUG16aVp1MEZYT2ZXS3BsM3FudGNWaVVBeElpMlRxYmp2Z3ltempzYm1hVFh6MmhEcnp2MTFLRjJGRmhrTVE3R0t6V2tkUm8yOVNhNUtQWnZ1MzJMQmtqMGtBRzN2SEEwWXc3cjFFd0hzakRpa1pUR2JhMlBJVVRtcnBSRzdRd0JnUmFZU3o4OHBoYWU0QTduZFZGNkZn",
+              "publisher": "www.rtl.fr"
+            },
+            {
+              "title": "Présidentielle 2027 : David Lisnard devance Edouard Philippe dans un sondage pour la première fois - l'Opinion",
+              "date": "2026-11-23",
+              "article": "CBMirwFBVV95cUxNeW5kT3pneFdJOVlRRkF6WC1HOVprN2szZEllaUJXMUZsdEw4UTdGMnhpU0YwYThrRzhpQzItX3pubFAxaENwaWpiekNqMEJma2VzanlWR1l0bmY5SS1IV1NMNXM3d1pGcUFLRkE1bUNVblItdVBOV2FzRzZvTVlmWHBwZkFIa1kyRkpFRHJRXy1GVkxiUU12RTZ0WW5ZdmtNQm1mNWxBalJDWDNCdE5n",
+              "publisher": "www.lopinion.fr"
+            }
+          ]
+        },
+        {
+          "id": "philippot",
+          "count": 7,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "FN : Florian Philippot claque la porte - TF1 Info",
+              "date": "2026-11-22",
+              "article": "CBMiiAFBVV95cUxPWTQzYlpFWDJmYW9JZ0RmcDZUS2hJVG41VDZJMU16YmxUdHZSLS1GUS0xNDVYamFrVVFGMVQxRTA5Y1AtYnYwZm9ucG16YVB6Um9sYU1DYnpCZFhiNXdEdUFNcVc4U0pjNXUzWlNFVFRrQTZENElxWXR6NV9oRFNndjVxVXYyeE44",
+              "publisher": "www.tf1info.fr"
+            }
+          ]
+        },
+        {
+          "id": "polony",
+          "count": 9,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Présidentielle 2027 : Natacha Polony, Teddy Riner et maintenant Dominique de Villepin, qui sont les 39 candidats désormais déclarés ? - RTL",
+              "date": "2026-11-21",
+              "article": "CBMi2wFBVV95cUxPQUpuT1hvQnhuX1lJT29zNnA2eVctZE02UC1rTEZybHNKeUVvTmJSMnVLbEdCcktzdkI5TWExU0piVXBzbXBOMnoyb2dPXzZfOVRXZ2hULWVmRDUwZGZFRnAzSzFob2Fwa0M4NGNmSFBYQTNEVWxId2wxbUdEU2t6TTc2aDZ1ajc4dl9WcmxLTGxYQWpwVFlYMEVlM29pWUcwb0JTRVp5WWQ2TnQ5em9OWFV6NnFpZ0NTUXB2M3pWWGoybGtVZzExSzZmc1V0Ynl1U21BYXJ1UGlxaTQ",
+              "publisher": "www.rtl.fr"
+            },
+            {
+              "title": "La présence de Natacha Polony sur les antennes - La Médiatrice de Radio France",
+              "date": "2026-11-20",
+              "article": "CBMilwFBVV95cUxPb1puMG9DWk5oTHRNaWR3MjNCUl9nVXNhdVhpa1pXdkw4LWZUdVFvQjhQTk1ESDBjZm5xbHc4ZGtjVHFIMl93ajQwYnNqeGhZVHhaNDktMlNGV0ZMS1ZSTFFUcFJtUUFwT3c2SE4wYlotSVlNQkp5NXZfZ1lmb2RPMzV5ZHlreXBCekV5WU1MZTRNcVNxZmRz",
+              "publisher": "mediateur.radiofrance.com"
+            }
+          ]
+        },
+        {
+          "id": "retailleau",
+          "count": 47,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Présidentielle 2027 : Bruno Retailleau en déplacement à Châteauroux pour échanger avec les habitants - lanouvellerepublique.fr",
+              "date": "2026-11-23",
+              "article": "CBMi7gFBVV95cUxPN3l3ZE41YUk0aUJJNW9HQ18xel85NDV5OW9iam1YZDY5dF9NNTZzRjZ4MGRfRmdwcGZxS2QzU2FfU0NLYzNUYjd4S19KSlNhMEM0enVVcnRFY0YtaVYwWnB6RllWYmh6UjFscS1zR01wMnZlb1RkTHQ0ZEpqRTVIcnp2YU55TzI1VkUzSHZYZ1pOd0dXOW5yc3czSjktVDVfaEhtc1Bja2pvYXlFOGEzb0hRMjlwdmJsdHdVeFZaTnFBZnJVLUNyQ2NhY2V4dS1ha1FHMTZ5bnprdmtpdUxnMU9sd0syQktHUnh2Q0VB",
+              "publisher": "www.lanouvellerepublique.fr"
+            },
+            {
+              "title": "Gabriel Attal, Édouard Philippe, Bruno Retailleau, David Lisnard: \"J'ai la conviction profonde qu'ils se regrouperont\", lance Jean-François Copé, maire LR de Meaux - BFM",
+              "date": "2026-11-23",
+              "article": "CBMi2wJBVV95cUxNUUxrd2FJT3FWdWhpeldHdVRRRC1fS1ZlUXc5UjllU1U4N3hON1VDemlyb05OUW5ibHRjQktyZWpXaVh5X2diX2tWcmxqMGZPRF9TUVRMZXFYQS1aeWwxYWpCenJIeUhPend6RWc4TEtOVHh1dXNNNmVIdmJSQXhVNE41dk94ZmpZa2FYWWRoVzduQ1JuZTFLTkJfTWpjNTdDOXc3U3ZCaGFLU1RGUkgyTURHdlF4Um1ldlQtM1FBbGY5cGdwQlQxcUNHaDVWRURQWVVEa1c2YlV2SER1ZmNNNzJ1YVdCVXpTMk5HMlJzQndsYUlFOXFFejQ5NXpjVEJvNHItMnlsYVl2X1FrZmNROWlpUkptdFpWQWl4MHJDZWliZ0JqRGRRTFNLMjZTa3MzQmxZUFRPTy1WTHVKQWdkaXNDeGJuSkxTSDVSWVkxX0wwd1hmRjl5dkNGUQ",
+              "publisher": "www.bfmtv.com"
+            }
+          ]
+        },
+        {
+          "id": "riner",
+          "count": 61,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "VIDÉO. Teddy Riner était présent à la soirée des Trucs qui marchent - Ouest-France",
+              "date": "2026-11-24",
+              "article": "CBMi6gFBVV95cUxPRjQ1T0pkSmVSR3NvSUZ1YTBmbkhKTTdxS25EbTVVeFl6eXp6RjhsdEg3U0thcTU4SG9SUXg3QmdjMldjX2pIWjhyUDdLcTQtN1ZBM3IwemxoTUhsWXFkejgtTUdFWnJwWVhrb2lYc2ZlQjhjRjR3b0Y5VGpjU2tUWExhVVFUT0Y0X1dNZTJ1b293UXFzTnE5bXhEbmo5a2RWVXVSX1BhSWplLUlMUVJmTTV0OW9iMFNYMDFmYWpDRnFtS3RsNDhybTNKMHplNG0xWFIySTVONmVINnNPSDNieHktbE5DMi1XNEE",
+              "publisher": "www.ouest-france.fr"
+            },
+            {
+              "title": "«Tintin au Congo» : Teddy Riner envisage de porter plainte contre Emmanuelle Mignon - Libération",
+              "date": "2026-11-23",
+              "article": "CBMi4wFBVV95cUxOQU9oMnZQVlFkdHZKTUhzUjhkczRIaTZralE3dEEwalI2bkVoc1R0TVVwQW9CRDdxUnVYcTh1YUhkZ2g4ckVmYUV6c3RlRUhsaUt5bHlJMHJYUlNLNk9yQzI3VEtRRXl0clYxV1ZURzRicXVGZWFkOWdpTmNONndZRnlpaDdaZlRVNW1pY2h6MHpWbGNLMjhKYmZZU2Z5Q21DR3dEQzFENy1LbXJqcFhYX2lIMGJ3c1I5R1MyLWw4VkF2TnNPRi1RdDY2UFJJaXBhR0ZQWFp0Yk9WbTJGMHp2WlUzVQ",
+              "publisher": "www.liberation.fr"
+            }
+          ]
+        },
+        {
+          "id": "rohou",
+          "count": 0,
+          "engine": "google",
+          "leads": []
+        },
+        {
+          "id": "roussel",
+          "count": 12,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Présidentielle 2027 : le directeur de campagne de Fabien Roussel à la rencontre des militants au Mans - Ouest-France",
+              "date": "2026-11-23",
+              "article": "CBMimAJBVV95cUxONy1OVUx2LXduaVFFaDFMb2ZFeUJhdEJwUUY2VEtDWGZITC1aakdkUkdfS1NvWTFIQmxMN09UMVV4ZldjNXN3b3d6eG9scmljalk4eC04bUcyS0FYamcwSXZPbXVzQm1UQ1lydjJzUUY5YnNuaGlSblNlZkZFVG1mUlZfcmxyd3dRMDZJbG9rZTh0eHpRbHhfZDdELUliQXh0RkxRbzhCd3VKNTJ6VUcyWlNucmp4OXVOVVM4VlhRUGdLcUFWVHVzTU1sZUd0UXItRGdhVmRfR2NucEVvbXNMd0ZhRXplNjE3YW9EZnlXMHIzRU8zQm1ka2pzQ3BkSmZjbkVaTng0eVFTdnhBb3JNWDJVZVhMc0FM",
+              "publisher": "www.ouest-france.fr"
+            },
+            {
+              "title": "Présidentielle 2027 : le directeur de campagne de Fabien Roussel à la rencontre des militants au Mans - maville.com",
+              "date": "2026-11-23",
+              "article": "CBMi7wFBVV95cUxQTzZtbEVzYjVITUtSSk9LNVpYSXRZanJKOFFJVDY4OEZlWjNaN3VXNllOYTlXeTFqWWhZZ04yeEJ4RWYxeW1EZ3VTZ3V1dFAyU2RzY2ZlUC16cUZOd2dtNXBjYVA3NmlQUGFxNXk2X3pFUU53Rjk4c0tVcW41T1pFZzBBRlZwdExUN3FmWnhXdDFmazFEeEpRSzlVRDk3dTNmb2lMa25YV195cnlBYm9tZ0JvZ19mYXMyYU1WQjM5b2liWlJXMnJTYkVBaVk0Y3lZTFBpaE94MDhxa0JOZEE0T2NDX1R6dE02eU12a3d0cw",
+              "publisher": "lemans.maville.com"
+            }
+          ]
+        },
+        {
+          "id": "tondelier",
+          "count": 51,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Présidentielle 2027: \"Le ralliement de Marine Tondelier [à Jean-Luc Mélenchon], il y a une sorte de fatalisme\", analyse Boris Vallaud, député PS - BFM",
+              "date": "2026-11-23",
+              "article": "CBMiwgJBVV95cUxNcEUxT2t4MHU3NjQ1Qm1YNXBhX2ZVeHpLQ3VSV3ZvdUdKNzdXRUhIYkRTZTZCMDFGNTVhMzJTZFdTaDJUTXItNVdkU3NLYlRHRk56ZXVPak5TTUswZjBYMDlXWDVzdTJzcVBFX29vRlk0ZC1lSFJHU043eEVkR2NjVlFDZnNRbE1SVUdmQWdfMzlmR2lGMU9vTzdLdEpCc2wzUkdWekV5MWJZdU5XZ19xYnNhOGsxVm5UWTBoaHp3UThZTnFGT2JQSGhFdXljTU8tVk5Ub3daOUllOTVWdjdGakkyUGlrc3hEaHVrLTkyVkJ3ckxzamtaMjBYRG5xd1p5aS1tUXpONXRnaXJheFpHSGhicnlOaHIxUEdNS0JqX093UzM4SGJfSEJURWJWSUlON0lPMXUzTFVuSDIySklyYl9n",
+              "publisher": "www.bfmtv.com"
+            },
+            {
+              "title": "Présidentielle 2027 : Yannick Jadot et Jérémie Iordanoff, en rupture avec Marine Tondelier, créent un nouveau parti écologiste - Sud Ouest",
+              "date": "2026-11-23",
+              "article": "CBMikgJBVV95cUxQNWVUWTVDMmNLRGJwMElnaUZhSTJHVzJnMVdnakZtYmZwQ0dZX3FtRlczZnJvR01YSDI0em1mVzhNaFh6elZYZWdSUXl2MURMYVdjTjBDNktkVkx4c0liRE5aUWdrR2hSX0Iwdm5wUmhyeFplZFZhM3lyZUNMdk14OERpVTh4RkNJWDFSQUN0bHJxMGhhR0Y5Z2ZHeHJSWS1TOVFxamVpWFZaekxHWU9PNDVNV1JfbUE1ZnFWOWdaaWt6aDFRd1BGc3NLa0dyOFVjdGx4TWlVMnpkR3JZWmpoWEpDUFVSdW1Yc1I2b3NWc3Vfa1A2NXNyVEJzVUVrZ2hPZjc4X0lyUFJ5Vno0STBSSXdR",
+              "publisher": "www.sudouest.fr"
+            }
+          ]
+        },
+        {
+          "id": "villepin",
+          "count": 97,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "\"Je ne veux pas rentrer dans une case\", affirme Dominique de Villepin, candidat à l'élection présidentielle - Franceinfo",
+              "date": "2026-11-23",
+              "article": "CBMi5wFBVV95cUxNLXpPczNBazE4SDgtcG1EY1hVNXBQbmFBM0xvZVBNZzB4MXNDZDNWY3d0VE4zSmxKN2pyVlZoRi1nRzhlek5YbTFBWVN0ZDF6bXdCeFp1VkRMTHREU0tZV1FCQmZMQ1NvblhCaE4xNWpkbFJxcGpZOERvSkRpeXM5NlpyaXVyWWNkeTRPLXFKWFpGdmhDbWFIc3o1N1ZIU3NzNzRlbW1JVzVOVkFtd0hFWktFMlNlZWkzVjBGZ2xJSk1wOWtjSURmanRTRndjbWVXR21EWTFpSnp2dm04VFo0ZW1mN0o2akE",
+              "publisher": "www.franceinfo.fr"
+            },
+            {
+              "title": "Dominique de Villepin peut-il vraiment affirmer qu’il n’a «jamais privatisé les autoroutes» ? - Libération",
+              "date": "2026-11-23",
+              "article": "CBMi8gFBVV95cUxOTjlHQXlfdm9FSDdaQnNCRDhnWDRQd1dqclh0Q050V3gwai13UmY0VDFXaVRTTHA0ZHMtWWVfUVBGYlY1dER4SUd6ZFAyRmF3RlZzZ3h2REhwRk9nQVUtakMxdnBRN2hEOHJzcTZIMzVkcmhDQ0RXLVQwMUhSYUxLXzdtQmJSUkEwRTcwNF9OYnR3VlNyVjBGQzdXcGVnMEk1MXlrb0tfSkk5RWw2Q21TbnlfUlBxUm9WelZ5clkzaHFFYWpualJuc2dpSTRhUmxXX0c5dy1fQXhyQU9PS2lfR2JvM01kbmVyczltUHlwWUF3UQ",
+              "publisher": "www.liberation.fr"
+            }
+          ]
+        },
+        {
+          "id": "zemmour",
+          "count": 72,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "GTRaciste : immersion au meeting d’Éric Zemmour - L’ABC de Bertrand Chameroy - 23/11/2026 - France TV",
+              "date": "2026-11-23",
+              "article": "CBMigwJBVV95cUxOM3RsV1NLVjdOa2RFTHJMd1FYdlJCc0xvUFNjOXo5T3p4UDlhWVBMb2g0ZVBDV3BsZ0k3Rm4zd0FGYkJsTDJIeFNiVlkxSjJTblk0Z2hpSXZ5VTBEemE0SDNCMGxBZlBNVGp2TjRZdDE1WG5WazBfOXdwTHIwUnNZTHhfLWd4d3JTbnBxSWRnbnl2cS0xUmZndzdzbkozZ1hQeWFDLUg2MUJPRnkyXzFQeVFxZFFhTzFKMnAzaGt2a1psVjEwY3JXV2NtZmJ3UHozTmk3OFFVR1Joa01pQ2tmVm9xUll5R0ZwajdXeFBSWVZMTmI1bFVTMGNkU2hxSTZQVC1J",
+              "publisher": "www.france.tv"
+            },
+            {
+              "title": "Présidentielle: Éric Zemmour veut supprimer l'Arcom \"au nom de la liberté d'expression\" - RMC",
+              "date": "2026-11-23",
+              "article": "CBMi4gFBVV95cUxOSG1HZUhEbmF5WGtsSUlaeFBQVXh6U3RPdVcwTUJvN2ZvQ1ZlT0g0NzVjV2UzNjNKVHB1OEFLQkV1QUxXYW9QYVR4R1lIdFZEckRFaEJkbF9PYzQ5amZESHlkVGJrc3lmSmp1eHlqOVNOcGpTX1hRZVRqTldGVUdNMDdfRmlwbzVfWllTemtqTGh3eW5ZNFk2QUxqa3p6YlUwNzU1dXFfdmYwdkE5aWFYblNPaXhCX1NuVkpuR2ZHOG1zalIxOS1MOG9pV3AxemVIbGY3QVVOT1VGYk80T21vYVdR",
+              "publisher": "rmc.bfmtv.com"
+            }
+          ]
+        },
+        {
+          "id": "candidatures",
+          "count": 99,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Présidentielle 2027 : qui sont les principaux candidats déjà déclarés ? - Touteleurope.eu",
+              "date": "2026-11-24",
+              "article": "CBMiuAFBVV95cUxNY0xtSGxUMlNNdUdSYVhqV19HWklpLU45R3pSV3ZxNWVOS1lTV3pPVm03d2pvdXQ1OFB1ejBBaEJTRFJoT1FSMU4zVmhCWGk4VHp4MFVPc0xCZVFPN1FoY1NyVGg4S3BvQy1uVEhBVTlRc2pqV1NwVVJJQUZXNXJjbERxLTMtc1BhYm1jM0M1S1l5aWZ1ckhRZFZ1ekZSNlFEbkoyNG1yT21YWkdoNHdTYnAyV0VEVDRE",
+              "publisher": "www.touteleurope.eu"
+            },
+            {
+              "title": "Présidentielle 2027 : à gauche, le rouleau compresseur Mélenchon fait plier les petites candidatures - Les Echos",
+              "date": "2026-11-23",
+              "article": "CBMi6gFBVV95cUxNZndHNUtpU3ZaOHBmMjB0emtFMVgzajlvNnJad01PUHB4WW5fa01jbERacW1OSlBIZFFxdjV6Qkk1el9yUC1uTlVTU1V1dC16OEMxdG1TNi0ybF9XaVpUSWxyLW12MGRvX1UwTVRzcUZpY1pRWVJGRXpxaFdNRUNhYzZJSHVuNjlpVTVMNHVqRFYwUmRRVjE2MmRtSWZ4emNUcm5jRjQ0WEFzZXpJaXpHbnRWLVhjd3ZhSXN4R2pnejlPYnhHWkNaZjUzWW9FUGpITEI0NjdmZngzcjhkNDFJNktNek9YUnFNTUE",
+              "publisher": "www.lesechos.fr"
+            }
+          ]
+        },
+        {
+          "id": "propositions",
+          "count": 43,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Présidentielle 2027 : qui sont les principaux candidats déjà déclarés ? - Touteleurope.eu",
+              "date": "2026-11-24",
+              "article": "CBMiuAFBVV95cUxNY0xtSGxUMlNNdUdSYVhqV19HWklpLU45R3pSV3ZxNWVOS1lTV3pPVm03d2pvdXQ1OFB1ejBBaEJTRFJoT1FSMU4zVmhCWGk4VHp4MFVPc0xCZVFPN1FoY1NyVGg4S3BvQy1uVEhBVTlRc2pqV1NwVVJJQUZXNXJjbERxLTMtc1BhYm1jM0M1S1l5aWZ1ckhRZFZ1ekZSNlFEbkoyNG1yT21YWkdoNHdTYnAyV0VEVDRE",
+              "publisher": "www.touteleurope.eu"
+            },
+            {
+              "title": "David Lisnard présidentielle 2027 : programme, sondages et actualité - L'Hémicycle",
+              "date": "2026-11-23",
+              "article": "CBMiWkFVX3lxTFB3UFpya1FSbEdreWxsaWZRdzI4OTJoRzRyR3dLQ3YyTlBkd2ktb3dKeVJ3Y29zU0ZJRVYwTEN3Tk9TdEh1WUFmbkt1V21rTW9pcUZNY1pLY0pIUQ",
+              "publisher": "lhemicycle.com"
+            }
+          ]
+        },
+        {
+          "id": "agenda",
+          "count": 28,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Présidentielle 2027 : qui est cette candidate qui organise un meeting à Perpignan ? - L'Indépendant",
+              "date": "2026-11-23",
+              "article": "CBMiywFBVV95cUxPaVl6U2stekM2eWsyMnNUczZGRG92RFBxTEt0a3N1dnBua1FzOVNGd1RoZUE4ZlNjSmdDSnRyOWctX004WnB3SUZ6WEZRT3dCckJyaW15RU9GWlV1dGU1VFU0UWdZYmpIcUxRZVh5WWcwbjd3a2xJMF9mVkRUUmpQSEFqWUZFaEp5TWMtUHI1Yi1uaGp3UENib0RmTEJPdkpsSFpSX3lXSm5WYnhfakZleG4xTWZwTEVLaXNvNUphR1NSR1laajFJOGg4OA",
+              "publisher": "www.lindependant.fr"
+            },
+            {
+              "title": "Présidentielle 2027 : Bruno Retailleau en déplacement à Châteauroux pour échanger avec les habitants - lanouvellerepublique.fr",
+              "date": "2026-11-23",
+              "article": "CBMi7gFBVV95cUxPN3l3ZE41YUk0aUJJNW9HQ18xel85NDV5OW9iam1YZDY5dF9NNTZzRjZ4MGRfRmdwcGZxS2QzU2FfU0NLYzNUYjd4S19KSlNhMEM0enVVcnRFY0YtaVYwWnB6RllWYmh6UjFscS1zR01wMnZlb1RkTHQ0ZEpqRTVIcnp2YU55TzI1VkUzSHZYZ1pOd0dXOW5yc3czSjktVDVfaEhtc1Bja2pvYXlFOGEzb0hRMjlwdmJsdHdVeFZaTnFBZnJVLUNyQ2NhY2V4dS1ha1FHMTZ5bnprdmtpdUxnMU9sd0syQktHUnh2Q0VB",
+              "publisher": "www.lanouvellerepublique.fr"
+            }
+          ]
+        },
+        {
+          "id": "breves",
+          "count": 99,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Présidentielle 2027 : qui sont les principaux candidats déjà déclarés ? - Touteleurope.eu",
+              "date": "2026-11-24",
+              "article": "CBMiuAFBVV95cUxNY0xtSGxUMlNNdUdSYVhqV19HWklpLU45R3pSV3ZxNWVOS1lTV3pPVm03d2pvdXQ1OFB1ejBBaEJTRFJoT1FSMU4zVmhCWGk4VHp4MFVPc0xCZVFPN1FoY1NyVGg4S3BvQy1uVEhBVTlRc2pqV1NwVVJJQUZXNXJjbERxLTMtc1BhYm1jM0M1S1l5aWZ1ckhRZFZ1ekZSNlFEbkoyNG1yT21YWkdoNHdTYnAyV0VEVDRE",
+              "publisher": "www.touteleurope.eu"
+            },
+            {
+              "title": "Présidentielle 2027 : jusqu’où l’Arcom peut-elle réguler les créateurs de contenus politiques ? - Public Sénat",
+              "date": "2026-11-23",
+              "article": "CBMi0wFBVV95cUxOazZHdlp2SlUxbVY4dTdTaGtvSjBXRW05bkNlSFRBM1V2MGp1cldZdVFiTlRpUTBTdXBFWEpSM2QtZWJKYm5VUnhfWVdJOUF0TUtHOXh2Qk9oN0JXMS13ZzlyWWt1d2F5d2F5VzY4d1E3eTdRenFudTdJdmViSmZwX0NfTng1LWh2b3VvQ2taRmdyQ1BfTlNqN0FIdkE4RzlxVFF3OXJNSjZzUk1DZGRLVTdzT0d2cFV1djY2aUg1NUFQY1VJYW44YURqc09Ta2lPLXdj",
+              "publisher": "www.publicsenat.fr"
+            }
+          ]
+        },
+        {
+          "id": "votes",
+          "count": 71,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "L'Assemblée nationale vote un projet de loi pour la crise du logement - Sud Radio",
+              "date": "2026-11-24",
+              "article": "CBMixAFBVV95cUxOQzlwdUZYNVlkUV9lNGhxSkgyMjFQbGZSZndJbmhJeEhoWldLTkZzR3c1Mnk1djVrQU9yZ1ZueXpBMnM1aDR0bkZTaEJqN3BGbzF6MEpwRm52Q2c4VTlqZndHaV9KV0JFTGRCLXliYVktN3NsRDFUMHhuX0ZDOTFZcDlkdWlUeHFSMGpFXzZaS2VYWU92OVZmS1RfTDdwSGh1dTZVOEhyeHo3Z0lwVUlzUU84cFhRUlBRSXJMaUd3MEpHTDdm",
+              "publisher": "www.sudradio.fr"
+            },
+            {
+              "title": "Budget 2027 : le Sénat vote la fiscalisation intégrale des indemnités pour affections de longue durée - Public Sénat",
+              "date": "2026-11-23",
+              "article": "CBMi4AFBVV95cUxQaE0wd3JUalVoRXBvMlR0TXVpamNqd1g1UlkyOGRWTlh5TjVocEZCY19NRkd3R3NzemMtMFhLbzE0N0U4c3k5VWdjMHpES1cxWEd0WG5GVG1sN3YydzNRNGZ4QnlGNWowdURlalFNaEg3dTllTGc1aTlfRW9CV0UtTUJwZDEwcDNSTmJfYnJjOEVSOXNhNllTRFRNZkltLVRxdmJ1ZjZXSGN1NkRKZU5qdEdSME9YYUZ6NWp3Z1huVXV2RmhiWVVEYTljeDVWQjBVZ0wzblczQmlrN0FmT29aUw",
+              "publisher": "www.publicsenat.fr"
+            }
+          ]
+        },
+        {
+          "id": "financements",
+          "count": 24,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "🇬🇳 Guinée : les ministres bientôt appelés à rendre des comptes à la télévision - Brut",
+              "date": "2026-11-24",
+              "article": "CBMiyAFBVV95cUxOMkRwczMwM2UzdU9pWTROaE9XX1JBZGFmdVRQTmtQTFVaQWxfYzFmR0U2TU45TkRFX3VCZW1IS3FUNmN2TzhpVXNMX1VPVmtyZVZHOWNSVUJVaUtoSFFfRXFLOS0xbmpjREh6UFZ2SWhjdERUNnZhcTlKTlhBVDd6WWFDVDBZMnJVR1RNZlF5Nk5nQVRTcEZkNkMxSGVGdjlETEZxT0RnTVh6S3R6QXEzci1SNnhiVzdSQ3YwQUg2UjRoNnkzQjAzag",
+              "publisher": "www.brut.media"
+            },
+            {
+              "title": "Présidentielle 2027 : « La démocratie doit être une confrontation d’idées et non de comptes en banque » - Le Monde.fr",
+              "date": "2026-11-23",
+              "article": "CBMi9gFBVV95cUxNeWhlOTNjcVNTS0NGVTk2YjI0M1gyaVd1UHdfTTNtQ2pQV2RvcTNETHpnZEhVWUFjQUtnMzhUVDZQSFZPU2hSQk5UNE1mUWdLNzJub1dnVnA1M2ZRQVRUSHNPMXVIQnV4TlE0cXltTVQ5aGJUREhzMmlMV2VxM0VMZ2ZlM0oxOXRnSC0zN1F6ajRxT1R0VjMzdS1nUl9lZFdPS3VMemtSQzAyYVZ6ZDY1YmRObV9uNGJmUXZ6YzJxcThaNmhMc090ZFFXSlVyT25QdzlFRmhNaUJTSEMzSHZoX0I0TUZlQUVJajYyOTRwR1gwZWc4NXc",
+              "publisher": "www.lemonde.fr"
+            }
+          ]
+        },
+        {
+          "id": "droit",
+          "count": 18,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Présidentielle 2027 : qui sont les principaux candidats déjà déclarés ? - Touteleurope.eu",
+              "date": "2026-11-24",
+              "article": "CBMiuAFBVV95cUxNY0xtSGxUMlNNdUdSYVhqV19HWklpLU45R3pSV3ZxNWVOS1lTV3pPVm03d2pvdXQ1OFB1ejBBaEJTRFJoT1FSMU4zVmhCWGk4VHp4MFVPc0xCZVFPN1FoY1NyVGg4S3BvQy1uVEhBVTlRc2pqV1NwVVJJQUZXNXJjbERxLTMtc1BhYm1jM0M1S1l5aWZ1ckhRZFZ1ekZSNlFEbkoyNG1yT21YWkdoNHdTYnAyV0VEVDRE",
+              "publisher": "www.touteleurope.eu"
+            },
+            {
+              "title": "Trophées des classes 2027 - Ensemble, tous protégés sur Internet ! - CNIL",
+              "date": "2026-11-23",
+              "article": "CBMiXEFVX3lxTE9CSG5nNk4wN0JGdzd2MUlyTlF1azVLVUk0dE1yRUVHOEhFX0YyMEhVSVRmcWgxRnZSRXdKR21RNFZpWjNsNEI1V0QxU3kxYmJ3dkk3ZnpHTHJoR2p3",
+              "publisher": "www.cnil.fr"
+            }
+          ]
+        },
+        {
+          "id": "reperes",
+          "count": 38,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Présidentielle 2027 : qui sont les principaux candidats déjà déclarés ? - Touteleurope.eu",
+              "date": "2026-11-24",
+              "article": "CBMiuAFBVV95cUxNY0xtSGxUMlNNdUdSYVhqV19HWklpLU45R3pSV3ZxNWVOS1lTV3pPVm03d2pvdXQ1OFB1ejBBaEJTRFJoT1FSMU4zVmhCWGk4VHp4MFVPc0xCZVFPN1FoY1NyVGg4S3BvQy1uVEhBVTlRc2pqV1NwVVJJQUZXNXJjbERxLTMtc1BhYm1jM0M1S1l5aWZ1ckhRZFZ1ekZSNlFEbkoyNG1yT21YWkdoNHdTYnAyV0VEVDRE",
+              "publisher": "www.touteleurope.eu"
+            },
+            {
+              "title": "Élection présidentielle 2027 : à cinq mois du scrutin, les maires du Pays de Montbéliard sollicités pour des parrainages - ici.fr",
+              "date": "2026-11-23",
+              "article": "CBMimAJBVV95cUxOMUpMWmNVQ0wwUkhWRmlqRllybk5DX1ZrZC13b2VjUUw1Y0VnSER1emNXSXFXRlc2VnB0R0ZpcGNRSk5IWUxrdVQzc0tiZ25BX2RYYlF4ZW5pTlBtVWR5czUtWkdWZVJkWmZodHJQbkJwNC1VeV9mLVRfODBRSkt5OGZNLVc5cXc3NXVFSGpzeGpiam5xTFR2c2h2bnJWakIybHlURDFvVUJhb210VVVPUE5vQWxpamdWRFhKWkY1UkJZR2MySlZKVTBTbkM0QjFoTzY1LWlBSW9aSnlaeWZTVjdXZ3N4X2dOOHlmQy1LZE5NdjhqVTFpSDVKa1lwbG5pYXR3emlaS1lvYUNVZU9RYzJ6cWttTUtf",
+              "publisher": "www.ici.fr"
+            }
+          ]
+        },
+        {
+          "id": "donnees",
+          "count": 20,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Contournement Ouest de Montpellier : une adhésion largement confirmée par le sondage IFOP 2026 - Claap",
+              "date": "2026-11-24",
+              "article": "CBMirwFBVV95cUxNUUliVUxrdXNYb3dDUnotWlU3WDF0dHdjeWdnWVp6UFUyUnFVcnJoZ1RmWWtTZkd4UDhoLTFjNVpPd3BLclhzZ0dkWUdZbTVkMEtkT1RBUTltWTIxV1VtazVGSVhCakJHLUpJOHFQZDZ1Q0F5ajI3d3hubnlDS3BuQ05QQnI0eV9lWHB4aGRlbWVKWGN3SlRSQ01GbFl3WGhmR3pJc0tFaDRGODVLUXFn",
+              "publisher": "claap.fr"
+            },
+            {
+              "title": "Économie : le Grand Est parmi les régions les moins dynamiques de France, selon une étude de l'Insee - Actu.fr",
+              "date": "2026-11-22",
+              "article": "CBMi0gFBVV95cUxQX2FocGlVNlZuR2hjdVI1aXMyOUxQZUZhbHdnNzNwMzc4RTFfVWdBV0NRaGNNU25VRWpubklkUEpJNGM4U09sSEN5b09qM3lDYkMxQkZjdFRuQ1d4Z01GeUlRaXBudzZjRVZ3Zno0US1KT0JnYUdjdERXZmNFUTVOOU5ONG1UWG9ZYU9tNHdSLXM3TWZYS25NeGVvcHpBN0N5eWZ0TVU2ZFZSUERMVlE2TVFDQU9yREFvdEg5aGZPb045bHZKZGxMaVpXWVZyQkZOeEE",
+              "publisher": "actu.fr"
+            }
+          ]
+        },
+        {
+          "id": "declarations",
+          "count": 16,
+          "engine": "google",
+          "leads": [
+            {
+              "title": "Emploi des jeunes : syndicats et patronat négocieront jusqu’au 2 mars - Force Ouvrière",
+              "date": "2026-11-23",
+              "article": "CBMilwFBVV95cUxQejVGWmFJS2F3blZQRXBsSXB5VFgtMDRZVExIc0h0eFZrMEo1eUlsejNZVndaeXg4Z1NrNFE0M1pxYWQ2U01EZ3hoYlRCU2x4QlhLMHEyQWtxamVrcHBzME9iUDRkcW9zZ0dzR3UyeWl2MjVHWGhFRkRrMlREaUJyYWRPTGNkeGFPN1VPZWp4RlgzMzlmZFBV",
+              "publisher": "www.force-ouvriere.fr"
+            },
+            {
+              "title": "Déclaration obligatoire de patrimoine : la Cour des comptes recense 159.424 assujettis - Le Matin.ma",
+              "date": "2026-11-23",
+              "article": "CBMipAFBVV95cUxPMWNIN3p0bWhlczBERks4NldhaVBULVkwVmQ2OXBIQ2ZaeVBvY21oQmJsLTAyNzJDWmlyMHNUZ2x2b1pTeERacG14WExiemhlb1M1TGwtWHkzM196OFl2RU5oeU00M25OM2trSHphU1ItdUNuWmdLQVpiVEdLZ1hGenFucENCbWx3QndPYUF2RElvejQtUUdZRWV2SllPNzVrRjhkdNIBpAFBVV95cUxPMWNIN3p0bWhlczBERks4NldhaVBULVkwVmQ2OXBIQ2ZaeVBvY21oQmJsLTAyNzJDWmlyMHNUZ2x2b1pTeERacG14WExiemhlb1M1TGwtWHkzM196OFl2RU5oeU00M25OM2trSHphU1ItdUNuWmdLQVpiVEdLZ1hGenFucENCbWx3QndPYUF2RElvejQtUUdZRWV2SllPNzVrRjhkdA",
+              "publisher": "lematin.ma"
+            }
+          ]
+        }
+      ],
+      "checks": [
+        {
+          "id": "arthaud-discours-2026",
+          "ok": true,
+          "url": "https://www.lutte-ouvriere.org/"
+        },
+        {
+          "id": "lo-actualites-presidentielle",
+          "ok": true,
+          "url": "https://www.lutte-ouvriere.org/"
+        },
+        {
+          "id": "upr",
+          "ok": true,
+          "url": "https://upr.fr/"
+        },
+        {
+          "id": "attal-work",
+          "ok": true,
+          "url": "https://attalpresident.fr/"
+        },
+        {
+          "id": "attal-actualites-campagne",
+          "ok": true,
+          "url": "https://attalpresident.fr/"
+        },
+        {
+          "id": "billetdoux-declaration-2027",
+          "ok": true,
+          "url": "https://billetdoux2027.fr/"
+        },
+        {
+          "id": "branco-projet",
+          "ok": true,
+          "url": "https://ruches.org/"
+        },
+        {
+          "id": "cheve-remontee-citoyenne",
+          "ok": true,
+          "url": "https://www.lafranceadulte.fr/"
+        },
+        {
+          "id": "collovati-projet-2027",
+          "ok": true,
+          "url": "https://www.xn--lepeuplefranais2027-hyb.fr/"
+        },
+        {
+          "id": "dlf-economie-2026",
+          "ok": true,
+          "url": "https://www.debout-la-france.fr/"
+        },
+        {
+          "id": "durif-elvita-programme-2027",
+          "ok": true,
+          "url": "https://elvita2027.com/"
+        },
+        {
+          "id": "egger-programme-2027",
+          "ok": true,
+          "url": "https://solutiondemocratique.fr/"
+        },
+        {
+          "id": "glucks-climate",
+          "ok": true,
+          "url": "https://glucks2027.fr/"
+        },
+        {
+          "id": "pp-home",
+          "ok": true,
+          "url": "https://place-publique.eu/"
+        },
+        {
+          "id": "ps-projet-2027-vivre-libres",
+          "ok": true,
+          "url": "https://projet-socialiste.fr/"
+        },
+        {
+          "id": "kazib-programme-campagne",
+          "ok": true,
+          "url": "https://anasse2027.fr/"
+        },
+        {
+          "id": "kazib-premieres-mesures-2027",
+          "ok": true,
+          "url": "https://www.revolutionpermanente.fr/"
+        },
+        {
+          "id": "labib-campagne-2027",
+          "ok": true,
+          "url": "https://npa-revolutionnaires.org/"
+        },
+        {
+          "id": "npar-campagne-presidentielle",
+          "ok": true,
+          "url": "https://www.npa-revolutionnaires.org/"
+        },
+        {
+          "id": "lalanne-projet-2027",
+          "ok": true,
+          "url": "https://dieudolalanne2027.com/"
+        },
+        {
+          "id": "resistons-site",
+          "ok": true,
+          "url": "https://resistons-france.fr/"
+        },
+        {
+          "id": "legendre-projet-2027",
+          "ok": true,
+          "url": "https://www.anousmaintenant.fr/"
+        },
+        {
+          "id": "rn-ukraine-communique",
+          "ok": false,
+          "url": "https://rassemblementnational.fr/"
+        },
+        {
+          "id": "lisnard-project",
+          "ok": true,
+          "url": "https://www.unenouvelleenergie.fr/"
+        },
+        {
+          "id": "animaliste-markovic-2026",
+          "ok": true,
+          "url": "https://parti-animaliste.fr/"
+        },
+        {
+          "id": "mathieu-projet-2027",
+          "ok": true,
+          "url": "https://benoitmathieu2027.fr/"
+        },
+        {
+          "id": "lfi-social",
+          "ok": true,
+          "url": "https://melenchon2027.fr/"
+        },
+        {
+          "id": "equinoxe-programme-2027",
+          "ok": true,
+          "url": "https://parti-equinoxe.fr/"
+        },
+        {
+          "id": "mlekuz-programme-2027",
+          "ok": true,
+          "url": "https://trajectoire2027.fr/"
+        },
+        {
+          "id": "philippe-index",
+          "ok": true,
+          "url": "https://www.edouardphilippe.fr/"
+        },
+        {
+          "id": "patriotes-projet-2026-2027",
+          "ok": true,
+          "url": "https://les-patriotes.fr/"
+        },
+        {
+          "id": "polony-vision",
+          "ok": true,
+          "url": "https://natachapolony2027.fr/"
+        },
+        {
+          "id": "retailleau-index",
+          "ok": false,
+          "url": "https://www.avecretailleau.fr/"
+        },
+        {
+          "id": "riner-production-locale",
+          "ok": false,
+          "url": null
+        },
+        {
+          "id": "riner-agenda-novembre-lcp",
+          "ok": true,
+          "url": "https://lcp.fr/actualites/presidentielle-2027-teddy-riner-devoile-ses-premiers-deplacements-de-campagne-445061"
+        },
+        {
+          "id": "mei-projet-2027",
+          "ok": true,
+          "url": "https://les-ecologistes-mei.org/"
+        },
+        {
+          "id": "roussel-pacte-2026",
+          "ok": false,
+          "url": "https://www.pcf.fr/"
+        },
+        {
+          "id": "eco-work",
+          "ok": true,
+          "url": "https://lesecologistes.fr/"
+        },
+        {
+          "id": "villepin-chapitre-1",
+          "ok": true,
+          "url": "https://lafrancehumaniste.fr/"
+        },
+        {
+          "id": "reconquete-paroles",
+          "ok": true,
+          "url": "https://www.parti-reconquete.fr/"
+        },
+        {
+          "id": "lcp-candidatures-novembre",
+          "ok": true,
+          "url": "https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-declares-et-potentiels-444932"
+        },
+        {
+          "id": "cazeneuve-lettre",
+          "ok": false,
+          "url": "https://www.la-convention.fr/lettre"
+        },
+        {
+          "id": "villepin-chapitre-12",
+          "ok": true,
+          "url": "https://lafrancehumaniste.fr/programme/reussir-a-nouveau/chapitre-12.html"
+        },
+        {
+          "id": "agenda-kazib-paris",
+          "ok": true,
+          "url": "https://www.revolutionpermanente.fr/Ceux-qui-font-tourner-le-pays-doivent-decider-meeting-le-21-novembre-a-Paris-avec-Anasse-Kazib"
+        },
+        {
+          "id": "pcf-loos-avion-decembre",
+          "ok": true,
+          "url": "https://loos.pcf.fr/?page_id=847"
+        },
+        {
+          "id": "an-index-scrutins",
+          "ok": true,
+          "url": "https://www.assemblee-nationale.fr/dyn/17/scrutins"
+        },
+        {
+          "id": "senat-seance-20-novembre",
+          "ok": true,
+          "url": "https://www.senat.fr/seances/s202611/s20261120/st20261120000.html"
+        },
+        {
+          "id": "cnccfp",
+          "ok": true,
+          "url": "https://cnccfp.fr/elections/election-du-president-de-la-republique-2027/"
+        },
+        {
+          "id": "senat-budget-2027-contexte",
+          "ok": true,
+          "url": "https://www.senat.fr/rap/l26-156-1/l26-156-18.html"
+        },
+        {
+          "id": "service-public-dates-scrutins",
+          "ok": true,
+          "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F1939"
+        },
+        {
+          "id": "cnil-actualites",
+          "ok": true,
+          "url": "https://www.cnil.fr/fr/actualites"
+        },
+        {
+          "id": "assurance-retraite-age",
+          "ok": true,
+          "url": "https://www.lassuranceretraite.fr/portail-info/home/actif/age-depart/age-depart-retraite.html"
+        },
+        {
+          "id": "service-public-csg-salaires",
+          "ok": true,
+          "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2971?quest6=0"
+        },
+        {
+          "id": "interieur-resultats-2022-t1",
+          "ok": true,
+          "url": "https://www.data.gouv.fr/datasets/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-1er-tour"
+        },
+        {
+          "id": "ches-catalogue-europe",
+          "ok": true,
+          "url": "https://www.chesdata.eu/ches-europe/"
+        },
+        {
+          "id": "sondages",
+          "ok": true,
+          "url": "https://www.commission-des-sondages.fr/notices/"
+        },
+        {
+          "id": "eurostat-euro-indicateurs",
+          "ok": true,
+          "url": "https://ec.europa.eu/eurostat/web/products-euro-indicators"
+        },
+        {
+          "id": "arcom-hors-elections",
+          "ok": true,
+          "url": "https://www.arcom.fr/temps-parole/hors-elections"
+        },
+        {
+          "id": "inventaire-sru-2026",
+          "ok": true,
+          "url": "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru"
+        },
+        {
+          "id": "drees-apl-premier-recours-2024",
+          "ok": false,
+          "url": "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/260722-accessibilite-aux-soins-de-premier-recours-en-2024"
+        },
+        {
+          "id": "insee-chomage-t3-2026",
+          "ok": true,
+          "url": "https://www.insee.fr/fr/statistiques/9118603"
+        },
+        {
+          "id": "lfi-health",
+          "ok": true,
+          "url": "https://melenchon2027.fr/programme/livre/le-gout-du-futur-aux-nouvelles-frontieres-de-l-humanite/chapitre4"
+        },
+        {
+          "id": "lfi-school",
+          "ok": true,
+          "url": "https://melenchon2027.fr/programme/livre/le-gout-du-futur-aux-nouvelles-frontieres-de-l-humanite/chapitre2"
+        },
+        {
+          "id": "lfi-climate",
+          "ok": true,
+          "url": "https://melenchon2027.fr/programme/livre/pour-une-bifurcation-ecologique-et-sociale/chapitre1"
+        },
+        {
+          "id": "attal-school",
+          "ok": true,
+          "url": "https://attalpresident.fr/programme/education"
+        },
+        {
+          "id": "attal-budget",
+          "ok": true,
+          "url": "https://attalpresident.fr/programme/dette-de-letat"
+        },
+        {
+          "id": "philippe-pension",
+          "ok": true,
+          "url": "https://www.edouardphilippe.fr/programme/retraites"
+        },
+        {
+          "id": "philippe-ecole",
+          "ok": true,
+          "url": "https://www.edouardphilippe.fr/programme/ecole"
+        },
+        {
+          "id": "philippe-famille",
+          "ok": true,
+          "url": "https://www.edouardphilippe.fr/programme/famille"
+        },
+        {
+          "id": "retailleau-pension",
+          "ok": true,
+          "url": "https://www.avecretailleau.fr/projet/theme/retraites"
+        },
+        {
+          "id": "retailleau-logement",
+          "ok": false,
+          "url": "https://www.avecretailleau.fr/projet/theme/logement"
+        },
+        {
+          "id": "retailleau-budget",
+          "ok": true,
+          "url": "https://www.avecretailleau.fr/projet/theme/comptes-publics"
+        }
+      ],
+      "publications": [
+        "ed-src-233537b15f326bfe3e32",
+        "ed-src-b63eecbadcd2285c51db",
+        "ed-src-894cb915038129bb6b69",
+        "ed-src-ff5018354e92a975326f",
+        "ed-src-67fe75370fc2888d8a71",
+        "ed-src-6578c4254dcacc83b5c2"
+      ],
+      "changes": [
+        {
+          "title": "Réunion publique de François Asselineau à Carros (06) le 28/11/2026",
+          "path": "/breves/veille-233537b15f326bfe3e32/"
+        },
+        {
+          "title": "Samedi 28 novembre, conférence de presse et meeting du NPA-R de lancement de campagne : Selma Labib, une candidate ouvrière et révolutionnaire pour en finir avec le capitalisme !",
+          "path": "/breves/veille-894cb915038129bb6b69/"
+        },
+        {
+          "title": "Réunion publique à Lille, avec Selma Labib et Gaël Quirante",
+          "path": "/breves/veille-ff5018354e92a975326f/"
+        }
+      ]
+    }
+  },
+  {
     "checkedAt": "2026-11-22T19:50:20.981Z",
     "collection": {
       "run": "45027663424",
