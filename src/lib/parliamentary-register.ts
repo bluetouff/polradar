@@ -48,9 +48,12 @@ interface Register {
   groupes: Record<string, { nom: string; sigle: string }>;
   scrutins: ParliamentaryBallot[];
 }
-export const register: Register = JSON.parse(
+// The older full-register and monthly exports retain their documented perimeter.
+// Supplemental seventeenth-term records are published once in the common search index.
+const source: Register & { complementXVII: ParliamentaryBallot[] } = JSON.parse(
   readFileSync('src/data/parlement/assemblee.json', 'utf8'),
 );
+export const { complementXVII, ...register } = source;
 export const ballotsByMonth = new Map<string, ParliamentaryBallot[]>();
 for (const b of register.scrutins) {
   const month = b.date.slice(0, 7);
@@ -73,6 +76,8 @@ export const registerIndex = {
     ]),
   ),
   scrutins: scrutins.length,
+  scrutinsSupplementaires: complementXVII.length,
+  recherche: 'https://polradar.fr/api/parlement/recherche.json',
   positions: scrutins.reduce(
     (n, b) => n + b.positions.filter((p) => p.vote !== null).length,
     0,

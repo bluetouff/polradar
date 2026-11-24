@@ -75,7 +75,7 @@ func TestPublishedParlement(t *testing.T) {
 	if e != nil || !reflect.DeepEqual(decoded(t, out), decoded(t, rest)) {
 		t.Fatal("parité REST/MCP")
 	}
-	for _, a := range []dataArgs{{Collection: "parlement", Query: query}, {Collection: "sources", Query: "  "}, {Collection: "sources", ID: "source", Query: query}} {
+	for _, a := range []dataArgs{{Collection: "parlement", ID: "test", Query: query}, {Collection: "sources", Query: "  "}, {Collection: "sources", ID: "source", Query: query}} {
 		if _, _, e := c.publicData(a); e == nil {
 			t.Fatal("paramètre invalide accepté")
 		}

@@ -33,7 +33,12 @@ class ParliamentaryRegisterTests(unittest.TestCase):
 
     def test_seventeenth_legislature_uses_the_reviewed_archive_and_mandates(self):
         source = self.data['sources'][-1]
-        self.assertEqual((source['legislature'], source['scrutinsDansArchive'], source['scrutinsExamines']), (17,10101,5206))
+        self.assertEqual((source['legislature'], source['scrutinsDansArchive'], source['scrutinsExamines']), (17,10101,10101))
+        self.assertEqual(source['examinesDansEditionDetaillee'],5206)
+        additional = self.data['complementXVII']
+        self.assertEqual(len(additional),2135)
+        self.assertFalse(set(self.ballots).intersection(b['id'] for b in additional))
+        self.assertTrue(all(b['legislature']==17 and all(self.data['mandats'][p['mandat']]['acteur']==self.data['personnes'][p['candidat']]['id'] for p in b['positions']) for b in additional))
         rows = [b for b in self.ballots.values() if b['legislature'] == 17]
         self.assertEqual(len(rows),408)
         b = self.ballots['VTANR5L17V9759']

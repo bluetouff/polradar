@@ -312,8 +312,55 @@ export const apiRoutes = [
       filter(
         'query',
         { ...str, maxLength: 160 },
-        'Pour la collection sources, mots du titre ou de l’adresse du document.',
+        'Mots du titre ou de l’adresse pour sources, du texte ou de son identifiant pour parlement.',
       ),
+      filter(
+        'recherche',
+        { type: 'boolean' },
+        'Avec parlement, inclut les trois institutions, les dépôts et les interventions.',
+      ),
+      filter(
+        'candidat',
+        str,
+        'Identifiant du candidat dans la recherche parlementaire.',
+      ),
+      filter(
+        'institution',
+        { type: 'string', enum: ['assemblee', 'senat', 'parlement-europeen'] },
+        'Institution du registre parlementaire.',
+      ),
+      filter('debut', date, 'Première date incluse.'),
+      filter('fin', date, 'Dernière date incluse.'),
+      filter(
+        'nature',
+        {
+          type: 'string',
+          enum: [
+            'vote',
+            'depot',
+            'rapport',
+            'intervention',
+            'cosignature',
+            'mise-au-point',
+          ],
+        },
+        'Nature de l’acte ou du rôle documenté.',
+      ),
+      filter(
+        'position',
+        {
+          type: 'string',
+          enum: [
+            'pour',
+            'contre',
+            'abstention',
+            'non-votant',
+            'non-votant-volontaire',
+          ],
+        },
+        'Vote enregistré pour la personne filtrée.',
+      ),
+      filter('theme', str, 'Thème établi par un dossier éditorial.'),
     ],
   },
   {

@@ -192,10 +192,18 @@ def ballot(b, term, known, mandates, groups):
             p=identify(v)
             if p is None:
                 continue
-            check(p['vote'] is None and group['organeRef'] in groups, uid+' : double émargement ou groupe inconnu')
+            check(p['vote'] is None, uid+' : double émargement')
+            group_id=group['organeRef']
+            if term == 17 and group_id == 'PO0':
+                # Some official files repeat the sentinel PO0 for different groups.
+                # It identifies no group in the official directory.
+                p['organeSource']=group_id
+                group_id=None
+            else:
+                check(group_id in groups, uid+' : groupe inconnu')
             delegated=v.get('parDelegation')
             check(delegated in (None,'true','false'), uid+' : délégation inconnue')
-            p.update(vote=choice,groupe=group['organeRef'],delegation=None if delegated is None else delegated=='true')
+            p.update(vote=choice,groupe=group_id,delegation=None if delegated is None else delegated=='true')
     for choice,v,kind in positions(b.get('miseAuPoint'),'mise-au-point'):
         p=identify(v)
         if p is not None:
@@ -221,7 +229,7 @@ def collect(cache, fetch=False):
     editorial = json.loads((ROOT/'src/data/legislative-votes.json').read_bytes())
     editorial_ids = {f"VTANR5L17V{b['number']}" for b in editorial['ballots']
                      if b['chamber'] == 'assemblee' and b['term'] == '17e législature'}
-    sources, actors, mandates, groups, rows = [], {}, {}, {}, []
+    sources, actors, mandates, groups, rows, supplement = [], {}, {}, {}, [], []
     seen=set()
     for term, archives in SOURCES.items():
         with archive(cache,term,'acteurs',fetch) as a:
@@ -239,21 +247,20 @@ def collect(cache, fetch=False):
                 if b.get('lieuVote')=='Congrès':
                     excluded+=1
                     continue
-                if not include_ballot(term,b,editorial_ids):
-                    continue
-                selected_count+=1
+                detailed = include_ballot(term,b,editorial_ids)
+                selected_count += int(detailed)
                 row=ballot(b,term,selected,offices,parties)
                 if row:
-                    rows.append(row)
+                    (rows if detailed else supplement).append(row)
                     for p in row['positions']:
                         if p['groupe']:
                             groups[p['groupe']]=parties[p['groupe']]
-            sources.append({'legislature':term,'scrutinsExamines':selected_count,'congresExclus':excluded,
-                **({'scrutinsDansArchive':len(z.namelist()),'selection':'Tous les scrutins depuis le 1er janvier 2026, les scrutins solennels, les motions de censure et les scrutins déjà documentés dans un dossier Polradar depuis le début de la législature.'} if term == 17 else {}),
+            sources.append({'legislature':term,'scrutinsExamines':len(z.namelist())-excluded,'congresExclus':excluded,
+                **({'scrutinsDansArchive':len(z.namelist()),'examinesDansEditionDetaillee':selected_count,'selectionDetaillee':'Tous les scrutins depuis le 1er janvier 2026, les scrutins solennels, les motions de censure et les scrutins déjà documentés dans un dossier Polradar depuis le début de la législature.'} if term == 17 else {}),
                 'archives':{key:{'url':BASE+str(term)+'/'+location,'sha256':digest} for key,(location,digest) in archives.items()}})
     return {'version':1,'institution':'Assemblée nationale','licenceSource':LICENCE,'consultation':'2026-11-24',
             'sources':sources,'personnes':dict(sorted(actors.items())),'mandats':dict(sorted(mandates.items())),
-            'groupes':dict(sorted(groups.items())),'scrutins':sorted(rows,key=lambda r:(r['date'],r['numero']),reverse=True)}
+            'groupes':dict(sorted(groups.items())),'complementXVII':sorted(supplement,key=lambda r:(r['date'],r['numero']),reverse=True),'scrutins':sorted(rows,key=lambda r:(r['date'],r['numero']),reverse=True)}
 
 
 def main():
@@ -267,14 +274,16 @@ def main():
     encode=lambda v:json.dumps(v,ensure_ascii=False,separators=(',',':'))
     # One ballot per line keeps historical changes reviewable in Git.
     rows=data.pop('scrutins')
-    payload=(encode(data)[:-1]+',"scrutins":[\n'+',\n'.join(encode(r) for r in rows)+'\n]}\n').encode()
+    supplement=data.pop('complementXVII')
+    prefix=encode(data)[:-1]+',"complementXVII":[\n'+',\n'.join(encode(r) for r in supplement)+'\n]'
+    payload=(prefix+',"scrutins":[\n'+',\n'.join(encode(r) for r in rows)+'\n]}\n').encode()
     if args.verifier:
         check(DEST.read_bytes()==payload,'Registre différent du résultat de l’import')
     else:
         with tempfile.NamedTemporaryFile(dir=DEST.parent,delete=False) as tmp:
             tmp.write(payload)
         os.replace(tmp.name,DEST)
-    print(f"{len(rows)} scrutins et {sum(p['vote'] is not None for r in rows for p in r['positions'])} positions nominatives. SHA-256 {sha256(payload).hexdigest()}")
+    print(f"{len(supplement)} scrutins XVIIe supplémentaires dans la recherche. {len(rows)} scrutins dans l’édition détaillée et {sum(p['vote'] is not None for r in rows for p in r['positions'])} positions nominatives. SHA-256 {sha256(payload).hexdigest()}")
 
 if __name__=='__main__':
     main()

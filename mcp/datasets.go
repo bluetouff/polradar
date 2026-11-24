@@ -12,8 +12,16 @@ type record map[string]json.RawMessage
 func (r record) str(key string) string { var s string; json.Unmarshal(r[key], &s); return s }
 
 type dataArgs struct {
+	Recherche        bool   `json:"recherche,omitempty" jsonschema:"Recherche transversale du Parlement dans les trois institutions, avec textes et interventions."`
+	Candidat         string `json:"candidat,omitempty" jsonschema:"Identifiant du candidat ou ancien candidat dans le registre parlementaire."`
+	Institution      string `json:"institution,omitempty" jsonschema:"assemblee, senat ou parlement-europeen pour la recherche parlementaire."`
+	Debut            string `json:"debut,omitempty" jsonschema:"Première date incluse, AAAA-MM-JJ."`
+	Fin              string `json:"fin,omitempty" jsonschema:"Dernière date incluse, AAAA-MM-JJ."`
+	Position         string `json:"position,omitempty" jsonschema:"Vote enregistré : pour, contre, abstention, non-votant ou non-votant-volontaire."`
+	Nature           string `json:"nature,omitempty" jsonschema:"vote, depot, cosignature, rapport, intervention ou mise-au-point."`
+	Theme            string `json:"theme,omitempty" jsonschema:"Thème d’un rapprochement éditorial explicite, dans la recherche parlementaire."`
 	Periode          string `json:"periode,omitempty" jsonschema:"Sénat : année de début de session ; Parlement européen : date de la séance. Une liste sans période donne toutes les périodes couvertes."`
-	Query            string `json:"query,omitempty" jsonschema:"Mots du titre ou de l’URL pour la collection sources."`
+	Query            string `json:"query,omitempty" jsonschema:"Mots du titre ou de l’URL pour les sources, du texte ou de son identifiant pour le Parlement."`
 	Collection       string `json:"collection" jsonschema:"Collection publique : sondages, economie, agenda, budgets, marches, parlement, sources, droit, financements, verifications, breves, arcom, graphiques, senat ou parlement-europeen."`
 	ID               string `json:"id,omitempty" jsonschema:"Identifiant exact retourné par la liste. Sans identifiant, retourne jusqu’à 15 entrées."`
 	Offset           int    `json:"offset,omitempty" jsonschema:"Position de départ pour la liste, à partir de zéro."`
@@ -50,6 +58,12 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 	var rows []record
 	if err := c.contract.check(a.Collection); err != nil {
 		return nil, false, err
+	}
+	if a.hasActFilters() || (a.Collection == "parlement" && a.Query != "") {
+		if a.Collection != "parlement" {
+			return nil, false, errFilter
+		}
+		return c.searchActs(a)
 	}
 	if len(a.Query) > 160 || (a.Query != "" && (a.Collection != "sources" || a.ID != "" || normalize(a.Query) == "")) {
 		return nil, false, errFilter

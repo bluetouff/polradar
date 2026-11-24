@@ -1,0 +1,206 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { formatDate } from '../../lib/data';
+import { searchIndex } from '../../lib/parliament-search';
+import {
+  chamberLabels,
+  kindLabels,
+  mentionLabels,
+  pageSize,
+} from '../../lib/parliament-search-types';
+import '../../styles/parliamentary-register.css';
+const names = Object.entries(searchIndex.candidats).sort((a, b) =>
+  a[1].localeCompare(b[1], 'fr'),
+);
+const total = new Intl.NumberFormat('fr-FR').format(searchIndex.actes.length);
+---
+
+<Base
+  title="Recherche parlementaire"
+  section="/votes/"
+  description="Rechercher votes, signatures, rapports et interventions dans trois institutions."
+>
+  <header class="page-title">
+    <div>
+      <h1>Recherche parlementaire</h1>
+      <p>
+        {total} scrutins, textes déposés et interventions. Chaque résultat ouvre
+        son document officiel.
+      </p>
+    </div>
+  </header>
+  <form
+    data-act-form
+    class="parl-search"
+    action="/votes/recherche/"
+    method="get"
+    hidden
+  >
+    <label>
+      Sujet ou identifiant
+      <input
+        name="query"
+        type="search"
+        maxlength="160"
+        placeholder="CETA, retraites, données personnelles…"
+      />
+    </label>
+    <label>
+      Candidat
+      <select name="candidat">
+        <option value="">Tous les candidats</option>
+        {names.map(([k, v]) => (
+          <option value={k}>{v}</option>
+        ))}
+      </select>
+    </label>
+    <label>
+      Institution
+      <select name="institution">
+        <option value="">Toutes les institutions</option>
+        {Object.entries(chamberLabels).map(([k, v]) => (
+          <option value={k}>{v}</option>
+        ))}
+      </select>
+    </label>
+    <label>
+      Nature de l’acte
+      <select name="nature">
+        <option value="">Tous les actes</option>
+        {Object.entries(kindLabels).map(([k, v]) => (
+          <option value={k}>{v}</option>
+        ))}
+      </select>
+    </label>
+    <label>
+      Vote enregistré
+      <select name="position">
+        <option value="">Tous les choix</option>
+        {[
+          'pour',
+          'contre',
+          'abstention',
+          'non-votant',
+          'non-votant-volontaire',
+        ].map((k) => (
+          <option value={k}>{mentionLabels[k]}</option>
+        ))}
+      </select>
+    </label>
+    <label>
+      Thème du dossier associé
+      <select name="theme">
+        <option value="">Tous les thèmes</option>
+        {Object.entries(searchIndex.themes).map(([k, v]) => (
+          <option value={k}>{v}</option>
+        ))}
+      </select>
+    </label>
+    <label>
+      Du
+      <input type="date" name="debut" />
+    </label>
+    <label>
+      Au
+      <input type="date" name="fin" />
+    </label>
+    <div class="act-actions">
+      <button class="button" type="submit">
+        Rechercher
+      </button>
+      <a href="/votes/recherche/">Effacer</a>
+    </div>
+  </form>
+  <noscript>
+    <p>
+      Parcourir les archives par date et institution en suivant les liens
+      ci-dessous.
+    </p>
+  </noscript>
+  <section aria-label="Résultats parlementaires">
+    <p data-act-status role="status" aria-live="polite" class="parl-status">
+      {total} actes · du plus récent au plus ancien
+    </p>
+    <div class="parl-grid" data-act-list>
+      {searchIndex.actes.slice(0, pageSize).map((row) => (
+        <article class="parl-card">
+          <div class="parl-meta">
+            <time datetime={row.date}>{formatDate(row.date)}</time> ·{' '}
+            {chamberLabels[row.institution]}
+          </div>
+          <h2>{row.intitule ?? row.titre}</h2>
+          {row.intitule && <p>{row.titre}</p>}
+          <p>{kindLabels[row.nature]}</p>
+          <a class="parl-source" href={row.source} rel="noreferrer">
+            Document officiel ↗
+          </a>
+        </article>
+      ))}
+    </div>
+    <nav
+      class="parl-nav"
+      aria-label="Pages de la recherche"
+      data-act-nav
+      hidden
+    >
+      <button class="button" data-act-prev type="button">
+        ← Page précédente
+      </button>
+      <span data-act-page></span>
+      <button class="button" data-act-next type="button">
+        Page suivante →
+      </button>
+    </nav>
+  </section>
+  <aside class="parl-foot">
+    <h2>Archives consultées</h2>
+    <p>
+      Le groupe et le mandat sont ceux de la séance. Une intention déclarée
+      après le vote figure séparément. Le thème renvoie à un dossier déjà
+      documenté. Les signatures sénatoriales indiquent le rôle publié au dépôt.
+    </p>
+    <p>
+      XVIIe législature à l’Assemblée nationale ·{' '}
+      {new Intl.NumberFormat('fr-FR').format(
+        searchIndex.assembleeXVII.scrutinsExamines,
+      )}{' '}
+      scrutins examinés, dont{' '}
+      {new Intl.NumberFormat('fr-FR').format(
+        searchIndex.assembleeXVII.scrutinsAvecMention,
+      )}{' '}
+      avec une mention individuelle pour les députés suivis.
+    </p>
+    <div>
+      <a href="/votes/registre/">
+        <Icon name="vote" /> Assemblée nationale
+      </a>
+      <a href="/votes/archives/">Sénat et Parlement européen</a>
+      <a href="/votes/textes-senat/">Textes déposés au Sénat</a>
+      <a href="/api/parlement/recherche.json">Index JSON</a>
+    </div>
+  </aside>
+</Base>
+<script>
+  import '../../scripts/parliament-search';
+</script>
+<style>
+  [data-act-form] {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+    padding: clamp(1rem, 2.5vw, 1.6rem);
+    border: 1px solid #9db6bd;
+    border-radius: 0.8rem;
+    background: linear-gradient(115deg, #e0edee, #f7faf9);
+  }
+  .act-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+  .parl-card p {
+    margin: 0;
+  }
+  [data-act-nav][hidden] {
+    display: none;
+  }
+</style>

@@ -16,19 +16,21 @@ type parliamentMonth struct {
 	Plages []struct{ Legislature, Premier, Dernier int }
 }
 type parliamentIndex struct {
-	Version       int
-	Consultation  string
-	LicenceSource string
-	Scrutins      int
-	Lots          []parliamentMonth
-	Personnes     map[string]record
-	Mandats       map[string]record
-	Groupes       map[string]record
+	Version                 int
+	Consultation            string
+	LicenceSource           string
+	Scrutins                int
+	ScrutinsSupplementaires int
+	Lots                    []parliamentMonth
+	Personnes               map[string]record
+	Mandats                 map[string]record
+	Groupes                 map[string]record
 }
 type parliamentCache struct {
-	index *parliamentIndex
-	month string
-	rows  []record
+	search *actIndex
+	index  *parliamentIndex
+	month  string
+	rows   []record
 }
 
 func (c *snapshot) rollIndex() (*parliamentIndex, error) {
@@ -134,6 +136,9 @@ func (c *snapshot) parliamentaryData(a dataArgs) (any, bool, error) {
 				}
 				return map[string]any{"collection": a.Collection, "publication": b, "rubrique": pageURL, "personnes": names, "mandats": mandates, "groupes": groups, "jeuVerifieLe": index.Consultation, "licenceSource": index.LicenceSource}, false, nil
 			}
+		}
+		if term == 17 && index.ScrutinsSupplementaires > 0 {
+			return c.supplementaryAct(a.ID, index)
 		}
 		return missing, true, nil
 	}

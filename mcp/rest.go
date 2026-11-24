@@ -103,12 +103,24 @@ func (c *snapshot) resource(path string, q url.Values) (any, bool, error) {
 			args.ID = parts[2]
 		} else {
 			offset, ok := numberParam(q, "offset", 0, 0, 100000)
-			if !ok || !allowedParams(q, "offset", "query", "periode") {
+			keys := []string{"offset", "query", "periode"}
+			if parts[1] == "parlement" {
+				keys = append(keys, "recherche", "candidat", "institution", "debut", "fin", "nature", "position", "theme")
+			}
+			if !ok || !allowedParams(q, keys...) || (q.Has("recherche") && q.Get("recherche") != "true" && q.Get("recherche") != "false") {
 				return nil, false, errFilter
 			}
 			args.Offset = offset
 			args.Query = q.Get("query")
 			args.Periode = q.Get("periode")
+			args.Recherche = q.Get("recherche") == "true"
+			args.Candidat = q.Get("candidat")
+			args.Institution = q.Get("institution")
+			args.Debut = q.Get("debut")
+			args.Fin = q.Get("fin")
+			args.Nature = q.Get("nature")
+			args.Position = q.Get("position")
+			args.Theme = q.Get("theme")
 		}
 		v, empty, err := c.publicData(args)
 		if args.ID != "" && empty {
