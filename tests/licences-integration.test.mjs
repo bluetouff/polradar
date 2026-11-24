@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { publicExports } from '../src/lib/public-exports.mjs';
 import { rights } from '../src/lib/licences.mjs';
 import { rechercherMesures } from '../integrations/javascript/polradar.mjs';
 test('les huit familles disposent de la licence demandée, indépendante des dépendances', () => {
@@ -22,6 +23,22 @@ test('les huit familles disposent de la licence demandée, indépendante des dé
     'AGPL-3.0-only',
   );
   assert.match(readFileSync('integrations/LICENSE', 'utf8'), /MIT License/);
+});
+test('les exports distinguent le registre institutionnel, les créations et les données des producteurs', () => {
+  const entries = new Map(
+    publicExports.map((dataset) => [dataset.id, dataset.rights]),
+  );
+  assert.equal(entries.size, publicExports.length);
+  assert.match(
+    entries.get('registre-assemblee').url,
+    /^https:\/\/data\.assemblee-nationale\.fr\//,
+  );
+  assert.match(entries.get('documents').label, /ODbL/);
+  assert.match(entries.get('graphiques').scope, /CC BY 4\.0/);
+  for (const id of ['marches', 'territoires', 'arcom', 'economie']) {
+    assert.equal(entries.get(id).url, null);
+    assert.match(entries.get(id).scope, /producteur/);
+  }
 });
 test('le SDK encode les termes sur la seule API publique et conserve les sources', async (t) => {
   const body = {

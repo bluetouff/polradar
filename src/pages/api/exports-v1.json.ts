@@ -39,6 +39,11 @@ export function GET() {
       unite: jeu.unit,
       provenance: jeu.provenance,
       limites: jeu.limits,
+      droits: {
+        libelle: jeu.rights.label,
+        url: jeu.rights.url,
+        perimetre: jeu.rights.scope,
+      },
       champs: jeu.fields,
       documentation: origin + '/donnees/#' + jeu.id,
       format: 'application/json',

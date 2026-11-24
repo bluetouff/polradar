@@ -1,5 +1,5 @@
 // Ces chemins désignent uniquement des fichiers publics construits par Polradar.
-export const publicExports = [
+const datasets = [
   {
     id: 'corpus',
     title: 'Corpus de campagne',
@@ -183,6 +183,47 @@ export const publicExports = [
     fields: ['items'],
   },
 ];
+
+// La licence de l'assemblage ne se substitue pas aux droits sur son contenu.
+const editorialIndex = {
+  label: 'ODbL 1.0 pour la base originale',
+  url: 'https://opendatacommons.org/licenses/odbl/1-0/',
+  scope:
+    'Sélection, rapprochements et annotations de Polradar. Les documents et données cités gardent les conditions de leur producteur.',
+};
+const originalWorks = {
+  ...editorialIndex,
+  scope:
+    'Index sous ODbL 1.0. Les articles, illustrations et graphiques originaux de Polradar sont sous CC BY 4.0. Les données et documents cités conservent leurs conditions.',
+};
+const upstreamData = {
+  label: 'Conditions des producteurs',
+  url: null,
+  scope:
+    'Chaque série ou relevé conserve les conditions de son producteur, identifié dans le fichier.',
+};
+const rightsByDataset = new Map([
+  [
+    'registre-assemblee',
+    {
+      label: 'Licence Ouverte de l’Assemblée nationale',
+      url: 'https://data.assemblee-nationale.fr/licence-ouverte-open-licence',
+      scope:
+        'Scrutins et mandats publiés par l’Assemblée nationale. Citer l’Assemblée et la version des archives utilisées.',
+    },
+  ],
+  ['territoires', upstreamData],
+  ['economie', upstreamData],
+  ['arcom', upstreamData],
+  ['marches', upstreamData],
+  ['breves', originalWorks],
+  ['graphiques', originalWorks],
+]);
+export const publicExports = datasets.map((dataset) => ({
+  ...dataset,
+  rights: rightsByDataset.get(dataset.id) ?? editorialIndex,
+}));
+
 export const dataLicence = {
   originaux: 'ODbL-1.0',
   texte: 'https://opendatacommons.org/licenses/odbl/1-0/',

@@ -8,4 +8,4 @@ Le [catalogue JSON](https://polradar.fr/api/exports-v1.json) donne l’archive a
 
 Après le build, `node scripts/preparer-datagouv.mjs` génère le descriptif de l’index documentaire original. Le brouillon cite l’URL actualisée et le fichier exact dans l’archive de l’édition. La publication sur le portail relève du compte de l’éditeur. Son [guide de publication](https://guides.data.gouv.fr/jeux-de-donnees) décrit les champs et les ressources distantes.
 
-Pour le registre parlementaire, les scrutins et positions sont fournis par l’Assemblée nationale sous sa [Licence ouverte](https://data.assemblee-nationale.fr/licence-ouverte-open-licence). Pour les sondages, marches, séries économiques et textes de droit, conserver le producteur et ses conditions pour chaque donnée reprise.
+Pour le registre parlementaire, les scrutins et positions sont fournis par l’Assemblée nationale sous sa [Licence ouverte](https://data.assemblee-nationale.fr/licence-ouverte-open-licence). Pour les sondages, marchés, séries économiques et textes de droit, conserver le producteur et ses conditions pour chaque donnée reprise.

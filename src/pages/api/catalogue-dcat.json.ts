@@ -36,6 +36,8 @@ export function GET() {
             '@type': 'dcat:Distribution',
             'dcat:downloadURL': { '@id': root + j.path },
             'dct:format': 'application/json',
+            'dct:description': j.rights.scope,
+            ...(j.rights.url ? { 'dct:license': { '@id': j.rights.url } } : {}),
             'dct:rights': { '@id': dataLicence.conditions },
           },
         ],

@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { publicExports, dataLicence } from '../lib/public-exports.mjs';
+import { publicExports } from '../lib/public-exports.mjs';
 import { meta, formatDate } from '../lib/data';
 import { sourceCommit } from '../../scripts/release-revision.mjs';
 const archive = sourceCommit
@@ -39,8 +39,18 @@ const archive = sourceCommit
           <dd>{j.provenance}</dd>
           <dt>À prendre en compte</dt>
           <dd>{j.limits}</dd>
+          <dt>Réutilisation</dt>
+          <dd>
+            {j.rights.url ? (
+              <a itemprop="license" href={j.rights.url}>
+                {j.rights.label}
+              </a>
+            ) : (
+              j.rights.label
+            )}
+            . {j.rights.scope}
+          </dd>
         </dl>
-        <link itemprop="license" href={dataLicence.texte} />
         <meta itemprop="dateModified" content={meta.edition} />
         <span
           itemprop="distribution"

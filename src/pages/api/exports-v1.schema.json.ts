@@ -23,13 +23,22 @@ export function GET() {
         type: 'array',
         items: {
           type: 'object',
-          required: ['id', 'url', 'description'],
+          required: ['id', 'url', 'description', 'droits'],
           properties: {
             id: { type: 'string' },
             url: { type: 'string', format: 'uri' },
             description: { type: 'string' },
             unite: { type: 'string' },
             provenance: { type: 'string' },
+            droits: {
+              type: 'object',
+              required: ['libelle', 'url', 'perimetre'],
+              properties: {
+                libelle: { type: 'string' },
+                url: { type: ['string', 'null'], format: 'uri' },
+                perimetre: { type: 'string' },
+              },
+            },
             limites: { type: 'string' },
             champs: { type: 'array', items: { type: 'string' } },
             documentation: { type: 'string', format: 'uri' },
