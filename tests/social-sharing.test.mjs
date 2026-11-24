@@ -92,6 +92,8 @@ test('l’accueil et toutes les rubriques ont un PNG distinct et les sous-pages 
     '/numerique/ce-qui-changerait/',
     '/economie/',
     '/economie/declarations/',
+    '/economie/simulateurs/',
+    '/territoires/',
     '/economie/finances-publiques/',
     '/themes/',
   );

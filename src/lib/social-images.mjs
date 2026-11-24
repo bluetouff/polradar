@@ -121,6 +121,40 @@ const defs = [
     ),
   ],
   [
+    'territoires',
+    '/territoires/',
+    'Données territoriales',
+    'Les chiffres\nde ma commune',
+    'Logements, accès aux généralistes et participation.',
+    'sage',
+    tiles(
+      [
+        ['Codes SRU', Object.keys(read('territoires/sru')).length],
+        ['Codes DREES', Object.keys(read('territoires/apl')).length],
+        ['Départements', read('territoires/departements').length],
+        ['Élection', 2022],
+      ],
+      'Insee, DREES et ministère du Logement',
+    ),
+  ],
+  [
+    'simulateurs',
+    '/economie/simulateurs/',
+    'Droit en vigueur',
+    'Simuler la CSG\net la retraite',
+    'Le montant prélevé sur votre paie et les règles de votre génération.',
+    'navy',
+    {
+      kind: 'document',
+      rows: [
+        'Salaire mensuel en euros',
+        'Assiette de la CSG',
+        'Part déductible',
+        'Part non déductible',
+      ],
+    },
+  ],
+  [
     'communes',
     '/communes/',
     'Présidentielle 2022',

@@ -70,6 +70,7 @@
   min-width: 0;
 }
 .studio-controls section,
+.studio-controls .studio-options,
 .studio-save,
 .studio-refs,
 .studio-proof-head,
@@ -77,13 +78,14 @@
 .studio-noscript {
   padding: clamp(1rem, 2vw, 1.55rem);
 }
-.studio-controls section + section,
+.studio-controls .studio-options,
 .studio-save,
 .studio-refs,
 .studio-table > details {
   border-top: 1px solid #cedde0;
 }
 .studio-controls h2,
+.studio-options summary,
 .studio-proof h2,
 .studio-save h3,
 .studio-noscript h2 {
@@ -192,8 +194,9 @@
   border-block: 1px solid #bdd1d4;
 }
 .studio-proof figure img {
-  width: 100%;
-  max-width: 40rem;
+  width: auto;
+  height: auto;
+  max-width: min(100%, 40rem);
   max-height: 36rem;
   object-fit: contain;
 }
@@ -292,8 +295,12 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
   }
-  .studio-controls section + section {
-    border-top: 1px solid #cedde0;
+  .studio-controls .studio-options {
+    padding: 0.15rem 1rem 0.35rem;
+  }
+  .studio-options summary {
+    min-height: 44px;
+    line-height: 44px;
   }
   .studio-proof-head > span {
     max-width: 37%;
@@ -310,4 +317,9 @@
   margin: 0;
   color: #31535e;
   align-self: start;
+}
+.studio-options summary {
+  cursor: pointer;
+  font-weight: 650;
+  color: #183746;
 }

@@ -358,7 +358,10 @@ function save(blob: Blob, suffix: string, id: string) {
 }
 function csv(data: Publication) {
   const field = (v: string | number | null) =>
-    typeof v === 'number' ? String(v) : csvValue(v);
+    typeof v === 'number' ||
+    (typeof v === 'string' && /^-\d+(?:\.\d+)?$/.test(v))
+      ? String(v)
+      : csvValue(v);
   return (
     '\uFEFF' +
     [
@@ -436,5 +439,9 @@ for (const btn of node('formats').querySelectorAll<HTMLButtonElement>(
         ),
       ),
   );
+for (const panel of node('controls').querySelectorAll<HTMLDetailsElement>(
+  '.studio-options',
+))
+  panel.open = !window.matchMedia('(max-width: 760px)').matches;
 node('controls').hidden = false;
 void select(choices.has(hash()) ? hash() : 'economie-inflation');

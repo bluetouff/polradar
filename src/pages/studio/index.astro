@@ -59,8 +59,8 @@ const families = Object.entries(studioFamilies)
           ))}
         </select>
       </section>
-      <section>
-        <h2>Mise en page</h2>
+      <details class="studio-options" open>
+        <summary>Mise en page</summary>
         <div class="studio-pair">
           <label>
             Format
@@ -86,9 +86,9 @@ const families = Object.entries(studioFamilies)
           <input id="studio-caption" type="checkbox" checked /> Légende et liens
           dans le HTML
         </label>
-      </section>
-      <section>
-        <h2>Publier le graphique</h2>
+      </details>
+      <details class="studio-options" open>
+        <summary>Publier le graphique</summary>
         <label for="studio-mode">Édition à intégrer</label>
         <select id="studio-mode">
           <option value="figee">Figée · données de cette édition</option>
@@ -108,7 +108,7 @@ const families = Object.entries(studioFamilies)
           <Icon name="source" />
           Copier le code
         </button>
-      </section>
+      </details>
     </div>
     <p class="studio-prompt" id="studio-prompt" hidden>
       Choisissez une série, un dossier ou une période pour afficher son

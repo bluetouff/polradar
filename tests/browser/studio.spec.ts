@@ -98,6 +98,9 @@ test('toutes les familles du Studio produisent une figure et des références su
       'evolution',
       'arcom',
       'marches',
+      'soins',
+      'logement',
+      'elections',
     ]),
   );
   for (const f of families) {
@@ -141,4 +144,47 @@ test('le Studio conserve son catalogue de SVG sans JavaScript', async ({
   } finally {
     await context.close();
   }
+});
+
+test('les cartes relient la méthode, les sources et le dénominateur du département', async ({
+  request,
+}) => {
+  const round = await (
+    await request.get(
+      '/studio/donnees/elections-participation-2022-tour-2.json',
+    )
+  ).json();
+  const paris = round.rows.find((row: unknown[]) => row[0] === '75');
+  expect(paris[3]).toBe(1368623);
+  expect(paris[4]).toBe(1014129);
+  expect(paris[5]).toBeCloseTo((1014129 / 1368623) * 100, 8);
+  const care = await (
+    await request.get('/studio/donnees/soins-generalistes.json')
+  ).json();
+  expect(care.rows.find((r: unknown[]) => r[0] === '976')[2]).toBeNull();
+  expect(care.graphic.svg).toContain('Indisponible ou hors champ');
+  const housing = await (
+    await request.get('/studio/donnees/logement-deficit-sru.json')
+  ).json();
+  for (const p of housing.rows) {
+    expect(p[3]).toBeLessThanOrEqual(p[2]);
+    expect(p[4]).toBeLessThanOrEqual(p[3]);
+    if (!p[3]) expect(p[5]).toBeNull();
+    else expect(p[5]).toBeCloseTo((100 * p[4]) / p[3], 8);
+  }
+});
+
+test('la fenêtre économique conserve les valeurs et drapeaux Eurostat de la série complète', async ({
+  request,
+}) => {
+  const original = await (
+    await request.get('/studio/donnees/economie-inflation.json')
+  ).json();
+  const recent = await (
+    await request.get('/studio/donnees/economie-inflation-periode-recente.json')
+  ).json();
+  expect(recent.rows.length).toBeLessThanOrEqual(12);
+  expect(recent.rows.length).toBeGreaterThan(0);
+  expect(recent.rows).toEqual(original.rows.slice(-recent.rows.length));
+  expect(recent.graphic.alt).toContain('12 derniers mois');
 });

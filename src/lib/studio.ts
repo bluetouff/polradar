@@ -26,6 +26,7 @@ import { retirementComparison } from './retirement-comparison.mjs';
 import { legislativeVotes } from './votes-data';
 import { chambers } from './legislative-votes.mjs';
 import { studioCard } from './studio-card';
+import { studioMaps } from './studio-maps';
 import { airtime, budgetAssessments } from './visual-data';
 import { formatDuration } from './airtime-view.mjs';
 import { formatBudgetAmount } from './campaign-visuals-view.mjs';
@@ -45,6 +46,9 @@ export const studioFamilies = {
   evolution: 'Évolution des propositions',
   arcom: 'Temps de parole',
   marches: 'Marchés prédictifs',
+  logement: 'Logement social',
+  soins: 'Accès aux soins',
+  elections: 'Cartes électorales',
 };
 type Family = keyof typeof studioFamilies;
 type Cell = string | number | null;
@@ -84,20 +88,51 @@ function publish(
 }
 
 for (const series of economy) {
-  publish(
-    'economie',
-    series.id,
-    series.title,
-    economyGraphic(economy, series.id),
-    ['Période', 'Valeur', 'Unité', 'Drapeau Eurostat', 'Source'],
-    series.observations.map(([period, value, flag]) => [
+  const columns = ['Période', 'Valeur', 'Unité', 'Drapeau Eurostat', 'Source'];
+  const rows = (values: typeof series.observations) =>
+    values.map(([period, value, flag]) => [
       period,
       value,
       series.unit,
       flag ?? null,
       series.links.table,
-    ]),
+    ]);
+  publish(
+    'economie',
+    series.id,
+    series.title + ' · série complète',
+    economyGraphic(economy, series.id),
+    columns,
+    rows(series.observations),
     '/graphiques/economie/' + series.id + '.svg',
+  );
+  const periodsPerYear =
+    series.frequency === 'M' ? 12 : series.frequency === 'Q' ? 4 : 1;
+  const span = periodsPerYear === 1 ? 5 : periodsPerYear;
+  const position = (period: string) =>
+    Number(period.slice(0, 4)) * periodsPerYear +
+    (period.length === 4
+      ? 0
+      : Number(period.split('-')[1].replace('Q', '')) - 1);
+  const latest = position(series.observations.at(-1)![0]);
+  const observations = series.observations.filter(
+    ([p]) => position(p) > latest - span,
+  );
+  if (observations.length === series.observations.length) continue;
+  const window =
+    series.frequency === 'M'
+      ? '12 derniers mois'
+      : series.frequency === 'Q'
+        ? '4 derniers trimestres'
+        : '5 dernières années';
+  const title = series.title + ' · ' + window;
+  publish(
+    'economie',
+    series.id + '-periode-recente',
+    title,
+    economyGraphic([{ ...series, title, observations }], series.id),
+    columns,
+    rows(observations),
   );
 }
 for (const series of pollGraphicCatalog(polls)) {
@@ -453,8 +488,7 @@ for (const provider of predictionMarkets.providers) {
         'Type de prix',
         'Relevé UTC',
         'Dernière modification du contrat',
-        'Règle de résolution',
-        'Source',
+        'Source et conditions de règlement',
       ],
       lines.map((l) => [
         desk,
@@ -464,12 +498,13 @@ for (const provider of predictionMarkets.providers) {
         l.name,
         provider.observedAt,
         contract.updatedAt,
-        contract.rules || provider.rules,
         provider.url,
       ]),
     );
   }
 }
+for (const map of studioMaps())
+  publish(map.family, map.id, map.title, map.graphic, map.cols, map.records);
 export const studioItems = items;
 export function studioPublication(item: Item) {
   const graphic = creditStudioGraphic(item.graphic);
