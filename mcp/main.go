@@ -48,23 +48,74 @@ func (c *snapshot) envelope(value any, empty bool) output {
 	return output{Contract: dataMajor, Updated: c.Meta.Updated, Commit: c.commit, Empty: empty, Data: value, Service: binary}
 }
 
+type callFailureKey struct{}
+
+type callFailure uint8
+
+const (
+	invalidArguments callFailure = iota
+	unknownFailure
+	revisionChanged
+	dataUnavailable
+	responseTooLarge
+)
+
+func (failure callFailure) counters() counts {
+	outcome := counts{Error: 1}
+	switch failure {
+	case invalidArguments:
+		outcome.InvalidArguments = 1
+	case revisionChanged:
+		outcome.RevisionChanged = 1
+	case dataUnavailable:
+		outcome.DataUnavailable = 1
+	case responseTooLarge:
+		outcome.ResponseTooLarge = 1
+	}
+	return outcome
+}
+
+func noteFailure(ctx context.Context, reason callFailure) {
+	if outcome, ok := ctx.Value(callFailureKey{}).(*callFailure); ok {
+		*outcome = reason
+	}
+}
+
 func register[I any](server *mcp.Server, data *store, name, description string, call func(*snapshot, I) (any, bool, error)) {
 	off := false
-	mcp.AddTool(server, &mcp.Tool{Name: name, Description: description, OutputSchema: toolOutput(name), Annotations: &mcp.ToolAnnotations{ReadOnlyHint: true, IdempotentHint: true, DestructiveHint: &off, OpenWorldHint: &off}}, func(ctx context.Context, _ *mcp.CallToolRequest, args I) (*mcp.CallToolResult, output, error) {
+	tool := &mcp.Tool{Name: name, Description: description, OutputSchema: toolOutput(name), Annotations: &mcp.ToolAnnotations{ReadOnlyHint: true, IdempotentHint: true, DestructiveHint: &off, OpenWorldHint: &off}}
+	if schema := toolInput[I](name); schema != nil {
+		tool.InputSchema = schema
+	}
+	mcp.AddTool(server, tool, func(ctx context.Context, _ *mcp.CallToolRequest, args I) (*mcp.CallToolResult, output, error) {
+		noteFailure(ctx, unknownFailure)
 		if err := ctx.Err(); err != nil {
 			return nil, output{}, err
 		}
 		c, err := data.load()
 		if err != nil {
+			noteFailure(ctx, dataUnavailable)
 			return nil, output{}, err
 		}
 		value, empty, err := call(c, args)
 		if err != nil {
+			switch {
+			case errors.Is(err, errRevision):
+				noteFailure(ctx, revisionChanged)
+			case errors.Is(err, invalidCorpus):
+				noteFailure(ctx, dataUnavailable)
+			default:
+				noteFailure(ctx, invalidArguments)
+			}
 			return nil, output{}, err
 		}
 		result := c.envelope(value, empty)
 		size, err := json.Marshal(result)
-		if err != nil || len(size) > 192<<10 {
+		if err != nil {
+			return nil, output{}, errors.New("La réponse ne peut pas être construite.")
+		}
+		if len(size) > 192<<10 {
+			noteFailure(ctx, responseTooLarge)
 			return nil, output{}, errors.New("Réponse trop volumineuse. Consultez l’export de la rubrique ou précisez les filtres.")
 		}
 		return nil, result, ctx.Err()
@@ -73,7 +124,7 @@ func register[I any](server *mcp.Server, data *store, name, description string, 
 
 func protocol(data *store, activity *usage) http.Handler {
 	quiet := slog.New(slog.NewTextHandler(io.Discard, nil))
-	server := mcp.NewServer(&mcp.Implementation{Name: "polradar", Title: "Polradar", Version: "1.3.0", WebsiteURL: site + "/mcp/"}, &mcp.ServerOptions{Logger: quiet, Instructions: "Les outils consultent le corpus public de la présidentielle française. Citez la source et son passage. Le statut et l’auteur distinguent les déclarations individuelles, les programmes collectifs, les orientations et les archives."})
+	server := mcp.NewServer(&mcp.Implementation{Name: "polradar", Title: "Polradar", Version: "1.4.0", WebsiteURL: site + "/mcp/"}, &mcp.ServerOptions{Logger: quiet, Instructions: "Les outils consultent le corpus public de la présidentielle française. Citez la source et son passage. Le statut et l’auteur distinguent les déclarations individuelles, les programmes collectifs, les orientations et les archives."})
 	register(server, data, "polradar_search", "Rechercher des propositions par mots, candidature, thème ou statut avec lien vers la fiche et sa source.", (*snapshot).search)
 	register(server, data, "polradar_measure", "Lire le texte, l’auteur, les chiffres disponibles et toutes les références d’une mesure identifiée.", (*snapshot).detail)
 	register(server, data, "polradar_candidates", "Lister les candidatures suivies avec leur statut documenté. Les retraits sont disponibles en option.", (*snapshot).listPeople)
@@ -88,22 +139,24 @@ func protocol(data *store, activity *usage) http.Handler {
 	// Known, dispatched tools only. Discovery, unknown names and report reads never increment the public counters.
 	server.AddReceivingMiddleware(func(next mcp.MethodHandler) mcp.MethodHandler {
 		return func(ctx context.Context, method string, req mcp.Request) (mcp.Result, error) {
-			r, err := next(ctx, method, req)
-			if method == "tools/call" {
-				if params, ok := req.GetParams().(*mcp.CallToolParamsRaw); ok {
-					c := counts{Error: 1}
-					if result, ok := r.(*mcp.CallToolResult); ok && err == nil && !result.IsError {
-						c = counts{Success: 1}
-						var v struct {
-							Empty bool `json:"sansResultat"`
-						}
-						if raw, ok := result.StructuredContent.(json.RawMessage); ok && json.Unmarshal(raw, &v) == nil && v.Empty {
-							c = counts{Empty: 1}
-						}
-					}
-					activity.record(params.Name, c, time.Now())
+			params, ok := req.GetParams().(*mcp.CallToolParamsRaw)
+			if method != "tools/call" || !ok || params == nil {
+				return next(ctx, method, req)
+			}
+			// The SDK rejects invalid input schemas before the typed handler.
+			reason := invalidArguments
+			r, err := next(context.WithValue(ctx, callFailureKey{}, &reason), method, req)
+			c := reason.counters()
+			if result, ok := r.(*mcp.CallToolResult); ok && err == nil && !result.IsError {
+				c = counts{Success: 1}
+				var v struct {
+					Empty bool `json:"sansResultat"`
+				}
+				if raw, ok := result.StructuredContent.(json.RawMessage); ok && json.Unmarshal(raw, &v) == nil && v.Empty {
+					c = counts{Empty: 1}
 				}
 			}
+			activity.record(params.Name, c, time.Now())
 			return r, err
 		}
 	})

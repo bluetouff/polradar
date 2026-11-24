@@ -100,7 +100,7 @@ func TestToolsAndPrivacy(t *testing.T) {
 		}
 	}
 	r, err := u.public(time.Now())
-	if err != nil || len(r.Days) != 1 || r.Days[0].counts != (counts{1, 1, 1}) {
+	if err != nil || len(r.Days) != 1 || r.Days[0].counts != (counts{Success: 1, Empty: 1, Error: 1, InvalidArguments: 1}) {
 		t.Fatalf("compteurs %+v %v", r, err)
 	}
 	if err := u.checkpoint(); err != nil {
@@ -148,6 +148,53 @@ func TestHTTPBoundaries(t *testing.T) {
 	}
 	if limiter.allow("192.0.2.1", now) || !limiter.allow("192.0.2.2", now) || !limiter.allow("192.0.2.1", now.Add(time.Minute)) {
 		t.Fatal("quota")
+	}
+}
+
+func TestToolErrorCategoriesAndAdvertisedBounds(t *testing.T) {
+	u := openUsage(t.TempDir(), time.Now())
+	h := handler(&store{root: fixture(t)}, u)
+	list := rpc(h, "tools/list", map[string]any{})
+	var advertised struct {
+		Result struct {
+			Tools []struct {
+				Name        string
+				InputSchema map[string]json.RawMessage
+			}
+		}
+	}
+	if list.Code != 200 || json.Unmarshal(list.Body.Bytes(), &advertised) != nil {
+		t.Fatal("Catalogue illisible")
+	}
+	for _, tool := range advertised.Result.Tools {
+		if tool.Name == "polradar_donnees" && !bytes.Contains(tool.InputSchema["properties"], []byte(`"parlement-europeen"`)) {
+			t.Fatal("Collections autorisées absentes du schéma")
+		}
+	}
+	cases := []struct {
+		name string
+		args map[string]any
+	}{
+		{"polradar_donnees", map[string]any{"collection": "prive-absent"}},
+		{"polradar_search", map[string]any{"query": "test", "expectedRevision": strings.Repeat("b", 40)}},
+		{"polradar_donnees", map[string]any{"collection": "senat"}},
+	}
+	for _, request := range cases {
+		response := runTool(h, request.name, request.args)
+		if response.Code != 200 || !bytes.Contains(response.Body.Bytes(), []byte(`"isError":true`)) {
+			t.Fatal(request.name, response.Code, response.Body.String())
+		}
+	}
+	got, err := u.public(time.Now())
+	if err != nil || got.Days[0].counts != (counts{Error: 3, InvalidArguments: 1, RevisionChanged: 1, DataUnavailable: 1}) {
+		t.Fatalf("Catégories de diagnostic inattendues : %+v, %v", got, err)
+	}
+	if err := u.checkpoint(); err != nil {
+		t.Fatal(err)
+	}
+	raw, err := os.ReadFile(u.path)
+	if err != nil || bytes.Contains(raw, []byte("prive-absent")) {
+		t.Fatal("Les arguments ne doivent pas être conservés.")
 	}
 }
 func TestPublishedCollectionsAndReleaseSwitch(t *testing.T) {

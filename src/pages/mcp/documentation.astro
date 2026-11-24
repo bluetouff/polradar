@@ -66,6 +66,27 @@ const steps = [
         ))}
       </ol>
     </section>
+    <section class="dev-note">
+      <h2>Diagnostiquer un appel</h2>
+      <p>
+        Utilisez un POST JSON et indiquez les deux types acceptés,
+        <code>application/json</code> et <code>text/event-stream</code>. Un
+        client en version <code>2025-11-25</code> ouvre la connexion avec
+        <code>initialize</code>. En <code>2026-07-28</code>, il utilise
+        <code>server/discover</code> et les en-têtes de la version du protocole.
+      </p>
+      <p>
+        Dans une réponse HTTP 200, <code>result.isError</code> signale un appel
+        refusé ou en échec. <code>sansResultat</code> signale une recherche
+        aboutie sans résultat. Cherchez les identifiants exacts avec les outils
+        de liste et vérifiez les arguments avec <code>tools/list</code>.
+      </p>
+      <p>
+        <a href="https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http">
+          Transport et en-têtes du protocole MCP ↗
+        </a>
+      </p>
+    </section>
     <section class="dev-example" aria-labelledby="mcp-example">
       <div class="dev-heading">
         <Icon name="layers" />

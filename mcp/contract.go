@@ -1,9 +1,58 @@
 package main
 
 import (
+	"maps"
+	"slices"
 	"sort"
 	"strings"
+
+	"github.com/google/jsonschema-go/jsonschema"
 )
+
+// Advertise the bounds the tools already enforce, so clients can build valid arguments.
+func toolInput[I any](name string) *jsonschema.Schema {
+	switch name {
+	case "polradar_search", "polradar_donnees", "polradar_comparer", "polradar_changements", "polradar_territoires":
+	default:
+		return nil
+	}
+	schema, err := jsonschema.For[I](&jsonschema.ForOptions{})
+	if err != nil {
+		panic(err)
+	}
+	props := schema.Properties
+	setEnum := func(key string, values ...string) {
+		for _, value := range values {
+			props[key].Enum = append(props[key].Enum, value)
+		}
+	}
+	switch name {
+	case "polradar_search":
+		schema.Description = "Renseignez au moins un filtre : query, candidate, theme, scope ou candidateStatus."
+		schema.MinProperties = jsonschema.Ptr(1)
+		setEnum("scope", "", "campagne", "parti", "orientation", "archive")
+		setEnum("candidateStatus", "", "toutes", "actives", "retirees")
+		setEnum("sort", "", "pertinence", "alphabetique")
+		props["query"].MaxLength = jsonschema.Ptr(160)
+		props["limit"].Minimum = jsonschema.Ptr(0.0)
+		props["limit"].Maximum = jsonschema.Ptr(25.0)
+	case "polradar_donnees":
+		setEnum("collection", slices.Sorted(maps.Keys(collections))...)
+	case "polradar_comparer":
+		props["candidates"].Type = "array"
+		props["candidates"].Types = nil
+		props["candidates"].MinItems = jsonschema.Ptr(2)
+		props["candidates"].MaxItems = jsonschema.Ptr(6)
+		props["candidates"].UniqueItems = true
+		props["question"].MinLength = jsonschema.Ptr(1)
+	case "polradar_changements":
+		setEnum("kind", changeKinds...)
+		setEnum("dateBasis", "", "observation", "document")
+	case "polradar_territoires":
+		props["code"].Pattern = communeCode.String()
+	}
+	return schema
+}
 
 // Each result has a concrete shape, including absent identifiers and empty pages.
 func fields(spec map[string]string) map[string]any {

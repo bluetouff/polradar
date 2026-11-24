@@ -14,12 +14,36 @@ import (
 var toolNames = []string{"polradar_search", "polradar_measure", "polradar_candidates", "polradar_corpus", "polradar_donnees", "polradar_question", "polradar_comparer", "polradar_votes", "polradar_changements", "polradar_territoires", "polradar_methodologie"}
 
 type counts struct {
-	Success int64 `json:"success"`
-	Empty   int64 `json:"empty"`
-	Error   int64 `json:"error"`
+	Success          int64 `json:"success"`
+	Empty            int64 `json:"empty"`
+	Error            int64 `json:"error"`
+	InvalidArguments int64 `json:"invalidArguments,omitempty"`
+	RevisionChanged  int64 `json:"revisionChanged,omitempty"`
+	DataUnavailable  int64 `json:"dataUnavailable,omitempty"`
+	ResponseTooLarge int64 `json:"responseTooLarge,omitempty"`
 }
 
-func (c *counts) add(n counts) { c.Success += n.Success; c.Empty += n.Empty; c.Error += n.Error }
+func (c *counts) add(n counts) {
+	c.Success += n.Success
+	c.Empty += n.Empty
+	c.Error += n.Error
+	c.InvalidArguments += n.InvalidArguments
+	c.RevisionChanged += n.RevisionChanged
+	c.DataUnavailable += n.DataUnavailable
+	c.ResponseTooLarge += n.ResponseTooLarge
+}
+
+func (c counts) valid() bool {
+	if c.Success < 0 || c.Success > 1e9 || c.Empty < 0 || c.Empty > 1e9 || c.Error < 0 || c.Error > 1e9 {
+		return false
+	}
+	for _, n := range []int64{c.InvalidArguments, c.RevisionChanged, c.DataUnavailable, c.ResponseTooLarge} {
+		if n < 0 || n > c.Error {
+			return false
+		}
+	}
+	return c.InvalidArguments+c.RevisionChanged+c.DataUnavailable+c.ResponseTooLarge <= c.Error
+}
 
 type usageFile struct {
 	First string                       `json:"first"`
@@ -73,7 +97,7 @@ func openUsage(dir string, now time.Time) *usage {
 			break
 		}
 		for name, n := range items {
-			if !slices.Contains(toolNames, name) || n.Success < 0 || n.Empty < 0 || n.Error < 0 || n.Success > 1e9 || n.Empty > 1e9 || n.Error > 1e9 {
+			if !slices.Contains(toolNames, name) || !n.valid() {
 				u.unavailable = true
 				break
 			}
@@ -136,7 +160,7 @@ func (u *usage) record(name string, outcome counts, now time.Time) {
 	}
 	n := u.records.Days[key][name]
 	n.add(outcome)
-	if n.Success > 1e9 || n.Error > 1e9 || n.Empty > 1e9 {
+	if !n.valid() {
 		u.unavailable = true
 		return
 	}

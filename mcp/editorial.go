@@ -209,6 +209,8 @@ type changeArgs struct {
 	pageArgs
 }
 
+var changeKinds = []string{"programme", "redaction", "import", "correction", "enrichissement"}
+
 func dateOverlaps(value, from, to string) bool {
 	lo, hi := value, value
 	if len(value) == 4 {
@@ -221,7 +223,7 @@ func (c *snapshot) changes(a changeArgs) (any, bool, error) {
 	if err := c.validatePage(a.pageArgs); err != nil {
 		return nil, false, err
 	}
-	if !slices.Contains([]string{"programme", "redaction", "import", "correction", "enrichissement"}, a.Kind) || !slices.Contains([]string{"", "observation", "document"}, a.DateBasis) || (a.From != "" && !dayOK(a.From)) || (a.To != "" && !dayOK(a.To)) || (a.From != "" && a.To != "" && a.From > a.To) || len(a.Candidate) > 96 || len(a.Theme) > 96 {
+	if !slices.Contains(changeKinds, a.Kind) || !slices.Contains([]string{"", "observation", "document"}, a.DateBasis) || (a.From != "" && !dayOK(a.From)) || (a.To != "" && !dayOK(a.To)) || (a.From != "" && a.To != "" && a.From > a.To) || len(a.Candidate) > 96 || len(a.Theme) > 96 {
 		return nil, false, errFilter
 	}
 	type diff struct {
@@ -327,7 +329,7 @@ type territoryArgs struct {
 	Code string `json:"code" jsonschema:"Code INSEE de la commune ou de l’arrondissement, par exemple 75056."`
 }
 
-var communeCode = regexp.MustCompile("^(?:[0-9]{2}|2[AB])[0-9]{3}$")
+var communeCode = regexp.MustCompile("^(?:[0-9]{2}|2[AaBb])[0-9]{3}$")
 
 func (c *snapshot) territory(a territoryArgs) (any, bool, error) {
 	code := strings.ToUpper(a.Code)
