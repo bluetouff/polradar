@@ -73,6 +73,8 @@ test('l’accueil et toutes les rubriques ont un PNG distinct et les sous-pages 
     );
   paths.push(
     '/candidats/',
+    '/presse/',
+    '/documents/',
     '/breves/',
     '/communes/',
     '/comparer/retraites/',

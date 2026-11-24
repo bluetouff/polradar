@@ -794,6 +794,50 @@ const defs = [
     ),
   ],
   [
+    'licences',
+    '/licences/',
+    'Réutilisation',
+    'Code et base\nde données',
+    'Les licences du code, de la base et des documents cités.',
+    'ivory',
+    {
+      kind: 'document',
+      rows: [
+        'Code original · AGPLv3',
+        'Base originale · ODbL 1.0',
+        'Crédits des producteurs',
+      ],
+    },
+  ],
+  [
+    'donnees',
+    '/donnees/',
+    'Données ouvertes',
+    'Télécharger\nles données',
+    'Éditions identifiées, provenance et conditions de reprise.',
+    'navy',
+    {
+      kind: 'document',
+      rows: [
+        'Catalogue des jeux',
+        'Archive de chaque édition',
+        'Formats et sources',
+      ],
+    },
+  ],
+  [
+    'documents',
+    '/documents/',
+    'Corpus de campagne',
+    'Documents\nofficiels',
+    'Retrouver la pièce originale et les passages documentés.',
+    'ivory',
+    {
+      kind: 'document',
+      rows: ['Auteur et date', 'Pièce d’origine', 'Passages référencés'],
+    },
+  ],
+  [
     'transparence',
     '/transparence/',
     'Le projet',
