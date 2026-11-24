@@ -22,6 +22,10 @@ const imported = [
   ['10180', 4],
   ['10165', 2],
   ['9995', 4],
+  ['10246', 7],
+  ['10166', 12],
+  ['10007', 5],
+  ['9916', 6],
 ];
 
 test('Chaque notice relue couvre des scénarios traçables et rendus dans le Studio', () => {
@@ -111,6 +115,48 @@ test('Le catalogue distingue les choix de vote des souhaits, de la participation
     assert.match(notice.audit.reason, whatWasMeasured);
     assert.match(notice.audit.reason, /^Pages? \d/);
   }
-  for (const number of ['10246', '10141', '10292'])
+  for (const number of ['10141', '10292'])
     assert.notEqual(coverage.get(number).status, 'non_pertinente');
+});
+
+test('Cluster17 conserve les deux configurations et les cinq duels sur les effectifs pondérés du terrain', () => {
+  const wave = polls.filter(
+    (poll) => poll.surveyId === 'cluster17-commission-10246',
+  );
+  assert.deepEqual(
+    wave.map((p) => p.noticePage),
+    [18, 19, 20, 20, 21, 21, 22],
+  );
+  assert.deepEqual(
+    wave.map((p) => p.usefulSample),
+    [1032, 1052, 997, 1001, 968, 939, 771],
+  );
+  assert.deepEqual(
+    wave[2].results.map((result) => result.percentage),
+    [39.2, 60.8],
+  );
+  assert.equal(wave[2].noIntention, null);
+  assert.equal(wave[2].margin.confidence, null);
+  assert.match(wave[2].uncertainty, /1[\s\u202f]041 intentions exprimées/);
+  assert.equal(wave[2].fieldworkEnd, '2026-07-24');
+  assert.equal(wave[2].published, '2026-08-31');
+});
+
+test('Les vagues Elabe conservent les bases, les pages du rapport et les divergences de documentation', () => {
+  const march = polls.filter(
+    (poll) => poll.surveyId === 'elabe-commission-10166',
+  );
+  assert.equal(march.length, 12);
+  assert.ok(march.every((p) => p.usefulSample === null));
+  assert.ok(march.every((p) => p.question.base.includes('8 à 10')));
+  assert.equal(march[0].resultSource, 'elabe-rapport-10166');
+  assert.equal(march[0].resultPage, 11);
+  assert.equal(march[0].noIntention, 15);
+  assert.match(march[0].noIntentionNote, /Vote blanc ou nul et abstention/);
+  assert.match(march[0].uncertainty, /rapport indique le téléphone/);
+  const april = polls.find((poll) => poll.surveyId === 'elabe-commission-9916');
+  assert.match(
+    april.uncertainty,
+    /page 5 de la notice mentionne les législatives/,
+  );
 });
