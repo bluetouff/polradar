@@ -72,7 +72,7 @@ jobs:
           node scripts/refresh-data.mjs
           node scripts/import-airtime.mjs --refresh
           node scripts/daily-report.mjs
-          npx --no-install prettier --write src/data/{polls,sources,prediction-markets,economy,airtime,daily-updates}.json
+          npx --no-install prettier --write src/data/{polls,poll-catalogue,sources,prediction-markets,economy,airtime,daily-updates}.json
           node scripts/validate-content.mjs
           git diff --check
       - name: Préparer les seuls fichiers de données

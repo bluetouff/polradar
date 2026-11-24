@@ -35,6 +35,20 @@ class PollCollectorTests(unittest.TestCase):
             'institute': 'yougov',
         }])
 
+    def test_inventory_keeps_opinion_old_and_undated_items_separate_from_import(self):
+        row = lambda path, label, edition: f'<p class="download-line"><a class="pdf_download" href="{path}">{label}</a>{edition}</p>'
+        body = (row('/notices/medias/fichiers/add/2419', '10395 Pres barometre politique ODOXA', '- Novembre 2026') +
+                row('/notices/medias/fichiers/add/2258', '9889A Pres IV', '- Septembre 2024') +
+                row('/notices/medias/fichiers/add/2411', 'Libellé nouveau', '')).encode()
+        inventory = polls.catalogue_rows(body)
+        self.assertEqual([r['number'] for r in inventory], ['10395','9889a',None])
+        self.assertEqual([r['listedMonth'] for r in inventory], ['2026-11','2024-09',None])
+        self.assertEqual(polls.notices(body, date(2026,11,24)), [])
+        with self.assertRaises(ValueError):
+            polls.catalogue_rows(body + row('//example.org/other', 'Étranger', '').encode())
+        with self.assertRaises(ValueError):
+            polls.catalogue_rows(body + row('/notices/medias/fichiers/add/2419','Contradictoire','').encode())
+
     def test_weighted_column_does_not_replace_raw_base_and_unknown_is_not_zero(self):
         base, rows = polls.yougov_table([
             'Base                          630           566',

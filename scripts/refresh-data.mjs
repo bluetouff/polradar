@@ -1,3 +1,4 @@
+import { catalogueSchema, mergeCatalogue } from '../src/lib/poll-catalogue.mjs';
 import { readFile, rename, writeFile } from 'node:fs/promises';
 import { pollSchema, sourceSchema } from '../src/lib/schema.mjs';
 import { marketSnapshotSchema } from '../src/lib/markets.mjs';
@@ -15,6 +16,10 @@ async function write(name, value) {
 }
 
 const noticeReport = await json('artifacts/polls-review/review.json');
+const previousCatalogue = catalogueSchema.parse(
+  await json(data('poll-catalogue')),
+);
+const catalogue = mergeCatalogue(previousCatalogue, noticeReport);
 const newSources = sourceSchema.array().parse(noticeReport.sources);
 const newPolls = pollSchema.array().parse(noticeReport.polls);
 if (newSources.length || newPolls.length) {
@@ -56,6 +61,8 @@ if (newSources.length || newPolls.length) {
   await write('sources', [...sources, ...newSources]);
   await write('polls', [...published, ...newPolls]);
 }
+
+await write('poll-catalogue', catalogue);
 
 if (!process.argv.includes('--polls-only')) {
   const [daily, previous] = await Promise.all([

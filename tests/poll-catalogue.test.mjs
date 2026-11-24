@@ -1,0 +1,83 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import {
+  catalogueCoverage,
+  catalogueSchema,
+  mergeCatalogue,
+} from '../src/lib/poll-catalogue.mjs';
+const read = (n) =>
+  JSON.parse(
+    readFileSync(
+      new URL('../src/data/' + n + '.json', import.meta.url),
+      'utf8',
+    ),
+  );
+const snapshot = catalogueSchema.parse(read('poll-catalogue')),
+  polls = read('polls'),
+  sources = read('sources'),
+  audits = read('poll-notice-audits');
+test('Le baromètre Odoxa reste hors des intentions de vote, et une notice est entièrement importée seulement après relecture des pages', () => {
+  const byNumber = (p) =>
+    new Map(
+      catalogueCoverage(snapshot, p, sources, audits).map((r) => [r.number, r]),
+    );
+  const all = byNumber(polls);
+  assert.equal(all.get('10395').status, 'non_pertinente');
+  assert.equal(all.get('10395').scenarios.length, 0);
+  assert.equal(all.get('10392').status, 'integree');
+  assert.equal(all.get('10393').status, 'partielle');
+  assert.equal(
+    byNumber(polls.filter((p) => p.id !== 'ifop-2026-11-20-10392-p8')).get(
+      '10392',
+    ).status,
+    'partielle',
+  );
+  assert.equal(
+    [...all.values()].flatMap((r) => r.scenarios).length,
+    polls.length,
+  );
+});
+test('Un échec conserve les notices et leur précédent succès ; les suppressions du catalogue sont visibles', () => {
+  const when = '2026-12-01T05:00:00Z',
+    later = '2026-12-02T05:00:00Z';
+  const unavailable = mergeCatalogue(snapshot, {
+    checkedAt: when,
+    status: 'unavailable',
+  });
+  assert.deepEqual(unavailable.rows, snapshot.rows);
+  assert.equal(unavailable.lastSuccessAt, snapshot.lastSuccessAt);
+  assert.equal(unavailable.checkedAt, when);
+  const { downloadId, number, label, listedMonth } = snapshot.rows[0];
+  const ok = mergeCatalogue(unavailable, {
+    checkedAt: later,
+    status: 'available',
+    catalogue: [{ downloadId, number, label, listedMonth }],
+  });
+  assert.equal(ok.rows.length, snapshot.rows.length);
+  assert.equal(ok.rows.filter((r) => r.lastListedAt === later).length, 1);
+  assert.throws(() =>
+    mergeCatalogue(ok, { checkedAt: when, status: 'unavailable' }),
+  );
+  assert.throws(() =>
+    mergeCatalogue(ok, {
+      checkedAt: later,
+      status: 'available',
+      catalogue: [],
+    }),
+  );
+  assert.throws(() =>
+    mergeCatalogue(ok, {
+      checkedAt: later,
+      status: 'available',
+      catalogue: [
+        {
+          downloadId: '../../test',
+          number: null,
+          label: 'Test',
+          listedMonth: null,
+        },
+      ],
+    }),
+  );
+});

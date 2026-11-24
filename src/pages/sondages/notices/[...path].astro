@@ -1,0 +1,171 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Pager from '../../../components/Pager.astro';
+import { formatTimestamp, formatDate } from '../../../lib/data';
+import {
+  coverageLabels,
+  commissionIndex,
+  noticeUrl,
+} from '../../../lib/poll-catalogue.mjs';
+import { catalogue, noticeViews } from '../../../lib/poll-catalogue-data';
+import { pagesFor, pageRange } from '../../../lib/pagination';
+export function getStaticPaths() {
+  return noticeViews.flatMap((v) =>
+    pagesFor(v.rows.length).map((page) => ({
+      params: {
+        path:
+          [v.path, page > 1 ? 'page/' + page : ''].filter(Boolean).join('/') ||
+          undefined,
+      },
+      props: { v, page },
+    })),
+  );
+}
+const { v, page } = Astro.props,
+  range = pageRange(v.rows.length, page),
+  base = '/sondages/notices/' + (v.path ? v.path + '/' : '');
+const current = catalogue.rows.filter(
+  (r) => r.lastListedAt === catalogue.lastSuccessAt,
+).length;
+---
+
+<Base
+  title={
+    'Notices des sondages · ' + v.label + (page > 1 ? ' · page ' + page : '')
+  }
+  description="Les notices du catalogue Présidentielle 2027 de la Commission des sondages et les scénarios repris par Polradar."
+  section="/sondages/"
+>
+  <header class="page-title">
+    <h1>Notices de la Commission des sondages</h1>
+    <p>
+      {current} références dans le dernier relevé du catalogue « 2027
+      Présidentielle ». Il comprend aussi des enquêtes d’opinion.
+    </p>
+    <a href={commissionIndex} class="inline-action" rel="noreferrer">
+      Consulter le catalogue officiel ↗
+    </a>
+  </header>
+  <p>
+    {catalogue.available
+      ? 'Dernier relevé réussi'
+      : 'Dernière tentative sans résultat'}{' '}
+    le {formatTimestamp(catalogue.checkedAt)} (Paris).
+    {!catalogue.available && catalogue.lastSuccessAt && (
+      <span>
+        {' '}
+        Dernier catalogue disponible du{' '}
+        {formatTimestamp(catalogue.lastSuccessAt)}.
+      </span>
+    )}
+  </p>
+  <nav aria-label="État des notices" class="filters">
+    {noticeViews
+      .filter((t) => t.rows.length > 0 || t.path === v.path)
+      .map((t) => (
+        <a
+          href={'/sondages/notices/' + (t.path ? t.path + '/' : '')}
+          aria-current={v.path === t.path ? 'page' : undefined}
+        >
+          {t.label} <b>{t.rows.length}</b>
+        </a>
+      ))}
+  </nav>
+  <section id="resultats" aria-label="Notices" class="notices">
+    {v.rows.slice(range.start, range.end).map((r) => (
+      <article>
+        <small>{(coverageLabels as Record<string, string>)[r.status]}</small>
+        <h2>
+          <a href={noticeUrl(r.downloadId)} rel="noreferrer">
+            {r.label} ↗
+          </a>
+        </h2>
+        <p>
+          {r.listedMonth
+            ? 'Mois au catalogue · ' + r.listedMonth
+            : 'Mois du dépôt inconnu'}
+          {r.lastListedAt !== catalogue.lastSuccessAt
+            ? ' · Absente du dernier relevé'
+            : ''}
+        </p>
+        {r.audit && (
+          <p>
+            {r.audit.reason} Vérifié le {formatDate(r.audit.checked)}.
+          </p>
+        )}
+        {r.scenarios.length > 0 && (
+          <details>
+            <summary>{r.scenarios.length} scénarios publiés</summary>
+            <ul>
+              {r.scenarios.map((s: { id: string; page: number }) => (
+                <li>
+                  <a href={'/sondages/#enquete=' + s.id}>
+                    Scénario · page {s.page}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </details>
+        )}
+        {r.issue && (
+          <p>Vérification du fichier le {formatTimestamp(r.issue.at)}.</p>
+        )}
+      </article>
+    ))}
+  </section>
+  <Pager range={range} base={base} />
+  <p>
+    <a href="/sondages/">Lire les intentions de vote →</a>
+  </p>
+</Base>
+<style>
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1rem 0 1.4rem;
+  }
+  .filters a {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--panel-edge, #aec4cb);
+    border-radius: 0.5rem;
+    background: var(--panel-gradient, #f6fafb);
+    font-size: 0.87rem;
+  }
+  .filters a[aria-current] {
+    background: #164857;
+    color: white;
+  }
+  .notices {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  .notices article {
+    min-width: 0;
+    padding: 1.1rem;
+    border: 1px solid var(--panel-edge, #aec4cb);
+    background: var(--panel-gradient, #f6fafb);
+    border-radius: 0.65rem;
+    overflow-wrap: anywhere;
+  }
+  .notices h2 {
+    font-size: 1.06rem;
+    margin: 0.55rem 0;
+  }
+  .notices p,
+  .notices details {
+    font-size: 0.87rem;
+  }
+  .notices small {
+    font-weight: 650;
+    color: #205565;
+  }
+  .notices summary {
+    cursor: pointer;
+  }
+</style>

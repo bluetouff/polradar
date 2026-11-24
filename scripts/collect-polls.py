@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check the Commission's catalogue and import recognised election notice tables."""
 import argparse
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
 from decimal import Decimal
 from html.parser import HTMLParser
 import importlib.util
@@ -78,6 +78,7 @@ class Catalogue(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.rows = []
+        self.rejected = 0
         self.path = None
         self.in_row = False
         self.in_link = False
@@ -108,6 +109,34 @@ class Catalogue(HTMLParser):
             self.in_row = False
             if self.path and DOWNLOAD.fullmatch(self.path):
                 self.rows.append((self.path, plain(''.join(self.label)), plain(''.join(self.edition))))
+            else:
+                self.rejected += 1
+
+
+def catalogue_rows(body):
+    if len(body) > transport.LIMIT:
+        raise ValueError('Catalogue trop volumineux')
+    catalogue = Catalogue()
+    catalogue.feed(body.decode('utf-8', errors='strict'))
+    if not 1 <= len(catalogue.rows) <= 3000 or catalogue.rejected:
+        raise ValueError('Catalogue de la Commission incomplet')
+    result = {}
+    for path, title, edition in catalogue.rows:
+        if not 1 <= len(title) <= 350 or any(ord(c) < 32 for c in title):
+            raise ValueError('Libellé de notice invalide')
+        number = re.match(r'^([0-9]{4,6}[A-Z]?)\b', title, re.I)
+        month = re.fullmatch(r'- ([a-z]+) (\d{4})', normalized(edition))
+        row = {
+            'downloadId': path.rsplit('/', 1)[1],
+            'number': number[1].lower() if number else None,
+            'label': title,
+            'listedMonth': (f'{month[2]}-{MONTHS.index(month[1])+1:02d}'
+                            if month and month[1] in MONTHS else None),
+        }
+        if row['downloadId'] in result and result[row['downloadId']] != row:
+            raise ValueError('Références contradictoires dans le catalogue')
+        result[row['downloadId']] = row
+    return list(result.values())
 
 
 def notices(body, today):
@@ -397,7 +426,8 @@ def import_notice(notice, pages, identities, today):
 
 
 def collect(today):
-    output = {'checked': today.isoformat(), 'status': 'available', 'sources': [], 'polls': [], 'review': []}
+    checked_at = datetime.now(timezone.utc).isoformat(timespec='seconds').replace('+00:00', 'Z')
+    output = {'checked': today.isoformat(), 'checkedAt': checked_at, 'status': 'available', 'sources': [], 'polls': [], 'review': []}
     polls = json.loads((ROOT / 'src/data/polls.json').read_text())
     source_rows = json.loads((ROOT / 'src/data/sources.json').read_text())
     candidate_rows = json.loads((ROOT / 'src/data/candidates.json').read_text())
@@ -416,6 +446,7 @@ def collect(today):
         status, mime, body = transport.fetch_reliably(INDEX, HOSTS)
         if status != 200 or mime not in ('text/html', 'application/xhtml+xml'):
             raise ValueError('Catalogue indisponible')
+        output['catalogue'] = catalogue_rows(body)
         candidates = notices(body, today)
     except (OSError, ValueError):
         output['status'] = 'unavailable'
@@ -434,11 +465,17 @@ def collect(today):
         downloads += 1
         try:
             status, mime, raw = transport.fetch_reliably(item['url'], HOSTS)
-            if status != 200 or mime not in ('application/pdf', 'application/octet-stream'):
-                raise ValueError('Notice indisponible')
+        except (OSError, ValueError):
+            status, mime, raw = None, '', None
+        if status != 200:
+            output['review'].append({**pending, 'reason': 'notice-inaccessible'})
+            continue
+        try:
+            if mime not in ('application/pdf', 'application/octet-stream'):
+                raise ValueError('Format inattendu')
             source, rows = import_notice(item, layout(raw), identities, today)
         except (OSError, ValueError, IndexError, StopIteration, subprocess.SubprocessError):
-            output['review'].append({**pending, 'reason': 'format-ou-source-a-verifier'})
+            output['review'].append({**pending, 'reason': 'format-non-reconnu'})
             continue
         output['sources'].append(source)
         output['polls'].extend(rows)

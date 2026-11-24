@@ -52,6 +52,7 @@ const { institutes } = coverage;
     <a href="/sondages/" aria-current="page">
       Intentions de vote
     </a>
+    <a href="/sondages/notices/">Notices de la Commission</a>
     <a href="/marches-predictifs/">
       Marchés prédictifs <span aria-hidden="true">↗</span>
     </a>
@@ -217,6 +218,11 @@ const { institutes } = coverage;
   <p id="poll-status" class="results-meta" role="status" aria-live="polite"></p>
   <details class="reader-options">
     <summary>Combien d’enquêtes et de scénarios ?</summary>
+    <p>
+      <a href="/sondages/notices/">
+        Parcourir les notices de la Commission et leur état de traitement
+      </a>
+    </p>
     <p>
       {coverage.observations} observations datées ({coverage.firstRound} au
       premier tour, {coverage.secondRound} au second) · {coverage.series} séries
