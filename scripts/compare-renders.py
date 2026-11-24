@@ -10,7 +10,7 @@ import tempfile
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
-CASES = ('identique','correction','retrait-ajout','candidature','source','budget','edition','partage')
+CASES = ('identique','correction','ajout','suppression','candidature','source','budget','edition','partage')
 
 def command(cwd, *args, log=None):
     return subprocess.run(args, cwd=cwd, check=True, text=True,
@@ -40,16 +40,19 @@ def mutate(cwd, case):
         return json.loads((data/(name+'.json')).read_bytes())
     def write(name,value):
         (data/(name+'.json')).write_text(json.dumps(value, ensure_ascii=False))
-    if case in ('correction','retrait-ajout'):
+    if case in ('correction','ajout'):
         measures, versions = read('measures'),read('versions')
-        # A single-version leaf from the public corpus; removed only in the disposable clone.
+        # A one-version copy used only inside the disposable clone.
         item = next(m for m in measures if m['id']=='herlin-semaine-40-heures')
         if case=='correction':
             item['description'] += ' (Recette locale.)'
             next(v for v in versions if v['measureId']==item['id'] and v['number']==item['revision'])['snapshot']['description']=item['description']
         else:
-            measures.remove(item)
-            versions=[v for v in versions if v['measureId']!=item['id']]
+            original=next(v for v in versions if v['measureId']==item['id'] and v['number']==item['revision'])
+            identifier='recette-page-temporaire'
+            title=item['title']+' (recette locale)'
+            measures.append({**item,'id':identifier,'revision':1,'title':title})
+            versions.append({**original,'id':identifier+'-v1','measureId':identifier,'number':1,'snapshot':{**original['snapshot'],'title':title}})
         write('measures',measures);write('versions',versions)
     elif case=='candidature':
         people=read('candidates')
@@ -83,7 +86,7 @@ def run(cases):
             with (Path(directory)/'log').open('w+') as log:
                 try: command(cwd,*args,log=log)
                 except subprocess.CalledProcessError:
-                    log.seek(0);print(''.join(log.readlines()[-24:]),flush=True);raise
+                    log.seek(0);print(''.join(log.readlines()[-65:]),flush=True);raise
                 log.seek(0); last=log.readlines()[-1].strip()
             return round(time.monotonic()-start,2),last
         build(True)
