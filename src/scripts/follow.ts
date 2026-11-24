@@ -1,4 +1,4 @@
-import { corpus, el, anchor, icon, measureCard } from './ui';
+import { corpus, publicData, el, anchor, icon, measureCard } from './ui';
 import { safePreferences } from '../lib/features.mjs';
 const key = 'polradar.follow.v1';
 async function start() {
@@ -7,9 +7,15 @@ async function start() {
   );
   const app = document.querySelector('#follow-app');
   if (!buttons.length && !app) return;
-  const data = await corpus(),
-    candidateIds = data.candidates.map((row) => row.id),
-    themeIds = data.themes.map((row) => row.id);
+  const data = app ? await corpus() : undefined;
+  const choices = data
+    ? {
+        candidates: data.candidates.map((c) => c.id),
+        themes: data.themes.map((t) => t.id),
+      }
+    : await publicData<{ candidates: string[]; themes: string[] }>(
+        '/data/choix-suivi.json',
+      );
   let raw = '';
   let available = true;
   try {
@@ -17,13 +23,13 @@ async function start() {
   } catch {
     available = false;
   }
-  let prefs = safePreferences(raw, candidateIds, themeIds);
+  let prefs = safePreferences(raw, choices.candidates, choices.themes);
   let previousVisit = prefs.lastVisit;
   const status = document.querySelector<HTMLElement>('#follow-status');
   let updateFeed:
     | ((preferences: { candidates: string[]; themes: string[] }) => void)
     | undefined;
-  if (app)
+  if (app && data)
     void import('./follow-since')
       .then(({ mountChangeFeed }) => {
         updateFeed = mountChangeFeed(data);
@@ -62,7 +68,7 @@ async function start() {
         `${active ? 'Ne plus suivre' : 'Suivre'} : ${button.dataset.followName}`,
       );
     }
-    if (!app) return;
+    if (!app || !data) return;
     updateFeed?.(prefs);
     const rows = data.measures.filter(
       (measure) =>

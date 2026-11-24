@@ -7,20 +7,21 @@ const form = document.querySelector<HTMLFormElement>('#compare-form')!,
   selects = [0, 1, 2].map((index) =>
     document.querySelector<HTMLSelectElement>(`#compare-candidate-${index}`)!,
   );
-async function start() {
-  const data = await corpus(),
-    valid = new Set(
-      data.candidates
-        .filter((candidate) => !candidate.withdrawnOn)
-        .map((candidate) => candidate.id),
-    ),
-    params = new URLSearchParams(location.search);
+function start() {
+  const valid = new Set(
+    Array.from(selects[0].options, (option) => option.value).filter(Boolean),
+  );
+  const params = new URLSearchParams(location.search);
   const ids = [
     ...new Set(
       (params.get('c') || '').split(',').filter((id) => valid.has(id)),
     ),
   ].slice(0, 3);
-  if (data.themes.some((theme) => theme.id === params.get('theme')))
+  if (
+    Array.from(themeSelect.options).some(
+      (option) => option.value === params.get('theme'),
+    )
+  )
     themeSelect.value = params.get('theme')!;
   archives.checked = params.get('archives') === '1';
   form.querySelector<HTMLInputElement>(
@@ -34,7 +35,9 @@ async function start() {
     '2'
       ? 2
       : 3;
-  function render() {
+  let generation = 0;
+  async function render() {
+    const ticket = ++generation;
     const active = [
       ...new Set(
         selects
@@ -53,21 +56,16 @@ async function start() {
           select.value !== option.value;
       }),
     );
-    const theme = data.themes.find((theme) => theme.id === themeSelect.value)!;
-    document.querySelector('#comparison-theme-title')!.textContent =
-      theme.label;
-    document.querySelector('#comparison-note')!.textContent = theme.note;
-    const relevant = data.measures.filter(
-      (measure) =>
-        active.includes(measure.candidate) &&
-        measure.theme === theme.id &&
-        (measure.scope !== 'archive' || archives.checked),
-    );
+    const theme = themeSelect.selectedOptions[0];
+    document.querySelector('#comparison-theme-title')!.textContent = theme.text;
+    document.querySelector('#comparison-note')!.textContent =
+      theme.dataset.note || '';
     const container = document.querySelector<HTMLElement>('#comparison-cards')!;
     container.dataset.count = String(count());
     container.replaceChildren();
     const query = new URLSearchParams();
-    if (theme.id !== data.themes[0].id) query.set('theme', theme.id);
+    if (theme.value !== themeSelect.options[0].value)
+      query.set('theme', theme.value);
     if (active.length) query.set('c', active.join(','));
     if (count() === 3 && active.length < 3) query.set('count', '3');
     if (archives.checked) query.set('archives', '1');
@@ -83,6 +81,24 @@ async function start() {
         : 'Choisissez deux candidatures à comparer.';
       return;
     }
+    feedback.textContent = 'Chargement des propositions…';
+    document.querySelector('#comparison-metrics')!.replaceChildren();
+    let data;
+    try {
+      data = await corpus();
+    } catch {
+      if (ticket === generation)
+        feedback.textContent =
+          'Le corpus interactif n’a pas pu être chargé. Les propositions restent accessibles depuis les pages thématiques.';
+      return;
+    }
+    if (ticket !== generation) return;
+    const relevant = data.measures.filter(
+      (measure) =>
+        active.includes(measure.candidate) &&
+        measure.theme === theme.value &&
+        (measure.scope !== 'archive' || archives.checked),
+    );
     let available = 0;
     for (const id of active) {
       const candidate = data.candidates.find(
@@ -101,7 +117,7 @@ async function start() {
         const old = data.measures.some(
           (measure) =>
             measure.candidate === id &&
-            measure.theme === theme.id &&
+            measure.theme === theme.value &&
             measure.scope === 'archive',
         );
         body.append(
@@ -151,7 +167,4 @@ async function start() {
     .addEventListener('click', () => window.print());
   render();
 }
-start().catch(() => {
-  feedback.textContent =
-    'Le corpus interactif n’a pas pu être chargé. Les propositions restent accessibles depuis les pages thématiques.';
-});
+start();

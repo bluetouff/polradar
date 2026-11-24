@@ -19,7 +19,9 @@ import { digitalLawRoot } from '../lib/digital-law.mjs';
       Votre sujet
       <select id="compare-theme" name="theme">
         {themes.map((t) => (
-          <option value={t.id}>{t.label}</option>
+          <option value={t.id} data-note={t.note}>
+            {t.label}
+          </option>
         ))}
       </select>
     </label>

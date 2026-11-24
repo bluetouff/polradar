@@ -47,21 +47,24 @@ export const date = (value: string) =>
     timeZone: 'Europe/Paris',
   }).format(new Date(`${value}T12:00:00Z`));
 export const number = (value: number) => value.toLocaleString('fr-FR');
+export async function publicData<T>(
+  path: '/data/choix-suivi.json' | '/data/enquetes.json' | '/api/corpus.json',
+): Promise<T> {
+  const response = await fetch(path, {
+    credentials: 'omit',
+    redirect: 'error',
+    referrerPolicy: 'no-referrer',
+  });
+  if (!response.ok) throw Error('Données indisponibles');
+  return response.json();
+}
 let pending: Promise<Corpus> | undefined;
 export function corpus(): Promise<Corpus> {
   if (!pending)
-    pending = fetch('/api/corpus.json', {
-      credentials: 'omit',
-      redirect: 'error',
-    })
-      .then((response) => {
-        if (!response.ok) throw Error('Corpus indisponible');
-        return response.json() as Promise<Corpus>;
-      })
-      .catch((error) => {
-        pending = undefined;
-        throw error;
-      });
+    pending = publicData<Corpus>('/api/corpus.json').catch((error) => {
+      pending = undefined;
+      throw error;
+    });
   return pending;
 }
 export function download(content: string, type: string, filename: string) {

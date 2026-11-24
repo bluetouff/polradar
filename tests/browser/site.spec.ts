@@ -75,8 +75,18 @@ test('recherche locale et absence de requêtes vers des tiers', async ({
 test('une erreur de chargement préserve la comparaison initiale', async ({
   page,
 }) => {
-  await page.route('**/api/corpus.json', (route) => route.abort());
+  let downloads = 0;
+  await page.route('**/api/corpus.json', (route) => {
+    downloads++;
+    return route.abort();
+  });
   await page.goto('/comparer/');
+  await page.locator('#compare-candidate-0').selectOption('philippe');
+  await expect(page.locator('#comparison-feedback')).toContainText(
+    'deuxième candidature',
+  );
+  expect(downloads).toBe(0);
+  await page.locator('#compare-candidate-1').selectOption('roussel');
   await expect(page.locator('#comparison-feedback')).toContainText(
     'n’a pas pu être chargé',
   );

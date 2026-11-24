@@ -1,4 +1,4 @@
-import { corpus, el, anchor, svg, number, date, download } from './ui';
+import { publicData, el, anchor, svg, number, date, download } from './ui';
 import {
   pollSeries,
   pollColor,
@@ -26,7 +26,10 @@ const shortDate = (value: string) =>
     timeZone: 'Europe/Paris',
   }).format(new Date(value + 'T12:00:00Z'));
 async function start() {
-  const data = await corpus(),
+  const data = await publicData<{
+      polls: Poll[];
+      sources: { id: string; url: string }[];
+    }>('/data/enquetes.json'),
     groups = pollSeries(data.polls) as Poll[][];
   let rows = groups[0],
     active: string[] = [],
