@@ -288,7 +288,7 @@ def activate(directory, kind, key_id=None):
         else:
             if smoke('/api/mcp')[0]!=405: raise ValueError('Route MCP non activée')
             code,body=smoke('/api/mcp',{'jsonrpc':'2.0','id':1,'method':'tools/list','params':{}})
-            if code!=200 or len(json.loads(body)['result']['tools'])!=5: raise ValueError('Catalogue MCP invalide')
+            if code!=200 or not {'polradar_search','polradar_measure','polradar_candidates','polradar_corpus','polradar_donnees'}.issubset({tool['name'] for tool in json.loads(body)['result']['tools'] if tool.get('annotations',{}).get('readOnlyHint') is True}): raise ValueError('Catalogue MCP invalide')
             code,body=smoke('/api/mcp',{'jsonrpc':'2.0','id':2,'method':'tools/call','params':{'name':'polradar_corpus','arguments':{}}})
             if code!=200 or not json.loads(body).get('result',{}).get('content') or json.loads(body)['result'].get('isError'): raise ValueError('Corpus non lisible par MCP')
             code,body=smoke('/api/mcp-stats.json')

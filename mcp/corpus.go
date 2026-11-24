@@ -91,6 +91,10 @@ type catalog struct {
 	Polls      []record
 }
 type snapshot struct {
+	extraMu     sync.Mutex
+	editorial   *dossiers
+	territorial *territories
+	lexical     []lexicalRecord
 	catalog
 	commit   string
 	root     string
@@ -98,7 +102,6 @@ type snapshot struct {
 	bySource map[string]source
 	people   map[string]candidate
 	history  map[string][]edition
-	words    []string
 }
 type store struct {
 	root    string
@@ -168,7 +171,7 @@ func (s *store) load() (*snapshot, error) {
 		themes[v.ID] = v.Label
 	}
 	sort.Slice(c.Measures, func(i, j int) bool { return c.Measures[i].ID < c.Measures[j].ID })
-	c.words = make([]string, len(c.Measures))
+	c.lexical = make([]lexicalRecord, len(c.Measures))
 	for i, m := range c.Measures {
 		if _, exists := c.byID[m.ID]; exists || m.ID == "" || m.DisplayAuthor == "" || names[m.Candidate] == "" || themes[m.Theme] == "" || len(m.SourceRefs) == 0 {
 			return nil, invalidCorpus
@@ -179,7 +182,7 @@ func (s *store) load() (*snapshot, error) {
 			}
 		}
 		c.byID[m.ID] = i
-		c.words[i] = normalize(strings.Join([]string{m.Title, m.Description, m.DisplayAuthor, names[m.Candidate], themes[m.Theme]}, " "))
+		c.lexical[i] = indexRecord(m, names[m.Candidate], themes[m.Theme])
 	}
 	c.history = make(map[string][]edition)
 	for _, v := range c.Versions {
@@ -259,12 +262,19 @@ func (c *snapshot) matchMeasures(a searchArgs) (any, bool, error) {
 	if a.Scope != "" && a.Scope != "campagne" && a.Scope != "parti" && a.Scope != "orientation" && a.Scope != "archive" {
 		return nil, false, errors.New("Statut inconnu.")
 	}
-	terms := strings.Fields(normalize(a.Query))
+	if a.Sort != "" && a.Sort != "pertinence" && a.Sort != "alphabetique" {
+		return nil, false, errFilter
+	}
+	query := normalize(a.Query)
+	terms := lexicalTerms(query)
+	if query != "" && len(terms) == 0 {
+		return nil, false, errors.New("Précisez le terme recherché.")
+	}
 	if a.Limit == 0 {
 		a.Limit = 10
 	}
-	rows := make([]map[string]any, 0, a.Limit)
-	total := 0
+	type hit struct{ index, rank int }
+	hits := []hit{}
 	for i, m := range c.Measures {
 		withdrawn := c.people[m.Candidate].WithdrawnOn != ""
 		if (a.CandidateStatus == "actives" && withdrawn) || (a.CandidateStatus == "retirees" && !withdrawn) {
@@ -273,22 +283,29 @@ func (c *snapshot) matchMeasures(a searchArgs) (any, bool, error) {
 		if (a.Candidate != "" && a.Candidate != m.Candidate) || (a.Theme != "" && a.Theme != m.Theme) || (a.Scope == "" && m.Scope == "archive") || (a.Scope != "" && a.Scope != m.Scope) {
 			continue
 		}
-		match := true
-		for _, term := range terms {
-			if !strings.Contains(c.words[i], term) {
-				match = false
-				break
-			}
+		rank, ok := c.lexical[i].rank(query, terms)
+		if ok {
+			hits = append(hits, hit{i, rank})
 		}
-		if !match {
-			continue
-		}
-		if total >= a.Offset && len(rows) < a.Limit {
-			rows = append(rows, c.card(m))
-		}
-		total++
 	}
-	return map[string]any{"total": total, "offset": a.Offset, "resultats": rows}, len(rows) == 0, nil
+	sort.Slice(hits, func(i, j int) bool {
+		aHit, bHit := hits[i], hits[j]
+		if a.Sort != "alphabetique" && aHit.rank != bHit.rank {
+			return aHit.rank > bHit.rank
+		}
+		aTitle, bTitle := c.lexical[aHit.index].title, c.lexical[bHit.index].title
+		if aTitle != bTitle {
+			return aTitle < bTitle
+		}
+		return c.Measures[aHit.index].ID < c.Measures[bHit.index].ID
+	})
+	start := min(a.Offset, len(hits))
+	end := min(start+a.Limit, len(hits))
+	rows := make([]map[string]any, 0, end-start)
+	for _, h := range hits[start:end] {
+		rows = append(rows, c.card(c.Measures[h.index]))
+	}
+	return map[string]any{"total": len(hits), "offset": a.Offset, "resultats": rows}, len(rows) == 0, nil
 }
 
 type measureArgs struct {

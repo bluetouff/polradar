@@ -48,8 +48,8 @@ const steps = [
   <header class="page-title">
     <h1>Consulter Polradar avec un agent MCP</h1>
     <p>
-      Connectez votre client en HTTP au serveur <code>{url}</code>. Les cinq
-      outils donnent accès au corpus public en lecture seule.
+      Connectez votre client en HTTP au serveur <code>{url}</code>. Les outils
+      donnent accès au corpus public en lecture seule.
     </p>
   </header>
   <div class="dev-guide">
@@ -76,6 +76,41 @@ const steps = [
         Les données sont dans <code>result.structuredContent</code>. Utilisez{' '}
         <code>tools/list</code> pour lire les paramètres acceptés par les
         outils.
+      </p>
+    </section>
+    <section class="dev-note">
+      <h2>Comparer des candidatures</h2>
+      <p>
+        Dans <code>polradar_question</code>, choisissez une question, puis
+        passez son identifiant et deux à six identifiants de candidats à{' '}
+        <code>polradar_comparer</code>. Chaque position cite l’auteur et la
+        version. Une case vide signale une réponse encore indocumentée.
+      </p>
+      <p>
+        <code>polradar_votes</code> donne le texte, le choix nominatif et la
+        version rapprochée. Pour un avant/après,{' '}
+        <code>polradar_changements</code> accepte <code>programme</code> ou{' '}
+        <code>redaction</code> et une période. Une édition connue à l’année peut
+        chevaucher la fenêtre demandée.
+      </p>
+      <p>
+        <code>polradar_territoires</code> accepte un code INSEE.{' '}
+        <code>polradar_methodologie</code> donne les règles de lecture.
+      </p>
+      <h2>Rechercher et parcourir les résultats</h2>
+      <p>
+        La recherche privilégie l’expression dans le titre puis les mots exacts
+        et leurs préfixes. Elle reconnaît notamment CSG, SMIC, HLM, PAC et leurs
+        formes développées, ainsi que « chiffrement » et « cryptographie ». Le
+        tri <code>alphabetique</code> classe les titres puis les identifiants.
+      </p>
+      <p>
+        Les archives se demandent avec <code>scope</code>. Le filtre{' '}
+        <code>candidateStatus</code> accepte <code>toutes</code> (défaut),{' '}
+        <code>actives</code> et <code>retirees</code>. Pour paginer sur la même
+        édition, transmettez <code>revisionDuSite</code> dans{' '}
+        <code>expectedRevision</code>. La fiche détaillée accepte un numéro de{' '}
+        <code>version</code>.
       </p>
     </section>
     <div class="dev-pair">

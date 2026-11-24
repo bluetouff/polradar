@@ -4,6 +4,12 @@ package main
 func toolOutput(name string) map[string]any {
 	types := map[string]string{}
 	switch name {
+	case "polradar_question", "polradar_comparer", "polradar_changements", "polradar_votes":
+		types = map[string]string{"total": "integer", "offset": "integer", "resultats": "array"}
+	case "polradar_territoires":
+		types = map[string]string{"codeInsee": "string", "definitions": "object"}
+	case "polradar_methodologie":
+		types = map[string]string{"url": "string", "dates": "string", "attribution": "string"}
 	case "polradar_corpus":
 		types = map[string]string{"campagne": "integer", "parti": "integer", "orientations": "integer", "archives": "integer", "sources": "integer", "themes": "array"}
 	case "polradar_candidates":

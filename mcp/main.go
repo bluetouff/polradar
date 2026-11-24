@@ -72,12 +72,18 @@ func register[I any](server *mcp.Server, data *store, name, description string, 
 
 func protocol(data *store, activity *usage) http.Handler {
 	quiet := slog.New(slog.NewTextHandler(io.Discard, nil))
-	server := mcp.NewServer(&mcp.Implementation{Name: "polradar", Title: "Polradar", Version: "1.0.0", WebsiteURL: site + "/mcp/"}, &mcp.ServerOptions{Logger: quiet, Instructions: "Les outils consultent le corpus public de la présidentielle française. Citez la source et son passage. Le statut et l’auteur distinguent les déclarations individuelles, les programmes collectifs, les orientations et les archives."})
+	server := mcp.NewServer(&mcp.Implementation{Name: "polradar", Title: "Polradar", Version: "1.1.0", WebsiteURL: site + "/mcp/"}, &mcp.ServerOptions{Logger: quiet, Instructions: "Les outils consultent le corpus public de la présidentielle française. Citez la source et son passage. Le statut et l’auteur distinguent les déclarations individuelles, les programmes collectifs, les orientations et les archives."})
 	register(server, data, "polradar_search", "Rechercher des propositions par mots, candidature, thème ou statut avec lien vers la fiche et sa source.", (*snapshot).search)
 	register(server, data, "polradar_measure", "Lire le texte, l’auteur, les chiffres disponibles et toutes les références d’une mesure identifiée.", (*snapshot).detail)
 	register(server, data, "polradar_candidates", "Lister les candidatures suivies avec leur statut documenté. Les retraits sont disponibles en option.", (*snapshot).listPeople)
 	register(server, data, "polradar_corpus", "Consulter les effectifs par type de fiche et les identifiants des thèmes.", (*snapshot).counts)
 	register(server, data, "polradar_donnees", "Consulter les sondages, les indicateurs économiques, l’agenda, les budgets et les marchés prédictifs. Choisissez une collection, puis un identifiant pour lire les chiffres, les dates et les sources.", (*snapshot).publicData)
+	register(server, data, "polradar_question", "Consulter les questions documentées puis leurs positions, sources et absences.", (*snapshot).question)
+	register(server, data, "polradar_comparer", "Comparer deux à six dossiers sur une question documentée.", (*snapshot).compare)
+	register(server, data, "polradar_votes", "Lire les scrutins nominatifs rapprochés des versions de propositions et leur objet.", (*snapshot).votes)
+	register(server, data, "polradar_changements", "Parcourir les évolutions documentaires ou les corrections éditoriales, datées séparément.", (*snapshot).changes)
+	register(server, data, "polradar_territoires", "Lire le logement social SRU et l’accessibilité aux généralistes pour un code INSEE.", (*snapshot).territory)
+	register(server, data, "polradar_methodologie", "Lire les règles d’attribution, de fraîcheur et de couverture.", (*snapshot).methodology)
 	// Known, dispatched tools only. Discovery, unknown names and report reads never increment the public counters.
 	server.AddReceivingMiddleware(func(next mcp.MethodHandler) mcp.MethodHandler {
 		return func(ctx context.Context, method string, req mcp.Request) (mcp.Result, error) {

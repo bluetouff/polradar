@@ -191,6 +191,12 @@ func TestPublishedProtocols(t *testing.T) {
 				{"polradar_measure", map[string]any{"id": "herlin-semaine-40-heures"}},
 				{"polradar_candidates", map[string]any{}},
 				{"polradar_corpus", map[string]any{}},
+				{"polradar_question", map[string]any{"id": "fiscalite-csg-salaires"}},
+				{"polradar_comparer", map[string]any{"question": "fiscalite-csg-salaires", "candidates": []string{"attal", "glucksmann"}}},
+				{"polradar_territoires", map[string]any{"code": "75056"}},
+				{"polradar_votes", map[string]any{}},
+				{"polradar_methodologie", map[string]any{}},
+				{"polradar_changements", map[string]any{"kind": "programme"}},
 				{"polradar_donnees", map[string]any{"collection": "sondages"}},
 			} {
 				if rpc("tools/call", map[string]any{"name": test.name, "arguments": test.args}, false)["structuredContent"] == nil {

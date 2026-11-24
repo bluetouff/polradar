@@ -37,7 +37,7 @@ jobs:
           if [ "$code" != 404 ]; then echo "Registre indisponible ($code)."; exit 1; fi
           curl -fsS --proto '=https' --max-time 15 -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' \
             --data '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' https://polradar.fr/api/mcp \
-            | jq -e '.result.tools | length == 5 and all(.[]; .annotations.readOnlyHint == true)' >/dev/null
+            | jq -e '.result.tools | length >= 5 and all(.[]; .annotations.readOnlyHint == true)' >/dev/null
           tag=v1.8.16
           base="https://github.com/modelcontextprotocol/registry/releases/download/$tag"
           archive=mcp-publisher_linux_amd64.tar.gz

@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-var toolNames = []string{"polradar_search", "polradar_measure", "polradar_candidates", "polradar_corpus", "polradar_donnees"}
+var toolNames = []string{"polradar_search", "polradar_measure", "polradar_candidates", "polradar_corpus", "polradar_donnees", "polradar_question", "polradar_comparer", "polradar_votes", "polradar_changements", "polradar_territoires", "polradar_methodologie"}
 
 type counts struct {
 	Success int64 `json:"success"`
