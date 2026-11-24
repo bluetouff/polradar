@@ -65,6 +65,7 @@ jobs:
         run: |
           python3 scripts/package-release.py
           python3 scripts/package-stats.py
+          python3 scripts/package-corpus.py
       - uses: actions/setup-go@d8cbb8045d7f43706b9177cceb36c1f91a6644d5 # v7.1.0
         with:
           go-version-file: mcp/go.mod
@@ -87,6 +88,13 @@ jobs:
     permissions:
       contents: write
     steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            src/lib/poll-publication.mjs
+            src/data/fenetres-sondages.json
+          sparse-checkout-cone-mode: false
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: validated-site
@@ -101,11 +109,14 @@ jobs:
           set -euo pipefail
           sha256sum --check site.sha256
           sha256sum --check polradar-goaccess.sha256
+          sha256sum --check corpus-v1.sha256
+          node --input-type=module -e "import { checkPollPublication } from '../src/lib/poll-publication.mjs'; checkPollPublication();"
+
           tag="site-${SOURCE_SHA}"
           if gh release view "$tag" >/dev/null 2>&1; then
             echo 'This commit already has a release; no asset is overwritten.'
             exit 0
           fi
-          gh release create "$tag" site.tar.gz site.sha256 polradar-goaccess.tar.gz polradar-goaccess.sha256 \
+          gh release create "$tag" site.tar.gz site.sha256 polradar-goaccess.tar.gz polradar-goaccess.sha256 corpus-v1.tar.gz corpus-v1.sha256 \
             --target "$SOURCE_SHA" --title "Site ${SOURCE_SHA:0:12}" \
             --notes "Static site built and checked from commit ${SOURCE_SHA}." --latest

@@ -1,3 +1,4 @@
+import { checkPollPublication } from '../src/lib/poll-publication.mjs';
 import { readFile } from 'node:fs/promises';
 import documentAuthors from '../src/data/document-authors.json' with { type: 'json' };
 import {
@@ -256,6 +257,7 @@ if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);
 }
+checkPollPublication();
 console.log(
   'Corpus valide : références, dates, archives, unités et cohérence budgétaire.',
 );

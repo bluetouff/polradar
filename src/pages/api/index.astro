@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { sourceCommit } from '../../../scripts/release-revision.mjs';
 import Icon from '../../components/Icon.astro';
 import { apiRoutes } from '../../lib/api-reference.mjs';
 import '../../styles/developer-docs.css';
@@ -7,7 +8,18 @@ import '../../styles/developer-docs.css';
 const endpoint = 'https://polradar.fr/api/v1';
 const example = endpoint + '/mesures?query=chiffrement&limit=3';
 const exports = [
+  ...(sourceCommit
+    ? [
+        [
+          'Télécharger cette édition du corpus (.tar.gz)',
+          `https://github.com/bluetouff/polradar/releases/download/site-${sourceCommit}/corpus-v1.tar.gz`,
+        ],
+      ]
+    : []),
+  ['Catalogue des exports et licences', '/api/exports-v1.json'],
   ['Corpus complet', '/api/corpus.json'],
+  ['Questions, votes et évolutions', '/api/dossiers.json'],
+  ['Données communales et leurs définitions', '/api/territoires.json'],
   ['Index des propositions', '/api/recherche.json'],
   ['Économie', '/api/economie.json'],
   ['Agenda', '/api/agenda.json'],
@@ -119,7 +131,7 @@ const exports = [
           <a href={href}>
             <Icon name="source" />
             {label}
-            <span>JSON</span>
+            <span>{href.endsWith('.tar.gz') ? 'TAR.GZ' : 'JSON'}</span>
           </a>
         ))}
       </div>

@@ -1,0 +1,86 @@
+---
+const source =
+  'https://www.service-public.gouv.fr/particuliers/vosdroits/F2302';
+---
+
+<section class="pay" aria-labelledby="csg-paie">
+  <header>
+    <p>Salariés du secteur privé · barème 2026</p>
+    <h2 id="csg-paie">Où se trouve la CSG sur la fiche de paie&nbsp;?</h2>
+  </header>
+  <ol>
+    <li>
+      <strong>Assiette</strong>
+      <b>98,25 %</b>
+      <p>
+        du salaire brut jusqu’à 192 240 € par an. La fraction au-dessus de ce
+        seuil entre pour 100 % dans l’assiette.
+      </p>
+    </li>
+    <li>
+      <strong>CSG prélevée</strong>
+      <b>9,2 %</b>
+      <p>
+        de l’assiette. La part déductible du revenu imposable représente 6,8
+        points, la part non déductible 2,4 points.
+      </p>
+    </li>
+    <li>
+      <strong>CRDS</strong>
+      <b>0,5 %</b>
+      <p>
+        sur la même assiette. Cette contribution figure séparément et reste
+        entièrement non déductible.
+      </p>
+    </li>
+  </ol>
+  <p>
+    Une annonce de suppression de CSG doit préciser les rémunérations
+    concernées, les autres prélèvements et le financement de la protection
+    sociale. Le gain individuel dépend de ces conditions.
+  </p>
+  <a href={source} rel="noreferrer">
+    Cotisations salariales du secteur privé · Service Public ↗
+  </a>
+</section>
+<style>
+  .pay {
+    padding: clamp(1rem, 2.5vw, 2rem);
+    border: 1px solid #8ca8b3;
+    border-radius: 1rem;
+    background: linear-gradient(118deg, #f7fcfc, #e2eff2);
+    color: #193644;
+    margin-block: 1.25rem;
+  }
+  .pay header p,
+  .pay li strong {
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+  .pay ol {
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    gap: 1rem;
+    margin: 1.3rem 0;
+  }
+  .pay li {
+    border-inline-start: 3px solid #217382;
+    padding: 0.4rem 1rem;
+  }
+  .pay li b,
+  .pay li strong {
+    display: block;
+  }
+  .pay b {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: #15586b;
+  }
+  .pay li p {
+    margin-block: 0.3rem;
+  }
+  .pay a {
+    text-underline-offset: 0.2em;
+  }
+</style>

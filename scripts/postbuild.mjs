@@ -1,5 +1,5 @@
 import { readdir, readFile, writeFile } from 'node:fs/promises';
-import { execFileSync } from 'node:child_process';
+import { sourceCommit } from './release-revision.mjs';
 import path from 'node:path';
 import { z } from 'astro/zod';
 import { dateSchema } from '../src/lib/schema.mjs';
@@ -18,19 +18,6 @@ async function walk(dir) {
     )
   ).flat();
 }
-let sourceCommit = process.env.GITHUB_SHA || null;
-if (!sourceCommit) {
-  try {
-    sourceCommit = execFileSync('git', ['rev-parse', 'HEAD'], {
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'ignore'],
-    }).trim();
-  } catch {
-    /* Une prévisualisation locale peut précéder le premier commit. */
-  }
-}
-if (sourceCommit && !/^[a-f0-9]{40}$/.test(sourceCommit))
-  throw new Error('Commit de construction invalide');
 await writeFile(
   path.join(root, 'build.json'),
   `${JSON.stringify({ sourceCommit, builtAt: new Date().toISOString(), repository: 'bluetouff/polradar' }, null, 2)}\n`,

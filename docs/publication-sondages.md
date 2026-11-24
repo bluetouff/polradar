@@ -1,0 +1,15 @@
+# Publication des sondages autour d’un tour de scrutin
+
+Pour la présidentielle, l’article 11 de la loi du 19 juillet 1977 fixe le début de l’interdiction au samedi précédant le scrutin à zéro heure et sa fin à la fermeture du dernier bureau métropolitain. L’article 14 prolonge l’interdiction dans les collectivités concernées lorsque leur dernier bureau ferme plus tard. L’heure de fermeture effective et les textes applicables sont à vérifier à chaque tour. [Commission des sondages, articles 11 et 14](https://www.commission-des-sondages.fr/lois/lois.htm).
+
+Une enquête déjà diffusée avant la veille du vote peut continuer à être diffusée ou commentée sous les conditions de l’article 11. Le lecteur doit pouvoir lire le média de première publication ou diffusion, la date correspondante et le nom de l’institut. Le commanditaire et la date de terrain ne permettent pas à eux seuls d’établir ces mentions.
+
+## Préparer chaque tour
+
+1. La rédaction relève le texte de convocation et les horaires applicables, y compris les collectivités dont le vote finit plus tard. Elle conserve les références dans le dossier de l’édition. Pour une publication nationale commune, elle retient l’heure applicable la plus tardive. Jusqu’à confirmation, les dates annoncées à l’agenda gardent leur statut annoncé.
+2. La rédaction vérifie les mentions sur chaque sondage maintenu à l’écran, sur la notice de la question et sur chaque reprise. Elle vérifie aussi les brèves, le flux RSS, les résultats de recherche, le JSON, les deux API, les images de partage et les graphiques intégrables, y compris les versions figées déjà publiées. Une reprise dont les mentions manquent doit être retirée des surfaces concernées avant l’ouverture de la fenêtre. Les archives déjà diffusées sur des sites tiers demandent une démarche distincte.
+3. L’équipe saisit le début et la fin confirmés en UTC, avec le lien officiel, dans `src/data/fenetres-sondages.json`. L’édition relue doit être effectivement en ligne avant l’ouverture. Enregistrer sa révision, les réponses des deux API et l’heure du contrôle. Vérifier qu’aucun ancien paquet n’est en attente de déploiement.
+4. Pendant une fenêtre confirmée, la validation et le job qui publie les nouvelles releases s’arrêtent. Les fichiers et les graphiques déjà servis continuent à être visibles. Les collectes peuvent continuer en interne. Vérifier à nouveau les horaires avant la reprise et prolonger la fenêtre si la fermeture est reportée.
+5. Soumettre à un juriste les marchés prédictifs et les contenus mixtes (sondage commenté avec des prix de contrats, résultats étrangers, rediffusion par un tiers). Le modèle de données conserve les cours de marché et les intentions de vote dans des collections distinctes.
+
+Un tableau de fenêtres vide signifie qu’aucun horaire vérifié n’a été saisi. Le test fixe des dates fictives uniquement dans la recette. Il vérifie les deux bornes, l’autorité de la source et les dates invalides.
