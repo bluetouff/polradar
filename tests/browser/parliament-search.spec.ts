@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import type { ActIndex } from '../../src/lib/parliament-search-types';
 
 test('chercher un scrutin européen, retrouver les trois votes et partager les filtres', async ({
   page,
@@ -65,4 +66,54 @@ test('pagination, élections distinctes et période des séances recensées', as
   await expect(page.getByRole('status')).toContainText(
     'hors des séances examinées',
   );
+});
+
+test('le thème Numérique filtre les actes et reste sélectionné au rechargement', async ({
+  page,
+  request,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/votes/recherche/');
+  await page.getByLabel('Sujet ou identifiant').fill('VTANR5L17V9916');
+  const theme = page.getByRole('combobox', { name: 'Thème', exact: true });
+  await theme.focus();
+  await expect(theme).toBeFocused();
+  await theme.selectOption({ label: 'Numérique' });
+  await expect(theme).toHaveValue('numerique');
+  const search = page.getByRole('button', {
+    name: 'Rechercher',
+    exact: true,
+  });
+  await search.press('Enter');
+  await expect(page).toHaveURL(/theme=numerique/u);
+  const cyber = page
+    .locator('[data-act-list] article')
+    .filter({ hasText: 'renforcement de la cybersécurité' });
+  const official = cyber.getByRole('link', { name: 'Document officiel' });
+  await expect(official).toHaveAttribute(
+    'href',
+    'https://www.assemblee-nationale.fr/dyn/17/scrutins/9916',
+  );
+  await page.reload();
+  await expect(theme).toHaveValue('numerique');
+  await expect(official).toBeVisible();
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth),
+  ).toBeLessThanOrEqual(390);
+
+  const json = await request.get('/api/parlement/recherche.json');
+  expect(json.ok()).toBe(true);
+  const { actes, themes }: ActIndex = await json.json();
+  expect(themes.numerique).toBe('Numérique');
+  for (const id of [
+    'VTANR5L17V9916',
+    'sen2017-98-donnees',
+    'MTG-PL-2024-03-13-DEC-166051',
+  ]) {
+    expect(actes.find((act) => act.id === id)?.themes).toContain('numerique');
+  }
+  const elan = actes.find((act) => act.id === 'VTANR5L15V928');
+  expect(elan).toBeDefined();
+  expect(elan?.themes).toContain('logement');
+  expect(elan?.themes).not.toContain('numerique');
 });

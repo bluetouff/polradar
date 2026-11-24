@@ -35,6 +35,10 @@ Les anciens scrutins sont protégés par `scripts/check-history.mjs`. Une rectif
 
 La piste de la proposition de SMIC du 24 novembre 2022 a été écartée : le texte avait été retiré de l’ordre du jour. Les scrutins voisins sur d’autres textes et les noms approchants ont aussi été exclus. Un résultat de recherche ne suffit pas à qualifier un vote.
 
+## Filtre numérique
+
+La recherche repère automatiquement les sujets numériques dans l’objet officiel ou le titre public de l’acte. Pour les actes liés à la loi ELAN, elle examine le détail du scrutin après avoir écarté l’intitulé commun de la loi. Le filtre `theme=numerique` est disponible dans la recherche, dans l’API et dans `polradar_donnees` avec la collection `parlement`.
+
 ## Registre des scrutins nominatifs de l’Assemblée
 
 Les archives complètes des XVe et XVIe législatures totalisent 8 522 scrutins de l’Assemblée examinés. Un vote du Congrès contenu dans la même livraison a été écarté. Au moins une position ou une mise au point de l’une des sept personnes identifiées dans Polradar figure dans 3 070 scrutins. Une même personne peut être mentionnée dans plusieurs relevés. La présence d’une intention déclarée après le scrutin est visible à côté du vote enregistré. Les autres choix d’une motion de censure sont indéterminés. Les groupes sont ceux du relevé de séance. Les députés absents des listes nominatives restent sans position attribuée.

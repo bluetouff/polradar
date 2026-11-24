@@ -7,6 +7,7 @@ import { dataset, formatDate } from '../lib/data';
 import { corpusCounts, corpusActivity } from '../lib/corpus-counts.mjs';
 import { campaignBriefs } from '../lib/briefs';
 import { legislativeVotes } from '../lib/votes-data';
+import { searchIndex } from '../lib/parliament-search';
 import { evolution, financing } from '../lib/proposal-data';
 import { agenda, airtime, budgetAssessments } from '../lib/visual-data';
 import {
@@ -73,7 +74,7 @@ const sections = [
       [agenda.events.length, 'Rendez-vous de campagne', '/agenda/'],
       [
         legislativeVotes.ballots.length,
-        'Scrutins nominatifs distincts',
+        'Scrutins de la sélection éditoriale',
         '/votes/',
       ],
       [
@@ -211,6 +212,12 @@ const slices = scopes.map(([id, label]) => {
             'Versions de fiches',
             'historique',
             '/historique/',
+          ],
+          [
+            searchIndex.actes.length,
+            'Actes parlementaires',
+            'vote',
+            '/votes/recherche/',
           ],
         ] as const
       ).map(([value, label, icon, url]) => (
@@ -435,8 +442,10 @@ const slices = scopes.map(([id, label]) => {
       </p>
       <p>
         Un texte collectif est rattaché à un dossier de candidat avec son auteur
-        affiché. Un même scrutin peut documenter plusieurs propositions, et une
-        enquête peut tester plusieurs scénarios.
+        affiché. Le registre compte chaque scrutin, texte déposé, rapport ou
+        intervention une seule fois. Un scrutin de la sélection éditoriale peut
+        documenter plusieurs propositions. Une enquête peut tester plusieurs
+        scénarios.
       </p>
       <a href="/mises-a-jour/">Voir les dernières collectes</a> ·{' '}
       <a href="/api/corpus.json">

@@ -84,6 +84,14 @@ test('les statistiques essentielles sont lisibles sans JavaScript', async ({
   try {
     const page = await context.newPage();
     await page.goto('/statistiques/');
+    const index = await page.request.get('/api/parlement/recherche.json');
+    expect(index.ok()).toBe(true);
+    const { actes } = await index.json();
+    const parliament = page.getByRole('link', { name: /Actes parlementaires/ });
+    await expect(parliament).toHaveAttribute('href', '/votes/recherche/');
+    await expect(parliament.locator('strong')).toHaveText(
+      actes.length.toLocaleString('fr-FR'),
+    );
     await expect(page.locator('.corpus-composition li')).toHaveCount(4);
     await expect(page.locator('.theme-histogram li')).toHaveCount(
       themes.length,

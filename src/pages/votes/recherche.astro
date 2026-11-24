@@ -89,7 +89,7 @@ const total = new Intl.NumberFormat('fr-FR').format(searchIndex.actes.length);
       </select>
     </label>
     <label>
-      Thème du dossier associé
+      Thème
       <select name="theme">
         <option value="">Tous les thèmes</option>
         {Object.entries(searchIndex.themes).map(([k, v]) => (
@@ -157,8 +157,8 @@ const total = new Intl.NumberFormat('fr-FR').format(searchIndex.actes.length);
     <h2>Archives consultées</h2>
     <p>
       Le groupe et le mandat sont ceux de la séance. Une intention déclarée
-      après le vote figure séparément. Le thème renvoie à un dossier déjà
-      documenté. Les signatures sénatoriales indiquent le rôle publié au dépôt.
+      après le vote figure séparément. Le filtre Numérique utilise les intitulés
+      des actes. Les signatures sénatoriales indiquent le rôle publié au dépôt.
     </p>
     <p>
       XVIIe législature à l’Assemblée nationale ·{' '}

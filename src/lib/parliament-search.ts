@@ -4,6 +4,7 @@ import { archiveBallots, archiveMetadata } from './parliamentary-archives';
 import { complementXVII, register } from './parliamentary-register';
 import { senateRegister } from './senate-documents';
 import { legislativeVotes, voteCases } from './votes-data';
+import { foldAct } from './parliament-search-types';
 import type {
   ActIndex,
   Mention,
@@ -159,6 +160,22 @@ for (const b of legislativeVotes.ballots) {
     });
   }
 }
+const digitalSubjects = [
+  /\b(?:numeriques?|intelligences? artificielles?|algorithmes?|algorithmiques?)\b/u,
+  /\b(?:cyber ?(?:securite|criminalite|defense|attaques?|harcelement|violences?|resilience|solidarite)|cryptologie|cryptographie|chiffrement|messageries? chiffrees?)\b/u,
+  /\b(?:donnees (?:a caractere )?personnelles|rgpd|espace europeen des donnees de sante|gouvernance des donnees|donnees ouvertes|open data)\b/u,
+  /\b(?:internet|communications electroniques|telecommunications?|plateformes? en ligne|services? en ligne|reseaux sociaux|fibre optique|cryptoactifs?|blockchain)\b/u,
+];
+for (const row of rows.values()) {
+  // The common ELAN bill title alone cannot identify the subject of an amendment.
+  const subject = foldAct(row.titre + ' ' + (row.intitule ?? '')).replaceAll(
+    'evolution du logement de l amenagement et du numerique',
+    ' ',
+  );
+  if (digitalSubjects.some((pattern) => pattern.test(subject))) {
+    row.themes = [...new Set([...(row.themes ?? []), 'numerique'])].sort();
+  }
+}
 // Stable byte order is the same on every reader, irrespective of locale.
 const actes = [...rows.values()].sort((a, b) =>
   a.date === b.date
@@ -175,7 +192,10 @@ export const searchIndex: ActIndex = {
   version: 1,
   empreinte: createHash('sha256').update(JSON.stringify(actes)).digest('hex'),
   candidats: Object.fromEntries(candidates.map((c) => [c.id, c.name])),
-  themes: Object.fromEntries(themes.map((t) => [t.id, t.label])),
+  themes: {
+    ...Object.fromEntries(themes.map((t) => [t.id, t.label])),
+    numerique: 'Numérique',
+  },
   assembleeXVII: {
     scrutinsExamines: register.sources.find((s) => s.legislature === 17)!
       .scrutinsExamines,

@@ -360,7 +360,7 @@ export const apiRoutes = [
         },
         'Vote enregistré pour la personne filtrée.',
       ),
-      filter('theme', str, 'Thème établi par un dossier éditorial.'),
+      filter('theme', str, 'Thème du registre parlementaire, dont numerique.'),
     ],
   },
   {
