@@ -59,15 +59,19 @@ jobs:
             .cache/polradar-pages
             .cache/polradar-og
           key: ${{ steps.renders.outputs.cache-primary-key }}
-      - name: Package validated main
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      - name: Construire l’archive du commit testé
         env:
-          GSC_VERIFICATION_FILE: ${{ secrets.GSC_VERIFICATION_FILE }}
+          GSC_VERIFICATION_FILE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && secrets.GSC_VERIFICATION_FILE || '' }}
         run: |
           python3 scripts/package-release.py
           python3 scripts/package-stats.py
+      - uses: actions/setup-go@d8cbb8045d7f43706b9177cceb36c1f91a6644d5 # v7.1.0
+        with:
+          go-version-file: mcp/go.mod
+          cache-dependency-path: mcp/go.sum
+      - name: Vérifier le contrat des données sur cette archive
+        run: python3 scripts/test-mcp-release.py artifacts/site.tar.gz
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         with:
           name: validated-site
           path: artifacts/

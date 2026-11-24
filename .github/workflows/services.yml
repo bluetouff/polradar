@@ -24,9 +24,10 @@ permissions: {}
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 25
     permissions:
       contents: read
+      actions: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -43,11 +44,41 @@ jobs:
           go test -race ./...
           cd ..
           python3 -m unittest discover -s tests/deploy -p test_private_services.py -v
+      - name: Analyser les dépendances Go du service
+        working-directory: mcp
+        run: go run golang.org/x/vuln/cmd/govulncheck@v1.10.0 ./...
+      - name: Retrouver l’archive de la CI Site pour cette révision
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_REVISION: ${{ github.event.pull_request.head.sha || github.sha }}
+          EXPECTED_EVENT: ${{ github.event_name }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          destination="$RUNNER_TEMP/contrat-site"
+          mkdir -m 700 "$destination"
+          for attempt in {1..45}; do
+            runs="$(gh api --method GET "repos/$GITHUB_REPOSITORY/actions/workflows/site.yml/runs" -f head_sha="$HEAD_REVISION" -f per_page=20)"
+            run="$(jq -r --arg event "$EXPECTED_EVENT" --arg repo "$GITHUB_REPOSITORY" '.workflow_runs | map(select((.event == $event or ($event == "workflow_dispatch" and .event == "push")) and (.head_repository.full_name == $repo or $event == "pull_request"))) | first | .id // empty' <<<"$runs")"
+            if [[ "$run" =~ ^[0-9]+$ ]]; then
+              artifact="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run/artifacts" --jq '.artifacts[] | select(.name == "validated-site" and .expired == false) | .id')"
+              if [[ "$artifact" =~ ^[0-9]+$ ]]; then
+                gh run download "$run" --repo "$GITHUB_REPOSITORY" --name validated-site --dir "$destination"
+                python3 scripts/test-mcp-release.py "$destination/site.tar.gz"
+                exit 0
+              fi
+              state="$(jq -r --arg id "$run" '.workflow_runs[]|select((.id|tostring)==$id)|.conclusion // empty' <<<"$runs")"
+              if [[ -n "$state" && "$state" != success ]]; then echo "La validation du site a échoué."; exit 1; fi
+            fi
+            sleep 15
+          done
+          echo 'Archive vérifiée du même commit indisponible.'
+          exit 1
       - name: Préparer les paquets sans identifiants
         run: |
           set -euo pipefail
           for arch in amd64 arm64; do
-            (cd mcp && CGO_ENABLED=0 GOOS=linux GOARCH="$arch" go build -trimpath -ldflags='-s -w' -o "$RUNNER_TEMP/mcp-$arch" .)
+            (cd mcp && CGO_ENABLED=0 GOOS=linux GOARCH="$arch" go build -trimpath -ldflags="-s -w -X main.serviceCommit=$GITHUB_SHA" -o "$RUNNER_TEMP/mcp-$arch" .)
             python3 deploy/operations/package.py mcp --out artifacts/ --arch "$arch" --binary "$RUNNER_TEMP/mcp-$arch"
           done
           python3 deploy/operations/package.py gsc --out artifacts/

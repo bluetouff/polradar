@@ -28,11 +28,23 @@ const restPrefix = "/api/v1/"
 const socketPath = "/run/polradar-mcp.sock"
 const maxBody = 16 << 10
 
+// Set by the release build; a development binary can have no revision.
+var serviceCommit string
+
 type output struct {
-	Updated string `json:"corpusVerifieLe"`
-	Commit  string `json:"revisionDuSite"`
-	Empty   bool   `json:"sansResultat"`
-	Data    any    `json:"donnees"`
+	Updated string  `json:"corpusVerifieLe"`
+	Commit  string  `json:"revisionDuSite"`
+	Empty   bool    `json:"sansResultat"`
+	Data    any     `json:"donnees"`
+	Service *string `json:"revisionDuService"`
+}
+
+func (c *snapshot) envelope(value any, empty bool) output {
+	var binary *string
+	if commitID.MatchString(serviceCommit) {
+		binary = &serviceCommit
+	}
+	return output{Updated: c.Meta.Updated, Commit: c.commit, Empty: empty, Data: value, Service: binary}
 }
 
 func register[I any](server *mcp.Server, data *store, name, description string, call func(*snapshot, I) (any, bool, error)) {
@@ -46,7 +58,7 @@ func register[I any](server *mcp.Server, data *store, name, description string, 
 		if err != nil {
 			return nil, output{}, err
 		}
-		return nil, output{c.Meta.Updated, c.commit, empty, value}, nil
+		return nil, c.envelope(value, empty), nil
 	})
 }
 

@@ -141,7 +141,7 @@ func serveData(w http.ResponseWriter, r *http.Request, data *store) {
 		apiError(w, r, 400, err.Error())
 	default:
 		if r.Method != http.MethodHead {
-			json.NewEncoder(w).Encode(output{c.Meta.Updated, c.commit, empty, v})
+			json.NewEncoder(w).Encode(c.envelope(v, empty))
 		}
 	}
 }

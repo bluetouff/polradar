@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -226,32 +225,4 @@ func TestModernClient(t *testing.T) {
 	if res.Code != 200 || !strings.Contains(res.Body.String(), "supportedVersions") {
 		t.Fatal(res.Code, res.Body.String())
 	}
-}
-func TestRealCorpusWhenProvided(t *testing.T) {
-	path := os.Getenv("POLRADAR_TEST_SITE")
-	if path == "" {
-		t.Skip("Corpus de production généré non fourni")
-	}
-	c, err := (&store{root: path}).load()
-	if err != nil {
-		t.Fatal(err)
-	}
-	for label := range collections {
-		v, empty, err := c.publicData(dataArgs{Collection: label})
-		if err != nil || empty {
-			t.Fatal(label, err)
-		}
-		b, _ := json.Marshal(v)
-		var index struct {
-			Publications []struct {
-				ID string `json:"id"`
-			}
-		}
-		json.Unmarshal(b, &index)
-		id := index.Publications[0].ID
-		if _, empty, err := c.publicData(dataArgs{Collection: label, ID: id}); err != nil || empty {
-			t.Fatal(label, id, err)
-		}
-	}
-	t.Log(fmt.Sprintf("%d fiches", len(c.Measures)))
 }
