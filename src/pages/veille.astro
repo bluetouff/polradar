@@ -35,9 +35,9 @@ const rows = [...technicalFreshness.values()].flatMap((row) => {
   const format =
     source.watchFormat === 'youtube-oembed'
       ? 'video'
-      : /\.pdf$/i.test(path) || detailed?.contentType.includes('pdf')
+      : /\.pdf$/i.test(path) || previous?.contentType.includes('pdf')
         ? 'pdf'
-        : detailed?.contentType.includes('html')
+        : previous?.contentType.includes('html')
           ? 'web'
           : 'autre';
   return [

@@ -4,7 +4,29 @@ import { pageSize } from '../../src/lib/pagination';
 import { test, expect } from '@playwright/test';
 import campaignEvents from '../../src/data/events.json' with { type: 'json' };
 const pastCount = campaignEvents.filter((e) => e.kind === 'past').length;
-import watch from '../../src/data/watch.json' with { type: 'json' };
+import observations from '../../src/data/watch.json' with { type: 'json' };
+import daily from '../../src/data/daily-updates.json' with { type: 'json' };
+import references from '../../src/data/sources.json' with { type: 'json' };
+import {
+  dailyHistorySchema,
+  sourceFreshness,
+} from '../../src/lib/daily-updates.mjs';
+import { watchSchema } from '../../src/lib/schema.mjs';
+const sourcesById = new Map(references.map((s) => [s.id, s]));
+const watch = [
+  ...sourceFreshness([
+    ...watchSchema.array().parse(observations),
+    ...dailyHistorySchema.parse(daily).flatMap((run) => run.sourceChecks ?? []),
+  ]).values(),
+].filter((row) => sourcesById.has(row.sourceId));
+const pdfSources = new Set(
+  observations
+    .filter((row) => row.contentType.includes('pdf'))
+    .map((row) => row.sourceId),
+);
+for (const source of references) {
+  if (/\.pdf$/i.test(new URL(source.url).pathname)) pdfSources.add(source.id);
+}
 
 const active = candidateRows.filter((c) => !c.withdrawnOn);
 
@@ -99,9 +121,7 @@ test('la veille filtre les formats et les états en gardant sa matrice cohérent
   );
   await expect(page.locator('.watch-cell:visible')).toHaveCount(watch.length);
   await page.locator('#watch-format').selectOption('pdf');
-  const pdfCount = watch.filter((row) =>
-    row.contentType.includes('pdf'),
-  ).length;
+  const pdfCount = watch.filter((row) => pdfSources.has(row.sourceId)).length;
   await expect(page.locator('.watch-card:visible')).toHaveCount(
     Math.min(pageSize, pdfCount),
   );
