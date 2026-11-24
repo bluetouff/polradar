@@ -66,7 +66,7 @@ def mutate(cwd, case):
         target=next(t for p in budget['profiles'] for e in p['entries'] for t in e.get('review',{}).get('targets',[]))
         target['locator']+=' (Recette locale.)';write('programme-budgets',budget)
     elif case=='edition':
-        meta=read('meta');meta['edition']='2026-11-25';write('meta',meta)
+        meta=read('meta');meta['edition']=meta['corpusUpdated']='2026-11-23';write('meta',meta)
     elif case=='partage':
         file=cwd/'src/lib/social-images.mjs'
         file.write_text(file.read_text()+'\n// Recette du changement de gabarit OG.\n')
