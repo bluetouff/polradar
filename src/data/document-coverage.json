@@ -4087,6 +4087,16 @@
         "id": "passage-16",
         "title": "Agents publics · Suivi des besoins · p. 20",
         "measureIds": ["roussel-auditer-besoins-logement-agents"]
+      },
+      {
+        "id": "passage-17",
+        "title": "Accès au logement · Discriminations · p. 31",
+        "measureIds": ["roussel-sanctionner-refus-logement-discriminatoires"]
+      },
+      {
+        "id": "passage-18",
+        "title": "Prévention des expulsions · p. 35",
+        "measureIds": ["roussel-moratoire-expulsions-logement"]
       }
     ]
   },
@@ -4422,6 +4432,129 @@
         "id": "passage-2",
         "title": "Perte d’autonomie · p. 43",
         "measureIds": ["roussel-financer-autonomie-securite-sociale"]
+      },
+      {
+        "id": "passage-3",
+        "title": "Politique familiale · Modes de garde · p. 26",
+        "measureIds": ["roussel-service-public-gratuit-petite-enfance"]
+      },
+      {
+        "id": "passage-4",
+        "title": "Santé au travail · Réparation · p. 30",
+        "measureIds": ["roussel-reparation-integrale-maladies-professionnelles"]
+      },
+      {
+        "id": "passage-5",
+        "title": "Financement · Cotisations employeurs · p. 40",
+        "measureIds": ["roussel-moduler-cotisations-emploi-salaires"]
+      },
+      {
+        "id": "passage-6",
+        "title": "Assurance maladie · Remboursement · p. 16",
+        "measureIds": ["roussel-remboursement-integral-securite-sociale"]
+      }
+    ]
+  },
+  {
+    "sourceId": "labib-discours-2026",
+    "perimeter": "Passages du discours prononcé le 12 septembre 2026.",
+    "unit": "passage",
+    "checked": "2026-11-25",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "Pouvoir d’achat · Revenu minimum",
+        "measureIds": ["labib-aucun-revenu-inferieur-2000-net"]
+      },
+      {
+        "id": "passage-2",
+        "title": "Droits des étrangers · Régularisation",
+        "measureIds": ["labib-regulariser-tous-les-sans-papiers"]
+      },
+      {
+        "id": "passage-3",
+        "title": "Université · Frais d’inscription des étudiants étrangers",
+        "measureIds": ["labib-abroger-mesure-frais-etudiants-etrangers"]
+      }
+    ]
+  },
+  {
+    "sourceId": "polony-grand-oral-domicile",
+    "perimeter": "Mesures présentées par Natacha Polony lors du Grand Oral de la fédération.",
+    "unit": "passage",
+    "checked": "2026-11-25",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "Crédit d’impôt · Taux selon les activités",
+        "measureIds": ["polony-credit-impot-domicile-taux-modules"]
+      },
+      {
+        "id": "passage-2",
+        "title": "Vieillissement · Adaptation des logements",
+        "measureIds": [
+          "polony-adapter-logements-vieillissement-maintien-domicile"
+        ]
+      },
+      {
+        "id": "passage-3",
+        "title": "Vieillissement · Habitat partagé",
+        "measureIds": ["polony-habitat-partage-personnes-agees"]
+      },
+      {
+        "id": "passage-4",
+        "title": "Vieillissement · Aidants familiaux",
+        "measureIds": ["polony-repit-pour-aidants-familiaux"]
+      },
+      {
+        "id": "passage-5",
+        "title": "Métiers de l’aide · Tarif horaire",
+        "measureIds": ["polony-tarif-reference-aide-domicile-30-euros"]
+      },
+      {
+        "id": "passage-6",
+        "title": "Métiers de l’aide · Temps partiel subi",
+        "measureIds": ["polony-mutualiser-interventions-aide-a-domicile"]
+      },
+      {
+        "id": "passage-7",
+        "title": "Métiers de l’aide · Qualifications",
+        "measureIds": ["polony-validation-acquis-aide-a-domicile"]
+      },
+      {
+        "id": "passage-8",
+        "title": "Petite enfance · Familles monoparentales",
+        "measureIds": ["polony-aides-garde-enfants-familles-monoparentales"]
+      }
+    ]
+  },
+  {
+    "sourceId": "retailleau-grand-oral-domicile",
+    "perimeter": "Mesures présentées par Bruno Retailleau lors du Grand Oral de la fédération.",
+    "unit": "passage",
+    "checked": "2026-11-25",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "Crédit d’impôt · Stabilité des règles",
+        "measureIds": ["retailleau-maintenir-credit-impot-domicile-cinq-ans"]
+      },
+      {
+        "id": "passage-2",
+        "title": "Crédit d’impôt · Extension de l’avance immédiate",
+        "measureIds": [
+          "retailleau-ouvrir-avance-immediate-petite-enfance-apa-pch"
+        ]
+      },
+      {
+        "id": "passage-3",
+        "title": "Services à la personne · Mutualisation",
+        "measureIds": ["retailleau-groupements-employeurs-aide-domicile"]
+      },
+      {
+        "id": "passage-4",
+        "title": "Vieillissement · Téléassistance",
+        "measureIds": ["retailleau-reconnaitre-financer-teleassistance"]
       }
     ]
   }
