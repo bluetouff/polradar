@@ -90,9 +90,13 @@ test('le dossier retraites met à jour le graphique sans transmettre la généra
     '63 ans et 3 mois',
   );
   await expect(page.locator('[data-cohort-status]')).toContainText('1966');
-  await expect(
-    page.getByRole('link', { name: 'Télécharger le graphique SVG' }),
-  ).toHaveAttribute('href', '/comparer/retraites/1966.svg');
+  const svg = page.getByRole('link', { name: 'Télécharger le graphique SVG' });
+  await expect(svg).toHaveAttribute('href', /^data:image\/svg\+xml;base64,/);
+  const waiting = page.waitForEvent('download');
+  await svg.click();
+  expect((await waiting).suggestedFilename()).toBe(
+    'polradar-retraites-1966.svg',
+  );
   await expect(page.locator('#comptes meter')).toHaveCount(4);
   expect(requests.slice(before).filter((url) => url.includes('1966'))).toEqual(
     [],

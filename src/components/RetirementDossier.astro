@@ -10,7 +10,9 @@ import comparison from '../data/retirement-comparison.json';
 import {
   retirementComparison,
   retirementPath,
+  retirementUrl,
 } from '../lib/retirement-comparison.mjs';
+import { retirementSvg } from '../lib/retirement-svg.mjs';
 import { sourceCommit } from '../../scripts/release-revision.mjs';
 
 const sections = [
@@ -27,6 +29,16 @@ const bank = comparison.cohorts.map((cohort) => ({
   ...retirementComparison(comparison, cohort, dataset),
 }));
 const { cohort: example, panels, programmes } = bank.at(-1)!;
+const svgData = (row: (typeof bank)[number]) =>
+  Buffer.from(
+    retirementSvg(
+      row.cohort,
+      row.panels,
+      row.programmes,
+      new URL(retirementUrl(row.cohort.id), Astro.site).href,
+      comparison.reviewedOn,
+    ),
+  ).toString('base64');
 const topics = questions.filter(({ theme }) => theme === 'retraites');
 const cases = voteCases.filter(({ measure }) => measure.theme === 'retraites');
 const tracks = proposalTracks.filter(({ theme }) => theme === 'retraites');
@@ -167,9 +179,13 @@ const percent = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 1 });
       <label data-cohort-picker hidden>
         Période de naissance
         <select data-cohort>
-          {bank.map(({ cohort }) => (
-            <option value={cohort.id} selected={cohort.id === example.id}>
-              {cohort.label}
+          {bank.map((row) => (
+            <option
+              value={row.cohort.id}
+              selected={row.cohort.id === example.id}
+              data-svg={svgData(row)}
+            >
+              {row.cohort.label}
             </option>
           ))}
         </select>
@@ -319,6 +335,11 @@ const percent = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 1 });
       '[data-cohort-download]',
     )!;
     const reference = select.value;
+    const setDownload = () => {
+      const option = select.selectedOptions[0];
+      link.href = 'data:image/svg+xml;base64,' + option.dataset.svg;
+      link.download = 'polradar-retraites-' + option.value + '.svg';
+    };
     const boards = new Map<string, Node>([
       [reference, box.firstElementChild!.cloneNode(true)],
     ]);
@@ -327,11 +348,12 @@ const percent = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 1 });
     ))
       boards.set(t.dataset.cohortTemplate!, t.content);
     root.querySelector<HTMLElement>('[data-cohort-picker]')!.hidden = false;
+    setDownload();
     select.addEventListener('change', () => {
       const board = boards.get(select.value);
       if (!board) return;
       box.replaceChildren(board.cloneNode(true));
-      link.href = '/comparer/retraites/' + select.value + '.svg';
+      setDownload();
       status.textContent =
         'Graphique affiché pour la période ' +
         select.selectedOptions[0].text +

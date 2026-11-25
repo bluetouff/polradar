@@ -80,6 +80,7 @@ test('l’accueil et toutes les rubriques ont un PNG distinct et les sous-pages 
     '/communes/',
     '/comparer/retraites/',
     '/dossiers/',
+    '/dossiers/retraites-ages-et-conditions/',
     '/engagements/',
     '/mesures/',
     '/mcp/',
