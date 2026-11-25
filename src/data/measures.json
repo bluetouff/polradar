@@ -912,23 +912,24 @@
     "parentId": "attal-education",
     "candidate": "attal",
     "theme": "education",
-    "revision": 1,
-    "title": "Utiliser la baisse démographique pour réduire la taille des classes",
-    "description": "Utiliser la baisse démographique pour réduire la taille des classes.",
+    "revision": 2,
+    "title": "Ramener la taille moyenne des classes du primaire à moins de 20 élèves en cinq ans",
+    "description": "Gabriel Attal veut conserver dans l’éducation les moyens libérés par la baisse démographique et réduire la taille des classes du primaire en commençant par les réseaux d’éducation prioritaire et le CP, le CE1 et le CE2.",
     "beneficiaries": null,
-    "timing": null,
+    "timing": "Objectif à cinq ans.",
     "financing": null,
     "metrics": [],
     "amounts": [],
     "sourceRefs": [
       {
-        "sourceId": "attal-school",
-        "locator": "Dossier initial : Moins de 20 élèves en primaire"
+        "sourceId": "attal-programme-vingt-eleves-par-classe",
+        "locator": "Des classes moins chargées, en commençant là où c’est le plus urgent",
+        "fragment": ":~:text=moins%20de%20vingt%20%C3%A9l%C3%A8ves%20en%20moyenne"
       }
     ],
     "scope": "campagne",
     "edition": "Campagne 2027",
-    "checked": "2026-11-16"
+    "checked": "2026-11-25"
   },
   {
     "id": "attal-education-2",
@@ -22698,9 +22699,9 @@
     "parentId": "melenchon-education",
     "candidate": "melenchon",
     "theme": "education",
-    "revision": 1,
+    "revision": 2,
     "title": "Créer un corps de fonctionnaires de catégorie B pour les AESH",
-    "description": "Le plan pour l’enfance prévoit ce statut pour les accompagnants des élèves en situation de handicap. Le livre-programme propose également de mettre fin à la mutualisation des accompagnants.",
+    "description": "Le plan enfance de La France insoumise propose un corps de catégorie B pour les accompagnants des élèves en situation de handicap. Le livre-programme de la campagne propose de mettre fin à la mutualisation des accompagnants.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -22709,16 +22710,18 @@
     "sourceRefs": [
       {
         "sourceId": "lfi-plan-enfance-2027",
-        "locator": "Plan enfance, section sur l’école et l’accueil inclusif, point sur la catégorie B."
+        "locator": "Plan enfance de La France insoumise, section 2.2, « Créer un véritable service public de la petite enfance »",
+        "fragment": ":~:text=Cr%C3%A9ant%20un%20corps%20de%20fonctionnaires%20de%20cat%C3%A9gorie%20B"
       },
       {
         "sourceId": "lfi-school",
-        "locator": "Livre-programme, chapitre sur l’éducation, service public d’accompagnement du handicap."
+        "locator": "L’Avenir en commun, « Disposer d’une communauté éducative complète et solide »",
+        "fragment": ":~:text=mettant%20fin%20%C3%A0%20la%20mutualisation"
       }
     ],
     "scope": "campagne",
-    "edition": "Programme présidentiel de Jean-Luc Mélenchon",
-    "checked": "2026-11-23"
+    "edition": "Plan enfance de La France insoumise et L’Avenir en commun 2027",
+    "checked": "2026-11-25"
   },
   {
     "id": "branco-referendums-independance-outremers",
@@ -36530,9 +36533,9 @@
     "parentId": "les-ecologistes-sante-programme",
     "candidate": "tondelier",
     "theme": "sante",
-    "revision": 1,
-    "title": "Pourvoir les postes vacants en santé scolaire",
-    "description": "Le programme vise 800 postes de médecins et 1 000 postes de psychologues.",
+    "revision": 2,
+    "title": "Pourvoir les postes vacants dans le cadre du plan pour la santé scolaire et universitaire",
+    "description": "Les Écologistes proposent de pourvoir 800 postes vacants de médecins et 1 000 postes vacants de psychologues.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -36541,13 +36544,13 @@
     "sourceRefs": [
       {
         "sourceId": "ecologistes-projet-2027-pdf",
-        "locator": "Chapitre 29 « Améliorer la prévention et le parcours de soin », mesure 6, PDF page 112.",
+        "locator": "Chapitre 29, mesure 6, plan d’urgence pour la santé scolaire et universitaire, p. 112",
         "fragment": "page=112"
       }
     ],
     "scope": "parti",
     "edition": "Projet 2027 des Écologistes",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "partyAuthor": "Les Écologistes"
   },
   {
@@ -64779,9 +64782,9 @@
     "parentId": "branco-education",
     "candidate": "branco",
     "theme": "education",
-    "revision": 1,
-    "title": "Organiser des classes de rattrapage sur les matières fondamentales",
-    "description": "Le texte prévoit aussi des passerelles entre cursus et cite le modèle suisse.",
+    "revision": 2,
+    "title": "Organiser des classes de rattrapage dans les matières fondamentales éliminatoires",
+    "description": "Le programme prévoit des passerelles et des classes de rattrapage dans ces matières, en prenant le système suisse pour référence.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -64790,7 +64793,7 @@
     "sourceRefs": [
       {
         "sourceId": "branco-voie-pdf",
-        "locator": "L’instruction · supérieur et secondaire, page 37. Repère : Organiser des classes de rattrapage sur les matières fondamentales.",
+        "locator": "L’instruction, « Supérieur et secondaire », p. 37",
         "fragment": "page=37"
       }
     ],
@@ -80751,9 +80754,9 @@
     "parentId": "patriotes-soins-proximite",
     "candidate": "philippot",
     "theme": "sante",
-    "revision": 1,
-    "title": "Recentrer l’hôpital sur les soins complexes et redéployer des postes vers les soignants",
-    "description": "Les Patriotes veulent orienter les prises en charge simples vers la médecine de ville et adapter les effectifs soignants aux besoins des patients de chaque service.",
+    "revision": 2,
+    "title": "Recentrer l’hôpital sur les soins complexes et redéployer ses effectifs vers les postes soignants",
+    "description": "Les Patriotes proposent de confier les soins simples à la médecine de ville et de redéployer les effectifs hospitaliers vers les postes soignants en priorité, selon les besoins des services.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -80762,7 +80765,7 @@
     "sourceRefs": [
       {
         "sourceId": "patriotes-projet-2026-2027",
-        "locator": "Santé · p. 5",
+        "locator": "Santé, réorganisation de l’hôpital, p. 5",
         "fragment": "page=5"
       }
     ],
@@ -82350,7 +82353,7 @@
     "parentId": "roussel-campagne-2027-education",
     "candidate": "roussel",
     "theme": "education",
-    "revision": 1,
+    "revision": 2,
     "title": "Créer 90 000 postes d’enseignants dans le public en cinq ans",
     "description": "Le plan prévoit 18 000 créations de postes par an de 2027 à 2031, réparties à parts égales entre le primaire et le secondaire. Une partie servirait à reconstituer des équipes de remplacement, en priorité dans l’éducation prioritaire.",
     "beneficiaries": null,
@@ -82369,8 +82372,18 @@
     "sourceRefs": [
       {
         "sourceId": "pcf-jeunesse",
-        "locator": "Axe 2 · Recrutement des enseignants · p. 6",
+        "locator": "Axe 2, recrutements par degré, p. 6",
         "fragment": "page=6"
+      },
+      {
+        "sourceId": "pcf-jeunesse",
+        "locator": "Calendrier quinquennal, première rentrée et rythme des créations, p. 10",
+        "fragment": "page=10"
+      },
+      {
+        "sourceId": "pcf-jeunesse",
+        "locator": "Financement et montée en charge des créations de postes, p. 11",
+        "fragment": "page=11"
       }
     ],
     "scope": "campagne",
@@ -85418,7 +85431,7 @@
     "parentId": "batho-institutions-chapitres-2027",
     "candidate": "batho",
     "theme": "institutions",
-    "revision": 1,
+    "revision": 2,
     "title": "Transformer le ministère de l’Agriculture en ministère du bien-manger",
     "description": "La candidate veut confier à ce ministère une politique alimentaire qui couvre aussi les effets sur la santé et l’accès de tous à une alimentation de qualité.",
     "beneficiaries": null,
@@ -85429,8 +85442,8 @@
     "sourceRefs": [
       {
         "sourceId": "batho-programme-pleine-sante",
-        "locator": "Premières propositions",
-        "fragment": ":~:text=Le%20Nutriscore%20doit%20devenir%20obligatoire"
+        "locator": "Premières propositions, point 3, ministère du bien-manger",
+        "fragment": ":~:text=Faire%20du%20minist%C3%A8re%20de%20l%E2%80%99agriculture%20celui%20du%20bien%2Dmanger"
       }
     ],
     "scope": "campagne",
@@ -85563,9 +85576,9 @@
     "parentId": "rohou-parti-2027-europe",
     "candidate": "rohou",
     "theme": "europe",
-    "revision": 1,
-    "title": "Soutenir l’accès à la contraception et à l’éducation dans les coopérations internationales",
-    "description": "Le MEI rattache cette proposition à l’autonomie des femmes et à la possibilité pour les familles de choisir leur avenir.",
+    "revision": 2,
+    "title": "Agir à l’échelle internationale pour l’éducation et l’accès à la contraception",
+    "description": "Le MEI cite l’éducation, l’autonomie des femmes, l’accès à la contraception et la protection sociale parmi les moyens de donner aux familles la liberté de choisir.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -85574,8 +85587,8 @@
     "sourceRefs": [
       {
         "sourceId": "mei-projet-2027",
-        "locator": "Nos orientations",
-        "fragment": ":~:text=l%E2%80%99acc%C3%A8s%20%C3%A0%20la%20contraception%20et%20la%20mise%20en%20place%20de%20syst%C3%A8mes%20de%20protection%20sociale"
+        "locator": "Démographie, « Nos orientations »",
+        "fragment": ":~:text=Agir%20au%20niveau%20international%20en%20faveur%20de%20l%E2%80%99%C3%A9ducation%20et%20de%20l%E2%80%99autonomie"
       }
     ],
     "scope": "parti",
@@ -87997,9 +88010,9 @@
     "parentId": "becht-immigration-relecture-campagne",
     "candidate": "becht",
     "theme": "immigration",
-    "revision": 1,
-    "title": "Recevoir à l’étranger les demandes d’asile et les recours",
-    "description": "Le texte prévoit une instruction dans des centres fermés pour les personnes déjà présentes en France ou se présentant à la frontière.",
+    "revision": 2,
+    "title": "Déposer les demandes d’asile et recours à l’étranger, avec un régime pour les personnes déjà en France ou à la frontière",
+    "description": "Le candidat veut faire déposer les demandes et recours dans des centres à l’étranger. Pour les personnes déjà présentes en France ou arrivant à la frontière, le texte prévoit une instruction dans des centres fermés.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -88008,7 +88021,7 @@
     "sourceRefs": [
       {
         "sourceId": "becht-livre-7",
-        "locator": "Reprendre le contrôle de l’immigration",
+        "locator": "Reprendre le contrôle de l’immigration, demandes d’asile et régime frontalier",
         "fragment": ":~:text=Toute%20demande%20devra%20d%E2%80%99abord%20%C3%AAtre%20d%C3%A9pos%C3%A9e%20dans%20un%20centre%20%C3%A0%20l%E2%80%99%C3%A9tranger"
       }
     ],
@@ -88213,9 +88226,9 @@
     "parentId": "becht-institutions-chapitres-2027",
     "candidate": "becht",
     "theme": "institutions",
-    "revision": 1,
-    "title": "Interdire le financement des cultes venu de l’étranger",
-    "description": "Le chapitre propose un financement par les fidèles, avec une contribution fiscalement déductible sous plafond.",
+    "revision": 2,
+    "title": "Interdire le financement étranger des ministres et lieux de culte",
+    "description": "Le chapitre propose de financer les ministres et lieux de culte par une contribution des fidèles, déductible sous plafond.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -88224,7 +88237,7 @@
     "sourceRefs": [
       {
         "sourceId": "becht-livre-7",
-        "locator": "Lutter contre la radicalisation religieuse",
+        "locator": "Lutter contre la radicalisation religieuse, financement des ministres et lieux de culte",
         "fragment": ":~:text=Tout%20financement%20venu%20de%20l%E2%80%99%C3%A9tranger%20sera%20strictement%20interdit"
       }
     ],
@@ -88453,9 +88466,9 @@
     "parentId": "becht-institutions-chapitres-2027",
     "candidate": "becht",
     "theme": "institutions",
-    "revision": 1,
-    "title": "Demander dix mois d’engagement citoyen pour la protection de la Nation",
-    "description": "Le service pourrait être effectué en continu dans les armées ou par périodes dans la police, la gendarmerie, les secours ou la sécurité civile.",
+    "revision": 2,
+    "title": "Prévoir dix mois d’engagement citoyen pour chaque Français pendant sa vie active",
+    "description": "Le candidat prévoit dix mois en continu dans les armées ou en plusieurs périodes dans la police, la gendarmerie, chez les pompiers ou dans la sécurité civile. Le projet prévoit aussi un service militaire volontaire.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -88464,8 +88477,8 @@
     "sourceRefs": [
       {
         "sourceId": "becht-livre-7",
-        "locator": "Renforcer notre défense et notre résilience",
-        "fragment": ":~:text=10%20mois%20%C3%A0%20la%20protection%20de%20la%20Nation"
+        "locator": "Renforcer notre défense et notre résilience, engagement citoyen",
+        "fragment": ":~:text=chaque%20Fran%C3%A7ais%20consacrera"
       }
     ],
     "scope": "campagne",
@@ -88957,8 +88970,8 @@
     "parentId": "becht-institutions-chapitres-2027",
     "candidate": "becht",
     "theme": "institutions",
-    "revision": 1,
-    "title": "Autoriser l’Arcom à solliciter un meilleur équilibre des nouvelles dans les médias",
+    "revision": 2,
+    "title": "Permettre à l’Arcom de demander aux médias un équilibre entre bonnes et mauvaises nouvelles",
     "description": "Le candidat vise l’équilibre entre informations positives et négatives. Il ne décrit pas de seuil ni de sanction.",
     "beneficiaries": null,
     "timing": null,
@@ -88968,8 +88981,8 @@
     "sourceRefs": [
       {
         "sourceId": "becht-livre-8",
-        "locator": "Le Pacte Démocratique",
-        "fragment": ":~:text=l%E2%80%99ARCOM%20pourra%20solliciter%20des%20m%C3%A9dias%20un%20meilleur%20%C3%A9quilibre"
+        "locator": "Le Pacte démocratique, rôle prévu pour l’Arcom",
+        "fragment": ":~:text=%C3%A9quilibre%20entre%20bonnes%20et%20mauvaises%20nouvelles"
       }
     ],
     "scope": "campagne",
@@ -91211,9 +91224,9 @@
     "parentId": "equinoxe-fiscalite-programme",
     "candidate": "mikolajczak",
     "theme": "fiscalite",
-    "revision": 1,
-    "title": "Prélever 25 % de la marge exceptionnelle des raffineurs en 2026",
-    "description": "Équinoxe propose cette contribution dans son contre-budget pour 2027.",
+    "revision": 2,
+    "title": "Prélever 25 % sur la marge exceptionnelle des raffineurs",
+    "description": "Le contre-budget 2027 d’Équinoxe propose une contribution de 25 % en mentionnant la marge exceptionnelle des raffineurs en 2026.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -91222,8 +91235,8 @@
     "sourceRefs": [
       {
         "sourceId": "equinoxe-contre-budget-2027",
-        "locator": "Recettes",
-        "fragment": ":~:text=une%20contribution%20de%2025%25%20sur%20la%20marge%20exceptionnelle%20des%20raffineurs"
+        "locator": "Recettes, « Éviter les rentes, réduire les niches »",
+        "fragment": ":~:text=sur%20la%20marge%20exceptionnelle%20des%20raffineurs"
       }
     ],
     "scope": "parti",
@@ -91586,8 +91599,8 @@
     "parentId": "mikolajczak-climat-mesures-complementaires-parti",
     "candidate": "mikolajczak",
     "theme": "climat",
-    "revision": 1,
-    "title": "Taxer les billets d’avion selon la distance et la classe",
+    "revision": 2,
+    "title": "Taxer les billets d’avion selon la distance et la classe, avec une exception pour l’outre-mer",
     "description": "Le parti reprend un barème de la Convention citoyenne pour le climat avec une exception pour l’outre-mer.",
     "beneficiaries": null,
     "timing": null,
@@ -91597,7 +91610,7 @@
     "sourceRefs": [
       {
         "sourceId": "equinoxe-contre-budget-2027",
-        "locator": "Recettes",
+        "locator": "Recettes, « Mettre fin à l’exception fiscale aérienne »",
         "fragment": ":~:text=une%20taxe%20sur%20les%20billets%20d%E2%80%99avion%20selon%20la%20classe%20et%20la%20distance"
       }
     ],
@@ -99808,9 +99821,9 @@
     "parentId": "philippot-institutions-mesures-complementaires-parti",
     "candidate": "philippot",
     "theme": "institutions",
-    "revision": 1,
-    "title": "Planifier une sortie des services des GAFAM en trois ans",
-    "description": "Les Patriotes formulent cet objectif dans leur projet de reprise de contrôle des données stratégiques de l’État.",
+    "revision": 2,
+    "title": "Sortir des GAFAM en trois ans pour l’hébergement des données stratégiques de l’État",
+    "description": "Les Patriotes fixent cet objectif dans leur projet d’héberger les données stratégiques sur des serveurs publics ou contrôlés par l’ANSSI.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -99819,7 +99832,7 @@
     "sourceRefs": [
       {
         "sourceId": "patriotes-projet-2026-2027",
-        "locator": "Page 7",
+        "locator": "Souveraineté numérique, « Nationaliser les données sensibles », p. 7",
         "fragment": "page=7"
       }
     ],
@@ -99858,9 +99871,9 @@
     "parentId": "les-patriotes-travail-programme",
     "candidate": "philippot",
     "theme": "travail",
-    "revision": 1,
-    "title": "Accompagner la reconversion des agents français des institutions européennes après un Frexit",
-    "description": "Les Patriotes envisagent une reconversion ou, selon les besoins, un recrutement dans l’administration française selon les grilles nationales.",
+    "revision": 2,
+    "title": "Envisager une reconversion pour les fonctionnaires européens français après un Frexit",
+    "description": "Les Patriotes évoquent une aide à la reconversion ou, selon les besoins, une intégration à l’administration française selon ses grilles. Le document cite le lieu de résidence et les accords avec les pays concernés.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -99869,7 +99882,7 @@
     "sourceRefs": [
       {
         "sourceId": "patriotes-projet-2026-2027",
-        "locator": "Page 16",
+        "locator": "Le Frexit en dix questions, question 9, p. 16",
         "fragment": "page=16"
       }
     ],

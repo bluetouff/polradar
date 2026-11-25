@@ -103,10 +103,42 @@ test('les dates civiles suivent Paris aux changements de jour et de saison', () 
   );
   assert.deepEqual(
     mutate((data) => {
-      data.versions.find((version) => version.number === 2).recordedAt =
-        '2026-11-16T23:30:00Z';
+      const [measure] = data.measures;
+      const version = data.versions.find(
+        ({ measureId, number }) => measureId === measure.id && number === 1,
+      );
+      const checked = '2026-11-17';
+      const snapshot = { ...version.snapshot, checked };
+      data.measures = [{ ...measure, ...snapshot, revision: 1 }];
+      data.versions = [
+        {
+          ...version,
+          snapshot,
+          observedOn: checked,
+          recordedAt: '2026-11-16T23:30:00Z',
+        },
+      ];
     }),
     [],
+  );
+});
+test('la mesure sur le nombre d’élèves par classe garde le même périmètre dans le dossier et la version actuelle', () => {
+  const measure = original.measures.find(
+    ({ id }) => id === 'melenchon-education-2',
+  );
+  const folder = original.engagements.find(({ id }) => id === measure.parentId);
+  const version = original.versions.find(
+    ({ measureId, number }) =>
+      measureId === measure.id && number === measure.revision,
+  );
+  assert.match(measure.title, /nombre d’élèves par classe/);
+  assert.match(measure.description, /maternelle et dans les réseaux/);
+  assert.equal(version.snapshot.title, measure.title);
+  assert.ok(folder.bullets.includes(measure.title + '.'));
+  assert.ok(
+    measure.sourceRefs.some(({ fragment }) =>
+      decodeURIComponent(fragment ?? '').includes('effectifs par classe'),
+    ),
   );
 });
 test('mesures, versions et relevés sont cohérents avec le corpus', () => {
