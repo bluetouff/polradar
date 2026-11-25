@@ -134,7 +134,7 @@ test('la carte et les fiches partagent les filtres et le jour civil de Paris', a
   );
   await page.locator('#agenda-city').selectOption('paris');
   await expect(page.locator('.agenda-event:visible')).toHaveCount(
-    parisEvents.length,
+    Math.min(pageSize, parisEvents.length),
   );
   await expect(page.locator('.map-count:visible')).toHaveCount(1);
   await expect(page.locator('.map-count:visible')).toHaveText(
@@ -167,7 +167,7 @@ test('la carte et les fiches partagent les filtres et le jour civil de Paris', a
   await expect(page.locator('#agenda-city')).toHaveValue('paris');
   await page.reload();
   await expect(page.locator('.agenda-event:visible')).toHaveCount(
-    parisEvents.length,
+    Math.min(pageSize, parisEvents.length),
   );
   await page.getByRole('button', { name: 'Réinitialiser' }).click();
   const southern = page
@@ -195,15 +195,24 @@ test('les candidats ajoutés se consultent et un lieu inconnu ne crée pas de re
   await page.clock.setFixedTime(new Date('2026-11-18T09:00:00Z'));
   await page.goto('/agenda/');
   await page.locator('#agenda-candidate').selectOption('philippe');
-  await expect(page.locator('.agenda-event:visible')).toHaveCount(1);
-  await expect(page.locator('.agenda-event:visible')).toContainText(
-    'Horaire non précisé',
+  const programme = page.locator('#philippe-programme-1118');
+  await expect(programme).toBeVisible();
+  await expect(programme).toContainText('Horaire non précisé');
+  await expect(programme).toContainText('Lieu non précisé');
+  const mappedPhilippeEvents = agenda.events.filter(
+    (event) =>
+      event.candidate === 'philippe' &&
+      event.city &&
+      (event.latestPossibleDate ?? event.date) >= '2026-11-18',
   );
-  await expect(page.locator('.agenda-event:visible')).toContainText(
-    'Lieu non précisé',
-  );
-  await expect(page.locator('.map-count:visible')).toHaveCount(0);
+  await expect
+    .poll(async () => {
+      const counts = await page.locator('.map-count:visible').allTextContents();
+      return counts.reduce((total, count) => total + Number(count), 0);
+    })
+    .toBe(mappedPhilippeEvents.length);
   await page.locator('#agenda-candidate').selectOption('lisnard');
+  await page.locator('#agenda-city').selectOption('chassieu');
   await expect(page.locator('.agenda-event:visible .agenda-place')).toHaveText(
     'Chassieu',
   );
