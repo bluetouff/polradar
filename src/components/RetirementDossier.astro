@@ -440,8 +440,13 @@ const percent = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 1 });
     padding-block: 0.55rem;
     border-block-end: 1px solid var(--line);
   }
+  .retirement-questions a {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    min-block-size: var(--target-size);
+  }
   .retirement-questions a + a {
-    display: block;
     color: var(--muted);
     font-size: 0.88rem;
   }

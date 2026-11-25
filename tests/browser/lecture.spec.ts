@@ -154,6 +154,12 @@ test('le dossier retraites met à jour le graphique sans transmettre la généra
   );
   await expect(page.locator('#comptes meter')).toHaveCount(4);
   await expect(page.locator('.retirement-panel dl > div > dt')).toHaveCount(12);
+  const topicTargets = page.locator('.retirement-questions a');
+  await expect(topicTargets.first()).toBeVisible();
+  const minimum = await topicTargets.evaluateAll((links) =>
+    Math.min(...links.map((link) => link.getBoundingClientRect().height)),
+  );
+  expect(minimum).toBeGreaterThanOrEqual(44);
   expect(requests.slice(before).filter((url) => url.includes('1966'))).toEqual(
     [],
   );
