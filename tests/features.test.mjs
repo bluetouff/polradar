@@ -14,6 +14,7 @@ import {
   pollScoreLabel,
   chartGeometry,
   metricGroups,
+  measureSearchText,
   filterEntries,
   exportCsv,
   csvValue,
@@ -139,6 +140,15 @@ test('la mesure sur le nombre d’élèves par classe garde le même périmètre
     measure.sourceRefs.some(({ fragment }) =>
       decodeURIComponent(fragment ?? '').includes('effectifs par classe'),
     ),
+  );
+  const entry = {
+    title: measure.title,
+    text: measureSearchText(measure, 'Jean-Luc Mélenchon', 'Éducation'),
+    scope: measure.scope,
+  };
+  assert.deepEqual(
+    filterEntries([entry], { q: 'réduire les effectifs par classe' }),
+    [entry],
   );
 });
 test('mesures, versions et relevés sont cohérents avec le corpus', () => {
