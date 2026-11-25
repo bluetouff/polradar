@@ -4612,6 +4612,42 @@
     }
   },
   {
+    "id": "melenchon-education-scolarite-dix-huit-v2",
+    "measureId": "melenchon-education-scolarite-dix-huit",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:40:12+01:00",
+    "summary": "Ajout d’un lien vers le passage précis dans le programme.",
+    "snapshot": {
+      "title": "Étendre la scolarité obligatoire à 18 ans",
+      "description": "Prolonger l’obligation scolaire jusqu’à cet âge.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "scolarite-obligatoire",
+          "label": "Âge de fin proposé",
+          "value": 18,
+          "unit": "ans",
+          "sourceId": "lfi-school"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-school",
+          "locator": "Chapitre 2, École publique, point sur l’obligation scolaire",
+          "fragment": ":~:text=%C3%89tendre%20la%20scolarit%C3%A9%20obligatoire"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-25"
+    }
+  },
+  {
     "id": "melenchon-education-remplacants-v1",
     "measureId": "melenchon-education-remplacants",
     "number": 1,
@@ -4639,6 +4675,34 @@
     }
   },
   {
+    "id": "melenchon-education-remplacants-v2",
+    "measureId": "melenchon-education-remplacants",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:40:12+01:00",
+    "summary": "Le résumé reprend le périmètre explicite de la proposition, avec un lien vers le passage dans le programme.",
+    "snapshot": {
+      "title": "Reconstituer les viviers de professeurs remplaçants",
+      "description": "Reconstituer des viviers de professeurs remplaçants pour assurer les heures de cours en cas d’absence.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-school",
+          "locator": "Chapitre 2, École publique, point sur le remplacement des enseignants",
+          "fragment": ":~:text=Reconstituer%20les%20viviers%20de%20professeurs%20rempla%C3%A7ants"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-25"
+    }
+  },
+  {
     "id": "melenchon-education-periscolaire-v1",
     "measureId": "melenchon-education-periscolaire",
     "number": 1,
@@ -4663,6 +4727,34 @@
       "scope": "campagne",
       "edition": "Campagne présidentielle 2027",
       "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "melenchon-education-periscolaire-v2",
+    "measureId": "melenchon-education-periscolaire",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:40:12+01:00",
+    "summary": "Le résumé reprend le périmètre explicite de la proposition, avec un lien vers le passage dans le programme.",
+    "snapshot": {
+      "title": "Un service public national du périscolaire",
+      "description": "Organiser un service périscolaire gratuit avec les communes. Il serait animé par des agents formés et titulaires de la fonction publique.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-school",
+          "locator": "Chapitre 2, École publique, point sur le service national du périscolaire",
+          "fragment": ":~:text=Construire%20un%20service%20public%20national%20du%20p%C3%A9riscolaire"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-25"
     }
   },
   {
@@ -16605,6 +16697,34 @@
       "scope": "campagne",
       "edition": "L’Avenir en commun 2027",
       "checked": "2026-11-19"
+    }
+  },
+  {
+    "id": "melenchon-education-admission-superieur-v2",
+    "measureId": "melenchon-education-admission-superieur",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:40:12+01:00",
+    "summary": "Ajout d’un lien vers le passage précis dans le programme.",
+    "snapshot": {
+      "title": "Ouvrir l’accès à la formation choisie à tous les bacheliers",
+      "description": "Démanteler Parcoursup, garantir l’accès sans sélection à la formation choisie et rétablir le droit à la poursuite en master.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-school",
+          "locator": "Chapitre 2, Enseignement supérieur, mesure clé sur l’accès aux formations",
+          "fragment": ":~:text=Garantir%20%C3%A0%20tous%20les%20bacheliers"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "L’Avenir en commun 2027",
+      "checked": "2026-11-25"
     }
   },
   {
@@ -50466,6 +50586,34 @@
     }
   },
   {
+    "id": "melenchon-retablir-le-controle-public-sur-louverture-des-centres-dapprentis-v2",
+    "measureId": "melenchon-retablir-le-controle-public-sur-louverture-des-centres-dapprentis",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:40:12+01:00",
+    "summary": "Ajout d’un lien vers le passage précis dans le programme.",
+    "snapshot": {
+      "title": "Rétablir le contrôle public sur l’ouverture des centres d’apprentis",
+      "description": "La création d’un CFA relèverait à nouveau d’un encadrement public.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-school",
+          "locator": "Chapitre 2, Formation professionnelle, point sur la création de CFA",
+          "fragment": ":~:text=R%C3%A9tablir%20l%E2%80%99encadrement%20public%20de%20la%20cr%C3%A9ation"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "L’Avenir en commun · présidentielle 2027",
+      "checked": "2026-11-25"
+    }
+  },
+  {
     "id": "melenchon-retablir-le-bac-professionnel-en-quatre-ans-v1",
     "measureId": "melenchon-retablir-le-bac-professionnel-en-quatre-ans",
     "number": 1,
@@ -50490,6 +50638,34 @@
       "scope": "campagne",
       "edition": "L’Avenir en commun · présidentielle 2027",
       "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "melenchon-retablir-le-bac-professionnel-en-quatre-ans-v2",
+    "measureId": "melenchon-retablir-le-bac-professionnel-en-quatre-ans",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:40:12+01:00",
+    "summary": "Ajout d’un lien vers le passage précis dans le programme.",
+    "snapshot": {
+      "title": "Rétablir le bac professionnel en quatre ans",
+      "description": "Le programme privilégie les cours en atelier et propose de supprimer les périodes de stage ajoutées par les réformes récentes.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-school",
+          "locator": "Chapitre 2, Formation professionnelle, point sur le baccalauréat professionnel",
+          "fragment": ":~:text=R%C3%A9tablir%20le%20baccalaur%C3%A9at%20professionnel%20en%20quatre%20ans"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "L’Avenir en commun · présidentielle 2027",
+      "checked": "2026-11-25"
     }
   },
   {
@@ -50575,6 +50751,34 @@
     }
   },
   {
+    "id": "melenchon-reserver-la-taxe-dapprentissage-aux-etablissements-publics-v2",
+    "measureId": "melenchon-reserver-la-taxe-dapprentissage-aux-etablissements-publics",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:40:12+01:00",
+    "summary": "Ajout d’un lien vers le passage précis dans le programme.",
+    "snapshot": {
+      "title": "Réserver la taxe d’apprentissage aux établissements publics",
+      "description": "Cette règle de répartition s’appliquerait à tous les niveaux d’enseignement.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-school",
+          "locator": "Chapitre 2, Formation professionnelle, point sur la taxe d’apprentissage",
+          "fragment": ":~:text=R%C3%A9server%20la%20taxe%20d%E2%80%99apprentissage"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "L’Avenir en commun · présidentielle 2027",
+      "checked": "2026-11-25"
+    }
+  },
+  {
     "id": "melenchon-interdire-le-statut-lucratif-aux-ecoles-privees-du-superieur-v1",
     "measureId": "melenchon-interdire-le-statut-lucratif-aux-ecoles-privees-du-superieur",
     "number": 1,
@@ -50602,6 +50806,34 @@
     }
   },
   {
+    "id": "melenchon-interdire-le-statut-lucratif-aux-ecoles-privees-du-superieur-v2",
+    "measureId": "melenchon-interdire-le-statut-lucratif-aux-ecoles-privees-du-superieur",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:40:12+01:00",
+    "summary": "Le résumé reprend le périmètre explicite de la proposition, avec un lien vers le passage dans le programme.",
+    "snapshot": {
+      "title": "Interdire le caractère lucratif des écoles privées du supérieur",
+      "description": "Le programme vise notamment les écoles détenues par des actionnaires ou cotées en Bourse.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-school",
+          "locator": "Chapitre 2, Enseignement supérieur, point sur les écoles privées lucratives",
+          "fragment": ":~:text=Interdire%20le%20caract%C3%A8re%20lucratif"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "L’Avenir en commun · présidentielle 2027",
+      "checked": "2026-11-25"
+    }
+  },
+  {
     "id": "melenchon-recruter-davantage-de-psychologues-dans-les-universites-v1",
     "measureId": "melenchon-recruter-davantage-de-psychologues-dans-les-universites",
     "number": 1,
@@ -50626,6 +50858,34 @@
       "scope": "campagne",
       "edition": "L’Avenir en commun · présidentielle 2027",
       "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "melenchon-recruter-davantage-de-psychologues-dans-les-universites-v2",
+    "measureId": "melenchon-recruter-davantage-de-psychologues-dans-les-universites",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:40:12+01:00",
+    "summary": "Le résumé reprend le périmètre explicite de la proposition, avec un lien vers le passage dans le programme.",
+    "snapshot": {
+      "title": "Augmenter le nombre de psychologues dans les universités",
+      "description": "Le programme propose de renforcer les services de santé universitaires, avec des soins gratuits pour tous les étudiants, notamment dentaires et gynécologiques.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-school",
+          "locator": "Chapitre 2, Enseignement supérieur, point sur les psychologues et les soins",
+          "fragment": ":~:text=Augmenter%20drastiquement%20le%20nombre%20de%20psychologues"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "L’Avenir en commun · présidentielle 2027",
+      "checked": "2026-11-25"
     }
   },
   {
