@@ -7,7 +7,7 @@ test('les premières données sont visibles sur un téléphone sans défiler', a
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   const cases = [
-    ['/', '.home-economic-signals .economy-reading'],
+    ['/', '.home-choices a[href="/questions/"]'],
     ['/sondages/', '#poll-bars .poll-bar-row'],
     ['/mesures/', '#measure-results h3'],
     ['/numerique/ce-qui-changerait/', '.law-card h3'],

@@ -5,7 +5,7 @@ import { voteCases } from './votes-data';
 import { chambers, positionLabel, voteCasePath } from './legislative-votes.mjs';
 import { proposalTracks } from './proposal-data';
 import { agenda } from './visual-data';
-import { statements } from './economy-data';
+import { economy, statements } from './economy-data';
 import { candidateById, formatDate } from './data';
 import { campaignBriefs } from './briefs';
 import { questions } from './questions';
@@ -15,6 +15,7 @@ export interface SearchEntry {
   type: string;
   title: string;
   text: string;
+  summary?: string;
   url: string;
   candidate: string;
   candidates?: string[];
@@ -25,6 +26,62 @@ export interface SearchEntry {
   scope: string;
   date: string;
 }
+const readerEntries = [
+  [
+    'territoire',
+    '/territoires/',
+    'Les chiffres de ma commune',
+    'Données locales par commune et département. Accès aux médecins, logement social et résultats électoraux.',
+  ],
+  [
+    'territoire',
+    '/communes/',
+    'Résultats par commune',
+    'Résultats électoraux du premier et du second tour de la présidentielle de 2022, inscrits, participation et abstention.',
+  ],
+  [
+    'repere',
+    '/reperes/',
+    'Calendrier électoral',
+    'Date des élections, premier tour, second tour, candidats et validation par le Conseil constitutionnel.',
+  ],
+  [
+    'repere',
+    '/reperes/#voter',
+    'Préparer mon vote',
+    'Inscription sur les listes électorales, bureau de vote, vote par procuration et pièces à présenter.',
+  ],
+  [
+    'repere',
+    '/reperes/#candidatures',
+    'Comment une candidature devient-elle officielle ?',
+    'Déclaration, investiture, primaire et liste du Conseil constitutionnel.',
+  ],
+  [
+    'droit',
+    '/comparer/retraites/',
+    'Retraites et droit en vigueur',
+    'Âge légal actuel, âge de départ à la retraite à 64 ans, durée de cotisation, annuités et taux plein.',
+  ],
+  [
+    'droit',
+    '/numerique/ce-qui-changerait/',
+    'Chiffrement et données personnelles',
+    'Droit en vigueur, secret des communications, messageries chiffrées, RGPD et conservation des données.',
+  ],
+  [
+    'droit',
+    '/numerique/ce-qui-changerait/cybersecurite/',
+    'Cybersécurité et droit en vigueur',
+    'Sécurité des systèmes d’information, directive NIS 2, ANSSI et infrastructures critiques.',
+  ],
+  [
+    'droit',
+    '/numerique/ce-qui-changerait/souverainete/',
+    'Souveraineté numérique et droit en vigueur',
+    'Cloud, données et commande publique, hébergement et dépendances numériques.',
+  ],
+] as const;
 const publicationYear = (s: (typeof sources)[number]) =>
   s.published?.slice(0, 4) ?? s.publishedYear ?? '';
 let builtIndex: Promise<SearchEntry[]> | undefined;
@@ -46,23 +103,30 @@ async function buildSearchIndex(): Promise<SearchEntry[]> {
     return years.length === 1 ? years[0] : '';
   };
   return [
-    ...measures.map((measure) => ({
-      id: `mesure-${measure.id}`,
-      type: 'mesure',
-      title: measure.title,
-      text: measureSearchText(
-        measure,
-        candidates.find((c) => c.id === measure.candidate)!.name,
-        themes.find((t) => t.id === measure.theme)!.label,
-      ),
-      url: `/mesures/${measure.id}/`,
-      candidate: measure.candidate,
-      author: attributionLabel(measure, candidateById(measure.candidate).name),
-      theme: measure.theme,
-      year: sourceYear(measure.sourceRefs.map((ref) => ref.sourceId)),
-      scope: measure.scope,
-      date: measure.checked,
-    })),
+    ...measures.map((measure) => {
+      const candidate = candidateById(measure.candidate);
+      return {
+        id: `mesure-${measure.id}`,
+        type: 'mesure',
+        title: measure.title,
+        summary: measure.description,
+        text:
+          measureSearchText(
+            measure,
+            candidate.name,
+            themes.find((t) => t.id === measure.theme)!.label,
+          ) +
+          ' ' +
+          candidate.party,
+        url: `/mesures/${measure.id}/`,
+        candidate: measure.candidate,
+        author: attributionLabel(measure, candidate.name),
+        theme: measure.theme,
+        year: sourceYear(measure.sourceRefs.map((ref) => ref.sourceId)),
+        scope: measure.scope,
+        date: measure.checked,
+      };
+    }),
     ...questions.map((q) => ({
       id: 'question-' + q.id,
       type: 'question',
@@ -182,6 +246,7 @@ async function buildSearchIndex(): Promise<SearchEntry[]> {
       id: 'breve-' + article.id,
       type: 'breve',
       title: article.data.title,
+      summary: article.data.description,
       text: [
         article.data.description,
         event.candidates.map((id) => candidateById(id).name).join(' '),
@@ -199,7 +264,8 @@ async function buildSearchIndex(): Promise<SearchEntry[]> {
       id: `dossier-${article.id}`,
       type: 'dossier',
       title: article.data.title,
-      text: `${article.data.description} ${article.body || ''}`,
+      summary: article.data.description,
+      text: `${article.data.description} ${article.id.replaceAll('-', ' ')} ${article.body || ''}`,
       url: `/dossiers/${article.id}/`,
       candidate: '',
       theme: '',
@@ -246,6 +312,30 @@ async function buildSearchIndex(): Promise<SearchEntry[]> {
       year: poll.published.slice(0, 4),
       scope: '',
       date: poll.published,
+    })),
+    ...readerEntries.map(([type, url, title, text]) => ({
+      id: 'outil' + url.replace(/[^a-z0-9]+/gi, '-').replace(/-$/, ''),
+      type,
+      url,
+      title,
+      text,
+      candidate: '',
+      theme: '',
+      year: '',
+      scope: '',
+      date: '',
+    })),
+    ...economy.map((series) => ({
+      id: 'indicateur-' + series.id,
+      type: 'indicateur',
+      title: series.title,
+      text: `France · Eurostat · ${series.unit}`,
+      url: '/economie/' + series.id + '/',
+      candidate: '',
+      theme: '',
+      year: '',
+      scope: '',
+      date: '',
     })),
     ...events.map((event) => ({
       id: `evenement-${event.id}`,

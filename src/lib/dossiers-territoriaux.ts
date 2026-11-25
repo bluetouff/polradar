@@ -58,11 +58,11 @@ export function localFacts(
     v === null ? 'Non renseigné' : v ? 'Oui' : 'Non';
   const rate =
     data.rate === '>25%'
-      ? 'Plus de 25 %'
-      : (data.rate?.replace('%', ' %') ?? 'Non renseigné');
+      ? 'Plus de 25\u00a0%'
+      : (data.rate?.replace('%', '\u00a0%') ?? 'Non renseigné');
   return [
     ['Part de logements sociaux · 1ᵉʳ janvier 2025', rate],
-    ['Objectif indiqué dans le fichier', data.target + ' %'],
+    ['Objectif indiqué dans le fichier', data.target + '\u00a0%'],
     [
       'Logements sociaux inventoriés',
       data.inventory === null

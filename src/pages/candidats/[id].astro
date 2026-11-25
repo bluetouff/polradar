@@ -13,6 +13,7 @@ import {
   formatDate,
   measureById,
   measures,
+  sourceById,
   themes,
 } from '../../lib/data';
 import { documents } from '../../lib/documents';
@@ -48,6 +49,7 @@ const externalPortrait = portraitLinks[candidate.id];
 const evolutionLink = proposalTracks.find((t) => t.candidate === candidate.id);
 const financingLink = financingMaps.find((m) => m.candidate === candidate.id);
 const votesLink = voteCases.find((v) => v.candidate === candidate.id);
+const statusSource = sourceById(candidate.statusSource);
 const programmeReviews = documents.flatMap((document) =>
   document.coverage && document.candidates.includes(candidate.id)
     ? [document.coverage]
@@ -61,7 +63,7 @@ const programmeReviews = documents.flatMap((document) =>
   section="/candidats/"
 >
   <div class="breadcrumbs">
-    <a href="/candidats/">Candidatures</a>
+    <a href="/candidats/">Candidats</a>
     <span>/</span>
     <span>{candidate.name}</span>
   </div>
@@ -89,7 +91,15 @@ const programmeReviews = documents.flatMap((document) =>
     <div class="profile-identity">
       <p class="profile-party">{candidate.party}</p>
       <h1>{candidate.name}</h1>
-      <span class="profile-status">{candidate.status}</span>
+      <p class="profile-status">{candidate.status}</p>
+      <p class="profile-checked">
+        <a href="#source-du-statut">
+          Statut vérifié le{' '}
+          <time datetime={statusSource.checked}>
+            {formatDate(statusSource.checked)}
+          </time>
+        </a>
+      </p>
     </div>
     <div class="profile-intro">
       <p class="candidate-summary">{candidate.note}</p>
@@ -100,9 +110,7 @@ const programmeReviews = documents.flatMap((document) =>
           href={`/comparer/?c=${candidate.id}&theme=retraites`}
         >
           <Icon name="exchange" />
-          <span>
-            Comparer<span class="compare-extra"> ses propositions</span>
-          </span>
+          <span>Comparer</span>
         </a>
         <FollowButton
           kind="candidate"
@@ -131,132 +139,25 @@ const programmeReviews = documents.flatMap((document) =>
       </div>
     </dl>
   </header>
+  <nav class="profile-jumps" aria-label="Dans ce dossier">
+    <a href="#mesures-du-candidat">Mesures et orientations</a>
+    {programmeReviews.length > 0 && (
+      <a href="#programme-lecture">Relecture du programme</a>
+    )}
+    <a href={'/documents/candidats/' + candidate.id + '/'}>
+      Documents et passages cités
+    </a>
+    {votesLink && <a href={voteCasePath(votesLink.id)}>Votes passés</a>}
+    {evolutionLink && (
+      <a href={`/evolution/#dossier=${evolutionLink.id}`}>Évolutions</a>
+    )}
+    {financingLink && (
+      <a href={`/financements/#carte=${financingLink.id}`}>Financements</a>
+    )}
+    {archives.length > 0 && <a href="#archives-2022">Archives 2022</a>}
+  </nav>
   <div class="profile-layout">
-    <aside class="profile-aside" aria-label="Parcourir le dossier">
-      {documented.length > 0 && (
-        <details class="profile-topic-index">
-          <summary>
-            <Icon name="layers" />
-            Accès par thème
-            <Icon name="chevron" />
-          </summary>
-          <nav class="profile-theme-nav" aria-label="Thèmes documentés">
-            {documented.map((theme) => (
-              <a href={`#theme-${theme.id}`}>
-                <Icon name={theme.id} />
-                <span>{theme.label}</span>
-                <span aria-label={`${theme.items.length} fiches`}>
-                  {theme.items.length}
-                </span>
-              </a>
-            ))}
-          </nav>
-        </details>
-      )}
-      {(votesLink || evolutionLink || financingLink) && (
-        <section class="profile-resources">
-          <h2>Analyses du programme</h2>
-          <nav
-            class="profile-evidence-links"
-            aria-label="Analyses du programme"
-          >
-            {votesLink && (
-              <a href={voteCasePath(votesLink.id)}>
-                <Icon name="vote" />
-                <span>Propositions et votes passés</span>
-                <Icon name="arrow" />
-              </a>
-            )}
-            {evolutionLink && (
-              <a href={`/evolution/#dossier=${evolutionLink.id}`}>
-                <Icon name="historique" />
-                <span>Évolution des propositions</span>
-                <Icon name="arrow" />
-              </a>
-            )}
-            {financingLink && (
-              <a href={`/financements/#carte=${financingLink.id}`}>
-                <Icon name="exchange" />
-                <span>Carte des financements</span>
-                <Icon name="arrow" />
-              </a>
-            )}
-          </nav>
-        </section>
-      )}
-      <section class="profile-resources">
-        <h2>Source du statut</h2>
-        <SourceLinks ids={[candidate.statusSource]} />
-        <a href="/transparence/" class="text-link">
-          Périmètre du suivi ↗
-        </a>
-      </section>
-      {candidate.programmeReview && (
-        <details class="profile-topic-index">
-          <summary>
-            <Icon name="source" />
-            Sources du programme
-            <Icon name="chevron" />
-          </summary>
-          <p>
-            Vérifiées le{' '}
-            <time datetime={candidate.programmeReview.checked}>
-              {formatDate(candidate.programmeReview.checked)}
-            </time>
-            .
-          </p>
-          <SourceLinks ids={candidate.programmeReview.sources} compact />
-        </details>
-      )}
-    </aside>
     <div>
-      {programmeReviews.length > 0 && (
-        <section class="programme-reading" aria-labelledby="programme-lecture">
-          <h2 id="programme-lecture">Relecture du programme</h2>
-          {programmeReviews.map((review) => (
-            <details>
-              <summary>
-                <strong>{review.perimeter}</strong>
-                <span>
-                  {review.total} identifiées · {review.reviewed} relues ·{' '}
-                  {review.remaining} à examiner
-                </span>
-              </summary>
-              <p>
-                Relecture du{' '}
-                <time datetime={review.checked}>
-                  {formatDate(review.checked)}
-                </time>
-                .
-              </p>
-              <ol>
-                {review.units.map((unit) => (
-                  <li>
-                    <a href={unit.sourceUrl} rel="noreferrer">
-                      {unit.title} ↗
-                    </a>
-                    {unit.review === 'sans-engagement-precis' && (
-                      <small>Sans engagement précis</small>
-                    )}
-                    {unit.review === 'a-examiner' && <small>À examiner</small>}
-                    {unit.measureIds.length > 0 && (
-                      <ul>
-                        {unit.measureIds.map((id) => (
-                          <li>
-                            <a href={`/mesures/${id}/`}>
-                              {measureById(id).title}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                ))}
-              </ol>
-            </details>
-          ))}
-        </section>
-      )}
       <div class="section-heading">
         <div>
           <span id="mesures-du-profil" aria-hidden="true"></span>
@@ -293,6 +194,53 @@ const programmeReviews = documents.flatMap((document) =>
         <div class="notice">
           <p>Aucune proposition récente documentée pour cette candidature.</p>
         </div>
+      )}
+      {programmeReviews.length > 0 && (
+        <section class="programme-reading" aria-labelledby="programme-lecture">
+          <h2 id="programme-lecture">Relecture du programme</h2>
+          {programmeReviews.map((review) => (
+            <details>
+              <summary>
+                <strong>{review.perimeter}</strong>
+                <span>
+                  {review.total} sections identifiées · {review.reviewed} relues
+                  · {review.remaining} à examiner
+                </span>
+              </summary>
+              <p>
+                Relecture du{' '}
+                <time datetime={review.checked}>
+                  {formatDate(review.checked)}
+                </time>
+                .
+              </p>
+              <ol>
+                {review.units.map((unit) => (
+                  <li>
+                    <a href={unit.sourceUrl} rel="noreferrer">
+                      {unit.title} ↗
+                    </a>
+                    {unit.review === 'sans-engagement-precis' && (
+                      <small>Sans engagement précis</small>
+                    )}
+                    {unit.review === 'a-examiner' && <small>À examiner</small>}
+                    {unit.measureIds.length > 0 && (
+                      <ul>
+                        {unit.measureIds.map((id) => (
+                          <li>
+                            <a href={`/mesures/${id}/`}>
+                              {measureById(id).title}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </details>
+          ))}
+        </section>
       )}
       {briefs.length > 0 && (
         <section class="candidate-briefs">
@@ -349,6 +297,83 @@ const programmeReviews = documents.flatMap((document) =>
         </section>
       )}
     </div>
+    <aside class="profile-aside" aria-label="Parcourir le dossier">
+      {documented.length > 0 && (
+        <details class="profile-topic-index">
+          <summary>
+            <Icon name="layers" />
+            Accès par thème
+            <Icon name="chevron" />
+          </summary>
+          <nav class="profile-theme-nav" aria-label="Thèmes documentés">
+            {documented.map((theme) => (
+              <a href={`#theme-${theme.id}`}>
+                <Icon name={theme.id} />
+                <span>{theme.label}</span>
+                <span aria-label={`${theme.items.length} fiches`}>
+                  {theme.items.length}
+                </span>
+              </a>
+            ))}
+          </nav>
+        </details>
+      )}
+      {(votesLink || evolutionLink || financingLink) && (
+        <section class="profile-resources">
+          <h2>Analyses du programme</h2>
+          <nav
+            class="profile-evidence-links"
+            aria-label="Analyses du programme"
+          >
+            {votesLink && (
+              <a href={voteCasePath(votesLink.id)}>
+                <Icon name="vote" />
+                <span>Propositions et votes passés</span>
+                <Icon name="arrow" />
+              </a>
+            )}
+            {evolutionLink && (
+              <a href={`/evolution/#dossier=${evolutionLink.id}`}>
+                <Icon name="historique" />
+                <span>Évolution des propositions</span>
+                <Icon name="arrow" />
+              </a>
+            )}
+            {financingLink && (
+              <a href={`/financements/#carte=${financingLink.id}`}>
+                <Icon name="exchange" />
+                <span>Carte des financements</span>
+                <Icon name="arrow" />
+              </a>
+            )}
+          </nav>
+        </section>
+      )}
+      <section class="profile-resources" id="source-du-statut">
+        <h2>Source du statut</h2>
+        <SourceLinks ids={[candidate.statusSource]} />
+        <a href="/transparence/" class="text-link">
+          Périmètre du suivi ↗
+        </a>
+      </section>
+      {candidate.programmeReview && (
+        <details class="profile-topic-index">
+          <summary>
+            <Icon name="source" />
+            Sources du programme
+            <Icon name="chevron" />
+          </summary>
+          <p>
+            Vérifiées le{' '}
+            <time datetime={candidate.programmeReview.checked}>
+              {formatDate(candidate.programmeReview.checked)}
+            </time>
+            .
+          </p>
+          <SourceLinks ids={candidate.programmeReview.sources} compact />
+        </details>
+      )}
+    </aside>
   </div>
   <script src="../../scripts/document-pages.ts"></script>
 </Base>

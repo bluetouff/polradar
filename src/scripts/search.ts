@@ -1,7 +1,7 @@
 import { catalogue } from './catalogue';
 import { el, anchor, icon, download } from './ui';
 import { filterEntries, exportCsv } from '../lib/features.mjs';
-import { searchIcon, searchKinds } from '../lib/search-kinds';
+import { searchIcon, searchResultLabel } from '../lib/search-kinds';
 import type { SearchEntry } from '../lib/search';
 const form = document.querySelector<HTMLFormElement>('#search-form')!,
   results = document.querySelector<HTMLElement>('#search-results')!,
@@ -18,14 +18,26 @@ function revealActiveFilters() {
 }
 revealActiveFilters();
 window.addEventListener('hashchange', revealActiveFilters);
+const empty = document.querySelector<HTMLTemplateElement>('#search-empty')!;
+results.addEventListener('click', (event) => {
+  if (
+    !(event.target instanceof HTMLElement) ||
+    !event.target.closest('[data-reset-search]')
+  )
+    return;
+  form.reset();
+  form.querySelector<HTMLInputElement>('#search-query')?.focus();
+});
 const selection = catalogue<SearchEntry>({
   form,
   results,
   count,
+  empty: () => empty.content.cloneNode(true),
   load: async () => {
     const response = await fetch('/api/recherche.json', {
       credentials: 'omit',
       redirect: 'error',
+      referrerPolicy: 'no-referrer',
     });
     if (!response.ok) throw Error('Index indisponible');
     return response.json() as Promise<SearchEntry[]>;
@@ -44,16 +56,15 @@ const selection = catalogue<SearchEntry>({
       link.rel = 'noopener noreferrer';
     }
     h2.append(link);
+    const summary = entry.summary ?? entry.text;
     body.append(
-      el(
-        'p',
-        `${searchKinds[entry.type]}${entry.year ? ' · ' + entry.year : ''}`,
-        'result-meta',
-      ),
+      el('p', searchResultLabel(entry), 'result-meta'),
       h2,
-      el('p', entry.text.slice(0, 220) + (entry.text.length > 220 ? '…' : '')),
+      el('p', summary.slice(0, 220) + (summary.length > 220 ? '…' : '')),
     );
-    article.append(symbol, body, el('span', '↗'));
+    const arrow = el('span', '↗');
+    arrow.setAttribute('aria-hidden', 'true');
+    article.append(symbol, body, arrow);
     return article;
   },
 });

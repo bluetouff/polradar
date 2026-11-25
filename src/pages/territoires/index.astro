@@ -23,14 +23,18 @@ import '../../styles/dossiers-terrain.css';
       </p>
     </div>
   </header>
-  <section class="terrain-panel">
+  <nav class="reading-links" aria-label="Données locales">
+    <a href="#commune">Chercher une commune</a>
+    <a href="/communes/">Résultats de 2022</a>
+    <a href={aplPage}>Accès aux soins par département</a>
+  </nav>
+  <section class="terrain-panel" id="commune">
     <DossierCommune mode="sru" crosswalk />
     <p class="terrain-note">
       <a href={sruSource} rel="noreferrer">
         Ministère du Logement · inventaire SRU
       </a>{' '}
-      · <a href={aplPage}>Accès aux soins par département</a> ·{' '}
-      <a href="/studio/#soins-generalistes">Publier la carte</a>
+      · <a href="/studio/#soins-generalistes">Publier la carte</a>
     </p>
   </section>
 </Base>

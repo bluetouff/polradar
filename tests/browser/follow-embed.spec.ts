@@ -112,7 +112,9 @@ test('le suivi part sans candidat, affiche un vrai changement et partage ses sou
 }) => {
   await page.clock.setFixedTime(snapshotDay);
   const shardQueries: string[] = [];
+  let corpusDownloads = 0;
   page.on('request', (r) => {
+    if (new URL(r.url()).pathname === '/api/corpus.json') corpusDownloads++;
     if (new URL(r.url()).pathname.startsWith('/api/suivi/'))
       shardQueries.push(r.url());
   });
@@ -123,6 +125,7 @@ test('le suivi part sans candidat, affiche un vrai changement et partage ses sou
     page.locator('[data-follow-kind][aria-pressed=true]'),
   ).toHaveCount(0);
   expect(shardQueries).toEqual([]);
+  expect(corpusDownloads).toBe(0);
   await page.locator('[data-follow-id=kazib]').click();
   const entry = page
     .locator('#since-cards article')
@@ -268,4 +271,37 @@ test('les loupes de recherche et le bouton de suivi conservent leurs pictogramme
   expect(
     await follow.evaluate((el) => getComputedStyle(el, '::before').maskImage),
   ).toContain('/pictos-menu/');
+});
+
+test('un chargement en cours ne restaure pas une sélection effacée', async ({
+  page,
+}) => {
+  let release: () => void;
+  const wait = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  await page.route('**/api/corpus.json', async (route) => {
+    await wait;
+    await route.continue();
+  });
+  await page.goto('/suivi/');
+  const received = page.waitForResponse(
+    (response) => new URL(response.url()).pathname === '/api/corpus.json',
+  );
+  const candidate = page.locator('[data-follow-id=philippe]');
+  try {
+    await candidate.click();
+    await expect(page.locator('#follow-status')).toHaveText(
+      'Chargement des fiches suivies…',
+    );
+    await page.locator('#follow-clear').click();
+    await expect(candidate).toHaveAttribute('aria-pressed', 'false');
+  } finally {
+    release!();
+  }
+  await (await received).finished();
+  await expect(page.locator('#follow-results .measure-row')).toHaveCount(0);
+  await expect(page.locator('#follow-status')).toHaveText(
+    '0 fiche dans votre suivi',
+  );
 });

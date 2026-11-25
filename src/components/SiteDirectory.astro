@@ -1,0 +1,27 @@
+---
+import Icon from './Icon.astro';
+
+const links = [
+  ['/mesures/', 'Propositions'],
+  ['/donnees/', 'Données ouvertes'],
+  ['/presse/', 'Espace presse'],
+  ['/studio/', 'Studio graphique'],
+  ['/api/', 'API publique'],
+  ['/mcp/', 'Serveur MCP'],
+  ['/methode/', 'Méthode'],
+] as const;
+---
+
+<details class="site-directory">
+  <summary>
+    Rubriques <Icon name="chevron" />
+  </summary>
+  <nav aria-label="Rubriques et outils">
+    {links.map(([url, label]) => (
+      <a href={url}>{label}</a>
+    ))}
+    <a class="directory-index" href="/rubriques/">
+      Toutes les rubriques <Icon name="arrow" />
+    </a>
+  </nav>
+</details>

@@ -21,6 +21,21 @@ import { activeCandidates as candidates, themes } from '../lib/data';
   </header>
   <div id="follow-app">
     <FollowChanges />
+    <p id="follow-status" role="status" class="results-meta"></p>
+    <section class="section-space">
+      <div class="register-heading">
+        <h2 id="fiches-suivies">Fiches suivies</h2>
+        <button id="follow-clear" type="button" class="button small">
+          Effacer mon suivi
+        </button>
+      </div>
+      <div id="follow-results" class="measure-list">
+        <p class="notice">
+          Sélectionnez un candidat ou un thème pour afficher les fiches
+          correspondantes.
+        </p>
+      </div>
+    </section>
     <div class="follow-layout" id="choisir-suivi">
       <section>
         <div class="register-heading">
@@ -56,21 +71,6 @@ import { activeCandidates as candidates, themes } from '../lib/data';
         </div>
       </section>
     </div>
-    <p id="follow-status" role="status" class="results-meta"></p>
-    <section class="section-space">
-      <div class="register-heading">
-        <h2>Fiches suivies</h2>
-        <button id="follow-clear" type="button" class="button small">
-          Effacer mon suivi
-        </button>
-      </div>
-      <div id="follow-results" class="measure-list">
-        <p class="notice">
-          Sélectionnez un candidat ou un thème pour afficher les fiches
-          correspondantes.
-        </p>
-      </div>
-    </section>
     <section class="section-space">
       <div class="register-heading">
         <h2>Flux RSS sélectionnés</h2>

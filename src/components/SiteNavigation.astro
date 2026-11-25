@@ -1,5 +1,5 @@
 ---
-import { groups } from '../lib/navigation';
+import { primaryNavigation } from '../lib/navigation';
 import '../styles/site-navigation.css';
 
 interface Props {
@@ -7,60 +7,20 @@ interface Props {
 }
 const { current } = Astro.props;
 const path = Astro.url.pathname;
-const detail = path.split('/').filter(Boolean).length > 1;
-const active = groups
-  .flatMap(({ links }) => links)
-  .find(([url]) => url === current);
+const active = primaryNavigation.find(({ sections }) =>
+  sections.some((section) => current === section || path.startsWith(section)),
+);
 ---
 
-<nav
-  class="site-navigation"
-  aria-label="Navigation principale"
-  data-section={detail ? current : undefined}
->
-  {detail ? (
-    <>
-      {groups.map(({ id, name }) => (
-        <a href={'/#menu-' + id}>{name}</a>
-      ))}
-      {active && (
-        <noscript>
-          <a
-            href={current}
-            aria-current={path === current ? 'page' : 'location'}
-          >
-            {active[1]}
-          </a>
-        </noscript>
-      )}
-    </>
-  ) : (
-    groups.map((group) => (
-      <details
-        name="rubriques"
-        data-desk={group.id}
-        data-current={
-          group.links.some(([url]) => current === url) ? 'true' : undefined
-        }
-      >
-        <summary class={'menu-' + group.icon}>{group.name}</summary>
-        <div id={path === '/' ? 'menu-' + group.id : undefined}>
-          {group.links.map(([url, label]) => (
-            <a
-              href={url}
-              aria-current={
-                current === url
-                  ? path === url
-                    ? 'page'
-                    : 'location'
-                  : undefined
-              }
-            >
-              {label}
-            </a>
-          ))}
-        </div>
-      </details>
-    ))
-  )}
+<nav class="site-navigation" aria-label="Navigation principale">
+  {primaryNavigation.map((item) => (
+    <a
+      href={item.url}
+      aria-current={
+        item === active ? (path === item.url ? 'page' : 'location') : undefined
+      }
+    >
+      {item.label}
+    </a>
+  ))}
 </nav>

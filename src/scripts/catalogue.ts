@@ -9,6 +9,7 @@ interface Options<T> {
   select: (rows: T[], filters: URLSearchParams) => T[];
   card: (item: T) => HTMLElement;
   noun?: string;
+  empty?: () => Node;
 }
 export function catalogue<T>({
   form,
@@ -18,6 +19,7 @@ export function catalogue<T>({
   select,
   card,
   noun = 'résultat',
+  empty,
 }: Options<T>) {
   const root = results.closest<HTMLElement>('[data-paged-results]')!;
   const base = root.dataset.base!;
@@ -79,10 +81,10 @@ export function catalogue<T>({
           : initialCards),
       );
       if (!range.total) {
-        const empty = document.createElement('p');
-        empty.className = 'empty-results';
-        empty.textContent = 'Aucun résultat pour ces filtres.';
-        results.replaceChildren(empty);
+        const fallback = document.createElement('p');
+        fallback.className = 'empty-results';
+        fallback.textContent = 'Aucun résultat pour ces filtres.';
+        results.replaceChildren(empty?.() ?? fallback);
       }
       count.textContent = `${range.total} ${noun}${range.total > 1 ? 's' : ''}`;
       draw(range, (n) => href(n, filters, true));

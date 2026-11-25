@@ -1,9 +1,9 @@
 .terrain-panel,
 .terrain-links a {
-  border: 1px solid #afc4cb;
-  border-radius: 0.8rem;
-  background: linear-gradient(125deg, #f9fbfa, #ecf3f3);
-  color: #193541;
+  border: 1px solid var(--line);
+  border-radius: var(--surface-radius);
+  background: var(--sheet);
+  color: var(--ink);
 }
 .terrain-panel {
   padding: clamp(1rem, 2.7vw, 2rem);
@@ -87,6 +87,7 @@
   font-weight: 600;
   margin: 0;
   text-align: right;
+  overflow-wrap: anywhere;
   font-variant-numeric: tabular-nums;
 }
 .q-answer .terrain-details > div {

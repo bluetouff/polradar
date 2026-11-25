@@ -96,7 +96,9 @@ export function rankedPollResults(poll) {
   );
 }
 const grammaticalWords = new Set(
-  'a au aux d de des du l la le les un une'.split(' '),
+  'a au aux avec chez dans d de des du en et l la le les par pour sur un une'.split(
+    ' ',
+  ),
 );
 const wordForms = new Map();
 for (const family of [
@@ -104,9 +106,10 @@ for (const family of [
   'baisser baisse baisses baissent',
   'reduire reduction reductions reduit reduite reduites reduits',
   'augmenter augmentation augmentations augmente augmentent',
-  'retablir retablissement retablissements retablit',
+  'retablir retablissement retablissements retablit restaurer restaure restauration reintroduire',
   'abroger abrogation abrogations abroge abrogee',
   'creer creation creations cree creee',
+  'indexer indexation indexations indexe indexee indexes indexees',
   'exonerer exoneration exonerations exonere exoneres exoneree',
   'salaire salaires',
   'cotisation cotisations',
@@ -118,6 +121,12 @@ for (const family of [
   'logement logements',
   'ponderer ponderation',
   'entreprise entreprises',
+  'region regions',
+  'succession successions',
+  'vote votes voter',
+  'hopital hopitaux',
+  'energie energies',
+  'expulser expulsion expulsions',
 ]) {
   const forms = family.split(' ');
   for (const form of forms) wordForms.set(form, forms[0]);
@@ -138,6 +147,16 @@ const officialTerms = [
     /\b(?:vaccination obligatoire|obligations? vaccinales?)\b/g,
     'obligation vaccinale',
   ],
+  [
+    /\b(?:salaire minimum(?: interprofessionnel de croissance)?|s\.m\.i\.c\.?)\b\.?/g,
+    'smic',
+  ],
+  [/\b(?:flat[- ]tax|prelevement forfaitaire unique)\b/g, 'pfu'],
+  [/\bimpot sur la fortune immobiliere\b/g, 'ifi'],
+  [/\bagences? regionales? de sante\b/g, 'ars'],
+  [/\blutte ouvriere\b/g, 'lo'],
+  [/\bremettre la retraite\b/g, 'retablir la retraite'],
+  [/\b(pouvoir|cout) d['’]achat\b/g, '$1 achat'],
   [/\beuros?\b/g, '€'],
 ];
 function searchTokens(text, index = false) {
@@ -177,6 +196,47 @@ export function measureSearchText(measure, candidateName, themeLabel) {
     .filter(Boolean)
     .join(' ');
 }
+const indexedWords = new WeakMap();
+function indexedEntry(row) {
+  const cached = indexedWords.get(row);
+  if (cached?.originalTitle === row.title && cached?.originalText === row.text)
+    return cached;
+  const title = new Set(searchTokens(row.title, true));
+  const words = new Set([...title, ...searchTokens(row.text, true)]);
+  const result = {
+    originalTitle: row.title,
+    originalText: row.text,
+    heading: normalize(row.title),
+    title,
+    words,
+  };
+  indexedWords.set(row, result);
+  return result;
+}
+
+function matchesWord(entry, word) {
+  if (entry.words.has(word)) return true;
+  if (word.length < 4 || !/^[a-z]+$/.test(word) || wordForms.has(word))
+    return false;
+  for (const other of entry.words) if (other.startsWith(word)) return true;
+  return false;
+}
+
+function oneTypo(word, other) {
+  if (word === other || Math.abs(word.length - other.length) > 1) return false;
+  const short = word.length <= other.length ? word : other;
+  const long = word.length > other.length ? word : other;
+  let i = 0;
+  while (i < short.length && short[i] === long[i]) i++;
+  if (short.length < long.length) return short.slice(i) === long.slice(i + 1);
+  return (
+    short.slice(i + 1) === long.slice(i + 1) ||
+    (short[i] === long[i + 1] &&
+      short[i + 1] === long[i] &&
+      short.slice(i + 2) === long.slice(i + 2))
+  );
+}
+
 /** @template T @param {T[]} entries @returns {T[]} */
 export function filterEntries(entries, filters) {
   const selection = entries.filter(
@@ -193,10 +253,18 @@ export function filterEntries(entries, filters) {
         ? entry.scope === filters.scope
         : filters.archives === '1' || entry.scope !== 'archive'),
   );
-  const query = normalize(filters.q || '');
-  if (!query) return selection;
+  const input = normalize(filters.q || '').slice(0, 200);
+  if (!input) return selection;
   // Operator-like input and punctuation-only queries remain literal text.
-  const literal = /[+*|[\]{}^$@\\]|[?!]\(/.test(query);
+  const literal = /[+*|[\]{}^$@\\]|[?!]\(/.test(input);
+  const query = input
+    .replace(
+      /^(?:qui|quel candidat|quels candidats|quelle candidature|que) (?:veut|veulent|propose|proposent|dit|disent|prevoit|prevoient)\s+/u,
+      '',
+    )
+    .replace(/^(?:quels?|quelles?|identifier|trouver) /u, '')
+    .replace(/\?$/, '')
+    .trim();
   const tokens = [
     ...new Set(
       searchTokens(query).filter((word) => !grammaticalWords.has(word)),
@@ -204,31 +272,50 @@ export function filterEntries(entries, filters) {
   ];
   if (literal || !tokens.length)
     return selection.filter((row) =>
-      normalize(`${row.title} ${row.text}`).includes(query),
+      normalize(`${row.title} ${row.text}`).includes(input),
     );
   const ranked = [];
+  const near = [];
   for (const row of selection) {
-    const title = searchTokens(row.title, true);
-    const body = searchTokens(row.text, true);
-    const vocabulary = [...title, ...body];
-    const exact = new Set(vocabulary);
-    // Allow incomplete typed words, but require complete short acronyms and numbers.
-    const matches = (word) =>
-      exact.has(word) ||
-      (word.length >= 4 &&
-        /^[a-z]+$/.test(word) &&
-        !wordForms.has(word) &&
-        vocabulary.some((item) => item.startsWith(word)));
-    if (tokens.every(matches)) {
-      const titleMatches = tokens.filter((word) => title.includes(word)).length;
-      ranked.push({
-        row,
-        score: titleMatches * 2 + Number(normalize(row.title).includes(query)),
-      });
+    const entry = indexedEntry(row);
+    const missing = tokens.filter((word) => !matchesWord(entry, word));
+    const score =
+      (tokens.length === 1 && row.type === 'theme' ? 2 : 0) +
+      tokens.filter((word) => entry.title.has(word)).length * 3 +
+      tokens.filter((word) => entry.words.has(word)).length +
+      (entry.heading === query ? 8 : entry.heading.includes(query) ? 3 : 0);
+    if (!missing.length) ranked.push({ row, score });
+    else if (missing.length === 1 && /^[a-z]{5,32}$/.test(missing[0]))
+      near.push({ row, score, entry, word: missing[0] });
+  }
+  if (!ranked.length && !/[0-9]/.test(query)) {
+    // Only one spelling correction, and only if its interpretation is unique.
+    const corrections = new Map();
+    for (const { row, score, entry, word } of near) {
+      for (const other of entry.words) {
+        if (!/^[a-z]{5,32}$/.test(other) || !oneTypo(word, other)) continue;
+        const key = word + ' ' + other;
+        if (!corrections.has(key)) corrections.set(key, []);
+        const matches = corrections.get(key);
+        matches.push({
+          row,
+          score:
+            score +
+            (entry.title.has(other) ? 3 : 0) +
+            (entry.heading === other ? 8 : 0),
+        });
+      }
     }
+    if (corrections.size === 1)
+      return corrections
+        .values()
+        .next()
+        .value.sort((a, b) => b.score - a.score)
+        .map(({ row }) => row);
   }
   return ranked.sort((a, b) => b.score - a.score).map(({ row }) => row);
 }
+
 export function csvValue(value) {
   let text = String(value ?? '');
   if (/^[\s\u0000-\u001f]*[=+\-@]/.test(text) || /^[\t\r\n]/.test(text))

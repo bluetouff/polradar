@@ -7,15 +7,9 @@ async function start() {
   );
   const app = document.querySelector('#follow-app');
   if (!buttons.length && !app) return;
-  const data = app ? await corpus() : undefined;
-  const choices = data
-    ? {
-        candidates: data.candidates.map((c) => c.id),
-        themes: data.themes.map((t) => t.id),
-      }
-    : await publicData<{ candidates: string[]; themes: string[] }>(
-        '/data/choix-suivi.json',
-      );
+  const choices = await publicData<{ candidates: string[]; themes: string[] }>(
+    '/data/choix-suivi.json',
+  );
   let raw = '';
   let available = true;
   try {
@@ -25,14 +19,23 @@ async function start() {
   }
   let prefs = safePreferences(raw, choices.candidates, choices.themes);
   let previousVisit = prefs.lastVisit;
+  let generation = 0;
   const status = document.querySelector<HTMLElement>('#follow-status');
   let updateFeed:
     | ((preferences: { candidates: string[]; themes: string[] }) => void)
     | undefined;
-  if (app && data)
+  if (app)
     void import('./follow-since')
       .then(({ mountChangeFeed }) => {
-        updateFeed = mountChangeFeed(data);
+        const names = new Map(
+          buttons
+            .filter((button) => button.dataset.followKind === 'candidate')
+            .map((button) => [
+              button.dataset.followId!,
+              button.dataset.followName!,
+            ]),
+        );
+        updateFeed = mountChangeFeed(names);
         updateFeed(prefs);
       })
       .catch(() => {
@@ -49,7 +52,8 @@ async function start() {
       return false;
     }
   }
-  function render() {
+  async function render() {
+    const turn = ++generation;
     for (const button of buttons) {
       button.disabled = false;
       const kind =
@@ -65,30 +69,57 @@ async function start() {
         : `Suivre ${kind === 'candidates' ? 'ce candidat' : 'ce thème'}`;
       button.setAttribute(
         'aria-label',
-        `${active ? 'Ne plus suivre' : 'Suivre'} : ${button.dataset.followName}`,
+        `${span.textContent} · ${button.dataset.followName}`,
       );
     }
-    if (!app || !data) return;
+    if (!app) return;
     updateFeed?.(prefs);
+    const result = document.querySelector<HTMLElement>('#follow-results')!,
+      feeds = document.querySelector<HTMLElement>('#follow-feeds')!;
+    if (!prefs.candidates.length && !prefs.themes.length) {
+      result.replaceChildren(
+        el('p', 'Sélectionnez un candidat ou un thème.', 'notice'),
+      );
+      feeds.replaceChildren(
+        el('p', 'Les flux apparaîtront selon votre sélection.'),
+      );
+      if (status)
+        status.textContent = available
+          ? '0 fiche dans votre suivi'
+          : 'Le stockage local est indisponible. Votre sélection fonctionne pour cette page uniquement.';
+      return;
+    }
+    let data;
+    if (status) status.textContent = 'Chargement des fiches suivies…';
+    try {
+      data = await corpus();
+    } catch {
+      if (turn === generation && status)
+        status.textContent =
+          'Les fiches suivies sont indisponibles. Réessayez en rechargeant cette page.';
+      return;
+    }
+    if (turn !== generation) return;
     const rows = data.measures.filter(
       (measure) =>
         prefs.candidates.includes(measure.candidate) ||
         prefs.themes.includes(measure.theme),
     );
-    const result = document.querySelector<HTMLElement>('#follow-results')!,
-      feeds = document.querySelector<HTMLElement>('#follow-feeds')!;
+    const selectedMeasureIds = new Set(rows.map(({ id }) => id));
     const updates = data.versions.filter(
       (version) =>
         version.recordedAt &&
         previousVisit &&
         Date.parse(version.recordedAt) > Date.parse(previousVisit) &&
-        rows.some((measure) => measure.id === version.measureId),
+        selectedMeasureIds.has(version.measureId),
     );
     result.replaceChildren(
       ...rows.map((measure) => measureCard(measure, data, true)),
     );
     if (!rows.length)
-      result.append(el('p', 'Sélectionnez un candidat ou un thème.', 'notice'));
+      result.append(
+        el('p', 'Aucune fiche disponible pour votre sélection.', 'notice'),
+      );
     feeds.replaceChildren();
     for (const [kind, ids] of [
       ['candidats', prefs.candidates],
@@ -118,7 +149,7 @@ async function start() {
         ? prefs[kind].filter((value: string) => value !== id)
         : [...prefs[kind], id];
       save();
-      render();
+      void render();
     });
   document.querySelector('#follow-clear')?.addEventListener('click', () => {
     prefs = { candidates: [], themes: [], lastVisit: null };
@@ -130,15 +161,15 @@ async function start() {
       available = false;
       failed = true;
     }
-    render();
+    void render();
     if (failed && status)
       status.textContent =
         'L’effacement du stockage a échoué. Effacez les données du site dans les réglages de votre navigateur.';
   });
-  render();
+  void render();
   if (app && !location.hash.startsWith('#changement=')) {
     prefs.lastVisit = new Date().toISOString();
-    if (!save()) render();
+    if (!save()) void render();
   }
 }
 start().catch(() => {

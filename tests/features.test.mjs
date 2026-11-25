@@ -520,3 +520,48 @@ test('les documents, enquêtes, observations et séries se comptent séparément
   });
   assert.equal(pollCoverage([]).documentedSurveys, 0);
 });
+
+test('la correction locale refuse un sens ambigu et ne corrige pas les valeurs chiffrées', () => {
+  const logement = { title: 'Logement', text: '', scope: '', type: 'theme' };
+  const logementMesure = {
+    title: 'Droit au logement',
+    text: '',
+    scope: 'campagne',
+  };
+  assert.deepEqual(
+    filterEntries([logementMesure, logement], { q: 'logemnet' }),
+    [logement, logementMesure],
+  );
+  assert.deepEqual(
+    filterEntries(
+      [
+        {
+          title: 'Salaires',
+          text: 'Fixer le salaire minimum à 1 700 €',
+          scope: 'campagne',
+        },
+      ],
+      { q: 'salaire minimum 1 701 €' },
+    ),
+    [],
+  );
+  assert.deepEqual(
+    filterEntries(
+      [
+        {
+          title: 'Baisser la CSG',
+          text: 'Raphaël Glucksmann',
+          scope: 'campagne',
+        },
+      ],
+      { q: 'Qui veut supprimer la CSG ?' },
+    ),
+    [],
+  );
+  const variants = [
+    { title: 'Souveraineté', text: 'signal', scope: '' },
+    { title: 'Régulation', text: 'signet', scope: '' },
+  ];
+  assert.deepEqual(filterEntries(variants, { q: 'signal' }), [variants[0]]);
+  assert.deepEqual(filterEntries(variants, { q: 'signel' }), []);
+});

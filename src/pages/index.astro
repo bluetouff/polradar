@@ -2,7 +2,12 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import { themes, measures, formatDate } from '../lib/data';
+import { documentedPolls, meta, formatDate } from '../lib/data';
+import {
+  documentaryCounts as corpus,
+  documentaryHealth as quality,
+} from '../lib/documentary-health';
+import { legislativeVotes } from '../lib/votes-data';
 import HomeCover from '../components/HomeCover.astro';
 import HomeSignals from '../components/HomeSignals.astro';
 import HomeExplorers from '../components/HomeExplorers.astro';
@@ -18,51 +23,68 @@ const articles = (
     b.data.published.localeCompare(a.data.published) ||
     a.data.title.localeCompare(b.data.title, 'fr'),
 );
-const current = measures.filter((item) => item.scope !== 'archive');
-const counts = themes.map((theme) => ({
-  ...theme,
-  count: current.filter((item) => item.theme === theme.id).length,
+const counts = corpus.themes.map(({ id, label, counts }) => ({
+  id,
+  label,
+  count: counts.campagne + counts.parti + counts.orientation,
 }));
 const maxCount = Math.max(1, ...counts.map((theme) => theme.count));
+const number = new Intl.NumberFormat('fr-FR');
+const latestPoll = documentedPolls
+  .slice()
+  .sort((a, b) => b.fieldworkEnd.localeCompare(a.fieldworkEnd))[0];
+const pollInstitutes = [
+  ...new Set(
+    documentedPolls
+      .filter((poll) => poll.fieldworkEnd === latestPoll?.fieldworkEnd)
+      .map((poll) => poll.institute),
+  ),
+].sort((a, b) => a.localeCompare(b, 'fr'));
+const paths = [
+  [
+    '/questions/',
+    'exchange',
+    'Comparer les candidats',
+    'Propositions par question',
+  ],
+  [
+    '/economie/simulateurs/',
+    'fiscalite',
+    'Mon quotidien',
+    'Retraite, CSG et électricité',
+  ],
+  ['/sondages/', 'sondages', 'Les sondages', 'Enquêtes et scénarios'],
+  ['/territoires/', 'map-pin', 'Ma commune', 'Données et résultats locaux'],
+] as const;
+const register = [
+  [
+    '/candidats/',
+    quality.candidates.total - quality.candidates.withdrawn,
+    'candidats suivis',
+  ],
+  ['/mesures/', corpus.proposals, 'propositions de campagne ou de parti'],
+  ['/sources/', quality.sources.catalogue, 'sources au catalogue'],
+  ['/votes/', legislativeVotes.ballots.length, 'scrutins dans les dossiers'],
+  ['/sondages/', quality.polls.documentedSurveys, 'enquêtes identifiées'],
+] as const;
 ---
 
 <Base
   title="Présidentielle 2027 : candidats, programmes et sondages"
   description="Suivez la présidentielle française de 2027. Retrouvez les candidats, comparez les programmes et consultez les sondages, le calendrier et les sources."
 >
-  <div class="home-front">
-    <HomeCover />
-    <HomeSignals />
-  </div>
-  <nav class="home-choices" aria-label="Que cherchez-vous ?">
-    <a href="/questions/">
-      <Icon name="exchange" />
-      <span>
-        <strong>Qui propose quoi ?</strong>
-        <small>Comparer les réponses à une question</small>
-      </span>
-    </a>
-    <a href="/economie/declarations/">
-      <Icon name="donnees" />
-      <span>
-        <strong>Vérifier un chiffre</strong>
-        <small>Retrouver la série publique et sa période</small>
-      </span>
-    </a>
-    <a href="/reperes/#voter">
-      <Icon name="vote" />
-      <span>
-        <strong>Préparer mon vote</strong>
-        <small>Inscription, bureau de vote et procuration</small>
-      </span>
-    </a>
-    <a href="/mises-a-jour/">
-      <Icon name="clock" />
-      <span>
-        <strong>Quoi de neuf ?</strong>
-        <small>Consulter le journal des mises à jour</small>
-      </span>
-    </a>
+  <HomeCover />
+  <nav class="home-choices" aria-label="Par où commencer">
+    {paths.map(([url, icon, label, caption]) => (
+      <a href={url}>
+        <Icon name={icon} />
+        <span>
+          <strong>{label}</strong>
+          <small>{caption}</small>
+        </span>
+        <Icon name="arrow" class="choice-arrow" />
+      </a>
+    ))}
   </nav>
   {briefs.length > 0 && (
     <section class="home-briefs" aria-labelledby="home-briefs-title">
@@ -75,6 +97,69 @@ const maxCount = Math.max(1, ...counts.map((theme) => theme.count));
       <BriefCards items={briefs.slice(0, 3)} />
     </section>
   )}
+  <div class="home-changes">
+    {latestPoll && (
+      <div>
+        <Icon name="sondages" />
+        <p>
+          <a href="/sondages/">
+            <strong>Derniers terrains de sondage</strong>
+          </a>
+          <span>
+            {pollInstitutes.join(', ')} · fin du terrain le{' '}
+            <time datetime={latestPoll.fieldworkEnd}>
+              {formatDate(latestPoll.fieldworkEnd)}
+            </time>
+          </span>
+        </p>
+      </div>
+    )}
+    <div>
+      <Icon name="historique" />
+      <p>
+        <a href="/mises-a-jour/">
+          <strong>Journal des mises à jour</strong>
+        </a>
+        <span>
+          Corpus actualisé le{' '}
+          <time datetime={meta.corpusUpdated}>
+            {formatDate(meta.corpusUpdated)}
+          </time>
+        </span>
+      </p>
+    </div>
+    <div>
+      <Icon name="vote" />
+      <p>
+        <a href="/reperes/#voter">
+          <strong>Préparer mon vote</strong>
+        </a>
+        <span>Inscription, bureau de vote et procuration</span>
+      </p>
+    </div>
+  </div>
+  <section class="home-corpus" aria-labelledby="home-corpus-title">
+    <div class="register-heading">
+      <h2 id="home-corpus-title">Le corpus en chiffres</h2>
+      <a href="/statistiques/" class="inline-action">
+        Statistiques du corpus ↗
+      </a>
+    </div>
+    <nav class="cover-register" aria-label="Accès rapides">
+      {register.map(([url, count, label]) => (
+        <a href={url}>
+          <strong>{number.format(count)}</strong>
+          <span>{label}</span>
+        </a>
+      ))}
+    </nav>
+    <p>
+      Polradar est un projet indépendant. <a href="/methode/">Méthode</a> ·{' '}
+      <a href="/donnees/">Données ouvertes</a> ·{' '}
+      <a href="/licences/">Licences du projet</a>
+    </p>
+  </section>
+  <HomeSignals />
   <div class="home-layout">
     <HomeEvidence />
     <section class="programme-index" aria-labelledby="programme-index-title">
@@ -157,199 +242,216 @@ const maxCount = Math.max(1, ...counts.map((theme) => theme.count));
 </Base>
 
 <style>
-  .home-front {
-    display: grid;
-    grid-template-columns: minmax(0, 0.93fr) minmax(0, 1.4fr);
-    gap: clamp(0.65rem, 1.3vw, 1.2rem);
-    margin-bottom: 1rem;
-  }
-  .home-front > :global(.election-cover) {
-    margin: 0;
-  }
-  @media (max-width: 990px) {
-    .home-front {
-      grid-template-columns: minmax(0, 1fr);
-    }
-  }
-
-  .home-briefs {
-    margin-block: 0 1.4rem;
-  }
-  .home-briefs .register-heading {
-    padding-bottom: 0.75rem;
-    border-bottom: 0;
-  }
   .home-choices {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
-    gap: 0.65rem;
-    margin: 0 0 1.25rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-block: 1px solid var(--line);
+    margin-bottom: clamp(1.3rem, 2.4vw, 2.1rem);
   }
   .home-choices a {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
-    gap: 0.8rem;
-    padding: 1rem;
-    text-decoration: none;
+    gap: 0.65rem;
+    padding: 0.85rem 0.75rem;
+    min-height: 4.6rem;
     color: var(--ink);
-    background: var(--panel-gradient);
-    border: 1px solid var(--line);
-    border-radius: 0.7rem;
+    text-decoration: none;
+    line-height: 1.25;
   }
-  .home-choices a:hover strong {
+  .home-choices a + a {
+    border-inline-start: 1px solid var(--line);
+  }
+  .home-choices a:hover {
+    background: var(--light);
+  }
+  .home-choices a:hover strong,
+  .home-dossier-grid a:hover strong {
     text-decoration: underline;
   }
   .home-choices :global(.icon) {
-    flex: none;
     color: var(--accent);
+    width: 1.2rem;
+    height: 1.2rem;
   }
-  .home-choices span {
-    display: grid;
-    gap: 0.25rem;
+  .home-choices :global(.choice-arrow) {
+    width: 0.82rem;
+    height: 0.82rem;
   }
   .home-choices small {
+    display: block;
+    margin-top: 0.25rem;
     color: var(--muted);
-    line-height: 1.4;
+    font-size: 0.78rem;
+  }
+  .home-briefs .register-heading {
+    border: 0;
+    padding-bottom: 0.65rem;
+  }
+  .home-changes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.6rem 1.3rem;
+    margin-block: 1rem clamp(1.75rem, 3vw, 2.5rem);
+  }
+  .home-changes > div {
+    display: flex;
+    align-items: start;
+    padding-top: 0.65rem;
+    border-top: 1px solid var(--line);
+    gap: 0.65rem;
+  }
+  .home-changes :global(.icon) {
+    flex: none;
+    color: var(--accent);
+    margin-top: 0.18rem;
+  }
+  .home-changes span {
+    display: block;
+    color: var(--muted);
+    font-size: 0.84rem;
+  }
+  .home-corpus {
+    margin-bottom: clamp(1.4rem, 3vw, 2.3rem);
+  }
+  .home-corpus .register-heading {
+    border-bottom: 0;
+  }
+  .home-corpus > p {
+    margin-top: 0.65rem;
+    font-size: 0.83rem;
+    color: var(--muted);
+  }
+  .cover-register {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-block: 1px solid var(--line);
+  }
+  .cover-register a {
+    display: grid;
+    align-content: start;
+    gap: 0.24rem;
+    padding: 0.7rem 0.65rem;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.15;
+  }
+  .cover-register a + a {
+    border-inline-start: 1px solid var(--line);
+  }
+  .cover-register a:hover {
+    background: var(--light);
+    text-decoration: underline;
+  }
+  .cover-register strong {
+    font-size: 1.55rem;
+    font-weight: 580;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .cover-register span {
+    color: var(--muted);
+    font-size: 0.84rem;
+    line-height: 1.35;
   }
   .home-layout {
     display: grid;
     min-width: 0;
-    gap: clamp(1rem, 1.8vw, 1.7rem);
+    gap: clamp(1.35rem, 2.4vw, 2rem);
+    margin-top: clamp(1.45rem, 2.7vw, 2.3rem);
   }
   .programme-index,
   .home-dossiers {
-    margin: 0;
     align-self: start;
     min-width: 0;
-    border: 1px solid #b4c7ce;
-    border-radius: 0.7rem;
-    background: var(--panel-gradient);
-    padding: clamp(0.85rem, 1.55vw, 1.5rem);
-  }
-  .home-dossiers {
-    color: #eef6f7;
-    background:
-      radial-gradient(ellipse at 100% 0, #365a65, transparent 64%),
-      linear-gradient(135deg, #192e3c, #10232f);
-    border-color: #395561;
+    border-top: 2px solid var(--accent);
   }
   .programme-index .register-heading,
   .home-dossiers .register-heading {
     border: 0;
-    padding-block: 0 0.75rem;
     align-items: baseline;
-  }
-  .home-dossiers h2 {
-    color: #f0f7f8;
-  }
-  .home-dossiers .inline-action {
-    color: #b7d9df;
   }
   .register-note {
     margin: 0 0 0.5rem;
     color: var(--muted);
-    font-size: 0.82rem;
+    font-size: 0.85rem;
   }
   .home-dossier-grid a {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
-    gap: clamp(0.55rem, 1.2vw, 1rem);
-    border-top: 1px solid #48636e;
-    padding: 0.95rem 0;
-    color: inherit;
+    gap: 0.65rem;
+    border-top: 1px solid var(--line);
+    padding: 0.7rem 0.3rem;
     text-decoration: none;
   }
-  .home-dossier-grid a:hover strong,
-  .home-dossier-grid a:focus-visible strong {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.18em;
-  }
-  .home-dossier-grid a:focus-visible {
-    outline-color: var(--ice);
-  }
-  .dossier-icon {
-    display: grid;
-    place-items: center;
-    width: 2.1rem;
-    height: 2.4rem;
-    color: #c8e2e7;
-    background: linear-gradient(145deg, #3b5868, #263e4b);
-    border: 1px solid #55727e;
-    border-radius: 0.4rem;
-  }
-  .dossier-icon :global(.icon) {
-    width: 1.15rem;
-    height: 1.15rem;
+  .dossier-icon,
+  .home-dossier-grid :global(.dossier-arrow) {
+    color: var(--accent);
   }
   .dossier-copy {
     display: grid;
-    gap: 0.28rem;
+    gap: 0.3rem;
   }
   .dossier-copy small {
-    font: 500 0.76rem/1.35 var(--sans);
-    color: #bbced5;
+    color: var(--muted);
+    font-size: 0.8rem;
     font-variant-numeric: tabular-nums;
   }
-  .dossier-copy small span {
-    padding-inline: 0.18rem;
-  }
   .dossier-copy strong {
-    color: #f2f7f9;
-    font: 610 clamp(1.02rem, 1.35vw, 1.19rem)/1.32 var(--sans);
-    letter-spacing: -0.018em;
-  }
-  .home-dossier-grid :global(.dossier-arrow) {
-    width: 0.95rem;
-    height: 0.95rem;
-    color: #acced7;
-  }
-  .theme-register > a > :global(.icon) {
-    background: #d9e7ea;
-    border-color: #a8bdc6;
-    color: #375b69;
+    font-size: 1.02rem;
+    line-height: 1.28;
   }
   .theme-register :global(.theme-track) {
-    fill: #cddbe0;
+    fill: #dce4e0;
   }
   .theme-register :global(.theme-fill) {
-    fill: #477888;
+    fill: var(--accent);
   }
   .home-layout :global(.home-explorers) {
     margin: 0;
-    border: 0;
   }
-  .home-layout :global(.home-explorers .explorer-index > a) {
-    background: var(--panel-gradient);
-    border: 1px solid var(--line);
-    border-radius: 0.6rem;
-  }
-  .home-layout :global(.home-explorers .explorer-index > a:hover h3) {
-    text-decoration: underline;
-  }
-  @media print {
-    .home-dossiers {
-      color: black;
-      background: white;
+  @media (max-width: 800px) {
+    .home-choices {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-    .home-dossiers :is(h2, .inline-action, small, strong),
-    .home-dossier-grid :global(.dossier-arrow),
-    .dossier-icon {
-      color: black;
+    .home-choices a:nth-child(odd) {
+      border-inline-start: 0;
+    }
+    .home-choices a:nth-child(n + 3) {
+      border-top: 1px solid var(--line);
+    }
+    .home-choices :global(.choice-arrow) {
+      display: none;
+    }
+    .home-choices a {
+      grid-template-columns: auto minmax(0, 1fr);
     }
   }
-  @media (min-width: 1040px) {
+  @media (max-width: 580px) {
+    .home-changes {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .cover-register {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .cover-register a:nth-child(4) {
+      border-inline-start: 0;
+    }
+    .cover-register a:nth-child(n + 4) {
+      border-top: 1px solid var(--line);
+    }
+    .home-choices a {
+      padding-inline: 0.45rem;
+      font-size: 0.9rem;
+    }
+  }
+  @media (min-width: 1024px) {
     .home-layout {
       grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
     }
     .home-layout > :global(section:not(.programme-index):not(.home-dossiers)) {
       grid-column: 1/-1;
-    }
-  }
-  @media (min-width: 1330px) {
-    .home-layout .theme-register {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 </style>

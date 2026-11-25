@@ -38,7 +38,9 @@ test('le comparateur conserve une sélection de deux candidatures', async ({
   await page.reload();
   await expect(page.locator('#compare-theme')).toHaveValue('climat');
   await page.locator('#compare-candidate-0').selectOption('asselineau');
-  await page.getByRole('radio', { name: '3', exact: true }).check();
+  await page
+    .getByRole('checkbox', { name: 'Ajouter un troisième candidat' })
+    .check();
   await expect(page.locator('#compare-candidate-2')).toHaveValue('');
   await page.locator('#compare-candidate-2').selectOption('roussel');
   await expect(page.locator('.comparison-card')).toHaveCount(3);
@@ -52,7 +54,8 @@ test('les paramètres non reconnus restent du texte sans exécution', async ({
     '/comparer/?theme=%3Cimg%20src=x%20onerror=alert(1)%3E&c=philippe,philippe,inconnu',
   );
   await expect(page.locator('.comparison-card')).toHaveCount(0);
-  await expect(page.locator('#comparison-theme-title')).toHaveText('Retraites');
+  await expect(page.locator('#compare-theme')).toHaveValue('retraites');
+  await expect(page.locator('#comparaison')).toBeHidden();
   expect(await page.locator('img[src=x]').count()).toBe(0);
 });
 test('recherche locale et absence de requêtes vers des tiers', async ({
@@ -101,4 +104,59 @@ test('la comparaison initiale reste accessible sans JavaScript', async ({
   await expect(page.locator('.comparison-card')).toHaveCount(0);
   await expect(page.locator('noscript')).toBeVisible();
   await context.close();
+});
+
+test('la recherche depuis l’accueil transmet la requête seulement dans le fragment', async ({
+  page,
+}) => {
+  const requests: string[] = [];
+  page.on('request', (request) => requests.push(request.url()));
+  await page.goto('/');
+  const input = page.getByRole('searchbox', {
+    name: 'Rechercher dans Polradar',
+  });
+  await input.fill('suppression de la CSG');
+  await input.press('Enter');
+  await expect(page).toHaveURL(/\/recherche\/#q=suppression\+de\+la\+CSG$/);
+  await expect(page.locator('#search-results')).toContainText('CSG');
+  expect(requests.every((url) => new URL(url).origin === testOrigin)).toBe(
+    true,
+  );
+  expect(requests.every((url) => !url.includes('suppression'))).toBe(true);
+  await page.getByRole('searchbox').fill('demandeabsenteabcd123');
+  await expect(
+    page.getByRole('heading', { name: 'Aucun résultat' }),
+  ).toBeVisible();
+  await page
+    .getByRole('button', { name: 'Réinitialiser la recherche' })
+    .click();
+  await expect(page.getByRole('searchbox')).toBeFocused();
+  await expect(page.getByRole('searchbox')).toHaveValue('');
+});
+
+test('le comparateur exporte la sélection et ses références depuis le navigateur', async ({
+  page,
+}) => {
+  await page.goto('/comparer/?c=philippe,melenchon');
+  await expect(page.locator('.comparison-card')).toHaveCount(2);
+  const waiting = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Exporter en JSON' }).click();
+  const download = await waiting;
+  const stream = await download.createReadStream();
+  expect(stream).not.toBeNull();
+  const parts: Buffer[] = [];
+  for await (const part of stream!) parts.push(Buffer.from(part));
+  const selection = JSON.parse(Buffer.concat(parts).toString('utf8'));
+  expect(selection.candidates).toEqual(['philippe', 'melenchon']);
+  expect(selection.theme).toBe('retraites');
+  expect(selection.measures.length).toBeGreaterThan(1);
+  expect(
+    selection.measures
+      .flatMap(
+        (measure: { sourceRefs: { sourceId: string }[] }) => measure.sourceRefs,
+      )
+      .every(({ sourceId }: { sourceId: string }) =>
+        selection.sources.some(({ id }: { id: string }) => id === sourceId),
+      ),
+  ).toBe(true);
 });

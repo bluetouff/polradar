@@ -8,7 +8,7 @@ import { retirementUrl } from '../../lib/retirement-comparison.mjs';
 
 <Base
   title="Simuler l’électricité, la CSG et la retraite"
-  section="/economie/"
+  section="/economie/simulateurs/"
   description="Simulez les taxes sur votre consommation d’électricité, la CSG sur votre salaire ou les règles de retraite de votre génération."
 >
   <header class="page-title feature-title">
@@ -16,24 +16,31 @@ import { retirementUrl } from '../../lib/retirement-comparison.mjs';
       <Icon name="fiscalite" />
     </span>
     <div>
-      <h1>Simuler l’électricité, la CSG et la retraite</h1>
+      <h1>Mon quotidien</h1>
       <p>
-        Choisissez une dépense, un salaire ou une génération pour voir le calcul
-        et ses sources.
+        Calculez les taxes sur l’électricité ou la CSG sur votre salaire.
+        Consultez les règles de retraite par génération.
       </p>
     </div>
   </header>
-  <section class="panel power-link" aria-labelledby="sim-power">
+  <nav class="daily-tools" aria-label="Les trois outils">
+    <a href="/economie/simulateurs/electricite/">
+      <Icon name="climat" /> Électricité
+    </a>
+    <a href="#calculer-csg">
+      <Icon name="fiscalite" /> CSG sur le salaire
+    </a>
+    <a href="#sim-retraite">
+      <Icon name="retraites" /> Retraite
+    </a>
+  </nav>
+  <section class="power-link" aria-labelledby="sim-power">
     <h2 id="sim-power">Taxes sur votre électricité</h2>
     <p>
       Combien coûterait la même consommation avec une TVA ou une accise
       différente ? Trois propositions chiffrables sur vos kWh, au tarif Bleu du
       1er août 2026.
     </p>
-    <a href="/economie/simulateurs/electricite/">
-      Comparer les trois propositions sur l’électricité{' '}
-      <span aria-hidden="true">→</span>
-    </a>
   </section>
   <SalaryCalculator />
   <section class="panel" aria-labelledby="sim-retraite">
@@ -51,9 +58,22 @@ import { retirementUrl } from '../../lib/retirement-comparison.mjs';
   </section>
 </Base>
 <style>
+  .daily-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1.1rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .daily-tools a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: var(--target-size);
+    color: var(--accent);
+    font-weight: 625;
+  }
   .power-link {
-    border-inline-start: 0.3rem solid #26777c;
-    padding: clamp(1rem, 2vw, 1.5rem);
+    padding-block: 1rem 1.2rem;
   }
   .power-link h2 {
     margin-top: 0;

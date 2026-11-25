@@ -362,12 +362,11 @@ main > header.candidate-hero {
   align-items: center;
   gap: 0.9rem clamp(1rem, 2.5vw, 2.35rem);
   padding: clamp(1rem, 2.25vw, 2rem);
-  background:
-    radial-gradient(ellipse at 85% 0%, #375e685c, transparent 65%),
-    var(--night-gradient);
-  color: #f1f6f8;
-  border-color: #486472;
-  box-shadow: var(--panel-shadow);
+  background: var(--sheet);
+  color: var(--ink);
+  border-color: var(--line);
+  box-shadow: none;
+  border-top: 3px solid var(--accent);
 }
 .candidate-hero figure {
   grid-area: photo;
@@ -382,10 +381,10 @@ main > header.candidate-hero {
 .candidate-hero figcaption {
   margin-top: 0.38rem;
   font: 500 0.72rem/1.4 var(--sans);
-  color: #c5d8df;
+  color: var(--muted);
 }
 .candidate-hero figcaption a:hover {
-  color: white;
+  color: var(--accent);
 }
 .profile-identity {
   grid-area: identity;
@@ -393,7 +392,7 @@ main > header.candidate-hero {
   align-self: end;
 }
 .profile-party {
-  color: #bcd8de;
+  color: var(--muted);
   font-weight: 550;
   font-size: 0.91rem;
 }
@@ -405,12 +404,35 @@ main > header.candidate-hero {
 .profile-status {
   display: inline-block;
   max-width: 100%;
-  border: 1px solid #73929c;
+  border: 1px solid var(--line);
   border-radius: 0.3rem;
   padding: 0.23rem 0.52rem;
-  color: #e6f2f4;
+  color: var(--accent);
+  background: var(--light);
+  font-weight: 600;
   font-size: 0.76rem;
   line-height: 1.45;
+}
+.profile-checked {
+  margin-top: 0.32rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.profile-jumps {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1rem;
+  margin-bottom: 1.25rem;
+  border-block: 1px solid var(--line);
+}
+.profile-jumps a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-size);
+  padding-inline: 0.25rem;
+  color: var(--accent);
+  font-size: 0.86rem;
+  font-weight: 600;
 }
 .profile-intro {
   grid-area: intro;
@@ -420,7 +442,7 @@ main > header.candidate-hero {
 .candidate-hero .candidate-summary {
   margin: 0;
   max-width: 72ch;
-  color: #d0e0e6;
+  color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.55;
 }
@@ -428,24 +450,23 @@ main > header.candidate-hero {
   margin-top: 0.85rem;
 }
 .candidate-hero .button {
-  min-height: 2.6rem;
-  border: 1px solid #76929e;
+  min-height: var(--target-size);
+  border: 1px solid var(--accent);
   border-radius: 0.45rem;
   background: transparent;
-  color: #eff6f8;
+  color: var(--accent);
 }
 .candidate-hero .button.primary,
 .candidate-hero .follow-button[aria-pressed='true'] {
-  color: #173743;
-  background: #dcebf0;
-  border-color: #dcebf0;
+  color: white;
+  background: var(--accent);
 }
 .candidate-hero .button:hover {
-  color: #142e3a;
-  background: #e5f1f3;
+  color: var(--ink);
+  background: var(--light);
 }
 .candidate-hero :focus-visible {
-  outline-color: var(--ice);
+  outline-color: var(--blue);
 }
 .profile-figures {
   grid-area: figures;
@@ -453,7 +474,7 @@ main > header.candidate-hero {
   align-self: center;
   margin: 0;
   padding: 0 0 0 clamp(0.85rem, 1.9vw, 1.5rem);
-  border-inline-start: 1px solid #597683;
+  border-inline-start: 1px solid var(--line);
   gap: 0.75rem;
 }
 .profile-figures > div {
@@ -467,7 +488,7 @@ main > header.candidate-hero {
   grid-row: 1;
   font-size: 0.78rem;
   line-height: 1.3;
-  color: #c4d8df;
+  color: var(--muted);
 }
 .profile-figures dt a {
   color: inherit;
@@ -483,11 +504,11 @@ main > header.candidate-hero {
 }
 .profile-figures dd small {
   font-size: 0.72rem;
-  color: #c4d8df;
+  color: var(--muted);
   letter-spacing: normal;
 }
 .profile-layout {
-  grid-template-columns: minmax(13rem, 17rem) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(13rem, 17rem);
   gap: clamp(1rem, 2.5vw, 2.2rem);
 }
 .profile-aside {
@@ -539,7 +560,7 @@ main > header.candidate-hero {
 .programme-reading {
   display: grid;
   gap: 0.65rem;
-  margin-block-end: 1.6rem;
+  margin-block: 1.6rem;
 }
 .programme-reading h2 {
   margin: 0;
@@ -685,7 +706,7 @@ main > header.candidate-hero {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     border: 0;
-    border-top: 1px solid #567582;
+    border-top: 1px solid var(--line);
     padding: 0.75rem 0 0;
   }
   .profile-figures > div {
@@ -695,7 +716,7 @@ main > header.candidate-hero {
     justify-content: flex-end;
   }
   .profile-figures > div + div {
-    border-left: 1px solid #567582;
+    border-left: 1px solid var(--line);
     padding-left: 0.7rem;
   }
   .profile-layout {
@@ -772,9 +793,6 @@ main > header.candidate-hero {
   }
   .candidate-hero .feature-actions {
     gap: 0.5rem;
-  }
-  .candidate-hero .compare-extra {
-    display: none;
   }
   .profile-figures {
     gap: 0.4rem;

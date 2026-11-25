@@ -3,7 +3,11 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import { questionThemes } from '../lib/questions';
 import { candidates } from '../lib/data';
-import { searchIcon, searchKinds } from '../lib/search-kinds';
+import {
+  searchIcon,
+  searchKinds,
+  searchResultLabel,
+} from '../lib/search-kinds';
 import { searchEntries } from '../lib/search';
 import PagedResults from '../components/PagedResults.astro';
 import { pageRange } from '../lib/pagination';
@@ -20,34 +24,25 @@ const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
 ---
 
 <Base title={page === 1 ? 'Recherche' : `Recherche · page ${page}`} noindex>
-  <header class="page-title feature-title">
-    <span class="feature-emblem">
-      <Icon name="search" />
-    </span>
-    <div>
-      <h1>Recherche</h1>
-      <p>
-        Recherchez une mesure, un scrutin, un rendez-vous ou une déclaration
-        chiffrée.
-      </p>
-    </div>
+  <header class="page-title">
+    <h1>Recherche</h1>
+    <p>Candidats, propositions, lois, scrutins et chiffres publics.</p>
   </header>
-  <form hidden id="search-form" class="search-workbench">
+  <form hidden id="search-form" class="search-workbench" role="search">
+    <label class="query-caption" for="search-query">
+      Rechercher dans Polradar
+    </label>
     <div class="query-line">
-      <label class="search-input">
-        <Icon name="search" />
-        <input
-          id="search-query"
-          maxlength="200"
-          type="search"
-          name="q"
-          placeholder="Retraites, SMIC, un candidat…"
-          aria-label="Votre recherche"
-          autocomplete="off"
-        />
-      </label>
-      <button class="button" type="submit">
-        Rechercher
+      <input
+        id="search-query"
+        maxlength="200"
+        type="search"
+        name="q"
+        placeholder="Ex. prix de l’électricité"
+        autocomplete="off"
+      />
+      <button class="button primary" type="submit">
+        <Icon name="search" /> Rechercher
       </button>
     </div>
     <details class="reader-options" id="search-options">
@@ -99,6 +94,28 @@ const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
       </div>
     </details>
   </form>
+  <noscript>
+    <p class="muted">
+      Parcourez les résultats ci-dessous ou ouvrez{' '}
+      <a href="/themes/">un thème</a> ou{' '}
+      <a href="/candidats/">une fiche candidat</a>.
+    </p>
+  </noscript>
+  <template id="search-empty">
+    <div class="empty-results search-empty">
+      <h2>Aucun résultat</h2>
+      <p>
+        Vérifiez l’orthographe, essayez une recherche plus courte ou élargissez
+        les filtres.
+      </p>
+      <div>
+        <button type="button" class="button" data-reset-search>
+          Réinitialiser la recherche
+        </button>
+        <a href="/themes/">Parcourir les thèmes</a>
+      </div>
+    </div>
+  </template>
   <div class="search-toolbar">
     <p id="search-count" class="results-meta" role="status" aria-live="polite">
       {current.length} résultats
@@ -125,10 +142,7 @@ const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
             <Icon name={searchIcon(entry.type, entry.theme)} />
           </span>
           <div>
-            <p class="result-meta">
-              {searchKinds[entry.type]}
-              {entry.year && ` · ${entry.year}`}
-            </p>
+            <p class="result-meta">{searchResultLabel(entry)}</p>
             <h2>
               <a
                 href={entry.url}
@@ -143,8 +157,8 @@ const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
               </a>
             </h2>
             <p>
-              {entry.text.slice(0, 220)}
-              {entry.text.length > 220 ? '…' : ''}
+              {(entry.summary ?? entry.text).slice(0, 220)}
+              {(entry.summary ?? entry.text).length > 220 ? '…' : ''}
             </p>
           </div>
           <span aria-hidden="true">↗</span>
@@ -154,3 +168,66 @@ const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
   </PagedResults>
   <script src="../scripts/search.ts"></script>
 </Base>
+
+<style>
+  .search-workbench {
+    max-width: 56rem;
+    padding-top: 0;
+    border: 0;
+  }
+  .query-caption {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.9rem;
+    font-weight: 650;
+  }
+  .query-line input {
+    flex: 1;
+    min-height: 3rem;
+    font: 1rem var(--sans);
+  }
+  .query-line button {
+    min-height: 3rem;
+    gap: 0.45rem;
+  }
+  .query-line button :global(.icon) {
+    width: 1rem;
+    height: 1rem;
+  }
+  .search-toolbar button {
+    min-height: var(--target-size);
+  }
+  .advanced-results :global(.result-meta) {
+    font: 600 0.78rem/1.35 var(--sans);
+  }
+  .advanced-results :global(.result-symbol) {
+    background: var(--light);
+    color: var(--accent);
+    border-color: var(--line);
+  }
+  .advanced-results :global(h2 a:hover) {
+    text-decoration: underline;
+  }
+  :global(.search-empty) {
+    grid-column: 1 / -1;
+    padding: 0.8rem 0 1.1rem;
+  }
+  :global(.search-empty p) {
+    color: var(--muted);
+    margin-block: 0.45rem 0.85rem;
+  }
+  :global(.search-empty > div) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.55rem 1rem;
+  }
+  :global(.search-empty .button) {
+    min-height: var(--target-size);
+  }
+  @media (max-width: 420px) {
+    .query-line button :global(.icon) {
+      display: none;
+    }
+  }
+</style>

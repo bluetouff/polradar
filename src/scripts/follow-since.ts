@@ -1,4 +1,3 @@
-import type { Corpus } from '../lib/data';
 import { measureChanges } from '../lib/follow-measures.mjs';
 import { detailDate, type Change, type ChangeState } from '../lib/follow-view';
 import {
@@ -6,7 +5,7 @@ import {
   withinWindow,
   sharedChange,
 } from '../lib/follow-window.mjs';
-import { el, anchor } from './ui';
+import { el, anchor, corpus } from './ui';
 
 type Prefs = { candidates: string[]; themes: string[] };
 function statePanel(side: 'before' | 'after', state: ChangeState | null) {
@@ -90,16 +89,27 @@ function changeCard(row: Change, names: Map<string, string>) {
   card.append(states, links);
   return card;
 }
-export function mountChangeFeed(data: Corpus) {
-  const names = new Map(data.candidates.map((c) => [c.id, c.name]));
+export function mountChangeFeed(names: Map<string, string>) {
   let byVersion: Map<string, Change> | undefined;
-  function expand(entries: (Change | string)[], day: string) {
+  async function expand(entries: (Change | string)[], day: string) {
+    const hasReferences = entries.some((entry) => typeof entry === 'string');
+    if (
+      (hasReferences && !byVersion) ||
+      entries.some(
+        (entry) => typeof entry !== 'string' && !names.has(entry.candidate),
+      )
+    ) {
+      const data = await corpus();
+      for (const candidate of data.candidates)
+        names.set(candidate.id, candidate.name);
+      if (hasReferences)
+        byVersion ??= new Map(
+          measureChanges(data).map((row: Change) => [row.id, row]),
+        );
+    }
     return entries.map((entry) => {
       if (typeof entry !== 'string') return entry;
-      byVersion ??= new Map(
-        measureChanges(data).map((row: Change) => [row.id, row]),
-      );
-      const row = byVersion.get(entry);
+      const row = byVersion?.get(entry);
       if (!row || row.day !== day) throw Error('Version de suivi indisponible');
       return row;
     });

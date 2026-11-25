@@ -160,15 +160,19 @@ test('les rubriques complètes restent accessibles au clavier depuis une fiche s
     const page = await context.newPage();
     await page.goto(new URL('/mesures/melenchon-retraites-1/', baseURL).href);
     const nav = page.getByRole('navigation', { name: 'Navigation principale' });
-    const data = nav.getByRole('link', { name: 'Données', exact: true });
     await expect(nav.getByRole('link')).toHaveCount(6);
-    await expect(
-      nav.getByRole('link', { name: 'Mesures et orientations' }),
-    ).toHaveAttribute('href', '/mesures/');
-    await data.focus();
+    const summary = page.locator('.site-directory summary');
+    await summary.focus();
     await page.keyboard.press('Enter');
+    const directory = page.getByRole('navigation', {
+      name: 'Rubriques et outils',
+    });
+    await expect(
+      directory.getByRole('link', { name: 'Propositions', exact: true }),
+    ).toHaveAttribute('href', '/mesures/');
+    await directory.getByRole('link', { name: 'Toutes les rubriques' }).click();
     const link = page
-      .locator('#menu-donnees')
+      .locator('#donnees')
       .getByRole('link', { name: 'Sondages', exact: true });
     await expect(link).toBeVisible();
     await link.click();

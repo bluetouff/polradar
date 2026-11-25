@@ -8,12 +8,16 @@ test('la relecture du programme Dubuisson relie le dossier, la recherche et le p
   const measurePath = `/mesures/${measureId}/`;
   await page.setViewportSize({ width: 360, height: 800 });
   await page.goto('/candidats/dubuisson/');
+  await page
+    .getByRole('link', { name: 'Relecture du programme', exact: true })
+    .click();
+  await expect(page).toHaveURL(/#programme-lecture$/);
   const review = page.getByRole('region', { name: 'Relecture du programme' });
   const chapters = review
     .locator('details')
     .filter({ hasText: 'Les treize dossiers du programme' });
   await expect(chapters.locator('summary')).toContainText(
-    '13 identifiées · 13 relues · 0 à examiner',
+    '13 sections identifiées · 13 relues · 0 à examiner',
   );
   await chapters.locator('summary').click();
   await expect(

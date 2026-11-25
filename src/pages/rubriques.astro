@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { groups } from '../lib/navigation';
+---
+
+<Base
+  title="Toutes les rubriques"
+  description="Retrouvez les rubriques de Polradar, les outils de comparaison et les données de la présidentielle 2027."
+>
+  <header class="page-title">
+    <h1>Toutes les rubriques</h1>
+  </header>
+  <div class="rubrique-index">
+    {groups.map((group) => (
+      <section id={group.id} aria-labelledby={group.id + '-rubriques'}>
+        <h2 id={group.id + '-rubriques'}>
+          <Icon name={group.icon} /> {group.name}
+        </h2>
+        <ul>
+          {group.links.map(([url, label]) => (
+            <li>
+              <a href={url}>{label}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</Base>
+
+<style>
+  .rubrique-index {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+    gap: 1.8rem 2rem;
+  }
+  .rubrique-index h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding-block: 0.7rem;
+    border-top: 2px solid var(--accent);
+  }
+  .rubrique-index ul {
+    padding: 0;
+    list-style: none;
+  }
+  .rubrique-index a {
+    display: flex;
+    align-items: center;
+    min-height: var(--target-size);
+    padding: 0.33rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+</style>

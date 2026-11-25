@@ -1,0 +1,121 @@
+:root {
+  --content-gutter: clamp(1rem, 3.05vw, 2.75rem);
+  --content-width: 90rem;
+  --target-size: 2.75rem;
+  --surface-radius: 0.55rem;
+}
+
+@media screen {
+  :root {
+    --paper: #f7f6f2;
+    --ink: #192d38;
+    --muted: #48616a;
+    --accent: #245f61;
+    --line: #c9d1cc;
+    --light: #e8efeb;
+    --sheet: #fffefa;
+    --panel-gradient: #fffefa;
+    --panel-edge: #c9d1cc;
+    --panel-shadow: none;
+    --card-radius: var(--surface-radius);
+  }
+  body {
+    font-size: 16px;
+    line-height: 1.58;
+  }
+  .page-column {
+    background: var(--paper);
+  }
+  .container {
+    max-width: calc(var(--content-width) + 2 * var(--content-gutter));
+    padding-inline: var(--content-gutter);
+  }
+  .publication-header {
+    position: relative;
+    color: #edf4f2;
+    background: #192d38;
+    border-bottom: 1px solid #52656b;
+  }
+  .masthead,
+  .publication-header .site-navigation {
+    max-width: var(--content-width);
+    margin-inline: auto;
+  }
+  .masthead {
+    gap: 0.7rem;
+    padding: 0.65rem var(--content-gutter);
+  }
+  .masthead-actions {
+    gap: clamp(0.35rem, 1.2vw, 1rem);
+  }
+  .masthead-actions .masthead-search {
+    border-color: #a1c1bf;
+    background: #29494f;
+  }
+  .masthead-actions .support-link {
+    background: #332e3a;
+  }
+  .publication-header .site-navigation {
+    margin-inline: max(
+      var(--content-gutter),
+      calc((100% - var(--content-width)) / 2)
+    );
+    border-color: #52656b;
+  }
+  .publication-header .masthead-search:hover {
+    background: #365c61;
+  }
+  main > :is(.page-title, .registry-heading, .divergence-heading) {
+    min-height: 0;
+    padding: 0 0 clamp(0.8rem, 1.7vw, 1.3rem);
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+  }
+  main > .page-title .feature-emblem {
+    border-color: var(--line);
+    color: var(--accent);
+    background: var(--light);
+  }
+  main > .page-title p {
+    max-width: 74ch;
+    font-size: 0.98rem;
+    line-height: 1.5;
+  }
+  .reading-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0 1.15rem;
+    border-block-end: 1px solid var(--line);
+    margin-bottom: 0.9rem;
+  }
+  .reading-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--target-size);
+    gap: 0.4rem;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 620;
+  }
+  .footer-anchor {
+    display: block;
+  }
+
+  @media (max-width: 780px) {
+    .masthead .rail-brand > p {
+      display: none;
+    }
+    .masthead .wordmark .brand-signature {
+      width: clamp(6.2rem, 28vw, 9.5rem);
+    }
+  }
+  @media (max-width: 380px) {
+    .site-directory summary .icon {
+      display: none;
+    }
+  }
+}

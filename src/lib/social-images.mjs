@@ -875,6 +875,22 @@ const defs = [
     ),
   ],
   [
+    'rubriques',
+    '/rubriques/',
+    'Présidentielle 2027',
+    'Toutes les\nrubriques',
+    'Candidats, outils de comparaison et données publiques.',
+    'ivory',
+    {
+      kind: 'document',
+      rows: [
+        'Programmes et candidatures',
+        'Campagne et sondages',
+        'Données et outils',
+      ],
+    },
+  ],
+  [
     'licences',
     '/licences/',
     'Réutilisation',

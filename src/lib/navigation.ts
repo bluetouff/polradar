@@ -49,6 +49,7 @@ export const groups = [
     name: 'Données',
     icon: 'sondages',
     links: [
+      ['/donnees/', 'Données ouvertes', 'donnees'],
       ['/studio/', 'Studio graphique', 'sondages'],
       ['/statistiques/', 'Le corpus en chiffres', 'donnees'],
       ['/mcp/statistiques/', 'Activité du serveur MCP', 'sondages'],
@@ -85,6 +86,8 @@ export const groups = [
       ['/api/', 'API publique', 'donnees'],
       ['/historique/', 'Historique du corpus', 'historique'],
       ['/methode/', 'Méthode', 'check'],
+      ['/licences/', 'Licences et crédits', 'source'],
+      ['/mentions/', 'Mentions et confidentialité', 'source'],
       ['/transparence/', 'À propos de Polradar', 'institutions'],
     ],
   },
@@ -105,3 +108,49 @@ export function navigationFor(path: string, section: string) {
       (path.startsWith('/engagements/') ? 'programmes' : 'projet'),
   };
 }
+
+export const primaryNavigation = [
+  {
+    url: '/candidats/',
+    label: 'Candidats',
+    sections: ['/candidats/', '/echiquier/', '/votes/', '/evolution/'],
+  },
+  {
+    url: '/comparer/',
+    label: 'Comparer',
+    sections: [
+      '/comparer/',
+      '/questions/',
+      '/mesures/',
+      '/themes/',
+      '/numerique/',
+      '/divergences/',
+      '/engagements/',
+      '/budget-programmes/',
+      '/financements/',
+    ],
+  },
+  {
+    url: '/economie/simulateurs/',
+    label: 'Mon quotidien',
+    sections: ['/economie/simulateurs/', '/territoires/', '/communes/'],
+  },
+  {
+    url: '/sondages/',
+    label: 'Sondages',
+    sections: ['/sondages/', '/marches-predictifs/'],
+  },
+  {
+    url: '/breves/',
+    label: 'La campagne',
+    sections: [
+      '/breves/',
+      '/campagne/',
+      '/agenda/',
+      '/reperes/',
+      '/argent-des-campagnes/',
+      '/temps-de-parole/',
+    ],
+  },
+  { url: '/suivi/', label: 'Mon suivi', sections: ['/suivi/'] },
+];

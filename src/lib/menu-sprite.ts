@@ -1,10 +1,8 @@
 import { createHash } from 'node:crypto';
-import { groups } from './navigation';
 import { iconPaths } from './icons.mjs';
 
 // These controls already have text labels. The shared mask supplies only their artwork.
 const decorations: Record<string, string> = {
-  chevron: '.site-navigation > details summary::after',
   share: '.page-share-label::before',
   external: '.footer-meta a[rel~="noopener"]::after',
   mail: '.page-share a[data-share-platform="mail"]::before',
@@ -13,11 +11,7 @@ const decorations: Record<string, string> = {
   arrow: '.footer-follow::after,.footer-bottom>a::after',
 };
 const icons = [
-  ...new Set([
-    ...groups.flatMap((g) => [g.icon, ...g.links.map((link) => link[2])]),
-    ...Object.keys(decorations),
-    ...Object.keys(iconPaths),
-  ]),
+  ...new Set([...Object.keys(decorations), ...Object.keys(iconPaths)]),
 ].sort();
 const paths = icons.map((id) => {
   if (!Object.hasOwn(iconPaths, id) || !/^[a-z][a-z0-9-]*$/.test(id))
@@ -36,9 +30,8 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${side}" height="${h
 const digest = (value: string) =>
   createHash('sha256').update(value).digest('hex').slice(0, 16);
 const imageFile = digest(svg) + '.svg';
-const navLinks = groups.flatMap((group) => group.links);
 const css =
-  `:where(.site-navigation > details div a,.site-navigation > details summary,.footer-columns h2,.footer-follow,.follow-button,.masthead-search,.page-share-label,.page-share a[data-share-platform="mail"])::before,:where(.site-navigation > details summary,.footer-follow,.footer-meta a[rel~="noopener"],.footer-bottom>a)::after{content:"";display:var(--pic-display,inline-block);flex:none;width:var(--pic-size,1rem);height:var(--pic-size,1rem);background:currentColor;mask-image:url("/pictos-menu/${imageFile}");mask-repeat:no-repeat;mask-size:100% auto;mask-position:0 var(--menu-y)}` +
+  `:where(.footer-columns h2,.footer-follow,.follow-button,.masthead-search,.page-share-label,.page-share a[data-share-platform="mail"])::before,:where(.footer-follow,.footer-meta a[rel~="noopener"],.footer-bottom>a)::after{content:"";display:var(--pic-display,inline-block);flex:none;width:var(--pic-size,1rem);height:var(--pic-size,1rem);background:currentColor;mask-image:url("/pictos-menu/${imageFile}");mask-repeat:no-repeat;mask-size:100% auto;mask-position:0 var(--menu-y)}` +
   `i.icon{display:inline-block;background-color:currentColor;mask-image:url("/pictos-menu/${imageFile}");mask-repeat:no-repeat;mask-size:100% auto;mask-position:0 var(--icon-y)}` +
   icons
     .map(
@@ -49,7 +42,7 @@ const css =
   icons
     .map(
       (id, i) =>
-        `${[`.menu-${id}`, ...navLinks.filter((link) => link[2] === id).map(([href]) => `.site-navigation a[href="${href}"]`), decorations[id]].filter(Boolean).join(',')}{--menu-y:${((i * 100) / Math.max(1, icons.length - 1)).toFixed(6)}%}`,
+        `${[`.menu-${id}`, decorations[id]].filter(Boolean).join(',')}{--menu-y:${((i * 100) / Math.max(1, icons.length - 1)).toFixed(6)}%}`,
     )
     .join('');
 const styleFile = digest(css) + '.css';

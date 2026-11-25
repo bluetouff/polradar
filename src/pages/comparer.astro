@@ -14,88 +14,95 @@ import { digitalLawRoot } from '../lib/digital-law.mjs';
     <h1>Comparateur de programmes</h1>
     <p>Sélectionnez un thème et deux ou trois candidats.</p>
   </header>
-  <form id="compare-form" class="compare-form" action="/comparer/" method="get">
-    <label>
-      Votre sujet
-      <select id="compare-theme" name="theme">
-        {themes.map((t) => (
-          <option value={t.id} data-note={t.note}>
-            {t.label}
-          </option>
-        ))}
-      </select>
-    </label>
-    <fieldset class="comparison-count">
-      <legend>Candidatures</legend>
+  <form id="compare-form" class="compare-builder" action="/comparer/" hidden>
+    <div class="compare-pick">
       <label>
-        <input type="radio" name="count" value="2" checked />2
-      </label>
-      <label>
-        <input type="radio" name="count" value="3" />3
-      </label>
-    </fieldset>
-    <label class="check-label">
-      <input id="compare-archives" type="checkbox" name="archives" value="1" />
-      Inclure les archives 2022
-    </label>
-    <button class="button primary" type="submit">
-      Comparer ↗
-    </button>
-  </form>
-  <div id="candidate-selectors" class="candidate-selectors">
-    {[0, 1, 2].map((index) => (
-      <label hidden={index === 2}>
-        {' '}
-        Candidature {index + 1}
-        <select
-          id={`compare-candidate-${index}`}
-          aria-label={`Candidature ${index + 1}`}
-        >
-          <option value="">Choisir une candidature</option>
-          {candidates.map((c) => (
-            <option value={c.id}>{c.name}</option>
+        Thème
+        <select id="compare-theme" name="theme">
+          {themes.map((t) => (
+            <option value={t.id} data-note={t.note}>
+              {t.label}
+            </option>
           ))}
         </select>
       </label>
-    ))}
-  </div>
-  <div class="comparison-title">
-    <div>
-      <h2 id="comparison-theme-title">Retraites</h2>
-      <p id="comparison-note">{themes[0].note}</p>
+      {[0, 1, 2].map((index) => (
+        <label hidden={index === 2}>
+          Candidature {index + 1}
+          <select id={`compare-candidate-${index}`}>
+            <option value="">Choisir un candidat</option>
+            {candidates.map((c) => (
+              <option value={c.id}>{c.name}</option>
+            ))}
+          </select>
+        </label>
+      ))}
     </div>
-    <div class="comparison-actions">
-      <button class="button small" type="button" id="comparison-share">
-        Copier le lien
-      </button>
-      <button class="button small" type="button" id="comparison-print">
-        Imprimer
+    <div class="compare-controls">
+      <label>
+        <input type="checkbox" id="compare-third" />
+        Ajouter un troisième candidat
+      </label>
+      <label>
+        <input
+          id="compare-archives"
+          type="checkbox"
+          name="archives"
+          value="1"
+        />
+        Inclure les archives 2022
+      </label>
+      <button class="button primary" type="submit">
+        Comparer
       </button>
     </div>
-  </div>
+  </form>
   <p
     id="comparison-feedback"
-    class="small muted"
+    class="muted"
     role="status"
     aria-live="polite"
   ></p>
-  <div id="comparison-metrics"></div>
-  <div id="comparison-cards" class="comparison-grid"></div>
+  <section id="comparaison" aria-labelledby="comparison-theme-title" hidden>
+    <div class="comparison-title">
+      <div>
+        <h2 id="comparison-theme-title" tabindex="-1">
+          Retraites
+        </h2>
+        <p id="comparison-note">{themes[0].note}</p>
+      </div>
+      <div class="comparison-actions">
+        <button class="button small" type="button" id="comparison-share">
+          Copier le lien
+        </button>
+        <button
+          class="button small"
+          type="button"
+          id="comparison-export"
+          disabled
+        >
+          Exporter en JSON
+        </button>
+        <button class="button small" type="button" id="comparison-print">
+          Imprimer
+        </button>
+      </div>
+    </div>
+    <div id="comparison-metrics"></div>
+    <nav class="comparison-jumps" aria-label="Candidats comparés" hidden></nav>
+    <div id="comparison-cards" class="comparison-grid"></div>
+    <p class="comparison-scope">
+      Les mentions « Aucune fiche dans le corpus » signalent les thèmes restant
+      à documenter. <a href="/methode/">Méthode</a>
+    </p>
+  </section>
   <noscript>
     <p class="notice">
-      Retrouvez les propositions dans{' '}
-      <a href="/themes/">les dossiers thématiques</a> ou{' '}
+      Retrouvez les propositions dans
+      <a href="/themes/">les dossiers thématiques</a> ou
       <a href="/candidats/">les fiches des candidats</a>.
     </p>
   </noscript>
-  <aside class="notice section-space">
-    <strong>Thèmes non renseignés</strong>
-    <p>
-      Une fiche absente signifie que le thème reste à renseigner dans le corpus
-      Polradar pour ce candidat.
-    </p>
-    <a href="/methode/">Lire notre méthode ↗</a>
-  </aside>
   <script src="../scripts/compare.ts"></script>
   <nav class="comparison-related" aria-label="Autres comparaisons">
     <a class="retirement-entry" href="/questions/">
@@ -128,18 +135,106 @@ import { digitalLawRoot } from '../lib/digital-law.mjs';
 </Base>
 
 <style>
+  .compare-builder {
+    border-bottom: 1px solid var(--line);
+    padding-block: 0.15rem 0.55rem;
+  }
+  .compare-pick {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    gap: 0.65rem 0.9rem;
+  }
+  .compare-pick label {
+    display: grid;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+    font-weight: 620;
+  }
+  .compare-pick select {
+    min-height: 2.9rem;
+    font-size: 1rem;
+  }
+  .compare-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 1rem;
+    margin-top: 0.45rem;
+  }
+  .compare-controls label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.86rem;
+    min-height: var(--target-size);
+  }
+  .compare-controls .button {
+    margin-inline-start: auto;
+    min-height: var(--target-size);
+  }
+  #comparison-feedback {
+    margin: 0.65rem 0 1.15rem;
+    font: 500 0.9rem/1.5 var(--sans);
+  }
+  #comparison-feedback:empty {
+    display: none;
+  }
+  .comparison-actions {
+    flex-wrap: wrap;
+  }
+  .comparison-actions button {
+    min-height: var(--target-size);
+  }
+  .comparison-scope {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-block: 1rem 1.45rem;
+  }
+  .comparison-related {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 0.65rem 1.4rem;
+    margin-block: 1.1rem;
+  }
+  .comparison-jumps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1rem;
+    padding-block: 0.3rem;
+    font-size: 0.9rem;
+  }
+  .comparison-jumps :global(a) {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--target-size);
+  }
+  @media (max-width: 560px) {
+    .compare-controls .button {
+      margin-block: 0.4rem 0;
+      margin-inline-start: 0;
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  @media print {
+    .comparison-jumps,
+    .compare-builder {
+      display: none;
+    }
+  }
   .retirement-entry {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 0.65rem;
-    border: 1px solid #b7c7be;
-    border-left: 4px solid #205d79;
-    border-radius: 4px;
-    padding: 0.65rem 0.85rem;
-    margin: 0.75rem 0 1rem;
-    background: #e8eee7;
+    min-width: 0;
+    border-block-start: 2px solid var(--accent);
+    padding: 0.65rem 0;
+    background: transparent;
     text-decoration: none;
+  }
+  .retirement-entry:hover strong {
+    text-decoration: underline;
   }
   .retirement-entry span {
     flex: 1;

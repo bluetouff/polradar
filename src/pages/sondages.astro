@@ -44,36 +44,19 @@ const surveyed = [
   description="Consultez les intentions de vote aux deux tours de la présidentielle 2027, par institut et scénario, avec les dates de terrain et les notices."
   section="/sondages/"
 >
-  <header class="page-title feature-title">
-    <span class="feature-emblem">
-      <Icon name="sondages" />
-    </span>
-    <div>
-      <h1>Sondages</h1>
-      <p>
-        {coverage.documentedSurveys} enquêtes · {institutes.length} instituts.
-        Résultats par tour et par scénario.
-      </p>
-    </div>
-    <a class="button" href="/dossiers/sondages-les-scenarios-comptent/">
-      <Icon name="source" />
-      Méthode de lecture
-    </a>
+  <header class="page-title">
+    <h1>Sondages</h1>
+    <p>
+      {coverage.documentedSurveys} enquêtes · {institutes.length} instituts.
+      Résultats par tour et par scénario.
+    </p>
   </header>
-  <nav class="section-switch" aria-label="Sondages et marchés">
-    <a href="/sondages/" aria-current="page">
-      Intentions de vote
-    </a>
-    <a href="/sondages/notices/">Notices de la Commission</a>
-    <a href="/sondages/rapprochement/">Rapprochement des registres</a>
-    <a href="/sondages/enquetes/">Autres enquêtes de campagne</a>
+  <nav class="poll-quick-links" aria-label="Explorer les sondages">
     <a href="/sondages/comparer/">Comparer les scénarios</a>
-    <a href="/marches-predictifs/">
-      Marchés prédictifs <span aria-hidden="true">↗</span>
-    </a>
+    <a href="/sondages/notices/">Notices officielles</a>
   </nav>
   <details id="poll-options" class="reader-options">
-    <summary>Changer de tour, d’institut ou de scénario</summary>
+    <summary>Choisir un tour, un institut et un scénario</summary>
     <form id="poll-filters" class="facet-filters">
       <label>
         Tour
@@ -265,6 +248,25 @@ const surveyed = [
         </span>
       )}
     </p>
+  </details>
+  <details class="reader-options poll-resources">
+    <summary>Autres enquêtes et méthodes</summary>
+    <ul>
+      <li>
+        <a href="/dossiers/sondages-les-scenarios-comptent/">
+          Méthode de lecture des sondages
+        </a>
+      </li>
+      <li>
+        <a href="/sondages/enquetes/">Autres enquêtes de campagne</a>
+      </li>
+      <li>
+        <a href="/sondages/rapprochement/">Rapprochement des registres</a>
+      </li>
+      <li>
+        <a href="/marches-predictifs/">Marchés prédictifs</a>
+      </li>
+    </ul>
   </details>
   <section id="poll-method" class="poll-method section-space">
     <div class="register-heading">
@@ -497,5 +499,34 @@ const surveyed = [
   }
   .poll-publication-register p {
     margin: 0.5rem 0;
+  }
+</style>
+
+<style>
+  .poll-quick-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1rem;
+  }
+  .poll-quick-links a,
+  #poll-options summary {
+    display: flex;
+    align-items: center;
+    min-height: var(--target-size);
+    color: var(--accent);
+    font-size: 0.9rem;
+  }
+  #poll-options summary {
+    display: list-item;
+    align-content: center;
+  }
+  .poll-resources {
+    margin-top: 1.15rem;
+  }
+  .poll-resources ul {
+    padding: 0.3rem 1.7rem 0.6rem;
+  }
+  .poll-resources li {
+    padding-block: 0.3rem;
   }
 </style>

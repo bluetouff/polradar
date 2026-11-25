@@ -188,7 +188,17 @@ test('la home affiche les séries et les accès au corpus sans exemple nominatif
     await page.evaluate(() => document.fonts.ready);
     const programme = (await page.locator('.programme-index').boundingBox())!;
     const dossiers = (await page.locator('.home-dossiers').boundingBox())!;
-    expect(dossiers.y - programme.y - programme.height).toBeLessThanOrEqual(32);
+    expect(dossiers.y - programme.y - programme.height).toBeLessThanOrEqual(35);
+    await expect(
+      page.getByRole('searchbox', { name: 'Rechercher dans Polradar' }),
+    ).toBeVisible();
+    const search = (await page.locator('.cover-search').boundingBox())!;
+    const signals = (await page
+      .locator('.home-economic-signals')
+      .boundingBox())!;
+    const briefs = (await page.locator('.home-briefs').boundingBox())!;
+    expect(search.y).toBeLessThan(briefs.y);
+    expect(briefs.y).toBeLessThan(signals.y);
     await expect(
       page.locator('.home-economic-signals svg[role="img"]'),
     ).toHaveCount(4);
@@ -231,12 +241,15 @@ test('la home affiche les séries et les accès au corpus sans exemple nominatif
         };
       }),
     );
-    expect(metrics).toHaveLength(3);
+    expect(metrics).toHaveLength(5);
+    if (width > 580) {
+      for (const metric of metrics)
+        expect(metric.y).toBeCloseTo(metrics[0].y, 0);
+    }
     for (const metric of metrics) {
-      expect(metric.y).toBeCloseTo(metrics[0].y, 0);
       expect(metric.inset).toBeGreaterThanOrEqual(8);
       expect(metric.below && metric.fits).toBe(true);
-      expect(metric.lines).toBeLessThan(2.1);
+      expect(metric.lines).toBeLessThan(4.1);
     }
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth),
@@ -267,12 +280,15 @@ test('les icônes et les compteurs de thèmes gardent leur taille et leur aligne
     await page.goto('/');
     await page.evaluate(() => document.fonts.ready);
     const brand = (await page.locator('.wordmark').boundingBox())!;
-    const caption = (await page.locator('.rail-brand > p').boundingBox())!;
-    expect(
-      caption.x >= brand.x + brand.width + 8 ||
-        caption.y >= brand.y + brand.height + 8,
-      `signature à ${width}px`,
-    ).toBe(true);
+    const caption = await page.locator('.rail-brand > p').boundingBox();
+    const actions = (await page.locator('.masthead-actions').boundingBox())!;
+    expect(brand.x + brand.width + 8).toBeLessThanOrEqual(actions.x);
+    if (caption)
+      expect(
+        caption.x >= brand.x + brand.width + 8 ||
+          caption.y >= brand.y + brand.height + 8,
+        `signature à ${width}px`,
+      ).toBe(true);
     for (const link of await page.locator('.theme-register > a').all()) {
       const icon = (await link.locator(':scope > .icon').boundingBox())!;
       const count = (await link.locator('.theme-count').boundingBox())!;

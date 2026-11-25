@@ -1,9 +1,23 @@
-import { corpus, el, anchor, measureCard, renderMetricPlots, date } from './ui';
+import {
+  corpus,
+  el,
+  anchor,
+  measureCard,
+  renderMetricPlots,
+  date,
+  download,
+} from './ui';
 import { metricGroups } from '../lib/features.mjs';
 const form = document.querySelector<HTMLFormElement>('#compare-form')!,
   themeSelect = document.querySelector<HTMLSelectElement>('#compare-theme')!,
   archives = document.querySelector<HTMLInputElement>('#compare-archives')!,
   feedback = document.querySelector<HTMLElement>('#comparison-feedback')!,
+  third = document.querySelector<HTMLInputElement>('#compare-third')!,
+  comparison = document.querySelector<HTMLElement>('#comparaison')!,
+  heading = document.querySelector<HTMLElement>('#comparison-theme-title')!,
+  jumps = document.querySelector<HTMLElement>('.comparison-jumps')!,
+  exportButton =
+    document.querySelector<HTMLButtonElement>('#comparison-export')!,
   selects = [0, 1, 2].map((index) =>
     document.querySelector<HTMLSelectElement>(`#compare-candidate-${index}`)!,
   );
@@ -24,61 +38,62 @@ function start() {
   )
     themeSelect.value = params.get('theme')!;
   archives.checked = params.get('archives') === '1';
-  form.querySelector<HTMLInputElement>(
-    `input[name=count][value="${ids.length === 3 || params.get('count') === '3' ? 3 : 2}"]`,
-  )!.checked = true;
+  third.checked = ids.length === 3 || params.get('count') === '3';
   selects.forEach((select, index) => {
     select.value = ids[index] ?? '';
   });
-  const count = () =>
-    form.querySelector<HTMLInputElement>('input[name=count]:checked')!.value ===
-    '2'
-      ? 2
-      : 3;
   let generation = 0;
-  async function render() {
+  let exportData: string | undefined;
+  async function render(focus = false) {
+    const count = third.checked ? 3 : 2;
     const ticket = ++generation;
     const active = [
       ...new Set(
         selects
-          .slice(0, count())
+          .slice(0, count)
           .map((select) => select.value)
           .filter(Boolean),
       ),
     ];
-    selects[2].parentElement!.hidden = count() === 2;
+    selects[2].parentElement!.hidden = count === 2;
     selects.forEach((select, index) =>
       Array.from(select.options).forEach((option) => {
         option.disabled =
           !!option.value &&
-          index < count() &&
+          index < count &&
           active.includes(option.value) &&
           select.value !== option.value;
       }),
     );
     const theme = themeSelect.selectedOptions[0];
-    document.querySelector('#comparison-theme-title')!.textContent = theme.text;
+    heading.textContent = theme.text;
     document.querySelector('#comparison-note')!.textContent =
       theme.dataset.note || '';
     const container = document.querySelector<HTMLElement>('#comparison-cards')!;
-    container.dataset.count = String(count());
+    container.dataset.count = String(count);
     container.replaceChildren();
+    jumps.replaceChildren();
+    jumps.hidden = true;
+    comparison.hidden = active.length < 2;
+    exportData = undefined;
+    exportButton.disabled = true;
     const query = new URLSearchParams();
     if (theme.value !== themeSelect.options[0].value)
       query.set('theme', theme.value);
     if (active.length) query.set('c', active.join(','));
-    if (count() === 3 && active.length < 3) query.set('count', '3');
+    if (count === 3 && active.length < 3) query.set('count', '3');
     if (archives.checked) query.set('archives', '1');
     history.replaceState(
       null,
       '',
-      location.pathname + (query.size ? '?' + query : ''),
+      location.pathname + (query.size ? '?' + query : '') + location.hash,
     );
     if (active.length < 2) {
       document.querySelector('#comparison-metrics')!.replaceChildren();
       feedback.textContent = active.length
         ? 'Choisissez une deuxième candidature.'
         : 'Choisissez deux candidatures à comparer.';
+      if (focus) selects.find((select) => !select.value)?.focus();
       return;
     }
     feedback.textContent = 'Chargement des propositions…';
@@ -137,20 +152,47 @@ function start() {
       const footer = el('footer');
       footer.append(anchor('Dossier du candidat ↗', `/candidats/${id}/`));
       card.append(header, body, footer);
+      card.id = 'comparaison-' + id;
+      jumps.append(anchor(candidate.name, '#' + card.id));
       container.append(card);
     }
     renderMetricPlots(
       document.querySelector<HTMLElement>('#comparison-metrics')!,
       metricGroups(relevant, data.candidates),
     );
+    jumps.hidden = false;
+    const sourceIds = new Set(
+      relevant.flatMap((item) => item.sourceRefs.map((ref) => ref.sourceId)),
+    );
+    exportData = JSON.stringify(
+      {
+        corpusUpdated: data.meta.corpusUpdated,
+        theme: theme.value,
+        candidates: active,
+        includeArchives: archives.checked,
+        measures: relevant,
+        sources: data.sources.filter((source) => sourceIds.has(source.id)),
+      },
+      null,
+      2,
+    );
+    exportButton.disabled = false;
+    if (focus) heading.focus();
     feedback.textContent = `${available} candidature${available > 1 ? 's' : ''} renseignée${available > 1 ? 's' : ''} sur ${active.length} · ${relevant.length} fiche${relevant.length > 1 ? 's' : ''} · corpus du ${date(data.meta.corpusUpdated)}`;
   }
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    render();
+    void render(true);
   });
-  form.addEventListener('change', render);
-  selects.forEach((select) => select.addEventListener('change', render));
+  form.addEventListener('change', () => void render());
+  exportButton.addEventListener('click', () => {
+    if (exportData)
+      download(
+        exportData,
+        'application/json;charset=utf-8',
+        'polradar-comparaison.json',
+      );
+  });
   document
     .querySelector('#comparison-share')!
     .addEventListener('click', async () => {
@@ -165,6 +207,7 @@ function start() {
   document
     .querySelector('#comparison-print')!
     .addEventListener('click', () => window.print());
-  render();
+  form.hidden = false;
+  void render();
 }
 start();

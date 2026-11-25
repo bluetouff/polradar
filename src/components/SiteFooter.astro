@@ -4,6 +4,11 @@ import BrandLogo from './BrandLogo.astro';
 import { meta, formatDate } from '../lib/data';
 import { footerColumns as columns } from '../lib/footer-links';
 const { language } = Astro.props as { language?: 'fr' };
+const legacySection = new Map([
+  ['Explorer', ['candidats', 'programmes']],
+  ['Suivre la campagne', ['campagne', 'donnees']],
+  ['Le projet', ['projet']],
+]);
 ---
 
 <footer class="publication-footer" lang={language}>
@@ -28,6 +33,12 @@ const { language } = Astro.props as { language?: 'fr' };
     <nav class="footer-columns" aria-label="Plan du site" id="plan-du-site">
       {columns.map((column) => (
         <div>
+          {Astro.url.pathname === '/' &&
+            legacySection
+              .get(column.title)
+              ?.map((id) => (
+                <span id={'menu-' + id} class="footer-anchor"></span>
+              ))}
           <h2 class={`menu-${column.icon}`}>{column.title}</h2>
           <div class="footer-links">
             {column.links.map(([url, label]) => (

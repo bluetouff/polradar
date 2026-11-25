@@ -4,12 +4,14 @@ import '../styles/features.css';
 import '../styles/editorial.css';
 import '../styles/edition.css';
 import '../styles/cards.css';
+import '../styles/reading.css';
 import { navigationFor } from '../lib/navigation';
 import SiteFooter from '../components/SiteFooter.astro';
 import CompactFooter from '../components/CompactFooter.astro';
 import SupportLink from '../components/SupportLink.astro';
 import BrandLogo from '../components/BrandLogo.astro';
 import SiteNavigation from '../components/SiteNavigation.astro';
+import SiteDirectory from '../components/SiteDirectory.astro';
 import { menuStyle } from '../lib/menu-sprite';
 import ShareLinks from '../components/ShareLinks.astro';
 import { socialImageFor } from '../lib/social-images.mjs';
@@ -67,7 +69,7 @@ const socialImageUrl = new URL(social.url, Astro.site);
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="referrer" content="no-referrer" />
     <meta name="color-scheme" content="light" />
-    <meta name="theme-color" content="#101e2c" />
+    <meta name="theme-color" content="#192d38" />
     <link
       rel="preload"
       href={archivoFont}
@@ -159,6 +161,7 @@ const socialImageUrl = new URL(social.url, Astro.site);
               <br />
               {formatDate(meta.edition)}
             </time>
+            {!publicationTool && <SiteDirectory />}
             <SupportLink compact />
             <a
               href="/recherche/"

@@ -196,30 +196,43 @@ test('les nouveaux parcours restent lisibles à 320 pixels et ne chargent aucun 
   expect(external).toEqual([]);
 });
 
-test('le menu mobile donne accès aux sous-rubriques et ferme le menu précédent', async ({
+test('le menu mobile ouvre les rubriques au clavier et rend le focus à la fermeture', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 320, height: 900 });
   await page.goto('/candidats/');
   const menu = page.getByRole('navigation', { name: 'Navigation principale' });
-  const campaign = menu.locator('summary').filter({ hasText: 'Campagne' });
-  await campaign.click();
-  const timeline = menu.getByRole('link', { name: 'Chronologie', exact: true });
-  await expect(timeline).toBeVisible();
-  const data = menu.locator('summary').filter({ hasText: 'Données' });
-  await data.click();
-  await expect(timeline).toBeHidden();
+  await expect(menu.getByRole('link')).toHaveCount(6);
   await expect(
-    menu.getByRole('link', { name: 'Indicateurs économiques' }),
+    menu.getByRole('link', { name: 'Candidats', exact: true }),
+  ).toHaveAttribute('aria-current', 'page');
+  await expect(
+    menu.getByRole('link', { name: 'Sondages', exact: true }),
   ).toBeVisible();
+  const summary = page.locator('.site-directory summary');
+  await summary.focus();
+  await page.keyboard.press('Enter');
+  const tools = page.getByRole('navigation', { name: 'Rubriques et outils' });
+  await expect(
+    tools.getByRole('link', { name: 'Studio graphique' }),
+  ).toBeVisible();
+  await page.keyboard.press('Tab');
+  await expect(tools.getByRole('link', { name: 'Propositions' })).toBeFocused();
+  await page.keyboard.press('Escape');
+  await expect(tools).toBeHidden();
+  await expect(summary).toBeFocused();
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth),
   ).toBeLessThanOrEqual(320);
-  await data.press('Escape');
-  await expect(menu.locator('details[open]')).toHaveCount(0);
-  await expect(data).toBeFocused();
-  await campaign.click();
-  await timeline.click();
+  await summary.click();
+  await tools.getByRole('link', { name: 'Toutes les rubriques' }).click();
+  await expect(
+    page.getByRole('heading', { name: 'Toutes les rubriques', exact: true }),
+  ).toBeVisible();
+  await page
+    .getByRole('link', { name: 'Chronologie', exact: true })
+    .first()
+    .click();
   await expect(page).toHaveURL(/\/campagne\//);
 });
 
