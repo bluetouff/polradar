@@ -39,7 +39,7 @@ export function scenarioMatrix(polls) {
 /** @param {Poll[]} polls @param {boolean} perInstitute @param {string} before */
 function inputWaves(polls, perInstitute, before) {
   const eligible = polls
-    .filter((p) => verified(p) && p.published < before)
+    .filter((p) => verified(p) && p.published && p.published < before)
     .sort(comparePollWaves);
   const last = eligible.at(-1);
   if (!last) return [];
@@ -87,6 +87,7 @@ export function compareReviewedScenarios(polls) {
     polls.some(
       (p) =>
         !verified(p) ||
+        !p.published ||
         lineup(p) !== lineup(polls[0]) ||
         p.population !== polls[0].population ||
         p.method !== polls[0].method ||

@@ -118,7 +118,7 @@ export const pollSchema = z.object({
   id: idSchema,
   institute: text,
   commissioner: text,
-  published: dateSchema,
+  published: dateSchema.nullable(),
   fieldworkStart: dateSchema,
   fieldworkEnd: dateSchema,
   sampleSize: z.number().int().positive(),
@@ -145,6 +145,7 @@ export const pollSchema = z.object({
   population: text,
   method: text,
   noticePage: z.number().int().positive(),
+  noticeRole: z.enum(['rapport', 'methodologie']).optional(),
   noIntention: z.number().min(0).max(100).nullable(),
   noIntentionNote: text.optional(),
   margin: z.object({
@@ -568,7 +569,8 @@ export function validateDataset(dataset) {
       errors.push(`${poll.id}: effectif utile supérieur aux inscrits`);
     if (poll.margin.min > poll.margin.max)
       errors.push(`${poll.id}: plage d’incertitude invalide`);
-    if (poll.published > today) errors.push(`${poll.id}: publication future`);
+    if (poll.published && poll.published > today)
+      errors.push(`${poll.id}: publication future`);
     if (
       new Set(poll.results.map((item) => item.name)).size !==
         poll.results.length ||
@@ -582,8 +584,13 @@ export function validateDataset(dataset) {
     if (Boolean(poll.resultSource) !== Boolean(poll.resultPage))
       errors.push(`${poll.id}: référence de résultats incomplète`);
     if (
+      poll.noticeRole === 'methodologie' &&
+      (!poll.resultSource || poll.noticeSource === poll.resultSource)
+    )
+      errors.push(`${poll.id}: rapport de résultats distinct requis`);
+    if (
       poll.fieldworkEnd < poll.fieldworkStart ||
-      poll.published < poll.fieldworkEnd
+      (poll.published && poll.published < poll.fieldworkEnd)
     )
       errors.push(`${poll.id}: calendrier d’enquête incohérent`);
     if (poll.usefulSample !== null && poll.usefulSample > poll.sampleSize)

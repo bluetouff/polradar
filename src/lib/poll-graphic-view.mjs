@@ -1,4 +1,4 @@
-import { rankedPollResults } from './features.mjs';
+import { pollReferenceDate, rankedPollResults } from './features.mjs';
 import { escapeHtml as esc } from './escape-html.mjs';
 import { isPublicSourceUrl } from './source-url.mjs';
 
@@ -81,7 +81,9 @@ export function renderPollGraphic(poll, sourceRows, documentQuestion = true) {
       sourceRows,
       poll.noticeSource,
       poll.noticePage,
-      'Commission des sondages',
+      poll.noticeRole === 'rapport'
+        ? poll.institute
+        : 'Commission des sondages',
     ),
   ];
   if (poll.resultSource)
@@ -121,7 +123,7 @@ export function renderPollGraphic(poll, sourceRows, documentQuestion = true) {
         ' · Libellé original à vérifier. Comparabilité non confirmée.';
     }
   }
-  const dateLabel = date.format(civilDay(poll.published));
+  const dateLabel = date.format(civilDay(pollReferenceDate(poll)));
   const terrain = date.formatRange(
     civilDay(poll.fieldworkStart),
     civilDay(poll.fieldworkEnd),

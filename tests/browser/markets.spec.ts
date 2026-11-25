@@ -117,6 +117,7 @@ test('le dernier sondage est sélectionné et un tiret Ifop reste une valeur abs
   const latest = corpus.polls
     .filter((row) => row.round === 'premier')
     .map((row) => row.published)
+    .filter((value): value is string => value !== null)
     .sort()
     .at(-1);
   await page.goto('/sondages/');
@@ -141,4 +142,19 @@ test('le dernier sondage est sélectionné et un tiret Ifop reste une valeur abs
     'href',
     /\/add\/2406#page=9$/,
   );
+});
+
+test('une notice sans date de publication affiche son terrain et sa référence officielle', async ({
+  page,
+}) => {
+  await page.goto('/sondages/#enquete=opinionway-commission-9689-p8');
+  const method = page.locator('#poll-method');
+  await expect(method).toContainText('Publication non datée');
+  await expect(method).toContainText('12 avril 2023');
+  await expect(
+    method.getByRole('link', { name: 'Notice officielle, page 8' }),
+  ).toHaveAttribute('href', /9689-pres-ow-le-figaro-magazine\.pdf#page=8$/);
+  await expect(
+    page.locator('.poll-bar-row').filter({ hasText: 'Jordan Bardella' }),
+  ).toContainText('23 %');
 });

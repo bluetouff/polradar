@@ -30,7 +30,7 @@
   },
   "2406": {
     "number": "10384",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "sha256": "e870c75fc119271ac7519915bb5922b22461843275ba8a3ccd14e04d60af0ae4",
     "pages": [9, 10, 12, 13, 14],
     "scenarios": [
@@ -55,7 +55,7 @@
         "page": 14
       }
     ],
-    "reason": "L’Ifop teste cinq configurations de premier tour. La page 11 mesure la certitude du choix des électeurs."
+    "reason": "La notice dépose cinq configurations de premier tour. Sa page 11 porte sur la certitude du choix. Un sixième scénario, Philippe et Retailleau sans Lisnard, figure dans le rapport de l’Ifop (p. 10)."
   },
   "2410": {
     "number": "10382",
@@ -1798,19 +1798,23 @@
   },
   "2408": {
     "number": "10386",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "sha256": "30da3abcb5fd6204411e30a376b58f611b3fe31d1e7a4097e38c243fd5682896",
     "pages": [],
     "scenarios": [],
-    "reason": "Pages 2, 5 · Elabe mesure les priorités d’action et, par domaine, la confiance accordée aux candidats."
+    "reason": "Elabe mesure les priorités du prochain gouvernement, la confiance envers des candidats selon le domaine et les attentes vis-à-vis de leurs programmes.",
+    "outsideSeries": true,
+    "evidencePages": [1, 2, 5, 6, 7]
   },
   "2407": {
     "number": "10383",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "sha256": "f8e41ed45f71757340da611b3b880764304c587e0762edd3820269f6e836f3de",
     "pages": [],
     "scenarios": [],
-    "reason": "Pages 7, 8, 9, 10, 12, 13, 14, 16 · l’Ifop interroge sur l’accès au logement, la place du sujet dans la campagne et les politiques envisagées."
+    "reason": "L’enquête traite de l’accès au logement, des mesures jugées prioritaires et de la place de ce sujet dans la décision de vote.",
+    "outsideSeries": true,
+    "evidencePages": [3, 7, 12, 13, 14]
   },
   "2405": {
     "number": "10379",
@@ -1822,11 +1826,13 @@
   },
   "2401": {
     "number": "10380",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "sha256": "41f76acc6f763b9b511c7de07800aa81aad77f41acbdcd157f7a325830145291",
     "pages": [],
     "scenarios": [],
-    "reason": "Pages 7, 8 · l’Ifop mesure l’adhésion à des mesures de pouvoir d’achat portées par la gauche."
+    "reason": "L’Ifop soumet six mesures de pouvoir d’achat aux répondants, chacune avec quatre niveaux d’adhésion.",
+    "outsideSeries": true,
+    "evidencePages": [2, 7, 8]
   },
   "2397": {
     "number": "10376",
@@ -1838,19 +1844,23 @@
   },
   "2392": {
     "number": "10370",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "sha256": "12f7ba38062dc1928d29716fc7f2b91cfdbfcd0cd5a0984b130cbfb17b20769f",
     "pages": [],
     "scenarios": [],
-    "reason": "Pages 7, 8, 9, 10 · l’Ifop mesure l’approbation d’une primaire de la droite et du centre, la participation envisagée et les attentes à son sujet."
+    "reason": "Le questionnaire teste une primaire commune à Renaissance, au MoDem, à Horizons, à l’UDI, aux Républicains et à Nouvelle Énergie.",
+    "outsideSeries": true,
+    "evidencePages": [2, 7, 8, 9, 10]
   },
   "2391": {
     "number": "10364",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "sha256": "23147ef16a004e49d64747ccdf87e568de5a8e068ec2656110513944d0b567e6",
     "pages": [],
     "scenarios": [],
-    "reason": "Pages 3, 8, 63, 64 · Verian mesure l’intérêt pour le scrutin et la stature présidentielle attribuée aux différentes personnalités."
+    "reason": "La vague 7 interroge sur l’intérêt pour le scrutin et sur quatre qualités attribuées aux personnalités testées.",
+    "outsideSeries": true,
+    "evidencePages": [2, 4, 8]
   },
   "2389": {
     "number": "10366",
@@ -1862,11 +1872,13 @@
   },
   "2388": {
     "number": "10367",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "sha256": "d122832ad7545d3b7d29f16bb14f094319570519126a50c0e0c4a05e63d31c23",
     "pages": [],
     "scenarios": [],
-    "reason": "Pages 7, 8 · l’Ifop mesure l’opinion à l’égard de Teddy Riner et la disposition à voter pour cette personnalité lorsqu’elle est testée seule."
+    "reason": "Deux questions mesurent la popularité de Teddy Riner et la disposition à voter pour lui lorsqu’il est testé seul.",
+    "outsideSeries": true,
+    "evidencePages": [2, 7, 8]
   },
   "2386": {
     "number": "10369",
@@ -1878,11 +1890,13 @@
   },
   "2385": {
     "number": "10363",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "sha256": "6c8964e7673e679d4227bddb459f423e5b2792e70c934e69b640742259e4bc1d",
     "pages": [],
     "scenarios": [],
-    "reason": "Pages 9, 12, 13, 28, 29 · Toluna Harris Interactive teste la disposition à voter pour chaque personnalité séparément. La notice définit cet indicateur comme un potentiel électoral."
+    "reason": "Les répondants se prononcent sur chaque nom indépendamment. Une même personne peut envisager de voter pour plusieurs personnalités.",
+    "outsideSeries": true,
+    "evidencePages": [3, 9, 12]
   },
   "2384": {
     "number": "10360",
@@ -1950,11 +1964,13 @@
   },
   "2372": {
     "number": "10350",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "sha256": "9ab7523ec1dca165b00f3d3cce42fcc8f74f3b066b45625d66447d0ec96cf7a0",
     "pages": [],
     "scenarios": [],
-    "reason": "Pages 7, 12, 15, 17, 18, 19 · l’Ifop mesure les opinions sur les déficits, le poids de la dette dans le choix électoral et la confiance sur ce sujet."
+    "reason": "L’enquête mesure l’importance des propositions sur la dette dans le vote, la confiance envers des personnalités et la crédibilité attribuée à une proposition de gel de dette détenue par la BCE.",
+    "outsideSeries": true,
+    "evidencePages": [2, 17, 18, 19]
   },
   "2370": {
     "number": "10348",
@@ -2198,11 +2214,13 @@
   },
   "2317": {
     "number": "10300",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "sha256": "84674c7ab8d3b71fc68f44b66f8668729faf8fd1955438501999ec28a52dc0ee",
     "pages": [],
     "scenarios": [],
-    "reason": "Pages 9, 12, 13 · Toluna Harris Interactive mesure le potentiel électoral de plusieurs personnalités. La disposition à voter est demandée séparément pour chacune."
+    "reason": "Les répondants se prononcent sur chaque nom indépendamment. Une même personne peut envisager de voter pour plusieurs personnalités.",
+    "outsideSeries": true,
+    "evidencePages": [3, 9, 12]
   },
   "2316": {
     "number": "10298",
@@ -2246,11 +2264,13 @@
   },
   "2306": {
     "number": "10289",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "sha256": "2896c7ac900a3992b82ff2c3ffc185b6d2b9fc2f79f838420d9d864f95d12275",
     "pages": [],
     "scenarios": [],
-    "reason": "Pages 2, 3, 6 · Elabe mesure l’intérêt, le choix de candidat, la participation et l’adhésion aux propositions dans le cadre de la primaire de la gauche."
+    "reason": "Les tableaux publiés mesurent l’intérêt pour la primaire, les sujets jugés prioritaires, les préférences d’alliance et l’adhésion aux propositions présentées.",
+    "outsideSeries": true,
+    "evidencePages": [1, 2, 3, 6, 7]
   },
   "2301": {
     "number": "10287",
@@ -3470,12 +3490,13 @@
   },
   "2285": {
     "number": "10271",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "sha256": "d464f14b813dd5ebf15a392857d8988d79128aef69fdf021468543da7921eb4c",
     "pages": [],
     "scenarios": [],
-    "evidencePages": [7, 8, 9],
-    "reason": "Pages 7, 8, 9 · L’Ifop demande séparément si Édouard Philippe et Gabriel Attal devraient se porter candidats, puis quels traits d’image s’appliquent à chacun."
+    "evidencePages": [3, 7],
+    "reason": "L’institut demande séparément si les personnes interrogées souhaitent voir chaque personnalité se présenter à la présidentielle.",
+    "outsideSeries": true
   },
   "2284": {
     "number": "10269",
@@ -3543,12 +3564,13 @@
   },
   "2249": {
     "number": "10240",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "sha256": "ad5ea07048168279685553f910b1cb4ef02e1b2dda451fb253cd0403a8dc89ba",
     "pages": [],
     "scenarios": [],
-    "evidencePages": [3, 9, 12, 15, 17],
-    "reason": "Pages 3, 9, 12, 15, 17 · Toluna Harris Interactive mesure le potentiel électoral en demandant aux inscrits s’ils pourraient voter pour chaque personnalité. Plusieurs réponses positives sont possibles."
+    "evidencePages": [3, 9, 12],
+    "reason": "Les répondants se prononcent sur chaque nom indépendamment. Une même personne peut envisager de voter pour plusieurs personnalités.",
+    "outsideSeries": true
   },
   "2247": {
     "number": "10238",

@@ -15,6 +15,7 @@ import {
 import { economy } from './economy-data';
 import { economyGraphic } from './economy-graphic.mjs';
 import { pollGraphic, pollEmbeds } from './poll-graphic.mjs';
+import { pollReferenceDate } from './features.mjs';
 import { payrolls, salaryGraphic, salaryImage } from './csg-paie.mjs';
 import comparison from '../data/retirement-comparison.json';
 import {
@@ -40,7 +41,7 @@ export const studioPollArchives = polls
   .filter((poll) => poll.historicalImport)
   .sort(
     (a, b) =>
-      b.published.localeCompare(a.published) ||
+      pollReferenceDate(b).localeCompare(pollReferenceDate(a)) ||
       a.institute.localeCompare(b.institute, 'fr') ||
       a.noticePage - b.noticePage ||
       a.id.localeCompare(b.id),
@@ -153,7 +154,7 @@ for (const series of pollEmbeds(polls)) {
       wave.id,
       wave.institute +
         ' · ' +
-        formatDate(wave.published) +
+        formatDate(pollReferenceDate(wave)) +
         ' · ' +
         wave.scenario,
       graphic,
@@ -164,7 +165,7 @@ for (const series of pollEmbeds(polls)) {
         'Début du terrain',
         'Fin du terrain',
         'Publication',
-        'Notice',
+        'Source des résultats',
       ],
       wave.results.map((r: (typeof wave.results)[number]) => [
         r.name,
@@ -173,7 +174,9 @@ for (const series of pollEmbeds(polls)) {
         wave.fieldworkStart,
         wave.fieldworkEnd,
         wave.published,
-        sourceById(wave.noticeSource).url,
+        sourceById(wave.resultSource ?? wave.noticeSource).url +
+          '#page=' +
+          (wave.resultPage ?? wave.noticePage),
       ]),
       '/graphiques/sondages/' + series.id + '.svg',
     );

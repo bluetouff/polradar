@@ -292,7 +292,7 @@ test('les notices Ifop et YouGov conservent les bases et les scores publiés', (
     (row) => row.noticeSource === 'notice-commission-10382',
   );
   const ifop = original.polls.filter(
-    (row) => row.noticeSource === 'notice-commission-10384',
+    (row) => row.noticeSource === 'notice-commission-10384' && !row.noticeRole,
   );
   assert.equal(yougov.length, 10);
   assert.equal(ifop.length, 5);
@@ -543,6 +543,7 @@ test('les documents, enquêtes, observations et séries se comptent séparément
     documentedSurveys: 2,
     observationsWithoutSurvey: 1,
     notices: 2,
+    surveysWithReportOnly: 0,
     series: 2,
     institutes: [base.institute],
   });

@@ -36931,5 +36931,1610 @@
         "percentage": 7
       }
     ]
+  },
+  {
+    "id": "ifop-2023-10-24-p7",
+    "surveyId": "ifop-2023-10-24",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "usefulSample": null,
+    "noIntention": null,
+    "institute": "Ifop-Fiducial",
+    "commissioner": "Le Figaro et Sud Radio",
+    "published": "2023-10-31",
+    "fieldworkStart": "2023-10-24",
+    "fieldworkEnd": "2023-10-25",
+    "sampleSize": 1179,
+    "registeredSample": 1084,
+    "round": "premier",
+    "historicalImport": true,
+    "population": "France, 18 ans et plus. Intentions exprimées parmi les inscrits.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "noticeSource": "rapport-ifop-octobre-2023",
+    "noticeRole": "rapport",
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "uncertainty": "Le tableau du rapport (p. 5) donne pour 1 000 répondants un repère indicatif de ±1,4 à ±3,1 points. L’effectif des personnes qui expriment un choix dans cette configuration n’est pas précisé.",
+    "noticePage": 7,
+    "scenario": "Premier tour · Jean-Luc Mélenchon et Édouard Philippe",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.0
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 2.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 14.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 6.0
+      },
+      {
+        "id": "sonde-olivier-faure",
+        "name": "Olivier Faure",
+        "percentage": 4.0
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 1.0
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 25.0
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 5.0
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 31.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6.5
+      },
+      {
+        "id": "lassalle",
+        "name": "Jean Lassalle",
+        "percentage": 2.5
+      }
+    ],
+    "question": {
+      "status": "verifiee",
+      "wording": "Si dimanche prochain se déroulait le premier tour de l’élection présidentielle, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "En pourcentage des suffrages exprimés, parmi les inscrits interrogés.",
+      "sourceId": "rapport-ifop-octobre-2023",
+      "page": 7,
+      "checked": "2026-11-25"
+    }
+  },
+  {
+    "id": "ifop-2023-10-24-p10",
+    "surveyId": "ifop-2023-10-24",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "usefulSample": null,
+    "noIntention": null,
+    "institute": "Ifop-Fiducial",
+    "commissioner": "Le Figaro et Sud Radio",
+    "published": "2023-10-31",
+    "fieldworkStart": "2023-10-24",
+    "fieldworkEnd": "2023-10-25",
+    "sampleSize": 1179,
+    "registeredSample": 1084,
+    "round": "premier",
+    "historicalImport": true,
+    "population": "France, 18 ans et plus. Intentions exprimées parmi les inscrits.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "noticeSource": "rapport-ifop-octobre-2023",
+    "noticeRole": "rapport",
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "uncertainty": "Le tableau du rapport (p. 5) donne pour 1 000 répondants un repère indicatif de ±1,4 à ±3,1 points. L’effectif des personnes qui expriment un choix dans cette configuration n’est pas précisé.",
+    "noticePage": 10,
+    "scenario": "Premier tour · François Ruffin et Édouard Philippe",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.5
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 2.0
+      },
+      {
+        "id": "ruffin",
+        "name": "François Ruffin",
+        "percentage": 7.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 7.5
+      },
+      {
+        "id": "sonde-olivier-faure",
+        "name": "Olivier Faure",
+        "percentage": 4.0
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 2.0
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 26.0
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 6.0
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 32.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6.5
+      },
+      {
+        "id": "lassalle",
+        "name": "Jean Lassalle",
+        "percentage": 2.5
+      }
+    ],
+    "question": {
+      "status": "verifiee",
+      "wording": "Si dimanche prochain se déroulait le premier tour de l’élection présidentielle, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "En pourcentage des suffrages exprimés, parmi les inscrits interrogés.",
+      "sourceId": "rapport-ifop-octobre-2023",
+      "page": 10,
+      "checked": "2026-11-25"
+    }
+  },
+  {
+    "id": "ifop-2023-10-24-p13",
+    "surveyId": "ifop-2023-10-24",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "usefulSample": null,
+    "noIntention": null,
+    "institute": "Ifop-Fiducial",
+    "commissioner": "Le Figaro et Sud Radio",
+    "published": "2023-10-31",
+    "fieldworkStart": "2023-10-24",
+    "fieldworkEnd": "2023-10-25",
+    "sampleSize": 1179,
+    "registeredSample": 1084,
+    "round": "premier",
+    "historicalImport": true,
+    "population": "France, 18 ans et plus. Intentions exprimées parmi les inscrits.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "noticeSource": "rapport-ifop-octobre-2023",
+    "noticeRole": "rapport",
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "uncertainty": "Le tableau du rapport (p. 5) donne pour 1 000 répondants un repère indicatif de ±1,4 à ±3,1 points. L’effectif des personnes qui expriment un choix dans cette configuration n’est pas précisé.",
+    "noticePage": 13,
+    "scenario": "Premier tour · Bruno Le Maire",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.5
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 7.0
+      },
+      {
+        "id": "sonde-olivier-faure",
+        "name": "Olivier Faure",
+        "percentage": 5.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 2.0
+      },
+      {
+        "id": "sonde-bruno-le-maire",
+        "name": "Bruno Le Maire",
+        "percentage": 18.0
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 6.0
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 32.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6.5
+      },
+      {
+        "id": "lassalle",
+        "name": "Jean Lassalle",
+        "percentage": 3.0
+      }
+    ],
+    "question": {
+      "status": "verifiee",
+      "wording": "Si dimanche prochain se déroulait le premier tour de l’élection présidentielle, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "En pourcentage des suffrages exprimés, parmi les inscrits interrogés.",
+      "sourceId": "rapport-ifop-octobre-2023",
+      "page": 13,
+      "checked": "2026-11-25"
+    }
+  },
+  {
+    "id": "ifop-2023-10-24-p16",
+    "surveyId": "ifop-2023-10-24",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "usefulSample": null,
+    "noIntention": null,
+    "institute": "Ifop-Fiducial",
+    "commissioner": "Le Figaro et Sud Radio",
+    "published": "2023-10-31",
+    "fieldworkStart": "2023-10-24",
+    "fieldworkEnd": "2023-10-25",
+    "sampleSize": 1179,
+    "registeredSample": 1084,
+    "round": "premier",
+    "historicalImport": true,
+    "population": "France, 18 ans et plus. Intentions exprimées parmi les inscrits.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "noticeSource": "rapport-ifop-octobre-2023",
+    "noticeRole": "rapport",
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "uncertainty": "Le tableau du rapport (p. 5) donne pour 1 000 répondants un repère indicatif de ±1,4 à ±3,1 points. L’effectif des personnes qui expriment un choix dans cette configuration n’est pas précisé.",
+    "noticePage": 16,
+    "scenario": "Premier tour · Gérald Darmanin",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.5
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 1.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 15.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 6.0
+      },
+      {
+        "id": "sonde-olivier-faure",
+        "name": "Olivier Faure",
+        "percentage": 6.0
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 2.0
+      },
+      {
+        "id": "sonde-gerald-darmanin",
+        "name": "Gérald Darmanin",
+        "percentage": 16.0
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 6.0
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2.5
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 33.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 7.0
+      },
+      {
+        "id": "lassalle",
+        "name": "Jean Lassalle",
+        "percentage": 3.5
+      }
+    ],
+    "question": {
+      "status": "verifiee",
+      "wording": "Si dimanche prochain se déroulait le premier tour de l’élection présidentielle, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "En pourcentage des suffrages exprimés, parmi les inscrits interrogés.",
+      "sourceId": "rapport-ifop-octobre-2023",
+      "page": 16,
+      "checked": "2026-11-25"
+    }
+  },
+  {
+    "id": "ifop-2023-10-24-p19",
+    "surveyId": "ifop-2023-10-24",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "usefulSample": null,
+    "noIntention": null,
+    "institute": "Ifop-Fiducial",
+    "commissioner": "Le Figaro et Sud Radio",
+    "published": "2023-10-31",
+    "fieldworkStart": "2023-10-24",
+    "fieldworkEnd": "2023-10-25",
+    "sampleSize": 1179,
+    "registeredSample": 1084,
+    "round": "premier",
+    "historicalImport": true,
+    "population": "France, 18 ans et plus. Intentions exprimées parmi les inscrits.",
+    "method": "Questionnaire en ligne, échantillon par quotas.",
+    "noticeSource": "rapport-ifop-octobre-2023",
+    "noticeRole": "rapport",
+    "margin": {
+      "min": 1.4,
+      "max": 3.1,
+      "confidence": 95
+    },
+    "uncertainty": "Le tableau du rapport (p. 5) donne pour 1 000 répondants un repère indicatif de ±1,4 à ±3,1 points. L’effectif des personnes qui expriment un choix dans cette configuration n’est pas précisé.",
+    "noticePage": 19,
+    "scenario": "Premier tour · Gabriel Attal",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1.0
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 1.0
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 14.0
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 6.0
+      },
+      {
+        "id": "sonde-olivier-faure",
+        "name": "Olivier Faure",
+        "percentage": 5.0
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 2.0
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 19.0
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 6.0
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3.0
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 33.0
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6.0
+      },
+      {
+        "id": "lassalle",
+        "name": "Jean Lassalle",
+        "percentage": 4.0
+      }
+    ],
+    "question": {
+      "status": "verifiee",
+      "wording": "Si dimanche prochain se déroulait le premier tour de l’élection présidentielle, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "En pourcentage des suffrages exprimés, parmi les inscrits interrogés.",
+      "sourceId": "rapport-ifop-octobre-2023",
+      "page": 19,
+      "checked": "2026-11-25"
+    }
+  },
+  {
+    "id": "harris-2023-09-01-p9",
+    "surveyId": "harris-2023-09-01",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "usefulSample": null,
+    "noIntention": null,
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "Challenges",
+    "published": "2023-09-13",
+    "fieldworkStart": "2023-09-01",
+    "fieldworkEnd": "2023-09-04",
+    "sampleSize": 2525,
+    "registeredSample": 2148,
+    "round": "premier",
+    "historicalImport": true,
+    "population": "France, 18 ans et plus. Votes exprimés parmi les inscrits.",
+    "method": "Questionnaire en ligne, échantillon par quotas. Redressement selon les caractéristiques sociodémographiques et le comportement électoral antérieur.",
+    "noticeSource": "rapport-harris-septembre-2023",
+    "noticeRole": "rapport",
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "uncertainty": "Le rapport annonce ±1,4 à ±2,9 points pour les résultats d’ensemble (p. 3), avec un repère à 95 % (p. 4). Il ne précise pas l’effectif exprimé par hypothèse.",
+    "question": {
+      "status": "a-relire"
+    },
+    "noticePage": 9,
+    "scenario": "Premier tour · Édouard Philippe pour Ensemble",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 2
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 6
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16
+      },
+      {
+        "id": "sonde-bernard-cazeneuve",
+        "name": "Bernard Cazeneuve",
+        "percentage": 5
+      },
+      {
+        "id": "sonde-yannick-jadot",
+        "name": "Yannick Jadot",
+        "percentage": 5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 22
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 30
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6
+      }
+    ]
+  },
+  {
+    "id": "harris-2023-09-01-p11",
+    "surveyId": "harris-2023-09-01",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "usefulSample": null,
+    "noIntention": null,
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "Challenges",
+    "published": "2023-09-13",
+    "fieldworkStart": "2023-09-01",
+    "fieldworkEnd": "2023-09-04",
+    "sampleSize": 2525,
+    "registeredSample": 2148,
+    "round": "premier",
+    "historicalImport": true,
+    "population": "France, 18 ans et plus. Votes exprimés parmi les inscrits.",
+    "method": "Questionnaire en ligne, échantillon par quotas. Redressement selon les caractéristiques sociodémographiques et le comportement électoral antérieur.",
+    "noticeSource": "rapport-harris-septembre-2023",
+    "noticeRole": "rapport",
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "uncertainty": "Le rapport annonce ±1,4 à ±2,9 points pour les résultats d’ensemble (p. 3), avec un repère à 95 % (p. 4). Il ne précise pas l’effectif exprimé par hypothèse.",
+    "question": {
+      "status": "a-relire"
+    },
+    "noticePage": 11,
+    "scenario": "Premier tour · Bruno Le Maire pour Ensemble",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 2
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 6
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16
+      },
+      {
+        "id": "sonde-bernard-cazeneuve",
+        "name": "Bernard Cazeneuve",
+        "percentage": 7
+      },
+      {
+        "id": "sonde-yannick-jadot",
+        "name": "Yannick Jadot",
+        "percentage": 5
+      },
+      {
+        "id": "sonde-bruno-le-maire",
+        "name": "Bruno Le Maire",
+        "percentage": 16
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 7
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 32
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6
+      }
+    ]
+  },
+  {
+    "id": "harris-2023-09-01-p13",
+    "surveyId": "harris-2023-09-01",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "usefulSample": null,
+    "noIntention": null,
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "Challenges",
+    "published": "2023-09-13",
+    "fieldworkStart": "2023-09-01",
+    "fieldworkEnd": "2023-09-04",
+    "sampleSize": 2525,
+    "registeredSample": 2148,
+    "round": "premier",
+    "historicalImport": true,
+    "population": "France, 18 ans et plus. Votes exprimés parmi les inscrits.",
+    "method": "Questionnaire en ligne, échantillon par quotas. Redressement selon les caractéristiques sociodémographiques et le comportement électoral antérieur.",
+    "noticeSource": "rapport-harris-septembre-2023",
+    "noticeRole": "rapport",
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "uncertainty": "Le rapport annonce ±1,4 à ±2,9 points pour les résultats d’ensemble (p. 3), avec un repère à 95 % (p. 4). Il ne précise pas l’effectif exprimé par hypothèse.",
+    "question": {
+      "status": "a-relire"
+    },
+    "noticePage": 13,
+    "scenario": "Premier tour · Gérald Darmanin pour Ensemble",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 2
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 6
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16
+      },
+      {
+        "id": "sonde-bernard-cazeneuve",
+        "name": "Bernard Cazeneuve",
+        "percentage": 8
+      },
+      {
+        "id": "sonde-yannick-jadot",
+        "name": "Yannick Jadot",
+        "percentage": 6
+      },
+      {
+        "id": "sonde-gerald-darmanin",
+        "name": "Gérald Darmanin",
+        "percentage": 14
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 7
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 32
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6
+      }
+    ]
+  },
+  {
+    "id": "harris-2023-09-01-p15",
+    "surveyId": "harris-2023-09-01",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "usefulSample": null,
+    "noIntention": null,
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "Challenges",
+    "published": "2023-09-13",
+    "fieldworkStart": "2023-09-01",
+    "fieldworkEnd": "2023-09-04",
+    "sampleSize": 2525,
+    "registeredSample": 2148,
+    "round": "premier",
+    "historicalImport": true,
+    "population": "France, 18 ans et plus. Votes exprimés parmi les inscrits.",
+    "method": "Questionnaire en ligne, échantillon par quotas. Redressement selon les caractéristiques sociodémographiques et le comportement électoral antérieur.",
+    "noticeSource": "rapport-harris-septembre-2023",
+    "noticeRole": "rapport",
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "uncertainty": "Le rapport annonce ±1,4 à ±2,9 points pour les résultats d’ensemble (p. 3), avec un repère à 95 % (p. 4). Il ne précise pas l’effectif exprimé par hypothèse.",
+    "question": {
+      "status": "a-relire"
+    },
+    "noticePage": 15,
+    "scenario": "Premier tour · Gabriel Attal pour Ensemble",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 2
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16
+      },
+      {
+        "id": "sonde-bernard-cazeneuve",
+        "name": "Bernard Cazeneuve",
+        "percentage": 8
+      },
+      {
+        "id": "sonde-yannick-jadot",
+        "name": "Yannick Jadot",
+        "percentage": 7
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 12
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 8
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 32
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 7
+      }
+    ]
+  },
+  {
+    "id": "harris-2023-09-01-p17",
+    "surveyId": "harris-2023-09-01",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "usefulSample": null,
+    "noIntention": null,
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "Challenges",
+    "published": "2023-09-13",
+    "fieldworkStart": "2023-09-01",
+    "fieldworkEnd": "2023-09-04",
+    "sampleSize": 2525,
+    "registeredSample": 2148,
+    "round": "premier",
+    "historicalImport": true,
+    "population": "France, 18 ans et plus. Votes exprimés parmi les inscrits.",
+    "method": "Questionnaire en ligne, échantillon par quotas. Redressement selon les caractéristiques sociodémographiques et le comportement électoral antérieur.",
+    "noticeSource": "rapport-harris-septembre-2023",
+    "noticeRole": "rapport",
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "uncertainty": "Le rapport annonce ±1,4 à ±2,9 points pour les résultats d’ensemble (p. 3), avec un repère à 95 % (p. 4). Il ne précise pas l’effectif exprimé par hypothèse.",
+    "question": {
+      "status": "a-relire"
+    },
+    "noticePage": 17,
+    "scenario": "Premier tour · Élisabeth Borne pour Ensemble",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 2
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 6
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16
+      },
+      {
+        "id": "sonde-bernard-cazeneuve",
+        "name": "Bernard Cazeneuve",
+        "percentage": 9
+      },
+      {
+        "id": "sonde-yannick-jadot",
+        "name": "Yannick Jadot",
+        "percentage": 5
+      },
+      {
+        "id": "sonde-elisabeth-borne",
+        "name": "Élisabeth Borne",
+        "percentage": 11
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 9
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 33
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6
+      }
+    ]
+  },
+  {
+    "id": "harris-2023-09-01-p19",
+    "surveyId": "harris-2023-09-01",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "usefulSample": null,
+    "noIntention": null,
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "Challenges",
+    "published": "2023-09-13",
+    "fieldworkStart": "2023-09-01",
+    "fieldworkEnd": "2023-09-04",
+    "sampleSize": 2525,
+    "registeredSample": 2148,
+    "round": "premier",
+    "historicalImport": true,
+    "population": "France, 18 ans et plus. Votes exprimés parmi les inscrits.",
+    "method": "Questionnaire en ligne, échantillon par quotas. Redressement selon les caractéristiques sociodémographiques et le comportement électoral antérieur.",
+    "noticeSource": "rapport-harris-septembre-2023",
+    "noticeRole": "rapport",
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "uncertainty": "Le rapport annonce ±1,4 à ±2,9 points pour les résultats d’ensemble (p. 3), avec un repère à 95 % (p. 4). Il ne précise pas l’effectif exprimé par hypothèse.",
+    "question": {
+      "status": "a-relire"
+    },
+    "noticePage": 19,
+    "scenario": "Premier tour · Jean Castex pour Ensemble",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 2
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 6
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17
+      },
+      {
+        "id": "sonde-bernard-cazeneuve",
+        "name": "Bernard Cazeneuve",
+        "percentage": 9
+      },
+      {
+        "id": "sonde-yannick-jadot",
+        "name": "Yannick Jadot",
+        "percentage": 6
+      },
+      {
+        "id": "sonde-jean-castex",
+        "name": "Jean Castex",
+        "percentage": 9
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 9
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 33
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6
+      }
+    ]
+  },
+  {
+    "id": "harris-2023-09-01-p21",
+    "surveyId": "harris-2023-09-01",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "usefulSample": null,
+    "noIntention": null,
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "Challenges",
+    "published": "2023-09-13",
+    "fieldworkStart": "2023-09-01",
+    "fieldworkEnd": "2023-09-04",
+    "sampleSize": 2525,
+    "registeredSample": 2148,
+    "round": "premier",
+    "historicalImport": true,
+    "population": "France, 18 ans et plus. Votes exprimés parmi les inscrits.",
+    "method": "Questionnaire en ligne, échantillon par quotas. Redressement selon les caractéristiques sociodémographiques et le comportement électoral antérieur.",
+    "noticeSource": "rapport-harris-septembre-2023",
+    "noticeRole": "rapport",
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "uncertainty": "Le rapport annonce ±1,4 à ±2,9 points pour les résultats d’ensemble (p. 3), avec un repère à 95 % (p. 4). Il ne précise pas l’effectif exprimé par hypothèse.",
+    "question": {
+      "status": "a-relire"
+    },
+    "noticePage": 21,
+    "scenario": "Premier tour · François Bayrou pour Ensemble",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 2
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 6
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16
+      },
+      {
+        "id": "sonde-bernard-cazeneuve",
+        "name": "Bernard Cazeneuve",
+        "percentage": 10
+      },
+      {
+        "id": "sonde-yannick-jadot",
+        "name": "Yannick Jadot",
+        "percentage": 6
+      },
+      {
+        "id": "sonde-francois-bayrou",
+        "name": "François Bayrou",
+        "percentage": 8
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 9
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 33
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6
+      }
+    ]
+  },
+  {
+    "id": "harris-2023-09-01-p23",
+    "surveyId": "harris-2023-09-01",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "usefulSample": null,
+    "noIntention": null,
+    "institute": "Toluna Harris Interactive",
+    "commissioner": "Challenges",
+    "published": "2023-09-13",
+    "fieldworkStart": "2023-09-01",
+    "fieldworkEnd": "2023-09-04",
+    "sampleSize": 2525,
+    "registeredSample": 2148,
+    "round": "premier",
+    "historicalImport": true,
+    "population": "France, 18 ans et plus. Votes exprimés parmi les inscrits.",
+    "method": "Questionnaire en ligne, échantillon par quotas. Redressement selon les caractéristiques sociodémographiques et le comportement électoral antérieur.",
+    "noticeSource": "rapport-harris-septembre-2023",
+    "noticeRole": "rapport",
+    "margin": {
+      "min": 1.4,
+      "max": 2.9,
+      "confidence": 95
+    },
+    "uncertainty": "Le rapport annonce ±1,4 à ±2,9 points pour les résultats d’ensemble (p. 3), avec un repère à 95 % (p. 4). Il ne précise pas l’effectif exprimé par hypothèse.",
+    "question": {
+      "status": "a-relire"
+    },
+    "noticePage": 23,
+    "scenario": "Premier tour · Yaël Braun-Pivet pour Ensemble",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 2
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 6
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17
+      },
+      {
+        "id": "sonde-bernard-cazeneuve",
+        "name": "Bernard Cazeneuve",
+        "percentage": 10
+      },
+      {
+        "id": "sonde-yannick-jadot",
+        "name": "Yannick Jadot",
+        "percentage": 7
+      },
+      {
+        "id": "sonde-yael-braun-pivet",
+        "name": "Yaël Braun-Pivet",
+        "percentage": 5
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 10
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 33
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6
+      }
+    ]
+  },
+  {
+    "id": "cluster17-commission-9753-p18",
+    "surveyId": "cluster17-commission-9753",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "usefulSample": 1238,
+    "noIntention": null,
+    "institute": "Cluster17",
+    "commissioner": "Picardie Debout",
+    "published": "2024-04-21",
+    "fieldworkStart": "2024-04-02",
+    "fieldworkEnd": "2024-04-05",
+    "sampleSize": 1713,
+    "registeredSample": 1686,
+    "historicalImport": true,
+    "method": "Questionnaire en ligne, échantillon par quotas. Pondération selon la probabilité de participation.",
+    "population": "France, 18 ans et plus. Inscrits ayant exprimé une intention de vote, après redressement et pondération selon la probabilité de participation.",
+    "noticeSource": "notice-commission-9753",
+    "round": "premier",
+    "noticePage": 18,
+    "scenario": "Premier tour · François Ruffin, candidat unique de la gauche hors NPA",
+    "margin": {
+      "min": 1.2,
+      "max": 2.8,
+      "confidence": null
+    },
+    "uncertainty": "Cluster17 indique 1 541 répondants ayant exprimé une intention avant pondération et un effectif utile de 1 238 après pondération (p. 2). La plage de la page 3 correspond à cet effectif utile.",
+    "results": [
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 2
+      },
+      {
+        "id": "ruffin",
+        "name": "François Ruffin",
+        "percentage": 29
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 25
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 4.5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 3
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 30
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 6.5
+      }
+    ],
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le 1er tour de l’élection présidentielle avait lieu dimanche prochain et que les candidats étaient les suivants, pour lequel des candidats suivants voteriez-vous ?",
+      "base": "Inscrits ayant exprimé une intention de vote, après redressement et pondération selon la probabilité de participation.",
+      "sourceId": "notice-commission-9753",
+      "page": 4,
+      "checked": "2026-11-25"
+    }
+  },
+  {
+    "id": "cluster17-commission-9753-p22",
+    "surveyId": "cluster17-commission-9753",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "usefulSample": 1182,
+    "noIntention": null,
+    "institute": "Cluster17",
+    "commissioner": "Picardie Debout",
+    "published": "2024-04-21",
+    "fieldworkStart": "2024-04-02",
+    "fieldworkEnd": "2024-04-05",
+    "sampleSize": 1713,
+    "registeredSample": 1686,
+    "historicalImport": true,
+    "method": "Questionnaire en ligne, échantillon par quotas. Pondération selon la probabilité de participation.",
+    "population": "France, 18 ans et plus. Inscrits ayant exprimé une intention de vote, après redressement et pondération selon la probabilité de participation.",
+    "noticeSource": "notice-commission-9753",
+    "round": "premier",
+    "noticePage": 22,
+    "scenario": "Premier tour · Jean-Luc Mélenchon, candidat unique de la gauche hors NPA",
+    "margin": {
+      "min": 1.2,
+      "max": 2.8,
+      "confidence": null
+    },
+    "uncertainty": "Cluster17 indique 1 425 répondants ayant exprimé une intention avant pondération et un effectif utile de 1 182 après pondération (p. 2). La plage de la page 3 correspond à cet effectif utile.",
+    "results": [
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 3
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 18
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 31
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 5
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 4
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 32
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 7
+      }
+    ],
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le 1er tour de l’élection présidentielle avait lieu dimanche prochain et que les candidats étaient les suivants, pour lequel des candidats suivants voteriez-vous ?",
+      "base": "Inscrits ayant exprimé une intention de vote, après redressement et pondération selon la probabilité de participation.",
+      "sourceId": "notice-commission-9753",
+      "page": 5,
+      "checked": "2026-11-25"
+    }
+  },
+  {
+    "id": "cluster17-commission-9753-p26",
+    "surveyId": "cluster17-commission-9753",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "usefulSample": 1063,
+    "noIntention": null,
+    "institute": "Cluster17",
+    "commissioner": "Picardie Debout",
+    "published": "2024-04-21",
+    "fieldworkStart": "2024-04-02",
+    "fieldworkEnd": "2024-04-05",
+    "sampleSize": 1713,
+    "registeredSample": 1686,
+    "historicalImport": true,
+    "method": "Questionnaire en ligne, échantillon par quotas. Pondération selon la probabilité de participation.",
+    "population": "France, 18 ans et plus. Inscrits ayant exprimé une intention de vote, après redressement et pondération selon la probabilité de participation.",
+    "noticeSource": "notice-commission-9753",
+    "round": "second",
+    "noticePage": 26,
+    "scenario": "Second tour · François Ruffin face à Marine Le Pen",
+    "margin": {
+      "min": 1.3,
+      "max": 3,
+      "confidence": null
+    },
+    "uncertainty": "Cluster17 indique 1 276 répondants ayant exprimé une intention avant pondération et un effectif utile de 1 063 après pondération (p. 2). La plage de la page 3 correspond à cet effectif utile.",
+    "results": [
+      {
+        "id": "ruffin",
+        "name": "François Ruffin",
+        "percentage": 50
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 50
+      }
+    ],
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le 2nd tour de l’élection présidentielle avait lieu dimanche prochain et que les candidats étaient les suivants, pour lequel des candidats suivants voteriez-vous ?",
+      "base": "Inscrits ayant exprimé une intention de vote, après redressement et pondération selon la probabilité de participation.",
+      "sourceId": "notice-commission-9753",
+      "page": 6,
+      "checked": "2026-11-25"
+    }
+  },
+  {
+    "id": "cluster17-commission-9753-p30",
+    "surveyId": "cluster17-commission-9753",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "usefulSample": 920,
+    "noIntention": null,
+    "institute": "Cluster17",
+    "commissioner": "Picardie Debout",
+    "published": "2024-04-21",
+    "fieldworkStart": "2024-04-02",
+    "fieldworkEnd": "2024-04-05",
+    "sampleSize": 1713,
+    "registeredSample": 1686,
+    "historicalImport": true,
+    "method": "Questionnaire en ligne, échantillon par quotas. Pondération selon la probabilité de participation.",
+    "population": "France, 18 ans et plus. Inscrits ayant exprimé une intention de vote, après redressement et pondération selon la probabilité de participation.",
+    "noticeSource": "notice-commission-9753",
+    "round": "second",
+    "noticePage": 30,
+    "scenario": "Second tour · Jean-Luc Mélenchon face à Marine Le Pen",
+    "margin": {
+      "min": 1.4,
+      "max": 3.3,
+      "confidence": null
+    },
+    "uncertainty": "Cluster17 indique 1 057 répondants ayant exprimé une intention avant pondération et un effectif utile de 920 après pondération (p. 2). La plage de la page 3 correspond à cet effectif utile.",
+    "results": [
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 35
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 65
+      }
+    ],
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le 2nd tour de l’élection présidentielle avait lieu dimanche prochain et que les candidats étaient les suivants, pour lequel des candidats suivants voteriez-vous ?",
+      "base": "Inscrits ayant exprimé une intention de vote, après redressement et pondération selon la probabilité de participation.",
+      "sourceId": "notice-commission-9753",
+      "page": 7,
+      "checked": "2026-11-25"
+    }
+  },
+  {
+    "id": "opinionway-commission-9689-p8",
+    "surveyId": "opinionway-commission-9689",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "usefulSample": null,
+    "noIntention": 28,
+    "institute": "OpinionWay",
+    "commissioner": "Pollitics",
+    "published": null,
+    "fieldworkStart": "2023-04-12",
+    "fieldworkEnd": "2023-04-13",
+    "sampleSize": 1038,
+    "registeredSample": 965,
+    "round": "premier",
+    "historicalImport": true,
+    "noticeSource": "notice-commission-9689",
+    "population": "France, 18 ans et plus. Inscrits certains d’aller voter (notes 9 ou 10) exprimant un choix. Colonne « Publié ».",
+    "method": "Questionnaire en ligne, échantillon par quotas. Redressement sociodémographique et selon les votes des deux tours de 2022.",
+    "margin": {
+      "min": 1.7,
+      "max": 4,
+      "confidence": 95
+    },
+    "uncertainty": "La page 4 donne ±1,7 à ±4,0 points pour les 615 inscrits certains d’aller voter. L’effectif exact qui exprime un choix n’est pas précisé.",
+    "noticePage": 8,
+    "scenario": "Premier tour · Édouard Philippe, Laurent Wauquiez et Jordan Bardella",
+    "noIntentionNote": "Part publiée sur l’ensemble de la base définie par la notice (p. 3 et 8).",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "sonde-philippe-poutou",
+        "name": "Philippe Poutou",
+        "percentage": 3
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 17
+      },
+      {
+        "id": "sonde-olivier-faure",
+        "name": "Olivier Faure",
+        "percentage": 6
+      },
+      {
+        "id": "sonde-sandrine-rousseau",
+        "name": "Sandrine Rousseau",
+        "percentage": 2
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 32
+      },
+      {
+        "id": "sonde-laurent-wauquiez",
+        "name": "Laurent Wauquiez",
+        "percentage": 7
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 9
+      },
+      {
+        "id": "bardella",
+        "name": "Jordan Bardella",
+        "percentage": 23
+      }
+    ],
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits certains d’aller voter (notes 9 ou 10) exprimant un choix. Colonne « Publié ».",
+      "sourceId": "notice-commission-9689",
+      "page": 8,
+      "checked": "2026-11-25"
+    }
+  },
+  {
+    "id": "ifop-2026-11-18-rapport-p10",
+    "surveyId": "ifop-2026-11-13",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "usefulSample": null,
+    "noIntention": null,
+    "institute": "Ifop",
+    "commissioner": "TF1-LCI, Le Figaro et Sud Radio",
+    "published": "2026-11-18",
+    "fieldworkStart": "2026-11-13",
+    "fieldworkEnd": "2026-11-16",
+    "sampleSize": 1823,
+    "registeredSample": 1690,
+    "round": "premier",
+    "method": "Internet, méthode des quotas : sexe, âge, profession, région et taille d’agglomération.",
+    "population": "France, 18 ans et plus. Intentions de vote parmi les inscrits sur les listes électorales, base indiquée dans le rapport.",
+    "noticeSource": "notice-commission-10384",
+    "noticePage": 2,
+    "noticeRole": "methodologie",
+    "resultSource": "rapport-ifop-2026-11-18-122919",
+    "resultPage": 10,
+    "question": {
+      "status": "verifiee",
+      "wording": "Si dimanche prochain se déroulait le premier tour de l’élection présidentielle, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "base": "Inscrits sur les listes électorales. Le rapport ne précise pas ici le nombre d’intentions exprimées.",
+      "sourceId": "rapport-ifop-2026-11-18-122919",
+      "page": 10,
+      "checked": "2026-11-25"
+    },
+    "margin": {
+      "min": 1.2,
+      "max": 2.5,
+      "confidence": 95
+    },
+    "uncertainty": "L’effectif qui exprime un choix dans cette configuration n’est pas indiqué. Pour 1 500 répondants, le tableau de la notice (p. 3) donne le repère de ±1,2 à ±2,5 points à 95 %, présenté à titre indicatif.",
+    "scenario": "Premier tour · Édouard Philippe et Bruno Retailleau",
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 0.5
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 19
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2.5
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 3
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 11.5
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 15
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 7
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 36
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3.5
+      }
+    ],
+    "historicalImport": true
   }
 ]

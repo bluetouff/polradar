@@ -436,3 +436,58 @@ test('OpinionWay conserve les réponses par nom et les préférences en duel de 
     [9, 9, 17, 16, 25, 27, 20, 25, 26, 11],
   );
 });
+
+test('Les archives et le scénario complémentaire de l’Ifop gardent leur source et la précision publiée', () => {
+  const harris = polls.filter((p) => p.surveyId === 'harris-2023-09-01');
+  assert.equal(harris.length, 8);
+  assert.ok(
+    harris.every(
+      (p) =>
+        p.noticeRole === 'rapport' &&
+        p.registeredSample === 2148 &&
+        p.question.status === 'a-relire' &&
+        p.usefulSample === null,
+    ),
+  );
+  const cluster = polls.filter(
+    (p) => p.surveyId === 'cluster17-commission-9753',
+  );
+  assert.deepEqual(
+    cluster.map((p) => [p.round, p.usefulSample, p.noticePage]),
+    [
+      ['premier', 1238, 18],
+      ['premier', 1182, 22],
+      ['second', 1063, 26],
+      ['second', 920, 30],
+    ],
+  );
+  const opinionway = polls.find(
+    (p) => p.surveyId === 'opinionway-commission-9689',
+  );
+  assert.equal(opinionway.published, null);
+  assert.equal(opinionway.fieldworkEnd, '2023-04-13');
+  assert.equal(
+    opinionway.results.find((r) => r.id === 'bardella').percentage,
+    23,
+  );
+  const supplement = polls.find((p) => p.id === 'ifop-2026-11-18-rapport-p10');
+  assert.equal(supplement.resultPage, 10);
+  assert.equal(supplement.noticeRole, 'methodologie');
+  assert.equal(supplement.usefulSample, null);
+  assert.equal(supplement.results.find((r) => r.id === 'lepen').percentage, 36);
+  assert.equal(
+    catalogueCoverage(catalogue, polls, sources, audits).find(
+      (row) => row.number === '10384',
+    ).scenarios.length,
+    5,
+  );
+});
+
+test('Une réponse de potentiel électoral garde la base des inscrits et ne devient pas une intention de vote', () => {
+  const coverage = catalogueCoverage(catalogue, polls, sources, audits);
+  const studies = documentedSpecialStudies(specialStudies, coverage);
+  const potential = studies.find((study) => study.number === '10363');
+  assert.equal(potential.tables.flatMap((table) => table.results).length, 46);
+  assert.match(potential.tables[0].base, /989 inscrits/);
+  assert.equal(coverage.find((r) => r.number === '10363').scenarios.length, 0);
+});

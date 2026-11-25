@@ -42,10 +42,20 @@ export function pollSignature(poll) {
     : ['observation', poll.id];
   return JSON.stringify([legacyPollSignature(poll), identity]);
 }
+/** @param {Pick<import('./data').Poll, 'published' | 'fieldworkEnd'>} poll */
+export function pollReferenceDate(poll) {
+  return poll.published ?? poll.fieldworkEnd;
+}
+/** @param {Pick<import('./data').Poll, 'noticeRole'>} poll */
+export function pollNoticeLabel(poll) {
+  if (poll.noticeRole === 'rapport') return 'Rapport de l’institut';
+  if (poll.noticeRole === 'methodologie') return 'Notice méthodologique';
+  return 'Notice officielle';
+}
 export function comparePollWaves(a, b) {
   return (
     a.fieldworkEnd.localeCompare(b.fieldworkEnd) ||
-    a.published.localeCompare(b.published) ||
+    pollReferenceDate(a).localeCompare(pollReferenceDate(b)) ||
     a.fieldworkStart.localeCompare(b.fieldworkStart) ||
     a.id.localeCompare(b.id)
   );
@@ -62,8 +72,9 @@ export function pollSeries(polls) {
     .map((rows) => rows.sort(comparePollWaves))
     .sort(
       (a, b) =>
-        b.at(-1).published.localeCompare(a.at(-1).published) ||
-        comparePollWaves(b.at(-1), a.at(-1)),
+        pollReferenceDate(b.at(-1)).localeCompare(
+          pollReferenceDate(a.at(-1)),
+        ) || comparePollWaves(b.at(-1), a.at(-1)),
     );
 }
 /** @param {import('./data').Poll[]} polls */
@@ -76,7 +87,14 @@ export function pollCoverage(polls, groups = pollSeries(polls)) {
     secondRound: polls.filter((p) => p.round === 'second').length,
     documentedSurveys: surveys.size,
     observationsWithoutSurvey: polls.filter((p) => !p.surveyId).length,
-    notices: new Set(polls.map((p) => p.noticeSource)).size,
+    notices: new Set(
+      polls
+        .filter((p) => p.noticeRole !== 'rapport')
+        .map((p) => p.noticeSource),
+    ).size,
+    surveysWithReportOnly: new Set(
+      polls.filter((p) => p.noticeRole === 'rapport').map((p) => p.surveyId),
+    ).size,
     series: groups.length,
     institutes,
   };

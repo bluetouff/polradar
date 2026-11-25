@@ -65,7 +65,8 @@ export async function briefEditions() {
   for (const { day } of measures) days.add(day);
   for (const { published } of documents) days.add(published!);
   for (const { published } of documentedPolls)
-    if (firstEdition && published >= firstEdition) days.add(published);
+    if (firstEdition && published && published >= firstEdition)
+      days.add(published);
   return [...days]
     .sort()
     .reverse()

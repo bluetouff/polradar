@@ -41,7 +41,7 @@ export async function archivePollPublication(
       'Début du terrain',
       'Fin du terrain',
       'Publication',
-      'Notice',
+      'Source des résultats',
     ],
     rows: poll.results.map((result) => [
       result.name,
@@ -51,7 +51,7 @@ export async function archivePollPublication(
       poll.fieldworkStart,
       poll.fieldworkEnd,
       poll.published,
-      graphic.sources[0].url,
+      poll.resultSource ? graphic.sources[1].url : graphic.sources[0].url,
     ]),
   };
 }

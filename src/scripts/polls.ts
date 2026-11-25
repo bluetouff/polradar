@@ -2,6 +2,7 @@ import { publicData, el, anchor, svg, number, date, download } from './ui';
 import {
   pollSeries,
   pollColor,
+  pollNoticeLabel,
   pollScoreLabel,
   rankedPollResults,
   chartGeometry,
@@ -287,10 +288,11 @@ async function start() {
     const heading = el('div', undefined, 'register-heading'),
       source = data.sources.find((source) => source.id === poll.noticeSource)!,
       link = anchor(
-        `Notice officielle, page ${poll.noticePage} ↗`,
+        `${pollNoticeLabel(poll)}, page ${poll.noticePage} ↗`,
         `${source.url}#page=${poll.noticePage}`,
       );
     quickSource.href = link.href;
+    quickSource.textContent = pollNoticeLabel(poll) + ' ↗';
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     heading.append(el('h2', 'Enquête et méthode'), link);
@@ -327,7 +329,10 @@ async function start() {
         'Terrain',
         `Du ${date(poll.fieldworkStart)} au ${date(poll.fieldworkEnd)}`,
       ],
-      ['Date de référence de l’enquête', date(poll.published)],
+      [
+        'Date de référence de l’enquête',
+        poll.published ? date(poll.published) : 'Publication non datée',
+      ],
       [
         publicationLabel,
         publication.status === 'verifiee'
@@ -440,7 +445,7 @@ async function start() {
         'Publication',
         'Candidat',
         'Pourcentage exprimé',
-        'Notice',
+        'Source des résultats',
         'Borne supérieure exclusive (%)',
         'Enquête',
         'Question originale',
@@ -461,10 +466,14 @@ async function start() {
         poll.scenario,
         poll.fieldworkStart,
         poll.fieldworkEnd,
-        poll.published,
+        poll.published ?? '',
         result.name,
         result.percentage === null ? '' : String(result.percentage),
-        data.sources.find((source) => source.id === poll.noticeSource)!.url,
+        data.sources.find(
+          (source) => source.id === (poll.resultSource ?? poll.noticeSource),
+        )!.url +
+          '#page=' +
+          (poll.resultPage ?? poll.noticePage),
         result.below === undefined ? '' : String(result.below),
         poll.surveyId ?? '',
         ...(question?.status === 'verifiee'

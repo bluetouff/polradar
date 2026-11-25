@@ -221,7 +221,7 @@ const auditSchema = z.record(
 );
 /**
  * @param {z.infer<typeof catalogueSchema>} snapshot
- * @param {{id:string,noticeSource:string,noticePage:number}[]} polls
+ * @param {{id:string,noticeSource:string,noticePage:number,noticeRole?:'rapport'|'methodologie'}[]} polls
  * @param {{id:string,url:string}[]} sources
  * @param {unknown} rawAudits
  */
@@ -231,6 +231,7 @@ export function catalogueCoverage(snapshot, polls, sources, rawAudits) {
   const byNumber = new Map();
   const byPath = new Map();
   for (const p of polls) {
+    if (p.noticeRole) continue;
     const s = sourceById.get(p.noticeSource);
     if (!s) throw Error('Référence de notice absente : ' + p.noticeSource);
     const u = new URL(s.url);

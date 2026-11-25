@@ -9,7 +9,7 @@ import { economy, statements } from './economy-data';
 import { candidateById, formatDate } from './data';
 import { campaignBriefs } from './briefs';
 import { questions } from './questions';
-import { measureSearchText } from './features.mjs';
+import { measureSearchText, pollReferenceDate } from './features.mjs';
 import { householdSimulators } from './household-simulators.mjs';
 export interface SearchEntry {
   id: string;
@@ -339,15 +339,15 @@ async function buildSearchIndex(): Promise<SearchEntry[]> {
     ...polls.map((poll) => ({
       id: `sondage-${poll.id}`,
       type: 'sondage',
-      title: `${poll.institute} · ${poll.scenario} · ${poll.published}`,
+      title: `${poll.institute} · ${poll.scenario} · ${pollReferenceDate(poll)}`,
       text: `${poll.commissioner} ${poll.results.map((result) => result.name).join(' ')} ${poll.method}`,
       url: `/sondages/#enquete=${poll.id}`,
       candidate: '',
       candidates: poll.results.map((result) => result.id),
       theme: '',
-      year: poll.published.slice(0, 4),
+      year: pollReferenceDate(poll).slice(0, 4),
       scope: '',
-      date: poll.published,
+      date: pollReferenceDate(poll),
     })),
     ...readerEntries.map(([type, url, title, text]) => ({
       id: 'outil' + url.replace(/[^a-z0-9]+/gi, '-').replace(/-$/, ''),

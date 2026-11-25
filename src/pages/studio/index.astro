@@ -8,6 +8,7 @@ import {
   studioPollArchives,
 } from '../../lib/studio';
 import { formatDate, meta } from '../../lib/data';
+import { pollReferenceDate } from '../../lib/features.mjs';
 import '../../styles/studio.css';
 const first = studioItems.find((i) => i.id === 'economie-inflation')!;
 type Option = {
@@ -35,7 +36,7 @@ if (studioPollArchives.length)
       label:
         poll.institute +
         ' · ' +
-        formatDate(poll.published) +
+        formatDate(pollReferenceDate(poll)) +
         ' · ' +
         poll.scenario +
         ' · p. ' +

@@ -2,6 +2,7 @@
 import Base from '../../../layouts/Base.astro';
 import DataGraphicEmbed from '../../../components/DataGraphicEmbed.astro';
 import { polls, sources, formatDate } from '../../../lib/data';
+import { pollReferenceDate } from '../../../lib/features.mjs';
 import { pollGraphic, pollEmbeds } from '../../../lib/poll-graphic.mjs';
 export function getStaticPaths() {
   return pollEmbeds(polls).flatMap(({ id, waves, latest }) =>
@@ -29,7 +30,7 @@ const liveAlt =
     'Intégrer le sondage ' +
     wave.institute +
     ' du ' +
-    formatDate(wave.published)
+    formatDate(pollReferenceDate(wave))
   }
   description={wave.scenario}
   section="/sondages/"
@@ -42,7 +43,7 @@ const liveAlt =
   <header class="page-title">
     <div>
       <h1>
-        {wave.institute} · {formatDate(wave.published)}
+        {wave.institute} · {formatDate(pollReferenceDate(wave))}
       </h1>
       <p>{wave.scenario}</p>
       {question?.status === 'verifiee' ? (
