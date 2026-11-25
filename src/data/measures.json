@@ -4487,9 +4487,9 @@
     "parentId": "roussel-fiscalite",
     "candidate": "roussel",
     "theme": "fiscalite",
-    "revision": 1,
+    "revision": 2,
     "title": "Rétablir l’impôt de solidarité sur la fortune",
-    "description": "Rétablir l’ISF et accroître la contribution des patrimoines les plus élevés.",
+    "description": "Fabien Roussel s’engage à rétablir l’impôt de solidarité sur la fortune dans son discours à la Fête de l’Humanité.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -4497,22 +4497,27 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "roussel-huma-septembre-2026",
+        "locator": "Fiscalité du patrimoine",
+        "fragment": ":~:text=nous%20r%C3%A9tablirons%20l%27imp%C3%B4t%20de%20solidarit%C3%A9%20sur%20la%20fortune"
+      },
+      {
         "sourceId": "pcf-2026",
         "locator": "Discours : impôt sur la fortune"
       }
     ],
-    "scope": "orientation",
-    "edition": "Discours à la Fête de l’Humanité, publié le 15 septembre 2026",
-    "checked": "2026-11-17"
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Fabien Roussel",
+    "checked": "2026-11-25"
   },
   {
     "id": "roussel-social-cotisations-dividendes",
     "parentId": "roussel-social",
     "candidate": "roussel",
     "theme": "social",
-    "revision": 1,
+    "revision": 2,
     "title": "Faire cotiser les revenus financiers et les dividendes",
-    "description": "Financer la Sécurité sociale et les retraites par répartition avec ces nouvelles cotisations.",
+    "description": "Fabien Roussel veut soumettre les revenus financiers et les dividendes à des cotisations finançant la Sécurité sociale et les retraites par répartition.",
     "beneficiaries": null,
     "timing": null,
     "financing": "Cotisations sur les revenus financiers et les dividendes.",
@@ -4520,22 +4525,27 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "roussel-huma-septembre-2026",
+        "locator": "Financement de la protection sociale",
+        "fragment": ":~:text=des%20cotisations%20sur%20les%20revenus%20financiers%20et%20sur%20les%20dividendes"
+      },
+      {
         "sourceId": "pcf-2026",
         "locator": "Discours : revenus financiers"
       }
     ],
-    "scope": "orientation",
-    "edition": "Discours à la Fête de l’Humanité, publié le 15 septembre 2026",
-    "checked": "2026-11-17"
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Fabien Roussel",
+    "checked": "2026-11-25"
   },
   {
     "id": "roussel-fiscalite-heritages",
     "parentId": "roussel-fiscalite",
     "candidate": "roussel",
     "theme": "fiscalite",
-    "revision": 1,
+    "revision": 2,
     "title": "Exonérer les héritages sous 200 000 €",
-    "description": "Accroître la taxation des héritages les plus élevés et exonérer ceux inférieurs au seuil annoncé.",
+    "description": "Fabien Roussel propose d’exonérer les héritages inférieurs à 200 000 € et d’augmenter la taxation des plus élevés.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -4551,22 +4561,27 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "roussel-huma-septembre-2026",
+        "locator": "Fiscalité du patrimoine",
+        "fragment": ":~:text=nous%20exon%C3%A9rerons%20les%20h%C3%A9ritages%20en%20dessous%20de%20200%20000%20%E2%82%AC"
+      },
+      {
         "sourceId": "pcf-2026",
         "locator": "Discours : héritage populaire et solidaire"
       }
     ],
-    "scope": "orientation",
-    "edition": "Discours à la Fête de l’Humanité, publié le 15 septembre 2026",
-    "checked": "2026-11-17"
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Fabien Roussel",
+    "checked": "2026-11-25"
   },
   {
     "id": "roussel-institutions-candidatures-populaires",
     "parentId": "roussel-institutions",
     "candidate": "roussel",
     "theme": "institutions",
-    "revision": 1,
+    "revision": 2,
     "title": "50 % d’ouvriers et d’employés parmi les candidats aux législatives",
-    "description": "Imposer aux partis cette proportion dans les candidatures qu’ils présentent.",
+    "description": "Fabien Roussel propose d’obliger chaque parti à présenter 50 % d’ouvriers et d’employés parmi ses candidatures aux législatives.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -4582,13 +4597,18 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "roussel-huma-septembre-2026",
+        "locator": "Candidatures aux législatives",
+        "fragment": ":~:text=50%20%25%20d%27ouvriers%2C%20d%27employ%C3%A9s%20aux%20%C3%A9lections%20l%C3%A9gislatives"
+      },
+      {
         "sourceId": "pcf-2026",
         "locator": "Discours : parité sociale au Parlement"
       }
     ],
-    "scope": "orientation",
-    "edition": "Discours à la Fête de l’Humanité, publié le 15 septembre 2026",
-    "checked": "2026-11-17"
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Fabien Roussel",
+    "checked": "2026-11-25"
   },
   {
     "id": "retailleau-logement-normes",
@@ -16446,15 +16466,20 @@
     "parentId": "cheve-institutions",
     "candidate": "cheve",
     "theme": "institutions",
-    "revision": 2,
+    "revision": 3,
     "title": "Diviser l’exécutif entre décision nationale et application locale",
-    "description": "L’autorité centrale édicterait les règlements et contrôlerait les agents. Une seconde autorité, proche des communes et des préfectures, appliquerait le droit, coordonnerait la force publique et percevrait les impôts.",
+    "description": "L’autorité centrale édicterait les règlements et contrôlerait les agents. Une seconde autorité, proche des communes et des préfectures, appliquerait le droit, coordonnerait la force publique et percevrait les impôts. L’ébauche précise que l’autorité chargée d’appliquer ces décisions pourrait adapter leur exécution aux circonstances locales.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
     "metrics": [],
     "amounts": [],
     "sourceRefs": [
+      {
+        "sourceId": "cheve-remontee-citoyenne",
+        "locator": "Contre-pouvoir argumenté · p. 21",
+        "fragment": "page=21"
+      },
       {
         "sourceId": "cheve-projet-resume-electeurs",
         "locator": "Version résumée, p. 5 imprimée, « Réforme institutionnelle »."
@@ -16466,7 +16491,7 @@
     ],
     "scope": "campagne",
     "edition": "La France Adulte, ébauche de projet signée par Joël Chevé",
-    "checked": "2026-11-24"
+    "checked": "2026-11-25"
   },
   {
     "id": "cheve-proposition-argumentee",
@@ -61215,15 +61240,20 @@
     "parentId": "revillon-apreval-institutions-programme-2027",
     "candidate": "revillon-apreval",
     "theme": "institutions",
-    "revision": 1,
+    "revision": 2,
     "title": "Créer une fonction de juge général pouvant bloquer une loi",
-    "description": "Le texte lui confie aussi la nomination des juges. Sa fonction dépend des soutiens qu’il reçoit au sein du système.",
+    "description": "Le juge général pourrait bloquer une loi. Le manifeste lui confie aussi la nomination des juges et la responsabilité de leur activité. La fonction resterait révocable par le retrait des soutiens.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
     "metrics": [],
     "amounts": [],
     "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Constitution et justice · p. 47",
+        "fragment": "page=47"
+      },
       {
         "sourceId": "revillon-apreval-manifeste",
         "locator": "p. 23, Juge général"
@@ -77072,6 +77102,2953 @@
     ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027 · Bruno Retailleau",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-verifier-identite-compte-citoyen",
+    "parentId": "revillon-apreval-institutions-programme-2027",
+    "candidate": "revillon-apreval",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Vérifier l’identité des titulaires des comptes de vote",
+    "description": "Le manifeste ouvre un compte de participation par personne après vérification de son identité. Le compte servirait à proposer des textes et à voter.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Participation et vote · p. 12",
+        "fragment": "page=12"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-delai-rectification-vote-delegue",
+    "parentId": "revillon-apreval-institutions-programme-2027",
+    "candidate": "revillon-apreval",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Donner une semaine pour rectifier un vote délégué",
+    "description": "ODANIE avertirait le citoyen du vote exprimé par son relais et de ses changements. Le manifeste lui laisse une semaine après le vote pour corriger son choix.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Participation et vote · p. 17",
+        "fragment": "page=17"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-conseil-si-aucun-relais-majoritaire",
+    "parentId": "revillon-apreval-institutions-programme-2027",
+    "candidate": "revillon-apreval",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Former un conseil si aucun relais ne réunit la majorité",
+    "description": "Pour les fonctions de juge général et de coordinateur exécutif, les relais seraient réunis par ordre de soutien jusqu’à atteindre la majorité. Le conseil compterait au plus douze membres, pondérés par leurs soutiens.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Organisation des pouvoirs · p. 25",
+        "fragment": "page=25"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-financer-expertise-debat-citoyen",
+    "parentId": "revillon-apreval-institutions-programme-2027",
+    "candidate": "revillon-apreval",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Financer les études et les experts des auteurs de propositions citoyennes",
+    "description": "Le manifeste donne la parole à l’auteur d’une proposition discutée dans un débat national et prévoit de financer les études nécessaires à sa présentation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Participation et vote · p. 31",
+        "fragment": "page=31"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-rediger-contrat-social-court",
+    "parentId": "revillon-apreval-institutions-programme-2027",
+    "candidate": "revillon-apreval",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Rédiger un texte constitutionnel court et accessible",
+    "description": "Le manifeste propose un contrat social dont les règles essentielles seraient compréhensibles sans connaissances juridiques spécialisées.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Constitution et justice · p. 48",
+        "fragment": "page=48"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-remplacer-ecole-par-tutorat-et-centres",
+    "parentId": "revillon-apreval-campagne-2027-education",
+    "candidate": "revillon-apreval",
+    "theme": "education",
+    "revision": 1,
+    "title": "Remplacer l’école par un tutorat numérique et des centres d’activités",
+    "description": "Le manifeste prévoit un tuteur d’intelligence artificielle pour les apprentissages individuels et des centres ouverts à plusieurs âges pour le sport, les arts et les activités collectives.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Éducation · p. 51",
+        "fragment": "page=51"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-remplacer-principaux-impots-par-tvp",
+    "parentId": "revillon-apreval-campagne-2027-fiscalite",
+    "candidate": "revillon-apreval",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Substituer une taxe sur la vente aux particuliers aux principaux prélèvements",
+    "description": "Le candidat propose de supprimer TVA, impôt sur le revenu, cotisations sociales et impôt sur les sociétés. Il maintient une imposition minimale mondiale pour les très grands groupes dans son scénario.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Fiscalité · p. 70",
+        "fragment": "page=70"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-tvp-taux-normal-et-reduits",
+    "parentId": "revillon-apreval-campagne-2027-fiscalite",
+    "candidate": "revillon-apreval",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Fixer la taxe sur la vente aux particuliers à 50 % hors taxe au taux normal",
+    "description": "Le manifeste fixe deux taux réduits à 25 % et 10 %. Le taux normal de 50 % s’applique au prix hors taxe.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Fiscalité · p. 72",
+        "fragment": "page=72"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-centrer-assurance-maladie-publique-soins-vitaux",
+    "parentId": "revillon-apreval-campagne-2027-sante",
+    "candidate": "revillon-apreval",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Recentrer la couverture maladie publique sur les soins vitaux",
+    "description": "Chirurgie lourde, cancers, urgences, handicaps lourds et maladies chroniques invalidantes resteraient couverts. Le candidat prévoit des assurances complémentaires facultatives publiques ou privées.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Protection sociale · p. 76",
+        "fragment": "page=76"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-retraite-socle-70-puis-85-ans",
+    "parentId": "revillon-apreval-campagne-2027-retraites",
+    "candidate": "revillon-apreval",
+    "theme": "retraites",
+    "revision": 1,
+    "title": "Soumettre au vote une retraite de base ouverte à 70 ans, puis à 85 ans",
+    "description": "Le manifeste indique une pension publique d’environ 1 000 € par mois. Dans cette proposition, l’âge d’accès augmenterait d’un an tous les deux ans jusqu’à 85 ans.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Protection sociale · p. 77",
+        "fragment": "page=77"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-vote-sur-pensions-deja-acquises",
+    "parentId": "revillon-apreval-campagne-2027-retraites",
+    "candidate": "revillon-apreval",
+    "theme": "retraites",
+    "revision": 1,
+    "title": "Soumettre au vote deux règles de versement des pensions déjà acquises",
+    "description": "Le manifeste soumet deux options aux électeurs, le maintien immédiat des pensions ou leur versement à partir de 70 ans. Il propose dans les deux cas une protection pour les personnes qui ne peuvent plus travailler.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Protection sociale · p. 79",
+        "fragment": "page=79"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-contribution-residence-pensions-acquises",
+    "parentId": "revillon-apreval-campagne-2027-fiscalite",
+    "candidate": "revillon-apreval",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Créer une taxe de résidence pour financer les pensions déjà acquises",
+    "description": "La contribution serait mensuelle et due par tous les résidents majeurs. Le montant dépendrait du scénario de versement des pensions retenu par les électeurs.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Fiscalité · p. 80",
+        "fragment": "page=80"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-garantir-emploi-par-operateurs-publics",
+    "parentId": "revillon-apreval-campagne-2027-travail",
+    "candidate": "revillon-apreval",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Proposer un emploi public aux personnes sans activité",
+    "description": "Le manifeste prévoit que l’État offre une activité aux personnes sans emploi et développe des activités de logistique, d’énergie et de production automatisée.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Protection sociale · p. 81",
+        "fragment": "page=81"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-repartir-temps-travail-apres-automatisation",
+    "parentId": "revillon-apreval-campagne-2027-travail",
+    "candidate": "revillon-apreval",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Partager le travail restant à mesure que des tâches sont automatisées",
+    "description": "Le candidat propose une répartition des heures restantes entre davantage de personnes. Les chiffres du manifeste illustrent un scénario et ne fixent pas une nouvelle durée légale.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Protection sociale · p. 84",
+        "fragment": "page=84"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-investissement-civique-projets-votes",
+    "parentId": "revillon-apreval-campagne-2027-fiscalite",
+    "candidate": "revillon-apreval",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Financer certains projets collectifs par un investissement civique",
+    "description": "Le candidat propose que les citoyens votent sur chaque projet et versent une contribution ponctuelle ou mensuelle destinée à le financer.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Fiscalité · p. 90",
+        "fragment": "page=90"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-fonds-automatisation-infrastructures",
+    "parentId": "revillon-apreval-campagne-2027-fiscalite",
+    "candidate": "revillon-apreval",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Créer un fonds d’investissement pour l’automatisation et les infrastructures",
+    "description": "Le projet prévoit un fonds séparé du budget de l’État, capable de co-investir avec le secteur privé. Ses recettes doivent réduire la taxe de résidence. Les projets et leurs résultats seraient publics.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Fiscalité · p. 91",
+        "fragment": "page=91"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-citoyennete-indice-creatif",
+    "parentId": "revillon-apreval-campagne-2027-immigration",
+    "candidate": "revillon-apreval",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Offrir la nationalité aux cent premiers d’un classement de créativité",
+    "description": "Le manifeste prévoit un indice évalué à partir de contributions soumises par les candidats, avec un outil d’intelligence artificielle. Il présente l’octroi comme une voie distincte d’acquisition de la nationalité.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Nationalité · p. 94",
+        "fragment": "page=94"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-service-de-vehicules-electriques-autonomes",
+    "parentId": "revillon-apreval-campagne-2027-climat",
+    "candidate": "revillon-apreval",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Créer un service de véhicules électriques autonomes à la demande",
+    "description": "Le manifeste propose des véhicules partagés qui se déplaceraient sans conducteur. Il associe la généralisation du service à des essais locaux.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Mobilité · p. 104",
+        "fragment": "page=104"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-ouvrir-reseau-vehicules-compatibles",
+    "parentId": "revillon-apreval-campagne-2027-travail",
+    "candidate": "revillon-apreval",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Autoriser les constructeurs privés à utiliser le réseau de véhicules autonomes",
+    "description": "Le manifeste prévoit une flotte publique fabriquée en France et des normes communes permettant aux constructeurs privés de proposer des véhicules compatibles.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Mobilité · p. 108",
+        "fragment": "page=108"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-soumettre-recharge-en-roulant-au-vote",
+    "parentId": "revillon-apreval-campagne-2027-climat",
+    "candidate": "revillon-apreval",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Faire choisir le mode de recharge en circulation des véhicules autonomes",
+    "description": "Le manifeste soumet trois options au vote, la caténaire, l’induction et un rail. Il recommande la caténaire.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Mobilité · p. 111",
+        "fragment": "page=111"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-transport-urgences-par-vehicule-partage",
+    "parentId": "revillon-apreval-campagne-2027-sante",
+    "candidate": "revillon-apreval",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Prévoir une fonction de transport d’urgence dans le service de véhicules partagés",
+    "description": "Le candidat prévoit qu’un véhicule du réseau puisse être affecté à une urgence signalée dans l’application. Le document présente un projet de transport.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Mobilité · p. 118",
+        "fragment": "page=118"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-livrer-courses-et-collecter-tri-en-un-trajet",
+    "parentId": "revillon-apreval-campagne-2027-climat",
+    "candidate": "revillon-apreval",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Coupler la livraison des courses et la collecte des déchets triés",
+    "description": "Le projet MAELIS prévoit l’échange à domicile de modules de livraison standardisés. Les modules repartiraient avec les produits ou emballages à collecter.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Mobilité · p. 120",
+        "fragment": "page=120"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-consigner-emballages-reutilisables-courses",
+    "parentId": "revillon-apreval-campagne-2027-climat",
+    "candidate": "revillon-apreval",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Consigner les contenants réutilisables du réseau de livraison",
+    "description": "Le manifeste prévoit des contenants standardisés en verre ou en inox. Ils seraient repris à la livraison, lavés et remis en circulation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Mobilité · p. 124",
+        "fragment": "page=124"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-convertir-parkings-en-depots-flotte",
+    "parentId": "revillon-apreval-campagne-2027-climat",
+    "candidate": "revillon-apreval",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Transformer une partie des parkings en dépôts d’entretien des véhicules partagés",
+    "description": "Le projet affecte une partie des parkings à l’entretien, à la recharge et au stationnement de la flotte. Il prévoit aussi de libérer des places en voirie.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Mobilité · p. 128",
+        "fragment": "page=128"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-moderniser-foyers-bois-pour-pointes-electriques",
+    "parentId": "revillon-apreval-campagne-2027-climat",
+    "candidate": "revillon-apreval",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Proposer des inserts de cheminée pour réduire la demande électrique en pointe",
+    "description": "Le candidat propose un insert avec filtration et raccord vers les radiateurs. Il prévoit de solliciter les foyers équipés lors des pointes de consommation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Énergie · p. 129",
+        "fragment": "page=129"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-recuperer-chaleur-serveurs-dans-immeubles",
+    "parentId": "revillon-apreval-campagne-2027-climat",
+    "candidate": "revillon-apreval",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Chauffer des logements avec la chaleur de serveurs installés dans les parkings",
+    "description": "Le manifeste propose d’installer des serveurs dans les places libérées dans les parkings et d’utiliser leur chaleur pour les radiateurs et l’eau chaude.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Énergie · p. 130",
+        "fragment": "page=130"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-former-salaries-metiers-mobilite-reconversion",
+    "parentId": "revillon-apreval-campagne-2027-travail",
+    "candidate": "revillon-apreval",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Offrir une formation de reconversion aux salariés affectés par le réseau autonome",
+    "description": "Le manifeste prévoit une formation et une activité rémunérée pour les personnes dont le métier disparaîtrait avec le déploiement des véhicules et de la livraison automatisée.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Mobilité · p. 135",
+        "fragment": "page=135"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-experimenter-reseau-vehicules-villes-pilotes",
+    "parentId": "revillon-apreval-campagne-2027-climat",
+    "candidate": "revillon-apreval",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Tester le réseau de véhicules autonomes dans des villes pilotes",
+    "description": "Le projet prévoit un tableau public des coûts, accidents et délais d’attente, puis un vote à chaque étape pour poursuivre, corriger ou arrêter le déploiement.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Mobilité · p. 137",
+        "fragment": "page=137"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-confier-vente-stupefiants-a-un-monopole-public",
+    "parentId": "revillon-apreval-campagne-2027-sante",
+    "candidate": "revillon-apreval",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Confier la vente de stupéfiants à un monopole public",
+    "description": "Le manifeste prévoit une vente par des salariés de l’État, un contrôle des produits et l’affectation des recettes à la prévention et aux soins.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Justice et logement · p. 144",
+        "fragment": "page=144"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-ouvrir-abris-individuels-sans-condition",
+    "parentId": "revillon-apreval-campagne-2027-logement",
+    "candidate": "revillon-apreval",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Proposer un abri individuel sans condition aux personnes à la rue",
+    "description": "Le projet CUBE prévoit des abris chauffés et fermés, accessibles sans horaires imposés et permettant de garder ses affaires et son animal.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Justice et logement · p. 154",
+        "fragment": "page=154"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-elaborer-langue-commune-internationale",
+    "parentId": "revillon-apreval-campagne-2027-europe",
+    "candidate": "revillon-apreval",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Élaborer une langue commune internationale",
+    "description": "Le manifeste propose une langue nouvelle construite à partir de plusieurs langues, avec un alphabet visant à associer une lettre à chaque son.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Relations internationales · p. 167",
+        "fragment": "page=167"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-cooperation-renforcee-europe-taxe-mobilite",
+    "parentId": "revillon-apreval-campagne-2027-europe",
+    "candidate": "revillon-apreval",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Proposer une coopération européenne sur la taxe à la consommation et la mobilité",
+    "description": "Le projet envisage un groupe d’au moins neuf États pour harmoniser la taxe proposée et développer des véhicules autonomes compatibles. Le texte présente plusieurs scénarios de relation avec l’Union.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Relations internationales · p. 170",
+        "fragment": "page=170"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "revillon-apreval-publier-tableau-de-bord-transition",
+    "parentId": "revillon-apreval-institutions-programme-2027",
+    "candidate": "revillon-apreval",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Publier un tableau de bord de la transition proposée",
+    "description": "Le manifeste prévoit un suivi public de la croissance, de l’emploi, de la dette, de la taxe de résidence et du temps de travail pendant le déploiement de son projet.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "revillon-apreval-manifeste",
+        "locator": "Suivi du programme · p. 172",
+        "fragment": "page=172"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Rémi Revillon d’Apreval",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "mlekuz-comite-pilotage-pluraliste-huit-membres",
+    "parentId": "mlekuz-institutions",
+    "candidate": "mlekuz",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Installer un comité de pilotage constituant indépendant de huit membres",
+    "description": "Le livre blanc relayé par Trajectoire prévoit deux désignations par la présidence, deux par le CESE, deux par la Commission nationale du débat public et deux volontaires tirés au sort dans la constituante.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mlekuz-programme-detaille",
+        "locator": "Pilotage de la constituante · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Manolo Mlekuz",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "mlekuz-pouvoir-revocation-comite-par-garants",
+    "parentId": "mlekuz-institutions",
+    "candidate": "mlekuz",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Autoriser les garants à révoquer ou à dissoudre le comité de pilotage",
+    "description": "Le livre blanc donne aux garants le pouvoir de révoquer un membre du comité ou de dissoudre le comité entier.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mlekuz-programme-detaille",
+        "locator": "Pilotage de la constituante · p. 12",
+        "fragment": "page=12"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Manolo Mlekuz",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "mlekuz-conserver-pluralisme-medias-debat-constituant",
+    "parentId": "mlekuz-institutions",
+    "candidate": "mlekuz",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Charger l’Arcom de contrôler le pluralisme du débat constituant",
+    "description": "Le livre blanc prévoit des débats contradictoires dans les médias publics et privés et demande que les moyens de l’Arcom soient renforcés par la loi lançant la procédure.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mlekuz-programme-detaille",
+        "locator": "Débat de société · p. 16",
+        "fragment": "page=16"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Manolo Mlekuz",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "mlekuz-publier-cahiers-doleances-2019",
+    "parentId": "mlekuz-institutions",
+    "candidate": "mlekuz",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Publier les cahiers de doléances et en remettre une synthèse à la constituante",
+    "description": "Le livre blanc prévoit de verser les contributions des Gilets jaunes et du Grand Débat à la documentation de départ de l’assemblée citoyenne.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mlekuz-programme-detaille",
+        "locator": "Débat de société · p. 16",
+        "fragment": "page=16"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Manolo Mlekuz",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "mlekuz-consulter-associations-et-syndicats-par-canaux-dedies",
+    "parentId": "mlekuz-institutions",
+    "candidate": "mlekuz",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Organiser une consultation propre aux associations, syndicats et partis",
+    "description": "Ces organisations pourraient faire parvenir leurs contributions par des canaux dédiés et relayer les débats auprès de leurs publics.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mlekuz-programme-detaille",
+        "locator": "Débat de société · p. 16",
+        "fragment": "page=16"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Manolo Mlekuz",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "mlekuz-ouvrir-tirage-constituante-selon-residence",
+    "parentId": "mlekuz-institutions",
+    "candidate": "mlekuz",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Ouvrir le tirage de la constituante aux résidents de longue durée",
+    "description": "Le livre blanc vise des volontaires de plus de 16 ans, français ou résidant en France depuis plus de trois ans. Il prévoit un tirage visant la diversité sociale, géographique et politique.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mlekuz-programme-detaille",
+        "locator": "Composition et droits des constituants · p. 18",
+        "fragment": "page=18"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Manolo Mlekuz",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "mlekuz-conge-citoyen-membres-constituante",
+    "parentId": "mlekuz-campagne-2027-travail",
+    "candidate": "mlekuz",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Créer un congé citoyen pour les salariés de la constituante",
+    "description": "La loi lançant la procédure prévoirait un congé pendant les travaux et le retour à poste égal dans l’entreprise. Des solutions seraient étudiées au cas par cas pour les indépendants et les autres situations.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mlekuz-programme-detaille",
+        "locator": "Composition et droits des constituants · p. 18",
+        "fragment": "page=18"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Manolo Mlekuz",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "mlekuz-indemniser-constituants-selon-grille-deputes",
+    "parentId": "mlekuz-institutions",
+    "candidate": "mlekuz",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Rémunérer les constituants selon la grille des députés",
+    "description": "Le livre blanc mentionne environ 7 500 € bruts par mois durant le mandat, avec prise en charge du transport et du logement.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mlekuz-programme-detaille",
+        "locator": "Composition et droits des constituants · p. 18",
+        "fragment": "page=18"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Manolo Mlekuz",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "mlekuz-controler-enrichissement-constituants-hatvp",
+    "parentId": "mlekuz-institutions",
+    "candidate": "mlekuz",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Confier à la Haute Autorité le contrôle des risques d’enrichissement des constituants",
+    "description": "Le livre blanc prévoit un contrôle de la Haute Autorité pour la transparence de la vie publique. Il prévoit également une formation à l’identification des tentatives d’influence.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mlekuz-programme-detaille",
+        "locator": "Composition et droits des constituants · p. 18",
+        "fragment": "page=18"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Manolo Mlekuz",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "mlekuz-colleges-consultatifs-constituante",
+    "parentId": "mlekuz-institutions",
+    "candidate": "mlekuz",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Associer six collèges consultatifs aux travaux de la constituante",
+    "description": "Les collèges recueilleraient les contributions de la société civile, des élus, des chercheurs, des médias et des représentants des générations futures et du vivant. Les décisions reviendraient aux constituants tirés au sort.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mlekuz-programme-detaille",
+        "locator": "Composition et droits des constituants · p. 19",
+        "fragment": "page=19"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Manolo Mlekuz",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "mlekuz-panel-population-1500-constituante",
+    "parentId": "mlekuz-institutions",
+    "candidate": "mlekuz",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Consulter un panel de 1 500 personnes pendant les travaux constituants",
+    "description": "Le panel serait constitué par un institut de sondage et pourrait être sollicité pour tester la réception des projets de la constituante.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mlekuz-programme-detaille",
+        "locator": "Composition et droits des constituants · p. 19",
+        "fragment": "page=19"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Manolo Mlekuz",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "mlekuz-financer-constituante-exclusivement-fonds-publics",
+    "parentId": "mlekuz-campagne-2027-fiscalite",
+    "candidate": "mlekuz",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Financer la constituante par des fonds publics",
+    "description": "Le comité de pilotage gérerait le budget fixé par la loi préalable adoptée par référendum. Le livre blanc exclut les financements privés et le parrainage d’entreprises.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mlekuz-programme-detaille",
+        "locator": "Budget de la constituante · p. 19",
+        "fragment": "page=19"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Manolo Mlekuz",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "mlekuz-priorite-consentement-deliberations-constituantes",
+    "parentId": "mlekuz-institutions",
+    "candidate": "mlekuz",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Privilégier le consentement lors des délibérations de la constituante",
+    "description": "Les animateurs chercheraient une décision sans objection. Le vote serait utilisé si le consentement des constituants ne peut être obtenu.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mlekuz-programme-detaille",
+        "locator": "Travaux de la constituante · p. 20",
+        "fragment": "page=20"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Manolo Mlekuz",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "mlekuz-accrediter-observateurs-travaux-constituants",
+    "parentId": "mlekuz-institutions",
+    "candidate": "mlekuz",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Accréditer des observateurs pour suivre les travaux constituants",
+    "description": "Le livre blanc prévoit d’accréditer des journalistes, chercheurs et créateurs de contenus pour rendre compte des travaux de l’assemblée.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mlekuz-programme-detaille",
+        "locator": "Travaux de la constituante · p. 21",
+        "fragment": "page=21"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Manolo Mlekuz",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-pole-public-bancaire-prets-bonifies",
+    "parentId": "roussel-fiscalite",
+    "candidate": "roussel",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Créer un pôle bancaire public pour financer les investissements",
+    "description": "Au meeting de la Fête de l’Humanité, Fabien Roussel propose de nationaliser une grande banque et de prêter selon des critères sociaux et écologiques. Il évoque des taux bonifiés, nuls ou négatifs.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "roussel-huma-septembre-2026",
+        "locator": "Banques et investissement",
+        "fragment": ":~:text=construire%20un%20grand%20p%C3%B4le%20public%20bancaire"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Fabien Roussel",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-parite-salaries-actionnaires-conseils",
+    "parentId": "roussel-travail",
+    "candidate": "roussel",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Établir la parité entre salariés et actionnaires dans les conseils d’administration",
+    "description": "Fabien Roussel propose autant de représentants des salariés que des actionnaires pour décider des choix de l’entreprise.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "roussel-huma-septembre-2026",
+        "locator": "Démocratie dans les entreprises",
+        "fragment": ":~:text=autant%20de%20repr%C3%A9sentants%20de%20salari%C3%A9s%20que%20d%27actionnaires"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Fabien Roussel",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-retablir-chsct-delegues-personnel",
+    "parentId": "roussel-travail",
+    "candidate": "roussel",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Rétablir les CHSCT et les délégués du personnel",
+    "description": "Fabien Roussel associe le rétablissement des instances de santé, de sécurité et de représentation du personnel à l’abrogation de la loi Travail.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "roussel-huma-septembre-2026",
+        "locator": "Démocratie dans les entreprises",
+        "fragment": ":~:text=nous%20r%C3%A9tablirons%20les%20CHSCT"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Fabien Roussel",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-loi-integrale-violences-sexuelles",
+    "parentId": "roussel-securite",
+    "candidate": "roussel",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Faire adopter une loi intégrale contre les violences sexuelles",
+    "description": "Le candidat demande une loi protégeant les femmes et les enfants, avec des moyens d’application sur tout le territoire.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "roussel-huma-septembre-2026",
+        "locator": "Protection face aux violences",
+        "fragment": ":~:text=Faisons%20voter%20la%20loi%20int%C3%A9grale"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Fabien Roussel",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-planifier-sortie-fossiles-quinze-ans",
+    "parentId": "roussel-climat",
+    "candidate": "roussel",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Planifier une sortie des énergies fossiles en quinze ans",
+    "description": "Fabien Roussel fixe cet horizon dans son discours de la Fête de l’Humanité. Il n’y énonce pas de calendrier par énergie ou par secteur.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "roussel-huma-septembre-2026",
+        "locator": "Énergie",
+        "fragment": ":~:text=la%20sortie%20des%20%C3%A9nergies%20fossiles%20dans%20les%20quinze%20prochaines%20ann%C3%A9es"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Fabien Roussel",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-sanctions-gouvernement-israel",
+    "parentId": "roussel-europe-palestine",
+    "candidate": "roussel",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Demander des sanctions françaises contre le gouvernement israélien",
+    "description": "Fabien Roussel demande à la France de prendre des sanctions et d’appuyer l’Organisation de libération de la Palestine. Il ne précise pas la nature des sanctions.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "roussel-huma-septembre-2026",
+        "locator": "Diplomatie",
+        "fragment": ":~:text=prenne%20des%20sanctions%20fermes"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Fabien Roussel",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-remplacer-accords-evasion-fiscale",
+    "parentId": "roussel-fiscalite",
+    "candidate": "roussel",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Supprimer la possibilité de négocier des sanctions pour la fraude fiscale liée aux paradis fiscaux",
+    "description": "Fabien Roussel dit vouloir mettre fin à ces accords. Il cite parmi les sanctions la prison, la perte des droits civiques ou les travaux d’intérêt général.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "roussel-huma-septembre-2026",
+        "locator": "Fraude fiscale",
+        "fragment": ":~:text=ils%20puissent%20n%C3%A9gocier%20leurs%20amendes"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Fabien Roussel",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "mathieu-constituante-dix-commissions",
+    "parentId": "mathieu-institutions",
+    "candidate": "mathieu",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Structurer la convention constituante en dix commissions de 50 personnes",
+    "description": "Le programme combine dix commissions et des travaux en petits groupes. Chaque proposition passerait par un débat contradictoire, un examen juridique, des amendements et un vote.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mathieu-projet-2027",
+        "locator": "Neuf mois pour construire le texte",
+        "fragment": ":~:text=dix%20commissions%20de%2050%20personnes"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Benoît Mathieu",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "mathieu-publier-avis-contradictoires-avant-referendum",
+    "parentId": "mathieu-institutions",
+    "candidate": "mathieu",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Publier les effets du texte et des avis contradictoires avant le référendum",
+    "description": "Le candidat prévoit une présentation accessible des changements et des règles de transition entre les deux Constitutions au moment du vote.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mathieu-projet-2027",
+        "locator": "Cinq étapes pour redonner le pouvoir au peuple français",
+        "fragment": ":~:text=d%E2%80%99avis%20contradictoires%20et%20des%20r%C3%A8gles"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Benoît Mathieu",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-allocation-nationale-premier-enfant",
+    "parentId": "saforcada-chartes-nationales-social-campagne",
+    "candidate": "saforcada",
+    "theme": "social",
+    "revision": 1,
+    "title": "Verser une allocation dès le premier enfant",
+    "description": "Le projet de charte prévoit une allocation mensuelle sans condition de ressources, pour un enfant français et des parents bénéficiaires de nationalité française. Le montant reste à fixer.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-famille",
+        "locator": "Aides aux familles et accueil des enfants · p. 9",
+        "fragment": "page=9"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-places-garde-horaires-adaptes",
+    "parentId": "saforcada-chartes-nationales-social-campagne",
+    "candidate": "saforcada",
+    "theme": "social",
+    "revision": 1,
+    "title": "Créer des places de garde aux horaires adaptés",
+    "description": "La charte mobilise communes, associations et employeurs. Elle donne la priorité aux territoires en tension, aux parents isolés et aux salariés en horaires décalés.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-famille",
+        "locator": "Aides aux familles et accueil des enfants · p. 9",
+        "fragment": "page=9"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-bouclier-professionnel-parental",
+    "parentId": "saforcada-programme-2027-travail-campagne",
+    "candidate": "saforcada",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Renforcer les droits professionnels après l’arrivée d’un enfant",
+    "description": "La charte propose de mieux indemniser et partager les congés autour du premier enfant et de protéger la reprise du travail, l’évolution salariale et les droits à la retraite.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-famille",
+        "locator": "Aides aux familles et accueil des enfants · p. 9",
+        "fragment": "page=9"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-intermediation-pensions-familles",
+    "parentId": "saforcada-chartes-nationales-social-campagne",
+    "candidate": "saforcada",
+    "theme": "social",
+    "revision": 1,
+    "title": "Étendre l’intermédiation des pensions alimentaires",
+    "description": "La charte propose de généraliser l’intermédiation, d’accélérer le recouvrement des impayés et de lisser les aides lors du retour à l’emploi des parents isolés.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-famille",
+        "locator": "Aides aux familles et accueil des enfants · p. 9",
+        "fragment": "page=9"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-precarite-avant-placement",
+    "parentId": "saforcada-chartes-nationales-social-campagne",
+    "candidate": "saforcada",
+    "theme": "social",
+    "revision": 1,
+    "title": "Prévoir un soutien avant le placement lorsqu’un enfant est en sécurité",
+    "description": "La charte propose qu’un placement ne puisse reposer sur la seule précarité et qu’un soutien renforcé au logement et à domicile précède la séparation lorsque la sécurité le permet.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-famille",
+        "locator": "Protection de l’enfance · p. 9",
+        "fragment": "page=9"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-garanties-opposables-enfants-confies",
+    "parentId": "saforcada-chartes-nationales-social-campagne",
+    "candidate": "saforcada",
+    "theme": "social",
+    "revision": 1,
+    "title": "Créer des garanties opposables pour les enfants confiés",
+    "description": "La charte propose un socle couvrant notamment la stabilité, la fratrie, la santé et l’école. Elle prévoit des contrôles inopinés et un suivi par département.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-famille",
+        "locator": "Protection de l’enfance · p. 9",
+        "fragment": "page=9"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-sorties-aide-sociale-enfance",
+    "parentId": "saforcada-chartes-nationales-social-campagne",
+    "candidate": "saforcada",
+    "theme": "social",
+    "revision": 1,
+    "title": "Prolonger l’accompagnement à la sortie de l’aide sociale à l’enfance",
+    "description": "La charte prévoit un accompagnement jusqu’à 21 ans en l’absence de ressources ou de soutien, et jusqu’à 25 ans pour achever un parcours. Elle prévoit notamment l’accès au logement et aux soins à la sortie.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-famille",
+        "locator": "Protection de l’enfance · p. 9",
+        "fragment": "page=9"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-adoption-delais-et-origines",
+    "parentId": "saforcada-chartes-nationales-social-campagne",
+    "candidate": "saforcada",
+    "theme": "social",
+    "revision": 1,
+    "title": "Réduire les délais d’adoption et renforcer l’accès aux origines",
+    "description": "La charte propose une loi pour préparer plus tôt un projet stable pour les enfants délaissés et mieux garantir l’accès aux origines.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-famille",
+        "locator": "Adoption et bioéthique · p. 10",
+        "fragment": "page=10"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-pacte-intergenerationnel-local",
+    "parentId": "saforcada-chartes-nationales-social-campagne",
+    "candidate": "saforcada",
+    "theme": "social",
+    "revision": 1,
+    "title": "Financer des projets locaux entre générations",
+    "description": "Un appel à projets soutiendrait l’habitat partagé, le mentorat et les activités communes entre structures accueillant des enfants et des personnes âgées.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-famille",
+        "locator": "Pacte intergénérationnel · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-programmation-sanitaire-dix-ans",
+    "parentId": "saforcada-chartes-nationales-sante-campagne",
+    "candidate": "saforcada",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Programmer les capacités sanitaires sur dix ans",
+    "description": "La charte propose une loi fixant les besoins de formation, les capacités hospitalières et les priorités territoriales. Un rapport annuel au Parlement suivrait leur mise en œuvre.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-sante",
+        "locator": "Programmation sanitaire et accès aux soins · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-supprimer-ars-directions-departementales",
+    "parentId": "saforcada-chartes-nationales-sante-campagne",
+    "candidate": "saforcada",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Remplacer les ARS par des directions départementales",
+    "description": "La charte répartit les missions entre des directions départementales de la santé et de l’autonomie, l’État, l’Assurance maladie, les collectivités et les autorités scientifiques.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-sante",
+        "locator": "Programmation sanitaire et accès aux soins · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-horizon-sante-installation",
+    "parentId": "saforcada-chartes-nationales-sante-campagne",
+    "candidate": "saforcada",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Proposer une aide à l’installation des soignants jusqu’à 60 000 euros",
+    "description": "La charte prévoit un contrat volontaire sur cinq ans pour les médecins, chirurgiens-dentistes et autres métiers en tension. Il comprendrait une aide financière, des exonérations temporaires et un soutien à l’installation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-sante",
+        "locator": "Programmation sanitaire et accès aux soins · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-alternative-avant-fermeture-hospitaliere",
+    "parentId": "saforcada-chartes-nationales-sante-campagne",
+    "candidate": "saforcada",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Exiger une solution de remplacement avant une fermeture hospitalière essentielle",
+    "description": "Un audit identifierait des capacités à renforcer ou à rouvrir. La charte prévoit qu’une fermeture essentielle ne précède pas la mise en service d’une solution de remplacement sûre.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-sante",
+        "locator": "Programmation sanitaire et accès aux soins · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-formation-soignants-pass-las",
+    "parentId": "saforcada-chartes-nationales-sante-campagne",
+    "candidate": "saforcada",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Augmenter les capacités de formation des soignants",
+    "description": "La charte propose d’ouvrir plus de places universitaires et paramédicales avec les enseignants et stages nécessaires. Elle prévoit aussi de simplifier le PASS et les L.AS.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-sante",
+        "locator": "Programmation sanitaire et accès aux soins · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-programme-national-prevention",
+    "parentId": "saforcada-chartes-nationales-sante-campagne",
+    "candidate": "saforcada",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Déployer un programme national de prévention en santé",
+    "description": "La charte coordonne les bilans, la prévention bucco-dentaire, les vaccinations et les dépistages entre la santé scolaire, la médecine du travail, la ville et l’hôpital.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-sante",
+        "locator": "Prévention, santé mentale et autonomie · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-renforcer-offre-territoriale-sante-mentale",
+    "parentId": "saforcada-chartes-nationales-sante-campagne",
+    "candidate": "saforcada",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Renforcer la psychiatrie et les équipes de santé mentale dans les territoires",
+    "description": "La charte prévoit des centres médico-psychologiques accessibles, des équipes mobiles, des lignes de crise et une offre de pédopsychiatrie selon des objectifs territoriaux.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-sante",
+        "locator": "Prévention, santé mentale et autonomie · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-soins-palliatifs-departementaux",
+    "parentId": "saforcada-chartes-nationales-sante-campagne",
+    "candidate": "saforcada",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Doter chaque département d’équipes et de capacités de soins palliatifs",
+    "description": "La charte prévoit des capacités de soins palliatifs, des équipes mobiles et un accompagnement à domicile par département.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-sante",
+        "locator": "Prévention, santé mentale et autonomie · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-contrats-capacite-medicaments",
+    "parentId": "saforcada-chartes-nationales-sante-campagne",
+    "candidate": "saforcada",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Sécuriser l’approvisionnement en médicaments et dispositifs médicaux",
+    "description": "La charte prévoit des contrats de capacité et de relocalisation pour les médicaments, leurs principes actifs, les diagnostics et les stocks jugés essentiels.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-sante",
+        "locator": "Approvisionnement et outre-mer · p. 12",
+        "fragment": "page=12"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-contrats-sante-outre-mer",
+    "parentId": "saforcada-chartes-nationales-sante-campagne",
+    "candidate": "saforcada",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Conclure un contrat pluriannuel de santé par territoire ultramarin",
+    "description": "La charte inscrit la formation, les capacités de soins, les stocks, les transports et l’accès aux spécialistes dans chaque contrat.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-sante",
+        "locator": "Approvisionnement et outre-mer · p. 12",
+        "fragment": "page=12"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-stabilite-programmes-scolaires-huit-ans",
+    "parentId": "saforcada-chartes-nationales-education-campagne",
+    "candidate": "saforcada",
+    "theme": "education",
+    "revision": 1,
+    "title": "Stabiliser les programmes scolaires pendant au moins huit ans",
+    "description": "Une loi d’orientation fixerait le cadre pour dix ans. Les programmes définiraient des attendus annuels et resteraient en vigueur au moins huit ans, sauf nécessité démontrée.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-instruction",
+        "locator": "Programmes et organisation du collège · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-lecture-ecriture-calcul-quotidiens",
+    "parentId": "saforcada-chartes-nationales-education-campagne",
+    "candidate": "saforcada",
+    "theme": "education",
+    "revision": 1,
+    "title": "Protéger un temps quotidien de lecture, d’écriture et de calcul en primaire",
+    "description": "La charte prévoit un temps consacré chaque jour à ces apprentissages, avec du soutien dès les premières difficultés et des groupes temporaires de besoin.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-instruction",
+        "locator": "Programmes et organisation du collège · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-protection-fonctionnelle-personnels-scolaires",
+    "parentId": "saforcada-chartes-nationales-education-campagne",
+    "candidate": "saforcada",
+    "theme": "education",
+    "revision": 1,
+    "title": "Automatiser la protection fonctionnelle des personnels scolaires menacés",
+    "description": "La charte propose une protection fonctionnelle et un accompagnement pour déposer plainte et suivre les menaces.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-instruction",
+        "locator": "Programmes et organisation du collège · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-college-trois-dominantes-quatrieme",
+    "parentId": "saforcada-chartes-nationales-education-campagne",
+    "candidate": "saforcada",
+    "theme": "education",
+    "revision": 1,
+    "title": "Ouvrir trois dominantes au collège dès la quatrième",
+    "description": "La charte distingue les dominantes générale, technologique et préprofessionnelle. Elle conserve un socle commun et prévoit des ateliers et un brevet largement national.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-instruction",
+        "locator": "Programmes et organisation du collège · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-aides-apprentissage-qualite-tutorat",
+    "parentId": "saforcada-programme-2027-travail-campagne",
+    "candidate": "saforcada",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Conditionner les aides à l’apprentissage à la qualité du tutorat",
+    "description": "Le projet lie aussi les aides à la certification, à la prévention des ruptures et à l’insertion. Il prévoit de former les maîtres d’apprentissage et d’accompagner les petites entreprises.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-instruction",
+        "locator": "Formations, disciplines et personnels · p. 12",
+        "fragment": "page=12"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-economie-obligatoire-scolarite",
+    "parentId": "saforcada-chartes-nationales-education-campagne",
+    "candidate": "saforcada",
+    "theme": "education",
+    "revision": 1,
+    "title": "Créer un parcours obligatoire d’économie à l’école",
+    "description": "La charte prévoit des enseignements sur le budget, la fiche de paie, l’impôt, le crédit, l’épargne, le rôle des entreprises et la dette.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-instruction",
+        "locator": "Formations, disciplines et personnels · p. 12",
+        "fragment": "page=12"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-instruction-numerique-ia",
+    "parentId": "saforcada-chartes-nationales-education-campagne",
+    "candidate": "saforcada",
+    "theme": "education",
+    "revision": 1,
+    "title": "Enseigner le numérique et l’IA par étapes à l’école",
+    "description": "Le projet inclut la programmation, les données, la cybersécurité et l’information. Il prévoit la déclaration des usages de l’IA et le maintien de la production personnelle aux examens.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-instruction",
+        "locator": "Formations, disciplines et personnels · p. 12",
+        "fragment": "page=12"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-reserve-remplacement-professeurs",
+    "parentId": "saforcada-chartes-nationales-education-campagne",
+    "candidate": "saforcada",
+    "theme": "education",
+    "revision": 1,
+    "title": "Créer une réserve de professeurs remplaçants",
+    "description": "La réserve serait organisée par discipline et par territoire pour limiter les heures de cours perdues.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-instruction",
+        "locator": "Formations, disciplines et personnels · p. 12",
+        "fragment": "page=12"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-carte-scolaire-temps-trajet",
+    "parentId": "saforcada-chartes-nationales-education-campagne",
+    "candidate": "saforcada",
+    "theme": "education",
+    "revision": 1,
+    "title": "Fonder la carte scolaire sur les besoins et les temps de trajet",
+    "description": "Le projet vise notamment les territoires ruraux et ultramarins. Il associe à la carte scolaire les transports, les internats et l’accès aux dispositifs d’inclusion.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-instruction",
+        "locator": "Formations, disciplines et personnels · p. 12",
+        "fragment": "page=12"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-cours-soir-savoirs-de-base",
+    "parentId": "saforcada-chartes-nationales-education-campagne",
+    "candidate": "saforcada",
+    "theme": "education",
+    "revision": 1,
+    "title": "Développer les cours du soir de savoirs de base",
+    "description": "La charte prévoit des cours de français, de calcul, d’économie et de numérique avec les GRETA et les établissements.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-instruction",
+        "locator": "Formation continue · p. 12",
+        "fragment": "page=12"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-energie-parc-nucleaire-et-reseaux",
+    "parentId": "saforcada-campagne-2027-climat",
+    "candidate": "saforcada",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Sécuriser le parc nucléaire et les réseaux électriques",
+    "description": "Le programme proposé couvre le parc existant, la construction de réacteurs et les compétences de la filière. Il inclut des démonstrateurs de stockage et d’hydrogène industriel.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-ecologie",
+        "locator": "Énergie, eau et forêts · p. 10",
+        "fragment": "page=10"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-plan-fuites-reseaux-eau",
+    "parentId": "saforcada-campagne-2027-climat",
+    "candidate": "saforcada",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Réparer en priorité les réseaux d’eau les plus fuyards",
+    "description": "La charte prévoit de rendre publics les réseaux prioritaires et de financer leur renouvellement et la détection des fuites. Le plan inclut aussi la protection des captages.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-ecologie",
+        "locator": "Énergie, eau et forêts · p. 10",
+        "fragment": "page=10"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-cartographie-feux-et-filiere-forestiere",
+    "parentId": "saforcada-campagne-2027-climat",
+    "candidate": "saforcada",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Planifier la prévention des feux et le renouvellement des forêts",
+    "description": "Le projet prévoit une carte du risque futur pour orienter la prévention, ainsi qu’un contrat pour le renouvellement des peuplements, les pépinières et la filière du bois.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-ecologie",
+        "locator": "Énergie, eau et forêts · p. 10",
+        "fragment": "page=10"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-demonstrateurs-algues-et-biotechnologies",
+    "parentId": "saforcada-campagne-2027-climat",
+    "candidate": "saforcada",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Financer des démonstrateurs sur les algues et les biotechnologies marines",
+    "description": "La charte souhaite relier la recherche et l’industrie sur les engrais, les matériaux ou le traitement des effluents, avec une évaluation de la sûreté écologique.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-ecologie",
+        "locator": "Industrie et agriculture · p. 10",
+        "fragment": "page=10"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-remunerer-services-environnementaux-agricoles",
+    "parentId": "saforcada-campagne-2027-climat",
+    "candidate": "saforcada",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Rémunérer les services environnementaux en agriculture",
+    "description": "Le pacte proposé soutient les haies, l’agroforesterie, les prairies et le pastoralisme. Il associe ces soutiens à des conditions de réciprocité appliquées aux importations.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-ecologie",
+        "locator": "Industrie et agriculture · p. 10",
+        "fragment": "page=10"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-commande-publique-economie-circulaire",
+    "parentId": "saforcada-campagne-2027-climat",
+    "candidate": "saforcada",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Privilégier la réparabilité et le contenu recyclé dans les marchés publics",
+    "description": "La charte ajoute des critères de durabilité et de production française. Elle prévoit un programme industriel consacré à la réparation, au réemploi et au recyclage.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-ecologie",
+        "locator": "Industrie et agriculture · p. 10",
+        "fragment": "page=10"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-mobilites-fret-ferroviaire-fluvial",
+    "parentId": "saforcada-campagne-2027-climat",
+    "candidate": "saforcada",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Programmer le fret ferroviaire et fluvial avec les territoires",
+    "description": "Le projet prévoit une programmation territoriale du ferroutage, des plateformes multimodales, du fret par rail et voie d’eau et des transports du quotidien.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-ecologie",
+        "locator": "Mobilités et normes · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-etude-impact-normes-europeennes-commerce",
+    "parentId": "saforcada-europe-programme-2027",
+    "candidate": "saforcada",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Évaluer l’impact des projets de normes européennes et des accords commerciaux",
+    "description": "La charte prévoit d’examiner leurs effets sur le carbone, la biodiversité, les prix, l’emploi, l’agriculture, l’industrie et les territoires.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-ecologie",
+        "locator": "Mobilités et normes · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Chartes de David Saforcada et L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "saforcada-objectif-trois-mois-dossiers-handicap",
+    "parentId": "saforcada-parti-2027-social",
+    "candidate": "saforcada",
+    "theme": "social",
+    "revision": 1,
+    "title": "Viser trois mois de traitement pour un dossier de handicap complet",
+    "description": "L’Appel au Peuple propose de fixer progressivement ce délai ordinaire et de préserver les droits pendant un renouvellement demandé à temps.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-handicap",
+        "locator": "Droits, aides et accessibilité · p. 4",
+        "fragment": "page=4"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Chartes de L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25",
+    "partyAuthor": "L’Appel au Peuple"
+  },
+  {
+    "id": "saforcada-accessibilite-batiments-publics-transports",
+    "parentId": "saforcada-parti-2027-social",
+    "candidate": "saforcada",
+    "theme": "social",
+    "revision": 1,
+    "title": "Programmer l’accessibilité des bâtiments publics et des transports",
+    "description": "La charte de L’Appel au Peuple prévoit un programme de mise en accessibilité et le développement de formats adaptés pour les services.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-handicap",
+        "locator": "Droits, aides et accessibilité · p. 4",
+        "fragment": "page=4"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Chartes de L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25",
+    "partyAuthor": "L’Appel au Peuple"
+  },
+  {
+    "id": "saforcada-accessibilite-vote-documents-electoraux",
+    "parentId": "saforcada-parti-2027-institutions",
+    "candidate": "saforcada",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Rendre accessibles les bureaux de vote et les documents électoraux",
+    "description": "L’Appel au Peuple propose d’étendre cette garantie aux procédures administratives et d’associer les personnes handicapées à l’évaluation des politiques qui les concernent.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-handicap",
+        "locator": "Citoyenneté et continuité de l’accompagnement · p. 5",
+        "fragment": "page=5"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Chartes de L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25",
+    "partyAuthor": "L’Appel au Peuple"
+  },
+  {
+    "id": "saforcada-reconversion-apres-handicap",
+    "parentId": "saforcada-parti-2027-travail",
+    "candidate": "saforcada",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Organiser une reconversion après la survenue d’un handicap",
+    "description": "L’Appel au Peuple prévoit un parcours coordonné avec l’employeur, la médecine du travail et le service public de l’emploi, avec adaptation du poste ou financement d’une formation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-handicap",
+        "locator": "Citoyenneté et continuité de l’accompagnement · p. 5",
+        "fragment": "page=5"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Chartes de L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25",
+    "partyAuthor": "L’Appel au Peuple"
+  },
+  {
+    "id": "saforcada-accompagnement-jeunes-trois-mois",
+    "parentId": "saforcada-parti-2027-travail",
+    "candidate": "saforcada",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Proposer un parcours aux jeunes sans emploi ni formation sous trois mois",
+    "description": "Le projet concerne les 16 à 25 ans sortis du système scolaire. La réponse proposée pourrait être une formation, un apprentissage, une immersion, ou un accompagnement vers l’emploi.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-jeunesses",
+        "locator": "Premier emploi et mobilité · p. 4",
+        "fragment": "page=4"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Chartes de L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25",
+    "partyAuthor": "L’Appel au Peuple"
+  },
+  {
+    "id": "saforcada-experimenter-aide-premier-emploi-durable",
+    "parentId": "saforcada-parti-2027-travail",
+    "candidate": "saforcada",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Expérimenter une aide au premier emploi durable",
+    "description": "L’Appel au Peuple propose une aide aux entreprises qui recrutent et accompagnent un jeune éloigné de l’emploi dans les territoires en difficulté. Le versement dépendrait de la durée de l’emploi et de l’absence de remplacement d’un poste existant.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-jeunesses",
+        "locator": "Premier emploi et mobilité · p. 4",
+        "fragment": "page=4"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Chartes de L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25",
+    "partyAuthor": "L’Appel au Peuple"
+  },
+  {
+    "id": "saforcada-fonds-mobilite-jeunes",
+    "parentId": "saforcada-parti-2027-travail",
+    "candidate": "saforcada",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Créer un fonds national de mobilité des jeunes",
+    "description": "L’Appel au Peuple vise en priorité les 16 à 25 ans qui rencontrent un obstacle matériel à l’emploi ou à la formation. Le fonds pourrait financer le permis sous conditions, des abonnements, des locations de véhicules ou des transports ruraux.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-jeunesses",
+        "locator": "Premier emploi et mobilité · p. 4",
+        "fragment": "page=4"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Chartes de L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25",
+    "partyAuthor": "L’Appel au Peuple"
+  },
+  {
+    "id": "saforcada-logement-temporaire-apprentis",
+    "parentId": "saforcada-parti-2027-logement",
+    "candidate": "saforcada",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Agrandir l’offre de logement temporaire pour apprentis et jeunes actifs",
+    "description": "L’Appel au Peuple propose des logements à coût maîtrisé avec les communes, bailleurs et entreprises. La charte encourage aussi les résidences pour jeunes travailleurs et l’habitat intergénérationnel.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-jeunesses",
+        "locator": "Logement et accès aux services · p. 5",
+        "fragment": "page=5"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Chartes de L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25",
+    "partyAuthor": "L’Appel au Peuple"
+  },
+  {
+    "id": "saforcada-permanences-itinerantes-missions-locales",
+    "parentId": "saforcada-parti-2027-travail",
+    "candidate": "saforcada",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Déployer des permanences itinérantes des missions locales",
+    "description": "L’Appel au Peuple inclut ces permanences dans une stratégie départementale d’accès à la formation, aux services et aux transports pour les jeunes ruraux.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-jeunesses",
+        "locator": "Logement et accès aux services · p. 6",
+        "fragment": "page=6"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Chartes de L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25",
+    "partyAuthor": "L’Appel au Peuple"
+  },
+  {
+    "id": "saforcada-contribution-importations-tva-souveraine",
+    "parentId": "saforcada-parti-2027-fiscalite",
+    "candidate": "saforcada",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Majorer la taxation de certains produits selon leur fabrication à l’étranger",
+    "description": "L’annexe de L’Appel au Peuple conserve le taux ordinaire pour les produits fabriqués en France. La majoration envisagée dépendrait notamment de la part de valeur ajoutée étrangère et de l’existence d’une production équivalente en France.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-tva",
+        "locator": "Fiscalité de la consommation · p. 3",
+        "fragment": "page=3"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Chartes de L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25",
+    "partyAuthor": "L’Appel au Peuple"
+  },
+  {
+    "id": "saforcada-exempter-biens-essentiels-sans-equivalent",
+    "parentId": "saforcada-parti-2027-fiscalite",
+    "candidate": "saforcada",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Prévoir un taux réduit ou une exemption pour les biens essentiels sans solution française",
+    "description": "L’annexe cite des biens de première nécessité, des matières premières et des composants critiques parmi les produits pouvant bénéficier de l’exception.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-tva",
+        "locator": "Fiscalité de la consommation · p. 4",
+        "fragment": "page=4"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Chartes de L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25",
+    "partyAuthor": "L’Appel au Peuple"
+  },
+  {
+    "id": "saforcada-reduire-csg-salaires-deux-tranches",
+    "parentId": "saforcada-parti-2027-fiscalite",
+    "candidate": "saforcada",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Réduire la CSG sur les salaires en deux tranches",
+    "description": "Dans le scénario de faisabilité de L’Appel au Peuple, la baisse serait de 50 % jusqu’à 2 500 € bruts par mois, puis de 25 % sur la fraction entre 2 500 € et 4 000 €. Le parti propose de l’adosser au produit net de sa contribution sur les importations.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-tva",
+        "locator": "CSG sur les salaires et compensation · p. 4",
+        "fragment": "page=4"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Chartes de L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25",
+    "partyAuthor": "L’Appel au Peuple"
+  },
+  {
+    "id": "saforcada-compte-compensation-allegement-csg",
+    "parentId": "saforcada-parti-2027-social",
+    "candidate": "saforcada",
+    "theme": "social",
+    "revision": 1,
+    "title": "Compenser intégralement l’allègement de CSG à la Sécurité sociale",
+    "description": "À chaque tranche d’allègement, L’Appel au Peuple propose de compenser la perte de recettes. Un compte distinct suivrait le coût et le produit de la contribution censée le financer.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-tva",
+        "locator": "CSG sur les salaires et compensation · p. 4",
+        "fragment": "page=4"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Chartes de L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25",
+    "partyAuthor": "L’Appel au Peuple"
+  },
+  {
+    "id": "saforcada-moratoire-nouvelles-obligations",
+    "parentId": "saforcada-parti-2027-institutions",
+    "candidate": "saforcada",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Instaurer un moratoire de six mois sur de nouvelles obligations administratives",
+    "description": "L’Appel au Peuple prévoit des exceptions, notamment en cas d’urgence et en matière de sécurité, de justice, de santé publique et de souveraineté nationale.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-etat",
+        "locator": "Normes et formalités · p. 8",
+        "fragment": "page=8"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Chartes de L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25",
+    "partyAuthor": "L’Appel au Peuple"
+  },
+  {
+    "id": "saforcada-inventaire-public-normes",
+    "parentId": "saforcada-parti-2027-institutions",
+    "candidate": "saforcada",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Publier un inventaire des normes et formalités",
+    "description": "L’Appel au Peuple y recenserait l’origine, l’objectif, le coût, l’ancienneté et les effets des règles imposées aux citoyens, aux entreprises et aux communes.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-etat",
+        "locator": "Normes et formalités · p. 8",
+        "fragment": "page=8"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Chartes de L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25",
+    "partyAuthor": "L’Appel au Peuple"
+  },
+  {
+    "id": "saforcada-compenser-nouvelles-charges-administratives",
+    "parentId": "saforcada-parti-2027-institutions",
+    "candidate": "saforcada",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Compenser toute charge administrative nouvelle par un allègement",
+    "description": "L’Appel au Peuple propose de tester les effets des nouvelles normes sur les particuliers, les petites entreprises et les communes.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-etat",
+        "locator": "Normes et formalités · p. 8",
+        "fragment": "page=8"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Chartes de L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25",
+    "partyAuthor": "L’Appel au Peuple"
+  },
+  {
+    "id": "saforcada-fin-transferts-intercommunaux-imposes",
+    "parentId": "saforcada-parti-2027-institutions",
+    "candidate": "saforcada",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Mettre fin aux transferts imposés vers les intercommunalités",
+    "description": "L’Appel au Peuple propose de revoir la répartition des responsabilités territoriales et de réexaminer la loi NOTRe.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-etat",
+        "locator": "Organisation des administrations · p. 8",
+        "fragment": "page=8"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Chartes de L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25",
+    "partyAuthor": "L’Appel au Peuple"
+  },
+  {
+    "id": "saforcada-administration-information-fournie-une-fois",
+    "parentId": "saforcada-parti-2027-institutions",
+    "candidate": "saforcada",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Éviter de redemander les informations déjà détenues par l’administration",
+    "description": "L’Appel au Peuple vise les dossiers des particuliers, entreprises et communes lorsque les informations déjà communiquées sont légalement partageables.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-etat",
+        "locator": "Accès aux démarches · p. 8",
+        "fragment": "page=8"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Chartes de L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25",
+    "partyAuthor": "L’Appel au Peuple"
+  },
+  {
+    "id": "saforcada-delais-opposables-acces-physique",
+    "parentId": "saforcada-parti-2027-institutions",
+    "candidate": "saforcada",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Publier des délais administratifs opposables et maintenir un accès humain",
+    "description": "L’Appel au Peuple propose de garantir une voie d’accès humaine aux démarches essentielles et de renforcer le droit à l’erreur.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "saforcada-charte-etat",
+        "locator": "Accès aux démarches · p. 8",
+        "fragment": "page=8"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Chartes de L’Appel au Peuple · Présidentielle 2027",
+    "checked": "2026-11-25",
+    "partyAuthor": "L’Appel au Peuple"
+  },
+  {
+    "id": "polony-plafonner-vols-reunion-residents",
+    "parentId": "polony-campagne-2027-climat",
+    "candidate": "polony",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Plafonner le prix des vols entre La Réunion et l’Hexagone pour les résidents de l’île",
+    "description": "Interrogée par Zinfos974, Natacha Polony se dit favorable à un prix plafond pour les résidents. Elle ne fixe ni montant ni modalité.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "polony-zinfos-reunion-2026",
+        "locator": "Billets d’avion",
+        "fragment": ":~:text=Je%20suis%20pour%20un%20plafonnement."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Natacha Polony",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "polony-octroi-mer-produits-sans-equivalent",
+    "parentId": "polony-fiscalite-production",
+    "candidate": "polony",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Supprimer l’octroi de mer pour les biens sans équivalent réunionnais",
+    "description": "La candidate prévoit de conserver la taxe sur les importations qui concurrencent la production de l’île et de compenser intégralement le manque à gagner pour les collectivités.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "polony-zinfos-reunion-2026",
+        "locator": "Octroi de mer",
+        "fragment": ":~:text=la%20supprimer%20sur%20les%20biens%20qui%20ne%20sont%20pas%20fabriqu%C3%A9s%20sur%20l%E2%80%99%C3%AEle"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Natacha Polony",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "polony-observatoire-marges-distribution-outre-mer",
+    "parentId": "polony-fiscalite-production",
+    "candidate": "polony",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Créer un observatoire public des marges de la distribution outre-mer",
+    "description": "Natacha Polony propose aussi de rendre transparents les comptes des distributeurs et centrales d’achat. Elle présente ce dispositif comme un moyen de vérifier l’effet de la réforme de l’octroi sur les prix.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "polony-zinfos-reunion-2026",
+        "locator": "Marges de la grande distribution",
+        "fragment": ":~:text=un%20observatoire%20public%20des%20marges"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Natacha Polony",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "polony-section-outre-mer-autorite-concurrence",
+    "parentId": "polony-institutions",
+    "candidate": "polony",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Créer une section Outre-mer au sein de l’Autorité de la concurrence",
+    "description": "La candidate lui confierait notamment le contrôle des exclusivités d’importation pour faire sanctionner celles qui sont jugées abusives.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "polony-zinfos-reunion-2026",
+        "locator": "Marges de la grande distribution",
+        "fragment": ":~:text=sanctionner%20les%20exclusivit%C3%A9s%20d%E2%80%99importation%20abusives"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Natacha Polony",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "polony-hausse-remuneration-enseignants-vingt-trente",
+    "parentId": "polony-education",
+    "candidate": "polony",
+    "theme": "education",
+    "revision": 1,
+    "title": "Augmenter de 20 à 30 % la rémunération des enseignants",
+    "description": "Natacha Polony précise que la hausse annoncée vise les enseignants. Elle avance une estimation de 8 à 12 milliards d’euros selon les modalités retenues, sans préciser la période couverte ni l’assiette de rémunération.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "polony-zinfos-reunion-2026",
+        "locator": "Rémunération des enseignants",
+        "fragment": ":~:text=c%E2%80%99est%20pour%20les%20enseignants"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Natacha Polony",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "polony-pacte-csg-cotisations-negociations-salaires",
+    "parentId": "polony-travail",
+    "candidate": "polony",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Financer une partie de la protection sociale par la CSG et négocier les salaires par branche",
+    "description": "Natacha Polony propose à l’État, aux entreprises et aux syndicats de conclure un pacte. Le transfert de financement vers la CSG est destiné à dégager des marges dans les entreprises avant les négociations salariales.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "polony-zinfos-reunion-2026",
+        "locator": "Cotisations et salaires",
+        "fragment": ":~:text=transf%C3%A9rer%20une%20partie%20du%20financement%20de%20la%20protection%20sociale%20vers%20la%20CSG"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Natacha Polony",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "polony-fonds-production-ultramarine",
+    "parentId": "polony-travail",
+    "candidate": "polony",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Créer un fonds pour la production ultramarine",
+    "description": "L’État, Bpifrance et les collectivités participeraient à un fonds destiné notamment à l’agroalimentaire, à la transformation des produits de la pêche et à la pharmacologie.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "polony-zinfos-reunion-2026",
+        "locator": "Production ultramarine",
+        "fragment": ":~:text=un%20fonds%20pour%20financer%20la%20production%20ultramarine"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Natacha Polony",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "polony-contrats-performance-reseaux-eau-outre-mer",
+    "parentId": "polony-campagne-2027-climat",
+    "candidate": "polony",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Remettre en état les réseaux d’eau ultramarins par des contrats de performance",
+    "description": "Natacha Polony propose de commencer par les réseaux d’eau dans une loi de rattrapage qui fixerait des objectifs et échéances pour les services essentiels.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "polony-zinfos-reunion-2026",
+        "locator": "Services essentiels et logement",
+        "fragment": ":~:text=des%20contrats%20de%20performance%20pour%20remettre%20les%20r%C3%A9seaux%20en%20%C3%A9tat"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Natacha Polony",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "polony-logements-sociaux-intermediaires-foncier-public-outre-mer",
+    "parentId": "polony-campagne-2027-logement",
+    "candidate": "polony",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Construire des logements sociaux et intermédiaires sur le foncier public ultramarin",
+    "description": "La candidate propose d’accélérer cette construction dans le cadre de sa loi de rattrapage pour les outre-mer.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "polony-zinfos-reunion-2026",
+        "locator": "Services essentiels et logement",
+        "fragment": ":~:text=acc%C3%A9l%C3%A9rer%20la%20construction%20de%20logements%20sociaux%20et%20interm%C3%A9diaires%20sur%20le%20foncier%20public"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Natacha Polony",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "polony-encadrer-locations-touristiques-outre-mer",
+    "parentId": "polony-campagne-2027-logement",
+    "candidate": "polony",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Encadrer les locations touristiques outre-mer",
+    "description": "La candidate rattache cette mesure au volet logement de sa loi de rattrapage. Les modalités de l’encadrement ne sont pas précisées dans l’entretien.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "polony-zinfos-reunion-2026",
+        "locator": "Services essentiels et logement",
+        "fragment": ":~:text=encadrer%20les%20locations%20touristiques"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Campagne présidentielle 2027 · Natacha Polony",
     "checked": "2026-11-25"
   }
 ]

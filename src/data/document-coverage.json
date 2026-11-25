@@ -3,7 +3,7 @@
     "sourceId": "mathieu-projet-2027",
     "perimeter": "Les cinq étapes du projet constituant",
     "unit": "étape",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "units": [
       {
         "id": "etape-1",
@@ -15,7 +15,8 @@
         "title": "Préparation du texte constitutionnel",
         "measureIds": [
           "mathieu-institutions-convention-500",
-          "mathieu-convention-controle-impartialite"
+          "mathieu-convention-controle-impartialite",
+          "mathieu-constituante-dix-commissions"
         ]
       },
       {
@@ -26,7 +27,10 @@
       {
         "id": "etape-4",
         "title": "Référendums sur le projet",
-        "measureIds": ["mathieu-institutions-referendums-constitution"]
+        "measureIds": [
+          "mathieu-institutions-referendums-constitution",
+          "mathieu-publier-avis-contradictoires-avant-referendum"
+        ]
       },
       {
         "id": "etape-5",
@@ -2658,6 +2662,649 @@
         "title": "Chiffrage de la campagne",
         "review": "a-examiner",
         "measureIds": []
+      }
+    ]
+  },
+  {
+    "sourceId": "revillon-apreval-manifeste",
+    "unit": "passage",
+    "checked": "2026-11-25",
+    "perimeter": "Passages vérifiés du manifeste illustré, dans la partie institutionnelle et les mesures thématiques.",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "Participation et vote · p. 12",
+        "measureIds": ["revillon-apreval-verifier-identite-compte-citoyen"]
+      },
+      {
+        "id": "passage-2",
+        "title": "Participation et vote · p. 17",
+        "measureIds": ["revillon-apreval-delai-rectification-vote-delegue"]
+      },
+      {
+        "id": "passage-3",
+        "title": "Organisation des pouvoirs · p. 25",
+        "measureIds": ["revillon-apreval-conseil-si-aucun-relais-majoritaire"]
+      },
+      {
+        "id": "passage-4",
+        "title": "Participation et vote · p. 31",
+        "measureIds": ["revillon-apreval-financer-expertise-debat-citoyen"]
+      },
+      {
+        "id": "passage-5",
+        "title": "Constitution et justice · p. 48",
+        "measureIds": ["revillon-apreval-rediger-contrat-social-court"]
+      },
+      {
+        "id": "passage-6",
+        "title": "Éducation · p. 51",
+        "measureIds": [
+          "revillon-apreval-remplacer-ecole-par-tutorat-et-centres"
+        ]
+      },
+      {
+        "id": "passage-7",
+        "title": "Fiscalité · p. 70",
+        "measureIds": ["revillon-apreval-remplacer-principaux-impots-par-tvp"]
+      },
+      {
+        "id": "passage-8",
+        "title": "Fiscalité · p. 72",
+        "measureIds": ["revillon-apreval-tvp-taux-normal-et-reduits"]
+      },
+      {
+        "id": "passage-9",
+        "title": "Protection sociale · p. 76",
+        "measureIds": [
+          "revillon-apreval-centrer-assurance-maladie-publique-soins-vitaux"
+        ]
+      },
+      {
+        "id": "passage-10",
+        "title": "Protection sociale · p. 77",
+        "measureIds": ["revillon-apreval-retraite-socle-70-puis-85-ans"]
+      },
+      {
+        "id": "passage-11",
+        "title": "Protection sociale · p. 79",
+        "measureIds": ["revillon-apreval-vote-sur-pensions-deja-acquises"]
+      },
+      {
+        "id": "passage-12",
+        "title": "Fiscalité · p. 80",
+        "measureIds": [
+          "revillon-apreval-contribution-residence-pensions-acquises"
+        ]
+      },
+      {
+        "id": "passage-13",
+        "title": "Protection sociale · p. 81",
+        "measureIds": [
+          "revillon-apreval-garantir-emploi-par-operateurs-publics"
+        ]
+      },
+      {
+        "id": "passage-14",
+        "title": "Protection sociale · p. 84",
+        "measureIds": [
+          "revillon-apreval-repartir-temps-travail-apres-automatisation"
+        ]
+      },
+      {
+        "id": "passage-15",
+        "title": "Fiscalité · p. 90",
+        "measureIds": ["revillon-apreval-investissement-civique-projets-votes"]
+      },
+      {
+        "id": "passage-16",
+        "title": "Fiscalité · p. 91",
+        "measureIds": ["revillon-apreval-fonds-automatisation-infrastructures"]
+      },
+      {
+        "id": "passage-17",
+        "title": "Nationalité · p. 94",
+        "measureIds": ["revillon-apreval-citoyennete-indice-creatif"]
+      },
+      {
+        "id": "passage-18",
+        "title": "Mobilité · p. 104",
+        "measureIds": [
+          "revillon-apreval-service-de-vehicules-electriques-autonomes"
+        ]
+      },
+      {
+        "id": "passage-19",
+        "title": "Mobilité · p. 108",
+        "measureIds": ["revillon-apreval-ouvrir-reseau-vehicules-compatibles"]
+      },
+      {
+        "id": "passage-20",
+        "title": "Mobilité · p. 111",
+        "measureIds": ["revillon-apreval-soumettre-recharge-en-roulant-au-vote"]
+      },
+      {
+        "id": "passage-21",
+        "title": "Mobilité · p. 118",
+        "measureIds": [
+          "revillon-apreval-transport-urgences-par-vehicule-partage"
+        ]
+      },
+      {
+        "id": "passage-22",
+        "title": "Mobilité · p. 120",
+        "measureIds": [
+          "revillon-apreval-livrer-courses-et-collecter-tri-en-un-trajet"
+        ]
+      },
+      {
+        "id": "passage-23",
+        "title": "Mobilité · p. 124",
+        "measureIds": [
+          "revillon-apreval-consigner-emballages-reutilisables-courses"
+        ]
+      },
+      {
+        "id": "passage-24",
+        "title": "Mobilité · p. 128",
+        "measureIds": ["revillon-apreval-convertir-parkings-en-depots-flotte"]
+      },
+      {
+        "id": "passage-25",
+        "title": "Énergie · p. 129",
+        "measureIds": [
+          "revillon-apreval-moderniser-foyers-bois-pour-pointes-electriques"
+        ]
+      },
+      {
+        "id": "passage-26",
+        "title": "Énergie · p. 130",
+        "measureIds": [
+          "revillon-apreval-recuperer-chaleur-serveurs-dans-immeubles"
+        ]
+      },
+      {
+        "id": "passage-27",
+        "title": "Mobilité · p. 135",
+        "measureIds": [
+          "revillon-apreval-former-salaries-metiers-mobilite-reconversion"
+        ]
+      },
+      {
+        "id": "passage-28",
+        "title": "Mobilité · p. 137",
+        "measureIds": [
+          "revillon-apreval-experimenter-reseau-vehicules-villes-pilotes"
+        ]
+      },
+      {
+        "id": "passage-29",
+        "title": "Justice et logement · p. 144",
+        "measureIds": [
+          "revillon-apreval-confier-vente-stupefiants-a-un-monopole-public"
+        ]
+      },
+      {
+        "id": "passage-30",
+        "title": "Justice et logement · p. 154",
+        "measureIds": [
+          "revillon-apreval-ouvrir-abris-individuels-sans-condition"
+        ]
+      },
+      {
+        "id": "passage-31",
+        "title": "Relations internationales · p. 167",
+        "measureIds": [
+          "revillon-apreval-elaborer-langue-commune-internationale"
+        ]
+      },
+      {
+        "id": "passage-32",
+        "title": "Relations internationales · p. 170",
+        "measureIds": [
+          "revillon-apreval-cooperation-renforcee-europe-taxe-mobilite"
+        ]
+      },
+      {
+        "id": "passage-33",
+        "title": "Suivi du programme · p. 172",
+        "measureIds": ["revillon-apreval-publier-tableau-de-bord-transition"]
+      },
+      {
+        "id": "passage-34",
+        "title": "Constitution et justice · p. 47",
+        "measureIds": ["revillon-apreval-juge-general-lois"]
+      }
+    ]
+  },
+  {
+    "sourceId": "mlekuz-programme-detaille",
+    "unit": "passage",
+    "checked": "2026-11-25",
+    "perimeter": "Passages vérifiés du livre blanc de Démocratie Ouverte présenté comme programme détaillé sur le site Trajectoire.",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "Pilotage de la constituante · p. 11",
+        "measureIds": ["mlekuz-comite-pilotage-pluraliste-huit-membres"]
+      },
+      {
+        "id": "passage-2",
+        "title": "Pilotage de la constituante · p. 12",
+        "measureIds": ["mlekuz-pouvoir-revocation-comite-par-garants"]
+      },
+      {
+        "id": "passage-3",
+        "title": "Débat de société · p. 16",
+        "measureIds": [
+          "mlekuz-conserver-pluralisme-medias-debat-constituant",
+          "mlekuz-publier-cahiers-doleances-2019",
+          "mlekuz-consulter-associations-et-syndicats-par-canaux-dedies"
+        ]
+      },
+      {
+        "id": "passage-4",
+        "title": "Composition et droits des constituants · p. 18",
+        "measureIds": [
+          "mlekuz-ouvrir-tirage-constituante-selon-residence",
+          "mlekuz-conge-citoyen-membres-constituante",
+          "mlekuz-indemniser-constituants-selon-grille-deputes",
+          "mlekuz-controler-enrichissement-constituants-hatvp"
+        ]
+      },
+      {
+        "id": "passage-5",
+        "title": "Composition et droits des constituants · p. 19",
+        "measureIds": [
+          "mlekuz-colleges-consultatifs-constituante",
+          "mlekuz-panel-population-1500-constituante"
+        ]
+      },
+      {
+        "id": "passage-6",
+        "title": "Budget de la constituante · p. 19",
+        "measureIds": [
+          "mlekuz-financer-constituante-exclusivement-fonds-publics"
+        ]
+      },
+      {
+        "id": "passage-7",
+        "title": "Travaux de la constituante · p. 20",
+        "measureIds": [
+          "mlekuz-priorite-consentement-deliberations-constituantes"
+        ]
+      },
+      {
+        "id": "passage-8",
+        "title": "Travaux de la constituante · p. 21",
+        "measureIds": ["mlekuz-accrediter-observateurs-travaux-constituants"]
+      }
+    ]
+  },
+  {
+    "sourceId": "roussel-huma-septembre-2026",
+    "unit": "passage",
+    "checked": "2026-11-25",
+    "perimeter": "Passages du discours de campagne du 12 septembre 2026 où figurent les engagements référencés.",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "Banques et investissement",
+        "measureIds": ["roussel-pole-public-bancaire-prets-bonifies"]
+      },
+      {
+        "id": "passage-2",
+        "title": "Démocratie dans les entreprises",
+        "measureIds": [
+          "roussel-parite-salaries-actionnaires-conseils",
+          "roussel-retablir-chsct-delegues-personnel"
+        ]
+      },
+      {
+        "id": "passage-3",
+        "title": "Protection face aux violences",
+        "measureIds": ["roussel-loi-integrale-violences-sexuelles"]
+      },
+      {
+        "id": "passage-4",
+        "title": "Énergie",
+        "measureIds": ["roussel-planifier-sortie-fossiles-quinze-ans"]
+      },
+      {
+        "id": "passage-5",
+        "title": "Diplomatie",
+        "measureIds": ["roussel-sanctions-gouvernement-israel"]
+      },
+      {
+        "id": "passage-6",
+        "title": "Fraude fiscale",
+        "measureIds": ["roussel-remplacer-accords-evasion-fiscale"]
+      },
+      {
+        "id": "passage-7",
+        "title": "Fiscalité du patrimoine",
+        "measureIds": ["roussel-fiscalite-isf", "roussel-fiscalite-heritages"]
+      },
+      {
+        "id": "passage-8",
+        "title": "Financement de la protection sociale",
+        "measureIds": ["roussel-social-cotisations-dividendes"]
+      },
+      {
+        "id": "passage-9",
+        "title": "Candidatures aux législatives",
+        "measureIds": ["roussel-institutions-candidatures-populaires"]
+      }
+    ]
+  },
+  {
+    "sourceId": "saforcada-charte-famille",
+    "unit": "passage",
+    "checked": "2026-11-25",
+    "perimeter": "Passages vérifiés du document portant sur les décisions référencées ci-dessous.",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "Aides aux familles et accueil des enfants · p. 9",
+        "measureIds": [
+          "saforcada-allocation-nationale-premier-enfant",
+          "saforcada-places-garde-horaires-adaptes",
+          "saforcada-bouclier-professionnel-parental",
+          "saforcada-intermediation-pensions-familles"
+        ]
+      },
+      {
+        "id": "passage-2",
+        "title": "Protection de l’enfance · p. 9",
+        "measureIds": [
+          "saforcada-precarite-avant-placement",
+          "saforcada-garanties-opposables-enfants-confies",
+          "saforcada-sorties-aide-sociale-enfance"
+        ]
+      },
+      {
+        "id": "passage-3",
+        "title": "Adoption et bioéthique · p. 10",
+        "measureIds": ["saforcada-adoption-delais-et-origines"]
+      },
+      {
+        "id": "passage-4",
+        "title": "Pacte intergénérationnel · p. 11",
+        "measureIds": ["saforcada-pacte-intergenerationnel-local"]
+      }
+    ]
+  },
+  {
+    "sourceId": "saforcada-charte-sante",
+    "unit": "passage",
+    "checked": "2026-11-25",
+    "perimeter": "Passages vérifiés du document portant sur les décisions référencées ci-dessous.",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "Programmation sanitaire et accès aux soins · p. 11",
+        "measureIds": [
+          "saforcada-programmation-sanitaire-dix-ans",
+          "saforcada-supprimer-ars-directions-departementales",
+          "saforcada-horizon-sante-installation",
+          "saforcada-alternative-avant-fermeture-hospitaliere",
+          "saforcada-formation-soignants-pass-las"
+        ]
+      },
+      {
+        "id": "passage-2",
+        "title": "Prévention, santé mentale et autonomie · p. 11",
+        "measureIds": [
+          "saforcada-programme-national-prevention",
+          "saforcada-renforcer-offre-territoriale-sante-mentale",
+          "saforcada-soins-palliatifs-departementaux"
+        ]
+      },
+      {
+        "id": "passage-3",
+        "title": "Approvisionnement et outre-mer · p. 12",
+        "measureIds": [
+          "saforcada-contrats-capacite-medicaments",
+          "saforcada-contrats-sante-outre-mer"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "saforcada-charte-instruction",
+    "unit": "passage",
+    "checked": "2026-11-25",
+    "perimeter": "Passages vérifiés du document portant sur les décisions référencées ci-dessous.",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "Programmes et organisation du collège · p. 11",
+        "measureIds": [
+          "saforcada-stabilite-programmes-scolaires-huit-ans",
+          "saforcada-lecture-ecriture-calcul-quotidiens",
+          "saforcada-protection-fonctionnelle-personnels-scolaires",
+          "saforcada-college-trois-dominantes-quatrieme"
+        ]
+      },
+      {
+        "id": "passage-2",
+        "title": "Formations, disciplines et personnels · p. 12",
+        "measureIds": [
+          "saforcada-aides-apprentissage-qualite-tutorat",
+          "saforcada-economie-obligatoire-scolarite",
+          "saforcada-instruction-numerique-ia",
+          "saforcada-reserve-remplacement-professeurs",
+          "saforcada-carte-scolaire-temps-trajet"
+        ]
+      },
+      {
+        "id": "passage-3",
+        "title": "Formation continue · p. 12",
+        "measureIds": ["saforcada-cours-soir-savoirs-de-base"]
+      }
+    ]
+  },
+  {
+    "sourceId": "saforcada-charte-ecologie",
+    "unit": "passage",
+    "checked": "2026-11-25",
+    "perimeter": "Passages vérifiés du document portant sur les décisions référencées ci-dessous.",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "Énergie, eau et forêts · p. 10",
+        "measureIds": [
+          "saforcada-energie-parc-nucleaire-et-reseaux",
+          "saforcada-plan-fuites-reseaux-eau",
+          "saforcada-cartographie-feux-et-filiere-forestiere"
+        ]
+      },
+      {
+        "id": "passage-2",
+        "title": "Industrie et agriculture · p. 10",
+        "measureIds": [
+          "saforcada-demonstrateurs-algues-et-biotechnologies",
+          "saforcada-remunerer-services-environnementaux-agricoles",
+          "saforcada-commande-publique-economie-circulaire"
+        ]
+      },
+      {
+        "id": "passage-3",
+        "title": "Mobilités et normes · p. 11",
+        "measureIds": [
+          "saforcada-mobilites-fret-ferroviaire-fluvial",
+          "saforcada-etude-impact-normes-europeennes-commerce"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "saforcada-charte-handicap",
+    "unit": "passage",
+    "checked": "2026-11-25",
+    "perimeter": "Passages vérifiés du document portant sur les décisions référencées ci-dessous.",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "Droits, aides et accessibilité · p. 4",
+        "measureIds": [
+          "saforcada-objectif-trois-mois-dossiers-handicap",
+          "saforcada-accessibilite-batiments-publics-transports"
+        ]
+      },
+      {
+        "id": "passage-2",
+        "title": "Citoyenneté et continuité de l’accompagnement · p. 5",
+        "measureIds": [
+          "saforcada-accessibilite-vote-documents-electoraux",
+          "saforcada-reconversion-apres-handicap"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "saforcada-charte-jeunesses",
+    "unit": "passage",
+    "checked": "2026-11-25",
+    "perimeter": "Passages vérifiés du document portant sur les décisions référencées ci-dessous.",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "Premier emploi et mobilité · p. 4",
+        "measureIds": [
+          "saforcada-accompagnement-jeunes-trois-mois",
+          "saforcada-experimenter-aide-premier-emploi-durable",
+          "saforcada-fonds-mobilite-jeunes"
+        ]
+      },
+      {
+        "id": "passage-2",
+        "title": "Logement et accès aux services · p. 5",
+        "measureIds": ["saforcada-logement-temporaire-apprentis"]
+      },
+      {
+        "id": "passage-3",
+        "title": "Logement et accès aux services · p. 6",
+        "measureIds": ["saforcada-permanences-itinerantes-missions-locales"]
+      }
+    ]
+  },
+  {
+    "sourceId": "saforcada-charte-tva",
+    "unit": "passage",
+    "checked": "2026-11-25",
+    "perimeter": "Passages vérifiés du document portant sur les décisions référencées ci-dessous.",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "Fiscalité de la consommation · p. 3",
+        "measureIds": ["saforcada-contribution-importations-tva-souveraine"]
+      },
+      {
+        "id": "passage-2",
+        "title": "Fiscalité de la consommation · p. 4",
+        "measureIds": ["saforcada-exempter-biens-essentiels-sans-equivalent"]
+      },
+      {
+        "id": "passage-3",
+        "title": "CSG sur les salaires et compensation · p. 4",
+        "measureIds": [
+          "saforcada-reduire-csg-salaires-deux-tranches",
+          "saforcada-compte-compensation-allegement-csg"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "saforcada-charte-etat",
+    "unit": "passage",
+    "checked": "2026-11-25",
+    "perimeter": "Passages vérifiés du document portant sur les décisions référencées ci-dessous.",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "Normes et formalités · p. 8",
+        "measureIds": [
+          "saforcada-moratoire-nouvelles-obligations",
+          "saforcada-inventaire-public-normes",
+          "saforcada-compenser-nouvelles-charges-administratives"
+        ]
+      },
+      {
+        "id": "passage-2",
+        "title": "Organisation des administrations · p. 8",
+        "measureIds": ["saforcada-fin-transferts-intercommunaux-imposes"]
+      },
+      {
+        "id": "passage-3",
+        "title": "Accès aux démarches · p. 8",
+        "measureIds": [
+          "saforcada-administration-information-fournie-une-fois",
+          "saforcada-delais-opposables-acces-physique"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "polony-zinfos-reunion-2026",
+    "unit": "passage",
+    "checked": "2026-11-25",
+    "perimeter": "Propositions formulées le 14 novembre 2026 en réponse aux journalistes, dans les passages indiqués.",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "Billets d’avion",
+        "measureIds": ["polony-plafonner-vols-reunion-residents"]
+      },
+      {
+        "id": "passage-2",
+        "title": "Octroi de mer",
+        "measureIds": ["polony-octroi-mer-produits-sans-equivalent"]
+      },
+      {
+        "id": "passage-3",
+        "title": "Marges de la grande distribution",
+        "measureIds": [
+          "polony-observatoire-marges-distribution-outre-mer",
+          "polony-section-outre-mer-autorite-concurrence"
+        ]
+      },
+      {
+        "id": "passage-4",
+        "title": "Rémunération des enseignants",
+        "measureIds": ["polony-hausse-remuneration-enseignants-vingt-trente"]
+      },
+      {
+        "id": "passage-5",
+        "title": "Cotisations et salaires",
+        "measureIds": ["polony-pacte-csg-cotisations-negociations-salaires"]
+      },
+      {
+        "id": "passage-6",
+        "title": "Production ultramarine",
+        "measureIds": ["polony-fonds-production-ultramarine"]
+      },
+      {
+        "id": "passage-7",
+        "title": "Services essentiels et logement",
+        "measureIds": [
+          "polony-contrats-performance-reseaux-eau-outre-mer",
+          "polony-logements-sociaux-intermediaires-foncier-public-outre-mer",
+          "polony-encadrer-locations-touristiques-outre-mer"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "cheve-remontee-citoyenne",
+    "unit": "passage",
+    "checked": "2026-11-25",
+    "perimeter": "Passage de l’ébauche sur l’adaptation des décisions aux situations locales.",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "Contre-pouvoir argumenté · p. 21",
+        "measureIds": ["cheve-deux-pouvoirs-executifs"]
       }
     ]
   }
