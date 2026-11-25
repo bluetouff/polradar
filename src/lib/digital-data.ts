@@ -1,9 +1,10 @@
 import topics from '../data/digital-topics.json';
 import { candidates, measures, sources } from './data';
+import { digitalMeasureIds } from './digital-topics.mjs';
 
 const referenced = new Set<string>();
 export const digitalTopics = topics.map((topic) => {
-  const entries = topic.measures
+  const entries = digitalMeasureIds(topic)
     .map((id) => {
       const measure = measures.find((entry) => entry.id === id);
       const candidate = candidates.find(
@@ -25,13 +26,24 @@ export const digitalTopics = topics.map((topic) => {
       return { measure, candidate, source };
     })
     .filter((entry) => !entry.candidate.withdrawnOn);
+  const sorted = entries.sort(
+    (a, b) =>
+      a.measure.title.localeCompare(b.measure.title, 'fr') ||
+      a.measure.id.localeCompare(b.measure.id),
+  );
+  const groups = (topic.groups ?? [])
+    .map((group) => ({
+      id: group.id,
+      label: group.label,
+      entries: sorted.filter(({ measure }) =>
+        group.measures.includes(measure.id),
+      ),
+    }))
+    .filter((group) => group.entries.length);
   return {
     ...topic,
-    entries: entries.sort(
-      (a, b) =>
-        a.measure.title.localeCompare(b.measure.title, 'fr') ||
-        a.measure.id.localeCompare(b.measure.id),
-    ),
+    groups,
+    entries: sorted,
     candidateCount: new Set(entries.map((entry) => entry.candidate.id)).size,
   };
 });

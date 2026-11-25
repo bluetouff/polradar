@@ -10,6 +10,7 @@ import { candidateById, formatDate } from './data';
 import { campaignBriefs } from './briefs';
 import { questions } from './questions';
 import { measureSearchText } from './features.mjs';
+import { householdSimulators } from './household-simulators.mjs';
 export interface SearchEntry {
   id: string;
   type: string;
@@ -27,6 +28,18 @@ export interface SearchEntry {
   date: string;
 }
 const readerEntries = [
+  ...householdSimulators.map((entry) => [
+    'simulateur',
+    '/economie/simulateurs/' + entry.id + '/',
+    entry.title,
+    entry.summary,
+  ]),
+  [
+    'repere',
+    '/numerique/liberte-expression/',
+    'Liberté d’expression',
+    'Propositions sur le DSA, la modération des plateformes, la liberté de la presse, le pluralisme et l’Arcom.',
+  ],
   [
     'simulateur',
     '/economie/simulateurs/',

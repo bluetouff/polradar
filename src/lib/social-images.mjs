@@ -2,6 +2,8 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { francePath, projectFrance } from './campaign-visuals-view.mjs';
 import { divergenceGroups } from './divergences.mjs';
+import { householdSimulators } from './household-simulators.mjs';
+import { digitalMeasureIds } from './digital-topics.mjs';
 import {
   electricityComparison,
   electricityPolicies,
@@ -88,6 +90,9 @@ const tiles = (rows, label) => ({
 const communes2022 = read('communes-2022');
 const retirement = read('retirement-comparison');
 const digitalTopics = read('digital-topics');
+const expressionTopic = digitalTopics.find(
+  (topic) => topic.id === 'liberte-expression',
+);
 const digitalComparison = read('digital-comparison');
 const digitalLaw = read('digital-law');
 const economy = read('economy-series');
@@ -151,18 +156,36 @@ const defs = [
     'simulateurs',
     '/economie/simulateurs/',
     'Règles et propositions',
-    'Électricité, CSG\net retraite',
-    'Comparez les taxes sur vos kWh, les prélèvements sur la paie et les règles de retraite.',
+    'Les simulateurs\ndu quotidien',
+    'Salaire, logement, carburants, famille et retraite.',
     'navy',
     {
       kind: 'document',
       rows: [
-        'Consommation électrique',
-        'Salaire brut mensuel',
-        'Âge et trimestres de retraite',
+        'Salaire et temps de travail',
+        'Factures et logement',
+        'Famille, succession et retraite',
       ],
     },
   ],
+  ...householdSimulators.map(
+    (entry) =>
+      /** @type {[string, string, string, string, string, string, Record<string, any>]} */ ([
+        'simulateur-' + entry.id,
+        '/economie/simulateurs/' + entry.id + '/',
+        'Mon quotidien',
+        entry.title,
+        entry.summary,
+        'sage',
+        {
+          kind: 'document',
+          rows: [
+            entry.baseline.label,
+            entry.alternatives.length + ' scénarios documentés',
+          ],
+        },
+      ]),
+  ),
   [
     'electricite-taxes',
     '/economie/simulateurs/electricite/',
@@ -206,12 +229,27 @@ const defs = [
     '/numerique/',
     'Les programmes',
     'Propositions sur\nle numérique',
-    'Services publics, données, formation et centres de calcul.',
+    'Liberté d’expression, services publics, données, formation et calcul.',
     'sage',
     bars(
       digitalTopics.map((topic) => ({
         label: topic.label,
-        value: topic.measures.length,
+        value: digitalMeasureIds(topic).length,
+      })),
+      'Fiches recensées par sujet',
+    ),
+  ],
+  [
+    'liberte-expression',
+    '/numerique/liberte-expression/',
+    'Propositions sur le numérique',
+    'Liberté\nd’expression',
+    'DSA, modération, pluralisme et droit de publier.',
+    'navy',
+    bars(
+      expressionTopic.groups.map((group) => ({
+        label: group.label,
+        value: group.measures.length,
       })),
       'Fiches recensées par sujet',
     ),

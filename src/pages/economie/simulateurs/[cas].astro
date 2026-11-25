@@ -1,0 +1,486 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Icon from '../../../components/Icon.astro';
+import { attributionLabel } from '../../../lib/attribution.mjs';
+import { candidateById, measureById, scopes } from '../../../lib/data';
+import {
+  evaluateHousehold,
+  householdDelta,
+  householdSimulators,
+  householdValue,
+} from '../../../lib/household-simulators.mjs';
+
+export function getStaticPaths() {
+  return householdSimulators.map((simulator) => ({
+    params: { cas: simulator.id },
+    props: { simulator },
+  }));
+}
+
+const { simulator } = Astro.props;
+const sample = evaluateHousehold(
+  simulator.id,
+  Object.fromEntries(simulator.fields.map(({ id, value }) => [id, value])),
+);
+if (!sample || !('amounts' in sample))
+  throw new Error('Exemple de simulateur invalide');
+const amounts = sample.amounts;
+const numeric = simulator.measureUnit !== 'eligible';
+const maximum = Math.max(
+  0,
+  ...amounts.filter((amount) => typeof amount === 'number'),
+);
+const rows = [
+  {
+    title: simulator.baseline.label,
+    detail: simulator.baseline.detail,
+    link: simulator.baseline.source,
+    status: '',
+  },
+  ...simulator.alternatives.map((row) => {
+    if (!('measure' in row))
+      return {
+        title: row.label,
+        detail: row.detail,
+        link: row.source,
+        status: row.context,
+      };
+    const measure = measureById(row.measure);
+    return {
+      title: attributionLabel(measure, candidateById(measure.candidate).name),
+      detail: row.detail,
+      link: { title: 'Fiche et source', url: '/mesures/' + measure.id + '/' },
+      status: scopes[measure.scope],
+    };
+  }),
+];
+---
+
+<Base
+  title={simulator.title + ' · Simulateurs du quotidien'}
+  description={simulator.summary}
+  section="/economie/simulateurs/"
+>
+  <nav class="breadcrumbs" aria-label="Fil d’Ariane">
+    <a href="/economie/simulateurs/">Mon quotidien</a>
+    <span aria-hidden="true">/</span>
+    <span>{simulator.title}</span>
+  </nav>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name={simulator.icon} />
+    </span>
+    <div>
+      <h1>{simulator.title}</h1>
+      <p>{simulator.summary}</p>
+    </div>
+  </header>
+  <div class="calculator-grid">
+    <section class="calculator-inputs" aria-labelledby="case-title">
+      <h2 id="case-title">Votre scénario</h2>
+      {simulator.example && <p class="example">{simulator.example}</p>}
+      <form
+        data-household={simulator.id}
+        hidden
+        aria-labelledby="case-title"
+        method="post"
+        autocomplete="off"
+      >
+        {simulator.fields.map((field) =>
+          field.options ? (
+            <fieldset>
+              <legend>{field.label}</legend>
+              {field.options.map((option) => (
+                <label class="radio-option">
+                  <input
+                    type="radio"
+                    name={field.id}
+                    value={option.value}
+                    checked={option.value === field.value}
+                  />
+                  <span>{option.label}</span>
+                </label>
+              ))}
+            </fieldset>
+          ) : (
+            <div class="calculator-field">
+              <label for={field.id}>{field.label}</label>
+              <input
+                id={field.id}
+                type="text"
+                name={field.id}
+                value={field.value}
+                maxlength="22"
+                inputmode={field.precision ? 'decimal' : 'numeric'}
+                aria-describedby={'range-' + field.id}
+              />
+              <small id={'range-' + field.id}>
+                De {field.min.toLocaleString('fr-FR')} à{' '}
+                {field.max.toLocaleString('fr-FR')}
+              </small>
+            </div>
+          ),
+        )}
+        <p data-calculation-error role="alert" hidden></p>
+        <button class="button primary" type="submit">
+          Comparer
+        </button>
+      </form>
+      <noscript>
+        <p>
+          Le résultat affiché correspond à l’exemple de la rubrique.
+          L’ajustement des valeurs utilise JavaScript.
+        </p>
+      </noscript>
+    </section>
+    <section class="calculator-results" aria-labelledby="result-title">
+      <div class="calculator-result-heading">
+        <h2 id="result-title">{simulator.resultTitle}</h2>
+        <p data-example>
+          {simulator.fields
+            .filter((field) => !field.options)
+            .map((field) => field.label + ' · ' + field.value)
+            .join(' / ')}
+        </p>
+        <p class="visually-hidden" role="status" data-calculation-status></p>
+      </div>
+      <div data-simulator-results>
+        {rows.map((row, index) => (
+          <article
+            class:list={[
+              'calculator-row',
+              { 'calculator-reference': index === 0 },
+            ]}
+            data-simulator-row
+          >
+            <div class="calculator-row-heading">
+              <div class="calculator-row-text">
+                <h3>{row.title}</h3>
+                <p>{row.detail}</p>
+              </div>
+              <div class="calculator-row-value">
+                <strong
+                  data-simulator-amount
+                  data-state={String(amounts[index])}
+                >
+                  {householdValue(amounts[index], simulator.measureUnit)}
+                </strong>
+                {index > 0 && numeric && (
+                  <small data-simulator-delta>
+                    {householdDelta(
+                      amounts[index],
+                      amounts[0],
+                      simulator.measureUnit,
+                    )}
+                  </small>
+                )}
+              </div>
+            </div>
+            {numeric && (
+              <svg
+                class="calculator-track"
+                aria-hidden="true"
+                focusable="false"
+                viewBox="0 0 100 4"
+                preserveAspectRatio="none"
+              >
+                <rect width="100" height="4" rx="2" />
+                <rect
+                  data-simulator-bar
+                  width={
+                    typeof amounts[index] === 'number' && maximum > 0
+                      ? (amounts[index] * 100) / maximum
+                      : 0
+                  }
+                  height="4"
+                  rx="2"
+                />
+              </svg>
+            )}
+            <p class="calculator-provenance">
+              {row.status && <span>{row.status}</span>}
+              <a href={row.link.url}>{row.link.title} ↗</a>
+            </p>
+          </article>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <section class="calculator-method" aria-labelledby="method">
+    <h2 id="method">Comment le résultat est calculé</h2>
+    <p>{simulator.method}</p>
+    {simulator.sources && (
+      <ul>
+        {simulator.sources.map((source) => (
+          <li>
+            <a href={source.url}>{source.title} ↗</a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+  <nav class="calculator-more" aria-label="Autres simulateurs">
+    <a href="/economie/simulateurs/">Tous les simulateurs ↗</a>
+  </nav>
+</Base>
+
+<script>
+  import {
+    evaluateHousehold,
+    householdDelta,
+    householdSimulators,
+    householdValue,
+  } from '../../../lib/household-simulators.mjs';
+
+  const form = document.querySelector<HTMLFormElement>('[data-household]');
+  const results = document.querySelector<HTMLElement>(
+    '[data-simulator-results]',
+  );
+  const error = form?.querySelector<HTMLElement>('[data-calculation-error]');
+  const example = document.querySelector<HTMLElement>('[data-example]');
+  const status = document.querySelector<HTMLElement>(
+    '[data-calculation-status]',
+  );
+  const simulator = householdSimulators.find(
+    (entry) => entry.id === form?.dataset.household,
+  );
+  if (form && results && simulator && error && status && example) {
+    const rows = [
+      ...results.querySelectorAll<HTMLElement>('[data-simulator-row]'),
+    ];
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      for (const input of form.querySelectorAll('[aria-invalid]'))
+        input.removeAttribute('aria-invalid');
+      const data = Object.fromEntries(new FormData(form));
+      const result = evaluateHousehold(simulator.id, data);
+      if (result && 'invalid' in result) {
+        const field = simulator.fields.find(({ id }) => id === result.invalid)!;
+        error.textContent =
+          field.label +
+          ' · saisissez une valeur entre ' +
+          field.min.toLocaleString('fr-FR') +
+          ' et ' +
+          field.max.toLocaleString('fr-FR') +
+          '.';
+        error.hidden = false;
+        results.hidden = true;
+        example.hidden = true;
+        status.textContent = '';
+        const input = form.elements.namedItem(field.id);
+        if (input instanceof HTMLElement) {
+          input.setAttribute('aria-invalid', 'true');
+          input.focus();
+        }
+        return;
+      }
+      if (!result) return;
+      const { amounts } = result;
+      const maximum = Math.max(
+        0,
+        ...amounts.filter((amount) => typeof amount === 'number'),
+      );
+      rows.forEach((row, index) => {
+        const current = amounts[index];
+        const amount = row.querySelector<HTMLElement>(
+          '[data-simulator-amount]',
+        )!;
+        const delta = row.querySelector('[data-simulator-delta]');
+        const bar = row.querySelector('[data-simulator-bar]');
+        amount.textContent = householdValue(current, simulator.measureUnit);
+        amount.dataset.state = String(current);
+        if (delta)
+          delta.textContent = householdDelta(
+            current,
+            amounts[0],
+            simulator.measureUnit,
+          );
+        if (bar)
+          bar.setAttribute(
+            'width',
+            String(
+              typeof current === 'number' && maximum > 0
+                ? (current * 100) / maximum
+                : 0,
+            ),
+          );
+      });
+      error.hidden = true;
+      results.hidden = false;
+      example.hidden = false;
+      example.textContent = simulator.fields
+        .filter((field) => !field.options)
+        .map((field) => field.label + ' · ' + data[field.id])
+        .join(' / ');
+      status.textContent =
+        'Comparaison mise à jour. Référence · ' +
+        householdValue(amounts[0], simulator.measureUnit) +
+        '.';
+    });
+    form.hidden = false;
+  }
+</script>
+
+<style>
+  .calculator-grid {
+    display: grid;
+    grid-template-columns: minmax(16rem, 1fr) minmax(0, 2fr);
+    align-items: start;
+    gap: clamp(1rem, 3vw, 2.25rem);
+  }
+  .calculator-inputs,
+  .calculator-results {
+    min-width: 0;
+    padding: clamp(1rem, 3vw, 1.7rem);
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    background: var(--sheet);
+  }
+  .calculator-results {
+    background: linear-gradient(140deg, #eff6f4, var(--sheet) 65%);
+  }
+  .calculator-inputs h2,
+  .calculator-result-heading h2 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.15rem, 2.8vw, 1.35rem);
+  }
+  .calculator-result-heading p,
+  .example {
+    margin: 0 0 1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .calculator-field {
+    display: grid;
+    gap: 0.32rem;
+    margin: 0 0 0.9rem;
+  }
+  .calculator-field label,
+  fieldset legend {
+    font-weight: 650;
+  }
+  .calculator-field input {
+    min-width: 0;
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .calculator-field small {
+    color: var(--muted);
+  }
+  .calculator-inputs fieldset {
+    margin: 0.85rem 0 1.15rem;
+    padding: 0.35rem 0;
+    border: 0;
+  }
+  .radio-option {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    min-height: var(--target-size);
+    gap: 0.5rem;
+  }
+  .calculator-row {
+    padding: 1rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .calculator-row:last-child {
+    padding-bottom: 0;
+  }
+  .calculator-reference {
+    border-top: 2px solid var(--accent);
+  }
+  .calculator-row-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 1rem;
+  }
+  .calculator-row-heading h3,
+  .calculator-row-heading p {
+    margin: 0;
+  }
+  .calculator-row-heading h3 {
+    font-size: 1rem;
+  }
+  .calculator-row-heading p {
+    margin-block-start: 0.25rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .calculator-row-value {
+    display: grid;
+    justify-items: end;
+    flex: 0 1 auto;
+    text-align: right;
+  }
+  [data-simulator-amount] {
+    color: var(--accent);
+    font-size: clamp(1.05rem, 3vw, 1.45rem);
+    font-variant-numeric: tabular-nums;
+  }
+  [data-state='false'],
+  [data-state='null'] {
+    color: var(--muted);
+    font-size: 1rem;
+  }
+  .calculator-row-value small,
+  .calculator-provenance {
+    color: var(--muted);
+  }
+  .calculator-provenance {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.9rem;
+    margin: 0.55rem 0 0;
+    font-size: 0.85rem;
+  }
+  .calculator-track {
+    display: block;
+    width: 100%;
+    height: 0.36rem;
+    margin-top: 0.5rem;
+    fill: #d9e7e8;
+  }
+  .calculator-track [data-simulator-bar] {
+    fill: #367a79;
+  }
+  .calculator-reference .calculator-track [data-simulator-bar] {
+    fill: #224b5c;
+  }
+  .calculator-method {
+    margin-block-start: 1.6rem;
+    max-width: 78ch;
+  }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .calculator-more {
+    margin-top: 1rem;
+  }
+  [data-calculation-error] {
+    color: #8b2e24;
+  }
+  @media (max-width: 720px) {
+    .calculator-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media (max-width: 390px) {
+    .calculator-row-heading {
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .calculator-row-value {
+      text-align: left;
+      justify-items: start;
+    }
+  }
+</style>

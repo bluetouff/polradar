@@ -18,9 +18,14 @@ const maximum = Math.max(1, ...counts.values());
   <header class="page-title">
     <h1>Programmes par thème</h1>
     <p>Nombre de fiches hors archives par thème, à la même échelle.</p>
-    <a class="inline-action" href="/numerique/">
-      Propositions sur le numérique ↗
-    </a>
+    <nav class="topic-strands" aria-label="Thèmes transversaux">
+      <a class="inline-action" href="/numerique/">
+        Propositions sur le numérique ↗
+      </a>
+      <a class="inline-action" href="/numerique/liberte-expression/">
+        Liberté d’expression ↗
+      </a>
+    </nav>
   </header>
   <div class="topic-grid topic-atlas">
     {themes.map((theme) => (
@@ -50,3 +55,13 @@ const maximum = Math.max(1, ...counts.values());
     ))}
   </div>
 </Base>
+
+<style>
+  .topic-strands {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1.2rem;
+    row-gap: 0.35rem;
+    margin-block-start: 0.55rem;
+  }
+</style>

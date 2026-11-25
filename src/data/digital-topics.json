@@ -134,7 +134,6 @@
       "ecologistes-obligation-acces-messageries",
       "renaissance-guichet-signalement-cyber",
       "villepin-surete-ia",
-      "zemmour-suppression-arcom",
       "branco-transparence-algorithmes-sociaux",
       "branco-interessement-donnees-personnelles",
       "melenchon-cnil-controle-securite",
@@ -148,29 +147,22 @@
       "ps-anssi-alerte-assistance",
       "ps-plans-surete-numerique",
       "villepin-cybersecurite-chaine-alimentaire",
-      "villepin-donner-a-larcom-le-pouvoir-de-suspendre-des-contenus-de-plateformes",
       "ps-proposer-un-reglement-europeen-sur-la-securite-numerique-des-enfants",
       "ps-renforcer-les-regles-applicables-aux-influenceurs-suivis-par-des-mineurs",
       "retailleau-renforcer-viginum-contre-les-ingerences-informationnelles",
       "ecologistes-former-les-eleves-a-lesprit-critique-et-a-la-sobriete-numerique",
       "ecologistes-maintenir-les-jeux-video-utilisables-apres-larret-de-leur-support",
       "ecologistes-simplifier-la-suppression-des-comptes-numeriques-apres-un-deces",
-      "ecologistes-obliger-les-reseaux-sociaux-a-moderer-les-contenus-racistes-et-negationniste",
       "ecologistes-interdire-la-reconnaissance-faciale-dans-la-videosurveillance",
       "ecologistes-doter-les-grandes-juridictions-de-poles-specialises-en-cybercriminalite",
       "melenchon-obliger-les-fournisseurs-dia-a-corriger-les-discriminations-de-leurs-systemes",
-      "melenchon-creer-un-organisme-independant-contre-les-haines-antisemites-et-islamophobes-e",
       "ps-soumettre-les-exportations-de-logiciels-espions-a-un-controle-europeen",
-      "ps-durcir-les-regles-europeennes-applicables-aux-grandes-plateformes",
       "ps-verifier-lidentite-en-ligne-sans-la-communiquer-aux-plateformes",
-      "ps-fusionner-la-cnil-et-larcom-pour-controler-les-acteurs-du-numerique",
       "ps-renforcer-les-obligations-des-plateformes-face-aux-ingerences-electorales",
       "ps-soumettre-les-modeles-dia-generative-a-des-audits-reguliers-pour-les-deployer-en-euro",
       "ps-signaler-les-images-sons-et-videos-produits-par-une-intelligence-artificielle",
       "villepin-interdire-le-defilement-infini-afin-de-reduire-lexposition-des-enfants-aux-ecra",
       "villepin-signaler-les-oeuvres-realisees-avec-laide-dune-intelligence-artificielle",
-      "herlin-arcom",
-      "herlin-moderation-plateformes",
       "lalanne-facturation-electronique-controle"
     ]
   },
@@ -273,6 +265,55 @@
       "ps-financer-la-recherche-sur-les-ia-et-les-systemes-de-refroidissement-moins-gourmands-e",
       "herlin-minage-bitcoin",
       "marchal-soutenir-ia-francaise"
+    ]
+  },
+  {
+    "id": "liberte-expression",
+    "label": "Liberté d’expression",
+    "example": "DSA, modération en ligne, liberté de la presse et pluralisme.",
+    "icon": "microphone",
+    "groups": [
+      {
+        "id": "moderer",
+        "label": "DSA et modération",
+        "measures": [
+          "ps-durcir-les-regles-europeennes-applicables-aux-grandes-plateformes",
+          "herlin-moderation-plateformes",
+          "villepin-donner-a-larcom-le-pouvoir-de-suspendre-des-contenus-de-plateformes",
+          "ecologistes-obliger-les-reseaux-sociaux-a-moderer-les-contenus-racistes-et-negationniste",
+          "melenchon-creer-un-organisme-independant-contre-les-haines-antisemites-et-islamophobes-e",
+          "ps-fusionner-la-cnil-et-larcom-pour-controler-les-acteurs-du-numerique",
+          "philippot-liberte-expression-reglement-dsa"
+        ]
+      },
+      {
+        "id": "medias",
+        "label": "Arcom et pluralisme",
+        "measures": [
+          "zemmour-suppression-arcom",
+          "herlin-arcom",
+          "ps-renforcer-les-pouvoirs-de-sanction-de-larcom-face-aux-appels-a-la-discrimination",
+          "mlekuz-conserver-pluralisme-medias-debat-constituant",
+          "villepin-revoir-les-seuils-de-concentration-dans-les-medias",
+          "ps-fixer-de-nouveaux-seuils-de-concentration-des-medias",
+          "ecologistes-plafonner-le-nombre-de-medias-nationaux-detenus-par-un-groupe",
+          "branco-rendre-public-lactionnariat-des-medias",
+          "philippot-supprimer-arcom",
+          "collovati-supprimer-les-subventions-publiques-a-la-presse-ecrite-et-au-medef"
+        ]
+      },
+      {
+        "id": "garanties",
+        "label": "Droit de publier et de créer",
+        "measures": [
+          "asselineau-expression-modele-americain",
+          "melenchon-ecarter-les-tribunaux-de-commerce-des-procedures-sur-la-liberte-de-la-presse",
+          "batho-liberte-creation-constitution",
+          "lalanne-abroger-lois-expression",
+          "herlin-abroger-lois-expression",
+          "durif-interdire-publicites-machistes"
+        ]
+      }
     ]
   }
 ]

@@ -4,11 +4,12 @@ import comparisons from '../data/digital-comparison.json';
 import law from '../data/digital-law.json';
 import divergences from '../data/divergence-positions.json';
 import type { MatrixRecord } from './coverage-matrix';
+import { digitalMeasureIds } from './digital-topics.mjs';
 
 const direct = digital.map((t) => ({
   id: 'numerique-' + t.id,
   label: t.label,
-  measures: t.measures,
+  measures: digitalMeasureIds(t),
 }));
 const viaVersion = new Map(dataset.versions.map((v) => [v.id, v.measureId]));
 function fromVersions(list: string[]) {

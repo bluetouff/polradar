@@ -10,6 +10,7 @@ export const groups = [
       ['/themes/', 'Thèmes', 'layers'],
       ['/comparer/retraites/', 'Retraites et droit en vigueur', 'retraites'],
       ['/numerique/', 'Propositions sur le numérique', 'layers'],
+      ['/numerique/liberte-expression/', 'Liberté d’expression', 'microphone'],
       [
         '/numerique/ce-qui-changerait/',
         'Numérique et droit en vigueur',
@@ -55,11 +56,7 @@ export const groups = [
       ['/mcp/statistiques/', 'Activité du serveur MCP', 'sondages'],
       ['/mises-a-jour/', 'Mises à jour', 'clock'],
       ['/economie/', 'Indicateurs économiques', 'markets'],
-      [
-        '/economie/simulateurs/',
-        'Simuler l’électricité, la CSG et la retraite',
-        'fiscalite',
-      ],
+      ['/economie/simulateurs/', 'Simulateurs du quotidien', 'fiscalite'],
       [
         '/economie/finances-publiques/',
         'Comptes publics de référence',

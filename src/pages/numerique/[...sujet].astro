@@ -26,7 +26,20 @@ export function getStaticPaths() {
   ];
 }
 const { selection } = Astro.props;
-const visible = selection ? [selection] : [];
+const isExpression = selection?.id === 'liberte-expression';
+const visible = !selection
+  ? []
+  : selection.groups.length
+    ? selection.groups
+    : [
+        {
+          id: selection.id,
+          label: 'Propositions recensées',
+          entries: selection.entries,
+        },
+      ];
+const regulatorySource =
+  'https://www.arcom.fr/espace-professionnel/reglement-sur-les-services-numeriques-ou-dsa-obligations-et-services-concernes';
 const maxCount = Math.max(
   ...digitalTopics.map(({ entries }) => entries.length),
 );
@@ -38,7 +51,10 @@ const maxCount = Math.max(
       ? `${selection.label} · Numérique`
       : 'Propositions sur le numérique'
   }
-  description="Logiciels libres, données, formation à l’IA et centres de calcul dans les programmes de 2027."
+  description={
+    selection?.example ??
+    'Liberté d’expression, logiciels libres, données, formation à l’IA et centres de calcul dans les programmes de 2027.'
+  }
   section="/numerique/"
 >
   {selection && (
@@ -61,74 +77,132 @@ const maxCount = Math.max(
       </p>
     </div>
   </header>
-  <p class="digital-law-crosslink">
-    <a class="inline-action" href="/numerique/candidats/">
-      <Icon name="people" /> Le numérique chez les {candidates.length} candidats
-      ↗
-    </a>
-  </p>
-  <section class="digital-law-entry" aria-labelledby="digital-law-entry-title">
-    <div>
-      <h2 id="digital-law-entry-title">Ce qui changerait</h2>
-      <p>Les propositions face au droit en vigueur.</p>
+  {isExpression ? (
+    <div class="expression-overview">
+      <nav aria-label="Comparer par sujet">
+        {visible.map((group) => (
+          <a href={'#digital-' + group.id}>
+            <span>{group.label}</span>
+            <small>{group.entries.length} fiches</small>
+          </a>
+        ))}
+      </nav>
+      <details>
+        <summary>Repères sur le DSA et la liberté d’expression</summary>
+        <dl>
+          <div>
+            <dt>Liberté d’expression</dt>
+            <dd>
+              La Déclaration de 1789 protège le droit de parler, d’écrire et de
+              publier. La loi définit les abus dont il faut répondre.
+              <a href="https://www.elysee.fr/la-presidence/la-declaration-des-droits-de-l-homme-et-du-citoyen">
+                Déclaration de 1789, article 11 ↗
+              </a>
+            </dd>
+          </div>
+          <div>
+            <dt>Modération et recours</dt>
+            <dd>
+              Le DSA demande aux hébergeurs de motiver certaines restrictions.
+              Les plateformes soumises à l’article 20 doivent permettre de
+              contester les décisions visées par cet article.
+              <a href="https://eur-lex.europa.eu/eli/reg/2022/2065/oj?locale=fr">
+                Règlement européen, articles 17, 20 et 21 ↗
+              </a>
+            </dd>
+          </div>
+          <div>
+            <dt>Qui en contrôle l’application ?</dt>
+            <dd>
+              L’Arcom est le coordinateur français du DSA. Les compétences sont
+              réparties entre autorités nationales et Commission européenne.
+              <a href={regulatorySource}>
+                Arcom · obligations et services concernés ↗
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </details>
     </div>
-    <nav aria-label="Droit en vigueur et propositions">
-      {digitalLawSections.map((section) => (
-        <a href={section.cases[0].href}>
-          <Icon name={section.icon} />
-          <span>{section.title}</span>
-          <Icon name="arrow" />
+  ) : (
+    <>
+      <p class="digital-law-crosslink">
+        <a class="inline-action" href="/numerique/candidats/">
+          <Icon name="people" /> Le numérique chez les {candidates.length}{' '}
+          candidats ↗
         </a>
-      ))}
-    </nav>
-  </section>
-  <section
-    class="digital-compare-entry"
-    aria-labelledby="digital-compare-entry-title"
-  >
-    <h2 id="digital-compare-entry-title">Comparer les propositions</h2>
-    <nav aria-label="Comparatif du numérique">
-      {digitalAxes.map((axis) => (
-        <a href={digitalComparePath(axis.id)}>
-          <Icon name={axis.icon} />
-          {axis.title} ↗
-        </a>
-      ))}
-    </nav>
-  </section>
-  <nav class="digital-topics" aria-label="Sujets du numérique">
-    {digitalTopics.map((topic) => (
-      <a
-        href={`/numerique/${topic.id}/`}
-        data-topic={topic.id}
-        aria-current={selection?.id === topic.id ? 'page' : undefined}
+      </p>
+      <section
+        class="digital-law-entry"
+        aria-labelledby="digital-law-entry-title"
       >
-        <span class="digital-topics-label">
-          <Icon name={topic.icon} />
-          <span>{topic.label}</span>
-        </span>
-        <svg
-          class="digital-coverage"
-          viewBox={`0 0 ${maxCount * 12} 8`}
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          {Array.from({ length: maxCount }, (_, index) => (
-            <rect
-              x={index * 12}
-              width="10"
-              height="8"
-              rx="1"
-              class:list={{ 'digital-recorded': index < topic.entries.length }}
-            />
+        <div>
+          <h2 id="digital-law-entry-title">Ce qui changerait</h2>
+          <p>Les propositions face au droit en vigueur.</p>
+        </div>
+        <nav aria-label="Droit en vigueur et propositions">
+          {digitalLawSections.map((section) => (
+            <a href={section.cases[0].href}>
+              <Icon name={section.icon} />
+              <span>{section.title}</span>
+              <Icon name="arrow" />
+            </a>
           ))}
-        </svg>
-        <span class="digital-topic-count">
-          {topic.entries.length} fiches · {topic.candidateCount} candidats
-        </span>
-      </a>
-    ))}
-  </nav>
+        </nav>
+      </section>
+      <section
+        class="digital-compare-entry"
+        aria-labelledby="digital-compare-entry-title"
+      >
+        <h2 id="digital-compare-entry-title">Comparer les propositions</h2>
+        <nav aria-label="Comparatif du numérique">
+          {digitalAxes.map((axis) => (
+            <a href={digitalComparePath(axis.id)}>
+              <Icon name={axis.icon} />
+              {axis.title} ↗
+            </a>
+          ))}
+        </nav>
+      </section>
+    </>
+  )}
+  {!isExpression && (
+    <nav class="digital-topics" aria-label="Sujets du numérique">
+      {digitalTopics.map((topic) => (
+        <a
+          href={`/numerique/${topic.id}/`}
+          data-topic={topic.id}
+          aria-current={selection?.id === topic.id ? 'page' : undefined}
+        >
+          <span class="digital-topics-label">
+            <Icon name={topic.icon} />
+            <span>{topic.label}</span>
+          </span>
+          <svg
+            class="digital-coverage"
+            viewBox={`0 0 ${maxCount * 12} 8`}
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            {Array.from({ length: maxCount }, (_, index) => (
+              <rect
+                x={index * 12}
+                width="10"
+                height="8"
+                rx="1"
+                class:list={{
+                  'digital-recorded': index < topic.entries.length,
+                }}
+              />
+            ))}
+          </svg>
+          <span class="digital-topic-count">
+            {topic.entries.length} fiches · {topic.candidateCount} candidats
+          </span>
+        </a>
+      ))}
+    </nav>
+  )}
 
   <div
     class="digital-dossiers"
@@ -142,20 +216,13 @@ const maxCount = Math.max(
       >
         <header>
           <div>
-            <h2 id={`digital-${topic.id}`}>
-              {selection ? 'Propositions recensées' : topic.label}
-            </h2>
+            <h2 id={`digital-${topic.id}`}>{topic.label}</h2>
             <p>
-              {selection
-                ? `${topic.entries.length} fiches · ${topic.candidateCount} candidats`
-                : topic.example}
+              {topic.entries.length} fiches ·{' '}
+              {new Set(topic.entries.map(({ candidate }) => candidate.id)).size}{' '}
+              candidatures
             </p>
           </div>
-          {!selection && (
-            <a class="inline-action" href={`/numerique/${topic.id}/`}>
-              Voir les {topic.entries.length} fiches ↗
-            </a>
-          )}
         </header>
         <PagedResults total={topic.entries.length}>
           <div class="digital-measures" data-document-list>
@@ -201,11 +268,18 @@ const maxCount = Math.max(
                   <p class="digital-timing">{measure.timing}</p>
                 )}
                 <footer>
-                  <a href={source.url}>
-                    {measure.scope === 'orientation'
-                      ? 'Publication officielle'
-                      : source.kind === 'parti'
-                        ? 'Document du parti'
+                  <a
+                    href={
+                      measure.sourceRefs[0].fragment &&
+                      !source.url.includes('#')
+                        ? source.url + '#' + measure.sourceRefs[0].fragment
+                        : source.url
+                    }
+                  >
+                    {source.kind === 'parti'
+                      ? 'Document du parti'
+                      : isExpression
+                        ? 'Publication d’origine'
                         : 'Programme officiel'}{' '}
                     ↗
                   </a>
@@ -227,3 +301,66 @@ const maxCount = Math.max(
 </Base>
 
 <script src="../../scripts/document-pages.ts"></script>
+
+<style>
+  .expression-overview {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  .expression-overview nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.7rem;
+  }
+  .expression-overview nav a {
+    display: grid;
+    gap: 0.2rem;
+    padding: 0.8rem 0.95rem;
+    border: 1px solid var(--line);
+    border-radius: var(--surface-radius);
+    background: linear-gradient(135deg, var(--sheet), #e4efed);
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 650;
+  }
+  .expression-overview nav a:hover,
+  .expression-overview nav a:focus-visible {
+    border-color: var(--accent);
+    text-decoration: underline;
+  }
+  .expression-overview nav small {
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .expression-overview details {
+    padding: 0.5rem 0.9rem;
+    border: 1px solid var(--line);
+    border-radius: var(--surface-radius);
+    background: var(--sheet);
+  }
+  .expression-overview summary {
+    cursor: pointer;
+    padding: 0.25rem 0;
+    font-weight: 650;
+  }
+  .expression-overview dl {
+    display: grid;
+    gap: 0.85rem;
+    margin: 0.6rem 0;
+  }
+  .expression-overview dt {
+    font-weight: 650;
+  }
+  .expression-overview dd {
+    margin: 0.2rem 0 0;
+  }
+  .expression-overview dd a {
+    display: block;
+  }
+  @media (max-width: 670px) {
+    .expression-overview nav {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

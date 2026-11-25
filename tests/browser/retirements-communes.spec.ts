@@ -131,7 +131,7 @@ test('les dossiers numériques s’explorent sur mobile et renvoient à leurs so
   await expect(
     page.getByRole('heading', { name: 'Propositions sur le numérique' }),
   ).toBeVisible();
-  await expect(page.locator('.digital-topics a')).toHaveCount(4);
+  await expect(page.locator('.digital-topics a')).toHaveCount(5);
   await page.locator('.digital-topics a[data-topic="calcul-energie"]').click();
   await expect(page).toHaveURL(/\/numerique\/calcul-energie\/$/);
   await expect(
