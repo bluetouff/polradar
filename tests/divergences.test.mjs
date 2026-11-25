@@ -276,9 +276,16 @@ test('les comparaisons par mesure gardent les conditions et l’auteur du docume
   const entries = retirements.positions.flatMap(
     (position) => position.versions,
   );
-  assert.equal(entries.length, 14);
+  assert.equal(entries.length, 16);
   assert.ok(entries.includes('lepen-retraites-age-carriere-v1'));
   assert.ok(entries.includes('ps-retraites-age-cotisation-v1'));
+  assert.ok(
+    retirements.positions
+      .find((position) => position.id === 'consultation')
+      .versions.includes(
+        'becht-soumettre-a-referendum-une-reforme-des-retraites-apres-negociation-sociale-v1',
+      ),
+  );
   const energy = topics.find(
     (topic) => topic.id === 'climat-production-nucleaire',
   );

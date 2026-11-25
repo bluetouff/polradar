@@ -118,9 +118,10 @@ test('la carte distingue les conditions et conserve les chiffres lors des change
   await page.goto('/divergences/#inconnu');
   const conditions = page.locator('#retraites-conditions-depart');
   await expect(conditions).toBeVisible();
-  await expect(conditions.locator('[data-position-profile]')).toHaveCount(14);
+  await expect(conditions.locator('[data-position-profile]')).toHaveCount(16);
   await expect(conditions).toContainText('Marine Le Pen');
   await expect(conditions).toContainText('Parti socialiste');
+  await expect(conditions).toContainText('Olivier Becht');
   await topics.selectOption('climat-prix-energie');
   const energy = page.locator('#climat-prix-energie');
   await expect(
