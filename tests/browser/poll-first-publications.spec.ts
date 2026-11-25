@@ -1,6 +1,49 @@
 import { expect, test } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 
+test('les trois terrains 2024 et les cas de contrôle restent distincts dans le rapprochement', async ({
+  page,
+  request,
+}) => {
+  const { polls } = await (await request.get('/api/corpus.json')).json();
+  await page.goto('/sondages/rapprochement/');
+  await expect(
+    page.getByRole('heading', { name: 'Décisions documentées' }),
+  ).toBeVisible();
+  for (const [id, sample, registered] of [
+    ['harris-commission-9888', 2496, 2318],
+    ['ifop-fiducial-commission-9889', 1204, 1107],
+    ['ifop-fiducial-commission-9894', 1202, 1101],
+  ] as const) {
+    const wave = polls.filter(
+      (poll: { surveyId: string }) => poll.surveyId === id,
+    );
+    expect(wave).toHaveLength(4);
+    for (const poll of wave) {
+      expect(poll.sampleSize).toBe(sample);
+      expect(poll.registeredSample).toBe(registered);
+      expect(poll.publicationDocuments.length).toBeGreaterThan(0);
+    }
+    await expect(
+      page.locator(`#notice-${id.split('-').at(-1)} a`).first(),
+    ).toHaveAttribute('href', new RegExp(id));
+  }
+  await expect(page.locator('#notice-10205')).toContainText(
+    'Marine Le Pen ou Jordan Bardella',
+  );
+  await expect(page.locator('#notice-10228')).toContainText(
+    'souhaitent la victoire',
+  );
+  expect(polls.some((p: { id: string }) => p.id.includes('10228'))).toBeFalsy();
+  const verian = polls.filter(
+    (p: { surveyId: string }) => p.surveyId === 'verian-lhemicycle-2025-11-20',
+  );
+  expect(verian).toHaveLength(5);
+  expect(
+    new Set(verian.map((p: { noticeSource: string }) => p.noticeSource)).size,
+  ).toBe(2);
+});
+
 test('les autres enquêtes se lisent sur mobile sans JavaScript et renvoient au tableau officiel', async ({
   browser,
   baseURL,

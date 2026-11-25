@@ -168,15 +168,20 @@ const names = new Map(
             <ol>
               {d.coverage.units.map((u) => (
                 <li>
-                  {u.title}{' '}
+                  <a href={u.sourceUrl} rel="noreferrer">
+                    {u.title} ↗
+                  </a>{' '}
                   {u.measureIds.length ? (
                     u.measureIds.map((id, i) => (
                       <a href={'/mesures/' + id + '/'}>
                         Fiche {u.measureIds.length > 1 ? i + 1 : ''}
                       </a>
                     ))
-                  ) : (
+                  ) : u.review === 'a-examiner' ? (
                     <em>À documenter</em>
+                  ) : null}
+                  {u.review === 'sans-engagement-precis' && (
+                    <em>Relue, sans engagement précis</em>
                   )}
                 </li>
               ))}

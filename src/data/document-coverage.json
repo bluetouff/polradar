@@ -500,5 +500,352 @@
         ]
       }
     ]
+  },
+  {
+    "sourceId": "dubuisson-projet-presidentiel",
+    "perimeter": "Les treize dossiers du programme",
+    "unit": "section",
+    "checked": "2026-11-25",
+    "units": [
+      {
+        "id": "dossier-1",
+        "title": "Ma méthode de travail",
+        "sourceId": "dubuisson-dossier-methode",
+        "review": "sans-engagement-precis",
+        "measureIds": []
+      },
+      {
+        "id": "dossier-2",
+        "title": "La richesse pour les Français",
+        "sourceId": "dubuisson-dossier-richesse",
+        "review": "sans-engagement-precis",
+        "measureIds": []
+      },
+      {
+        "id": "dossier-3",
+        "title": "Santé publique et médecine",
+        "sourceId": "dubuisson-dossier-sante",
+        "review": "sans-engagement-precis",
+        "measureIds": []
+      },
+      {
+        "id": "dossier-4",
+        "title": "Fonction publique",
+        "sourceId": "dubuisson-dossier-fonction-publique",
+        "measureIds": [
+          "dubuisson-eviter-redemande-documents-administratifs",
+          "dubuisson-affecter-agents-selon-besoins-locaux"
+        ]
+      },
+      {
+        "id": "dossier-5",
+        "title": "Une sécurité qui tient",
+        "sourceId": "dubuisson-dossier-securite",
+        "measureIds": [
+          "dubuisson-renforcer-protection-temoins",
+          "dubuisson-enquetes-financieres-blanchiment",
+          "dubuisson-surveillance-ports"
+        ]
+      },
+      {
+        "id": "dossier-6",
+        "title": "Justice et probité publique",
+        "sourceId": "dubuisson-dossier-probite",
+        "measureIds": [
+          "dubuisson-parquet-probite-publique",
+          "dubuisson-cjr-publication-controle"
+        ]
+      },
+      {
+        "id": "dossier-7",
+        "title": "La vision des Outre-mer",
+        "sourceId": "dubuisson-dossier-outre-mer",
+        "review": "sans-engagement-precis",
+        "measureIds": ["dubuisson-strategie-par-territoire-outre-mer"]
+      },
+      {
+        "id": "dossier-8",
+        "title": "Probité et éthique présidentielle",
+        "sourceId": "dubuisson-dossier-charte",
+        "measureIds": [
+          "dubuisson-charte-probite-conseillers",
+          "dubuisson-haute-trahison-mandats"
+        ]
+      },
+      {
+        "id": "dossier-9",
+        "title": "Fiscalité et budget",
+        "sourceId": "dubuisson-dossier-fiscalite",
+        "review": "sans-engagement-precis",
+        "measureIds": ["dubuisson-evaluer-effets-chaine-impots"]
+      },
+      {
+        "id": "dossier-10",
+        "title": "Agriculture, alimentation et eau",
+        "sourceId": "dubuisson-dossier-agriculture",
+        "review": "sans-engagement-precis",
+        "measureIds": ["dubuisson-eau-gestion-par-territoire"]
+      },
+      {
+        "id": "dossier-11",
+        "title": "Rendre la parole aux Français",
+        "sourceId": "dubuisson-dossier-referendum",
+        "measureIds": [
+          "dubuisson-referendum-decisions-essentielles",
+          "dubuisson-consultation-collectivites"
+        ]
+      },
+      {
+        "id": "dossier-12",
+        "title": "Une campagne sobre",
+        "sourceId": "dubuisson-dossier-campagne-sobre",
+        "review": "sans-engagement-precis",
+        "measureIds": []
+      },
+      {
+        "id": "dossier-13",
+        "title": "Agenda et budget présidentiel",
+        "sourceId": "dubuisson-dossier-agenda-presidentiel",
+        "measureIds": [
+          "dubuisson-reduire-delegations-president",
+          "dubuisson-transports-president-vols-commerciaux",
+          "dubuisson-travail-mensuel-outre-mer",
+          "dubuisson-diplomatie-depuis-outre-mer"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "dubuisson-ce-qui-change",
+    "perimeter": "Les quinze solutions et l’exemple de paie",
+    "unit": "section",
+    "checked": "2026-11-25",
+    "units": [
+      {
+        "id": "solution-1",
+        "title": "Pouvoir d’achat",
+        "sourceId": "dubuisson-ce-qui-change",
+        "measureIds": ["dubuisson-reaffectation-cotisations-salaire"]
+      },
+      {
+        "id": "solution-2",
+        "title": "Soins de proximité",
+        "sourceId": "dubuisson-ce-qui-change",
+        "measureIds": ["dubuisson-dossier-medical-pros-autorises"]
+      },
+      {
+        "id": "solution-3",
+        "title": "École et créativité",
+        "sourceId": "dubuisson-ce-qui-change",
+        "review": "sans-engagement-precis",
+        "measureIds": []
+      },
+      {
+        "id": "solution-4",
+        "title": "Administration",
+        "sourceId": "dubuisson-ce-qui-change",
+        "measureIds": ["dubuisson-eviter-redemande-documents-administratifs"]
+      },
+      {
+        "id": "solution-5",
+        "title": "Égalité salariale",
+        "sourceId": "dubuisson-ce-qui-change",
+        "measureIds": ["dubuisson-controle-ecarts-salariaux"]
+      },
+      {
+        "id": "solution-6",
+        "title": "Sécurité quotidienne",
+        "sourceId": "dubuisson-ce-qui-change",
+        "review": "sans-engagement-precis",
+        "measureIds": []
+      },
+      {
+        "id": "solution-7",
+        "title": "Justice",
+        "sourceId": "dubuisson-ce-qui-change",
+        "measureIds": ["dubuisson-justice-dossier-unique"]
+      },
+      {
+        "id": "solution-8",
+        "title": "Souveraineté",
+        "sourceId": "dubuisson-ce-qui-change",
+        "review": "sans-engagement-precis",
+        "measureIds": []
+      },
+      {
+        "id": "solution-9",
+        "title": "Tous les territoires",
+        "sourceId": "dubuisson-ce-qui-change",
+        "measureIds": ["dubuisson-tva-achats-communaux"]
+      },
+      {
+        "id": "solution-10",
+        "title": "Outre-mer",
+        "sourceId": "dubuisson-ce-qui-change",
+        "review": "sans-engagement-precis",
+        "measureIds": []
+      },
+      {
+        "id": "solution-11",
+        "title": "Production française",
+        "sourceId": "dubuisson-ce-qui-change",
+        "review": "sans-engagement-precis",
+        "measureIds": []
+      },
+      {
+        "id": "solution-12",
+        "title": "Référendum",
+        "sourceId": "dubuisson-ce-qui-change",
+        "review": "sans-engagement-precis",
+        "measureIds": []
+      },
+      {
+        "id": "solution-13",
+        "title": "Fiscalité",
+        "sourceId": "dubuisson-ce-qui-change",
+        "review": "sans-engagement-precis",
+        "measureIds": []
+      },
+      {
+        "id": "solution-14",
+        "title": "Écologie pratique",
+        "sourceId": "dubuisson-ce-qui-change",
+        "review": "sans-engagement-precis",
+        "measureIds": []
+      },
+      {
+        "id": "solution-15",
+        "title": "Dette publique",
+        "sourceId": "dubuisson-ce-qui-change",
+        "review": "sans-engagement-precis",
+        "measureIds": ["dubuisson-suivre-service-dette"]
+      },
+      {
+        "id": "exemple-paie",
+        "title": "Exemple chiffré de paie et de capitalisation",
+        "sourceId": "dubuisson-ce-qui-change",
+        "measureIds": [
+          "dubuisson-reaffectation-cotisations-salaire",
+          "dubuisson-capitalisation-dans-modele-paie",
+          "dubuisson-impot-solde-salaire-modele"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "becht-cinq-refondations",
+    "perimeter": "Les cinq refondations du Projet France",
+    "unit": "section",
+    "checked": "2026-11-25",
+    "units": [
+      {
+        "id": "refondation-energie",
+        "title": "Énergie et technologies",
+        "sourceId": "becht-refondation-energie",
+        "measureIds": [
+          "becht-carburants-synthese",
+          "becht-mix-nucleaire-renouvelables-stockage",
+          "becht-programme-def-i-tech"
+        ]
+      },
+      {
+        "id": "refondation-sociale",
+        "title": "Travail et solidarité",
+        "sourceId": "becht-refondation-sociale",
+        "measureIds": [
+          "becht-allocations-premier-enfant",
+          "becht-contrat-travail-unique-transferable",
+          "becht-points-retraite-maisons-vie",
+          "becht-pret-etudiant-garanti-etat",
+          "becht-conge-sabbatique-contrat-unique",
+          "becht-accueil-enfants-periscolaire",
+          "becht-maisons-mentors-decrochage",
+          "becht-formation-remuneration-enseignants"
+        ]
+      },
+      {
+        "id": "refondation-sante",
+        "title": "Santé",
+        "sourceId": "becht-refondation-sante",
+        "measureIds": [
+          "becht-hopital-financement-parcours-soins",
+          "becht-carte-vitale-carte-identite",
+          "becht-fusion-agences-sante",
+          "becht-pharmaciens-traitants",
+          "becht-cours-hygiene-sante-ecole",
+          "becht-seuils-acces-soins",
+          "becht-formation-exercice-soignants",
+          "becht-drones-medicaments-urgences"
+        ]
+      },
+      {
+        "id": "refondation-securite",
+        "title": "Sécurité et justice",
+        "sourceId": "becht-refondation-securite",
+        "measureIds": [
+          "becht-recruter-policiers-supplementaires",
+          "becht-justice-dix-huit-mois",
+          "becht-places-prisons-haute-securite",
+          "becht-centres-reinsertion-militaires",
+          "becht-confiscation-avoirs-criminalite",
+          "becht-travaux-interet-general",
+          "becht-refonte-code-entree-sejour"
+        ]
+      },
+      {
+        "id": "refondation-democratique",
+        "title": "Démocratie et territoires",
+        "sourceId": "becht-refondation-democratique",
+        "measureIds": [
+          "becht-referendum-initiative-citoyenne",
+          "becht-fusions-departements-provinces",
+          "becht-reconnaissance-vote-blanc",
+          "becht-plan-renovation-ferroviaire",
+          "becht-dotation-investissement-territoires"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "cheve-projet-resume-electeurs",
+    "perimeter": "Les quatre sections du résumé de La France Adulte",
+    "unit": "section",
+    "checked": "2026-11-25",
+    "units": [
+      {
+        "id": "preambule",
+        "title": "Préambule",
+        "sourceId": "cheve-projet-resume-electeurs",
+        "review": "sans-engagement-precis",
+        "measureIds": []
+      },
+      {
+        "id": "remontee",
+        "title": "Outil de Remontée citoyenne",
+        "sourceId": "cheve-projet-resume-electeurs",
+        "measureIds": [
+          "cheve-institutions-remontee-citoyenne",
+          "cheve-controle-citoyen",
+          "cheve-proposition-argumentee",
+          "cheve-question-reponse-publique",
+          "cheve-deposer-soutenir-avis",
+          "cheve-saisir-administration-droit",
+          "cheve-signaler-decision-remontee"
+        ]
+      },
+      {
+        "id": "faisabilite",
+        "title": "Faisabilité du projet",
+        "sourceId": "cheve-projet-resume-electeurs",
+        "review": "sans-engagement-precis",
+        "measureIds": []
+      },
+      {
+        "id": "structure",
+        "title": "Structure nécessaire",
+        "sourceId": "cheve-projet-resume-electeurs",
+        "measureIds": ["cheve-deux-pouvoirs-executifs"]
+      }
+    ]
   }
 ]

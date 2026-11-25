@@ -181,7 +181,10 @@ export const sourceRefSchema = z.object({
   locator: z.string().min(1).max(1000),
   fragment: z
     .string()
-    .regex(/^(?:page=|proposition-)[1-9]\d{0,3}$/)
+    .max(500)
+    .regex(
+      /^(?:(?:page=|proposition-)[1-9]\d{0,3}|:~:text=(?:[A-Za-z0-9._~]|%[0-9A-F]{2})+)$/,
+    )
     .optional(),
 });
 export const metricSchema = z.object({

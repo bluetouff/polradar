@@ -536,6 +536,40 @@ main > header.candidate-hero {
 .profile-topic-index[open] summary .icon:last-child {
   transform: rotate(180deg);
 }
+.programme-reading {
+  display: grid;
+  gap: 0.65rem;
+  margin-block-end: 1.6rem;
+}
+.programme-reading h2 {
+  margin: 0;
+}
+.programme-reading details {
+  min-width: 0;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--panel-edge);
+  border-radius: var(--card-radius);
+  background: var(--panel-gradient);
+  overflow-wrap: anywhere;
+}
+.programme-reading summary {
+  cursor: pointer;
+}
+.programme-reading summary span {
+  display: inline-block;
+  margin-inline-start: 0.4rem;
+  font-size: 0.85rem;
+}
+.programme-reading ol,
+.programme-reading ul {
+  padding-inline-start: 1.3rem;
+}
+.programme-reading ol > li + li {
+  margin-block-start: 0.5rem;
+}
+.programme-reading li small {
+  margin-inline-start: 0.45rem;
+}
 .profile-aside nav {
   display: grid;
   margin: 0.55rem 0 0;

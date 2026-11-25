@@ -12,6 +12,8 @@ const auditedSection = z.strictObject({
       z.strictObject({
         id: idSchema,
         title: z.string().trim().min(1).max(180),
+        sourceId: idSchema.optional(),
+        review: z.enum(['sans-engagement-precis', 'a-examiner']).optional(),
         measureIds: z.array(idSchema),
       }),
     )
@@ -65,7 +67,9 @@ export function buildDocumentRegister(
       );
     const units = new Set<string>();
     for (const unit of section.units) {
+      const sourceId = unit.sourceId ?? section.sourceId;
       if (
+        !sourcesById.has(sourceId) ||
         units.has(unit.id) ||
         new Set(unit.measureIds).size !== unit.measureIds.length
       )
@@ -73,11 +77,14 @@ export function buildDocumentRegister(
           'Étape ou fiche en double : ' + section.sourceId + '/' + unit.id,
         );
       units.add(unit.id);
+      if (unit.review === 'a-examiner' && unit.measureIds.length)
+        throw new Error('Section à examiner déjà reliée : ' + unit.id);
       for (const id of unit.measureIds) {
+        const measure = records.get(id);
         if (
-          !records
-            .get(id)
-            ?.sourceRefs.some((r) => r.sourceId === section.sourceId)
+          !measure?.sourceRefs.some((r) => r.sourceId === sourceId) ||
+          (unit.review === 'sans-engagement-precis' &&
+            measure.scope !== 'orientation')
         )
           throw new Error('La fiche ne cite pas ce document : ' + id);
       }
@@ -125,6 +132,11 @@ export function buildDocumentRegister(
   return corpus.sources.map((source) => {
     const related = links.get(source.id)!;
     const review = audits.get(source.id);
+    const units = review?.units.map(({ sourceId, ...unit }) => ({
+      ...unit,
+      review: unit.review ?? (unit.measureIds.length ? 'relue' : 'a-examiner'),
+      sourceUrl: sourcesById.get(sourceId ?? source.id)!.url,
+    }));
     const watch = watches.get(source.id);
     const info = details[source.id];
     const processing = review
@@ -169,16 +181,20 @@ export function buildDocumentRegister(
       themes: [...related.themeIds].sort(),
       measureCount: new Set(related.passages.map((p) => p.measureId)).size,
       passages: related.passages,
-      coverage: review
-        ? {
-            perimeter: review.perimeter,
-            unit: review.unit,
-            checked: review.checked,
-            linked: review.units.filter((u) => u.measureIds.length > 0).length,
-            total: review.units.length,
-            units: review.units,
-          }
-        : null,
+      coverage:
+        review && units
+          ? {
+              perimeter: review.perimeter,
+              unit: review.unit,
+              checked: review.checked,
+              linked: review.units.filter((u) => u.measureIds.length > 0)
+                .length,
+              total: review.units.length,
+              reviewed: units.filter((u) => u.review !== 'a-examiner').length,
+              remaining: units.filter((u) => u.review === 'a-examiner').length,
+              units,
+            }
+          : null,
     };
   });
 }

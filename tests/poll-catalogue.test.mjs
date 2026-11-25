@@ -41,9 +41,17 @@ test('Le baromètre Odoxa reste hors des intentions de vote, et une notice est e
     ).status,
     'partielle',
   );
-  assert.equal(
-    [...all.values()].flatMap((r) => r.scenarios).length,
-    polls.length,
+  const archivesOutsideIndex = new Set(
+    ['9888', '9889', '9894']
+      .filter((number) => !all.has(number))
+      .map((number) => 'notice-commission-' + number),
+  );
+  assert.deepEqual(
+    [...all.values()].flatMap((r) => r.scenarios.map((s) => s.id)).sort(),
+    polls
+      .filter((p) => !archivesOutsideIndex.has(p.noticeSource))
+      .map((p) => p.id)
+      .sort(),
   );
 });
 

@@ -8,7 +8,14 @@ import CandidatePortrait from '../../components/CandidatePortrait.astro';
 import { campaignBriefs } from '../../lib/briefs';
 import CandidateActivity from '../../components/CandidateActivity.astro';
 import Icon from '../../components/Icon.astro';
-import { candidates, formatDate, measures, themes } from '../../lib/data';
+import {
+  candidates,
+  formatDate,
+  measureById,
+  measures,
+  themes,
+} from '../../lib/data';
+import { documents } from '../../lib/documents';
 import { portraitLinks } from '../../lib/portrait-links.mjs';
 import { portraitFor } from '../../lib/portraits';
 import { proposalTracks, financingMaps } from '../../lib/proposal-data';
@@ -41,6 +48,11 @@ const externalPortrait = portraitLinks[candidate.id];
 const evolutionLink = proposalTracks.find((t) => t.candidate === candidate.id);
 const financingLink = financingMaps.find((m) => m.candidate === candidate.id);
 const votesLink = voteCases.find((v) => v.candidate === candidate.id);
+const programmeReviews = documents.flatMap((document) =>
+  document.coverage && document.candidates.includes(candidate.id)
+    ? [document.coverage]
+    : [],
+);
 ---
 
 <Base
@@ -198,6 +210,53 @@ const votesLink = voteCases.find((v) => v.candidate === candidate.id);
       )}
     </aside>
     <div>
+      {programmeReviews.length > 0 && (
+        <section class="programme-reading" aria-labelledby="programme-lecture">
+          <h2 id="programme-lecture">Relecture du programme</h2>
+          {programmeReviews.map((review) => (
+            <details>
+              <summary>
+                <strong>{review.perimeter}</strong>
+                <span>
+                  {review.total} identifiées · {review.reviewed} relues ·{' '}
+                  {review.remaining} à examiner
+                </span>
+              </summary>
+              <p>
+                Relecture du{' '}
+                <time datetime={review.checked}>
+                  {formatDate(review.checked)}
+                </time>
+                .
+              </p>
+              <ol>
+                {review.units.map((unit) => (
+                  <li>
+                    <a href={unit.sourceUrl} rel="noreferrer">
+                      {unit.title} ↗
+                    </a>
+                    {unit.review === 'sans-engagement-precis' && (
+                      <small>Sans engagement précis</small>
+                    )}
+                    {unit.review === 'a-examiner' && <small>À examiner</small>}
+                    {unit.measureIds.length > 0 && (
+                      <ul>
+                        {unit.measureIds.map((id) => (
+                          <li>
+                            <a href={`/mesures/${id}/`}>
+                              {measureById(id).title}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </details>
+          ))}
+        </section>
+      )}
       <div class="section-heading">
         <div>
           <span id="mesures-du-profil" aria-hidden="true"></span>

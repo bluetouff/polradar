@@ -8,6 +8,7 @@ import publications from '../src/data/poll-first-publications.json' with { type:
 import documents from '../src/data/poll-publication-documents.json' with { type: 'json' };
 import { catalogueCoverage } from '../src/lib/poll-catalogue.mjs';
 import { withFirstPublications } from '../src/lib/poll-first-publications.mjs';
+import { civilDateInParis } from '../src/lib/schema.mjs';
 
 const batches = [
   ['10262', 'ipsos-bva-enef-2026-09-03', [22, 26, 30, 34, 38, 42]],
@@ -112,7 +113,7 @@ test('Une date d’article et une heure annoncée restent distinctes de la premi
     polls,
     publications,
     sources,
-    '2026-11-24',
+    civilDateInParis(),
     documents,
   );
   const row = documented.find(

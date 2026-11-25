@@ -43,10 +43,18 @@ test('les proportions comptent les fiches une fois et séparent parti, campagne,
 
 test('les renvois vers une page de PDF ou une proposition numérotée restent des fragments de la source', () => {
   const ref = { sourceId: 'programme', locator: 'Chapitre 2' };
-  for (const fragment of [undefined, 'page=1', 'proposition-255']) {
+  for (const fragment of [
+    undefined,
+    'page=1',
+    'proposition-255',
+    ':~:text=Chapitre%20consacr%C3%A9',
+  ]) {
     assert.ok(sourceRefSchema.safeParse({ ...ref, fragment }).success);
   }
   for (const fragment of [
+    ':~:text=',
+    ':~:text=Chapitre%2',
+    ':~:text=' + 'a'.repeat(501),
     'page=0',
     'page=10000',
     'https://example.com',

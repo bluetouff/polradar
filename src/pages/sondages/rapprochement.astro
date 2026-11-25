@@ -1,0 +1,267 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { formatDate } from '../../lib/data';
+import { registryComparison as register } from '../../lib/poll-register-comparison';
+
+const count = new Intl.NumberFormat('fr-FR');
+const fullShare = register.terrains.filter((row) => row.match).length;
+const origin =
+  'https://github.com/MieuxVoter/presidentielle2027/blob/' + register.revision;
+const harris =
+  'https://tolunacorporate.com/fr/intentions-de-vote-pour-lelection-presidentielle-de-2027/';
+const sep = 'https://www.sudradio.fr/emission/soyez-libres-9';
+const dec = 'https://www.sudradio.fr/emission/le-journal-de-7h-441';
+const checkedCases = [
+  {
+    number: '9888',
+    note: 'Les quatre hypothèses sont intégrées. La notice inclut Challenges parmi les commanditaires avec M6 et RTL. Elle distingue 2 496 personnes interrogées et 2 318 inscrits.',
+    rel: 'harris-commission-9888-p25',
+    publication: harris,
+    medium: 'Publication de Toluna, 8 juillet 2024',
+  },
+  {
+    number: '9889',
+    note: 'Les quatre hypothèses sont intégrées. La notice distingue 1 204 personnes interrogées, 1 107 inscrits et, selon l’hypothèse, 866 à 885 inscrits ayant exprimé une intention. La notice porte la date du 13 septembre et Sud Radio diffuse les résultats le 12.',
+    rel: 'ifop-fiducial-commission-9889-p9',
+    publication: sep,
+    medium: 'Diffusion constatée sur Sud Radio, 12 septembre 2024',
+  },
+  {
+    number: '9894',
+    note: 'Les quatre hypothèses sont intégrées. La notice indique 1 202 personnes interrogées, 1 101 inscrits et, selon l’hypothèse, 765 à 815 inscrits ayant exprimé une intention.',
+    rel: 'ifop-fiducial-commission-9894-p9',
+    publication: dec,
+    medium: 'Diffusion constatée sur Sud Radio, 11 décembre 2024',
+  },
+  {
+    number: '10205',
+    note: 'Les trois hypothèses conservent la réponse commune Marine Le Pen ou Jordan Bardella, telle que la notice la présente. L’effectif total est de 1 001 personnes, dont 901 inscrits.',
+    rel: 'opinionway-commission-10205-p12',
+  },
+  {
+    number: '10228',
+    note: 'La notice interroge 1 837 personnes sur la personnalité dont elles souhaitent la victoire. Elle est classée parmi les enquêtes d’opinion. Aucun de ces résultats ne rejoint les intentions de vote.',
+    original:
+      'https://www.commission-des-sondages.fr/notices/files/notices/2026/juillet/10228-pres-barometre-cluster17-le-point-14-juillet.pdf#page=17',
+  },
+  {
+    number: '10035',
+    note: 'Les cinq configurations concernent un seul terrain Verian pour L’Hémicycle, du 18 au 20 novembre 2025. La page 6 reprend la configuration de la notice 10024. Les quatre autres pages complètent la même enquête.',
+    rel: 'verian-commission-10035-p9',
+  },
+];
+---
+
+<Base
+  title="Rapprochement des sondages"
+  description="Comparaison par institut, terrain, commanditaire et notice. Écarts d’effectifs, sources et décisions de classement."
+  section="/sondages/"
+>
+  <header class="page-title feature-title">
+    <span class="feature-emblem">
+      <Icon name="sondages" />
+    </span>
+    <div>
+      <h1>Rapprochement des sondages</h1>
+      <p>Terrains recensés, effectifs et notices originales.</p>
+    </div>
+  </header>
+  <nav class="section-switch" aria-label="Sondages">
+    <a href="/sondages/">Intentions de vote</a>
+    <a href="/sondages/notices/">Notices de la Commission</a>
+    <a href="#relectures">Décisions documentées</a>
+    <a href="#registres">Registre comparé</a>
+  </nav>
+  <section class="reconciliation" aria-labelledby="relectures">
+    <h2 id="relectures">Décisions documentées</h2>
+    <p>
+      Les notices 9888, 9889 et 9894 sont disponibles sur le site de la
+      Commission. Elles figurent dans les sondages Polradar. Le relevé
+      thématique de la Commission du 24 novembre ne liste pas ces trois numéros.
+    </p>
+    <div class="review-grid">
+      {checkedCases.map((row) => (
+        <article id={`notice-${row.number}`}>
+          <h3>Notice {row.number}</h3>
+          <p>{row.note}</p>
+          {row.rel && (
+            <a href={`/sondages/#enquete=${row.rel}`}>Voir les résultats ↗</a>
+          )}
+          {row.original && (
+            <a href={row.original} rel="noreferrer">
+              Lire la question dans la notice ↗
+            </a>
+          )}
+          {row.publication && (
+            <a href={row.publication} rel="noreferrer">
+              {row.medium} ↗
+            </a>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="reconciliation" aria-labelledby="registres">
+    <h2 id="registres">Polradar et Mieux Voter</h2>
+    <p>
+      {register.terrains.length} terrains dans le relevé du{' '}
+      {formatDate(register.checked)}.{fullShare} sont reliés par l’institut, les
+      dates et un numéro de notice commun. Les commanditaires sont affichés tels
+      qu’ils figurent dans chaque registre.
+    </p>
+    <p>
+      Les effectifs d’ensemble et d’inscrits sont comparés séparément. Quand la
+      notice manque au rapprochement, la correspondance reste à établir.
+      L’effectif des personnes ayant exprimé un choix peut varier entre les
+      scénarios.
+      <a href={origin + '/polls.csv'} rel="noreferrer">
+        Relevé Mieux Voter ↗
+      </a>
+      <a href="https://sondages2027.fr/sondages/" rel="noreferrer">
+        Sondages 2027 ↗
+      </a>
+    </p>
+    {register.terrains.map((row) => (
+      <details class="terrain-row">
+        <summary>
+          <strong>
+            {row.institute} · {formatDate(row.end)}
+          </strong>
+          <span>
+            {row.classifiedOutsideVoting
+              ? 'Enquête d’opinion'
+              : row.match
+                ? 'Notice commune'
+                : 'Correspondance à établir'}
+          </span>
+        </summary>
+        <p>
+          Terrain du {formatDate(row.start)} au {formatDate(row.end)}.
+        </p>
+        <dl>
+          <div>
+            <dt>Mieux Voter</dt>
+            <dd>
+              {row.commissioner} · {count.format(row.respondents)} interrogés
+            </dd>
+            {row.registered.length > 0 && (
+              <dd>{row.registered.map(count.format).join(' / ')} inscrits</dd>
+            )}
+            <dd>
+              {row.notices.length
+                ? 'Notice ' + row.notices.join(', ')
+                : 'Numéro de notice absent du registre'}{' '}
+              · {row.scenarios} scénarios
+            </dd>
+          </div>
+          <div>
+            <dt>Polradar</dt>
+            {row.match ? (
+              <>
+                <dd>
+                  {row.match.commissioner} ·{' '}
+                  {count.format(row.match.sampleSize)} interrogés
+                </dd>
+                <dd>{count.format(row.match.registeredSample)} inscrits</dd>
+                <dd>
+                  Notice {row.localNotices.join(', ')} · {row.localScenarios}{' '}
+                  scénarios
+                </dd>
+                <dd>
+                  <a href={`/sondages/#enquete=${row.match.id}`}>
+                    Voir l’enquête ↗
+                  </a>
+                </dd>
+                {row.officialUrl && (
+                  <dd>
+                    <a href={row.officialUrl} rel="noreferrer">
+                      Notice originale ↗
+                    </a>
+                  </dd>
+                )}
+              </>
+            ) : (
+              <dd>
+                {row.classifiedOutsideVoting
+                  ? 'Question de souhait de victoire. Voir la décision sur la notice 10228.'
+                  : row.candidates
+                    ? 'Un terrain aux mêmes dates existe dans Polradar. Sa notice reste à rapprocher.'
+                    : 'Aucun terrain rapproché pour ces dates.'}
+              </dd>
+            )}
+          </div>
+        </dl>
+        {row.match && (
+          <p>
+            {row.respondents === row.match.sampleSize
+              ? 'Même effectif total déclaré.'
+              : 'Les registres indiquent des effectifs totaux différents. La base de chaque effectif doit être revérifiée dans la notice.'}{' '}
+            {row.registered.length === 0
+              ? 'Effectif des inscrits absent du registre Mieux Voter.'
+              : row.registered.length === 1 &&
+                  row.registered[0] === row.match.registeredSample
+                ? 'Même nombre d’inscrits.'
+                : 'Écart sur l’effectif des inscrits à vérifier.'}
+          </p>
+        )}
+      </details>
+    ))}
+    <p>
+      <small>
+        Mieux Voter © 2025 ·{' '}
+        <a href={origin + '/LICENSE'} rel="noreferrer">
+          Licence MIT
+        </a>
+      </small>
+    </p>
+  </section>
+</Base>
+
+<style>
+  .reconciliation {
+    margin-block: 1.5rem 2.25rem;
+  }
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    gap: 0.85rem;
+  }
+  .review-grid article,
+  .terrain-row {
+    background: var(--panel-gradient);
+    border: 1px solid var(--panel-edge);
+    border-radius: var(--card-radius);
+    padding: 0.85rem 1rem;
+    overflow-wrap: anywhere;
+  }
+  .review-grid h3 {
+    margin-block: 0 0.4rem;
+  }
+  .review-grid a {
+    display: block;
+    margin-block-start: 0.45rem;
+  }
+  .terrain-row {
+    margin-block: 0.5rem;
+  }
+  .terrain-row summary {
+    cursor: pointer;
+  }
+  .terrain-row summary span {
+    display: inline-block;
+    margin-inline-start: 0.6rem;
+    font-size: 0.86rem;
+  }
+  .terrain-row dl {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    gap: 0.7rem;
+  }
+  .terrain-row dt {
+    font-weight: 650;
+  }
+  .terrain-row dd {
+    margin: 0;
+  }
+</style>

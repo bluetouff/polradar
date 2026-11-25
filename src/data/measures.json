@@ -63327,9 +63327,9 @@
     "parentId": "dubuisson-institutions-programme-2027",
     "candidate": "dubuisson",
     "theme": "institutions",
-    "revision": 1,
+    "revision": 2,
     "title": "Éviter de redemander les mêmes justificatifs aux usagers",
-    "description": "Le dossier propose de mieux faire circuler les informations entre services pour éviter aux usagers de remettre plusieurs fois un même document.",
+    "description": "Il propose de recueillir une seule fois l’information nécessaire à la démarche. Pour chaque dossier, sa synthèse prévoit un responsable, un délai, une décision motivée et une voie de recours.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -63339,6 +63339,11 @@
       {
         "sourceId": "dubuisson-dossier-fonction-publique",
         "locator": "Un service public plus clair et plus efficace"
+      },
+      {
+        "sourceId": "dubuisson-ce-qui-change",
+        "locator": "Administration",
+        "fragment": ":~:text=Une%20information%20saisie%20une%20fois"
       }
     ],
     "scope": "campagne",
@@ -63373,9 +63378,9 @@
     "parentId": "dubuisson-dossier-securite-securite-campagne",
     "candidate": "dubuisson",
     "theme": "securite",
-    "revision": 1,
+    "revision": 2,
     "title": "Créer un parquet national de probité publique",
-    "description": "Il centraliserait les signalements graves visant des responsables publics et transmettrait les dossiers aux autorités compétentes, dans le cadre des règles relatives aux parlementaires et aux membres du gouvernement.",
+    "description": "Le parquet centraliserait les signalements graves visant des responsables publics, procéderait à une première analyse juridique, préserverait les éléments du dossier et les transmettrait aux autorités compétentes. Le candidat maintient la protection constitutionnelle du mandat parlementaire et la compétence de la Cour de justice de la République pour les membres du Gouvernement.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -63384,7 +63389,8 @@
     "sourceRefs": [
       {
         "sourceId": "dubuisson-dossier-probite",
-        "locator": "Parquet national de probité publique"
+        "locator": "Parquet national de probité publique",
+        "fragment": ":~:text=Je%20veux%20un%20parquet%20national%20de%20probit%C3%A9%20publique"
       }
     ],
     "scope": "campagne",
@@ -63684,6 +63690,518 @@
     ],
     "scope": "orientation",
     "edition": "Priorités du PCF de Loos pour 2027",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "dubuisson-consultation-collectivites",
+    "parentId": "dubuisson-institutions-programme-2027",
+    "candidate": "dubuisson",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Associer les collectivités aux décisions qui les concernent directement",
+    "description": "Le mécanisme référendaire proposé associerait aussi les collectivités concernées lorsque des décisions changent leur organisation ou leurs moyens. Le dossier ne détaille pas la procédure de consultation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "dubuisson-dossier-referendum",
+        "locator": "La voix des collectivités",
+        "fragment": ":~:text=La%20voix%20des%20collectivit%C3%A9s"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Projet présidentiel 2027 d’Emmanuel Dubuisson",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "dubuisson-haute-trahison-mandats",
+    "parentId": "dubuisson-institutions-programme-2027",
+    "candidate": "dubuisson",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Rétablir la haute trahison parmi les sanctions envisagées",
+    "description": "Le candidat évoque une sanction pour les personnes qui représentent la France et les Français. Il ne définit dans ce dossier ni les faits visés ni la juridiction compétente.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "dubuisson-dossier-charte",
+        "locator": "L’engagement par la signature d’une charte",
+        "fragment": ":~:text=Remettre%20la%20haute%20trahison%20parmi%20les%20sanctions%20possibles"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Projet présidentiel 2027 d’Emmanuel Dubuisson",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "dubuisson-justice-dossier-unique",
+    "parentId": "dubuisson-dossier-securite-securite-campagne",
+    "candidate": "dubuisson",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Suivre chaque affaire judiciaire dans un dossier unique",
+    "description": "La proposition relie le dépôt à l’exécution de la décision, avec un calendrier commun aux intervenants et des garanties pour la défense.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "dubuisson-ce-qui-change",
+        "locator": "Justice",
+        "fragment": ":~:text=Suivre%20une%20affaire%20du%20d%C3%A9p%C3%B4t%20%C3%A0%20l%E2%80%99ex%C3%A9cution"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Projet présidentiel 2027 d’Emmanuel Dubuisson",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "dubuisson-tva-achats-communaux",
+    "parentId": "dubuisson-dossier-fiscalite-fiscalite-orientation",
+    "candidate": "dubuisson",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Supprimer la TVA supportée sur les achats communaux éligibles",
+    "description": "Le candidat veut supprimer l’avance de TVA sur les achats communaux qu’il rendrait éligibles. Il présente un exemple de facture et ne précise pas les critères d’éligibilité dans ce passage.",
+    "beneficiaries": "Communes, pour leurs achats éligibles.",
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "dubuisson-ce-qui-change",
+        "locator": "Tous les territoires",
+        "fragment": ":~:text=Supprimer%20la%20TVA%20support%C3%A9e%20sur%20les%20achats%20communaux%20%C3%A9ligibles"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Projet présidentiel 2027 d’Emmanuel Dubuisson",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "dubuisson-controle-ecarts-salariaux",
+    "parentId": "dubuisson-ce-qui-change-travail-campagne",
+    "candidate": "dubuisson",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Contrôler et corriger les écarts de salaire pour des situations équivalentes",
+    "description": "La proposition prévoit de comparer les situations de travail équivalentes puis de corriger les écarts dans la rémunération et le parcours professionnel. La synthèse ne fixe pas de modalité de contrôle.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "dubuisson-ce-qui-change",
+        "locator": "Égalité salariale",
+        "fragment": ":~:text=Comparer%20les%20situations%20%C3%A9quivalentes"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Projet présidentiel 2027 d’Emmanuel Dubuisson",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "dubuisson-impot-solde-salaire-modele",
+    "parentId": "dubuisson-dossier-fiscalite-fiscalite-orientation",
+    "candidate": "dubuisson",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Appliquer 15 % d’impôt dans la simulation de paie",
+    "description": "Dans le cas de paie présenté par le candidat, la banque prélève l’impôt après la retenue de capitalisation retraite. Le taux de 15 % appartient à ce cas de référence.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "taux-simulation",
+        "label": "Taux dans le cas de paie",
+        "value": 15,
+        "unit": "%",
+        "sourceId": "dubuisson-ce-qui-change"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "dubuisson-ce-qui-change",
+        "locator": "Exemple mensuel de paie, impôt après la retenue retraite",
+        "fragment": ":~:text=15%20%25%20du%20solde"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Projet présidentiel 2027 d’Emmanuel Dubuisson",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "dubuisson-suivre-service-dette",
+    "parentId": "dubuisson-dossier-fiscalite-fiscalite-orientation",
+    "candidate": "dubuisson",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Suivre les échéances et les besoins de trésorerie de la dette publique",
+    "description": "Le candidat veut suivre les engagements, les paiements déjà effectués, les intérêts et les besoins de liquidité. La synthèse ne décrit pas de nouvel organisme ou d’obligation de publication.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "dubuisson-ce-qui-change",
+        "locator": "Dette publique",
+        "fragment": ":~:text=Suivre%20ce%20qui%20est%20d%C3%BB%2C%20pay%C3%A9%20et%20encore%20engag%C3%A9"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Projet présidentiel 2027 d’Emmanuel Dubuisson",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "becht-mix-nucleaire-renouvelables-stockage",
+    "parentId": "becht-climat-programme-2027",
+    "candidate": "becht",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Associer nucléaire, renouvelables et stockage dans le mix énergétique",
+    "description": "Olivier Becht propose ce mix pour accompagner la sortie des énergies fossiles et les besoins de chauffage et de rafraîchissement. Le chapitre ne fixe pas de répartition.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "becht-refondation-energie",
+        "locator": "Une révolution énergétique",
+        "fragment": ":~:text=un%20mix%20associant%20nucl%C3%A9aire%2C%20%C3%A9nergies%20renouvelables%20et%20nouvelles%20technologies%20de%20stockage"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Le Projet France · Les cinq refondations",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "becht-programme-def-i-tech",
+    "parentId": "becht-travail-chapitres-2027",
+    "candidate": "becht",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Lancer le programme DEF-I-TECH pour soutenir des priorités technologiques",
+    "description": "Le programme identifierait et soutiendrait sur la durée des priorités dont l’intelligence artificielle, le spatial et les technologies médicales. Le chapitre n’indique pas d’enveloppe.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "becht-refondation-energie",
+        "locator": "Une nouvelle économie de la Vie avec de grands défis",
+        "fragment": ":~:text=C%E2%80%99est%20le%20sens%20du%20programme%20DEF%2DI%2DTECH"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Le Projet France · Les cinq refondations",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "becht-maisons-mentors-decrochage",
+    "parentId": "becht-education-chapitres-2027",
+    "candidate": "becht",
+    "theme": "education",
+    "revision": 1,
+    "title": "Créer des Maisons de mentors pour les jeunes en décrochage",
+    "description": "Ces lieux de mentorat accompagneraient les Maisons de Vie. Ils seraient destinés notamment aux jeunes qui décrochent de l’école.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "becht-refondation-sociale",
+        "locator": "Faire de la Nation une famille pour tous",
+        "fragment": ":~:text=Maisons%20de%20mentors"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Le Projet France · Les cinq refondations",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "becht-formation-remuneration-enseignants",
+    "parentId": "becht-education-chapitres-2027",
+    "candidate": "becht",
+    "theme": "education",
+    "revision": 1,
+    "title": "Revoir la formation et revaloriser les salaires des enseignants",
+    "description": "Le chapitre social associe une réforme de la formation à une hausse salariale. Il ne donne ni montant ni calendrier.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "becht-refondation-sociale",
+        "locator": "Faire de la Nation une famille pour tous",
+        "fragment": ":~:text=la%20formation%20des%20enseignants%20sera%20repens%C3%A9e"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Le Projet France · Les cinq refondations",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "becht-cours-hygiene-sante-ecole",
+    "parentId": "becht-education-chapitres-2027",
+    "candidate": "becht",
+    "theme": "education",
+    "revision": 1,
+    "title": "Introduire des cours d’hygiène et de santé dès l’enfance",
+    "description": "Le chapitre santé prévoit aussi de la sensibilisation à l’activité sportive, aux addictions et à l’alimentation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "becht-refondation-sante",
+        "locator": "Un nouveau modèle de prévention",
+        "fragment": ":~:text=Des%20cours%20d%E2%80%99hygi%C3%A8ne%20et%20de%20sant%C3%A9%20seront%20dispens%C3%A9s"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Le Projet France · Les cinq refondations",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "becht-seuils-acces-soins",
+    "parentId": "becht-sante-chapitres-2027",
+    "candidate": "becht",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Fixer des objectifs de distance et de délai pour l’accès aux soins",
+    "description": "Le programme vise un médecin traitant et une pharmacie à moins de trente minutes du domicile, une consultation sous 48 heures, un spécialiste à moins d’une heure sous trois mois et les examens en moins d’un mois.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "becht-refondation-sante",
+        "locator": "Un accès facilité aux soins",
+        "fragment": ":~:text=un%20m%C3%A9decin%20traitant%20et%20une%20pharmacie%20se%20trouvent%20%C3%A0%20moins%20de%20trente%20minutes"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Le Projet France · Les cinq refondations",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "becht-formation-exercice-soignants",
+    "parentId": "becht-sante-chapitres-2027",
+    "candidate": "becht",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Augmenter les quotas de formation des soignants et permettre un exercice plus précoce",
+    "description": "Le candidat associe ces deux leviers à l’accès aux soins. Le chapitre ne fixe ni nombre de places supplémentaires ni conditions d’exercice anticipé.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "becht-refondation-sante",
+        "locator": "Un accès facilité aux soins",
+        "fragment": ":~:text=former%20davantage%20de%20soignants%2C%20d%E2%80%99augmenter%20les%20quotas"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Le Projet France · Les cinq refondations",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "becht-drones-medicaments-urgences",
+    "parentId": "becht-sante-chapitres-2027",
+    "candidate": "becht",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Livrer du matériel et des médicaments par drone pour les urgences",
+    "description": "Le chapitre rattache cet usage aux hôpitaux de proximité et à l’amélioration de la prise en charge des urgences.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "becht-refondation-sante",
+        "locator": "Une réforme profonde de l’hôpital",
+        "fragment": ":~:text=%C3%A0%20l%E2%80%99usage%20de%20drones%20pour%20les%20livraisons"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Le Projet France · Les cinq refondations",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "becht-confiscation-avoirs-criminalite",
+    "parentId": "becht-securite-chapitres-2027",
+    "candidate": "becht",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Développer la confiscation des avoirs liés à la criminalité",
+    "description": "Le candidat veut utiliser la confiscation pour réduire le gain tiré des infractions. La page ne précise pas les procédures existantes qu’il modifierait.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "becht-refondation-securite",
+        "locator": "Des mesures fortes",
+        "fragment": ":~:text=Nous%20instaurerons%20la%20confiscation%20des%20avoirs"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Le Projet France · Les cinq refondations",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "becht-travaux-interet-general",
+    "parentId": "becht-securite-chapitres-2027",
+    "candidate": "becht",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Recourir aux travaux d’intérêt général pour les auteurs de petite délinquance",
+    "description": "Le dossier présente ces travaux comme une sanction destinée à responsabiliser leurs auteurs. Il ne précise pas les infractions concernées.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "becht-refondation-securite",
+        "locator": "Des mesures fortes",
+        "fragment": ":~:text=Pour%20les%20petits%20d%C3%A9linquants%2C%20des%20travaux%20d%E2%80%99int%C3%A9r%C3%AAt%20g%C3%A9n%C3%A9ral"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Le Projet France · Les cinq refondations",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "becht-refonte-code-entree-sejour",
+    "parentId": "becht-immigration-relecture-campagne",
+    "candidate": "becht",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Réécrire le code de l’entrée et du séjour",
+    "description": "Le programme annonce une refonte du code et fait de l’intégration une condition du séjour. Le chapitre ne précise pas de barème ni de règles d’application.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "becht-refondation-securite",
+        "locator": "Une politique migratoire repensée",
+        "fragment": ":~:text=Le%20code%20de%20l%E2%80%99entr%C3%A9e%20et%20du%20s%C3%A9jour%20sera%20enti%C3%A8rement%20remani%C3%A9"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Le Projet France · Les cinq refondations",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "becht-dotation-investissement-territoires",
+    "parentId": "becht-institutions-chapitres-2027",
+    "candidate": "becht",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Prévoir dix milliards d’euros de l’État pour les investissements territoriaux sur cinq ans",
+    "description": "Le Pacte des territoires affecte cette enveloppe aux routes, aux trains, à la santé, au sport et à la culture. Le chapitre mentionne aussi un plan ferroviaire distinct sans préciser leur articulation.",
+    "beneficiaries": null,
+    "timing": "Sur cinq ans.",
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "becht-refondation-democratique",
+        "locator": "Un nouveau Pacte des territoires",
+        "fragment": ":~:text=L%E2%80%99%C3%89tat%20financera%2C%20pour%20sa%20part%2C%2010%20milliards%20d%E2%80%99euros%20sur%20cinq%20ans"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Le Projet France · Les cinq refondations",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "cheve-signaler-decision-remontee",
+    "parentId": "cheve-institutions",
+    "candidate": "cheve",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Permettre aux citoyens de signaler une difficulté liée à une décision publique",
+    "description": "Le septième type de requête permet de signaler les effets d’une décision à travers le dispositif de Remontée citoyenne.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "cheve-projet-resume-electeurs",
+        "locator": "Septième requête, p. 3 imprimée, p. 4 du PDF.",
+        "fragment": "page=4"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "La France Adulte · Version résumée du projet",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "batho-interdire-black-friday",
+    "parentId": "batho-travail-relecture-campagne",
+    "candidate": "batho",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Interdire le Black Friday",
+    "description": "Delphine Batho propose de reconnaître le Black Friday comme une pratique commerciale agressive et trompeuse afin de l’interdire.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "batho-communique-black-friday-20261122",
+        "locator": "Communiqué du 22 novembre 2026, engagement de la candidate",
+        "fragment": ":~:text=Je%20propose%20que%20le%20Black%20Friday%20soit%20prohib%C3%A9"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Communiqué de Delphine Batho du 22 novembre 2026",
     "checked": "2026-11-25"
   }
 ]

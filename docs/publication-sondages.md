@@ -12,6 +12,12 @@ Les dix terrains complémentaires relus le 24 novembre disposent de références
 
 Ces mentions accompagnent le détail et l’export des résultats. Les images figées antérieures et les copies déjà distribuées hors du site gardent leur contenu d’origine. Un diffuseur qui souhaite les reprendre pendant la période réglementée doit vérifier et joindre les mentions applicables à sa propre publication.
 
+## Rapprochement des registres
+
+Le [rapprochement des registres](https://polradar.fr/sondages/rapprochement/) prend comme référence le [relevé Mieux Voter du 25 novembre 2026](https://github.com/MieuxVoter/presidentielle2027/blob/77a2834738b1bb435965a4eb7e01ecf23095f94d/polls.csv), utilisé aussi par Sondages 2027. L’empreinte du relevé et les métadonnées par terrain figurent dans [la comparaison](../src/data/poll-registry-comparison.json). Pour relier une enquête, Polradar exige les mêmes dates, le même institut et un numéro de notice commun. L’affichage conserve les libellés de commanditaires, les effectifs d’ensemble et les effectifs des inscrits de chaque côté.
+
+Les trois terrains de 2024 ajoutés après lecture des notices 9888, 9889 et 9894 ont chacun quatre scénarios. Les PDF sont disponibles sur le site de la Commission. Les trois numéros sont absents de son relevé thématique « 2027 - Présidentielle » du 24 novembre, qui a son propre décompte. Les publications constatées apparaissent à part. Les supports de toute première diffusion restent indéterminés lorsque les sources ne l’attestent pas.
+
 ## Préparer chaque tour
 
 1. La rédaction relève le texte de convocation et les horaires applicables, y compris les collectivités dont le vote finit plus tard. Elle conserve les références dans le dossier de l’édition. Pour une publication nationale commune, elle retient l’heure applicable la plus tardive. Jusqu’à confirmation, les dates annoncées à l’agenda gardent leur statut annoncé.
