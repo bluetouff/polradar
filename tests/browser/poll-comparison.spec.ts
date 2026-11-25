@@ -1,5 +1,48 @@
 import { expect, test } from '@playwright/test';
 
+test('les enquêtes de campagne et les marchés sont accessibles dès le haut de la page', async ({
+  browser,
+}) => {
+  const context = await browser.newContext({
+    javaScriptEnabled: false,
+    viewport: { width: 360, height: 760 },
+  });
+  try {
+    const page = await context.newPage();
+    await page.goto('/sondages/');
+
+    const discovery = page.getByRole('navigation', {
+      name: 'Autres données électorales',
+    });
+    const surveys = discovery.getByRole('link', {
+      name: /Autres enquêtes de campagne/,
+    });
+    const markets = discovery.getByRole('link', {
+      name: /Marchés prédictifs/,
+    });
+    await expect(surveys).toBeInViewport();
+    await expect(markets).toBeInViewport();
+    await expect(
+      page
+        .getByRole('navigation', { name: 'Méthodes et archives des sondages' })
+        .getByRole('link'),
+    ).toHaveCount(3);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+
+    await surveys.press('Enter');
+    await expect(page).toHaveURL(/\/sondages\/enquetes\/$/);
+    await page.goBack();
+    await markets.press('Enter');
+    await expect(page).toHaveURL(/\/marches-predictifs\/$/);
+  } finally {
+    await context.close();
+  }
+});
+
 test('les comparaisons se lisent sans JavaScript et partagent la révision des sondages', async ({
   browser,
   request,

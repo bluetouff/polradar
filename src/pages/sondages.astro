@@ -55,6 +55,31 @@ const surveyed = [
     <a href="/sondages/comparer/">Comparer les scénarios</a>
     <a href="/sondages/notices/">Notices officielles</a>
   </nav>
+  <nav class="poll-discovery" aria-label="Autres données électorales">
+    <a class="poll-discovery-card" href="/sondages/enquetes/">
+      <span class="poll-discovery-icon" aria-hidden="true">
+        <Icon name="vote" />
+      </span>
+      <span class="poll-discovery-text">
+        <strong>Autres enquêtes de campagne</strong>
+        <span>Vote blanc, participation et sujets de campagne.</span>
+      </span>
+      <Icon name="arrow" />
+    </a>
+    <a
+      class="poll-discovery-card poll-discovery-markets"
+      href="/marches-predictifs/"
+    >
+      <span class="poll-discovery-icon" aria-hidden="true">
+        <Icon name="markets" />
+      </span>
+      <span class="poll-discovery-text">
+        <strong>Marchés prédictifs</strong>
+        <span>Prix des contrats Polymarket et Kalshi sur le vainqueur.</span>
+      </span>
+      <Icon name="arrow" />
+    </a>
+  </nav>
   <details id="poll-options" class="reader-options">
     <summary>Choisir un tour, un institut et un scénario</summary>
     <form id="poll-filters" class="facet-filters">
@@ -249,30 +274,32 @@ const surveyed = [
       )}
     </p>
   </details>
-  <details class="reader-options poll-resources">
-    <summary>Autres enquêtes et méthodes</summary>
+  <nav class="poll-resources" aria-labelledby="poll-resources-title">
+    <h2 id="poll-resources-title">Méthodes et archives des sondages</h2>
     <ul>
       <li>
         <a href="/dossiers/sondages-les-scenarios-comptent/">
-          Méthode de lecture des sondages
+          <Icon name="education" />
+          <span>Méthode de lecture des sondages</span>
+          <Icon name="arrow" />
         </a>
       </li>
       <li>
-        <a href="/sondages/enquetes/">Autres enquêtes de campagne</a>
-      </li>
-      <li>
-        <a href="/sondages/rapprochement/">Rapprochement des registres</a>
+        <a href="/sondages/rapprochement/">
+          <Icon name="exchange" />
+          <span>Rapprochement des registres</span>
+          <Icon name="arrow" />
+        </a>
       </li>
       <li>
         <a href="/dossiers/archives-sondages-2023-2024/">
-          Les premières enquêtes de 2023 et 2024
+          <Icon name="historique" />
+          <span>Les premières enquêtes de 2023 et 2024</span>
+          <Icon name="arrow" />
         </a>
       </li>
-      <li>
-        <a href="/marches-predictifs/">Marchés prédictifs</a>
-      </li>
     </ul>
-  </details>
+  </nav>
   <section id="poll-method" class="poll-method section-space">
     <div class="register-heading">
       <h2>Enquête et méthode</h2>
@@ -525,13 +552,107 @@ const surveyed = [
     display: list-item;
     align-content: center;
   }
+  .poll-discovery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+    margin: 0.6rem 0 1.1rem;
+  }
+  .poll-discovery-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.75rem;
+    padding: clamp(0.8rem, 2vw, 1.15rem);
+    border: 1px solid #a7c4c5;
+    border-radius: 0.85rem;
+    background: linear-gradient(125deg, #dfefed, #f3f9f6);
+    color: #173b42;
+    box-shadow: 0 2px 7px #173b4210;
+    text-decoration: none;
+  }
+  .poll-discovery-card:hover,
+  .poll-discovery-card:focus-visible {
+    border-color: #386c71;
+  }
+  .poll-discovery-markets {
+    border-color: #40696f;
+    background:
+      radial-gradient(ellipse at 105% 120%, #427b7bb3, transparent 66%),
+      linear-gradient(120deg, #16313e, #1c4952);
+    color: #f5fbfb;
+  }
+  .poll-discovery-markets:focus-visible {
+    outline: 3px solid #28585e;
+    outline-offset: 3px;
+  }
+  .poll-discovery-icon {
+    display: grid;
+    place-items: center;
+    width: clamp(2.25rem, 4vw, 3rem);
+    aspect-ratio: 1;
+    border: 1px solid #a7c4c5;
+    border-radius: 0.7rem;
+    background: #f0f9f6;
+  }
+  .poll-discovery-markets .poll-discovery-icon {
+    border-color: #82a8a9;
+    background: #e2fffc19;
+  }
+  .poll-discovery-text {
+    display: grid;
+    gap: 0.2rem;
+    min-width: 0;
+    line-height: 1.36;
+  }
+  .poll-discovery-text strong {
+    font-size: clamp(1rem, 2vw, 1.18rem);
+  }
+  .poll-discovery-text > span {
+    font-size: 0.88rem;
+  }
+  .poll-discovery-card:hover strong,
+  .poll-discovery-card:focus-visible strong,
+  .poll-resources a:hover span {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
   .poll-resources {
-    margin-top: 1.15rem;
+    margin-block: 1.4rem 1.6rem;
+  }
+  .poll-resources h2 {
+    margin: 0 0 0.65rem;
+    font-size: 1.15rem;
   }
   .poll-resources ul {
-    padding: 0.3rem 1.7rem 0.6rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.65rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
   .poll-resources li {
-    padding-block: 0.3rem;
+    display: grid;
+  }
+  .poll-resources a {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: var(--target-size);
+    padding: 0.75rem 0.85rem;
+    border: 1px solid var(--line);
+    border-radius: 0.6rem;
+    background: var(--sheet);
+    font-size: 0.9rem;
+    font-weight: 630;
+    text-decoration: none;
+  }
+  @media (max-width: 680px) {
+    .poll-discovery,
+    .poll-resources ul {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
