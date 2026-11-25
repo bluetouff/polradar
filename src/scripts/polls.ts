@@ -165,6 +165,7 @@ async function start() {
       const group = svg('g', { class: `plot-series series-${line.color}` });
       group.append(svg('path', { class: 'plot-line', d: line.path }));
       for (const point of line.points) {
+        const label = `${line.name}, ${number(point.value)} %, terrain achevé le ${date(point.date)}`;
         const marker = svg('circle', {
           class: `plot-point${point.index === index ? ' selected' : ''}`,
           cx: String(point.x),
@@ -174,15 +175,9 @@ async function start() {
           'data-index': String(point.index),
           tabindex: '0',
           role: 'button',
-          'aria-label': `${line.name}, ${number(point.value)} %, terrain achevé le ${date(point.date)}`,
+          'aria-label': label,
         });
-        marker.append(
-          svg(
-            'title',
-            {},
-            `${line.name} : ${number(point.value)} % · ${date(point.date)}`,
-          ),
-        );
+        marker.append(svg('title', {}, label));
         const activate = () => {
           index = point.index;
           range.value = String(index);
