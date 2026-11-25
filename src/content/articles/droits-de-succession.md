@@ -18,7 +18,7 @@ themes: [fiscalite]
 **Un enfant qui hérite d’une part nette de 150 000 € de son parent et dispose de l’abattement entier est imposé sur 50 000 €.** Service Public calcule **8 194,35 €** de droits en appliquant le barème par tranches à ces 50 000 €. Le cas suppose que l’enfant bénéficie uniquement de l’abattement de droit commun. [Exemple et barème de Service Public](https://www.service-public.gouv.fr/particuliers/vosdroits/F35794)
 
 <figure class="dossier-chart">
-  <figcaption><strong>Sur une part héritée de 150 000 €</strong><span>Un enfant qui hérite d’un parent, avec l’abattement de droit commun entier</span></figcaption>
+  <figcaption><strong>Sur une part héritée de 150 000 €</strong><span>Un enfant qui hérite d’un parent, avec l’abattement de droit commun entier</span></figcaption>
   <svg viewBox="0 0 320 95" width="320" height="95" role="img" aria-labelledby="succession-part-graph">
     <title id="succession-part-graph">Sur 150 000 euros hérités, 100 000 euros sont couverts par l’abattement. Le barème s’applique aux 50 000 euros restants. Droits calculés dans cet exemple, 8 194,35 euros.</title>
     <text x="0" y="18">Abattement</text><text x="320" y="18" text-anchor="end">Part taxable</text>
