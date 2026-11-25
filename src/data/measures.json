@@ -1328,9 +1328,9 @@
     "parentId": "philippe-immigration",
     "candidate": "philippe",
     "theme": "immigration",
-    "revision": 2,
-    "title": "Diviser les flux par deux",
-    "description": "Annoncer un moratoire sur le regroupement familial.",
+    "revision": 3,
+    "title": "Diviser par deux l’immigration légale",
+    "description": "Édouard Philippe présente cet objectif comme un retour au niveau d’il y a quinze ans. Il propose parmi les leviers un moratoire sur le regroupement familial, qui fait l’objet d’un engagement distinct.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -1338,13 +1338,13 @@
     "amounts": [],
     "sourceRefs": [
       {
-        "sourceId": "philippe-index",
-        "locator": "Dossier initial : Diviser les flux par deux"
+        "sourceId": "philippe-programme-9",
+        "locator": "Immigration · Propositions phares, division de l’immigration légale par deux et moratoire sur le regroupement familial"
       }
     ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
-    "checked": "2026-11-16"
+    "checked": "2026-11-25"
   },
   {
     "id": "philippe-immigration-2",
@@ -1420,9 +1420,9 @@
     "parentId": "philippe-education",
     "candidate": "philippe",
     "theme": "education",
-    "revision": 2,
+    "revision": 3,
     "title": "Revaloriser les enseignants",
-    "description": "Annoncer une hausse de salaire de 20 %.",
+    "description": "Édouard Philippe propose une hausse moyenne de 20 % du salaire des enseignants sur le quinquennat.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -1430,13 +1430,14 @@
     "amounts": [],
     "sourceRefs": [
       {
-        "sourceId": "philippe-index",
-        "locator": "Dossier initial : Revaloriser les enseignants"
+        "sourceId": "philippe-ecole",
+        "locator": "École, réponse à « De combien Édouard Philippe veut-il augmenter le salaire des profs ? ».",
+        "fragment": ":~:text=De%2020%20%25%20en%20moyenne%20sur%20le%20quinquennat"
       }
     ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
-    "checked": "2026-11-16"
+    "checked": "2026-11-25"
   },
   {
     "id": "philippe-education-2",
@@ -1651,23 +1652,24 @@
     "parentId": "retailleau-education",
     "candidate": "retailleau",
     "theme": "education",
-    "revision": 1,
-    "title": "Créer 1 000 écoles publiques autonomes",
-    "description": "Créer 1 000 écoles publiques autonomes.",
+    "revision": 2,
+    "title": "Créer 1 000 établissements publics autonomes d’ici 2032",
+    "description": "Bruno Retailleau vise des écoles, des collèges et des lycées publics. Il propose un contrat de cinq ans avec l’académie et la collectivité, ainsi qu’une évaluation tous les trois ans.",
     "beneficiaries": null,
     "timing": null,
-    "financing": null,
+    "financing": "La campagne prévoit une enveloppe constante, avec des moyens fixés par contrat avec l’académie.",
     "metrics": [],
     "amounts": [],
     "sourceRefs": [
       {
-        "sourceId": "retailleau-school",
-        "locator": "Dossier initial : Autonomie et choix scolaire"
+        "sourceId": "retailleau-etablissements-publics-autonomes",
+        "locator": "Mesure 02.02, « L’engagement »",
+        "fragment": ":~:text=%C3%A9coles%2C%20coll%C3%A8ges%20et%20lyc%C3%A9es"
       }
     ],
     "scope": "campagne",
     "edition": "Campagne 2027",
-    "checked": "2026-11-16"
+    "checked": "2026-11-25"
   },
   {
     "id": "retailleau-education-2",
@@ -2648,9 +2650,9 @@
     "parentId": "philippe-education",
     "candidate": "philippe",
     "theme": "education",
-    "revision": 1,
+    "revision": 2,
     "title": "Augmenter de 20 % le salaire moyen des enseignants",
-    "description": "Porter leur rémunération moyenne vers le niveau européen, particulièrement en milieu de carrière.",
+    "description": "Édouard Philippe vise une rémunération des enseignants au moins égale à la moyenne européenne, en particulier en milieu de carrière.",
     "beneficiaries": "Enseignants.",
     "timing": "Sur le quinquennat.",
     "financing": null,
@@ -2672,7 +2674,7 @@
     ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
-    "checked": "2026-11-17"
+    "checked": "2026-11-25"
   },
   {
     "id": "philippe-education-portable",
@@ -3940,9 +3942,9 @@
     "parentId": "attal-travail",
     "candidate": "attal",
     "theme": "travail",
-    "revision": 1,
-    "title": "Supprimer le plafond légal d’heures supplémentaires",
-    "description": "Permettre de dépasser le contingent annuel applicable en l’absence d’accord collectif.",
+    "revision": 2,
+    "title": "Supprimer le contingent de 220 heures supplémentaires par an à défaut d’accord collectif",
+    "description": "Gabriel Attal propose de supprimer le contingent annuel d’heures supplémentaires prévu par le Code du travail en l’absence d’accord. L’article D3121-24 le fixe à 220 heures par salarié.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -3950,13 +3952,18 @@
     "amounts": [],
     "sourceRefs": [
       {
-        "sourceId": "attal-work",
-        "locator": "Repenser les retraites et libérer les forces du travail"
+        "sourceId": "attal-programme-contingent-heures-supplementaires",
+        "locator": "Fiche de campagne, disposition proposée",
+        "fragment": ":~:text=Gabriel%20Attal%20propose%20de%20supprimer%20le%20plafond"
+      },
+      {
+        "sourceId": "code-du-travail-contingent-heures-supplementaires",
+        "locator": "Article D3121-24, contingent applicable à défaut d’accord"
       }
     ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
-    "checked": "2026-11-17"
+    "checked": "2026-11-25"
   },
   {
     "id": "attal-travail-quatre-jours",
@@ -4178,9 +4185,9 @@
     "parentId": "ruffin-travail",
     "candidate": "ruffin",
     "theme": "travail",
-    "revision": 1,
-    "title": "Payer double avant 8 h et après 18 h",
-    "description": "Créer une catégorie d’horaires atypiques assortie d’une majoration pour limiter les journées morcelées.",
+    "revision": 2,
+    "title": "Payer double les heures atypiques avant 8 h et après 18 h",
+    "description": "François Ruffin propose de créer une catégorie d’horaires atypiques. Le texte présente les travailleurs essentiels comme ses premiers bénéficiaires et prévoit une portée plus large.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -4189,12 +4196,13 @@
     "sourceRefs": [
       {
         "sourceId": "ruffin-essentiels",
-        "locator": "Horaires : proposition 1"
+        "locator": "Horaires, proposition 1 sur la rémunération des heures atypiques.",
+        "fragment": ":~:text=lutter%20contre%20les%20horaires%20atypiques%20en%20r%C3%A9mun%C3%A9rant%20double"
       }
     ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
-    "checked": "2026-11-17"
+    "checked": "2026-11-25"
   },
   {
     "id": "ruffin-travail-coupures",
@@ -5048,9 +5056,9 @@
     "parentId": "tondelier-sante",
     "candidate": "tondelier",
     "theme": "sante",
-    "revision": 1,
-    "title": "Généraliser l’ordonnance verte",
-    "description": "Offrir un accompagnement gratuit contre les expositions aux substances préoccupantes et des paniers biologiques pendant la grossesse et les mille premiers jours.",
+    "revision": 2,
+    "title": "Généraliser l’ordonnance verte pendant la grossesse et les mille premiers jours",
+    "description": "Le livret vise les femmes enceintes et les futurs pères. Il prévoit de leur proposer gratuitement un accompagnement pour réduire l’exposition aux perturbateurs endocriniens et à d’autres substances préoccupantes, ainsi que des paniers réguliers de produits biologiques. Cette prévention serait accessible quels que soient les revenus ou le territoire.",
     "beneficiaries": "Parents et enfants pendant la grossesse et les mille premiers jours.",
     "timing": null,
     "financing": null,
@@ -5059,12 +5067,13 @@
     "sourceRefs": [
       {
         "sourceId": "eco-reproduction-pdf",
-        "locator": "PDF, p. 40 : grossesse et santé environnementale"
+        "locator": "Grossesse et santé environnementale · Ordonnance verte · p. 40",
+        "fragment": "page=40"
       }
     ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
-    "checked": "2026-11-17"
+    "checked": "2026-11-25"
   },
   {
     "id": "tondelier-sante-post-partum",
@@ -6388,9 +6397,9 @@
     "parentId": "dupont-aignan-immigration",
     "candidate": "dupont-aignan",
     "theme": "immigration",
-    "revision": 1,
-    "title": "Conditionner les aides non contributives à cinq ans de résidence",
-    "description": "Appliquer cette condition aux étrangers et supprimer l’aide médicale de l’État.",
+    "revision": 2,
+    "title": "Conditionner à cinq ans de résidence l’accès des étrangers aux aides sociales non contributives",
+    "description": "Debout la France veut soumettre l’accès des étrangers à ces aides à cinq ans de résidence. Le même point propose la suppression de l’aide médicale de l’État.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -6399,12 +6408,12 @@
     "sourceRefs": [
       {
         "sourceId": "dlf-economie-2026",
-        "locator": "Mesures pour les finances publiques : aides et immigration"
+        "locator": "Mesures pour les finances publiques · Point 24, aides et immigration"
       }
     ],
     "scope": "parti",
     "edition": "Projet économique de Debout la France, version consultée le 17 novembre 2026",
-    "checked": "2026-11-17"
+    "checked": "2026-11-25"
   },
   {
     "id": "dupont-aignan-climat-renouvelables",
@@ -8131,8 +8140,8 @@
     "parentId": "ruffin-education",
     "candidate": "ruffin",
     "theme": "education",
-    "revision": 1,
-    "title": "Porter le CAP à trois ans et le bac professionnel à quatre ans",
+    "revision": 2,
+    "title": "Porter le CAP en formation initiale à trois ans et le bac professionnel à quatre ans",
     "description": "Ajouter un semestre de formation générale et un semestre en milieu professionnel ; renforcer l’encadrement des lycées professionnels.",
     "beneficiaries": null,
     "timing": null,
@@ -8147,7 +8156,7 @@
     ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
-    "checked": "2026-11-17"
+    "checked": "2026-11-25"
   },
   {
     "id": "ruffin-education-parcoursup",
@@ -8177,9 +8186,9 @@
     "parentId": "ruffin-education",
     "candidate": "ruffin",
     "theme": "education",
-    "revision": 1,
-    "title": "Consacrer au moins la moitié de la formation enseignante à la pédagogie",
-    "description": "Réorienter la formation initiale et continue sur les compétences de terrain, notamment en supprimant le mémoire traditionnel.",
+    "revision": 2,
+    "title": "Consacrer au moins la moitié des formations aux métiers de l’éducation à la pédagogie",
+    "description": "Le cahier prévoit que les connaissances et compétences pédagogiques occupent au moins la moitié du temps de ces formations. Il propose notamment de supprimer le mémoire traditionnel.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -8193,7 +8202,7 @@
     ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
-    "checked": "2026-11-17"
+    "checked": "2026-11-25"
   },
   {
     "id": "ruffin-education-salaires-enseignants",
@@ -8223,9 +8232,9 @@
     "parentId": "ruffin-education",
     "candidate": "ruffin",
     "theme": "education",
-    "revision": 1,
+    "revision": 2,
     "title": "Intégrer les AESH à la fonction publique",
-    "description": "Reconnaître 24 heures d’accompagnement direct comme le cœur d’un temps plein et formaliser les heures complémentaires de concertation et de suivi.",
+    "description": "François Ruffin propose de reconnaître 24 heures hebdomadaires d’accompagnement direct comme le cœur d’un temps plein. Les heures complémentaires consacrées à la concertation et au suivi seraient formalisées et rémunérées.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -8239,7 +8248,7 @@
     ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
-    "checked": "2026-11-17"
+    "checked": "2026-11-25"
   },
   {
     "id": "ruffin-europe-libre-echange",
@@ -9781,9 +9790,9 @@
     "parentId": "melenchon-institutions",
     "candidate": "melenchon",
     "theme": "institutions",
-    "revision": 1,
-    "title": "Interdire l’intelligence artificielle pour certains usages sensibles",
-    "description": "La liste du programme couvre notamment l’identification biométrique, la notation dans le crédit et l’assurance, la police prédictive et la surveillance des bénéficiaires de prestations sociales.",
+    "revision": 2,
+    "title": "Interdire certains usages de l’IA et du big data",
+    "description": "Le programme cite notamment l’identification biométrique, la surveillance pour évaluer les droits sociaux, la gestion des flux migratoires, la notation des personnes pour l’attribution de crédits ou la tarification des assurances et la police prédictive.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -9792,12 +9801,12 @@
     "sourceRefs": [
       {
         "sourceId": "lfi-numerique",
-        "locator": "Chapitre 7, usages sensibles de l’intelligence artificielle"
+        "locator": "Chapitre 7 · Passage sur les usages de l’IA et du big data contraires aux droits individuels et sociaux"
       }
     ],
     "scope": "campagne",
     "edition": "L’Avenir en commun 2027",
-    "checked": "2026-11-19"
+    "checked": "2026-11-25"
   },
   {
     "id": "ruffin-institutions-secnumcloud",
@@ -10934,9 +10943,9 @@
     "parentId": "branco-education",
     "candidate": "branco",
     "theme": "education",
-    "revision": 1,
+    "revision": 2,
     "title": "Rendre le brevet obligatoire pour entrer au lycée",
-    "description": "Conditionner l’entrée au lycée à un brevet recentré sur les fondamentaux. Le projet prévoit des classes de rattrapage et des passerelles.",
+    "description": "Le programme propose de réduire le nombre d’élèves au lycée en renforçant la sélection à l’entrée, avec un brevet obligatoire centré sur les fondamentaux. Le chapitre prévoit aussi des passerelles et des classes de rattrapage.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -10945,12 +10954,13 @@
     "sourceRefs": [
       {
         "sourceId": "branco-voie-pdf",
-        "locator": "L’instruction, rubrique secondaire, p. 37"
+        "locator": "L’instruction, rubrique Secondaire, premier point et point sur les passerelles, page 37.",
+        "fragment": "page=37"
       }
     ],
     "scope": "campagne",
     "edition": "La Voie, projet présidentiel 2027",
-    "checked": "2026-11-19"
+    "checked": "2026-11-25"
   },
   {
     "id": "branco-education-examen-sixieme",
@@ -13089,9 +13099,9 @@
     "parentId": "glucksmann-fiscalite",
     "candidate": "glucksmann",
     "theme": "fiscalite",
-    "revision": 1,
-    "title": "Supprimer l’exonération de carburant des vols intérieurs",
-    "description": "Relever la taxe sur les billets et cibler les usages les plus polluants, en particulier les jets privés et les yachts.",
+    "revision": 2,
+    "title": "Supprimer les exonérations fiscales sur le carburant des vols intérieurs",
+    "description": "Le livret présenté par Raphaël Glucksmann et Yannick Jadot prévoit cette suppression dans les 100 premiers jours. Il prévoit aussi de relever la taxe sur les billets d’avion et de cibler en priorité les jets privés et les yachts.",
     "beneficiaries": null,
     "timing": "Dans les cent premiers jours pour le carburant des vols intérieurs et la taxe sur les billets.",
     "financing": null,
@@ -13100,12 +13110,13 @@
     "sourceRefs": [
       {
         "sourceId": "glucksmann-100-jours-accessible",
-        "locator": "Les premiers 100 jours, p. 8, fiscalité de l’aérien"
+        "locator": "Version accessible du livret, page 8, proposition sur la fiscalité des vols intérieurs et des billets d’avion.",
+        "fragment": "page=8"
       }
     ],
     "scope": "campagne",
     "edition": "Livret de Raphaël Glucksmann et Yannick Jadot, présenté le 9 novembre 2026",
-    "checked": "2026-11-19"
+    "checked": "2026-11-25"
   },
   {
     "id": "glucksmann-europe-emprunt-ecologique",
@@ -18052,9 +18063,9 @@
     "parentId": "attal-immigration",
     "candidate": "attal",
     "theme": "immigration",
-    "revision": 1,
-    "title": "Faire voter des quotas migratoires révisables tous les deux ans",
-    "description": "Les plafonds seraient définis avec les partenaires sociaux, selon les métiers, les zones géographiques et les nationalités, puis votés par le Parlement.",
+    "revision": 2,
+    "title": "Faire voter tous les deux ans des quotas migratoires selon les besoins économiques",
+    "description": "Les partenaires sociaux identifieraient les besoins de l’économie, puis le Parlement voterait des plafonds par métier, origine géographique et nationalité. Gabriel Attal donne la priorité à l’immigration de travail.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -18068,7 +18079,7 @@
     ],
     "scope": "campagne",
     "edition": "Présidentielle 2027 · programme publié par Gabriel Attal",
-    "checked": "2026-11-20"
+    "checked": "2026-11-25"
   },
   {
     "id": "attal-droit-au-repit",
@@ -20861,8 +20872,8 @@
     "parentId": "groupe-rn-fiscalite",
     "candidate": "lepen",
     "theme": "fiscalite",
-    "revision": 1,
-    "title": "Exonérer d’impôt sur le revenu les jeunes actifs jusqu’à quatre SMIC",
+    "revision": 2,
+    "title": "Exonérer d’impôt sur le revenu les jeunes actifs jusqu’à 30 ans, dans la limite de quatre SMIC",
     "description": "Le groupe RN propose une exonération d’impôt sur le revenu pour les actifs jusqu’à 30 ans, avec un plafond de revenu de quatre SMIC.",
     "beneficiaries": null,
     "timing": null,
@@ -20887,12 +20898,13 @@
     "sourceRefs": [
       {
         "sourceId": "groupe-rn-contre-budget-2027",
-        "locator": "Annexe, p. 11, ligne sur l’IR des jeunes actifs."
+        "locator": "Annexe, p. 12, ligne sur l’IR des jeunes actifs.",
+        "fragment": "page=12"
       }
     ],
     "scope": "parti",
     "edition": "Contre-budget 2027 du groupe RN à l’Assemblée nationale",
-    "checked": "2026-11-23",
+    "checked": "2026-11-25",
     "partyAuthor": "Groupe Rassemblement national"
   },
   {
@@ -22798,12 +22810,12 @@
     "parentId": "branco-fiscalite",
     "candidate": "branco",
     "theme": "fiscalite",
-    "revision": 1,
+    "revision": 2,
     "title": "Supprimer des aides et distribuer des fournitures scolaires",
-    "description": "Juan Branco cite les allocations scolaires et le chèque énergie parmi les aides à supprimer. Une manufacture nationale fabriquerait des fournitures de base, distribuées à tous les étudiants.",
+    "description": "Juan Branco cite les allocations scolaires et le chèque énergie parmi les aides à supprimer. Une manufacture nationale fabriquerait des fournitures de base pour tous les étudiants. Une autre proposition de la même page inclut l’allocation de rentrée scolaire dans une fusion de prestations vers un revenu minimal modulé.",
     "scope": "campagne",
     "edition": "La Voie · Projet de Juan Branco",
-    "checked": "2026-11-23",
+    "checked": "2026-11-25",
     "beneficiaries": null,
     "timing": null,
     "financing": "Le projet chiffre l’ensemble à 3 milliards d’euros d’économies par an. Il ne donne pas de montant pour chaque aide.",
@@ -22812,7 +22824,8 @@
     "sourceRefs": [
       {
         "sourceId": "branco-voie-pdf",
-        "locator": "La Voie, p. 28, passage sur les allocations scolaires, le chèque énergie et la manufacture nationale."
+        "locator": "La Voie, page 28, passages distincts sur les aides scolaires, la manufacture nationale et la fusion des prestations dont l’ARS.",
+        "fragment": "page=28"
       }
     ]
   },
@@ -28532,7 +28545,7 @@
     "parentId": "groupe-rn-fiscalite",
     "candidate": "lepen",
     "theme": "fiscalite",
-    "revision": 1,
+    "revision": 2,
     "title": "Supprimer la cotisation foncière des entreprises",
     "description": "Le contre-budget supprime la CFE dans son volet consacré aux impôts de production.",
     "beneficiaries": null,
@@ -28543,13 +28556,13 @@
     "sourceRefs": [
       {
         "sourceId": "groupe-rn-contre-budget-2027",
-        "locator": "PDF, page 11. Repère : Supprimer la cotisation foncière des entreprises.",
-        "fragment": "page=11"
+        "locator": "PDF, page 12. Repère : Supprimer la cotisation foncière des entreprises.",
+        "fragment": "page=12"
       }
     ],
     "scope": "parti",
     "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "partyAuthor": "Groupe Rassemblement national"
   },
   {
@@ -28557,7 +28570,7 @@
     "parentId": "groupe-rn-fiscalite",
     "candidate": "lepen",
     "theme": "fiscalite",
-    "revision": 1,
+    "revision": 2,
     "title": "Achever la suppression de la CVAE",
     "description": "Le groupe demande la disparition totale de la cotisation sur la valeur ajoutée des entreprises.",
     "beneficiaries": null,
@@ -28568,13 +28581,13 @@
     "sourceRefs": [
       {
         "sourceId": "groupe-rn-contre-budget-2027",
-        "locator": "PDF, page 11. Repère : Achever la suppression de la CVAE.",
-        "fragment": "page=11"
+        "locator": "PDF, page 12. Repère : Achever la suppression de la CVAE.",
+        "fragment": "page=12"
       }
     ],
     "scope": "parti",
     "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "partyAuthor": "Groupe Rassemblement national"
   },
   {
@@ -28582,7 +28595,7 @@
     "parentId": "groupe-rn-fiscalite",
     "candidate": "lepen",
     "theme": "fiscalite",
-    "revision": 1,
+    "revision": 2,
     "title": "Supprimer la contribution sociale de solidarité des sociétés",
     "description": "La C3S figure parmi les prélèvements que le groupe entend abolir.",
     "beneficiaries": null,
@@ -28593,13 +28606,13 @@
     "sourceRefs": [
       {
         "sourceId": "groupe-rn-contre-budget-2027",
-        "locator": "PDF, page 11. Repère : Supprimer la contribution sociale de solidarité des sociétés.",
-        "fragment": "page=11"
+        "locator": "PDF, page 12. Repère : Supprimer la contribution sociale de solidarité des sociétés.",
+        "fragment": "page=12"
       }
     ],
     "scope": "parti",
     "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "partyAuthor": "Groupe Rassemblement national"
   },
   {
@@ -28607,7 +28620,7 @@
     "parentId": "groupe-rn-fiscalite",
     "candidate": "lepen",
     "theme": "fiscalite",
-    "revision": 1,
+    "revision": 2,
     "title": "Ramener le prélèvement forfaitaire unique à 30 %",
     "description": "Le contre-budget propose de revenir sur la hausse du taux appliqué aux revenus du capital.",
     "beneficiaries": null,
@@ -28618,13 +28631,13 @@
     "sourceRefs": [
       {
         "sourceId": "groupe-rn-contre-budget-2027",
-        "locator": "PDF, page 11. Repère : Ramener le prélèvement forfaitaire unique à 30 %.",
-        "fragment": "page=11"
+        "locator": "PDF, page 12. Repère : Ramener le prélèvement forfaitaire unique à 30 %.",
+        "fragment": "page=12"
       }
     ],
     "scope": "parti",
     "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "partyAuthor": "Groupe Rassemblement national"
   },
   {
@@ -28657,7 +28670,7 @@
     "parentId": "groupe-rn-fiscalite",
     "candidate": "lepen",
     "theme": "fiscalite",
-    "revision": 1,
+    "revision": 2,
     "title": "Baisser la TVA sur les frais vétérinaires",
     "description": "Le groupe propose un taux nul pour les refuges et un taux de 10 % pour les particuliers.",
     "beneficiaries": "Refuges pour animaux et particuliers qui engagent des frais vétérinaires.",
@@ -28668,13 +28681,13 @@
     "sourceRefs": [
       {
         "sourceId": "groupe-rn-contre-budget-2027",
-        "locator": "PDF, page 11. Repère : Baisser la TVA sur les frais vétérinaires.",
-        "fragment": "page=11"
+        "locator": "PDF, page 12. Repère : Baisser la TVA sur les frais vétérinaires.",
+        "fragment": "page=12"
       }
     ],
     "scope": "parti",
     "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "partyAuthor": "Groupe Rassemblement national"
   },
   {
@@ -28682,7 +28695,7 @@
     "parentId": "groupe-rn-fiscalite",
     "candidate": "lepen",
     "theme": "fiscalite",
-    "revision": 1,
+    "revision": 2,
     "title": "Ramener la taxe sur les carburants à son niveau de 2017",
     "description": "La proposition porte sur la TICPE et figure dans le volet consacré au pouvoir d’achat.",
     "beneficiaries": null,
@@ -28693,13 +28706,13 @@
     "sourceRefs": [
       {
         "sourceId": "groupe-rn-contre-budget-2027",
-        "locator": "PDF, page 11. Repère : Ramener la taxe sur les carburants à son niveau de 2017.",
-        "fragment": "page=11"
+        "locator": "PDF, page 12. Repère : Ramener la taxe sur les carburants à son niveau de 2017.",
+        "fragment": "page=12"
       }
     ],
     "scope": "parti",
     "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "partyAuthor": "Groupe Rassemblement national"
   },
   {
@@ -28707,7 +28720,7 @@
     "parentId": "groupe-rn-fiscalite",
     "candidate": "lepen",
     "theme": "fiscalite",
-    "revision": 1,
+    "revision": 2,
     "title": "Généraliser la demi-part fiscale aux personnes veuves",
     "description": "Le contre-budget prévoit la même mesure pour les veuves et les veufs.",
     "beneficiaries": "Personnes veuves.",
@@ -28718,13 +28731,13 @@
     "sourceRefs": [
       {
         "sourceId": "groupe-rn-contre-budget-2027",
-        "locator": "PDF, page 11. Repère : Généraliser la demi-part fiscale aux personnes veuves.",
-        "fragment": "page=11"
+        "locator": "PDF, page 12. Repère : Généraliser la demi-part fiscale aux personnes veuves.",
+        "fragment": "page=12"
       }
     ],
     "scope": "parti",
     "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "partyAuthor": "Groupe Rassemblement national"
   },
   {
@@ -28732,7 +28745,7 @@
     "parentId": "groupe-rn-fiscalite",
     "candidate": "lepen",
     "theme": "fiscalite",
-    "revision": 1,
+    "revision": 2,
     "title": "Taxer les rachats d’actions par les entreprises",
     "description": "Le groupe en fait une recette distincte de la taxe qu’il propose sur les superdividendes.",
     "beneficiaries": null,
@@ -28743,13 +28756,13 @@
     "sourceRefs": [
       {
         "sourceId": "groupe-rn-contre-budget-2027",
-        "locator": "PDF, page 11. Repère : Taxer les rachats d’actions par les entreprises.",
-        "fragment": "page=11"
+        "locator": "PDF, page 12. Repère : Taxer les rachats d’actions par les entreprises.",
+        "fragment": "page=12"
       }
     ],
     "scope": "parti",
     "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "partyAuthor": "Groupe Rassemblement national"
   },
   {
@@ -28757,7 +28770,7 @@
     "parentId": "groupe-rn-fiscalite",
     "candidate": "lepen",
     "theme": "fiscalite",
-    "revision": 1,
+    "revision": 2,
     "title": "Créer une taxe sur les superdividendes",
     "description": "Cette recette figure dans le volet de justice fiscale du contre-budget.",
     "beneficiaries": null,
@@ -28768,13 +28781,13 @@
     "sourceRefs": [
       {
         "sourceId": "groupe-rn-contre-budget-2027",
-        "locator": "PDF, page 11. Repère : Créer une taxe sur les superdividendes.",
-        "fragment": "page=11"
+        "locator": "PDF, page 12. Repère : Créer une taxe sur les superdividendes.",
+        "fragment": "page=12"
       }
     ],
     "scope": "parti",
     "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "partyAuthor": "Groupe Rassemblement national"
   },
   {
@@ -28782,7 +28795,7 @@
     "parentId": "groupe-rn-fiscalite",
     "candidate": "lepen",
     "theme": "fiscalite",
-    "revision": 1,
+    "revision": 2,
     "title": "Taxer à 14 % les transferts d’argent vers les pays tiers",
     "description": "Le groupe retient ce taux dans sa présentation des recettes fiscales supplémentaires.",
     "beneficiaries": null,
@@ -28793,13 +28806,13 @@
     "sourceRefs": [
       {
         "sourceId": "groupe-rn-contre-budget-2027",
-        "locator": "PDF, page 11. Repère : Taxer à 14 % les transferts d’argent vers les pays tiers.",
-        "fragment": "page=11"
+        "locator": "PDF, page 12. Repère : Taxer à 14 % les transferts d’argent vers les pays tiers.",
+        "fragment": "page=12"
       }
     ],
     "scope": "parti",
     "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "partyAuthor": "Groupe Rassemblement national"
   },
   {
@@ -28807,9 +28820,9 @@
     "parentId": "groupe-rn-travail-budget-2027",
     "candidate": "lepen",
     "theme": "travail",
-    "revision": 1,
-    "title": "Créer une taxe à l’embauche d’un salarié extra-européen",
-    "description": "Le contre-budget prévoit un prélèvement au moment du recrutement.",
+    "revision": 2,
+    "title": "Instaurer une taxe de 1 000 € par an à l’embauche d’un salarié extra-européen",
+    "description": "Cette taxe annuelle figure parmi les hausses de recettes du contre-budget 2027 du groupe RN. Le tableau laisse ouvertes la durée d’assujettissement et les exemptions.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -28818,13 +28831,13 @@
     "sourceRefs": [
       {
         "sourceId": "groupe-rn-contre-budget-2027",
-        "locator": "PDF, page 11. Repère : Créer une taxe à l’embauche d’un salarié extra-européen.",
-        "fragment": "page=11"
+        "locator": "Page 12 du PDF, hausse des recettes, ligne de la taxe annuelle à l’embauche d’un salarié extra-européen.",
+        "fragment": "page=12"
       }
     ],
     "scope": "parti",
     "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "partyAuthor": "Groupe Rassemblement national"
   },
   {
@@ -28832,7 +28845,7 @@
     "parentId": "groupe-rn-fiscalite",
     "candidate": "lepen",
     "theme": "fiscalite",
-    "revision": 1,
+    "revision": 2,
     "title": "Réintégrer les certificats d’économies d’énergie dans le budget",
     "description": "La mesure concerne les certificats qui financent des opérations d’économie d’énergie.",
     "beneficiaries": null,
@@ -28843,13 +28856,13 @@
     "sourceRefs": [
       {
         "sourceId": "groupe-rn-contre-budget-2027",
-        "locator": "PDF, page 11. Repère : Réintégrer les certificats d’économies d’énergie dans le budget.",
-        "fragment": "page=11"
+        "locator": "PDF, page 12. Repère : Réintégrer les certificats d’économies d’énergie dans le budget.",
+        "fragment": "page=12"
       }
     ],
     "scope": "parti",
     "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "partyAuthor": "Groupe Rassemblement national"
   },
   {
@@ -36075,9 +36088,9 @@
     "parentId": "les-ecologistes-education-programme",
     "candidate": "tondelier",
     "theme": "education",
-    "revision": 1,
+    "revision": 2,
     "title": "Rouvrir le Pass Sport aux enfants de 6 à 13 ans",
-    "description": "L’aide porterait notamment sur le prix de la licence en club.",
+    "description": "Les Écologistes proposent de réintégrer les 6 à 13 ans dans le Pass Sport. Le point prévoit aussi une subvention des licences sportives pour les personnes à faibles revenus.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -36092,7 +36105,7 @@
     ],
     "scope": "parti",
     "edition": "Projet 2027 des Écologistes",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "partyAuthor": "Les Écologistes"
   },
   {
@@ -38224,9 +38237,9 @@
     "parentId": "les-ecologistes-education-programme",
     "candidate": "tondelier",
     "theme": "education",
-    "revision": 1,
-    "title": "Limiter à douze élèves les classes de primaire en éducation prioritaire",
-    "description": "Le plafond s’appliquerait aux écoles de ces zones.",
+    "revision": 2,
+    "title": "Viser 12 élèves par classe dans le primaire en REP et REP+",
+    "description": "Cette cible pour les réseaux d’éducation prioritaire figure dans le même point du programme que l’objectif de 19 élèves par classe dans le primaire en 2032.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -38241,7 +38254,7 @@
     ],
     "scope": "parti",
     "edition": "Projet 2027 des Écologistes",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "partyAuthor": "Les Écologistes"
   },
   {
@@ -45235,9 +45248,9 @@
     "parentId": "philippe-social",
     "candidate": "philippe",
     "theme": "social",
-    "revision": 1,
-    "title": "Cumuler intégralement AAH et salaire pendant un an à la reprise d’emploi",
-    "description": "La mesure prolongerait la période pendant laquelle le salaire ne réduit pas l’allocation aux adultes handicapés.",
+    "revision": 2,
+    "title": "Cumuler intégralement l’AAH et les revenus du travail pendant un an après la reprise d’un emploi",
+    "description": "Édouard Philippe propose que les revenus du travail ne réduisent pas l’allocation aux adultes handicapés pendant l’année qui suit la reprise d’un emploi.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -45251,7 +45264,7 @@
     ],
     "scope": "campagne",
     "edition": "Croire en nous · programme présidentiel 2027",
-    "checked": "2026-11-24"
+    "checked": "2026-11-25"
   },
   {
     "id": "philippe-creer-100-000-logements-adaptes-partages-ou-inclusifs-dici-2035",
@@ -53815,9 +53828,9 @@
     "parentId": "villepin-education-programme",
     "candidate": "villepin",
     "theme": "education",
-    "revision": 1,
+    "revision": 2,
     "title": "Maintenir le pouvoir d’achat du budget de l’éducation",
-    "description": "Le candidat veut le protéger en termes réels jusqu’au retour à l’équilibre des comptes publics, malgré la baisse du nombre d’élèves.",
+    "description": "Dominique de Villepin propose de maintenir le budget de l’éducation en termes réels jusqu’à l’équilibre des comptes publics, puis de stabiliser la part des dépenses d’éducation dans le PIB. Dans le contexte de baisse de la démographie scolaire, son programme en attend une hausse d’environ 20 % de la dépense par élève en dix ans.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -53832,7 +53845,7 @@
     ],
     "scope": "campagne",
     "edition": "Réussir à nouveau · présidentielle 2027",
-    "checked": "2026-11-24"
+    "checked": "2026-11-25"
   },
   {
     "id": "villepin-revaloriser-dau-moins-10-les-metiers-pedagogiques",
@@ -53959,9 +53972,9 @@
     "parentId": "villepin-education-programme",
     "candidate": "villepin",
     "theme": "education",
-    "revision": 1,
+    "revision": 2,
     "title": "Distribuer les moyens de l’éducation prioritaire selon le profil social des élèves",
-    "description": "L’indice de position sociale guiderait l’allocation des moyens à la place de zonages fixes.",
+    "description": "L’indice de position sociale guiderait l’allocation des moyens à la place de zonages fixes. Le programme envisage de déterminer la taille d’une classe à partir d’une somme de ces indices, avec des classes moins chargées là où la priorité sociale est la plus forte.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -53976,7 +53989,7 @@
     ],
     "scope": "campagne",
     "edition": "Réussir à nouveau · présidentielle 2027",
-    "checked": "2026-11-24"
+    "checked": "2026-11-25"
   },
   {
     "id": "villepin-ouvrir-des-parcours-vers-lenseignement-reserves-aux-bacheliers-boursiers",
@@ -55583,9 +55596,9 @@
     "parentId": "herlin-institutions",
     "candidate": "herlin",
     "theme": "institutions",
-    "revision": 1,
-    "title": "Limiter les restrictions d’expression imposées par les plateformes",
-    "description": "Selon sa proposition, les entreprises ne pourraient limiter l’expression au-delà des restrictions prévues par la loi.",
+    "revision": 2,
+    "title": "Interdire aux entreprises de restreindre la liberté d’expression au-delà de la loi",
+    "description": "Philippe Herlin cite YouTube et les autres réseaux sociaux pour illustrer l’application de cette règle.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -55599,7 +55612,7 @@
     ],
     "scope": "campagne",
     "edition": "Présidentielle 2027",
-    "checked": "2026-11-24"
+    "checked": "2026-11-25"
   },
   {
     "id": "herlin-retrait-troupes",
@@ -56968,7 +56981,7 @@
     "parentId": "groupe-rn-fiscalite",
     "candidate": "lepen",
     "theme": "fiscalite",
-    "revision": 1,
+    "revision": 2,
     "title": "Prélever la TVA à la source",
     "description": "Le groupe inscrit la collecte de la TVA à la source dans son contre-budget. La colonne 2027 lui attribue un montant négatif.",
     "beneficiaries": null,
@@ -56987,13 +57000,13 @@
     "sourceRefs": [
       {
         "sourceId": "groupe-rn-contre-budget-2027",
-        "fragment": "page=11",
-        "locator": "Tableau du contre-budget, page 11, colonne 2027 en milliards d’euros. Ligne : TVA à la source."
+        "fragment": "page=12",
+        "locator": "Tableau du contre-budget, page 12, colonne 2027 en milliards d’euros. Ligne : TVA à la source."
       }
     ],
     "scope": "parti",
     "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "partyAuthor": "Groupe Rassemblement national"
   },
   {
@@ -57034,7 +57047,7 @@
     "parentId": "groupe-rn-travail-budget-2027",
     "candidate": "lepen",
     "theme": "travail",
-    "revision": 1,
+    "revision": 2,
     "title": "Renforcer l’Autorité de la concurrence",
     "description": "Le contre-budget vise les ententes, les cartels et les pratiques de concurrence déloyale.",
     "beneficiaries": null,
@@ -57053,13 +57066,13 @@
     "sourceRefs": [
       {
         "sourceId": "groupe-rn-contre-budget-2027",
-        "fragment": "page=11",
-        "locator": "Tableau du contre-budget, page 11, colonne 2027 en milliards d’euros. Ligne : Autorité de la concurrence."
+        "fragment": "page=12",
+        "locator": "Tableau du contre-budget, page 12, colonne 2027 en milliards d’euros. Ligne : Autorité de la concurrence."
       }
     ],
     "scope": "parti",
     "edition": "Contre-budget 2027 du groupe RN à l’Assemblée nationale",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "partyAuthor": "Groupe Rassemblement national"
   },
   {
@@ -57067,7 +57080,7 @@
     "parentId": "groupe-rn-fiscalite",
     "candidate": "lepen",
     "theme": "fiscalite",
-    "revision": 1,
+    "revision": 2,
     "title": "Fonder un correctif de l’impôt sur les sociétés sur le chiffre d’affaires",
     "description": "Le groupe prévoit un mécanisme correcteur assis sur les ventes de l’entreprise. La ligne vise le calcul de ce correctif.",
     "beneficiaries": null,
@@ -57086,13 +57099,13 @@
     "sourceRefs": [
       {
         "sourceId": "groupe-rn-contre-budget-2027",
-        "fragment": "page=11",
-        "locator": "Tableau du contre-budget, page 11, colonne 2027 en milliards d’euros. Ligne : Correctif de l’impôt sur les sociétés."
+        "fragment": "page=12",
+        "locator": "Tableau du contre-budget, page 12, colonne 2027 en milliards d’euros. Ligne : Correctif de l’impôt sur les sociétés."
       }
     ],
     "scope": "parti",
     "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "partyAuthor": "Groupe Rassemblement national"
   },
   {
@@ -57265,7 +57278,7 @@
     "parentId": "groupe-rn-fiscalite",
     "candidate": "lepen",
     "theme": "fiscalite",
-    "revision": 1,
+    "revision": 2,
     "title": "Exonérer jusqu’à 300 000 euros d’immobilier transmis par succession",
     "description": "Le groupe propose une exonération sur le bien immobilier transmis. Il chiffre séparément les donations dans le même tableau.",
     "beneficiaries": null,
@@ -57291,13 +57304,13 @@
     "sourceRefs": [
       {
         "sourceId": "groupe-rn-contre-budget-2027",
-        "fragment": "page=11",
-        "locator": "Tableau du contre-budget, page 11, colonne 2027 en milliards d’euros. Ligne : Immobilier transmis dans les successions."
+        "fragment": "page=12",
+        "locator": "Tableau du contre-budget, page 12, colonne 2027 en milliards d’euros. Ligne : Immobilier transmis dans les successions."
       }
     ],
     "scope": "parti",
     "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "partyAuthor": "Groupe Rassemblement national"
   },
   {
@@ -58507,9 +58520,9 @@
     "parentId": "roussel-travail",
     "candidate": "roussel",
     "theme": "travail",
-    "revision": 1,
-    "title": "Relever de 10 % le point d’indice des fonctionnaires",
-    "description": "Fabien Roussel annonce une première hausse de 10 % du point d’indice. Il vise une hausse de 20 à 30 % à l’horizon de cinq ans.",
+    "revision": 2,
+    "title": "Relever d’abord de 10 % le point d’indice des fonctionnaires",
+    "description": "Dans l’entretien du 12 novembre 2026, Fabien Roussel propose un premier relèvement de 10 % et fixe un objectif de hausse de 20 à 30 % à l’horizon de cinq ans.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -58535,7 +58548,7 @@
     ],
     "scope": "campagne",
     "edition": "Entretien à Franceinfo du 12 novembre 2026",
-    "checked": "2026-11-24"
+    "checked": "2026-11-25"
   },
   {
     "id": "philippe-geothermie-biomethane",
@@ -60149,8 +60162,8 @@
     "parentId": "delmur-programme-2027-livret-immigration-parti",
     "candidate": "delmur",
     "theme": "immigration",
-    "revision": 1,
-    "title": "Conditionner l’entrée à l’absence de casier judiciaire",
+    "revision": 2,
+    "title": "Subordonner l’entrée au titre de l’immigration à l’absence de casier judiciaire dans le pays d’origine",
     "description": "Le parti prévoit de refuser l’entrée aux personnes ayant un casier judiciaire dans leur pays d’origine.",
     "beneficiaries": null,
     "timing": null,
@@ -63680,9 +63693,9 @@
     "parentId": "pcf-loos-projet-2027-travail-parti",
     "candidate": "roussel",
     "theme": "travail",
-    "revision": 1,
+    "revision": 2,
     "title": "Augmenter les salaires de 5 %",
-    "description": "La section du PCF de Loos présente une hausse de 5 % des salaires. Elle ne précise pas la date, le périmètre salarié ni les modalités.",
+    "description": "Le PCF de Loos reprend cette hausse dans ses priorités pour 2027. Dans son discours d’août 2026, Fabien Roussel demandait une hausse de 5 % pour tous les salaires dès la rentrée 2026, avant l’élection. La page de Loos ne fixe pas de calendrier d’application.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -63700,6 +63713,11 @@
       {
         "sourceId": "pcf-loos-projet-2027",
         "locator": "Vivre, passage sur les rémunérations"
+      },
+      {
+        "sourceId": "roussel-universite",
+        "locator": "Discours d’août 2026, passage sur le SMIC et la hausse générale des salaires dès la rentrée.",
+        "fragment": ":~:text=avec%20une%20augmentation%20de%20tous%20les%20salaires"
       }
     ],
     "scope": "parti",
@@ -64030,9 +64048,9 @@
     "parentId": "becht-education-chapitres-2027",
     "candidate": "becht",
     "theme": "education",
-    "revision": 1,
+    "revision": 2,
     "title": "Revoir la formation et revaloriser les salaires des enseignants",
-    "description": "Le chapitre social associe une réforme de la formation à une hausse salariale. Il ne donne ni montant ni calendrier.",
+    "description": "Olivier Becht propose de former les enseignants dès la première année d’université dans des écoles normales. Il vise une rémunération de 1,8 SMIC pour un professeur des écoles et de 2,3 SMIC pour un agrégé en début de carrière. Il compte notamment sur la baisse de la démographie scolaire pour financer cette hausse.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -64040,13 +64058,18 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "becht-livre-4",
+        "locator": "Partie 4, « Refonder l’école et la formation », formation initiale et rémunération des enseignants.",
+        "fragment": ":~:text=Pour%20revaloriser%20la%20profession"
+      },
+      {
         "sourceId": "becht-refondation-sociale",
         "locator": "Faire de la Nation une famille pour tous",
         "fragment": ":~:text=la%20formation%20des%20enseignants%20sera%20repens%C3%A9e"
       }
     ],
     "scope": "campagne",
-    "edition": "Le Projet France · Les cinq refondations",
+    "edition": "Le Projet France · volet éducation et synthèse des cinq refondations",
     "checked": "2026-11-25"
   },
   {
@@ -64686,9 +64709,9 @@
     "parentId": "branco-education",
     "candidate": "branco",
     "theme": "education",
-    "revision": 1,
+    "revision": 2,
     "title": "Revaloriser les salaires des enseignants en début de carrière",
-    "description": "Le chapitre associe cette hausse aux mesures de réorganisation du secondaire.",
+    "description": "Le passage associe la revalorisation salariale à la réduction du nombre d’élèves au lycée par une sélection renforcée à l’entrée, avec un brevet obligatoire centré sur les fondamentaux.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -64697,7 +64720,7 @@
     "sourceRefs": [
       {
         "sourceId": "branco-voie-pdf",
-        "locator": "L’instruction · supérieur et secondaire, page 37. Repère : Revaloriser les salaires des enseignants en début de carrière.",
+        "locator": "L’instruction, rubrique Secondaire, premier point, page 37.",
         "fragment": "page=37"
       }
     ],
@@ -64710,9 +64733,9 @@
     "parentId": "branco-education",
     "candidate": "branco",
     "theme": "education",
-    "revision": 1,
+    "revision": 2,
     "title": "Unifier le recrutement et les statuts des enseignants du secondaire et du supérieur",
-    "description": "Le document veut supprimer la distinction CAPES et agrégation et prévoit un concours national classant pour les enseignants recrutés après 2007.",
+    "description": "Le programme propose de supprimer la distinction entre CAPES et agrégation. Il prévoit d’unifier les statuts après un concours national classant pour les professeurs recrutés après 2007, puis d’éteindre les autres corps au départ à la retraite.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -66230,9 +66253,9 @@
     "parentId": "branco-sante",
     "candidate": "branco",
     "theme": "sante",
-    "revision": 1,
-    "title": "Garantir des soins psychiques gratuits aux enfants placés",
-    "description": "Le programme inclut les enfants qui font l’objet d’une mesure éducative et prévoit de repérer leurs difficultés scolaires ou psychologiques.",
+    "revision": 2,
+    "title": "Garantir des soins psychiques gratuits aux enfants placés ou concernés par une mesure éducative",
+    "description": "Le programme prévoit aussi de repérer les difficultés scolaires ou psychologiques en s’inspirant du programme québécois « Agir tôt ».",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -66241,7 +66264,7 @@
     "sourceRefs": [
       {
         "sourceId": "branco-voie-pdf",
-        "locator": "La protection de l’enfance, page 45. Repère : Garantir des soins psychiques gratuits aux enfants placés.",
+        "locator": "Protection de l’enfance · Soins pour les enfants faisant l’objet d’un placement ou d’une mesure éducative · p. 45",
         "fragment": "page=45"
       }
     ],
@@ -69132,8 +69155,8 @@
     "parentId": "dlf-fraudes-securite-sociale-dossier",
     "candidate": "dupont-aignan",
     "theme": "fiscalite",
-    "revision": 1,
-    "title": "Relever l’abattement sur les donations immobilières de 100 000 euros",
+    "revision": 2,
+    "title": "Augmenter de 100 000 € par enfant ou petit-enfant le plafond des donations immobilières exonérées",
     "description": "Le texte prévoit ce supplément par enfant ou petit-enfant et propose de ramener de quinze à dix ans l’intervalle entre deux donations bénéficiant de l’abattement.",
     "beneficiaries": null,
     "timing": null,
@@ -70015,9 +70038,9 @@
     "parentId": "dupont-aignan-education-mesures-complementaires-parti",
     "candidate": "dupont-aignan",
     "theme": "education",
-    "revision": 1,
-    "title": "Augmenter de 30 % le temps consacré au français et aux mathématiques",
-    "description": "Le livret prévoit la même hausse horaire pour ces deux disciplines.",
+    "revision": 2,
+    "title": "Augmenter de 30 % les heures de français et de mathématiques dans le primaire",
+    "description": "Debout la France inscrit cette hausse du temps consacré au français et aux mathématiques dans son volet sur l’apprentissage des savoirs à l’école primaire.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -76582,9 +76605,9 @@
     "parentId": "retailleau-immigration",
     "candidate": "retailleau",
     "theme": "immigration",
-    "revision": 1,
-    "title": "Imposer un test de langue et d’intégration avant le visa de long séjour",
-    "description": "Le test serait passé dans le pays d’origine. Il concernerait les visas familiaux et professionnels de long séjour.",
+    "revision": 2,
+    "title": "Imposer un test de langue et d’intégration avant un visa familial ou professionnel de long séjour",
+    "description": "Le test se passerait dans le pays d’origine. Le résumé du livret vise l’ensemble des visas de long séjour. La proposition détaillée nomme les visas familiaux et professionnels.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -76595,6 +76618,11 @@
         "sourceId": "retailleau-livret-immigration-2026",
         "locator": "Proposition 5 · Visa de long séjour et intégration · p. 21",
         "fragment": "page=21"
+      },
+      {
+        "sourceId": "retailleau-livret-immigration-2026",
+        "locator": "Présentation des propositions sur l’immigration légale · Résumé du test de français et d’intégration · p. 20",
+        "fragment": "page=20"
       }
     ],
     "scope": "campagne",
@@ -83026,9 +83054,9 @@
     "parentId": "roussel-travail",
     "candidate": "roussel",
     "theme": "travail",
-    "revision": 1,
-    "title": "Relever de 30 % le point d’indice de la fonction publique",
-    "description": "Dans son discours de rentrée d’août 2026, Fabien Roussel demande une revalorisation immédiate pour les fonctions publiques d’État, territoriale et hospitalière, avec des compensations pour les collectivités et les hôpitaux.",
+    "revision": 2,
+    "title": "Demander dès 2026 une hausse de 30 % du point d’indice de la fonction publique",
+    "description": "Dans un discours publié le 26 août 2026, Fabien Roussel demande une hausse immédiate pour les fonctions publiques d’État, territoriale et hospitalière, avec des compensations pour les collectivités et les hôpitaux.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -83698,9 +83726,9 @@
     "parentId": "roussel-parti-2027-fiscalite",
     "candidate": "roussel",
     "theme": "fiscalite",
-    "revision": 1,
+    "revision": 2,
     "title": "Subordonner les aides publiques à l’accessibilité",
-    "description": "Le PCF veut tenir compte de l’accessibilité des lieux et services dans l’octroi des aides et subventions.",
+    "description": "Le PCF veut conditionner l’octroi des aides et subventions publiques à l’accessibilité des lieux et des services.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -85308,9 +85336,9 @@
     "parentId": "roussel-parti-2027-sante",
     "candidate": "roussel",
     "theme": "sante",
-    "revision": 1,
-    "title": "Porter à 100 % le remboursement des soins par la Sécurité sociale",
-    "description": "Le PCF propose une prise en charge intégrale par la Sécurité sociale et une réorganisation du partage de la gestion avec les complémentaires.",
+    "revision": 2,
+    "title": "Confier à la Sécurité sociale le remboursement à 100 % des soins prescrits",
+    "description": "Le cahier du PCF écarte les médecines parallèles et les dépassements d’honoraires liés, dans son analyse, à la désertification médicale. Il propose de revoir la répartition des rôles avec les complémentaires et laisse certains arbitrages de prise en charge ouverts.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -85319,8 +85347,8 @@
     "sourceRefs": [
       {
         "sourceId": "pcf-securite-sociale",
-        "locator": "Assurance maladie · Remboursement · p. 16",
-        "fragment": "page=16"
+        "locator": "Assurance maladie · Remboursement des soins prescrits · p. 15",
+        "fragment": "page=15"
       }
     ],
     "scope": "parti",
@@ -86369,9 +86397,9 @@
     "parentId": "becht-education-chapitres-2027",
     "candidate": "becht",
     "theme": "education",
-    "revision": 1,
+    "revision": 2,
     "title": "Viser 90 000 ingénieurs formés chaque année d’ici sept ans",
-    "description": "Le plan prévoit de doubler le nombre annuel de diplômés d’après le point de départ indiqué par le candidat.",
+    "description": "Le projet retient 45 000 ingénieurs formés par an comme point de départ et prévoit de porter ce nombre à 90 000 en sept ans.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -91374,9 +91402,9 @@
     "parentId": "equinoxe-fiscalite-programme",
     "candidate": "mikolajczak",
     "theme": "fiscalite",
-    "revision": 1,
-    "title": "Rétablir temporairement la taxe d’habitation pour les 20 % de ménages les plus aisés",
-    "description": "Équinoxe présente ce rétablissement sur la résidence principale comme une mesure d’urgence pour le budget 2027.",
+    "revision": 2,
+    "title": "Rétablir en 2027 la taxe d’habitation sur la résidence principale pour les 20 % de ménages les plus aisés",
+    "description": "Équinoxe présente ce rétablissement comme une mesure d’urgence de son contre-budget 2027. Le parti prévoit une réforme plus large de la fiscalité locale dans son programme présidentiel. Le contre-budget ne fixe pas de date de fin pour la mesure d’urgence.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,

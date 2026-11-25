@@ -1887,6 +1887,34 @@
     }
   },
   {
+    "id": "retailleau-education-1-v2",
+    "measureId": "retailleau-education-1",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise les établissements visés, l’échéance et la forme de l’engagement.",
+    "snapshot": {
+      "title": "Créer 1 000 établissements publics autonomes d’ici 2032",
+      "description": "Bruno Retailleau vise des écoles, des collèges et des lycées publics. Il propose un contrat de cinq ans avec l’académie et la collectivité, ainsi qu’une évaluation tous les trois ans.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": "La campagne prévoit une enveloppe constante, avec des moyens fixés par contrat avec l’académie.",
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "retailleau-etablissements-publics-autonomes",
+          "locator": "Mesure 02.02, « L’engagement »",
+          "fragment": ":~:text=%C3%A9coles%2C%20coll%C3%A8ges%20et%20lyc%C3%A9es"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne 2027",
+      "checked": "2026-11-25"
+    }
+  },
+  {
     "id": "retailleau-education-2-v1",
     "measureId": "retailleau-education-2",
     "number": 1,
@@ -3344,6 +3372,41 @@
       "scope": "campagne",
       "edition": "Campagne présidentielle 2027",
       "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "philippe-education-remuneration-v2",
+    "measureId": "philippe-education-remuneration",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar restitue la moyenne européenne comme le niveau minimal visé.",
+    "snapshot": {
+      "title": "Augmenter de 20 % le salaire moyen des enseignants",
+      "description": "Édouard Philippe vise une rémunération des enseignants au moins égale à la moyenne européenne, en particulier en milieu de carrière.",
+      "beneficiaries": "Enseignants.",
+      "timing": "Sur le quinquennat.",
+      "financing": null,
+      "metrics": [
+        {
+          "key": "hausse-remuneration-enseignants",
+          "label": "Hausse moyenne annoncée",
+          "value": 20,
+          "unit": "%",
+          "sourceId": "philippe-ecole"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-ecole",
+          "locator": "Réponse sur le salaire des professeurs"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-25"
     }
   },
   {
@@ -4843,6 +4906,38 @@
     }
   },
   {
+    "id": "attal-travail-plafond-heures-supplementaires-v2",
+    "measureId": "attal-travail-plafond-heures-supplementaires",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise le plafond annuel visé à défaut d’accord collectif.",
+    "snapshot": {
+      "title": "Supprimer le contingent de 220 heures supplémentaires par an à défaut d’accord collectif",
+      "description": "Gabriel Attal propose de supprimer le contingent annuel d’heures supplémentaires prévu par le Code du travail en l’absence d’accord. L’article D3121-24 le fixe à 220 heures par salarié.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-programme-contingent-heures-supplementaires",
+          "locator": "Fiche de campagne, disposition proposée",
+          "fragment": ":~:text=Gabriel%20Attal%20propose%20de%20supprimer%20le%20plafond"
+        },
+        {
+          "sourceId": "code-du-travail-contingent-heures-supplementaires",
+          "locator": "Article D3121-24, contingent applicable à défaut d’accord"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-25"
+    }
+  },
+  {
     "id": "attal-travail-quatre-jours-v1",
     "measureId": "attal-travail-quatre-jours",
     "number": 1,
@@ -5110,6 +5205,34 @@
       "scope": "campagne",
       "edition": "Campagne présidentielle 2027",
       "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "ruffin-travail-horaires-atypiques-v2",
+    "measureId": "ruffin-travail-horaires-atypiques",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise que la majoration concerne les heures dites atypiques.",
+    "snapshot": {
+      "title": "Payer double les heures atypiques avant 8 h et après 18 h",
+      "description": "François Ruffin propose de créer une catégorie d’horaires atypiques. Le texte présente les travailleurs essentiels comme ses premiers bénéficiaires et prévoit une portée plus large.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "ruffin-essentiels",
+          "locator": "Horaires, proposition 1 sur la rémunération des heures atypiques.",
+          "fragment": ":~:text=lutter%20contre%20les%20horaires%20atypiques%20en%20r%C3%A9mun%C3%A9rant%20double"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-25"
     }
   },
   {
@@ -6094,6 +6217,34 @@
     }
   },
   {
+    "id": "tondelier-sante-ordonnance-verte-v2",
+    "measureId": "tondelier-sante-ordonnance-verte",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise la période et les bénéficiaires de l’ordonnance verte et ajoute le lien vers la page du livret.",
+    "snapshot": {
+      "title": "Généraliser l’ordonnance verte pendant la grossesse et les mille premiers jours",
+      "description": "Le livret vise les femmes enceintes et les futurs pères. Il prévoit de leur proposer gratuitement un accompagnement pour réduire l’exposition aux perturbateurs endocriniens et à d’autres substances préoccupantes, ainsi que des paniers réguliers de produits biologiques. Cette prévention serait accessible quels que soient les revenus ou le territoire.",
+      "beneficiaries": "Parents et enfants pendant la grossesse et les mille premiers jours.",
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "eco-reproduction-pdf",
+          "locator": "Grossesse et santé environnementale · Ordonnance verte · p. 40",
+          "fragment": "page=40"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-25"
+    }
+  },
+  {
     "id": "tondelier-sante-post-partum-v1",
     "measureId": "tondelier-sante-post-partum",
     "number": 1,
@@ -6667,6 +6818,33 @@
     }
   },
   {
+    "id": "philippe-immigration-1-v3",
+    "measureId": "philippe-immigration-1",
+    "number": 3,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise le périmètre de l’objectif, distingue le moratoire sur le regroupement familial et renvoie à la page du programme qui présente les deux engagements.",
+    "snapshot": {
+      "title": "Diviser par deux l’immigration légale",
+      "description": "Édouard Philippe présente cet objectif comme un retour au niveau d’il y a quinze ans. Il propose parmi les leviers un moratoire sur le regroupement familial, qui fait l’objet d’un engagement distinct.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-programme-9",
+          "locator": "Immigration · Propositions phares, division de l’immigration légale par deux et moratoire sur le regroupement familial"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-25"
+    }
+  },
+  {
     "id": "philippe-immigration-2-v2",
     "measureId": "philippe-immigration-2",
     "number": 2,
@@ -6772,6 +6950,34 @@
       "scope": "campagne",
       "edition": "Campagne présidentielle 2027",
       "checked": "2026-11-16"
+    }
+  },
+  {
+    "id": "philippe-education-1-v3",
+    "measureId": "philippe-education-1",
+    "number": 3,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise que les 20 % désignent une hausse de salaire moyenne sur le quinquennat.",
+    "snapshot": {
+      "title": "Revaloriser les enseignants",
+      "description": "Édouard Philippe propose une hausse moyenne de 20 % du salaire des enseignants sur le quinquennat.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-ecole",
+          "locator": "École, réponse à « De combien Édouard Philippe veut-il augmenter le salaire des profs ? ».",
+          "fragment": ":~:text=De%2020%20%25%20en%20moyenne%20sur%20le%20quinquennat"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-25"
     }
   },
   {
@@ -8160,6 +8366,33 @@
       "scope": "parti",
       "edition": "Projet économique de Debout la France, version consultée le 17 novembre 2026",
       "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "dupont-aignan-immigration-prestations-v2",
+    "measureId": "dupont-aignan-immigration-prestations",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise dans le titre que la condition de résidence vise les étrangers et indique le point exact du programme.",
+    "snapshot": {
+      "title": "Conditionner à cinq ans de résidence l’accès des étrangers aux aides sociales non contributives",
+      "description": "Debout la France veut soumettre l’accès des étrangers à ces aides à cinq ans de résidence. Le même point propose la suppression de l’aide médicale de l’État.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "dlf-economie-2026",
+          "locator": "Mesures pour les finances publiques · Point 24, aides et immigration"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Projet économique de Debout la France, version consultée le 17 novembre 2026",
+      "checked": "2026-11-25"
     }
   },
   {
@@ -10168,6 +10401,33 @@
     }
   },
   {
+    "id": "ruffin-education-voie-professionnelle-v2",
+    "measureId": "ruffin-education-voie-professionnelle",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise que les trois ans visent le CAP en formation initiale.",
+    "snapshot": {
+      "title": "Porter le CAP en formation initiale à trois ans et le bac professionnel à quatre ans",
+      "description": "Ajouter un semestre de formation générale et un semestre en milieu professionnel ; renforcer l’encadrement des lycées professionnels.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "ruffin-education",
+          "locator": "Cahier 8 : Partie 2, proposition 2"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-25"
+    }
+  },
+  {
     "id": "ruffin-education-parcoursup-v1",
     "measureId": "ruffin-education-parcoursup",
     "number": 1,
@@ -10222,6 +10482,33 @@
     }
   },
   {
+    "id": "ruffin-education-pedagogie-v2",
+    "measureId": "ruffin-education-pedagogie",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise le périmètre de la part minimale consacrée à la pédagogie.",
+    "snapshot": {
+      "title": "Consacrer au moins la moitié des formations aux métiers de l’éducation à la pédagogie",
+      "description": "Le cahier prévoit que les connaissances et compétences pédagogiques occupent au moins la moitié du temps de ces formations. Il propose notamment de supprimer le mémoire traditionnel.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "ruffin-education",
+          "locator": "Cahier 8 : Partie 3, proposition 1"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-25"
+    }
+  },
+  {
     "id": "ruffin-education-salaires-enseignants-v1",
     "measureId": "ruffin-education-salaires-enseignants",
     "number": 1,
@@ -10273,6 +10560,33 @@
       "scope": "campagne",
       "edition": "Campagne présidentielle 2027",
       "checked": "2026-11-17"
+    }
+  },
+  {
+    "id": "ruffin-education-aesh-v2",
+    "measureId": "ruffin-education-aesh",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise la périodicité et la rémunération des heures de suivi.",
+    "snapshot": {
+      "title": "Intégrer les AESH à la fonction publique",
+      "description": "François Ruffin propose de reconnaître 24 heures hebdomadaires d’accompagnement direct comme le cœur d’un temps plein. Les heures complémentaires consacrées à la concertation et au suivi seraient formalisées et rémunérées.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "ruffin-education",
+          "locator": "Cahier 8 : Partie 4, proposition 3"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027",
+      "checked": "2026-11-25"
     }
   },
   {
@@ -12140,6 +12454,33 @@
     }
   },
   {
+    "id": "melenchon-institutions-ia-usages-sensibles-v2",
+    "measureId": "melenchon-institutions-ia-usages-sensibles",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar rétablit le périmètre des outils concernés et les usages cités dans le programme.",
+    "snapshot": {
+      "title": "Interdire certains usages de l’IA et du big data",
+      "description": "Le programme cite notamment l’identification biométrique, la surveillance pour évaluer les droits sociaux, la gestion des flux migratoires, la notation des personnes pour l’attribution de crédits ou la tarification des assurances et la police prédictive.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-numerique",
+          "locator": "Chapitre 7 · Passage sur les usages de l’IA et du big data contraires aux droits individuels et sociaux"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "L’Avenir en commun 2027",
+      "checked": "2026-11-25"
+    }
+  },
+  {
     "id": "ruffin-institutions-secnumcloud-v1",
     "measureId": "ruffin-institutions-secnumcloud",
     "number": 1,
@@ -13439,6 +13780,34 @@
       "scope": "campagne",
       "edition": "La Voie, projet présidentiel 2027",
       "checked": "2026-11-19"
+    }
+  },
+  {
+    "id": "branco-education-acces-lycee-v2",
+    "measureId": "branco-education-acces-lycee",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar explicite l’objectif de réduction du nombre d’élèves et la sélection prévue à l’entrée au lycée.",
+    "snapshot": {
+      "title": "Rendre le brevet obligatoire pour entrer au lycée",
+      "description": "Le programme propose de réduire le nombre d’élèves au lycée en renforçant la sélection à l’entrée, avec un brevet obligatoire centré sur les fondamentaux. Le chapitre prévoit aussi des passerelles et des classes de rattrapage.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "branco-voie-pdf",
+          "locator": "L’instruction, rubrique Secondaire, premier point et point sur les passerelles, page 37.",
+          "fragment": "page=37"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "La Voie, projet présidentiel 2027",
+      "checked": "2026-11-25"
     }
   },
   {
@@ -15986,6 +16355,34 @@
       "scope": "campagne",
       "edition": "Livret de Raphaël Glucksmann et Yannick Jadot, présenté le 9 novembre 2026",
       "checked": "2026-11-19"
+    }
+  },
+  {
+    "id": "glucksmann-fiscalite-fiscalite-aerien-v2",
+    "measureId": "glucksmann-fiscalite-fiscalite-aerien",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar nomme l’exonération fiscale visée et renvoie à la page 8 du livret accessible.",
+    "snapshot": {
+      "title": "Supprimer les exonérations fiscales sur le carburant des vols intérieurs",
+      "description": "Le livret présenté par Raphaël Glucksmann et Yannick Jadot prévoit cette suppression dans les 100 premiers jours. Il prévoit aussi de relever la taxe sur les billets d’avion et de cibler en priorité les jets privés et les yachts.",
+      "beneficiaries": null,
+      "timing": "Dans les cent premiers jours pour le carburant des vols intérieurs et la taxe sur les billets.",
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "glucksmann-100-jours-accessible",
+          "locator": "Version accessible du livret, page 8, proposition sur la fiscalité des vols intérieurs et des billets d’avion.",
+          "fragment": "page=8"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Livret de Raphaël Glucksmann et Yannick Jadot, présenté le 9 novembre 2026",
+      "checked": "2026-11-25"
     }
   },
   {
@@ -22072,6 +22469,33 @@
     }
   },
   {
+    "id": "attal-quotas-migratoires-revises-v2",
+    "measureId": "attal-quotas-migratoires-revises",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise que le vote des quotas interviendrait tous les deux ans après examen des besoins économiques.",
+    "snapshot": {
+      "title": "Faire voter tous les deux ans des quotas migratoires selon les besoins économiques",
+      "description": "Les partenaires sociaux identifieraient les besoins de l’économie, puis le Parlement voterait des plafonds par métier, origine géographique et nationalité. Gabriel Attal donne la priorité à l’immigration de travail.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "attal-programme-quotas-migratoires-revises",
+          "locator": "Fiche officielle du programme, présentation de la mesure et modalités exposées dans le corps du texte."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Présidentielle 2027 · programme publié par Gabriel Attal",
+      "checked": "2026-11-25"
+    }
+  },
+  {
     "id": "attal-droit-au-repit-v1",
     "measureId": "attal-droit-au-repit",
     "number": 1,
@@ -25597,6 +26021,50 @@
     }
   },
   {
+    "id": "groupe-rn-ir-jeunes-actifs-v2",
+    "measureId": "groupe-rn-ir-jeunes-actifs",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar rend visibles les deux seuils de l’exonération et corrige le renvoi à l’annexe.",
+    "snapshot": {
+      "title": "Exonérer d’impôt sur le revenu les jeunes actifs jusqu’à 30 ans, dans la limite de quatre SMIC",
+      "description": "Le groupe RN propose une exonération d’impôt sur le revenu pour les actifs jusqu’à 30 ans, avec un plafond de revenu de quatre SMIC.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "age-exoneration-ir",
+          "label": "Limite d’âge annoncée",
+          "value": 30,
+          "unit": "ans",
+          "sourceId": "groupe-rn-contre-budget-2027"
+        },
+        {
+          "key": "plafond-ir-jeunes",
+          "label": "Plafond de revenu annoncé",
+          "value": 4,
+          "unit": "SMIC",
+          "sourceId": "groupe-rn-contre-budget-2027"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "groupe-rn-contre-budget-2027",
+          "locator": "Annexe, p. 12, ligne sur l’IR des jeunes actifs.",
+          "fragment": "page=12"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Contre-budget 2027 du groupe RN à l’Assemblée nationale",
+      "checked": "2026-11-25",
+      "partyAuthor": "Groupe Rassemblement national"
+    }
+  },
+  {
     "id": "ps-part-prevention-depenses-sante-v1",
     "measureId": "ps-part-prevention-depenses-sante",
     "number": 1,
@@ -27884,6 +28352,34 @@
         {
           "sourceId": "branco-voie-pdf",
           "locator": "La Voie, p. 28, passage sur les allocations scolaires, le chèque énergie et la manufacture nationale."
+        }
+      ]
+    }
+  },
+  {
+    "id": "branco-allocations-fournitures-scolaires-v2",
+    "measureId": "branco-allocations-fournitures-scolaires",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar restitue les deux passages distincts du projet sur les aides scolaires.",
+    "snapshot": {
+      "title": "Supprimer des aides et distribuer des fournitures scolaires",
+      "description": "Juan Branco cite les allocations scolaires et le chèque énergie parmi les aides à supprimer. Une manufacture nationale fabriquerait des fournitures de base pour tous les étudiants. Une autre proposition de la même page inclut l’allocation de rentrée scolaire dans une fusion de prestations vers un revenu minimal modulé.",
+      "scope": "campagne",
+      "edition": "La Voie · Projet de Juan Branco",
+      "checked": "2026-11-25",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": "Le projet chiffre l’ensemble à 3 milliards d’euros d’économies par an. Il ne donne pas de montant pour chaque aide.",
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "branco-voie-pdf",
+          "locator": "La Voie, page 28, passages distincts sur les aides scolaires, la manufacture nationale et la fusion des prestations dont l’ARS.",
+          "fragment": "page=28"
         }
       ]
     }
@@ -34591,6 +35087,35 @@
     }
   },
   {
+    "id": "groupe-rn-supprimer-la-cotisation-fonciere-des-entreprises-v2",
+    "measureId": "groupe-rn-supprimer-la-cotisation-fonciere-des-entreprises",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar recale le renvoi sur la page 12 de l’annexe du contre-budget du groupe RN.",
+    "snapshot": {
+      "title": "Supprimer la cotisation foncière des entreprises",
+      "description": "Le contre-budget supprime la CFE dans son volet consacré aux impôts de production.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "groupe-rn-contre-budget-2027",
+          "locator": "PDF, page 12. Repère : Supprimer la cotisation foncière des entreprises.",
+          "fragment": "page=12"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+      "checked": "2026-11-25",
+      "partyAuthor": "Groupe Rassemblement national"
+    }
+  },
+  {
     "id": "groupe-rn-achever-la-suppression-de-la-cvae-v1",
     "measureId": "groupe-rn-achever-la-suppression-de-la-cvae",
     "number": 1,
@@ -34616,6 +35141,35 @@
       "scope": "parti",
       "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
       "checked": "2026-11-24",
+      "partyAuthor": "Groupe Rassemblement national"
+    }
+  },
+  {
+    "id": "groupe-rn-achever-la-suppression-de-la-cvae-v2",
+    "measureId": "groupe-rn-achever-la-suppression-de-la-cvae",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar recale le renvoi sur la page 12 de l’annexe du contre-budget du groupe RN.",
+    "snapshot": {
+      "title": "Achever la suppression de la CVAE",
+      "description": "Le groupe demande la disparition totale de la cotisation sur la valeur ajoutée des entreprises.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "groupe-rn-contre-budget-2027",
+          "locator": "PDF, page 12. Repère : Achever la suppression de la CVAE.",
+          "fragment": "page=12"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+      "checked": "2026-11-25",
       "partyAuthor": "Groupe Rassemblement national"
     }
   },
@@ -34649,6 +35203,35 @@
     }
   },
   {
+    "id": "groupe-rn-supprimer-la-contribution-sociale-de-solidarite-des-societes-v2",
+    "measureId": "groupe-rn-supprimer-la-contribution-sociale-de-solidarite-des-societes",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar recale le renvoi sur la page 12 de l’annexe du contre-budget du groupe RN.",
+    "snapshot": {
+      "title": "Supprimer la contribution sociale de solidarité des sociétés",
+      "description": "La C3S figure parmi les prélèvements que le groupe entend abolir.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "groupe-rn-contre-budget-2027",
+          "locator": "PDF, page 12. Repère : Supprimer la contribution sociale de solidarité des sociétés.",
+          "fragment": "page=12"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+      "checked": "2026-11-25",
+      "partyAuthor": "Groupe Rassemblement national"
+    }
+  },
+  {
     "id": "groupe-rn-ramener-le-prelevement-forfaitaire-unique-a-30-v1",
     "measureId": "groupe-rn-ramener-le-prelevement-forfaitaire-unique-a-30",
     "number": 1,
@@ -34674,6 +35257,35 @@
       "scope": "parti",
       "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
       "checked": "2026-11-24",
+      "partyAuthor": "Groupe Rassemblement national"
+    }
+  },
+  {
+    "id": "groupe-rn-ramener-le-prelevement-forfaitaire-unique-a-30-v2",
+    "measureId": "groupe-rn-ramener-le-prelevement-forfaitaire-unique-a-30",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar recale le renvoi sur la page 12 de l’annexe du contre-budget du groupe RN.",
+    "snapshot": {
+      "title": "Ramener le prélèvement forfaitaire unique à 30 %",
+      "description": "Le contre-budget propose de revenir sur la hausse du taux appliqué aux revenus du capital.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "groupe-rn-contre-budget-2027",
+          "locator": "PDF, page 12. Repère : Ramener le prélèvement forfaitaire unique à 30 %.",
+          "fragment": "page=12"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+      "checked": "2026-11-25",
       "partyAuthor": "Groupe Rassemblement national"
     }
   },
@@ -34736,6 +35348,35 @@
     }
   },
   {
+    "id": "groupe-rn-baisser-la-tva-sur-les-frais-veterinaires-v2",
+    "measureId": "groupe-rn-baisser-la-tva-sur-les-frais-veterinaires",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar recale le renvoi sur la page 12 de l’annexe du contre-budget du groupe RN.",
+    "snapshot": {
+      "title": "Baisser la TVA sur les frais vétérinaires",
+      "description": "Le groupe propose un taux nul pour les refuges et un taux de 10 % pour les particuliers.",
+      "beneficiaries": "Refuges pour animaux et particuliers qui engagent des frais vétérinaires.",
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "groupe-rn-contre-budget-2027",
+          "locator": "PDF, page 12. Repère : Baisser la TVA sur les frais vétérinaires.",
+          "fragment": "page=12"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+      "checked": "2026-11-25",
+      "partyAuthor": "Groupe Rassemblement national"
+    }
+  },
+  {
     "id": "groupe-rn-ramener-la-taxe-sur-les-carburants-a-son-niveau-de-2017-v1",
     "measureId": "groupe-rn-ramener-la-taxe-sur-les-carburants-a-son-niveau-de-2017",
     "number": 1,
@@ -34761,6 +35402,35 @@
       "scope": "parti",
       "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
       "checked": "2026-11-24",
+      "partyAuthor": "Groupe Rassemblement national"
+    }
+  },
+  {
+    "id": "groupe-rn-ramener-la-taxe-sur-les-carburants-a-son-niveau-de-2017-v2",
+    "measureId": "groupe-rn-ramener-la-taxe-sur-les-carburants-a-son-niveau-de-2017",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar recale le renvoi sur la page 12 de l’annexe du contre-budget du groupe RN.",
+    "snapshot": {
+      "title": "Ramener la taxe sur les carburants à son niveau de 2017",
+      "description": "La proposition porte sur la TICPE et figure dans le volet consacré au pouvoir d’achat.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "groupe-rn-contre-budget-2027",
+          "locator": "PDF, page 12. Repère : Ramener la taxe sur les carburants à son niveau de 2017.",
+          "fragment": "page=12"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+      "checked": "2026-11-25",
       "partyAuthor": "Groupe Rassemblement national"
     }
   },
@@ -34794,6 +35464,35 @@
     }
   },
   {
+    "id": "groupe-rn-generaliser-la-demi-part-fiscale-aux-personnes-veuves-v2",
+    "measureId": "groupe-rn-generaliser-la-demi-part-fiscale-aux-personnes-veuves",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar recale le renvoi sur la page 12 de l’annexe du contre-budget du groupe RN.",
+    "snapshot": {
+      "title": "Généraliser la demi-part fiscale aux personnes veuves",
+      "description": "Le contre-budget prévoit la même mesure pour les veuves et les veufs.",
+      "beneficiaries": "Personnes veuves.",
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "groupe-rn-contre-budget-2027",
+          "locator": "PDF, page 12. Repère : Généraliser la demi-part fiscale aux personnes veuves.",
+          "fragment": "page=12"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+      "checked": "2026-11-25",
+      "partyAuthor": "Groupe Rassemblement national"
+    }
+  },
+  {
     "id": "groupe-rn-taxer-les-rachats-dactions-par-les-entreprises-v1",
     "measureId": "groupe-rn-taxer-les-rachats-dactions-par-les-entreprises",
     "number": 1,
@@ -34819,6 +35518,35 @@
       "scope": "parti",
       "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
       "checked": "2026-11-24",
+      "partyAuthor": "Groupe Rassemblement national"
+    }
+  },
+  {
+    "id": "groupe-rn-taxer-les-rachats-dactions-par-les-entreprises-v2",
+    "measureId": "groupe-rn-taxer-les-rachats-dactions-par-les-entreprises",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar recale le renvoi sur la page 12 de l’annexe du contre-budget du groupe RN.",
+    "snapshot": {
+      "title": "Taxer les rachats d’actions par les entreprises",
+      "description": "Le groupe en fait une recette distincte de la taxe qu’il propose sur les superdividendes.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "groupe-rn-contre-budget-2027",
+          "locator": "PDF, page 12. Repère : Taxer les rachats d’actions par les entreprises.",
+          "fragment": "page=12"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+      "checked": "2026-11-25",
       "partyAuthor": "Groupe Rassemblement national"
     }
   },
@@ -34852,6 +35580,35 @@
     }
   },
   {
+    "id": "groupe-rn-creer-une-taxe-sur-les-superdividendes-v2",
+    "measureId": "groupe-rn-creer-une-taxe-sur-les-superdividendes",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar recale le renvoi sur la page 12 de l’annexe du contre-budget du groupe RN.",
+    "snapshot": {
+      "title": "Créer une taxe sur les superdividendes",
+      "description": "Cette recette figure dans le volet de justice fiscale du contre-budget.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "groupe-rn-contre-budget-2027",
+          "locator": "PDF, page 12. Repère : Créer une taxe sur les superdividendes.",
+          "fragment": "page=12"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+      "checked": "2026-11-25",
+      "partyAuthor": "Groupe Rassemblement national"
+    }
+  },
+  {
     "id": "groupe-rn-taxer-a-14-les-transferts-dargent-vers-les-pays-tiers-v1",
     "measureId": "groupe-rn-taxer-a-14-les-transferts-dargent-vers-les-pays-tiers",
     "number": 1,
@@ -34877,6 +35634,35 @@
       "scope": "parti",
       "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
       "checked": "2026-11-24",
+      "partyAuthor": "Groupe Rassemblement national"
+    }
+  },
+  {
+    "id": "groupe-rn-taxer-a-14-les-transferts-dargent-vers-les-pays-tiers-v2",
+    "measureId": "groupe-rn-taxer-a-14-les-transferts-dargent-vers-les-pays-tiers",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar recale le renvoi sur la page 12 de l’annexe du contre-budget du groupe RN.",
+    "snapshot": {
+      "title": "Taxer à 14 % les transferts d’argent vers les pays tiers",
+      "description": "Le groupe retient ce taux dans sa présentation des recettes fiscales supplémentaires.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "groupe-rn-contre-budget-2027",
+          "locator": "PDF, page 12. Repère : Taxer à 14 % les transferts d’argent vers les pays tiers.",
+          "fragment": "page=12"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+      "checked": "2026-11-25",
       "partyAuthor": "Groupe Rassemblement national"
     }
   },
@@ -34910,6 +35696,35 @@
     }
   },
   {
+    "id": "groupe-rn-creer-une-taxe-a-lembauche-dun-salarie-extra-europeen-v2",
+    "measureId": "groupe-rn-creer-une-taxe-a-lembauche-dun-salarie-extra-europeen",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise que la taxe prévue à l’embauche est de 1 000 € par an et corrige le renvoi à l’annexe.",
+    "snapshot": {
+      "title": "Instaurer une taxe de 1 000 € par an à l’embauche d’un salarié extra-européen",
+      "description": "Cette taxe annuelle figure parmi les hausses de recettes du contre-budget 2027 du groupe RN. Le tableau laisse ouvertes la durée d’assujettissement et les exemptions.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "groupe-rn-contre-budget-2027",
+          "locator": "Page 12 du PDF, hausse des recettes, ligne de la taxe annuelle à l’embauche d’un salarié extra-européen.",
+          "fragment": "page=12"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+      "checked": "2026-11-25",
+      "partyAuthor": "Groupe Rassemblement national"
+    }
+  },
+  {
     "id": "groupe-rn-reintegrer-les-certificats-deconomies-denergie-dans-le-budget-v1",
     "measureId": "groupe-rn-reintegrer-les-certificats-deconomies-denergie-dans-le-budget",
     "number": 1,
@@ -34935,6 +35750,35 @@
       "scope": "parti",
       "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
       "checked": "2026-11-24",
+      "partyAuthor": "Groupe Rassemblement national"
+    }
+  },
+  {
+    "id": "groupe-rn-reintegrer-les-certificats-deconomies-denergie-dans-le-budget-v2",
+    "measureId": "groupe-rn-reintegrer-les-certificats-deconomies-denergie-dans-le-budget",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar recale le renvoi sur la page 12 de l’annexe du contre-budget du groupe RN.",
+    "snapshot": {
+      "title": "Réintégrer les certificats d’économies d’énergie dans le budget",
+      "description": "La mesure concerne les certificats qui financent des opérations d’économie d’énergie.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "groupe-rn-contre-budget-2027",
+          "locator": "PDF, page 12. Repère : Réintégrer les certificats d’économies d’énergie dans le budget.",
+          "fragment": "page=12"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+      "checked": "2026-11-25",
       "partyAuthor": "Groupe Rassemblement national"
     }
   },
@@ -43366,6 +44210,35 @@
     }
   },
   {
+    "id": "ecologistes-rouvrir-le-pass-sport-aux-enfants-de-6-a-13-ans-v2",
+    "measureId": "ecologistes-rouvrir-le-pass-sport-aux-enfants-de-6-a-13-ans",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar distingue la réintégration dans le Pass Sport de la subvention des licences pour les personnes à faibles revenus.",
+    "snapshot": {
+      "title": "Rouvrir le Pass Sport aux enfants de 6 à 13 ans",
+      "description": "Les Écologistes proposent de réintégrer les 6 à 13 ans dans le Pass Sport. Le point prévoit aussi une subvention des licences sportives pour les personnes à faibles revenus.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "ecologistes-projet-2027-pdf",
+          "locator": "Chapitre 27 « Encourager un sport inclusif et décarboné », mesure 1, PDF page 102.",
+          "fragment": "page=102"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Projet 2027 des Écologistes",
+      "checked": "2026-11-25",
+      "partyAuthor": "Les Écologistes"
+    }
+  },
+  {
     "id": "ecologistes-lancer-un-plan-de-renovation-thermique-des-equipements-sportifs-v1",
     "measureId": "ecologistes-lancer-un-plan-de-renovation-thermique-des-equipements-sportifs",
     "number": 1,
@@ -45880,6 +46753,35 @@
       "scope": "parti",
       "edition": "Projet 2027 des Écologistes",
       "checked": "2026-11-24",
+      "partyAuthor": "Les Écologistes"
+    }
+  },
+  {
+    "id": "ecologistes-limiter-a-douze-eleves-les-classes-de-primaire-en-education-prioritaire-v2",
+    "measureId": "ecologistes-limiter-a-douze-eleves-les-classes-de-primaire-en-education-prioritaire",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar présente le chiffre comme un objectif et précise les deux réseaux concernés.",
+    "snapshot": {
+      "title": "Viser 12 élèves par classe dans le primaire en REP et REP+",
+      "description": "Cette cible pour les réseaux d’éducation prioritaire figure dans le même point du programme que l’objectif de 19 élèves par classe dans le primaire en 2032.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "ecologistes-projet-2027-pdf",
+          "locator": "Chapitre 44 « Réaliser l’égalité dans les quartiers populaires », mesure 1, PDF page 148.",
+          "fragment": "page=148"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Projet 2027 des Écologistes",
+      "checked": "2026-11-25",
       "partyAuthor": "Les Écologistes"
     }
   },
@@ -54147,6 +55049,33 @@
       "scope": "campagne",
       "edition": "Croire en nous · programme présidentiel 2027",
       "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "philippe-cumuler-integralement-aah-et-salaire-pendant-un-an-a-la-reprise-demploi-v2",
+    "measureId": "philippe-cumuler-integralement-aah-et-salaire-pendant-un-an-a-la-reprise-demploi",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar rétablit le périmètre des revenus du travail retenu dans le programme.",
+    "snapshot": {
+      "title": "Cumuler intégralement l’AAH et les revenus du travail pendant un an après la reprise d’un emploi",
+      "description": "Édouard Philippe propose que les revenus du travail ne réduisent pas l’allocation aux adultes handicapés pendant l’année qui suit la reprise d’un emploi.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-programme-8",
+          "locator": "Rubrique « Handicap », question « Les personnes handicapées qui reprennent un emploi pourront-elles garder leur AAH ? »."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Croire en nous · programme présidentiel 2027",
+      "checked": "2026-11-25"
     }
   },
   {
@@ -64155,6 +65084,34 @@
     }
   },
   {
+    "id": "villepin-maintenir-le-pouvoir-dachat-du-budget-de-leducation-v2",
+    "measureId": "villepin-maintenir-le-pouvoir-dachat-du-budget-de-leducation",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar restitue les deux étapes et précise le sens de l’évolution attendue de la dépense par élève.",
+    "snapshot": {
+      "title": "Maintenir le pouvoir d’achat du budget de l’éducation",
+      "description": "Dominique de Villepin propose de maintenir le budget de l’éducation en termes réels jusqu’à l’équilibre des comptes publics, puis de stabiliser la part des dépenses d’éducation dans le PIB. Dans le contexte de baisse de la démographie scolaire, son programme en attend une hausse d’environ 20 % de la dépense par élève en dix ans.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "villepin-chapitre-188",
+          "locator": "Chapitre 20, proposition n° 188.",
+          "fragment": "proposition-188"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Réussir à nouveau · présidentielle 2027",
+      "checked": "2026-11-25"
+    }
+  },
+  {
     "id": "villepin-revaloriser-dau-moins-10-les-metiers-pedagogiques-v1",
     "measureId": "villepin-revaloriser-dau-moins-10-les-metiers-pedagogiques",
     "number": 1,
@@ -64320,6 +65277,34 @@
       "scope": "campagne",
       "edition": "Réussir à nouveau · présidentielle 2027",
       "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "villepin-distribuer-les-moyens-de-leducation-prioritaire-selon-le-profil-social-des-elev-v2",
+    "measureId": "villepin-distribuer-les-moyens-de-leducation-prioritaire-selon-le-profil-social-des-elev",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise la règle envisagée pour ajuster la taille des classes en fonction des indices sociaux.",
+    "snapshot": {
+      "title": "Distribuer les moyens de l’éducation prioritaire selon le profil social des élèves",
+      "description": "L’indice de position sociale guiderait l’allocation des moyens à la place de zonages fixes. Le programme envisage de déterminer la taille d’une classe à partir d’une somme de ces indices, avec des classes moins chargées là où la priorité sociale est la plus forte.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "villepin-chapitre-188",
+          "locator": "Chapitre 20, proposition n° 195.",
+          "fragment": "proposition-195"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Réussir à nouveau · présidentielle 2027",
+      "checked": "2026-11-25"
     }
   },
   {
@@ -66202,6 +67187,33 @@
     }
   },
   {
+    "id": "herlin-moderation-plateformes-v2",
+    "measureId": "herlin-moderation-plateformes",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise que la règle proposée viserait les entreprises et que les réseaux sociaux en sont des exemples.",
+    "snapshot": {
+      "title": "Interdire aux entreprises de restreindre la liberté d’expression au-delà de la loi",
+      "description": "Philippe Herlin cite YouTube et les autres réseaux sociaux pour illustrer l’application de cette règle.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "herlin-programme",
+          "locator": "Volet régalien, Démocratie, paragraphe citant YouTube et les réseaux sociaux."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Présidentielle 2027",
+      "checked": "2026-11-25"
+    }
+  },
+  {
     "id": "herlin-retrait-troupes-v1",
     "measureId": "herlin-retrait-troupes",
     "number": 1,
@@ -67828,6 +68840,43 @@
     }
   },
   {
+    "id": "groupe-rn-tva-collecte-source-v2",
+    "measureId": "groupe-rn-tva-collecte-source",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar recale le renvoi sur la page 12 de l’annexe du contre-budget du groupe RN.",
+    "snapshot": {
+      "title": "Prélever la TVA à la source",
+      "description": "Le groupe inscrit la collecte de la TVA à la source dans son contre-budget. La colonne 2027 lui attribue un montant négatif.",
+      "beneficiaries": null,
+      "timing": "Contre-budget pour 2027.",
+      "financing": null,
+      "metrics": [
+        {
+          "key": "chiffrage-2027",
+          "label": "Chiffrage du groupe RN pour 2027",
+          "value": -0.1,
+          "unit": "Md€",
+          "sourceId": "groupe-rn-contre-budget-2027"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "groupe-rn-contre-budget-2027",
+          "fragment": "page=12",
+          "locator": "Tableau du contre-budget, page 12, colonne 2027 en milliards d’euros. Ligne : TVA à la source."
+        }
+      ],
+      "scope": "parti",
+      "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+      "checked": "2026-11-25",
+      "partyAuthor": "Groupe Rassemblement national"
+    }
+  },
+  {
     "id": "groupe-rn-regime-mecenat-v1",
     "measureId": "groupe-rn-regime-mecenat",
     "number": 1,
@@ -67902,6 +68951,43 @@
     }
   },
   {
+    "id": "groupe-rn-autorite-concurrence-v2",
+    "measureId": "groupe-rn-autorite-concurrence",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar recale le renvoi sur la page 12 de l’annexe du contre-budget du groupe RN.",
+    "snapshot": {
+      "title": "Renforcer l’Autorité de la concurrence",
+      "description": "Le contre-budget vise les ententes, les cartels et les pratiques de concurrence déloyale.",
+      "beneficiaries": null,
+      "timing": "Contre-budget pour 2027.",
+      "financing": null,
+      "metrics": [
+        {
+          "key": "chiffrage-2027",
+          "label": "Chiffrage du groupe RN pour 2027",
+          "value": 1.2,
+          "unit": "Md€",
+          "sourceId": "groupe-rn-contre-budget-2027"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "groupe-rn-contre-budget-2027",
+          "fragment": "page=12",
+          "locator": "Tableau du contre-budget, page 12, colonne 2027 en milliards d’euros. Ligne : Autorité de la concurrence."
+        }
+      ],
+      "scope": "parti",
+      "edition": "Contre-budget 2027 du groupe RN à l’Assemblée nationale",
+      "checked": "2026-11-25",
+      "partyAuthor": "Groupe Rassemblement national"
+    }
+  },
+  {
     "id": "groupe-rn-is-correction-chiffre-affaires-v1",
     "measureId": "groupe-rn-is-correction-chiffre-affaires",
     "number": 1,
@@ -67935,6 +69021,43 @@
       "scope": "parti",
       "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
       "checked": "2026-11-24",
+      "partyAuthor": "Groupe Rassemblement national"
+    }
+  },
+  {
+    "id": "groupe-rn-is-correction-chiffre-affaires-v2",
+    "measureId": "groupe-rn-is-correction-chiffre-affaires",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar recale le renvoi sur la page 12 de l’annexe du contre-budget du groupe RN.",
+    "snapshot": {
+      "title": "Fonder un correctif de l’impôt sur les sociétés sur le chiffre d’affaires",
+      "description": "Le groupe prévoit un mécanisme correcteur assis sur les ventes de l’entreprise. La ligne vise le calcul de ce correctif.",
+      "beneficiaries": null,
+      "timing": "Contre-budget pour 2027.",
+      "financing": null,
+      "metrics": [
+        {
+          "key": "chiffrage-2027",
+          "label": "Chiffrage du groupe RN pour 2027",
+          "value": 3.75,
+          "unit": "Md€",
+          "sourceId": "groupe-rn-contre-budget-2027"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "groupe-rn-contre-budget-2027",
+          "fragment": "page=12",
+          "locator": "Tableau du contre-budget, page 12, colonne 2027 en milliards d’euros. Ligne : Correctif de l’impôt sur les sociétés."
+        }
+      ],
+      "scope": "parti",
+      "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+      "checked": "2026-11-25",
       "partyAuthor": "Groupe Rassemblement national"
     }
   },
@@ -68164,6 +69287,50 @@
       "scope": "parti",
       "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
       "checked": "2026-11-24",
+      "partyAuthor": "Groupe Rassemblement national"
+    }
+  },
+  {
+    "id": "groupe-rn-successions-immobilier-300000-v2",
+    "measureId": "groupe-rn-successions-immobilier-300000",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar recale le renvoi sur la page 12 de l’annexe du contre-budget du groupe RN.",
+    "snapshot": {
+      "title": "Exonérer jusqu’à 300 000 euros d’immobilier transmis par succession",
+      "description": "Le groupe propose une exonération sur le bien immobilier transmis. Il chiffre séparément les donations dans le même tableau.",
+      "beneficiaries": null,
+      "timing": "Contre-budget pour 2027.",
+      "financing": null,
+      "metrics": [
+        {
+          "key": "exoneration-immobilier",
+          "label": "Montant immobilier exonéré",
+          "value": 300000,
+          "unit": "euros",
+          "sourceId": "groupe-rn-contre-budget-2027"
+        },
+        {
+          "key": "chiffrage-2027",
+          "label": "Chiffrage du groupe RN pour 2027",
+          "value": 1.2,
+          "unit": "Md€",
+          "sourceId": "groupe-rn-contre-budget-2027"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "groupe-rn-contre-budget-2027",
+          "fragment": "page=12",
+          "locator": "Tableau du contre-budget, page 12, colonne 2027 en milliards d’euros. Ligne : Immobilier transmis dans les successions."
+        }
+      ],
+      "scope": "parti",
+      "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+      "checked": "2026-11-25",
       "partyAuthor": "Groupe Rassemblement national"
     }
   },
@@ -70568,6 +71735,45 @@
       "scope": "campagne",
       "edition": "Entretien à Franceinfo du 12 novembre 2026",
       "checked": "2026-11-24"
+    }
+  },
+  {
+    "id": "roussel-point-indice-fonction-publique-v2",
+    "measureId": "roussel-point-indice-fonction-publique",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar date la proposition de novembre et distingue le premier relèvement de l’objectif à cinq ans.",
+    "snapshot": {
+      "title": "Relever d’abord de 10 % le point d’indice des fonctionnaires",
+      "description": "Dans l’entretien du 12 novembre 2026, Fabien Roussel propose un premier relèvement de 10 % et fixe un objectif de hausse de 20 à 30 % à l’horizon de cinq ans.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "hausse-immediate-point-indice",
+          "label": "Hausse immédiate annoncée",
+          "value": 10,
+          "unit": "%",
+          "sourceId": "pcf-rhone-agents-publics-2026"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "roussel-franceinfo-services-publics",
+          "locator": "Grand oral sur les services publics, réponse sur la rémunération des agents."
+        },
+        {
+          "sourceId": "pcf-rhone-agents-publics-2026",
+          "locator": "Deuxième déclaration reproduite, sur la hausse immédiate et l’horizon de cinq ans."
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Entretien à Franceinfo du 12 novembre 2026",
+      "checked": "2026-11-25"
     }
   },
   {
@@ -73378,6 +74584,34 @@
     "summary": "Première lecture de ce passage.",
     "snapshot": {
       "title": "Conditionner l’entrée à l’absence de casier judiciaire",
+      "description": "Le parti prévoit de refuser l’entrée aux personnes ayant un casier judiciaire dans leur pays d’origine.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "delmur-programme-2027-livret",
+          "locator": "p. 19, Condition d’entrée sur le territoire"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Programme 2027 d’As de Cœur",
+      "partyAuthor": "Parti As de Cœur",
+      "checked": "2026-11-25"
+    }
+  },
+  {
+    "id": "delmur-casier-pays-origine-v2",
+    "measureId": "delmur-casier-pays-origine",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise dans le titre le contexte de l’immigration et le pays dont le casier judiciaire serait examiné.",
+    "snapshot": {
+      "title": "Subordonner l’entrée au titre de l’immigration à l’absence de casier judiciaire dans le pays d’origine",
       "description": "Le parti prévoit de refuser l’entrée aux personnes ayant un casier judiciaire dans leur pays d’origine.",
       "beneficiaries": null,
       "timing": null,
@@ -77493,6 +78727,47 @@
     }
   },
   {
+    "id": "roussel-hausse-salaires-cinq-pourcent-v2",
+    "measureId": "roussel-hausse-salaires-cinq-pourcent",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar ajoute la déclaration de Roussel en 2026 et la distingue des priorités publiées par le PCF de Loos pour 2027.",
+    "snapshot": {
+      "title": "Augmenter les salaires de 5 %",
+      "description": "Le PCF de Loos reprend cette hausse dans ses priorités pour 2027. Dans son discours d’août 2026, Fabien Roussel demandait une hausse de 5 % pour tous les salaires dès la rentrée 2026, avant l’élection. La page de Loos ne fixe pas de calendrier d’application.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "hausse-salaires",
+          "label": "Hausse des salaires publiée par le PCF de Loos",
+          "value": 5,
+          "unit": "%",
+          "sourceId": "pcf-loos-projet-2027"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "pcf-loos-projet-2027",
+          "locator": "Vivre, passage sur les rémunérations"
+        },
+        {
+          "sourceId": "roussel-universite",
+          "locator": "Discours d’août 2026, passage sur le SMIC et la hausse générale des salaires dès la rentrée.",
+          "fragment": ":~:text=avec%20une%20augmentation%20de%20tous%20les%20salaires"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Priorités du PCF de Loos pour 2027",
+      "partyAuthor": "Parti communiste français",
+      "checked": "2026-11-25"
+    }
+  },
+  {
     "id": "roussel-doubler-part-industrie-pib-v1",
     "measureId": "roussel-doubler-part-industrie-pib",
     "number": 1,
@@ -77947,6 +79222,39 @@
       ],
       "scope": "campagne",
       "edition": "Le Projet France · Les cinq refondations",
+      "checked": "2026-11-25"
+    }
+  },
+  {
+    "id": "becht-formation-remuneration-enseignants-v2",
+    "measureId": "becht-formation-remuneration-enseignants",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar associe au chapitre social les objectifs salariaux explicités dans le chapitre économique.",
+    "snapshot": {
+      "title": "Revoir la formation et revaloriser les salaires des enseignants",
+      "description": "Olivier Becht propose de former les enseignants dès la première année d’université dans des écoles normales. Il vise une rémunération de 1,8 SMIC pour un professeur des écoles et de 2,3 SMIC pour un agrégé en début de carrière. Il compte notamment sur la baisse de la démographie scolaire pour financer cette hausse.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "becht-livre-4",
+          "locator": "Partie 4, « Refonder l’école et la formation », formation initiale et rémunération des enseignants.",
+          "fragment": ":~:text=Pour%20revaloriser%20la%20profession"
+        },
+        {
+          "sourceId": "becht-refondation-sociale",
+          "locator": "Faire de la Nation une famille pour tous",
+          "fragment": ":~:text=la%20formation%20des%20enseignants%20sera%20repens%C3%A9e"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Le Projet France · volet éducation et synthèse des cinq refondations",
       "checked": "2026-11-25"
     }
   },
@@ -78715,6 +80023,34 @@
     }
   },
   {
+    "id": "branco-salaires-enseignants-debut-carriere-v2",
+    "measureId": "branco-salaires-enseignants-debut-carriere",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar restitue le contexte de sélection à l’entrée au lycée dans le passage qui annonce la hausse des salaires.",
+    "snapshot": {
+      "title": "Revaloriser les salaires des enseignants en début de carrière",
+      "description": "Le passage associe la revalorisation salariale à la réduction du nombre d’élèves au lycée par une sélection renforcée à l’entrée, avec un brevet obligatoire centré sur les fondamentaux.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "branco-voie-pdf",
+          "locator": "L’instruction, rubrique Secondaire, premier point, page 37.",
+          "fragment": "page=37"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "La Voie · programme intégral",
+      "checked": "2026-11-25"
+    }
+  },
+  {
     "id": "branco-concours-enseignants-unifies-v1",
     "measureId": "branco-concours-enseignants-unifies",
     "number": 1,
@@ -78725,6 +80061,34 @@
     "snapshot": {
       "title": "Unifier le recrutement et les statuts des enseignants du secondaire et du supérieur",
       "description": "Le document veut supprimer la distinction CAPES et agrégation et prévoit un concours national classant pour les enseignants recrutés après 2007.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "branco-voie-pdf",
+          "locator": "L’instruction · supérieur et secondaire, page 37. Repère : Unifier le recrutement et les statuts des enseignants du secondaire et du supérieur.",
+          "fragment": "page=37"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "La Voie · programme intégral",
+      "checked": "2026-11-25"
+    }
+  },
+  {
+    "id": "branco-concours-enseignants-unifies-v2",
+    "measureId": "branco-concours-enseignants-unifies",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar rattache le concours à l’unification des statuts et précise la transition proposée.",
+    "snapshot": {
+      "title": "Unifier le recrutement et les statuts des enseignants du secondaire et du supérieur",
+      "description": "Le programme propose de supprimer la distinction entre CAPES et agrégation. Il prévoit d’unifier les statuts après un concours national classant pour les professeurs recrutés après 2007, puis d’éteindre les autres corps au départ à la retraite.",
       "beneficiaries": null,
       "timing": null,
       "financing": null,
@@ -80534,6 +81898,34 @@
         {
           "sourceId": "branco-voie-pdf",
           "locator": "La protection de l’enfance, page 45. Repère : Garantir des soins psychiques gratuits aux enfants placés.",
+          "fragment": "page=45"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "La Voie · programme intégral",
+      "checked": "2026-11-25"
+    }
+  },
+  {
+    "id": "branco-soins-psychiques-enfants-places-v2",
+    "measureId": "branco-soins-psychiques-enfants-places",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar fait apparaître dans le titre les enfants concernés par une mesure éducative et précise le repère dans le document.",
+    "snapshot": {
+      "title": "Garantir des soins psychiques gratuits aux enfants placés ou concernés par une mesure éducative",
+      "description": "Le programme prévoit aussi de repérer les difficultés scolaires ou psychologiques en s’inspirant du programme québécois « Agir tôt ».",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "branco-voie-pdf",
+          "locator": "Protection de l’enfance · Soins pour les enfants faisant l’objet d’un placement ou d’une mesure éducative · p. 45",
           "fragment": "page=45"
         }
       ],
@@ -83918,6 +85310,43 @@
     }
   },
   {
+    "id": "dlf-abattement-donations-immobilieres-v2",
+    "measureId": "dlf-abattement-donations-immobilieres",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise que les 100 000 € s’ajoutent au plafond existant par enfant ou petit-enfant.",
+    "snapshot": {
+      "title": "Augmenter de 100 000 € par enfant ou petit-enfant le plafond des donations immobilières exonérées",
+      "description": "Le texte prévoit ce supplément par enfant ou petit-enfant et propose de ramener de quinze à dix ans l’intervalle entre deux donations bénéficiant de l’abattement.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "hausse-abattement-donation",
+          "label": "Abattement supplémentaire par descendant",
+          "value": 100000,
+          "unit": "€",
+          "sourceId": "dlf-logement"
+        }
+      ],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "dlf-logement",
+          "locator": "3 FRANÇAIS SUR 4 PROPRIÉTAIRES !, point 4",
+          "fragment": ":~:text=Encourager%20la%20transmission%20des%20biens%20immobiliers%20en"
+        }
+      ],
+      "scope": "parti",
+      "partyAuthor": "Debout la France",
+      "edition": "Projet 2027 de Debout la France · Logement",
+      "checked": "2026-11-25"
+    }
+  },
+  {
     "id": "dlf-residence-principale-ifi-v1",
     "measureId": "dlf-residence-principale-ifi",
     "number": 1,
@@ -84914,6 +86343,35 @@
     "snapshot": {
       "title": "Augmenter de 30 % le temps consacré au français et aux mathématiques",
       "description": "Le livret prévoit la même hausse horaire pour ces deux disciplines.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "dlf-instruction-publique",
+          "locator": "Éducation, point 12",
+          "fragment": ":~:text=Augmenter%20de%2030%20%25%20les%20heures%20consacr%C3%A9es"
+        }
+      ],
+      "scope": "parti",
+      "partyAuthor": "Debout la France",
+      "edition": "Projet 2027 de Debout la France · Éducation",
+      "checked": "2026-11-25"
+    }
+  },
+  {
+    "id": "dlf-heures-francais-mathematiques-v2",
+    "measureId": "dlf-heures-francais-mathematiques",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise que le passage sur la hausse horaire vise le primaire.",
+    "snapshot": {
+      "title": "Augmenter de 30 % les heures de français et de mathématiques dans le primaire",
+      "description": "Debout la France inscrit cette hausse du temps consacré au français et aux mathématiques dans son volet sur l’apprentissage des savoirs à l’école primaire.",
       "beneficiaries": null,
       "timing": null,
       "financing": null,
@@ -92696,6 +94154,39 @@
           "sourceId": "retailleau-livret-immigration-2026",
           "locator": "Proposition 5 · Visa de long séjour et intégration · p. 21",
           "fragment": "page=21"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027 · Bruno Retailleau",
+      "checked": "2026-11-25"
+    }
+  },
+  {
+    "id": "retailleau-test-integration-avant-visa-long-sejour-v2",
+    "measureId": "retailleau-test-integration-avant-visa-long-sejour",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar indique les visas nommés dans la proposition détaillée et documente le périmètre annoncé dans son résumé.",
+    "snapshot": {
+      "title": "Imposer un test de langue et d’intégration avant un visa familial ou professionnel de long séjour",
+      "description": "Le test se passerait dans le pays d’origine. Le résumé du livret vise l’ensemble des visas de long séjour. La proposition détaillée nomme les visas familiaux et professionnels.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "retailleau-livret-immigration-2026",
+          "locator": "Proposition 5 · Visa de long séjour et intégration · p. 21",
+          "fragment": "page=21"
+        },
+        {
+          "sourceId": "retailleau-livret-immigration-2026",
+          "locator": "Présentation des propositions sur l’immigration légale · Résumé du test de français et d’intégration · p. 20",
+          "fragment": "page=20"
         }
       ],
       "scope": "campagne",
@@ -100517,6 +102008,34 @@
     }
   },
   {
+    "id": "roussel-point-indice-fonction-publique-30-v2",
+    "measureId": "roussel-point-indice-fonction-publique-30",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar date la hausse immédiate demandée dans le discours de rentrée 2026.",
+    "snapshot": {
+      "title": "Demander dès 2026 une hausse de 30 % du point d’indice de la fonction publique",
+      "description": "Dans un discours publié le 26 août 2026, Fabien Roussel demande une hausse immédiate pour les fonctions publiques d’État, territoriale et hospitalière, avec des compensations pour les collectivités et les hôpitaux.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "roussel-universite",
+          "locator": "Rémunération des agents publics",
+          "fragment": ":~:text=revalorisation%20imm%C3%A9diate%20de%2030%20%25%20du%20point%20d%27indice"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Université d’été du PCF 2026",
+      "checked": "2026-11-25"
+    }
+  },
+  {
     "id": "roussel-pompes-chaleur-2-millions-v1",
     "measureId": "roussel-pompes-chaleur-2-millions",
     "number": 1,
@@ -101279,6 +102798,35 @@
     "snapshot": {
       "title": "Subordonner les aides publiques à l’accessibilité",
       "description": "Le PCF veut tenir compte de l’accessibilité des lieux et services dans l’octroi des aides et subventions.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "pcf-handicap",
+          "locator": "Accessibilité · Aides publiques · p. 11",
+          "fragment": "page=11"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Les cahiers des Jours heureux · Handicap",
+      "checked": "2026-11-25",
+      "partyAuthor": "Parti communiste français"
+    }
+  },
+  {
+    "id": "roussel-aides-publiques-conditions-accessibilite-v2",
+    "measureId": "roussel-aides-publiques-conditions-accessibilite",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise que l’accessibilité serait une condition d’octroi des aides et subventions publiques.",
+    "snapshot": {
+      "title": "Subordonner les aides publiques à l’accessibilité",
+      "description": "Le PCF veut conditionner l’octroi des aides et subventions publiques à l’accessibilité des lieux et des services.",
       "beneficiaries": null,
       "timing": null,
       "financing": null,
@@ -103168,6 +104716,35 @@
     }
   },
   {
+    "id": "roussel-remboursement-integral-securite-sociale-v2",
+    "measureId": "roussel-remboursement-integral-securite-sociale",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise que le remboursement à 100 % porte sur les soins prescrits, indique les limites prévues par le PCF et corrige le renvoi dans le document.",
+    "snapshot": {
+      "title": "Confier à la Sécurité sociale le remboursement à 100 % des soins prescrits",
+      "description": "Le cahier du PCF écarte les médecines parallèles et les dépassements d’honoraires liés, dans son analyse, à la désertification médicale. Il propose de revoir la répartition des rôles avec les complémentaires et laisse certains arbitrages de prise en charge ouverts.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "pcf-securite-sociale",
+          "locator": "Assurance maladie · Remboursement des soins prescrits · p. 15",
+          "fragment": "page=15"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Les cahiers des Jours heureux · Sécurité sociale",
+      "checked": "2026-11-25",
+      "partyAuthor": "Parti communiste français"
+    }
+  },
+  {
     "id": "roussel-sanctionner-refus-logement-discriminatoires-v1",
     "measureId": "roussel-sanctionner-refus-logement-discriminatoires",
     "number": 1,
@@ -104443,6 +106020,34 @@
     "snapshot": {
       "title": "Viser 90 000 ingénieurs formés chaque année d’ici sept ans",
       "description": "Le plan prévoit de doubler le nombre annuel de diplômés d’après le point de départ indiqué par le candidat.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "becht-livre-4",
+          "locator": "Refonder l’école et la formation",
+          "fragment": ":~:text=un%20plan%20Ing%C3%A9nieurs%20pour%20doubler%20le%20nombre%20form%C3%A9%20chaque%20ann%C3%A9e"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Olivier Becht · Le Projet France",
+      "checked": "2026-11-25"
+    }
+  },
+  {
+    "id": "becht-viser-90-000-ingenieurs-formes-chaque-annee-dici-sept-ans-v2",
+    "measureId": "becht-viser-90-000-ingenieurs-formes-chaque-annee-dici-sept-ans",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar retient le nombre d’ingénieurs formés et restitue le point de départ du programme.",
+    "snapshot": {
+      "title": "Viser 90 000 ingénieurs formés chaque année d’ici sept ans",
+      "description": "Le projet retient 45 000 ingénieurs formés par an comme point de départ et prévoit de porter ce nombre à 90 000 en sept ans.",
       "beneficiaries": null,
       "timing": null,
       "financing": null,
@@ -110409,6 +112014,35 @@
     "snapshot": {
       "title": "Rétablir temporairement la taxe d’habitation pour les 20 % de ménages les plus aisés",
       "description": "Équinoxe présente ce rétablissement sur la résidence principale comme une mesure d’urgence pour le budget 2027.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "equinoxe-contre-budget-2027",
+          "locator": "Recettes",
+          "fragment": ":~:text=uniquement%20pour%20les%2020%25%20de%20m%C3%A9nages%20les%20plus%20ais%C3%A9s"
+        }
+      ],
+      "scope": "parti",
+      "edition": "Contre-budget 2027 présenté par Équinoxe",
+      "checked": "2026-11-25",
+      "partyAuthor": "Équinoxe"
+    }
+  },
+  {
+    "id": "mikolajczak-retablir-temporairement-la-taxe-dhabitation-pour-les-20-de-menages-les-plus-ai-v2",
+    "measureId": "mikolajczak-retablir-temporairement-la-taxe-dhabitation-pour-les-20-de-menages-les-plus-ai",
+    "number": 2,
+    "kind": "correction",
+    "observedOn": "2026-11-25",
+    "recordedAt": "2026-11-25T23:08:23+01:00",
+    "summary": "Polradar précise la résidence principale et l’édition budgétaire visées par la proposition.",
+    "snapshot": {
+      "title": "Rétablir en 2027 la taxe d’habitation sur la résidence principale pour les 20 % de ménages les plus aisés",
+      "description": "Équinoxe présente ce rétablissement comme une mesure d’urgence de son contre-budget 2027. Le parti prévoit une réforme plus large de la fiscalité locale dans son programme présidentiel. Le contre-budget ne fixe pas de date de fin pour la mesure d’urgence.",
       "beneficiaries": null,
       "timing": null,
       "financing": null,
