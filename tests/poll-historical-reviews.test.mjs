@@ -113,6 +113,38 @@ test('Toluna Harris sépare les rappels, les scénarios chiffrés et leurs quest
   assert.equal(april.noticePage, 28);
 });
 
+test('les archives 2023 et 2024 distinguent cinq terrains, les scénarios et leurs bases', () => {
+  const expected = new Map([
+    ['ifop-commission-9686', [6, 0]],
+    ['harris-commission-9688', [4, 0]],
+    ['ifop-commission-9710', [4, 0]],
+    ['ifop-commission-9715', [2, 3]],
+    ['ifop-commission-9766', [9, 4]],
+  ]);
+  for (const [id, counts] of expected) {
+    const rows = polls.filter((poll) => poll.surveyId === id);
+    assert.deepEqual(
+      ['premier', 'second'].map(
+        (round) => rows.filter((row) => row.round === round).length,
+      ),
+      counts,
+    );
+    assert.ok(rows.every((row) => row.registeredSample <= row.sampleSize));
+    assert.ok(rows.every((row) => row.question.status === 'verifiee'));
+  }
+  const april = polls.find((poll) => poll.id === 'harris-commission-9688-p24');
+  assert.equal(april.sampleSize, 1320);
+  assert.equal(april.registeredSample, 1173);
+  assert.equal(april.usefulSample, null);
+  assert.equal(april.noIntention, 17);
+  const duel = polls.find((poll) => poll.id === 'ifop-commission-9766-p17');
+  assert.match(duel.question.base, /795 inscrits.*561 inscrits certains/);
+  assert.deepEqual(duel.results.map((row) => row.percentage).sort(), [49, 51]);
+  const typo = polls.find((poll) => poll.id === 'ifop-commission-9715-p8');
+  assert.equal(typo.round, 'premier');
+  assert.equal(typo.question.sourceId, 'ifop-archives-fevrier-2024-rapport');
+});
+
 test('Le catalogue distingue les choix de vote des souhaits, de la participation et des primaires', () => {
   const coverage = new Map(
     catalogueCoverage(catalogue, polls, sources, audits).map((notice) => [

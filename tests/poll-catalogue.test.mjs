@@ -42,7 +42,7 @@ test('Le baromètre Odoxa reste hors des intentions de vote, et une notice est e
     'partielle',
   );
   const archivesOutsideIndex = new Set(
-    ['9888', '9889', '9894']
+    ['9686', '9688', '9710', '9715', '9766', '9888', '9889', '9894']
       .filter((number) => !all.has(number))
       .map((number) => 'notice-commission-' + number),
   );

@@ -1001,10 +1001,11 @@
     "kind": "past",
     "category": "sondage",
     "dateKind": "publication",
-    "candidates": ["philippe", "lepen"],
+    "candidates": ["philippe", "lisnard", "lepen"],
     "sources": [
       "odoxa-barometre-novembre-2026",
-      "commission-odoxa-notice-10395"
+      "commission-odoxa-notice-10395",
+      "odoxa-barometre-novembre-2026-rapport"
     ]
   },
   {
@@ -1219,5 +1220,33 @@
     "dateKind": "publication",
     "candidates": ["batho"],
     "sources": ["batho-communique-black-friday-20261122"]
+  },
+  {
+    "id": "senat-cybersecurite-transmission-2026-11-24",
+    "date": "2026-11-24",
+    "title": "Le Sénat reçoit le projet de loi sur la cybersécurité",
+    "description": "Après le vote de l’Assemblée nationale du 17 novembre, le texte est enregistré au Sénat le 24 novembre en deuxième lecture.",
+    "kind": "past",
+    "category": "calendrier",
+    "dateKind": "evenement",
+    "candidates": [],
+    "sources": [
+      "senat-cybersecurite-deuxieme-lecture-2026",
+      "assemblee-scrutin-9916-cyber"
+    ]
+  },
+  {
+    "id": "lepen-retraites-document-2026-11-24",
+    "date": "2026-11-24",
+    "title": "La campagne de Marine Le Pen détaille sa réforme des retraites",
+    "description": "Le document de campagne précise les règles proposées pour le travail à mi-temps, le chômage et la majoration pour les mères de trois enfants.",
+    "kind": "past",
+    "category": "programme",
+    "dateKind": "publication",
+    "candidates": ["lepen"],
+    "sources": [
+      "lepen-retraites-document-24-novembre",
+      "rn-retraites-17-novembre-2026"
+    ]
   }
 ]

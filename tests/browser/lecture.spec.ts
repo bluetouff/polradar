@@ -48,12 +48,11 @@ test('les nouveaux décryptages relient le graphique aux données et aux textes'
 }) => {
   await page.setViewportSize({ width: 320, height: 800 });
   await page.goto('/dossiers/');
-  const dossiers = page.locator('.digest-grid a');
-  await expect(dossiers.first()).toHaveAttribute(
-    'href',
-    '/dossiers/electricite-tva-accise/',
-  );
-  await dossiers.first().click();
+  const dossiers = page.locator('.digest-grid');
+  await expect(
+    dossiers.locator('a[href="/dossiers/archives-sondages-2023-2024/"]'),
+  ).toBeVisible();
+  await dossiers.locator('a[href="/dossiers/electricite-tva-accise/"]').click();
   const electricity = electricityComparison(6, 2200)!;
   const expected = [
     electricity.current,
