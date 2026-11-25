@@ -3,6 +3,7 @@ import Icon from './Icon.astro';
 import { electionRounds } from '../lib/data';
 import photoSmall from '../assets/edition/palais-bourbon-680.webp?url';
 import photoLarge from '../assets/edition/palais-bourbon-1360.webp?url';
+import photoMobile from '../assets/edition/palais-bourbon-680.avif?url';
 
 const subjects = [
   ['retraites', 'Retraites'],
@@ -20,17 +21,19 @@ const date = new Intl.DateTimeFormat('fr-FR', {
 ---
 
 <header class="election-cover">
-  <img
-    class="cover-photo"
-    src={photoSmall}
-    srcset={`${photoSmall} 680w, ${photoLarge} 1360w`}
-    sizes="(max-width: 760px) 100vw, (max-width: 1400px) 66vw, 880px"
-    width="1360"
-    height="848"
-    alt=""
-    fetchpriority="high"
-    decoding="async"
-  />
+  <picture class="cover-photo">
+    <source media="(max-width: 760px)" type="image/avif" srcset={photoMobile} />
+    <img
+      src={photoSmall}
+      srcset={`${photoSmall} 680w, ${photoLarge} 1360w`}
+      sizes="(max-width: 760px) 100vw, (max-width: 1400px) 66vw, 880px"
+      width="1360"
+      height="848"
+      alt=""
+      fetchpriority="high"
+      decoding="async"
+    />
+  </picture>
   <div class="cover-intro">
     <h1>
       Présidentielle <span>2027</span>
@@ -136,6 +139,10 @@ const date = new Intl.DateTimeFormat('fr-FR', {
     z-index: -2;
     inset: 0 0 0 auto;
     width: 68%;
+    height: 100%;
+  }
+  .cover-photo img {
+    width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center 53%;
@@ -311,6 +318,8 @@ const date = new Intl.DateTimeFormat('fr-FR', {
     }
     .cover-photo {
       width: 100%;
+    }
+    .cover-photo img {
       object-position: 54% 45%;
     }
     .cover-calendar {
