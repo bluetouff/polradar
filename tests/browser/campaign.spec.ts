@@ -186,9 +186,7 @@ test('la home affiche les séries et les accès au corpus sans exemple nominatif
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/');
     await page.evaluate(() => document.fonts.ready);
-    const programme = (await page.locator('.programme-index').boundingBox())!;
     const dossiers = (await page.locator('.home-dossiers').boundingBox())!;
-    expect(dossiers.y - programme.y - programme.height).toBeLessThanOrEqual(35);
     await expect(
       page.getByRole('searchbox', { name: 'Rechercher dans Polradar' }),
     ).toBeVisible();
@@ -198,7 +196,8 @@ test('la home affiche les séries et les accès au corpus sans exemple nominatif
       .boundingBox())!;
     const briefs = (await page.locator('.home-briefs').boundingBox())!;
     expect(search.y).toBeLessThan(briefs.y);
-    expect(briefs.y).toBeLessThan(signals.y);
+    expect(briefs.y).toBeLessThan(dossiers.y);
+    expect(dossiers.y).toBeLessThan(signals.y);
     await expect(
       page.locator('.home-economic-signals svg[role="img"]'),
     ).toHaveCount(4);
@@ -208,16 +207,14 @@ test('la home affiche les séries et les accès au corpus sans exemple nominatif
         .evaluateAll((links) => links.map((link) => link.getAttribute('href'))),
     ).toEqual(latestBriefs);
     const permanentSections = await page
-      .locator(
-        '.election-cover, .home-choices, .home-layout > :not(.home-dossiers)',
-      )
+      .locator('.election-cover, .home-choices, .home-layout')
       .allTextContents();
     for (const candidate of candidateRows) {
       expect(permanentSections.join(' ')).not.toContain(candidate.name);
     }
     await expect(
       page
-        .getByRole('navigation', { name: 'Accès rapides' })
+        .getByRole('navigation', { name: 'Rubriques du corpus' })
         .getByRole('link', {
           name: String(active.length) + ' candidats suivis',
         }),
@@ -230,7 +227,6 @@ test('la home affiche les séries et les accès au corpus sans exemple nominatif
         const label = link.querySelector('span')!;
         const text = label.getBoundingClientRect();
         return {
-          y: value.top,
           inset: value.left - card.left,
           below: text.top >= value.bottom,
           fits:
@@ -242,10 +238,6 @@ test('la home affiche les séries et les accès au corpus sans exemple nominatif
       }),
     );
     expect(metrics).toHaveLength(5);
-    if (width > 580) {
-      for (const metric of metrics)
-        expect(metric.y).toBeCloseTo(metrics[0].y, 0);
-    }
     for (const metric of metrics) {
       expect(metric.inset).toBeGreaterThanOrEqual(8);
       expect(metric.below && metric.fits).toBe(true);

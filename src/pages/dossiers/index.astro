@@ -3,27 +3,108 @@ import { getCollection } from 'astro:content';
 import DossierLinks from '../../components/DossierLinks.astro';
 import Base from '../../layouts/Base.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
+import Icon from '../../components/Icon.astro';
 const articles = (
   await getCollection('articles', ({ data }) => !data.draft)
-).sort((a, b) => b.data.published.localeCompare(a.data.published));
+).sort(
+  (a, b) =>
+    b.data.published.localeCompare(a.data.published) ||
+    a.data.title.localeCompare(b.data.title, 'fr'),
+);
 ---
 
 <Base
-  title="Dossiers de la présidentielle 2027"
-  description="Prix agricoles, cantines scolaires, logement, santé et retraites. Les propositions de la présidentielle 2027 comparées aux données publiques."
+  title="Décryptages de la présidentielle 2027"
+  description="Électricité, successions, logement social, retraites et autres dossiers. Les propositions de la présidentielle 2027 comparées aux règles et aux données publiques."
   section="/dossiers/"
 >
-  <header class="page-title">
-    <h1>Dossiers</h1>
-    <p>
-      Prix agricoles, cantines scolaires, salaires, logement, accès aux soins et
-      retraites.
-    </p>
+  <header class="page-title digest-heading">
+    <span class="digest-icon" aria-hidden="true">
+      <Icon name="source" />
+    </span>
+    <div>
+      <h1>Décryptages</h1>
+      <p>
+        Les règles en vigueur, les chiffres publics et les propositions de la
+        présidentielle expliqués dossier par dossier.
+      </p>
+    </div>
   </header>
-  <DossierLinks />
-  <div class="article-grid">
+  <div class="article-grid digest-grid">
     {articles.map((article) => (
       <ArticleCard article={article} />
     ))}
   </div>
+  <section class="digest-tools" aria-labelledby="digest-tools-title">
+    <h2 id="digest-tools-title">Explorer les chiffres</h2>
+    <DossierLinks />
+  </section>
 </Base>
+
+<style>
+  .page-title.digest-heading {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.75rem, 2vw, 1.35rem);
+    padding: clamp(1rem, 3vw, 2.2rem);
+    border: 1px solid #b0c8c7;
+    border-radius: 1rem;
+    background:
+      radial-gradient(ellipse at top right, #c5dcd9, transparent 68%),
+      linear-gradient(126deg, #f7fbf9, #e0ece9);
+  }
+  .digest-heading h1 {
+    margin: 0 0 0.42rem;
+    font-size: clamp(1.7rem, 3vw, 2.45rem);
+    line-height: 1.1;
+  }
+  .digest-heading p {
+    color: var(--muted);
+    line-height: 1.45;
+  }
+  .digest-icon {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: clamp(2.6rem, 6vw, 4rem);
+    aspect-ratio: 1;
+    border: 1px solid #52767b;
+    border-radius: 0.8rem;
+    background: linear-gradient(140deg, #34636a, #183747);
+    color: #e3f6f4;
+  }
+  .digest-icon :global(.icon) {
+    width: 54%;
+    height: 54%;
+  }
+  .article-grid.digest-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+    gap: clamp(0.65rem, 1.35vw, 1.1rem);
+  }
+  .digest-grid > :global(.article-card) {
+    min-width: 0;
+    padding: clamp(0.9rem, 2vw, 1.45rem);
+    border-color: #bed0cc;
+    border-radius: 0.85rem;
+    background: linear-gradient(145deg, #fffefa, #f0f3ef);
+  }
+  .digest-grid > :global(.article-card:nth-child(-n + 3)) {
+    background:
+      radial-gradient(ellipse at top right, #e5eee5, transparent 68%),
+      linear-gradient(145deg, #fdfefa, #e8f2ef);
+  }
+  .digest-grid :global(.article-card:hover) {
+    border-color: #739794;
+  }
+  .digest-grid :global(.article-card a:is(:hover, :focus-visible)) {
+    text-decoration: underline;
+  }
+  .digest-tools {
+    margin-block: clamp(1.75rem, 4vw, 3rem);
+  }
+  .digest-tools h2 {
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+  }
+</style>

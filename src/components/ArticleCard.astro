@@ -1,20 +1,22 @@
 ---
-import { formatDate } from '../lib/data';
+import { formatDate, themeById } from '../lib/data';
 import Icon from './Icon.astro';
 import type { CollectionEntry } from 'astro:content';
 interface Props {
   article: CollectionEntry<'articles'>;
 }
 const { article } = Astro.props;
+const theme = article.data.themes[0];
 ---
 
 <article class="article-card">
   <span class="article-symbol" aria-hidden="true">
-    <Icon name={article.data.themes[0] ?? 'source'} />
+    <Icon name={theme ?? 'source'} />
   </span>
   <div class="article-card-text">
     <p class="article-meta">
-      {article.data.category} <span aria-hidden="true">/</span>{' '}
+      {theme ? themeById(theme).label : article.data.category}
+      <span aria-hidden="true">·</span>{' '}
       <time datetime={article.data.published}>
         {formatDate(article.data.published)}
       </time>

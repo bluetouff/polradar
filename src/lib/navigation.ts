@@ -79,7 +79,7 @@ export const groups = [
     icon: 'source',
     links: [
       ['/presse/', 'Espace presse et partenariats', 'microphone'],
-      ['/dossiers/', 'Dossiers', 'source'],
+      ['/dossiers/', 'Décryptages', 'source'],
       ['/veille/', 'Veille quotidienne', 'veille'],
       ['/sources/', 'Catalogue des sources', 'source'],
       ['/mcp/', 'Serveur MCP', 'layers'],

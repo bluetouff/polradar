@@ -63,36 +63,40 @@ const icons: Record<string, string> = {
   .brief-cards li {
     min-width: 0;
   }
-  .brief-led li:not(:first-child) a {
-    padding-inline: 0;
-    border: 0;
-    border-block-end: 1px solid var(--line);
-    border-radius: 0;
-    background: transparent;
-  }
   .brief-led li:first-child a {
-    border: 0;
-    border-inline-start: 3px solid var(--accent);
-    border-radius: 0;
+    position: relative;
     align-content: center;
-    background: linear-gradient(120deg, #e5ede7, #f1efe4);
+    border-color: #afc6c2;
+    background:
+      radial-gradient(ellipse at top right, #e9f1db, transparent 64%),
+      linear-gradient(125deg, #f4faf7, #daebe6);
+    box-shadow: 0 12px 32px -25px #1e5a61b0;
+  }
+  .brief-led li:not(:first-child) a {
+    background: linear-gradient(120deg, #fff, #f2f2ee);
+  }
+  .brief-led a:hover {
+    border-color: #688c8d;
   }
   @media (min-width: 760px) {
     .brief-led {
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-      gap: 0 1.5rem;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 0.65rem;
     }
     .brief-led li:first-child {
       grid-row: span 2;
     }
+    .brief-led li:first-child a {
+      padding: clamp(1.25rem, 3vw, 2.3rem);
+    }
     .brief-led li:first-child strong {
-      font-size: 1.3rem;
+      font-size: clamp(1.25rem, 2.2vw, 1.72rem);
     }
   }
   @media (max-width: 759px) {
     .brief-led {
       grid-template-columns: minmax(0, 1fr);
-      gap: 0.25rem;
+      gap: 0.6rem;
     }
   }
   .brief-cards a {

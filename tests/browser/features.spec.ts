@@ -366,6 +366,10 @@ test('les sondages séparent les tours et permettent de choisir une vague', asyn
 }) => {
   await page.goto('/sondages/#enquete=elabe-2026-11-14-philippe');
   await expect(page.locator('#poll-status')).toContainText('Elabe');
+  await expect(page.locator('#poll-plot .poll-chart')).toHaveAttribute(
+    'role',
+    'group',
+  );
   await expect(page.locator('#poll-bars .poll-bar-row')).toHaveCount(11);
   await page.locator('#poll-wave').focus();
   await page.keyboard.press('Home');
@@ -469,7 +473,6 @@ test('les vues initiales et les notices restent disponibles sans JavaScript', as
     page = await context.newPage();
   await page.goto(`${testOrigin}/sondages/`);
   await expect(page.locator('.poll-chart.chart-narrow')).toBeVisible();
-  await expect(page.locator('.poll-chart')).toHaveAttribute('role', 'group');
   await expect(page.locator('#poll-bars .poll-bar-row').first()).toBeVisible();
   await expect(
     page

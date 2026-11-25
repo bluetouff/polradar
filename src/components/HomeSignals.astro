@@ -75,8 +75,7 @@ const flags: Record<string, string> = { p: 'provisoire', e: 'estimation' };
     align-items: baseline;
     flex-wrap: wrap;
     gap: 0.45rem 0.8rem;
-    padding-bottom: 0.65rem;
-    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.75rem;
   }
   .home-signals-header h2 {
     margin: 0;
@@ -90,28 +89,27 @@ const flags: Record<string, string> = { p: 'provisoire', e: 'estimation' };
   .home-economic-signals .economy-grid-cards {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0;
-    border-bottom: 1px solid var(--line);
-    background: var(--sheet);
+    gap: 0.65rem;
   }
   .home-economic-signals .economy-card {
     --economy-line: #245f61;
-    background: transparent;
-    border: 0;
-    border-radius: 0;
+    min-width: 0;
+    background: linear-gradient(145deg, #fcfdfc, #e8f1ed);
+    border: 1px solid #b9ccc8;
+    border-radius: 0.84rem;
     padding: 0.85rem clamp(0.6rem, 1.35vw, 1.15rem) 0.75rem;
-  }
-  .home-economic-signals .economy-card + .economy-card {
-    border-inline-start: 1px solid var(--line);
   }
   .home-economic-signals .economy-card:nth-child(2) {
     --economy-line: #355d7e;
+    background: linear-gradient(145deg, #fcfdfc, #e6eef4);
   }
   .home-economic-signals .economy-card:nth-child(3) {
     --economy-line: #845139;
+    background: linear-gradient(145deg, #fffdf9, #f1eadd);
   }
   .home-economic-signals .economy-card:nth-child(4) {
     --economy-line: #6c5b32;
+    background: linear-gradient(145deg, #fffefa, #f0ede2);
   }
   .home-economic-signals h3 a {
     color: var(--ink);
@@ -148,12 +146,6 @@ const flags: Record<string, string> = { p: 'provisoire', e: 'estimation' };
   @media (max-width: 930px) {
     .home-economic-signals .economy-grid-cards {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    .home-economic-signals .economy-card:nth-child(odd) {
-      border-inline-start: 0;
-    }
-    .home-economic-signals .economy-card:nth-child(n + 3) {
-      border-top: 1px solid var(--line);
     }
   }
   @media (max-width: 420px) {

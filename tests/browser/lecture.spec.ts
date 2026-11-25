@@ -1,6 +1,61 @@
 import { expect, test } from '@playwright/test';
 import votes from '../../src/data/legislative-votes.json' with { type: 'json' };
 import tracks from '../../src/data/proposal-evolution.json' with { type: 'json' };
+import housing from '../../src/data/territoires/sru.json' with { type: 'json' };
+import { electricityComparison } from '../../src/lib/electricity-tax.mjs';
+
+test('les nouveaux décryptages relient le graphique aux données et aux textes', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 800 });
+  await page.goto('/dossiers/');
+  const dossiers = page.locator('.digest-grid a');
+  await expect(dossiers.first()).toHaveAttribute(
+    'href',
+    '/dossiers/electricite-tva-accise/',
+  );
+  await dossiers.first().click();
+  const electricity = electricityComparison(6, 2200)!;
+  const expected = [
+    electricity.current,
+    ...electricity.alternatives.map((x) => x.amount),
+  ];
+  const diagram = page.locator('.dossier-chart');
+  const format = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 2 });
+  for (const cents of expected) {
+    await expect(diagram).toContainText(format.format(cents / 100));
+  }
+  await expect(
+    page.getByRole('link', {
+      name: 'Saisir ses kilowattheures dans le simulateur',
+    }),
+  ).toHaveAttribute('href', '/economie/simulateurs/electricite/');
+
+  await page.goto('/dossiers/logement-social-communes/');
+  for (const code of ['69123', '35238'] as const) {
+    await expect(diagram).toContainText(housing[code].rate!.replace('%', ' %'));
+  }
+  await expect(
+    page.getByRole('link', { name: 'Notice et CSV du 11 août 2026' }),
+  ).toHaveAttribute(
+    'href',
+    'https://www.data.gouv.fr/datasets/communes-et-inventaire-sru',
+  );
+
+  await page.goto('/dossiers/droits-de-succession/');
+  await expect(diagram.getByRole('img')).toHaveAccessibleName(
+    /50 000 euros restants/,
+  );
+  await expect(
+    page.getByRole('link', { name: 'Exemple et barème de Service Public' }),
+  ).toHaveAttribute(
+    'href',
+    'https://www.service-public.gouv.fr/particuliers/vosdroits/F35794',
+  );
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth),
+  ).toBeLessThanOrEqual(320);
+});
 
 test('les premières données sont visibles sur un téléphone sans défiler', async ({
   page,

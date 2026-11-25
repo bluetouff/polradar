@@ -1,6 +1,8 @@
 ---
 import Icon from './Icon.astro';
 import { electionRounds } from '../lib/data';
+import photoSmall from '../assets/edition/palais-bourbon-680.webp?url';
+import photoLarge from '../assets/edition/palais-bourbon-1360.webp?url';
 
 const subjects = [
   ['retraites', 'Retraites'],
@@ -18,8 +20,21 @@ const date = new Intl.DateTimeFormat('fr-FR', {
 ---
 
 <header class="election-cover">
+  <img
+    class="cover-photo"
+    src={photoSmall}
+    srcset={`${photoSmall} 680w, ${photoLarge} 1360w`}
+    sizes="(max-width: 760px) 100vw, (max-width: 1400px) 66vw, 880px"
+    width="1360"
+    height="848"
+    alt=""
+    fetchpriority="high"
+    decoding="async"
+  />
   <div class="cover-intro">
-    <h1>Présidentielle 2027</h1>
+    <h1>
+      Présidentielle <span>2027</span>
+    </h1>
     <p>
       Comparez les programmes, retrouvez les votes et vérifiez les chiffres de
       la campagne dans les documents d’origine.
@@ -69,6 +84,9 @@ const date = new Intl.DateTimeFormat('fr-FR', {
       </dl>
     </div>
   )}
+  <a class="cover-credit" href="/credits-photos/#palais-bourbon">
+    Palais Bourbon · Getfunky Paris
+  </a>
 </header>
 <script>
   const form = document.querySelector<HTMLFormElement>('[data-cover-search]');
@@ -82,56 +100,117 @@ const date = new Intl.DateTimeFormat('fr-FR', {
 </script>
 <style>
   .election-cover {
+    position: relative;
+    isolation: isolate;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.44fr);
-    gap: clamp(1.65rem, 3vw, 3.25rem);
+    grid-template-columns: minmax(0, 1.65fr) minmax(15.5rem, 1fr);
+    gap: 0.55rem clamp(1.3rem, 4vw, 4.25rem);
     align-items: center;
-    padding-block: clamp(0.75rem, 2vw, 1.8rem) 1.15rem;
+    overflow: hidden;
+    min-height: 22rem;
+    padding: clamp(1.45rem, 4vw, 3.4rem) clamp(1.2rem, 4vw, 3.25rem) 0.75rem;
+    border: 1px solid #365662;
+    border-radius: 1.25rem;
+    background: #142a39;
+    box-shadow: 0 16px 36px -24px #17344695;
+    color: #f6fafb;
+  }
+  .election-cover::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background:
+      linear-gradient(0deg, #0b1b29c9, transparent 54%),
+      linear-gradient(
+        92deg,
+        #142a39 31%,
+        #142a39f2 42%,
+        #12273648 70%,
+        #12273620
+      ),
+      radial-gradient(ellipse at top left, #2f6267, transparent 52%);
+  }
+  .cover-photo {
+    position: absolute;
+    z-index: -2;
+    inset: 0 0 0 auto;
+    width: 68%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 53%;
   }
   .cover-intro {
     min-width: 0;
   }
   .cover-intro h1 {
     margin: 0;
-    font-size: clamp(1.55rem, 4vw, 1.75rem);
-    line-height: 1.15;
+    color: inherit;
+    font-size: clamp(1.8rem, 4vw, 3.1rem);
+    letter-spacing: -0.045em;
+    line-height: 1.08;
+  }
+  .cover-intro h1 span {
+    color: #addfd9;
+    white-space: nowrap;
   }
   .cover-intro p {
-    max-width: 60ch;
-    margin: 0.5rem 0 1.1rem;
-    color: var(--muted);
+    max-width: 49ch;
+    margin: 0.65rem 0 1.4rem;
+    color: #e2eff1;
+    font-size: clamp(0.92rem, 1.6vw, 1.12rem);
+    line-height: 1.5;
   }
   .cover-search {
     max-width: 46rem;
   }
   .cover-search label {
     display: block;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.4rem;
     font-size: 0.9rem;
     font-weight: 660;
   }
   .cover-search > div {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: 0.45rem;
+    gap: 0.3rem;
+    padding: 0.25rem;
+    border: 1px solid #adc7ce;
+    border-radius: 0.75rem;
+    background: #f8faf9;
   }
   .cover-search input,
   .cover-search button {
     min-height: 3rem;
+    border-radius: 0.5rem;
     font-family: var(--sans);
   }
   .cover-search input {
     width: 100%;
-    font-size: 1rem;
-    border-color: #80989a;
+    min-width: 0;
+    border: 1px solid transparent;
+    background: transparent;
+    color: #172f3c;
+    font-size: 0.98rem;
+  }
+  .cover-search input::placeholder {
+    color: #50636e;
+  }
+  .cover-search input:focus-visible {
+    outline: 2px solid #245c60;
+    outline-offset: -2px;
   }
   .cover-search button {
     gap: 0.38rem;
-    background: var(--accent);
+    border-color: #23565b;
+    background: #23565b;
     color: white;
   }
   .cover-search button:hover {
-    background: #194b4d;
+    background: #142f3e;
+  }
+  .cover-search button:focus-visible {
+    outline-color: #23565b;
   }
   .cover-search button :global(.icon) {
     width: 1.05rem;
@@ -141,34 +220,39 @@ const date = new Intl.DateTimeFormat('fr-FR', {
   .cover-subjects {
     display: flex;
     flex-wrap: wrap;
-    gap: 0 0.5rem;
-    margin-top: 0.35rem;
+    gap: 0.37rem;
+    margin-top: 0.65rem;
   }
   .cover-subjects a {
     display: inline-flex;
     align-items: center;
-    min-height: 2.125rem;
-    border-radius: 0.3rem;
-    padding: 0.15rem 0.55rem;
-    color: var(--accent);
+    min-height: 2rem;
+    border: 1px solid #a9d1dc68;
+    border-radius: 50vw;
+    padding: 0.12rem 0.65rem;
+    background: #0f2637bb;
+    color: #edf7f8;
     font-size: 0.83rem;
     text-decoration: none;
   }
   .cover-subjects a:hover {
     text-decoration: underline;
-    background: var(--light);
+    background: #335969;
   }
   .cover-calendar {
-    padding: 0.95rem clamp(0.9rem, 2vw, 1.5rem) 1.05rem;
-    border-inline-start: 3px solid var(--accent);
-    background: linear-gradient(115deg, #e2ebe5, #f1f1e7);
+    align-self: end;
+    padding: 0.85rem clamp(0.85rem, 2vw, 1.4rem) 1rem;
+    border: 1px solid #b9d8de80;
+    border-radius: 0.85rem;
+    background: linear-gradient(132deg, #142c3be8, #152e38dc);
+    backdrop-filter: blur(10px);
   }
   .calendar-link {
     display: inline-flex;
     gap: 0.5rem;
     align-items: center;
     min-height: 2rem;
-    color: var(--accent);
+    color: #dbf4f2;
     font-size: 0.87rem;
     font-weight: 640;
   }
@@ -183,34 +267,71 @@ const date = new Intl.DateTimeFormat('fr-FR', {
     margin: 0.65rem 0 0;
   }
   .cover-calendar dt {
-    color: var(--muted);
+    color: #d0e2e7;
     font-size: 0.78rem;
     line-height: 1.3;
   }
   .cover-calendar dd {
     margin: 0.25rem 0 0;
     font-size: clamp(0.9rem, 1.4vw, 1.1rem);
-    font-weight: 650;
+    font-weight: 680;
     line-height: 1.25;
     font-variant-numeric: tabular-nums;
   }
   .cover-calendar dl > div + div {
-    border-inline-start: 1px solid #b4c4c0;
+    border-inline-start: 1px solid #b1d0d85c;
     padding-inline-start: 0.7rem;
   }
-  @media (max-width: 690px) {
+  .cover-credit {
+    grid-column: 1 / -1;
+    justify-self: end;
+    padding: 0.16rem 0.4rem;
+    border-radius: 0.25rem;
+    background: #0e2432dd;
+    color: #e3eef0;
+    font-size: 0.75rem;
+    text-underline-offset: 0.13em;
+  }
+  .cover-calendar a:focus-visible,
+  .cover-credit:focus-visible,
+  .cover-subjects a:focus-visible {
+    outline-color: #ccefe8;
+  }
+  @media (max-width: 760px) {
     .election-cover {
       grid-template-columns: minmax(0, 1fr);
-      gap: 0.85rem;
+      min-height: 0;
+      gap: 0.7rem;
+      padding-top: 1.3rem;
+    }
+    .election-cover::before {
+      background:
+        linear-gradient(105deg, #132b3bf7, #142a39db 57%, #182f3dac),
+        linear-gradient(0deg, #132b3b, transparent 50%);
+    }
+    .cover-photo {
+      width: 100%;
+      object-position: 54% 45%;
     }
     .cover-calendar {
-      padding-block: 0.45rem 0.75rem;
+      padding-block: 0.35rem 0.65rem;
+      background: #0e2838e6;
     }
     .cover-calendar dl {
       margin-top: 0.25rem;
     }
+    .cover-intro p {
+      margin-bottom: 0.9rem;
+    }
   }
   @media (max-width: 420px) {
+    .election-cover {
+      padding-inline: 0.85rem;
+      border-radius: 1rem;
+    }
+    .cover-search button {
+      padding-inline: 0.65rem;
+    }
     .cover-search button :global(.icon) {
       display: none;
     }
