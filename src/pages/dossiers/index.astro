@@ -79,11 +79,13 @@ const articles = (
   }
   .article-grid.digest-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(0.65rem, 1.35vw, 1.1rem);
   }
   .digest-grid > :global(.article-card) {
     min-width: 0;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.65rem;
     padding: clamp(0.9rem, 2vw, 1.45rem);
     border-color: #bed0cc;
     border-radius: 0.85rem;
@@ -97,6 +99,21 @@ const articles = (
   .digest-grid :global(.article-card:hover) {
     border-color: #739794;
   }
+  .digest-grid :global(.article-card-text) {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .digest-grid :global(.article-open) {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+  }
+  .digest-grid :global(.article-card .article-meta) {
+    font: 500 0.8rem/1.4 var(--sans);
+  }
+  .digest-grid :global(.article-card h2) {
+    font-size: clamp(1.08rem, 2vw, 1.28rem);
+  }
   .digest-grid :global(.article-card a:is(:hover, :focus-visible)) {
     text-decoration: underline;
   }
@@ -106,5 +123,15 @@ const articles = (
   .digest-tools h2 {
     margin-bottom: 0.75rem;
     font-size: 1.25rem;
+  }
+  @media (max-width: 960px) {
+    .article-grid.digest-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 570px) {
+    .article-grid.digest-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 </style>

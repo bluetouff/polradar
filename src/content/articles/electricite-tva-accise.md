@@ -27,7 +27,7 @@ themes: [climat, fiscalite]
     <rect class="chart-track" x="0" y="27" width="320" height="8" rx="4"/><rect class="chart-first" x="0" y="27" width="313.05" height="8" rx="4"/>
     <text x="0" y="57">Équinoxe · accise</text><text class="chart-value" x="320" y="57" text-anchor="end">391,17 €</text>
     <rect class="chart-track" x="0" y="67" width="320" height="8" rx="4"/><rect class="chart-second" x="0" y="67" width="278.17" height="8" rx="4"/>
-    <text x="0" y="97">Marine Le Pen · TVA</text><text class="chart-value" x="320" y="97" text-anchor="end">387,03 €</text>
+    <text x="0" y="97">Amendement Le Pen rejeté</text><text class="chart-value" x="320" y="97" text-anchor="end">387,03 €</text>
     <rect class="chart-track" x="0" y="107" width="320" height="8" rx="4"/><rect class="chart-second" x="0" y="107" width="275.22" height="8" rx="4"/>
     <text x="0" y="137">Selma Labib · TVA</text><text class="chart-value" x="320" y="137" text-anchor="end">366,85 €</text>
     <rect class="chart-track" x="0" y="147" width="320" height="8" rx="4"/><rect class="chart-second" x="0" y="147" width="260.87" height="8" rx="4"/>
