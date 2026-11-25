@@ -18,10 +18,10 @@ import tempfile
 import urllib.parse
 import urllib.request
 
-MAX_ARCHIVE = 24 * 1024 * 1024
-MAX_EXPANDED = 144 * 1024 * 1024
+MAX_ARCHIVE = 28 * 1024 * 1024
+MAX_EXPANDED = 192 * 1024 * 1024
 MAX_FILE = 10 * 1024 * 1024
-MAX_FILES = 6000
+MAX_FILES = 8000
 EXTENSIONS = {'.html', '.css', '.js', '.json', '.xml', '.txt', '.svg', '.png', '.jpg', '.jpeg', '.webp', '.avif', '.ico', '.woff2'}
 HOSTS = {'api.github.com', 'github.com', 'release-assets.githubusercontent.com', 'objects.githubusercontent.com'}
 SHA = re.compile(r'[0-9a-f]{40}')

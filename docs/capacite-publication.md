@@ -16,8 +16,12 @@ python3 scripts/release_capacity.py site.tar.gz --checksum site.sha256 \
   --revision 33468582042c32b1130c99ad97d24d317ad07711
 ```
 
+## Plafonds du 25 novembre 2026
+
+Le build local de `a7e5f86` produit 6 135 fichiers, un TAR de 145 500 160 octets et une archive gzip de 19 380 571 octets. Les plafonds de 8 000 fichiers, 192 Mio pour le TAR et 28 Mio pour le gzip donnent de la marge aux prochaines éditions. À poids moyen par fichier constant, une édition de 8 000 fichiers occuperait environ 181 Mio de TAR et 24 Mio de gzip.
+
 ## Séparation des données et des pages
 
-Deux TAR de recette ont été reconstitués à partir des mêmes fichiers, au même format USTAR. Le lot `api/` occupe 20 039 680 octets de TAR et 151 fichiers. Le lot des autres chemins occupe 107 069 440 octets et 5 412 fichiers. Les deux lots gzip totalisent 18 670 565 octets. Séparer ces lots libérerait environ 20,2 % de la limite TAR pour le lot de pages. L’espace disque cumulé et le nombre total de fichiers resteraient du même ordre. En particulier, le lot de pages conserverait seulement 588 fichiers de marge s’il gardait le plafond actuel de 6 000 fichiers.
+Deux TAR de recette ont été reconstitués à partir des mêmes fichiers, au même format USTAR. Le lot `api/` occupe 20 039 680 octets de TAR et 151 fichiers. Le lot des autres chemins occupe 107 069 440 octets et 5 412 fichiers. Les deux lots gzip totalisent 18 670 565 octets. Séparer ces lots libérerait environ 20,2 % de la limite TAR mesurée lors de cette recette pour le lot de pages. L’espace disque cumulé et le nombre total de fichiers resteraient du même ordre. Avec le plafond de 6 000 fichiers utilisé lors de cette recette, le lot de pages conserverait 588 fichiers de marge.
 
 Le format étudié lie les deux empreintes et les deux inventaires à la même révision. Le déployeur téléchargerait les lots dans un répertoire temporaire, vérifierait leurs tailles, empreintes et chemins, puis refuserait tout chemin dupliqué. Le contrôle du site, du contrat de données et du corpus précéderait une seule bascule atomique. Les URL de lecture et l’ancienne édition resteraient disponibles durant la bascule. L’activation de ce format demanderait une recette du disque de Zen avec l’ancienne et la nouvelle édition simultanées, ainsi que des tests de lot manquant, d’empreinte erronée, de révision divergente et de retour arrière. La publication actuelle garde le format à une archive.

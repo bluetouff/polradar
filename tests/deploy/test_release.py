@@ -132,14 +132,19 @@ class DeploymentTests(unittest.TestCase):
                 deployment.extract_static(packed, Path(temporary), SHA)
 
     def test_file_count_includes_manifest_and_accepts_limit(self):
-        packed = archive([('fiche.html', b'fiche')])
-        with tempfile.TemporaryDirectory() as tmp, patch.object(deployment, 'MAX_FILES', 6):
-            deployment.extract_static(packed, Path(tmp), SHA)
-            self.assertTrue((Path(tmp) / 'fiche.html').is_file())
-        with tempfile.TemporaryDirectory() as tmp, patch.object(deployment, 'MAX_FILES', 5):
+        required_files = 5
+        additions = [
+            (f'fiche-{number}.html', b'')
+            for number in range(deployment.MAX_FILES - required_files)
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            deployment.extract_static(archive(additions), Path(tmp), SHA)
+            self.assertTrue((Path(tmp) / additions[-1][0]).is_file())
+        with tempfile.TemporaryDirectory() as tmp:
+            packed = archive([*additions, ('trop.html', b'')])
             with self.assertRaisesRegex(ValueError, 'too many files'):
                 deployment.extract_static(packed, Path(tmp), SHA)
-            self.assertFalse((Path(tmp) / 'fiche.html').exists())
+            self.assertFalse((Path(tmp) / 'trop.html').exists())
 
     def test_initial_activation_and_rollback(self):
         with tempfile.TemporaryDirectory() as temporary:
