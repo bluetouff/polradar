@@ -247,6 +247,14 @@ function start() {
       const state = reading?.coverage[id];
       if (state && Object.hasOwn(coverageLabels, state))
         header.append(el('p', coverageLabels[state], 'compare-coverage'));
+      if (items.length)
+        header.append(
+          el(
+            'p',
+            `${items.length} fiche${items.length === 1 ? '' : 's'}`,
+            'comparison-count',
+          ),
+        );
       const body = el('div', undefined, 'comparison-body');
       if (items.length) {
         available++;

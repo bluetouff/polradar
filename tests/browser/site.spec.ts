@@ -86,6 +86,10 @@ test('une question garde les deux candidats et restaure la comparaison précéde
   page,
 }) => {
   await page.goto('/comparer/');
+  await expect(page.locator('#compare-candidate-0')).toHaveValue('');
+  await expect(page.locator('#compare-candidate-1')).toHaveValue('');
+  await expect(page.locator('#compare-candidate-2')).toBeHidden();
+  await expect(page.locator('#comparaison')).toBeHidden();
   await page
     .locator('#compare-question')
     .selectOption('fiscalite-csg-salaires');

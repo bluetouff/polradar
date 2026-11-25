@@ -26,13 +26,34 @@ const positionsByQuestion = new Map(
   description="Comparez les propositions de deux ou trois candidats à la présidentielle 2027 par question ou par thème. Retrouvez les documents cités."
   section="/comparer/"
 >
-  <header class="page-title">
-    <h1>Comparer les programmes</h1>
-    <p>Partez d’une question ou choisissez deux candidats et un thème.</p>
+  <header class="compare-hero">
+    <div>
+      <h1>Comparer les programmes</h1>
+      <p>
+        Deux ou trois candidats sur le même sujet. Comparez leurs propositions,
+        les chiffres et les sources.
+      </p>
+    </div>
+    <a href="/divergences/" class="compare-hero-link">
+      <Icon name="exchange" />
+      Carte des divergences
+      <Icon name="arrow" />
+    </a>
   </header>
   <form id="compare-form" class="compare-builder" action="/comparer/" hidden>
-    <div class="compare-question">
-      <label for="compare-question">Que souhaitez-vous comprendre ?</label>
+    <section class="compare-subject" aria-labelledby="compare-subject-title">
+      <h2 id="compare-subject-title">
+        <span class="compare-panel-icon">
+          <Icon name="layers" />
+        </span>
+        Sujet de la comparaison
+      </h2>
+      <div class="compare-question-label">
+        <label for="compare-question">Question précise</label>
+        <a id="compare-question-detail" href="/questions/">
+          Parcourir les questions
+        </a>
+      </div>
       <select id="compare-question" name="question">
         <option value="">Choisir une question</option>
         {questionThemes.map((theme) => {
@@ -68,55 +89,59 @@ const positionsByQuestion = new Map(
           ) : null;
         })}
       </select>
-      <a id="compare-question-detail" href="/questions/">
-        Parcourir les questions
-      </a>
       <p id="compare-question-coverage" class="muted" hidden></p>
-    </div>
-    <fieldset class="compare-candidates">
-      <legend>Candidats à comparer</legend>
-      <div class="compare-pick">
-        <label>
-          Thème
-          <select id="compare-theme" name="theme">
-            {themes.map((t) => (
-              <option value={t.id} data-note={t.note}>
-                {t.label}
-              </option>
-            ))}
-          </select>
-        </label>
-        {[0, 1, 2].map((index) => (
-          <label hidden={index === 2}>
-            Candidature {index + 1}
-            <select id={`compare-candidate-${index}`}>
-              <option value="">Choisir un candidat</option>
-              {candidates.map((c) => (
-                <option value={c.id}>{c.name}</option>
-              ))}
-            </select>
+      <label class="compare-theme-field">
+        Thème
+        <select id="compare-theme" name="theme">
+          {themes.map((t) => (
+            <option value={t.id} data-note={t.note}>
+              {t.label}
+            </option>
+          ))}
+        </select>
+      </label>
+    </section>
+    <div class="compare-people">
+      <fieldset class="compare-candidates">
+        <legend>
+          <span class="compare-panel-icon">
+            <Icon name="people" />
+          </span>
+          Candidats à comparer
+        </legend>
+        <div class="compare-pick">
+          {[0, 1, 2].map((index) => (
+            <label class="compare-person" hidden={index === 2}>
+              <span>Candidature {index + 1}</span>
+              <select id={`compare-candidate-${index}`}>
+                <option value="">Choisir un candidat</option>
+                {candidates.map((c) => (
+                  <option value={c.id}>{c.name}</option>
+                ))}
+              </select>
+            </label>
+          ))}
+        </div>
+        <div class="compare-controls">
+          <label>
+            <input type="checkbox" id="compare-third" />
+            Ajouter un troisième candidat
           </label>
-        ))}
-      </div>
-      <div class="compare-controls">
-        <label>
-          <input type="checkbox" id="compare-third" />
-          Ajouter un troisième candidat
-        </label>
-        <label>
-          <input
-            id="compare-archives"
-            type="checkbox"
-            name="archives"
-            value="1"
-          />
-          Inclure les archives 2022
-        </label>
-        <button class="button primary" type="submit">
-          Comparer
-        </button>
-      </div>
-    </fieldset>
+          <label>
+            <input
+              id="compare-archives"
+              type="checkbox"
+              name="archives"
+              value="1"
+            />
+            Inclure les archives 2022
+          </label>
+          <button class="button primary" type="submit">
+            <Icon name="exchange" /> Comparer
+          </button>
+        </div>
+      </fieldset>
+    </div>
   </form>
   <p
     id="comparison-feedback"
@@ -150,7 +175,7 @@ const positionsByQuestion = new Map(
       </div>
     </div>
     <div id="comparison-positions" hidden></div>
-    <div id="comparison-metrics"></div>
+    <div id="comparison-metrics" class="metric-plots"></div>
     <nav class="comparison-jumps" aria-label="Candidats comparés" hidden></nav>
     <div id="comparison-cards" class="comparison-grid"></div>
     <p class="comparison-scope">
@@ -168,9 +193,12 @@ const positionsByQuestion = new Map(
     </p>
   </noscript>
   <script src="../scripts/compare.ts"></script>
-  <nav class="comparison-related" aria-label="Autres comparaisons">
+  <nav class="comparison-related" aria-labelledby="comparison-related-title">
+    <h2 id="comparison-related-title">Comparatifs à explorer</h2>
     <a class="retirement-entry" href="/questions/">
-      <Icon name="exchange" />
+      <span class="compare-panel-icon">
+        <Icon name="exchange" />
+      </span>
       <span>
         <strong>Qui propose quoi ?</strong>
         <small>Comparer les réponses à une question précise</small>
@@ -178,7 +206,9 @@ const positionsByQuestion = new Map(
       <Icon name="arrow" />
     </a>
     <a class="retirement-entry" href="/comparer/retraites/">
-      <Icon name="retraites" />
+      <span class="compare-panel-icon">
+        <Icon name="retraites" />
+      </span>
       <span>
         <strong>Ce qui changerait · Retraites</strong>
         <small>Trois programmes face au droit en vigueur</small>
@@ -186,7 +216,9 @@ const positionsByQuestion = new Map(
       <Icon name="arrow" />
     </a>
     <a class="retirement-entry" href={digitalLawRoot}>
-      <Icon name="chiffrement" />
+      <span class="compare-panel-icon">
+        <Icon name="chiffrement" />
+      </span>
       <span>
         <strong>Ce qui changerait · Numérique</strong>
         <small>
@@ -199,84 +231,190 @@ const positionsByQuestion = new Map(
 </Base>
 
 <style>
-  .compare-builder {
-    border-bottom: 1px solid var(--line);
-    padding-block: 0.15rem 0.55rem;
-  }
-  .compare-question {
-    display: grid;
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  .compare-hero {
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 0.34rem 1rem;
-    max-width: 59rem;
-    border-block-end: 1px solid var(--line);
-    padding-bottom: 0.85rem;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    padding: clamp(1.25rem, 3.6vw, 2.7rem);
+    margin-bottom: 1.2rem;
+    border: 1px solid #315c68;
+    border-radius: 1.1rem;
+    background:
+      radial-gradient(ellipse at 90% 120%, #408784a6, transparent 67%),
+      linear-gradient(113deg, #112936 15%, #16444d);
+    color: #f0fafb;
   }
-  .compare-question label {
-    grid-column: 1 / -1;
+  .compare-hero h1 {
+    margin: 0;
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+  }
+  .compare-hero p {
+    max-width: 56ch;
+    margin: 0.55rem 0 0;
+    color: #d5e8ec;
+  }
+  .compare-hero-link {
+    display: inline-flex;
+    gap: 0.65rem;
+    align-items: center;
+    min-height: var(--target-size);
+    padding: 0.55rem 0.85rem;
+    border: 1px solid #84a7ab;
+    border-radius: 0.64rem;
+    background: #cce7e41f;
+    color: #f0fafb;
+    font-weight: 650;
+    text-decoration: none;
+  }
+  .compare-hero-link:hover,
+  .compare-hero-link:focus-visible {
+    background: #cce7e443;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    outline-color: #f0fafb;
+  }
+  .compare-hero-link :global(svg) {
+    flex: none;
+  }
+  .compare-builder {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.78fr);
+    gap: 0.85rem;
+  }
+  .compare-builder[hidden] {
+    display: none;
+  }
+  .compare-subject,
+  .compare-people {
+    min-width: 0;
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    padding: clamp(0.95rem, 2vw, 1.35rem);
+    background: var(--sheet);
+    box-shadow: 0 2px 8px #16343d0e;
+  }
+  .compare-subject {
+    background: linear-gradient(135deg, #edf6f3, #fdfdf9 80%);
+  }
+  .compare-subject h2,
+  .compare-candidates legend {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0 0 1rem;
+    padding: 0;
+    font: 650 clamp(1rem, 2vw, 1.2rem) / 1.28 var(--sans);
+  }
+  .compare-panel-icon {
+    display: grid;
+    place-items: center;
+    width: 2.3rem;
+    height: 2.3rem;
+    flex: none;
+    border: 1px solid #a3c5c0;
+    border-radius: 0.65rem;
+    background: #dbefea;
+    color: #205457;
+  }
+  .compare-panel-icon :global(svg) {
+    width: 1.16rem;
+    height: 1.16rem;
+  }
+  .compare-subject label,
+  .compare-person {
+    font-size: 0.9rem;
     font-weight: 650;
   }
-  .compare-question select {
+  .compare-builder select {
     width: 100%;
     min-width: 0;
     min-height: 2.9rem;
-    font-size: 1rem;
+    font: 500 1rem/1.3 var(--sans);
   }
-  .compare-question a {
+  .compare-question-label {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0 0.65rem;
+  }
+  #compare-question-detail {
+    display: inline-flex;
     align-items: center;
     min-height: var(--target-size);
     color: var(--accent);
-    font-size: 0.88rem;
+    font-size: 0.87rem;
+    text-underline-offset: 0.2em;
   }
   #compare-question-coverage {
-    grid-column: 1 / -1;
     margin: 0;
-    font-size: 0.88rem;
+    font-size: 0.86rem;
+  }
+  .compare-theme-field {
+    display: grid;
+    gap: 0.35rem;
+    margin-block-start: 0.85rem;
+    padding-block-start: 0.7rem;
+    border-top: 1px solid var(--line);
   }
   .compare-candidates {
-    border: 0;
     min-width: 0;
-    margin: 0.8rem 0 0;
+    margin: 0;
     padding: 0;
-  }
-  .compare-candidates legend {
-    padding: 0;
-    margin-bottom: 0.5rem;
-    font-weight: 650;
+    border: 0;
   }
   .compare-pick {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
-    gap: 0.65rem 0.9rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12.75rem), 1fr));
+    gap: 0.6rem;
   }
-  .compare-pick label {
+  .compare-person {
     display: grid;
-    gap: 0.35rem;
-    font-size: 0.9rem;
-    font-weight: 620;
+    gap: 0.4rem;
+    min-width: 0;
+    padding: 0.75rem;
+    border: 1px solid #b6cac9;
+    border-radius: 0.72rem;
+    background: linear-gradient(145deg, #eaf3f1, #f7faf8);
   }
-  .compare-pick select {
-    min-height: 2.9rem;
-    font-size: 1rem;
+  .compare-person:focus-within {
+    border-color: #397a7c;
   }
   .compare-controls {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    column-gap: 1rem;
-    margin-top: 0.45rem;
+    gap: 0.3rem 0.75rem;
+    margin-block-start: 0.95rem;
+    border-top: 1px solid var(--line);
+    padding-block-start: 0.75rem;
   }
   .compare-controls label {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    font-size: 0.86rem;
+    gap: 0.45rem;
     min-height: var(--target-size);
+    font-size: 0.86rem;
+  }
+  .compare-controls input {
+    inline-size: 1rem;
+    block-size: 1rem;
+    accent-color: #276569;
   }
   .compare-controls .button {
-    margin-inline-start: auto;
+    display: inline-flex;
+    gap: 0.5rem;
+    justify-content: center;
     min-height: var(--target-size);
+    margin-inline-start: auto;
+    background: #194c54;
+    color: #fff;
+    border-color: #194c54;
+  }
+  .compare-controls .button:hover {
+    background: #16333e;
   }
   #comparison-feedback {
     margin: 0.65rem 0 1.15rem;
@@ -285,97 +423,183 @@ const positionsByQuestion = new Map(
   #comparison-feedback:empty {
     display: none;
   }
+  .comparison-title {
+    align-items: center;
+    margin: 1.1rem 0;
+    padding: clamp(0.95rem, 2.2vw, 1.55rem);
+    border: 1px solid #b1c7ca;
+    border-radius: 0.85rem;
+    background: linear-gradient(120deg, #dceeea, #f6f8f6);
+  }
+  .comparison-title h2 {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+  }
+  .comparison-title p:empty {
+    display: none;
+  }
   .comparison-actions {
     flex-wrap: wrap;
   }
   .comparison-actions button {
     min-height: var(--target-size);
+    background: var(--sheet);
   }
   #comparison-positions {
     margin-block: 0.8rem 1.25rem;
-    border-inline-start: 3px solid var(--accent);
-    padding-inline-start: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: 0.85rem;
+    background: #f0f6f4;
   }
   #comparison-positions :global(ul) {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
-    gap: 0.7rem 1.25rem;
+    gap: 0.75rem;
     margin-block: 0.65rem;
     padding: 0;
     list-style: none;
+  }
+  #comparison-positions :global(li) {
+    border-inline-start: 3px solid #487b7d;
+    padding: 0.45rem 0.7rem;
+    border-radius: 0.38rem;
+    background: var(--sheet);
   }
   #comparison-positions :global(span) {
     display: block;
     font-size: 0.88rem;
     color: var(--muted);
   }
+  #comparison-metrics :global(a[href^='/questions/']) {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+  .comparison-grid,
+  .comparison-grid[data-count='2'] {
+    gap: 0.85rem;
+    border: 0;
+  }
+  .comparison-grid :global(.comparison-card) {
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 0.9rem;
+    background: var(--sheet);
+    box-shadow: 0 2px 8px #16343d0e;
+    overflow-wrap: anywhere;
+    scroll-margin-top: 1rem;
+  }
+  .comparison-grid :global(.comparison-card > header) {
+    padding: 0.95rem 1rem;
+    min-height: auto;
+    border-radius: 0.86rem 0.86rem 0 0;
+    border-top: 3px solid #427c80;
+    background: linear-gradient(130deg, #dcecea, #f0f5f3);
+  }
+  .comparison-grid :global(.comparison-card header p) {
+    margin: 0 0 0.25rem;
+    font: 570 0.85rem/1.4 var(--sans);
+  }
   .comparison-grid :global(.comparison-card .compare-coverage) {
-    margin: 0.4rem 0 0;
-    font: 620 0.88rem/1.5 var(--sans);
+    margin: 0.3rem 0 0;
+  }
+  .comparison-grid :global(.comparison-card .comparison-count) {
+    margin: 0.45rem 0 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .comparison-grid :global(.comparison-body),
+  .comparison-grid :global(.comparison-card > footer) {
+    padding: 0.85rem 1rem;
+  }
+  .comparison-grid :global(.comparison-body > h4) {
+    margin: 0 0 0.4rem;
   }
   .comparison-scope {
     color: var(--muted);
     font-size: 0.85rem;
     margin-block: 1rem 1.45rem;
   }
-  .comparison-related {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
-    gap: 0.65rem 1.4rem;
-    margin-block: 1.1rem;
-  }
   .comparison-jumps {
     display: flex;
     flex-wrap: wrap;
-    gap: 0 1rem;
-    padding-block: 0.3rem;
-    font-size: 0.9rem;
+    gap: 0.48rem;
+    margin: 1rem 0 0.85rem;
   }
   .comparison-jumps :global(a) {
     display: inline-flex;
     align-items: center;
     min-height: var(--target-size);
+    padding: 0.35rem 0.65rem;
+    border: 1px solid #adc5c7;
+    border-radius: 0.5rem;
+    background: #eef5f3;
+    text-underline-offset: 0.17em;
+    font-size: 0.88rem;
   }
-  @media (max-width: 560px) {
-    .compare-question {
-      grid-template-columns: minmax(0, 1fr);
-    }
-    .compare-question a {
-      min-height: 2rem;
-    }
-    .compare-controls .button {
-      margin-block: 0.4rem 0;
-      margin-inline-start: 0;
-      width: 100%;
-      justify-content: center;
-    }
+  .comparison-related {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.7rem;
+    margin-block: 1.55rem;
   }
-  @media print {
-    .comparison-jumps,
-    .compare-builder {
-      display: none;
-    }
+  .comparison-related h2 {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: 1.15rem;
   }
   .retirement-entry {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 0.65rem;
+    gap: 0.6rem;
     min-width: 0;
-    border-block-start: 2px solid var(--accent);
-    padding: 0.65rem 0;
-    background: transparent;
+    padding: 0.85rem;
+    border: 1px solid var(--line);
+    border-radius: 0.8rem;
+    background: linear-gradient(120deg, var(--sheet), #eaf3f0);
     text-decoration: none;
   }
-  .retirement-entry:hover strong {
-    text-decoration: underline;
+  .retirement-entry:hover,
+  .retirement-entry:focus-visible {
+    border-color: #50878a;
   }
-  .retirement-entry span {
-    flex: 1;
-    min-width: 0;
+  .retirement-entry:hover strong,
+  .retirement-entry:focus-visible strong {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
   }
   .retirement-entry small {
     display: block;
     color: var(--muted);
+  }
+  @media (max-width: 860px) {
+    .compare-builder {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media (max-width: 560px) {
+    .comparison-related {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .compare-controls .button {
+      width: 100%;
+      margin-inline-start: 0;
+    }
+  }
+  @media print {
+    .compare-hero {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+    }
+    .compare-hero p {
+      color: var(--ink);
+    }
+    .compare-hero-link,
+    .compare-builder,
+    .comparison-jumps,
+    .comparison-related {
+      display: none;
+    }
   }
 </style>
