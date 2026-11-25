@@ -122,6 +122,12 @@
     }
   }
   @media (max-width: 540px) {
+    .masthead {
+      gap: 0.5rem;
+    }
+    .masthead-actions {
+      gap: 0.25rem;
+    }
     .masthead-actions > a {
       min-inline-size: 44px;
       inline-size: 44px;
