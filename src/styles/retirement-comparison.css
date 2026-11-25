@@ -84,7 +84,7 @@
 .retirement-panel header {
   min-height: 3.5rem;
 }
-.retirement-panel h2 {
+.retirement-panel :is(h2, h3) {
   font-size: 1.03rem;
   text-wrap: unset;
 }
@@ -110,6 +110,11 @@
 .retirement-row {
   padding: 0.47rem 0.4rem 0.28rem;
   color: var(--ink);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 0.4rem;
+  font-size: 0.84rem;
   --mark: #173746;
 }
 .retirement-row-0 {
@@ -126,12 +131,9 @@
 .retirement-row-3 {
   --mark: #5e6642;
 }
-.retirement-row div {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0 0.4rem;
-  font-size: 0.84rem;
+.retirement-row .retirement-track {
+  flex-basis: 100%;
+  min-width: 0;
 }
 .retirement-row dt {
   font-weight: 600;

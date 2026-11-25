@@ -469,6 +469,7 @@ test('les vues initiales et les notices restent disponibles sans JavaScript', as
     page = await context.newPage();
   await page.goto(`${testOrigin}/sondages/`);
   await expect(page.locator('.poll-chart.chart-narrow')).toBeVisible();
+  await expect(page.locator('.poll-chart')).toHaveAttribute('role', 'group');
   await expect(page.locator('#poll-bars .poll-bar-row').first()).toBeVisible();
   await expect(
     page

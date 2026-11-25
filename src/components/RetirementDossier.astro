@@ -197,13 +197,13 @@ const percent = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 1 });
       </p>
       <p data-cohort-status role="status" class="dossier-caption"></p>
       <div data-cohort-result>
-        <RetirementBoard cohort={example} panels={panels} />
+        <RetirementBoard cohort={example} panels={panels} titleLevel="h3" />
       </div>
       {bank
         .filter(({ cohort }) => cohort.id !== example.id)
         .map(({ cohort, panels }) => (
           <template data-cohort-template={cohort.id}>
-            <RetirementBoard cohort={cohort} panels={panels} />
+            <RetirementBoard cohort={cohort} panels={panels} titleLevel="h3" />
           </template>
         ))}
       <a

@@ -98,6 +98,7 @@ test('le dossier retraites met à jour le graphique sans transmettre la généra
     'polradar-retraites-1966.svg',
   );
   await expect(page.locator('#comptes meter')).toHaveCount(4);
+  await expect(page.locator('.retirement-panel dl > div > dt')).toHaveCount(12);
   expect(requests.slice(before).filter((url) => url.includes('1966'))).toEqual(
     [],
   );

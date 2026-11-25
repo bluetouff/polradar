@@ -7,8 +7,14 @@ interface Props {
   cohort: (typeof comparison.cohorts)[number];
   panels: ReturnType<typeof retirementComparison>['panels'];
   embed?: boolean;
+  titleLevel?: 'h2' | 'h3';
 }
-const { cohort, panels, embed = false } = Astro.props;
+const {
+  cohort,
+  panels,
+  embed = false,
+  titleLevel: PanelTitle = 'h2',
+} = Astro.props;
 ---
 
 <figure class="retirement-board" aria-labelledby="retirement-graph">
@@ -30,7 +36,7 @@ const { cohort, panels, embed = false } = Astro.props;
         aria-labelledby={`retirement-${panel.id}`}
       >
         <header>
-          <h2 id={`retirement-${panel.id}`}>{panel.label}</h2>
+          <PanelTitle id={`retirement-${panel.id}`}>{panel.label}</PanelTitle>
           <p>{panel.detail}</p>
         </header>
         <div class="retirement-axis" aria-hidden="true">
@@ -47,26 +53,22 @@ const { cohort, panels, embed = false } = Astro.props;
                 { 'retirement-missing': row.position === null },
               ]}
             >
-              <div>
-                <dt>{row.name}</dt>
-                <dd>{row.text}</dd>
-              </div>
-              <svg
-                viewBox="-1 0 102 12"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                <path d="M0 6h100" />
-                {panel.marks.map(({ position }) => (
-                  <path d={`M${position * 100} 2v8`} />
-                ))}
-                {row.position !== null && (
-                  <path
-                    class="retirement-point"
-                    d={`M${row.position * 100} 1v10`}
-                  />
-                )}
-              </svg>
+              <dt>{row.name}</dt>
+              <dd>{row.text}</dd>
+              <dd class="retirement-track" aria-hidden="true">
+                <svg viewBox="-1 0 102 12" preserveAspectRatio="none">
+                  <path d="M0 6h100" />
+                  {panel.marks.map(({ position }) => (
+                    <path d={`M${position * 100} 2v8`} />
+                  ))}
+                  {row.position !== null && (
+                    <path
+                      class="retirement-point"
+                      d={`M${row.position * 100} 1v10`}
+                    />
+                  )}
+                </svg>
+              </dd>
             </div>
           ))}
         </dl>

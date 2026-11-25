@@ -101,7 +101,7 @@ async function start() {
       chart = svg('svg', {
         class: 'poll-chart',
         viewBox: `0 0 ${geometry.width} 320`,
-        role: 'img',
+        role: 'group',
         'aria-label':
           'Intentions de vote dans le scénario sélectionné, par date de fin de terrain',
       });
