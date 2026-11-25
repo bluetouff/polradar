@@ -53,6 +53,7 @@ test('le retrait quitte les candidatures en cours et conserve le dossier et la b
 
 test('la recherche expose chaque dossier de votes, évolution, rendez-vous et brève à sa propre adresse', async ({
   request,
+  page,
 }) => {
   const result = await request.get('/api/recherche.json');
   expect(result.ok()).toBe(true);
@@ -79,6 +80,24 @@ test('la recherche expose chaque dossier de votes, évolution, rendez-vous et br
   const xml = await briefsFeed.text();
   const news = entries.filter((entry) => entry.type === 'breve');
   expect(xml.match(/<item>/g)).toHaveLength(news.length);
+  await page.goto('/breves/');
+  expect(
+    await page.evaluate((feed) => {
+      const doc = new DOMParser().parseFromString(feed, 'application/xml');
+      return {
+        errors: doc.querySelectorAll('parsererror').length,
+        links: [...doc.querySelectorAll('item > link')].map(
+          (item) => item.textContent,
+        ),
+      };
+    }, xml),
+  ).toMatchObject({
+    errors: 0,
+    links: expect.arrayContaining([
+      'https://polradar.fr/breves/nis2-retour-au-senat/',
+      'https://polradar.fr/breves/retraites-lepen-texte-24-novembre/',
+    ]),
+  });
   for (const article of news) {
     expect(xml).toContain(
       '<link>https://polradar.fr' + article.url + '</link>',

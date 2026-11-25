@@ -57,7 +57,8 @@ test('chercher un scrutin européen, retrouver les trois votes et partager les f
   await expect(
     result.getByRole('link', { name: 'Document officiel' }),
   ).toHaveAttribute('href', /europarl\.europa\.eu\/RegData/);
-  await expect(page).toHaveURL(/candidat=melenchon/u);
+  await expect(page).toHaveURL(/#query=CETA&candidat=melenchon/u);
+  expect(new URL(page.url()).search).toBe('');
   await page.reload();
   await expect(result).toHaveCount(1);
   await page
@@ -65,6 +66,9 @@ test('chercher un scrutin européen, retrouver les trois votes et partager les f
     .selectOption('pour');
   await page.getByRole('button', { name: 'Rechercher', exact: true }).click();
   await expect(page.getByRole('status')).toContainText('Aucun résultat.');
+  await page.goBack();
+  await expect(result).toHaveCount(1);
+  await expect(page.getByLabel('Sujet ou identifiant')).toHaveValue('CETA');
 });
 test('pagination, élections distinctes et période des séances recensées', async ({
   page,

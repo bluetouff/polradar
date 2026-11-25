@@ -1,5 +1,6 @@
 import { attributionLabel } from './attribution.mjs';
 import { campaignBriefs } from './briefs';
+import { escapeXml } from './escape-html.mjs';
 import { getCollection } from 'astro:content';
 import {
   versions,
@@ -8,18 +9,6 @@ import {
   themeById,
   formatDate,
 } from './data';
-const escape = (value: string) =>
-  value.replace(
-    /[<>&"']/g,
-    (char) =>
-      ({
-        '<': '&lt;',
-        '>': '&gt;',
-        '&': '&amp;',
-        '"': '&quot;',
-        "'": '&apos;',
-      })[char]!,
-  );
 interface FeedItem {
   title: string;
   url: string;
@@ -116,7 +105,7 @@ export async function rss(
     ? 'Brèves de la présidentielle de 2027'
     : 'Fiches et publications Polradar';
   return new Response(
-    `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>${escape(title)}</title><link>${channelUrl}</link><description>${description}</description><language>fr</language><lastBuildDate>${new Date().toUTCString()}</lastBuildDate>${items.map((item) => `<item><title>${escape(item.title)}</title><link>${escape(item.url)}</link><guid>${escape(item.guid)}</guid><description>${escape(item.description)}</description>${item.timestamp ? `<pubDate>${new Date(item.timestamp).toUTCString()}</pubDate>` : ''}</item>`).join('')}</channel></rss>`,
+    `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>${escapeXml(title)}</title><link>${channelUrl}</link><description>${description}</description><language>fr</language><lastBuildDate>${new Date().toUTCString()}</lastBuildDate>${items.map((item) => `<item><title>${escapeXml(item.title)}</title><link>${escapeXml(item.url)}</link><guid>${escapeXml(item.guid)}</guid><description>${escapeXml(item.description)}</description>${item.timestamp ? `<pubDate>${new Date(item.timestamp).toUTCString()}</pubDate>` : ''}</item>`).join('')}</channel></rss>`,
     { headers: { 'Content-Type': 'application/rss+xml;charset=utf-8' } },
   );
 }

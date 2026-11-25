@@ -118,13 +118,18 @@ function card(row: ParliamentaryAct, data: ActIndex) {
 }
 let request: Promise<ActIndex> | undefined;
 let seq = 0;
-const current = new URLSearchParams(location.search);
-function restore() {
-  const q = new URLSearchParams(location.search);
+function readFilters() {
+  // Previously shared addresses may still have filters in the query string.
+  const fragment = new URLSearchParams(location.hash.slice(1));
+  if ([...keys, 'page', 'edition'].some((key) => fragment.has(key)))
+    return fragment;
+  return new URLSearchParams(location.search);
+}
+function restore(q: URLSearchParams) {
   for (const k of keys) control(k).value = q.get(k) ?? '';
 }
 function href(q: URLSearchParams) {
-  return location.pathname + (q.size ? '?' + q : '');
+  return location.pathname + (q.size ? '#' + q : '');
 }
 async function show(q: URLSearchParams, write: boolean) {
   const s = ++seq;
@@ -222,10 +227,12 @@ form.addEventListener('submit', (e) => {
   void show(q, true);
 });
 addEventListener('popstate', () => {
-  restore();
-  void show(new URLSearchParams(location.search), false);
+  const q = readFilters();
+  restore(q);
+  void show(q, false);
 });
-restore();
+const current = readFilters();
+restore(current);
 if (current.size) void show(current, false);
 else {
   // Start with the HTML delivered by the server. Fetch the combined index only on use.

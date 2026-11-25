@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { newsSitemap } from '../src/lib/news-sitemap.mjs';
+import { escapeXml } from '../src/lib/escape-html.mjs';
 test('le sitemap Actualités conserve les deux jours civils, hors entrées futures ou périmées', () => {
   const days = ['2026-10-24', '2026-10-25', '2026-10-26', '2026-10-27'];
   const input = days.map((day) => ({
@@ -15,4 +16,11 @@ test('le sitemap Actualités conserve les deux jours civils, hors entrées futur
   assert.ok(!xml.includes('2026-10-27'));
   assert.ok(!xml.includes('2026-10-24'));
   assert.ok(xml.includes('&lt;budget&gt; &amp;'));
+});
+
+test('les flux conservent les caractères XML valides et normalisent les chaînes incompatibles', () => {
+  assert.equal(
+    escapeXml('Débat & vote < 500 🗳\n' + String.fromCodePoint(0x1f)),
+    'Débat &amp; vote &lt; 500 🗳\n\uFFFD',
+  );
 });
