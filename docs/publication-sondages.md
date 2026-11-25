@@ -18,6 +18,8 @@ Le [rapprochement des registres](https://polradar.fr/sondages/rapprochement/) pr
 
 Les trois terrains de 2024 ajoutés après lecture des notices 9888, 9889 et 9894 ont chacun quatre scénarios. Les PDF sont disponibles sur le site de la Commission. Les trois numéros sont absents de son relevé thématique « 2027 - Présidentielle » du 24 novembre, qui a son propre décompte. Les publications constatées apparaissent à part. Les supports de toute première diffusion restent indéterminés lorsque les sources ne l’attestent pas.
 
+Deux rapports Odoxa sans numéro dans le relevé externe sont reliés aux notices 10167 et 10189, après lecture des dates, commanditaires et effectifs. La notice 10165 confirme que les 1 000 indiqués dans le champ « échantillon » de Mieux Voter désignent les inscrits, sur 1 062 personnes interrogées. Les enquêtes 10141 et 10292 restent consultables dans leurs périmètres respectifs. La notice 10228 relève d’une question d’opinion.
+
 ## Préparer chaque tour
 
 1. La rédaction relève le texte de convocation et les horaires applicables, y compris les collectivités dont le vote finit plus tard. Elle conserve les références dans le dossier de l’édition. Pour une publication nationale commune, elle retient l’heure applicable la plus tardive. Jusqu’à confirmation, les dates annoncées à l’agenda gardent leur statut annoncé.

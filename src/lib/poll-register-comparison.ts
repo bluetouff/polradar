@@ -1,6 +1,6 @@
 import snapshot from '../data/poll-registry-comparison.json';
 import { polls, sources } from './data';
-import { catalogue } from './poll-catalogue-data';
+import { catalogue, specialStudies } from './poll-catalogue-data';
 
 const normalize = (name: string) =>
   name
@@ -21,6 +21,10 @@ const catalogueNumbers = new Map(
 const byTerrain = new Map<string, typeof polls>();
 const terrainKey = (institute: string, start: string, end: string) =>
   [instituteKey(institute), start, end].join('/');
+const odoxaNotices = new Map([
+  ['odoxa/2026-03-25/2026-03-26', '10167'],
+  ['odoxa/2026-05-20/2026-05-21', '10189'],
+]);
 
 for (const poll of polls) {
   const key = terrainKey(
@@ -58,11 +62,19 @@ export const registryComparison = {
   revision: snapshot.revision,
   sha256: snapshot.sha256,
   terrains: snapshot.surveys.map((row) => {
-    const candidates =
-      byTerrain.get(terrainKey(row.institute, row.start, row.end)) ?? [];
+    const key = terrainKey(row.institute, row.start, row.end);
+    const candidates = byTerrain.get(key) ?? [];
+    const reviewedNotice = !row.notices.length && odoxaNotices.get(key);
     const related = candidates.filter((poll) => {
       const number = noticeNumber(poll.noticeSource);
-      return number !== null && row.notices.includes(number);
+      return (
+        number !== null &&
+        (row.notices.includes(number) ||
+          (number === reviewedNotice &&
+            row.respondents === poll.sampleSize &&
+            row.registered.length === 1 &&
+            row.registered[0] === poll.registeredSample))
+      );
     });
     const first = related[0];
     const surveyIds = new Set(related.map((poll) => poll.surveyId ?? poll.id));
@@ -76,6 +88,19 @@ export const registryComparison = {
     return {
       ...row,
       match,
+      reviewedNotice,
+      registeredAsSample:
+        row.notices.includes('10165') &&
+        row.respondents === 1000 &&
+        match?.sampleSize === 1062 &&
+        match.registeredSample === row.respondents,
+      study: specialStudies.find(
+        (item) =>
+          row.notices.includes(item.number) &&
+          instituteKey(item.institute) === instituteKey(row.institute) &&
+          item.fieldworkStart === row.start &&
+          item.fieldworkEnd === row.end,
+      ),
       candidates: candidates.length,
       localNotices: [
         ...new Set(local.map((poll) => noticeNumber(poll.noticeSource))),

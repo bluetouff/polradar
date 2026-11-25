@@ -34,6 +34,27 @@ test('les trois terrains 2024 et les cas de contrôle restent distincts dans le 
   await expect(page.locator('#notice-10228')).toContainText(
     'souhaitent la victoire',
   );
+  const checkedBasis = page.locator('details.terrain-row').filter({
+    hasText: 'Harris Interactive · 22 mars 2026',
+  });
+  await checkedBasis.locator('summary').click();
+  await expect(checkedBasis).toContainText(
+    'la notice indique un total de 1 062',
+    { ignoreCase: true },
+  );
+  await expect(
+    checkedBasis.getByRole('link', { name: 'Méthode de la notice 10165' }),
+  ).toHaveAttribute('href', /10165-.*#page=3$/);
+  await expect(
+    page
+      .locator('details.terrain-row summary')
+      .filter({ hasText: 'Pièces rapprochées' }),
+  ).toHaveCount(2);
+  await expect(
+    page
+      .locator('details.terrain-row summary')
+      .filter({ hasText: 'Enquête à périmètre distinct' }),
+  ).toHaveCount(2);
   expect(polls.some((p: { id: string }) => p.id.includes('10228'))).toBeFalsy();
   const verian = polls.filter(
     (p: { surveyId: string }) => p.surveyId === 'verian-lhemicycle-2025-11-20',

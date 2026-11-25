@@ -5,7 +5,12 @@ import { formatDate } from '../../lib/data';
 import { registryComparison as register } from '../../lib/poll-register-comparison';
 
 const count = new Intl.NumberFormat('fr-FR');
-const fullShare = register.terrains.filter((row) => row.match).length;
+const matched = register.terrains.filter((row) => row.match);
+const fullShare = matched.filter((row) => !row.reviewedNotice).length;
+const readShare = matched.length - fullShare;
+const outside = register.terrains.filter(
+  (row) => row.study || row.classifiedOutsideVoting,
+).length;
 const origin =
   'https://github.com/MieuxVoter/presidentielle2027/blob/' + register.revision;
 const harris =
@@ -106,8 +111,9 @@ const checkedCases = [
     <h2 id="registres">Polradar et Mieux Voter</h2>
     <p>
       {register.terrains.length} terrains dans le relevé du{' '}
-      {formatDate(register.checked)}.{fullShare} sont reliés par l’institut, les
-      dates et un numéro de notice commun. Les commanditaires sont affichés tels
+      {formatDate(register.checked)}. {fullShare} portent un numéro de notice
+      commun et {readShare} ont été rapprochés par lecture des pièces. {outside}{' '}
+      enquêtes sont traitées à part. Les commanditaires sont affichés tels
       qu’ils figurent dans chaque registre.
     </p>
     <p>
@@ -131,9 +137,13 @@ const checkedCases = [
           <span>
             {row.classifiedOutsideVoting
               ? 'Enquête d’opinion'
-              : row.match
-                ? 'Notice commune'
-                : 'Correspondance à établir'}
+              : row.study
+                ? 'Enquête à périmètre distinct'
+                : row.match
+                  ? row.reviewedNotice
+                    ? 'Pièces rapprochées'
+                    : 'Notice commune'
+                  : 'Correspondance à établir'}
           </span>
         </summary>
         <p>
@@ -143,7 +153,10 @@ const checkedCases = [
           <div>
             <dt>Mieux Voter</dt>
             <dd>
-              {row.commissioner} · {count.format(row.respondents)} interrogés
+              {row.commissioner} · {count.format(row.respondents)}{' '}
+              {row.registeredAsSample
+                ? 'dans le champ « échantillon »'
+                : 'interrogés'}
             </dd>
             {row.registered.length > 0 && (
               <dd>{row.registered.map(count.format).join(' / ')} inscrits</dd>
@@ -152,7 +165,7 @@ const checkedCases = [
               {row.notices.length
                 ? 'Notice ' + row.notices.join(', ')
                 : 'Numéro de notice absent du registre'}{' '}
-              · {row.scenarios} scénarios
+              · {row.scenarios} {row.scenarios === 1 ? 'scénario' : 'scénarios'}
             </dd>
           </div>
           <div>
@@ -181,6 +194,27 @@ const checkedCases = [
                   </dd>
                 )}
               </>
+            ) : row.study ? (
+              <>
+                <dd>
+                  {row.study.commissioner} · {row.study.population}
+                </dd>
+                <dd>
+                  <a
+                    href={`/sondages/enquetes/#notice-${row.study.downloadId}`}
+                  >
+                    {row.study.title} ↗
+                  </a>
+                </dd>
+                <dd>
+                  <a
+                    href={row.study.pdfUrl + '#page=' + row.study.methodPage}
+                    rel="noreferrer"
+                  >
+                    Notice {row.study.number}, méthode ↗
+                  </a>
+                </dd>
+              </>
             ) : (
               <dd>
                 {row.classifiedOutsideVoting
@@ -192,18 +226,28 @@ const checkedCases = [
             )}
           </div>
         </dl>
-        {row.match && (
+        {row.registeredAsSample && row.officialUrl ? (
           <p>
-            {row.respondents === row.match.sampleSize
-              ? 'Même effectif total déclaré.'
-              : 'Les registres indiquent des effectifs totaux différents. La base de chaque effectif doit être revérifiée dans la notice.'}{' '}
-            {row.registered.length === 0
-              ? 'Effectif des inscrits absent du registre Mieux Voter.'
-              : row.registered.length === 1 &&
-                  row.registered[0] === row.match.registeredSample
-                ? 'Même nombre d’inscrits.'
-                : 'Écart sur l’effectif des inscrits à vérifier.'}
+            Le champ « échantillon » de Mieux Voter reprend les 1 000 inscrits.
+            La notice indique un total de 1 062 personnes interrogées.
+            <a href={row.officialUrl + '#page=3'} rel="noreferrer">
+              Méthode de la notice 10165 ↗
+            </a>
           </p>
+        ) : (
+          row.match && (
+            <p>
+              {row.respondents === row.match.sampleSize
+                ? 'Même effectif total déclaré.'
+                : 'Les registres indiquent des effectifs totaux différents. La base de chaque effectif doit être revérifiée dans la notice.'}{' '}
+              {row.registered.length === 0
+                ? 'Effectif des inscrits absent du registre Mieux Voter.'
+                : row.registered.length === 1 &&
+                    row.registered[0] === row.match.registeredSample
+                  ? 'Même nombre d’inscrits.'
+                  : 'Écart sur l’effectif des inscrits à vérifier.'}
+            </p>
+          )
         )}
       </details>
     ))}
