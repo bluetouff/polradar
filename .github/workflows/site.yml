@@ -59,6 +59,18 @@ jobs:
             .cache/polradar-pages
             .cache/polradar-og
           key: ${{ steps.renders.outputs.cache-primary-key }}
+      - name: Retrouver la capacité de la publication précédente
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          previous="$RUNNER_TEMP/polradar-capacity-previous.json"
+          if gh release download --pattern site-capacity.json --output "$previous"; then
+            printf 'POLRADAR_CAPACITY_BASELINE=%s\n' "$previous" >> "$GITHUB_ENV"
+          else
+            echo 'Référence de capacité indisponible sur la dernière publication.'
+          fi
       - name: Construire l’archive du commit testé
         env:
           GSC_VERIFICATION_FILE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && secrets.GSC_VERIFICATION_FILE || '' }}
@@ -120,6 +132,6 @@ jobs:
             echo 'This commit already has a release; no asset is overwritten.'
             exit 0
           fi
-          gh release create "$tag" site.tar.gz site.sha256 polradar-goaccess.tar.gz polradar-goaccess.sha256 corpus-v1.tar.gz corpus-v1.sha256 datagouv-documents.json \
+          gh release create "$tag" site.tar.gz site.sha256 site-capacity.json polradar-goaccess.tar.gz polradar-goaccess.sha256 corpus-v1.tar.gz corpus-v1.sha256 datagouv-documents.json \
             --target "$SOURCE_SHA" --title "Site ${SOURCE_SHA:0:12}" \
             --notes "Static site built and checked from commit ${SOURCE_SHA}." --latest

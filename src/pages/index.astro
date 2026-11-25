@@ -42,10 +42,10 @@ const pollInstitutes = [
 ].sort((a, b) => a.localeCompare(b, 'fr'));
 const paths = [
   [
-    '/questions/',
+    '/comparer/',
     'exchange',
     'Comparer les candidats',
-    'Propositions par question',
+    'Par question ou par thème',
   ],
   [
     '/economie/simulateurs/',
@@ -94,7 +94,7 @@ const register = [
           Toutes les brèves ↗
         </a>
       </div>
-      <BriefCards items={briefs.slice(0, 3)} />
+      <BriefCards items={briefs.slice(0, 3)} lead />
     </section>
   )}
   <div class="home-changes">
@@ -118,10 +118,10 @@ const register = [
       <Icon name="historique" />
       <p>
         <a href="/mises-a-jour/">
-          <strong>Journal des mises à jour</strong>
+          <strong>Dernières mises à jour</strong>
         </a>
         <span>
-          Corpus actualisé le{' '}
+          Propositions et documents actualisés le{' '}
           <time datetime={meta.corpusUpdated}>
             {formatDate(meta.corpusUpdated)}
           </time>

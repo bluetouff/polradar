@@ -303,9 +303,9 @@ const defs = [
   [
     'accueil',
     '/',
-    'Présidentielle française',
+    'Programmes et documents',
     'Présidentielle\n2027',
-    'Programmes, sondages et votes au Parlement.',
+    'Comparez les propositions et retrouvez les votes et sondages.',
     'navy',
     {
       kind: 'home',
@@ -663,6 +663,23 @@ const defs = [
         ['Thèmes', themes.length],
       ],
       'Préférences conservées dans votre navigateur',
+    ),
+  ],
+  [
+    'dossier-retraites',
+    '/dossiers/retraites-ages-et-conditions/',
+    'Règles, comptes et votes',
+    'Retraites en 2027',
+    'Les règles en vigueur et les programmes par génération.',
+    'navy',
+    tiles(
+      [
+        ['Âge légal · ans', generation1969.ageMonths / 12],
+        ['Durée · trimestres', generation1969.quarters],
+        ['Taux plein · ans', retirement.automaticAgeMonths / 12],
+        ['Programmes', retirement.programmes.length],
+      ],
+      'Régime général · génération 1969 et après',
     ),
   ],
   [

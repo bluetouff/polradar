@@ -125,6 +125,11 @@ for (const family of [
   'succession successions',
   'vote votes voter',
   'hopital hopitaux',
+  'privatiser privatisation privatisations privatise privatises privatisee',
+  'plafonner plafonnement plafonnements plafonne plafonnee plafonnes',
+  'tarif tarifs prix',
+  'annuler annulation annule annulee annulees',
+  'jeune jeunes',
   'energie energies',
   'expulser expulsion expulsions',
 ]) {
@@ -153,6 +158,7 @@ const officialTerms = [
   ],
   [/\b(?:flat[- ]tax|prelevement forfaitaire unique)\b/g, 'pfu'],
   [/\bimpot sur la fortune immobiliere\b/g, 'ifi'],
+  [/\blogements? socia(?:l|ux)\b/g, 'logement social'],
   [/\bagences? regionales? de sante\b/g, 'ars'],
   [/\blutte ouvriere\b/g, 'lo'],
   [/\bremettre la retraite\b/g, 'retablir la retraite'],
@@ -171,6 +177,12 @@ function searchTokens(text, index = false) {
     /\b(?:ter|fret ferroviaire|liaison ferroviaire)\b/.test(original)
   )
     searchable += ' transport ferroviaire';
+  if (
+    index &&
+    /\b(?:plafonn\w*|factur\w*|vendr\w*)\b/.test(original) &&
+    /\bcout de production\b/.test(original)
+  )
+    searchable += ' prix';
   return (searchable.match(/[\p{L}\p{N}]+(?:[.,]\d+)?|[%€]/gu) || []).map(
     (word) => wordForms.get(word) ?? word.replace(/(\d),(\d)/g, '$1.$2'),
   );
@@ -237,6 +249,24 @@ function oneTypo(word, other) {
   );
 }
 
+function candidateSpelling(rows, tokens) {
+  if (tokens.length < 2 || tokens.some((word) => !/^[a-z]{2,32}$/.test(word)))
+    return [];
+  const consonants = (word) => word.replace(/oua/g, 'wa');
+  const candidates = rows.filter((row) => {
+    if (row.type !== 'candidat') return false;
+    const name = searchTokens(row.title);
+    if (name.length !== tokens.length) return false;
+    const differences = tokens.filter((word, i) => word !== name[i]);
+    return (
+      differences.length === 1 &&
+      name.at(-1) === tokens.at(-1) &&
+      tokens.every((word, i) => consonants(word) === consonants(name[i]))
+    );
+  });
+  return candidates.length === 1 ? candidates : [];
+}
+
 /** @template T @param {T[]} entries @returns {T[]} */
 export function filterEntries(entries, filters) {
   const selection = entries.filter(
@@ -259,10 +289,15 @@ export function filterEntries(entries, filters) {
   const literal = /[+*|[\]{}^$@\\]|[?!]\(/.test(input);
   const query = input
     .replace(
+      /^(?:ou (?:sont|trouver|consulter)|quels? (?:outils|chiffres|documents) pour (?:lire|comprendre|consulter))\s+/u,
+      '',
+    )
+    .replace(
       /^(?:qui|quel candidat|quels candidats|quelle candidature|que) (?:veut|veulent|propose|proposent|dit|disent|prevoit|prevoient)\s+/u,
       '',
     )
     .replace(/^(?:quels?|quelles?|identifier|trouver) /u, '')
+    .replace(/\bque (?:veut|souhaite|compte|entend)\b/gu, '')
     .replace(/\?$/, '')
     .trim();
   const tokens = [
@@ -283,12 +318,20 @@ export function filterEntries(entries, filters) {
       (tokens.length === 1 && row.type === 'theme' ? 2 : 0) +
       tokens.filter((word) => entry.title.has(word)).length * 3 +
       tokens.filter((word) => entry.words.has(word)).length +
+      (row.type === 'question' &&
+      missing.length === 0 &&
+      tokens.length >= 3 &&
+      tokens.filter((word) => entry.title.has(word)).length >= 2
+        ? 4
+        : 0) +
       (entry.heading === query ? 8 : entry.heading.includes(query) ? 3 : 0);
     if (!missing.length) ranked.push({ row, score });
     else if (missing.length === 1 && /^[a-z]{5,32}$/.test(missing[0]))
       near.push({ row, score, entry, word: missing[0] });
   }
   if (!ranked.length && !/[0-9]/.test(query)) {
+    const names = candidateSpelling(selection, tokens);
+    if (names.length) return names;
     // Only one spelling correction, and only if its interpretation is unique.
     const corrections = new Map();
     for (const { row, score, entry, word } of near) {

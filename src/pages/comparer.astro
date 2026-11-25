@@ -2,60 +2,95 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import { activeCandidates as candidates, themes } from '../lib/data';
+import { questions, questionThemes } from '../lib/questions';
 import { digitalLawRoot } from '../lib/digital-law.mjs';
+import '../styles/questions.css';
 ---
 
 <Base
   title="Comparateur des programmes de la présidentielle 2027"
-  description="Comparez les propositions de deux ou trois candidats à la présidentielle 2027 sur le même thème et retrouvez les documents cités."
+  description="Comparez les propositions de deux ou trois candidats à la présidentielle 2027 par question ou par thème. Retrouvez les documents cités."
   section="/comparer/"
 >
   <header class="page-title">
-    <h1>Comparateur de programmes</h1>
-    <p>Sélectionnez un thème et deux ou trois candidats.</p>
+    <h1>Comparer les programmes</h1>
+    <p>Partez d’une question ou choisissez deux candidats et un thème.</p>
   </header>
   <form id="compare-form" class="compare-builder" action="/comparer/" hidden>
-    <div class="compare-pick">
-      <label>
-        Thème
-        <select id="compare-theme" name="theme">
-          {themes.map((t) => (
-            <option value={t.id} data-note={t.note}>
-              {t.label}
-            </option>
-          ))}
-        </select>
-      </label>
-      {[0, 1, 2].map((index) => (
-        <label hidden={index === 2}>
-          Candidature {index + 1}
-          <select id={`compare-candidate-${index}`}>
-            <option value="">Choisir un candidat</option>
-            {candidates.map((c) => (
-              <option value={c.id}>{c.name}</option>
+    <div class="compare-question">
+      <label for="compare-question">Que souhaitez-vous comprendre ?</label>
+      <select id="compare-question" name="question">
+        <option value="">Choisir une question</option>
+        {questionThemes.map((theme) => {
+          const rows = questions.filter((row) => row.theme === theme.id);
+          return rows.length ? (
+            <optgroup label={theme.label}>
+              {rows.map((question) => (
+                <option
+                  value={question.id}
+                  data-theme={question.theme}
+                  data-versions={question.entries
+                    .map(({ version }) => version.id)
+                    .join(' ')}
+                  data-reviewed={question.reviews
+                    .map(({ candidate }) => candidate)
+                    .join(' ')}
+                >
+                  {question.title}
+                </option>
+              ))}
+            </optgroup>
+          ) : null;
+        })}
+      </select>
+      <a id="compare-question-detail" href="/questions/">
+        Parcourir les questions
+      </a>
+    </div>
+    <fieldset class="compare-candidates">
+      <legend>Candidats à comparer</legend>
+      <div class="compare-pick">
+        <label>
+          Thème
+          <select id="compare-theme" name="theme">
+            {themes.map((t) => (
+              <option value={t.id} data-note={t.note}>
+                {t.label}
+              </option>
             ))}
           </select>
         </label>
-      ))}
-    </div>
-    <div class="compare-controls">
-      <label>
-        <input type="checkbox" id="compare-third" />
-        Ajouter un troisième candidat
-      </label>
-      <label>
-        <input
-          id="compare-archives"
-          type="checkbox"
-          name="archives"
-          value="1"
-        />
-        Inclure les archives 2022
-      </label>
-      <button class="button primary" type="submit">
-        Comparer
-      </button>
-    </div>
+        {[0, 1, 2].map((index) => (
+          <label hidden={index === 2}>
+            Candidature {index + 1}
+            <select id={`compare-candidate-${index}`}>
+              <option value="">Choisir un candidat</option>
+              {candidates.map((c) => (
+                <option value={c.id}>{c.name}</option>
+              ))}
+            </select>
+          </label>
+        ))}
+      </div>
+      <div class="compare-controls">
+        <label>
+          <input type="checkbox" id="compare-third" />
+          Ajouter un troisième candidat
+        </label>
+        <label>
+          <input
+            id="compare-archives"
+            type="checkbox"
+            name="archives"
+            value="1"
+          />
+          Inclure les archives 2022
+        </label>
+        <button class="button primary" type="submit">
+          Comparer
+        </button>
+      </div>
+    </fieldset>
   </form>
   <p
     id="comparison-feedback"
@@ -92,8 +127,9 @@ import { digitalLawRoot } from '../lib/digital-law.mjs';
     <nav class="comparison-jumps" aria-label="Candidats comparés" hidden></nav>
     <div id="comparison-cards" class="comparison-grid"></div>
     <p class="comparison-scope">
-      Les mentions « Aucune fiche dans le corpus » signalent les thèmes restant
-      à documenter. <a href="/methode/">Méthode</a>
+      Les chiffres sont regroupés lorsque leur unité et leur périmètre le
+      permettent.
+      <a href="/methode/">Méthode</a>
     </p>
   </section>
   <noscript>
@@ -138,6 +174,43 @@ import { digitalLawRoot } from '../lib/digital-law.mjs';
   .compare-builder {
     border-bottom: 1px solid var(--line);
     padding-block: 0.15rem 0.55rem;
+  }
+  .compare-question {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 0.34rem 1rem;
+    max-width: 59rem;
+    border-block-end: 1px solid var(--line);
+    padding-bottom: 0.85rem;
+  }
+  .compare-question label {
+    grid-column: 1 / -1;
+    font-weight: 650;
+  }
+  .compare-question select {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.9rem;
+    font-size: 1rem;
+  }
+  .compare-question a {
+    display: flex;
+    align-items: center;
+    min-height: var(--target-size);
+    color: var(--accent);
+    font-size: 0.88rem;
+  }
+  .compare-candidates {
+    border: 0;
+    min-width: 0;
+    margin: 0.8rem 0 0;
+    padding: 0;
+  }
+  .compare-candidates legend {
+    padding: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 650;
   }
   .compare-pick {
     display: grid;
@@ -209,6 +282,12 @@ import { digitalLawRoot } from '../lib/digital-law.mjs';
     min-height: var(--target-size);
   }
   @media (max-width: 560px) {
+    .compare-question {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .compare-question a {
+      min-height: 2rem;
+    }
     .compare-controls .button {
       margin-block: 0.4rem 0;
       margin-inline-start: 0;

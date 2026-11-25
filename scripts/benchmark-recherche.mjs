@@ -5,10 +5,19 @@ import { performance } from 'node:perf_hooks';
 import { filterEntries } from '../src/lib/features.mjs';
 
 const root = resolve(process.argv[2] ?? 'dist');
-const queries = readFileSync(
-  new URL('../docs/refonte/requetes.tsv', import.meta.url),
-  'utf8',
-)
+const mode = process.argv[3];
+if (mode && !['--validation', '--confirmation'].includes(mode))
+  throw Error('Jeu de recherche inconnu.');
+const loadQueries = (name) =>
+  readFileSync(
+    new URL('../docs/refonte/' + name + '.tsv', import.meta.url),
+    'utf8',
+  );
+const reference = [
+  loadQueries('requetes'),
+  ...(mode === '--confirmation' ? [loadQueries('requetes-validation')] : []),
+];
+const queries = loadQueries('requetes' + (mode?.slice(1) ?? ''))
   .trim()
   .split('\n')
   .map((line) => {
@@ -22,10 +31,14 @@ const queries = readFileSync(
     };
   });
 if (
-  queries.length !== 100 ||
+  (!mode && queries.length !== 100) ||
+  (mode &&
+    queries.some(({ query }) =>
+      reference.some((set) => set.includes('\t' + query + '\t')),
+    )) ||
   new Set(queries.map(({ query }) => query)).size !== queries.length
 )
-  throw Error('Le banc doit contenir 100 requêtes distinctes.');
+  throw Error('Les bancs doivent contenir des requêtes distinctes.');
 const index = JSON.parse(
   readFileSync(resolve(root, 'api/recherche.json'), 'utf8'),
 );
@@ -86,6 +99,7 @@ console.log(
       sourceCommit: revision.sourceCommit,
       host: [process.platform, process.arch, cpus()[0]?.model, process.version],
       index: index.length,
+      total: queries.length,
       success,
       score,
       absentExpectedUrls: [...new Set(missing)],
@@ -100,4 +114,5 @@ console.log(
     2,
   ),
 );
-if (success < 90 || missing.length) process.exitCode = 1;
+if (success < (mode ? Math.ceil(0.9 * queries.length) : 97) || missing.length)
+  process.exitCode = 1;

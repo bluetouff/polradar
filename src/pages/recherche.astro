@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import { questionThemes } from '../lib/questions';
+import { questions, questionThemes } from '../lib/questions';
 import { candidates } from '../lib/data';
 import {
   searchIcon,
@@ -21,6 +21,20 @@ const range = pageRange(current.length, page);
 const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
   .sort()
   .reverse();
+const examples = questions.filter(({ id }) =>
+  [
+    'retraites-conditions-depart',
+    'soins-de-proximite',
+    'fiscalite-csg-salaires',
+  ].includes(id),
+);
+const recent = current
+  .filter((entry) => entry.type === 'source' && entry.date)
+  .sort(
+    (a, b) =>
+      b.date.localeCompare(a.date) || a.title.localeCompare(b.title, 'fr'),
+  )
+  .slice(0, 3);
 ---
 
 <Base title={page === 1 ? 'Recherche' : `Recherche · page ${page}`} noindex>
@@ -94,10 +108,77 @@ const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
       </div>
     </details>
   </form>
+  <section
+    id="search-discovery"
+    class="search-discovery"
+    hidden={page !== 1}
+    aria-labelledby="search-discovery-title"
+  >
+    <div>
+      <h2 id="search-discovery-title">Des questions pour commencer</h2>
+      <ul class="search-examples">
+        {examples.map(({ title, href }) => (
+          <li>
+            <a href={href}>
+              <Icon name="exchange" />
+              {title}
+              <span aria-hidden="true">↗</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <nav class="search-links" aria-label="Autres façons d’explorer">
+        <a href="/candidats/">
+          <Icon name="people" />
+          Candidats
+        </a>
+        <a href="/dossiers/">
+          <Icon name="source" />
+          Dossiers
+        </a>
+        <a href="/economie/simulateurs/">
+          <Icon name="fiscalite" />
+          Simulateurs
+        </a>
+      </nav>
+    </div>
+    <div class="discovery-topics">
+      <h2>Explorer les thèmes</h2>
+      <ul>
+        {current
+          .filter(({ type }) => type === 'theme')
+          .map(({ url, title, theme }) => (
+            <li>
+              <a href={url}>
+                <Icon name={theme} />
+                {title}
+              </a>
+            </li>
+          ))}
+      </ul>
+    </div>
+    <div class="discovery-recent">
+      <h2>Documents récents</h2>
+      <ul>
+        {recent.map(({ url, title, date }) => (
+          <li>
+            <a href={url} rel="noreferrer">
+              {title} ↗
+            </a>
+            <time datetime={date}>
+              {new Intl.DateTimeFormat('fr-FR', {
+                dateStyle: 'medium',
+                timeZone: 'Europe/Paris',
+              }).format(new Date(date + 'T12:00:00Z'))}
+            </time>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
   <noscript>
     <p class="muted">
-      Parcourez les résultats ci-dessous ou ouvrez{' '}
-      <a href="/themes/">un thème</a> ou{' '}
+      Ouvrez <a href="/themes/">un thème</a> ou{' '}
       <a href="/candidats/">une fiche candidat</a>.
     </p>
   </noscript>
@@ -116,7 +197,7 @@ const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
       </div>
     </div>
   </template>
-  <div class="search-toolbar">
+  <div class="search-toolbar" hidden={page === 1}>
     <p id="search-count" class="results-meta" role="status" aria-live="polite">
       {current.length} résultats
     </p>
@@ -134,36 +215,48 @@ const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
       </button>
     </div>
   </div>
-  <PagedResults base="/recherche/" total={current.length} page={page}>
+  <nav
+    id="search-types"
+    class="search-links search-types"
+    aria-label="Types de résultats"
+    hidden
+  ></nav>
+  <PagedResults
+    base="/recherche/"
+    total={current.length}
+    page={page}
+    hidden={page === 1}
+  >
     <div id="search-results" class="advanced-results">
-      {current.slice(range.start, range.end).map((entry) => (
-        <article class="advanced-result">
-          <span class="result-symbol">
-            <Icon name={searchIcon(entry.type, entry.theme)} />
-          </span>
-          <div>
-            <p class="result-meta">{searchResultLabel(entry)}</p>
-            <h2>
-              <a
-                href={entry.url}
-                target={entry.url.startsWith('https:') ? '_blank' : undefined}
-                rel={
-                  entry.url.startsWith('https:')
-                    ? 'noopener noreferrer'
-                    : undefined
-                }
-              >
-                {entry.title}
-              </a>
-            </h2>
-            <p>
-              {(entry.summary ?? entry.text).slice(0, 220)}
-              {(entry.summary ?? entry.text).length > 220 ? '…' : ''}
-            </p>
-          </div>
-          <span aria-hidden="true">↗</span>
-        </article>
-      ))}
+      {page > 1 &&
+        current.slice(range.start, range.end).map((entry) => (
+          <article class="advanced-result">
+            <span class="result-symbol">
+              <Icon name={searchIcon(entry.type, entry.theme)} />
+            </span>
+            <div>
+              <p class="result-meta">{searchResultLabel(entry)}</p>
+              <h2>
+                <a
+                  href={entry.url}
+                  target={entry.url.startsWith('https:') ? '_blank' : undefined}
+                  rel={
+                    entry.url.startsWith('https:')
+                      ? 'noopener noreferrer'
+                      : undefined
+                  }
+                >
+                  {entry.title}
+                </a>
+              </h2>
+              <p>
+                {(entry.summary ?? entry.text).slice(0, 220)}
+                {(entry.summary ?? entry.text).length > 220 ? '…' : ''}
+              </p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </article>
+        ))}
     </div>
   </PagedResults>
   <script src="../scripts/search.ts"></script>
@@ -197,6 +290,79 @@ const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
   .search-toolbar button {
     min-height: var(--target-size);
   }
+  .search-discovery {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    gap: 1.4rem clamp(1.25rem, 4vw, 3.2rem);
+    margin-block: 1.25rem;
+  }
+  .search-discovery h2 {
+    font-size: 1.12rem;
+    margin: 0 0 0.4rem;
+  }
+  .search-discovery ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .search-examples a,
+  .discovery-topics a,
+  .search-links a,
+  .search-links :global(button) {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: var(--target-size);
+  }
+  .search-examples a {
+    padding-block: 0.35rem;
+    border-block-end: 1px solid var(--line);
+    text-decoration-thickness: 1px;
+  }
+  .search-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.85rem;
+    margin-block: 0.75rem;
+    font-size: 0.88rem;
+  }
+  .search-links :global(button) {
+    min-height: 2.6rem;
+  }
+  .discovery-topics ul,
+  .discovery-recent ul {
+    display: grid;
+    gap: 0.2rem 0.8rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
+  }
+  .discovery-topics a {
+    text-decoration: none;
+  }
+  .discovery-topics a:hover {
+    text-decoration: underline;
+  }
+  .search-discovery :global(.icon) {
+    flex: 0 0 1rem;
+    color: var(--accent);
+  }
+  .discovery-recent {
+    grid-column: 1 / -1;
+    border-block-start: 1px solid var(--line);
+    padding-top: 0.85rem;
+  }
+  .discovery-recent ul {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  }
+  .discovery-recent li {
+    display: grid;
+    align-content: start;
+    gap: 0.25rem;
+    padding-block: 0.4rem;
+  }
+  .discovery-recent time {
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
   .advanced-results :global(.result-meta) {
     font: 600 0.78rem/1.35 var(--sans);
   }
@@ -228,6 +394,11 @@ const years = [...new Set(entries.map((entry) => entry.year).filter(Boolean))]
   @media (max-width: 420px) {
     .query-line button :global(.icon) {
       display: none;
+    }
+  }
+  @media (max-width: 700px) {
+    .search-discovery {
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 </style>

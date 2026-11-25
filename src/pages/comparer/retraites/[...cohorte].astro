@@ -1,6 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import Icon from '../../../components/Icon.astro';
+import RetirementBoard from '../../../components/RetirementBoard.astro';
 import RetirementEmbed from '../../../components/RetirementEmbed.astro';
 import comparison from '../../../data/retirement-comparison.json';
 import { dataset, formatDate } from '../../../lib/data';
@@ -55,6 +56,9 @@ const { programmes, panels } = retirementComparison(
     </a>
   </header>
   <nav class="feature-actions" aria-label="Approfondir les retraites">
+    <a class="button" href="/dossiers/retraites-ages-et-conditions/">
+      Règles, financement et votes ↗
+    </a>
     <a class="button" href="/themes/retraites/">
       Toutes les propositions sur les retraites ↗
     </a>
@@ -83,72 +87,7 @@ const { programmes, panels } = retirementComparison(
       ))}
     </ul>
   </section>
-  <figure class="retirement-board" aria-labelledby="retirement-graph">
-    <figcaption id="retirement-graph">
-      <span>Naissance · {cohort.label}</span>
-      <span>
-        Droit et programmes consultés le {formatDate(comparison.reviewedOn)}
-      </span>
-      <a class="retirement-integrer" href="#integrer">
-        Intégrer le graphique
-      </a>
-    </figcaption>
-    <div class="retirement-panels">
-      {panels.map((panel) => (
-        <section
-          class="retirement-panel"
-          aria-labelledby={`retirement-${panel.id}`}
-        >
-          <header>
-            <h2 id={`retirement-${panel.id}`}>{panel.label}</h2>
-            <p>{panel.detail}</p>
-          </header>
-          <div class="retirement-axis" aria-hidden="true">
-            {panel.marks.map(({ value }) => (
-              <span>{value}</span>
-            ))}
-          </div>
-          <dl>
-            {panel.rows.map((row, index) => (
-              <div
-                class:list={[
-                  'retirement-row',
-                  `retirement-row-${index}`,
-                  { 'retirement-missing': row.position === null },
-                ]}
-              >
-                <div>
-                  <dt>{row.name}</dt>
-                  <dd>{row.text}</dd>
-                </div>
-                <svg
-                  viewBox="-1 0 102 12"
-                  preserveAspectRatio="none"
-                  aria-hidden="true"
-                >
-                  <path d="M0 6h100" />
-                  {panel.marks.map(({ position }) => (
-                    <path d={`M${position * 100} 2v8`} />
-                  ))}
-                  {row.position !== null && (
-                    <path
-                      class="retirement-point"
-                      d={`M${row.position * 100} 1v10`}
-                    />
-                  )}
-                </svg>
-              </div>
-            ))}
-          </dl>
-        </section>
-      ))}
-    </div>
-    <p class="retirement-key">
-      Une annuité est placée à quatre trimestres sur l’axe de durée. Le droit
-      actuel indique la durée d’assurance requise pour le taux plein. Les
-      programmes indiquent les durées de cotisation qu’ils proposent.
-    </p>
-  </figure>
+  <RetirementBoard cohort={cohort} panels={panels} embed />
   <RetirementEmbed cohort={cohort} />
   <section
     class="retirement-references section-space"

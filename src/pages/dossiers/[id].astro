@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import SourceLinks from '../../components/SourceLinks.astro';
+import RetirementDossier from '../../components/RetirementDossier.astro';
 import { formatDate, themeById } from '../../lib/data';
 export async function getStaticPaths() {
   return (await getCollection('articles', ({ data }) => !data.draft)).map(
@@ -10,6 +11,7 @@ export async function getStaticPaths() {
 }
 const { article } = Astro.props;
 const { Content } = await render(article);
+const interactive = article.id === 'retraites-ages-et-conditions';
 ---
 
 <Base
@@ -30,9 +32,9 @@ const { Content } = await render(article);
     <h1>{article.data.title}</h1>
     <p>{article.data.description}</p>
   </header>
-  <div class="article-layout">
-    <article class="prose">
-      <Content />
+  <div class:list={{ 'article-layout': !interactive }}>
+    <article class:list={{ prose: !interactive }}>
+      {interactive ? <RetirementDossier /> : <Content />}
       <p>
         <a rel="license" href="/licences/#editions">
           Article de Polradar · CC BY 4.0
@@ -47,15 +49,17 @@ const { Content } = await render(article);
         Polradar.
       </p>
     </article>
-    <aside class="article-aside">
-      <p class="eyebrow">Pages associées</p>
-      {article.data.themes.map((id) => (
-        <a href={`/themes/${id}/`}>
-          {themeById(id).label} : les propositions ↗
-        </a>
-      ))}
-      <a href="/comparer/">Le comparateur ↗</a>
-      <a href="/methode/">Notre méthode ↗</a>
-    </aside>
+    {!interactive && (
+      <aside class="article-aside">
+        <p class="eyebrow">Pages associées</p>
+        {article.data.themes.map((id) => (
+          <a href={`/themes/${id}/`}>
+            {themeById(id).label} : les propositions ↗
+          </a>
+        ))}
+        <a href="/comparer/">Le comparateur ↗</a>
+        <a href="/methode/">Notre méthode ↗</a>
+      </aside>
+    )}
   </div>
 </Base>

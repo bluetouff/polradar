@@ -1,0 +1,43 @@
+---
+interface Props {
+  sections: readonly (readonly [string, string])[];
+}
+const { sections } = Astro.props;
+---
+
+<nav class="dossier-contents" aria-label="Dans ce dossier">
+  <ul>
+    {sections.map(([id, label]) => (
+      <li>
+        <a href={'#' + id}>{label}</a>
+      </li>
+    ))}
+  </ul>
+</nav>
+<slot />
+
+<style>
+  .dossier-contents {
+    border-block: 1px solid var(--line);
+    margin-block: 0.3rem 1.6rem;
+  }
+  .dossier-contents ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .dossier-contents li {
+    margin: 0;
+  }
+  .dossier-contents a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--target-size);
+    color: var(--accent);
+    font-size: 0.88rem;
+    font-weight: 620;
+  }
+</style>

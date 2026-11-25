@@ -69,10 +69,10 @@ test('recherche locale et absence de requêtes vers des tiers', async ({
   await page.goto('/recherche/');
   await expect(
     page
-      .locator('#search-results .advanced-result')
-      .first()
+      .locator('#search-discovery')
       .getByRole('link', { name: 'Retraites', exact: true }),
   ).toHaveAttribute('href', '/themes/retraites/');
+  await expect(page.locator('#search-results .advanced-result')).toHaveCount(0);
   await page.getByRole('searchbox').fill('Philippe');
   await expect(
     page.locator('#search-results .advanced-result:visible').first(),
@@ -80,6 +80,50 @@ test('recherche locale et absence de requêtes vers des tiers', async ({
   await page.getByRole('searchbox').fill('aucunresultatpossible');
   await expect(page.locator('[role=status]')).toHaveText('0 résultat');
   expect(external).toEqual([]);
+});
+
+test('une question garde les deux candidats et restaure la comparaison précédente avec Retour', async ({
+  page,
+}) => {
+  await page.goto('/comparer/');
+  await page
+    .locator('#compare-question')
+    .selectOption('fiscalite-csg-salaires');
+  await page.locator('#compare-candidate-0').selectOption('attal');
+  await page.locator('#compare-candidate-1').selectOption('cheve');
+  await expect(page.locator('.comparison-card')).toHaveCount(2);
+  await expect(page.locator('#comparaison-attal')).toContainText('CSG');
+  await expect(page.locator('#comparaison-cheve')).toContainText(
+    'Position non documentée',
+  );
+  const citations = page.locator('#comparaison-attal .q-citations').first();
+  await citations.locator('summary').click();
+  await expect(citations.locator('a[href^="https://"]').first()).toBeVisible();
+  await page
+    .locator('#compare-question')
+    .selectOption('retraites-conditions-depart');
+  await expect(page).toHaveURL(/question=retraites-conditions-depart/);
+  await expect(page.locator('#compare-candidate-0')).toHaveValue('attal');
+  await expect(page.locator('#compare-candidate-1')).toHaveValue('cheve');
+  await page.goBack();
+  await expect(page.locator('#compare-question')).toHaveValue(
+    'fiscalite-csg-salaires',
+  );
+  await expect(page.locator('#comparaison-attal')).toContainText('CSG');
+});
+
+test('la recherche ignore un index qui ne correspond pas à sa page', async ({
+  page,
+}) => {
+  await page.route('**/api/recherche.json', (route) =>
+    route.fulfill({ json: [] }),
+  );
+  await page.goto('/recherche/');
+  await page.getByRole('searchbox').fill('Philippe');
+  await expect(page.locator('#search-count')).toContainText(
+    'Filtres indisponibles',
+  );
+  await expect(page.locator('#search-results .advanced-result')).toHaveCount(0);
 });
 test('une erreur de chargement préserve la comparaison initiale', async ({
   page,

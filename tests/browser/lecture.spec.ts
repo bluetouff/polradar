@@ -7,14 +7,14 @@ test('les premières données sont visibles sur un téléphone sans défiler', a
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   const cases = [
-    ['/', '.home-choices a[href="/questions/"]'],
+    ['/', '.home-choices a[href="/comparer/"]'],
     ['/sondages/', '#poll-bars .poll-bar-row'],
     ['/mesures/', '#measure-results h3'],
     ['/numerique/ce-qui-changerait/', '.law-card h3'],
     ['/votes/', '.subject-card .vote-preview strong'],
     ['/evolution/', '.distribution li'],
     ['/budget-programmes/', '.budget-number'],
-    ['/recherche/', '#search-results h2'],
+    ['/recherche/', '#search-discovery h2'],
     ['/candidats/attal/', '#mesures-du-candidat'],
   ];
   for (const [route, target] of cases) {
@@ -74,4 +74,30 @@ test('choisir un thème ramène aux mesures correspondantes', async ({
   await expect(page.locator('[name="candidate"]')).toHaveValue('');
   await expect(page.locator('#resultats')).toBeFocused();
   await expect(page.locator('#measure-results h3').first()).toBeInViewport();
+});
+
+test('le dossier retraites met à jour le graphique sans transmettre la génération', async ({
+  page,
+}) => {
+  const requests: string[] = [];
+  page.on('request', (event) => requests.push(event.url()));
+  await page.setViewportSize({ width: 320, height: 800 });
+  await page.goto('/dossiers/retraites-ages-et-conditions/');
+  await expect(page.locator('.retirement-board')).toContainText('64 ans');
+  const before = requests.length;
+  await page.getByLabel('Période de naissance').selectOption('1966');
+  await expect(page.locator('.retirement-board')).toContainText(
+    '63 ans et 3 mois',
+  );
+  await expect(page.locator('[data-cohort-status]')).toContainText('1966');
+  await expect(
+    page.getByRole('link', { name: 'Télécharger le graphique SVG' }),
+  ).toHaveAttribute('href', '/comparer/retraites/1966.svg');
+  await expect(page.locator('#comptes meter')).toHaveCount(4);
+  expect(requests.slice(before).filter((url) => url.includes('1966'))).toEqual(
+    [],
+  );
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth),
+  ).toBeLessThanOrEqual(321);
 });

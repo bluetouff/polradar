@@ -28,6 +28,24 @@ export interface SearchEntry {
 }
 const readerEntries = [
   [
+    'simulateur',
+    '/economie/simulateurs/',
+    'Simuler la CSG sur un salaire',
+    'Calcul de la contribution sociale généralisée, revenu brut, feuille de paie et taux selon les propositions.',
+  ],
+  [
+    'simulateur',
+    '/economie/simulateurs/electricite/',
+    'Simuler les taxes sur l’électricité',
+    'Facture, consommation en kWh, TVA et accise selon les propositions.',
+  ],
+  [
+    'repere',
+    '/reperes/#parrainages',
+    'Parrainages officiels',
+    'Soutiens d’élus, promesses de parrainage et présentations publiées par le Conseil constitutionnel.',
+  ],
+  [
     'territoire',
     '/territoires/',
     'Les chiffres de ma commune',
@@ -61,7 +79,7 @@ const readerEntries = [
     'droit',
     '/comparer/retraites/',
     'Retraites et droit en vigueur',
-    'Âge légal actuel, âge de départ à la retraite à 64 ans, durée de cotisation, annuités et taux plein.',
+    'Âge légal actuel, âge de départ à la retraite à 64 ans, durée de cotisation, annuités, ouverture des droits et annulation de la décote à l’âge du taux plein.',
   ],
   [
     'droit',
@@ -91,6 +109,11 @@ export function searchEntries(): Promise<SearchEntry[]> {
 }
 async function buildSearchIndex(): Promise<SearchEntry[]> {
   const articles = await getCollection('articles', ({ data }) => !data.draft);
+  const withProgramme = new Set(
+    measures
+      .filter(({ scope }) => scope === 'campagne')
+      .map(({ candidate }) => candidate),
+  );
   const sourceYear = (ids: string[]) => {
     const years = [
       ...new Set(
@@ -234,7 +257,7 @@ async function buildSearchIndex(): Promise<SearchEntry[]> {
       id: `candidat-${candidate.id}`,
       type: 'candidat',
       title: candidate.name,
-      text: `${candidate.party} ${candidate.status} ${candidate.note}`,
+      text: `${candidate.party} ${candidate.status} ${candidate.note}${candidate.programmeReview || withProgramme.has(candidate.id) ? ' Programme et propositions documentées.' : ''}`,
       url: `/candidats/${candidate.id}/`,
       candidate: candidate.id,
       theme: '',
@@ -329,7 +352,7 @@ async function buildSearchIndex(): Promise<SearchEntry[]> {
       id: 'indicateur-' + series.id,
       type: 'indicateur',
       title: series.title,
-      text: `France · Eurostat · ${series.unit}`,
+      text: `France · Eurostat · ${series.unit} · ${series.description}`,
       url: '/economie/' + series.id + '/',
       candidate: '',
       theme: '',

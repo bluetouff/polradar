@@ -21,6 +21,18 @@ export async function getStaticPaths() {
 const { edition } = Astro.props;
 const status = { annonce: 'Annoncé', tenu: 'Tenu', annule: 'Annulé' };
 const title = 'Le point de campagne du ' + formatDate(edition.day);
+const collections = [
+  {
+    id: 'nouvelles-mesures',
+    title: 'Mesures ajoutées',
+    rows: edition.measures.filter((row) => !row.before),
+  },
+  {
+    id: 'propositions-modifiees',
+    title: 'Propositions modifiées',
+    rows: edition.measures.filter((row) => row.before),
+  },
+];
 ---
 
 <Base
@@ -37,15 +49,56 @@ const title = 'Le point de campagne du ' + formatDate(edition.day);
   </nav>
   <header class="page-title">
     <h1>{title}</h1>
-    <p>Retrouvez les informations publiées ce jour et leurs sources.</p>
+    <p>Informations publiées ou ajoutées le {formatDate(edition.day)}.</p>
+    <a href="/breves/rss.xml">Suivre les brèves par RSS</a> ·{' '}
+    <a href="/suivi/">Mon suivi</a>
   </header>
   {edition.briefs.length > 0 ? (
-    <BriefCards items={edition.briefs} />
+    <BriefCards items={edition.briefs} lead />
   ) : (
     <p>Aucune nouvelle brève confirmée dans cette édition.</p>
   )}
+  {edition.documents.length > 0 && (
+    <section class="day-facts" id="programmes">
+      <h2>Documents de programme publiés</h2>
+      <ul>
+        {edition.documents.map((doc) => (
+          <li>
+            <a href={doc.url} rel="noreferrer">
+              {doc.title} ↗
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+  {collections
+    .filter(({ rows }) => rows.length)
+    .map(({ id, title, rows }) => (
+      <section class="day-facts" id={id}>
+        <h2>{title}</h2>
+        <ul>
+          {rows.slice(0, 5).map((measure) => (
+            <li>
+              <a href={measure.href}>{measure.title}</a>{' '}
+              {measure.author && <span>· {measure.author}</span>}{' '}
+              {measure.after?.sources[0] && (
+                <a href={measure.after.sources[0].url} rel="noreferrer">
+                  Document d’origine ↗
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+        {rows.length > 5 && (
+          <a href="/mises-a-jour/">
+            {rows.length} fiches dans le journal des mises à jour
+          </a>
+        )}
+      </section>
+    ))}
   {(edition.surveys.length > 0 || edition.meetings.length > 0) && (
-    <section class="day-facts">
+    <section class="day-facts" id="sondages-agenda">
       <h2>Sondages et agenda du jour</h2>
       <ul>
         {edition.surveys.map((p) => (
@@ -62,6 +115,22 @@ const title = 'Le point de campagne du ' + formatDate(edition.day);
             </strong>{' '}
             <a href={'/agenda/#' + e.id}>Agenda</a> ·{' '}
             <a href={sourceById(e.source).url}>Source</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+  {edition.deadlines.length > 0 && (
+    <section class="day-facts" id="echeances">
+      <h2>Prochaines dates du scrutin</h2>
+      <ul>
+        {edition.deadlines.map((event) => (
+          <li>
+            <time datetime={event.date}>{formatDate(event.date)}</time> ·{' '}
+            {event.title} ·{' '}
+            <a href={sourceById(event.sources[0]).url} rel="noreferrer">
+              Annonce officielle ↗
+            </a>
           </li>
         ))}
       </ul>

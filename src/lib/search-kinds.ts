@@ -16,6 +16,7 @@ export const searchKinds: Record<string, string> = {
   droit: 'Droit en vigueur',
   territoire: 'Données locales',
   indicateur: 'Indicateur économique',
+  simulateur: 'Simulateur',
 };
 const icons: Record<string, string> = {
   breve: 'source',
@@ -30,6 +31,7 @@ const icons: Record<string, string> = {
   droit: 'securite',
   territoire: 'map-pin',
   indicateur: 'markets',
+  simulateur: 'fiscalite',
   source: 'source',
 };
 export function searchIcon(type: string, theme: string) {

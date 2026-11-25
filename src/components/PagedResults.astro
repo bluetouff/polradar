@@ -6,12 +6,14 @@ interface Props {
   total: number;
   page?: number;
   base?: string;
+  hidden?: boolean;
 }
-const { total, page = 1, base } = Astro.props;
+const { total, page = 1, base, hidden = false } = Astro.props;
 const range = pageRange(total, page);
 ---
 
 <div
+  hidden={hidden}
   id="resultats"
   tabindex="-1"
   data-paged-results

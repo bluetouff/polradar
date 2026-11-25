@@ -48,7 +48,11 @@ export const date = (value: string) =>
   }).format(new Date(`${value}T12:00:00Z`));
 export const number = (value: number) => value.toLocaleString('fr-FR');
 export async function publicData<T>(
-  path: '/data/choix-suivi.json' | '/data/enquetes.json' | '/api/corpus.json',
+  path:
+    | '/data/choix-suivi.json'
+    | '/data/enquetes.json'
+    | '/api/corpus.json'
+    | '/api/recherche.json',
 ): Promise<T> {
   const response = await fetch(path, {
     credentials: 'omit',
@@ -56,7 +60,17 @@ export async function publicData<T>(
     referrerPolicy: 'no-referrer',
   });
   if (!response.ok) throw Error('Données indisponibles');
-  return response.json();
+  const stamp = document.querySelector<HTMLMetaElement>(
+    `meta[name="polradar-data"][data-path="${path}"]`,
+  );
+  if (!stamp) return response.json();
+  const buffer = await response.arrayBuffer();
+  const digest = new Uint8Array(await crypto.subtle.digest('SHA-256', buffer));
+  const hex = Array.from(digest, (byte) =>
+    byte.toString(16).padStart(2, '0'),
+  ).join('');
+  if (hex !== stamp.content) throw Error('Édition des données différente');
+  return JSON.parse(new TextDecoder().decode(buffer)) as T;
 }
 let pending: Promise<Corpus> | undefined;
 export function corpus(): Promise<Corpus> {
@@ -81,6 +95,7 @@ export function measureCard(
   data: Corpus,
   compact = false,
   level: 'h3' | 'h4' = 'h3',
+  version?: Corpus['versions'][number],
 ) {
   const candidate = data.candidates.find(
       (row) => row.id === measure.candidate,
@@ -119,9 +134,14 @@ export function measureCard(
     ),
   );
   const h = el(level);
-  h.append(anchor(measure.title, `/mesures/${measure.id}/`));
+  const measurePath = `/mesures/${measure.id}/`;
+  const passage = version ? '#version-' + version.number : '';
+  h.append(anchor(measure.title, measurePath + passage));
   content.append(meta, h);
-  if (!compact && !sameSentence(measure.title, measure.description))
+  if (
+    (!compact || version) &&
+    !sameSentence(measure.title, measure.description)
+  )
     content.append(el('p', measure.description));
   const quantities = el('div', undefined, 'measure-quantities');
   measure.metrics.forEach((metric) => {
@@ -145,7 +165,7 @@ export function measureCard(
   const links = el('div', undefined, 'measure-links'),
     source = anchor(
       sourceCountLabel(measure.sourceRefs),
-      `/mesures/${measure.id}/#sources`,
+      measurePath + (passage || '#sources'),
     ),
     history = anchor(
       `${measure.revision} version${measure.revision > 1 ? 's' : ''}`,
@@ -154,6 +174,25 @@ export function measureCard(
   source.prepend(icon('source'));
   history.prepend(icon('historique'));
   links.append(source, history);
+  if (version) {
+    const citations = el('details', undefined, 'q-citations');
+    citations.append(el('summary', sourceCountLabel(measure.sourceRefs)));
+    for (const ref of measure.sourceRefs) {
+      const original = data.sources.find(({ id }) => id === ref.sourceId);
+      if (!original) continue;
+      const entry = el('div');
+      const link = anchor(
+        original.title,
+        ref.fragment
+          ? original.url.split('#')[0] + '#' + ref.fragment
+          : original.url,
+      );
+      link.rel = 'noreferrer';
+      entry.append(link, el('p', ref.locator));
+      citations.append(entry);
+    }
+    source.replaceWith(citations);
+  }
   if (quantities.childElementCount) content.append(quantities);
   content.append(links);
   article.append(symbol, content);

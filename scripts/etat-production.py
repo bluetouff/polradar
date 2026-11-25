@@ -1,5 +1,6 @@
 """Contrôle les versions, outils et collections servis par les interfaces publiques."""
 import argparse
+import hashlib
 import json
 import re
 from datetime import datetime, timezone
@@ -10,6 +11,12 @@ SITE = "https://polradar.fr"
 GITHUB = "https://api.github.com/repos/bluetouff/polradar"
 SHA = re.compile(r"[a-f0-9]{40}")
 LIMIT = 3 * 1024 * 1024
+SURFACES = (
+    "index.html", "statistiques/index.html", "recherche/index.html", "comparer/index.html",
+    "sondages/index.html", "api/corpus.json", "api/recherche.json", "api/exports-v1.json",
+    "api/qualite-documentaire.json", "data/enquetes.json", "data/choix-suivi.json",
+    "rss.xml", "breves/rss.xml", "sitemap.xml",
+)
 LEGACY = "2025-11-25"
 CURRENT = "2026-07-28"
 TOOLS = {
@@ -124,9 +131,67 @@ def extended_probe(corpus):
     return {"outils": results, "collections": collections}
 
 
+def verify_surfaces(marker, counts):
+    expected = marker.get("sha256")
+    if expected is not None and (not isinstance(expected, dict) or set(expected) != set(SURFACES)):
+        raise ValueError("Inventaire des surfaces différent du manifeste")
+    results = {}
+    for path in SURFACES:
+        url = SITE + "/" + path.removesuffix("index.html")
+        with opener.open(Request(url, headers={"Cache-Control": "no-cache"}), timeout=15) as response:
+            if response.status != 200 or response.geturl() != url:
+                raise ValueError(f"Surface publique indisponible : {path}")
+            raw = response.read(10 * 1024 * 1024 + 1)
+            if len(raw) > 10 * 1024 * 1024:
+                raise ValueError(f"Surface trop volumineuse : {path}")
+            digest = hashlib.sha256(raw).hexdigest()
+            if expected is not None and digest != expected[path]:
+                raise ValueError(f"Empreinte de publication différente : {path}")
+            results[path] = {
+                "octets": len(raw), "sha256": digest,
+                "etag": response.headers.get("ETag"),
+                "modifie": response.headers.get("Last-Modified"),
+                "cache": response.headers.get("Cache-Control"),
+            }
+        if path == "statistiques/index.html":
+            total = re.search(rb'data-proposal-total="(\d+)"', raw)
+            if not total or int(total[1]) != counts["campagne"] + counts["parti"]:
+                raise ValueError("Nombre de propositions différent entre statistiques et REST")
+        if path == "index.html":
+            assets = sorted(set(re.findall(rb'"/(_astro/[A-Za-z0-9_.-]+\.(?:css|js))"', raw)))
+            if not assets or b'http-equiv="content-security-policy"' not in raw:
+                raise ValueError("Ressources ou CSP de l’accueil manquantes")
+            for asset in assets:
+                with opener.open(Request(SITE + "/" + asset.decode("ascii"), method="HEAD"), timeout=10) as resource:
+                    if resource.status != 200:
+                        raise ValueError("Ressource compilée indisponible")
+            results[path]["ressourcesControlees"] = len(assets)
+        if path == "api/corpus.json":
+            dataset = json.loads(raw)
+            scopes = {"campagne": "campagne", "parti": "parti",
+                      "orientation": "orientations", "archive": "archives"}
+            for scope, key in scopes.items():
+                if sum(item["scope"] == scope for item in dataset["measures"]) != counts[key]:
+                    raise ValueError(f"Nombre de fiches différent entre corpus et REST : {scope}")
+            if len(dataset["sources"]) != counts["sources"]:
+                raise ValueError("Nombre de sources différent entre corpus et REST")
+    return results
+
+
+def check_private_stats():
+    try:
+        with opener.open(Request(SITE + "/stats/", method="HEAD"), timeout=10):
+            raise ValueError("Authentification attendue sur les statistiques privées")
+    except HTTPError as exc:
+        if exc.code != 401 or not exc.headers.get("WWW-Authenticate"):
+            raise ValueError("Authentification des statistiques privées non confirmée") from None
+    return 401
+
+
 def main(full=False):
     branch = fetch(GITHUB + "/branches/main")["commit"]["sha"]
-    first = fetch(SITE + "/build.json")["sourceCommit"]
+    marker = fetch(SITE + "/build.json", extra={"Cache-Control": "no-cache"})
+    first = marker["sourceCommit"]
     status = fetch(SITE + "/api/v1/corpus")
     init = rpc("initialize", {"protocolVersion": LEGACY, "capabilities": {},
                               "clientInfo": {"name": "polradar-etat-public", "version": "1"}})
@@ -151,7 +216,9 @@ def main(full=False):
         raise ValueError("Fiche du registre différente du service public")
     exports = fetch(SITE + "/api/exports-v1.json")
     probes = extended_probe(status) if full else None
-    end = fetch(SITE + "/build.json")["sourceCommit"]
+    surfaces = verify_surfaces(marker, status["donnees"])
+    private_stats_status = check_private_stats()
+    end = fetch(SITE + "/build.json", extra={"Cache-Control": "no-cache"})["sourceCommit"]
     service = status["revisionDuService"]
     if not all(isinstance(value, str) and SHA.fullmatch(value) for value in [branch, first, end, service]):
         raise ValueError("Révision non vérifiable")
@@ -167,6 +234,8 @@ def main(full=False):
             "exports":[j["id"] for j in exports["jeux"]],
             "outils": tools, "protocoles": [LEGACY, CURRENT], "registreMCP": registry_name + server["version"],
             "testsMCP": probes,
+            "surfaces": surfaces, "empreintesValidees": "sha256" in marker,
+            "statistiquesPriveesSansIdentifiants": private_stats_status,
             "contrats":c["contratsCollections"],"workflowsRecents":[{"nom":r["name"],"revision":r["head_sha"],
             "conclusion":r["conclusion"],"url":r["html_url"]} for r in runs],
             "sources":[SITE+"/build.json",SITE+"/api/v1/corpus",SITE+"/api/exports-v1.json",SITE+"/api/mcp",GITHUB+"/branches/main"],

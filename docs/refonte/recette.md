@@ -119,3 +119,15 @@ Pour chaque tâche, noter le temps, le résultat, les hésitations, les erreurs 
 ## Critères pour engager le lot suivant
 
 Les comparaisons de coût et de droit, les registres et les usages territoriaux existants constituent le socle. Après la recette humaine, commencer par les cas où le dossier contient à la fois une règle en vigueur, une proposition explicite et des paramètres calculables. La validation sur des pièces réelles précède l’extension aux nouveaux foyers types et au suivi institutionnel des parrainages.
+
+### Grille d’observation pour la consolidation
+
+Utiliser les tâches ci-dessus dans une session individuelle de 15 à 20 minutes. Garder la même édition et annoncer que la personne peut interrompre le test. Noter uniquement un code de participant, la catégorie d’appareil, la taille de fenêtre et la familiarité déclarée avec ce type de site. Répartir les cinq premières sessions entre téléphone et ordinateur et commencer avec une personne peu à l’aise avec les outils numériques dans chaque groupe.
+
+| Code | Tâche | Durée | Réussie sans aide | Aide apportée | Première action | Hésitations et erreurs | Reformulation |
+| ---- | ----- | ----- | ----------------- | ------------- | --------------- | ---------------------- | ------------- |
+| P…   | …     | … s   | Oui / non         | …             | …               | …                      | …             |
+
+Faire verbaliser la règle, la proposition ou la source après la tentative chronométrée. Noter un abandon dès que la personne renonce. Pour chaque tâche, calculer le nombre de réussites sans aide divisé par le nombre de tentatives. Avec cinq participants, quatre réussites atteignent l’objectif exploratoire. Dans la synthèse, indiquer la révision, l’appareil, les tâches, les obstacles observés, leur fréquence et la correction suivie d’une nouvelle tentative. Traiter en priorité les erreurs d’interprétation, les blocages et les échecs répétés, puis les hésitations. Conserver des observations anonymes et aucun choix politique.
+
+Pour les requêtes, le classement réussit si l’un des liens attendus figure parmi les cinq premiers, ou si une question sans réponse ne produit aucun résultat. Les 100 cas historiques et les requêtes de validation ont des formulations distinctes. Les durées mesurées en JavaScript portent sur l’index déjà téléchargé. Le relevé navigateur mesure séparément le chargement et le rendu.

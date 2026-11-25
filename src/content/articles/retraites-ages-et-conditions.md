@@ -1,10 +1,20 @@
 ---
-title: 'Retraites : âge légal, cotisations et taux plein'
-description: 'Âge légal, annuités, taux plein, exceptions et calendrier de réforme.'
+title: 'Retraites : règles actuelles et propositions pour 2027'
+description: 'Comparez les règles et les programmes par génération. Retrouvez les comptes du COR, les votes et les textes de référence.'
 category: Comprendre
 published: '2026-11-17'
-updated: '2026-11-17'
-sources: [lfi-social, philippe-pension, retailleau-pension, attal-work]
+updated: '2026-11-25'
+sources:
+  [
+    lfi-social,
+    philippe-pension,
+    retailleau-pension,
+    attal-work,
+    cor-rapport-2026,
+    drees-pensions-effectifs,
+    service-public-age-retraite,
+    constitution-articles-34-37,
+  ]
 themes: [retraites]
 featured: true
 ---

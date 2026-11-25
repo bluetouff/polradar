@@ -7,7 +7,7 @@ import pathlib
 import re
 import tarfile
 import tempfile
-from release_capacity import DEPLOY as deployment, measure, report
+from release_capacity import DEPLOY as deployment, capacity_data, growth, measure, report
 
 root = pathlib.Path('dist')
 verification_file = os.environ.get('GSC_VERIFICATION_FILE', '')
@@ -46,9 +46,14 @@ with tempfile.TemporaryDirectory(prefix='polradar-package-') as checked:
 (target / 'site.sha256').write_text(f'{hashlib.sha256(raw).hexdigest()}  site.tar.gz\n', encoding='ascii')
 capacity = measure(raw)
 for label, used, limit in capacity[0]:
-    if limit - used < limit / 10:
-        print(f'::warning::{label}: marge de déploiement inférieure à 10 %.')
-summary_text = report(capacity)
+    ratio = used / limit
+    if ratio >= .85:
+        print(f'::warning::{label}: {ratio:.1%} du plafond de publication.')
+    elif ratio >= .75:
+        print(f'::notice::{label}: {ratio:.1%} du plafond de publication.')
+data = capacity_data(capacity, expected_sha)
+(target / 'site-capacity.json').write_text(json.dumps(data, indent=2) + '\n', encoding='utf-8')
+summary_text = report(capacity) + '\n' + growth(data, os.environ.get('POLRADAR_CAPACITY_BASELINE'))
 print(summary_text)
 if summary := os.environ.get('GITHUB_STEP_SUMMARY'):
     with open(summary, 'a', encoding='utf-8') as output:

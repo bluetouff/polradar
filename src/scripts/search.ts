@@ -1,7 +1,11 @@
 import { catalogue } from './catalogue';
-import { el, anchor, icon, download } from './ui';
+import { el, anchor, icon, download, publicData } from './ui';
 import { filterEntries, exportCsv } from '../lib/features.mjs';
-import { searchIcon, searchResultLabel } from '../lib/search-kinds';
+import {
+  searchIcon,
+  searchKinds,
+  searchResultLabel,
+} from '../lib/search-kinds';
 import type { SearchEntry } from '../lib/search';
 const form = document.querySelector<HTMLFormElement>('#search-form')!,
   results = document.querySelector<HTMLElement>('#search-results')!,
@@ -19,6 +23,10 @@ function revealActiveFilters() {
 revealActiveFilters();
 window.addEventListener('hashchange', revealActiveFilters);
 const empty = document.querySelector<HTMLTemplateElement>('#search-empty')!;
+const discovery = document.querySelector<HTMLElement>('#search-discovery')!;
+const toolbar = document.querySelector<HTMLElement>('.search-toolbar')!;
+const typeNav = document.querySelector<HTMLElement>('#search-types')!;
+const typeSelect = form.querySelector<HTMLSelectElement>('[name=type]')!;
 results.addEventListener('click', (event) => {
   if (
     !(event.target instanceof HTMLElement) ||
@@ -32,16 +40,33 @@ const selection = catalogue<SearchEntry>({
   form,
   results,
   count,
-  empty: () => empty.content.cloneNode(true),
-  load: async () => {
-    const response = await fetch('/api/recherche.json', {
-      credentials: 'omit',
-      redirect: 'error',
-      referrerPolicy: 'no-referrer',
-    });
-    if (!response.ok) throw Error('Index indisponible');
-    return response.json() as Promise<SearchEntry[]>;
+  discovery,
+  onResults(rows) {
+    toolbar.hidden = !discovery.hidden;
+    const totals = new Map<string, number>();
+    for (const { type } of rows) totals.set(type, (totals.get(type) ?? 0) + 1);
+    typeNav.replaceChildren();
+    if (discovery.hidden && (totals.size > 1 || typeSelect.value)) {
+      const options: [string, string][] = typeSelect.value
+        ? [['', 'Tous les types de résultats']]
+        : [...totals].map(([id, count]) => [
+            id,
+            `${searchKinds[id] ?? id} · ${count}`,
+          ]);
+      for (const [id, label] of options) {
+        const button = el('button', label, 'button small');
+        button.type = 'button';
+        button.addEventListener('click', () => {
+          typeSelect.value = id;
+          form.requestSubmit();
+        });
+        typeNav.append(button);
+      }
+    }
+    typeNav.hidden = !typeNav.childElementCount;
   },
+  empty: () => empty.content.cloneNode(true),
+  load: () => publicData<SearchEntry[]>('/api/recherche.json'),
   select: (entries, params) =>
     filterEntries(entries, Object.fromEntries(params)),
   card: (entry) => {

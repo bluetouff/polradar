@@ -10,6 +10,8 @@ interface Options<T> {
   card: (item: T) => HTMLElement;
   noun?: string;
   empty?: () => Node;
+  discovery?: HTMLElement;
+  onResults?: (rows: T[]) => void;
 }
 export function catalogue<T>({
   form,
@@ -20,6 +22,8 @@ export function catalogue<T>({
   card,
   noun = 'résultat',
   empty,
+  discovery,
+  onResults,
 }: Options<T>) {
   const root = results.closest<HTMLElement>('[data-paged-results]')!;
   const base = root.dataset.base!;
@@ -69,6 +73,17 @@ export function catalogue<T>({
     const ticket = ++generation;
     const filters = read();
     selection = filters;
+    const discover =
+      discovery && !filters.size && pageRange(initialTotal, page).page === 1;
+    if (discovery) {
+      discovery.hidden = !discover;
+      root.hidden = Boolean(discover);
+    }
+    if (discover) {
+      count.textContent = '';
+      onResults?.([]);
+      return;
+    }
     try {
       const useInitial =
         !filters.size && pageRange(initialTotal, page).page === initial;
@@ -87,6 +102,7 @@ export function catalogue<T>({
         results.replaceChildren(empty?.() ?? fallback);
       }
       count.textContent = `${range.total} ${noun}${range.total > 1 ? 's' : ''}`;
+      onResults?.(filtered ?? []);
       draw(range, (n) => href(n, filters, true));
       if (
         (filters.size ||
@@ -100,6 +116,7 @@ export function catalogue<T>({
       count.textContent =
         'Filtres indisponibles. Les pages du catalogue restent consultables.';
       selection = new URLSearchParams();
+      onResults?.([]);
       results.replaceChildren(...initialCards);
       draw(
         pageRange(initialTotal, initial),

@@ -1,0 +1,441 @@
+---
+import DossierContents from './DossierContents.astro';
+import RetirementBoard from './RetirementBoard.astro';
+import { dataset, formatDate } from '../lib/data';
+import { questions } from '../lib/questions';
+import { voteCases } from '../lib/votes-data';
+import { voteCasePath } from '../lib/legislative-votes.mjs';
+import { proposalTracks } from '../lib/proposal-data';
+import comparison from '../data/retirement-comparison.json';
+import {
+  retirementComparison,
+  retirementPath,
+} from '../lib/retirement-comparison.mjs';
+import { sourceCommit } from '../../scripts/release-revision.mjs';
+
+const sections = [
+  ['regles', 'Règles en vigueur'],
+  ['comptes', 'Financement'],
+  ['programmes', 'Propositions'],
+  ['generation', 'Par génération'],
+  ['loi', 'Parcours de la loi'],
+  ['votes', 'Votes et historique'],
+  ['donnees', 'Sources et données'],
+] as const;
+const bank = comparison.cohorts.map((cohort) => ({
+  cohort,
+  ...retirementComparison(comparison, cohort, dataset),
+}));
+const { cohort: example, panels, programmes } = bank.at(-1)!;
+const topics = questions.filter(({ theme }) => theme === 'retraites');
+const cases = voteCases.filter(({ measure }) => measure.theme === 'retraites');
+const tracks = proposalTracks.filter(({ theme }) => theme === 'retraites');
+const cor =
+  'https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2026-evolutions-perspectives-retraites-france';
+const drees =
+  'https://data.drees.solidarites-sante.gouv.fr/explore/assets/1393_les-effectifs-et-montants-de-pension-des-retraites/';
+const constitution =
+  'https://qpc360.conseil-constitutionnel.fr/constitution-4-octobre-1958';
+const figures = [
+  { title: '2025 · Comptes observés', expenses: 14.1, revenue: 13.9 },
+  {
+    title: '2070 · Scénario de référence du COR',
+    expenses: 15.3,
+    revenue: 12.9,
+  },
+];
+const percent = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 1 });
+---
+
+<DossierContents sections={sections}>
+  <div class="retirement-dossier">
+    <section id="regles">
+      <h2>À quel âge peut-on partir ?</h2>
+      <p>
+        Dans le régime général, l’âge légal ouvre le droit au départ. La durée
+        d’assurance détermine le taux plein avant l’âge d’annulation de la
+        décote. Le montant peut rester proratisé selon les trimestres validés
+        dans le régime.
+      </p>
+      <dl class="rules" aria-label={'Exemple fictif · ' + example.label}>
+        {panels.map((panel) => (
+          <div>
+            <dt>{panel.label}</dt>
+            <dd>{panel.rows[0].text}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="dossier-caption">
+        Régime général, exemple pour une personne née en 1969 ou après. Règles
+        applicables aux pensions prenant effet à compter du{' '}
+        {formatDate(comparison.effectiveFrom)}.
+      </p>
+      <p>
+        Des départs anticipés existent selon les conditions de carrière longue,
+        de handicap ou d’incapacité permanente.{' '}
+        <a
+          href="https://www.service-public.gouv.fr/particuliers/vosdroits/F14043"
+          rel="noreferrer"
+        >
+          Âge légal et exceptions sur Service Public ↗
+        </a>
+      </p>
+    </section>
+    <section id="comptes">
+      <h2>Comment le système est-il financé ?</h2>
+      <p>
+        Dans le système par répartition, les ressources de l’année financent les
+        pensions. Le COR comptabilise les cotisations, les impôts et taxes
+        affectés, ainsi que les contributions et subventions publiques. La
+        démographie joue sur le rapport entre retraités et cotisants. Les
+        salaires et l’emploi déterminent une partie des recettes.
+      </p>
+      <figure class="cor-figure">
+        <figcaption>
+          Ressources et dépenses du système de retraite en part du PIB
+        </figcaption>
+        <div class="cor-panels">
+          {figures.map(({ title, expenses, revenue }) => (
+            <div>
+              <h3>{title}</h3>
+              {[
+                ['Ressources', revenue],
+                ['Dépenses', expenses],
+              ].map(([label, value], index) => (
+                <label>
+                  <span>
+                    {label} <strong>{percent.format(Number(value))} %</strong>
+                  </span>
+                  <meter
+                    min="0"
+                    max="20"
+                    value={Number(value)}
+                    class:list={{ expenses: index === 1 }}
+                  ></meter>
+                </label>
+              ))}
+            </div>
+          ))}
+        </div>
+        <p class="dossier-caption">
+          Échelle commune de 0 à 20 % du PIB. Régimes français obligatoires,
+          Fonds de solidarité vieillesse inclus et retraite additionnelle de la
+          fonction publique exclue. Charges et produits financiers exclus.
+        </p>
+      </figure>
+      <p>
+        Le COR mesure un déficit de 5,1 milliards d’euros en 2025 sur ce
+        périmètre. Avec les charges et produits financiers, il est de 1,3
+        milliard. Le résultat de 2070 dépend du scénario de référence, qui
+        suppose notamment une hausse annuelle de la productivité de 0,7 % et un
+        taux de chômage de 7 % à partir de 2040.{' '}
+        <a href={cor} rel="noreferrer">
+          Rapport du COR, juin 2026, synthèse et partie 2 ↗
+        </a>
+      </p>
+      <p>
+        Pour étudier les personnes qui perçoivent une pension ou les montants
+        individuels, la DREES publie une série distincte, par année et par
+        régime.{' '}
+        <a href={drees} rel="noreferrer">
+          Effectifs, pensions et âges de départ, DREES ↗
+        </a>
+      </p>
+    </section>
+    <section id="programmes">
+      <h2>Quelles règles les candidats proposent-ils ?</h2>
+      <ul class="retirement-questions">
+        {topics.map((topic) => (
+          <li>
+            <a href={'/comparer/?question=' + topic.id}>{topic.title}</a>
+            <a href={topic.href}>
+              {topic.candidateIds.length} candidatures avec une fiche reliée ↗
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p>
+        Vérifiez les exceptions de pénibilité, les régimes particuliers et la
+        transition. Ces modalités varient d’un texte à l’autre.{' '}
+        <a href="/themes/retraites/">
+          Toutes les propositions sur les retraites
+        </a>
+      </p>
+    </section>
+    <section id="generation" data-retirement-dossier>
+      <h2>Comparer par période de naissance</h2>
+      <label data-cohort-picker hidden>
+        Période de naissance
+        <select data-cohort>
+          {bank.map(({ cohort }) => (
+            <option value={cohort.id} selected={cohort.id === example.id}>
+              {cohort.label}
+            </option>
+          ))}
+        </select>
+      </label>
+      <p>
+        Les valeurs de référence correspondent au régime général. Les projets
+        figurent avec leurs conditions publiées. La sélection reste sur cette
+        page.
+      </p>
+      <p data-cohort-status role="status" class="dossier-caption"></p>
+      <div data-cohort-result>
+        <RetirementBoard cohort={example} panels={panels} />
+      </div>
+      {bank
+        .filter(({ cohort }) => cohort.id !== example.id)
+        .map(({ cohort, panels }) => (
+          <template data-cohort-template={cohort.id}>
+            <RetirementBoard cohort={cohort} panels={panels} />
+          </template>
+        ))}
+      <a
+        data-cohort-download
+        href={retirementPath + example.id + '.svg'}
+        download
+      >
+        Télécharger le graphique SVG
+      </a>
+      <ul class="retirement-notes">
+        {programmes.map((programme) => (
+          <li>
+            <strong>{programme.name}</strong> · {programme.note}{' '}
+            <a href={programme.source.url} rel="noreferrer">
+              Source originale ↗
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p>
+        Le montant d’une pension et la date personnelle de départ exigent le
+        relevé de carrière, les régimes concernés et les dispositifs
+        applicables. Les projets dont le calendrier manque restent présentés à
+        leur cible.{' '}
+        <a href={retirementPath}>
+          Comparer les générations et intégrer un graphique
+        </a>
+      </p>
+    </section>
+    <section id="loi">
+      <h2>Comment une proposition devient-elle applicable ?</h2>
+      <p>
+        Les principes fondamentaux de la sécurité sociale relèvent de la loi.
+        Une réforme qui modifie les âges inscrits dans le Code de la sécurité
+        sociale passe par un texte législatif. Les décrets peuvent préciser les
+        modalités que la loi leur renvoie, notamment certains départs anticipés.
+        Le texte publié fixe l’entrée en vigueur et les générations concernées.{' '}
+        <a href={constitution} rel="noreferrer">
+          Constitution, articles 34 et 37 ↗
+        </a>
+      </p>
+      <p>
+        La suspension de la montée en charge des âges issue de la loi de
+        financement de la sécurité sociale pour 2026 et le décret du 7 mai 2026
+        sur les carrières longues illustrent ces deux étapes.{' '}
+        <a
+          href="https://www.service-public.gouv.fr/particuliers/actualites/A18997"
+          rel="noreferrer"
+        >
+          Textes et dates pour les carrières longues ↗
+        </a>
+      </p>
+    </section>
+    <section id="votes">
+      <h2>Votes passés et positions successives</h2>
+      <p>
+        Les dossiers de vote décrivent l’objet du scrutin et les positions
+        individuelles retrouvées. Une motion de censure a son propre objet. Les
+        textes de parti et les prises de position de campagne figurent dans les
+        historiques de propositions.
+      </p>
+      <div class="historical-links">
+        <div>
+          <h3>Scrutins nominatifs</h3>
+          <ul>
+            {cases.map((record) => (
+              <li>
+                <a href={voteCasePath(record.id)}>{record.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3>Versions et déclarations</h3>
+          <ul>
+            {tracks.map((record) => (
+              <li>
+                <a href={'/evolution/#dossier=' + record.id}>{record.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section id="donnees">
+      <h2>Documents et données à télécharger</h2>
+      <ul>
+        {comparison.legalSources.map(({ label, url }) => (
+          <li>
+            <a href={url} rel="noreferrer">
+              {label} ↗
+            </a>
+          </li>
+        ))}
+        <li>
+          <a href={cor} rel="noreferrer">
+            Rapport et classeurs de données du COR ↗
+          </a>
+        </li>
+        <li>
+          <a href={drees} rel="noreferrer">
+            Séries sur les retraités, DREES ↗
+          </a>
+        </li>
+        <li>
+          <a href="/api/exports-v1.json">Liste des exports de Polradar</a> ·{' '}
+          <a href="/methode/">Méthode</a>
+        </li>
+      </ul>
+      <p class="dossier-caption">
+        Droit et programmes du graphique consultés le{' '}
+        {formatDate(comparison.reviewedOn)}.{' '}
+        {sourceCommit && (
+          <a href="/build.json">
+            Version de publication {sourceCommit.slice(0, 12)}
+          </a>
+        )}
+      </p>
+    </section>
+  </div>
+</DossierContents>
+<script>
+  const root = document.querySelector('[data-retirement-dossier]');
+  if (root) {
+    const select = root.querySelector<HTMLSelectElement>('[data-cohort]')!;
+    const box = root.querySelector<HTMLElement>('[data-cohort-result]')!;
+    const status = root.querySelector<HTMLElement>('[data-cohort-status]')!;
+    const link = root.querySelector<HTMLAnchorElement>(
+      '[data-cohort-download]',
+    )!;
+    const reference = select.value;
+    const boards = new Map<string, Node>([
+      [reference, box.firstElementChild!.cloneNode(true)],
+    ]);
+    for (const t of root.querySelectorAll<HTMLTemplateElement>(
+      '[data-cohort-template]',
+    ))
+      boards.set(t.dataset.cohortTemplate!, t.content);
+    root.querySelector<HTMLElement>('[data-cohort-picker]')!.hidden = false;
+    select.addEventListener('change', () => {
+      const board = boards.get(select.value);
+      if (!board) return;
+      box.replaceChildren(board.cloneNode(true));
+      link.href = '/comparer/retraites/' + select.value + '.svg';
+      status.textContent =
+        'Graphique affiché pour la période ' +
+        select.selectedOptions[0].text +
+        '.';
+    });
+  }
+</script>
+
+<style>
+  .retirement-dossier > section {
+    margin-block: 1.35rem 2.4rem;
+    scroll-margin-top: 1.25rem;
+  }
+  .retirement-dossier h2 {
+    margin-bottom: 0.6rem;
+  }
+  .retirement-dossier section > p {
+    max-width: 75ch;
+  }
+  .rules,
+  .cor-panels,
+  .historical-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    gap: 1rem;
+  }
+  .rules > div {
+    border-block-start: 2px solid var(--accent);
+    padding: 0.55rem 0.75rem;
+    background: #e6ede8;
+  }
+  .rules dt {
+    font-size: 0.87rem;
+    color: var(--muted);
+  }
+  .rules dd {
+    margin: 0.3rem 0 0;
+    font-weight: 650;
+    font-size: 1.2rem;
+  }
+  .dossier-caption {
+    margin-block: 0.55rem;
+    color: var(--muted);
+    font-size: 0.86rem;
+  }
+  .cor-figure {
+    margin: 1rem 0;
+    padding: clamp(0.8rem, 2.5vw, 1.45rem);
+    background: linear-gradient(120deg, #e8eee9, #f1ede3);
+    border-block-start: 2px solid var(--accent);
+  }
+  .cor-figure figcaption,
+  .cor-figure h3 {
+    font-weight: 680;
+    font-size: 1rem;
+  }
+  .cor-panels label {
+    display: grid;
+    gap: 0.25rem;
+    margin-block: 0.6rem;
+  }
+  .cor-panels label span {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.4rem;
+  }
+  .cor-panels meter {
+    width: 100%;
+    height: 0.82rem;
+    appearance: none;
+  }
+  .cor-panels meter::-webkit-meter-bar {
+    background: #d3dfd8;
+    border: 0;
+    border-radius: 0;
+  }
+  .cor-panels meter::-webkit-meter-optimum-value {
+    background: #246364;
+  }
+  .cor-panels meter.expenses::-webkit-meter-optimum-value {
+    background: #8a4d35;
+  }
+  .retirement-questions li {
+    padding-block: 0.55rem;
+    border-block-end: 1px solid var(--line);
+  }
+  .retirement-questions a + a {
+    display: block;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+  [data-cohort-picker] {
+    max-width: 23rem;
+  }
+  [data-cohort] {
+    width: 100%;
+    margin-top: 0.25rem;
+  }
+  [data-cohort-status]:empty {
+    margin: 0;
+  }
+  [data-cohort-download] {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--target-size);
+  }
+</style>

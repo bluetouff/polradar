@@ -29,6 +29,15 @@ const examinedDocuments: Record<
   string,
   { candidate: string; sourceId: string; checked: string; locator: string }[]
 > = {
+  'retraites-conditions-depart': [
+    {
+      candidate: 'villepin',
+      sourceId: 'villepin-chapitre-153',
+      checked: '2026-11-25',
+      locator:
+        'Chapitre 16, proposition 161. Le texte prévoit une concertation et ne fixe ni âge de départ ni durée de cotisation.',
+    },
+  ],
   'soins-de-proximite': [
     {
       candidate: 'polony',
@@ -255,6 +264,29 @@ const labels: Record<string, string> = {
 };
 const additions = [
   {
+    id: 'retraites-penibilite',
+    theme: 'retraites',
+    title: 'Quels départs anticipés pour les métiers pénibles ?',
+    terms: 'pénibilité usure professionnelle départ anticipé carrières longues',
+    versions: [
+      'delmur-penibilite-depart-v1',
+      'kazib-retraites-age-v1',
+      'philippe-faire-negocier-les-criteres-de-penibilite-par-les-partenaires-sociaux-v1',
+      'ps-retraites-age-cotisation-v1',
+      'retailleau-confier-aux-branches-le-financement-des-amenagements-de-fin-de-carriere-v1',
+    ],
+  },
+  {
+    id: 'retraites-regimes-particuliers',
+    theme: 'retraites',
+    title: 'Que deviendraient les régimes spéciaux de retraite ?',
+    terms: 'régimes particuliers régimes spéciaux droits pension',
+    versions: [
+      'egger-retraites-regimes-speciaux-v1',
+      'herlin-regimes-speciaux-v1',
+    ],
+  },
+  {
     id: 'agriculture-remuneration-contrats',
     theme: 'agriculture',
     title: 'Comment améliorer la rémunération des agriculteurs ?',
@@ -447,7 +479,11 @@ const complementaryVersions: Record<string, string[]> = {
     'cheve-question-reponse-publique-v1',
     'cheve-deposer-soutenir-avis-v1',
   ],
-  'retraites-financement-regimes': ['philippe-plan-epargne-premier-emploi-v1'],
+  'retraites-protection-revenus': ['attal-petites-retraites-inflation-v1'],
+  'retraites-financement-regimes': [
+    'attal-interessement-vers-epargne-retraite-v1',
+    'philippe-plan-epargne-premier-emploi-v1',
+  ],
   'logement-regulation-loyers': ['melenchon-blocage-loyers-urgence-sociale-v1'],
   'social-garde-jeunes-enfants': [
     'dlf-places-creches-cinq-ans-v1',
@@ -455,6 +491,7 @@ const complementaryVersions: Record<string, string[]> = {
   ],
 };
 const searchTerms: Record<string, string> = {
+  'logement-obligations-parc-social': 'logement social communes loi SRU',
   'fiscalite-csg-salaires':
     'suppression de la CSG contribution sociale généralisée fiche de paie salaires actifs',
   'regroupement-familial': 'regroupement familial immigration familiale',

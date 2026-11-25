@@ -1,4 +1,5 @@
 import { readdir, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { sourceCommit } from './release-revision.mjs';
 import path from 'node:path';
 import { z } from 'astro/zod';
@@ -18,23 +19,66 @@ async function walk(dir) {
     )
   ).flat();
 }
-await writeFile(
-  path.join(root, 'build.json'),
-  `${JSON.stringify({ sourceCommit, builtAt: new Date().toISOString(), repository: 'bluetouff/polradar' }, null, 2)}\n`,
-);
 const files = await walk(root);
 const known = new Set(files);
+known.add(path.join(root, 'build.json'));
 const pages = files.filter((file) => file.endsWith('.html'));
 const errors = [];
 const sitemap = [];
 const sitemapDate = dateSchema.or(z.iso.datetime({ offset: true }));
 const verifiedImages = new Set();
+const fingerprint = (bytes) => createHash('sha256').update(bytes).digest('hex');
+const interactive = [
+  ['recherche', 'api/recherche.json'],
+  ['sondages', 'data/enquetes.json'],
+  ['suivi', 'data/choix-suivi.json'],
+];
+const corpusPath = 'api/corpus.json';
+const corpusRoutes = new Set([
+  'comparer',
+  'evolution',
+  'mesures',
+  'sources',
+  'suivi',
+]);
+const hashes = Object.fromEntries(
+  await Promise.all(
+    [corpusPath, ...interactive.map(([, resource]) => resource)].map(
+      async (resource) => [
+        resource,
+        fingerprint(await readFile(path.join(root, resource))),
+      ],
+    ),
+  ),
+);
 for (const file of pages) {
-  const html = await readFile(file, 'utf8');
+  let html = await readFile(file, 'utf8');
   const route = `/${path
     .relative(root, file)
     .replaceAll(path.sep, '/')
     .replace(/index\.html$/, '')}`;
+  const [, section, subpage] = route.split('/');
+  if (!subpage || subpage === 'page') {
+    const resources = interactive
+      .filter(([owner]) => section === owner)
+      .map(([, resource]) => resource);
+    if (corpusRoutes.has(section)) resources.push(corpusPath);
+    if (resources.length) {
+      const tags = resources
+        .map(
+          (resource) =>
+            `<meta name="polradar-data" data-path="/${resource}" content="${hashes[resource]}">`,
+        )
+        .join('');
+      html = html
+        .replace(
+          /<meta name="polradar-data" data-path="[^"]+" content="[a-f0-9]{64}">/g,
+          '',
+        )
+        .replace('</head>', tags + '</head>');
+      await writeFile(file, html);
+    }
+  }
   const expectedImage = new URL(
     socialImageFor(route).url,
     'https://polradar.fr',
@@ -114,6 +158,31 @@ if (errors.length) throw new Error(errors.join('\n'));
 await writeFile(
   path.join(root, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sitemap.join('')}</urlset>\n`,
+);
+const surfaces = { ...hashes };
+for (const resource of [
+  'index.html',
+  'statistiques/index.html',
+  'recherche/index.html',
+  'comparer/index.html',
+  'sondages/index.html',
+  'api/exports-v1.json',
+  'api/qualite-documentaire.json',
+  'rss.xml',
+  'breves/rss.xml',
+  'sitemap.xml',
+]) {
+  surfaces[resource] = fingerprint(await readFile(path.join(root, resource)));
+}
+const manifest = {
+  sourceCommit,
+  builtAt: new Date().toISOString(),
+  repository: 'bluetouff/polradar',
+  sha256: surfaces,
+};
+await writeFile(
+  path.join(root, 'build.json'),
+  JSON.stringify(manifest, null, 2) + '\n',
 );
 console.log(
   `${pages.length} pages vérifiées : liens internes, CSP et ressources locales.`,

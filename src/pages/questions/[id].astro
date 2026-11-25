@@ -82,6 +82,9 @@ const checkLabels = {
     <Icon name={t.icon} />
   </header>
   <nav class="q-related" aria-label="Explorer cette question">
+    <a href={'/comparer/?question=' + q.id}>
+      Comparer deux candidats sur cette question ↗
+    </a>
     {q.related && <a href={q.related.href}>{q.related.label} ↗</a>}
     {q.id === 'retraites-conditions-depart' && (
       <>

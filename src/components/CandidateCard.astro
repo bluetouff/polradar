@@ -34,7 +34,7 @@ const index = candidates.findIndex((item) => item.id === candidate.id) + 1;
     data-base-url={`/candidats/${candidate.id}/`}
   >
     <div class="person-visual">
-      <CandidatePortrait candidate={candidate} eager={index <= 5} />
+      <CandidatePortrait candidate={candidate} gallery eager={index <= 2} />
       <span class="person-open" aria-hidden="true">
         ↗
       </span>

@@ -19,8 +19,11 @@ spec.loader.exec_module(deployment)
 SHA = 'a' * 40
 
 
-def archive(extra=(), sha=SHA):
-    files = [('index.html', b'<!doctype html><title>Test</title>'), ('robots.txt', b'User-agent: *'), ('sitemap.xml', b'<urlset/>'), ('api/corpus.json', b'{}'), ('build.json', json.dumps({'sourceCommit': sha, 'repository': 'bluetouff/polradar'}).encode())]
+def archive(extra=(), sha=SHA, hashes=None):
+    marker = {'sourceCommit': sha, 'repository': 'bluetouff/polradar'}
+    if hashes is not None:
+        marker['sha256'] = hashes
+    files = [('index.html', b'<!doctype html><title>Test</title>'), ('robots.txt', b'User-agent: *'), ('sitemap.xml', b'<urlset/>'), ('api/corpus.json', b'{}'), ('build.json', json.dumps(marker).encode())]
     raw = io.BytesIO()
     with tarfile.open(fileobj=raw, mode='w') as bundle:
         for name, data in files + list(extra):
@@ -32,6 +35,20 @@ def archive(extra=(), sha=SHA):
 
 
 class DeploymentTests(unittest.TestCase):
+    def test_mixed_release_is_rejected(self):
+        protected = {
+            'index.html': b'<!doctype html><title>Test</title>',
+            'sitemap.xml': b'<urlset/>',
+            'api/corpus.json': b'{}',
+        }
+        extra = [(path, b'{}') for path in sorted(deployment.PUBLIC_SURFACES - protected.keys())]
+        hashes = {path: hashlib.sha256(body).hexdigest() for path, body in [*protected.items(), *extra]}
+        with tempfile.TemporaryDirectory() as root:
+            deployment.extract_static(archive(extra, hashes=hashes), Path(root), SHA)
+        hashes['api/recherche.json'] = hashlib.sha256(b'[]').hexdigest()
+        with tempfile.TemporaryDirectory() as root, self.assertRaisesRegex(ValueError, 'Public surface checksum mismatch'):
+            deployment.extract_static(archive(extra, hashes=hashes), Path(root), SHA)
+
     def test_search_console_verification_packaging(self):
         packager = Path(__file__).resolve().parents[2] / 'scripts/package-release.py'
         name = 'google0123456789abcdef.html'

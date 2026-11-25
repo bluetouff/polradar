@@ -25,6 +25,25 @@ MAX_FILES = 8000
 EXTENSIONS = {'.html', '.css', '.js', '.json', '.xml', '.txt', '.svg', '.png', '.jpg', '.jpeg', '.webp', '.avif', '.ico', '.woff2'}
 HOSTS = {'api.github.com', 'github.com', 'release-assets.githubusercontent.com', 'objects.githubusercontent.com'}
 SHA = re.compile(r'[0-9a-f]{40}')
+FINGERPRINT = re.compile(r'[0-9a-f]{64}')
+PUBLIC_SURFACES = {
+    'index.html', 'statistiques/index.html', 'recherche/index.html',
+    'comparer/index.html', 'sondages/index.html', 'api/corpus.json',
+    'api/recherche.json', 'api/exports-v1.json',
+    'api/qualite-documentaire.json', 'data/enquetes.json',
+    'data/choix-suivi.json', 'rss.xml', 'breves/rss.xml', 'sitemap.xml',
+}
+
+
+def surface_hashes(manifest):
+    if 'sha256' not in manifest:
+        return {}  # Previous releases remain available for rollback.
+    values = manifest['sha256']
+    if (not isinstance(values, dict) or set(values) != PUBLIC_SURFACES
+            or any(not isinstance(v, str) or not FINGERPRINT.fullmatch(v)
+                   for v in values.values())):
+        raise ValueError('Invalid public surface manifest')
+    return values
 
 
 def public_url(url):
@@ -106,6 +125,9 @@ def extract_static(archive, destination, expected_sha):
     manifest = json.loads((destination / 'build.json').read_text(encoding='utf-8'))
     if manifest.get('sourceCommit') != expected_sha or manifest.get('repository') != 'bluetouff/polradar':
         raise ValueError('Build provenance mismatch')
+    for name, digest in surface_hashes(manifest).items():
+        if name not in seen or hashlib.sha256((destination / name).read_bytes()).hexdigest() != digest:
+            raise ValueError(f'Public surface checksum mismatch: {name}')
     for directory in destination.rglob('*'):
         if directory.is_dir():
             directory.chmod(0o755)
@@ -113,10 +135,23 @@ def extract_static(archive, destination, expected_sha):
 
 def check_live(sha):
     """Check the local Apache TLS vhost, without disabling certificate validation."""
-    result = subprocess.run(['/usr/bin/curl', '--fail', '--silent', '--show-error', '--max-time', '20', '--resolve', 'polradar.fr:443:127.0.0.1', 'https://polradar.fr/build.json'], capture_output=True, check=True, timeout=25)
-    if len(result.stdout) > 8192 or json.loads(result.stdout).get('sourceCommit') != sha:
+    def request(path, limit):
+        return subprocess.run([
+            '/usr/bin/curl', '--fail', '--silent', '--show-error',
+            '--proto', '=https', '--max-time', '10', '--max-filesize', str(limit),
+            '--resolve', 'polradar.fr:443:127.0.0.1', 'https://polradar.fr/' + path,
+        ], capture_output=True, check=True, timeout=12).stdout
+
+    marker = json.loads(request('build.json', 8192))
+    if marker.get('sourceCommit') != sha:
         raise ValueError('Live commit mismatch')
-    subprocess.run(['/usr/bin/curl', '--fail', '--silent', '--show-error', '--max-time', '20', '--resolve', 'polradar.fr:443:127.0.0.1', '--output', '/dev/null', 'https://polradar.fr/'], capture_output=True, check=True, timeout=25)
+    hashes = surface_hashes(marker)
+    if not hashes:
+        request('', MAX_FILE)
+    for name in ('index.html', 'api/recherche.json', 'api/corpus.json', 'rss.xml') if hashes else ():
+        path = name.removesuffix('index.html')
+        if hashlib.sha256(request(path, MAX_FILE)).hexdigest() != hashes[name]:
+            raise ValueError(f'Live public surface mismatch: {name}')
 
 
 class PublicationPaused(ValueError):

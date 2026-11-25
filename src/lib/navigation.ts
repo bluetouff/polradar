@@ -4,10 +4,10 @@ export const groups = [
     name: 'Programmes',
     icon: 'mesures',
     links: [
-      ['/questions/', 'Qui propose quoi ?', 'exchange'],
+      ['/comparer/', 'Comparer les programmes', 'exchange'],
+      ['/questions/', 'Toutes les questions', 'layers'],
       ['/mesures/', 'Mesures et orientations', 'mesures'],
       ['/themes/', 'Thèmes', 'layers'],
-      ['/comparer/', 'Comparer les programmes', 'exchange'],
       ['/comparer/retraites/', 'Retraites et droit en vigueur', 'retraites'],
       ['/numerique/', 'Propositions sur le numérique', 'layers'],
       [
