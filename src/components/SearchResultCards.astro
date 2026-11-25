@@ -1,0 +1,36 @@
+---
+import Icon from './Icon.astro';
+import { searchIcon, searchResultLabel } from '../lib/search-kinds';
+import type { SearchEntry } from '../lib/search';
+interface Props {
+  entries: SearchEntry[];
+}
+const { entries } = Astro.props;
+---
+
+{entries.map((entry) => (
+  <article class="advanced-result">
+    <span class="result-symbol">
+      <Icon name={searchIcon(entry.type, entry.theme)} />
+    </span>
+    <div>
+      <p class="result-meta">{searchResultLabel(entry)}</p>
+      <h2>
+        <a
+          href={entry.url}
+          target={entry.url.startsWith('https:') ? '_blank' : undefined}
+          rel={
+            entry.url.startsWith('https:') ? 'noopener noreferrer' : undefined
+          }
+        >
+          {entry.title}
+        </a>
+      </h2>
+      <p>
+        {(entry.summary ?? entry.text).slice(0, 220)}
+        {(entry.summary ?? entry.text).length > 220 ? '…' : ''}
+      </p>
+    </div>
+    <span aria-hidden="true">↗</span>
+  </article>
+))}

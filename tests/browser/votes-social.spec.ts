@@ -15,10 +15,14 @@ test('les thèmes, les sources et la recherche utilisent la largeur disponible',
     await page.setViewportSize({ width, height: 900 });
     for (const [route, grid] of [
       ['/themes/fiscalite/', '.measure-list'],
-      ['/recherche/?q=retraites', '.advanced-results'],
+      ['/recherche/#q=retraites', '#search-results'],
       ['/sources/', '.sources-grid'],
     ]) {
       await page.goto(route);
+      if (route.startsWith('/recherche/'))
+        await expect(
+          page.locator('#search-results .advanced-result').first(),
+        ).toBeVisible();
       if (route === '/themes/fiscalite/') {
         await expect(
           page.locator('[data-scope="campagne"] .measure-author img').first(),

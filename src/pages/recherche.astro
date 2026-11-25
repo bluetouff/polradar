@@ -3,13 +3,11 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import { questions, questionThemes } from '../lib/questions';
 import { candidates } from '../lib/data';
-import {
-  searchIcon,
-  searchKinds,
-  searchResultLabel,
-} from '../lib/search-kinds';
+import { searchKinds } from '../lib/search-kinds';
 import { searchEntries } from '../lib/search';
 import PagedResults from '../components/PagedResults.astro';
+import Pager from '../components/Pager.astro';
+import SearchResultCards from '../components/SearchResultCards.astro';
 import { pageRange } from '../lib/pagination';
 interface Props {
   page?: number;
@@ -181,6 +179,15 @@ const recent = current
       Ouvrez <a href="/themes/">un thème</a> ou{' '}
       <a href="/candidats/">une fiche candidat</a>.
     </p>
+    {page === 1 && (
+      <section aria-labelledby="catalogue-sans-script">
+        <h2 id="catalogue-sans-script">Catalogue sans JavaScript</h2>
+        <Pager range={range} base="/recherche/" />
+        <div id="search-fallback" class="advanced-results">
+          <SearchResultCards entries={current.slice(range.start, range.end)} />
+        </div>
+      </section>
+    )}
   </noscript>
   <template id="search-empty">
     <div class="empty-results search-empty">
@@ -228,35 +235,9 @@ const recent = current
     hidden={page === 1}
   >
     <div id="search-results" class="advanced-results">
-      {page > 1 &&
-        current.slice(range.start, range.end).map((entry) => (
-          <article class="advanced-result">
-            <span class="result-symbol">
-              <Icon name={searchIcon(entry.type, entry.theme)} />
-            </span>
-            <div>
-              <p class="result-meta">{searchResultLabel(entry)}</p>
-              <h2>
-                <a
-                  href={entry.url}
-                  target={entry.url.startsWith('https:') ? '_blank' : undefined}
-                  rel={
-                    entry.url.startsWith('https:')
-                      ? 'noopener noreferrer'
-                      : undefined
-                  }
-                >
-                  {entry.title}
-                </a>
-              </h2>
-              <p>
-                {(entry.summary ?? entry.text).slice(0, 220)}
-                {(entry.summary ?? entry.text).length > 220 ? '…' : ''}
-              </p>
-            </div>
-            <span aria-hidden="true">↗</span>
-          </article>
-        ))}
+      {page > 1 && (
+        <SearchResultCards entries={current.slice(range.start, range.end)} />
+      )}
     </div>
   </PagedResults>
   <script src="../scripts/search.ts"></script>

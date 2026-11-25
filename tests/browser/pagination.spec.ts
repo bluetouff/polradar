@@ -18,7 +18,7 @@ test('le catalogue statique se parcourt sans JavaScript, y compris sa dernière 
     ['/mesures/', '#measure-results article'],
     ['/sources/', '#sources-list article'],
     ['/engagements/', '#engagement-list article'],
-    ['/recherche/', '#search-results article'],
+    ['/recherche/', ':is(#search-results, #search-fallback) article'],
     ['/themes/fiscalite/', '.measure-list article'],
   ]) {
     await page.goto(path);
