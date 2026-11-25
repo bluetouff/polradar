@@ -75,10 +75,10 @@
 .q-answer .terrain-details > div {
   padding: 0.55rem 0;
   border-bottom: 1px solid #cedbdf;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(5.25rem, 0.35fr);
   align-items: baseline;
-  gap: 0.8rem;
+  gap: 0.6rem;
 }
 .terrain-details dt {
   color: #405b68;

@@ -37,6 +37,23 @@ test('la recherche SRU affiche le statut et exporte la commune effectivement sé
     'Inventaire non disponible',
   );
 });
+test('les valeurs des indicateurs communaux conservent leur unité et leur libellé sur une ligne', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 800 });
+  await page.goto('/territoires/');
+  const labels = page.locator('[data-facts] dd');
+  const heights = await labels.evaluateAll((values) =>
+    values
+      .slice(0, 5)
+      .map(
+        (value) =>
+          value.getBoundingClientRect().height /
+          parseFloat(getComputedStyle(value).lineHeight),
+      ),
+  );
+  expect(Math.max(...heights)).toBeLessThanOrEqual(1.05);
+});
 test('la carte, les valeurs absentes et les zéros restent lisibles sur mobile', async ({
   page,
 }) => {

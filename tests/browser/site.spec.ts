@@ -67,6 +67,12 @@ test('recherche locale et absence de requêtes vers des tiers', async ({
       external.push(request.url());
   });
   await page.goto('/recherche/');
+  await expect(
+    page
+      .locator('#search-results .advanced-result')
+      .first()
+      .getByRole('link', { name: 'Retraites', exact: true }),
+  ).toHaveAttribute('href', '/themes/retraites/');
   await page.getByRole('searchbox').fill('Philippe');
   await expect(
     page.locator('#search-results .advanced-result:visible').first(),

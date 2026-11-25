@@ -103,6 +103,18 @@ async function buildSearchIndex(): Promise<SearchEntry[]> {
     return years.length === 1 ? years[0] : '';
   };
   return [
+    ...themes.map((theme) => ({
+      id: `theme-${theme.id}`,
+      type: 'theme',
+      title: theme.label,
+      text: `${theme.short} ${theme.note}`,
+      url: `/themes/${theme.id}/`,
+      candidate: '',
+      theme: theme.id,
+      year: '',
+      scope: '',
+      date: '',
+    })),
     ...measures.map((measure) => {
       const candidate = candidateById(measure.candidate);
       return {
@@ -226,18 +238,6 @@ async function buildSearchIndex(): Promise<SearchEntry[]> {
       url: `/candidats/${candidate.id}/`,
       candidate: candidate.id,
       theme: '',
-      year: '',
-      scope: '',
-      date: '',
-    })),
-    ...themes.map((theme) => ({
-      id: `theme-${theme.id}`,
-      type: 'theme',
-      title: theme.label,
-      text: `${theme.short} ${theme.note}`,
-      url: `/themes/${theme.id}/`,
-      candidate: '',
-      theme: theme.id,
       year: '',
       scope: '',
       date: '',
