@@ -62,4 +62,9 @@ export const portraitLinks = {
     label: 'Portrait sur le site de candidature de Rémi Revillon d’Apreval',
     url: 'https://2027.odanie.org/',
   },
+  marchal: {
+    label: 'Portrait sur le site de Nicolas Marchal',
+    url: 'https://nicolasmarchalpresident.fr/',
+    contactNote: 'Le site de campagne réserve les droits de reproduction.',
+  },
 };

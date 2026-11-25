@@ -43,6 +43,7 @@ import dubuisson from '../assets/portraits/dubuisson.jpg';
 import platret from '../assets/portraits/platret.jpg';
 import revillonApreval from '../assets/portraits/revillon-apreval.jpg';
 import saforcada from '../assets/portraits/saforcada.jpg';
+import marchal from '../assets/portraits/marchal.jpg';
 export const portraitAssets: Record<string, ImageMetadata> = {
   'arthaud.jpg': portrait0,
   'asselineau.jpg': portrait1,
@@ -88,4 +89,5 @@ export const portraitAssets: Record<string, ImageMetadata> = {
   'platret.jpg': platret,
   'revillon-apreval.jpg': revillonApreval,
   'saforcada.jpg': saforcada,
+  'marchal.jpg': marchal,
 };
