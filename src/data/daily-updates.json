@@ -1,5 +1,1304 @@
 [
   {
+    "run": "45668785316",
+    "attempt": 1,
+    "at": "2026-11-25T17:52:47.715Z",
+    "sourceChecks": [
+      {
+        "sourceId": "pp-primary",
+        "checkedAt": "2026-11-25T17:49:37.083559Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "insee",
+        "checkedAt": "2026-11-25T17:49:37.084055Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "pcf-status",
+        "checkedAt": "2026-11-25T17:49:37.084514Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "pcf-work",
+        "checkedAt": "2026-11-25T17:49:37.085517Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "pcf-2026",
+        "checkedAt": "2026-11-25T17:49:38.071101Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lfi-book",
+        "checkedAt": "2026-11-25T17:49:38.082221Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lfi-tax",
+        "checkedAt": "2026-11-25T17:49:38.150034Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lfi-social",
+        "checkedAt": "2026-11-25T17:49:38.162494Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lfi-climate",
+        "checkedAt": "2026-11-25T17:49:39.265791Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lfi-school",
+        "checkedAt": "2026-11-25T17:49:39.653684Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lfi-health",
+        "checkedAt": "2026-11-25T17:49:40.805998Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lfi-democracy",
+        "checkedAt": "2026-11-25T17:49:42.813069Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "eco-work",
+        "checkedAt": "2026-11-25T17:49:44.357242Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "eco-corpus",
+        "checkedAt": "2026-11-25T17:49:45.220983Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "eco-speech",
+        "checkedAt": "2026-11-25T17:49:46.370860Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "eco-culture",
+        "checkedAt": "2026-11-25T17:49:47.106900Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "glucks-climate",
+        "checkedAt": "2026-11-25T17:49:47.923051Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "glucks-livret",
+        "checkedAt": "2026-11-25T17:49:48.984902Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "pp-project",
+        "checkedAt": "2026-11-25T17:49:49.467346Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "pp-home",
+        "checkedAt": "2026-11-25T17:49:49.479948Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "attal-index",
+        "checkedAt": "2026-11-25T17:49:50.384316Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "attal-work",
+        "checkedAt": "2026-11-25T17:49:50.649028Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "attal-school",
+        "checkedAt": "2026-11-25T17:49:50.878975Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "attal-borders",
+        "checkedAt": "2026-11-25T17:49:51.680653Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "attal-budget",
+        "checkedAt": "2026-11-25T17:49:52.124684Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "attal-climate",
+        "checkedAt": "2026-11-25T17:49:52.324552Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "philippe-index",
+        "checkedAt": "2026-11-25T17:49:53.690059Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "philippe-pension",
+        "checkedAt": "2026-11-25T17:49:55.061600Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "philippe-business",
+        "checkedAt": "2026-11-25T17:49:55.647597Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "philippe-budget",
+        "checkedAt": "2026-11-25T17:49:56.373809Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-index",
+        "checkedAt": "2026-11-25T17:49:57.738778Z",
+        "status": "modifie"
+      },
+      {
+        "sourceId": "retailleau-pension",
+        "checkedAt": "2026-11-25T17:49:58.118319Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-borders",
+        "checkedAt": "2026-11-25T17:50:00.299750Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-budget",
+        "checkedAt": "2026-11-25T17:50:00.732243Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-school",
+        "checkedAt": "2026-11-25T17:50:02.553288Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lisnard-health",
+        "checkedAt": "2026-11-25T17:50:03.109984Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lisnard-borders",
+        "checkedAt": "2026-11-25T17:50:04.674377Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "ruffin-budget",
+        "checkedAt": "2026-11-25T17:50:05.009293Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "ruffin-plans",
+        "checkedAt": "2026-11-25T17:50:06.646775Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "upr",
+        "checkedAt": "2026-11-25T17:50:07.070915Z",
+        "status": "modifie"
+      },
+      {
+        "sourceId": "upr-program",
+        "checkedAt": "2026-11-25T17:50:07.361468Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "sondages",
+        "checkedAt": "2026-11-25T17:50:07.989824Z",
+        "status": "modifie"
+      },
+      {
+        "sourceId": "cnccfp",
+        "checkedAt": "2026-11-25T17:50:09.376362Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "philippe-ecole",
+        "checkedAt": "2026-11-25T17:50:09.694327Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "philippe-famille",
+        "checkedAt": "2026-11-25T17:50:09.836346Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "philippe-travail",
+        "checkedAt": "2026-11-25T17:50:09.899642Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "philippe-securite",
+        "checkedAt": "2026-11-25T17:50:10.819699Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lisnard-ecole",
+        "checkedAt": "2026-11-25T17:50:11.687384Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lisnard-securite",
+        "checkedAt": "2026-11-25T17:50:12.704617Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "ruffin-cahiers",
+        "checkedAt": "2026-11-25T17:50:14.061310Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "ruffin-essentiels",
+        "checkedAt": "2026-11-25T17:50:14.700596Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "ruffin-logement",
+        "checkedAt": "2026-11-25T17:50:15.994386Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-logement",
+        "checkedAt": "2026-11-25T17:50:16.824537Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-entreprises",
+        "checkedAt": "2026-11-25T17:50:18.499101Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "eco-enfance-pdf",
+        "checkedAt": "2026-11-25T17:50:18.880060Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "eco-reproduction-pdf",
+        "checkedAt": "2026-11-25T17:50:19.348250Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "polony-declaration",
+        "checkedAt": "2026-11-25T17:50:20.571303Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "polony-vision",
+        "checkedAt": "2026-11-25T17:50:20.950744Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "branco-presentation",
+        "checkedAt": "2026-11-25T17:50:21.135314Z",
+        "status": "modifie"
+      },
+      {
+        "sourceId": "branco-projet",
+        "checkedAt": "2026-11-25T17:50:21.977733Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "equinoxe-programme-2027",
+        "checkedAt": "2026-11-25T17:50:22.333088Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "dlf-economie-2026",
+        "checkedAt": "2026-11-25T17:50:22.995521Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "egger-programme-2027",
+        "checkedAt": "2026-11-25T17:50:23.309746Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "patriotes-projet-2026-2027",
+        "checkedAt": "2026-11-25T17:50:24.095410Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "kazib-premieres-mesures-2027",
+        "checkedAt": "2026-11-25T17:50:24.338231Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "ruffin-jeunesse",
+        "checkedAt": "2026-11-25T17:50:24.565240Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "ruffin-numerique",
+        "checkedAt": "2026-11-25T17:50:24.797852Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "ruffin-education",
+        "checkedAt": "2026-11-25T17:50:25.098570Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "ruffin-industrie",
+        "checkedAt": "2026-11-25T17:50:25.991556Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "arcom-hors-elections",
+        "checkedAt": "2026-11-25T17:50:26.502624Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-trajectoire",
+        "checkedAt": "2026-11-25T17:50:28.117881Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "agenda-labib-paris",
+        "checkedAt": "2026-11-25T17:50:29.461467Z",
+        "status": "modifie"
+      },
+      {
+        "sourceId": "agenda-glucksmann-paris",
+        "checkedAt": "2026-11-25T17:50:30.224551Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "agenda-miko-perigueux",
+        "checkedAt": "2026-11-25T17:50:30.694697Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "agenda-philippot",
+        "checkedAt": "2026-11-25T17:50:31.589850Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "agenda-arthaud-novembre",
+        "checkedAt": "2026-11-25T17:50:31.995252Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "agenda-arthaud-pau",
+        "checkedAt": "2026-11-25T17:50:32.343491Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "agenda-arthaud-toulouse",
+        "checkedAt": "2026-11-25T17:50:32.394227Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "agenda-arthaud-quimper",
+        "checkedAt": "2026-11-25T17:50:32.834596Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "agenda-arthaud-lanester",
+        "checkedAt": "2026-11-25T17:50:34.653401Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "asselineau-discours-rentree-2026",
+        "checkedAt": "2026-11-25T17:50:35.288756Z",
+        "status": "modifie"
+      },
+      {
+        "sourceId": "attal-finances-lettre-2026",
+        "checkedAt": "2026-11-25T17:50:36.110792Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lisnard-repartition-2026",
+        "checkedAt": "2026-11-25T17:50:36.411179Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lisnard-crayon-2026",
+        "checkedAt": "2026-11-25T17:50:36.535097Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lfi-investissement-btp-2026",
+        "checkedAt": "2026-11-25T17:50:38.167201Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lfi-investissement-auto-2026",
+        "checkedAt": "2026-11-25T17:50:38.221937Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lfi-investissement-textile-2026",
+        "checkedAt": "2026-11-25T17:50:38.723353Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "roussel-pacte-2026",
+        "checkedAt": "2026-11-25T17:50:39.945939Z",
+        "status": "bloque"
+      },
+      {
+        "sourceId": "agenda-asselineau-carros",
+        "checkedAt": "2026-11-25T17:50:40.228764Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "agenda-attal-lyon",
+        "checkedAt": "2026-11-25T17:50:40.265353Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "agenda-egger-gradignan",
+        "checkedAt": "2026-11-25T17:50:40.691327Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "agenda-kazib-paris",
+        "checkedAt": "2026-11-25T17:50:40.941243Z",
+        "status": "modifie"
+      },
+      {
+        "sourceId": "agenda-lisnard-chassieu",
+        "checkedAt": "2026-11-25T17:50:41.144069Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "agenda-melenchon-havre",
+        "checkedAt": "2026-11-25T17:50:41.820365Z",
+        "status": "modifie"
+      },
+      {
+        "sourceId": "agenda-equinoxe-ivry",
+        "checkedAt": "2026-11-25T17:50:42.275171Z",
+        "status": "indisponible"
+      },
+      {
+        "sourceId": "agenda-philippe-programme",
+        "checkedAt": "2026-11-25T17:50:43.237301Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "agenda-ruffin-lyon",
+        "checkedAt": "2026-11-25T17:50:43.374995Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "agenda-tondelier-arcueil",
+        "checkedAt": "2026-11-25T17:50:43.502373Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "agenda-zemmour-toulon",
+        "checkedAt": "2026-11-25T17:50:43.839650Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lisnard-economies-annuelles-2026",
+        "checkedAt": "2026-11-25T17:50:44.311302Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lisnard-chiffrage-2026",
+        "checkedAt": "2026-11-25T17:50:44.827314Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "arthaud-discours-2026",
+        "checkedAt": "2026-11-25T17:50:45.048642Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "arthaud-depliant-2026",
+        "checkedAt": "2026-11-25T17:50:45.276280Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "equinoxe-contre-budget-2027",
+        "checkedAt": "2026-11-25T17:50:45.519606Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lfi-numerique",
+        "checkedAt": "2026-11-25T17:50:46.027579Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "philippe-ia",
+        "checkedAt": "2026-11-25T17:50:46.586521Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "attal-ia",
+        "checkedAt": "2026-11-25T17:50:47.070528Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-donnees-sensibles",
+        "checkedAt": "2026-11-25T17:50:47.303266Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-achats-numeriques",
+        "checkedAt": "2026-11-25T17:50:47.478155Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-data-centers",
+        "checkedAt": "2026-11-25T17:50:47.778637Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "pcf-securite-numerique",
+        "checkedAt": "2026-11-25T17:50:48.047042Z",
+        "status": "bloque"
+      },
+      {
+        "sourceId": "dlf-cybersecurite-etat",
+        "checkedAt": "2026-11-25T17:50:48.767587Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "dlf-souverainete-numerique",
+        "checkedAt": "2026-11-25T17:50:49.530185Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "echanges-lisnard-souverainete",
+        "checkedAt": "2026-11-25T17:50:51.085946Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "ecologistes-projet-2027-pdf",
+        "checkedAt": "2026-11-25T17:50:51.316581Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-vauban-numerique",
+        "checkedAt": "2026-11-25T17:50:51.849880Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "attal-calcul-europeen",
+        "checkedAt": "2026-11-25T17:50:52.254950Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-innovation-ia",
+        "checkedAt": "2026-11-25T17:50:52.674064Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-formation-actifs-ia",
+        "checkedAt": "2026-11-25T17:50:53.203074Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "attal-tuteur-ia",
+        "checkedAt": "2026-11-25T17:50:53.419289Z",
+        "lastSuccessAt": "2026-11-24T16:04:49.849958Z",
+        "status": "indisponible"
+      },
+      {
+        "sourceId": "attal-assistant-medical-ia",
+        "checkedAt": "2026-11-25T17:50:53.945634Z",
+        "lastSuccessAt": "2026-11-24T16:04:50.091151Z",
+        "status": "indisponible"
+      },
+      {
+        "sourceId": "attal-ia-europeenne",
+        "checkedAt": "2026-11-25T17:50:55.256275Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "attal-enseignants-ia",
+        "checkedAt": "2026-11-25T17:50:55.766353Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "pcf-roussel-recherche-ia",
+        "checkedAt": "2026-11-25T17:50:56.889012Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-financement-entreprises-ia",
+        "checkedAt": "2026-11-25T17:50:58.228229Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-equipement-entreprises-ia",
+        "checkedAt": "2026-11-25T17:50:58.333983Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-ia-services-publics",
+        "checkedAt": "2026-11-25T17:50:59.492677Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-marianne",
+        "checkedAt": "2026-11-25T17:51:01.154919Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "kazib-smic-octobre-2026",
+        "checkedAt": "2026-11-25T17:51:03.507479Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "labib-lettre-finances-2026",
+        "checkedAt": "2026-11-25T17:51:03.823954Z",
+        "status": "modifie"
+      },
+      {
+        "sourceId": "rn-retraites-17-novembre-2026",
+        "checkedAt": "2026-11-25T17:51:05.123206Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "rn-lettre-logement-2026",
+        "checkedAt": "2026-11-25T17:51:05.226843Z",
+        "status": "bloque"
+      },
+      {
+        "sourceId": "rn-logement-priorite-2026",
+        "checkedAt": "2026-11-25T17:51:05.661548Z",
+        "status": "bloque"
+      },
+      {
+        "sourceId": "ps-projet-2027-vivre-libres",
+        "checkedAt": "2026-11-25T17:51:05.835185Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "ps-projet-2027-securites",
+        "checkedAt": "2026-11-25T17:51:06.975688Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "ps-projet-2027-egalite",
+        "checkedAt": "2026-11-25T17:51:07.897767Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "glucksmann-100-jours-accessible",
+        "checkedAt": "2026-11-25T17:51:08.172870Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-projet-faq",
+        "checkedAt": "2026-11-25T17:51:09.548522Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-32-md-economies",
+        "checkedAt": "2026-11-25T17:51:10.486901Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lfi-droit-logement-2027",
+        "checkedAt": "2026-11-25T17:51:10.688317Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "collovati-projet-2027",
+        "checkedAt": "2026-11-25T17:51:11.248505Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "legendre-projet-2027",
+        "checkedAt": "2026-11-25T17:51:12.681354Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "mathieu-projet-2027",
+        "checkedAt": "2026-11-25T17:51:12.738621Z",
+        "status": "modifie"
+      },
+      {
+        "sourceId": "mlekuz-programme-2027",
+        "checkedAt": "2026-11-25T17:51:13.236753Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "mei-projet-2027",
+        "checkedAt": "2026-11-25T17:51:13.509627Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "animaliste-markovic-2026",
+        "checkedAt": "2026-11-25T17:51:13.536231Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "cheve-remontee-citoyenne",
+        "checkedAt": "2026-11-25T17:51:14.690604Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lalanne-projet-2027",
+        "checkedAt": "2026-11-25T17:51:14.752715Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "groupe-rn-contre-budget-2027",
+        "checkedAt": "2026-11-25T17:51:14.924240Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "hatvp-presidentielle-2027",
+        "checkedAt": "2026-11-25T17:51:15.568853Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "rn-ukraine-communique",
+        "checkedAt": "2026-11-25T17:51:16.478085Z",
+        "status": "bloque"
+      },
+      {
+        "sourceId": "lfi-2027-biodiversite",
+        "checkedAt": "2026-11-25T17:51:16.650625Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lfi-2027-conditions-elevage",
+        "checkedAt": "2026-11-25T17:51:16.813429Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "ps-projet-refaire-societe",
+        "checkedAt": "2026-11-25T17:51:16.962587Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lfi-plan-pauvrete-2027",
+        "checkedAt": "2026-11-25T17:51:17.212912Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "renaissance-convention-regalien",
+        "checkedAt": "2026-11-25T17:51:17.350638Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "ecologistes-narcotrafic-chiffrement",
+        "checkedAt": "2026-11-25T17:51:17.851869Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "philippe-volume-un-presentation",
+        "checkedAt": "2026-11-25T17:51:18.730151Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "villepin-lettre",
+        "checkedAt": "2026-11-25T17:51:18.763628Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "villepin-programme",
+        "checkedAt": "2026-11-25T17:51:19.371061Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "pcf-loos-avion-decembre",
+        "checkedAt": "2026-11-25T17:51:19.487504Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "zemmour-toulon-discours",
+        "checkedAt": "2026-11-25T17:51:19.831483Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "kazib-paris-retransmission",
+        "checkedAt": "2026-11-25T17:51:19.907822Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "kazib-programme-campagne",
+        "checkedAt": "2026-11-25T17:51:20.335248Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "cazeneuve-lettre",
+        "checkedAt": "2026-11-25T17:51:20.977040Z",
+        "status": "bloque"
+      },
+      {
+        "sourceId": "attal-restos-modele-social",
+        "checkedAt": "2026-11-25T17:51:20.992023Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "service-public-csg-salaires",
+        "checkedAt": "2026-11-25T17:51:21.008577Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "inventaire-sru-2026",
+        "checkedAt": "2026-11-25T17:51:21.420810Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "drees-apl-premier-recours-2024",
+        "checkedAt": "2026-11-25T17:51:23.007254Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "egger-ric-revision-2027",
+        "checkedAt": "2026-11-25T17:51:23.245799Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "nouvelle-energie-livret-sante-mai-2026",
+        "checkedAt": "2026-11-25T17:51:24.445628Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "villepin-chapitre-13",
+        "checkedAt": "2026-11-25T17:51:24.780571Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "villepin-chapitre-14",
+        "checkedAt": "2026-11-25T17:51:25.854673Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lfi-plan-sante-detail-2027",
+        "checkedAt": "2026-11-25T17:51:26.120732Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "dlf-famille-2026",
+        "checkedAt": "2026-11-25T17:51:26.704434Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lfi-plan-enfance-2027",
+        "checkedAt": "2026-11-25T17:51:26.857519Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lfi-enfance-annonce-novembre",
+        "checkedAt": "2026-11-25T17:51:28.246544Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "agenda-lalanne-tournee-2027",
+        "checkedAt": "2026-11-25T17:51:29.649425Z",
+        "status": "modifie"
+      },
+      {
+        "sourceId": "agenda-arthaud-valence",
+        "checkedAt": "2026-11-25T17:51:29.760999Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "agenda-arthaud-rouen",
+        "checkedAt": "2026-11-25T17:51:30.578185Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "dlf-projet-ia",
+        "checkedAt": "2026-11-25T17:51:32.231813Z",
+        "status": "modifie"
+      },
+      {
+        "sourceId": "equinoxe-programme-synthetique",
+        "checkedAt": "2026-11-25T17:51:32.395482Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lfi-ruralites-plan-2027",
+        "checkedAt": "2026-11-25T17:51:33.422324Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "mathieu-itineraire-maires",
+        "checkedAt": "2026-11-25T17:51:34.280986Z",
+        "status": "modifie"
+      },
+      {
+        "sourceId": "polony-cahier-17-novembre",
+        "checkedAt": "2026-11-25T17:51:35.153733Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "polony-cahier-doleances",
+        "checkedAt": "2026-11-25T17:51:35.157204Z",
+        "status": "modifie"
+      },
+      {
+        "sourceId": "dupont-aignan-sauvetage-agriculture",
+        "checkedAt": "2026-11-25T17:51:35.213647Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "ps-projet-agriculture-nature",
+        "checkedAt": "2026-11-25T17:51:35.564945Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "place-publique-agriculture-fevrier",
+        "checkedAt": "2026-11-25T17:51:36.646945Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lr-rearmer-agriculture",
+        "checkedAt": "2026-11-25T17:51:36.768381Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-presentation-agriculture",
+        "checkedAt": "2026-11-25T17:51:37.223816Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "villepin-programme-reconciliation-agricole",
+        "checkedAt": "2026-11-25T17:51:37.329735Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "herlin-programme",
+        "checkedAt": "2026-11-25T17:51:38.479005Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "agenda-kazib-toulouse",
+        "checkedAt": "2026-11-25T17:51:38.659218Z",
+        "status": "modifie"
+      },
+      {
+        "sourceId": "nouvelle-energie-agriculture-2027",
+        "checkedAt": "2026-11-25T17:51:38.854322Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "animalistes-abandons-2026",
+        "checkedAt": "2026-11-25T17:51:39.095197Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "animalistes-esod-2026",
+        "checkedAt": "2026-11-25T17:51:39.329566Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "animalistes-chasse-climat-2026",
+        "checkedAt": "2026-11-25T17:51:39.886714Z",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "melenchon-bondy-24-novembre",
+        "checkedAt": "2026-11-25T17:51:41.050557Z",
+        "status": "modifie"
+      },
+      {
+        "sourceId": "melenchon-agen-24-novembre",
+        "checkedAt": "2026-11-25T17:51:41.261276Z",
+        "status": "modifie"
+      },
+      {
+        "sourceId": "dlf-agriculture",
+        "checkedAt": "2026-11-25T17:51:41.468417Z",
+        "initialFingerprint": "73a011fb9488145ecb9d65e565ef72d5bd5f425638591dc5c015a5e3de2ff73f",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "dlf-culture-patrimoine",
+        "checkedAt": "2026-11-25T17:51:42.582926Z",
+        "initialFingerprint": "0142a60478f96a53be7e16214bc39b6bc2f4a7c2dbf9ac71141b31ac397c056f",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "dlf-combat-pour-les-femmes",
+        "checkedAt": "2026-11-25T17:51:42.736268Z",
+        "initialFingerprint": "838b936bf53f5377c84d9d7811d0e4bd30ad82bb93fbc1f45db9967db98e580a",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "dlf-handicap",
+        "checkedAt": "2026-11-25T17:51:44.133029Z",
+        "initialFingerprint": "05774c9360c64c5d59c82585f424e465f97d1e2ea8ed076611c23b15e0168fbc",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "dlf-justice",
+        "checkedAt": "2026-11-25T17:51:44.601423Z",
+        "initialFingerprint": "26ff06262e6fe8093345416cb87f44122691b3e794da43922a9fa24508720f0c",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "dlf-logement",
+        "checkedAt": "2026-11-25T17:51:44.687240Z",
+        "initialFingerprint": "9d2df6cc8ff8e6c9eae1602231a22fef2d8713b45432470e15cf1e65259503eb",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "dlf-instruction-publique",
+        "checkedAt": "2026-11-25T17:51:46.808761Z",
+        "initialFingerprint": "d74298c0c26242e06c846abbf71ed8e5add75a90954042e6a25660c1eaef7635",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "dlf-affaires-europeennes",
+        "checkedAt": "2026-11-25T17:51:48.969823Z",
+        "initialFingerprint": "2a0faf5503d4c76cd156cdedb6e6d8a685eb1ea3e003f7bb98412a4066e86a77",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "dlf-equilibre-territoire-monde-rural",
+        "checkedAt": "2026-11-25T17:51:50.772217Z",
+        "initialFingerprint": "fb68738ce0bd4ad1fe4fc2426fea6e861e970bbe0d0b1ff13a865c8ce5138bb3",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "dlf-refonder-et-moraliser-notre-democratie",
+        "checkedAt": "2026-11-25T17:51:52.884288Z",
+        "initialFingerprint": "b13a50019bd67823eda45430500a80054eed863274e661adf595c1357a4301bc",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "dlf-transport-automobilistes",
+        "checkedAt": "2026-11-25T17:51:55.039113Z",
+        "initialFingerprint": "86a3176cb2b82d0fda0a17b2a4e4ab27de8e77c414ffc27f6270ee1541b5c4aa",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lepen-retraites-document-24-novembre",
+        "checkedAt": "2026-11-25T17:51:57.016967Z",
+        "initialFingerprint": "a3258c022493035b1c0f8e79253e354d0cbaaf10c8d303cb6f0fd6c01e8ef1c2",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lepen-protection-enfance-moissac-2026",
+        "checkedAt": "2026-11-25T17:51:58.112214Z",
+        "initialFingerprint": "577bfd369d7bd3d9d23e1ef0502eda4edfa21b8e7294ec6318f27908a48bf620",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lepen-europe-bruxelles-2026",
+        "checkedAt": "2026-11-25T17:51:59.176653Z",
+        "initialFingerprint": "de5cbff08bdf00c726782a29b65de2a2fc05810d0293f4b45225562ed50786db",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "lepen-plan-redressement-budgetaire-2026",
+        "checkedAt": "2026-11-25T17:52:00.208646Z",
+        "initialFingerprint": "454b240e87d860c0623c57a60684c587060c5213a5ed226a82cbf607c72bb2e9",
+        "status": "accessible"
+      },
+      {
+        "sourceId": "retailleau-livret-immigration-2026",
+        "checkedAt": "2026-11-25T17:52:01.309990Z",
+        "initialFingerprint": "1cf4f51125fbb119a12c2f45c73b0f553babeb21d087800b469646a59fe19cec",
+        "status": "accessible"
+      }
+    ],
+    "rows": [
+      {
+        "id": "sondages",
+        "checked": "2026-11-25T17:52:27Z",
+        "dataDate": "2026-11-19",
+        "lastChange": null,
+        "lastSuccessAt": "2026-11-25T17:52:27Z",
+        "status": "verified",
+        "changes": [],
+        "review": [],
+        "incidents": []
+      },
+      {
+        "id": "polymarket",
+        "checked": "2026-11-25T17:52:31.345964Z",
+        "dataDate": "2026-11-25T17:51:29.101Z",
+        "lastChange": "2026-11-25T17:52:47.715Z",
+        "lastSuccessAt": "2026-11-25T17:52:31.345964Z",
+        "status": "verified",
+        "changes": [
+          "Marine Le Pen · contrat actualisé",
+          "Jordan Bardella · contrat actualisé",
+          "Éric Zemmour · contrat actualisé",
+          "Édouard Philippe · contrat actualisé",
+          "David Lisnard · contrat actualisé",
+          "Xavier Bertrand · contrat actualisé",
+          "Laurent Wauquiez · contrat actualisé",
+          "François Ruffin · contrat actualisé",
+          "Gabriel Attal · contrat actualisé",
+          "Bruno Retailleau · contrat actualisé",
+          "François Hollande · contrat actualisé",
+          "Raphaël Glucksmann · contrat actualisé",
+          "Jean-Luc Mélenchon · contrat actualisé",
+          "Marine Tondelier · contrat actualisé",
+          "Fabien Roussel · contrat actualisé",
+          "Olivier Faure · contrat actualisé",
+          "Dominique de Villepin · contrat actualisé",
+          "Ségolène Royal · contrat actualisé",
+          "François Asselineau · contrat actualisé",
+          "Clémentine Autain · contrat actualisé",
+          "Nicolas Dupont-Aignan · contrat actualisé",
+          "Michel Barnier · contrat actualisé",
+          "Valérie Pécresse · contrat actualisé",
+          "François Bayrou · contrat actualisé",
+          "Élisabeth Borne · contrat actualisé",
+          "Yaël Braun-Pivet · contrat actualisé",
+          "Jean Castex · contrat actualisé",
+          "Gérald Darmanin · contrat actualisé",
+          "Carole Delga · contrat actualisé",
+          "Bernard Cazeneuve · contrat actualisé",
+          "Manuel Bompard · contrat actualisé",
+          "Mathilde Panot · contrat actualisé",
+          "Sarah Knafo · contrat actualisé",
+          "Juan Branco · contrat actualisé",
+          "Clémence Guetté · contrat actualisé",
+          "Sébastien Lecornu · contrat actualisé",
+          "Karim Bouamrane · contrat actualisé",
+          "Lucie Castets · contrat actualisé",
+          "Yannick Jadot · contrat actualisé",
+          "François Baroin · contrat actualisé",
+          "Marion Maréchal · contrat actualisé",
+          "Christine Lagarde · contrat actualisé",
+          "Natacha Polony · contrat actualisé",
+          "Anasse Kazib · contrat actualisé",
+          "Sylvain Durif · contrat actualisé",
+          "Teddy Riner · contrat actualisé",
+          "Données générales du marché"
+        ],
+        "review": [],
+        "incidents": []
+      },
+      {
+        "id": "kalshi",
+        "checked": "2026-11-25T17:52:31.849090Z",
+        "dataDate": "2026-11-22T02:06:43.998Z",
+        "lastChange": "2026-11-25T17:52:47.715Z",
+        "lastSuccessAt": "2026-11-25T17:52:31.849090Z",
+        "status": "verified",
+        "changes": [
+          "Édouard Philippe · contrat actualisé",
+          "Éric Zemmour · contrat actualisé",
+          "Marine Le Pen · contrat actualisé",
+          "Jordan Bardella · contrat actualisé",
+          "Michel Barnier · contrat actualisé",
+          "Xavier Bertrand · contrat actualisé",
+          "David Lisnard · contrat actualisé",
+          "Valérie Pécresse · contrat actualisé",
+          "Bruno Retailleau · contrat actualisé",
+          "Laurent Wauquiez · contrat actualisé",
+          "Gabriel Attal · contrat actualisé",
+          "Élisabeth Borne · contrat actualisé",
+          "Yaël Braun-Pivet · contrat actualisé",
+          "Jean Castex · contrat actualisé",
+          "Gérald Darmanin · contrat actualisé",
+          "François Bayrou · contrat actualisé",
+          "Bernard Cazeneuve · contrat actualisé",
+          "Carole Delga · contrat actualisé",
+          "Olivier Faure · contrat actualisé",
+          "Manuel Bompard · contrat actualisé",
+          "Mathilde Panot · contrat actualisé",
+          "Jean-Luc Mélenchon · contrat actualisé",
+          "François Ruffin · contrat actualisé",
+          "Dominique de Villepin · contrat actualisé",
+          "Sébastien Lecornu · contrat actualisé",
+          "Sarah Knafo · contrat actualisé",
+          "François Hollande · contrat actualisé",
+          "Christine Lagarde · contrat actualisé",
+          "Teddy Riner · contrat actualisé",
+          "Données générales du marché"
+        ],
+        "review": [],
+        "incidents": []
+      },
+      {
+        "id": "economie",
+        "checked": "2026-11-25T17:52:31+00:00",
+        "dataDate": "2026-11-24T22:00:00.000Z",
+        "lastChange": null,
+        "lastSuccessAt": "2026-11-25T17:52:31+00:00",
+        "status": "verified",
+        "periods": [
+          "Inflation harmonisée · 2026-10",
+          "Prix de l’alimentation · 2026-10",
+          "Prix de l’énergie · 2026-10",
+          "Taux de chômage · 2026-09",
+          "Chômage des moins de 25 ans · 2026-09",
+          "Taux d’emploi des 20–64 ans · 2026-Q2",
+          "Croissance du PIB · 2026-Q3",
+          "Consommation des ménages · 2026-Q3",
+          "Investissement · 2026-Q3",
+          "Exportations de biens et services · 2026-Q3",
+          "Dette publique en part du PIB · 2026-Q2",
+          "Encours de dette publique · 2026-Q2",
+          "Solde des administrations publiques · 2025",
+          "Dépenses publiques · 2025",
+          "Recettes publiques · 2025",
+          "Revenu disponible réel par habitant · 2026-Q2",
+          "Taux d’épargne des ménages · 2026-Q2",
+          "Salaires et traitements horaires · 2026-Q2"
+        ],
+        "changes": [],
+        "review": [],
+        "incidents": []
+      },
+      {
+        "id": "arcom",
+        "checked": "2026-11-25T18:52:35.323182+01:00",
+        "dataDate": "2026-09",
+        "lastChange": null,
+        "lastSuccessAt": "2026-11-25T18:52:35.323182+01:00",
+        "status": "verified",
+        "changes": [],
+        "review": [],
+        "incidents": []
+      },
+      {
+        "id": "veille",
+        "checked": "2026-11-25T17:52:01.309990Z",
+        "dataDate": null,
+        "lastChange": null,
+        "status": "partial",
+        "changes": [],
+        "review": [
+          "Bruno Retailleau : le projet de campagne",
+          "UPR : engagements publics du mouvement",
+          "Commission des sondages : notices des enquêtes",
+          "Les Ruches : candidature de Juan Branco",
+          "NPA-R : meeting avec Selma Labib à Paris, le 28 novembre",
+          "François Asselineau : orientations du discours de rentrée 2026",
+          "Révolution Permanente : meeting avec Anasse Kazib, le 21 novembre",
+          "Mélenchon 2027 : meeting au Havre, le 5 décembre",
+          "Selma Labib : réponse au rapporteur général de la commission des finances",
+          "Benoît Mathieu : le programme pour une présidence de transition",
+          "Dieudonné et Francis Lalanne · Dates de la tournée présidentielle",
+          "Debout la France · 25 mesures sur l’intelligence artificielle",
+          "Benoît Mathieu · Relevé de la tournée des maires",
+          "Natacha Polony · Cahier de doléances",
+          "Révolution Permanente · Rencontre avec Anasse Kazib à Toulouse le 27 novembre",
+          "Équipe de campagne de Jean-Luc Mélenchon · réunion de Bondy",
+          "Équipe de campagne de Jean-Luc Mélenchon · réunion d’Agen"
+        ],
+        "incidents": [
+          "Fabien Roussel : pacte d’investissement présenté à la Fête de l’Huma 31 · accès bloqué",
+          "Équinoxe : présentation du contre-budget avec Antoine Mikolajczak · indisponible",
+          "PCF · Sécurité numérique · accès bloqué",
+          "Gabriel Attal · Un tuteur IA gratuit et souverain pour chaque élève · indisponible",
+          "Gabriel Attal · Un assistant médical IA pour chaque Français · indisponible",
+          "Marine Le Pen : lettre ouverte aux professionnels de l’immobilier · accès bloqué",
+          "Rassemblement national : priorité nationale dans le logement social et étudiant · accès bloqué",
+          "Marine Le Pen · rencontre avec l’ambassadeur d’Ukraine en France · accès bloqué",
+          "La Convention · lettre de Bernard Cazeneuve aux Français datée du 15 juillet 2026 · accès bloqué"
+        ]
+      }
+    ]
+  },
+  {
     "run": "45455075574",
     "attempt": 1,
     "at": "2026-11-24T18:02:25.747Z",
