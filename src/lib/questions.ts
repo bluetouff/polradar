@@ -469,7 +469,45 @@ interface Definition {
   related?: { label: string; href: string };
 }
 const complementaryVersions: Record<string, string[]> = {
-  'soins-de-proximite': ['equinoxe-tripler-structures-mobiles-soins-v1'],
+  'soins-de-proximite': [
+    'equinoxe-tripler-structures-mobiles-soins-v1',
+    'dlf-hopital-quarante-cinq-minutes-v1',
+  ],
+  'sante-installation-medecins': [
+    'dlf-bourse-medecins-zones-sous-dotees-v1',
+    'branco-sante-implantation-medicale-v1',
+  ],
+  'sante-remboursement-soins': [
+    'branco-sante-assurance-unique-v1',
+    'branco-remboursement-soins-dentaires-v1',
+    'branco-remboursement-psychologues-examen-national-v1',
+  ],
+  'institutions-declenchement-referendum': ['dlf-ric-millions-inscrits-v1'],
+  'europe-participation-union': ['dlf-referendum-appartenance-ue-v1'],
+  'institutions-logiciels-publics': [
+    'dlf-logiciels-administrations-licences-gratuites-v1',
+  ],
+  'agriculture-remuneration-contrats': ['dlf-prix-garantis-agricoles-v1'],
+  'agriculture-installation-fermes': [
+    'dlf-garantie-installation-agricole-v1',
+    'dlf-reformer-safer-v1',
+  ],
+  'agriculture-cantines': [
+    'dlf-achats-publics-agricoles-v1',
+    'melenchon-cantines-bio-local-option-vegetarienne-v1',
+  ],
+  'logement-obligations-parc-social': [
+    'dlf-accession-sociale-quota-sru-v1',
+    'dlf-seuil-logements-sociaux-communes-v1',
+  ],
+  'logement-offre-bati': [
+    'dlf-conversion-bureaux-plu-v1',
+    'melenchon-construction-logements-publics-et-jeunes-v1',
+  ],
+  'salaires-enseignants': [
+    'dlf-salaires-nets-professeurs-quinze-v1',
+    'branco-salaires-enseignants-debut-carriere-v1',
+  ],
   'institutions-ecrire-constitution': [
     'mathieu-convention-controle-impartialite-v1',
     'mlekuz-garants-constituante-v1',
@@ -479,7 +517,10 @@ const complementaryVersions: Record<string, string[]> = {
     'cheve-question-reponse-publique-v1',
     'cheve-deposer-soutenir-avis-v1',
   ],
-  'retraites-protection-revenus': ['attal-petites-retraites-inflation-v1'],
+  'retraites-protection-revenus': [
+    'attal-petites-retraites-inflation-v1',
+    'dlf-regimes-retraite-agricole-v1',
+  ],
   'retraites-financement-regimes': [
     'attal-interessement-vers-epargne-retraite-v1',
     'philippe-plan-epargne-premier-emploi-v1',
@@ -493,7 +534,7 @@ const complementaryVersions: Record<string, string[]> = {
 const searchTerms: Record<string, string> = {
   'logement-obligations-parc-social': 'logement social communes loi SRU',
   'fiscalite-csg-salaires':
-    'suppression de la CSG contribution sociale généralisée fiche de paie salaires actifs',
+    'suppression de la CSG contribution sociale généralisée fiche de paie salaires actifs salaire brut revenu brut',
   'regroupement-familial': 'regroupement familial immigration familiale',
   'regularisation-sejour': 'sans-papiers titre de séjour régularisation',
 };
@@ -503,10 +544,7 @@ const definitions: Definition[] = [
     title: labels[t.id] ?? t.label,
     theme: t.theme,
     terms: [t.label, searchTerms[t.id]].filter(Boolean).join(' '),
-    versions: [
-      ...t.positions.flatMap((p) => p.entries.map((e) => e.version.id)),
-      ...(complementaryVersions[t.id] ?? []),
-    ],
+    versions: t.positions.flatMap((p) => p.entries.map((e) => e.version.id)),
     related: { label: 'Carte des positions', href: '/divergences/#' + t.id },
   })),
   ...digitalLawSections.flatMap((section) =>
@@ -529,7 +567,9 @@ export const questionThemes = [
 export const questions = definitions.map((q) => {
   if (!questionThemes.some((t) => t.id === q.theme))
     throw new Error('Thème inconnu : ' + q.theme);
-  const entries = [...new Set(q.versions)]
+  const entries = [
+    ...new Set([...q.versions, ...(complementaryVersions[q.id] ?? [])]),
+  ]
     .map(resolveEntry)
     .filter((entry) => !entry.candidate.withdrawnOn)
     .sort(

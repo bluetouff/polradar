@@ -112,6 +112,68 @@ test('une question garde les deux candidats et restaure la comparaison précéde
   await expect(page.locator('#comparaison-attal')).toContainText('CSG');
 });
 
+test('les réponses détaillées conservent la sélection et les choix du comparateur', async ({
+  page,
+}) => {
+  const pages: URL[] = [];
+  page.on('request', (request) => {
+    if (request.isNavigationRequest()) pages.push(new URL(request.url()));
+  });
+  await page.setViewportSize({ width: 360, height: 800 });
+  await page.goto(
+    '/comparer/?theme=fiscalite&c=attal,cheve&count=3&archives=1&question=fiscalite-csg-salaires',
+  );
+  await expect(page.locator('#compare-theme')).toBeHidden();
+  await expect(page.locator('#comparison-positions')).toContainText(
+    'Supprimer la CSG sur les salaires ou les revenus d’activité',
+  );
+  await expect(page.locator('#comparison-positions')).toContainText(
+    'Gabriel Attal',
+  );
+  const reviewed = page.locator('#comparaison-cheve');
+  await expect(reviewed).toContainText('Document examiné');
+  await expect(
+    reviewed.getByRole('link', { name: /remontée citoyenne/i }),
+  ).toBeVisible();
+  await page.locator('#compare-question-detail').click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Faut-il baisser ou supprimer la CSG sur les revenus du travail ?',
+  );
+  await page.getByRole('link', { name: /Reprendre la comparaison/ }).click();
+  await expect(page.locator('#compare-candidate-0')).toHaveValue('attal');
+  await expect(page.locator('#compare-candidate-1')).toHaveValue('cheve');
+  await expect(page.locator('#compare-candidate-2')).toBeVisible();
+  await expect(page.locator('#comparison-cards')).toHaveAttribute(
+    'data-count',
+    '2',
+  );
+  await page.locator('#compare-question').selectOption('');
+  await expect(page.locator('#compare-theme')).toHaveValue('fiscalite');
+  await expect(page.locator('#compare-archives')).toBeChecked();
+  expect(
+    pages.slice(1).every(({ searchParams }) => !searchParams.has('c')),
+  ).toBe(true);
+  await expect
+    .poll(() => page.evaluate(() => document.documentElement.scrollWidth))
+    .toBeLessThanOrEqual(360);
+});
+
+test('les graphiques séparent les seuils d’âge qui répondent à des règles différentes', async ({
+  page,
+}) => {
+  await page.goto(
+    '/comparer/?question=retraites-conditions-depart&c=melenchon,philippe,retailleau',
+  );
+  const targetAge = page.locator('.metric-panel').filter({
+    has: page.getByRole('heading', { name: 'Âge de départ cible' }),
+  });
+  await expect(targetAge.locator('.metric-row span')).toHaveText([
+    'Jean-Luc Mélenchon',
+    'Édouard Philippe',
+  ]);
+  await expect(page.locator('#comparaison-retailleau')).toContainText('63 ans');
+});
+
 test('la recherche ignore un index qui ne correspond pas à sa page', async ({
   page,
 }) => {

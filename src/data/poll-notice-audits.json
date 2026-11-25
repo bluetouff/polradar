@@ -1696,11 +1696,13 @@
   },
   "2215": {
     "number": "10210",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "sha256": "84aa0d195ceec02fde36d86b5076346872b372c57058222f948f47ea7c19a510",
     "pages": [],
     "scenarios": [],
-    "reason": "Page 7 · l’Ifop demande, pour chaque paire de candidats, si les répondants souhaitent que ce duel ait lieu au second tour."
+    "reason": "Page 7 · l’Ifop demande, pour chaque paire de candidats, si les répondants souhaitent que ce duel ait lieu au second tour.",
+    "evidencePages": [3, 4, 7],
+    "outsideSeries": true
   },
   "2338": {
     "number": "10302",
@@ -1728,11 +1730,13 @@
   },
   "2404": {
     "number": "10381",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "sha256": "3c23709951d424e7d0e3848b335b8b3275472679ff72b21c803ec070436bf151",
     "pages": [],
     "scenarios": [],
-    "reason": "Pages 7, 8, 9 · l’Ifop mesure la participation envisagée aux deux tours et les motifs d’abstention dans un duel Mélenchon–Le Pen."
+    "reason": "Pages 7, 8, 9 · l’Ifop mesure la participation envisagée aux deux tours et les motifs d’abstention dans un duel Mélenchon–Le Pen.",
+    "evidencePages": [3, 4, 7, 8, 9],
+    "outsideSeries": true
   },
   "2418": {
     "number": "10394",
@@ -1784,11 +1788,13 @@
   },
   "2409": {
     "number": "10387",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "sha256": "9a4350330223ce158757d50386df61534a1b3996214874623b1a19f6ade92e00",
     "pages": [],
     "scenarios": [],
-    "reason": "Pages 7, 8, 9 · les intentions mesurées par l’Ifop portent sur une primaire de la droite et du centre."
+    "reason": "Pages 7, 8, 9 · les intentions mesurées par l’Ifop portent sur une primaire de la droite et du centre.",
+    "evidencePages": [3, 4, 7, 8, 9],
+    "outsideSeries": true
   },
   "2408": {
     "number": "10386",
@@ -2825,12 +2831,12 @@
   },
   "2222": {
     "number": "10218",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "sha256": "19ad43fb76ca255081c50f9695d235dbf72799c12e6556d7b9b90d6cae2a458b",
     "pages": [],
     "scenarios": [],
     "reason": "Pages 17 à 20 : potentiel de premier tour. Pages 21 à 24 : treize duels de préférence avec blancs ou nuls, abstention et non-réponses sur la base des inscrits.",
-    "evidencePages": [2, 3, 7, 17, 18, 19, 20, 21, 22, 23, 24],
+    "evidencePages": [2, 3, 6, 7, 17, 18, 19, 20, 21, 22, 23, 24],
     "outsideSeries": true
   },
   "2143": {
@@ -3564,12 +3570,13 @@
   },
   "2233": {
     "number": "10228",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "sha256": "e3dd6d94594d2e1c12bfd9d35bacd96d3d4b6c6a2db3fa2511bf5463f24c4832",
     "pages": [],
     "scenarios": [],
-    "evidencePages": [7, 8, 17, 18, 19, 20],
-    "reason": "Pages 7, 8, 17, 18, 19, 20 · Cluster17 interroge sur la condamnation de Marine Le Pen, le meilleur candidat pour le RN et la personnalité dont les répondants souhaitent la victoire."
+    "evidencePages": [2, 3, 7, 8, 17, 18, 19, 20],
+    "reason": "Pages 7, 8, 17, 18, 19, 20 · Cluster17 interroge sur la condamnation de Marine Le Pen, le meilleur candidat pour le RN et la personnalité dont les répondants souhaitent la victoire.",
+    "outsideSeries": true
   },
   "2226": {
     "number": "10221",

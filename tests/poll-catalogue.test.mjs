@@ -69,7 +69,8 @@ test('Les enquêtes à périmètre particulier gardent leurs bases, leurs pages 
   assert.match(tableFor('10141', 9).base, /742/);
   assert.match(tableFor('10291', 26).base, /3\s030/);
   assert.equal(tableFor('10291', 26).results[0].percentage, 55);
-  assert.equal(rows.find((s) => s.number === '10218').tables.length, 13);
+  const runoffs = rows.find((s) => s.number === '10218').tables;
+  assert.equal(runoffs.filter((t) => t.questionPage === 7).length, 13);
   assert.equal(rows.find((s) => s.number === '9927').tables.length, 3);
   assert.ok(
     rows.every((s) => {

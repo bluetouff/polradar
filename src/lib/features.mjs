@@ -132,6 +132,9 @@ for (const family of [
   'jeune jeunes',
   'energie energies',
   'expulser expulsion expulsions',
+  'calculer calcul calculs calcule calculee calcules',
+  'medical medicaux medicale medicales',
+  'soin soins',
 ]) {
   const forms = family.split(' ');
   for (const form of forms) wordForms.set(form, forms[0]);
@@ -158,6 +161,12 @@ const officialTerms = [
   ],
   [/\b(?:flat[- ]tax|prelevement forfaitaire unique)\b/g, 'pfu'],
   [/\bimpot sur la fortune immobiliere\b/g, 'ifi'],
+  [
+    /\b(?:droits?(?: de mutation)?|fiscalite|imposition|impots?) (?:de |des |sur (?:les )?)successions?\b/g,
+    'droit succession',
+  ],
+  [/\b(?:fiches?|feuilles?) de (?:paie|paye)\b/g, 'fiche paie'],
+  [/\b(?:acceder|acces) aux soins\b/g, 'acces soin'],
   [/\blogements? socia(?:l|ux)\b/g, 'logement social'],
   [/\bagences? regionales? de sante\b/g, 'ars'],
   [/\blutte ouvriere\b/g, 'lo'],
@@ -289,13 +298,14 @@ export function filterEntries(entries, filters) {
   const literal = /[+*|[\]{}^$@\\]|[?!]\(/.test(input);
   const query = input
     .replace(
-      /^(?:ou (?:sont|trouver|consulter)|quels? (?:outils|chiffres|documents) pour (?:lire|comprendre|consulter))\s+/u,
+      /^(?:ou (?:sont|trouver|consulter)|comment (?:trouver|consulter)|quels? (?:outils|chiffres|documents) pour (?:lire|comprendre|consulter))\s+/u,
       '',
     )
     .replace(
-      /^(?:qui|quel candidat|quels candidats|quelle candidature|que) (?:veut|veulent|propose|proposent|dit|disent|prevoit|prevoient)\s+/u,
+      /^(?:qui|quel candidat|quels candidats|quelle candidature|que) (?:veut|veulent|propose|proposent|souhaite|souhaitent|dit|disent|prevoit|prevoient)\s+/u,
       '',
     )
+    .replace(/^comment (?:mieux )?/u, '')
     .replace(/^(?:quels?|quelles?|identifier|trouver) /u, '')
     .replace(/\bque (?:veut|souhaite|compte|entend)\b/gu, '')
     .replace(/\?$/, '')
@@ -314,16 +324,18 @@ export function filterEntries(entries, filters) {
   for (const row of selection) {
     const entry = indexedEntry(row);
     const missing = tokens.filter((word) => !matchesWord(entry, word));
+    const titleMatches = tokens.filter((word) => entry.title.has(word)).length;
+    const editorialMatch =
+      missing.length === 0 &&
+      tokens.length >= 2 &&
+      ((row.type === 'question' &&
+        titleMatches >= Math.min(2, tokens.length - 1)) ||
+        (row.type === 'dossier' && titleMatches === tokens.length));
     const score =
       (tokens.length === 1 && row.type === 'theme' ? 2 : 0) +
-      tokens.filter((word) => entry.title.has(word)).length * 3 +
+      titleMatches * 3 +
       tokens.filter((word) => entry.words.has(word)).length +
-      (row.type === 'question' &&
-      missing.length === 0 &&
-      tokens.length >= 3 &&
-      tokens.filter((word) => entry.title.has(word)).length >= 2
-        ? 4
-        : 0) +
+      (editorialMatch ? 4 : 0) +
       (entry.heading === query ? 8 : entry.heading.includes(query) ? 3 : 0);
     if (!missing.length) ranked.push({ row, score });
     else if (missing.length === 1 && /^[a-z]{5,32}$/.test(missing[0]))

@@ -136,6 +136,8 @@ def verify_surfaces(marker, counts):
     if expected is not None and (not isinstance(expected, dict) or set(expected) != set(SURFACES)):
         raise ValueError("Inventaire des surfaces différent du manifeste")
     results = {}
+    observed_polls = None
+    declared_polls = None
     for path in SURFACES:
         url = SITE + "/" + path.removesuffix("index.html")
         with opener.open(Request(url, headers={"Cache-Control": "no-cache"}), timeout=15) as response:
@@ -175,6 +177,23 @@ def verify_surfaces(marker, counts):
                     raise ValueError(f"Nombre de fiches différent entre corpus et REST : {scope}")
             if len(dataset["sources"]) != counts["sources"]:
                 raise ValueError("Nombre de sources différent entre corpus et REST")
+        if path == "data/enquetes.json":
+            polls = json.loads(raw)["polls"]
+            observed_polls = {
+                "observations": len(polls),
+                "documentedSurveys": len({row["surveyId"] for row in polls if row.get("surveyId")}),
+                "firstRound": sum(row["round"] == "premier" for row in polls),
+                "secondRound": sum(row["round"] == "second" for row in polls),
+            }
+        if path == "api/qualite-documentaire.json":
+            health = json.loads(raw)
+            if health["sourceCommit"] != marker["sourceCommit"]:
+                raise ValueError("La qualité documentaire référence une autre édition")
+            declared_polls = health["polls"]
+    if observed_polls is None or declared_polls is None or any(
+        declared_polls.get(key) != value for key, value in observed_polls.items()
+    ):
+        raise ValueError("Les compteurs de sondages diffèrent du jeu de données servi")
     return results
 
 
@@ -188,10 +207,12 @@ def check_private_stats():
     return 401
 
 
-def main(full=False):
+def main(full=False, revision=None):
     branch = fetch(GITHUB + "/branches/main")["commit"]["sha"]
     marker = fetch(SITE + "/build.json", extra={"Cache-Control": "no-cache"})
     first = marker["sourceCommit"]
+    if revision and (first != revision or branch != revision):
+        raise ValueError("La révision attendue n’est plus la révision active de main et du site")
     status = fetch(SITE + "/api/v1/corpus")
     init = rpc("initialize", {"protocolVersion": LEGACY, "capabilities": {},
                               "clientInfo": {"name": "polradar-etat-public", "version": "1"}})
@@ -245,8 +266,11 @@ def main(full=False):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--mcp-complet", action="store_true", help="Interroge les onze outils et les quinze collections une fois")
+    parser.add_argument("--revision", help="Révision de main attendue en production.")
     args = parser.parse_args()
-    result = main(args.mcp_complet)
+    if args.revision and not SHA.fullmatch(args.revision):
+        parser.error("La révision doit être un SHA Git complet.")
+    result = main(args.mcp_complet, args.revision)
     print(json.dumps(result, ensure_ascii=False, indent=2))
     if result["testsMCP"] and any(
         entry["etat"] != "ok"

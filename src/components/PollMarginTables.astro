@@ -1,0 +1,155 @@
+---
+import references from '../data/poll-margin-tables.json';
+
+const format = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 });
+const scale = Math.ceil(
+  Math.max(
+    ...references.tables.flatMap((table) =>
+      table.rows.flatMap((row) => row.margins),
+    ),
+  ),
+);
+---
+
+<section class="margin-references" aria-labelledby="marges">
+  <header>
+    <h2 id="marges">Marges publiées par les instituts</h2>
+    <p>
+      Pour un score de 10 %, 20 % ou 50 %, lire la marge en points de
+      pourcentage. Les barres partagent une échelle de 0 à {scale} points.
+    </p>
+  </header>
+  <div class="margin-grid">
+    {references.tables.map((reference) => (
+      <article class="margin-table">
+        <table>
+          <caption>
+            <strong>{reference.institute}</strong>
+            {reference.confidence !== null && (
+              <span>Référence à {reference.confidence} % de confiance</span>
+            )}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Effectif</th>
+              {references.scores.map((score) => (
+                <th scope="col">{score} %</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {reference.rows.map(({ people, margins }) => (
+              <tr>
+                <th scope="row">{format.format(people)}</th>
+                {margins.map((points) => (
+                  <td>
+                    <span>±{format.format(points)}</span>
+                    <svg
+                      viewBox="0 0 100 5"
+                      preserveAspectRatio="none"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <rect
+                        class="margin-track"
+                        width="100"
+                        height="5"
+                        rx="1"
+                      />
+                      <rect
+                        class="margin-value"
+                        width={(100 * points) / scale}
+                        height="5"
+                        rx="1"
+                      />
+                    </svg>
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p>{reference.description}</p>
+        <a href={reference.url + '#page=' + reference.page} rel="noreferrer">
+          Notice {reference.notice}, p. {reference.page} ↗
+        </a>
+      </article>
+    ))}
+  </div>
+  <p class="margin-footnote">
+    Dans les enquêtes par quotas, ces marges sont des repères statistiques.
+    Elles varient selon le score observé et la base retenue.
+  </p>
+</section>
+
+<style>
+  .margin-references {
+    margin-block: clamp(1.4rem, 4vw, 2.5rem);
+  }
+  .margin-references h2,
+  .margin-references header p {
+    margin-block: 0 0.6rem;
+  }
+  .margin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+    gap: 0.75rem;
+  }
+  .margin-table {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: clip;
+    padding: clamp(0.7rem, 2vw, 1rem);
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    background: var(--panel-gradient);
+  }
+  .margin-table table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+  .margin-table caption {
+    text-align: left;
+    padding-block-end: 0.5rem;
+  }
+  .margin-table caption strong {
+    display: block;
+    font-size: 1.12rem;
+  }
+  .margin-table caption span,
+  .margin-table p,
+  .margin-footnote {
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+  .margin-table th,
+  .margin-table td {
+    padding: 0.4rem 0.18rem;
+    border-block-end: 1px solid var(--line);
+    text-align: right;
+  }
+  .margin-table th:first-child {
+    width: 31%;
+    text-align: left;
+  }
+  .margin-table svg {
+    display: block;
+    width: min(100%, 4.5rem);
+    height: 0.24rem;
+    margin-block-start: 0.2rem;
+    margin-inline-start: auto;
+  }
+  .margin-track {
+    fill: var(--line);
+  }
+  .margin-value {
+    fill: #166b78;
+  }
+  .margin-table a {
+    margin-block-start: auto;
+    align-self: start;
+  }
+</style>

@@ -4,8 +4,10 @@ import polls from '../src/data/polls.json' with { type: 'json' };
 import sources from '../src/data/sources.json' with { type: 'json' };
 import catalogue from '../src/data/poll-catalogue.json' with { type: 'json' };
 import audits from '../src/data/poll-notice-audits.json' with { type: 'json' };
+import specialStudies from '../src/data/poll-special-studies.json' with { type: 'json' };
 import { catalogueCoverage } from '../src/lib/poll-catalogue.mjs';
 import { renderPollGraphic } from '../src/lib/poll-graphic-view.mjs';
+import { documentedSpecialStudies } from '../src/lib/poll-special-studies.mjs';
 
 const imported = [
   ['10193', 11],
@@ -126,7 +128,11 @@ test('Le catalogue distingue les choix de vote des souhaits, de la participation
     ['10210', /souhaitent que ce duel ait lieu/],
   ]) {
     const notice = coverage.get(number);
-    assert.equal(notice.status, 'non_pertinente');
+    const publishedSeparately = ['10387', '10381', '10210'].includes(number);
+    assert.equal(
+      notice.status,
+      publishedSeparately ? 'hors_series' : 'non_pertinente',
+    );
     assert.deepEqual(notice.scenarios, []);
     assert.match(notice.audit.reason, whatWasMeasured);
     assert.match(notice.audit.reason, /^Pages? \d/);
@@ -335,5 +341,66 @@ test('Ifop distingue les deux périodes et les bases exprimées des tableaux dis
   assert.deepEqual(
     september.map((p) => p.noIntention),
     [29.7, 29.1, 30.3, 31.5, 32, 32.4],
+  );
+});
+
+test('Les souhaits, la participation et la primaire gardent leurs propres bases et leurs pièces', () => {
+  const catalogueRows = catalogueCoverage(catalogue, polls, sources, audits);
+  const studies = new Map(
+    documentedSpecialStudies(specialStudies, catalogueRows).map((study) => [
+      study.number,
+      study,
+    ]),
+  );
+  const cluster = studies.get('10228');
+  assert.equal(cluster.category, 'opinion');
+  assert.deepEqual(
+    cluster.tables.map((table) => [table.questionPage, table.page]),
+    [
+      [8, 19],
+      [8, 20],
+    ],
+  );
+  assert.equal(
+    cluster.tables[1].results.find((result) => result.label === 'Marine Le Pen')
+      .percentage,
+    29.6,
+  );
+  assert.equal(
+    catalogueRows.find((row) => row.number === '10228').scenarios.length,
+    0,
+  );
+  const participation = studies.get('10381');
+  assert.deepEqual(
+    participation.tables[1].results.map((result) => result.percentage),
+    [62, 64, 65],
+  );
+  assert.match(participation.tables[2].base, /abstentionnistes/);
+  const primary = studies.get('10387');
+  assert.match(primary.tables[0].base, /542 personnes/);
+  assert.match(primary.tables[1].base, /996 inscrits/);
+  assert.equal(studies.get('10210').tables[0].results[0].percentage, 45.3);
+});
+
+test('OpinionWay conserve les réponses par nom et les préférences en duel de la même notice', () => {
+  const studies = documentedSpecialStudies(
+    specialStudies,
+    catalogueCoverage(catalogue, polls, sources, audits),
+  );
+  const opinionway = studies.find((study) => study.number === '10218');
+  assert.equal(
+    opinionway.tables.filter((table) => table.questionPage === 7).length,
+    13,
+  );
+  const possible = opinionway.tables.filter(
+    (table) => table.questionPage === 6,
+  );
+  assert.deepEqual(
+    possible.map((table) => table.page),
+    [17, 18, 19, 20],
+  );
+  assert.deepEqual(
+    possible.flatMap((table) => table.results.map((row) => row.percentage)),
+    [9, 9, 17, 16, 25, 27, 20, 25, 26, 11],
   );
 });

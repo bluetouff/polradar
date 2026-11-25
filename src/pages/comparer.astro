@@ -3,8 +3,22 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import { activeCandidates as candidates, themes } from '../lib/data';
 import { questions, questionThemes } from '../lib/questions';
+import { positionDivergences } from '../lib/divergence-data';
 import { digitalLawRoot } from '../lib/digital-law.mjs';
 import '../styles/questions.css';
+
+const positionsByQuestion = new Map(
+  positionDivergences.map(({ id, context, positions }) => [
+    id,
+    {
+      context,
+      positions: positions.map(({ label, entries }) => ({
+        label,
+        versions: entries.map(({ version }) => version.id),
+      })),
+    },
+  ]),
+);
 ---
 
 <Base
@@ -32,9 +46,20 @@ import '../styles/questions.css';
                   data-versions={question.entries
                     .map(({ version }) => version.id)
                     .join(' ')}
-                  data-reviewed={question.reviews
-                    .map(({ candidate }) => candidate)
-                    .join(' ')}
+                  data-reading={JSON.stringify({
+                    candidates: question.candidateIds.length,
+                    coverage: question.coverage,
+                    reviews: question.reviews.map(
+                      ({ candidate, sourceId, locator, checked }) => ({
+                        candidate,
+                        sourceId,
+                        locator,
+                        checked,
+                      }),
+                    ),
+                    related: question.related,
+                    ...positionsByQuestion.get(question.id),
+                  })}
                 >
                   {question.title}
                 </option>
@@ -46,6 +71,7 @@ import '../styles/questions.css';
       <a id="compare-question-detail" href="/questions/">
         Parcourir les questions
       </a>
+      <p id="compare-question-coverage" class="muted" hidden></p>
     </div>
     <fieldset class="compare-candidates">
       <legend>Candidats à comparer</legend>
@@ -123,6 +149,7 @@ import '../styles/questions.css';
         </button>
       </div>
     </div>
+    <div id="comparison-positions" hidden></div>
     <div id="comparison-metrics"></div>
     <nav class="comparison-jumps" aria-label="Candidats comparés" hidden></nav>
     <div id="comparison-cards" class="comparison-grid"></div>
@@ -134,7 +161,8 @@ import '../styles/questions.css';
   </section>
   <noscript>
     <p class="notice">
-      Retrouvez les propositions dans
+      Lisez <a href="/questions/">les réponses par question</a> ou retrouvez les
+      propositions dans
       <a href="/themes/">les dossiers thématiques</a> ou
       <a href="/candidats/">les fiches des candidats</a>.
     </p>
@@ -201,6 +229,11 @@ import '../styles/questions.css';
     color: var(--accent);
     font-size: 0.88rem;
   }
+  #compare-question-coverage {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: 0.88rem;
+  }
   .compare-candidates {
     border: 0;
     min-width: 0;
@@ -257,6 +290,28 @@ import '../styles/questions.css';
   }
   .comparison-actions button {
     min-height: var(--target-size);
+  }
+  #comparison-positions {
+    margin-block: 0.8rem 1.25rem;
+    border-inline-start: 3px solid var(--accent);
+    padding-inline-start: 1rem;
+  }
+  #comparison-positions :global(ul) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 0.7rem 1.25rem;
+    margin-block: 0.65rem;
+    padding: 0;
+    list-style: none;
+  }
+  #comparison-positions :global(span) {
+    display: block;
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+  .comparison-grid :global(.comparison-card .compare-coverage) {
+    margin: 0.4rem 0 0;
+    font: 620 0.88rem/1.5 var(--sans);
   }
   .comparison-scope {
     color: var(--muted);

@@ -42,10 +42,13 @@
     margin-inline: auto;
   }
   .masthead {
+    flex-wrap: wrap;
     gap: 0.7rem;
     padding: 0.65rem var(--content-gutter);
   }
   .masthead-actions {
+    flex-wrap: wrap;
+    max-inline-size: 100%;
     gap: clamp(0.35rem, 1.2vw, 1rem);
   }
   .masthead-actions .masthead-search {
@@ -116,6 +119,12 @@
   @media (max-width: 380px) {
     .site-directory summary .icon {
       display: none;
+    }
+  }
+  @media (max-width: 540px) {
+    .masthead-actions > a {
+      min-inline-size: 44px;
+      inline-size: 44px;
     }
   }
 }

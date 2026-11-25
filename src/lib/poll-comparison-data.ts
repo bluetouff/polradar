@@ -1,3 +1,4 @@
+import marginTables from '../data/poll-margin-tables.json';
 import { sourceCommit } from '../../scripts/release-revision.mjs';
 import { documentedPolls, sourceById } from './data';
 import {
@@ -78,4 +79,5 @@ export const pollComparisonExport = {
   matrix: scenarioMatrix(documentedPolls),
   comparisons: pollComparisons,
   backtest: backtestPollingSeries(documentedPolls),
+  marginTables,
 };

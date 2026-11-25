@@ -82,7 +82,7 @@ const checkLabels = {
     <Icon name={t.icon} />
   </header>
   <nav class="q-related" aria-label="Explorer cette question">
-    <a href={'/comparer/?question=' + q.id}>
+    <a href={'/comparer/?question=' + q.id} data-compare-return>
       Comparer deux candidats sur cette question ↗
     </a>
     {q.related && <a href={q.related.href}>{q.related.label} ↗</a>}
@@ -101,9 +101,7 @@ const checkLabels = {
         Effets sur les ménages et les finances publiques ↗
       </a>
     )}
-    <a href="#couverture">
-      Voir la couverture des {candidates.length} candidats ↓
-    </a>
+    <a href="#couverture">Voir les dossiers examinés ↓</a>
   </nav>
   {q.id === 'fiscalite-csg-salaires' && <DossierPaie />}
   {q.id === 'logement-obligations-parc-social' && (
@@ -206,7 +204,14 @@ const checkLabels = {
                   const check = latestSourceCheck(ref.sourceId);
                   return (
                     <div>
-                      <a href={ref.source.url} rel="noreferrer">
+                      <a
+                        href={
+                          ref.fragment
+                            ? ref.source.url.split('#')[0] + '#' + ref.fragment
+                            : ref.source.url
+                        }
+                        rel="noreferrer"
+                      >
                         {ref.source.title} ↗
                       </a>
                       <p>{ref.locator}</p>
@@ -323,3 +328,30 @@ const checkLabels = {
     </section>
   )}
 </Base>
+
+<script>
+  const link = document.querySelector<HTMLAnchorElement>(
+    '[data-compare-return]',
+  );
+  const selectionFragment = '#comparaison?';
+  if (link && location.hash.startsWith(selectionFragment)) {
+    const from = new URLSearchParams(
+      location.hash.slice(selectionFragment.length),
+    );
+    const to = new URLSearchParams();
+    const slug = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+    const ids = [...new Set((from.get('c') ?? '').slice(0, 302).split(','))]
+      .filter((id) => id.length <= 100 && slug.test(id))
+      .slice(0, 3);
+    const theme = from.get('theme');
+    if (ids.length) {
+      to.set('c', ids.join(','));
+      link.textContent = 'Reprendre la comparaison ↗';
+    }
+    if (theme && theme.length <= 100 && slug.test(theme))
+      to.set('theme', theme);
+    if (from.get('count') === '3') to.set('count', '3');
+    if (from.get('archives') === '1') to.set('archives', '1');
+    if (to.size) link.hash = selectionFragment + to.toString();
+  }
+</script>

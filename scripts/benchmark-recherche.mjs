@@ -5,19 +5,16 @@ import { performance } from 'node:perf_hooks';
 import { filterEntries } from '../src/lib/features.mjs';
 
 const root = resolve(process.argv[2] ?? 'dist');
-const mode = process.argv[3];
-if (mode && !['--validation', '--confirmation'].includes(mode))
-  throw Error('Jeu de recherche inconnu.');
+const modes = ['', '--validation', '--confirmation', '--recette'];
+const mode = modes.indexOf(process.argv[3] ?? '');
+if (mode < 0) throw Error('Jeu de recherche inconnu.');
 const loadQueries = (name) =>
   readFileSync(
-    new URL('../docs/refonte/' + name + '.tsv', import.meta.url),
+    new URL(`../docs/refonte/requetes${name.slice(1)}.tsv`, import.meta.url),
     'utf8',
   );
-const reference = [
-  loadQueries('requetes'),
-  ...(mode === '--confirmation' ? [loadQueries('requetes-validation')] : []),
-];
-const queries = loadQueries('requetes' + (mode?.slice(1) ?? ''))
+const reference = modes.slice(0, mode).map(loadQueries);
+const queries = loadQueries(modes[mode])
   .trim()
   .split('\n')
   .map((line) => {

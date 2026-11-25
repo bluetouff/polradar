@@ -52,6 +52,12 @@ Le banc a obtenu **97/100**, sur 4 257 entrées. Un cas réussi retrouve un li
 
 Les trois échecs concernent une formulation sur le plafonnement de l’électricité, une question relative aux hôpitaux et l’orthographe « Edward Philippe ». Les requêtes qui attribueraient à tort une suppression de la CSG ou qui inventent une valeur ne sont pas rapprochées d’une proposition différente.
 
+Le contrôle de la publication `cc3c6eb` a retrouvé les trois réponses. Son index de 4 278 entrées a donné 100/100 au banc historique, 31/32 au banc de validation et 28/30 au banc de confirmation. Les écarts résiduels concernaient le vocabulaire des successions et la distinction entre le calcul de la CSG en vigueur et les propositions sur les salaires.
+
+Avec le correctif lexical et les termes d’index de la CSG révisés, le même corpus donne 100/100, 32/32 et 30/30. Le [jeu de recette supplémentaire](requetes-recette.tsv), figé avant le premier passage, a obtenu 28/30. Les formulations « Revalorisation du salaire minimum 1 700 euros Mélenchon » et « Quel âge légal pour ouvrir les droits à la retraite ? » restent sans résultat. La règle est identique pour les quatre bancs : une adresse attendue dans les cinq premières réponses ou aucun résultat pour un cas d’absence. Relancer avec `node scripts/benchmark-recherche.mjs dist`, puis avec `--validation`, `--confirmation` et `--recette`.
+
+Sur trois passages Chromium à 390 × 844, CPU ralenti quatre fois, 1,6 Mbit/s et 60 ms de latence, la recherche transfère 87,0 Kio avant la saisie, avec zéro chargement d’index. Le premier résultat a été affiché après 2,85 s en médiane, dont le transfert de 403 Kio d’index gzip. L’affichage d’une deuxième recherche a pris 52 ms, avec l’index déjà chargé dans la page. Le même protocole donne 2,76 s et 44 ms sur `cc3c6eb`. Ce relevé mesure le téléchargement et le rendu dans les conditions de laboratoire.
+
 ### Performance de navigation
 
 Même profil que l’état initial. Chromium 159, Apple M3, profil mobile 390 × 844, CPU bridé ×4, 1,6 Mbit/s, latence de 60 ms, cache froid. Trois navigations par page. Le transfert est la somme des corps envoyés par le serveur local en gzip. [Script](../../scripts/audit-navigation.mjs)

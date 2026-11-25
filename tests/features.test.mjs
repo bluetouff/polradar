@@ -29,10 +29,38 @@ test('la recherche locale retrouve une mesure au moyen de son sigle ou de sa for
     ['Supprimer les obligations vaccinales', 'vaccination obligatoire'],
     ['Pondérer les avis citoyens', 'pondération des avis'],
     ['Renforcer les TER', 'transport ferroviaire'],
+    ['Supprimer les droits de succession', 'imposition des successions'],
+    ['Le calcul de l’assiette', 'calculer assiette'],
+    ['Ligne de CSG sur une feuille de paye', 'CSG fiche de paie'],
+    [
+      'Faire venir des médecins dans les déserts médicaux',
+      'Comment trouver un médecin dans un désert médical ?',
+    ],
   ]) {
     const entry = { title, text: '', scope: 'campagne' };
     assert.deepEqual(filterEntries([entry], { q }), [entry], q);
   }
+});
+
+test('une question commune passe avant une proposition isolée sans masquer une recherche nominative', () => {
+  const question = {
+    type: 'question',
+    title: 'À quel âge partir à la retraite ?',
+    text: '',
+  };
+  const measure = {
+    type: 'mesure',
+    title: 'Baisser l’âge de la retraite',
+    text: 'Florian Philippot',
+  };
+  assert.deepEqual(filterEntries([measure, question], { q: 'âge retraite' }), [
+    question,
+    measure,
+  ]);
+  assert.deepEqual(
+    filterEntries([measure, question], { q: 'Philippot âge retraite' }),
+    [measure],
+  );
 });
 
 const original = Object.fromEntries(

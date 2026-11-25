@@ -31,7 +31,7 @@ const readerEntries = [
     'simulateur',
     '/economie/simulateurs/',
     'Simuler la CSG sur un salaire',
-    'Calcul de la contribution sociale généralisée, revenu brut, feuille de paie et taux selon les propositions.',
+    'Calcul de la contribution sociale généralisée à partir du salaire brut, avec les taux, l’assiette et la part déductible selon le barème en vigueur.',
   ],
   [
     'simulateur',

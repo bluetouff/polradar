@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
+import PollMarginTables from '../../components/PollMarginTables.astro';
 import { formatDate } from '../../lib/data';
 import { pollComparisonExport as report } from '../../lib/poll-comparison-data';
 
@@ -43,6 +44,7 @@ const history = report.backtest;
       <b aria-hidden="true"></b> Plus bas et plus haut scores observés
     </span>
     <span>Échelle commune de 0 à {max} %</span>
+    <a href="#marges">Marges d’erreur</a>
   </p>
   <div class="scenario-comparisons">
     {report.comparisons.map((comparison) => (
@@ -133,6 +135,7 @@ const history = report.backtest;
       </section>
     ))}
   </div>
+  <PollMarginTables />
   <section class="panel scenario-method" aria-labelledby="comparison-method">
     <h2 id="comparison-method">Calcul et validation rétrospective</h2>
     <p>

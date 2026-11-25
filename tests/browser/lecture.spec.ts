@@ -4,6 +4,45 @@ import tracks from '../../src/data/proposal-evolution.json' with { type: 'json' 
 import housing from '../../src/data/territoires/sru.json' with { type: 'json' };
 import { electricityComparison } from '../../src/lib/electricity-tax.mjs';
 
+test('le menu laisse la place aux libellés agrandis', async ({ page }) => {
+  for (const width of [320, 360, 390, 1024]) {
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto('/recherche/');
+    const layout = await page.evaluate(async () => {
+      document.documentElement.style.setProperty(
+        'font-size',
+        '200%',
+        'important',
+      );
+      await document.fonts.ready;
+      const mark = document.querySelector('.wordmark')!.getBoundingClientRect();
+      const actions = document
+        .querySelector('.masthead-actions')!
+        .getBoundingClientRect();
+      return {
+        overlap:
+          mark.left < actions.right &&
+          actions.left < mark.right &&
+          mark.top < actions.bottom &&
+          actions.top < mark.bottom,
+        labelsOutside: Array.from(
+          document.querySelectorAll('.site-navigation a'),
+        ).filter((link) => link.scrollWidth > link.clientWidth + 1).length,
+        pageWidth: document.documentElement.scrollWidth,
+      };
+    });
+    expect(layout.overlap, `Barre supérieure à ${width} px`).toBe(false);
+    expect(layout.labelsOutside, `Navigation à ${width} px`).toBe(0);
+    expect(layout.pageWidth, `Page à ${width} px`).toBeLessThanOrEqual(width);
+    const directory = page.locator('.site-directory summary');
+    await directory.focus();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('.site-directory nav')).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(directory).toBeFocused();
+  }
+});
+
 test('les nouveaux décryptages relient le graphique aux données et aux textes', async ({
   page,
 }) => {

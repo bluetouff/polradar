@@ -414,14 +414,14 @@
   {
     "downloadId": "2222",
     "number": "10218",
-    "title": "Préférences dans treize duels de second tour",
+    "title": "Vote possible au premier tour et préférences dans treize duels",
     "institute": "OpinionWay",
     "commissioner": "Fondapol",
     "fieldworkStart": "2026-06-01",
     "fieldworkEnd": "2026-06-08",
     "population": "3 057 inscrits interrogés, issus d’un échantillon national de 3 598 adultes.",
     "method": "Questionnaire en ligne, méthode des quotas. Notice, p. 2 et 3.",
-    "scope": "La question demande une préférence entre deux personnes. Chaque table garde les bulletins blancs ou nuls, l’abstention et les non-réponses.",
+    "scope": "Les réponses par nom mesurent un vote possible au premier tour. Les treize duels mesurent une préférence au second tour avec les réponses blanc ou nul, abstention et non-réponse.",
     "publication": {
       "label": "Étude publiée par la Fondapol en juillet 2026",
       "url": "https://www.fondapol.org/etude/18-avril-et-2-mai-2027-lelection-presidentielle-le-tourment-francais/"
@@ -803,6 +803,86 @@
           }
         ],
         "questionPage": 7
+      },
+      {
+        "title": "Vote possible pour Mélenchon et Tondelier",
+        "page": 17,
+        "question": "Au premier tour, pour lesquelles de ces personnes les répondants pourraient-ils voter ?",
+        "base": "Résultats redressés parmi les 3 057 personnes inscrites interrogées.",
+        "results": [
+          {
+            "label": "Jean-Luc Mélenchon",
+            "percentage": 9
+          },
+          {
+            "label": "Marine Tondelier",
+            "percentage": 9
+          }
+        ],
+        "note": "Part de la réponse « Vous voterez peut-être » pour chaque nom. La question est posée pour chaque personne.",
+        "questionPage": 6
+      },
+      {
+        "title": "Vote possible pour Hollande, Glucksmann et Attal",
+        "page": 18,
+        "question": "Au premier tour, pour lesquelles de ces personnes les répondants pourraient-ils voter ?",
+        "base": "Résultats redressés parmi les 3 057 personnes inscrites interrogées.",
+        "results": [
+          {
+            "label": "François Hollande",
+            "percentage": 17
+          },
+          {
+            "label": "Raphaël Glucksmann",
+            "percentage": 16
+          },
+          {
+            "label": "Gabriel Attal",
+            "percentage": 25
+          }
+        ],
+        "note": "Part de la réponse « Vous voterez peut-être » pour chaque nom. La question est posée pour chaque personne.",
+        "questionPage": 6
+      },
+      {
+        "title": "Vote possible pour Philippe, Retailleau et Bardella",
+        "page": 19,
+        "question": "Au premier tour, pour lesquelles de ces personnes les répondants pourraient-ils voter ?",
+        "base": "Résultats redressés parmi les 3 057 personnes inscrites interrogées.",
+        "results": [
+          {
+            "label": "Édouard Philippe",
+            "percentage": 27
+          },
+          {
+            "label": "Bruno Retailleau",
+            "percentage": 20
+          },
+          {
+            "label": "Jordan Bardella",
+            "percentage": 25
+          }
+        ],
+        "note": "Part de la réponse « Vous voterez peut-être » pour chaque nom. La question est posée pour chaque personne.",
+        "questionPage": 6
+      },
+      {
+        "title": "Vote possible pour Le Pen et Zemmour",
+        "page": 20,
+        "question": "Au premier tour, pour lesquelles de ces personnes les répondants pourraient-ils voter ?",
+        "base": "Résultats redressés parmi les 3 057 personnes inscrites interrogées.",
+        "results": [
+          {
+            "label": "Marine Le Pen",
+            "percentage": 26
+          },
+          {
+            "label": "Éric Zemmour",
+            "percentage": 11
+          }
+        ],
+        "note": "Part de la réponse « Vous voterez peut-être » pour chaque nom. La question est posée pour chaque personne.",
+        "questionPage": 6
       }
     ],
     "category": "choix-de-vote",
@@ -1293,5 +1373,372 @@
         "note": "La notice indique une attribution aléatoire des deux hypothèses d’union partielle."
       }
     ]
+  },
+  {
+    "downloadId": "2233",
+    "number": "10228",
+    "category": "opinion",
+    "title": "Souhait de victoire et choix du candidat du RN",
+    "institute": "Cluster17",
+    "commissioner": "Le Point",
+    "fieldworkStart": "2026-07-08",
+    "fieldworkEnd": "2026-07-09",
+    "population": "1 837 personnes représentatives de la population française.",
+    "method": "Questionnaire en ligne par quotas. Marge de 1 à 2,3 points selon le score, notice p. 3.",
+    "methodPage": 2,
+    "pdfUrl": "https://www.commission-des-sondages.fr/notices/files/notices/2026/juillet/10228-pres-barometre-cluster17-le-point-14-juillet.pdf",
+    "scope": "Deux questions portent sur la personnalité que les répondants souhaitent voir gagner et la personne qu’ils jugent la mieux placée pour représenter le RN.",
+    "tables": [
+      {
+        "title": "Meilleur candidat pour le Rassemblement national",
+        "page": 19,
+        "question": "Qui de Jordan Bardella ou de Marine Le Pen serait le meilleur candidat pour le Rassemblement national ?",
+        "base": "Ensemble des 1 837 personnes interrogées, résultats redressés.",
+        "results": [
+          {
+            "label": "Jordan Bardella",
+            "percentage": 21.6
+          },
+          {
+            "label": "Marine Le Pen",
+            "percentage": 33.3
+          },
+          {
+            "label": "Je ne sais pas",
+            "percentage": 45.1
+          }
+        ],
+        "questionPage": 8
+      },
+      {
+        "title": "Personnalité que les répondants souhaitent voir gagner",
+        "page": 20,
+        "question": "Parmi les personnalités suivantes, laquelle souhaitez-vous voir gagner l’élection présidentielle en 2027 ?",
+        "base": "Ensemble des 1 837 personnes interrogées, résultats redressés.",
+        "results": [
+          {
+            "label": "Bruno Retailleau",
+            "percentage": 6.3
+          },
+          {
+            "label": "David Lisnard",
+            "percentage": 4.1
+          },
+          {
+            "label": "Dominique de Villepin",
+            "percentage": 4.3
+          },
+          {
+            "label": "Édouard Philippe",
+            "percentage": 13.6
+          },
+          {
+            "label": "Éric Zemmour",
+            "percentage": 2.2
+          },
+          {
+            "label": "François Hollande",
+            "percentage": 2.4
+          },
+          {
+            "label": "François Ruffin",
+            "percentage": 4
+          },
+          {
+            "label": "Gabriel Attal",
+            "percentage": 6.3
+          },
+          {
+            "label": "Jean-Luc Mélenchon",
+            "percentage": 17
+          },
+          {
+            "label": "Marine Le Pen",
+            "percentage": 29.6
+          },
+          {
+            "label": "Marine Tondelier",
+            "percentage": 1.6
+          },
+          {
+            "label": "Olivier Faure",
+            "percentage": 0.9
+          },
+          {
+            "label": "Raphaël Glucksmann",
+            "percentage": 7.7
+          }
+        ],
+        "questionPage": 8
+      }
+    ]
+  },
+  {
+    "downloadId": "2409",
+    "number": "10387",
+    "category": "opinion",
+    "title": "Enquête sur une primaire de la droite et du centre",
+    "institute": "Ifop",
+    "commissioner": "Le Figaro",
+    "fieldworkStart": "2026-11-13",
+    "fieldworkEnd": "2026-11-18",
+    "population": "2 823 adultes, dont 2 542 inscrits. Les scénarios de vote portent sur 996 personnes.",
+    "method": "Questionnaire en ligne par quotas. Tableau des marges et exemples dans la notice, p. 4.",
+    "methodPage": 3,
+    "pdfUrl": "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10387-pres-primaire-centre-droite-ifop-18-novembre.pdf",
+    "scope": "La primaire envisagée réunirait Renaissance, le MoDem, Horizons, l’UDI, Les Républicains et Nouvelle Énergie.",
+    "tables": [
+      {
+        "title": "Participation envisagée à une primaire commune",
+        "page": 7,
+        "question": "Les inscrits envisageraient-ils de voter si les partis cités organisaient ensemble une primaire ?",
+        "base": "2 542 personnes inscrites sur les listes électorales. Valeurs redressées.",
+        "results": [
+          {
+            "label": "Oui, certainement",
+            "percentage": 16.6
+          },
+          {
+            "label": "Oui, probablement",
+            "percentage": 21.2
+          },
+          {
+            "label": "Non, probablement pas",
+            "percentage": 24.5
+          },
+          {
+            "label": "Non, certainement pas",
+            "percentage": 37.7
+          }
+        ],
+        "note": "À la demande du commanditaire, le questionnaire ne propose pas l’option « Ne se prononce pas »."
+      },
+      {
+        "title": "Primaire avec Édouard Philippe",
+        "page": 8,
+        "question": "Quel candidat choisir au premier tour de cette primaire ?",
+        "base": "996 inscrits envisageant de participer à cette primaire. Valeurs redressées.",
+        "results": [
+          {
+            "label": "Gabriel Attal",
+            "percentage": 25
+          },
+          {
+            "label": "Édouard Philippe",
+            "percentage": 28.4
+          },
+          {
+            "label": "Bruno Retailleau",
+            "percentage": 17.6
+          },
+          {
+            "label": "David Lisnard",
+            "percentage": 28.9
+          }
+        ],
+        "note": "À la demande du commanditaire, le questionnaire ne propose pas l’option « Ne se prononce pas »."
+      },
+      {
+        "title": "Primaire sans Édouard Philippe",
+        "page": 9,
+        "question": "Quel candidat choisir au premier tour de cette primaire ?",
+        "base": "996 inscrits envisageant de participer à cette primaire. Valeurs redressées.",
+        "results": [
+          {
+            "label": "Gabriel Attal",
+            "percentage": 38.3
+          },
+          {
+            "label": "Bruno Retailleau",
+            "percentage": 28.5
+          },
+          {
+            "label": "David Lisnard",
+            "percentage": 33.2
+          }
+        ],
+        "note": "À la demande du commanditaire, le questionnaire ne propose pas l’option « Ne se prononce pas »."
+      }
+    ]
+  },
+  {
+    "downloadId": "2404",
+    "number": "10381",
+    "category": "opinion",
+    "title": "Participation selon les duels du second tour",
+    "institute": "Ifop",
+    "commissioner": "Franc-Tireur",
+    "fieldworkStart": "2026-11-02",
+    "fieldworkEnd": "2026-11-04",
+    "population": "1 978 adultes, dont 1 834 inscrits. Les raisons de l’abstention portent sur un sous-ensemble.",
+    "method": "Questionnaire en ligne par quotas. Tableau des marges et exemples dans la notice, p. 4.",
+    "methodPage": 3,
+    "pdfUrl": "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10381-pres-participation-2nd-tour-jl-melenchon-m-le-pen-ifop-franc-tireur-18-novembre.pdf",
+    "scope": "L’Ifop mesure la certitude d’aller voter au premier tour et dans trois duels de second tour. Les inscrits sont interrogés du 2 au 4 novembre, comme pour l’enquête Sud Radio publiée dans la notice 10392.",
+    "tables": [
+      {
+        "title": "Participation estimée au premier tour",
+        "page": 7,
+        "question": "Les inscrits envisagent-ils d’aller voter au premier tour ?",
+        "base": "Ensemble des 1 834 personnes inscrites, résultats pondérés.",
+        "results": [
+          {
+            "label": "Votants selon le critère Ifop",
+            "percentage": 68
+          },
+          {
+            "label": "Abstention selon le critère Ifop",
+            "percentage": 32
+          }
+        ],
+        "note": "L’Ifop retient les inscrits qui se disent « tout à fait » certains de voter."
+      },
+      {
+        "title": "Participation estimée selon le duel",
+        "page": 8,
+        "question": "Les inscrits iraient-ils voter si le second tour opposait ces deux personnes ?",
+        "base": "Ensemble des 1 834 personnes inscrites, résultats pondérés.",
+        "results": [
+          {
+            "label": "Jean-Luc Mélenchon face à Marine Le Pen",
+            "percentage": 62
+          },
+          {
+            "label": "Raphaël Glucksmann face à Marine Le Pen",
+            "percentage": 64
+          },
+          {
+            "label": "Édouard Philippe face à Marine Le Pen",
+            "percentage": 65
+          }
+        ],
+        "note": "L’Ifop retient les inscrits qui se disent « tout à fait » certains de voter. Chaque duel est évalué séparément."
+      },
+      {
+        "title": "Raisons jugées déterminantes pour s’abstenir",
+        "page": 9,
+        "question": "Quelle importance les répondants donnent-ils à chaque motif d’abstention ?",
+        "base": "Personnes classées comme abstentionnistes en cas de duel entre Jean-Luc Mélenchon et Marine Le Pen.",
+        "results": [
+          {
+            "label": "Refuser de voter pour un candidat extrême",
+            "percentage": 62.7
+          },
+          {
+            "label": "Ne se reconnaître dans aucun des deux candidats",
+            "percentage": 60.5
+          },
+          {
+            "label": "Refuser de choisir entre les deux candidats",
+            "percentage": 56.3
+          },
+          {
+            "label": "Attendre peu de changements pour le pays",
+            "percentage": 47.3
+          },
+          {
+            "label": "Attendre peu de changements dans sa vie",
+            "percentage": 42.7
+          },
+          {
+            "label": "Ne pas voir de différence entre les projets",
+            "percentage": 42.3
+          },
+          {
+            "label": "Ne pas s’intéresser à cette élection",
+            "percentage": 29.6
+          }
+        ],
+        "note": "Part « déterminant » pour chaque motif proposé. Une même personne peut retenir plusieurs motifs."
+      }
+    ],
+    "publication": {
+      "url": "https://www.ifopgroup.com/article/la-participation-des-francais-en-cas-de-second-tour-entre-jean-luc-melenchon-et-marine-le-pen-a-la-presidentielle-2027/",
+      "date": "2026-11-18",
+      "label": "Étude publiée par l’Ifop"
+    }
+  },
+  {
+    "downloadId": "2215",
+    "number": "10210",
+    "category": "opinion",
+    "title": "Duels souhaités pour le second tour",
+    "institute": "Ifop",
+    "commissioner": "Marianne",
+    "fieldworkStart": "2026-06-17",
+    "fieldworkEnd": "2026-06-18",
+    "population": "1 003 adultes. Échantillon représentatif de la population française.",
+    "method": "Questionnaire en ligne par quotas. Tableau des marges et exemples dans la notice, p. 4.",
+    "methodPage": 3,
+    "pdfUrl": "https://www.commission-des-sondages.fr/notices/files/notices/2026/juin/10210-pres-seconds-tours-ifop-marianne-24-juin.pdf",
+    "scope": "Les personnes interrogées disent quels duels elles souhaitent voir se produire.",
+    "tables": [
+      {
+        "title": "Part souhaitant que le duel ait lieu",
+        "page": 7,
+        "question": "Pour chacun de ces duels, souhaiteriez-vous qu’il survienne au second tour ?",
+        "base": "Ensemble des 1 003 personnes interrogées, résultats pondérés.",
+        "results": [
+          {
+            "label": "Édouard Philippe face à Jordan Bardella",
+            "percentage": 45.3
+          },
+          {
+            "label": "Édouard Philippe face à Marine Le Pen",
+            "percentage": 38.9
+          },
+          {
+            "label": "Gabriel Attal face à Jordan Bardella",
+            "percentage": 38.6
+          },
+          {
+            "label": "Jean-Luc Mélenchon face à Jordan Bardella",
+            "percentage": 35.4
+          },
+          {
+            "label": "Jean-Luc Mélenchon face à Marine Le Pen",
+            "percentage": 34.4
+          },
+          {
+            "label": "Gabriel Attal face à Marine Le Pen",
+            "percentage": 33.6
+          },
+          {
+            "label": "Bruno Retailleau face à Jordan Bardella",
+            "percentage": 32.5
+          },
+          {
+            "label": "Raphaël Glucksmann face à Jordan Bardella",
+            "percentage": 32.4
+          },
+          {
+            "label": "François Hollande face à Jordan Bardella",
+            "percentage": 26.8
+          },
+          {
+            "label": "Raphaël Glucksmann face à Édouard Philippe",
+            "percentage": 26.4
+          },
+          {
+            "label": "Raphaël Glucksmann face à Bruno Retailleau",
+            "percentage": 25.6
+          },
+          {
+            "label": "Jean-Luc Mélenchon face à Édouard Philippe",
+            "percentage": 24.6
+          },
+          {
+            "label": "François Hollande face à Édouard Philippe",
+            "percentage": 23.4
+          }
+        ],
+        "note": "Somme des réponses « Oui, certainement » et « Oui, probablement » dans la notice. Chaque duel est évalué séparément."
+      }
+    ],
+    "publication": {
+      "url": "https://www.ifopgroup.com/article/les-seconds-tours-souhaites-a-la-presidentielle/",
+      "date": "2026-06-24",
+      "label": "Étude publiée par l’Ifop"
+    }
   }
 ]

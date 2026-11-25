@@ -1,0 +1,87 @@
+{
+  "unit": "point-de-pourcentage",
+  "scores": [10, 20, 50],
+  "tables": [
+    {
+      "notice": "10392",
+      "institute": "Ifop",
+      "url": "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10392-pres-iv-ifop-sud-radio-20-novembre.pdf",
+      "page": 4,
+      "sha256": "176be3ccfd68b40df531e1812b28b9c5084dcb43c58ae36c687b84b930499c09",
+      "confidence": 95,
+      "description": "Extrait du tableau indicatif publié dans la notice Ifop pour Sud Radio.",
+      "rows": [
+        {
+          "people": 600,
+          "margins": [2.4, 3.3, 4.1]
+        },
+        {
+          "people": 1000,
+          "margins": [1.8, 2.5, 3.1]
+        },
+        {
+          "people": 1500,
+          "margins": [1.5, 2.0, 2.5]
+        },
+        {
+          "people": 2000,
+          "margins": [1.3, 1.8, 2.2]
+        }
+      ]
+    },
+    {
+      "notice": "10325",
+      "institute": "Cluster17",
+      "url": "https://www.commission-des-sondages.fr/notices/files/notices/2026/octobre/10325-pres-focus-droite-et-centre-cluster17-le-point-18-octobre.pdf",
+      "page": 3,
+      "sha256": "7678cf3f94ad6af87a57bb66d4f2f7a0b7fb5b209fbff75fa02343b4acb3a7cb",
+      "confidence": null,
+      "description": "Effectifs utiles pondérés des cinq hypothèses de premier tour testées pour Le Point.",
+      "rows": [
+        {
+          "people": 813,
+          "margins": [2.1, 2.7, 3.4]
+        },
+        {
+          "people": 821,
+          "margins": [2.1, 2.7, 3.4]
+        },
+        {
+          "people": 828,
+          "margins": [2.0, 2.7, 3.4]
+        },
+        {
+          "people": 852,
+          "margins": [2.0, 2.7, 3.4]
+        }
+      ]
+    },
+    {
+      "notice": "10195",
+      "institute": "Ipsos bva",
+      "url": "https://www.commission-des-sondages.fr/notices/files/notices/2026/juin/10195-pres-ipsos-bva-le-parisien-1er-juin.pdf",
+      "page": 3,
+      "sha256": "8bcc8e2b96425d8cf99a6948c19250d20f62f45fa67bfbe0d270613be03391a9",
+      "confidence": 95,
+      "description": "Extrait du tableau publié pour Le Parisien. La base de 1 079 correspond à une hypothèse de premier tour.",
+      "rows": [
+        {
+          "people": 600,
+          "margins": [2.4, 3.2, 4.0]
+        },
+        {
+          "people": 800,
+          "margins": [2.1, 2.8, 3.5]
+        },
+        {
+          "people": 1000,
+          "margins": [1.9, 2.5, 3.1]
+        },
+        {
+          "people": 1079,
+          "margins": [1.8, 2.4, 3.0]
+        }
+      ]
+    }
+  ]
+}
