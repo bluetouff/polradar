@@ -56,7 +56,7 @@ test('un calcul et ses sources restent lisibles sans JavaScript', async ({
     const page = await context.newPage();
     await page.goto('/economie/simulateurs/carburants/');
     await expect(page.locator('[data-household]')).toBeHidden();
-    await expect(page.locator('[data-simulator-row]')).toHaveCount(4);
+    await expect(page.locator('[data-simulator-row]')).toHaveCount(5);
     await expect(page.locator('[data-simulator-amount]').first()).toHaveText(
       /78,06/,
     );
@@ -70,6 +70,51 @@ test('un calcul et ses sources restent lisibles sans JavaScript', async ({
   } finally {
     await context.close();
   }
+});
+
+test('le temps de travail distingue les durées générales et les propositions ciblées', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 360, height: 800 });
+  await page.goto('/economie/simulateurs/temps-de-travail/');
+  const weeks = page.getByRole('textbox', { name: 'Semaines travaillées' });
+  await weeks.fill('2');
+  await weeks.press('Enter');
+  const calculated = page.locator('[data-simulator-results]');
+  await expect(
+    calculated.locator('[data-simulator-amount]').first(),
+  ).toHaveText('70 h');
+  await expect(
+    calculated.getByRole('heading', { name: 'Gilles Platret' }),
+  ).toBeVisible();
+  await expect(calculated.getByText('32 heures')).toHaveCount(0);
+
+  await page
+    .getByRole('link', { name: /autres propositions documentées/ })
+    .click();
+  const positions = page.getByRole('region', {
+    name: 'Durées ciblées et autres propositions',
+  });
+  await expect(
+    positions.getByRole('heading', { name: 'Jean-Luc Mélenchon' }),
+  ).toBeVisible();
+  await expect(
+    positions.getByText(/32 heures pour les métiers pénibles ou de nuit/),
+  ).toBeVisible();
+  await expect(
+    positions.getByRole('heading', { name: 'Édouard Philippe' }),
+  ).toBeVisible();
+  await expect(
+    positions.getByRole('heading', { name: 'Parti socialiste' }),
+  ).toBeVisible();
+  await expect(
+    positions.getByRole('link', {
+      name: /semaine en quatre jours à nombre d’heures mensuelles constant/,
+    }),
+  ).toHaveAttribute(
+    'href',
+    '/mesures/attal-semaine-quatre-jours-heures-mensuelles/',
+  );
 });
 
 test('le thème expression montre le statut et le passage officiel du DSA', async ({

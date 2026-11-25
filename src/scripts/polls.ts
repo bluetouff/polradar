@@ -11,6 +11,8 @@ import type { DocumentedPoll } from '../lib/data';
 const round = document.querySelector<HTMLSelectElement>('#poll-round')!,
   institute = document.querySelector<HTMLSelectElement>('#poll-institute')!,
   scenario = document.querySelector<HTMLSelectElement>('#poll-scenario')!,
+  trend = document.querySelector<HTMLElement>('#poll-trend')!,
+  workspace = document.querySelector<HTMLElement>('.poll-workspace')!,
   plot = document.querySelector<HTMLElement>('#poll-plot')!,
   legend = document.querySelector<HTMLElement>('#poll-legend')!,
   range = document.querySelector<HTMLInputElement>('#poll-wave')!,
@@ -66,7 +68,7 @@ async function start() {
   }
   function renderLegend() {
     legend.replaceChildren();
-    if (!rows.length) return;
+    if (rows.length < 2) return;
     for (const result of rows[0].results) {
       const label = el('label'),
         input = el('input');
@@ -89,10 +91,7 @@ async function start() {
   }
   function renderPlot() {
     plot.replaceChildren();
-    if (!rows.length) {
-      plot.append(el('p', 'Aucune enquête pour cette sélection.', 'notice'));
-      return;
-    }
+    if (rows.length < 2) return;
     const geometry = chartGeometry(
         rows,
         active.length ? active : rows[0].results.map((item) => item.id),
@@ -149,13 +148,11 @@ async function start() {
             x: String(tick.x),
             y: '292',
             'text-anchor':
-              rows.length === 1
-                ? 'middle'
-                : tick.index === 0
-                  ? 'start'
-                  : tick.index === rows.length - 1
-                    ? 'end'
-                    : 'middle',
+              tick.index === 0
+                ? 'start'
+                : tick.index === rows.length - 1
+                  ? 'end'
+                  : 'middle',
           },
           shortDate(tick.date),
         ),
@@ -164,54 +161,55 @@ async function start() {
     for (const line of geometry.lines) {
       const group = svg('g', { class: `plot-series series-${line.color}` });
       group.append(svg('path', { class: 'plot-line', d: line.path }));
-      for (const point of line.points) {
-        const label = `${line.name}, ${number(point.value)} %, terrain achevé le ${date(point.date)}`;
-        const marker = svg('circle', {
-          class: `plot-point${point.index === index ? ' selected' : ''}`,
-          cx: String(point.x),
-          cy: String(point.y),
-          r: point.index === index ? '6' : '4.5',
-          'data-candidate': line.id,
-          'data-index': String(point.index),
-          tabindex: '0',
-          role: 'button',
-          'aria-label': label,
-        });
-        marker.append(svg('title', {}, label));
-        const activate = () => {
-          index = point.index;
-          range.value = String(index);
-          const focused = document.activeElement === marker;
-          render();
-          if (focused)
-            plot
-              .querySelector<SVGElement>(
-                `[data-candidate="${line.id}"][data-index="${point.index}"]`,
-              )
-              ?.focus();
-          status.textContent = `${line.name} : ${number(point.value)} % · ${date(point.date)}`;
-        };
-        marker.addEventListener('click', activate);
-        marker.addEventListener('keydown', (event) => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            activate();
-          }
-        });
-        group.append(marker);
-      }
       chart.append(group);
+    }
+    for (const wave of geometry.waves) {
+      const label = `Afficher les résultats du ${date(wave.date)}`;
+      const marker = svg('g', {
+        class: `plot-wave${wave.index === index ? ' selected' : ''}`,
+        'data-index': String(wave.index),
+        tabindex: '0',
+        role: 'button',
+        'aria-label': label,
+        'aria-pressed': String(wave.index === index),
+      });
+      const line = {
+        x1: String(wave.x),
+        x2: String(wave.x),
+        y1: '48',
+        y2: '258',
+      };
+      marker.append(
+        svg('title', {}, label),
+        svg('line', { ...line, class: 'plot-wave-target' }),
+        svg('line', { ...line, class: 'plot-wave-guide' }),
+      );
+      const activate = () => {
+        index = wave.index;
+        range.value = String(index);
+        const focused = document.activeElement === marker;
+        render();
+        if (focused)
+          plot
+            .querySelector<SVGElement>(`.plot-wave[data-index="${index}"]`)
+            ?.focus();
+      };
+      marker.addEventListener('click', activate);
+      marker.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          activate();
+        }
+      });
+      chart.append(marker);
     }
     plot.append(chart);
   }
   function render() {
+    const hasHistory = rows.length > 1;
+    trend.hidden = !hasHistory;
+    workspace.dataset.mode = hasHistory ? 'history' : 'snapshot';
     renderPlot();
-    document.getElementById('poll-trend-heading')!.textContent =
-      rows.length > 1
-        ? 'Évolution à scénario identique'
-        : rows.length === 1
-          ? 'Une seule enquête pour ce scénario'
-          : 'Évolution des résultats';
     bars.replaceChildren();
     method.replaceChildren();
     embedLink.hidden = !rows.length;

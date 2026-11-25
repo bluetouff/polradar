@@ -51,9 +51,9 @@ test('les nouvelles vues restent lisibles de 320 à 1440 pixels', async ({
         expect(compressed).toBe(false);
       }
       if (route === '/sondages/') {
-        await page.locator('#poll-options summary').click();
-        await page.locator('#poll-institute').selectOption('Elabe');
+        await page.goto('/sondages/#enquete=elabe-2026-11-14-philippe');
         await expect(page.locator('#poll-status')).toContainText('Elabe');
+        await expect(page.locator('#poll-plot svg')).toBeVisible();
         const textSizes = await page
           .locator('#poll-plot .chart-tick')
           .evaluateAll((nodes) =>
@@ -371,7 +371,15 @@ test('les sondages séparent les tours et permettent de choisir une vague', asyn
     'group',
   );
   await expect(page.locator('#poll-bars .poll-bar-row')).toHaveCount(11);
+  await expect(page.locator('#poll-plot circle')).toHaveCount(0);
+  const wave = page.locator('#poll-plot .plot-wave').first();
+  await wave.focus();
+  await page.keyboard.press('Enter');
+  await expect(wave).toHaveAttribute('aria-pressed', 'true');
+  await expect(wave).toBeFocused();
+  await expect(page.locator('#poll-wave')).toHaveValue('0');
   await page.locator('#poll-wave').focus();
+  await page.keyboard.press('End');
   await page.keyboard.press('Home');
   await expect(page.locator('#poll-wave')).toHaveValue('0');
   await expect(page.locator('#poll-selected-date')).toContainText('août');
@@ -390,11 +398,6 @@ test('les sondages séparent les tours et permettent de choisir une vague', asyn
   const download = page.waitForEvent('download');
   await page.locator('#poll-export').click();
   expect((await download).suggestedFilename()).toContain('elabe');
-  const marker = page.locator('#poll-plot .plot-point').first();
-  await marker.focus();
-  await page.keyboard.press('Enter');
-  await expect(page.locator('#poll-wave')).toHaveValue('0');
-  await expect(page.locator('#poll-plot .plot-point:focus')).toHaveCount(1);
 });
 
 test('les flux RSS sont valides, ciblés et gardent la précision des dates', async ({
@@ -472,7 +475,12 @@ test('les vues initiales et les notices restent disponibles sans JavaScript', as
     }),
     page = await context.newPage();
   await page.goto(`${testOrigin}/sondages/`);
-  await expect(page.locator('.poll-chart.chart-narrow')).toBeVisible();
+  await expect(page.locator('.poll-workspace')).toHaveAttribute(
+    'data-mode',
+    'snapshot',
+  );
+  await expect(page.locator('#poll-trend')).toBeHidden();
+  await expect(page.locator('#poll-plot svg')).toHaveCount(0);
   await expect(page.locator('#poll-bars .poll-bar-row').first()).toBeVisible();
   await expect(
     page

@@ -1,0 +1,99 @@
+---
+import Icon from './Icon.astro';
+import { attributionLabel } from '../lib/attribution.mjs';
+import { candidateById, measureById, scopes } from '../lib/data';
+
+interface Props {
+  id: string;
+  heading: string;
+  positions: { measure: string; detail?: string }[];
+}
+
+const { id, heading, positions } = Astro.props;
+const groups = new Map<
+  string,
+  { id: string; title: string; detail: string; scope: string }[]
+>();
+for (const position of positions) {
+  const measure = measureById(position.measure);
+  const author = attributionLabel(
+    measure,
+    candidateById(measure.candidate).name,
+  );
+  if (!groups.has(author)) groups.set(author, []);
+  groups.get(author)!.push({
+    id: measure.id,
+    title: measure.title,
+    detail: position.detail ?? measure.description,
+    scope: scopes[measure.scope],
+  });
+}
+---
+
+<section class="simulator-proposals" aria-labelledby={id}>
+  <h2 id={id}>{heading}</h2>
+  <div class="simulator-proposal-grid">
+    {[...groups]
+      .sort(([a], [b]) => a.localeCompare(b, 'fr'))
+      .map(([author, proposals]) => (
+        <article class="simulator-proposal">
+          <h3>{author}</h3>
+          {proposals.map((proposal) => (
+            <div class="simulator-proposal-detail">
+              <p>{proposal.detail}</p>
+              <a
+                href={'/mesures/' + proposal.id + '/'}
+                aria-label={proposal.title + ' · fiche et source'}
+              >
+                <Icon name="source" />
+                {proposal.scope} · fiche et source
+              </a>
+            </div>
+          ))}
+        </article>
+      ))}
+  </div>
+</section>
+
+<style>
+  .simulator-proposals {
+    margin-block: 1.6rem 2rem;
+  }
+  .simulator-proposals h2 {
+    margin: 0 0 0.7rem;
+    scroll-margin-top: 1rem;
+  }
+  .simulator-proposal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17.5rem), 1fr));
+    gap: 0.75rem;
+  }
+  .simulator-proposal {
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    background: linear-gradient(140deg, #e6f2ef, var(--sheet) 72%);
+  }
+  .simulator-proposal h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.03rem;
+    color: var(--ink);
+  }
+  .simulator-proposal-detail + .simulator-proposal-detail {
+    border-top: 1px solid var(--line);
+    margin-top: 0.55rem;
+    padding-top: 0.5rem;
+  }
+  .simulator-proposal-detail p {
+    margin: 0 0 0.25rem;
+    line-height: 1.45;
+  }
+  .simulator-proposal-detail a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    min-height: var(--target-size);
+    font-size: 0.86rem;
+    color: var(--accent);
+  }
+</style>

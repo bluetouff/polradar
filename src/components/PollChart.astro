@@ -56,13 +56,11 @@ const shortDate = (value: string) =>
           x={tick.x}
           y="292"
           text-anchor={
-            rows.length === 1
-              ? 'middle'
-              : tick.index === 0
-                ? 'start'
-                : tick.index === rows.length - 1
-                  ? 'end'
-                  : 'middle'
+            tick.index === 0
+              ? 'start'
+              : tick.index === rows.length - 1
+                ? 'end'
+                : 'middle'
           }
         >
           {shortDate(tick.date)}
@@ -72,11 +70,6 @@ const shortDate = (value: string) =>
     {geometry.lines.map((line) => (
       <g class={`plot-series series-${line.color}`}>
         <path class="plot-line" d={line.path} />
-        {line.points.map((point) => (
-          <circle class="plot-point" cx={point.x} cy={point.y} r="5">
-            <title>{line.name} : {point.value.toLocaleString('fr-FR')} % · terrain achevé le {shortDate(point.date)}</title>
-          </circle>
-        ))}
       </g>
     ))}
   </svg>

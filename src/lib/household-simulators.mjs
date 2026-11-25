@@ -8,9 +8,10 @@ const fuelNote =
 /**
  * @typedef {{title: string, url: string}} Link
  * @typedef {{id: string, label: string, value: string, min: number, max: number, precision: number, options?: {value: string, label: string}[]}} Field
- * @typedef {{detail: string, value?: number | null, nationality?: number}} Rule
+ * @typedef {{detail: string, value?: number | null, nationality?: number, priceBand?: [number, number]}} Rule
  * @typedef {Rule & ({measure: string} | {label: string, context: string, source: Link})} Alternative
- * @typedef {{id: string, title: string, icon: string, summary: string, measureUnit: 'euros' | 'heures' | 'eligible', resultTitle: string, fields: Field[], baseline: Rule & {label: string, source: Link}, alternatives: Alternative[], method: string, example?: string, sources?: Link[]}} Simulator
+ * @typedef {{measure: string, detail?: string}} Position
+ * @typedef {{id: string, title: string, icon: string, summary: string, measureUnit: 'euros' | 'heures' | 'eligible', resultTitle: string, fields: Field[], baseline: Rule & {label: string, source: Link}, alternatives: Alternative[], positions?: Position[], method: string, example?: string, sources?: Link[]}} Simulator
  */
 
 /** @type {Simulator[]} */
@@ -19,7 +20,7 @@ export const householdSimulators = [
     id: 'temps-de-travail',
     title: 'Temps de travail',
     icon: 'travail',
-    summary: 'Comparer les durées hebdomadaires proposées.',
+    summary: 'Comparer les durées hebdomadaires et les règles proposées.',
     measureUnit: 'heures',
     resultTitle: 'Heures sur la période choisie',
     fields: [
@@ -56,6 +57,49 @@ export const householdSimulators = [
         measure: 'kazib-travail-temps',
         detail: '28 heures par semaine',
         value: 28,
+      },
+      {
+        measure: 'platret-retour-39-heures',
+        detail: '39 heures par semaine',
+        value: 39,
+      },
+    ],
+    positions: [
+      {
+        measure: 'attal-semaine-quatre-jours-heures-mensuelles',
+        detail:
+          'Répartir le même nombre d’heures mensuelles sur quatre jours par semaine, lorsque l’activité le permet.',
+      },
+      { measure: 'attal-travail-plafond-heures-supplementaires' },
+      { measure: 'arthaud-reduire-temps-charge-travail' },
+      { measure: 'lisnard-temps-de-travail-accords' },
+      {
+        measure: 'melenchon-travail-2',
+        detail:
+          '35 heures comme durée légale générale, 32 heures pour les métiers pénibles ou de nuit, puis extension par accord collectif.',
+      },
+      {
+        measure: 'philippe-travail-1',
+        detail:
+          'Laisser chaque entreprise fixer sa durée par accord. Les seuils de 35 et 37 heures servent à définir les exonérations.',
+      },
+      { measure: 'retailleau-temps-de-travail-accord-entreprise' },
+      { measure: 'riner-travail-volontaire' },
+      {
+        measure: 'roussel-semaine-32-heures-horizon',
+      },
+      { measure: 'labib-travail-temps' },
+      {
+        measure:
+          'villepin-reserver-aux-partenaires-sociaux-certains-choix-sur-les-salaires-et-le-temps-de',
+      },
+      {
+        measure:
+          'ecologistes-passer-a-32-heures-sans-baisse-de-salaire-pour-les-metiers-penibles-ou-de-nu',
+      },
+      {
+        measure:
+          'ps-experimenter-la-semaine-de-quatre-jours-par-la-negociation-collective',
       },
     ],
     method:
@@ -118,6 +162,17 @@ export const householdSimulators = [
         detail: '1 690 € nets par mois',
         value: 169000,
       },
+      {
+        measure: 'roussel-smic-1700-net',
+        detail: '1 700 € nets par mois',
+        value: 170000,
+      },
+    ],
+    positions: [
+      {
+        measure: 'tondelier-travail-1',
+        detail: 'Objectif de 2 000 € bruts par mois dès 2027.',
+      },
     ],
     method:
       'Comparaison à temps plein avec le montant net indicatif publié au 1ᵉʳ juin 2026 dans le cas général. Chaque scénario multiplie un montant mensuel constant par le nombre de mois saisi. Les aides, l’impôt et les effets sur les autres salaires restent hors du calcul.',
@@ -178,12 +233,18 @@ export const householdSimulators = [
           url: 'https://www.assemblee-nationale.fr/dyn/17/amendements/3210A/AN/635',
         },
       },
+      {
+        measure: 'villepin-encadrer-le-prix-des-carburants-par-la-fiscalite',
+        detail: 'Fourchette proposée de 1,75 à 2,50 € le litre',
+        priceBand: [1.75, 2.5],
+      },
     ],
+    positions: [{ measure: 'labib-fiscalite-tva-progressivite' }],
     sources: [
       { title: 'DGEC · prix TTC au 20 novembre 2026, page 6', url: fuelNote },
     ],
     method:
-      'Chaque scénario conserve le volume et s’applique séparément. La comparaison retranche 40 centimes par litre aux objectifs de baisse, en supposant un effet intégral à la pompe. Pour la TVA, elle divise le prix saisi par 1,20 puis applique 5,5 % sur la même base. Ces calculs ne prévoient ni les marges des stations ni les prix futurs.',
+      'Chaque proposition est appliquée séparément au même volume. La baisse de 40 centimes suppose une répercussion intégrale à la pompe. La simulation de TVA divise le prix saisi par 1,20 puis applique le taux de 5,5 % à la même base. Pour la fourchette de prix, le scénario suppose que les accises ramènent un prix extérieur à la fourchette à sa borne la plus proche.',
   },
   {
     id: 'loyers',
@@ -247,6 +308,14 @@ export const householdSimulators = [
         value: 1,
       },
     ],
+    positions: [
+      {
+        measure:
+          'philippe-donner-aux-maires-la-decision-sur-lencadrement-des-loyers',
+      },
+      { measure: 'retailleau-logement-loyers' },
+      { measure: 'tondelier-logement-loyers-encadrement' },
+    ],
     method:
       'Sélectionnez deux indices du même trimestre et de la zone du logement. La révision multiplie le loyer actuel par le rapport des indices. Certaines révisions sont interdites, dont celles de logements classés F ou G sous les conditions décrites par Service Public. Pour le gel et l’objectif de baisse, la comparaison illustre seulement l’effet annoncé sur le loyer saisi.',
   },
@@ -293,6 +362,15 @@ export const householdSimulators = [
         detail: 'Suppression des droits de succession en ligne directe',
         value: 0,
       },
+    ],
+    positions: [
+      { measure: 'billetdoux-heritage-bareme' },
+      { measure: 'collovati-relever-le-seuil-dimposition-des-successions' },
+      { measure: 'dupont-aignan-fiscalite-transmission' },
+      { measure: 'glucksmann-grands-heritages' },
+      { measure: 'melenchon-fiscalite-petits-heritages' },
+      { measure: 'roussel-fiscalite-heritages' },
+      { measure: 'philippot-petits-heritages' },
     ],
     sources: [
       {
@@ -357,6 +435,12 @@ export const householdSimulators = [
         value: 1,
       },
       {
+        measure: 'philippe-social-1',
+        detail:
+          'Allocation unifiée dès le premier enfant, avec un montant dégressif selon le revenu',
+        value: 1,
+      },
+      {
         measure:
           'ecologistes-verser-des-allocations-familiales-de-meme-montant-des-le-premier-enfant',
         detail: 'Même montant par enfant dès le premier',
@@ -377,8 +461,12 @@ export const householdSimulators = [
         nationality: 2,
       },
     ],
+    positions: [
+      { measure: 'dlf-allocations-universelles' },
+      { measure: 'dlf-allocations-assiduite-scolaire' },
+    ],
     method:
-      'Le scénario suppose les conditions de résidence et de séjour remplies en métropole. Il compare le seuil d’enfants et les conditions de nationalité que les textes précisent, à autres conditions constantes. Pour Saforcada, le résultat concerne la nouvelle allocation proposée. Les montants dépendent des barèmes et des ressources.',
+      'Le scénario suppose les conditions de résidence et de séjour remplies en métropole. Il compare le seuil d’enfants et les conditions de nationalité que les textes précisent, à autres conditions constantes. Les scénarios de Philippe et de Saforcada décrivent leurs allocations proposées. Les montants dépendent des barèmes et des ressources.',
   },
 ];
 
@@ -410,6 +498,12 @@ const calculations = {
   carburants: ({ litres, price }, row, baseline) => {
     const cents = litres * price * 100;
     if (baseline) return Math.round(cents);
+    if (row.priceBand) {
+      const [floor, ceiling] = row.priceBand;
+      return Math.round(
+        litres * Math.min(ceiling, Math.max(floor, price)) * 100,
+      );
+    }
     if (row.value === undefined) return Math.round((cents * 1055) / 1200);
     return Math.round(cents - litres * row.value);
   },

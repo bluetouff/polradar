@@ -1,6 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import Icon from '../../../components/Icon.astro';
+import SimulatorProposals from '../../../components/SimulatorProposals.astro';
 import { sourceById } from '../../../lib/data';
 import { euro } from '../../../lib/csg-paie.mjs';
 import {
@@ -36,6 +37,9 @@ const number = (n: number) => n.toLocaleString('fr-FR');
         Comparez trois propositions sur les mêmes kilowattheures. Tarif Bleu,
         option Base, en France métropolitaine continentale. Abonnement exclu.
       </p>
+      <a href="#prix-electricite-propositions">
+        Autres propositions sur le prix de l’électricité ↓
+      </a>
     </div>
   </header>
 
@@ -156,6 +160,21 @@ const number = (n: number) => n.toLocaleString('fr-FR');
       </div>
     </section>
   </section>
+  <SimulatorProposals
+    id="prix-electricite-propositions"
+    heading="Autres propositions sur le prix de l’électricité"
+    positions={[
+      { measure: 'attal-stabilite-prix-electricite' },
+      { measure: 'dupont-aignan-climat-electricite' },
+      { measure: 'glucksmann-climat-prix-electricite' },
+      { measure: 'lepen-renegocier-prix-electricite-europe' },
+      { measure: 'ps-climat-tarifs-reglementes' },
+      {
+        measure:
+          'retailleau-stabiliser-le-prix-de-lelectricite-par-un-contrat-a-double-sens',
+      },
+    ]}
+  />
   <section class="methods" aria-labelledby="calculation">
     <h2 id="calculation">Comment lire les écarts</h2>
     <p>

@@ -1,6 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import Icon from '../../../components/Icon.astro';
+import SimulatorProposals from '../../../components/SimulatorProposals.astro';
 import { attributionLabel } from '../../../lib/attribution.mjs';
 import { candidateById, measureById, scopes } from '../../../lib/data';
 import {
@@ -73,6 +74,11 @@ const rows = [
     <div>
       <h1>{simulator.title}</h1>
       <p>{simulator.summary}</p>
+      {simulator.positions && (
+        <a href="#propositions-associees">
+          {simulator.positions.length} autres propositions documentées ↓
+        </a>
+      )}
     </div>
   </header>
   <div class="calculator-grid">
@@ -176,7 +182,7 @@ const rows = [
                 )}
               </div>
             </div>
-            {numeric && (
+            {numeric && amounts[index] !== null && (
               <svg
                 class="calculator-track"
                 aria-hidden="true"
@@ -206,6 +212,18 @@ const rows = [
       </div>
     </section>
   </div>
+
+  {simulator.positions && (
+    <SimulatorProposals
+      id="propositions-associees"
+      heading={
+        simulator.measureUnit === 'heures'
+          ? 'Durées ciblées et autres propositions'
+          : 'Autres propositions sur ce sujet'
+      }
+      positions={simulator.positions}
+    />
+  )}
 
   <section class="calculator-method" aria-labelledby="method">
     <h2 id="method">Comment le résultat est calculé</h2>

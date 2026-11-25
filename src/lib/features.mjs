@@ -553,7 +553,16 @@ export function chartGeometry(rows, activeIds, width = 760) {
   const left = width < 480 ? 36 : 52,
     right = width - 24;
   if (!rows.length)
-    return { width, left, right, max: 100, lines: [], ticks: [], dates: [] };
+    return {
+      width,
+      left,
+      right,
+      max: 100,
+      lines: [],
+      ticks: [],
+      dates: [],
+      waves: [],
+    };
   if (rows.some((row) => pollSignature(row) !== pollSignature(rows[0])))
     throw Error('Scénarios incompatibles');
   const values = rows.flatMap((row) =>
@@ -605,6 +614,11 @@ export function chartGeometry(rows, activeIds, width = 760) {
     right,
     max,
     lines,
+    waves: rows.map((row, index) => ({
+      index,
+      date: row.fieldworkEnd,
+      x: x(row),
+    })),
     ticks: Array.from({ length: tickCount + 1 }, (_, index) => ({
       value: (index * max) / tickCount,
       y: y((index * max) / tickCount),

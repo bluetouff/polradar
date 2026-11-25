@@ -3,6 +3,7 @@ import Base from '../../../layouts/Base.astro';
 import Icon from '../../../components/Icon.astro';
 import RetirementBoard from '../../../components/RetirementBoard.astro';
 import RetirementEmbed from '../../../components/RetirementEmbed.astro';
+import SimulatorProposals from '../../../components/SimulatorProposals.astro';
 import comparison from '../../../data/retirement-comparison.json';
 import { dataset, formatDate } from '../../../lib/data';
 import {
@@ -65,6 +66,9 @@ const { programmes, panels } = retirementComparison(
     <a class="button" href="/questions/retraites-conditions-depart/">
       Âge de départ et durée de cotisation ↗
     </a>
+    <a class="button" href="#autres-propositions-retraites">
+      Autres propositions de départ ↓
+    </a>
   </nav>
   <section class="retirement-cohorts" aria-labelledby="retirement-generation">
     <div>
@@ -88,6 +92,16 @@ const { programmes, panels } = retirementComparison(
     </ul>
   </section>
   <RetirementBoard cohort={cohort} panels={panels} embed />
+  <SimulatorProposals
+    id="autres-propositions-retraites"
+    heading="Autres propositions sur l’âge et la durée de cotisation"
+    positions={[
+      { measure: 'attal-retraites-1' },
+      { measure: 'lepen-retraites-age-carriere' },
+      { measure: 'roussel-retraites-1' },
+      { measure: 'ps-retraites-age-cotisation' },
+    ]}
+  />
   <RetirementEmbed cohort={cohort} />
   <section
     class="retirement-references section-space"

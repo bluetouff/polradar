@@ -859,7 +859,7 @@
     "scope": "campagne",
     "edition": "Campagne 2027",
     "note": "",
-    "checked": "2026-11-20",
+    "checked": "2026-11-25",
     "id": "attal-travail",
     "history": [
       {
@@ -876,6 +876,11 @@
         "date": "2026-11-20",
         "event": "Enrichissement du dossier",
         "summary": "Ajout de précisions issues des publications et interventions citées."
+      },
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "Une nouvelle fiche référencée."
       }
     ]
   },
@@ -1992,13 +1997,18 @@
       "Recruter des agents dans les services publics",
       "Relever de 10 % le point d’indice des fonctionnaires",
       "Établir la parité entre salariés et actionnaires dans les conseils d’administration",
-      "Rétablir les CHSCT et les délégués du personnel"
+      "Rétablir les CHSCT et les délégués du personnel",
+      "Viser une semaine de 32 heures à terme",
+      "Porter le SMIC à 1 700 € nets par mois",
+      "Relever de 30 % le point d’indice de la fonction publique"
     ],
     "sources": [
       "pcf-work",
       "roussel-franceinfo-services-publics",
       "pcf-rhone-agents-publics-2026",
-      "roussel-huma-septembre-2026"
+      "roussel-huma-septembre-2026",
+      "roussel-lci-septembre",
+      "roussel-universite"
     ],
     "scope": "orientation",
     "edition": "Discours de novembre 2025 et entretien à Franceinfo de novembre 2026",
@@ -2025,6 +2035,11 @@
         "date": "2026-11-25",
         "event": "Relecture des documents d’origine",
         "summary": "2 nouvelles propositions référencées."
+      },
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "3 nouvelles fiches référencées."
       }
     ]
   },
@@ -2709,13 +2724,16 @@
       "Rendre les transports publics gratuits dans les métropoles",
       "Baisser les prix des billets de TGV et de TER",
       "Réduire le prix de l’électricité",
-      "Planifier une sortie des énergies fossiles en quinze ans"
+      "Planifier une sortie des énergies fossiles en quinze ans",
+      "Installer deux millions de pompes à chaleur par an dans les logements",
+      "Proposer un million de voitures électriques à moins de 10 000 € à l’achat"
     ],
     "sources": [
       "pcf-work",
       "roussel-pacte-2026",
       "pcf-loos-projet-2027",
-      "roussel-huma-septembre-2026"
+      "roussel-huma-septembre-2026",
+      "roussel-universite"
     ],
     "scope": "orientation",
     "edition": "Discours de Marseille du 23 novembre 2025, publié le 26 novembre 2025",
@@ -2746,6 +2764,11 @@
         "date": "2026-11-25",
         "event": "Relecture des documents d’origine",
         "summary": "Une nouvelle proposition référencée."
+      },
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "2 nouvelles fiches référencées."
       }
     ]
   },
@@ -2873,7 +2896,8 @@
       "Mettre en place ce fonds pour moderniser les usines.",
       "Supprimer les charges dès la première heure supplémentaire",
       "Partager la baisse des cotisations entre salariés et employeurs",
-      "Mettre fin à l’indemnisation après trois offres raisonnables refusées"
+      "Mettre fin à l’indemnisation après trois offres raisonnables refusées",
+      "Laisser négocier les horaires de travail dans l’entreprise"
     ],
     "sources": [
       "retailleau-entreprises",
@@ -2889,12 +2913,13 @@
       "retailleau-mesure-56",
       "retailleau-mesure-95",
       "retailleau-mesure-96",
-      "retailleau-mesure-101"
+      "retailleau-mesure-101",
+      "retailleau-lci-patrons"
     ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
     "note": "",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "history": [
       {
         "date": "2026-11-17",
@@ -2910,6 +2935,11 @@
         "date": "2026-11-24",
         "event": "Lecture du programme",
         "summary": "12 nouvelles fiches documentées."
+      },
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "Une nouvelle fiche référencée."
       }
     ]
   },
@@ -3680,18 +3710,24 @@
       "Soumettre à référendum les lois sur le pouvoir judiciaire.",
       "Trois cinquièmes de votes favorables pour les nominations au Conseil constitutionnel.",
       "Un bilan public mensuel de l’action politique.",
-      "Associer les maires aux réformes territoriales."
+      "Associer les maires aux réformes territoriales.",
+      "Réunir régulièrement la société civile pour préparer les réformes démocratiques"
     ],
     "sources": ["egger-programme-2027"],
     "scope": "campagne",
     "edition": "Programme présidentiel 2027 de Solution Démocratique ; initiatives citoyennes conditionnées à l’adoption de la réforme constitutionnelle",
     "note": "",
-    "checked": "2026-11-17",
+    "checked": "2026-11-25",
     "history": [
       {
         "date": "2026-11-17",
         "event": "Fiche intégrée",
         "summary": "Propositions relevées dans les documents officiels cités."
+      },
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "Une nouvelle fiche référencée."
       }
     ]
   },
@@ -3700,17 +3736,25 @@
     "candidate": "egger",
     "theme": "fiscalite",
     "title": "Soumettre chaque budget de l’État à référendum",
-    "bullets": ["Soumettre chaque budget de l’État à référendum."],
+    "bullets": [
+      "Soumettre chaque budget de l’État à référendum.",
+      "Présenter publiquement le budget et rendre ses débats accessibles"
+    ],
     "sources": ["egger-programme-2027"],
     "scope": "campagne",
     "edition": "Programme présidentiel 2027 de Solution Démocratique ; initiatives citoyennes conditionnées à l’adoption de la réforme constitutionnelle",
     "note": "",
-    "checked": "2026-11-17",
+    "checked": "2026-11-25",
     "history": [
       {
         "date": "2026-11-17",
         "event": "Fiche intégrée",
         "summary": "Propositions relevées dans les documents officiels cités."
+      },
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "Une nouvelle fiche référencée."
       }
     ]
   },
@@ -3721,18 +3765,25 @@
     "title": "Conditionner les nouveaux traités au consentement des citoyens",
     "bullets": [
       "Conditionner les nouveaux traités au consentement des citoyens.",
-      "Soumettre les choix européens au contrôle des citoyens."
+      "Soumettre les choix européens au contrôle des citoyens.",
+      "Rendre compte devant la nation de l’action du gouvernement en matière de défense",
+      "Négocier une sortie de l’Union européenne si les Français en décident"
     ],
     "sources": ["egger-programme-2027"],
     "scope": "campagne",
     "edition": "Programme présidentiel 2027 de Solution Démocratique ; initiatives citoyennes conditionnées à l’adoption de la réforme constitutionnelle",
     "note": "",
-    "checked": "2026-11-17",
+    "checked": "2026-11-25",
     "history": [
       {
         "date": "2026-11-17",
         "event": "Fiche intégrée",
         "summary": "Propositions relevées dans les documents officiels cités."
+      },
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "2 nouvelles fiches référencées."
       }
     ]
   },
@@ -3762,17 +3813,26 @@
     "candidate": "egger",
     "theme": "climat",
     "title": "Faire trancher la place du nucléaire par référendum",
-    "bullets": ["Faire trancher la place du nucléaire par référendum."],
+    "bullets": [
+      "Faire trancher la place du nucléaire par référendum.",
+      "Commander plusieurs scénarios de développement durable à des spécialistes français",
+      "Soumettre les grands choix énergétiques à référendum"
+    ],
     "sources": ["egger-programme-2027"],
     "scope": "campagne",
     "edition": "Programme présidentiel 2027 de Solution Démocratique ; initiatives citoyennes conditionnées à l’adoption de la réforme constitutionnelle",
     "note": "",
-    "checked": "2026-11-17",
+    "checked": "2026-11-25",
     "history": [
       {
         "date": "2026-11-17",
         "event": "Fiche intégrée",
         "summary": "Propositions relevées dans les documents officiels cités."
+      },
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "2 nouvelles fiches référencées."
       }
     ]
   },
@@ -3781,17 +3841,26 @@
     "candidate": "egger",
     "theme": "sante",
     "title": "Publier des évaluations régulières du système de santé",
-    "bullets": ["Publier des évaluations régulières du système de santé."],
+    "bullets": [
+      "Publier des évaluations régulières du système de santé.",
+      "Publier les fondements scientifiques des décisions sanitaires",
+      "Soumettre les principaux choix de santé à référendum"
+    ],
     "sources": ["egger-programme-2027"],
     "scope": "campagne",
     "edition": "Programme présidentiel 2027 de Solution Démocratique ; initiatives citoyennes conditionnées à l’adoption de la réforme constitutionnelle",
     "note": "",
-    "checked": "2026-11-17",
+    "checked": "2026-11-25",
     "history": [
       {
         "date": "2026-11-17",
         "event": "Fiche intégrée",
         "summary": "Propositions relevées dans les documents officiels cités."
+      },
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "2 nouvelles fiches référencées."
       }
     ]
   },
@@ -4282,13 +4351,18 @@
       "Augmenter les salaires et les pensions et les indexer sur l’inflation.",
       "Répartir le travail entre tous sans baisse de salaire ; réduire les horaires plutôt que licencier lorsque l’IA remplace des tâches.",
       "Mettre fin à la propriété capitaliste des grands moyens de production, sous la direction des travailleurs.",
-      "Orienter les usages de l’intelligence artificielle vers les besoins collectifs"
+      "Orienter les usages de l’intelligence artificielle vers les besoins collectifs",
+      "Réduire la durée et la charge de travail sans baisse de salaire"
     ],
-    "sources": ["arthaud-discours-2026", "arthaud-depliant-2026-pdf"],
+    "sources": [
+      "arthaud-discours-2026",
+      "arthaud-depliant-2026-pdf",
+      "arthaud-brochure-juin"
+    ],
     "scope": "campagne",
     "edition": "Campagne 2027",
     "note": "",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "history": [
       {
         "date": "2026-11-18",
@@ -4299,6 +4373,11 @@
         "date": "2026-11-24",
         "event": "Lecture des sources",
         "summary": "Ajout de 1 fiche à partir des passages cités."
+      },
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "Une nouvelle fiche référencée."
       }
     ]
   },
@@ -4715,18 +4794,24 @@
     "title": "Missions et nominations de l’État",
     "bullets": [
       "Publier les motifs des nominations aux emplois civils et militaires et les critères appliqués.",
-      "Permettre à la population, par l’initiative citoyenne, de revoir les missions et les règles de conduite de la police, de l’armée et des autres services publics."
+      "Permettre à la population, par l’initiative citoyenne, de revoir les missions et les règles de conduite de la police, de l’armée et des autres services publics.",
+      "Laisser au gouvernement la conduite de la sécurité intérieure et extérieure"
     ],
     "sources": ["egger-programme-2027"],
     "scope": "campagne",
     "edition": "Programme de Solution Démocratique pour 2027",
     "note": "",
-    "checked": "2026-11-19",
+    "checked": "2026-11-25",
     "history": [
       {
         "date": "2026-11-19",
         "event": "Publication du dossier",
         "summary": "Première synthèse des mesures du document cité."
+      },
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "Une nouvelle fiche référencée."
       }
     ]
   },
@@ -4808,18 +4893,24 @@
     "title": "Financement de la dette et dépenses publiques",
     "bullets": [
       "Réserver l’emprunt aux Français pour racheter de la dette publique détenue par des fonds étrangers.",
-      "Réduire de moitié le budget de l’Élysée et revendre la majeure partie de la flotte aérienne présidentielle."
+      "Réduire de moitié le budget de l’Élysée et revendre la majeure partie de la flotte aérienne présidentielle.",
+      "Réserver les nouvelles émissions de titres du Trésor aux épargnants français"
     ],
-    "sources": ["asselineau-discours-rentree-2026"],
+    "sources": ["asselineau-discours-rentree-2026", "asselineau-tvf-novembre"],
     "scope": "orientation",
     "edition": "Discours de rentrée, synthèse publiée le 30 septembre 2026",
     "note": "",
-    "checked": "2026-11-19",
+    "checked": "2026-11-25",
     "history": [
       {
         "date": "2026-11-19",
         "event": "Publication du dossier",
         "summary": "Première synthèse des mesures du document cité."
+      },
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "Une nouvelle fiche référencée."
       }
     ]
   },
@@ -5755,6 +5846,11 @@
         "date": "2026-11-25",
         "event": "Relecture des documents d’origine",
         "summary": "2 nouvelles propositions référencées."
+      },
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "2 nouvelles fiches référencées."
       }
     ]
   },
@@ -11441,21 +11537,30 @@
     "title": "Europe & monde · Nouvelle Énergie",
     "bullets": [
       "Imposer aux importations agricoles les normes exigées des producteurs européens",
-      "Réorienter la PAC vers la production et les exportations agricoles"
+      "Réorienter la PAC vers la production et les exportations agricoles",
+      "Négocier un traité renforçant le Conseil européen et le Parlement européen",
+      "Permettre un arbitrage par référendum en cas de blocage lié à une règle supranationale",
+      "Conditionner les transferts européens de cohésion à l’État de droit"
     ],
     "sources": [
       "nouvelle-energie-agriculture-2027",
-      "nouvelle-energie-livret-agriculture-2026"
+      "nouvelle-energie-livret-agriculture-2026",
+      "lisnard-destin"
     ],
     "scope": "parti",
     "edition": "Programme de Nouvelle Énergie pour 2027",
     "note": "",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "history": [
       {
         "date": "2026-11-24",
         "event": "Lecture du document",
         "summary": "Ajout des passages référencés dans les fiches."
+      },
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "3 nouvelles fiches référencées."
       }
     ],
     "partyAuthor": "Nouvelle Énergie"
@@ -11470,21 +11575,28 @@
       "Rémunérer les services environnementaux des agriculteurs et des forestiers",
       "Revoir les règles des appellations viticoles pour permettre des cépages résistants",
       "Soutenir les capteurs, les robots et l’IA pour la gestion des cultures",
-      "Autoriser les réserves d’eau agricoles sur décision locale"
+      "Autoriser les réserves d’eau agricoles sur décision locale",
+      "Investir dans les transports et la connexion des territoires enclavés"
     ],
     "sources": [
       "nouvelle-energie-agriculture-2027",
-      "nouvelle-energie-livret-agriculture-2026"
+      "nouvelle-energie-livret-agriculture-2026",
+      "lisnard-ambition"
     ],
     "scope": "parti",
     "edition": "Programme de Nouvelle Énergie pour 2027",
     "note": "",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "history": [
       {
         "date": "2026-11-24",
         "event": "Lecture du document",
         "summary": "Ajout des passages référencés dans les fiches."
+      },
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "Une nouvelle fiche référencée."
       }
     ],
     "partyAuthor": "Nouvelle Énergie"
@@ -11495,21 +11607,37 @@
     "theme": "institutions",
     "title": "Institutions · Nouvelle Énergie",
     "bullets": [
-      "Créer un guichet numérique unique pour les exploitations agricoles"
+      "Créer un guichet numérique unique pour les exploitations agricoles",
+      "Réserver au Parlement l’initiative des lois dans certains domaines",
+      "Confier au Parlement le contrôle du diagnostic préalable aux nouvelles normes",
+      "Rassembler les textes, puis en dégager les principes fondamentaux",
+      "Réorienter 450 000 agents publics des bureaux vers les services de terrain",
+      "Recruter les directeurs d’administration centrale sur des contrats d’objectifs",
+      "Confier l’évaluation des politiques publiques à des experts indépendants",
+      "Regrouper les ministres et directions centrales dans une cité gouvernementale",
+      "Réorganiser le territoire autour de l’État, de provinces et du bloc communal",
+      "Transférer aux collectivités le pouvoir réglementaire d’application des lois"
     ],
     "sources": [
       "nouvelle-energie-agriculture-2027",
-      "nouvelle-energie-livret-agriculture-2026"
+      "nouvelle-energie-livret-agriculture-2026",
+      "lisnard-destin",
+      "lisnard-civique"
     ],
     "scope": "parti",
     "edition": "Programme de Nouvelle Énergie pour 2027",
     "note": "",
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "history": [
       {
         "date": "2026-11-24",
         "event": "Lecture du document",
         "summary": "Ajout des passages référencés dans les fiches."
+      },
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "9 nouvelles fiches référencées."
       }
     ],
     "partyAuthor": "Nouvelle Énergie"
@@ -13704,9 +13832,13 @@
     "title": "Augmenter les salaires de 5 %",
     "bullets": [
       "Augmenter les salaires de 5 %",
-      "Doubler la part de l’industrie dans le PIB"
+      "Doubler la part de l’industrie dans le PIB",
+      "Garantir un maintien dans l’emploi à rémunération et qualification équivalentes",
+      "Renforcer les sanctions liées à l’emploi et à l’adaptation des postes aux personnes handicapées",
+      "Donner le statut de salarié aux travailleurs des ESAT",
+      "Conditionner les aides aux employeurs au recrutement de personnes handicapées"
     ],
-    "sources": ["pcf-loos-projet-2027"],
+    "sources": ["pcf-loos-projet-2027", "pcf-handicap"],
     "scope": "parti",
     "edition": "Priorités du PCF de Loos pour 2027",
     "partyAuthor": "Parti communiste français",
@@ -13717,6 +13849,11 @@
         "date": "2026-11-25",
         "event": "Lecture des sources",
         "summary": "Ajout de propositions repérées dans les publications d’origine."
+      },
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "4 nouvelles fiches référencées."
       }
     ]
   },
@@ -14596,5 +14733,434 @@
         "summary": "Une nouvelle fiche référencée."
       }
     ]
+  },
+  {
+    "id": "roussel-campagne-2027-education",
+    "candidate": "roussel",
+    "theme": "education",
+    "title": "Éducation",
+    "bullets": [
+      "Ouvrir 5 milliards d’euros en urgence pour les lycées",
+      "Prêter 5 milliards d’euros par an pour rénover les collèges et les lycées",
+      "Créer 90 000 postes d’enseignants dans le public en cinq ans",
+      "Garantir un accompagnant dès la rentrée aux élèves qui en ont besoin",
+      "Prévoir 32 heures de cours par semaine au lycée",
+      "Rétablir les filières au lycée",
+      "Remplacer Parcoursup et Mon Master par un service public d’orientation",
+      "Garantir une place dans le supérieur à chaque bachelier",
+      "Renforcer le statut des délégués lycéens",
+      "Ramener le baccalauréat professionnel à quatre années"
+    ],
+    "sources": ["pcf-jeunesse"],
+    "scope": "campagne",
+    "edition": "Plan jeunesse 2027-2032",
+    "note": "",
+    "checked": "2026-11-25",
+    "history": [
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "10 nouvelles fiches référencées."
+      }
+    ]
+  },
+  {
+    "id": "roussel-campagne-2027-sante",
+    "candidate": "roussel",
+    "theme": "sante",
+    "title": "Santé",
+    "bullets": [
+      "Installer une équipe de santé et d’accompagnement dans chaque lycée"
+    ],
+    "sources": ["pcf-jeunesse"],
+    "scope": "campagne",
+    "edition": "Plan jeunesse 2027-2032",
+    "note": "",
+    "checked": "2026-11-25",
+    "history": [
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "Une nouvelle fiche référencée."
+      }
+    ]
+  },
+  {
+    "id": "lisnard-campagne-2027-travail",
+    "candidate": "lisnard",
+    "theme": "travail",
+    "title": "Travail & salaires",
+    "bullets": [
+      "Laisser les accords d’entreprise fixer davantage les règles du temps de travail"
+    ],
+    "sources": ["lisnard-temps-travail"],
+    "scope": "campagne",
+    "edition": "Discours de rentrée du 29 août 2026",
+    "note": "",
+    "checked": "2026-11-25",
+    "history": [
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "Une nouvelle fiche référencée."
+      }
+    ]
+  },
+  {
+    "id": "roussel-parti-2027-logement",
+    "candidate": "roussel",
+    "theme": "logement",
+    "title": "Logement",
+    "bullets": [
+      "Inscrire le droit au logement dans la Constitution",
+      "Créer un service public national et décentralisé du logement",
+      "Relever à 30 % le seuil de logements sociaux des communes concernées par la loi SRU",
+      "Augmenter la dotation de fonctionnement des communes qui construisent des logements sociaux",
+      "Revenir sur la réduction de loyer de solidarité",
+      "Rénover en priorité les logements HLM les plus énergivores",
+      "Appliquer une TVA de 5,5 % à l’investissement et à l’entretien des HLM",
+      "Arrêter les expulsions locatives des familles en difficulté",
+      "Interdire les ventes de logements HLM",
+      "Porter les aides à la pierre à 15 milliards d’euros par an",
+      "Revaloriser le livret A et revoir le calcul de son taux",
+      "Porter la participation des employeurs au logement à 2 % de la masse salariale"
+    ],
+    "sources": ["pcf-logement", "pcf-handicap"],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Logement",
+    "note": "",
+    "checked": "2026-11-25",
+    "history": [
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "16 nouvelles fiches référencées."
+      }
+    ],
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-parti-2027-europe",
+    "candidate": "roussel",
+    "theme": "europe",
+    "title": "Europe & monde",
+    "bullets": [
+      "Créer un fonds européen de financement des services publics pour le logement social"
+    ],
+    "sources": ["pcf-logement"],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Logement",
+    "note": "",
+    "checked": "2026-11-25",
+    "history": [
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "Une nouvelle fiche référencée."
+      }
+    ],
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-parti-2027-social",
+    "candidate": "roussel",
+    "theme": "social",
+    "title": "Protection sociale",
+    "bullets": [
+      "Remplacer l’AAH par un revenu au niveau du SMIC revalorisé",
+      "Programmer l’accessibilité des transports publics et financer le transport adapté",
+      "Financer intégralement la perte d’autonomie par la Sécurité sociale"
+    ],
+    "sources": ["pcf-handicap", "pcf-securite-sociale"],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Handicap",
+    "note": "",
+    "checked": "2026-11-25",
+    "history": [
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "3 nouvelles fiches référencées."
+      }
+    ],
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-parti-2027-institutions",
+    "candidate": "roussel",
+    "theme": "institutions",
+    "title": "Institutions",
+    "bullets": [
+      "Inscrire l’accessibilité dans la Constitution",
+      "Supprimer les reports des obligations de mise en accessibilité",
+      "Charger les préfets de contrôler les obligations d’accessibilité"
+    ],
+    "sources": ["pcf-handicap"],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Handicap",
+    "note": "",
+    "checked": "2026-11-25",
+    "history": [
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "3 nouvelles fiches référencées."
+      }
+    ],
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-parti-2027-fiscalite",
+    "candidate": "roussel",
+    "theme": "fiscalite",
+    "title": "Fiscalité & budget",
+    "bullets": ["Subordonner les aides publiques à l’accessibilité"],
+    "sources": ["pcf-handicap"],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Handicap",
+    "note": "",
+    "checked": "2026-11-25",
+    "history": [
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "Une nouvelle fiche référencée."
+      }
+    ],
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-parti-2027-education",
+    "candidate": "roussel",
+    "theme": "education",
+    "title": "Éducation",
+    "bullets": [
+      "Réduire davantage les effectifs des classes scolarisant des élèves handicapés",
+      "Organiser des assises sur la conception universelle de l’apprentissage",
+      "Financer l’accompagnement des étudiants handicapés"
+    ],
+    "sources": ["pcf-handicap"],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Handicap",
+    "note": "",
+    "checked": "2026-11-25",
+    "history": [
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "3 nouvelles fiches référencées."
+      }
+    ],
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "lisnard-parti-2027-fiscalite",
+    "candidate": "lisnard",
+    "theme": "fiscalite",
+    "title": "Fiscalité & budget",
+    "bullets": [
+      "Limiter les déficits de fonctionnement par une règle institutionnelle",
+      "Supprimer la C3S et envisager la suppression de la CVAE",
+      "Créer un compte d’épargne pour les aléas climatiques des agriculteurs",
+      "Supprimer le plafonnement du quotient familial",
+      "Partager des recettes fiscales nationales avec les collectivités"
+    ],
+    "sources": ["lisnard-destin", "lisnard-ambition", "lisnard-civique"],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Être maître de notre destin",
+    "note": "",
+    "checked": "2026-11-25",
+    "history": [
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "5 nouvelles fiches référencées."
+      }
+    ],
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-parti-2027-travail",
+    "candidate": "lisnard",
+    "theme": "travail",
+    "title": "Travail & salaires",
+    "bullets": [
+      "Généraliser le recrutement contractuel dans les fonctions non régaliennes",
+      "Fusionner CDI et CDD pour les nouvelles embauches",
+      "Supprimer les charges d’employeur pour un emploi à domicile au SMIC",
+      "Instaurer des cotisations patronales négatives pour certaines embauches"
+    ],
+    "sources": ["lisnard-destin", "lisnard-ambition"],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Être maître de notre destin",
+    "note": "",
+    "checked": "2026-11-25",
+    "history": [
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "4 nouvelles fiches référencées."
+      }
+    ],
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-parti-2027-logement",
+    "candidate": "lisnard",
+    "theme": "logement",
+    "title": "Logement",
+    "bullets": ["Supprimer le quota de logements sociaux fixé par la loi SRU"],
+    "sources": ["lisnard-ambition"],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "note": "",
+    "checked": "2026-11-25",
+    "history": [
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "Une nouvelle fiche référencée."
+      }
+    ],
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-parti-2027-retraites",
+    "candidate": "lisnard",
+    "theme": "retraites",
+    "title": "Retraites",
+    "bullets": [
+      "Relever l’âge légal de départ à 65 ans",
+      "Garantir un socle de pension par répartition à 65 ans",
+      "Permettre de débloquer une partie de l’épargne retraite pour acheter sa résidence principale",
+      "Créer une agence publique centrale pour la gestion des retraites"
+    ],
+    "sources": ["lisnard-ambition"],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "note": "",
+    "checked": "2026-11-25",
+    "history": [
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "4 nouvelles fiches référencées."
+      }
+    ],
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-parti-2027-securite",
+    "candidate": "lisnard",
+    "theme": "securite",
+    "title": "Sécurité & justice",
+    "bullets": [
+      "Doubler le nombre de procureurs et de juges d’application des peines",
+      "Publier en ligne les résultats et l’activité de chaque tribunal",
+      "Transformer le Conseil supérieur de la magistrature en Conseil supérieur de la justice"
+    ],
+    "sources": ["lisnard-ambition"],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "note": "",
+    "checked": "2026-11-25",
+    "history": [
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "3 nouvelles fiches référencées."
+      }
+    ],
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-parti-2027-immigration",
+    "candidate": "lisnard",
+    "theme": "immigration",
+    "title": "Immigration",
+    "bullets": [
+      "Fixer des quotas d’immigration de travail selon les secteurs en tension"
+    ],
+    "sources": ["lisnard-ambition"],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "note": "",
+    "checked": "2026-11-25",
+    "history": [
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "Une nouvelle fiche référencée."
+      }
+    ],
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-parti-2027-education",
+    "candidate": "lisnard",
+    "theme": "education",
+    "title": "Éducation",
+    "bullets": ["Créer des externats d’excellence et développer les internats"],
+    "sources": ["lisnard-civique"],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Générer un renouveau civique",
+    "note": "",
+    "checked": "2026-11-25",
+    "history": [
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "Une nouvelle fiche référencée."
+      }
+    ],
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "roussel-parti-2027-climat",
+    "candidate": "roussel",
+    "theme": "climat",
+    "title": "Climat & énergie",
+    "bullets": [
+      "Financer les RER métropolitains en renforçant la taxe francilienne sur les bureaux",
+      "Porter à 30 % la part du rail dans le transport de marchandises",
+      "Porter le fret fluvial à 10 % du transport de marchandises",
+      "Ouvrir un prêt à taux zéro pour l’achat d’un véhicule électrique",
+      "Proposer une prime de conversion jusqu’à 10 000 € pour certains véhicules thermiques",
+      "Renforcer le poids de l’empreinte carbone de production dans le bonus automobile",
+      "Reprendre la maîtrise publique des aéroports privatisés"
+    ],
+    "sources": ["pcf-mobilites"],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Mobilités",
+    "note": "",
+    "checked": "2026-11-25",
+    "history": [
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "7 nouvelles fiches référencées."
+      }
+    ],
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-parti-2027-sante",
+    "candidate": "roussel",
+    "theme": "sante",
+    "title": "Santé",
+    "bullets": ["Faciliter la reconnaissance des maladies professionnelles"],
+    "sources": ["pcf-securite-sociale"],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Sécurité sociale",
+    "note": "",
+    "checked": "2026-11-25",
+    "history": [
+      {
+        "date": "2026-11-25",
+        "event": "Relecture des sources d’origine",
+        "summary": "Une nouvelle fiche référencée."
+      }
+    ],
+    "partyAuthor": "Parti communiste français"
   }
 ]

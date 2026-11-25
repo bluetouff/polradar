@@ -942,24 +942,22 @@
     stroke-linejoin: round;
     stroke-linecap: round;
   }
-  .plot-point {
-    fill: white;
-    stroke: var(--series);
-    stroke-width: 2;
+  .plot-wave {
     cursor: pointer;
   }
-  .plot-point.selected {
-    fill: var(--series);
-    stroke: white;
-    stroke-width: 2.5;
+  .plot-wave-target {
+    stroke: transparent;
+    stroke-width: 20;
   }
-  .plot-point:focus {
-    outline: none;
-    stroke: var(--ink);
-    stroke-width: 4;
+  .plot-wave-guide {
+    pointer-events: none;
+    stroke: var(--muted);
+    stroke-width: 1.5;
+    stroke-dasharray: 4 4;
+    opacity: 0;
   }
-  .plot-point:hover {
-    fill: var(--series);
+  .plot-wave:is(.selected, :hover, :focus) .plot-wave-guide {
+    opacity: 1;
   }
   .chart-narrow {
     display: none;

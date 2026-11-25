@@ -82258,5 +82258,2579 @@
     "scope": "orientation",
     "edition": "Campagne présidentielle 2027 · Jean-François Legendre",
     "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-fonds-urgence-renovation-lycees",
+    "parentId": "roussel-campagne-2027-education",
+    "candidate": "roussel",
+    "theme": "education",
+    "revision": 1,
+    "title": "Ouvrir 5 milliards d’euros en urgence pour les lycées",
+    "description": "Fabien Roussel propose d’inscrire les crédits dans une loi de finances rectificative. Les travaux seraient choisis après un état des lieux conduit avec les personnels et les lycéens.",
+    "beneficiaries": "Lycées, selon l’état de leurs bâtiments.",
+    "timing": "Dès 2027 selon le calendrier du plan.",
+    "financing": null,
+    "metrics": [
+      {
+        "key": "enveloppe-urgence-lycees",
+        "label": "Enveloppe d’urgence annoncée",
+        "value": 5,
+        "unit": "Md€",
+        "sourceId": "pcf-jeunesse"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-jeunesse",
+        "locator": "Axe 1 · Travaux urgents · p. 5",
+        "fragment": "page=5"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan jeunesse 2027-2032",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-prets-renovation-colleges-lycees",
+    "parentId": "roussel-campagne-2027-education",
+    "candidate": "roussel",
+    "theme": "education",
+    "revision": 1,
+    "title": "Prêter 5 milliards d’euros par an pour rénover les collèges et les lycées",
+    "description": "L’État accorderait à taux zéro des prêts aux départements et aux régions pendant cinq ans. Le plan donne la priorité aux bâtiments les plus dégradés et annonce des premiers chantiers à l’été 2027.",
+    "beneficiaries": "Régions et départements propriétaires des bâtiments.",
+    "timing": "Cinq années, avec les premiers chantiers à l’été 2027.",
+    "financing": "Le plan propose d’affecter à ce volet 5 milliards d’euros par an d’aides aux entreprises (p. 11).",
+    "metrics": [
+      {
+        "key": "prets-annuels-bati-scolaire",
+        "label": "Enveloppe annuelle de prêts annoncée",
+        "value": 5,
+        "unit": "Md€ par an",
+        "sourceId": "pcf-jeunesse"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-jeunesse",
+        "locator": "Axe 1 · Rénovation des collèges et lycées · p. 5",
+        "fragment": "page=5"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan jeunesse 2027-2032",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-recruter-enseignants-90000",
+    "parentId": "roussel-campagne-2027-education",
+    "candidate": "roussel",
+    "theme": "education",
+    "revision": 1,
+    "title": "Créer 90 000 postes d’enseignants dans le public en cinq ans",
+    "description": "Le plan prévoit 18 000 créations de postes par an de 2027 à 2031, réparties à parts égales entre le primaire et le secondaire. Une partie servirait à reconstituer des équipes de remplacement, en priorité dans l’éducation prioritaire.",
+    "beneficiaries": null,
+    "timing": "De 2027 à 2031.",
+    "financing": "Le plan estime le coût à 3,5 milliards d’euros en année pleine et propose un transfert depuis le budget de la défense (p. 11).",
+    "metrics": [
+      {
+        "key": "postes-enseignants-crees",
+        "label": "Créations de postes prévues",
+        "value": 90000,
+        "unit": "postes",
+        "sourceId": "pcf-jeunesse"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-jeunesse",
+        "locator": "Axe 2 · Recrutement des enseignants · p. 6",
+        "fragment": "page=6"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan jeunesse 2027-2032",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-equipe-sante-lycees",
+    "parentId": "roussel-campagne-2027-sante",
+    "candidate": "roussel",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Installer une équipe de santé et d’accompagnement dans chaque lycée",
+    "description": "Le plan fixe aussi un objectif d’un médecin scolaire pour 3 000 élèves du secondaire, pour améliorer la prévention et l’accès aux soins.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-jeunesse",
+        "locator": "Axe 2 · Santé scolaire · p. 6",
+        "fragment": "page=6"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan jeunesse 2027-2032",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-aesh-des-la-rentree",
+    "parentId": "roussel-campagne-2027-education",
+    "candidate": "roussel",
+    "theme": "education",
+    "revision": 1,
+    "title": "Garantir un accompagnant dès la rentrée aux élèves qui en ont besoin",
+    "description": "Le budget de l’Éducation nationale financerait les accompagnants nécessaires. Le plan prévoit un statut et des recrutements dédiés.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-jeunesse",
+        "locator": "Axe 2 · Handicap · p. 7",
+        "fragment": "page=7"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan jeunesse 2027-2032",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-temps-cours-lycee-32-heures",
+    "parentId": "roussel-campagne-2027-education",
+    "candidate": "roussel",
+    "theme": "education",
+    "revision": 1,
+    "title": "Prévoir 32 heures de cours par semaine au lycée",
+    "description": "Le plan annonce des emplois du temps comportant moins d’interruptions, une fin des cours à 17 h et une pause méridienne d’au moins une heure.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [
+      {
+        "key": "temps-cours-lycee",
+        "label": "Durée hebdomadaire proposée",
+        "value": 32,
+        "unit": "heures",
+        "sourceId": "pcf-jeunesse"
+      }
+    ],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-jeunesse",
+        "locator": "Axe 3 · Semaine de cours · p. 7",
+        "fragment": "page=7"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan jeunesse 2027-2032",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-filiere-lycee-retour",
+    "parentId": "roussel-campagne-2027-education",
+    "candidate": "roussel",
+    "theme": "education",
+    "revision": 1,
+    "title": "Rétablir les filières au lycée",
+    "description": "Le plan propose de remplacer les combinaisons individuelles de spécialités par des filières avec des options. La réforme commencerait en première en 2028 selon son calendrier.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-jeunesse",
+        "locator": "Axe 3 · Filières au lycée · p. 8",
+        "fragment": "page=8"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan jeunesse 2027-2032",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-remplacer-parcoursup-monmaster",
+    "parentId": "roussel-campagne-2027-education",
+    "candidate": "roussel",
+    "theme": "education",
+    "revision": 1,
+    "title": "Remplacer Parcoursup et Mon Master par un service public d’orientation",
+    "description": "La plateforme proposée fournirait des informations, du conseil et une inscription. Le plan prévoit aussi de reconstituer un service d’orientation qui accompagne l’élève tout au long de sa scolarité.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-jeunesse",
+        "locator": "Axe 4 · Orientation et inscription · p. 8",
+        "fragment": "page=8"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan jeunesse 2027-2032",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-place-superieur-bacheliers",
+    "parentId": "roussel-campagne-2027-education",
+    "candidate": "roussel",
+    "theme": "education",
+    "revision": 1,
+    "title": "Garantir une place dans le supérieur à chaque bachelier",
+    "description": "Le plan prévoit d’ouvrir des places et de recruter des enseignants dans les universités, les IUT et les formations courtes.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-jeunesse",
+        "locator": "Axe 4 · Capacité du supérieur · p. 8",
+        "fragment": "page=8"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan jeunesse 2027-2032",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-statut-delegues-lyceens",
+    "parentId": "roussel-campagne-2027-education",
+    "candidate": "roussel",
+    "theme": "education",
+    "revision": 1,
+    "title": "Renforcer le statut des délégués lycéens",
+    "description": "Le plan propose de revoir les instances de la vie lycéenne afin d’accroître le rôle des élèves dans l’organisation de l’établissement et la résolution des conflits.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-jeunesse",
+        "locator": "Axe 5 · Démocratie scolaire · p. 9",
+        "fragment": "page=9"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan jeunesse 2027-2032",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-bac-professionnel-quatre-ans",
+    "parentId": "roussel-campagne-2027-education",
+    "candidate": "roussel",
+    "theme": "education",
+    "revision": 1,
+    "title": "Ramener le baccalauréat professionnel à quatre années",
+    "description": "Le plan allonge d’un an le parcours du baccalauréat professionnel par rapport aux trois années actuelles qu’il prend pour référence.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-jeunesse",
+        "locator": "Objectifs du plan · Baccalauréat professionnel · p. 4",
+        "fragment": "page=4"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan jeunesse 2027-2032",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "egger-concertation-controle-representants",
+    "parentId": "egger-institutions",
+    "candidate": "egger",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Réunir régulièrement la société civile pour préparer les réformes démocratiques",
+    "description": "Le programme prévoit des réunions pour travailler sur l’accès aux élus, le contrôle des décisions et la place de l’échelon local. Il présente ces réunions comme une étape de préparation des réformes.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "egger-programme-2027",
+        "locator": "Démocratie et État de droit · H · p. 12",
+        "fragment": "page=12"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme présidentiel 2027 de Solution Démocratique",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "egger-rendre-debat-budget-accessible",
+    "parentId": "egger-fiscalite",
+    "candidate": "egger",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Présenter publiquement le budget et rendre ses débats accessibles",
+    "description": "La présidence présenterait et commenterait le projet de loi de finances au début de septembre. Elle veillerait à la publicité et à l’accessibilité des discussions parlementaires.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "egger-programme-2027",
+        "locator": "Économie et budget · C · p. 13",
+        "fragment": "page=13"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme présidentiel 2027 de Solution Démocratique",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "egger-responsabilite-gouvernement-securite",
+    "parentId": "egger-securite",
+    "candidate": "egger",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Laisser au gouvernement la conduite de la sécurité intérieure et extérieure",
+    "description": "Clara Egger prévoit de s’en tenir aux attributions du chef de l’État et de laisser le gouvernement exercer ses responsabilités sous le contrôle du Parlement.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "egger-programme-2027",
+        "locator": "Sécurité · B · p. 16",
+        "fragment": "page=16"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme présidentiel 2027 de Solution Démocratique",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "egger-rendre-compte-action-defense",
+    "parentId": "egger-europe",
+    "candidate": "egger",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Rendre compte devant la nation de l’action du gouvernement en matière de défense",
+    "description": "En sa qualité de chef des armées, le président suivrait les décisions du gouvernement en matière de défense et en ferait publiquement le bilan.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "egger-programme-2027",
+        "locator": "Sécurité · C · p. 16",
+        "fragment": "page=16"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme présidentiel 2027 de Solution Démocratique",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "egger-commander-scenarios-developpement-durable",
+    "parentId": "egger-climat",
+    "candidate": "egger",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Commander plusieurs scénarios de développement durable à des spécialistes français",
+    "description": "Clara Egger prévoit d’étudier plusieurs voies, dont des scénarios applicables en l’absence d’accords internationaux.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "egger-programme-2027",
+        "locator": "Écologie · C · p. 19",
+        "fragment": "page=19"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme présidentiel 2027 de Solution Démocratique",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "egger-referendum-choix-energie-structurants",
+    "parentId": "egger-climat",
+    "candidate": "egger",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Soumettre les grands choix énergétiques à référendum",
+    "description": "Le programme prévoit un recours au référendum présidentiel pour les décisions énergétiques de long terme du Parlement tant qu’une procédure d’initiative citoyenne adaptée reste à établir.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "egger-programme-2027",
+        "locator": "Énergie · D · p. 20",
+        "fragment": "page=20"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme présidentiel 2027 de Solution Démocratique",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "egger-negocier-sortie-ue-si-referendum",
+    "parentId": "egger-europe",
+    "candidate": "egger",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Négocier une sortie de l’Union européenne si les Français en décident",
+    "description": "Le programme conditionne entièrement cette négociation à une décision des citoyens en faveur de la sortie de l’Union.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "egger-programme-2027",
+        "locator": "Union européenne · C · p. 24",
+        "fragment": "page=24"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme présidentiel 2027 de Solution Démocratique",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "egger-publier-fondements-decisions-sanitaires",
+    "parentId": "egger-sante",
+    "candidate": "egger",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Publier les fondements scientifiques des décisions sanitaires",
+    "description": "Le programme prévoit de rendre accessibles les éléments qui motivent les décisions sanitaires et d’expliquer ces décisions publiquement, notamment pendant les crises.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "egger-programme-2027",
+        "locator": "Santé · B · p. 25",
+        "fragment": "page=25"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme présidentiel 2027 de Solution Démocratique",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "egger-referendum-investissements-sante",
+    "parentId": "egger-sante",
+    "candidate": "egger",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Soumettre les principaux choix de santé à référendum",
+    "description": "Le programme vise notamment les décisions d’investissement dans le système de santé, sous réserve des droits fondamentaux et des engagements de la France.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "egger-programme-2027",
+        "locator": "Santé · D · p. 26",
+        "fragment": "page=26"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme présidentiel 2027 de Solution Démocratique",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "mathieu-neuf-mois-convention-constituante",
+    "parentId": "mathieu-institutions",
+    "candidate": "mathieu",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Programmer neuf mois de travaux pour la convention constituante",
+    "description": "Les membres de la convention se réuniraient durant douze sessions de trois jours. Les étapes vont de la formation et des auditions à l’examen des amendements et au vote sur le projet.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mathieu-projet-2027",
+        "locator": "Cinq étapes · Organisation des travaux",
+        "fragment": ":~:text=Leur%20donner%20neuf%20mois%20de%20d%C3%A9lib%C3%A9ration%2C%20dans%20douze%20sessions%20de%20trois%20jours"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme de la campagne Cap 500 signatures",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "mathieu-reglement-public-convention-constituante",
+    "parentId": "mathieu-institutions",
+    "candidate": "mathieu",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Fixer et publier les règles de vote et de recours dès l’ouverture de la convention",
+    "description": "Le règlement annoncerait les conditions de participation aux votes, les seuils de majorité et les recours possibles pour les travaux constituants.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mathieu-projet-2027",
+        "locator": "Neuf mois pour construire le texte · Règlement",
+        "fragment": ":~:text=Le%20r%C3%A8glement%20publi%C3%A9%20d%C3%A8s%20l%E2%80%99ouverture%20fixera"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme de la campagne Cap 500 signatures",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "asselineau-reserver-titres-epargnants-francais",
+    "parentId": "asselineau-fiscalite",
+    "candidate": "asselineau",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Réserver les nouvelles émissions de titres du Trésor aux épargnants français",
+    "description": "Lors de son entretien du 3 novembre 2026 sur TV Finance, François Asselineau propose de réserver les nouvelles émissions à ces épargnants. La proposition concerne le financement des nouvelles émissions.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "asselineau-tvf-novembre",
+        "locator": "Entretien · Économie et dette",
+        "fragment": ":~:text=r%C3%A9server%20les%20nouvelles%20%C3%A9missions%20de%20titres%20du%20Tr%C3%A9sor%20aux%20%C3%A9pargnants%20fran%C3%A7ais"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Entretien du 3 novembre 2026 sur TV Finance",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "attal-semaine-quatre-jours-heures-mensuelles",
+    "parentId": "attal-travail",
+    "candidate": "attal",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Encourager la semaine en quatre jours à nombre d’heures mensuelles constant",
+    "description": "Gabriel Attal propose de regrouper les heures sur quatre jours là où le fonctionnement de l’entreprise le permet. Il prévoit aussi des horaires adaptés avec l’employeur aux besoins du salarié, notamment pour une garde alternée ou l’aide à un proche.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "attal-work",
+        "locator": "Travailler mieux · Adapter le travail à la réalité des vies",
+        "fragment": ":~:text=de%20la%20semaine%20en%20quatre%20jours%20et%20une%20meilleure%20adaptation"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Mes chantiers capitaux · Travail et salaires",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "arthaud-reduire-temps-charge-travail",
+    "parentId": "arthaud-travail",
+    "candidate": "arthaud",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Réduire la durée et la charge de travail sans baisse de salaire",
+    "description": "La brochure propose de répartir davantage le travail en réduisant le temps et la charge supportés par chaque salarié, à rémunération maintenue. Elle ne fixe pas de nombre d’heures.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "arthaud-brochure-juin",
+        "locator": "Un programme de lutte pour notre classe · p. 12",
+        "fragment": "page=12"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Brochure présidentielle de juin 2026",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "lisnard-temps-de-travail-accords",
+    "parentId": "lisnard-campagne-2027-travail",
+    "candidate": "lisnard",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Laisser les accords d’entreprise fixer davantage les règles du temps de travail",
+    "description": "David Lisnard propose de recentrer le droit national sur ses principes généraux. Les entreprises pourraient négocier la durée et l’organisation du travail, avec davantage d’heures payées pour les salariés qui le souhaitent.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-temps-travail",
+        "locator": "Discours de rentrée à Cannes, 29 août 2026",
+        "fragment": ":~:text=Laisser%20les%20accords%20d%27entreprise%20lib%C3%A9rer%20le%20temps%20de%20travail"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Discours de rentrée du 29 août 2026",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "retailleau-temps-de-travail-accord-entreprise",
+    "parentId": "retailleau-travail",
+    "candidate": "retailleau",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Laisser négocier les horaires de travail dans l’entreprise",
+    "description": "Lors de son échange avec des entrepreneurs sur LCI, Bruno Retailleau propose de desserrer le cadre national des 35 heures pour que salariés et employeur négocient des horaires adaptés à leur activité.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "retailleau-lci-patrons",
+        "locator": "Échange sur le coût du travail et la négociation des horaires dans les entreprises"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Entretien de campagne du 20 novembre 2026",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-semaine-32-heures-horizon",
+    "parentId": "roussel-travail",
+    "candidate": "roussel",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Viser une semaine de 32 heures à terme",
+    "description": "Sur LCI le 9 septembre, Fabien Roussel présente les 32 heures comme un objectif lié aux gains des progrès techniques. Il place en premier la revalorisation des salaires et le développement de la production en France.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "roussel-lci-septembre",
+        "locator": "La réduction du temps de travail est un horizon",
+        "fragment": ":~:text=Les%20progr%C3%A8s%20de%20la%20soci%C3%A9t%C3%A9%2C%20comme%20la%20robotisation%20ou%20l%27intelligence%20artificielle"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Déclaration de campagne du 9 septembre 2026",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-smic-1700-net",
+    "parentId": "roussel-travail",
+    "candidate": "roussel",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Porter le SMIC à 1 700 € nets par mois",
+    "description": "Fabien Roussel demande cette revalorisation dès la rentrée 2026 dans son discours à l’université d’été du PCF.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "roussel-universite",
+        "locator": "Revalorisation du salaire minimum",
+        "fragment": ":~:text=porter%20le%20SMIC%20%C3%A0%201%20700%20%E2%82%AC%20net"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Université d’été du PCF 2026",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-point-indice-fonction-publique-30",
+    "parentId": "roussel-travail",
+    "candidate": "roussel",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Relever de 30 % le point d’indice de la fonction publique",
+    "description": "Dans son discours de rentrée d’août 2026, Fabien Roussel demande une revalorisation immédiate pour les fonctions publiques d’État, territoriale et hospitalière, avec des compensations pour les collectivités et les hôpitaux.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "roussel-universite",
+        "locator": "Rémunération des agents publics",
+        "fragment": ":~:text=revalorisation%20imm%C3%A9diate%20de%2030%20%25%20du%20point%20d%27indice"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Université d’été du PCF 2026",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-pompes-chaleur-2-millions",
+    "parentId": "roussel-climat",
+    "candidate": "roussel",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Installer deux millions de pompes à chaleur par an dans les logements",
+    "description": "Le plan d’investissement présenté à l’université d’été prévoit ce rythme annuel d’équipement des logements pour décarboner le chauffage.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "roussel-universite",
+        "locator": "Transition énergétique · Chauffage",
+        "fragment": ":~:text=installer%202%20millions%20de%20pompes%20%C3%A0%20chaleur%20par%20an"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Université d’été du PCF 2026",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-voitures-electriques-abordables",
+    "parentId": "roussel-climat",
+    "candidate": "roussel",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Proposer un million de voitures électriques à moins de 10 000 € à l’achat",
+    "description": "Fabien Roussel fixe un objectif de ventes de véhicules à bas prix aux classes populaires. Le chiffre annoncé concerne les véhicules concernés par le plan.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "roussel-universite",
+        "locator": "Transition énergétique · Automobile",
+        "fragment": ":~:text=la%20vente%20d%27un%20million%20de%20v%C3%A9hicules%20%C3%A9lectriques%20%C3%A0%20bas%20co%C3%BBt"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Université d’été du PCF 2026",
+    "checked": "2026-11-25"
+  },
+  {
+    "id": "roussel-droit-logement-constitution",
+    "parentId": "roussel-parti-2027-logement",
+    "candidate": "roussel",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Inscrire le droit au logement dans la Constitution",
+    "description": "Le cahier du PCF propose d’accorder la garantie du logement à toutes les personnes qui résident en France.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-logement",
+        "locator": "Le logement comme droit · p. 10",
+        "fragment": "page=10"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Logement",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-service-public-logement-decentralise",
+    "parentId": "roussel-parti-2027-logement",
+    "candidate": "roussel",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Créer un service public national et décentralisé du logement",
+    "description": "Le parti propose un service public pour le logement, l’habitat et la ville, avec des responsabilités exercées localement.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-logement",
+        "locator": "Service public du logement · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Logement",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-sru-30-logements-sociaux",
+    "parentId": "roussel-parti-2027-logement",
+    "candidate": "roussel",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Relever à 30 % le seuil de logements sociaux des communes concernées par la loi SRU",
+    "description": "Le cahier prévoit de durcir le seuil pour les villes auxquelles la loi s’applique.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-logement",
+        "locator": "Application de la loi SRU · p. 12",
+        "fragment": "page=12"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Logement",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-doter-communes-logements-sociaux",
+    "parentId": "roussel-parti-2027-logement",
+    "candidate": "roussel",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Augmenter la dotation de fonctionnement des communes qui construisent des logements sociaux",
+    "description": "Le PCF propose une dotation supplémentaire pour accompagner la création de logements sociaux.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-logement",
+        "locator": "Soutien aux communes bâtisseuses · p. 12",
+        "fragment": "page=12"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Logement",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-supprimer-reduction-loyer-solidarite",
+    "parentId": "roussel-parti-2027-logement",
+    "candidate": "roussel",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Revenir sur la réduction de loyer de solidarité",
+    "description": "Le PCF veut supprimer le mécanisme qui fait supporter aux bailleurs sociaux une compensation à la baisse des aides au logement.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-logement",
+        "locator": "Parc HLM · Ressources des bailleurs · p. 15",
+        "fragment": "page=15"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Logement",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-renover-en-priorite-passoires-hlm",
+    "parentId": "roussel-parti-2027-logement",
+    "candidate": "roussel",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Rénover en priorité les logements HLM les plus énergivores",
+    "description": "Le parti prévoit un plan de rénovation énergétique spécifique au parc social, en commençant par les logements dont les besoins de chauffage sont les plus élevés.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-logement",
+        "locator": "Parc HLM · Rénovation · p. 15",
+        "fragment": "page=15"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Logement",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-tva-reduite-investissement-hlm",
+    "parentId": "roussel-parti-2027-logement",
+    "candidate": "roussel",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Appliquer une TVA de 5,5 % à l’investissement et à l’entretien des HLM",
+    "description": "Le cahier applique le taux réduit à l’ensemble de ces opérations des organismes de logement social.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-logement",
+        "locator": "Parc HLM · Fiscalité · p. 15",
+        "fragment": "page=15"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Logement",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-arreter-expulsions-menages-difficulte",
+    "parentId": "roussel-parti-2027-logement",
+    "candidate": "roussel",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Arrêter les expulsions locatives des familles en difficulté",
+    "description": "Le PCF propose de protéger de l’expulsion les familles en difficulté économique et sociale.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-logement",
+        "locator": "Parc HLM · Expulsions · p. 15",
+        "fragment": "page=15"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Logement",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-interdire-vente-hlm",
+    "parentId": "roussel-parti-2027-logement",
+    "candidate": "roussel",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Interdire les ventes de logements HLM",
+    "description": "Le cahier propose de conserver les logements dans le parc HLM en arrêtant les ventes.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-logement",
+        "locator": "Parc HLM · Cessions · p. 15",
+        "fragment": "page=15"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Logement",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-porter-aides-pierre-15-milliards",
+    "parentId": "roussel-parti-2027-logement",
+    "candidate": "roussel",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Porter les aides à la pierre à 15 milliards d’euros par an",
+    "description": "Le cahier destine le budget à la construction et à la rénovation du logement social, avec un soutien aux communes.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-logement",
+        "locator": "Aides à la pierre · p. 16",
+        "fragment": "page=16"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Logement",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-fonds-europeen-logement-social",
+    "parentId": "roussel-parti-2027-europe",
+    "candidate": "roussel",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Créer un fonds européen de financement des services publics pour le logement social",
+    "description": "Le PCF propose que le fonds permette au logement social de bénéficier de crédits à taux zéro de la Banque centrale européenne.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-logement",
+        "locator": "Crédits pour le logement social · p. 16",
+        "fragment": "page=16"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Logement",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-reviser-remuneration-livret-a",
+    "parentId": "roussel-parti-2027-logement",
+    "candidate": "roussel",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Revaloriser le livret A et revoir le calcul de son taux",
+    "description": "Le cahier associe cette proposition à un contrôle de l’affectation de l’épargne réglementée à sa vocation sociale.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-logement",
+        "locator": "Épargne réglementée · p. 17",
+        "fragment": "page=17"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Logement",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-cotisation-logement-employeurs-2-pour-cent",
+    "parentId": "roussel-parti-2027-logement",
+    "candidate": "roussel",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Porter la participation des employeurs au logement à 2 % de la masse salariale",
+    "description": "Le cahier prend pour référence le prélèvement de 0,45 % et veut financer davantage de logements par la contribution des entreprises.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-logement",
+        "locator": "Contribution des employeurs · p. 18",
+        "fragment": "page=18"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Logement",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-logement-proche-agents-hospitaliers",
+    "parentId": "roussel-parti-2027-logement",
+    "candidate": "roussel",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Garantir aux agents hospitaliers un droit au logement près de leur travail",
+    "description": "L’accès à un logement à proximité figurerait dans un plan pour les conditions de travail à l’hôpital.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-logement",
+        "locator": "Agents publics · Fonction publique hospitalière · p. 20",
+        "fragment": "page=20"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Logement",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-logements-reserves-agents-territoriaux",
+    "parentId": "roussel-parti-2027-logement",
+    "candidate": "roussel",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Réserver des logements sociaux aux agents territoriaux",
+    "description": "Le PCF propose d’inscrire des logements pour les agents dans les contingents des collectivités, avec des règles d’attribution propres.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-logement",
+        "locator": "Agents publics · Fonction publique territoriale · p. 20",
+        "fragment": "page=20"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Logement",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-auditer-besoins-logement-agents",
+    "parentId": "roussel-parti-2027-logement",
+    "candidate": "roussel",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Mesurer les besoins de logement des agents publics et fixer des objectifs en volume",
+    "description": "Le PCF propose un audit des demandes de logement des agents, puis des objectifs chiffrés en nombre de logements.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-logement",
+        "locator": "Agents publics · Suivi des besoins · p. 20",
+        "fragment": "page=20"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Logement",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-maintien-emploi-handicap-qualification",
+    "parentId": "pcf-loos-projet-2027-travail-parti",
+    "candidate": "roussel",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Garantir un maintien dans l’emploi à rémunération et qualification équivalentes",
+    "description": "Le PCF propose ce droit aux personnes en situation de handicap, y compris lorsqu’une reconversion est nécessaire.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-handicap",
+        "locator": "Travail · Maintien dans l’emploi · p. 9",
+        "fragment": "page=9"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Handicap",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-sanction-obligations-emploi-handicap",
+    "parentId": "pcf-loos-projet-2027-travail-parti",
+    "candidate": "roussel",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Renforcer les sanctions liées à l’emploi et à l’adaptation des postes aux personnes handicapées",
+    "description": "Le parti prévoit des pénalités plus fortes et un accompagnement des TPE et PME dans leurs obligations de prévention et d’aménagement.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-handicap",
+        "locator": "Travail · Obligations des employeurs · p. 9",
+        "fragment": "page=9"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Handicap",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-statut-salarie-esat",
+    "parentId": "pcf-loos-projet-2027-travail-parti",
+    "candidate": "roussel",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Donner le statut de salarié aux travailleurs des ESAT",
+    "description": "Le PCF propose d’ouvrir des droits salariaux aux travailleurs des établissements et services d’aide par le travail, puis de les accompagner vers le milieu ordinaire selon leurs besoins.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-handicap",
+        "locator": "Travail · Établissements et services d’aide par le travail · p. 9",
+        "fragment": "page=9"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Handicap",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-remplacer-aah-par-revenu-smic",
+    "parentId": "roussel-parti-2027-social",
+    "candidate": "roussel",
+    "theme": "social",
+    "revision": 1,
+    "title": "Remplacer l’AAH par un revenu au niveau du SMIC revalorisé",
+    "description": "Le parti vise les personnes en situation de handicap qui peuvent peu ou pas travailler.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-handicap",
+        "locator": "Travail · Ressources · p. 9",
+        "fragment": "page=9"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Handicap",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-conditionner-aides-emploi-personnes-handicapees",
+    "parentId": "pcf-loos-projet-2027-travail-parti",
+    "candidate": "roussel",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Conditionner les aides aux employeurs au recrutement de personnes handicapées",
+    "description": "Le cahier propose de faire du recrutement de ces personnes une condition pour bénéficier d’aides aux entreprises.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-handicap",
+        "locator": "Travail · Aides aux employeurs · p. 9",
+        "fragment": "page=9"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Handicap",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-accessibilite-constitution",
+    "parentId": "roussel-parti-2027-institutions",
+    "candidate": "roussel",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Inscrire l’accessibilité dans la Constitution",
+    "description": "Le PCF propose d’inscrire aussi la conception universelle, qui vise à rendre les produits et services utilisables par le plus grand nombre.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-handicap",
+        "locator": "Accessibilité · Constitution · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Handicap",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-accessibilite-tous-logements-neufs",
+    "parentId": "roussel-parti-2027-logement",
+    "candidate": "roussel",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Exiger que tous les logements neufs soient accessibles",
+    "description": "Le parti propose d’abroger la loi ELAN et d’exiger un ascenseur dès le premier niveau dans le cadre du retour à l’accessibilité intégrale.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-handicap",
+        "locator": "Accessibilité · Logements neufs · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Handicap",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-fin-reports-obligations-accessibilite",
+    "parentId": "roussel-parti-2027-institutions",
+    "candidate": "roussel",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Supprimer les reports des obligations de mise en accessibilité",
+    "description": "Le cahier demande d’abroger l’ordonnance de 2014 et ses textes d’application.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-handicap",
+        "locator": "Accessibilité · Reports d’obligations · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Handicap",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-aides-publiques-conditions-accessibilite",
+    "parentId": "roussel-parti-2027-fiscalite",
+    "candidate": "roussel",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Subordonner les aides publiques à l’accessibilité",
+    "description": "Le PCF veut tenir compte de l’accessibilité des lieux et services dans l’octroi des aides et subventions.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-handicap",
+        "locator": "Accessibilité · Aides publiques · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Handicap",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-controle-prefets-accessibilite",
+    "parentId": "roussel-parti-2027-institutions",
+    "candidate": "roussel",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Charger les préfets de contrôler les obligations d’accessibilité",
+    "description": "Le parti inclut l’accessibilité numérique dans ce contrôle.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-handicap",
+        "locator": "Accessibilité · Contrôles · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Handicap",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-programmer-accessibilite-transport-public",
+    "parentId": "roussel-parti-2027-social",
+    "candidate": "roussel",
+    "theme": "social",
+    "revision": 1,
+    "title": "Programmer l’accessibilité des transports publics et financer le transport adapté",
+    "description": "Le cahier prévoit un financement spécifique pour les personnes qui ne peuvent pas utiliser les services de transport en commun.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-handicap",
+        "locator": "Accessibilité · Déplacements · p. 11",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Handicap",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-classes-reduites-accueil-eleves-handicapes",
+    "parentId": "roussel-parti-2027-education",
+    "candidate": "roussel",
+    "theme": "education",
+    "revision": 1,
+    "title": "Réduire davantage les effectifs des classes scolarisant des élèves handicapés",
+    "description": "Le parti veut une baisse des effectifs dans toutes les classes, avec une réduction plus forte lorsque des enfants en situation de handicap y sont accueillis.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-handicap",
+        "locator": "Éducation · Effectifs des classes · p. 13",
+        "fragment": "page=13"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Handicap",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-assises-conception-universelle-apprentissage",
+    "parentId": "roussel-parti-2027-education",
+    "candidate": "roussel",
+    "theme": "education",
+    "revision": 1,
+    "title": "Organiser des assises sur la conception universelle de l’apprentissage",
+    "description": "Le cahier propose une concertation dédiée aux méthodes d’apprentissage adaptées à la diversité des élèves.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-handicap",
+        "locator": "Éducation · Conception des apprentissages · p. 13",
+        "fragment": "page=13"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Handicap",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-financer-accompagnement-etudiants-handicapes",
+    "parentId": "roussel-parti-2027-education",
+    "candidate": "roussel",
+    "theme": "education",
+    "revision": 1,
+    "title": "Financer l’accompagnement des étudiants handicapés",
+    "description": "Le PCF souhaite que l’accompagnement couvre l’ensemble de la vie étudiante.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-handicap",
+        "locator": "Éducation · Enseignement supérieur · p. 13",
+        "fragment": "page=13"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Handicap",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "lisnard-regle-or-depenses-fonctionnement",
+    "parentId": "lisnard-parti-2027-fiscalite",
+    "candidate": "lisnard",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Limiter les déficits de fonctionnement par une règle institutionnelle",
+    "description": "La règle proposée par Nouvelle Énergie viserait les dépenses courantes. L’investissement resterait traité séparément.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-destin",
+        "locator": "Maîtrise des comptes publics · Règle d’or",
+        "fragment": ":~:text=s%E2%80%99appliquerait%20aux%20d%C3%A9penses%20de%20fonctionnement%20mais%20pas%20%C3%A0%20l%E2%80%99investissement"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Être maître de notre destin",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-initiative-reservee-parlement",
+    "parentId": "lisnard-institutions-guichet-numerique-agriculteurs",
+    "candidate": "lisnard",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Réserver au Parlement l’initiative des lois dans certains domaines",
+    "description": "Nouvelle Énergie veut accroître la part des textes adoptés issus d’une proposition de loi parlementaire.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-destin",
+        "locator": "Rôle du Parlement · Initiative législative",
+        "fragment": ":~:text=Parlement%20disposerait%20d%E2%80%99un%20droit%20d%E2%80%99initiative%20r%C3%A9serv%C3%A9"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Être maître de notre destin",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-diagnostic-parlementaire-nouvelles-normes",
+    "parentId": "lisnard-institutions-guichet-numerique-agriculteurs",
+    "candidate": "lisnard",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Confier au Parlement le contrôle du diagnostic préalable aux nouvelles normes",
+    "description": "Le programme souhaite que le Parlement vérifie la nécessité d’une norme avant son adoption.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-destin",
+        "locator": "Rôle du Parlement · Nouvelles normes",
+        "fragment": ":~:text=garant%20d%E2%80%99un%20%C2%AB%20diagnostic%20%C2%BB%20pr%C3%A9alable"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Être maître de notre destin",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-codifier-droit-principes-fondamentaux",
+    "parentId": "lisnard-institutions-guichet-numerique-agriculteurs",
+    "candidate": "lisnard",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Rassembler les textes, puis en dégager les principes fondamentaux",
+    "description": "Après une première codification à droit constant, une instance réunissant parlementaires, juristes et société civile dégagerait les droits, obligations et interdictions par matière.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-destin",
+        "locator": "Simplification des codes",
+        "fragment": ":~:text=une%20instance%20compos%C3%A9e%20de%20parlementaires%2C%20de%20juristes%20et%20de%20repr%C3%A9sentants"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Être maître de notre destin",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-agents-passer-des-bureaux-au-terrain",
+    "parentId": "lisnard-institutions-guichet-numerique-agriculteurs",
+    "candidate": "lisnard",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Réorienter 450 000 agents publics des bureaux vers les services de terrain",
+    "description": "Nouvelle Énergie fixe un objectif de 25 % de tâches administratives dans la fonction publique et de 75 % des effectifs affectés au service direct.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-destin",
+        "locator": "Réforme de l’État · Tâches administratives",
+        "fragment": ":~:text=faire%20basculer%20450%20000%20fonctionnaires%20des%20bureaux%20vers%20le%20terrain"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Être maître de notre destin",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-contrats-objectifs-directeurs-administration",
+    "parentId": "lisnard-institutions-guichet-numerique-agriculteurs",
+    "candidate": "lisnard",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Recruter les directeurs d’administration centrale sur des contrats d’objectifs",
+    "description": "Le projet entend donner aux directeurs les moyens d’atteindre les objectifs prévus par leur contrat et de décider de leur mise en œuvre.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-destin",
+        "locator": "Réforme de l’État · Encadrement",
+        "fragment": ":~:text=en%20recrutant%20ces%20derniers%20sur%20des%20contrats%20d%E2%80%99objectifs"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Être maître de notre destin",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-recruter-par-contrat-hors-regalien",
+    "parentId": "lisnard-parti-2027-travail",
+    "candidate": "lisnard",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Généraliser le recrutement contractuel dans les fonctions non régaliennes",
+    "description": "Nouvelle Énergie veut faire évoluer sur ce point l’État, les collectivités et les établissements hospitaliers.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-destin",
+        "locator": "Réforme de l’État · Recrutement public",
+        "fragment": ":~:text=syst%C3%A9matiser%20le%20contrat%20dans%20les%20fonctions%20non%2Dr%C3%A9galiennes"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Être maître de notre destin",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-confier-evaluation-politiques-experts-independants",
+    "parentId": "lisnard-institutions-guichet-numerique-agriculteurs",
+    "candidate": "lisnard",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Confier l’évaluation des politiques publiques à des experts indépendants",
+    "description": "Le programme distingue l’évaluation des résultats des politiques et le contrôle administratif de leur application.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-destin",
+        "locator": "Réforme de l’État · Évaluation indépendante",
+        "fragment": ":~:text=l%E2%80%99%C3%A9valuation%20des%20politiques%20publiques%20%C3%A0%20des%20experts%20ind%C3%A9pendants"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Être maître de notre destin",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-regrouper-directions-cite-gouvernementale",
+    "parentId": "lisnard-institutions-guichet-numerique-agriculteurs",
+    "candidate": "lisnard",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Regrouper les ministres et directions centrales dans une cité gouvernementale",
+    "description": "Nouvelle Énergie propose une implantation commune pour rapprocher les administrations centrales et les membres du gouvernement.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-destin",
+        "locator": "Réforme de l’État · Implantation des administrations",
+        "fragment": ":~:text=regroupant%20sur%20un%20m%C3%AAme%20lieu%20ministres"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Être maître de notre destin",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-traite-pouvoirs-conseil-parlement-europeen",
+    "parentId": "lisnard-europe-clauses-miroirs-agriculture",
+    "candidate": "lisnard",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Négocier un traité renforçant le Conseil européen et le Parlement européen",
+    "description": "Nouvelle Énergie veut redistribuer les compétences au profit des deux institutions dans un traité de démocratisation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-destin",
+        "locator": "Pouvoirs des institutions européennes",
+        "fragment": ":~:text=La%20n%C3%A9gociation%20d%E2%80%99un%20Trait%C3%A9%20de%20d%C3%A9mocratisation%20de%20l%E2%80%99Europe"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Être maître de notre destin",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-referendum-blocage-regles-supranationales",
+    "parentId": "lisnard-europe-clauses-miroirs-agriculture",
+    "candidate": "lisnard",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Permettre un arbitrage par référendum en cas de blocage lié à une règle supranationale",
+    "description": "Le parti envisage de revoir partiellement la hiérarchie des normes pour ouvrir cette possibilité lorsqu’un État estime sa souveraineté empêchée.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-destin",
+        "locator": "Désaccord sur une règle supranationale",
+        "fragment": ":~:text=demander%20aux%20citoyens%20d%E2%80%99arbitrer%20par%20r%C3%A9f%C3%A9rendum"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Être maître de notre destin",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-conditionner-aide-cohesion-etat-droit",
+    "parentId": "lisnard-europe-clauses-miroirs-agriculture",
+    "candidate": "lisnard",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Conditionner les transferts européens de cohésion à l’État de droit",
+    "description": "Le programme demande aussi le respect des règles anticorruption et un assentiment des citoyens européens à cette solidarité.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-destin",
+        "locator": "Conditions des transferts européens",
+        "fragment": ":~:text=les%20pays%20b%C3%A9n%C3%A9ficiaires%20respectent%20l%E2%80%99Etat%20de%20droit%20et%20les%20r%C3%A8gles%20anti%2Dcorruption"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Être maître de notre destin",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-supprimer-c3s-envisager-cvae",
+    "parentId": "lisnard-parti-2027-fiscalite",
+    "candidate": "lisnard",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Supprimer la C3S et envisager la suppression de la CVAE",
+    "description": "Nouvelle Énergie propose de supprimer la contribution sociale de solidarité des sociétés et examine la suppression de la cotisation sur la valeur ajoutée des entreprises.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-ambition",
+        "locator": "Fiscalité de production",
+        "fragment": ":~:text=la%20suppression%20de%20la%20C3S%20%28Contribution%20sociale%20de%20solidarit%C3%A9"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-epargne-aleas-climatiques-agriculteurs",
+    "parentId": "lisnard-parti-2027-fiscalite",
+    "candidate": "lisnard",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Créer un compte d’épargne pour les aléas climatiques des agriculteurs",
+    "description": "Les exploitations l’alimenteraient pendant les années bénéficiaires et pourraient débloquer l’épargne lorsque leurs cultures sont affectées par un événement climatique.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-ambition",
+        "locator": "Protection des revenus agricoles",
+        "fragment": ":~:text=compte%2D%C3%A9pargne%20al%C3%A9as%20climatiques%20et%20%C3%A9conomiques"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-contrat-travail-unique-nouvelles-embauches",
+    "parentId": "lisnard-parti-2027-travail",
+    "candidate": "lisnard",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Fusionner CDI et CDD pour les nouvelles embauches",
+    "description": "Le programme propose un contrat unique avec une indemnité de licenciement progressive.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-ambition",
+        "locator": "Emploi · Contrat unique",
+        "fragment": ":~:text=fusionnant%20CDI%20et%20CDD%20avec%20des%20indemnit%C3%A9s%20de%20licenciement"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-exoneration-emploi-domicile-smic",
+    "parentId": "lisnard-parti-2027-travail",
+    "candidate": "lisnard",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Supprimer les charges d’employeur pour un emploi à domicile au SMIC",
+    "description": "La proposition vise les employeurs à domicile qui rémunèrent un salarié au niveau du salaire minimum.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-ambition",
+        "locator": "Emploi · Travail à domicile",
+        "fragment": ":~:text=charges%20pour%20les%20employeurs%20%C3%A0%20domicile%20au%20niveau%20du%20SMIC"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-charges-negatives-embauches-rsa",
+    "parentId": "lisnard-parti-2027-travail",
+    "candidate": "lisnard",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Instaurer des cotisations patronales négatives pour certaines embauches",
+    "description": "Le projet réserve ce mécanisme aux entreprises qui recrutent des personnes percevant le RSA depuis plus de deux ans.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-ambition",
+        "locator": "Emploi · Retour à l’activité",
+        "fragment": ":~:text=charges%20patronales%20n%C3%A9gatives%20pour%20les%20embauches"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-investir-infrastructures-des-enclaves",
+    "parentId": "lisnard-climat-autoriser-ntg",
+    "candidate": "lisnard",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Investir dans les transports et la connexion des territoires enclavés",
+    "description": "Le programme associe des investissements routiers et ferroviaires au déploiement de la fibre ou de l’accès à Internet par satellite.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-ambition",
+        "locator": "Aménagement · Numérique et transports",
+        "fragment": ":~:text=investissement%20dans%20les%20infrastructures%20routi%C3%A8res%20et%20ferroviaires"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-supprimer-article-55-de-la-loi-sru",
+    "parentId": "lisnard-parti-2027-logement",
+    "candidate": "lisnard",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Supprimer le quota de logements sociaux fixé par la loi SRU",
+    "description": "Nouvelle Énergie vise la suppression de l’article 55, qui impose des seuils aux communes concernées.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-ambition",
+        "locator": "Logement · Quota communal",
+        "fragment": ":~:text=suppression%20de%20l%E2%80%99article%2055%20de%20la%20loi%20SRU"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-age-legal-retraite-65-ans",
+    "parentId": "lisnard-parti-2027-retraites",
+    "candidate": "lisnard",
+    "theme": "retraites",
+    "revision": 1,
+    "title": "Relever l’âge légal de départ à 65 ans",
+    "description": "Le parti fait de ce relèvement un préalable à sa réforme mêlant répartition et capitalisation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-ambition",
+        "locator": "Retraites · Âge légal",
+        "fragment": ":~:text=la%20norme%20de%20l%E2%80%99%C3%A2ge%20l%C3%A9gal%20de%2065%20ans"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-socle-minimum-repartition-65-ans",
+    "parentId": "lisnard-parti-2027-retraites",
+    "candidate": "lisnard",
+    "theme": "retraites",
+    "revision": 1,
+    "title": "Garantir un socle de pension par répartition à 65 ans",
+    "description": "Nouvelle Énergie propose de verser le socle sans condition à cet âge et de le compléter par un minimum vieillesse de 1 000 € par mois.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-ambition",
+        "locator": "Retraites · Pension par répartition",
+        "fragment": ":~:text=socle%20de%20pension%20minimale%20par%20r%C3%A9partition"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-debloquer-epargne-retraite-residence-principale",
+    "parentId": "lisnard-parti-2027-retraites",
+    "candidate": "lisnard",
+    "theme": "retraites",
+    "revision": 1,
+    "title": "Permettre de débloquer une partie de l’épargne retraite pour acheter sa résidence principale",
+    "description": "Dans le volet par capitalisation, le parti prévoit une possibilité de retrait anticipé pour financer cet achat.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-ambition",
+        "locator": "Retraites · Épargne et résidence principale",
+        "fragment": ":~:text=d%C3%A9bloquer%20une%20part%20capitalis%C3%A9e%20de%20cette%20%C3%A9pargne"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-agence-centrale-publique-retraite",
+    "parentId": "lisnard-parti-2027-retraites",
+    "candidate": "lisnard",
+    "theme": "retraites",
+    "revision": 1,
+    "title": "Créer une agence publique centrale pour la gestion des retraites",
+    "description": "La nouvelle agence regrouperait les responsabilités de gestion aujourd’hui réparties entre plusieurs organismes.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-ambition",
+        "locator": "Retraites · Gestion des régimes",
+        "fragment": ":~:text=Une%20Agence%20Centrale%20Publique%20de%20Retraite"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-deplafonner-quotient-familial",
+    "parentId": "lisnard-parti-2027-fiscalite",
+    "candidate": "lisnard",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Supprimer le plafonnement du quotient familial",
+    "description": "Nouvelle Énergie inclut cette réforme fiscale parmi ses propositions pour la politique familiale.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-ambition",
+        "locator": "Politique familiale · Quotient familial",
+        "fragment": ":~:text=d%C3%A9plafonnement%20du%20quotient%20familial"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-doubler-procureurs-juges-application-peines",
+    "parentId": "lisnard-parti-2027-securite",
+    "candidate": "lisnard",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Doubler le nombre de procureurs et de juges d’application des peines",
+    "description": "Cette augmentation s’inscrit dans le plan de renforcement des moyens judiciaires du parti.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-ambition",
+        "locator": "Politique pénale · Parquets et application des peines",
+        "fragment": ":~:text=celui%20de%20procureurs%20%C3%AAtre%20doubl%C3%A9"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-publier-statistiques-par-tribunal",
+    "parentId": "lisnard-parti-2027-securite",
+    "candidate": "lisnard",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Publier en ligne les résultats et l’activité de chaque tribunal",
+    "description": "Le parti prévoit de rendre accessibles les statistiques de fonctionnement et de résultats à l’échelle des tribunaux.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-ambition",
+        "locator": "Justice · Transparence des tribunaux",
+        "fragment": ":~:text=Les%20statistiques%20d%E2%80%99activit%C3%A9%20et%20de%20r%C3%A9sultats%20par%20tribunaux"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-conseil-superieur-de-la-justice",
+    "parentId": "lisnard-parti-2027-securite",
+    "candidate": "lisnard",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Transformer le Conseil supérieur de la magistrature en Conseil supérieur de la justice",
+    "description": "Nouvelle Énergie propose d’ouvrir ses formations à d’autres professions, notamment celles de la justice.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-ambition",
+        "locator": "Justice · Conseil supérieur",
+        "fragment": ":~:text=Conseil%20Sup%C3%A9rieur%20de%20la%20Magistrature%20transform%C3%A9%20en%20Conseil%20Sup%C3%A9rieur%20de%20la%20Justice"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-quotas-immigration-secteurs-tension",
+    "parentId": "lisnard-parti-2027-immigration",
+    "candidate": "lisnard",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Fixer des quotas d’immigration de travail selon les secteurs en tension",
+    "description": "Le programme entend limiter les quotas aux secteurs définis selon leurs besoins économiques.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-ambition",
+        "locator": "Immigration · Autorisations de travail",
+        "fragment": ":~:text=des%20stricts%20besoins%20%C3%A9conomiques%20des%20secteurs%20%C2%AB%20sous%20tension%20%C2%BB"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Réussir une nouvelle ambition française",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-creer-externats-excellence",
+    "parentId": "lisnard-parti-2027-education",
+    "candidate": "lisnard",
+    "theme": "education",
+    "revision": 1,
+    "title": "Créer des externats d’excellence et développer les internats",
+    "description": "Nouvelle Énergie propose des externats offrant des conditions renforcées d’encadrement sur le modèle des internats d’excellence.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-civique",
+        "locator": "Scolarité · Internats et externats",
+        "fragment": ":~:text=la%20cr%C3%A9ation%20d%E2%80%99externats%20d%E2%80%99excellence"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Générer un renouveau civique",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-trois-niveaux-territoriaux-provinces",
+    "parentId": "lisnard-institutions-guichet-numerique-agriculteurs",
+    "candidate": "lisnard",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Réorganiser le territoire autour de l’État, de provinces et du bloc communal",
+    "description": "Le parti propose un référendum constitutionnel et envisage de regrouper départements et territoires régionaux dans les nouvelles provinces.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-civique",
+        "locator": "Organisation territoriale · Provinces",
+        "fragment": ":~:text=nouveau%20sch%C3%A9ma%20institutionnel%20%C3%A0%20trois%20niveaux"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Générer un renouveau civique",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-pouvoir-reglementaire-local",
+    "parentId": "lisnard-institutions-guichet-numerique-agriculteurs",
+    "candidate": "lisnard",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Transférer aux collectivités le pouvoir réglementaire d’application des lois",
+    "description": "Le projet prévoit aussi de leur transférer l’essentiel des compétences de l’État hors de ses fonctions régaliennes et de garantie des libertés publiques.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-civique",
+        "locator": "Organisation territoriale · Compétences",
+        "fragment": ":~:text=pouvoir%20normatif"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Générer un renouveau civique",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "lisnard-partager-recettes-fiscales-nationales-provinces",
+    "parentId": "lisnard-parti-2027-fiscalite",
+    "candidate": "lisnard",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Partager des recettes fiscales nationales avec les collectivités",
+    "description": "Le parti privilégie un partage de recettes nationales pour accompagner les transferts de compétences.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-civique",
+        "locator": "Organisation territoriale · Ressources",
+        "fragment": ":~:text=la%20voie%20du%20partage%20de%20recettes%20fiscales%20nationales"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Programme 2027 de Nouvelle Énergie · Générer un renouveau civique",
+    "checked": "2026-11-25",
+    "partyAuthor": "Nouvelle Énergie"
+  },
+  {
+    "id": "roussel-financer-rer-metropolitains-taxe-bureaux",
+    "parentId": "roussel-parti-2027-climat",
+    "candidate": "roussel",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Financer les RER métropolitains en renforçant la taxe francilienne sur les bureaux",
+    "description": "Le PCF propose de doubler la taxe sur les bureaux dans la zone francilienne où les prix sont les plus élevés. Le cahier cite aussi les versements mobilité parmi les sources possibles de recettes.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-mobilites",
+        "locator": "Réseaux express régionaux métropolitains · p. 12",
+        "fragment": "page=12"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Mobilités",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-fret-ferroviaire-part-30-pour-cent",
+    "parentId": "roussel-parti-2027-climat",
+    "candidate": "roussel",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Porter à 30 % la part du rail dans le transport de marchandises",
+    "description": "Le PCF défend des mesures d’incitation pour le rail, suivies à terme de dispositions contraignantes en faveur du report modal.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-mobilites",
+        "locator": "Transport de marchandises · Rail · p. 13",
+        "fragment": "page=13"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Mobilités",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-fret-fluvial-part-10-pour-cent",
+    "parentId": "roussel-parti-2027-climat",
+    "candidate": "roussel",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Porter le fret fluvial à 10 % du transport de marchandises",
+    "description": "Le cahier prévoit de développer conjointement les transports ferroviaires et fluviaux.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-mobilites",
+        "locator": "Transport de marchandises · Voies d’eau · p. 13",
+        "fragment": "page=13"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Mobilités",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-pret-taux-zero-vehicules-electriques",
+    "parentId": "roussel-parti-2027-climat",
+    "candidate": "roussel",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Ouvrir un prêt à taux zéro pour l’achat d’un véhicule électrique",
+    "description": "Le PCF souhaite rendre ce dispositif accessible à un ensemble étendu de ménages et l’accompagner d’un soutien à l’achat.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-mobilites",
+        "locator": "Automobile · Crédit · p. 17",
+        "fragment": "page=17"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Mobilités",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-prime-conversion-critair-1",
+    "parentId": "roussel-parti-2027-climat",
+    "candidate": "roussel",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Proposer une prime de conversion jusqu’à 10 000 € pour certains véhicules thermiques",
+    "description": "Le cahier prévoit une prime pour les modèles thermiques peu polluants de la catégorie qu’il désigne comme critère 1.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-mobilites",
+        "locator": "Automobile · Prime à la conversion · p. 17",
+        "fragment": "page=17"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Mobilités",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-conditionner-bonus-automobile-empreinte-production",
+    "parentId": "roussel-parti-2027-climat",
+    "candidate": "roussel",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Renforcer le poids de l’empreinte carbone de production dans le bonus automobile",
+    "description": "Le cahier propose de modifier le score environnemental qui détermine l’éligibilité au bonus.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-mobilites",
+        "locator": "Automobile · Conditions du bonus · p. 17",
+        "fragment": "page=17"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Mobilités",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-revenir-sur-privatisations-aeroports",
+    "parentId": "roussel-parti-2027-climat",
+    "candidate": "roussel",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Reprendre la maîtrise publique des aéroports privatisés",
+    "description": "Le PCF demande de revenir sur les privatisations dans le secteur aéroportuaire pour rétablir une gestion publique.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-mobilites",
+        "locator": "Aviation · Gestion publique · p. 8",
+        "fragment": "page=8"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Mobilités",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-faciliter-reconnaissance-maladies-professionnelles",
+    "parentId": "roussel-parti-2027-sante",
+    "candidate": "roussel",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Faciliter la reconnaissance des maladies professionnelles",
+    "description": "Le PCF propose de mieux former les médecins à la démarche et de donner un rôle plus important au médecin du travail.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-securite-sociale",
+        "locator": "Accidents et maladies du travail · Reconnaissance · p. 30",
+        "fragment": "page=30"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Sécurité sociale",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
+  },
+  {
+    "id": "roussel-financer-autonomie-securite-sociale",
+    "parentId": "roussel-parti-2027-social",
+    "candidate": "roussel",
+    "theme": "social",
+    "revision": 1,
+    "title": "Financer intégralement la perte d’autonomie par la Sécurité sociale",
+    "description": "Le cahier propose de rapprocher la prise en charge de l’autonomie et de la maladie, avec un développement des services publics.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "pcf-securite-sociale",
+        "locator": "Perte d’autonomie · p. 43",
+        "fragment": "page=43"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Les cahiers des Jours heureux · Sécurité sociale",
+    "checked": "2026-11-25",
+    "partyAuthor": "Parti communiste français"
   }
 ]
