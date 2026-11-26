@@ -1,5 +1,11 @@
 # Capacité de publication
 
+## Activation du 26 novembre 2026
+
+Le déployeur installé sur Zen correspond à la révision `ac39a2fcb2ae14fad6a11234ae4bde592a0c4005`. Le service MCP 1.6.0 annonce la version 1 du transport du corpus. Une question sur la CSG a donné la même réponse et les mêmes références sur REST et MCP. GitHub Actions sélectionne le profil `partitioned` via `POLRADAR_SITE_TRANSPORT`. [Contrat public](https://polradar.fr/api/v1/corpus) · [Paquet du service](https://github.com/bluetouff/polradar/releases/tag/services-ac39a2fcb2ae14fad6a11234ae4bde592a0c4005)
+
+Pour vérifier la première publication dans ce format, rapprocher la révision de `build.json` de celle du manifeste `/api/corpus-parts.json`, puis contrôler l’empreinte de `/api/corpus.json` après reconstitution. Le rapport `site-capacity.json` joint à la release indique les volumes occupés et les plafonds appliqués.
+
 ## Référence du 26 novembre 2026
 
 L’archive de `867cd0601aa35c3dd18b62ef554cf76b2624b433` a été téléchargée, contrôlée par SHA-256 et extraite localement. La révision a aussi été vérifiée sur le site public et auprès du MCP 1.5.0. [Archive de l’édition](https://github.com/bluetouff/polradar/releases/tag/site-867cd0601aa35c3dd18b62ef554cf76b2624b433) · [Manifeste public](https://polradar.fr/build.json)
