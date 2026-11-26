@@ -1,6 +1,10 @@
 // Publications nominatives utilisées pour identifier les portraits de campagne.
 /** @type {Record<string, {label: string, url: string, sourceUrl?: string, contactNote?: string} | undefined>} */
 export const portraitLinks = {
+  bascunana: {
+    label: 'Portrait de profil publié par le PIC',
+    url: 'https://pari-intelligence-collective.org/constitution/titre-vi-ordre-economique-fiscal-monetaire/titre-vi-art-6-liberte-entreprendre-limites/#comment-1592',
+  },
   billetdoux: {
     label: 'Vidéo de candidature',
     contactNote:

@@ -52,6 +52,25 @@ test('le prêt 100 % Rénov’ conserve son ancienne URL et une seule fiche de c
   expect(sitemap).not.toContain(obsolete);
 });
 
+test('la fiche Bascuñana publie l’Agora à son adresse canonique et conserve le lien historique', async ({
+  page,
+  request,
+}) => {
+  const previous = 'pic-agora-7777';
+  const destination = '/mesures/pic-agora-tirage-au-sort/';
+  const response = await request.get('/candidats/bascunana/');
+  expect(response.ok()).toBeTruthy();
+  const candidate = await response.text();
+  expect(candidate).toContain(`href="${destination}"`);
+  expect(candidate).not.toContain(previous);
+
+  await page.goto(`/mesures/${previous}/`);
+  await expect(page).toHaveURL(testOrigin + destination);
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(
+    'électeurs tirés au sort',
+  );
+});
+
 test('les sélecteurs mobiles ouvrent les nouveaux dossiers et conservent le choix au retour', async ({
   page,
 }) => {

@@ -2940,213 +2940,167 @@
   },
   {
     "sourceId": "revillon-apreval-manifeste",
-    "unit": "passage",
-    "checked": "2026-11-25",
-    "perimeter": "Passages vérifiés du manifeste illustré, dans la partie institutionnelle et les mesures thématiques.",
+    "unit": "section",
+    "checked": "2026-11-26",
+    "perimeter": "Manifeste illustré de Rémi Revillon d’Apreval · 175 pages relues",
     "units": [
       {
-        "id": "passage-1",
-        "title": "Participation et vote · p. 12",
-        "measureIds": ["revillon-apreval-verifier-identite-compte-citoyen"]
+        "id": "ouverture",
+        "title": "Couverture et sommaire · p. 1 à 2",
+        "measureIds": [],
+        "review": "sans-engagement-precis"
       },
       {
-        "id": "passage-2",
-        "title": "Participation et vote · p. 17",
-        "measureIds": ["revillon-apreval-delai-rectification-vote-delegue"]
+        "id": "diagnostic-democratique",
+        "title": "I · Le désenchantement démocratique · p. 3 à 8",
+        "measureIds": [],
+        "review": "sans-engagement-precis"
       },
       {
-        "id": "passage-3",
-        "title": "Organisation des pouvoirs · p. 25",
-        "measureIds": ["revillon-apreval-conseil-si-aucun-relais-majoritaire"]
-      },
-      {
-        "id": "passage-4",
-        "title": "Participation et vote · p. 31",
-        "measureIds": ["revillon-apreval-financer-expertise-debat-citoyen"]
-      },
-      {
-        "id": "passage-5",
-        "title": "Constitution et justice · p. 48",
-        "measureIds": ["revillon-apreval-rediger-contrat-social-court"]
-      },
-      {
-        "id": "passage-6",
-        "title": "Éducation · p. 51",
+        "id": "odanie",
+        "title": "II · Une autre voie, ODANIE · p. 9 à 38",
         "measureIds": [
+          "revillon-apreval-verifier-identite-compte-citoyen",
+          "revillon-apreval-delegation-revocable",
+          "revillon-apreval-priorite-vote-direct",
+          "revillon-apreval-delai-rectification-vote-delegue",
+          "revillon-apreval-mandats-continus",
+          "revillon-apreval-coordinateur-executif",
+          "revillon-apreval-conseiller-general-debat",
+          "revillon-apreval-juge-general-lois",
+          "revillon-apreval-vote-engagements-militaires",
+          "revillon-apreval-conseil-si-aucun-relais-majoritaire",
+          "revillon-apreval-suspension-pouvoirs-vote",
+          "revillon-apreval-jugement-populaire-cas-graves",
+          "revillon-apreval-initiative-citoyenne-directe",
+          "revillon-apreval-ia-appui-initiatives",
+          "revillon-apreval-financer-expertise-debat-citoyen",
+          "revillon-apreval-remuneration-conseiller-general",
+          "revillon-apreval-essai-prime-collective",
+          "revillon-apreval-bilan-mensuel-trois-responsables",
+          "revillon-apreval-interdire-boucles-delegation",
+          "revillon-apreval-interdire-pressions-citoyens",
+          "revillon-apreval-rendre-votes-visibles-aux-soutiens"
+        ]
+      },
+      {
+        "id": "note-personnelle",
+        "title": "Note personnelle sur le rôle du conseiller général · p. 39 à 40",
+        "measureIds": [
+          "revillon-apreval-ouvrir-conseiller-general-societe-ou-ia"
+        ]
+      },
+      {
+        "id": "socle",
+        "title": "III · Le socle · p. 41 à 52",
+        "measureIds": [
+          "revillon-apreval-juger-contradiction-manifeste-loi",
+          "revillon-apreval-juge-general-lois",
+          "revillon-apreval-rediger-contrat-social-court",
+          "revillon-apreval-ecarter-poursuites-si-protection-etat-echoue",
+          "revillon-apreval-garantir-expression-opinions-sinceres",
+          "revillon-apreval-justifier-restrictions-par-nuisance",
           "revillon-apreval-remplacer-ecole-par-tutorat-et-centres"
         ]
       },
       {
-        "id": "passage-7",
-        "title": "Fiscalité · p. 70",
-        "measureIds": ["revillon-apreval-remplacer-principaux-impots-par-tvp"]
-      },
-      {
-        "id": "passage-8",
-        "title": "Fiscalité · p. 72",
-        "measureIds": ["revillon-apreval-tvp-taux-normal-et-reduits"]
-      },
-      {
-        "id": "passage-9",
-        "title": "Protection sociale · p. 76",
+        "id": "demagogie",
+        "title": "IV · Le danger de la démagogie · p. 53 à 68",
         "measureIds": [
-          "revillon-apreval-centrer-assurance-maladie-publique-soins-vitaux"
+          "revillon-apreval-indicateur-production-hors-administration"
         ]
       },
       {
-        "id": "passage-10",
-        "title": "Protection sociale · p. 77",
-        "measureIds": ["revillon-apreval-retraite-socle-70-puis-85-ans"]
-      },
-      {
-        "id": "passage-11",
-        "title": "Protection sociale · p. 79",
-        "measureIds": ["revillon-apreval-vote-sur-pensions-deja-acquises"]
-      },
-      {
-        "id": "passage-12",
-        "title": "Fiscalité · p. 80",
+        "id": "economie",
+        "title": "V · L’économie libérée · p. 69 à 98",
         "measureIds": [
-          "revillon-apreval-contribution-residence-pensions-acquises"
+          "revillon-apreval-remplacer-principaux-impots-par-tvp",
+          "revillon-apreval-tracer-achats-professionnels-carte",
+          "revillon-apreval-tvp-taux-normal-et-reduits",
+          "revillon-apreval-remplacer-especes-monnaie-numerique-publique",
+          "revillon-apreval-centrer-assurance-maladie-publique-soins-vitaux",
+          "revillon-apreval-retraite-facultative-depart-anticipe",
+          "revillon-apreval-retraite-socle-70-puis-85-ans",
+          "revillon-apreval-vote-sur-pensions-deja-acquises",
+          "revillon-apreval-contribution-residence-pensions-acquises",
+          "revillon-apreval-garantir-emploi-par-operateurs-publics",
+          "revillon-apreval-repartir-temps-travail-apres-automatisation",
+          "revillon-apreval-investissement-civique-projets-votes",
+          "revillon-apreval-fonds-automatisation-infrastructures",
+          "revillon-apreval-plafond-citoyennete-et-cessions",
+          "revillon-apreval-decheance-citoyennete-et-revente",
+          "revillon-apreval-citoyennete-indice-creatif"
         ]
       },
       {
-        "id": "passage-13",
-        "title": "Protection sociale · p. 81",
+        "id": "mobilite",
+        "title": "VI · La révolution de la mobilité · p. 99 à 137",
         "measureIds": [
-          "revillon-apreval-garantir-emploi-par-operateurs-publics"
-        ]
-      },
-      {
-        "id": "passage-14",
-        "title": "Protection sociale · p. 84",
-        "measureIds": [
-          "revillon-apreval-repartir-temps-travail-apres-automatisation"
-        ]
-      },
-      {
-        "id": "passage-15",
-        "title": "Fiscalité · p. 90",
-        "measureIds": ["revillon-apreval-investissement-civique-projets-votes"]
-      },
-      {
-        "id": "passage-16",
-        "title": "Fiscalité · p. 91",
-        "measureIds": ["revillon-apreval-fonds-automatisation-infrastructures"]
-      },
-      {
-        "id": "passage-17",
-        "title": "Nationalité · p. 94",
-        "measureIds": ["revillon-apreval-citoyennete-indice-creatif"]
-      },
-      {
-        "id": "passage-18",
-        "title": "Mobilité · p. 104",
-        "measureIds": [
-          "revillon-apreval-service-de-vehicules-electriques-autonomes"
-        ]
-      },
-      {
-        "id": "passage-19",
-        "title": "Mobilité · p. 108",
-        "measureIds": ["revillon-apreval-ouvrir-reseau-vehicules-compatibles"]
-      },
-      {
-        "id": "passage-20",
-        "title": "Mobilité · p. 111",
-        "measureIds": ["revillon-apreval-soumettre-recharge-en-roulant-au-vote"]
-      },
-      {
-        "id": "passage-21",
-        "title": "Mobilité · p. 118",
-        "measureIds": [
-          "revillon-apreval-transport-urgences-par-vehicule-partage"
-        ]
-      },
-      {
-        "id": "passage-22",
-        "title": "Mobilité · p. 120",
-        "measureIds": [
-          "revillon-apreval-livrer-courses-et-collecter-tri-en-un-trajet"
-        ]
-      },
-      {
-        "id": "passage-23",
-        "title": "Mobilité · p. 124",
-        "measureIds": [
-          "revillon-apreval-consigner-emballages-reutilisables-courses"
-        ]
-      },
-      {
-        "id": "passage-24",
-        "title": "Mobilité · p. 128",
-        "measureIds": ["revillon-apreval-convertir-parkings-en-depots-flotte"]
-      },
-      {
-        "id": "passage-25",
-        "title": "Énergie · p. 129",
-        "measureIds": [
-          "revillon-apreval-moderniser-foyers-bois-pour-pointes-electriques"
-        ]
-      },
-      {
-        "id": "passage-26",
-        "title": "Énergie · p. 130",
-        "measureIds": [
-          "revillon-apreval-recuperer-chaleur-serveurs-dans-immeubles"
-        ]
-      },
-      {
-        "id": "passage-27",
-        "title": "Mobilité · p. 135",
-        "measureIds": [
-          "revillon-apreval-former-salaries-metiers-mobilite-reconversion"
-        ]
-      },
-      {
-        "id": "passage-28",
-        "title": "Mobilité · p. 137",
-        "measureIds": [
+          "revillon-apreval-service-de-vehicules-electriques-autonomes",
+          "revillon-apreval-ouvrir-reseau-vehicules-compatibles",
+          "revillon-apreval-racheter-usines-automobiles-flotte",
+          "revillon-apreval-soumettre-recharge-en-roulant-au-vote",
+          "revillon-apreval-transport-urgences-par-vehicule-partage",
+          "revillon-apreval-livrer-courses-et-collecter-tri-en-un-trajet",
+          "revillon-apreval-consigner-emballages-reutilisables-courses",
+          "revillon-apreval-marches-mobiles-etals-autonomes",
+          "revillon-apreval-convertir-parkings-en-depots-flotte",
+          "revillon-apreval-moderniser-foyers-bois-pour-pointes-electriques",
+          "revillon-apreval-recuperer-chaleur-serveurs-dans-immeubles",
+          "revillon-apreval-former-salaries-metiers-mobilite-reconversion",
           "revillon-apreval-experimenter-reseau-vehicules-villes-pilotes"
         ]
       },
       {
-        "id": "passage-29",
-        "title": "Justice et logement · p. 144",
+        "id": "justice",
+        "title": "VII · Sécurité et justice · p. 138 à 160",
         "measureIds": [
-          "revillon-apreval-confier-vente-stupefiants-a-un-monopole-public"
+          "revillon-apreval-drones-et-cameras-alerte-espace-public",
+          "revillon-apreval-service-public-alarmes-domicile",
+          "revillon-apreval-confier-vente-stupefiants-a-un-monopole-public",
+          "revillon-apreval-priorite-mise-en-danger-dans-sanction",
+          "revillon-apreval-signalement-video-dangers-routiers",
+          "revillon-apreval-adapter-vitesse-routiere-conditions",
+          "revillon-apreval-avertissement-routier-ecart-limite",
+          "revillon-apreval-feu-rouge-arret-puis-passage",
+          "revillon-apreval-filmer-interventions-et-gardes-a-vue",
+          "revillon-apreval-redefinir-usage-force-police-mission",
+          "revillon-apreval-ouvrir-abris-individuels-sans-condition",
+          "revillon-apreval-detention-selon-dangerosite",
+          "revillon-apreval-faire-contribuer-travail-couts-detention",
+          "revillon-apreval-nommer-parquet-par-coordinateur",
+          "revillon-apreval-prime-juges-sortie-suivi-recidive",
+          "revillon-apreval-suspension-pouvoirs-vote",
+          "revillon-apreval-vote-engagements-militaires",
+          "revillon-apreval-vote-odanie-propositions"
         ]
       },
       {
-        "id": "passage-30",
-        "title": "Justice et logement · p. 154",
+        "id": "appartenances",
+        "title": "VIII · La question civilisationnelle · p. 161 à 168",
         "measureIds": [
-          "revillon-apreval-ouvrir-abris-individuels-sans-condition"
-        ]
-      },
-      {
-        "id": "passage-31",
-        "title": "Relations internationales · p. 167",
-        "measureIds": [
+          "revillon-apreval-espace-denationalise-volontaire",
+          "revillon-apreval-sensibiliser-enfants-aux-prejuges",
+          "revillon-apreval-ouvrir-consultations-internationales-odanie",
           "revillon-apreval-elaborer-langue-commune-internationale"
         ]
       },
       {
-        "id": "passage-32",
-        "title": "Relations internationales · p. 170",
+        "id": "bascule",
+        "title": "IX · La bascule · p. 169 à 174",
         "measureIds": [
-          "revillon-apreval-cooperation-renforcee-europe-taxe-mobilite"
+          "revillon-apreval-cooperation-renforcee-europe-taxe-mobilite",
+          "revillon-apreval-vote-options-relation-union-europeenne",
+          "revillon-apreval-remplacer-principaux-impots-par-tvp",
+          "revillon-apreval-publier-tableau-de-bord-transition",
+          "revillon-apreval-remplacer-ecole-par-tutorat-et-centres"
         ]
       },
       {
-        "id": "passage-33",
-        "title": "Suivi du programme · p. 172",
-        "measureIds": ["revillon-apreval-publier-tableau-de-bord-transition"]
-      },
-      {
-        "id": "passage-34",
-        "title": "Constitution et justice · p. 47",
-        "measureIds": ["revillon-apreval-juge-general-lois"]
+        "id": "conclusion",
+        "title": "Conclusion · p. 175",
+        "measureIds": [],
+        "review": "sans-engagement-precis"
       }
     ]
   },
@@ -9670,7 +9624,7 @@
         "measureIds": [
           "bascunana-referendum-sortie-ue",
           "pic-ric-toutes-matieres",
-          "pic-agora-7777",
+          "pic-agora-tirage-au-sort",
           "pic-mandat-imperatif-revocable",
           "pic-democratie-francaise",
           "pic-patrimoine-deliberation",
@@ -9704,7 +9658,7 @@
           "pic-votations-quatre-par-an",
           "pic-execution-decisions-referendum",
           "pic-ric-toutes-matieres",
-          "pic-agora-7777",
+          "pic-agora-tirage-au-sort",
           "pic-referendum-onu-dissuasion",
           "pic-conseil-sept",
           "pic-formulateurs-777",

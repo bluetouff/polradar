@@ -2,6 +2,7 @@ import type { ImageMetadata } from 'astro';
 import portrait0 from '../assets/portraits/arthaud.jpg';
 import portrait1 from '../assets/portraits/asselineau.jpg';
 import portrait2 from '../assets/portraits/attal.jpg';
+import bascunana from '../assets/portraits/bascunana.png';
 import portrait3 from '../assets/portraits/branco.jpg';
 import portrait4 from '../assets/portraits/dupont-aignan.jpg';
 import portrait5 from '../assets/portraits/durif.jpg';
@@ -48,6 +49,7 @@ export const portraitAssets: Record<string, ImageMetadata> = {
   'arthaud.jpg': portrait0,
   'asselineau.jpg': portrait1,
   'attal.jpg': portrait2,
+  'bascunana.png': bascunana,
   'branco.jpg': portrait3,
   'dupont-aignan.jpg': portrait4,
   'durif.jpg': portrait5,
