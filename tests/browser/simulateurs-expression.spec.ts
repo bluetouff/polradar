@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-test('les douze outils sont accessibles depuis Mon quotidien sur mobile', async ({
+test('les quatorze outils sont accessibles depuis Mon quotidien sur mobile', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 360, height: 800 });
@@ -8,7 +8,7 @@ test('les douze outils sont accessibles depuis Mon quotidien sur mobile', async 
   await expect(
     page.getByRole('heading', { name: 'Mon quotidien' }),
   ).toBeVisible();
-  await expect(page.locator('[data-simulator-card]')).toHaveCount(12);
+  await expect(page.locator('[data-simulator-card]')).toHaveCount(14);
   await page.getByRole('link', { name: /Droits de succession/ }).click();
   await expect(page).toHaveURL(/\/economie\/simulateurs\/successions\/$/);
   await expect(
@@ -70,6 +70,52 @@ test('un calcul et ses sources restent lisibles sans JavaScript', async ({
   } finally {
     await context.close();
   }
+});
+
+test('la crèche et le premier achat relient les calculs aux barèmes et aux engagements', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 360, height: 800 });
+  await page.goto('/economie/simulateurs/');
+  await page.getByRole('link', { name: /Coût de la crèche publique/ }).click();
+  const amounts = page.locator('[data-simulator-amount]');
+  await expect(amounts.first()).toHaveText(/297,60/);
+  await expect(
+    page.getByRole('link', { name: /barème des participations/ }),
+  ).toHaveAttribute('href', /^https:\/\/www\.caf\.fr\//);
+  const resources = page.getByRole('textbox', {
+    name: /Ressources mensuelles/,
+  });
+  await resources.fill('0');
+  await resources.press('Enter');
+  await expect(amounts.first()).toHaveText(/^80\s*€/);
+  await expect(
+    page
+      .locator('[data-simulator-results]')
+      .getByRole('link', { name: 'Fiche et source' }),
+  ).toHaveAttribute('href', '/mesures/melenchon-creches-publiques-gratuites/');
+
+  await page
+    .getByRole('link', { name: 'Mon quotidien', exact: true })
+    .first()
+    .click();
+  await page.getByRole('link', { name: /Premier achat immobilier/ }).click();
+  const price = page.getByRole('textbox', { name: /Prix imposable/ });
+  await price.fill('100 000');
+  await price.press('Enter');
+  await expect(amounts.first()).toHaveText(/5\s*806,65/);
+  await expect(amounts.last()).toHaveText(/^0\s*€/);
+  await expect(
+    page.getByRole('link', { name: /trouver le taux du département/ }),
+  ).toHaveAttribute(
+    'href',
+    'https://www.impots.gouv.fr/droits-denregistrement',
+  );
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= window.innerWidth,
+    ),
+  ).toBe(true);
 });
 
 test('le temps de travail distingue les durées générales et les propositions ciblées', async ({

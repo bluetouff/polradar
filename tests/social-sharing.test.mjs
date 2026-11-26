@@ -105,6 +105,8 @@ test('l’accueil et toutes les rubriques ont un PNG distinct et les sous-pages 
     '/economie/simulateurs/impot-sur-le-revenu/',
     '/economie/simulateurs/consultation-medicale/',
     '/economie/simulateurs/abonnement-transports/',
+    '/economie/simulateurs/creche/',
+    '/economie/simulateurs/premier-achat-immobilier/',
     '/territoires/',
     '/economie/finances-publiques/',
     '/themes/',

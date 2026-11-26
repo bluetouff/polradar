@@ -515,6 +515,8 @@ const complementaryVersions: Record<string, string[]> = {
   'climat-production-nucleaire': [
     'melenchon-fermer-les-centrales-nucleaires-et-arreter-les-epr2-v1',
     'lepen-renegocier-prix-electricite-europe-v3',
+    'lisnard-prolonger-reacteurs-nucleaires-60-ans-v1',
+    'lisnard-nouveaux-epr-et-mini-reacteurs-v1',
   ],
   'climat-prix-energie': [
     'lepen-climat-tva-energie-v2',
@@ -533,6 +535,7 @@ const complementaryVersions: Record<string, string[]> = {
   ],
   'regularisation-sejour': [
     'philippe-soumettre-les-regularisations-massives-a-un-accord-entre-etats-schengen-v1',
+    'lisnard-interdire-regularisation-apres-entree-clandestine-v1',
   ],
   'immigration-travail': [
     'philippe-introduire-des-quotas-dimmigration-selon-les-profils-recherches-v1',
@@ -541,10 +544,13 @@ const complementaryVersions: Record<string, string[]> = {
   'soins-de-proximite': [
     'equinoxe-tripler-structures-mobiles-soins-v1',
     'dlf-hopital-quarante-cinq-minutes-v1',
+    'melenchon-vacations-deserts-medicaux-v1',
+    'groupe-rn-supprimer-communautes-professionnelles-sante-v1',
   ],
   'sante-installation-medecins': [
     'dlf-bourse-medecins-zones-sous-dotees-v1',
     'branco-sante-implantation-medicale-v1',
+    'melenchon-guichet-installation-soignants-v1',
   ],
   'sante-remboursement-soins': [
     'branco-sante-assurance-unique-v1',
@@ -583,6 +589,9 @@ const complementaryVersions: Record<string, string[]> = {
     'dlf-salaires-nets-professeurs-quinze-v1',
     'branco-salaires-enseignants-debut-carriere-v1',
   ],
+  'education-acces-etudes': [
+    'place-publique-abroger-parcoursup-etats-generaux-orientation-v1',
+  ],
   'institutions-ecrire-constitution': [
     'mathieu-convention-controle-impartialite-v1',
     'mlekuz-garants-constituante-v1',
@@ -610,6 +619,7 @@ const complementaryVersions: Record<string, string[]> = {
   'social-garde-jeunes-enfants': [
     'dlf-places-creches-cinq-ans-v1',
     'attal-social-professionnels-enfance-v1',
+    'glucksmann-soustraire-creches-ehpad-logique-marchande-v1',
   ],
 };
 const searchTerms: Record<string, string> = {

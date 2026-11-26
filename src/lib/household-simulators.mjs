@@ -12,6 +12,14 @@ const commutingSource = {
   title: 'Service Public · prise en charge des transports par l’employeur',
   url: servicePublic + 'F19846',
 };
+const childcareSource = {
+  title: 'Caf · barème des participations familiales 2026',
+  url: 'https://www.caf.fr/sites/default/files/medias/661/Espace-Partenaires/Documents-Partenaires/2026-Baremes-Participation-Famille-Eaje.pdf',
+};
+const transferTaxSource = {
+  title: 'Finances publiques · taxe sur l’achat dans l’ancien',
+  url: 'https://www.impots.gouv.fr/particulier/questions/jachete-un-bien-immobilier-quaurai-je-payer-comme-frais-au-notaire',
+};
 
 /**
  * @typedef {{title: string, url: string}} Link
@@ -599,7 +607,114 @@ export const householdSimulators = [
     method:
       'Cas d’un salarié du privé qui travaille au moins à mi-temps et utilise un abonnement éligible pour ses trajets domicile–travail. Le montant affiché correspond au prix mensuel diminué de la prise en charge, arrondie au centime. En dessous d’un mi-temps, la prise en charge dépend de votre durée de travail.',
   },
+  {
+    id: 'creche',
+    title: 'Coût de la crèche publique',
+    icon: 'social',
+    summary:
+      'Estimer la facture mensuelle d’une place en crèche publique au barème Caf.',
+    measureUnit: 'euros',
+    resultTitle: 'Participation mensuelle estimée',
+    fields: [
+      {
+        id: 'resources',
+        label: 'Ressources mensuelles retenues par la Caf (€)',
+        value: '3000',
+        min: 0,
+        max: 100_000,
+        precision: 2,
+      },
+      {
+        id: 'children',
+        label: 'Enfants à charge dans le foyer',
+        value: '1',
+        min: 1,
+        max: 10,
+        precision: 0,
+      },
+      {
+        id: 'hours',
+        label: 'Heures facturées dans le mois pour cette place',
+        value: '160',
+        min: 0,
+        max: 300,
+        precision: 2,
+      },
+    ],
+    baseline: {
+      label: 'Barème Caf 2026, accueil collectif',
+      detail:
+        'Le tarif horaire dépend des ressources du foyer et du nombre d’enfants à charge.',
+      source: childcareSource,
+    },
+    alternatives: [
+      {
+        measure: 'melenchon-creches-publiques-gratuites',
+        detail: 'Le plan prévoit la gratuité de l’accueil en crèche publique.',
+        value: 0,
+      },
+    ],
+    positions: [
+      { measure: 'philippe-plan-garde-enfants' },
+      { measure: 'glucksmann-soustraire-creches-ehpad-logique-marchande' },
+    ],
+    method:
+      'Le calcul concerne une place en accueil collectif public conventionné avec la Caf. Il applique le taux d’effort horaire aux ressources mensuelles, avec un plancher de 814,62 € et le plafond national de 8 500 €. Le tarif horaire est arrondi au centime, puis multiplié par les heures facturées. Certaines structures appliquent un plafond supérieur ou déplafonnent. L’estimation correspond au barème standard, avant crédit d’impôt, hors tarifs adaptés au handicap ou à l’aide sociale à l’enfance.',
+  },
+  {
+    id: 'premier-achat-immobilier',
+    title: 'Premier achat immobilier',
+    icon: 'logement',
+    summary:
+      'Calculer les droits de mutation sur un premier achat dans l’ancien avant 35 ans.',
+    measureUnit: 'euros',
+    resultTitle: 'Droits de mutation estimés',
+    fields: [
+      {
+        id: 'price',
+        label: 'Prix imposable de l’achat (€)',
+        value: '200000',
+        min: 1,
+        max: 20_000_000,
+        precision: 0,
+      },
+      {
+        id: 'departmentRate',
+        label: 'Taux départemental applicable (%)',
+        value: '4,50',
+        min: 1.2,
+        max: 4.5,
+        precision: 2,
+      },
+    ],
+    baseline: {
+      label: 'Taxe sur un premier achat dans l’ancien',
+      detail:
+        'Part départementale, taxe communale habituelle de 1,20 % et frais de recouvrement.',
+      source: transferTaxSource,
+    },
+    alternatives: [
+      {
+        measure:
+          'philippe-exonerer-de-droits-de-mutation-le-premier-achat-immobilier-avant-35-ans',
+        detail:
+          'Le programme prévoit d’exonérer les droits de mutation pour un premier achat de résidence principale avant 35 ans.',
+        value: 0,
+      },
+    ],
+    method:
+      'Pour un premier achat de résidence principale avant 35 ans dans l’ancien, choisissez le taux du département où se trouve le bien. L’estimation utilise la part communale habituelle de 1,20 % et ajoute 2,37 % de la part départementale au titre du recouvrement. Les réductions locales particulières, la contribution de sécurité immobilière, les débours et les honoraires du notaire restent hors du calcul.',
+    sources: [
+      {
+        title: 'Finances publiques · trouver le taux du département',
+        url: 'https://www.impots.gouv.fr/droits-denregistrement',
+      },
+    ],
+  },
 ];
+
+// Taux d’effort horaire en millionièmes, pour un à dix enfants à charge.
+const childcareRates = [619, 516, 413, 310, 310, 310, 310, 206, 206, 206];
 
 const brackets = [
   [8072, 5],
@@ -659,6 +774,25 @@ const calculations = {
   'abonnement-transports': ({ price }, row) => {
     const cents = Math.round(price * 100);
     return cents - Math.round((cents * row.value) / 100);
+  },
+  creche: ({ resources, children, hours }, row, baseline) => {
+    if (!baseline) return row.value ?? null;
+    const cappedResources = Math.min(
+      850_000,
+      Math.max(81_462, Math.round(resources * 100)),
+    );
+    const hourlyCents = Math.round(
+      (cappedResources * childcareRates[children - 1]) / 1_000_000,
+    );
+    const hundredthsOfHour = Math.round(hours * 100);
+    return Math.round((hourlyCents * hundredthsOfHour) / 100);
+  },
+  'premier-achat-immobilier': ({ price, departmentRate }, row, baseline) => {
+    if (!baseline) return row.value ?? null;
+    const departmentBasisPoints = Math.round(departmentRate * 100);
+    return Math.round(
+      (price * (120 * 10_000 + departmentBasisPoints * 10_237)) / 1_000_000,
+    );
   },
 };
 

@@ -1953,16 +1953,22 @@
       "attendus": {
         "/question/id": "education-acces-etudes",
         "/resultats/0/reponse/positions/0/versionId": "branco-education-parcoursup-v1",
-        "/resultats/1/reponse/positions/0/versionId": "ps-education-parcoursup-v1",
+        "/resultats/1/reponse/positions/0/versionId": "place-publique-abroger-parcoursup-etats-generaux-orientation-v1",
+        "/resultats/1/reponse/positions/1/versionId": "ps-education-parcoursup-v1",
         "/resultats/0/reponse/positions/0/author": "Juan Branco",
-        "/resultats/1/reponse/positions/0/author": "Parti socialiste"
+        "/resultats/1/reponse/positions/0/author": "Place publique",
+        "/resultats/1/reponse/positions/1/author": "Parti socialiste",
+        "/resultats/1/reponse/positions/0/sources/0/url": "https://action.place-publique.eu/actualite/13q42wkiDRW2ScIYsTNAeS/sortir-de-la-crise-10-propositions#:~:text=abrogation%20de%20parcoursup%20et%20lancement",
+        "/resultats/1/reponse/positions/1/sources/0/url": "https://projet-socialiste.fr/projet/sepanouir-a-egalite/"
       },
       "champs": [
         "/resultats/0/reponse/positions/0/sources/0/locator",
-        "/resultats/1/reponse/positions/0/sources/0/locator"
+        "/resultats/1/reponse/positions/0/sources/0/locator",
+        "/resultats/1/reponse/positions/1/sources/0/locator"
       ],
       "sources": [
         "https://ruches.org/projet-1784217879253.pdf",
+        "https://action.place-publique.eu/actualite/13q42wkiDRW2ScIYsTNAeS/sortir-de-la-crise-10-propositions#:~:text=abrogation%20de%20parcoursup%20et%20lancement",
         "https://projet-socialiste.fr/projet/sepanouir-a-egalite/"
       ],
       "identifiants": ["education-acces-etudes", "branco", "glucksmann"],

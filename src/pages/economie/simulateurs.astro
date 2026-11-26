@@ -42,12 +42,19 @@ const panels = [
   {
     id: 'depenses',
     label: 'Factures et logement',
-    topics: ['electricite', 'carburants', 'loyers', 'abonnement-transports'],
+    topics: [
+      'electricite',
+      'carburants',
+      'loyers',
+      'premier-achat-immobilier',
+      'abonnement-transports',
+    ],
   },
   {
     id: 'famille',
     label: 'Famille, santé et retraite',
     topics: [
+      'creche',
       'allocations-familiales',
       'successions',
       'retraite',
@@ -63,7 +70,10 @@ const panels = [
 <Base
   title="Mon quotidien · Simulateurs de Polradar"
   section="/economie/simulateurs/"
-  description="Douze outils pour calculer vos revenus, votre impôt, vos dépenses et vos remboursements, et consulter les propositions sourcées."
+  description={
+    directory.length +
+    ' outils pour calculer vos revenus, votre impôt, vos dépenses et vos remboursements, et consulter les propositions sourcées.'
+  }
 >
   <header class="daily-hero">
     <span class="daily-hero-icon">

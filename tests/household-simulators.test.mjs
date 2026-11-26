@@ -157,6 +157,34 @@ test('les transports distinguent le minimum légal et la participation facultati
   );
 });
 
+test('la crèche applique le taux horaire, le plancher et le plafond de la Caf', () => {
+  const calculate = (resources, children = '1', hours = '160') =>
+    evaluateHousehold('creche', { resources, children, hours });
+  assert.deepEqual(calculate('3000').amounts, [29760, 0]);
+  assert.deepEqual(calculate('3000', '3').amounts, [19840, 0]);
+  assert.deepEqual(calculate('3000', '7').amounts, [14880, 0]);
+  assert.deepEqual(calculate('3000', '8').amounts, [9920, 0]);
+  assert.deepEqual(calculate('0').amounts, [8000, 0]);
+  assert.deepEqual(calculate('8 500').amounts, [84160, 0]);
+  assert.deepEqual(calculate('12 000').amounts, [84160, 0]);
+  assert.deepEqual(calculate('3000', '1', '2,5').amounts, [465, 0]);
+  assert.deepEqual(calculate('0', '4', '0,58').amounts, [15, 0]);
+  assert.deepEqual(calculate('3000', '11'), { invalid: 'children' });
+});
+
+test('le premier achat applique les frais de recouvrement à la part départementale seule', () => {
+  const calculate = (departmentRate) =>
+    evaluateHousehold('premier-achat-immobilier', {
+      price: '100 000',
+      departmentRate,
+    });
+  assert.deepEqual(calculate('4,50').amounts, [580665, 0]);
+  assert.deepEqual(calculate('3,80').amounts, [509006, 0]);
+  assert.deepEqual(calculate('1,20').amounts, [242844, 0]);
+  assert.deepEqual(calculate('5'), { invalid: 'departmentRate' });
+  assert.deepEqual(calculate('1,19'), { invalid: 'departmentRate' });
+});
+
 test('une valeur absente, imprécise ou hors limites n’affiche aucun résultat', () => {
   for (const weeks of [undefined, '0', '53', '1,5', 'Infinity', {}, '1e1']) {
     assert.deepEqual(evaluateHousehold('temps-de-travail', { weeks }), {
