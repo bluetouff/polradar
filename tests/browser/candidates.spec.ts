@@ -125,8 +125,11 @@ test('la carte distingue les conditions et conserve les chiffres lors des change
   await topics.selectOption('climat-prix-energie');
   const energy = page.locator('#climat-prix-energie');
   await expect(
-    energy.getByRole('link', { name: 'Raphaël Glucksmann', exact: true }),
-  ).toBeVisible();
+    energy.getByRole('link', {
+      name: 'Raphaël Glucksmann et Yannick Jadot',
+      exact: true,
+    }),
+  ).toHaveAttribute('href', '/candidats/glucksmann/');
   const ps = energy.getByText('Parti socialiste', { exact: true });
   await expect(ps).toBeVisible();
   await expect(
