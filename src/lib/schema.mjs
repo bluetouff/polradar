@@ -1,4 +1,5 @@
 import { z } from 'astro/zod';
+import { measureAliases } from './measure-aliases.mjs';
 import { isPublicSourceUrl } from './source-url.mjs';
 
 export const idSchema = z
@@ -296,6 +297,33 @@ export function validateFeatures(dataset) {
   const sources = new Map(dataset.sources.map((s) => [s.id, s])),
     parents = new Map(dataset.engagements.map((e) => [e.id, e]));
   const measures = new Map(dataset.measures.map((m) => [m.id, m]));
+  for (const [alias, target] of measureAliases) {
+    const canonical = measures.get(target);
+    const retired = dataset.versions.filter(
+      (version) => version.measureId === alias,
+    );
+    if (!canonical && retired.length === 0 && !measures.has(alias)) continue;
+    if (
+      !idSchema.safeParse(alias).success ||
+      measures.has(alias) ||
+      !canonical ||
+      retired.length === 0 ||
+      retired.some(
+        ({ snapshot }) =>
+          snapshot.scope !== canonical.scope ||
+          snapshot.partyAuthor !== canonical.partyAuthor ||
+          snapshot.sourceRefs.some(
+            (source) =>
+              !canonical.sourceRefs.some(
+                (reference) =>
+                  reference.sourceId === source.sourceId &&
+                  reference.fragment === source.fragment,
+              ),
+          ),
+      )
+    )
+      errors.push(`${alias}: fusion de fiches incohérente ou source manquante`);
+  }
   const today = civilDateInParis();
   for (const measure of dataset.measures) {
     const parent = parents.get(measure.parentId);
@@ -355,7 +383,10 @@ export function validateFeatures(dataset) {
     }
   }
   for (const version of dataset.versions) {
-    if (!measures.has(version.measureId))
+    if (
+      !measures.has(version.measureId) &&
+      !measureAliases.has(version.measureId)
+    )
       errors.push(`${version.id}: mesure inconnue`);
     if (version.observedOn > today || version.snapshot.checked > today)
       errors.push(`${version.id}: version future`);

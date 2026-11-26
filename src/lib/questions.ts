@@ -546,6 +546,7 @@ const complementaryVersions: Record<string, string[]> = {
     'dlf-hopital-quarante-cinq-minutes-v1',
     'melenchon-vacations-deserts-medicaux-v1',
     'groupe-rn-supprimer-communautes-professionnelles-sante-v1',
+    'lisnard-communautes-soignantes-echelle-anciens-cantons-v1',
   ],
   'sante-installation-medecins': [
     'dlf-bourse-medecins-zones-sous-dotees-v1',
@@ -620,6 +621,7 @@ const complementaryVersions: Record<string, string[]> = {
     'dlf-places-creches-cinq-ans-v1',
     'attal-social-professionnels-enfance-v1',
     'glucksmann-soustraire-creches-ehpad-logique-marchande-v1',
+    'place-publique-contrat-creches-privees-v1',
   ],
 };
 const searchTerms: Record<string, string> = {

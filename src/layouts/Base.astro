@@ -22,6 +22,7 @@ interface Props {
   description?: string;
   section?: string;
   noindex?: boolean;
+  canonicalPath?: string;
   publicationTool?: boolean;
   articlePublished?: string;
   lastModified?: string;
@@ -35,6 +36,7 @@ const {
   articlePublished,
   lastModified,
   noindex = false,
+  canonicalPath = Astro.url.pathname,
   language = 'fr',
 } = Astro.props;
 const navigation = navigationFor(Astro.url.pathname, section);
@@ -42,7 +44,7 @@ const Footer =
   Astro.url.pathname.split('/').filter(Boolean).length > 1
     ? CompactFooter
     : SiteFooter;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const canonical = new URL(canonicalPath, Astro.site);
 // News briefs and the dataset catalogue identify their more specific entities in the page.
 const specificSchema =
   /^\/breves\/[^/]+\//.test(canonical.pathname) ||
@@ -84,6 +86,7 @@ const socialImageUrl = new URL(social.url, Astro.site);
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex,follow" />}
     <link rel="canonical" href={canonical} />
+    <slot name="head" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="apple-touch-icon" href="/marque/polradar-192.png" />

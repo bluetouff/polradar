@@ -13,6 +13,7 @@ import {
   unlinkSync,
 } from 'node:fs';
 import path from 'node:path';
+import { measureAliases } from '../src/lib/measure-aliases.mjs';
 
 const cache = '.cache/polradar-pages',
   previousIndex = path.join(cache, 'index.json');
@@ -243,11 +244,12 @@ if (plan.size) {
     build(null);
   }
 }
+const measureRoutes = [...ids, ...measureAliases.keys()];
 if (
   readdirSync('dist/mesures', { withFileTypes: true }).filter(
     (e) => e.isDirectory() && e.name !== 'page',
-  ).length !== ids.length ||
-  ids.some((id) => !lstatSync(targetFor(id)).isFile())
+  ).length !== measureRoutes.length ||
+  measureRoutes.some((id) => !lstatSync(targetFor(id)).isFile())
 )
   throw Error('Inventaire des fiches incomplet');
 execFileSync(process.execPath, ['scripts/postbuild.mjs'], { stdio: 'inherit' });

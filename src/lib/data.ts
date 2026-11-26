@@ -13,6 +13,7 @@ import meta from '../data/meta.json';
 import measureRows from '../data/measures.json';
 import versionRows from '../data/versions.json';
 import watchRows from '../data/watch.json';
+import { measureAliases } from './measure-aliases.mjs';
 import {
   sourceSchema,
   eventSchema,
@@ -41,7 +42,10 @@ const documentedPolls = withFirstPublications(
   publicationDocuments,
 );
 const measures = measureSchema.array().parse(measureRows);
-const versions = versionSchema.array().parse(versionRows);
+const history = versionSchema.array().parse(versionRows);
+const versions = history.filter(
+  (version) => !measureAliases.has(version.measureId),
+);
 const watch = watchSchema.array().parse(watchRows);
 
 export const dataset = {
@@ -58,7 +62,10 @@ export const dataset = {
   versions,
   watch,
 };
-const errors = [...validateDataset(dataset), ...validateFeatures(dataset)];
+const errors = [
+  ...validateDataset(dataset),
+  ...validateFeatures({ ...dataset, versions: history }),
+];
 if (errors.length) throw new Error(`Corpus invalide : ${errors.join('\n')}`);
 export {
   candidates,

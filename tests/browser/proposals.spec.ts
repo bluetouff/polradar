@@ -3,6 +3,55 @@ import { openDossier } from './dossier-directory';
 import financing from '../../src/data/financing-maps.json' with { type: 'json' };
 import { test, expect } from '@playwright/test';
 import evolution from '../../src/data/proposal-evolution.json' with { type: 'json' };
+
+test('le prêt 100 % Rénov’ conserve son ancienne URL et une seule fiche de campagne', async ({
+  browser,
+  request,
+}) => {
+  const obsolete = 'lepen-pret-taux-zero-renovation-logements';
+  const canonical = 'lepen-logement-renovation-ptz';
+  const destination = `/mesures/${canonical}/`;
+  const context = await browser.newContext({
+    baseURL: testOrigin,
+    javaScriptEnabled: false,
+  });
+  try {
+    const page = await context.newPage();
+    await page.goto(`/mesures/${obsolete}/`);
+    await expect(page).toHaveURL(testOrigin + destination);
+    await expect(page.getByRole('heading', { level: 1 })).toContainText(
+      'Remplacer MaPrimeRénov’',
+    );
+    await expect(
+      page
+        .locator('a[href*="materiel-de-campagne/3/telecharger#page=2"]')
+        .first(),
+    ).toBeVisible();
+  } finally {
+    await context.close();
+  }
+
+  const corpus: {
+    measures: { id: string }[];
+    versions: { measureId: string }[];
+  } = await (await request.get('/api/corpus.json')).json();
+  expect(
+    corpus.measures
+      .filter(({ id }) => [obsolete, canonical].includes(id))
+      .map(({ id }) => id),
+  ).toEqual([canonical]);
+  expect(corpus.versions.some(({ measureId }) => measureId === obsolete)).toBe(
+    false,
+  );
+
+  const search = await (await request.get('/api/recherche.json')).text();
+  const sitemap = await (await request.get('/sitemap.xml')).text();
+  expect(search).toContain(canonical);
+  expect(search).not.toContain(obsolete);
+  expect(sitemap).toContain(destination);
+  expect(sitemap).not.toContain(obsolete);
+});
+
 test('les sélecteurs mobiles ouvrent les nouveaux dossiers et conservent le choix au retour', async ({
   page,
 }) => {

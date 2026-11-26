@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import { measureById } from '../../lib/data';
+import { measureAliases } from '../../lib/measure-aliases.mjs';
+
+const id = measureAliases.get('lepen-pret-taux-zero-renovation-logements')!;
+const measure = measureById(id);
+const destination = `/mesures/${id}/`;
+---
+
+<Base
+  title={measure.title}
+  description="Retrouvez la proposition 100 % Rénov’ et ses sources sur sa fiche de référence."
+  canonicalPath={destination}
+  section="/mesures/"
+  noindex
+>
+  <meta slot="head" http-equiv="refresh" content={`0;url=${destination}`} />
+  <h1>100 % Rénov’</h1>
+  <p>
+    <a href={destination}>Consulter la proposition et ses sources</a>
+  </p>
+</Base>
