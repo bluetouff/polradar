@@ -1,27 +1,61 @@
 ---
 import Icon from './Icon.astro';
+const path = Astro.url.pathname;
 
-const links = [
-  ['/mesures/', 'Propositions'],
-  ['/donnees/', 'Données ouvertes'],
-  ['/presse/', 'Espace presse'],
-  ['/studio/', 'Studio graphique'],
-  ['/api/', 'API publique'],
-  ['/mcp/', 'Serveur MCP'],
-  ['/methode/', 'Méthode'],
+const sections = [
+  {
+    id: 'preuves',
+    label: 'Comprendre et vérifier',
+    links: [
+      ['/mesures/', 'Propositions'],
+      ['/dossiers/', 'Décryptages'],
+      ['/votes/recherche/', 'Votes au Parlement'],
+      ['/economie/declarations/', 'Déclarations et chiffres publics'],
+    ],
+  },
+  {
+    id: 'campagne',
+    label: 'Suivre et explorer',
+    links: [
+      ['/candidats/', 'Candidats'],
+      ['/breves/', 'Brèves de campagne'],
+      ['/sondages/', 'Sondages'],
+      ['/economie/simulateurs/', 'Mon quotidien'],
+      ['/territoires/', 'Ma commune'],
+    ],
+  },
 ] as const;
 ---
 
 <details class="site-directory">
   <summary>
-    Rubriques <Icon name="chevron" />
+    Explorer <Icon name="chevron" />
   </summary>
   <nav aria-label="Rubriques et outils">
-    {links.map(([url, label]) => (
-      <a href={url}>{label}</a>
-    ))}
+    <div class="directory-destinations">
+      {sections.map(({ id, label, links }) => (
+        <div>
+          <p id={'navigation-' + id}>{label}</p>
+          <ul aria-labelledby={'navigation-' + id}>
+            {links.map(([url, text]) => (
+              <li>
+                <a href={url} aria-current={path === url ? 'page' : undefined}>
+                  {text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
     <a class="directory-index" href="/rubriques/">
       Toutes les rubriques <Icon name="arrow" />
+    </a>
+    <a
+      class="directory-index directory-professional"
+      href="/rubriques/#professionnels"
+    >
+      Données et outils professionnels <Icon name="arrow" />
     </a>
   </nav>
 </details>

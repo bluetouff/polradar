@@ -6,11 +6,9 @@ import photoLarge from '../assets/edition/palais-bourbon-1360.webp?url';
 import photoMobile from '../assets/edition/palais-bourbon-680.avif?url';
 
 const subjects = [
-  ['retraites', 'Retraites'],
-  ['travail', 'Travail et salaires'],
-  ['sante', 'Santé'],
-  ['logement', 'Logement'],
-  ['education', 'Éducation'],
+  ['/themes/retraites/', 'Retraites'],
+  ['/comparer/?theme=climat&question=climat-production-nucleaire', 'Nucléaire'],
+  ['/votes/recherche/', 'Votes au Parlement'],
 ] as const;
 const date = new Intl.DateTimeFormat('fr-FR', {
   day: 'numeric',
@@ -39,8 +37,8 @@ const date = new Intl.DateTimeFormat('fr-FR', {
       Présidentielle <span>2027</span>
     </h1>
     <p>
-      <strong>Comprendre avant de choisir.</strong> Comparez les programmes,
-      retrouvez les votes et vérifiez les chiffres dans les documents d’origine.
+      Comparez les programmes, vérifiez les votes et retrouvez les documents
+      d’origine.
     </p>
     <form
       action="/recherche/"
@@ -48,7 +46,7 @@ const date = new Intl.DateTimeFormat('fr-FR', {
       role="search"
       data-cover-search
     >
-      <label for="cover-query">Rechercher dans Polradar</label>
+      <label for="cover-query">Que voulez-vous comprendre ?</label>
       <div>
         <input
           id="cover-query"
@@ -56,15 +54,21 @@ const date = new Intl.DateTimeFormat('fr-FR', {
           maxlength="200"
           placeholder="Ex. retraites"
           autocomplete="off"
+          required
         />
         <button class="button primary" type="submit">
           <Icon name="search" /> Rechercher
         </button>
       </div>
     </form>
-    <nav class="cover-subjects" aria-label="Exemples de thèmes">
-      {subjects.map(([id, label]) => (
-        <a href={'/themes/' + id + '/'}>{label}</a>
+    <noscript>
+      <p class="cover-noscript">
+        Accédez aux sujets et aux votes via les liens ci-dessous.
+      </p>
+    </noscript>
+    <nav class="cover-subjects" aria-label="Recherches suggérées">
+      {subjects.map(([url, label]) => (
+        <a href={url}>{label}</a>
       ))}
     </nav>
   </div>
@@ -94,10 +98,13 @@ const date = new Intl.DateTimeFormat('fr-FR', {
 <script>
   const form = document.querySelector<HTMLFormElement>('[data-cover-search]');
   form?.addEventListener('submit', (event) => {
+    event.preventDefault();
     const input = form.querySelector<HTMLInputElement>('input');
     const query = input?.value.trim().slice(0, 200);
-    if (!query) return;
-    event.preventDefault();
+    if (!query) {
+      input?.focus();
+      return;
+    }
     location.assign(form.action + '#' + new URLSearchParams({ q: query }));
   });
 </script>
@@ -110,12 +117,11 @@ const date = new Intl.DateTimeFormat('fr-FR', {
     gap: 0.55rem clamp(1.3rem, 4vw, 4.25rem);
     align-items: center;
     overflow: hidden;
-    min-height: 22rem;
-    padding: clamp(1.45rem, 4vw, 3.4rem) clamp(1.2rem, 4vw, 3.25rem) 0.75rem;
+    min-height: 19rem;
+    padding: clamp(1.25rem, 3.2vw, 2.4rem) clamp(1.2rem, 4vw, 3.25rem) 0.75rem;
     border: 1px solid #365662;
     border-radius: 1.25rem;
     background: #142a39;
-    box-shadow: 0 16px 36px -24px #17344695;
     color: #f6fafb;
   }
   .election-cover::before {
@@ -131,8 +137,7 @@ const date = new Intl.DateTimeFormat('fr-FR', {
         #142a39f2 42%,
         #12273648 70%,
         #12273620
-      ),
-      radial-gradient(ellipse at top left, #2f6267, transparent 52%);
+      );
   }
   .cover-photo {
     position: absolute;
@@ -153,7 +158,7 @@ const date = new Intl.DateTimeFormat('fr-FR', {
   .cover-intro h1 {
     margin: 0;
     color: inherit;
-    font-size: clamp(1.8rem, 4vw, 3.1rem);
+    font-size: 1.75rem;
     letter-spacing: -0.045em;
     line-height: 1.08;
   }
@@ -163,7 +168,7 @@ const date = new Intl.DateTimeFormat('fr-FR', {
   }
   .cover-intro p {
     max-width: 49ch;
-    margin: 0.65rem 0 1.4rem;
+    margin: 0.6rem 0 1.05rem;
     color: #e2eff1;
     font-size: clamp(0.92rem, 1.6vw, 1.12rem);
     line-height: 1.5;
@@ -233,7 +238,7 @@ const date = new Intl.DateTimeFormat('fr-FR', {
   .cover-subjects a {
     display: inline-flex;
     align-items: center;
-    min-height: 2rem;
+    min-height: 2.75rem;
     border: 1px solid #a9d1dc68;
     border-radius: 50vw;
     padding: 0.12rem 0.65rem;
@@ -246,13 +251,16 @@ const date = new Intl.DateTimeFormat('fr-FR', {
     text-decoration: underline;
     background: #335969;
   }
+  .cover-intro .cover-noscript {
+    margin: 0.55rem 0 0;
+    font-size: 0.86rem;
+  }
   .cover-calendar {
     align-self: end;
     padding: 0.85rem clamp(0.85rem, 2vw, 1.4rem) 1rem;
     border: 1px solid #b9d8de80;
     border-radius: 0.85rem;
-    background: linear-gradient(132deg, #142c3be8, #152e38dc);
-    backdrop-filter: blur(10px);
+    background: #18333f;
   }
   .calendar-link {
     display: inline-flex;
@@ -323,7 +331,7 @@ const date = new Intl.DateTimeFormat('fr-FR', {
       object-position: 54% 45%;
     }
     .cover-calendar {
-      padding-block: 0.35rem 0.65rem;
+      padding-block: 0.35rem 0.6rem;
       background: #0e2838e6;
     }
     .cover-calendar dl {

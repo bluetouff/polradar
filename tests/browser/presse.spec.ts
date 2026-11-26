@@ -52,7 +52,7 @@ test('le médiakit et les deux demandes restent utilisables sans JavaScript', as
     await context.close();
   }
 });
-test('le soutien précède la recherche et reste visible dans les deux pieds de page', async ({
+test('le soutien reste accessible dans le bandeau et le pied sur mobile et ordinateur', async ({
   page,
 }) => {
   for (const path of ['/presse/', '/mesures/kazib-hausse-generale-salaires/']) {
@@ -61,7 +61,13 @@ test('le soutien précède la recherche et reste visible dans les deux pieds de 
     const link = header.getByRole('link', {
       name: 'Soutenir Polradar sur l0g.fr',
     });
-    const search = header.getByRole('link', { name: 'Rechercher' });
+    const navigation = header.getByRole('navigation', {
+      name: 'Navigation principale',
+    });
+    const desktopSearch = header.getByRole('link', {
+      name: 'Rechercher',
+      exact: true,
+    });
     await expect(
       page
         .locator('.publication-footer')
@@ -70,10 +76,19 @@ test('le soutien précède la recherche et reste visible dans les deux pieds de 
     for (const width of [320, 390, 768, 1280]) {
       await page.setViewportSize({ width, height: 800 });
       await expect(link).toBeVisible();
+      const mobile = width <= 760;
+      const search = mobile
+        ? navigation.getByRole('link', { name: 'Recherche', exact: true })
+        : desktopSearch;
       await expect(search).toBeVisible();
+      await expect(search).toHaveAttribute('href', '/recherche/');
       const a = await link.boundingBox(),
         b = await search.boundingBox();
-      expect(a!.x + a!.width).toBeLessThanOrEqual(b!.x + 1);
+      if (mobile) {
+        expect(b!.y).toBeGreaterThan(a!.y + a!.height);
+      } else {
+        expect(a!.x + a!.width).toBeLessThanOrEqual(b!.x + 1);
+      }
       expect(a!.height).toBeGreaterThanOrEqual(44);
       expect(b!.x + b!.width).toBeLessThanOrEqual(width + 1);
       expect(
@@ -83,7 +98,11 @@ test('le soutien précède la recherche et reste visible dans les deux pieds de 
       ).toBe(true);
       await link.focus();
       await page.keyboard.press('Tab');
-      await expect(search).toBeFocused();
+      await expect(
+        mobile
+          ? navigation.getByRole('link', { name: 'Accueil', exact: true })
+          : search,
+      ).toBeFocused();
     }
   }
 });

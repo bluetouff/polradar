@@ -1,10 +1,6 @@
 const directory = document.querySelector<HTMLDetailsElement>('.site-directory');
 
 if (directory) {
-  const page = document.querySelector<HTMLElement>('.page-column');
-  directory.addEventListener('toggle', () => {
-    if (page) page.inert = directory.open;
-  });
   directory.addEventListener('focusout', (event) => {
     if (
       event.relatedTarget instanceof Node &&

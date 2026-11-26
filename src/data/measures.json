@@ -2958,9 +2958,9 @@
     "parentId": "philippe-securite",
     "candidate": "philippe",
     "theme": "securite",
-    "revision": 1,
-    "title": "Donner aux maires un pouvoir de sanction",
-    "description": "Permettre des amendes rapides contre les incivilités et dégradations de l’espace public.",
+    "revision": 2,
+    "title": "Donner aux maires un pouvoir de sanction contre les incivilités",
+    "description": "Le volet Justice évoque un pouvoir de sanction pénale pour les maires. Le volet Sécurité prévoit des amendes rapides contre les incivilités et les dégradations de l’espace public.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -2968,13 +2968,18 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "philippe-programme-11",
+        "locator": "Réponse 10 · Pouvoir de sanction des maires",
+        "fragment": ":~:text=donner%20aux%20maires%20un%20pouvoir%20de%20sanction%20p%C3%A9nale%20contre%20les%20incivilit%C3%A9s"
+      },
+      {
         "sourceId": "philippe-securite",
         "locator": "Réponse sur les pouvoirs des maires"
       }
     ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
-    "checked": "2026-11-17"
+    "checked": "2026-11-26"
   },
   {
     "id": "lisnard-education-cheque",
@@ -12267,7 +12272,7 @@
     "parentId": "lepen-logement",
     "candidate": "lepen",
     "theme": "logement",
-    "revision": 2,
+    "revision": 3,
     "title": "Abroger la loi SRU",
     "description": "Supprimer les obligations de part minimale de logements sociaux et les amendes associées, en laissant la décision aux communes.",
     "beneficiaries": null,
@@ -12276,6 +12281,11 @@
     "metrics": [],
     "amounts": [],
     "sourceRefs": [
+      {
+        "sourceId": "lepen-henin",
+        "locator": "Loi SRU et obligations des communes",
+        "fragment": ":~:text=cette%20loi%20SRU%20sera%20purement%20et%20simplement%20abrog%C3%A9e"
+      },
       {
         "sourceId": "rn-lettre-logement-2026",
         "locator": "Lettre, paragraphe consacré à l’abrogation de la loi SRU"
@@ -12287,16 +12297,16 @@
     ],
     "scope": "campagne",
     "edition": "Lettre de campagne du 21 septembre 2026",
-    "checked": "2026-11-24"
+    "checked": "2026-11-26"
   },
   {
     "id": "lepen-logement-foncier-public",
     "parentId": "lepen-logement",
     "candidate": "lepen",
     "theme": "logement",
-    "revision": 1,
-    "title": "Mobiliser le foncier public et convertir les bureaux vacants",
-    "description": "Demander à l’État, aux collectivités et aux grandes entreprises publiques de libérer des terrains et favoriser la conversion de bureaux vacants en logements.",
+    "revision": 2,
+    "title": "Mettre du foncier public à disposition pour construire et convertir les bureaux vacants",
+    "description": "Le discours propose de prêter gratuitement des terrains publics pour construire à loyer modéré. Le terrain resterait public et les logements reviendraient à l’État ou à la collectivité après plusieurs décennies. Pour les bureaux vacants, elle envisage de modifier les règles comptables et, si cela ne suffit pas, de taxer la vacance.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -12304,20 +12314,25 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "lepen-henin",
+        "locator": "Foncier public et bureaux vacants",
+        "fragment": ":~:text=Tout%20en%20en%20conservant%20la%20propri%C3%A9t%C3%A9%2C%20ces%20terrains%20seront%20mis%20gratuitement%20%C3%A0%20disposition%20des%20constructeurs"
+      },
+      {
         "sourceId": "rn-lettre-logement-2026",
         "locator": "Lettre, paragraphe sur le foncier disponible"
       }
     ],
     "scope": "campagne",
     "edition": "Lettre de campagne du 21 septembre 2026",
-    "checked": "2026-11-19"
+    "checked": "2026-11-26"
   },
   {
     "id": "lepen-logement-zan",
     "parentId": "lepen-logement",
     "candidate": "lepen",
     "theme": "logement",
-    "revision": 2,
+    "revision": 3,
     "title": "Supprimer le dispositif zéro artificialisation nette",
     "description": "Redonner aux communes la maîtrise de leur foncier, en particulier dans les territoires ruraux, en supprimant le dispositif ZAN.",
     "beneficiaries": null,
@@ -12326,6 +12341,11 @@
     "metrics": [],
     "amounts": [],
     "sourceRefs": [
+      {
+        "sourceId": "lepen-henin",
+        "locator": "Suppression du ZAN",
+        "fragment": ":~:text=Le%20ZAN%20sera%20supprim%C3%A9"
+      },
       {
         "sourceId": "rn-lettre-logement-2026",
         "locator": "Lettre, paragraphe sur le ZAN"
@@ -12337,16 +12357,16 @@
     ],
     "scope": "campagne",
     "edition": "Lettre de campagne du 21 septembre 2026",
-    "checked": "2026-11-24"
+    "checked": "2026-11-26"
   },
   {
     "id": "lepen-logement-renovation-ptz",
     "parentId": "lepen-logement",
     "candidate": "lepen",
     "theme": "logement",
-    "revision": 1,
-    "title": "Financer la rénovation par un prêt à taux zéro",
-    "description": "Créer un dispositif « 100 % Renov » reposant sur un prêt à taux zéro pour les travaux des ménages.",
+    "revision": 2,
+    "title": "Remplacer MaPrimeRénov’ par un prêt à taux zéro",
+    "description": "Le dispositif 100 % Renov serait un prêt à taux zéro accessible aux ménages qui souhaitent rénover, électrifier leur chauffage ou installer une climatisation.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -12354,20 +12374,30 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "lepen-livret-energie",
+        "locator": "Prêt à taux zéro pour la rénovation · p. 2 du PDF",
+        "fragment": "page=2"
+      },
+      {
+        "sourceId": "lepen-henin",
+        "locator": "Financement de la rénovation des logements",
+        "fragment": ":~:text=Nous%20le%20remplacerons%20par%20le%20dispositif%20100%20%25%20Renov"
+      },
+      {
         "sourceId": "rn-lettre-logement-2026",
         "locator": "Lettre, paragraphe sur la rénovation du parc immobilier"
       }
     ],
     "scope": "campagne",
     "edition": "Lettre de campagne du 21 septembre 2026",
-    "checked": "2026-11-19"
+    "checked": "2026-11-26"
   },
   {
     "id": "lepen-logement-credit-portabilite",
     "parentId": "lepen-logement",
     "candidate": "lepen",
     "theme": "logement",
-    "revision": 1,
+    "revision": 2,
     "title": "Rendre obligatoire la portabilité des crédits immobiliers",
     "description": "Permettre le transfert des crédits précédemment souscrits, augmenter la durée maximale des prêts et revoir les critères d’accès au crédit.",
     "beneficiaries": null,
@@ -12377,20 +12407,25 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "lepen-henin",
+        "locator": "Financement d’un achat immobilier",
+        "fragment": ":~:text=en%20rendant%20obligatoire%2C%20pour%20les%20banques%2C%20la%20portabilit%C3%A9%20des%20cr%C3%A9dits%20ant%C3%A9rieurs"
+      },
+      {
         "sourceId": "rn-lettre-logement-2026",
         "locator": "Lettre, paragraphe sur l’accession à la propriété"
       }
     ],
     "scope": "campagne",
     "edition": "Lettre de campagne du 21 septembre 2026",
-    "checked": "2026-11-19"
+    "checked": "2026-11-26"
   },
   {
     "id": "lepen-logement-plus-values-quinze-ans",
     "parentId": "lepen-logement",
     "candidate": "lepen",
     "theme": "logement",
-    "revision": 1,
+    "revision": 2,
     "title": "Ramener à quinze ans le délai d’exonération des plus-values immobilières",
     "description": "Ramener à quinze ans le délai pour bénéficier d’une exonération au titre de la détention, selon le plan logement.",
     "beneficiaries": null,
@@ -12400,13 +12435,18 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "lepen-henin",
+        "locator": "Plus-values à la revente",
+        "fragment": ":~:text=nous%20abaisserons%20de%2030%20%C3%A0%2015%20ans%20la%20dur%C3%A9e%20de%20d%C3%A9tention"
+      },
+      {
         "sourceId": "rn-lettre-logement-2026",
         "locator": "Lettre, paragraphe sur l’investissement et la transmission du patrimoine"
       }
     ],
     "scope": "campagne",
     "edition": "Lettre de campagne du 21 septembre 2026",
-    "checked": "2026-11-19"
+    "checked": "2026-11-26"
   },
   {
     "id": "lepen-logement-priorite-nationale",
@@ -12463,9 +12503,9 @@
     "parentId": "lepen-climat-2027",
     "candidate": "lepen",
     "theme": "climat",
-    "revision": 1,
-    "title": "Appliquer une TVA à 5,5 % sur les énergies",
-    "description": "Appliquer le taux réduit au gaz, à l’électricité, au fioul et aux carburants, selon l’amendement de Marine Le Pen au projet de loi de finances pour 2027.",
+    "revision": 2,
+    "title": "Appliquer une TVA à 5,5 % à l’ensemble des énergies",
+    "description": "Le tract présente la mesure comme un passage de 20 % à 5,5 % pour toutes les énergies. Il cite notamment l’électricité, le gaz, le fioul et les carburants.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -12473,13 +12513,18 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "lepen-livret-energie",
+        "locator": "TVA sur l’énergie · p. 2 du PDF",
+        "fragment": "page=2"
+      },
+      {
         "sourceId": "an-lepen-i635-tva-energies",
         "locator": "Amendement I-635, dispositif et exposé sommaire"
       }
     ],
-    "scope": "orientation",
-    "edition": "Amendement I-635 au PLF 2027, déposé le 8 octobre 2026",
-    "checked": "2026-11-19"
+    "scope": "campagne",
+    "edition": "Tract Une énergie moins chère · présidentielle 2027",
+    "checked": "2026-11-26"
   },
   {
     "id": "ps-retraites-age-cotisation",
@@ -12942,7 +12987,7 @@
     "parentId": "glucksmann-climat",
     "candidate": "glucksmann",
     "theme": "climat",
-    "revision": 1,
+    "revision": 2,
     "title": "Au moins doubler la capacité renouvelable d’ici 2035",
     "description": "Proposer des contrats entre l’État et les régions et développer l’autoconsommation pour les ménages, entreprises et collectivités.",
     "beneficiaries": null,
@@ -12953,12 +12998,17 @@
     "sourceRefs": [
       {
         "sourceId": "glucksmann-100-jours-accessible",
+        "locator": "Contrats État-régions sur les renouvelables · p. 12 du PDF",
+        "fragment": "page=12"
+      },
+      {
+        "sourceId": "glucksmann-100-jours-accessible",
         "locator": "Les premiers 100 jours, Sortir des fossiles pour retrouver notre souveraineté, p. 12"
       }
     ],
     "scope": "campagne",
     "edition": "Livret de Raphaël Glucksmann et Yannick Jadot, présenté le 9 novembre 2026",
-    "checked": "2026-11-19"
+    "checked": "2026-11-26"
   },
   {
     "id": "glucksmann-climat-prix-electricite",
@@ -13288,9 +13338,9 @@
     "parentId": "melenchon-logement",
     "candidate": "melenchon",
     "theme": "logement",
-    "revision": 1,
+    "revision": 2,
     "title": "Taxer la vacance et réquisitionner les logements vacants",
-    "description": "Créer une taxe unique progressive selon le nombre de logements vacants et recourir à la réquisition pour des logements remis en état décent.",
+    "description": "Outre les mesures de réquisition du programme, le plan pour les ruralités précise la proposition fiscale. Il prévoit une taxe unique, progressive selon le nombre de logements vacants détenus par le propriétaire.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -13298,13 +13348,18 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "melenchon-ruralite",
+        "locator": "1.1 · Dotations et fiscalité locales",
+        "fragment": ":~:text=taxe%20unique%20et%20progressive%20selon%20le%20nombre%20de%20logements%20vacants%20d%C3%A9tenus"
+      },
+      {
         "sourceId": "lfi-droit-logement-2027",
         "locator": "Chapitre 3 de la partie « Fonder la 6e République », Garantir le droit au logement"
       }
     ],
     "scope": "campagne",
     "edition": "L’Avenir en commun 2027",
-    "checked": "2026-11-19"
+    "checked": "2026-11-26"
   },
   {
     "id": "melenchon-education-admission-superieur",
@@ -15922,9 +15977,9 @@
     "parentId": "lisnard-retraites-capitalisation",
     "candidate": "lisnard",
     "theme": "retraites",
-    "revision": 1,
-    "title": "Rendre obligatoire un complément de retraite par capitalisation",
-    "description": "Le candidat veut ajouter aux retraites un étage obligatoire qui permette aussi aux salariés modestes d’accumuler une épargne.",
+    "revision": 2,
+    "title": "Instaurer un complément obligatoire de retraite par capitalisation",
+    "description": "David Lisnard évoque le 22 novembre une transition progressive. Dans le schéma présenté, 24 points de cotisation resteraient affectés à la répartition et 3 financeraient la capitalisation. Il cite les économies sur la dépense publique comme financement de la transition.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -15932,13 +15987,18 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "lisnard-22-novembre",
+        "locator": "Répartition et capitalisation",
+        "fragment": ":~:text=24%20resteraient%20consacr%C3%A9s%20%C3%A0%20la%20r%C3%A9partition%20et%203%20seraient%20orient%C3%A9s%20vers%20la%20capitalisation"
+      },
+      {
         "sourceId": "lisnard-crayon-2026",
         "locator": "Section consacrée au travail, aux retraites et à l’école."
       }
     ],
     "scope": "campagne",
     "edition": "Entretien de David Lisnard au Crayon, octobre 2026",
-    "checked": "2026-11-19"
+    "checked": "2026-11-26"
   },
   {
     "id": "lisnard-carte-scolaire-financement",
@@ -17403,7 +17463,7 @@
     "parentId": "glucksmann-logement",
     "candidate": "glucksmann",
     "theme": "logement",
-    "revision": 1,
+    "revision": 2,
     "title": "Relancer la construction de logements sociaux",
     "description": "Raphaël Glucksmann propose d’accroître la construction de logements sociaux. Il juge la production des deux quinquennats précédents insuffisante.",
     "beneficiaries": null,
@@ -17415,11 +17475,16 @@
       {
         "sourceId": "lci-restos-debat-16-novembre",
         "locator": "Direct du 16 novembre, 21 h 16 (heure de Paris), intervention de Raphaël Glucksmann."
+      },
+      {
+        "sourceId": "lci-restos-debat-16-novembre",
+        "locator": "Débat du 16 novembre · 21 h 20",
+        "fragment": ":~:text=il%20faut%20avant%20tout%20relancer%20la%20construction%20de%20logements%20sociaux"
       }
     ],
     "scope": "campagne",
     "edition": "Présidentielle 2027 · débat LCI et Restos du Cœur du 16 novembre 2026",
-    "checked": "2026-11-20"
+    "checked": "2026-11-26"
   },
   {
     "id": "retailleau-charges-premiere-heure-supplementaire",
@@ -22486,7 +22551,7 @@
     "parentId": "glucksmann-climat",
     "candidate": "glucksmann",
     "theme": "climat",
-    "revision": 1,
+    "revision": 2,
     "title": "Ouvrir des refuges climatiques et rendre les piscines gratuites pendant les canicules",
     "description": "Le plan national serait mené avec les collectivités. Il prévoit aussi de l’ombre en ville, des toitures fraîches et la location de climatiseurs d’urgence en période de canicule.",
     "beneficiaries": null,
@@ -22497,12 +22562,17 @@
     "sourceRefs": [
       {
         "sourceId": "glucksmann-100-jours-accessible",
+        "locator": "Droit à la fraîcheur pendant les canicules · p. 14 du PDF",
+        "fragment": "page=14"
+      },
+      {
+        "sourceId": "glucksmann-100-jours-accessible",
         "locator": "Les premiers 100 jours, p. 14, droit à la fraîcheur."
       }
     ],
     "scope": "campagne",
     "edition": "Révolution écologique · Les premiers 100 jours",
-    "checked": "2026-11-23"
+    "checked": "2026-11-26"
   },
   {
     "id": "glucksmann-habitabilite-constitution",
@@ -40873,7 +40943,7 @@
     "parentId": "melenchon-fiscalite",
     "candidate": "melenchon",
     "theme": "fiscalite",
-    "revision": 1,
+    "revision": 2,
     "title": "Indexer la dotation globale de fonctionnement des communes sur l’inflation",
     "description": "Sa répartition serait révisée pour réduire les écarts entre territoires.",
     "beneficiaries": null,
@@ -40883,20 +40953,25 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "melenchon-ruralite",
+        "locator": "1.1 · Dotations et fiscalité locales",
+        "fragment": ":~:text=et%20l%E2%80%99indexer%20sur%20l%E2%80%99inflation"
+      },
+      {
         "sourceId": "lfi-droit-logement-2027",
         "locator": "Rubrique « Une République affirmant le rôle central des communes », mesure 2 dans le chapitre."
       }
     ],
     "scope": "campagne",
     "edition": "L’Avenir en commun · présidentielle 2027",
-    "checked": "2026-11-24"
+    "checked": "2026-11-26"
   },
   {
     "id": "melenchon-ouvrir-un-fonds-de-soutien-aux-communes-rurales",
     "parentId": "melenchon-institutions",
     "candidate": "melenchon",
     "theme": "institutions",
-    "revision": 1,
+    "revision": 2,
     "title": "Ouvrir un fonds de soutien aux communes rurales",
     "description": "Les communes pourraient notamment financer le recrutement et la revalorisation de leurs agents.",
     "beneficiaries": null,
@@ -40906,13 +40981,18 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "melenchon-ruralite",
+        "locator": "1.1 · Dotations et fiscalité locales",
+        "fragment": ":~:text=cr%C3%A9ation%20d%E2%80%99un%20fonds%20de%20soutien%20communal"
+      },
+      {
         "sourceId": "lfi-droit-logement-2027",
         "locator": "Rubrique « Une République affirmant le rôle central des communes », mesure 4 dans le chapitre."
       }
     ],
     "scope": "campagne",
     "edition": "L’Avenir en commun · présidentielle 2027",
-    "checked": "2026-11-24"
+    "checked": "2026-11-26"
   },
   {
     "id": "melenchon-calculer-les-indemnites-des-elus-locaux-dapres-leurs-responsabilites",
@@ -40942,7 +41022,7 @@
     "parentId": "melenchon-institutions",
     "candidate": "melenchon",
     "theme": "institutions",
-    "revision": 1,
+    "revision": 2,
     "title": "Imposer la parité dans les exécutifs municipaux et intercommunaux",
     "description": "La règle s’appliquerait notamment au binôme formé par le maire et son premier adjoint.",
     "beneficiaries": null,
@@ -40952,13 +41032,18 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "melenchon-ruralite",
+        "locator": "1.1 · Statut et responsabilité des élus locaux",
+        "fragment": ":~:text=Imposer%20la%20parit%C3%A9%20dans%20les%20ex%C3%A9cutifs%20municipaux%20et%20communautaires"
+      },
+      {
         "sourceId": "lfi-droit-logement-2027",
         "locator": "Rubrique « Une République affirmant le rôle central des communes », mesure 7 dans le chapitre."
       }
     ],
     "scope": "campagne",
     "edition": "L’Avenir en commun · présidentielle 2027",
-    "checked": "2026-11-24"
+    "checked": "2026-11-26"
   },
   {
     "id": "melenchon-retablir-une-taxe-dhabitation-progressive",
@@ -45571,7 +45656,7 @@
     "parentId": "philippe-institutions-programme",
     "candidate": "philippe",
     "theme": "institutions",
-    "revision": 1,
+    "revision": 2,
     "title": "Déployer un plan d’utilisation de l’IA dans les services publics",
     "description": "La proposition vise le travail des agents et les services rendus aux usagers.",
     "beneficiaries": null,
@@ -45581,13 +45666,18 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "ed-src-36b1cc819d1fefcdacfd",
+        "locator": "Intelligence artificielle et démarches courantes",
+        "fragment": ":~:text=de%20r%C3%A9gler%20les%20d%C3%A9marches%20les%20plus%20simples%20en%20quelques%20secondes"
+      },
+      {
         "sourceId": "philippe-ia",
         "locator": "Rubrique « Intelligence artificielle », question « Édouard Philippe va-t-il utiliser l’intelligence artificielle dans les services publics ? »."
       }
     ],
     "scope": "campagne",
     "edition": "Croire en nous · programme présidentiel 2027",
-    "checked": "2026-11-24"
+    "checked": "2026-11-26"
   },
   {
     "id": "philippe-recourir-aux-courtes-peines-de-prison-des-le-premier-delit",
@@ -45663,9 +45753,9 @@
     "parentId": "philippe-securite",
     "candidate": "philippe",
     "theme": "securite",
-    "revision": 1,
+    "revision": 2,
     "title": "Autoriser les instructions du garde des Sceaux dans des affaires individuelles",
-    "description": "Le ministre pourrait s’adresser directement aux procureurs dans des dossiers précis.",
+    "description": "Édouard Philippe propose de permettre au ministre de la Justice d’adresser aux procureurs des instructions individuelles écrites et versées au dossier. La réponse du programme prévoit d’abroger la loi Taubira de 2013 pour le permettre.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -45674,12 +45764,17 @@
     "sourceRefs": [
       {
         "sourceId": "philippe-programme-11",
+        "locator": "Réponse 8 · Instructions écrites au parquet",
+        "fragment": ":~:text=Ces%20instructions%20seront%20%C3%A9crites%20et%20vers%C3%A9es%20au%20dossier"
+      },
+      {
+        "sourceId": "philippe-programme-11",
         "locator": "Rubrique « Justice », question « Avec Édouard Philippe, le ministre de la Justice pourra-t-il donner des ordres aux procureurs ? »."
       }
     ],
     "scope": "campagne",
     "edition": "Croire en nous · programme présidentiel 2027",
-    "checked": "2026-11-24"
+    "checked": "2026-11-26"
   },
   {
     "id": "philippe-elargir-le-recrutement-des-magistrats-a-dautres-juristes",
@@ -71098,7 +71193,7 @@
     "parentId": "melenchon-institutions",
     "candidate": "melenchon",
     "theme": "institutions",
-    "revision": 1,
+    "revision": 2,
     "title": "Supprimer les métropoles et rendre aux communes le choix de leur groupement",
     "description": "Le programme prévoit d’abroger les lois qui ont concentré les compétences locales.",
     "beneficiaries": null,
@@ -71108,6 +71203,11 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "melenchon-ruralite",
+        "locator": "1.1 · Pouvoir de décision des communes",
+        "fragment": ":~:text=Supprimer%20les%20m%C3%A9tropoles%20technocratiques"
+      },
+      {
         "sourceId": "lfi-droit-logement-2027",
         "locator": "Une République affirmant le rôle central des communes, 1ʳᵉ proposition de la section",
         "fragment": ":~:text=Supprimer%20les%20m%C3%A9tropoles%20technocratiques%20en%20abrogeant%20les"
@@ -71115,14 +71215,14 @@
     ],
     "scope": "campagne",
     "edition": "L’Avenir en commun 2027",
-    "checked": "2026-11-25"
+    "checked": "2026-11-26"
   },
   {
     "id": "melenchon-fusions-forcees-communes",
     "parentId": "melenchon-institutions",
     "candidate": "melenchon",
     "theme": "institutions",
-    "revision": 1,
+    "revision": 2,
     "title": "Refuser les fusions forcées entre communes",
     "description": "Le texte veut préserver le choix des communes de prendre part ou non à un regroupement.",
     "beneficiaries": null,
@@ -71132,6 +71232,11 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "melenchon-ruralite",
+        "locator": "1.1 · Pouvoir de décision des communes",
+        "fragment": ":~:text=Refuser%20les%20fusions%20forc%C3%A9es%20de%20communes"
+      },
+      {
         "sourceId": "lfi-droit-logement-2027",
         "locator": "Une République affirmant le rôle central des communes, 3ᵉ proposition de la section",
         "fragment": ":~:text=Refuser%20les%20fusions%20forc%C3%A9es%20de%20communes"
@@ -71139,7 +71244,7 @@
     ],
     "scope": "campagne",
     "edition": "L’Avenir en commun 2027",
-    "checked": "2026-11-25"
+    "checked": "2026-11-26"
   },
   {
     "id": "melenchon-secretaire-mairie-temps-complet",
@@ -75763,7 +75868,7 @@
     "parentId": "lepen-europe",
     "candidate": "lepen",
     "theme": "europe",
-    "revision": 1,
+    "revision": 2,
     "title": "Reprendre la fixation du prix intérieur français de l’électricité",
     "description": "La candidate veut négocier ce changement avec les autres États afin que la France fixe son prix intérieur et négocie ses ventes.",
     "beneficiaries": null,
@@ -75773,6 +75878,11 @@
     "amounts": [],
     "sourceRefs": [
       {
+        "sourceId": "lepen-livret-energie",
+        "locator": "Fixation du prix de l’électricité · p. 2 du PDF",
+        "fragment": "page=2"
+      },
+      {
         "sourceId": "lepen-europe-bruxelles-2026",
         "locator": "présentation à Bruxelles · énergie",
         "fragment": ":~:text=La%20France%20fixera%20elle%2Dm%C3%AAme%20son%20prix%20int%C3%A9rieur"
@@ -75780,7 +75890,7 @@
     ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027 · Marine Le Pen",
-    "checked": "2026-11-25"
+    "checked": "2026-11-26"
   },
   {
     "id": "lepen-relancer-euratom-reacteurs-francais",
@@ -76171,7 +76281,7 @@
     "parentId": "philippe-securite",
     "candidate": "philippe",
     "theme": "securite",
-    "revision": 1,
+    "revision": 2,
     "title": "Créer des établissements de réinsertion et de soin pour les mineurs condamnés",
     "description": "Le programme les présente dans les réponses aux infractions liées au narcotrafic.",
     "beneficiaries": null,
@@ -76182,13 +76292,18 @@
     "sourceRefs": [
       {
         "sourceId": "philippe-programme-11",
+        "locator": "Réponse 6 · Réinsertion des mineurs condamnés pour narcotrafic",
+        "fragment": ":~:text=des%20%C3%A9tablissements%20de%20r%C3%A9insertion%20et%20de%20soin%20pour%20les%20mineurs%20condamn%C3%A9s"
+      },
+      {
+        "sourceId": "philippe-programme-11",
         "locator": "Questions-réponses · Édouard Philippe veut-il supprimer l’excuse de minorité ?",
         "fragment": ":~:text=des%20%C3%A9tablissements%20de%20r%C3%A9insertion%20et%20de%20soin"
       }
     ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027 · Édouard Philippe",
-    "checked": "2026-11-25"
+    "checked": "2026-11-26"
   },
   {
     "id": "philippe-pouvoir-disciplinaire-chefs-juridiction",
@@ -102560,7 +102675,7 @@
     "parentId": "glucksmann-travail",
     "candidate": "glucksmann",
     "theme": "travail",
-    "revision": 1,
+    "revision": 2,
     "title": "Soutenir les batteries produites en France",
     "description": "La campagne prévoit aussi de négocier avec les constructeurs un plan lié à la commande publique, pour les pompes à chaleur, la mobilité électrique et la décarbonation industrielle.",
     "beneficiaries": null,
@@ -102569,6 +102684,11 @@
     "metrics": [],
     "amounts": [],
     "sourceRefs": [
+      {
+        "sourceId": "glucksmann-100-jours-accessible",
+        "locator": "Commande publique et filières industrielles · p. 13 du PDF",
+        "fragment": "page=13"
+      },
       {
         "sourceId": "glucksmann-100-jours-accessible",
         "locator": "Industrie et commande publique · p. 13 du PDF",
@@ -102584,7 +102704,7 @@
     "parentId": "glucksmann-campagne-2027-europe",
     "candidate": "glucksmann",
     "theme": "europe",
-    "revision": 1,
+    "revision": 2,
     "title": "Renforcer le mécanisme carbone aux frontières et imposer des mesures miroirs",
     "description": "La campagne veut aussi renforcer le devoir de vigilance. Les mesures miroirs sont prévues dans les accords commerciaux.",
     "beneficiaries": null,
@@ -102593,6 +102713,11 @@
     "metrics": [],
     "amounts": [],
     "sourceRefs": [
+      {
+        "sourceId": "glucksmann-100-jours-accessible",
+        "locator": "Commerce international et devoir de vigilance · p. 13 du PDF",
+        "fragment": "page=13"
+      },
       {
         "sourceId": "glucksmann-100-jours-accessible",
         "locator": "Commerce international · p. 13 du PDF",
@@ -103275,7 +103400,7 @@
     "parentId": "lepen-logement",
     "candidate": "lepen",
     "theme": "logement",
-    "revision": 1,
+    "revision": 2,
     "title": "Appliquer la priorité nationale au logement étudiant",
     "description": "Le plan de campagne prévoit cette priorité sans préciser sur cette page les établissements ni les logements concernés.",
     "beneficiaries": null,
@@ -103284,6 +103409,11 @@
     "metrics": [],
     "amounts": [],
     "sourceRefs": [
+      {
+        "sourceId": "lepen-henin",
+        "locator": "Logements étudiants",
+        "fragment": ":~:text=la%20priorit%C3%A9%20d%E2%80%99acc%C3%A8s%20au%20logement%20%C3%A9tudiant%20doit%20%C3%AAtre%20instaur%C3%A9e%20pour%20les%20jeunes%20Fran%C3%A7ais"
+      },
       {
         "sourceId": "lepen-plan-redressement-budgetaire-2026",
         "locator": "Droits pour la jeunesse",
@@ -103587,15 +103717,20 @@
     "parentId": "lisnard-campagne-2027-institutions",
     "candidate": "lisnard",
     "theme": "institutions",
-    "revision": 1,
-    "title": "Supprimer plus de 400 000 postes publics et redéployer 200 000 à 300 000 agents",
-    "description": "Ces nombres décrivent le scénario présenté le 27 octobre. Le redéploiement vers les services de terrain et les suppressions de postes sont des opérations distinctes.",
+    "revision": 2,
+    "title": "Réorganiser les postes administratifs et réduire les effectifs publics",
+    "description": "Dans l’entretien du 22 novembre, David Lisnard évoque environ 720 000 postes à retirer des fonctions administratives et de support sur le quinquennat. Il prévoit environ 300 000 réaffectations vers le terrain et annonce une réduction nette de 400 000 à 450 000 postes.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
     "metrics": [],
     "amounts": [],
     "sourceRefs": [
+      {
+        "sourceId": "lisnard-22-novembre",
+        "locator": "Réorganisation des effectifs publics",
+        "fragment": ":~:text=la%20r%C3%A9duction%20nette%20des%20effectifs%20publics%20atteindrait%2C%20selon%20son%20objectif%2C%20400%20000%20%C3%A0%20450%20000%20postes"
+      },
       {
         "sourceId": "lisnard-interview-cnews-octobre-2026",
         "locator": "Fonction publique",
@@ -103683,15 +103818,20 @@
     "parentId": "lisnard-education-financement",
     "candidate": "lisnard",
     "theme": "education",
-    "revision": 1,
+    "revision": 2,
     "title": "Recruter les nouveaux enseignants sous contrat",
-    "description": "Le candidat propose que les enseignants déjà fonctionnaires choisissent entre le maintien de leur statut et un contrat.",
+    "description": "David Lisnard propose de confier le recrutement aux chefs d’établissement et de développer des contrats mieux rémunérés pour les nouveaux enseignants. Les personnels déjà fonctionnaires pourraient conserver leur statut ou opter pour un contrat.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
     "metrics": [],
     "amounts": [],
     "sourceRefs": [
+      {
+        "sourceId": "lisnard-22-novembre",
+        "locator": "Recrutement des enseignants",
+        "fragment": ":~:text=permettre%20aux%20chefs%20d%27%C3%A9tablissement%20de%20recruter%20leurs%20%C3%A9quipes"
+      },
       {
         "sourceId": "lisnard-interview-cnews-octobre-2026",
         "locator": "Instruction",
@@ -106770,6 +106910,678 @@
     ],
     "scope": "campagne",
     "edition": "Programme de campagne · présidentielle 2027",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "glucksmann-financement-associations-sur-cinq-ans",
+    "parentId": "glucksmann-social",
+    "candidate": "glucksmann",
+    "theme": "social",
+    "revision": 1,
+    "title": "Prévoir un financement des associations sur cinq ans",
+    "description": "Raphaël Glucksmann propose un engagement de financement pluriannuel sur cinq ans lors du débat sur la précarité. Il répond à une question sur l’avenir des Restos du Cœur.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lci-restos-debat-16-novembre",
+        "locator": "Débat du 16 novembre · 21 h 49",
+        "fragment": ":~:text=un%20financement%20pluriannuel%20sur%20cinq%20ans"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Débat de LCI et des Restos du Cœur du 16 novembre 2026",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "glucksmann-loger-enfants-qui-dorment-dans-la-rue",
+    "parentId": "glucksmann-logement",
+    "candidate": "glucksmann",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Loger les enfants qui dorment dans la rue",
+    "description": "Raphaël Glucksmann présente cet engagement comme sa première mesure sociale s’il est élu. Le compte rendu du diffuseur laisse les moyens d’application à préciser.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lci-restos-debat-16-novembre",
+        "locator": "Débat du 16 novembre · 22 h 56",
+        "fragment": ":~:text=Est%2Dce%20qu%E2%80%99on%20veut%20d%E2%80%99une%20France%20o%C3%B9%203000%20enfants%20dorment%20dans%20la%20rue%20%3F"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Débat de LCI et des Restos du Cœur du 16 novembre 2026",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "lepen-retirer-contraintes-fondees-sur-dpe",
+    "parentId": "lepen-logement",
+    "candidate": "lepen",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Supprimer les contraintes fondées sur le DPE",
+    "description": "Marine Le Pen propose de retirer ces contraintes dans les premières semaines du quinquennat et de garder le diagnostic de performance énergétique à titre indicatif.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lepen-henin",
+        "locator": "Contraintes liées au diagnostic de performance énergétique",
+        "fragment": ":~:text=nous%20supprimerons%20toutes%20les%20contraintes%20bas%C3%A9es%20sur%20le%20DPE"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Discours du 13 septembre 2026 à Hénin-Beaumont",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "lepen-reserver-apl-aux-francais",
+    "parentId": "lepen-logement",
+    "candidate": "lepen",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Réserver les APL aux Français",
+    "description": "Le discours présente la condition de nationalité pour bénéficier de l’aide personnalisée au logement, à côté d’une priorité d’accès au parc social.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lepen-henin",
+        "locator": "Accès au parc social et aide personnalisée au logement",
+        "fragment": ":~:text=leur%20r%C3%A9server%20le%20b%C3%A9n%C3%A9fice%20des%20APL"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Discours du 13 septembre 2026 à Hénin-Beaumont",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "lepen-faciliter-mobilite-parc-social",
+    "parentId": "lepen-logement",
+    "candidate": "lepen",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Favoriser les changements de logement dans le parc social quand le foyer change",
+    "description": "La candidate veut faciliter les échanges et les déménagements au sein du parc social lorsque la composition du foyer évolue.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lepen-henin",
+        "locator": "Mobilité et accès à la propriété dans le parc social",
+        "fragment": ":~:text=faciliter%20les%20%C3%A9changes%20et%20la%20mobilit%C3%A9%20lorsque%20la%20composition%20du%20foyer%20change"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Discours du 13 septembre 2026 à Hénin-Beaumont",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "lepen-tenir-compte-des-loyers-pour-rachat-hlm",
+    "parentId": "lepen-logement",
+    "candidate": "lepen",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Tenir compte des loyers déjà payés lors du rachat d’un HLM",
+    "description": "Les locataires pourraient acheter leur HLM en faisant prendre en compte les loyers antérieurs comme un apport. Le discours prévoit de financer de nouvelles constructions avec certaines ventes.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lepen-henin",
+        "locator": "Mobilité et accès à la propriété dans le parc social",
+        "fragment": ":~:text=en%20consid%C3%A9rant%20les%20loyers%20d%C3%A9j%C3%A0%20vers%C3%A9s%20comme%20une%20sorte%20d%E2%80%99apport"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Discours du 13 septembre 2026 à Hénin-Beaumont",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "lepen-expulser-et-exclure-certaines-familles-du-parc-social",
+    "parentId": "lepen-logement",
+    "candidate": "lepen",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Prévoir l’expulsion et trois ans d’exclusion du parc social pour les familles visées",
+    "description": "La candidate vise les familles qu’elle qualifie de délinquantes, avec une exclusion de l’accès au parc social de trois ans. Le discours laisse à préciser les actes et décisions judiciaires qui déclencheraient la mesure.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lepen-henin",
+        "locator": "Conditions de maintien dans le parc social",
+        "fragment": ":~:text=l%E2%80%99expulsion%20des%20familles%20d%C3%A9linquantes%20des%20HLM"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Discours du 13 septembre 2026 à Hénin-Beaumont",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "lepen-revoir-criteres-et-duree-maximale-credit-immobilier",
+    "parentId": "lepen-logement",
+    "candidate": "lepen",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Revoir les critères d’accès au crédit immobilier et allonger sa durée maximale",
+    "description": "Le discours propose d’adapter les critères aux situations de vie et d’allonger la durée maximale du crédit. Les nouvelles règles et la durée cible restent à préciser.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lepen-henin",
+        "locator": "Financement d’un achat immobilier",
+        "fragment": ":~:text=en%20r%C3%A9visant%20les%20crit%C3%A8res%20d%E2%80%99acc%C3%A8s%20au%20cr%C3%A9dit%20pour%20mieux%20refl%C3%A9ter%20les%20situations%20de%20vie"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Discours du 13 septembre 2026 à Hénin-Beaumont",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "lepen-legiferer-contre-squat-restitution-bien",
+    "parentId": "lepen-logement",
+    "candidate": "lepen",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Adopter une loi contre les squats pour rendre le bien au propriétaire en quelques jours",
+    "description": "La candidate évoque un texte à faire voter après l’élection pour rendre aux propriétaires victimes d’un squat la libre disposition de leur bien. Le discours ne détaille pas la procédure.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lepen-henin",
+        "locator": "Droit des propriétaires en cas de squat",
+        "fragment": ":~:text=nous%20ferons%20donc%20voter%20et%20appliquer%20une%20loi%20contre%20le%20squat"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Discours du 13 septembre 2026 à Hénin-Beaumont",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "lepen-donner-priorite-francais-acces-parc-social",
+    "parentId": "lepen-logement",
+    "candidate": "lepen",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Donner la priorité aux Français pour accéder au parc social",
+    "description": "Marine Le Pen reprend personnellement ce principe dans son discours du 13 septembre. Elle distingue la priorité d’accès au parc social de la condition de nationalité qu’elle souhaite pour les APL.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lepen-henin",
+        "locator": "Priorité de nationalité pour accéder au parc social",
+        "fragment": ":~:text=donner%20la%20priorit%C3%A9%20d%E2%80%99acc%C3%A8s%20au%20logement%20social%20aux%20Fran%C3%A7ais"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Discours du 13 septembre 2026 à Hénin-Beaumont",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "lisnard-remplacer-cdi-cdd-par-contrat-unique-a-droits-progressifs",
+    "parentId": "lisnard-campagne-2027-travail",
+    "candidate": "lisnard",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Remplacer les CDI et CDD par un contrat de travail unique à droits progressifs",
+    "description": "David Lisnard a défendu ce contrat dans son entretien du 22 novembre. Le compte rendu de Nouvelle Énergie indique le caractère progressif des droits et laisse à préciser leur calendrier et les règles pour les contrats en cours.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-22-novembre",
+        "locator": "Contrat de travail unique",
+        "fragment": ":~:text=contrat%20de%20travail%20unique%2C%20destin%C3%A9%20%C3%A0%20remplacer%20les%20actuels%20CDI%20et%20CDD"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Entretien du 22 novembre 2026 · BFMTV et Le Figaro",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "lisnard-age-legal-65-ans-43-ans-et-demi-cotisation",
+    "parentId": "lisnard-retraites-capitalisation",
+    "candidate": "lisnard",
+    "theme": "retraites",
+    "revision": 1,
+    "title": "Porter l’âge légal de départ à 65 ans avec 43 ans et demi de cotisation",
+    "description": "Ce sont les deux paramètres évoqués par David Lisnard le 22 novembre. Il les a présentés avec une transition progressive vers un système mixte.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-22-novembre",
+        "locator": "Âge légal et durée de cotisation",
+        "fragment": ":~:text=porter%20l%27%C3%A2ge%20l%C3%A9gal%20de%20d%C3%A9part%20%C3%A0%2065%20ans%2C%20avec%2043%20ann%C3%A9es%20et%20demie%20de%20cotisation"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Entretien du 22 novembre 2026 · BFMTV et Le Figaro",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "lisnard-envisager-sous-indexation-certaines-pensions-si-deficit-persiste",
+    "parentId": "lisnard-retraites-capitalisation",
+    "candidate": "lisnard",
+    "theme": "retraites",
+    "revision": 1,
+    "title": "Envisager une revalorisation inférieure à l’inflation pour certaines pensions",
+    "description": "David Lisnard évoque cette possibilité si les mesures principales laissent subsister un déséquilibre. Elle s’appliquerait au-delà d’un niveau de pension qu’il ne fixe pas dans ce compte rendu. La pension en euros ne baisserait pas au titre de cette hypothèse.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-22-novembre",
+        "locator": "Hypothèse conditionnelle sur les retraites",
+        "fragment": ":~:text=si%20les%20mesures%20principales%20ne%20suffisaient%20pas%20%C3%A0%20r%C3%A9tablir%20l%27%C3%A9quilibre"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Entretien du 22 novembre 2026 · BFMTV et Le Figaro",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "lisnard-retablir-anonymat-parrainages-presidentiels",
+    "parentId": "lisnard-campagne-2027-institutions",
+    "candidate": "lisnard",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Rétablir l’anonymat des parrainages présidentiels",
+    "description": "David Lisnard a défendu le retour à l’anonymat des parrainages. Il considère que la publication expose particulièrement les élus des petites communes à des pressions.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lisnard-22-novembre",
+        "locator": "Parrainages présidentiels",
+        "fragment": ":~:text=le%20retour%20%C3%A0%20l%27anonymat%20des%20parrainages%20pr%C3%A9sidentiels"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Entretien du 22 novembre 2026 · BFMTV et Le Figaro",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "melenchon-rendre-autonomie-administrations-deconcentrees",
+    "parentId": "melenchon-institutions",
+    "candidate": "melenchon",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Rendre une autonomie d’action aux administrations déconcentrées",
+    "description": "Le plan propose de réduire la concentration des décisions aux mains des préfets et de rendre des moyens d’action propres aux administrations déconcentrées.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "melenchon-ruralite",
+        "locator": "1.1 · Pouvoir de décision des communes",
+        "fragment": ":~:text=la%20concentration%20excessive%20des%20pouvoirs%20dans%20les%20mains%20des%20pr%C3%A9fets"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan thématique pour les ruralités · 2027",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "melenchon-augmenter-dotation-equipements-territoires-ruraux",
+    "parentId": "melenchon-institutions",
+    "candidate": "melenchon",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Augmenter la dotation d’équipement des territoires ruraux",
+    "description": "Le document propose de préserver et d’augmenter l’enveloppe de cette dotation. Il ne donne pas de montant supplémentaire dans cette section.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "melenchon-ruralite",
+        "locator": "1.1 · Dotations et fiscalité locales",
+        "fragment": ":~:text=augmenter%20l%E2%80%99enveloppe%20de%20dotation%20aux%20%C3%A9quipements%20des%20territoires%20ruraux"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan thématique pour les ruralités · 2027",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "melenchon-retablir-taxation-locale-revenus-et-confort-logements",
+    "parentId": "melenchon-fiscalite",
+    "candidate": "melenchon",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Rétablir une taxation locale qui tienne compte des revenus et des caractéristiques de confort du logement",
+    "description": "Le barème prendrait en compte les revenus et les commodités des logements. Le plan ne chiffre pas ses seuils.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "melenchon-ruralite",
+        "locator": "1.1 · Dotations et fiscalité locales",
+        "fragment": ":~:text=selon%20un%20bar%C3%A8me%20tenant%20compte%20des%20revenus%20et%20des%20commodit%C3%A9s%20des%20logements"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan thématique pour les ruralités · 2027",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "melenchon-instruction-gratuite-permis-petites-communes",
+    "parentId": "melenchon-logement",
+    "candidate": "melenchon",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Rétablir l’instruction gratuite des permis de construire pour les petites communes",
+    "description": "La mesure rétablit une ingénierie publique gratuite pour les petites communes, y compris l’instruction des permis. Le plan veut aussi préserver les conseils d’architecture, d’urbanisme et de l’environnement de la logique marchande.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "melenchon-ruralite",
+        "locator": "1.1 · Dotations et fiscalité locales",
+        "fragment": ":~:text=en%20r%C3%A9tablissant%20l%E2%80%99instruction%20gratuite%20des%20permis%20de%20construire"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan thématique pour les ruralités · 2027",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "melenchon-garantir-droits-sociaux-retraite-formation-des-elus-locaux",
+    "parentId": "melenchon-institutions",
+    "candidate": "melenchon",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Garantir des droits sociaux, de retraite et de formation aux élus locaux",
+    "description": "Le plan prévoit le maintien des droits sociaux, des trimestres de retraite, une formation continue accessible et une protection effective contre les violences. Il entend compléter le statut de l’élu local.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "melenchon-ruralite",
+        "locator": "1.1 · Statut et responsabilité des élus locaux",
+        "fragment": ":~:text=en%20garantissant%20le%20plein%20maintien%20des%20droits%20sociaux%2C%20des%20trimestres%20pour%20le%20calcul%20de%20la%20retraite"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan thématique pour les ruralités · 2027",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "melenchon-fixer-indemnites-elus-locaux-selon-travail-et-responsabilites",
+    "parentId": "melenchon-institutions",
+    "candidate": "melenchon",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Fixer les indemnités des élus locaux selon le travail et les responsabilités",
+    "description": "Les indemnités tiendraient compte du temps de travail réel et des responsabilités exercées. Le plan ne fixe pas de barème.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "melenchon-ruralite",
+        "locator": "1.1 · Statut et responsabilité des élus locaux",
+        "fragment": ":~:text=tiennent%20compte%20du%20temps%20de%20travail%20r%C3%A9el%20et%20des%20responsabilit%C3%A9s%20exerc%C3%A9es"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan thématique pour les ruralités · 2027",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "melenchon-droit-preemption-zones-strategiques-planification-ecologique",
+    "parentId": "melenchon-climat",
+    "candidate": "melenchon",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Donner aux communes un droit de préemption sur les zones stratégiques pour la planification écologique",
+    "description": "Le plan vise les zones désignées dans les plans locaux d’urbanisme. Il donne comme exemples les carrières, les zones destinées aux renouvelables et celles nécessaires à la protection des forêts.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "melenchon-ruralite",
+        "locator": "1.2 · Planification écologique dans les communes",
+        "fragment": ":~:text=un%20droit%20de%20pr%C3%A9emption%20des%20communes%20sur%20les%20zones%20strat%C3%A9giques"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan thématique pour les ruralités · 2027",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "melenchon-defenseurs-nature-communes",
+    "parentId": "melenchon-climat",
+    "candidate": "melenchon",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Mettre en place des défenseurs de la nature",
+    "description": "Le plan leur confierait la protection de l’eau, de l’air, des forêts, de la végétalisation et de la perméabilité des sols.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "melenchon-ruralite",
+        "locator": "1.2 · Planification écologique dans les communes",
+        "fragment": ":~:text=des%20d%C3%A9fenseurs%20de%20la%20nature%2C%20charg%C3%A9s%20de%20la%20protection%20de%20l%E2%80%99eau"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan thématique pour les ruralités · 2027",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "melenchon-visites-a-domicile-et-reseaux-voisinage-contre-isolement-rural",
+    "parentId": "melenchon-social",
+    "candidate": "melenchon",
+    "theme": "social",
+    "revision": 1,
+    "title": "Organiser des visites à domicile et des réseaux de voisinage contre l’isolement en zone rurale",
+    "description": "Un plan national pour les personnes âgées ou dépendantes développerait les visites à domicile et soutiendrait les réseaux de veille et de solidarité de proximité.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "melenchon-ruralite",
+        "locator": "1.3 · Isolement en milieu rural",
+        "fragment": ":~:text=plan%20national%20de%20lutte%20contre%20l%E2%80%99isolement%20des%20personnes%20%C3%A2g%C3%A9es%20ou%20d%C3%A9pendantes%20en%20zone%20rurale"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan thématique pour les ruralités · 2027",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "melenchon-dispositifs-ecoute-prevention-et-visites-entre-exploitants",
+    "parentId": "melenchon-sante",
+    "candidate": "melenchon",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Renforcer l’écoute et les visites entre exploitants agricoles isolés",
+    "description": "Le plan propose de s’appuyer sur les associations qui accompagnent les agriculteurs, renforcer leurs dispositifs de prévention et organiser des visites entre pairs.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "melenchon-ruralite",
+        "locator": "1.3 · Isolement en milieu rural",
+        "fragment": ":~:text=d%C3%A9velopper%20les%20visites%20de%20convivialit%C3%A9%20entre%20pairs%20pour%20les%20exploitant%C2%B7es%20isol%C3%A9%C2%B7es"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan thématique pour les ruralités · 2027",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "melenchon-bibliotheques-et-bibliobus-itinerants-communes-sans-equipement",
+    "parentId": "melenchon-education",
+    "candidate": "melenchon",
+    "theme": "education",
+    "revision": 1,
+    "title": "S’appuyer sur les bibliothèques itinérantes pour diffuser la création dans les communes sans équipement",
+    "description": "Le plan prévoit un programme d’implantation et d’itinérance des artistes. Il cite les médiathèques et les bibliobus dans les communes sans équipement fixe.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "melenchon-ruralite",
+        "locator": "1.3 · Isolement en milieu rural",
+        "fragment": ":~:text=des%20m%C3%A9diath%C3%A8ques%20et%20bibliobus%20itin%C3%A9rants%20pour%20les%20communes%20d%C3%A9pourvues%20d%E2%80%99%C3%A9quipement%20fixe"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan thématique pour les ruralités · 2027",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "melenchon-fonds-sauvegarde-petit-patrimoine-rural",
+    "parentId": "melenchon-education",
+    "candidate": "melenchon",
+    "theme": "education",
+    "revision": 1,
+    "title": "Créer un fonds pour le petit patrimoine rural",
+    "description": "Le plan propose de financer la sauvegarde du petit patrimoine et de soutenir des chantiers participatifs associant les habitants et les associations.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "melenchon-ruralite",
+        "locator": "1.3 · Isolement en milieu rural",
+        "fragment": ":~:text=un%20fonds%20d%C3%A9di%C3%A9%20%C3%A0%20la%20sauvegarde%20du%20petit%20patrimoine%20rural"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Plan thématique pour les ruralités · 2027",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "philippe-aligner-execution-peines-grands-trafiquants-regime-terrorisme",
+    "parentId": "philippe-securite",
+    "candidate": "philippe",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Aligner l’exécution des peines des grands trafiquants sur le régime applicable aux terroristes",
+    "description": "Cette proposition porte sur l’exécution des peines des grands trafiquants. Le programme la distingue du niveau des peines prononcées.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "philippe-programme-11",
+        "locator": "Réponse 5 · Exécution des peines de grands trafiquants",
+        "fragment": ":~:text=Pour%20les%20grands%20trafiquants%2C%20il%20veut%20aligner%20l%E2%80%99ex%C3%A9cution%20des%20peines%20sur%20le%20r%C3%A9gime%20des%20terroristes"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Croire en nous · le programme pour 2027",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "philippe-creer-service-public-a-la-maison-pour-personnes-seules-ou-agees",
+    "parentId": "philippe-institutions-programme",
+    "candidate": "philippe",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Créer un service public à la maison pour les personnes seules ou âgées",
+    "description": "La campagne indique qu’Édouard Philippe a présenté ce programme le 13 novembre à Toulouse. Il vise les personnes seules ou âgées. Les modalités de mise en œuvre restent à préciser.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "ed-src-36b1cc819d1fefcdacfd",
+        "locator": "Programme de proximité présenté à Toulouse",
+        "fragment": ":~:text=Ce%20nouveau%20programme%20s%E2%80%99adresse%20aux%20personnes%20seules%20ou%20%C3%A2g%C3%A9es"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Déplacement de campagne du 13 novembre 2026 à Toulouse",
     "checked": "2026-11-26"
   }
 ]

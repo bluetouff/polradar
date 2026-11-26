@@ -206,20 +206,16 @@ test('le menu mobile ouvre les rubriques au clavier et rend le focus à la ferme
   await page.setViewportSize({ width: 320, height: 900 });
   await page.goto('/candidats/');
   const menu = page.getByRole('navigation', { name: 'Navigation principale' });
-  await expect(menu.getByRole('link')).toHaveCount(6);
-  await expect(
-    menu.getByRole('link', { name: 'Candidats', exact: true }),
-  ).toHaveAttribute('aria-current', 'page');
-  await expect(
-    menu.getByRole('link', { name: 'Sondages', exact: true }),
-  ).toBeVisible();
+  await expect(menu.getByRole('link')).toHaveCount(4);
   const summary = page.locator('.site-directory summary');
   await summary.focus();
   await page.keyboard.press('Enter');
   const tools = page.getByRole('navigation', { name: 'Rubriques et outils' });
-  await expect(
-    tools.getByRole('link', { name: 'Studio graphique' }),
-  ).toBeVisible();
+  await expect(tools.getByRole('link', { name: 'Sondages' })).toBeVisible();
+  await expect(tools.getByRole('link', { name: 'Candidats' })).toHaveAttribute(
+    'aria-current',
+    'page',
+  );
   await page.keyboard.press('Tab');
   await expect(tools.getByRole('link', { name: 'Propositions' })).toBeFocused();
   await page.keyboard.press('Escape');

@@ -1,18 +1,18 @@
 ---
 import Base from '../layouts/Base.astro';
+import { sourceCommit } from '../../scripts/release-revision.mjs';
 import {
   activeCandidates as candidates,
-  measures,
-  polls,
-  versions,
-  watch,
-  sources,
-  themes,
+  dataset,
   meta,
-  formatDate,
+  formatTimestamp,
 } from '../lib/data';
+import { corpusCounts, latestRecordedVersion } from '../lib/corpus-counts.mjs';
 import { pollCoverage } from '../lib/features.mjs';
-const coverage = pollCoverage(polls);
+const corpus = corpusCounts(dataset);
+const coverage = pollCoverage(dataset.polls);
+const latestRecording = latestRecordedVersion(dataset.versions);
+const fmt = (n: number) => n.toLocaleString('fr-FR');
 ---
 
 <Base title="À propos de Polradar">
@@ -36,25 +36,46 @@ const coverage = pollCoverage(polls);
           {candidates.length} candidatures sélectionnées, sans prétention à
           l’exhaustivité.
         </li>
-        <li>{themes.length} thèmes communs à chaque dossier.</li>
+        <li>{corpus.themes.length} thèmes de classement.</li>
         <li>
-          {measures.filter((e) => e.scope !== 'archive').length} fiches hors
-          archives, orientations incluses.
+          <strong data-proposal-total={corpus.proposals}>
+            {fmt(corpus.proposals)}
+          </strong>{' '}
+          propositions de campagne ou de parti.
         </li>
         <li>
-          {measures.filter((e) => e.scope === 'archive').length} fiches
-          d’archives 2022.
+          {fmt(corpus.current)} fiches hors archives, orientations incluses.
         </li>
+        <li>{fmt(corpus.counts.archive)} fiches d’archives 2022.</li>
         <li>
-          {sources.length} références, dont certaines servent de repères
-          institutionnels.
+          {fmt(dataset.sources.length)} références, dont certaines servent de
+          repères institutionnels.
         </li>
       </ul>
+      {latestRecording?.recordedAt && (
+        <p>
+          Dernière version enregistrée le{' '}
+          <time
+            data-latest-recording={latestRecording.id}
+            datetime={latestRecording.recordedAt}
+          >
+            {formatTimestamp(latestRecording.recordedAt)}
+          </time>{' '}
+          (Paris).
+        </p>
+      )}
       <p>
-        Dernière mise à jour du corpus : {formatDate(meta.corpusUpdated)}. Les
-        dates de consultation figurent dans chaque source. Le{' '}
-        <a href="/build.json">marqueur de construction</a> donne l’heure UTC et
-        la révision de la version en ligne.
+        Les dates de consultation figurent dans chaque source. Le{' '}
+        <a href="/build.json" data-edition-revision={sourceCommit ?? undefined}>
+          manifeste d’édition
+          {sourceCommit && (
+            <>
+              {' '}
+              · <code>{sourceCommit.slice(0, 12)}</code>
+            </>
+          )}
+        </a>{' '}
+        donne l’heure et la révision de construction du site en ligne.
       </p>
     </article>
     <aside class="repository-note">
@@ -97,11 +118,12 @@ const coverage = pollCoverage(polls);
     <h2>Rubriques disponibles</h2>
     <p>
       Les mesures disposent de fiches distinctes, de références et d’un
-      historique avant/après ({versions.length} versions). La recherche combine
-      candidat, thème, type de contenu, année de publication connue et archives,
-      avec export CSV ou JSON. Le suivi par candidat ou thème reste dans le
-      navigateur et propose des flux RSS spécialisés. La veille couvre
-      {watch.length} sources sélectionnées.
+      historique avant/après ({fmt(dataset.versions.length)} versions). La
+      recherche combine candidat, thème, type de contenu, année de publication
+      connue et archives, avec export CSV ou JSON. Le suivi par candidat ou
+      thème reste dans le navigateur et propose des flux RSS spécialisés. La
+      veille couvre
+      {dataset.watch.length} sources sélectionnées.
     </p>
     <h2>Couverture des programmes</h2>
     <p>

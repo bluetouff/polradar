@@ -251,21 +251,34 @@ test('les loupes de recherche et le bouton de suivi conservent leurs pictogramme
   page,
 }) => {
   await page.goto('/suivi/');
-  for (const width of [390, 1280]) {
-    await page.setViewportSize({ width, height: 850 });
-    const search = page
-      .getByRole('link', { name: 'Rechercher', exact: true })
-      .first();
-    await expect(search).toBeVisible();
-    expect(
-      await search.evaluate((el) => getComputedStyle(el, '::before').maskImage),
-    ).toContain('/pictos-menu/');
-    expect(
-      await search.evaluate((el) =>
-        parseFloat(getComputedStyle(el, '::before').width),
-      ),
-    ).toBeGreaterThanOrEqual(16);
-  }
+  await page.setViewportSize({ width: 390, height: 850 });
+  const mobileSearch = page
+    .getByRole('navigation', { name: 'Navigation principale' })
+    .getByRole('link', { name: 'Recherche', exact: true });
+  await expect(mobileSearch).toBeVisible();
+  await expect(mobileSearch).toHaveAttribute('href', '/recherche/');
+  const loupe = mobileSearch.locator('.i-search');
+  await expect(loupe).toBeVisible();
+  expect((await loupe.boundingBox())!.width).toBeGreaterThanOrEqual(16);
+  expect(
+    await loupe.evaluate((el) => getComputedStyle(el).maskImage),
+  ).toContain('/pictos-menu/');
+
+  await page.setViewportSize({ width: 1280, height: 850 });
+  const desktopSearch = page
+    .getByRole('link', { name: 'Rechercher', exact: true })
+    .first();
+  await expect(desktopSearch).toBeVisible();
+  expect(
+    await desktopSearch.evaluate(
+      (el) => getComputedStyle(el, '::before').maskImage,
+    ),
+  ).toContain('/pictos-menu/');
+  expect(
+    await desktopSearch.evaluate((el) =>
+      parseFloat(getComputedStyle(el, '::before').width),
+    ),
+  ).toBeGreaterThanOrEqual(16);
   const follow = page.locator('[data-follow-id=kazib]');
   await expect(follow).toHaveAccessibleName(/Suivre.*Kazib/);
   expect(

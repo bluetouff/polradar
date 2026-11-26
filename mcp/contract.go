@@ -33,11 +33,13 @@ func toolInput[I any](name string) *jsonschema.Schema {
 		setEnum("scope", "", "campagne", "parti", "orientation", "archive")
 		setEnum("candidateStatus", "", "toutes", "actives", "retirees")
 		setEnum("sort", "", "pertinence", "alphabetique")
+		setEnum("mode", "", "preuves")
 		props["query"].MaxLength = jsonschema.Ptr(160)
 		props["limit"].Minimum = jsonschema.Ptr(0.0)
 		props["limit"].Maximum = jsonschema.Ptr(25.0)
 	case "polradar_donnees":
 		setEnum("collection", slices.Sorted(maps.Keys(collections))...)
+		props["query"].MaxLength = jsonschema.Ptr(160)
 	case "polradar_comparer":
 		props["candidates"].Type = "array"
 		props["candidates"].Types = nil
@@ -86,11 +88,30 @@ func toolOutput(name string) map[string]any {
 	case "polradar_candidates":
 		data = fields(map[string]string{"candidatures": "array"})
 	case "polradar_search":
-		data = fields(map[string]string{"total": "integer", "offset": "integer", "resultats": "array"})
+		data = fields(map[string]string{"total": "integer", "offset": "integer", "suivant": "integer|null", "resultats": "array"})
+		results := data["properties"].(map[string]any)["resultats"].(map[string]any)
+		row := fields(map[string]string{
+			"id": "string", "titre": "string", "auteur": "string", "candidatureAssociee": "string",
+			"statut": "string", "edition": "string", "resume": "string", "url": "string", "urlVersion": "string|null", "source": "object",
+		})
+		props := row["properties"].(map[string]any)
+		source := fields(map[string]string{"id": "string", "url": "string", "document": "string", "passage": "string"})
+		props["source"] = source
+		evidence := fields(map[string]string{
+			"description": "string", "chiffres": "array|null", "montants": "array|null",
+			"beneficiaires": "string|null", "echeance": "string|null", "financement": "string|null", "sources": "array",
+		})
+		evidence["properties"].(map[string]any)["sources"].(map[string]any)["items"] = source
+		evidence["description"] = "Présent avec mode=preuves. Les valeurs nulles signalent une information absente de la fiche."
+		props["preuves"] = evidence
+		props["urlVersion"].(map[string]any)["description"] = "Lien Polradar vers la version citée. Utilisez url si la version manque."
+		results["items"] = row
 	case "polradar_measure":
-		data = alternatives(fields(map[string]string{"id": "string", "titre": "string", "description": "string", "auteur": "string", "statutCandidatureActuel": "string", "sources": "array", "versions": "array", "liensDossierCourant": "object", "versionDemandee": "string|null", "url": "string"}), absent("fiche"))
+		data = alternatives(fields(map[string]string{"id": "string", "titre": "string", "description": "string", "auteur": "string", "statutCandidatureActuel": "string", "sources": "array", "versions": "array", "liensDossierCourant": "object", "versionDemandee": "string|null", "url": "string", "urlVersion": "string|null"}), absent("fiche"))
 	case "polradar_donnees":
-		data = alternatives(fields(map[string]string{"collection": "string", "total": "integer", "offset": "integer", "publications": "array"}), fields(map[string]string{"collection": "string", "publication": "object", "rubrique": "string"}), fields(map[string]string{"collection": "string", "publication": "null"}))
+		index := fields(map[string]string{"collection": "string", "total": "integer", "offset": "integer", "publications": "array"})
+		index["properties"].(map[string]any)["suivant"] = map[string]any{"type": []string{"integer", "null"}}
+		data = alternatives(index, fields(map[string]string{"collection": "string", "publication": "object", "rubrique": "string"}), fields(map[string]string{"collection": "string", "publication": "null"}))
 	}
 	return map[string]any{"type": "object", "required": []string{"versionContrat", "revisionDuSite", "revisionDuService", "corpusVerifieLe", "sansResultat", "donnees"}, "properties": map[string]any{
 		"versionContrat":    map[string]any{"type": "integer", "const": dataMajor},

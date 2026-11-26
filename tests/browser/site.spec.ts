@@ -229,7 +229,7 @@ test('la recherche depuis l’accueil transmet la requête seulement dans le fra
   page.on('request', (request) => requests.push(request.url()));
   await page.goto('/');
   const input = page.getByRole('searchbox', {
-    name: 'Rechercher dans Polradar',
+    name: 'Que voulez-vous comprendre ?',
   });
   await input.fill('suppression de la CSG');
   await input.press('Enter');

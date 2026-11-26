@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
+	"maps"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -217,9 +218,40 @@ func (c *snapshot) cited(ref reference) map[string]any {
 	}
 	return map[string]any{"id": s.ID, "document": s.Title, "url": link, "passage": ref.Locator, "publication": s.Published, "anneePublication": s.PublishedYear, "justificatifPublication": s.PublicationReference, "consultation": s.Checked}
 }
+
+func measureURL(id string, version int) string {
+	link := site + "/mesures/" + id + "/"
+	if version > 0 {
+		link += "#version-" + strconv.Itoa(version)
+	}
+	return link
+}
+
 func (c *snapshot) card(m measure) map[string]any {
 	p := c.people[m.Candidate]
-	return map[string]any{"id": m.ID, "titre": m.Title, "auteur": m.DisplayAuthor, "candidatureAssociee": m.Candidate, "statutCandidature": p.Status, "dateRetrait": nullable(p.WithdrawnOn), "sourceStatut": nullable(c.bySource[p.StatusSource].URL), "theme": m.Theme, "statut": m.Scope, "edition": m.Edition, "verifieLe": m.Checked, "url": site + "/mesures/" + m.ID + "/", "source": c.cited(m.SourceRefs[0])}
+	var revision *string
+	for _, v := range c.history[m.ID] {
+		if v.Number == m.Revision {
+			revision = nullable(measureURL(m.ID, v.Number))
+			break
+		}
+	}
+	return map[string]any{
+		"id":                  m.ID,
+		"titre":               m.Title,
+		"auteur":              m.DisplayAuthor,
+		"candidatureAssociee": m.Candidate,
+		"statutCandidature":   p.Status,
+		"dateRetrait":         nullable(p.WithdrawnOn),
+		"sourceStatut":        nullable(c.bySource[p.StatusSource].URL),
+		"theme":               m.Theme,
+		"statut":              m.Scope,
+		"edition":             m.Edition,
+		"verifieLe":           m.Checked,
+		"url":                 measureURL(m.ID, 0),
+		"urlVersion":          revision,
+		"source":              c.cited(m.SourceRefs[0]),
+	}
 }
 
 func nullable(s string) *string {
@@ -242,12 +274,13 @@ type searchArgs struct {
 	Sort             string `json:"sort,omitempty" jsonschema:"pertinence ou alphabetique."`
 	CandidateStatus  string `json:"candidateStatus,omitempty" jsonschema:"toutes (défaut), actives ou retirees. Concerne le dossier associé, y compris pour un texte de parti."`
 	ExpectedRevision string `json:"expectedRevision,omitempty" jsonschema:"Révision du site renvoyée par la première page."`
-	Query            string `json:"query,omitempty" jsonschema:"Mots à rechercher dans les propositions, jusqu’à 160 caractères."`
+	Query            string `json:"query,omitempty" jsonschema:"Mots à rechercher ou question courte sur une proposition, jusqu’à 160 caractères."`
 	Candidate        string `json:"candidate,omitempty" jsonschema:"Identifiant de la candidature associée, à retrouver avec polradar_candidates."`
 	Theme            string `json:"theme,omitempty" jsonschema:"Identifiant d’un thème, disponible via polradar_corpus."`
 	Scope            string `json:"scope,omitempty" jsonschema:"campagne, parti, orientation ou archive. Les archives nécessitent une sélection explicite."`
+	Mode             string `json:"mode,omitempty" jsonschema:"preuves ajoute les conditions, montants et tous les passages cités dès la recherche."`
 	Offset           int    `json:"offset,omitempty" jsonschema:"Première ligne, à partir de zéro."`
-	Limit            int    `json:"limit,omitempty" jsonschema:"Nombre de lignes (10 par défaut, 25 au maximum)."`
+	Limit            int    `json:"limit,omitempty" jsonschema:"Nombre de lignes (10 par défaut, 25 au maximum ; en mode preuves : 3 par défaut, 5 au maximum)."`
 }
 
 func (c *snapshot) search(a searchArgs) (any, bool, error) {
@@ -266,7 +299,15 @@ func (c *snapshot) matchMeasures(a searchArgs) (any, bool, error) {
 	default:
 		return nil, false, errors.New("Filtre de candidature inconnu.")
 	}
-	if len([]rune(a.Query)) > 160 || len(a.Candidate) > 96 || len(a.Theme) > 96 || a.Offset < 0 || a.Offset > 100000 || a.Limit < 0 || a.Limit > 25 {
+	defaultLimit, maxLimit := 10, 25
+	switch a.Mode {
+	case "":
+	case "preuves":
+		defaultLimit, maxLimit = 3, 5
+	default:
+		return nil, false, errFilter
+	}
+	if len([]rune(a.Query)) > 160 || len(a.Candidate) > 96 || len(a.Theme) > 96 || a.Offset < 0 || a.Offset > 100000 || a.Limit < 0 || a.Limit > maxLimit {
 		return nil, false, errors.New("Vérifiez les filtres et les limites de pagination.")
 	}
 	if a.Scope != "" && a.Scope != "campagne" && a.Scope != "parti" && a.Scope != "orientation" && a.Scope != "archive" {
@@ -275,13 +316,14 @@ func (c *snapshot) matchMeasures(a searchArgs) (any, bool, error) {
 	if a.Sort != "" && a.Sort != "pertinence" && a.Sort != "alphabetique" {
 		return nil, false, errFilter
 	}
-	query := normalize(a.Query)
+	normalized := normalize(a.Query)
+	query := measureQuery(normalized)
 	terms := lexicalTerms(query)
-	if query != "" && len(terms) == 0 {
+	if normalized != "" && len(terms) == 0 {
 		return nil, false, errors.New("Précisez le terme recherché.")
 	}
 	if a.Limit == 0 {
-		a.Limit = 10
+		a.Limit = defaultLimit
 	}
 	type hit struct{ index, rank int }
 	hits := []hit{}
@@ -313,17 +355,47 @@ func (c *snapshot) matchMeasures(a searchArgs) (any, bool, error) {
 	end := min(start+a.Limit, len(hits))
 	rows := make([]map[string]any, 0, end-start)
 	for _, h := range hits[start:end] {
-		rows = append(rows, c.card(c.Measures[h.index]))
+		m := c.Measures[h.index]
+		row := c.card(m)
+		summary := []rune(m.Description)
+		if len(summary) > 420 {
+			row["resume"] = strings.TrimSpace(string(summary[:420])) + "…"
+		} else {
+			row["resume"] = m.Description
+		}
+		if a.Mode == "preuves" {
+			row["preuves"] = c.measureEvidence(m)
+		}
+		rows = append(rows, row)
 	}
-	return map[string]any{"total": len(hits), "offset": a.Offset, "resultats": rows}, len(rows) == 0, nil
+	var next *int
+	if end < len(hits) {
+		next = &end
+	}
+	return map[string]any{"total": len(hits), "offset": a.Offset, "suivant": next, "resultats": rows}, len(rows) == 0, nil
+}
+
+func (c *snapshot) measureEvidence(m measure) map[string]any {
+	refs := make([]map[string]any, 0, len(m.SourceRefs))
+	for _, r := range m.SourceRefs {
+		refs = append(refs, c.cited(r))
+	}
+	return map[string]any{
+		"description": m.Description, "chiffres": m.Metrics, "montants": m.Amounts,
+		"beneficiaires": m.Beneficiaries, "echeance": m.Timing, "financement": m.Financing, "sources": refs,
+	}
 }
 
 type measureArgs struct {
-	ID      string `json:"id" jsonschema:"Identifiant exact d’une fiche retournée par la recherche."`
-	Version int    `json:"version,omitempty" jsonschema:"Numéro de version. Par défaut, fiche courante."`
+	ID               string `json:"id" jsonschema:"Identifiant exact d’une fiche retournée par la recherche."`
+	Version          int    `json:"version,omitempty" jsonschema:"Numéro de version. Par défaut, fiche courante."`
+	ExpectedRevision string `json:"expectedRevision,omitempty" jsonschema:"Passez la revisionDuSite de la recherche pour lire la fiche dans la même édition."`
 }
 
 func (c *snapshot) detail(a measureArgs) (any, bool, error) {
+	if err := c.checkRevision(a.ExpectedRevision); err != nil {
+		return nil, false, err
+	}
 	if a.ID == "" || len(a.ID) > 160 || a.Version < 0 {
 		return nil, false, errors.New("Identifiant de fiche invalide.")
 	}
@@ -336,7 +408,7 @@ func (c *snapshot) detail(a measureArgs) (any, bool, error) {
 	var versionID string
 	hist := make([]map[string]any, 0, len(c.history[m.ID]))
 	for _, v := range c.history[m.ID] {
-		hist = append(hist, map[string]any{"id": v.ID, "numero": v.Number, "nature": v.Kind, "observeLe": v.Observed, "enregistreLe": v.Recorded, "resume": v.Summary, "url": site + "/mesures/" + m.ID + "/#version-" + strconv.Itoa(v.Number)})
+		hist = append(hist, map[string]any{"id": v.ID, "numero": v.Number, "nature": v.Kind, "observeLe": v.Observed, "enregistreLe": v.Recorded, "resume": v.Summary, "url": measureURL(m.ID, v.Number)})
 		if a.Version == v.Number {
 			s := v.Snapshot
 			s.ID, s.Candidate, s.Theme, s.DisplayAuthor, s.Revision = m.ID, m.Candidate, m.Theme, v.Author, v.Number
@@ -349,22 +421,15 @@ func (c *snapshot) detail(a measureArgs) (any, bool, error) {
 	}
 	row := c.card(m)
 	delete(row, "source")
-	row["description"] = m.Description
+	maps.Copy(row, c.measureEvidence(m))
 	row["revision"] = m.Revision
-	row["chiffres"] = m.Metrics
-	row["montants"], row["beneficiaires"], row["echeance"], row["financement"] = m.Amounts, m.Beneficiaries, m.Timing, m.Financing
 	row["versions"], row["versionDemandee"] = hist, nullable(versionID)
 	row["liensDossier"] = map[string]any{"budgetEntryIds": links.BudgetEntryIDs, "voteCaseIds": links.VoteCaseIDs, "evolutionIds": links.EvolutionIDs}
 	row["liensDossierCourant"] = row["liensDossier"]
 	row["statutCandidatureActuel"] = c.people[m.Candidate].Status
 	if versionID != "" {
-		row["url"] = site + "/mesures/" + m.ID + "/#version-" + strconv.Itoa(a.Version)
+		row["url"] = measureURL(m.ID, a.Version)
 	}
-	refs := make([]map[string]any, 0, len(m.SourceRefs))
-	for _, r := range m.SourceRefs {
-		refs = append(refs, c.cited(r))
-	}
-	row["sources"] = refs
 	return row, false, nil
 }
 

@@ -3,8 +3,11 @@ import { civilDateInParis } from '../lib/schema.mjs';
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import { dataset, formatDate } from '../lib/data';
-import { corpusActivity } from '../lib/corpus-counts.mjs';
+import { dataset, formatDate, formatTimestamp } from '../lib/data';
+import {
+  corpusActivity,
+  latestRecordedVersion,
+} from '../lib/corpus-counts.mjs';
 import { campaignBriefs } from '../lib/briefs';
 import { legislativeVotes } from '../lib/votes-data';
 import {
@@ -27,6 +30,10 @@ import '../styles/corpus.css';
 
 const asOf = civilDateInParis();
 const activity = corpusActivity(dataset.versions, asOf);
+const latestRecording = latestRecordedVersion(dataset.versions);
+const undated = dataset.versions.filter(
+  (version) => !version.recordedAt,
+).length;
 const activityMax = Math.max(
   1,
   ...activity.map((day) => day.added + day.revised),
@@ -154,10 +161,21 @@ const slices = scopes.map(([id, label]) => {
           </strong>
           <span>propositions de campagne ou de parti</span>
         </p>
-        <p class="corpus-date">
-          <Icon name="clock" /> Compté le{' '}
-          <time datetime={asOf}>{formatDate(asOf)}</time>
-        </p>
+        {latestRecording?.recordedAt && (
+          <p class="corpus-date">
+            <Icon name="clock" />
+            <span>
+              Dernière version enregistrée le{' '}
+              <time
+                data-latest-recording={latestRecording.id}
+                datetime={latestRecording.recordedAt}
+              >
+                {formatTimestamp(latestRecording.recordedAt)}
+              </time>{' '}
+              (Paris)
+            </span>
+          </p>
+        )}
         <a class="corpus-link-light" href="/mesures/">
           Parcourir les mesures <Icon name="arrow" />
         </a>
@@ -335,6 +353,17 @@ const slices = scopes.map(([id, label]) => {
         <div>
           <h2 id="quality-heading">Couverture et fraîcheur</h2>
           <p>État des notices, des sources et des relevés nominatifs.</p>
+          {quality.sourceCommit && (
+            <p>
+              Révision du site{' '}
+              <a
+                href="/build.json"
+                data-edition-revision={quality.sourceCommit}
+              >
+                <code>{quality.sourceCommit.slice(0, 12)}</code>
+              </a>
+            </p>
+          )}
         </div>
         <a href="/api/qualite-documentaire.json">
           Télécharger les compteurs (JSON) <Icon name="download" />
@@ -554,9 +583,19 @@ const slices = scopes.map(([id, label]) => {
         <div>
           <h2 id="ledger-title">Ajouts et révisions sur 14 jours</h2>
           <p>
-            Chaque première fiche compte comme un ajout. Chaque version suivante
-            compte comme une révision.
+            Le graphique classe chaque version à sa date d’enregistrement dans
+            Polradar, en heure de Paris. Une première version correspond à un
+            ajout.
           </p>
+          {undated > 0 && (
+            <p data-undated-versions={undated}>
+              {fmt(undated)}{' '}
+              {undated === 1
+                ? 'version sans date d’enregistrement reste'
+                : 'versions sans date d’enregistrement restent'}{' '}
+              dans le total du corpus.
+            </p>
+          )}
         </div>
       </div>
       <div class="ledger-key">

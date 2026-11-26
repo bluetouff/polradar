@@ -162,6 +162,57 @@
           }
         }
       ]
+    },
+    {
+      "id": "classes-priorites",
+      "question": "Dans la fiche de Jean-Luc Mélenchon sur les effectifs par classe, quelles sont les deux priorités indiquées pour la réduction du nombre d’élèves par classe ? Donne une valeur pour chacune.",
+      "reference": {
+        "famille": "preuves-en-un-appel",
+        "arguments": { "mode": "preuves", "limit": 1 }
+      },
+      "etat": "documente",
+      "faits": [
+        [
+          "maternelle",
+          "la maternelle",
+          "école maternelle",
+          "l’école maternelle"
+        ],
+        [
+          "éducation prioritaire",
+          "réseaux d’éducation prioritaire",
+          "les réseaux d’éducation prioritaire",
+          "établissements d’éducation prioritaire",
+          "réseaux d’éducation prioritaire (REP)"
+        ]
+      ],
+      "adresses": [
+        "https://polradar.fr/mesures/melenchon-education-2/#version-3",
+        "https://melenchon2027.fr/programme/livre/le-gout-du-futur-aux-nouvelles-frontieres-de-l-humanite/chapitre2"
+      ],
+      "appels": [
+        {
+          "arguments": { "mode": "preuves" },
+          "attendus": {
+            "/resultats/*": {
+              "id": "melenchon-education-2",
+              "auteur": "Jean-Luc Mélenchon",
+              "preuves": {
+                "beneficiaires": "Les élèves, en priorité en maternelle et dans les réseaux d’éducation prioritaire."
+              }
+            }
+          }
+        },
+        {
+          "outil": "polradar_measure",
+          "arguments": { "id": "melenchon-education-2" },
+          "attendus": {
+            "/id": "melenchon-education-2",
+            "/auteur": "Jean-Luc Mélenchon",
+            "/beneficiaires": "Les élèves, en priorité en maternelle et dans les réseaux d’éducation prioritaire."
+          }
+        }
+      ]
     }
   ]
 }

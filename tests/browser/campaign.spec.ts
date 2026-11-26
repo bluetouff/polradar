@@ -182,13 +182,13 @@ test('la home affiche les séries et les accès au corpus sans exemple nominatif
     .evaluateAll((links) =>
       links.slice(0, 3).map((link) => link.getAttribute('href')),
     );
-  for (const width of [320, 768, 1024, 1440, 1800]) {
+  for (const width of [320, 360, 390, 768, 1024, 1440, 1920]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/');
     await page.evaluate(() => document.fonts.ready);
     const dossiers = (await page.locator('.home-dossiers').boundingBox())!;
     await expect(
-      page.getByRole('searchbox', { name: 'Rechercher dans Polradar' }),
+      page.getByRole('searchbox', { name: 'Que voulez-vous comprendre ?' }),
     ).toBeVisible();
     const search = (await page.locator('.cover-search').boundingBox())!;
     const signals = (await page

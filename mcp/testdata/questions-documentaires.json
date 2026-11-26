@@ -5577,6 +5577,106 @@
       ],
       "vide": false,
       "erreur": false
+    },
+    {
+      "famille": "preuves-en-un-appel",
+      "question": "Pour quels élèves le programme de Jean-Luc Mélenchon prévoit-il d’abord de réduire la taille des classes, et où le vérifier ?",
+      "outil": "polradar_search",
+      "arguments": {
+        "query": "Que propose Jean-Luc Mélenchon pour les élèves par classe ?",
+        "mode": "preuves",
+        "limit": 1
+      },
+      "attendus": {
+        "/resultats/0/id": "melenchon-education-2",
+        "/resultats/0/auteur": "Jean-Luc Mélenchon",
+        "/resultats/0/statut": "campagne",
+        "/resultats/0/preuves/beneficiaires": "Les élèves, en priorité en maternelle et dans les réseaux d’éducation prioritaire.",
+        "/resultats/0/preuves/sources/0/url": "https://melenchon2027.fr/programme/livre/le-gout-du-futur-aux-nouvelles-frontieres-de-l-humanite/chapitre2#:~:text=R%C3%A9duire%20partout%20les%20effectifs%20par%20classe",
+        "/resultats/0/preuves/sources/1/id": "lfi-school"
+      },
+      "champs": [
+        "/resultats/0/urlVersion",
+        "/resultats/0/preuves/sources/1/passage"
+      ],
+      "sources": [
+        "https://polradar.fr/mesures/melenchon-education-2/",
+        "https://melenchon2027.fr/programme/livre/le-gout-du-futur-aux-nouvelles-frontieres-de-l-humanite/chapitre2#:~:text=R%C3%A9duire%20partout%20les%20effectifs%20par%20classe"
+      ],
+      "identifiants": ["melenchon-education-2", "lfi-school"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "localisation-enquete",
+      "question": "Combien de scénarios OpinionWay pour CNEWS ont un terrain commençant le 21 octobre 2026 et où se trouve le premier tableau ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sondages",
+        "query": "OpinionWay CNEWS 2026-10-21"
+      },
+      "attendus": {
+        "/total": 4,
+        "/suivant": null,
+        "/publications/0/id": "opinionway-commission-10333-p12",
+        "/publications/0/institut": "OpinionWay",
+        "/publications/0/commanditaire": "CNEWS",
+        "/publications/0/terrainDu": "2026-10-21",
+        "/publications/0/terrainAu": "2026-10-22",
+        "/publications/0/date": "2026-10-22",
+        "/publications/0/notice": "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2352#page=12"
+      },
+      "sources": [
+        "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2352#page=12"
+      ],
+      "identifiants": [
+        "opinionway-commission-10333-p12",
+        "notice-commission-10333"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "localisation-enquete",
+      "question": "Le terrain OpinionWay pour CNEWS avait-il commencé le 21 septembre 2026, comme le suggère la demande ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "sondages",
+        "query": "opinionway-commission-10333-p12 2026-09-21"
+      },
+      "attendus": {
+        "/total": 0,
+        "/suivant": null,
+        "/publications": []
+      },
+      "sources": [
+        "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2352#page=12"
+      ],
+      "identifiants": ["opinionway-commission-10333-p12"],
+      "vide": true,
+      "erreur": false
+    },
+    {
+      "famille": "localisation-serie",
+      "question": "Quel identifiant Polradar mène à l’inflation harmonisée pour l’ensemble des postes ?",
+      "outil": "polradar_donnees",
+      "arguments": {
+        "collection": "economie",
+        "query": "inflation harmonisée"
+      },
+      "attendus": {
+        "/total": 1,
+        "/publications/0/id": "inflation",
+        "/publications/0/titre": "Inflation harmonisée",
+        "/rubrique": "https://polradar.fr/economie/"
+      },
+      "sources": [
+        "https://polradar.fr/economie/",
+        "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_minr/default/table?lang=fr"
+      ],
+      "identifiants": ["inflation"],
+      "vide": false,
+      "erreur": false
     }
   ]
 }

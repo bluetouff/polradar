@@ -18,10 +18,14 @@ func TestPublicAPIReads(t *testing.T) {
 		{"/candidats?includeWithdrawn=true", `"id":"exemple"`},
 		{"/mesures", `"total":1`},
 		{"/mesures?query=%C3%A9tude&scope=parti&theme=travail&candidate=exemple&limit=1", `"auteur":"Collectif de test"`},
+		{"/mesures?query=%C3%A9tude&mode=preuves", `"preuves":{"beneficiaires":null,"chiffres":null,"description":"Service public"`},
 		{"/mesures?scope=archive", `"sansResultat":true`},
 		{"/mesures?offset=1", `"resultats":[]`},
 		{"/mesures/mesure", `"passage":"Section de test"`},
 		{"/donnees/sondages", `"id":"test-sondage"`},
+		{"/donnees/sondages?query=sc%C3%A9nario%202026-01-01", `"id":"test-sondage"`},
+		{"/donnees/sondages?query=sc%C3%A9nario%202026-01-11", `"sansResultat":true`},
+		{"/donnees/economie?query=s%C3%A9rie", `"id":"serie"`},
 		{"/donnees/sondages/test-sondage", `"noticeSource":"source"`},
 		{"/donnees/economie/serie", `["2026-01",null,"p"]`},
 		{"/donnees/economie?offset=3", `"publications":[]`},
@@ -55,6 +59,7 @@ func TestPublicAPIBoundaries(t *testing.T) {
 		status int
 	}{
 		{"/mesures?limit=0", 400}, {"/mesures?limit=26", 400}, {"/mesures?offset=-1", 400},
+		{"/mesures?mode=preuves&limit=6", 400}, {"/mesures?mode=inconnu", 400},
 		{"/mesures?offset=100001", 400}, {"/mesures?query=", 400}, {"/mesures?query=%20", 400},
 		{"/mesures?query=" + strings.Repeat("a", 161), 400}, {"/mesures?query=" + strings.Repeat("a", 2050), 400},
 		{"/mesures?limit=1&limit=2", 400}, {"/mesures?scope=absent", 400}, {"/mesures?param=absent", 400},
@@ -62,6 +67,7 @@ func TestPublicAPIBoundaries(t *testing.T) {
 		{"/mesures/absente", 404}, {"/mesures/mesure?limit=1", 400}, {"/donnees/inconnue", 404},
 		{"/donnees/economie/absente", 404}, {"/donnees/economie/serie?offset=0", 400},
 		{"/donnees/economie?limit=1", 400}, {"/donnees/economie/serie/suite", 404}, {"/stats", 404}, {"/donnees/google", 404},
+		{"/donnees/agenda?query=exemple", 400}, {"/donnees/sondages?query=%21", 400}, {"/donnees/sondages/test-sondage?query=test", 400},
 	} {
 		r := call(h, "GET", "/api/v1"+tc.path, "", nil)
 		var result map[string]any

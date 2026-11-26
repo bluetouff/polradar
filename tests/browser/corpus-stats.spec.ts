@@ -110,25 +110,71 @@ test('les statistiques essentielles sont lisibles sans JavaScript', async ({
   }
 });
 
-test('le relevé de qualité recompte les notices et scrutins de la même révision', async ({
+test('les pages et les jeux de données reprennent les chiffres de la même révision', async ({
   page,
   request,
 }) => {
-  const [quality, publications, register, build, exports] = await Promise.all(
-    [
-      '/api/qualite-documentaire.json',
-      '/api/notices-sondages.json',
-      '/api/parlement/recherche.json',
-      '/build.json',
-      '/api/exports-v1.json',
-    ].map(async (route) => {
-      const response = await request.get(route);
-      expect(response.ok(), route).toBeTruthy();
-      return response.json();
-    }),
-  );
+  const [quality, publications, register, build, exports, publicCorpus] =
+    await Promise.all(
+      [
+        '/api/qualite-documentaire.json',
+        '/api/notices-sondages.json',
+        '/api/parlement/recherche.json',
+        '/build.json',
+        '/api/exports-v1.json',
+        '/api/corpus.json',
+      ].map(async (route) => {
+        const response = await request.get(route);
+        expect(response.ok(), route).toBeTruthy();
+        return response.json();
+      }),
+    );
   expect(quality.sourceCommit).toBe(build.sourceCommit);
   expect(publications.sourceCommit).toBe(build.sourceCommit);
+  expect(exports.sourceCommit).toBe(build.sourceCommit);
+  const byScope = Object.fromEntries(
+    ['campagne', 'parti', 'orientation', 'archive'].map((scope) => [
+      scope,
+      publicCorpus.measures.filter(
+        (measure: { scope: string }) => measure.scope === scope,
+      ).length,
+    ]),
+  );
+  expect(quality.measures.byScope).toEqual(byScope);
+  expect(quality.measures.total).toBe(publicCorpus.measures.length);
+  expect(quality.measures.versions).toBe(publicCorpus.versions.length);
+  const registrations = publicCorpus.versions as {
+    id: string;
+    recordedAt: string | null;
+  }[];
+  const latest = registrations
+    .filter((version) => version.recordedAt !== null)
+    .sort((a, b) => Date.parse(b.recordedAt!) - Date.parse(a.recordedAt!))[0];
+  expect(latest).toBeDefined();
+  for (const route of ['/transparence/', '/statistiques/#qualite']) {
+    await page.goto(route);
+    const marker = page.locator('[data-edition-revision]');
+    await expect(marker).toHaveAttribute(
+      'data-edition-revision',
+      build.sourceCommit,
+    );
+    await expect(marker).toHaveAttribute('href', '/build.json');
+    const recording = page.locator('[data-latest-recording]');
+    await expect(recording).toHaveAttribute('data-latest-recording', latest.id);
+    await expect(recording).toHaveAttribute('datetime', latest.recordedAt!);
+    await expect(page.locator('[data-proposal-total]')).toHaveAttribute(
+      'data-proposal-total',
+      String(byScope.campagne + byScope.parti),
+    );
+  }
+  const undated = registrations.filter(
+    (version) => version.recordedAt === null,
+  ).length;
+  if (undated)
+    await expect(page.locator('[data-undated-versions]')).toHaveAttribute(
+      'data-undated-versions',
+      String(undated),
+    );
   expect(quality.polls.catalogue.total).toBe(publications.notices.length);
   const verified = publications.notices.filter(
     (notice: { status: string }) => notice.status === 'integree',
@@ -178,7 +224,6 @@ test('le relevé de qualité recompte les notices et scrutins de la même révis
   expect(exports.jeux.map((entry: { id: string }) => entry.id)).toEqual(
     expect.arrayContaining(['qualite-documentaire', 'recherche-parlementaire']),
   );
-  await page.goto('/statistiques/#qualite');
   await expect(
     page
       .locator('#qualite')

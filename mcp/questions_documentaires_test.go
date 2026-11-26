@@ -77,6 +77,7 @@ func TestPublishedBancDocumentaire(t *testing.T) {
 	tools := map[string]bool{}
 	passed, exactSources, emptyAnswers, expectedErrors := 0, 0, 0, 0
 	durations := make([]time.Duration, 0, len(suite.Questions))
+	sizes := make([]int, 0, len(suite.Questions))
 	started := time.Now()
 	for _, q := range suite.Questions {
 		if unique[q.Question] || len(q.Question) < 12 || q.Famille == "" || len(q.Sources) == 0 || len(q.Identifiants) == 0 || (!q.Erreur && len(q.Attendus) == 0) {
@@ -116,6 +117,7 @@ func TestPublishedBancDocumentaire(t *testing.T) {
 			start := time.Now()
 			res := runTool(h, q.Outil, q.Arguments)
 			durations = append(durations, time.Since(start))
+			sizes = append(sizes, res.Body.Len())
 			var resp struct {
 				Result struct {
 					IsError           bool
@@ -168,9 +170,11 @@ func TestPublishedBancDocumentaire(t *testing.T) {
 	}
 	total := time.Since(started)
 	slices.Sort(durations)
+	slices.Sort(sizes)
 	p50 := durations[(len(durations)-1)/2]
 	p95 := durations[(95*len(durations)+99)/100-1]
 	t.Logf("%d/%d questions conformes sur %s, %d appels distincts, %d familles, %d outils", passed, len(durations), c.commit, len(calls), len(families), len(tools))
 	t.Logf("%d questions vérifient une adresse de source exacte, %d résultats vides et %d erreurs attendus", exactSources, emptyAnswers, expectedErrors)
 	t.Logf("Latence par appel hors réseau : p50 %s, p95 %s. Lot complet : %s", p50.Round(time.Microsecond), p95.Round(time.Microsecond), total.Round(time.Millisecond))
+	t.Logf("Taille de la réponse JSON-RPC : p50 %d octets, p95 %d octets", sizes[(len(sizes)-1)/2], sizes[(95*len(sizes)+99)/100-1])
 }

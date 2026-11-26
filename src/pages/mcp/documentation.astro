@@ -24,19 +24,19 @@ const steps = [
     'search',
     'Rechercher',
     'polradar_search',
-    'Indiquez des mots, un thème, une candidature ou un statut. Récupérez l’identifiant de la fiche dans donnees.resultats.',
+    'Indiquez des mots, un thème, une candidature ou un statut. À partir de la version 1.5 du service, une question courte fonctionne aussi. Chaque résultat indique l’auteur, la portée et le passage principal.',
   ],
   [
     'mesures',
     'Lire la fiche',
     'polradar_measure',
-    'Passez cet identifiant dans id. Lisez la description, le champ auteur et le statut avant d’attribuer la proposition.',
+    'Passez l’identifiant dans id pour lire l’historique. À partir de la version 1.5, renvoyez aussi revisionDuSite dans expectedRevision pour conserver la même édition.',
   ],
   [
     'source',
-    'Citer le document',
+    'Citer la fiche et sa source',
     'sources',
-    'Suivez l’URL du document et son repère de page ou de section dans passage. Reprenez la date de publication si elle est renseignée.',
+    'Citez la fiche Polradar avec urlVersion lorsqu’elle est renseignée, sinon avec url. Ajoutez le document d’origine et son repère de page ou de section indiqué dans passage.',
   ],
 ];
 ---
@@ -100,6 +100,21 @@ const steps = [
       </p>
     </section>
     <section class="dev-note">
+      <h2>Obtenir les preuves en un appel</h2>
+      <p>
+        À partir de la version 1.5, ajoutez <code>mode: "preuves"</code> à
+        <code>polradar_search</code>. Chaque fiche donne alors son texte, ses
+        conditions, les éventuels chiffres et tous les passages cités dans{' '}
+        <code>preuves.sources</code>. Le mode renvoie trois fiches par défaut et
+        cinq au maximum.
+      </p>
+      <p>
+        Citez l’auteur, <code>urlVersion</code> et le passage du document.
+        Lorsque <code>suivant</code> indique une position, passez-la dans
+        <code>offset</code> avec la même <code>expectedRevision</code>.
+      </p>
+    </section>
+    <section class="dev-note">
       <h2>Comparer des candidatures</h2>
       <p>
         Dans <code>polradar_question</code>, choisissez une question, puis
@@ -151,6 +166,14 @@ const steps = [
         <code>/api/v1/donnees/</code>.
       </p>
       <ul>
+        <li>
+          À partir de la version 1.5, filtrez <code>sondages</code> ou
+          <code>economie</code> avec <code>query</code>. Pour une enquête,
+          utilisez l’institut, le commanditaire, le scénario ou une date exacte
+          au format <code>AAAA-MM-JJ</code>. La liste donne séparément la date
+          publiée, les dates de terrain et le lien de la notice. Pour un
+          indicateur, utilisez son titre ou son code de série.
+        </li>
         <li>
           <code>parlement</code> retourne les scrutins de l’Assemblée.
           L’identifiant <code>VTANR5L16V3213</code> donne le vote sur

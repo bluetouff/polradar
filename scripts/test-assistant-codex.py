@@ -110,11 +110,12 @@ def load_cases():
 
 
 def supports(case, call):
-    if call["tool"] != case["outil"] or not call["envelope"]:
+    if not call["envelope"]:
         return False
     data = call["envelope"]["donnees"]
     return any(
-        matches(call["arguments"], route["arguments"]) and all(
+        call["tool"] == route.get("outil", case["outil"])
+        and matches(call["arguments"], route["arguments"]) and all(
             any(matches(value, want) for value in at_path(data, path.lstrip("/").split("/")))
             for path, want in route["attendus"].items()
         )

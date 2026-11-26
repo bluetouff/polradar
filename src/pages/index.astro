@@ -44,7 +44,7 @@ const paths = [
   [
     '/comparer/',
     'exchange',
-    'Comparer les candidats',
+    'Comparer les programmes',
     'Par question ou par thème',
   ],
   [
@@ -53,8 +53,15 @@ const paths = [
     'Mon quotidien',
     'Salaire, logement, transports et retraite',
   ],
-  ['/sondages/', 'sondages', 'Les sondages', 'Enquêtes et scénarios'],
+  ['/breves/', 'historique', 'Suivre la campagne', 'Les dernières brèves'],
   ['/territoires/', 'map-pin', 'Ma commune', 'Données et résultats locaux'],
+  ['/sondages/', 'sondages', 'Les sondages', 'Enquêtes et scénarios'],
+  [
+    '/economie/declarations/',
+    'check',
+    'Vérifier un chiffre',
+    'Déclarations et chiffres publics',
+  ],
 ] as const;
 const register = [
   [
@@ -182,28 +189,6 @@ const register = [
       ))}
     </div>
   </section>
-  <section class="home-corpus" aria-labelledby="home-corpus-title">
-    <div class="register-heading">
-      <h2 id="home-corpus-title">Le corpus en chiffres</h2>
-      <a href="/statistiques/" class="inline-action">
-        Statistiques du corpus ↗
-      </a>
-    </div>
-    <nav class="cover-register" aria-label="Rubriques du corpus">
-      {register.map(([url, count, label, icon]) => (
-        <a href={url}>
-          <Icon name={icon} />
-          <strong>{number.format(count)}</strong>
-          <span>{label}</span>
-        </a>
-      ))}
-    </nav>
-    <p>
-      Polradar est un projet indépendant. <a href="/methode/">Méthode</a> ·{' '}
-      <a href="/donnees/">Données ouvertes</a> ·{' '}
-      <a href="/licences/">Licences du projet</a>
-    </p>
-  </section>
   <HomeSignals />
   <div class="home-layout">
     <HomeEvidence />
@@ -253,40 +238,54 @@ const register = [
     </section>
     <HomeExplorers />
   </div>
+  <section class="home-corpus" aria-labelledby="home-corpus-title">
+    <div class="register-heading">
+      <h2 id="home-corpus-title">Le corpus en chiffres</h2>
+      <a href="/statistiques/" class="inline-action">
+        Statistiques du corpus ↗
+      </a>
+    </div>
+    <nav class="cover-register" aria-label="Rubriques du corpus">
+      {register.map(([url, count, label, icon]) => (
+        <a href={url}>
+          <Icon name={icon} />
+          <strong>{number.format(count)}</strong>
+          <span>{label}</span>
+        </a>
+      ))}
+    </nav>
+    <p>
+      Polradar est un projet indépendant. <a href="/methode/">Méthode</a> ·{' '}
+      <a href="/donnees/">Données ouvertes</a> ·{' '}
+      <a href="/licences/">Licences du projet</a>
+    </p>
+  </section>
 </Base>
 
 <style>
   .home-choices {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: clamp(0.5rem, 1.2vw, 0.9rem);
-    margin-block: 0.8rem clamp(1.8rem, 4vw, 3.1rem);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.55rem clamp(0.55rem, 1.2vw, 0.9rem);
+    margin-block: 0.85rem clamp(1.4rem, 3vw, 2.45rem);
   }
   .home-choices a {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
-    gap: 0.62rem;
-    padding: clamp(0.65rem, 1.2vw, 1rem);
-    min-height: 5.15rem;
+    gap: 0.65rem;
+    padding: 0.65rem clamp(0.65rem, 1.2vw, 0.95rem);
+    min-height: 4.15rem;
     border: 1px solid #b8c7c7;
-    border-radius: 0.85rem;
-    background: linear-gradient(146deg, #fff, #ebf0ef);
-    box-shadow: 0 8px 24px -21px #1e4652bd;
+    border-radius: 0.65rem;
+    background: var(--sheet);
     color: var(--ink);
     text-decoration: none;
     line-height: 1.25;
   }
   .home-choices a:first-child {
     border-color: #a0bdb9;
-    background: linear-gradient(142deg, #f2faf7, #dbebe5);
-  }
-  .home-choices a:nth-child(2) {
-    border-color: #d4c8b9;
-    background: linear-gradient(142deg, #fffdf8, #f2e8da);
-  }
-  .home-choices a:nth-child(3) {
-    background: linear-gradient(142deg, #f9fcfd, #e3edf5);
+    background: #e8f0eb;
   }
   .home-choices a:is(:hover, :focus-visible) {
     border-color: #5d8689;
@@ -308,12 +307,6 @@ const register = [
     place-items: center;
     border-radius: 0.7rem;
     background: #d6e9e6;
-  }
-  .home-choices a:nth-child(2) .choice-icon {
-    background: #efddc7;
-  }
-  .home-choices a:nth-child(3) .choice-icon {
-    background: #dce9f4;
   }
   .home-choices :global(.choice-arrow) {
     width: 0.82rem;
@@ -361,7 +354,7 @@ const register = [
     font-size: 0.84rem;
   }
   .home-corpus {
-    margin-bottom: clamp(1.4rem, 3vw, 2.3rem);
+    margin-block: clamp(1.4rem, 3vw, 2.3rem);
   }
   .home-corpus .register-heading {
     border-bottom: 0;
@@ -507,7 +500,7 @@ const register = [
   .home-layout :global(.home-explorers) {
     margin: 0;
   }
-  @media (max-width: 920px) {
+  @media (max-width: 760px) {
     .home-choices {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -542,15 +535,21 @@ const register = [
       padding: 0.7rem;
     }
     .home-choices a {
-      gap: 0.4rem;
-      padding: 0.6rem;
-      grid-template-columns: minmax(0, 1fr);
-      align-content: start;
+      gap: 0.42rem;
+      padding: 0.48rem;
+      min-height: 3.2rem;
       font-size: 0.86rem;
     }
+    .home-choices small {
+      display: none;
+    }
     .choice-icon {
-      width: 2rem;
-      height: 2rem;
+      width: 1.55rem;
+      height: 1.55rem;
+    }
+    .choice-icon :global(.icon) {
+      width: 0.95rem;
+      height: 0.95rem;
     }
   }
 </style>

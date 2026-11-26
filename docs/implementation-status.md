@@ -1,74 +1,41 @@
 # État d’implémentation de Polradar
 
-Relevé du 24 novembre 2026. La référence publique est `55212bec2404042b87b7ec1f827e8cf2785866bb`. L’itération ci-dessous est locale. [Révision servie](https://polradar.fr/build.json) · [Matrice concurrentielle](competitive-audit.md)
+Le 26 novembre 2026, avant cette livraison, le site servait `3222083b80484692ce78568328b5120ed904b321` et le MCP annonçait `1.4.0`. Le manifeste public donne la révision du site et les réponses MCP et REST indiquent aussi celle du service. [Manifeste](https://polradar.fr/build.json) · [Relevé précédent](https://github.com/bluetouff/polradar/blob/3222083b80484692ce78568328b5120ed904b321/docs/implementation-status.md)
 
-## Architecture et référence
+## Corpus et preuve
 
-Astro construit le site et les données publiques à partir de fichiers validés. Les collecteurs GitHub Actions relèvent les sources officielles et publient avec des permissions limitées. Le service Go lit l’édition du site via une socket Unix derrière Apache. Les archives du site et des données réunissent des fichiers versionnés et une empreinte SHA-256. [Architecture](../README.md) · [Contrôles éditoriaux](../DATA_QUALITY.md) · [Déploiement](../deploy/README.md)
+| Unité                                     | Édition publique de référence | Lot du 26 novembre |
+| ----------------------------------------- | ----------------------------: | -----------------: |
+| Dossiers de candidature, retraits compris |                            45 |                 45 |
+| Propositions de campagne                  |                         2 437 |              2 466 |
+| Propositions de parti                     |                         1 768 |              1 768 |
+| Propositions de campagne ou de parti      |                         4 205 |              4 234 |
+| Orientations                              |                           112 |                111 |
+| Archives                                  |                            25 |                 25 |
+| Versions de fiches                        |                         4 573 |              4 628 |
+| Sources                                   |                           891 |                895 |
+| Terrains de sondage identifiés            |                            83 |                 83 |
+| Scénarios de sondage                      |                           481 |                481 |
+| Actes de l’index parlementaire            |                         8 203 |              8 203 |
 
-La base originale est sous ODbL 1.0, le code sous AGPL-3.0-only, les créations originales sous CC BY 4.0 et le SDK sous MIT. Les producteurs gardent les droits sur leurs données, documents et photographies. [Licences](https://polradar.fr/licences/)
+Les 28 nouvelles fiches portent sur les dossiers de Marine Le Pen, Jean-Luc Mélenchon, David Lisnard, Édouard Philippe et Raphaël Glucksmann. Une orientation de la première est devenue une proposition documentée. Les fiches gardent l’auteur indiqué par le document et le repère de lecture. Le registre recense aussi les sections examinées et les sections à relire. [Mesures](https://polradar.fr/mesures/) · [Couverture documentaire](https://polradar.fr/documents/couverture/)
 
-| Indicateur                                          | Référence publique | Itération locale |
-| --------------------------------------------------- | -----------------: | ---------------: |
-| Dossiers de candidature, retraits compris           |                 35 |               35 |
-| Propositions de campagne ou de parti                |              2 292 |            2 302 |
-| Fiches, orientations et archives comprises          |              2 383 |            2 393 |
-| États de proposition conservés                      |              2 496 |            2 507 |
-| Terrains de sondage documentés                      |                 34 |               37 |
-| Scénarios de sondage                                |                204 |              233 |
-| Notices entièrement vérifiées                       |                 34 |               37 |
-| Notices du catalogue dont l’objet reste à qualifier |                222 |              219 |
-| Actes dans l’index parlementaire                    |              8 203 |            8 203 |
-| Jeux d’open data au catalogue d’édition             |                 19 |               21 |
-| Questions du banc MCP                               |                191 |              200 |
+Les statistiques et la transparence donnent la date de la dernière version enregistrée à Paris et la révision de construction. Le graphique des 14 jours compte les enregistrements datés. Les 99 versions historiques dont la date d’enregistrement est inconnue figurent dans le total. Les dates des sources restent consultables sur chaque fiche. [Statistiques](https://polradar.fr/statistiques/) · [Contrôles éditoriaux](../DATA_QUALITY.md)
 
-Le registre des sondages contient 257 entrées. Une entrée peut relever d’un baromètre d’opinion ou d’un autre périmètre. Les terrains, les notices et les scénarios ont des dénominateurs différents. [Registre des notices](https://polradar.fr/sondages/notices/) · [Corpus JSON](https://polradar.fr/api/corpus.json)
+## Parcours
 
-## Livraisons de l’itération
+- L’accueil propose six accès directs et des exemples de parcours vers les propositions, les sources et les scrutins. Sur mobile, Accueil, Recherche, Comparer et Mon suivi restent accessibles dans une barre basse. Les outils d’analyse et d’intégration sont réunis dans le répertoire des rubriques. [Accueil](https://polradar.fr/) · [Répertoire](https://polradar.fr/rubriques/)
+- Le service 1.5 permet d’obtenir la fiche et ses passages en un appel avec `mode=preuves`. Il rend une ancre de version pour la citation et recherche les sondages par institut, commanditaire, scénario ou date. Les séries économiques se cherchent par titre ou code. Le contrat et la documentation distinguent l’édition servie et le service installé. [Guide MCP](https://polradar.fr/mcp/documentation/) · [OpenAPI](https://polradar.fr/api/openapi.json)
+- Le modèle de menace documente les frontières de la collecte, de la publication et du service en lecture seule. Le site et le service ont des procédures d’activation indépendantes. [Sécurité](../SECURITY.md) · [Déploiement](../deploy/README.md)
 
-| Chantier                             | État                                     | Travail effectué et limites                                                                                                                                                                                                                                     |
-| ------------------------------------ | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Corpus et déduplication              | Partiel, implémenté                      | Dix fiches ajoutées et un état enrichi. Le relevé de qualité signale les formulations rigoureusement identiques en conservant auteur, type de fiche, portée et chiffres. Les rapprochements sémantiques demandent encore une lecture des sources.               |
-| Matrice de couverture                | Implémenté                               | Le croisement par candidature, document, thème, sous-thème, type et millésime détaille campagne, parti, orientations, archives et références citées. Deux périmètres supplémentaires ont des unités vérifiées. Le relevé indique les passages restant à relier. |
-| Candidatures                         | Partiel, en service                      | L’itération publie les effectifs par libellé de statut dans le relevé. L’historique individuel des transitions et la qualification des candidatures émergentes restent partiels.                                                                                |
-| Sondages                             | Partiel, enrichi                         | Trois notices dépouillées, 29 scénarios et 262 scores. Les premières diffusions restent à établir. Les hypothèses gardent leurs effectifs et pages de résultat. Le chantier d’agrégation multi-instituts et les backtests restent ouverts.                      |
-| Parlement                            | Partiel, export étendu                   | L’archive figée inclut l’index transversal des 8 203 actes. Le relevé compte par institution les scrutins et ceux qui ont au moins un vote individuel suivi. La couverture demeure celle des séances, mandats et sources recensés.                              |
-| Économie                             | Partiel, en service                      | Indicateurs Eurostat, déclarations examinées, budgets sourcés et simulateurs CSG et retraite déjà disponibles. Le simulateur budgétaire national et les estimations indépendantes comparables restent ouverts.                                                  |
-| Historique, actualité et comparateur | Partiel, en service                      | Les versions, les brèves, la chronologie, les comparatifs de questions et leurs références sont consultables. Restent notamment les synthèses temporelles et le recensement des évolutions de tous les programmes.                                              |
-| Territoires                          | Partiel, en service                      | Résultats communaux de 2022, logement social et accès aux soins documentés. Les séries territoriales et résultats d’autres scrutins demandent une extension par millésime et périmètre.                                                                         |
-| Parrainages                          | Dépendance externe                       | L’intégration des résultats 2027 dépend des publications du Conseil constitutionnel. La couverture historique et le modèle de publication restent à traiter.                                                                                                    |
-| API et MCP                           | Partiel, banc étendu                     | 200 questions dans le banc existant. Les nouveaux cas portent sur les trois institutions, la pagination, les sondages historiques et les absences de résultat. L’environnement public continue de servir la référence.                                          |
-| Open data                            | Implémenté pour les deux exports ajoutés | Index parlementaire et relevé documentaire dans le catalogue et l’archive figée. L’index documentaire externe existe déjà. [Fiche data.gouv.fr](https://www.data.gouv.fr/datasets/presidentielle-francaise-de-2027-index-documentaire-de-polradar)              |
-| Studio, accès et SEO                 | Partiel, en service                      | Les 29 scénarios alimentent aussi les graphiques d’archives. Les tests de navigation couvrent les petits écrans. La mesure terrain, la PWA et l’internationalisation demeurent des chantiers distincts.                                                         |
-| Qualité et collecte                  | Implémenté                               | Section « Couverture et fraîcheur » et JSON issus des mêmes données. Une donnée de succès plus ancienne dans une collecte en échec ne supplante plus un succès plus récent du journal.                                                                          |
-| Sécurité                             | Correctifs locaux                        | Le collecteur vérifie les adresses publiques unicast. Le MCP précise la nature documentaire du contenu retourné. Le déployeur revérifie la révision et la procédure opérateur exige l’attestation du lanceur avant exécution.                                   |
+## Mesures et limites
 
-Les nouvelles fiches portent sur l’énergie et le handicap chez Édouard Philippe et sur le livret Santé de Nouvelle Énergie. L’auteur collectif est explicite. La série sur les EPR prolonge une fiche existante. [Énergie](https://www.edouardphilippe.fr/programme/energie) · [Handicap](https://www.edouardphilippe.fr/programme/handicap) · [Livret Santé, page 8](https://nouvelle-energie-media-prod.s3.fr-par.scw.cloud/media/legacy/2026/05/Livret-Sante-Nouvelle-Energie.pdf#page=8)
+La validation locale a construit et vérifié 7 269 pages, passé 244 tests Node, 143 tests Python et 203 tests Playwright. Elle a vérifié la compatibilité du service et des éditions dans les deux sens. Les audits de dépendances npm et Go ont renvoyé zéro alerte applicable. La vérification intégrale WCAG avec des personnes et des lecteurs d’écran reste ouverte. [Déploiement](../deploy/README.md)
 
-Les notices intégrées portent sur l’Enquête électorale française Ipsos BVA et deux vagues Ifop. Les cellules absentes restent non renseignées. [Notice 10262](https://www.commission-des-sondages.fr/notices/files/notices/2026/septembre/10262-pres-enquete-electorale-ipsos-bva-le-monde-13-septembre.pdf) · [Notice 10284](https://www.commission-des-sondages.fr/notices/files/notices/2026/septembre/10284-pres-barometre-election-v6-ifop-30-septembre.pdf) · [Notice 10327](https://www.commission-des-sondages.fr/notices/files/notices/2026/octobre/10327-pres-barometre-election-v7-ifop-20-octobre.pdf)
+À 390 px, le champ de recherche passe de 309 à 196 px depuis le haut et la section des brèves de 888 à 697 px. Entre 320 et 1 920 px, le protocole de navigation local observe un CLS de 0 et 917 octets supplémentaires de CSS et JS décodés pour l’accueil. Ces mesures portent sur Chromium en laboratoire. Le benchmark concurrentiel conserve ses dates d’observation et les unités utilisées par chaque site. [Matrice concurrentielle](competitive-audit.md)
 
-## Performance de référence
+Le banc structuré valide 204 cas. La recette en langage naturel obtient 4 réponses entièrement conformes sur 5, avec deux appels médians. Le détail expose également l’échec, les citations, les durées et les jetons. [Banc documentaire](banc-documentaire-mcp.md)
 
-Trois navigations Chromium par page de production, contexte neuf, fenêtre mobile 390 × 844, réseau et CPU non bridés. Les valeurs concernent le chargement initial. Ce protocole n’établit pas l’INP ni les Core Web Vitals terrain.
+L’archive locale compte 8 634 fichiers, 224 276 480 octets de TAR et 28 156 417 octets compressés. Le corpus JSON occupe 9 883 291 octets, avec 602 469 octets de marge sur son plafond. [Procédure de mesure](capacite-publication.md)
 
-| Page                    | LCP médian | CLS observé | HTML décodé | Transfert initial |
-| ----------------------- | ---------: | ----------: | ----------: | ----------------: |
-| Accueil                 |     184 ms |           0 |    38 850 o |         109 007 o |
-| Statistiques            |     152 ms |           0 |    44 407 o |          95 305 o |
-| Couverture              |     184 ms |           0 |   101 306 o |         106 864 o |
-| Recherche parlementaire |     168 ms |           0 |    23 723 o |          93 017 o |
-| Studio                  |     172 ms |           0 |    98 088 o |         137 639 o |
-
-Le TAR public occupait 133 345 280 octets sur 134 217 728. Tous les contrôles de taille, de chemins, de fichiers et d’empreinte restent actifs. [Procédure de mesure](capacite-publication.md)
-
-Dans la construction locale, la matrice passe à 112 169 octets d’HTML et les statistiques à 47 070. Le Studio atteint 104 324 octets avec les scénarios supplémentaires. La recherche parlementaire conserve ses 23 723 octets d’HTML. Ces tailles comparent les réponses décodées. Le temps de chargement local ne se compare pas à un accès HTTPS au site.
-
-La construction locale occupe 132 669 440 octets de TAR pour 5 642 fichiers. Le même protocole local mesurait 132 014 080 octets sur la référence. Appliquer cet écart à l’archive GitHub donnerait une marge de 212 Kio. Cette projection reste à confirmer sur le prochain artefact GitHub.
-
-## Vérification et suites du plan
-
-Le validateur contrôle les références et les types. Le banc MCP exécute les demandes sur un corpus figé, compare résultats et sources, puis mesure les appels localement. La revue défensive couvre les entrées API et MCP, les collecteurs, la publication et l’installation. Les protections propres aux comptes hébergeurs et la configuration Apache effectivement chargée relèvent d’une vérification d’exploitation. [Banc documentaire](banc-documentaire-mcp.md) · [Sécurité](../SECURITY.md)
-
-La validation initiale a contrôlé 4 408 pages et réussi 198 tests Node et 135 tests Python. Sur Chromium, 171 tests ont réussi au premier passage. Le parcours de la frise qui avait dépassé son délai a réussi lors de sa relance isolée. Les audits npm et Go n’ont signalé aucun avis applicable. Une échéance stricte pour toutes les opérations système de collecte reste à vérifier au-delà des plafonds de durée des workflows.
-
-Les priorités suivantes sont la qualification des 219 notices restantes, l’identification de leurs premières diffusions, l’extension du corpus primaire et l’élargissement des mandats parlementaires couverts. Le rapprochement des chiffrages indépendants avec leurs hypothèses précède le simulateur national. La comparaison concurrentielle sert de relevé daté. [Matrice concurrentielle](competitive-audit.md)
+Les priorités documentaires restent la lecture intégrale des programmes et prises de parole, la comparaison des chiffrages indépendants et l’extension des cas de parité. La présence de 83 terrains n’établit aucune comparabilité entre hypothèses. La PWA, la distribution en anglais, le simulateur budgétaire national, la mesure terrain de la performance et l’évaluation agentique sur 1 000 questions restent à traiter.

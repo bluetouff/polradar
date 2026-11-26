@@ -1,3 +1,5 @@
+import { civilDateInParis } from './schema.mjs';
+
 const emptyCounts = () => ({
   campagne: 0,
   parti: 0,
@@ -77,8 +79,26 @@ export function identicalProposals(measures) {
     .map((group) => group.sort());
 }
 
-/** Calendar days in the corpus use ISO civil dates, regardless of the build timezone.
- * @param {Pick<import('./data').MeasureVersion, 'observedOn'|'number'>[]} versions
+/** The editorial record can predate registration in Polradar.
+ * @template {Pick<import('./data').MeasureVersion, 'recordedAt'>} Version
+ * @param {Version[]} versions
+ * @returns {Version | null}
+ */
+export function latestRecordedVersion(versions) {
+  let latest = null;
+  let latestTime = -Infinity;
+  for (const version of versions) {
+    if (!version.recordedAt) continue;
+    const time = Date.parse(version.recordedAt);
+    if (time <= latestTime) continue;
+    latestTime = time;
+    latest = version;
+  }
+  return latest;
+}
+
+/** Count versions by their registration day in Paris.
+ * @param {Pick<import('./data').MeasureVersion, 'recordedAt'|'number'>[]} versions
  * @param {string} through
  */
 export function corpusActivity(versions, through) {
@@ -89,7 +109,8 @@ export function corpusActivity(versions, through) {
     days.set(date, { date, added: 0, revised: 0 });
   }
   for (const version of versions) {
-    const day = days.get(version.observedOn);
+    if (!version.recordedAt) continue;
+    const day = days.get(civilDateInParis(new Date(version.recordedAt)));
     if (day) day[version.number === 1 ? 'added' : 'revised']++;
   }
   return [...days.values()];

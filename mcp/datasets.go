@@ -4,7 +4,9 @@ import (
 	"encoding/json"
 	"errors"
 	"sort"
+	"strconv"
 	"strings"
+	"time"
 )
 
 type record map[string]json.RawMessage
@@ -21,7 +23,7 @@ type dataArgs struct {
 	Nature           string `json:"nature,omitempty" jsonschema:"vote, depot, cosignature, rapport, intervention ou mise-au-point."`
 	Theme            string `json:"theme,omitempty" jsonschema:"Thème du registre parlementaire. Numérique inclut le classement par objet de l’acte."`
 	Periode          string `json:"periode,omitempty" jsonschema:"Sénat : année de début de session ; Parlement européen : date de la séance. Une liste sans période donne toutes les périodes couvertes."`
-	Query            string `json:"query,omitempty" jsonschema:"Mots du titre ou de l’URL pour les sources, du texte ou de son identifiant pour le Parlement."`
+	Query            string `json:"query,omitempty" jsonschema:"Sondages : institut, commanditaire, scénario, identifiant ou date AAAA-MM-JJ. Économie : titre, description ou code de série. Sources : titre ou URL. Parlement : texte ou identifiant."`
 	Collection       string `json:"collection" jsonschema:"Collection publique : sondages, economie, agenda, budgets, marches, parlement, sources, droit, financements, verifications, breves, arcom, graphiques, senat ou parlement-europeen."`
 	ID               string `json:"id,omitempty" jsonschema:"Identifiant exact retourné par la liste. Sans identifiant, retourne jusqu’à 15 entrées."`
 	Offset           int    `json:"offset,omitempty" jsonschema:"Position de départ pour la liste, à partir de zéro."`
@@ -47,6 +49,16 @@ var collections = map[string]collection{
 	"graphiques":         {"documentation/graphiques.json", "items", "title", "", "", "/mcp/documentation/"},
 }
 
+var collectionSearchFields = map[string][]string{
+	"sondages": {"id", "scenario", "institute", "commissioner"},
+	"economie": {"id", "title", "description", "dataset", "group"},
+	"sources":  {"title", "url"},
+}
+
+func pollDate(r record, date string) bool {
+	return r.str("fieldworkStart") == date || r.str("fieldworkEnd") == date || r.str("published") == date
+}
+
 func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 	if err := c.checkRevision(a.ExpectedRevision); err != nil {
 		return nil, false, err
@@ -65,7 +77,8 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 		}
 		return c.searchActs(a)
 	}
-	if len(a.Query) > 160 || (a.Query != "" && (a.Collection != "sources" || a.ID != "" || normalize(a.Query) == "")) {
+	searchFields := collectionSearchFields[a.Collection]
+	if len([]rune(a.Query)) > 160 || (a.Query != "" && (len(searchFields) == 0 || a.ID != "" || normalize(a.Query) == "")) {
 		return nil, false, errFilter
 	}
 	if a.Periode != "" && (a.ID != "" || (a.Collection != "senat" && a.Collection != "parlement-europeen")) {
@@ -136,27 +149,49 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 		return map[string]any{"collection": a.Collection, "publication": nil}, true, nil
 	}
 	type entry struct {
-		ID     string `json:"id"`
-		Title  string `json:"titre"`
-		Date   string `json:"date,omitempty"`
-		Status string `json:"disponibilite,omitempty"`
+		ID            string `json:"id"`
+		Title         string `json:"titre"`
+		Date          string `json:"date,omitempty"`
+		Status        string `json:"disponibilite,omitempty"`
+		Institute     string `json:"institut,omitempty"`
+		Commissioner  string `json:"commanditaire,omitempty"`
+		FieldworkFrom string `json:"terrainDu,omitempty"`
+		FieldworkTo   string `json:"terrainAu,omitempty"`
+		Notice        string `json:"notice,omitempty"`
+		row           record
 	}
-	list := make([]entry, 0, len(rows))
-	for _, r := range rows {
-		if a.Query != "" {
-			searchable := normalize(r.str("title") + " " + r.str("url"))
-			hit := true
-			for _, term := range strings.Fields(normalize(a.Query)) {
-				if !strings.Contains(searchable, term) {
-					hit = false
-					break
-				}
-			}
-			if !hit {
+	var words, dates []string
+	for _, word := range strings.Fields(a.Query) {
+		if a.Collection == "sondages" {
+			value := strings.Trim(word, ".,;:!?()")
+			if _, err := time.Parse(time.DateOnly, value); err == nil {
+				dates = append(dates, value)
 				continue
 			}
 		}
-		list = append(list, entry{r.str("id"), r.str(def.title), r.str(def.date), r.str("status")})
+		words = append(words, strings.Fields(normalize(word))...)
+	}
+	list := make([]entry, 0, len(rows))
+rowLoop:
+	for _, r := range rows {
+		for _, date := range dates {
+			if !pollDate(r, date) {
+				continue rowLoop
+			}
+		}
+		if len(words) != 0 {
+			parts := make([]string, 0, len(searchFields))
+			for _, field := range searchFields {
+				parts = append(parts, r.str(field))
+			}
+			searchable := normalize(strings.Join(parts, " "))
+			for _, word := range words {
+				if !strings.Contains(searchable, word) {
+					continue rowLoop
+				}
+			}
+		}
+		list = append(list, entry{ID: r.str("id"), Title: r.str(def.title), Date: r.str(def.date), Status: r.str("status"), row: r})
 	}
 	sort.Slice(list, func(i, j int) bool {
 		if list[i].Date != list[j].Date {
@@ -166,5 +201,23 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 	})
 	start := min(a.Offset, len(list))
 	end := min(start+15, len(list))
-	return map[string]any{"collection": a.Collection, "total": len(list), "offset": start, "publications": list[start:end], "rubrique": site + def.page, "collecteLe": collected, "jeuVerifieLe": checked}, start == end, nil
+	publications := list[start:end]
+	if a.Collection == "sondages" {
+		for i := range publications {
+			item := &publications[i]
+			r := item.row
+			item.Institute, item.Commissioner = r.str("institute"), r.str("commissioner")
+			item.FieldworkFrom, item.FieldworkTo = r.str("fieldworkStart"), r.str("fieldworkEnd")
+			item.Notice = refs[r.str(def.reference)].URL
+			var page int
+			if item.Notice != "" && json.Unmarshal(r["noticePage"], &page) == nil && page > 0 {
+				item.Notice = strings.SplitN(item.Notice, "#", 2)[0] + "#page=" + strconv.Itoa(page)
+			}
+		}
+	}
+	var next *int
+	if end < len(list) {
+		next = &end
+	}
+	return map[string]any{"collection": a.Collection, "total": len(list), "offset": start, "suivant": next, "publications": publications, "rubrique": site + def.page, "collecteLe": collected, "jeuVerifieLe": checked}, start == end, nil
 }

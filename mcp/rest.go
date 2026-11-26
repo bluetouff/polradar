@@ -64,16 +64,16 @@ func (c *snapshot) resource(path string, q url.Values) (any, bool, error) {
 		}
 		return c.listPeople(candidateArgs{IncludeWithdrawn: option == "true"})
 	case "mesures":
-		if !allowedParams(q, "query", "candidate", "theme", "scope", "limit", "offset", "candidateStatus", "sort") {
+		if !allowedParams(q, "query", "candidate", "theme", "scope", "limit", "offset", "candidateStatus", "sort", "mode") {
 			return nil, false, errFilter
 		}
 		offset, okOffset := numberParam(q, "offset", 0, 0, 100000)
-		limit, okLimit := numberParam(q, "limit", 10, 1, 25)
+		limit, okLimit := numberParam(q, "limit", 0, 1, 25)
 		if !okOffset || !okLimit || (q.Has("query") && normalize(q.Get("query")) == "") {
 			return nil, false, errFilter
 		}
 		return c.matchMeasures(searchArgs{Query: q.Get("query"), Candidate: q.Get("candidate"),
-			Theme: q.Get("theme"), Scope: q.Get("scope"), CandidateStatus: q.Get("candidateStatus"), Sort: q.Get("sort"), Offset: offset, Limit: limit})
+			Theme: q.Get("theme"), Scope: q.Get("scope"), CandidateStatus: q.Get("candidateStatus"), Sort: q.Get("sort"), Mode: q.Get("mode"), Offset: offset, Limit: limit})
 	}
 
 	parts := strings.Split(path, "/")

@@ -4,6 +4,7 @@ import {
   corpusCounts,
   corpusActivity,
   identicalProposals,
+  latestRecordedVersion,
 } from '../src/lib/corpus-counts.mjs';
 import { sourceRefSchema } from '../src/lib/schema.mjs';
 
@@ -67,21 +68,32 @@ test('les renvois vers une page de PDF ou une proposition numérotée restent de
   }
 });
 
-test('le graphique quotidien conserve les jours vides et distingue imports et révisions', () => {
+test('le graphique quotidien suit les enregistrements datés en heure de Paris', () => {
   const rows = [
-    { number: 1, observedOn: '2024-02-16' },
-    { number: 1, observedOn: '2024-02-17' },
-    { number: 2, observedOn: '2024-02-29' },
-    { number: 3, observedOn: '2024-02-29' },
-    { number: 1, observedOn: '2024-03-01' },
-    { number: 1, observedOn: '2024-03-02' },
+    { number: 1, observedOn: '2024-02-16', recordedAt: '2024-02-16T21:00:00Z' },
+    { number: 1, observedOn: '2024-02-17', recordedAt: '2024-02-16T23:30:00Z' },
+    { number: 2, observedOn: '2024-02-29', recordedAt: '2024-02-29T19:00:00Z' },
+    { number: 3, observedOn: '2024-02-29', recordedAt: '2024-02-29T20:00:00Z' },
+    { number: 1, observedOn: '2024-02-18', recordedAt: '2024-02-29T23:30:00Z' },
+    { number: 1, observedOn: '2024-03-02', recordedAt: '2024-03-01T23:30:00Z' },
+    { number: 1, observedOn: '2024-02-25', recordedAt: null },
   ];
   const series = corpusActivity(rows, '2024-03-01');
   assert.equal(series.length, 14);
   assert.deepEqual(series[0], { date: '2024-02-17', added: 1, revised: 0 });
   assert.equal(series[1].added + series[1].revised, 0);
+  assert.deepEqual(series[8], { date: '2024-02-25', added: 0, revised: 0 });
   assert.deepEqual(series.at(-2), { date: '2024-02-29', added: 0, revised: 2 });
   assert.deepEqual(series.at(-1), { date: '2024-03-01', added: 1, revised: 0 });
+});
+
+test('le dernier enregistrement compare les instants indépendamment de leur décalage horaire', () => {
+  const older = { id: 'premiere', recordedAt: '2026-11-25T19:40:00+02:00' };
+  const latest = { id: 'seconde', recordedAt: '2026-11-25T18:10:00Z' };
+  const unknown = { id: 'ancienne', recordedAt: null };
+  assert.equal(latestRecordedVersion([latest, unknown, older]), latest);
+  assert.equal(latestRecordedVersion([unknown]), null);
+  assert.equal(latestRecordedVersion([]), null);
 });
 
 test('les rapprochements textuels gardent les conditions et les auteurs distincts', () => {

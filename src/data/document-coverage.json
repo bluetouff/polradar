@@ -2349,7 +2349,7 @@
     "sourceId": "philippe-programme-11",
     "unit": "passage",
     "checked": "2026-11-26",
-    "perimeter": "Les 7 entrées de la liste officielle des propositions phares et passages complémentaires relus",
+    "perimeter": "Les 7 propositions phares et les 12 réponses de la rubrique Justice du programme.",
     "units": [
       {
         "id": "phare-1",
@@ -2396,37 +2396,53 @@
       {
         "id": "q1-que-propose-edouard-philippe-pour-la-justice",
         "title": "Que propose Édouard Philippe pour la Justice ?",
-        "review": "a-examiner",
-        "measureIds": []
+        "measureIds": [
+          "philippe-recourir-aux-courtes-peines-de-prison-des-le-premier-delit",
+          "philippe-securite-1",
+          "philippe-supprimer-juge-application-peines",
+          "philippe-pouvoir-disciplinaire-chefs-juridiction",
+          "philippe-faciliter-la-saisine-du-conseil-superieur-de-la-magistrature-par-les-justiciabl",
+          "philippe-autoriser-les-instructions-du-garde-des-sceaux-dans-des-affaires-individuelles"
+        ]
       },
       {
         "id": "q2-edouard-philippe-trouve-t-il-la-justice-trop-laxiste",
         "title": "Édouard Philippe trouve-t-il la justice trop laxiste ?",
-        "review": "a-examiner",
-        "measureIds": []
+        "measureIds": [
+          "philippe-recourir-aux-courtes-peines-de-prison-des-le-premier-delit",
+          "philippe-securite-1",
+          "philippe-supprimer-juge-application-peines"
+        ]
       },
       {
         "id": "q3-edouard-philippe-est-il-pour-les-peines-planchers",
         "title": "Édouard Philippe est-il pour les peines planchers ?",
-        "review": "a-examiner",
-        "measureIds": []
+        "measureIds": [
+          "philippe-securite-1",
+          "philippe-recourir-aux-courtes-peines-de-prison-des-le-premier-delit",
+          "philippe-aligner-execution-peines-grands-trafiquants-regime-terrorisme"
+        ]
       },
       {
         "id": "q4-edouard-philippe-veut-il-envoyer-en-prison-des-le-premier-delit",
         "title": "Édouard Philippe veut-il envoyer en prison dès le premier délit ?",
-        "review": "a-examiner",
-        "measureIds": []
+        "measureIds": [
+          "philippe-recourir-aux-courtes-peines-de-prison-des-le-premier-delit"
+        ]
       },
       {
         "id": "q5-avec-edouard-philippe-les-peines-seront-elles-vraiment-appliquees",
         "title": "Avec Édouard Philippe, les peines seront-elles vraiment appliquées ?",
-        "review": "a-examiner",
-        "measureIds": []
+        "measureIds": [
+          "philippe-supprimer-juge-application-peines",
+          "philippe-aligner-execution-peines-grands-trafiquants-regime-terrorisme"
+        ]
       },
       {
         "id": "q6-edouard-philippe-veut-il-supprimer-lexcuse-de-minorite",
         "title": "Édouard Philippe veut-il supprimer l’excuse de minorité ?",
         "measureIds": [
+          "philippe-lever-lexcuse-de-minorite-pour-des-faits-de-narcotrafic",
           "philippe-comparution-immediate-mineurs-narcotrafic",
           "philippe-etablissements-reinsertion-soin-mineurs"
         ]
@@ -2434,52 +2450,44 @@
       {
         "id": "q7-edouard-philippe-veut-il-rendre-les-juges-responsables-de-leurs-decisions",
         "title": "Édouard Philippe veut-il rendre les juges responsables de leurs décisions ?",
-        "measureIds": ["philippe-pouvoir-disciplinaire-chefs-juridiction"]
+        "measureIds": [
+          "philippe-faciliter-la-saisine-du-conseil-superieur-de-la-magistrature-par-les-justiciabl",
+          "philippe-pouvoir-disciplinaire-chefs-juridiction"
+        ]
       },
       {
         "id": "q8-avec-edouard-philippe-le-ministre-de-la-justice-pourra-t-il-donner-des-ordres-aux-proc",
         "title": "Avec Édouard Philippe, le ministre de la Justice pourra-t-il donner des ordres aux procureurs ?",
-        "review": "a-examiner",
-        "measureIds": []
+        "measureIds": [
+          "philippe-autoriser-les-instructions-du-garde-des-sceaux-dans-des-affaires-individuelles"
+        ]
       },
       {
         "id": "q9-edouard-philippe-veut-il-changer-le-recrutement-des-juges",
         "title": "Édouard Philippe veut-il changer le recrutement des juges ?",
-        "review": "a-examiner",
-        "measureIds": []
+        "measureIds": [
+          "philippe-elargir-le-recrutement-des-magistrats-a-dautres-juristes"
+        ]
       },
       {
         "id": "q10-edouard-philippe-veut-il-donner-plus-de-pouvoirs-aux-maires",
         "title": "Édouard Philippe veut-il donner plus de pouvoirs aux maires ?",
-        "review": "a-examiner",
-        "measureIds": []
+        "measureIds": ["philippe-securite-sanctions-maires"]
       },
       {
         "id": "q11-edouard-philippe-veut-il-interdire-les-syndicats-de-magistrats",
         "title": "Édouard Philippe veut-il interdire les syndicats de magistrats ?",
-        "review": "a-examiner",
-        "measureIds": []
+        "measureIds": [
+          "philippe-interdire-aux-magistrats-dadherer-a-un-syndicat"
+        ]
       },
       {
         "id": "q12-comment-edouard-philippe-veut-il-simplifier-la-procedure-penale",
         "title": "Comment Édouard Philippe veut-il simplifier la procédure pénale ?",
-        "review": "a-examiner",
-        "measureIds": []
-      },
-      {
-        "id": "relecture-2026-11-26-1",
-        "title": "Justice · exécution des peines",
-        "measureIds": ["philippe-supprimer-juge-application-peines"]
-      },
-      {
-        "id": "relecture-2026-11-26-2",
-        "title": "Justice · propositions phares",
-        "measureIds": ["philippe-retablir-juges-paix"]
-      },
-      {
-        "id": "relecture-2026-11-26-3",
-        "title": "Justice · procédure pénale",
-        "measureIds": ["philippe-deployer-ia-instruction-dossiers"]
+        "measureIds": [
+          "philippe-confier-la-refonte-du-code-de-procedure-penale-a-un-comite",
+          "philippe-deployer-ia-instruction-dossiers"
+        ]
       }
     ]
   },
@@ -6948,6 +6956,26 @@
           "glucksmann-electrifier-flottes-administrations",
           "glucksmann-privilegier-train-deplacements-ministres"
         ]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-1",
+        "title": "Contrats État-régions sur les renouvelables · p. 12 du PDF",
+        "measureIds": ["glucksmann-climat-doublement-renouvelables"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-2",
+        "title": "Commande publique et filières industrielles · p. 13 du PDF",
+        "measureIds": ["glucksmann-soutenir-batteries-production-nationale"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-3",
+        "title": "Commerce international et devoir de vigilance · p. 13 du PDF",
+        "measureIds": ["glucksmann-renforcer-macf-et-mesures-miroirs"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-4",
+        "title": "Droit à la fraîcheur pendant les canicules · p. 14 du PDF",
+        "measureIds": ["glucksmann-fraicheur-piscines-refuges"]
       }
     ]
   },
@@ -8855,5 +8883,307 @@
     ],
     "perimeter": "Les 4 entrées de la liste officielle des propositions phares",
     "checked": "2026-11-26"
+  },
+  {
+    "sourceId": "lci-restos-debat-16-novembre",
+    "perimeter": "Passages vérifiés · LCI et Les Restos du Cœur · interventions des cinq candidats sur les salaires, le logement et la solidarité",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "relecture-2026-11-26-suite-1",
+        "title": "Débat du 16 novembre · 21 h 20",
+        "measureIds": ["glucksmann-construction-sociale"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-2",
+        "title": "Débat du 16 novembre · 21 h 49",
+        "measureIds": ["glucksmann-financement-associations-sur-cinq-ans"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-3",
+        "title": "Débat du 16 novembre · 22 h 56",
+        "measureIds": ["glucksmann-loger-enfants-qui-dorment-dans-la-rue"]
+      }
+    ]
+  },
+  {
+    "sourceId": "lepen-henin",
+    "perimeter": "Passages du discours sur le logement et l’accès à la propriété.",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "relecture-2026-11-26-suite-1",
+        "title": "Foncier public et bureaux vacants",
+        "measureIds": ["lepen-logement-foncier-public"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-2",
+        "title": "Suppression du ZAN",
+        "measureIds": ["lepen-logement-zan"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-3",
+        "title": "Contraintes liées au diagnostic de performance énergétique",
+        "measureIds": ["lepen-retirer-contraintes-fondees-sur-dpe"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-4",
+        "title": "Financement de la rénovation des logements",
+        "measureIds": ["lepen-logement-renovation-ptz"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-5",
+        "title": "Plus-values à la revente",
+        "measureIds": ["lepen-logement-plus-values-quinze-ans"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-6",
+        "title": "Accès au parc social et aide personnalisée au logement",
+        "measureIds": ["lepen-reserver-apl-aux-francais"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-7",
+        "title": "Logements étudiants",
+        "measureIds": ["lepen-priorite-nationale-logement-etudiant"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-8",
+        "title": "Loi SRU et obligations des communes",
+        "measureIds": ["lepen-logement-sru"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-9",
+        "title": "Mobilité et accès à la propriété dans le parc social",
+        "measureIds": [
+          "lepen-faciliter-mobilite-parc-social",
+          "lepen-tenir-compte-des-loyers-pour-rachat-hlm"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-10",
+        "title": "Conditions de maintien dans le parc social",
+        "measureIds": [
+          "lepen-expulser-et-exclure-certaines-familles-du-parc-social"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-11",
+        "title": "Financement d’un achat immobilier",
+        "measureIds": [
+          "lepen-revoir-criteres-et-duree-maximale-credit-immobilier",
+          "lepen-logement-credit-portabilite"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-12",
+        "title": "Droit des propriétaires en cas de squat",
+        "measureIds": ["lepen-legiferer-contre-squat-restitution-bien"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-13",
+        "title": "Priorité de nationalité pour accéder au parc social",
+        "measureIds": ["lepen-donner-priorite-francais-acces-parc-social"]
+      }
+    ]
+  },
+  {
+    "sourceId": "lepen-livret-energie",
+    "perimeter": "Les 6 entrées du tract Une énergie moins chère, page 2.",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "relecture-2026-11-26-suite-1",
+        "title": "TVA sur l’énergie · p. 2 du PDF",
+        "measureIds": ["lepen-climat-tva-energie"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-2",
+        "title": "Fixation du prix de l’électricité · p. 2 du PDF",
+        "measureIds": ["lepen-renegocier-prix-electricite-europe"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-3",
+        "title": "Prêt à taux zéro pour la rénovation · p. 2 du PDF",
+        "measureIds": ["lepen-logement-renovation-ptz"]
+      },
+      {
+        "id": "diversifier-les-approvisionnements",
+        "title": "Diversifier les approvisionnements · choix des sources et moyens à préciser",
+        "review": "sans-engagement-precis",
+        "measureIds": []
+      },
+      {
+        "id": "investir-dans-la-recherche",
+        "title": "Investir dans la recherche énergétique · priorités et moyens à préciser",
+        "review": "sans-engagement-precis",
+        "measureIds": []
+      },
+      {
+        "id": "revenir-sur-des-hausses-d-impots",
+        "title": "Revenir sur des hausses d’impôts · liste des impôts visés à préciser",
+        "review": "sans-engagement-precis",
+        "measureIds": []
+      }
+    ]
+  },
+  {
+    "sourceId": "lisnard-22-novembre",
+    "perimeter": "Passages de l’entretien du 22 novembre 2026 attribués à David Lisnard par Nouvelle Énergie.",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "relecture-2026-11-26-suite-1",
+        "title": "Contrat de travail unique",
+        "measureIds": [
+          "lisnard-remplacer-cdi-cdd-par-contrat-unique-a-droits-progressifs"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-2",
+        "title": "Réorganisation des effectifs publics",
+        "measureIds": ["lisnard-supprimer-redeployer-postes-publics-octobre"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-3",
+        "title": "Âge légal et durée de cotisation",
+        "measureIds": ["lisnard-age-legal-65-ans-43-ans-et-demi-cotisation"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-4",
+        "title": "Répartition et capitalisation",
+        "measureIds": ["lisnard-etage-capitalisation"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-5",
+        "title": "Hypothèse conditionnelle sur les retraites",
+        "measureIds": [
+          "lisnard-envisager-sous-indexation-certaines-pensions-si-deficit-persiste"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-6",
+        "title": "Recrutement des enseignants",
+        "measureIds": ["lisnard-recruter-nouveaux-enseignants-sous-contrat"]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-7",
+        "title": "Parrainages présidentiels",
+        "measureIds": ["lisnard-retablir-anonymat-parrainages-presidentiels"]
+      }
+    ]
+  },
+  {
+    "sourceId": "melenchon-ruralite",
+    "perimeter": "Plan pour les ruralités · mesures prioritaires et mesures complémentaires identifiées.",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "relecture-2026-11-26-suite-1",
+        "title": "1.1 · Pouvoir de décision des communes",
+        "measureIds": [
+          "melenchon-supprimer-metropoles",
+          "melenchon-fusions-forcees-communes",
+          "melenchon-rendre-autonomie-administrations-deconcentrees"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-2",
+        "title": "1.1 · Dotations et fiscalité locales",
+        "measureIds": [
+          "melenchon-indexer-la-dotation-globale-de-fonctionnement-des-communes-sur-linflation",
+          "melenchon-augmenter-dotation-equipements-territoires-ruraux",
+          "melenchon-ouvrir-un-fonds-de-soutien-aux-communes-rurales",
+          "melenchon-retablir-taxation-locale-revenus-et-confort-logements",
+          "melenchon-instruction-gratuite-permis-petites-communes",
+          "melenchon-logement-vacance"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-3",
+        "title": "1.1 · Statut et responsabilité des élus locaux",
+        "measureIds": [
+          "melenchon-garantir-droits-sociaux-retraite-formation-des-elus-locaux",
+          "melenchon-fixer-indemnites-elus-locaux-selon-travail-et-responsabilites",
+          "melenchon-imposer-la-parite-dans-les-executifs-municipaux-et-intercommunaux"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-4",
+        "title": "1.2 · Planification écologique dans les communes",
+        "measureIds": [
+          "melenchon-droit-preemption-zones-strategiques-planification-ecologique",
+          "melenchon-defenseurs-nature-communes"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-suite-5",
+        "title": "1.3 · Isolement en milieu rural",
+        "measureIds": [
+          "melenchon-visites-a-domicile-et-reseaux-voisinage-contre-isolement-rural",
+          "melenchon-dispositifs-ecoute-prevention-et-visites-entre-exploitants",
+          "melenchon-bibliotheques-et-bibliobus-itinerants-communes-sans-equipement",
+          "melenchon-fonds-sauvegarde-petit-patrimoine-rural"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "mesures-complementaires-2-1",
+        "title": "2.1 Pour rompre l’isolement et rétablir une vie en société",
+        "review": "a-examiner",
+        "measureIds": []
+      },
+      {
+        "id": "mesures-complementaires-2-2",
+        "title": "2.2 Pour lutter contre les discriminations en ruralités",
+        "review": "a-examiner",
+        "measureIds": []
+      },
+      {
+        "id": "mesures-complementaires-2-3",
+        "title": "2.3 Pour désenclaver et relier les campagnes",
+        "review": "a-examiner",
+        "measureIds": []
+      },
+      {
+        "id": "mesures-complementaires-2-4",
+        "title": "2.4 Pour travailler et entreprendre près de chez soi",
+        "review": "a-examiner",
+        "measureIds": []
+      },
+      {
+        "id": "mesures-complementaires-2-5",
+        "title": "2.5 Pour faire du tourisme un atout, et non une contrainte",
+        "review": "a-examiner",
+        "measureIds": []
+      }
+    ]
+  },
+  {
+    "sourceId": "ed-src-36b1cc819d1fefcdacfd",
+    "perimeter": "Passages vérifiés · À Toulouse, Édouard Philippe défend un service public plus simple et plus proche",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "relecture-2026-11-26-suite-1",
+        "title": "Programme de proximité présenté à Toulouse",
+        "measureIds": [
+          "philippe-creer-service-public-a-la-maison-pour-personnes-seules-ou-agees"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-suite-2",
+        "title": "Intelligence artificielle et démarches courantes",
+        "measureIds": [
+          "philippe-deployer-un-plan-dutilisation-de-lia-dans-les-services-publics"
+        ]
+      }
+    ]
   }
 ]

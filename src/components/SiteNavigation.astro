@@ -1,5 +1,6 @@
 ---
 import { primaryNavigation } from '../lib/navigation';
+import Icon from './Icon.astro';
 import '../styles/site-navigation.css';
 
 interface Props {
@@ -10,17 +11,48 @@ const path = Astro.url.pathname;
 const active = primaryNavigation.find(({ sections }) =>
   sections.some((section) => current === section || path.startsWith(section)),
 );
+const shortcuts = new Map([
+  ['/comparer/', 'exchange'],
+  ['/suivi/', 'suivi'],
+]);
+const entries = [
+  { url: '/', label: 'Accueil', icon: 'institutions', mobileOnly: true },
+  {
+    url: '/recherche/',
+    label: 'Recherche',
+    icon: 'search',
+    mobileOnly: true,
+  },
+  ...primaryNavigation.map((item) => ({
+    url: item.url,
+    label: item.label,
+    icon: shortcuts.get(item.url),
+    mobileOnly: false,
+  })),
+];
 ---
 
 <nav class="site-navigation" aria-label="Navigation principale">
-  {primaryNavigation.map((item) => (
+  {entries.map((item) => (
     <a
       href={item.url}
+      class:list={[
+        item.mobileOnly ? 'mobile-only' : !item.icon && 'desktop-only',
+      ]}
       aria-current={
-        item === active ? (path === item.url ? 'page' : 'location') : undefined
+        path === item.url
+          ? 'page'
+          : active?.url === item.url
+            ? 'location'
+            : undefined
       }
     >
-      {item.label}
+      {item.icon && (
+        <span class="navigation-icon" aria-hidden="true">
+          <Icon name={item.icon} />
+        </span>
+      )}
+      <span>{item.label}</span>
     </a>
   ))}
 </nav>

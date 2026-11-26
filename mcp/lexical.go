@@ -7,6 +7,8 @@ import (
 )
 
 var stopWords = wordSet("a au aux avec ce cette d de des du en et l la le les par pour sur un une")
+var questionOpeners = wordSet("comment est qu que quel quelle quels quelles")
+var questionWords = wordSet("comment elle elles est evoluer faire il ils prevoit prevoient propose proposent proposition propositions qu que quel quelle quels quelles sont t veut veulent")
 var aliases = [][]string{
 	{"csg", "contribution sociale generalisee"}, {"smic", "salaire minimum interprofessionnel de croissance"},
 	{"hlm", "habitation a loyer modere", "logements sociaux", "logement social"},
@@ -32,6 +34,21 @@ func lexicalTerms(text string) []string {
 		}
 	}
 	return terms
+}
+
+func measureQuery(query string) string {
+	first, _, _ := strings.Cut(query, " ")
+	if !questionOpeners[first] {
+		return query
+	}
+	terms := strings.Fields(query)
+	kept := terms[:0]
+	for _, term := range terms {
+		if !questionWords[term] {
+			kept = append(kept, term)
+		}
+	}
+	return strings.Join(kept, " ")
 }
 
 type lexicalRecord struct {

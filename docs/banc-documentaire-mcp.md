@@ -44,3 +44,19 @@ Les deux passages ont utilisé Codex CLI 0.169.1 et `gpt-6.2-sol` avec le site `
 | Séance hors du registre     |                      0/1 |          3 | 13,615 s |
 
 Le deuxième passage a obtenu **3 cas conformes sur 4**, six faits corrects et cités sur sept et une médiane de 13,674 s. Toutes les adresses données étaient étayées. Pour la séance hors registre, le statut d’indisponibilité a été reconnu. La valeur donnée pour le motif est restée hors du barème. Le code de sortie de cette exécution est 1. Les durées comprennent le lancement du client, l’inférence et les appels au service. [Documentation du MCP public](https://polradar.fr/mcp/documentation/)
+
+### Première recette de la version 1.5
+
+Sur le lot du 26 novembre construit localement à partir de `3222083`, le banc structuré compte **204 cas conformes sur 204**, 201 appels distincts et 29 familles. Parmi ces cas, 119 exigent une adresse exacte, 15 une réponse vide et 7 une erreur. La réponse JSON-RPC médiane mesure 4 156 octets, le 95e percentile 9 555 octets. Le service répond localement en 645 µs au p50 et 5,742 ms au p95 pour cette exécution. Les nouvelles questions vérifient les preuves dans la réponse de recherche et la localisation des données par série, date de terrain et page de notice.
+
+Codex CLI 0.169.1 et `gpt-6.2-sol` ont reçu cinq questions sans nom d’outil ni paramètres. Le binaire local testait le même corpus de travail. Les appels passaient par le transport HTTP du service, sans clé API.
+
+| Question                             | Faits conformes et cités | Appels MCP |    Durée | Jetons d’entrée, dont cache |
+| ------------------------------------ | -----------------------: | ---------: | -------: | --------------------------: |
+| Vote sur la cybersécurité            |                      2/2 |          5 | 17,373 s |             70 610 (50 304) |
+| Attribution de Fret SNCF             |                      2/2 |          2 | 15,581 s |             75 613 (54 144) |
+| Seuil du sondage OpinionWay          |                      2/2 |          2 | 15,400 s |             73 003 (51 584) |
+| Séance hors du registre              |                      0/1 |          3 | 13,124 s |             53 942 (31 488) |
+| Priorités pour la taille des classes |                      2/2 |          1 | 15,884 s |             55 259 (43 904) |
+
+Le barème valide **4 réponses sur 5**, avec **2 appels médians** et aucune adresse hors référence. Le client reconnaît la séance non couverte et cite le registre. Son libellé « Séance du 18 mars 2024 hors couverture » sort des valeurs attendues. Le seuil OpinionWay passe de 18 à 2 appels entre les deux passages observés. Un premier essai local avait donné deux tours indisponibles et une étiquette de révision absente dans le binaire de test. Le tableau utilise l’exécution après correction de cette étiquette. Il décrit cinq questions et un client. Le SDK Go a aussi exercé les deux versions du protocole. [Questions libres](../mcp/testdata/questions-assistant.json)

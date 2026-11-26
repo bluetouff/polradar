@@ -79,6 +79,16 @@ const fiche = {
   verifieLe: date,
   url,
 };
+const evidence = {
+  description: str,
+  chiffres: { type: ['array', 'null'], items: { type: 'object' } },
+  montants: { type: ['array', 'null'], items: { type: 'object' } },
+  beneficiaires: maybeText,
+  echeance: maybeText,
+  financement: maybeText,
+  sources: array(ref('Source')),
+};
+const nextOffset = { type: ['integer', 'null'], minimum: 0 };
 const schemas = {
   Source: object({
     document: str,
@@ -90,17 +100,22 @@ const schemas = {
     justificatifPublication: maybeText,
     consultation: date,
   }),
-  Mesure: object({ ...fiche, source: ref('Source') }),
+  Mesure: object(
+    {
+      ...fiche,
+      source: ref('Source'),
+      resume: str,
+      urlVersion: { ...maybeText, format: 'uri' },
+      preuves: object(evidence),
+    },
+    [...Object.keys(fiche), 'source'],
+  ),
   Fiche: object(
     {
       ...fiche,
-      description: str,
+      ...evidence,
       revision: count,
-      chiffres: { type: ['array', 'null'], items: { type: 'object' } },
-      montants: { type: ['array', 'null'], items: { type: 'object' } },
-      beneficiaires: maybeText,
-      echeance: maybeText,
-      financement: maybeText,
+      urlVersion: { ...maybeText, format: 'uri' },
       versions: array({ type: 'object' }),
       liensDossier: { type: 'object' },
       liensDossierCourant: {
@@ -110,7 +125,6 @@ const schemas = {
       },
       statutCandidatureActuel: str,
       versionDemandee: maybeText,
-      sources: array(ref('Source')),
     },
     [
       ...Object.keys(fiche),
@@ -173,17 +187,36 @@ const schemas = {
     ],
   ),
   Candidatures: object({ candidatures: array(ref('Candidat')) }),
-  Mesures: object({ ...paging, resultats: array(ref('Mesure')) }),
+  Mesures: object(
+    { ...paging, resultats: array(ref('Mesure')), suivant: nextOffset },
+    [...Object.keys(paging), 'resultats'],
+  ),
   Publications: {
     oneOf: [
-      object({
-        ...paging,
-        collection: collection.schema,
-        rubrique: url,
-        publications: array(
-          object({ id: str, titre: str, date: str }, ['id', 'titre']),
-        ),
-      }),
+      object(
+        {
+          ...paging,
+          suivant: nextOffset,
+          collection: collection.schema,
+          rubrique: url,
+          publications: array(
+            object(
+              {
+                id: str,
+                titre: str,
+                date: str,
+                institut: str,
+                commanditaire: str,
+                terrainDu: date,
+                terrainAu: date,
+                notice: url,
+              },
+              ['id', 'titre'],
+            ),
+          ),
+        },
+        [...Object.keys(paging), 'collection', 'rubrique', 'publications'],
+      ),
       object({
         collection: { enum: ['senat', 'parlement-europeen'] },
         rubrique: url,
@@ -275,9 +308,14 @@ export const apiRoutes = [
         'Ordre des résultats.',
       ),
       filter(
+        'mode',
+        { ...str, enum: ['preuves'] },
+        'Service 1.5. Inclure les conditions, chiffres et tous les passages dans chaque résultat.',
+      ),
+      filter(
         'limit',
-        { type: 'integer', minimum: 1, maximum: 25, default: 10 },
-        'Nombre maximal de fiches renvoyées.',
+        { type: 'integer', minimum: 1, maximum: 25 },
+        'Jusqu’à 25 fiches (10 par défaut). En mode preuves, jusqu’à 5 (3 par défaut).',
       ),
       offset,
     ],
@@ -312,7 +350,7 @@ export const apiRoutes = [
       filter(
         'query',
         { ...str, maxLength: 160 },
-        'Mots du titre ou de l’adresse pour sources, du texte ou de son identifiant pour parlement.',
+        'Titre ou adresse pour sources, texte ou identifiant pour parlement. Avec le service 1.5, institut, commanditaire, scénario, identifiant ou date AAAA-MM-JJ pour sondages, titre, description ou code pour economie.',
       ),
       filter(
         'recherche',
