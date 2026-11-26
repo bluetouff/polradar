@@ -1048,7 +1048,13 @@ export const questionAnswerAliases: Record<string, string[]> = {
     'retraite par capitalisation',
     'financement des retraites',
   ],
-  'travail-salaire-minimum': ['SMIC', 'hausse du SMIC'],
+  'travail-salaire-minimum': [
+    'SMIC',
+    'hausse du SMIC',
+    'salaire minimum',
+    'salariés au SMIC',
+    'salarié au SMIC',
+  ],
   'travail-duree-travail': [
     'temps de travail',
     'durée légale du travail',
@@ -1140,6 +1146,7 @@ export const questionAnswerAliases: Record<string, string[]> = {
   'agriculture-ogm': ['OGM', 'nouvelles techniques génomiques'],
   'statuts-outre-mer': ['statut des outre-mer', 'statuts ultramarins'],
   'mobilite-territoires': ['transports de proximité'],
+  'numerique-hebergement-sante': ['hébergement des données de santé'],
   'numerique-demarches-en-ligne': [
     'démarches administratives en ligne',
     'démarches en ligne',

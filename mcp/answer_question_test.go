@@ -56,6 +56,9 @@ func TestPublishedAnswerQuestionDossiers(t *testing.T) {
 		{"Que propose Marine Le Pen sur Parcoursup ?", "education-acces-etudes", "lepen", "lepen-publier-criteres-admission-superieur-v1", "lepen-tf1-parcoursup-octobre-2026", "documente", "", "reponse"},
 		{"Que propose David Lisnard sur Parcoursup ?", "education-acces-etudes", "lisnard", "lisnard-remplacer-parcoursup-orientation-v1", "lisnard-bfm-rmc-ecole-2026", "documente", "", "reponse"},
 		{"Que propose Édouard Philippe sur Parcoursup ?", "education-acces-etudes", "philippe", "philippe-conserver-ameliorer-parcoursup-orientation-v1", "philippe-questions-reponses-ecoles", "documente", "", "reponse"},
+		{"Que propose Édouard Philippe pour les salariés au SMIC ?", "travail-salaire-minimum", "philippe", "philippe-travail-2-v3", "philippe-travail", "documente", "", "reponse"},
+		{"Que propose David Lisnard sur l’hébergement des données de santé ?", "numerique-hebergement-sante", "lisnard", "lisnard-cadre-souverain-hebergement-donnees-sante-v1", "nouvelle-energie-livret-sante-2026", "documente", "", "reponse"},
+		{"Que propose Jean-Luc Mélenchon sur la construction de prisons ?", "places-prison", "melenchon", "melenchon-regulation-carcerale-contraignante-v1", "melenchon-programme-2", "partiel", "complements_seuls", "complement"},
 	} {
 		t.Run(tc.candidate, func(t *testing.T) {
 			got := answerThroughTransports(t, h, tc.question, c.commit)
