@@ -22,6 +22,7 @@ import { portraitFor } from '../../lib/portraits';
 import { proposalTracks, financingMaps } from '../../lib/proposal-data';
 import { voteCasePath } from '../../lib/legislative-votes.mjs';
 import { voteCases } from '../../lib/votes-data';
+import { questions } from '../../lib/questions';
 import '../../styles/candidates.css';
 export function getStaticPaths() {
   return candidates.map((candidate) => ({
@@ -54,6 +55,10 @@ const programmeReviews = documents.flatMap((document) =>
   document.coverage && document.candidates.includes(candidate.id)
     ? [document.coverage]
     : [],
+);
+const internationalQuestions = questions.filter(
+  (question) =>
+    question.theme === 'europe' && question.candidateIds.includes(candidate.id),
 );
 ---
 
@@ -156,6 +161,15 @@ const programmeReviews = documents.flatMap((document) =>
     )}
     {archives.length > 0 && <a href="#archives-2022">Archives 2022</a>}
   </nav>
+  {internationalQuestions.length > 0 && (
+    <nav class="profile-jumps" aria-label="Europe et monde">
+      {internationalQuestions.map((question) => (
+        <a href={question.href + '#candidat-' + candidate.id}>
+          {question.title}
+        </a>
+      ))}
+    </nav>
+  )}
   <div class="profile-layout">
     <div>
       <div class="section-heading">

@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-test('les neuf outils sont accessibles depuis Mon quotidien sur mobile', async ({
+test('les douze outils sont accessibles depuis Mon quotidien sur mobile', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 360, height: 800 });
@@ -8,7 +8,7 @@ test('les neuf outils sont accessibles depuis Mon quotidien sur mobile', async (
   await expect(
     page.getByRole('heading', { name: 'Mon quotidien' }),
   ).toBeVisible();
-  await expect(page.locator('[data-simulator-card]')).toHaveCount(9);
+  await expect(page.locator('[data-simulator-card]')).toHaveCount(12);
   await page.getByRole('link', { name: /Droits de succession/ }).click();
   await expect(page).toHaveURL(/\/economie\/simulateurs\/successions\/$/);
   await expect(

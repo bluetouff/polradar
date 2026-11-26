@@ -74,10 +74,14 @@ export const collections = {
           .optional(),
         draft: z.boolean().default(false),
       })
-      .refine(
-        (b) => (knownEvents.get(b.event)?.date ?? '') <= b.published,
-        'Publication antérieure au fait relaté',
-      ),
+      .refine((b) => {
+        const event = knownEvents.get(b.event);
+        return (
+          !event ||
+          (event.kind === 'announced' && event.dateKind === 'evenement') ||
+          event.date <= b.published
+        );
+      }, 'Publication antérieure au fait relaté'),
   }),
   articles: defineCollection({
     loader: glob({ pattern: '**/*.md', base: './src/content/articles' }),

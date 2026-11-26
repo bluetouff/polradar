@@ -157,14 +157,14 @@ const defs = [
     '/economie/simulateurs/',
     'Règles et propositions',
     'Les simulateurs\ndu quotidien',
-    'Salaire, logement, carburants, famille et retraite.',
+    'Salaire, impôt, dépenses, santé et retraite.',
     'navy',
     {
       kind: 'document',
       rows: [
         'Salaire et temps de travail',
         'Factures et logement',
-        'Famille, succession et retraite',
+        'Famille, santé et retraite',
       ],
     },
   ],
@@ -179,10 +179,7 @@ const defs = [
         'sage',
         {
           kind: 'document',
-          rows: [
-            entry.baseline.label,
-            entry.alternatives.length + ' scénarios documentés',
-          ],
+          rows: [entry.baseline.label, entry.resultTitle],
         },
       ]),
   ),

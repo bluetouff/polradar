@@ -4,6 +4,14 @@ const servicePublic =
   'https://www.service-public.gouv.fr/particuliers/vosdroits/';
 const fuelNote =
   'https://www.ecologie.gouv.fr/sites/default/files/documents/NPG-2026.11.20.pdf#page=6';
+const consultationSource = {
+  title: 'Assurance Maladie · remboursement des consultations',
+  url: 'https://www.ameli.fr/assure/remboursements/rembourse/consultations-telemedecine/metropole',
+};
+const commutingSource = {
+  title: 'Service Public · prise en charge des transports par l’employeur',
+  url: servicePublic + 'F19846',
+};
 
 /**
  * @typedef {{title: string, url: string}} Link
@@ -368,6 +376,7 @@ export const householdSimulators = [
       { measure: 'collovati-relever-le-seuil-dimposition-des-successions' },
       { measure: 'dupont-aignan-fiscalite-transmission' },
       { measure: 'glucksmann-grands-heritages' },
+      { measure: 'lisnard-ramener-taux-marginal-succession-20' },
       { measure: 'melenchon-fiscalite-petits-heritages' },
       { measure: 'roussel-fiscalite-heritages' },
       { measure: 'philippot-petits-heritages' },
@@ -468,6 +477,128 @@ export const householdSimulators = [
     method:
       'Le scénario suppose les conditions de résidence et de séjour remplies en métropole. Il compare le seuil d’enfants et les conditions de nationalité que les textes précisent, à autres conditions constantes. Les scénarios de Philippe et de Saforcada décrivent leurs allocations proposées. Les montants dépendent des barèmes et des ressources.',
   },
+  {
+    id: 'impot-sur-le-revenu',
+    title: 'Impôt sur le revenu',
+    icon: 'fiscalite',
+    summary: 'Appliquer le barème 2026 à votre revenu imposable de 2025.',
+    measureUnit: 'euros',
+    resultTitle: 'Impôt brut au barème 2026',
+    fields: [
+      {
+        id: 'income',
+        label: 'Revenu net imposable du foyer en 2025 (€)',
+        value: '30000',
+        min: 0,
+        max: 20000000,
+        precision: 0,
+      },
+      {
+        id: 'shares',
+        label: 'Parts fiscales',
+        value: '1',
+        min: 1,
+        max: 2,
+        precision: 0,
+        options: [
+          { value: '1', label: '1 part · personne seule sans enfant' },
+          { value: '2', label: '2 parts · couple imposé ensemble sans enfant' },
+        ],
+      },
+    ],
+    baseline: {
+      label: 'Barème de l’impôt sur le revenu',
+      detail: 'Taux progressifs de 0 % à 45 % sur le revenu net imposable',
+      source: {
+        title: 'Service Public · barème 2026',
+        url: servicePublic + 'F1419',
+      },
+    },
+    alternatives: [],
+    positions: [
+      { measure: 'melenchon-fiscalite-1' },
+      {
+        measure:
+          'ps-preparer-la-fusion-de-limpot-sur-le-revenu-de-la-csg-et-de-la-crds',
+      },
+    ],
+    method:
+      'Le revenu imposable est divisé par le nombre de parts. Chaque taux s’applique à la fraction de revenu dans la tranche. Le résultat par part est multiplié par le nombre de parts. Le montant est brut, avant décote, réductions, crédits d’impôt et contributions éventuelles.',
+  },
+  {
+    id: 'consultation-medicale',
+    title: 'Consultation médicale',
+    icon: 'sante',
+    summary: 'Voir le reste à payer après remboursement et avant mutuelle.',
+    measureUnit: 'euros',
+    resultTitle: 'Reste à payer avant mutuelle',
+    fields: [
+      {
+        id: 'fee',
+        label: 'Honoraires facturés pour une consultation (€)',
+        value: '40',
+        min: 30,
+        max: 500,
+        precision: 2,
+      },
+    ],
+    baseline: {
+      label: 'Médecin généraliste de secteur 2 avec OPTAM',
+      detail:
+        'Base de 30 €. L’Assurance Maladie rembourse 19 € après la participation de 2 €.',
+      value: 1900,
+      source: consultationSource,
+    },
+    alternatives: [
+      {
+        label: 'Médecin généraliste de secteur 2 sans OPTAM',
+        context: 'Barème en métropole au 1er janvier 2026',
+        detail:
+          'Base de 23 €. L’Assurance Maladie rembourse 14,10 € après la participation de 2 €.',
+        value: 1410,
+        source: consultationSource,
+      },
+    ],
+    positions: [{ measure: 'ps-sante-mutuelle-publique' }],
+    method:
+      'Même prix facturé dans les deux cas, pour une consultation au cabinet de votre médecin traitant en métropole. Le calcul suppose un adulte soumis à la participation forfaitaire de 2 € et applique le remboursement du régime général. La prise en charge de la mutuelle et les régimes particuliers dépendent de votre situation.',
+  },
+  {
+    id: 'abonnement-transports',
+    title: 'Abonnement domicile–travail',
+    icon: 'travail',
+    summary:
+      'Calculer votre reste à charge sur un abonnement de transport public.',
+    measureUnit: 'euros',
+    resultTitle: 'Coût mensuel après la part de l’employeur',
+    fields: [
+      {
+        id: 'price',
+        label: 'Prix mensuel de l’abonnement (€)',
+        value: '75',
+        min: 0,
+        max: 1000,
+        precision: 2,
+      },
+    ],
+    baseline: {
+      label: 'Prise en charge minimale dans le privé',
+      detail: 'L’employeur rembourse 50 % du prix de l’abonnement éligible.',
+      value: 50,
+      source: commutingSource,
+    },
+    alternatives: [
+      {
+        label: 'Si votre employeur prend en charge 75 %',
+        context: 'Prise en charge facultative',
+        detail: '75 % est le plafond d’exonération indiqué pour 2026.',
+        value: 75,
+        source: commutingSource,
+      },
+    ],
+    method:
+      'Cas d’un salarié du privé qui travaille au moins à mi-temps et utilise un abonnement éligible pour ses trajets domicile–travail. Le montant affiché correspond au prix mensuel diminué de la prise en charge, arrondie au centime. En dessous d’un mi-temps, la prise en charge dépend de votre durée de travail.',
+  },
 ];
 
 const brackets = [
@@ -480,11 +611,18 @@ const brackets = [
   [Infinity, 45],
 ];
 
-function inheritanceTax(share) {
-  const taxable = Math.max(0, share - 100_000);
+const incomeBrackets = [
+  [11600, 0],
+  [29579, 11],
+  [84577, 30],
+  [181917, 41],
+  [Infinity, 45],
+];
+
+function progressiveTax(taxable, rates) {
   let cents = 0;
   let previous = 0;
-  for (const [upper, rate] of brackets) {
+  for (const [upper, rate] of rates) {
     cents += (Math.min(taxable, upper) - previous) * rate;
     if (taxable <= upper) break;
     previous = upper;
@@ -510,9 +648,18 @@ const calculations = {
   loyers: ({ rent, previous, next }, row) =>
     Math.round(rent * (row.value ?? next / previous) * 100),
   successions: ({ share }, row, baseline) =>
-    baseline ? inheritanceTax(share) : row.value,
+    baseline
+      ? progressiveTax(Math.max(0, share - 100_000), brackets)
+      : row.value,
   'allocations-familiales': ({ children, nationality }, row) =>
     children >= row.value && nationality >= (row.nationality ?? 0),
+  'impot-sur-le-revenu': ({ income, shares }) =>
+    Math.round(progressiveTax(income / shares, incomeBrackets) * shares),
+  'consultation-medicale': ({ fee }, row) => Math.round(fee * 100) - row.value,
+  'abonnement-transports': ({ price }, row) => {
+    const cents = Math.round(price * 100);
+    return cents - Math.round((cents * row.value) / 100);
+  },
 };
 
 function parseValue(input, field) {

@@ -11093,7 +11093,7 @@
       "amounts": [
         {
           "label": "Recette supplémentaire annoncée pour 2027",
-          "value": 3000000000.0,
+          "value": 3000000000,
           "unit": "€",
           "period": "an",
           "basis": "non-applicable",
@@ -11137,7 +11137,7 @@
       "amounts": [
         {
           "label": "Économie annoncée pour 2027",
-          "value": 300000000.0,
+          "value": 300000000,
           "unit": "€",
           "period": "an",
           "basis": "non-applicable",
@@ -11173,7 +11173,7 @@
       "amounts": [
         {
           "label": "Enveloppe annoncée pour 2027",
-          "value": 3500000000.0,
+          "value": 3500000000,
           "unit": "€",
           "period": "an",
           "basis": "non-applicable",
@@ -11209,7 +11209,7 @@
       "amounts": [
         {
           "label": "Enveloppe annoncée pour 2027",
-          "value": 1200000000.0,
+          "value": 1200000000,
           "unit": "€",
           "period": "an",
           "basis": "non-applicable",
@@ -11253,7 +11253,7 @@
       "amounts": [
         {
           "label": "Part recrutement annoncée pour 2027",
-          "value": 200000000.0,
+          "value": 200000000,
           "unit": "€",
           "period": "an",
           "basis": "non-applicable",
@@ -11289,7 +11289,7 @@
       "amounts": [
         {
           "label": "Enveloppe annoncée pour 2027",
-          "value": 1000000000.0,
+          "value": 1000000000,
           "unit": "€",
           "period": "an",
           "basis": "non-applicable",
@@ -11325,7 +11325,7 @@
       "amounts": [
         {
           "label": "Budget annoncé pour 2027, hors prêts",
-          "value": 1000000000.0,
+          "value": 1000000000,
           "unit": "€",
           "period": "an",
           "basis": "non-applicable",
@@ -11361,7 +11361,7 @@
       "amounts": [
         {
           "label": "Enveloppe annoncée pour 2027",
-          "value": 1000000000.0,
+          "value": 1000000000,
           "unit": "€",
           "period": "an",
           "basis": "non-applicable",
@@ -11397,7 +11397,7 @@
       "amounts": [
         {
           "label": "Enveloppe annoncée pour 2027",
-          "value": 700000000.0,
+          "value": 700000000,
           "unit": "€",
           "period": "an",
           "basis": "non-applicable",
@@ -11441,7 +11441,7 @@
       "amounts": [
         {
           "label": "Baisse de recettes annoncée pour 2027",
-          "value": 4600000000.0,
+          "value": 4600000000,
           "unit": "€",
           "period": "an",
           "basis": "non-applicable",
@@ -11477,7 +11477,7 @@
       "amounts": [
         {
           "label": "Enveloppe annoncée pour 2027",
-          "value": 1400000000.0,
+          "value": 1400000000,
           "unit": "€",
           "period": "an",
           "basis": "non-applicable",
@@ -11513,7 +11513,7 @@
       "amounts": [
         {
           "label": "Enveloppe annoncée pour 2027",
-          "value": 1000000000.0,
+          "value": 1000000000,
           "unit": "€",
           "period": "an",
           "basis": "non-applicable",
@@ -132408,6 +132408,441 @@
       ],
       "scope": "campagne",
       "edition": "Croire en nous · programme présidentiel 2027",
+      "checked": "2026-11-26"
+    }
+  },
+  {
+    "id": "glucksmann-renforcer-aide-ukraine-v1",
+    "measureId": "glucksmann-renforcer-aide-ukraine",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-26",
+    "recordedAt": "2026-11-26T09:08:19.465Z",
+    "summary": "Première fiche avec renvoi au passage original.",
+    "snapshot": {
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "scope": "campagne",
+      "edition": "Tribune signée du 24 février 2026",
+      "title": "Accélérer et renforcer le soutien militaire européen à l’Ukraine",
+      "description": "Dans une tribune signée, Raphaël Glucksmann réclame un soutien européen plus rapide et plus important à la résistance ukrainienne. Il demande notamment de renforcer la défense antiaérienne de l’Ukraine.",
+      "sourceRefs": [
+        {
+          "sourceId": "glucksmann-tribune-ukraine-24-fevrier",
+          "locator": "Tribune signée, paragraphes sur l’accélération du soutien et la défense antiaérienne.",
+          "fragment": ":~:text=pour%20que%20notre%20soutien%20%C3%A0%20la%20r%C3%A9sistance%20ukrainienne%20soit%20plus%20puissant"
+        }
+      ],
+      "checked": "2026-11-26"
+    }
+  },
+  {
+    "id": "philippe-poursuivre-soutien-financier-operationnel-ukraine-v1",
+    "measureId": "philippe-poursuivre-soutien-financier-operationnel-ukraine",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-26",
+    "recordedAt": "2026-11-26T09:08:19.467Z",
+    "summary": "Première fiche avec renvoi au passage original.",
+    "snapshot": {
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "scope": "campagne",
+      "edition": "Croire en nous · programme présidentiel 2027",
+      "title": "Poursuivre le soutien financier et opérationnel français à l’Ukraine",
+      "description": "Édouard Philippe prévoit que la France continue à contribuer au soutien financier et opérationnel de l’Ukraine. Le programme présente cette aide comme un enjeu de sécurité pour la France.",
+      "sourceRefs": [
+        {
+          "sourceId": "philippe-programme-3",
+          "locator": "Défense, réponse à la question sur l’entrée de l’Ukraine dans l’OTAN.",
+          "fragment": ":~:text=La%20France%20prendra%20toute%20sa%20part%20dans%20le%20soutien%20financier%20et%20op%C3%A9rationnel%20%C3%A0%20l%E2%80%99Ukraine"
+        }
+      ],
+      "checked": "2026-11-26"
+    }
+  },
+  {
+    "id": "lisnard-soutenir-ukraine-livraisons-materiel-v1",
+    "measureId": "lisnard-soutenir-ukraine-livraisons-materiel",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-26",
+    "recordedAt": "2026-11-26T09:08:19.468Z",
+    "summary": "Première fiche avec renvoi au passage original.",
+    "snapshot": {
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "scope": "parti",
+      "partyAuthor": "Nouvelle Énergie",
+      "edition": "Position de David Lisnard documentée par Nouvelle Énergie · 16 octobre 2026",
+      "title": "Soutenir l’Ukraine en lui livrant du matériel militaire",
+      "description": "La fiche officielle de Nouvelle Énergie présente David Lisnard comme favorable à la production et à la livraison de matériel militaire à l’Ukraine. Elle cite ses interventions de 2024 à 2026, dont son appel à passer commande à l’industrie en février 2024.",
+      "sourceRefs": [
+        {
+          "sourceId": "nouvelle-energie-questions-ukraine",
+          "locator": "Introduction et section « Que demande-t-il concrètement ? ».",
+          "fragment": ":~:text=demande%20de%20produire%20et%20de%20livrer%20des%20armes"
+        }
+      ],
+      "checked": "2026-11-26"
+    }
+  },
+  {
+    "id": "melenchon-lfi-poursuivre-aide-defense-ukraine-v1",
+    "measureId": "melenchon-lfi-poursuivre-aide-defense-ukraine",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-26",
+    "recordedAt": "2026-11-26T09:08:19.468Z",
+    "summary": "Première fiche avec renvoi au passage original.",
+    "snapshot": {
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "scope": "parti",
+      "partyAuthor": "La France insoumise",
+      "edition": "Mise au point de LFI du 9 novembre 2026",
+      "title": "Soutenir la défense de l’Ukraine avec des limites sur l’aide militaire",
+      "description": "La France insoumise affirme soutenir la capacité de l’Ukraine à se défendre tant que dure l’agression russe. Elle explique ses réserves sur les textes prévoyant des armes à longue portée ou l’envoi de forces combattantes au sol. Il s’agit de la position du mouvement, qui publie cette mise au point au sujet de son candidat.",
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-mise-au-point-ukraine-9-novembre",
+          "locator": "Paragraphes sur les textes de soutien et les exceptions énumérées par La France insoumise.",
+          "fragment": ":~:text=pour%20lui%20donner%20la%20capacit%C3%A9%20de%20se%20d%C3%A9fendre"
+        }
+      ],
+      "checked": "2026-11-26"
+    }
+  },
+  {
+    "id": "melenchon-fermer-les-centrales-nucleaires-et-arreter-les-epr2-v1",
+    "measureId": "melenchon-fermer-les-centrales-nucleaires-et-arreter-les-epr2",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-26",
+    "recordedAt": "2026-11-26T09:17:26.786Z",
+    "summary": "Première fiche avec renvoi au passage original.",
+    "snapshot": {
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "scope": "campagne",
+      "edition": "L’Avenir en commun · présidentielle 2027",
+      "title": "Fermer progressivement les centrales nucléaires et arrêter les nouveaux EPR2",
+      "description": "Le programme prévoit de fermer les centrales existantes au plus tard après 60 ans de fonctionnement et d’arrêter le programme de nouveaux réacteurs EPR2.",
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-2027-conditions-elevage",
+          "locator": "Livre « Pour une bifurcation écologique et sociale », chapitre 3, section « Organiser le 100 % d’énergies renouvelables ». ",
+          "fragment": ":~:text=Planifier%20la%20fermeture%20progressive%20des%20centrales%20nucl%C3%A9aires%20existantes"
+        }
+      ],
+      "checked": "2026-11-26"
+    }
+  },
+  {
+    "id": "melenchon-atteindre-cent-pour-cent-renouvelables-2060-v1",
+    "measureId": "melenchon-atteindre-cent-pour-cent-renouvelables-2060",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-26",
+    "recordedAt": "2026-11-26T09:17:26.788Z",
+    "summary": "Première fiche avec renvoi au passage original.",
+    "snapshot": {
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "scope": "campagne",
+      "edition": "L’Avenir en commun · présidentielle 2027",
+      "title": "Viser 100 % d’énergies renouvelables au plus tard en 2060",
+      "description": "Le programme prévoit de sortir d’abord des énergies fossiles, avant 2050. Il associe cet objectif au développement des renouvelables, à la sobriété et à l’efficacité énergétique.",
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-2027-conditions-elevage",
+          "locator": "Livre « Pour une bifurcation écologique et sociale », chapitre 3, section « Organiser le 100 % d’énergies renouvelables ». ",
+          "fragment": ":~:text=au%20plus%20tard%20en%202060"
+        }
+      ],
+      "checked": "2026-11-26"
+    }
+  },
+  {
+    "id": "melenchon-arreter-projet-enfouissement-dechets-nucleaires-v1",
+    "measureId": "melenchon-arreter-projet-enfouissement-dechets-nucleaires",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-26",
+    "recordedAt": "2026-11-26T09:17:26.788Z",
+    "summary": "Première fiche avec renvoi au passage original.",
+    "snapshot": {
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "scope": "campagne",
+      "edition": "L’Avenir en commun · présidentielle 2027",
+      "title": "Arrêter le projet d’enfouissement des déchets nucléaires",
+      "description": "Le programme prévoit de poursuivre la recherche sur le traitement des déchets à long terme.",
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-2027-conditions-elevage",
+          "locator": "Livre « Pour une bifurcation écologique et sociale », chapitre 3, section « Organiser le 100 % d’énergies renouvelables ». ",
+          "fragment": ":~:text=Mettre%20fin%20au%20projet%20d%E2%80%99enfouissement%20des%20d%C3%A9chets%20nucl%C3%A9aires"
+        }
+      ],
+      "checked": "2026-11-26"
+    }
+  },
+  {
+    "id": "melenchon-convention-collective-unique-personnels-nucleaire-v1",
+    "measureId": "melenchon-convention-collective-unique-personnels-nucleaire",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-26",
+    "recordedAt": "2026-11-26T09:17:26.788Z",
+    "summary": "Première fiche avec renvoi au passage original.",
+    "snapshot": {
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "scope": "campagne",
+      "edition": "L’Avenir en commun · présidentielle 2027",
+      "title": "Créer une convention collective unique pour les travailleurs du nucléaire",
+      "description": "Le programme prévoit de réduire le recours massif à la sous-traitance et d’organiser la reconversion des travailleurs à mesure que les centrales ferment.",
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-2027-conditions-elevage",
+          "locator": "Livre « Pour une bifurcation écologique et sociale », chapitre 3, section « Organiser le 100 % d’énergies renouvelables ». ",
+          "fragment": ":~:text=convention%20collective%20unique%20pour%20les%20travailleurs%20du%20nucl%C3%A9aire"
+        }
+      ],
+      "checked": "2026-11-26"
+    }
+  },
+  {
+    "id": "melenchon-retablir-asn-et-irsn-distincts-v1",
+    "measureId": "melenchon-retablir-asn-et-irsn-distincts",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-26",
+    "recordedAt": "2026-11-26T09:17:26.788Z",
+    "summary": "Première fiche avec renvoi au passage original.",
+    "snapshot": {
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "scope": "campagne",
+      "edition": "L’Avenir en commun · présidentielle 2027",
+      "title": "Rétablir deux organismes distincts pour la sûreté nucléaire et l’expertise",
+      "description": "Le programme propose d’abroger la loi de fusion de l’Autorité de sûreté nucléaire et de l’Institut de radioprotection et de sûreté nucléaire, puis de garantir leurs moyens respectifs.",
+      "sourceRefs": [
+        {
+          "sourceId": "lfi-2027-conditions-elevage",
+          "locator": "Livre « Pour une bifurcation écologique et sociale », chapitre 3, section « Organiser le 100 % d’énergies renouvelables ». ",
+          "fragment": ":~:text=qui%20a%20fusionn%C3%A9%20l%E2%80%99Autorit%C3%A9%20de%20s%C3%BBret%C3%A9%20nucl%C3%A9aire"
+        }
+      ],
+      "checked": "2026-11-26"
+    }
+  },
+  {
+    "id": "lepen-pret-taux-zero-renovation-logements-v1",
+    "measureId": "lepen-pret-taux-zero-renovation-logements",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-26",
+    "recordedAt": "2026-11-26T09:17:26.789Z",
+    "summary": "Première fiche avec renvoi au passage original.",
+    "snapshot": {
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "scope": "campagne",
+      "edition": "Une énergie moins chère · tract de campagne",
+      "title": "Proposer un prêt à taux zéro pour la rénovation des logements",
+      "description": "Le tract de Marine Le Pen présente « 100 % Rénov’ » comme un prêt à taux zéro destiné aux travaux de rénovation et à la baisse des factures d’énergie.",
+      "sourceRefs": [
+        {
+          "sourceId": "lepen-livret-energie",
+          "locator": "Page 2, encadré sur 100 % Rénov’.",
+          "fragment": "page=2"
+        }
+      ],
+      "checked": "2026-11-26"
+    }
+  },
+  {
+    "id": "melenchon-proteger-les-sites-nucleaires-ukrainiens-sous-egide-onu-v1",
+    "measureId": "melenchon-proteger-les-sites-nucleaires-ukrainiens-sous-egide-onu",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-26",
+    "recordedAt": "2026-11-26T09:23:41.215Z",
+    "summary": "Première fiche avec renvoi au passage original.",
+    "snapshot": {
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "scope": "campagne",
+      "edition": "L’Avenir en commun · présidentielle 2027",
+      "title": "Faire protéger les sites nucléaires ukrainiens par une présence de l’ONU",
+      "description": "Le programme propose une doctrine internationale de protection des sites nucléaires en zone de guerre. Pour les réacteurs en Ukraine et au Moyen-Orient, il prévoit une présence de l’ONU avec l’appui de l’Agence internationale de l’énergie atomique.",
+      "sourceRefs": [
+        {
+          "sourceId": "melenchon-programme-19",
+          "locator": "Une France indépendante au service de la paix, passage sur la protection des sites nucléaires en zone de guerre.",
+          "fragment": ":~:text=protection%20imm%C3%A9diate%20des%20r%C3%A9acteurs%20en%20Ukraine"
+        }
+      ],
+      "checked": "2026-11-26"
+    }
+  },
+  {
+    "id": "melenchon-retirer-la-france-de-lotan-par-etapes-v1",
+    "measureId": "melenchon-retirer-la-france-de-lotan-par-etapes",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-26",
+    "recordedAt": "2026-11-26T09:23:41.218Z",
+    "summary": "Première fiche avec renvoi au passage original.",
+    "snapshot": {
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "scope": "campagne",
+      "edition": "L’Avenir en commun · présidentielle 2027",
+      "title": "Quitter le commandement intégré de l’OTAN puis l’organisation par étapes",
+      "description": "Jean-Luc Mélenchon propose de retirer d’abord la France du commandement intégré, puis de quitter l’Alliance atlantique progressivement.",
+      "sourceRefs": [
+        {
+          "sourceId": "melenchon-programme-19",
+          "locator": "Une France indépendante au service de la paix, première proposition sur l’OTAN.",
+          "fragment": ":~:text=Se%20retirer%20imm%C3%A9diatement%20du%20commandement%20int%C3%A9gr%C3%A9"
+        }
+      ],
+      "checked": "2026-11-26"
+    }
+  },
+  {
+    "id": "lepen-renegocier-prix-electricite-europe-v3",
+    "measureId": "lepen-renegocier-prix-electricite-europe",
+    "number": 3,
+    "kind": "enrichissement",
+    "observedOn": "2026-11-26",
+    "recordedAt": "2026-11-26T09:23:41.218Z",
+    "summary": "Ajout de la place du nucléaire et de l’hydraulique dans la fixation du prix, précisée dans le tract de campagne.",
+    "snapshot": {
+      "title": "Reprendre la fixation du prix intérieur français de l’électricité",
+      "description": "La candidate veut négocier avec les autres États pour que la France fixe son prix intérieur et négocie ses ventes. Le tract de campagne propose de fonder ce prix sur la production française d’électricité nucléaire et hydraulique.",
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "sourceRefs": [
+        {
+          "sourceId": "lepen-livret-energie",
+          "locator": "Fixation du prix de l’électricité · p. 2 du PDF",
+          "fragment": "page=2"
+        },
+        {
+          "sourceId": "lepen-europe-bruxelles-2026",
+          "locator": "présentation à Bruxelles · énergie",
+          "fragment": ":~:text=La%20France%20fixera%20elle%2Dm%C3%AAme%20son%20prix%20int%C3%A9rieur"
+        }
+      ],
+      "scope": "campagne",
+      "edition": "Campagne présidentielle 2027 · Marine Le Pen",
+      "checked": "2026-11-26"
+    }
+  },
+  {
+    "id": "lisnard-exonerer-transmission-entreprises-droits-succession-v1",
+    "measureId": "lisnard-exonerer-transmission-entreprises-droits-succession",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-26",
+    "recordedAt": "2026-11-26T09:27:52.071Z",
+    "summary": "Première fiche avec renvoi au passage original.",
+    "snapshot": {
+      "beneficiaries": "Entreprises transmises par succession.",
+      "timing": null,
+      "financing": null,
+      "metrics": [],
+      "amounts": [],
+      "scope": "campagne",
+      "title": "Exonérer de droits de succession la transmission des entreprises",
+      "description": "David Lisnard demande cette exonération lors de son meeting de Benfeld. La fiche de Nouvelle Énergie reprend sa déclaration et renvoie à l’enregistrement.",
+      "edition": "Meeting de Benfeld · 25 septembre 2026",
+      "sourceRefs": [
+        {
+          "sourceId": "lisnard-questions-droits-succession",
+          "locator": "Section « Que propose-t-il pour les entreprises familiales ? », déclaration de David Lisnard à Benfeld le 25 septembre 2026.",
+          "fragment": ":~:text=totalement%20lib%C3%A9r%C3%A9e%20des%20droits%20de%20succession"
+        }
+      ],
+      "checked": "2026-11-26"
+    }
+  },
+  {
+    "id": "lisnard-ramener-taux-marginal-succession-20-v1",
+    "measureId": "lisnard-ramener-taux-marginal-succession-20",
+    "number": 1,
+    "kind": "import",
+    "observedOn": "2026-11-26",
+    "recordedAt": "2026-11-26T09:27:52.074Z",
+    "summary": "Première fiche avec renvoi au passage original.",
+    "snapshot": {
+      "beneficiaries": null,
+      "timing": null,
+      "financing": null,
+      "metrics": [
+        {
+          "key": "taux-marginal-succession",
+          "label": "Taux marginal supérieur proposé",
+          "value": 20,
+          "unit": "%",
+          "sourceId": "lisnard-questions-droits-succession"
+        }
+      ],
+      "amounts": [],
+      "scope": "campagne",
+      "title": "Ramener le taux marginal supérieur des droits de succession à 20 %",
+      "description": "La présentation officielle du livre de David Lisnard indique aussi un relèvement des tranches et l’unification des abattements et des barèmes entre liens de parenté.",
+      "edition": "Ainsi va la France · extrait présenté par Nouvelle Énergie",
+      "sourceRefs": [
+        {
+          "sourceId": "lisnard-questions-droits-succession",
+          "locator": "Section « Que changerait sa réforme ? », présentation du livre Ainsi va la France.",
+          "fragment": ":~:text=ramener%20le%20taux%20marginal%20sup%C3%A9rieur%20%C3%A0%2020"
+        }
+      ],
       "checked": "2026-11-26"
     }
   }

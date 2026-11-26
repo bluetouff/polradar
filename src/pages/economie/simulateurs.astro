@@ -37,17 +37,22 @@ const panels = [
   {
     id: 'revenus',
     label: 'Salaire et travail',
-    topics: ['smic', 'csg', 'temps-de-travail'],
+    topics: ['smic', 'csg', 'temps-de-travail', 'impot-sur-le-revenu'],
   },
   {
     id: 'depenses',
     label: 'Factures et logement',
-    topics: ['electricite', 'carburants', 'loyers'],
+    topics: ['electricite', 'carburants', 'loyers', 'abonnement-transports'],
   },
   {
     id: 'famille',
-    label: 'Famille et retraite',
-    topics: ['allocations-familiales', 'successions', 'retraite'],
+    label: 'Famille, santé et retraite',
+    topics: [
+      'allocations-familiales',
+      'successions',
+      'retraite',
+      'consultation-medicale',
+    ],
   },
 ].map((panel) => ({
   ...panel,
@@ -58,7 +63,7 @@ const panels = [
 <Base
   title="Mon quotidien · Simulateurs de Polradar"
   section="/economie/simulateurs/"
-  description="Salaire minimum, temps de travail, CSG, carburants, loyers, successions, allocations familiales, électricité et retraite. Comparez les règles aux propositions chiffrables."
+  description="Douze outils pour calculer vos revenus, votre impôt, vos dépenses et vos remboursements, et consulter les propositions sourcées."
 >
   <header class="daily-hero">
     <span class="daily-hero-icon">
@@ -67,8 +72,8 @@ const panels = [
     <div>
       <h1>Mon quotidien</h1>
       <p>
-        {directory.length} outils pour comparer les propositions sur votre
-        salaire, vos dépenses et vos droits.
+        {directory.length} outils pour calculer vos revenus, vos dépenses et vos
+        droits, et retrouver les propositions qui les concernent.
       </p>
       <nav aria-label="Catégories des simulateurs">
         {panels.map((panel) => (

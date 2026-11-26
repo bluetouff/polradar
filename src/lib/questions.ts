@@ -47,6 +47,15 @@ const examinedDocuments: Record<
         'Ma vision pour la France, passages sur l’hôpital et les services publics. Aucun dispositif d’accès local aux soins identifié dans ce texte.',
     },
   ],
+  'sante-installation-medecins': [
+    {
+      candidate: 'philippe',
+      sourceId: 'philippe-index',
+      checked: '2026-11-26',
+      locator:
+        'Volume 1 de Croire en nous, sommaire et propositions du 20 novembre. Ce volume ne fixe pas de règles d’installation des médecins.',
+    },
+  ],
   'mobilite-territoires': [
     {
       candidate: 'collovati',
@@ -231,7 +240,7 @@ const labels: Record<string, string> = {
   'retraites-financement-regimes':
     'Quelle place pour la répartition et la capitalisation ?',
   'travail-salaire-minimum':
-    'À quel niveau fixer le SMIC et comment le faire évoluer ?',
+    'Que proposent les candidats pour les salariés au SMIC ?',
   'travail-duree-travail': 'Qui pourrait modifier la durée du travail ?',
   'institutions-declenchement-referendum':
     'Qui pourrait déclencher un référendum ?',
@@ -431,13 +440,34 @@ const additions = [
     id: 'aide-ukraine',
     theme: 'europe',
     title: 'La France devrait-elle poursuivre son aide à l’Ukraine ?',
-    terms: 'livraisons armes soutien aide militaire diplomatie',
+    terms:
+      'aide financière humanitaire livraisons soutien militaire diplomatie Ukraine',
     versions: [
       'lepen-europe-1-v2',
+      'glucksmann-renforcer-aide-ukraine-v1',
+      'philippe-poursuivre-soutien-financier-operationnel-ukraine-v1',
+      'lisnard-soutenir-ukraine-livraisons-materiel-v1',
+      'melenchon-lfi-poursuivre-aide-defense-ukraine-v1',
+      'melenchon-proteger-les-sites-nucleaires-ukrainiens-sous-egide-onu-v1',
+      'villepin-inscrire-le-soutien-a-lukraine-dans-la-duree-v1',
       'attal-europe-ukraine-v1',
       'dupont-aignan-europe-ukraine-v1',
       'philippot-livraisons-ukraine-v1',
       'asselineau-arret-aides-ukraine-v1',
+    ],
+  },
+  {
+    id: 'france-otan',
+    theme: 'europe',
+    title: 'Quelle place pour la France dans l’OTAN ?',
+    terms: 'Alliance atlantique traité commandement intégré pilier européen',
+    versions: [
+      'melenchon-retirer-la-france-de-lotan-par-etapes-v1',
+      'branco-europe-otan-referendum-v1',
+      'asselineau-notification-retrait-otan-v1',
+      'saforcada-quitter-commandement-integre-otan-v1',
+      'marchal-sortie-progressive-otan-v1',
+      'villepin-constituer-un-pilier-europeen-de-defense-dans-lotan-v1',
     ],
   },
 ];
@@ -469,6 +499,45 @@ interface Definition {
   related?: { label: string; href: string };
 }
 const complementaryVersions: Record<string, string[]> = {
+  'retraites-conditions-depart': [
+    'lepen-abroger-reforme-retraites-2023-en-2028-v1',
+    'lisnard-age-legal-retraite-65-ans-v1',
+  ],
+  'travail-salaire-minimum': [
+    'glucksmann-revaloriser-smic-1700-net-v1',
+    'lisnard-exoneration-emploi-domicile-smic-v1',
+    'philippe-travail-2-v2',
+  ],
+  'travail-duree-travail': [
+    'lisnard-temps-de-travail-accords-v1',
+    'ps-experimenter-la-semaine-de-quatre-jours-par-la-negociation-collective-v1',
+  ],
+  'climat-production-nucleaire': [
+    'melenchon-fermer-les-centrales-nucleaires-et-arreter-les-epr2-v1',
+    'lepen-renegocier-prix-electricite-europe-v3',
+  ],
+  'climat-prix-energie': [
+    'lepen-climat-tva-energie-v2',
+    'lepen-renegocier-prix-electricite-europe-v3',
+    'glucksmann-moratoire-hausses-taxes-electricite-v1',
+  ],
+  'fiscalite-csg-salaires': [
+    'lisnard-baisser-csg-revenus-activite-66-v1',
+    'melenchon-fusionner-les-cotisations-sociales-et-la-csg-v1',
+  ],
+  'fiscalite-transmission-patrimoine': [
+    'glucksmann-grands-heritages-v2',
+    'glucksmann-imposer-plus-values-latentes-transmises-v1',
+    'lisnard-exonerer-transmission-entreprises-droits-succession-v1',
+    'lisnard-ramener-taux-marginal-succession-20-v1',
+  ],
+  'regularisation-sejour': [
+    'philippe-soumettre-les-regularisations-massives-a-un-accord-entre-etats-schengen-v1',
+  ],
+  'immigration-travail': [
+    'philippe-introduire-des-quotas-dimmigration-selon-les-profils-recherches-v1',
+    'groupe-rn-creer-une-taxe-a-lembauche-dun-salarie-extra-europeen-v2',
+  ],
   'soins-de-proximite': [
     'equinoxe-tripler-structures-mobiles-soins-v1',
     'dlf-hopital-quarante-cinq-minutes-v1',
@@ -482,7 +551,10 @@ const complementaryVersions: Record<string, string[]> = {
     'branco-remboursement-soins-dentaires-v1',
     'branco-remboursement-psychologues-examen-national-v1',
   ],
-  'institutions-declenchement-referendum': ['dlf-ric-millions-inscrits-v1'],
+  'institutions-declenchement-referendum': [
+    'dlf-ric-millions-inscrits-v1',
+    'place-publique-droit-initiative-referendum-v1',
+  ],
   'europe-participation-union': ['dlf-referendum-appartenance-ue-v1'],
   'institutions-logiciels-publics': [
     'dlf-logiciels-administrations-licences-gratuites-v1',
@@ -499,10 +571,13 @@ const complementaryVersions: Record<string, string[]> = {
   'logement-obligations-parc-social': [
     'dlf-accession-sociale-quota-sru-v1',
     'dlf-seuil-logements-sociaux-communes-v1',
+    'lisnard-supprimer-article-55-de-la-loi-sru-v1',
   ],
   'logement-offre-bati': [
     'dlf-conversion-bureaux-plu-v1',
     'melenchon-construction-logements-publics-et-jeunes-v1',
+    'glucksmann-construction-sociale-v2',
+    'philippe-construire-quatre-millions-de-logements-en-dix-ans-v1',
   ],
   'salaires-enseignants': [
     'dlf-salaires-nets-professeurs-quinze-v1',
@@ -520,12 +595,18 @@ const complementaryVersions: Record<string, string[]> = {
   'retraites-protection-revenus': [
     'attal-petites-retraites-inflation-v1',
     'dlf-regimes-retraite-agricole-v1',
+    'lepen-retraites-indexation-cinq-ans-v1',
+    'lisnard-envisager-sous-indexation-certaines-pensions-si-deficit-persiste-v1',
+    'ps-garantir-85-du-smic-apres-une-carriere-entiere-dans-lagriculture-v1',
   ],
   'retraites-financement-regimes': [
     'attal-interessement-vers-epargne-retraite-v1',
     'philippe-plan-epargne-premier-emploi-v1',
   ],
-  'logement-regulation-loyers': ['melenchon-blocage-loyers-urgence-sociale-v1'],
+  'logement-regulation-loyers': [
+    'melenchon-blocage-loyers-urgence-sociale-v1',
+    'philippe-donner-aux-maires-la-decision-sur-lencadrement-des-loyers-v1',
+  ],
   'social-garde-jeunes-enfants': [
     'dlf-places-creches-cinq-ans-v1',
     'attal-social-professionnels-enfance-v1',

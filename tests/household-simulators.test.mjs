@@ -115,6 +115,48 @@ test('les allocations modélisent les critères de chaque texte', () => {
   assert.deepEqual(calculate('2', '1'), [true, true, true, true, true, false]);
 });
 
+test('l’impôt brut reprend le barème 2026 et le nombre de parts du foyer', () => {
+  const calculate = (income, shares = '1') =>
+    evaluateHousehold('impot-sur-le-revenu', { income, shares });
+  assert.deepEqual(calculate('30 000').amounts, [210399]);
+  assert.deepEqual(calculate('60 000', '2').amounts, [420798]);
+  assert.deepEqual(calculate('11600').amounts, [0]);
+  assert.deepEqual(calculate('11601').amounts, [11]);
+  assert.deepEqual(calculate('181917').amounts, [5838649]);
+  assert.deepEqual(calculate('181918').amounts, [5838694]);
+  assert.deepEqual(calculate('30000', '3'), { invalid: 'shares' });
+});
+
+test('la consultation compare les remboursements au même honoraire', () => {
+  assert.deepEqual(
+    evaluateHousehold('consultation-medicale', { fee: '40' }).amounts,
+    [2100, 2590],
+  );
+  assert.deepEqual(
+    evaluateHousehold('consultation-medicale', { fee: '30' }).amounts,
+    [1100, 1590],
+  );
+  assert.deepEqual(
+    evaluateHousehold('consultation-medicale', { fee: '29,99' }),
+    { invalid: 'fee' },
+  );
+});
+
+test('les transports distinguent le minimum légal et la participation facultative', () => {
+  assert.deepEqual(
+    evaluateHousehold('abonnement-transports', { price: '75' }).amounts,
+    [3750, 1875],
+  );
+  assert.deepEqual(
+    evaluateHousehold('abonnement-transports', { price: '75,01' }).amounts,
+    [3750, 1875],
+  );
+  assert.deepEqual(
+    evaluateHousehold('abonnement-transports', { price: '-1' }),
+    { invalid: 'price' },
+  );
+});
+
 test('une valeur absente, imprécise ou hors limites n’affiche aucun résultat', () => {
   for (const weeks of [undefined, '0', '53', '1,5', 'Infinity', {}, '1e1']) {
     assert.deepEqual(evaluateHousehold('temps-de-travail', { weeks }), {

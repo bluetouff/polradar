@@ -8,6 +8,7 @@ import { themes, measures } from '../../lib/data';
 import PagedResults from '../../components/PagedResults.astro';
 import { pageRange } from '../../lib/pagination';
 import { retirementPath } from '../../lib/retirement-comparison.mjs';
+import { questions } from '../../lib/questions';
 interface Props {
   theme: (typeof themes)[number];
   page?: number;
@@ -24,6 +25,42 @@ const records = measures.filter(
 );
 const range = pageRange(records.length, page);
 const retirementOverview = theme.id === 'retraites' && page === 1;
+const selectedQuestions: Record<string, string[]> = {
+  europe: ['aide-ukraine', 'france-otan', 'europe-participation-union'],
+  climat: ['climat-production-nucleaire', 'climat-prix-energie'],
+  travail: ['travail-salaire-minimum', 'travail-duree-travail'],
+  sante: ['sante-installation-medecins', 'sante-remboursement-soins'],
+  immigration: [
+    'immigration-travail',
+    'regroupement-familial',
+    'regularisation-sejour',
+  ],
+  logement: [
+    'logement-offre-bati',
+    'logement-regulation-loyers',
+    'logement-obligations-parc-social',
+  ],
+  fiscalite: ['fiscalite-csg-salaires', 'fiscalite-transmission-patrimoine'],
+  education: ['salaires-enseignants', 'education-acces-etudes'],
+  institutions: [
+    'institutions-declenchement-referendum',
+    'institutions-ecrire-constitution',
+  ],
+  securite: ['places-prison'],
+  social: ['social-garde-jeunes-enfants', 'parents-isoles'],
+};
+const themeQuestions = (selectedQuestions[theme.id] ?? [])
+  .map((id) => questions.find((question) => question.id === id))
+  .filter((question) => question !== undefined);
+const everydayTools: Record<string, { id: string; label: string }> = {
+  fiscalite: { id: 'impot-sur-le-revenu', label: 'Calculer l’impôt au barème' },
+  sante: {
+    id: 'consultation-medicale',
+    label: 'Calculer le reste à charge d’une consultation',
+  },
+  travail: { id: 'temps-de-travail', label: 'Simuler le temps de travail' },
+};
+const everydayTool = everydayTools[theme.id];
 ---
 
 <Base
@@ -67,6 +104,26 @@ const retirementOverview = theme.id === 'retraites' && page === 1;
           <a class="button" href={retirementPath}>
             Programmes et droit en vigueur par génération ↗
           </a>
+        </nav>
+      )}
+      {page === 1 && (themeQuestions.length > 0 || everydayTool) && (
+        <nav
+          class="feature-actions"
+          aria-label={`Questions et outils · ${theme.label}`}
+        >
+          {themeQuestions.map((question) => (
+            <a class="button" href={question.href}>
+              {question.title}
+            </a>
+          ))}
+          {everydayTool && (
+            <a
+              class="button"
+              href={`/economie/simulateurs/${everydayTool.id}/`}
+            >
+              {everydayTool.label}
+            </a>
+          )}
         </nav>
       )}
     </div>

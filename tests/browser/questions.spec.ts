@@ -36,7 +36,11 @@ test('la recherche CSG, les documents examinés et les absences sont distincts',
   await expect(page).toHaveURL(
     /\/questions\/fiscalite-csg-salaires\/#candidat-attal$/,
   );
-  await expect(page.locator('.q-answer')).toHaveCount(4);
+  await expect(page.locator('.q-answer')).toHaveCount(6);
+  await expect(page.locator('#candidat-lisnard')).toContainText('6,6 %');
+  await expect(page.locator('#candidat-melenchon')).toContainText(
+    'Fusionner les cotisations sociales et la CSG',
+  );
   await expect(page.locator('#candidat-villepin')).toContainText(
     'cotisations sociales vers la CSG',
   );
@@ -48,7 +52,7 @@ test('la recherche CSG, les documents examinés et les absences sont distincts',
   ).toHaveAttribute('href', /tf1info.fr/);
   await expect(page.locator('#revue-egger')).toContainText('28 pages');
   await expect(page.locator('#couverture details')).toContainText(
-    `${candidates.length - 4} candidats sans fiche`,
+    `${candidates.length - 6} candidats sans fiche`,
   );
 });
 
@@ -152,7 +156,7 @@ test('les thèmes et les sources des questions sont consultables sans JavaScript
       .getByRole('link', { name: /Faut-il baisser ou supprimer la CSG/ })
       .click();
     await expect(page.locator('#couverture')).toContainText(
-      String(candidates.length - 4),
+      String(candidates.length - 6),
     );
   } finally {
     await ctx.close();
