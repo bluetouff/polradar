@@ -89,9 +89,14 @@ func toolOutput(name string) map[string]any {
 		for _, intent := range slices.Sorted(maps.Keys(answerRoutes)) {
 			props["intention"].Enum = append(props["intention"].Enum, intent)
 		}
-		props["resultats"].MaxItems = jsonschema.Ptr(answerLimit)
+		props["resultats"].MaxItems = jsonschema.Ptr(answerComparisonLimit)
 		props["resultats"].Items.Properties["sources"].MaxItems = jsonschema.Ptr(answerSourceLimit)
 		props["resultats"].Items.Properties["chiffres"].MaxItems = jsonschema.Ptr(answerFactLimit)
+		comparison := props["resultats"].Items.Properties["comparaison"].Properties
+		comparison["etat"].Enum = []any{"position", "complement-seul", "non-documente"}
+		comparison["supplementaires"].MaxItems = jsonschema.Ptr(answerComparisonSupplementLimit)
+		schema.If = &jsonschema.Schema{Properties: map[string]*jsonschema.Schema{"intention": {Enum: []any{"comparaison"}}}}
+		schema.Else = &jsonschema.Schema{Properties: map[string]*jsonschema.Schema{"resultats": {MaxItems: jsonschema.Ptr(answerLimit)}}}
 		data = schema
 	case "polradar_question", "polradar_comparer":
 		data = alternatives(fields(paged), absent("question"))

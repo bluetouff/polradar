@@ -7,6 +7,8 @@ import {
   historicReceipt,
 } from '../../lib/votes-data';
 import { proposalTracks, evolution } from '../../lib/proposal-data';
+import { digitalTopics } from '../../lib/digital-data';
+import digitalReview from '../../data/digital-reviews.json';
 
 function archiveFields(archive: ReturnType<typeof historicReceipt>) {
   return archive
@@ -54,6 +56,14 @@ function questionPosition(
 export function GET() {
   return Response.json({
     version: 1,
+    digital: {
+      checked: digitalReview.checked,
+      documents: digitalReview.documents,
+      topics: digitalTopics.map((topic) => ({
+        id: topic.id,
+        measureIds: topic.entries.map(({ measure }) => measure.id),
+      })),
+    },
     versionDocuments: evolution.versionDocuments,
     questions: questions.map((q) => ({
       id: q.id,

@@ -98,8 +98,6 @@ test('la demande explicite conserve le lien versionné et le passage vérifiable
   });
   await homeQuery.fill(education);
   await homeQuery.press('Enter');
-  await expect(page.getByRole('searchbox')).toHaveValue(education);
-  await page.getByRole('link', { name: 'Demander à Polradar' }).click();
   await expect(page).toHaveURL(/\/demander\/$/);
   await expect(
     page.getByRole('searchbox', { name: 'Votre question' }),
@@ -159,7 +157,8 @@ test('la demande explicite conserve le lien versionné et le passage vérifiable
     320,
   );
   await page.goBack();
-  await expect(page.getByRole('searchbox')).toHaveValue(education);
+  await expect(homeQuery).toBeVisible();
+  expect(posted).toEqual([{ question: education }]);
 });
 
 test('un manque documentaire puis une panne laissent une recherche locale utilisable', async ({
@@ -210,7 +209,7 @@ test('un manque documentaire puis une panne laissent une recherche locale utilis
   ).toHaveAttribute('href', '/themes/');
   await expect(page.locator('#answer-results li')).toHaveCount(0);
 
-  const example = 'Que proposent les candidats sur la CSG ?';
+  const example = 'Quelles sont les propositions numériques de Juan Branco ?';
   await page.getByRole('button', { name: example }).click();
   await expect(page.getByRole('searchbox')).toHaveValue(example);
   await expect(page.locator('#answer-panel')).toBeHidden();

@@ -468,6 +468,7 @@ const additions = [
       'saforcada-quitter-commandement-integre-otan-v1',
       'marchal-sortie-progressive-otan-v1',
       'villepin-constituer-un-pilier-europeen-de-defense-dans-lotan-v1',
+      'bonnal-quitter-otan-v1',
     ],
   },
 ];
@@ -504,6 +505,7 @@ const additionalAnswers: Record<string, string[]> = {
   'retraites-conditions-depart': [
     'lepen-abroger-reforme-retraites-2023-en-2028-v1',
     'lisnard-age-legal-retraite-65-ans-v1',
+    'bonnal-taux-plein-retraite-41-annuites-v1',
   ],
   'travail-salaire-minimum': ['glucksmann-revaloriser-smic-1700-net-v1'],
   'travail-duree-travail': [

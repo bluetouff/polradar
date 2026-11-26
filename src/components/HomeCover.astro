@@ -52,7 +52,7 @@ const date = new Intl.DateTimeFormat('fr-FR', {
           id="cover-query"
           type="search"
           maxlength="200"
-          placeholder="Ex. retraites"
+          placeholder="Ex. Que proposent les candidats sur les retraites ?"
           autocomplete="off"
           required
         />
@@ -105,7 +105,13 @@ const date = new Intl.DateTimeFormat('fr-FR', {
       input?.focus();
       return;
     }
-    location.assign(form.action + '#' + new URLSearchParams({ q: query }));
+    const question =
+      query.endsWith('?') ||
+      /^(?:(?:que|quels?|quelles?|comment|combien|quand|pourquoi|comparez?|expliquez?)\s|qu['’]|c['’]est quoi\b)/iu.test(
+        query,
+      );
+    const destination = question ? '/demander/' : form.action;
+    location.assign(destination + '#' + new URLSearchParams({ q: query }));
   });
 </script>
 <style>

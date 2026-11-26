@@ -54,19 +54,20 @@ type answerRelation struct {
 }
 
 type answerItem struct {
-	ID       string          `json:"id"`
-	Version  string          `json:"versionId,omitempty"`
-	Person   string          `json:"candidatureAssociee,omitempty"`
-	Title    string          `json:"titre"`
-	Summary  string          `json:"resume,omitempty"`
-	Author   string          `json:"auteur,omitempty"`
-	Status   string          `json:"statut,omitempty"`
-	Date     string          `json:"date,omitempty"`
-	Kind     string          `json:"typeDate,omitempty"`
-	URL      string          `json:"url"`
-	Sources  []answerSource  `json:"sources"`
-	Facts    []answerFact    `json:"chiffres"`
-	Relation *answerRelation `json:"relation,omitempty"`
+	ID         string                     `json:"id"`
+	Version    string                     `json:"versionId,omitempty"`
+	Person     string                     `json:"candidatureAssociee,omitempty"`
+	Title      string                     `json:"titre"`
+	Summary    string                     `json:"resume,omitempty"`
+	Author     string                     `json:"auteur,omitempty"`
+	Status     string                     `json:"statut,omitempty"`
+	Date       string                     `json:"date,omitempty"`
+	Kind       string                     `json:"typeDate,omitempty"`
+	URL        string                     `json:"url"`
+	Sources    []answerSource             `json:"sources"`
+	Facts      []answerFact               `json:"chiffres"`
+	Relation   *answerRelation            `json:"relation,omitempty"`
+	Comparison *answerCandidateComparison `json:"comparaison,omitempty"`
 }
 
 type answerLink struct {
@@ -75,10 +76,11 @@ type answerLink struct {
 }
 
 type answerCoverage struct {
-	Scope string `json:"perimetre"`
-	Total *int   `json:"total"`
-	Limit int    `json:"limite"`
-	URL   string `json:"url"`
+	Scope      string                    `json:"perimetre"`
+	Total      *int                      `json:"total"`
+	Limit      int                       `json:"limite"`
+	URL        string                    `json:"url"`
+	Comparison *answerComparisonCoverage `json:"comparaison,omitempty"`
 }
 
 type documentaryAnswer struct {
@@ -317,7 +319,7 @@ func (c *snapshot) answer(a answerArgs) (any, bool, error) {
 	case "proposition", "source":
 		err = c.answerProposals(&result, a.Question, topic, people)
 	case "comparaison":
-		err = c.answerComparison(&result, topic, people)
+		err = c.answerComparison(&result, topic, people, a.Question)
 	case "scrutin":
 		err = c.answerScrutinies(&result, a.Question, topic, people, ballot)
 	case "sondage":

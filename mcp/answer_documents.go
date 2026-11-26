@@ -1,9 +1,11 @@
 package main
 
 import (
+	"cmp"
 	"encoding/json"
 	"net/url"
 	"path/filepath"
+	"regexp"
 	"slices"
 	"strconv"
 	"strings"
@@ -11,6 +13,8 @@ import (
 )
 
 const answerSourceLimit = 6
+const answerComparisonLimit = 6
+const answerComparisonSupplementLimit = 3
 
 func answerDocumentURL(raw string) string {
 	u, err := url.Parse(raw)
@@ -156,7 +160,7 @@ func (c *snapshot) answerProposals(result *documentaryAnswer, question, topic st
 			}
 		}
 	}
-	words := strings.Join(answerTerms(topic), " ")
+	words := programmeWords(topic)
 	if words == "" && len(people) != 1 || utf8.RuneCountInString(words) > 160 {
 		result.describe("ambigu", "sujet_a_preciser", "Précisez le sujet, le nom de la candidature ou l’identifiant de la fiche.")
 		return nil
@@ -164,6 +168,9 @@ func (c *snapshot) answerProposals(result *documentaryAnswer, question, topic st
 	if len(people) > 1 {
 		result.describe("ambigu", "dossier_a_preciser", "Choisissez la candidature pour laquelle vous souhaitez retrouver le passage.")
 		return nil
+	}
+	if handled, err := c.answerProgrammeTopic(result, words, people); handled {
+		return err
 	}
 	args := searchArgs{Query: words, Limit: answerLimit}
 	if len(people) == 1 {
@@ -225,8 +232,88 @@ func answerChoose(rows []record, topic string) []record {
 	return selected
 }
 
-func (c *snapshot) answerComparison(result *documentaryAnswer, topic string, people []candidate) error {
-	if len(people) < 2 || len(people) > 6 || len(answerTerms(topic)) == 0 {
+type answerComparisonCoverage struct {
+	Requested       *int `json:"candidaturesDemandees"`
+	Identified      int  `json:"candidaturesIdentifiees"`
+	Processed       int  `json:"candidaturesTraitees"`
+	WithPosition    int  `json:"avecPosition"`
+	WithoutPosition int  `json:"sansPosition"`
+	ContextOnly     int  `json:"complementsSeuls"`
+	Omitted         int  `json:"resultatsTronques"`
+}
+
+type answerComparisonSupplement struct {
+	ID       string          `json:"id"`
+	Version  string          `json:"versionId"`
+	Title    string          `json:"titre"`
+	URL      string          `json:"url"`
+	Author   string          `json:"auteur"`
+	Scope    string          `json:"statut"`
+	Summary  string          `json:"resume"`
+	Source   *answerSource   `json:"source,omitempty"`
+	Relation *answerRelation `json:"relation,omitempty"`
+}
+
+type answerCandidateComparison struct {
+	State       string                       `json:"etat"`
+	Positions   int                          `json:"nombrePositions"`
+	Complements int                          `json:"nombreComplements"`
+	Omitted     int                          `json:"resultatsTronques"`
+	URL         string                       `json:"url"`
+	Supplements []answerComparisonSupplement `json:"supplementaires"`
+}
+
+var (
+	comparisonSentence  = regexp.MustCompile(`(?i)^(?:compare(?:r|z)?|comparaison (?:entre|de)|comparatif (?:entre|de)) (.+?) (?:sur|concernant|à propos de) (.+)$`)
+	comparisonSeparator = regexp.MustCompile(`(?i)[,;]| et | & `)
+)
+
+// Count a distinct, explicit enumeration. Other phrasings keep the requested
+// count unknown. The selection only retains names resolved from the corpus.
+func (c *snapshot) comparisonSelection(question string) ([]candidate, *int, string) {
+	match := comparisonSentence.FindStringSubmatch(strings.Join(strings.Fields(question), " "))
+	if match == nil {
+		return nil, nil, ""
+	}
+	parts := comparisonSeparator.Split(match[1], -1)
+	if len(parts) < 2 {
+		return nil, nil, ""
+	}
+	identified := []candidate{}
+	names := map[string]bool{}
+	for _, entry := range parts {
+		name := strings.TrimPrefix(normalize(entry), "et ")
+		for _, prefix := range []string{"les propositions de ", "les positions de ", "les mesures de "} {
+			name = strings.TrimPrefix(name, prefix)
+		}
+		if name == "" {
+			continue
+		}
+		matches, residual := c.answerCandidates(name)
+		if len(matches) != 1 || residual != "" {
+			names["non-identifie:"+name] = true
+			continue
+		}
+		person := matches[0]
+		if !names[person.ID] {
+			identified = append(identified, person)
+			names[person.ID] = true
+		}
+	}
+	count := len(names)
+	return identified, &count, normalize(match[2])
+}
+
+func (c *snapshot) answerComparison(result *documentaryAnswer, topic string, people []candidate, question string) error {
+	explicit, requested, subject := c.comparisonSelection(question)
+	if requested != nil {
+		people, topic = explicit, subject
+	}
+	coverage := &answerComparisonCoverage{Requested: requested, Identified: len(people)}
+	result.Coverage.Comparison = coverage
+	result.Coverage.Limit = answerComparisonLimit
+	if len(people) < 2 || len(people) > answerComparisonLimit ||
+		requested != nil && *requested > answerComparisonLimit || len(answerTerms(topic)) == 0 {
 		result.describe("ambigu", "comparaison_a_preciser", "Indiquez un sujet et les deux à six candidatures à comparer.")
 		return nil
 	}
@@ -259,62 +346,169 @@ func (c *snapshot) answerComparison(result *documentaryAnswer, topic string, peo
 		result.Coverage.URL = href
 		result.Links = append(result.Links, answerLink{"Lire la question et toutes ses positions", href})
 	}
-	data, _, err := c.compare(compareArgs{Question: q.str("id"), Candidates: ids})
+	rows, err := c.answerComparisonRows(q.str("id"), ids)
 	if err != nil {
 		return err
 	}
-	page := data.(map[string]any)
-	missing := 0
 	otherPositions := false
 	outdated := false
 	unqualified := false
-	for _, candidateRow := range page["resultats"].([]map[string]any) {
-		id, name := candidateRow["candidate"].(string), candidateRow["nom"].(string)
-		response, _ := candidateRow["reponse"].(record)
-		var positions []record
-		if len(response) != 0 && json.Unmarshal(response["positions"], &positions) != nil {
-			return invalidCorpus
-		}
-		if len(positions) == 0 {
-			item := newAnswerItem(id, name, result.Coverage.URL)
-			item.Status, item.Summary = "non-documente", "Aucun passage correspondant n’est documenté ici pour ce dossier."
-			if raw := response["complements"]; raw != nil {
-				var complements []record
-				if json.Unmarshal(raw, &complements) != nil {
-					return invalidCorpus
-				}
-				if len(complements) != 0 {
-					context, err := c.answerQuestionPosition(q.str("id"), id, name, "complement", complements[0])
-					if err != nil {
-						return err
-					}
-					item = context
-				}
-			}
-			result.Results = append(result.Results, item)
-			missing++
-			continue
-		}
-		otherPositions = otherPositions || len(positions) > 1
-		item, err := c.answerQuestionPosition(q.str("id"), id, name, "reponse", positions[0])
+	for i, row := range rows {
+		response, _ := row["reponse"].(record)
+		item, err := c.answerComparisonCandidate(q.str("id"), result.Coverage.URL, people[i], response)
 		if err != nil {
 			return err
 		}
-		unqualified = unqualified || item.Relation == nil
+		detail := item.Comparison
+		coverage.Processed++
+		coverage.Omitted += detail.Omitted
+		if detail.Positions > 0 {
+			coverage.WithPosition++
+			unqualified = unqualified || item.Relation == nil
+		} else {
+			coverage.WithoutPosition++
+			if detail.Complements > 0 {
+				coverage.ContextOnly++
+			}
+		}
+		otherPositions = otherPositions || detail.Positions+detail.Complements > 1
 		outdated = outdated || item.Relation != nil && item.Relation.Status == "version-depassee"
+		for _, supplement := range detail.Supplements {
+			unqualified = unqualified || supplement.Relation == nil
+			outdated = outdated || supplement.Relation != nil && supplement.Relation.Status == "version-depassee"
+		}
 		result.Results = append(result.Results, item)
 	}
-	result.finish(page["total"].(int), "Les positions restent rattachées à la question et à l’auteur du passage cité.")
-	if unqualified {
+	result.finish(len(people), "Les positions restent rattachées à la question et à l’auteur du passage cité.")
+	switch {
+	case requested != nil && *requested != len(people):
+		result.describe("partiel", "candidatures_non_identifiees", "Certaines candidatures demandées restent à préciser. Les dossiers identifiés sont présentés ci-dessous.")
+	case coverage.Omitted > 0:
+		result.describe("partiel", "comparaison_tronquee", "Le nombre de passages affichés est limité. Le lien de chaque dossier donne les positions et compléments supplémentaires.")
+	case unqualified:
 		result.describe("partiel", "qualification_relation_indisponible", "Cette édition fournit les passages cités. La qualification des liens en réponse ou complément reste indisponible pour cette édition.")
-	} else if missing > 0 {
+	case coverage.WithoutPosition > 0:
 		result.describe("partiel", "positions_non_documentees", "La grille indique les réponses documentées. Les propositions de contexte portent la mention « complément ».")
-	} else if outdated {
+	case outdated:
 		result.describe("partiel", "version_depassee", "La comparaison conserve les versions citées. Les fiches correspondantes indiquent les versions plus récentes.")
-	} else if otherPositions {
-		result.describe("partiel", "autres_positions", "La page de la question donne les autres positions documentées et leurs limites.")
+	case otherPositions:
+		result.describe("partiel", "autres_positions", "Les passages supplémentaires sont résumés. La page de la question donne les positions, les conditions et les sources complètes.")
+	case requested == nil:
+		result.describe("partiel", "selection_non_confirmee", "La comparaison présente les candidatures identifiées dans la question. Une liste explicite permet de confirmer la sélection.")
 	}
 	return nil
+}
+
+func (c *snapshot) answerComparisonRows(question string, ids []string) ([]map[string]any, error) {
+	rows := make([]map[string]any, 0, len(ids))
+	for offset := 0; offset < len(ids); {
+		data, _, err := c.compare(compareArgs{Question: question, Candidates: ids, pageArgs: pageArgs{Offset: offset, ExpectedRevision: c.commit}})
+		if err != nil {
+			return nil, err
+		}
+		page := data.(map[string]any)
+		part, ok := page["resultats"].([]map[string]any)
+		if !ok || len(part) == 0 || len(part) > len(ids)-offset || page["total"] != len(ids) {
+			return nil, invalidCorpus
+		}
+		for i, row := range part {
+			if row["candidate"] != ids[offset+i] {
+				return nil, invalidCorpus
+			}
+		}
+		rows = append(rows, part...)
+		offset += len(part)
+		next, ok := page["suivant"].(*int)
+		if !ok || next == nil && offset != len(ids) || next != nil && (*next != offset || offset >= len(ids)) {
+			return nil, invalidCorpus
+		}
+	}
+	return rows, nil
+}
+
+func (c *snapshot) answerComparisonCandidate(question, href string, person candidate, response record) (answerItem, error) {
+	positions, err := c.answerComparisonPositions(question, person, "reponse", response["positions"])
+	if err != nil {
+		return answerItem{}, err
+	}
+	complements, err := c.answerComparisonPositions(question, person, "complement", response["complements"])
+	if err != nil {
+		return answerItem{}, err
+	}
+	detail := &answerCandidateComparison{
+		State: "non-documente", Positions: len(positions), Complements: len(complements),
+		URL: href + "#couverture", Supplements: []answerComparisonSupplement{},
+	}
+	item := newAnswerItem(person.ID, person.Name, detail.URL)
+	item.Person, item.Status, item.Summary = person.ID, "non-documente", "Aucun passage correspondant n’est documenté ici pour ce dossier."
+	var extra []answerItem
+	switch {
+	case len(positions) != 0:
+		item, detail.State = positions[0], "position"
+		extra = append(extra, positions[1:min(len(positions), answerComparisonSupplementLimit)]...)
+		extra = append(extra, complements[:min(len(complements), 1)]...)
+	case len(complements) != 0:
+		item, detail.State = complements[0], "complement-seul"
+		extra = complements[1:min(len(complements), 1+answerComparisonSupplementLimit)]
+	}
+	if detail.State != "non-documente" {
+		detail.URL = href + "#candidat-" + person.ID
+		detail.Omitted = detail.Positions + detail.Complements - 1 - len(extra)
+	}
+	for _, v := range extra {
+		supplement := answerComparisonSupplement{
+			ID: v.ID, Version: v.Version, Title: v.Title, URL: v.URL, Author: v.Author, Scope: v.Status,
+			Summary: answerText(v.Summary, 360), Relation: v.Relation,
+		}
+		if len(v.Sources) != 0 {
+			supplement.Source = &v.Sources[0]
+		}
+		detail.Supplements = append(detail.Supplements, supplement)
+	}
+	item.Comparison = detail
+	return item, nil
+}
+
+func (c *snapshot) answerComparisonPositions(question string, person candidate, role string, raw json.RawMessage) ([]answerItem, error) {
+	if raw == nil {
+		return nil, nil
+	}
+	var rows []record
+	if json.Unmarshal(raw, &rows) != nil {
+		return nil, invalidCorpus
+	}
+	items := make([]answerItem, 0, len(rows))
+	for _, row := range rows {
+		item, err := c.answerQuestionPosition(question, person.ID, person.Name, role, row)
+		if err != nil {
+			return nil, err
+		}
+		items = append(items, item)
+	}
+	// Prefer a current citation and the most direct type of attribution.
+	// Stable version identifiers only break ties among equally qualified documents.
+	priority := func(item answerItem) int {
+		rank := 0
+		if item.Relation != nil && item.Relation.Status == "version-courante" {
+			rank += 4
+		}
+		switch item.Status {
+		case "campagne":
+			rank += 3
+		case "parti":
+			rank += 2
+		case "orientation":
+			rank++
+		}
+		return rank
+	}
+	slices.SortFunc(items, func(left, right answerItem) int {
+		if difference := cmp.Compare(priority(right), priority(left)); difference != 0 {
+			return difference
+		}
+		return cmp.Compare(left.Version, right.Version)
+	})
+	return items, nil
 }
 
 func (c *snapshot) answerQuestionPosition(question, candidateID, name, qualification string, position record) (answerItem, error) {

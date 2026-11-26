@@ -276,7 +276,17 @@ test('les comparaisons par mesure gardent les conditions et l’auteur du docume
   const entries = retirements.positions.flatMap(
     (position) => position.versions,
   );
-  assert.equal(entries.length, 16);
+  assert.equal(entries.length, 18);
+  assert.ok(
+    retirements.positions
+      .find((position) => position.id === 'age-cotisation')
+      .versions.includes('bonnal-age-legal-retraite-64-ans-v1'),
+  );
+  assert.ok(
+    retirements.positions
+      .find((position) => position.id === 'departs-plus-tot')
+      .versions.includes('bouamrane-adapter-age-depart-a-penibilite-v1'),
+  );
   assert.ok(entries.includes('lepen-retraites-age-carriere-v1'));
   assert.ok(entries.includes('ps-retraites-age-cotisation-v1'));
   assert.ok(

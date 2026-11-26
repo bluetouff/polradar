@@ -18,7 +18,8 @@ export const digitalTopics = topics.map((topic) => {
         !candidate ||
         measure.scope === 'archive' ||
         !source ||
-        !['campagne', 'parti'].includes(source.kind) ||
+        (!['campagne', 'parti'].includes(source.kind) &&
+          !(source.kind === 'presse' && source.originalFormat)) ||
         referenced.has(id)
       )
         throw new Error(`Fiche numérique invalide : ${id}`);
@@ -50,6 +51,11 @@ export const digitalTopics = topics.map((topic) => {
 export const digitalCount = digitalTopics.reduce(
   (count, topic) => count + topic.entries.length,
   0,
+);
+export const digitalTopicByMeasure = new Map(
+  digitalTopics.flatMap((topic) =>
+    topic.entries.map(({ measure }) => [measure.id, topic.id] as const),
+  ),
 );
 export const digitalCandidates = new Set(
   digitalTopics.flatMap(({ entries }) =>

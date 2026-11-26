@@ -4,6 +4,7 @@ import { budgetIdsByMeasure } from '../../lib/visual-data';
 import { attributionLabel } from '../../lib/attribution.mjs';
 import { voteCases } from '../../lib/votes-data';
 import { proposalTracks } from '../../lib/proposal-data';
+import { digitalTopicByMeasure } from '../../lib/digital-data';
 import {
   candidateById,
   dataset,
@@ -22,6 +23,9 @@ export const GET: APIRoute = () =>
       programmeBudgetsUrl: '/api/budgets-programmes.json',
       measures: dataset.measures.map((m) => ({
         ...credited(m),
+        ...(digitalTopicByMeasure.has(m.id)
+          ? { digitalTopic: digitalTopicByMeasure.get(m.id) }
+          : {}),
         voteCaseIds: voteCases
           .filter((v) => v.measureId === m.id)
           .map((v) => v.id),

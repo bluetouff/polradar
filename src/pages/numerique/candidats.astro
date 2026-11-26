@@ -81,6 +81,20 @@ const reviewed = cards.filter((c) => c.sources.length > 0).length;
           ) : (
             <p>Revue documentaire à faire.</p>
           )}
+          {entries.length > 0 && (
+            <p>
+              <a
+                href={
+                  '/demander/#' +
+                  new URLSearchParams({
+                    q: `Quelles sont les propositions numériques de ${candidate.name} ?`,
+                  })
+                }
+              >
+                Poser une question sur ce dossier
+              </a>
+            </p>
+          )}
           {archives.length > 0 && (
             <details>
               <summary>Archives de 2022 ({archives.length})</summary>

@@ -115,6 +115,8 @@ export function rankedPollResults(poll) {
   );
 }
 const grammaticalWords = new Set(lexicon.motsVides);
+const questionOpeners = new Set(lexicon.questions.debuts.split(' '));
+const questionWords = new Set(lexicon.questions.mots.split(' '));
 const wordForms = new Map();
 for (const family of lexicon.formes) {
   const forms = family.split(' ');
@@ -287,6 +289,7 @@ export function filterEntries(entries, filters) {
   );
   const input = normalize(filters.q || '').slice(0, 200);
   if (!input) return selection;
+  const question = questionOpeners.has(input.match(/^[a-z]+/)?.[0] ?? '');
   // Operator-like input and punctuation-only queries remain literal text.
   const literal = /[+*|[\]{}^$@\\]|[?!]\(/.test(input);
   const query = input
@@ -305,7 +308,11 @@ export function filterEntries(entries, filters) {
     .trim();
   const tokens = [
     ...new Set(
-      searchTokens(query).filter((word) => !grammaticalWords.has(word)),
+      searchTokens(query).filter(
+        (word) =>
+          !grammaticalWords.has(word) &&
+          (!question || !questionWords.has(word)),
+      ),
     ),
   ];
   if (literal || !tokens.length)

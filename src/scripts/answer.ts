@@ -41,6 +41,10 @@ const relationNames: Record<string, string> = {
   reponse: 'Réponse à la question',
   complement: 'Complément de contexte',
 };
+const comparisonStates: Record<string, string> = {
+  'non-documente': 'Position non documentée',
+  'complement-seul': 'Complément de contexte uniquement',
+};
 
 function record(value: unknown): Record<string, unknown> {
   return value && typeof value === 'object' && !Array.isArray(value)
@@ -168,6 +172,11 @@ function renderResult(entry: Record<string, unknown>, index: number) {
       row.append(el('p', text(relation.justification), 'answer-meta'));
   }
   if (text(entry.resume)) row.append(el('p', text(entry.resume)));
+  const comparison = record(entry.comparaison);
+  const comparisonState = labelFor(comparisonStates, comparison.etat);
+  if (comparisonState) {
+    row.append(el('p', comparisonState, 'answer-meta'));
+  }
   const proofs = rows(entry.sources).map((source, position) => ({
     id: text(source.id),
     element: renderSource(source, `answer-source-${index}-${position}`),
@@ -211,6 +220,47 @@ function renderResult(entry: Record<string, unknown>, index: number) {
     );
     remaining.append(...others.map(({ element }) => element));
     row.append(remaining);
+  }
+  const additional = rows(comparison.supplementaires).filter((item) =>
+    text(item.titre),
+  );
+  if (additional.length) {
+    const detail = el('details', undefined, 'answer-proof-list');
+    const list = el('ul');
+    detail.append(
+      el('summary', 'Autres passages pour cette candidature'),
+      list,
+    );
+    for (const [position, item] of additional.entries()) {
+      const summary = el('li');
+      const label = text(item.titre);
+      summary.append(documentLink(label, item.url) ?? label);
+      const context = [
+        text(item.auteur),
+        labelFor(scopeNames, item.statut),
+        labelFor(relationNames, record(item.relation).qualification),
+      ].filter(Boolean);
+      if (context.length)
+        summary.append(el('p', context.join(' · '), 'answer-meta'));
+      if (text(item.resume)) summary.append(el('p', text(item.resume)));
+      const proof = record(item.source);
+      if (text(proof.document))
+        summary.append(
+          renderSource(proof, `answer-position-${index}-${position}`),
+        );
+      list.append(summary);
+    }
+    row.append(detail);
+  }
+  if (
+    typeof comparison.resultatsTronques === 'number' &&
+    comparison.resultatsTronques > 0
+  ) {
+    const more = documentLink(
+      'Voir tous les passages de ce dossier',
+      comparison.url,
+    );
+    if (more) row.append(more);
   }
   return row;
 }
@@ -274,7 +324,9 @@ function render(value: unknown) {
   if (index) scope.append(index);
   coverage.hidden = !scope.childElementCount;
   present(
-    (state === 'documente' && text(answer.titre)) || title,
+    ((state === 'documente' || (state === 'partiel' && items.length > 0)) &&
+      text(answer.titre)) ||
+      title,
     text(answer.explication),
     state,
   );

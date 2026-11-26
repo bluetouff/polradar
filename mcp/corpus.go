@@ -54,6 +54,7 @@ type measure struct {
 	Candidate      string            `json:"candidate"`
 	DisplayAuthor  string            `json:"displayAuthor"`
 	Theme          string            `json:"theme"`
+	DigitalTopic   string            `json:"digitalTopic,omitempty"`
 	Scope          string            `json:"scope"`
 	Edition        string            `json:"edition"`
 	Checked        string            `json:"checked"`

@@ -32,6 +32,10 @@ test('la recherche mobile charge son index au premier usage et maintient le focu
   await expect(
     page.locator('#search-results a[href="/economie/simulateurs/"]'),
   ).toBeVisible();
+  await search.fill("C'est quoi le programme de branco sur le numérique ?");
+  await expect(
+    page.locator('#search-results a[href^="/mesures/branco-"]').first(),
+  ).toBeVisible();
   expect(indexRequests()).toHaveLength(1);
   expect(indexRequests()[0].search).toBe('');
   expect(requests.filter(({ origin }) => origin !== testOrigin)).toEqual([]);

@@ -3524,14 +3524,97 @@
   },
   {
     "sourceId": "cheve-remontee-citoyenne",
-    "unit": "passage",
-    "checked": "2026-11-25",
-    "perimeter": "Passage de l’ébauche sur l’adaptation des décisions aux situations locales.",
+    "perimeter": "Les 22 pages de l’ébauche de Remontée citoyenne, y compris les illustrations et la proposition de scrutin donnée en exemple.",
+    "unit": "section",
+    "checked": "2026-11-26",
     "units": [
       {
-        "id": "passage-1",
-        "title": "Contre-pouvoir argumenté · p. 21",
-        "measureIds": ["cheve-deux-pouvoirs-executifs"]
+        "id": "aiguillage",
+        "title": "Guichet, circuit des demandes et rôle de l’État · p. 1 à 3",
+        "measureIds": [
+          "cheve-institutions-remontee-citoyenne",
+          "cheve-transmission-mensuelle",
+          "cheve-deux-pouvoirs-executifs"
+        ]
+      },
+      {
+        "id": "les-demandes",
+        "title": "Présentation des quatre types de demandes · p. 4 et 5",
+        "measureIds": [
+          "cheve-institutions-remontee-citoyenne",
+          "cheve-saisir-administration-droit",
+          "cheve-question-reponse-publique",
+          "cheve-proposition-argumentee"
+        ]
+      },
+      {
+        "id": "les-observations",
+        "title": "Présentation des observations et de leur fréquence · p. 6",
+        "measureIds": [
+          "cheve-deposer-soutenir-avis",
+          "cheve-ponderation-avis-competences",
+          "cheve-controle-citoyen",
+          "cheve-frequence-interpellations"
+        ]
+      },
+      {
+        "id": "fiction",
+        "title": "Fiction du boulevard de la Remontée · p. 7 à 10",
+        "measureIds": [],
+        "review": "sans-engagement-precis"
+      },
+      {
+        "id": "demarche-administrative",
+        "title": "Démarche administrative et orientation · p. 11 et 12",
+        "measureIds": ["cheve-institutions-remontee-citoyenne"]
+      },
+      {
+        "id": "droits",
+        "title": "Démarche pour faire valoir ses droits · p. 13",
+        "measureIds": ["cheve-saisir-administration-droit"]
+      },
+      {
+        "id": "questions",
+        "title": "Questions argumentées et examen de leur recevabilité · p. 14",
+        "measureIds": ["cheve-question-reponse-publique"]
+      },
+      {
+        "id": "propositions",
+        "title": "Modalités d’une proposition argumentée · p. 15",
+        "measureIds": ["cheve-proposition-argumentee"]
+      },
+      {
+        "id": "scrutin",
+        "title": "Exemple signé de scrutin présidentiel à un tour · p. 15 à 19",
+        "measureIds": ["cheve-scrutin-presidentiel-un-tour-bulletins"],
+        "review": "sans-engagement-precis"
+      },
+      {
+        "id": "remarques",
+        "title": "Remarques argumentées et registre envisagé · p. 20",
+        "measureIds": ["cheve-signaler-decision-remontee"]
+      },
+      {
+        "id": "controle",
+        "title": "Contre-pouvoir argumenté et vérification des signalements · p. 21",
+        "measureIds": [
+          "cheve-controle-citoyen",
+          "cheve-deux-pouvoirs-executifs"
+        ]
+      },
+      {
+        "id": "avis",
+        "title": "Avis libres et réponse aux consultations de l’État · p. 22",
+        "measureIds": [
+          "cheve-deposer-soutenir-avis",
+          "cheve-consulter-les-citoyens-a-la-demande-de-letat"
+        ]
+      },
+      {
+        "id": "exemple-avis",
+        "title": "Exemple d’avis sans engagement sur le service militaire · p. 22",
+        "measureIds": [],
+        "review": "sans-engagement-precis"
       }
     ]
   },
@@ -9968,6 +10051,518 @@
         "title": "Le contrôle",
         "sourceId": "pic-plan-controle",
         "measureIds": ["pic-plan-reconstruction-10-15-ans"]
+      }
+    ]
+  },
+  {
+    "sourceId": "billetdoux-declaration-2027",
+    "perimeter": "Déclaration intégrale consultée à partir du site de candidature et de sa transcription. Commentaire du candidat sur les critères des aides.",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "declaration",
+        "title": "Déclaration de candidature et diagnostic",
+        "measureIds": [],
+        "review": "sans-engagement-precis"
+      },
+      {
+        "id": "liste-orientations",
+        "title": "Planification, fiscalité et congé de paternité",
+        "measureIds": [
+          "billetdoux-planification-ecologique",
+          "billetdoux-isf-climatique",
+          "billetdoux-conge-paternite",
+          "billetdoux-heritage-bareme"
+        ]
+      },
+      {
+        "id": "protectionnisme",
+        "title": "Orientation en faveur d’un protectionnisme écologique",
+        "measureIds": ["billetdoux-protectionnisme-ecologique"],
+        "sourceId": "billetdoux-declaration-linkedin",
+        "review": "sans-engagement-precis"
+      },
+      {
+        "id": "fiscalite-aides",
+        "title": "Réexamen de la fiscalité et des aides en début de mandat",
+        "measureIds": [
+          "billetdoux-reexaminer-aides-et-fiscalite-au-debut-du-mandat"
+        ],
+        "sourceId": "billetdoux-declaration-linkedin"
+      },
+      {
+        "id": "conditionnement",
+        "title": "Conditionnement des aides et rémunération agricole",
+        "measureIds": ["billetdoux-aides-entreprises"],
+        "sourceId": "billetdoux-declaration-linkedin"
+      },
+      {
+        "id": "questions-ouvertes",
+        "title": "Débat sur une récompense fiscale et sur un éventuel statut",
+        "measureIds": [],
+        "review": "sans-engagement-precis",
+        "sourceId": "billetdoux-declaration-linkedin"
+      },
+      {
+        "id": "assemblee-citoyenne",
+        "title": "Commentaire du candidat sur une assemblée citoyenne",
+        "measureIds": [
+          "billetdoux-debattre-des-criteres-daides-en-assemblee-citoyenne"
+        ],
+        "sourceId": "billetdoux-declaration-linkedin",
+        "review": "sans-engagement-precis"
+      },
+      {
+        "id": "revenu-agricole",
+        "title": "Rémunération des producteurs agricoles",
+        "measureIds": ["billetdoux-remuneration-agriculteurs"]
+      }
+    ]
+  },
+  {
+    "sourceId": "bonnal-reponses-quiz-2026-10-24",
+    "perimeter": "Réponses personnelles datées du 24 octobre 2026. Les comparaisons séparent les réponses publiées, les résumés sans formulation originale et les positions provenant d’autres pièces.",
+    "unit": "entrée",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "bonnal-impot-minimum-patrimoines-100-millions",
+        "title": "À la question sur l’impôt minimum sur les grandes fortunes",
+        "measureIds": ["bonnal-impot-minimum-patrimoines-100-millions"]
+      },
+      {
+        "id": "bonnal-refus-reprise-publique-autoroutes",
+        "title": "À la question sur la gestion des autoroutes",
+        "measureIds": ["bonnal-refus-reprise-publique-autoroutes"]
+      },
+      {
+        "id": "bonnal-achats-publics-produits-fabriques-france",
+        "title": "À la question sur les achats publics",
+        "measureIds": ["bonnal-achats-publics-produits-fabriques-france"]
+      },
+      {
+        "id": "bonnal-smic-revalorisation-automatique",
+        "title": "À la question sur le Smic",
+        "measureIds": ["bonnal-smic-revalorisation-automatique"]
+      },
+      {
+        "id": "bonnal-horaires-fixes-par-entreprise",
+        "title": "À la question sur les 35 heures et les horaires",
+        "measureIds": ["bonnal-horaires-fixes-par-entreprise"]
+      },
+      {
+        "id": "bonnal-indemnisation-chomage-plus-stricte",
+        "title": "À la question sur l’indemnisation du chômage",
+        "measureIds": ["bonnal-indemnisation-chomage-plus-stricte"]
+      },
+      {
+        "id": "bonnal-regularisation-cas-par-cas-metiers-en-tension",
+        "title": "À la question sur les métiers en tension",
+        "measureIds": ["bonnal-regularisation-cas-par-cas-metiers-en-tension"]
+      },
+      {
+        "id": "bonnal-age-legal-retraite-64-ans",
+        "title": "À la question sur l’âge légal de départ à la retraite",
+        "measureIds": ["bonnal-age-legal-retraite-64-ans"]
+      },
+      {
+        "id": "bonnal-part-capitalisation-retraites",
+        "title": "À la question sur la capitalisation des retraites",
+        "measureIds": ["bonnal-part-capitalisation-retraites"]
+      },
+      {
+        "id": "bonnal-indexer-petites-pensions-inflation",
+        "title": "À la question sur la revalorisation des pensions",
+        "measureIds": ["bonnal-indexer-petites-pensions-inflation"]
+      },
+      {
+        "id": "bonnal-taux-plein-retraite-41-annuites",
+        "title": "À la question sur la durée de cotisation pour le taux plein",
+        "measureIds": ["bonnal-taux-plein-retraite-41-annuites"]
+      },
+      {
+        "id": "bonnal-supprimer-droit-du-sol",
+        "title": "À la question sur l’accès à la nationalité par le droit du sol",
+        "measureIds": ["bonnal-supprimer-droit-du-sol"]
+      },
+      {
+        "id": "bonnal-ame-soins-urgents",
+        "title": "À la question sur l’aide médicale de l’État",
+        "measureIds": ["bonnal-ame-soins-urgents"]
+      },
+      {
+        "id": "bonnal-priorite-nationale-prestations-logement-social",
+        "title": "À la question sur l’accès aux prestations sociales et au logement social",
+        "measureIds": ["bonnal-priorite-nationale-prestations-logement-social"]
+      },
+      {
+        "id": "bonnal-supprimer-regroupement-familial",
+        "title": "À la question sur le regroupement familial",
+        "measureIds": ["bonnal-supprimer-regroupement-familial"]
+      },
+      {
+        "id": "bonnal-nouveaux-reacteurs-nucleaires",
+        "title": "À la question sur le nucléaire dans la production d’électricité",
+        "measureIds": ["bonnal-nouveaux-reacteurs-nucleaires"]
+      },
+      {
+        "id": "bonnal-accelerer-installation-eoliennes",
+        "title": "À la question sur l’installation d’éoliennes",
+        "measureIds": ["bonnal-accelerer-installation-eoliennes"]
+      },
+      {
+        "id": "bonnal-maintenir-zero-artificialisation-nette",
+        "title": "À la question sur le zéro artificialisation nette",
+        "measureIds": ["bonnal-maintenir-zero-artificialisation-nette"]
+      },
+      {
+        "id": "bonnal-referendum-initiative-citoyenne-legislatif",
+        "title": "À la question sur le référendum d’initiative citoyenne",
+        "measureIds": ["bonnal-referendum-initiative-citoyenne-legislatif"]
+      },
+      {
+        "id": "bonnal-conserver-constitution-1958",
+        "title": "À la question sur le maintien de la Constitution de 1958",
+        "measureIds": ["bonnal-conserver-constitution-1958"]
+      },
+      {
+        "id": "bonnal-quitter-otan",
+        "title": "À la question sur l’appartenance à l’OTAN",
+        "measureIds": ["bonnal-quitter-otan"]
+      },
+      {
+        "id": "bonnal-maintenir-marche-europeen-electricite",
+        "title": "À la question sur le marché européen de l’électricité",
+        "measureIds": ["bonnal-maintenir-marche-europeen-electricite"]
+      },
+      {
+        "id": "bonnal-allegement-reglement-europeen-ia",
+        "title": "À la question sur le règlement européen sur l’intelligence artificielle",
+        "measureIds": ["bonnal-allegement-reglement-europeen-ia"]
+      },
+      {
+        "id": "bonnal-refus-peines-minimales-obligatoires",
+        "title": "À la question sur les peines minimales obligatoires",
+        "measureIds": ["bonnal-refus-peines-minimales-obligatoires"]
+      },
+      {
+        "id": "bonnal-refus-assouplissement-cannabis",
+        "title": "À la question sur la légalisation du cannabis",
+        "measureIds": ["bonnal-refus-assouplissement-cannabis"]
+      },
+      {
+        "id": "bonnal-limiter-installation-medecins-zones-bien-dotees",
+        "title": "À la question sur l’installation des médecins",
+        "measureIds": ["bonnal-limiter-installation-medecins-zones-bien-dotees"]
+      },
+      {
+        "id": "bonnal-abroger-loi-aide-a-mourir",
+        "title": "À la question sur la loi sur l’aide à mourir",
+        "measureIds": ["bonnal-abroger-loi-aide-a-mourir"]
+      },
+      {
+        "id": "bonnal-augmenter-franchises-medicales-participations",
+        "title": "À la question sur les franchises médicales et les participations forfaitaires",
+        "measureIds": ["bonnal-augmenter-franchises-medicales-participations"]
+      },
+      {
+        "id": "bonnal-refus-autorisation-neonicotinoides",
+        "title": "À la question sur les néonicotinoïdes",
+        "measureIds": ["bonnal-refus-autorisation-neonicotinoides"]
+      },
+      {
+        "id": "bonnal-refus-groupes-niveau-college",
+        "title": "À la question sur les groupes de niveau au collège",
+        "measureIds": ["bonnal-refus-groupes-niveau-college"]
+      },
+      {
+        "id": "bonnal-refus-uniforme-ecole-college",
+        "title": "À la question sur l’uniforme scolaire",
+        "measureIds": ["bonnal-refus-uniforme-ecole-college"]
+      },
+      {
+        "id": "bonnal-refus-internats-specialises-eleves-exclus",
+        "title": "À la question sur les internats spécialisés pour les élèves exclus",
+        "measureIds": ["bonnal-refus-internats-specialises-eleves-exclus"]
+      },
+      {
+        "id": "bonnal-conserver-parcoursup",
+        "title": "À la question sur Parcoursup",
+        "measureIds": ["bonnal-conserver-parcoursup"]
+      },
+      {
+        "id": "bonnal-maintenir-quotas-loi-sru",
+        "title": "À la question sur les obligations de la loi SRU",
+        "measureIds": ["bonnal-maintenir-quotas-loi-sru"]
+      },
+      {
+        "id": "bonnal-supprimer-encadrement-loyers",
+        "title": "À la question sur le plafonnement des loyers",
+        "measureIds": ["bonnal-supprimer-encadrement-loyers"]
+      },
+      {
+        "id": "bonnal-maintenir-calendrier-location-passoires",
+        "title": "À la question sur la location des passoires énergétiques",
+        "measureIds": ["bonnal-maintenir-calendrier-location-passoires"]
+      },
+      {
+        "id": "bonnal-assouplir-regles-meubles-tourisme",
+        "title": "À la question sur les locations de courte durée",
+        "measureIds": ["bonnal-assouplir-regles-meubles-tourisme"]
+      },
+      {
+        "id": "vetements-cites-par-le-manifeste",
+        "title": "Port des vêtements musulmans · prise de position déjà reliée au manifeste",
+        "sourceId": "bonnal-notice-auteur",
+        "measureIds": ["bonnal-vetements-musulmans"]
+      },
+      {
+        "id": "taxes-carburants",
+        "title": "Taxes sur les carburants · formulation originale non publiée",
+        "review": "a-examiner",
+        "measureIds": []
+      },
+      {
+        "id": "proportionnelle",
+        "title": "Proportionnelle · formulation originale non publiée",
+        "review": "a-examiner",
+        "measureIds": []
+      },
+      {
+        "id": "majorite-penale",
+        "title": "Âge de la majorité pénale · formulation originale non publiée",
+        "review": "a-examiner",
+        "measureIds": []
+      },
+      {
+        "id": "champ-des-referendums",
+        "title": "Élargissement du champ des référendums · réponse elliptique",
+        "review": "sans-engagement-precis",
+        "measureIds": []
+      },
+      {
+        "id": "impot-sur-la-fortune",
+        "title": "ISF · passage original de la déclaration distincte à retrouver",
+        "review": "a-examiner",
+        "measureIds": []
+      },
+      {
+        "id": "sortie-de-lue",
+        "title": "Sortie de l’Union européenne · billet de 2024 sans réaffirmation 2027 établie",
+        "review": "sans-engagement-precis",
+        "measureIds": [],
+        "sourceId": "bonnal-billet-frexit-2024"
+      }
+    ]
+  },
+  {
+    "sourceId": "cheve-remontee-feuille-de-route",
+    "perimeter": "Feuille de route du projet de La France Adulte, publiée au nom de l’association.",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "etapes",
+        "title": "Discussion avec des élus, essai à petite échelle et étude de faisabilité envisagés par l’association",
+        "review": "sans-engagement-precis",
+        "measureIds": []
+      }
+    ]
+  },
+  {
+    "sourceId": "agenda-bouamrane-retour-livre",
+    "perimeter": "Passages vérifiés dans la publication d’origine pour les positions reliées ci-dessous.",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "bouamrane-conference-sociale-salaires",
+        "title": "Réunir une conférence sociale sur les salaires",
+        "measureIds": ["bouamrane-conference-sociale-salaires"]
+      },
+      {
+        "id": "bouamrane-etats-generaux-jeunesse",
+        "title": "Organiser des états généraux de la jeunesse",
+        "measureIds": ["bouamrane-etats-generaux-jeunesse"]
+      },
+      {
+        "id": "bouamrane-baisser-csg-jusquau-salaire-median",
+        "title": "Baisser la CSG sur les rémunérations jusqu’au salaire médian",
+        "measureIds": ["bouamrane-baisser-csg-jusquau-salaire-median"]
+      },
+      {
+        "id": "bouamrane-augmenter-prime-activite",
+        "title": "Augmenter la prime d’activité",
+        "measureIds": ["bouamrane-augmenter-prime-activite"]
+      }
+    ]
+  },
+  {
+    "sourceId": "bouamrane-entretien-oumma-2026-07-02",
+    "perimeter": "Passages vérifiés dans la publication d’origine pour les positions reliées ci-dessous.",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "bouamrane-conditionner-aides-entreprises-investissement-emploi",
+        "title": "Conditionner les aides publiques aux entreprises à l’investissement et à l’emploi en France",
+        "measureIds": [
+          "bouamrane-conditionner-aides-entreprises-investissement-emploi"
+        ]
+      },
+      {
+        "id": "bouamrane-adapter-age-depart-a-penibilite",
+        "title": "Adapter l’âge de départ à la retraite à la pénibilité des carrières",
+        "measureIds": ["bouamrane-adapter-age-depart-a-penibilite"]
+      },
+      {
+        "id": "bouamrane-baisser-tva-construction-accession",
+        "title": "Baisser la TVA pour faciliter la construction et l’accession à la propriété",
+        "measureIds": ["bouamrane-baisser-tva-construction-accession"]
+      },
+      {
+        "id": "bouamrane-contribution-soins-revenus-eleves",
+        "title": "Faire davantage contribuer les revenus très élevés aux dépenses de santé",
+        "measureIds": ["bouamrane-contribution-soins-revenus-eleves"]
+      },
+      {
+        "id": "bouamrane-ecoles-elementaires-activites-periscolaires",
+        "title": "Accroître les investissements dans les écoles élémentaires et le périscolaire",
+        "measureIds": ["bouamrane-ecoles-elementaires-activites-periscolaires"]
+      },
+      {
+        "id": "bouamrane-parcours-culture-sport-langues-college",
+        "title": "Proposer des parcours de culture, de sport ou de langues au collège",
+        "measureIds": ["bouamrane-parcours-culture-sport-langues-college"]
+      },
+      {
+        "id": "bouamrane-strategie-europeenne-ia-cloud-cybersecurite",
+        "title": "Construire une politique européenne commune pour l’IA, le cloud et la cybersécurité",
+        "measureIds": ["bouamrane-strategie-europeenne-ia-cloud-cybersecurite"]
+      },
+      {
+        "id": "bouamrane-conditions-fiscales-immobilieres-start-up-ia",
+        "title": "Améliorer les conditions fiscales et immobilières des start-up d’IA",
+        "measureIds": ["bouamrane-conditions-fiscales-immobilieres-start-up-ia"]
+      },
+      {
+        "id": "bouamrane-nucleaire-geothermie-sortie-fossiles",
+        "title": "Associer nucléaire, géothermie et sortie progressive des énergies fossiles",
+        "measureIds": ["bouamrane-nucleaire-geothermie-sortie-fossiles"]
+      },
+      {
+        "id": "bouamrane-israel-palestine-deux-etats-processus-paix",
+        "title": "Soutenir une solution à deux États et la reprise d’un processus de paix",
+        "measureIds": ["bouamrane-israel-palestine-deux-etats-processus-paix"]
+      },
+      {
+        "id": "bouamrane-appliquer-mandat-international-netanyahou",
+        "title": "Appliquer le mandat d’arrêt visant Benyamin Netanyahou s’il se rend en France",
+        "measureIds": ["bouamrane-appliquer-mandat-international-netanyahou"]
+      }
+    ]
+  },
+  {
+    "sourceId": "bouamrane-bfm-grand-soir-2026-11-06",
+    "perimeter": "Passages vérifiés dans la publication d’origine pour les positions reliées ci-dessous.",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "bouamrane-ineligibilite-maires-obligations-sru",
+        "title": "Rendre inéligibles les maires qui ne respectent pas les obligations de logement social",
+        "measureIds": ["bouamrane-ineligibilite-maires-obligations-sru"]
+      },
+      {
+        "id": "bouamrane-small-business-act-commandes-publiques",
+        "title": "Ouvrir davantage la commande publique aux petites entreprises locales",
+        "measureIds": ["bouamrane-small-business-act-commandes-publiques"]
+      },
+      {
+        "id": "contreparties",
+        "title": "Contreparties évoquées pour les grandes entreprises",
+        "measureIds": [
+          "bouamrane-conditionner-aides-entreprises-investissement-emploi"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "bouamrane-franceinfo-2026-06-24",
+    "perimeter": "Passages vérifiés dans la publication d’origine pour les positions reliées ci-dessous.",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "bouamrane-fonds-souverain-logement-100-milliards",
+        "title": "Créer un fonds souverain de 100 milliards d’euros pour le logement",
+        "measureIds": ["bouamrane-fonds-souverain-logement-100-milliards"]
+      },
+      {
+        "id": "bouamrane-droit-retrait-canicule-par-branche",
+        "title": "Adapter par branche le droit de retrait en cas de forte chaleur",
+        "measureIds": ["bouamrane-droit-retrait-canicule-par-branche"]
+      }
+    ]
+  },
+  {
+    "sourceId": "bouamrane-annonce-france-inter-video-2026-06-09",
+    "perimeter": "Passages vérifiés dans la publication d’origine pour les positions reliées ci-dessous.",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "bouamrane-former-adultes-recueil-parole-enfants",
+        "title": "Former les éducateurs et les parents à la prévention des violences faites aux enfants",
+        "measureIds": ["bouamrane-former-adultes-recueil-parole-enfants"]
+      },
+      {
+        "id": "bouamrane-moyens-magistrats-greffiers-protection-enfance",
+        "title": "Renforcer les moyens des magistrats et des greffiers",
+        "measureIds": [
+          "bouamrane-moyens-magistrats-greffiers-protection-enfance"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "bouamrane-la-provence-tour-france-2026-07-18",
+    "perimeter": "Passages vérifiés dans la publication d’origine pour les positions reliées ci-dessous.",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "bouamrane-uniforme-hymne-matin-ecole",
+        "title": "Imposer l’uniforme et l’hymne le matin à l’école",
+        "measureIds": ["bouamrane-uniforme-hymne-matin-ecole"]
+      }
+    ]
+  },
+  {
+    "sourceId": "riner-lci-ukraine-manche-2026-11-26",
+    "perimeter": "Passages vérifiés dans la publication d’origine pour les positions reliées ci-dessous.",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "riner-interroger-consequences-aide-ukraine",
+        "title": "S’interroger sur les conséquences de l’aide française à l’Ukraine",
+        "measureIds": ["riner-interroger-consequences-aide-ukraine"]
+      }
+    ]
+  },
+  {
+    "sourceId": "riner-lcp-orientations-novembre",
+    "perimeter": "Passages de l’article reprenant les déclarations de Teddy Riner sur les retraites, les salaires et les dépenses publiques.",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "depenses",
+        "title": "Réorientation des dépenses, sans poste ni objectif chiffré",
+        "review": "sans-engagement-precis",
+        "measureIds": ["riner-reorienter-depenses-publiques"]
       }
     ]
   }

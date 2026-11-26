@@ -15,7 +15,8 @@
           "tondelier-retraites-age-par-etapes-v1",
           "lepen-retraites-age-carriere-v1",
           "ps-retraites-age-cotisation-v1",
-          "roussel-ouvrir-des-departs-anticipes-pour-les-metiers-penibles-et-les-carrieres-longue-v1"
+          "roussel-ouvrir-des-departs-anticipes-pour-les-metiers-penibles-et-les-carrieres-longue-v1",
+          "bouamrane-adapter-age-depart-a-penibilite-v1"
         ]
       },
       {
@@ -27,7 +28,8 @@
           "attal-retraites-1-v1",
           "dupont-aignan-retraites-age-maintien-v1",
           "collovati-retraites-duree-depart-v1",
-          "rohou-retraites-duree-situation-v1"
+          "rohou-retraites-duree-situation-v1",
+          "bonnal-age-legal-retraite-64-ans-v1"
         ]
       },
       {
@@ -62,7 +64,8 @@
         "label": "Indexer les pensions",
         "versions": [
           "dupont-aignan-retraites-indexation-v1",
-          "labib-indexer-pensions-v1"
+          "labib-indexer-pensions-v1",
+          "bonnal-indexer-petites-pensions-inflation-v1"
         ]
       },
       {
@@ -95,7 +98,8 @@
           "dupont-aignan-retraites-capital-naissance-v1",
           "lisnard-etage-capitalisation-v1",
           "collovati-capitalisation-complement-v1",
-          "becht-permettre-aux-parents-et-grands-parents-dabonder-une-retraite-par-capitalisati-v1"
+          "becht-permettre-aux-parents-et-grands-parents-dabonder-une-retraite-par-capitalisati-v1",
+          "bonnal-part-capitalisation-retraites-v1"
         ]
       },
       {
@@ -171,7 +175,11 @@
       {
         "id": "organisation",
         "label": "Laisser adapter la durée ou le calendrier",
-        "versions": ["philippe-travail-1-v2", "attal-travail-quatre-jours-v1"]
+        "versions": [
+          "philippe-travail-1-v2",
+          "attal-travail-quatre-jours-v1",
+          "bonnal-horaires-fixes-par-entreprise-v1"
+        ]
       },
       {
         "id": "allongement",
@@ -202,7 +210,8 @@
           "rohou-institutions-ric-v1",
           "lalanne-institutions-ric-v1",
           "villepin-referendum-citoyen-v1",
-          "herlin-ric-v1"
+          "herlin-ric-v1",
+          "bonnal-referendum-initiative-citoyenne-legislatif-v1"
         ]
       },
       {
@@ -231,7 +240,8 @@
           "roussel-climat-nucleaire-v1",
           "dupont-aignan-climat-reacteurs-v1",
           "branco-climat-nouveaux-reacteurs-v1",
-          "retailleau-climat-relance-epr2-v1"
+          "retailleau-climat-relance-epr2-v1",
+          "bonnal-nouveaux-reacteurs-nucleaires-v1"
         ]
       },
       {
@@ -285,7 +295,10 @@
       {
         "id": "suppression",
         "label": "Supprimer l’encadrement",
-        "versions": ["retailleau-logement-loyers-v1"]
+        "versions": [
+          "retailleau-logement-loyers-v1",
+          "bonnal-supprimer-encadrement-loyers-v1"
+        ]
       },
       {
         "id": "logement-social",
@@ -319,7 +332,8 @@
           "mikolajczak-sante-installation-v1",
           "ps-sante-installation-medecins-v1",
           "tondelier-sante-installation-medecins-v1",
-          "retailleau-sante-installation-medecins-v1"
+          "retailleau-sante-installation-medecins-v1",
+          "bonnal-limiter-installation-medecins-zones-bien-dotees-v1"
         ]
       },
       {
@@ -360,7 +374,8 @@
           "branco-education-parcoursup-v1",
           "ruffin-education-parcoursup-v1",
           "ps-education-parcoursup-v1",
-          "tondelier-education-parcoursup-orientation-v1"
+          "tondelier-education-parcoursup-orientation-v1",
+          "bonnal-conserver-parcoursup-v1"
         ]
       }
     ]
@@ -475,7 +490,11 @@
       {
         "id": "renforcer",
         "label": "Relever les obligations et renforcer les sanctions",
-        "versions": ["melenchon-logement-sru-v1", "tondelier-logement-sru-v1"]
+        "versions": [
+          "melenchon-logement-sru-v1",
+          "tondelier-logement-sru-v1",
+          "bouamrane-ineligibilite-maires-obligations-sru-v1"
+        ]
       },
       {
         "id": "supprimer",
@@ -617,7 +636,10 @@
       {
         "id": "capacites",
         "label": "Suspendre les capacités supplémentaires",
-        "versions": ["rohou-capacites-intermittentes-v1"]
+        "versions": [
+          "rohou-capacites-intermittentes-v1",
+          "bonnal-accelerer-installation-eoliennes-v1"
+        ]
       },
       {
         "id": "aides",
@@ -650,7 +672,10 @@
       {
         "id": "baisser",
         "label": "Baisser progressivement la CSG sur les salaires",
-        "versions": ["glucksmann-csg-salaires-v2"]
+        "versions": [
+          "glucksmann-csg-salaires-v2",
+          "bouamrane-baisser-csg-jusquau-salaire-median-v1"
+        ]
       },
       {
         "id": "bascule-cotisations",
@@ -675,7 +700,8 @@
         "label": "Ouvrir des droits selon la situation professionnelle, scolaire ou familiale",
         "versions": [
           "melenchon-sejour-travailleurs-etudiants-parents-v1",
-          "ecologistes-regularisation-criteres-v1"
+          "ecologistes-regularisation-criteres-v1",
+          "bonnal-regularisation-cas-par-cas-metiers-en-tension-v1"
         ]
       },
       {
@@ -779,7 +805,10 @@
       {
         "id": "supprimer",
         "label": "Supprimer le regroupement familial",
-        "versions": ["collovati-fin-regroupement-familial-v1"]
+        "versions": [
+          "collovati-fin-regroupement-familial-v1",
+          "bonnal-supprimer-regroupement-familial-v1"
+        ]
       }
     ]
   },

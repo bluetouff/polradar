@@ -15,6 +15,7 @@ type dossiers struct {
 	Questions        []record
 	Votes            []record
 	Evolutions       []record
+	Digital          *digitalReview
 	VersionDocuments []struct {
 		VersionID string `json:"versionId"`
 		Date      string

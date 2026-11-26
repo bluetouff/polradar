@@ -163,6 +163,9 @@ type lexicalRecord struct {
 func indexRecord(m measure, candidate, theme string) lexicalRecord {
 	title := strings.Join(lexicalTokens(m.Title), " ")
 	fields := []string{m.Title, m.Description, m.DisplayAuthor, candidate, theme}
+	if m.DigitalTopic != "" {
+		fields = append(fields, "numérique")
+	}
 	for _, field := range []*string{m.Beneficiaries, m.Timing, m.Financing} {
 		if field != nil {
 			fields = append(fields, *field)

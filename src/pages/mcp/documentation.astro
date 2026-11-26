@@ -154,6 +154,23 @@ const steps = [
         la suite. Si la révision change, reprenez depuis la première page.
       </p>
       <p>
+        Pour une question de comparaison, <code>polradar_answer</code> présente
+        jusqu’à six candidatures identifiées dans une réponse. Le champ
+        <code>couverture.comparaison</code> indique combien ont été demandées,
+        identifiées et traitées et combien disposent d’une position. Un nombre
+        demandé <code>null</code> indique une formulation sans liste
+        dénombrable.
+      </p>
+      <p>
+        Chaque dossier distingue les réponses, les compléments et l’absence de
+        position documentée. La réponse principale privilégie une version citée
+        encore courante, puis une proposition de campagne, de parti ou une
+        orientation. L’identifiant de version départage les passages de même
+        niveau. Les résumés supplémentaires conservent l’auteur, la version et
+        leur référence. Le lien vers le dossier donne la suite et
+        <code>resultatsTronques</code> chiffre les passages laissés de côté.
+      </p>
+      <p>
         <code>polradar_votes</code> donne le texte, le choix nominatif et la
         version rapprochée. Dans le service 1.2,{' '}
         <code>theme: "non-classe"</code>

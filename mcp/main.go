@@ -125,7 +125,7 @@ func register[I any](server *mcp.Server, data *store, name, description string, 
 
 func protocol(data *store, activity *usage) http.Handler {
 	quiet := slog.New(slog.NewTextHandler(io.Discard, nil))
-	server := mcp.NewServer(&mcp.Implementation{Name: "polradar", Title: "Polradar", Version: "1.6.0", WebsiteURL: site + "/mcp/"}, &mcp.ServerOptions{
+	server := mcp.NewServer(&mcp.Implementation{Name: "polradar", Title: "Polradar", Version: "1.6.1", WebsiteURL: site + "/mcp/"}, &mcp.ServerOptions{
 		Logger: quiet,
 		Instructions: "Les outils consultent le corpus public de la présidentielle française. Pour citer une proposition, donnez le lien de la fiche Polradar (urlVersion si renseignée, sinon url) et le passage original (preuves.sources, sources ou source). " +
 			"Attribuez le texte au champ auteur et précisez son statut. candidatureAssociee désigne le dossier où la fiche est classée. Si la réponse est vide, vérifiez le total et les filtres et signalez la limite des données disponibles. " +

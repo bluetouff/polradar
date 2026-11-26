@@ -11,6 +11,7 @@ import { campaignBriefs } from './briefs';
 import { questions } from './questions';
 import { measureSearchText, pollReferenceDate } from './features.mjs';
 import { householdSimulators } from './household-simulators.mjs';
+import { digitalTopicByMeasure } from './digital-data';
 export interface SearchEntry {
   id: string;
   type: string;
@@ -34,6 +35,12 @@ const readerEntries = [
     entry.title,
     entry.summary,
   ]),
+  [
+    'repere',
+    '/numerique/candidats/',
+    'Le numérique par candidat',
+    'Fiches numériques et documents examinés pour chaque candidature.',
+  ],
   [
     'repere',
     '/numerique/liberte-expression/',
@@ -165,7 +172,8 @@ async function buildSearchIndex(): Promise<SearchEntry[]> {
             themes.find((t) => t.id === measure.theme)!.label,
           ) +
           ' ' +
-          candidate.party,
+          candidate.party +
+          (digitalTopicByMeasure.has(measure.id) ? ' numérique' : ''),
         url: `/mesures/${measure.id}/`,
         candidate: measure.candidate,
         author: attributionLabel(measure, candidate.name),
