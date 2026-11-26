@@ -144,7 +144,7 @@ func (c *snapshot) parliamentaryData(a dataArgs) (any, bool, error) {
 	}
 	start := min(a.Offset, index.Scrutins)
 	skip := start
-	publications := make([]map[string]string, 0, 15)
+	publications := make([]map[string]string, 0, publicationPageSize)
 	for _, m := range index.Lots {
 		if skip >= m.Nombre {
 			skip -= m.Nombre
@@ -156,14 +156,14 @@ func (c *snapshot) parliamentaryData(a dataArgs) (any, bool, error) {
 		}
 		for _, b := range rows[skip:] {
 			publications = append(publications, map[string]string{"id": b.str("id"), "titre": b.str("objet"), "date": b.str("date")})
-			if len(publications) == 15 {
+			if len(publications) == publicationPageSize {
 				break
 			}
 		}
 		skip = 0
-		if len(publications) == 15 {
+		if len(publications) == publicationPageSize {
 			break
 		}
 	}
-	return map[string]any{"collection": a.Collection, "total": index.Scrutins, "offset": start, "publications": publications, "rubrique": pageURL, "jeuVerifieLe": index.Consultation}, len(publications) == 0, nil
+	return map[string]any{"collection": a.Collection, "total": index.Scrutins, "offset": start, "suivant": nextPageOffset(start, len(publications), index.Scrutins), "publications": publications, "rubrique": pageURL, "jeuVerifieLe": index.Consultation}, len(publications) == 0, nil
 }

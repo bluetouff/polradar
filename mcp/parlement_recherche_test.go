@@ -6,10 +6,13 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"strings"
 	"testing"
+	"time"
+	"unicode/utf8"
 )
 
-func TestActSearchSitesMCPREST(t *testing.T) {
+func TestPublishedActSearchRESTAndMCP(t *testing.T) {
 	root := publishedSite(t)
 	if _, err := os.Stat(filepath.Join(root, "api", "parlement", "recherche.json")); os.IsNotExist(err) {
 		t.Skip("édition précédente du registre")
@@ -83,10 +86,56 @@ func TestActSearchSitesMCPREST(t *testing.T) {
 	if get(dataArgs{ID: "VTANR5L17V489"})["publication"].(map[string]any)["totaux"].(map[string]any)["contre"] != 162.0 {
 		t.Fatal("scrutin XVIIe historique")
 	}
+	h := handler(&store{root: root}, openUsage(t.TempDir(), time.Now()))
+	mcpList := func(params map[string]any) map[string]any {
+		t.Helper()
+		res := runTool(h, "polradar_donnees", params)
+		var response struct {
+			Result struct {
+				IsError           bool
+				StructuredContent output
+			}
+		}
+		if res.Code != 200 || json.Unmarshal(res.Body.Bytes(), &response) != nil ||
+			response.Result.IsError || response.Result.StructuredContent.Commit != c.commit {
+			t.Fatalf("MCP : %d, %s", res.Code, res.Body.String())
+		}
+		return decoded(t, response.Result.StructuredContent.Data)
+	}
+	digital := get(dataArgs{Theme: "numerique"})
+	pageTwo := get(dataArgs{Theme: "numerique", Offset: publicationPageSize, ExpectedRevision: c.commit})
+	if digital["suivant"] != float64(publicationPageSize) || pageTwo["offset"] != digital["suivant"] ||
+		pageTwo["suivant"] != float64(2*publicationPageSize) ||
+		digital["publications"].([]any)[0].(map[string]any)["id"] == pageTwo["publications"].([]any)[0].(map[string]any)["id"] {
+		t.Fatal("pagination du registre numérique")
+	}
+	if !reflect.DeepEqual(pageTwo, mcpList(map[string]any{
+		"collection": "parlement", "theme": "numerique", "offset": publicationPageSize, "expectedRevision": c.commit,
+	})) {
+		t.Fatal("pagination différente entre accès direct et MCP")
+	}
+	if last := get(dataArgs{Theme: "numerique", Offset: maxPageOffset}); last["suivant"] != nil ||
+		last["offset"] != last["total"] || len(last["publications"].([]any)) != 0 {
+		t.Fatal("dernière page du registre numérique")
+	}
+
+	french := "Je cherche le vote sur la résilience des infrastructures critiques et le renforcement de la cybersécurité, examiné à l’Assemblée nationale en première lecture."
+	if len(french) <= maxSearchQueryLength || utf8.RuneCountInString(french) > maxSearchQueryLength {
+		t.Fatal("la recette doit distinguer longueur encodée et nombre de caractères")
+	}
+	want := get(dataArgs{Query: french})
+	value, _, e := c.resource("donnees/parlement", url.Values{"query": {french}})
+	if e != nil || !reflect.DeepEqual(want, decoded(t, value)) ||
+		!reflect.DeepEqual(want, mcpList(map[string]any{"collection": "parlement", "query": french})) {
+		t.Fatalf("désaccord pour une requête en français : %v", e)
+	}
 	for _, args := range []dataArgs{{Institution: "x"}, {Debut: "2025-02-30"}, {Debut: "2025-02-02", Fin: "2025-01-01"}, {Position: "absent"}, {Recherche: true, ID: "id"}, {Recherche: true, Candidat: "inconnu"}} {
 		args.Collection = "parlement"
 		if _, _, e := c.publicData(args); e == nil {
 			t.Fatal("filtre invalide", args)
 		}
+	}
+	if _, _, e := c.publicData(dataArgs{Collection: "parlement", Query: strings.Repeat("é", maxSearchQueryLength+1)}); e != errFilter {
+		t.Fatalf("borne de requête : %v", e)
 	}
 }

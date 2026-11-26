@@ -32,6 +32,8 @@ type dataArgs struct {
 }
 type collection struct{ file, key, title, date, reference, page string }
 
+const publicationPageSize = 15
+
 var collections = map[string]collection{
 	"sondages":              {"", "polls", "scenario", "published", "noticeSource", "/sondages/"},
 	"comparaisons-sondages": {"scenarios-sondages.json", "comparisons", "label", "through", "", "/sondages/comparer/"},
@@ -73,7 +75,7 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 		return nil, false, err
 	}
 	def, ok := collections[a.Collection]
-	if !ok || len(a.ID) > 160 || a.Offset < 0 || a.Offset > 100000 || (a.ID != "" && a.Offset != 0) {
+	if !ok || len(a.ID) > 160 || a.Offset < 0 || a.Offset > maxPageOffset || (a.ID != "" && a.Offset != 0) {
 		return nil, false, errors.New("Collection, identifiant ou pagination invalide.")
 	}
 	var rows []record
@@ -87,7 +89,7 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 		return c.searchActs(a)
 	}
 	searchFields := collectionSearchFields[a.Collection]
-	if len([]rune(a.Query)) > 160 || (a.Query != "" && (len(searchFields) == 0 || a.ID != "" || normalize(a.Query) == "")) {
+	if len([]rune(a.Query)) > maxSearchQueryLength || (a.Query != "" && (len(searchFields) == 0 || a.ID != "" || normalize(a.Query) == "")) {
 		return nil, false, errFilter
 	}
 	if a.Periode != "" && (a.ID != "" || (a.Collection != "senat" && a.Collection != "parlement-europeen")) {
@@ -224,7 +226,7 @@ rowLoop:
 		return list[i].ID < list[j].ID
 	})
 	start := min(a.Offset, len(list))
-	end := min(start+15, len(list))
+	end := min(start+publicationPageSize, len(list))
 	publications := list[start:end]
 	if a.Collection == "sondages" {
 		for i := range publications {
@@ -239,11 +241,7 @@ rowLoop:
 			}
 		}
 	}
-	var next *int
-	if end < len(list) {
-		next = &end
-	}
-	result := map[string]any{"collection": a.Collection, "total": len(list), "offset": start, "suivant": next, "publications": publications, "rubrique": site + def.page, "collecteLe": collected, "jeuVerifieLe": checked}
+	result := map[string]any{"collection": a.Collection, "total": len(list), "offset": start, "suivant": nextPageOffset(start, len(publications), len(list)), "publications": publications, "rubrique": site + def.page, "collecteLe": collected, "jeuVerifieLe": checked}
 	if comparison != nil {
 		result["methodeComparative"] = comparison
 	}

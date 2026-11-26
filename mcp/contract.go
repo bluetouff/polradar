@@ -12,7 +12,8 @@ import (
 // Advertise the bounds the tools already enforce, so clients can build valid arguments.
 func toolInput[I any](name string) *jsonschema.Schema {
 	switch name {
-	case answerTool, "polradar_search", "polradar_donnees", "polradar_comparer", "polradar_changements", "polradar_territoires":
+	case answerTool, "polradar_search", "polradar_measure", "polradar_donnees",
+		"polradar_question", "polradar_comparer", "polradar_votes", "polradar_changements", "polradar_territoires":
 	default:
 		return nil
 	}
@@ -21,6 +22,13 @@ func toolInput[I any](name string) *jsonschema.Schema {
 		panic(err)
 	}
 	props := schema.Properties
+	if revision := props["expectedRevision"]; revision != nil {
+		revision.Pattern = "^$|" + commitID.String()
+	}
+	if offset := props["offset"]; offset != nil {
+		offset.Minimum = jsonschema.Ptr(0.0)
+		offset.Maximum = jsonschema.Ptr(float64(maxPageOffset))
+	}
 	setEnum := func(key string, values ...string) {
 		for _, value := range values {
 			props[key].Enum = append(props[key].Enum, value)
@@ -30,20 +38,38 @@ func toolInput[I any](name string) *jsonschema.Schema {
 	case answerTool:
 		props["question"].MinLength = jsonschema.Ptr(1)
 		props["question"].MaxLength = jsonschema.Ptr(answerMaxQuestion)
-		props["expectedRevision"].Pattern = commitID.String()
 	case "polradar_search":
 		schema.Description = "Renseignez au moins un filtre : query, candidate, theme, scope ou candidateStatus."
-		schema.MinProperties = jsonschema.Ptr(1)
+		for _, key := range []string{"query", "candidate", "theme", "scope", "candidateStatus"} {
+			schema.AnyOf = append(schema.AnyOf, &jsonschema.Schema{
+				Required:   []string{key},
+				Properties: map[string]*jsonschema.Schema{key: {MinLength: jsonschema.Ptr(1)}},
+			})
+		}
 		setEnum("scope", "", "campagne", "parti", "orientation", "archive")
 		setEnum("candidateStatus", "", "toutes", "actives", "retirees")
 		setEnum("sort", "", "pertinence", "alphabetique")
 		setEnum("mode", "", "preuves")
-		props["query"].MaxLength = jsonschema.Ptr(160)
+		props["query"].MaxLength = jsonschema.Ptr(maxSearchQueryLength)
 		props["limit"].Minimum = jsonschema.Ptr(0.0)
-		props["limit"].Maximum = jsonschema.Ptr(25.0)
+		props["limit"].Maximum = jsonschema.Ptr(float64(maxSearchLimit))
+		schema.If = &jsonschema.Schema{
+			Required:   []string{"mode"},
+			Properties: map[string]*jsonschema.Schema{"mode": {Enum: []any{"preuves"}}},
+		}
+		schema.Then = &jsonschema.Schema{
+			Properties: map[string]*jsonschema.Schema{"limit": {Maximum: jsonschema.Ptr(float64(maxProofSearchLimit))}},
+		}
+	case "polradar_measure":
+		props["id"].MinLength = jsonschema.Ptr(1)
+		props["id"].MaxLength = jsonschema.Ptr(160)
+		props["version"].Minimum = jsonschema.Ptr(0.0)
 	case "polradar_donnees":
 		setEnum("collection", slices.Sorted(maps.Keys(collections))...)
-		props["query"].MaxLength = jsonschema.Ptr(160)
+		setEnum("institution", append([]string{""}, actChambers...)...)
+		setEnum("nature", append([]string{""}, actNatures...)...)
+		setEnum("position", append([]string{""}, actPositions...)...)
+		props["query"].MaxLength = jsonschema.Ptr(maxSearchQueryLength)
 	case "polradar_comparer":
 		props["candidates"].Type = "array"
 		props["candidates"].Types = nil
@@ -133,8 +159,7 @@ func toolOutput(name string) map[string]any {
 	case "polradar_measure":
 		data = alternatives(fields(map[string]string{"id": "string", "titre": "string", "description": "string", "auteur": "string", "statutCandidatureActuel": "string", "sources": "array", "versions": "array", "liensDossierCourant": "object", "versionDemandee": "string|null", "url": "string", "urlVersion": "string|null"}), absent("fiche"))
 	case "polradar_donnees":
-		index := fields(map[string]string{"collection": "string", "total": "integer", "offset": "integer", "publications": "array"})
-		index["properties"].(map[string]any)["suivant"] = map[string]any{"type": []string{"integer", "null"}}
+		index := fields(map[string]string{"collection": "string", "total": "integer", "offset": "integer", "publications": "array", "suivant": "integer|null"})
 		data = alternatives(index, fields(map[string]string{"collection": "string", "publication": "object", "rubrique": "string"}), fields(map[string]string{"collection": "string", "publication": "null"}))
 	}
 	return map[string]any{"type": "object", "required": []string{"versionContrat", "revisionDuSite", "revisionDuService", "corpusVerifieLe", "sansResultat", "donnees"}, "properties": map[string]any{

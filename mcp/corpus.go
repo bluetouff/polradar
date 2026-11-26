@@ -264,6 +264,9 @@ func nullable(s string) *string {
 }
 
 func (c *snapshot) checkRevision(want string) error {
+	if want != "" && !commitID.MatchString(want) {
+		return errFilter
+	}
 	if want != "" && want != c.commit {
 		return errRevision
 	}
@@ -271,6 +274,12 @@ func (c *snapshot) checkRevision(want string) error {
 }
 
 var errRevision = errors.New("La révision demandée diffère de celle du site. Recommencez la pagination.")
+
+const (
+	maxSearchQueryLength = 160
+	maxSearchLimit       = 25
+	maxProofSearchLimit  = 5
+)
 
 type searchArgs struct {
 	Sort             string `json:"sort,omitempty" jsonschema:"pertinence ou alphabetique."`
@@ -301,15 +310,15 @@ func (c *snapshot) matchMeasures(a searchArgs) (any, bool, error) {
 	default:
 		return nil, false, errors.New("Filtre de candidature inconnu.")
 	}
-	defaultLimit, maxLimit := 10, 25
+	defaultLimit, maxLimit := 10, maxSearchLimit
 	switch a.Mode {
 	case "":
 	case "preuves":
-		defaultLimit, maxLimit = 3, 5
+		defaultLimit, maxLimit = 3, maxProofSearchLimit
 	default:
 		return nil, false, errFilter
 	}
-	if len([]rune(a.Query)) > 160 || len(a.Candidate) > 96 || len(a.Theme) > 96 || a.Offset < 0 || a.Offset > 100000 || a.Limit < 0 || a.Limit > maxLimit {
+	if len([]rune(a.Query)) > maxSearchQueryLength || len(a.Candidate) > 96 || len(a.Theme) > 96 || a.Offset < 0 || a.Offset > maxPageOffset || a.Limit < 0 || a.Limit > maxLimit {
 		return nil, false, errors.New("Vérifiez les filtres et les limites de pagination.")
 	}
 	if a.Scope != "" && a.Scope != "campagne" && a.Scope != "parti" && a.Scope != "orientation" && a.Scope != "archive" {

@@ -213,6 +213,9 @@ func TestToolErrorCategoriesAndAdvertisedBounds(t *testing.T) {
 		args map[string]any
 	}{
 		{"polradar_donnees", map[string]any{"collection": "prive-absent"}},
+		{"polradar_search", map[string]any{"mode": "preuves", "limit": 3}},
+		{"polradar_search", map[string]any{"query": "test", "mode": "preuves", "limit": maxProofSearchLimit + 1}},
+		{"polradar_measure", map[string]any{"id": "mesure", "expectedRevision": "ancienne"}},
 		{"polradar_search", map[string]any{"query": "test", "expectedRevision": strings.Repeat("b", 40)}},
 		{"polradar_donnees", map[string]any{"collection": "senat"}},
 	}
@@ -223,7 +226,7 @@ func TestToolErrorCategoriesAndAdvertisedBounds(t *testing.T) {
 		}
 	}
 	got, err := u.public(time.Now())
-	if err != nil || got.Days[0].counts != (counts{Error: 3, InvalidArguments: 1, RevisionChanged: 1, DataUnavailable: 1}) {
+	if err != nil || got.Days[0].counts != (counts{Error: 6, InvalidArguments: 4, RevisionChanged: 1, DataUnavailable: 1}) {
 		t.Fatalf("Catégories de diagnostic inattendues : %+v, %v", got, err)
 	}
 	if err := u.checkpoint(); err != nil {

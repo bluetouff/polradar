@@ -33,19 +33,27 @@ type pageArgs struct {
 	ExpectedRevision string `json:"expectedRevision,omitempty" jsonschema:"Révision du site de la première page."`
 }
 
+const maxPageOffset = 100000
+
 func (c *snapshot) validatePage(p pageArgs) error {
-	if p.Offset < 0 || p.Offset > 100000 {
+	if p.Offset < 0 || p.Offset > maxPageOffset {
 		return errFilter
 	}
 	return c.checkRevision(p.ExpectedRevision)
 }
+
+func nextPageOffset(start, size, total int) *int {
+	end := start + size
+	if end >= total {
+		return nil
+	}
+	return &end
+}
+
 func page[T any](rows []T, offset, limit int) map[string]any {
 	start := min(offset, len(rows))
 	end := min(start+limit, len(rows))
-	var next *int
-	if end < len(rows) {
-		next = &end
-	}
+	next := nextPageOffset(start, end-start, len(rows))
 	return map[string]any{"total": len(rows), "offset": start, "suivant": next, "finDeListe": next == nil, "aucunResultat": len(rows) == 0, "resultats": rows[start:end]}
 }
 func (c *snapshot) dossiers() (*dossiers, error) {

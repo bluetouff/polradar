@@ -67,8 +67,8 @@ func (c *snapshot) resource(path string, q url.Values) (any, bool, error) {
 		if !allowedParams(q, "query", "candidate", "theme", "scope", "limit", "offset", "candidateStatus", "sort", "mode") {
 			return nil, false, errFilter
 		}
-		offset, okOffset := numberParam(q, "offset", 0, 0, 100000)
-		limit, okLimit := numberParam(q, "limit", 0, 1, 25)
+		offset, okOffset := numberParam(q, "offset", 0, 0, maxPageOffset)
+		limit, okLimit := numberParam(q, "limit", 0, 1, maxSearchLimit)
 		if !okOffset || !okLimit || (q.Has("query") && normalize(q.Get("query")) == "") {
 			return nil, false, errFilter
 		}
@@ -102,7 +102,7 @@ func (c *snapshot) resource(path string, q url.Values) (any, bool, error) {
 			}
 			args.ID = parts[2]
 		} else {
-			offset, ok := numberParam(q, "offset", 0, 0, 100000)
+			offset, ok := numberParam(q, "offset", 0, 0, maxPageOffset)
 			keys := []string{"offset", "query", "periode"}
 			if parts[1] == "parlement" {
 				keys = append(keys, "recherche", "candidat", "institution", "debut", "fin", "nature", "position", "theme")

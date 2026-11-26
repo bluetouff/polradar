@@ -242,7 +242,7 @@ func (c *snapshot) archivesData(a dataArgs) (any, bool, error) {
 	}
 	start := min(a.Offset, total)
 	skip := start
-	entries := make([]map[string]string, 0, 15)
+	entries := make([]map[string]string, 0, publicationPageSize)
 	for _, p := range wanted {
 		if skip >= p.Nombre {
 			skip -= p.Nombre
@@ -254,17 +254,18 @@ func (c *snapshot) archivesData(a dataArgs) (any, bool, error) {
 		}
 		for _, row := range rows[skip:] {
 			entries = append(entries, map[string]string{"id": row.str("id"), "titre": row.str("objet"), "date": row.str("date")})
-			if len(entries) == 15 {
+			if len(entries) == publicationPageSize {
 				break
 			}
 		}
-		if len(entries) == 15 {
+		if len(entries) == publicationPageSize {
 			break
 		}
 		skip = 0
 	}
 	result["total"] = total
 	result["offset"] = start
+	result["suivant"] = nextPageOffset(start, len(entries), total)
 	result["publications"] = entries
 	return result, len(entries) == 0, nil
 }

@@ -131,7 +131,7 @@ func matchAct(b *actRow, a dataArgs, terms []string) bool {
 	return true
 }
 func (c *snapshot) searchActs(a dataArgs) (any, bool, error) {
-	if !utf8.ValidString(a.Query) || len(a.Query) > 160 || (a.Query != "" && normalize(a.Query) == "") || a.ID != "" || a.Periode != "" ||
+	if !utf8.ValidString(a.Query) || utf8.RuneCountInString(a.Query) > maxSearchQueryLength || (a.Query != "" && normalize(a.Query) == "") || a.ID != "" || a.Periode != "" ||
 		(a.Institution != "" && !slices.Contains(actChambers, a.Institution)) || (a.Nature != "" && !slices.Contains(actNatures, a.Nature)) ||
 		(a.Position != "" && !slices.Contains(actPositions, a.Position)) || (a.Debut != "" && !dayOK(a.Debut)) || (a.Fin != "" && !dayOK(a.Fin)) || (a.Fin != "" && a.Debut > a.Fin) {
 		return nil, false, errFilter
@@ -144,7 +144,7 @@ func (c *snapshot) searchActs(a dataArgs) (any, bool, error) {
 		return nil, false, errFilter
 	}
 	var total int
-	selected := make([]*actRow, 0, 15)
+	selected := make([]*actRow, 0, publicationPageSize)
 	terms := strings.Fields(normalize(a.Query))
 	for i := range x.Actes {
 		b := &x.Actes[i]
@@ -156,7 +156,8 @@ func (c *snapshot) searchActs(a dataArgs) (any, bool, error) {
 		}
 		total++
 	}
-	return map[string]any{"collection": "parlement", "total": total, "offset": min(a.Offset, total), "publications": selected, "rubrique": site + "/votes/recherche/", "couverture": actCoverage(x, a), "empreinteIndex": x.Empreinte}, len(selected) == 0, nil
+	start := min(a.Offset, total)
+	return map[string]any{"collection": "parlement", "total": total, "offset": start, "suivant": nextPageOffset(start, len(selected), total), "publications": selected, "rubrique": site + "/votes/recherche/", "couverture": actCoverage(x, a), "empreinteIndex": x.Empreinte}, len(selected) == 0, nil
 }
 
 func (c *snapshot) supplementaryAct(id string, index *parliamentIndex) (any, bool, error) {
