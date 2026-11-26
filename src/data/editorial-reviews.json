@@ -1,5 +1,114 @@
 [
   {
+    "scope": "annonces",
+    "checkedAt": "2026-11-26T17:29:34.700Z",
+    "collection": {
+      "run": "45731839898",
+      "attempt": 1
+    },
+    "candidates": [],
+    "sections": [
+      {
+        "id": "candidatures",
+        "status": "partiel",
+        "note": "5 sur 6 sources officielles accessibles.",
+        "sources": [
+          "cazeneuve-lettre",
+          "pp-home",
+          "attal-actualites-campagne",
+          "npar-campagne-presidentielle",
+          "reconquete-paroles",
+          "lo-actualites-presidentielle"
+        ],
+        "changes": []
+      },
+      {
+        "id": "agenda",
+        "status": "consulte",
+        "note": "6 sur 6 sources officielles accessibles.",
+        "sources": [
+          "agenda-kazib-paris",
+          "pcf-loos-avion-decembre",
+          "attal-actualites-campagne",
+          "npar-campagne-presidentielle",
+          "reconquete-paroles",
+          "lo-actualites-presidentielle"
+        ],
+        "changes": []
+      },
+      {
+        "id": "breves",
+        "status": "partiel",
+        "note": "6 sur 7 sources officielles accessibles.",
+        "sources": [
+          "cazeneuve-lettre",
+          "pp-home",
+          "attal-actualites-campagne",
+          "philippe-index",
+          "npar-campagne-presidentielle",
+          "reconquete-paroles",
+          "lo-actualites-presidentielle"
+        ],
+        "changes": []
+      }
+    ],
+    "hosted": {
+      "run": "45868131988",
+      "attempt": 1,
+      "since": "2026-11-24",
+      "queries": [],
+      "checks": [
+        {
+          "id": "lo-actualites-presidentielle",
+          "ok": true,
+          "url": "https://www.lutte-ouvriere.org/portail/rubrique/presidentielle-2027-la-campagne-de-nathalie-arthaud.html"
+        },
+        {
+          "id": "attal-actualites-campagne",
+          "ok": true,
+          "url": "https://attalpresident.fr/actualites"
+        },
+        {
+          "id": "pp-home",
+          "ok": true,
+          "url": "https://place-publique.eu/"
+        },
+        {
+          "id": "npar-campagne-presidentielle",
+          "ok": true,
+          "url": "https://www.npa-revolutionnaires.org/campagnes-presidentielles"
+        },
+        {
+          "id": "philippe-index",
+          "ok": true,
+          "url": "https://www.edouardphilippe.fr/"
+        },
+        {
+          "id": "reconquete-paroles",
+          "ok": true,
+          "url": "https://www.parti-reconquete.fr/"
+        },
+        {
+          "id": "cazeneuve-lettre",
+          "ok": false,
+          "url": "https://www.la-convention.fr/lettre"
+        },
+        {
+          "id": "agenda-kazib-paris",
+          "ok": true,
+          "url": "https://www.revolutionpermanente.fr/Ceux-qui-font-tourner-le-pays-doivent-decider-meeting-le-21-novembre-a-Paris-avec-Anasse-Kazib"
+        },
+        {
+          "id": "pcf-loos-avion-decembre",
+          "ok": true,
+          "url": "https://loos.pcf.fr/?page_id=847"
+        }
+      ],
+      "publications": [],
+      "changes": []
+    }
+  },
+  {
     "checkedAt": "2026-11-26T00:51:41.621Z",
     "collection": {
       "run": "45668785316",
