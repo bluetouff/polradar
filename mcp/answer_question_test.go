@@ -53,6 +53,9 @@ func TestPublishedAnswerQuestionDossiers(t *testing.T) {
 		{"Quelle est la position de Jean-François Legendre sur l’AME ?", "immigration-aide-medicale-etat", "legendre", "legendre-questionner-ame-sans-reforme-v1", "legendre-manifeste-64", "partiel", "complements_seuls", "complement"},
 		{"Que propose Jean-Luc Mélenchon pour les élèves par classe ?", "education-eleves-par-classe", "melenchon", "melenchon-education-2-v3", "lfi-school", "documente", "", "reponse"},
 		{"Quelle est la position de Gabriel Attal sur le nucléaire ?", "climat-production-nucleaire", "attal", "attal-plan-messmer-2-v1", "", "documente", "", "reponse"},
+		{"Que propose Marine Le Pen sur Parcoursup ?", "education-acces-etudes", "lepen", "lepen-publier-criteres-admission-superieur-v1", "lepen-tf1-parcoursup-octobre-2026", "documente", "", "reponse"},
+		{"Que propose David Lisnard sur Parcoursup ?", "education-acces-etudes", "lisnard", "lisnard-remplacer-parcoursup-orientation-v1", "lisnard-bfm-rmc-ecole-2026", "documente", "", "reponse"},
+		{"Que propose Édouard Philippe sur Parcoursup ?", "education-acces-etudes", "philippe", "philippe-conserver-ameliorer-parcoursup-orientation-v1", "philippe-questions-reponses-ecoles", "documente", "", "reponse"},
 	} {
 		t.Run(tc.candidate, func(t *testing.T) {
 			got := answerThroughTransports(t, h, tc.question, c.commit)

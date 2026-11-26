@@ -47,15 +47,6 @@ const examinedDocuments: Record<
         'Ma vision pour la France, passages sur l’hôpital et les services publics. Aucun dispositif d’accès local aux soins identifié dans ce texte.',
     },
   ],
-  'sante-installation-medecins': [
-    {
-      candidate: 'philippe',
-      sourceId: 'philippe-index',
-      checked: '2026-11-26',
-      locator:
-        'Volume 1 de Croire en nous, sommaire et propositions du 20 novembre. Ce volume ne fixe pas de règles d’installation des médecins.',
-    },
-  ],
   'mobilite-territoires': [
     {
       candidate: 'collovati',
@@ -547,6 +538,8 @@ interface Definition {
 }
 const additionalAnswers: Record<string, string[]> = {
   'retraites-conditions-depart': [
+    'tinland-taux-plein-55-60-v1',
+    'lepen-fixer-un-plancher-de-160-trimestres-v1',
     'revillon-apreval-retraite-socle-70-puis-85-ans-v2',
     'lepen-cantonner-trimestres-chomage-v1',
     'lepen-abroger-reforme-retraites-2023-en-2028-v1',
@@ -554,10 +547,12 @@ const additionalAnswers: Record<string, string[]> = {
     'bonnal-taux-plein-retraite-41-annuites-v1',
   ],
   'travail-salaire-minimum': [
+    'tinland-revaloriser-smic-v1',
     'bonnal-smic-revalorisation-automatique-v1',
     'glucksmann-revaloriser-smic-1700-net-v1',
   ],
   'travail-duree-travail': [
+    'tinland-reduire-duree-travail-v1',
     'platret-retour-39-heures-v1',
     'villepin-reserver-aux-partenaires-sociaux-certains-choix-sur-les-salaires-et-le-temps-de-v1',
     'ecologistes-passer-a-32-heures-sans-baisse-de-salaire-pour-les-metiers-penibles-ou-de-nu-v1',
@@ -565,6 +560,7 @@ const additionalAnswers: Record<string, string[]> = {
     'ps-experimenter-la-semaine-de-quatre-jours-par-la-negociation-collective-v1',
   ],
   'climat-production-nucleaire': [
+    'tinland-sortie-nucleaire-solaire-v1',
     'marchal-construire-centrales-nucleaires-v1',
     'bouamrane-nucleaire-geothermie-sortie-fossiles-v1',
     'attal-plan-messmer-2-v1',
@@ -574,6 +570,8 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-nouveaux-epr-et-mini-reacteurs-v1',
   ],
   'climat-prix-energie': [
+    'tinland-tva-energie-5-5-v1',
+    'melenchon-retablir-tarifs-reglementes-energie-couts-production-v1',
     'arthaud-climat-carburant-coutant-v1',
     'marchal-accord-operateurs-carburants-v1',
     'delmur-tarif-social-energie-v1',
@@ -591,6 +589,7 @@ const additionalAnswers: Record<string, string[]> = {
     'melenchon-fusionner-les-cotisations-sociales-et-la-csg-v1',
   ],
   'fiscalite-transmission-patrimoine': [
+    'philippe-perenniser-defiscalisation-donations-premier-achat-v1',
     'herlin-droits-succession-v1',
     'collovati-relever-le-seuil-dimposition-des-successions-v1',
     'philippot-petits-heritages-v1',
@@ -609,6 +608,7 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-interdire-regularisation-apres-entree-clandestine-v1',
   ],
   'immigration-travail': [
+    'lepen-taxe-embauche-extracommunautaires-v1',
     'legendre-exiger-une-demande-prealable-a-lambassade-pour-limmigration-economique-v1',
     'bonnal-regularisation-cas-par-cas-metiers-en-tension-v1',
     'dupont-aignan-conditionner-limmigration-economique-au-niveau-du-chomage-v1',
@@ -616,6 +616,10 @@ const additionalAnswers: Record<string, string[]> = {
     'groupe-rn-creer-une-taxe-a-lembauche-dun-salarie-extra-europeen-v2',
   ],
   'soins-de-proximite': [
+    'tinland-soins-proximite-medecins-v1',
+    'philippe-obligation-solidarite-medecins-v1',
+    'philippe-equipes-soins-traitantes-v1',
+    'philippe-renforcer-missions-infirmiers-pharmaciens-v1',
     'batho-installation-medecins-centres-sante-v1',
     'ecologistes-ouvrir-2-000-centres-de-sante-supplementaires-dici-2030-v1',
     'ps-sante-centres-salaries-v1',
@@ -626,12 +630,18 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-communautes-soignantes-echelle-anciens-cantons-v1',
   ],
   'sante-installation-medecins': [
+    'philippe-reguler-installation-medecins-si-echec-v1',
+    'philippe-former-medecins-assistants-infirmiers-v1',
+    'tinland-soins-proximite-medecins-v1',
     'batho-installation-medecins-centres-sante-v1',
     'dlf-bourse-medecins-zones-sous-dotees-v1',
     'branco-sante-implantation-medicale-v1',
     'melenchon-guichet-installation-soignants-v1',
   ],
   'sante-remboursement-soins': [
+    'tinland-soins-gratuits-v1',
+    'philippe-adapter-remboursements-apport-traitements-v1',
+    'philippe-plafonner-depassements-honoraires-v1',
     'legendre-remboursement-soins-v1',
     'bonnal-augmenter-franchises-medicales-participations-v1',
     'mikolajczak-revoir-le-remboursement-des-medicaments-selon-leur-service-medical-rendu-v1',
@@ -642,6 +652,8 @@ const additionalAnswers: Record<string, string[]> = {
     'branco-remboursement-psychologues-examen-national-v1',
   ],
   'institutions-declenchement-referendum': [
+    'tinland-referendum-populaire-un-pour-cent-v1',
+    'lisnard-referendum-initiative-populaire-v1',
     'dubuisson-referendum-decisions-essentielles-v2',
     'saforcada-ric-local-v1',
     'pic-ric-toutes-matieres-v1',
@@ -652,20 +664,34 @@ const additionalAnswers: Record<string, string[]> = {
     'dlf-ric-millions-inscrits-v1',
     'place-publique-droit-initiative-referendum-v1',
   ],
-  'europe-participation-union': ['dlf-referendum-appartenance-ue-v1'],
+  'europe-participation-union': [
+    'tinland-referendum-union-europeenne-v1',
+    'lepen-commission-au-service-des-etats-v1',
+    'lepen-refuser-elargissement-ue-v1',
+    'melenchon-rester-dans-union-et-euro-negocier-traites-v1',
+    'lisnard-traite-pouvoirs-conseil-parlement-europeen-v1',
+    'place-publique-traiter-elargissement-refondation-ue-2030-v1',
+    'dlf-referendum-appartenance-ue-v1',
+  ],
   'institutions-logiciels-publics': [
     'dlf-logiciels-administrations-licences-gratuites-v1',
   ],
   'agriculture-remuneration-contrats': [
+    'lepen-agriculture-prix-installation-jeunes-v1',
+    'lisnard-services-environnementaux-agriculteurs-v2',
+    'lisnard-charges-agricoles-valeur-ajoutee-v2',
     'legendre-revenu-minimum-agriculteurs-v1',
     'patriotes-garantir-des-prix-planchers-aux-agriculteurs-v1',
     'dlf-prix-garantis-agricoles-v1',
   ],
   'agriculture-installation-fermes': [
+    'lepen-agriculture-prix-installation-jeunes-v1',
+    'tinland-fermes-circuits-courts-v1',
     'dlf-garantie-installation-agricole-v1',
     'dlf-reformer-safer-v1',
   ],
   'agriculture-cantines': [
+    'tinland-restauration-collective-locale-v1',
     'delmur-cantines-locales-bio-v1',
     'pic-prix-plancher-agricole-v1',
     'ps-adapter-le-prix-de-la-cantine-aux-revenus-des-familles-jusquau-lycee-v1',
@@ -673,6 +699,7 @@ const additionalAnswers: Record<string, string[]> = {
     'melenchon-cantines-bio-local-option-vegetarienne-v1',
   ],
   'logement-obligations-parc-social': [
+    'tinland-maires-permis-logements-sociaux-v1',
     'bonnal-maintenir-quotas-loi-sru-v1',
     'roussel-sru-30-logements-sociaux-v1',
     'dlf-accession-sociale-quota-sru-v1',
@@ -680,9 +707,13 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-supprimer-article-55-de-la-loi-sru-v1',
   ],
   'logement-offre-bati': [
+    'tinland-construction-sociale-v1',
+    'tinland-mobiliser-logements-vides-v1',
+    'lepen-objectif-cent-mille-logements-sociaux-v1',
+    'lisnard-densifier-liberer-foncier-public-v1',
     'polony-logements-sociaux-intermediaires-foncier-public-outre-mer-v1',
     'roussel-logement-construction-v1',
-    'lepen-logement-foncier-public-v2',
+    'lepen-logement-foncier-public-v3',
     'becht-faciliter-la-reconversion-des-friches-et-des-bureaux-vacants-en-logements-v1',
     'tondelier-logement-logements-vacants-v1',
     'dlf-conversion-bureaux-plu-v1',
@@ -691,6 +722,8 @@ const additionalAnswers: Record<string, string[]> = {
     'philippe-construire-quatre-millions-de-logements-en-dix-ans-v1',
   ],
   'salaires-enseignants': [
+    'melenchon-negocier-grilles-enseignants-rattraper-indice-v1',
+    'glucksmann-revaloriser-salaire-enseignants-10-25-v1',
     'polony-hausse-remuneration-enseignants-vingt-trente-v1',
     'mikolajczak-relever-le-salaire-des-professeurs-des-ecoles-de-200-euros-nets-par-mois-v1',
     'retailleau-relever-le-salaire-des-enseignants-en-debut-et-milieu-de-carriere-v1',
@@ -700,6 +733,9 @@ const additionalAnswers: Record<string, string[]> = {
     'branco-salaires-enseignants-debut-carriere-v1',
   ],
   'education-acces-etudes': [
+    'lepen-publier-criteres-admission-superieur-v1',
+    'lisnard-remplacer-parcoursup-orientation-v1',
+    'philippe-conserver-ameliorer-parcoursup-orientation-v1',
     'roussel-remplacer-parcoursup-monmaster-v1',
     'becht-remplacer-parcoursup-par-une-epreuve-dadmission-liee-a-la-specialite-v1',
     'place-publique-abroger-parcoursup-etats-generaux-orientation-v1',
@@ -711,6 +747,9 @@ const additionalAnswers: Record<string, string[]> = {
     'mlekuz-constituante-apres-refus-v1',
   ],
   'institutions-contributions-citoyennes': [
+    'tinland-consultations-publiques-v1',
+    'lisnard-referendum-initiative-populaire-v1',
+    'place-publique-droit-initiative-referendum-v1',
     'mathieu-consultations-territoires-v1',
     'mlekuz-institutions-contributions-ouvertes-v1',
     'cheve-proposition-argumentee-v1',
@@ -719,13 +758,16 @@ const additionalAnswers: Record<string, string[]> = {
     'cheve-deposer-soutenir-avis-v1',
   ],
   'retraites-protection-revenus': [
+    'philippe-maintenir-montant-pensions-v1',
+    'tinland-indexation-pensions-reversion-v1',
+    'glucksmann-revaloriser-petites-pensions-carrieres-hachees-v1',
     'arthaud-travail-indexation-v1',
     'roussel-garantir-un-montant-de-pension-au-moins-egal-au-smic-v1',
     'labib-indexer-pensions-v1',
     'arthaud-revenu-minimum-retraites-chomage-invalidite-v1',
     'attal-petites-retraites-inflation-v1',
     'dlf-regimes-retraite-agricole-v1',
-    'lepen-retraites-indexation-cinq-ans-v1',
+    'lepen-retraites-indexation-cinq-ans-v2',
     'lisnard-envisager-sous-indexation-certaines-pensions-si-deficit-persiste-v1',
     'ps-garantir-85-du-smic-apres-une-carriere-entiere-dans-lagriculture-v1',
   ],
@@ -735,11 +777,14 @@ const additionalAnswers: Record<string, string[]> = {
     'philippe-plan-epargne-premier-emploi-v1',
   ],
   'logement-regulation-loyers': [
+    'tinland-loyers-15-pour-cent-v1',
     'delmur-encadrement-loyers-v1',
     'melenchon-blocage-loyers-urgence-sociale-v1',
     'philippe-donner-aux-maires-la-decision-sur-lencadrement-des-loyers-v1',
   ],
   'social-garde-jeunes-enfants': [
+    'tinland-conge-parental-et-garde-v1',
+    'philippe-plan-garde-enfants-v1',
     'branco-rendre-opposable-le-droit-a-une-place-en-creche-v1',
     'villepin-planifier-les-places-daccueil-de-la-petite-enfance-par-territoire-v1',
     'dlf-places-creches-cinq-ans-v1',
@@ -748,6 +793,8 @@ const additionalAnswers: Record<string, string[]> = {
     'place-publique-contrat-creches-privees-v1',
   ],
   'france-otan': [
+    'tinland-otan-v1',
+    'lepen-sortir-commandement-integre-otan-v1',
     'lalanne-europe-otan-v1',
     'philippot-europe-organisations-v1',
     'legendre-maintenir-renforcer-alliances-dont-otan-v1',
@@ -760,6 +807,7 @@ const additionalAnswers: Record<string, string[]> = {
     'roussel-ouvrir-des-departs-anticipes-pour-les-metiers-penibles-et-les-carrieres-longue-v1',
   ],
   'climat-avenir-eolien': [
+    'tinland-arreter-eolien-v1',
     'retailleau-interrompre-des-appels-doffres-solaires-et-eoliens-en-mer-v1',
     'melenchon-refuser-les-parcs-solaires-et-eoliens-qui-exigent-une-coupe-rase-v1',
   ],
@@ -785,7 +833,7 @@ const additionalAnswers: Record<string, string[]> = {
     'herlin-places-prison-v1',
     'becht-places-prisons-haute-securite-v1',
   ],
-  'agriculture-ogm': ['lisnard-autoriser-ntg-v2'],
+  'agriculture-ogm': ['tinland-interdire-ogm-v1', 'lisnard-autoriser-ntg-v2'],
   'statuts-outre-mer': [
     'villepin-permettre-aux-territoires-ultramarins-de-choisir-une-evolution-vers-lautonomie-v1',
     'melenchon-statut-collectivite-unique-v1',
@@ -797,11 +845,25 @@ const additionalAnswers: Record<string, string[]> = {
     'dlf-accessibilite-services-publics-numeriques-v1',
     'ecologistes-garantir-un-accueil-physique-de-service-public-a-quinze-minutes-v1',
   ],
+  'immigration-droit-sol': [
+    'tinland-citoyennete-residence-nationalite-v1',
+    'melenchon-garantir-droit-du-sol-integral-v1',
+    'lepen-supprimer-droit-du-sol-parti-v1',
+  ],
+  'immigration-aide-medicale-etat': [
+    'lisnard-remplacer-ame-par-aide-medicale-urgence-v1',
+  ],
+  'education-eleves-par-classe': [
+    'glucksmann-reduire-eleves-classes-du-primaire-v1',
+  ],
+  'travail-demarches-entreprises': ['tinland-alleger-fiscalite-entreprises-v1'],
 };
 const scopedComplements: Record<string, Record<string, string>> = {
   'climat-production-nucleaire': {
     'lepen-renegocier-prix-electricite-europe-v3':
       'Le tract prend pour base la production nucléaire et hydraulique française pour fixer le prix intérieur de l’électricité.',
+    'lepen-relancer-euratom-reacteurs-francais-v1':
+      'La proposition porte sur la construction de réacteurs français dans les pays européens. Le passage ne fixe pas de capacité de production supplémentaire en France.',
   },
   'travail-salaire-minimum': {
     'lisnard-exoneration-emploi-domicile-smic-v1':
@@ -823,6 +885,10 @@ const scopedComplements: Record<string, Record<string, string>> = {
     'riner-interroger-consequences-aide-ukraine-v1':
       'Teddy Riner dit que la France resterait aux côtés des pays opprimés. Dans cet échange, il renvoie à son futur programme pour les modalités de l’aide.',
   },
+  'france-otan': {
+    'philippe-soutenir-ladhesion-de-lukraine-a-lotan-v1':
+      'Le volet défense soutient l’adhésion de l’Ukraine à l’Alliance. Ce passage ne se prononce pas sur le commandement intégré français.',
+  },
   'retraites-financement-regimes': {
     'dubuisson-capitalisation-dans-modele-paie-v1':
       'Le prélèvement de 10 % figure dans une simulation de paie. Le document ne fixe pas le régime applicable à l’ensemble des revenus.',
@@ -831,7 +897,23 @@ const scopedComplements: Record<string, Record<string, string>> = {
     'groupe-rn-appliquer-35-heures-fonction-publique-territoriale-v1':
       'Cette disposition du contre-budget vise la fonction publique territoriale. La durée légale pour les autres salariés n’est pas traitée dans ce passage.',
   },
+  'parents-isoles': {
+    'tinland-soutien-financier-familles-v1':
+      'La mesure ciblée sur les parents isolés en difficulté concerne la protection maternelle et infantile à domicile.',
+  },
+  'retraites-penibilite': {
+    'lepen-preserver-carrieres-longues-plus-favorables-v1':
+      'Le passage prévoit de conserver le dispositif des carrières longues quand il est plus favorable. Les critères d’un départ propre aux métiers pénibles ne sont pas détaillés.',
+    'tinland-taux-plein-55-60-v1':
+      'Le chapitre annonce des aménagements pour les métiers les plus pénibles. Il ne donne pas l’âge ni les critères propres à ces départs.',
+  },
   'climat-avenir-eolien': {
+    'glucksmann-climat-doublement-renouvelables-v2':
+      'Le livret fixe un objectif pour l’ensemble des énergies renouvelables. La capacité propre à l’éolien reste à préciser.',
+    'groupe-rn-fiscalite-eolien-foncier-mer-v1':
+      'Le contre-budget du groupe parlementaire traite de la fiscalité de l’éolien. Le passage ne fixe pas le nombre de nouveaux parcs.',
+    'philippe-climat-1-v3':
+      'Le volet énergie défend le développement des renouvelables là où elles sont jugées efficaces. Il ne fixe pas d’objectif propre à l’éolien.',
     'herlin-demantelement-eolien-solaire-v1':
       'La proposition porte sur les installations existantes. Elle aide à situer l’orientation du candidat sur ces équipements.',
   },
@@ -842,6 +924,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
   'statuts-outre-mer': {
     'batho-etats-generaux-outre-mer-v1':
       'La candidate propose une concertation avec la société civile ultramarine. Le passage ne fixe pas de nouveau statut institutionnel.',
+    'tinland-autonomie-outre-mer-v1':
+      'Le chapitre défend l’autonomie économique des territoires ultramarins. Il ne donne pas le mode de consultation ni le statut proposé territoire par territoire.',
   },
   'immigration-aide-medicale-etat': {
     'legendre-questionner-ame-sans-reforme-v1':
@@ -852,6 +936,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le manifeste questionne le pays de regroupement. Il ne formule pas de nouvelle condition.',
   },
   'sante-aide-a-mourir': {
+    'lisnard-prioriser-soins-palliatifs-2025-v1':
+      'L’entretien date de janvier 2025 et précède l’adoption de la loi du 18 août 2026. Il documente une position dans le débat antérieur.',
     'saforcada-referendum-fin-de-vie-v1':
       'David Saforcada propose un débat et un référendum sur la fin de vie. La charte n’indique pas quelle modification apporter à la loi.',
   },
@@ -875,7 +961,13 @@ const searchTerms: Record<string, string> = {
 export const questionAnswerAliases: Record<string, string[]> = {
   'aide-ukraine': ['aide à l’Ukraine', 'aide française à l’Ukraine'],
   'france-otan': ['OTAN', 'place de la France dans l’OTAN'],
-  'europe-participation-union': ['sortie de l’Union européenne', 'Frexit'],
+  'europe-participation-union': [
+    'sortie de l’Union européenne',
+    'sortir de l’Union européenne',
+    'prévoit-il de sortir de l’Union européenne',
+    'rester dans l’Union européenne',
+    'Frexit',
+  ],
   'retraites-conditions-depart': [
     'âge légal de la retraite',
     'âge de départ à la retraite',

@@ -999,19 +999,32 @@
     "theme": "education",
     "title": "Réinvestir dans l’école",
     "bullets": [
-      "L’Acte I inclut un chantier de reconstruction de l’École de la République."
+      "L’Acte I inclut un chantier de reconstruction de l’École de la République.",
+      "Relever d’au moins 10 % le salaire de tous les enseignants",
+      "Réduire le nombre d’élèves par classe dans le primaire",
+      "Conditionner les subventions à l’enseignement privé à la mixité sociale"
     ],
-    "sources": ["pp-project"],
+    "sources": [
+      "pp-project",
+      "glucksmann-franc-jeu-salaires-2026",
+      "glucksmann-tf1-declaration-2026",
+      "glucksmann-entretien-lemonde-ecole"
+    ],
     "scope": "orientation",
     "edition": "Projet collectif de Place publique",
     "note": "Orientation collective ; mesures et financement non détaillés dans la page consultée.",
-    "checked": "2026-11-16",
+    "checked": "2026-11-26",
     "id": "glucksmann-education",
     "history": [
       {
         "date": "2026-11-16",
         "event": "Import du dossier documenté",
         "summary": "Première version conservée dans le registre Polradar. Cette entrée ne présume pas de l’historique antérieur du programme."
+      },
+      {
+        "date": "2026-11-26",
+        "event": "Relecture des textes d’origine",
+        "summary": "3 fiches ajoutées ou précisées."
       }
     ]
   },
@@ -1483,7 +1496,8 @@
       "Faire négocier les critères de pénibilité par les partenaires sociaux",
       "Confier la gestion des retraites aux partenaires sociaux après le retour à l’équilibre",
       "Étendre la retraite progressive et le cumul emploi-retraite",
-      "Maintenir les âges de départ anticipé pour raisons de santé"
+      "Maintenir les âges de départ anticipé pour raisons de santé",
+      "Écarter une baisse des pensions dans la réforme des retraites"
     ],
     "sources": ["philippe-pension", "philippe-travail"],
     "scope": "campagne",
@@ -1864,7 +1878,9 @@
       "philippe-ecole",
       "philippe-programme-14",
       "philippe-programme-8",
-      "philippe-travail"
+      "philippe-travail",
+      "philippe-sante-2026",
+      "philippe-questions-reponses-ecoles"
     ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
@@ -2821,7 +2837,9 @@
       "rn-ukraine-communique",
       "lepen-europe-bruxelles-2026",
       "lepen-orleans-2026",
-      "lepen-livret-energie"
+      "lepen-livret-energie",
+      "lepen-euronaval-otan-2026",
+      "lcp-lepen-euronaval-2026"
     ],
     "scope": "campagne",
     "edition": "Communiqué du 19 novembre 2026",
@@ -5496,7 +5514,7 @@
     "scope": "campagne",
     "edition": "Réforme des retraites, conférence du 17 novembre 2026",
     "note": "",
-    "checked": "2026-11-25",
+    "checked": "2026-11-26",
     "history": [
       {
         "date": "2026-11-19",
@@ -5507,6 +5525,11 @@
         "date": "2026-11-25",
         "event": "Relecture de documents de campagne",
         "summary": "8 nouvelles fiches reliées aux publications originales."
+      },
+      {
+        "date": "2026-11-26",
+        "event": "Relecture des textes d’origine",
+        "summary": "4 fiches ajoutées ou précisées."
       }
     ]
   },
@@ -5533,7 +5556,9 @@
       "rn-lettre-logement-2026",
       "lepen-plan-redressement-budgetaire-2026",
       "lepen-henin",
-      "lepen-livret-energie"
+      "lepen-livret-energie",
+      "lepen-grand-oral-construction-2026",
+      "diaz-propositions-logement-2026"
     ],
     "scope": "campagne",
     "edition": "Lettre de campagne du 21 septembre 2026",
@@ -5576,7 +5601,8 @@
       "an-lepen-i635-tva-energies",
       "lepen-orleans-2026",
       "lepen-plan-redressement-budgetaire-2026",
-      "lepen-livret-energie"
+      "lepen-livret-energie",
+      "lepen-europe-bruxelles-2026"
     ],
     "scope": "campagne",
     "edition": "Amendement I-635 au PLF 2027, déposé le 8 octobre 2026",
@@ -7656,12 +7682,14 @@
       "Revenir sur le collège unique",
       "Réunir l’instruction, la culture, l’enseignement supérieur et la science dans un ministère",
       "Recruter les nouveaux enseignants sous contrat",
-      "Préserver des apprentissages sans machine à l’école"
+      "Préserver des apprentissages sans machine à l’école",
+      "Remplacer Parcoursup par une politique d’orientation"
     ],
     "sources": [
       "lisnard-crayon-2026",
       "lisnard-interview-cnews-octobre-2026",
-      "lisnard-22-novembre"
+      "lisnard-22-novembre",
+      "lisnard-bfm-rmc-ecole-2026"
     ],
     "scope": "campagne",
     "edition": "Entretien de David Lisnard au Crayon, octobre 2026",
@@ -8283,9 +8311,16 @@
     "title": "Travail & salaires · Marine Le Pen",
     "bullets": [
       "Augmenter la rémunération des apprentis",
-      "Élargir l’intéressement et la participation des salariés"
+      "Élargir l’intéressement et la participation des salariés",
+      "Renforcer le critère de localisation dans les marchés publics",
+      "Limiter la sous-traitance à trois rangs dans le bâtiment",
+      "Renforcer les contrôles contre le détachement abusif et le travail illégal"
     ],
-    "sources": ["lci-restos-debat-16-novembre", "lepen-orleans-2026"],
+    "sources": [
+      "lci-restos-debat-16-novembre",
+      "lepen-orleans-2026",
+      "lepen-grand-oral-construction-2026"
+    ],
     "scope": "campagne",
     "edition": "Présidentielle 2027",
     "note": "",
@@ -8579,17 +8614,19 @@
       "Créer une protection pour les personnes déplacées par une catastrophe environnementale",
       "Renforcer le Haut-Commissariat pour les réfugiés et créer une conférence annuelle sur les migrations",
       "Garantir l’indépendance administrative de l’Ofpra",
-      "Garantir l’accès aux droits aux femmes victimes de violences pendant leur parcours migratoire"
+      "Garantir l’accès aux droits aux femmes victimes de violences pendant leur parcours migratoire",
+      "Garantir le droit du sol intégral sur tout le territoire"
     ],
     "sources": [
       "lfi-plan-pauvrete-2027",
       "melenchon-programme-18",
-      "melenchon-programme-20"
+      "melenchon-programme-20",
+      "melenchon-programme-14"
     ],
     "scope": "campagne",
     "edition": "Présidentielle 2027",
     "note": "",
-    "checked": "2026-11-25",
+    "checked": "2026-11-26",
     "history": [
       {
         "date": "2026-11-22",
@@ -12250,17 +12287,27 @@
     "bullets": [
       "Donner accès à des interlocuteurs de confiance pour la santé mentale à l’école",
       "Construire un deuxième hôpital à Combani",
-      "Former la population aux premiers secours"
+      "Former la population aux premiers secours",
+      "Prévoir une semaine de consultations ou gardes en zone sous-dotée",
+      "Conditionner l’installation des médecins en zone bien dotée si la négociation échoue",
+      "Organiser le suivi des patients avec des équipes de soins primaires",
+      "Former 14 000 médecins par an et accroître les effectifs de soins",
+      "Confier plus de prévention et de suivi aux infirmiers et pharmaciens",
+      "Plafonner les dépassements d’honoraires",
+      "Évaluer les remboursements d’après l’apport des traitements",
+      "Rendre obligatoire la vaccination antigrippale pour soignants et résidents d’EHPAD",
+      "Rendre obligatoire la vaccination contre les papillomavirus"
     ],
     "sources": [
       "philippe-ecole",
       "philippe-programme-13",
-      "philippe-programme-1"
+      "philippe-programme-1",
+      "philippe-sante-2026"
     ],
     "scope": "campagne",
     "edition": "Croire en nous · programme présidentiel 2027",
     "note": "",
-    "checked": "2026-11-25",
+    "checked": "2026-11-26",
     "history": [
       {
         "date": "2026-11-24",
@@ -12271,6 +12318,11 @@
         "date": "2026-11-25",
         "event": "Relecture de documents de campagne",
         "summary": "Une nouvelle fiche reliée à la publication originale."
+      },
+      {
+        "date": "2026-11-26",
+        "event": "Relecture des textes d’origine",
+        "summary": "20 fiches ajoutées ou précisées."
       }
     ]
   },
@@ -15695,9 +15747,13 @@
     "title": "Éducation",
     "bullets": [
       "Affecter une infirmière scolaire à chaque établissement",
-      "Supprimer la contribution de vie étudiante et de campus"
+      "Supprimer la contribution de vie étudiante et de campus",
+      "Publier les critères d’admission choisis par les universités et les écoles"
     ],
-    "sources": ["lepen-plan-redressement-budgetaire-2026"],
+    "sources": [
+      "lepen-plan-redressement-budgetaire-2026",
+      "lepen-tf1-parcoursup-octobre-2026"
+    ],
     "scope": "campagne",
     "edition": "Campagne 2027 de Marine Le Pen",
     "note": "",
@@ -17397,9 +17453,10 @@
     "title": "Immigration",
     "bullets": [
       "Expulser automatiquement et définitivement les étrangers délinquants",
-      "Rétablir des frontières françaises et européennes"
+      "Rétablir des frontières françaises et européennes",
+      "Taxer de 1 000 € par an l’embauche d’un salarié extracommunautaire"
     ],
-    "sources": ["lepen-orleans-2026"],
+    "sources": ["lepen-orleans-2026", "lepen-grand-oral-construction-2026"],
     "scope": "campagne",
     "edition": "Présidentielle 2027",
     "note": "",
@@ -17465,7 +17522,11 @@
       "Faire constater le nombre d’adhérents cotisants des partis par un commissaire de justice",
       "Rétablir l’anonymat des parrainages présidentiels"
     ],
-    "sources": ["lisnard-interview-cnews-octobre-2026", "lisnard-22-novembre"],
+    "sources": [
+      "lisnard-interview-cnews-octobre-2026",
+      "lisnard-22-novembre",
+      "lisnard-lancement-saint-raphael-2026"
+    ],
     "scope": "campagne",
     "edition": "Présidentielle 2027",
     "note": "",
@@ -17488,8 +17549,14 @@
     "candidate": "lisnard",
     "theme": "immigration",
     "title": "Immigration",
-    "bullets": ["Fixer un objectif de 80 000 entrées légales par an"],
-    "sources": ["lisnard-interview-cnews-octobre-2026"],
+    "bullets": [
+      "Fixer un objectif de 80 000 entrées légales par an",
+      "Remplacer l’aide médicale d’État par une aide médicale d’urgence"
+    ],
+    "sources": [
+      "lisnard-interview-cnews-octobre-2026",
+      "lisnard-lancement-saint-raphael-2026"
+    ],
     "scope": "campagne",
     "edition": "Présidentielle 2027",
     "note": "",
@@ -18620,5 +18687,511 @@
         "summary": "1 fiche ajoutée."
       }
     ]
+  },
+  {
+    "id": "tinland-theme-europe",
+    "candidate": "tinland",
+    "theme": "europe",
+    "title": "Europe & monde · Serge Tinland",
+    "bullets": [
+      "Organiser un référendum sur la sortie de l’Union européenne",
+      "Rétablir le franc et le dévaluer si la sortie est approuvée",
+      "Abroger des directives sur les services publics après un vote de sortie",
+      "Sortir du commandement militaire de l’OTAN",
+      "Retirer les troupes françaises des théâtres de guerre",
+      "Refuser le traité transatlantique et ses dispositions sur les investisseurs",
+      "Accroître l’aide aux pays en difficulté",
+      "Mettre fin à l’application de la politique agricole commune en France",
+      "Restituer les îles Éparses à Madagascar",
+      "Défendre la reconnaissance de l’État de Palestine"
+    ],
+    "sources": [
+      "tinland-politique-europeenne",
+      "tinland-politique-exterieure",
+      "tinland-militaire",
+      "tinland-securite-interieure",
+      "tinland-politique-dimmigration",
+      "tinland-agriculture",
+      "tinland-loutre-mer",
+      "elysee-reconnaissance-palestine"
+    ],
+    "scope": "campagne",
+    "edition": "Programme publié sur le site Serge Tinland 2027",
+    "note": "Les fiches indiquent le chapitre, les conditions et les variantes du texte publié.",
+    "checked": "2026-11-26",
+    "history": [
+      {
+        "date": "2026-11-26",
+        "event": "Relecture du programme",
+        "summary": "9 fiches reliées aux chapitres."
+      }
+    ]
+  },
+  {
+    "id": "tinland-theme-fiscalite",
+    "candidate": "tinland",
+    "theme": "fiscalite",
+    "title": "Fiscalité & budget · Serge Tinland",
+    "bullets": [
+      "Séparer banques d’affaires et banques de crédit",
+      "Auditer les comptes des ministères et rendre les dépenses publiques accessibles",
+      "Reconduire l’octroi de mer et agir sur les prix en outre-mer",
+      "Effacer les emprunts toxiques des collectivités et aider les communes",
+      "Porter les effectifs de contrôle de la DGCCRF à 10 000",
+      "Instaurer un droit de rétractation dans les foires et salons",
+      "Permettre à l’État d’emprunter directement à la Banque de France",
+      "Annuler la dette publique et ses intérêts",
+      "Nationaliser certaines banques de crédit et entreprises privées",
+      "Accroître l’imposition du capital et lutter contre la fraude fiscale",
+      "Différencier la TVA entre biens essentiels et biens de luxe",
+      "Écarter une taxe sur les sites d’échange entre particuliers"
+    ],
+    "sources": [
+      "tinland-politique-europeenne",
+      "tinland-economie",
+      "tinland-vie-politique",
+      "tinland-loutre-mer",
+      "tinland-grands-plans-nationaux",
+      "tinland-social",
+      "tinland-constitution-1ere-republique-citoyenne"
+    ],
+    "scope": "campagne",
+    "edition": "Programme publié sur le site Serge Tinland 2027",
+    "note": "Les fiches indiquent le chapitre, les conditions et les variantes du texte publié.",
+    "checked": "2026-11-26",
+    "history": [
+      {
+        "date": "2026-11-26",
+        "event": "Relecture du programme",
+        "summary": "19 fiches reliées aux chapitres."
+      }
+    ]
+  },
+  {
+    "id": "tinland-theme-travail",
+    "candidate": "tinland",
+    "theme": "travail",
+    "title": "Travail & salaires · Serge Tinland",
+    "bullets": [
+      "Geler les prix et les salaires pendant un an si la sortie est approuvée",
+      "Investir dans la formation, l’apprentissage et l’insertion",
+      "Alléger la fiscalité et les formalités des entreprises",
+      "Conditionner les crédits d’impôt au maintien de l’emploi en France",
+      "Limiter les dividendes à 25 % des bénéfices nets",
+      "Réduire la semaine de travail des 35 heures",
+      "Relever le SMIC net mensuel",
+      "Simplifier le Code du travail",
+      "Inscrire une garantie d’emploi dans la Constitution",
+      "Soutenir la réparation, le recyclage et les coopératives"
+    ],
+    "sources": [
+      "tinland-politique-europeenne",
+      "tinland-grands-plans-nationaux",
+      "tinland-social",
+      "tinland-economie",
+      "tinland-constitution-1ere-republique-citoyenne"
+    ],
+    "scope": "campagne",
+    "edition": "Programme publié sur le site Serge Tinland 2027",
+    "note": "Les fiches indiquent le chapitre, les conditions et les variantes du texte publié.",
+    "checked": "2026-11-26",
+    "history": [
+      {
+        "date": "2026-11-26",
+        "event": "Relecture du programme",
+        "summary": "10 fiches reliées aux chapitres."
+      }
+    ]
+  },
+  {
+    "id": "tinland-theme-institutions",
+    "candidate": "tinland",
+    "theme": "institutions",
+    "title": "Institutions · Serge Tinland",
+    "bullets": [
+      "Dissoudre immédiatement l’Assemblée nationale",
+      "Soumettre la modernisation de la Constitution à référendum",
+      "Aligner la rémunération de fonctions de l’État sur celle des fonctions privées équivalentes",
+      "Interdire totalement le cumul des mandats",
+      "Abroger l’article 49.3 de la Constitution",
+      "Supprimer le Sénat et le Conseil économique, social et environnemental",
+      "Conditionner le renouvellement des mandats et rendre inéligibles les élus condamnés",
+      "Renforcer l’autonomie des communes et maintenir les départements",
+      "Supprimer le financement des partis par l’État",
+      "Utiliser un bulletin de vote unique",
+      "Abroger des dispositions sur la surveillance et ouvrir les dossiers individuels",
+      "Garantir l’indépendance de la presse et des médias"
+    ],
+    "sources": [
+      "tinland-politique-interieure",
+      "tinland-vie-politique",
+      "tinland-famille",
+      "tinland-politique-des-libertes-individuelles",
+      "tinland-economie",
+      "tinland-loutre-mer",
+      "tinland-spatial",
+      "tinland-constitution-1ere-republique-citoyenne",
+      "tinland-gouvernement"
+    ],
+    "scope": "campagne",
+    "edition": "Programme publié sur le site Serge Tinland 2027",
+    "note": "Les fiches indiquent le chapitre, les conditions et les variantes du texte publié.",
+    "checked": "2026-11-26",
+    "history": [
+      {
+        "date": "2026-11-26",
+        "event": "Relecture du programme",
+        "summary": "26 fiches reliées aux chapitres."
+      }
+    ]
+  },
+  {
+    "id": "tinland-theme-securite",
+    "candidate": "tinland",
+    "theme": "securite",
+    "title": "Sécurité & justice · Serge Tinland",
+    "bullets": [
+      "Créer un service militaire civil volontaire d’au moins six mois",
+      "Mobiliser les armées pour le plan d’urgence et moderniser la défense",
+      "Renforcer l’indépendance des juges et des procureurs",
+      "Recruter du personnel de justice et rénover les antennes",
+      "Rénover les prisons et aménager des secteurs adaptés",
+      "Augmenter les moyens de lutte contre la délinquance financière",
+      "Éloigner les auteurs de violences du domicile conjugal",
+      "Renforcer l’éducation routière et écarter les amnisties",
+      "Durcir les règles sur l’alcool et le téléphone au volant",
+      "Appliquer 110 km/h sur autoroute et 80 km/h sur route secondaire",
+      "Renforcer les équipements et contrôles de sécurité des véhicules",
+      "Autoriser un retrait de fonctions en cas d’abus policiers"
+    ],
+    "sources": [
+      "tinland-militaire",
+      "tinland-justice",
+      "tinland-economie",
+      "tinland-grands-plans-nationaux",
+      "tinland-securite-routiere",
+      "tinland-politique-des-libertes-individuelles",
+      "tinland-social",
+      "tinland-sante"
+    ],
+    "scope": "campagne",
+    "edition": "Programme publié sur le site Serge Tinland 2027",
+    "note": "Les fiches indiquent le chapitre, les conditions et les variantes du texte publié.",
+    "checked": "2026-11-26",
+    "history": [
+      {
+        "date": "2026-11-26",
+        "event": "Relecture du programme",
+        "summary": "15 fiches reliées aux chapitres."
+      }
+    ]
+  },
+  {
+    "id": "tinland-theme-immigration",
+    "candidate": "tinland",
+    "theme": "immigration",
+    "title": "Immigration · Serge Tinland",
+    "bullets": [
+      "Faire davantage participer les demandeurs à leur intégration",
+      "Ouvrir des droits politiques après cinq ans de résidence et maintenir le droit du sol"
+    ],
+    "sources": [
+      "tinland-politique-dimmigration",
+      "tinland-constitution-1ere-republique-citoyenne"
+    ],
+    "scope": "campagne",
+    "edition": "Programme publié sur le site Serge Tinland 2027",
+    "note": "Les fiches indiquent le chapitre, les conditions et les variantes du texte publié.",
+    "checked": "2026-11-26",
+    "history": [
+      {
+        "date": "2026-11-26",
+        "event": "Relecture du programme",
+        "summary": "2 fiches reliées aux chapitres."
+      }
+    ]
+  },
+  {
+    "id": "tinland-theme-logement",
+    "candidate": "tinland",
+    "theme": "logement",
+    "title": "Logement · Serge Tinland",
+    "bullets": [
+      "Construire 150 000 logements sociaux par an",
+      "Réhabiliter au moins 600 000 logements par an",
+      "Mobiliser les logements vacants pour l’hébergement et le logement",
+      "Plafonner la part du loyer à 15 % du revenu des ménages",
+      "Aider les maires à consacrer 30 % des permis aux logements sociaux",
+      "Sanctionner les constructeurs qui ne respectent pas leurs engagements",
+      "Remplacer les plus anciens HLM pour réhabiliter les quartiers"
+    ],
+    "sources": [
+      "tinland-logement",
+      "tinland-grands-plans-nationaux",
+      "tinland-social"
+    ],
+    "scope": "campagne",
+    "edition": "Programme publié sur le site Serge Tinland 2027",
+    "note": "Les fiches indiquent le chapitre, les conditions et les variantes du texte publié.",
+    "checked": "2026-11-26",
+    "history": [
+      {
+        "date": "2026-11-26",
+        "event": "Relecture du programme",
+        "summary": "7 fiches reliées aux chapitres."
+      }
+    ]
+  },
+  {
+    "id": "tinland-theme-climat",
+    "candidate": "tinland",
+    "theme": "climat",
+    "title": "Climat & énergie · Serge Tinland",
+    "bullets": [
+      "Développer les lignes de bus et de tramway et les rendre gratuites",
+      "Développer le covoiturage et les parkings en périphérie",
+      "Développer les bus hybrides et les véhicules électriques",
+      "Développer le fret ferroviaire",
+      "Protéger le foncier agricole des expropriations et des rachats étrangers",
+      "Faciliter l’installation de jeunes agriculteurs et développer les circuits courts",
+      "Interdire les OGM sur le territoire français",
+      "Libéraliser l’usage des semences traditionnelles et anciennes",
+      "Développer la production locale et les activités maritimes ultramarines",
+      "Rétablir le contrôle de l’État sur l’énergie et mettre fin à l’ouverture à la concurrence",
+      "Remplacer progressivement le parc nucléaire par du solaire thermique",
+      "Accroître la production hydraulique, géothermique et issue de la biomasse"
+    ],
+    "sources": [
+      "tinland-transport",
+      "tinland-environnement",
+      "tinland-agriculture",
+      "tinland-loutre-mer",
+      "tinland-energie",
+      "tinland-grands-plans-nationaux",
+      "tinland-sante",
+      "tinland-economie",
+      "tinland-social"
+    ],
+    "scope": "campagne",
+    "edition": "Programme publié sur le site Serge Tinland 2027",
+    "note": "Les fiches indiquent le chapitre, les conditions et les variantes du texte publié.",
+    "checked": "2026-11-26",
+    "history": [
+      {
+        "date": "2026-11-26",
+        "event": "Relecture du programme",
+        "summary": "27 fiches reliées aux chapitres."
+      }
+    ]
+  },
+  {
+    "id": "tinland-theme-education",
+    "candidate": "tinland",
+    "theme": "education",
+    "title": "Éducation · Serge Tinland",
+    "bullets": [
+      "Sensibiliser les jeunes à l’esprit critique face aux médias",
+      "Introduire des pédagogies alternatives dans l’enseignement public",
+      "Revaloriser le métier enseignant et recruter",
+      "Cesser de financer les écoles privées et défendre la gratuité des études",
+      "Recentrer les enseignements sur la lecture, l’écriture, les langues et les sciences",
+      "Rétablir l’uniforme et instaurer le programme de massage à l’école",
+      "Équiper les écoles d’un ordinateur par élève",
+      "Proposer une alimentation locale, végétale et de saison en restauration collective",
+      "Mettre en place un plan de rénovation des établissements scolaires",
+      "Développer l’enseignement des sciences spatiales et des bourses spécialisées"
+    ],
+    "sources": [
+      "tinland-securite-interieure",
+      "tinland-education",
+      "tinland-spatial"
+    ],
+    "scope": "campagne",
+    "edition": "Programme publié sur le site Serge Tinland 2027",
+    "note": "Les fiches indiquent le chapitre, les conditions et les variantes du texte publié.",
+    "checked": "2026-11-26",
+    "history": [
+      {
+        "date": "2026-11-26",
+        "event": "Relecture du programme",
+        "summary": "10 fiches reliées aux chapitres."
+      }
+    ]
+  },
+  {
+    "id": "tinland-theme-social",
+    "candidate": "tinland",
+    "theme": "social",
+    "title": "Protection sociale · Serge Tinland",
+    "bullets": [
+      "Relever les prestations familiales et verser 1 000 € à la naissance",
+      "Relever les aides à la garde et développer les modes de garde publics",
+      "Faciliter l’adoption et encadrer la PMA et la GPA",
+      "Rendre le travail, le bâti et les transports accessibles aux personnes handicapées",
+      "Relever les minima sociaux et porter l’AAH à 1 600 € nets dans le scénario de repli",
+      "Créer une cellule indépendante contre la pédocriminalité",
+      "Verser un revenu universel de 1 800 € par adulte et 900 € par mineur",
+      "Réformer le financement de la Sécurité sociale et apurer la dette de l’État",
+      "Rendre obligatoire le don des surplus alimentaires consommables",
+      "Interdire les coupures d’eau et d’électricité pour les familles fragiles",
+      "Renforcer les MDPH et faire prendre en charge la PCH par l’État",
+      "Augmenter les moyens des services d’action sociale et d’insertion"
+    ],
+    "sources": [
+      "tinland-famille",
+      "tinland-grands-plans-nationaux",
+      "tinland-sante",
+      "tinland-social",
+      "tinland-constitution-1ere-republique-citoyenne"
+    ],
+    "scope": "campagne",
+    "edition": "Programme publié sur le site Serge Tinland 2027",
+    "note": "Les fiches indiquent le chapitre, les conditions et les variantes du texte publié.",
+    "checked": "2026-11-26",
+    "history": [
+      {
+        "date": "2026-11-26",
+        "event": "Relecture du programme",
+        "summary": "13 fiches reliées aux chapitres."
+      }
+    ]
+  },
+  {
+    "id": "tinland-theme-retraites",
+    "candidate": "tinland",
+    "theme": "retraites",
+    "title": "Retraites · Serge Tinland",
+    "bullets": [
+      "Prévoir une retraite à taux plein à 55 ans et un départ au plus tard à 60 ans",
+      "Indexer les pensions sur le coût de la vie et préserver la réversion"
+    ],
+    "sources": ["tinland-social", "tinland-grands-plans-nationaux"],
+    "scope": "campagne",
+    "edition": "Programme publié sur le site Serge Tinland 2027",
+    "note": "Les fiches indiquent le chapitre, les conditions et les variantes du texte publié.",
+    "checked": "2026-11-26",
+    "history": [
+      {
+        "date": "2026-11-26",
+        "event": "Relecture du programme",
+        "summary": "2 fiches reliées aux chapitres."
+      }
+    ]
+  },
+  {
+    "id": "tinland-theme-sante",
+    "candidate": "tinland",
+    "theme": "sante",
+    "title": "Santé · Serge Tinland",
+    "bullets": [
+      "Viser la gratuité des soins, en priorité pour les publics fragiles",
+      "Interdire les rachats avec effet de levier dans la santé",
+      "Créer 120 000 lits et 120 000 postes dans les hôpitaux publics",
+      "Équiper les hôpitaux pour les pandémies et catastrophes",
+      "Mettre fin à la tarification à l’activité et au bionettoyage sous-traité",
+      "Porter le parc à 30 appareils d’IRM par million d’habitants",
+      "Améliorer la permanence des soins et la répartition des médecins",
+      "Développer les maisons de retraite et l’accueil spécialisé des personnes autistes",
+      "Renforcer la prévention et la réglementation du tabac et de l’alcool",
+      "Améliorer la prise en charge de la maladie de Lyme"
+    ],
+    "sources": ["tinland-sante", "tinland-social"],
+    "scope": "campagne",
+    "edition": "Programme publié sur le site Serge Tinland 2027",
+    "note": "Les fiches indiquent le chapitre, les conditions et les variantes du texte publié.",
+    "checked": "2026-11-26",
+    "history": [
+      {
+        "date": "2026-11-26",
+        "event": "Relecture du programme",
+        "summary": "10 fiches reliées aux chapitres."
+      }
+    ]
+  },
+  {
+    "id": "lisnard-propositions-2027-logement",
+    "candidate": "lisnard",
+    "theme": "logement",
+    "title": "Logement · David Lisnard",
+    "bullets": [
+      "Alléger la réglementation et la fiscalité de la location en résidence principale",
+      "Libérer le foncier public et favoriser la densification",
+      "Revoir les lois d’urbanisme et de logement et supprimer le DPE",
+      "Faciliter l’expulsion des squatteurs"
+    ],
+    "sources": ["lisnard-entretien-logement-2025"],
+    "scope": "campagne",
+    "edition": "Candidature à la présidentielle 2027",
+    "note": "",
+    "checked": "2026-11-26",
+    "history": [
+      {
+        "date": "2026-11-26",
+        "event": "Relecture des textes d’origine",
+        "summary": "4 fiches ajoutées ou précisées."
+      }
+    ]
+  },
+  {
+    "id": "glucksmann-propositions-2027-retraites",
+    "candidate": "glucksmann",
+    "theme": "retraites",
+    "title": "Retraites · Raphaël Glucksmann",
+    "bullets": [
+      "Revaloriser les petites pensions et tenir compte des carrières hachées"
+    ],
+    "sources": ["lci-restos-debat-16-novembre"],
+    "scope": "campagne",
+    "edition": "Candidature à la présidentielle 2027",
+    "note": "",
+    "checked": "2026-11-26",
+    "history": [
+      {
+        "date": "2026-11-26",
+        "event": "Relecture des textes d’origine",
+        "summary": "1 fiches ajoutées ou précisées."
+      }
+    ]
+  },
+  {
+    "id": "lisnard-sante-positions-prioriser-soins-palliatifs-2025",
+    "candidate": "lisnard",
+    "theme": "sante",
+    "title": "Renforcer l’accès aux soins palliatifs",
+    "bullets": ["Renforcer l’accès aux soins palliatifs"],
+    "sources": ["lisnard-entretien-fin-de-vie-2025"],
+    "scope": "orientation",
+    "edition": "Entretien · janvier 2025",
+    "note": "",
+    "checked": "2026-11-26",
+    "history": [
+      {
+        "date": "2026-11-26",
+        "event": "Relecture du document original",
+        "summary": "Une fiche reliée."
+      }
+    ]
+  },
+  {
+    "id": "lepen-immigration-positions-supprimer-droit-du-sol-parti",
+    "candidate": "lepen",
+    "theme": "immigration",
+    "title": "Supprimer l’acquisition de la nationalité par le droit du sol",
+    "bullets": [
+      "Supprimer l’acquisition de la nationalité par le droit du sol"
+    ],
+    "sources": ["rn-petition-droit-du-sol"],
+    "scope": "parti",
+    "edition": "Pétition du Rassemblement national · date non indiquée",
+    "note": "",
+    "checked": "2026-11-26",
+    "history": [
+      {
+        "date": "2026-11-26",
+        "event": "Relecture du document original",
+        "summary": "Une fiche reliée."
+      }
+    ],
+    "partyAuthor": "Rassemblement national"
   }
 ]

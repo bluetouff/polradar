@@ -89,6 +89,7 @@ export const householdSimulators = [
       { measure: 'attal-travail-plafond-heures-supplementaires' },
       { measure: 'arthaud-reduire-temps-charge-travail' },
       { measure: 'lisnard-temps-de-travail-accords' },
+      { measure: 'tinland-reduire-duree-travail' },
       {
         measure: 'melenchon-travail-2',
         detail:
@@ -185,6 +186,7 @@ export const householdSimulators = [
       },
     ],
     positions: [
+      { measure: 'tinland-revaloriser-smic' },
       {
         measure: 'tondelier-travail-1',
         detail: 'Objectif de 2 000 € bruts par mois dès 2027.',
@@ -330,6 +332,7 @@ export const householdSimulators = [
           'philippe-donner-aux-maires-la-decision-sur-lencadrement-des-loyers',
       },
       { measure: 'retailleau-logement-loyers' },
+      { measure: 'tinland-loyers-15-pour-cent' },
       { measure: 'tondelier-logement-loyers-encadrement' },
     ],
     method:

@@ -67,6 +67,8 @@ test('les cinq dossiers prioritaires renvoient à une position originale sur l�
     ['retraites-conditions-depart', priority],
     ['climat-production-nucleaire', priority.filter((id) => id !== 'lepen')],
     ['immigration-travail', priority],
+    ['education-acces-etudes', priority],
+    ['retraites-protection-revenus', priority],
   ] as const) {
     const question = questions.find(({ id }) => id === questionId);
     for (const candidate of candidates) {
@@ -155,4 +157,120 @@ test('une position nouvellement reliée se retrouve depuis la candidature et le 
   await expect(page.locator('#comparaison-batho')).toContainText(
     'centres de santé',
   );
+});
+
+test('la fiche Tinland relie le portrait, le programme et le référendum à leurs sources', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 360, height: 800 });
+  await page.goto('/candidats/tinland/');
+  await expect(
+    page.getByRole('heading', { name: 'Serge Tinland', level: 1 }),
+  ).toBeVisible();
+  const portrait = page.locator('.profile-portrait img');
+  await expect(portrait).toBeVisible();
+  await expect(portrait).toHaveJSProperty('complete', true);
+  expect(
+    await portrait.evaluate((img: HTMLImageElement) => img.naturalWidth),
+  ).toBeGreaterThan(0);
+  await expect(
+    page.locator('a[href="/credits-photos/#tinland"]'),
+  ).toBeVisible();
+
+  const programme = page.locator('.programme-reading');
+  await programme.locator('summary').click();
+  await expect(programme).toContainText('26 sections identifiées');
+  await expect(
+    programme.getByRole('link', { name: 'Politique européenne' }),
+  ).toHaveAttribute(
+    'href',
+    'https://www.sergetinland2027.fr/politique-europeenne/',
+  );
+
+  await page.goto(
+    '/recherche/#candidate=tinland&type=mesure&q=r%C3%A9f%C3%A9rendum+union',
+  );
+  await expect(
+    page.locator(
+      '#search-results a[href="/mesures/tinland-referendum-union-europeenne/"]',
+    ),
+  ).toBeVisible();
+  await page.goto(
+    '/comparer/?question=europe-participation-union&c=tinland,melenchon',
+  );
+  await expect(page.locator('#comparaison-tinland')).toContainText(
+    'Organiser un référendum sur la sortie de l’Union européenne',
+  );
+  await expect(page.locator('#comparaison-melenchon')).toContainText(
+    'Rester dans l’Union et la zone euro',
+  );
+  await page.goto('/mesures/tinland-referendum-union-europeenne/');
+  await expect(
+    page
+      .locator(
+        'a[href^="https://www.sergetinland2027.fr/politique-europeenne/#:~:text="]',
+      )
+      .first(),
+  ).toBeVisible();
+  await expect(page.locator('main')).toContainText('En cas de oui');
+});
+
+test('les propositions des six candidatures sont indexées avec leur attribution', async ({
+  request,
+}) => {
+  const corpusResponse = await request.get('/api/corpus.json');
+  const searchResponse = await request.get('/api/recherche.json');
+  expect(corpusResponse.ok() && searchResponse.ok()).toBeTruthy();
+  const {
+    measures,
+  }: {
+    measures: {
+      id: string;
+      candidate: string;
+      scope: string;
+      displayAuthor: string;
+    }[];
+  } = await corpusResponse.json();
+  const search: {
+    url: string;
+    candidate: string;
+    scope: string;
+    author: string;
+  }[] = await searchResponse.json();
+  const byURL = new Map(search.map((row) => [row.url, row]));
+  for (const candidate of [...priority, 'tinland']) {
+    const records = measures.filter(
+      (m) => m.candidate === candidate && m.scope !== 'archive',
+    );
+    expect(records.length, candidate).toBeGreaterThan(0);
+    const missing = records.filter((m) => {
+      const row = byURL.get('/mesures/' + m.id + '/');
+      return (
+        row?.candidate !== candidate ||
+        row.scope !== m.scope ||
+        row.author !== m.displayAuthor
+      );
+    });
+    expect(
+      missing.map(({ id }) => id),
+      candidate,
+    ).toEqual([]);
+  }
+});
+
+test('la recherche de mesures sur Parcoursup retrouve les nouvelles positions', async ({
+  page,
+}) => {
+  for (const [candidate, measure] of [
+    ['lepen', 'lepen-publier-criteres-admission-superieur'],
+    ['lisnard', 'lisnard-remplacer-parcoursup-orientation'],
+    ['philippe', 'philippe-conserver-ameliorer-parcoursup-orientation'],
+  ]) {
+    await page.goto(
+      `/recherche/#candidate=${candidate}&type=mesure&q=parcoursup`,
+    );
+    await expect(
+      page.locator(`#search-results a[href="/mesures/${measure}/"]`),
+    ).toBeVisible();
+  }
 });

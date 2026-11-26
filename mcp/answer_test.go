@@ -59,10 +59,10 @@ func TestPublishedQuestionRelationAnswer(t *testing.T) {
 		name, question, cited, current, qualification, reason, sourceID string
 	}{
 		{
-			"tarif et place dans la production",
+			"coopération européenne et production en France",
 			"Compare Marine Le Pen et David Lisnard sur la question climat-production-nucleaire.",
-			"lepen-renegocier-prix-electricite-europe-v3", "lepen-renegocier-prix-electricite-europe-v3",
-			"complement", "positions_non_documentees", "lepen-livret-energie",
+			"lepen-relancer-euratom-reacteurs-francais-v1", "lepen-relancer-euratom-reacteurs-francais-v1",
+			"complement", "positions_non_documentees", "lepen-europe-bruxelles-2026",
 		},
 		{
 			"version historique",

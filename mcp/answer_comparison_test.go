@@ -127,9 +127,11 @@ func TestPublishedAnswerComparisonEvidence(t *testing.T) {
 			"/resultats/3/candidatureAssociee":                      "lepen",
 			"/resultats/3/comparaison/etat":                         "complement-seul",
 			"/resultats/3/comparaison/nombrePositions":              float64(0),
-			"/resultats/3/comparaison/nombreComplements":            float64(1),
+			"/resultats/3/comparaison/nombreComplements":            float64(2),
 			"/resultats/3/relation/qualification":                   "complement",
-			"/resultats/3/sources/0/url":                            "https://www.marinelepen.com/materiel-de-campagne/3/telecharger#page=2",
+			"/resultats/3/versionId":                                "lepen-relancer-euratom-reacteurs-francais-v1",
+			"/resultats/3/comparaison/supplementaires/0/versionId":  "lepen-renegocier-prix-electricite-europe-v3",
+			"/resultats/3/comparaison/supplementaires/0/source/url": "https://www.marinelepen.com/materiel-de-campagne/3/telecharger#page=2",
 			"/resultats/4/candidatureAssociee":                      "branco",
 			"/resultats/5/candidatureAssociee":                      "melenchon",
 		})

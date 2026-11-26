@@ -71,4 +71,8 @@ export const portraitLinks = {
     url: 'https://nicolasmarchalpresident.fr/',
     contactNote: 'Le site de campagne réserve les droits de reproduction.',
   },
+  tinland: {
+    label: 'Portrait de Serge Tinland publié dans sa biographie',
+    url: 'https://www.sergetinland2027.fr/biographie/',
+  },
 };
