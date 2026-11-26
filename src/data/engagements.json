@@ -1595,6 +1595,11 @@
         "date": "2026-11-26",
         "event": "Vérification des sources originales",
         "summary": "Ajout de positions documentées et de leurs passages sources."
+      },
+      {
+        "date": "2026-11-26",
+        "event": "Relecture des sources originales",
+        "summary": "Passages vérifiés, fiches et références complétées."
       }
     ]
   },
@@ -1657,7 +1662,7 @@
   {
     "candidate": "philippe",
     "theme": "climat",
-    "title": "Nucléaire et adaptation",
+    "title": "Énergie, adaptation et agriculture",
     "bullets": [
       "Relancer la filière nucléaire.",
       "Adapter les bâtiments publics aux fortes chaleurs et accroître le stockage de l’eau.",
@@ -1669,14 +1674,17 @@
       "Remplacer des usages du pétrole et du gaz par l’électricité",
       "Décentraliser la mise en œuvre de l’adaptation climatique",
       "Baisser le prix de l’électricité pour les industriels",
-      "Concevoir le port de Longoni et le nouvel aéroport mahorais comme une plateforme logistique"
+      "Concevoir le port de Longoni et le nouvel aéroport mahorais comme une plateforme logistique",
+      "Aider les agriculteurs à s’installer et à transmettre leur exploitation"
     ],
     "sources": [
       "philippe-index",
       "philippe-programme-1",
       "philippe-programme-5",
       "philippe-programme-13",
-      "philippe-adaptation-actualites"
+      "philippe-adaptation-actualites",
+      "philippe-sommet-elevage-2026",
+      "philippe-lancement-adidas-arena-2026"
     ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
@@ -1713,6 +1721,11 @@
         "date": "2026-11-26",
         "event": "Vérification des sources originales",
         "summary": "Ajout de positions documentées et de leurs passages sources."
+      },
+      {
+        "date": "2026-11-26",
+        "event": "Relecture des sources originales",
+        "summary": "Ajout de propositions et de leurs passages sources."
       }
     ]
   },
@@ -1952,7 +1965,8 @@
       "philippe-programme-8",
       "philippe-securite",
       "philippe-aide-domicile",
-      "philippe-programme-12"
+      "philippe-programme-12",
+      "philippe-charleville-familles-2026"
     ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
@@ -2358,7 +2372,7 @@
     "scope": "parti",
     "edition": "Projet de Nouvelle Énergie",
     "note": "",
-    "checked": "2026-11-24",
+    "checked": "2026-11-26",
     "id": "lisnard-sante",
     "history": [
       {
@@ -2375,6 +2389,11 @@
         "date": "2026-11-24",
         "event": "Lecture du document",
         "summary": "4 fiches documentées."
+      },
+      {
+        "date": "2026-11-26",
+        "event": "Relecture des sources originales",
+        "summary": "Passages vérifiés, fiches et références complétées."
       }
     ]
   },
@@ -8430,7 +8449,7 @@
     "id": "place-publique-numerique",
     "candidate": "glucksmann",
     "theme": "institutions",
-    "title": "IA et régulation des plateformes",
+    "title": "Institutions, libertés et régulation numérique",
     "bullets": [
       "Créer une agence industrielle du numérique et de l’IA.",
       "Ouvrir un campus international de l’IA.",
@@ -8445,9 +8464,13 @@
       "Instaurer un vote d’investiture du Premier ministre et une censure constructive",
       "Permettre des référendums locaux et nationaux d’initiative citoyenne"
     ],
-    "sources": ["pp-acte-i-integral", "place-publique-propositions-crise-2026"],
+    "sources": [
+      "pp-acte-i-integral",
+      "place-publique-propositions-crise-2026",
+      "place-publique-acte-i-pdf-officiel"
+    ],
     "scope": "parti",
-    "edition": "L’Acte I, chantiers 7 et 8 (2025)",
+    "edition": "L’Acte I (2025) et propositions de Place publique",
     "note": "",
     "checked": "2026-11-26",
     "history": [
@@ -8465,6 +8488,16 @@
         "date": "2026-11-26",
         "event": "Vérification des sources originales",
         "summary": "Ajout de positions documentées et de leurs passages sources."
+      },
+      {
+        "date": "2026-11-26",
+        "event": "Relecture des sources",
+        "summary": "Publication de passages documentés."
+      },
+      {
+        "date": "2026-11-26",
+        "event": "Relecture des sources originales",
+        "summary": "Ajout de propositions et de leurs passages sources."
       }
     ],
     "partyAuthor": "Place publique"
@@ -9949,7 +9982,7 @@
     "id": "melenchon-justice-enfants",
     "candidate": "melenchon",
     "theme": "securite",
-    "title": "Protection des enfants et justice des mineurs",
+    "title": "Justice, protection des enfants et politique pénitentiaire",
     "bullets": [
       "Créer une ordonnance de protection de l’enfant",
       "Recruter 235 juges des enfants et 235 greffiers",
@@ -9979,7 +10012,7 @@
       "lfi-enfance-pdf"
     ],
     "scope": "campagne",
-    "edition": "Plan pour les droits des enfants, présidentielle 2027",
+    "edition": "Campagne présidentielle 2027",
     "note": "",
     "checked": "2026-11-26",
     "history": [
@@ -10017,6 +10050,11 @@
         "date": "2026-11-26",
         "event": "Vérification des sources originales",
         "summary": "Ajout de positions documentées et de leurs passages sources."
+      },
+      {
+        "date": "2026-11-26",
+        "event": "Relecture des sources originales",
+        "summary": "Ajout de propositions et de leurs passages sources."
       }
     ]
   },
@@ -11403,7 +11441,7 @@
   {
     "candidate": "lepen",
     "theme": "climat",
-    "title": "Climat & énergie · Groupe Rassemblement national",
+    "title": "Énergie et fiscalité environnementale",
     "bullets": [
       "Calculer le malus automobile sur la chaîne de fabrication du véhicule",
       "Supprimer les tarifs préférentiels pour les énergies intermittentes",
@@ -11411,11 +11449,17 @@
       "Créer une redevance d’accès aux marchés historiques français du gaz et de l’électricité",
       "Relever la fiscalité de l’éolien",
       "Réintégrer les certificats de production de biogaz dans le budget",
-      "Supprimer les coûts indirects du carbone pour certaines activités électro-intensives"
+      "Supprimer les coûts indirects du carbone pour certaines activités électro-intensives",
+      "Construire des réacteurs et accroître la puissance du parc nucléaire",
+      "Suspendre les nouvelles capacités éoliennes et le renouvellement des installations"
     ],
-    "sources": ["groupe-rn-contre-budget-2027"],
+    "sources": [
+      "groupe-rn-contre-budget-2027",
+      "groupe-rn-communique-programmation-energie-2025",
+      "an-17-1522-amendement-54"
+    ],
     "scope": "parti",
-    "edition": "Contre-budget parlementaire 2027, dossier d’octobre 2026",
+    "edition": "Textes et communiqués des députés RN",
     "note": "",
     "checked": "2026-11-26",
     "id": "groupe-rassemblement-national-climat-programme",
@@ -11429,6 +11473,11 @@
         "date": "2026-11-26",
         "event": "Vérification des sources originales",
         "summary": "Ajout de positions documentées et de leurs passages sources."
+      },
+      {
+        "date": "2026-11-26",
+        "event": "Relecture des sources originales",
+        "summary": "Passages vérifiés, fiches et références complétées."
       }
     ],
     "partyAuthor": "Groupe Rassemblement national"
@@ -12250,7 +12299,8 @@
     "sources": [
       "philippe-programme-3",
       "philippe-business",
-      "philippe-programme-13"
+      "philippe-programme-13",
+      "philippe-lancement-adidas-arena-2026"
     ],
     "scope": "campagne",
     "edition": "Croire en nous · programme présidentiel 2027",
@@ -17454,9 +17504,14 @@
     "bullets": [
       "Expulser automatiquement et définitivement les étrangers délinquants",
       "Rétablir des frontières françaises et européennes",
-      "Taxer de 1 000 € par an l’embauche d’un salarié extracommunautaire"
+      "Taxer de 1 000 € par an l’embauche d’un salarié extracommunautaire",
+      "Contester la charge du regroupement familial"
     ],
-    "sources": ["lepen-orleans-2026", "lepen-grand-oral-construction-2026"],
+    "sources": [
+      "lepen-orleans-2026",
+      "lepen-grand-oral-construction-2026",
+      "lepen-cnews-regroupement-15octobre"
+    ],
     "scope": "campagne",
     "edition": "Présidentielle 2027",
     "note": "",
@@ -17471,6 +17526,11 @@
         "date": "2026-11-26",
         "event": "Vérification des sources originales",
         "summary": "Ajout de positions documentées et de leurs passages sources."
+      },
+      {
+        "date": "2026-11-26",
+        "event": "Relecture des sources originales",
+        "summary": "Ajout de propositions et de leurs passages sources."
       }
     ]
   },
@@ -17520,12 +17580,19 @@
       "Envisager un arbitrage référendaire après certaines censures constitutionnelles",
       "S’appuyer sur la transparence algorithmique pour réguler l’IA",
       "Faire constater le nombre d’adhérents cotisants des partis par un commissaire de justice",
-      "Rétablir l’anonymat des parrainages présidentiels"
+      "Rétablir l’anonymat des parrainages présidentiels",
+      "Permettre de réviser directement la Constitution par référendum",
+      "Élargir le référendum de l’article 11 à tous les sujets",
+      "Rétablir le septennat présidentiel",
+      "Soumettre certaines nominations institutionnelles à une majorité qualifiée",
+      "Retirer le préambule de 1946 et la Charte de l’environnement des normes de contrôle"
     ],
     "sources": [
       "lisnard-interview-cnews-octobre-2026",
       "lisnard-22-novembre",
-      "lisnard-lancement-saint-raphael-2026"
+      "lisnard-lancement-saint-raphael-2026",
+      "lisnard-discours-bayeux-2026",
+      "echanges-lisnard-souverainete"
     ],
     "scope": "campagne",
     "edition": "Présidentielle 2027",
@@ -17615,9 +17682,14 @@
       "Instaurer un moratoire sur la chasse des espèces menacées",
       "Réorienter les aides de la politique agricole commune vers les petites exploitations",
       "Mettre progressivement fin aux coupes rases au profit de forêts mélangées",
-      "Adapter le plan Eau aux besoins des territoires ultramarins"
+      "Adapter le plan Eau aux besoins des territoires ultramarins",
+      "Créer un service public de transport rural",
+      "Développer les trains légers ruraux et relancer les trains d’équilibre du territoire",
+      "Créer un titre de transport du quotidien valable dans toute la France",
+      "Organiser à l’échelle européenne la sortie progressive de l’élevage en cage",
+      "Moderniser les abattoirs et soutenir les abattoirs mobiles"
     ],
-    "sources": ["pp-acte-i-integral"],
+    "sources": ["pp-acte-i-integral", "place-publique-acte-i-pdf-officiel"],
     "scope": "parti",
     "edition": "Présidentielle 2027",
     "note": "",
@@ -17632,6 +17704,11 @@
         "date": "2026-11-26",
         "event": "Vérification des sources originales",
         "summary": "Ajout de positions documentées et de leurs passages sources."
+      },
+      {
+        "date": "2026-11-26",
+        "event": "Relecture des sources originales",
+        "summary": "Passages vérifiés, fiches et références complétées."
       }
     ],
     "partyAuthor": "Place publique"
@@ -17696,9 +17773,10 @@
       "Fixer un nombre maximal de mesures de suivi par professionnel de l’ASE",
       "Créer un statut de crèche privée sous contrat",
       "Aligner les prix des livres et les tarifs des télécommunications en outre-mer sur l’Hexagone",
-      "Créer un fonds pluriannuel pour l’éducation populaire et les associations"
+      "Créer un fonds pluriannuel pour l’éducation populaire et les associations",
+      "Créer un droit opposable à la garde des jeunes enfants"
     ],
-    "sources": ["pp-acte-i-integral"],
+    "sources": ["pp-acte-i-integral", "place-publique-acte-i-pdf-officiel"],
     "scope": "parti",
     "edition": "Présidentielle 2027",
     "note": "",
@@ -17713,6 +17791,11 @@
         "date": "2026-11-26",
         "event": "Vérification des sources originales",
         "summary": "Ajout de positions documentées et de leurs passages sources."
+      },
+      {
+        "date": "2026-11-26",
+        "event": "Relecture des sources originales",
+        "summary": "Passages vérifiés, fiches et références complétées."
       }
     ],
     "partyAuthor": "Place publique"
@@ -17754,9 +17837,14 @@
     "title": "Logement",
     "bullets": [
       "Créer un fonds national pour le foncier du logement abordable",
-      "Maintenir les aides au logement des jeunes"
+      "Maintenir les aides au logement des jeunes",
+      "Rehausser les objectifs nationaux de construction de logements sociaux"
     ],
-    "sources": ["pp-acte-i-integral", "place-publique-propositions-crise-2026"],
+    "sources": [
+      "pp-acte-i-integral",
+      "place-publique-propositions-crise-2026",
+      "place-publique-acte-i-pdf-officiel"
+    ],
     "scope": "parti",
     "edition": "Présidentielle 2027",
     "note": "",
@@ -19157,11 +19245,17 @@
     "id": "lisnard-sante-positions-prioriser-soins-palliatifs-2025",
     "candidate": "lisnard",
     "theme": "sante",
-    "title": "Renforcer l’accès aux soins palliatifs",
-    "bullets": ["Renforcer l’accès aux soins palliatifs"],
-    "sources": ["lisnard-entretien-fin-de-vie-2025"],
+    "title": "Prises de position sur l’assurance santé et les soins palliatifs",
+    "bullets": [
+      "Renforcer l’accès aux soins palliatifs",
+      "Laisser choisir l’organisme qui prend en charge un panier de soins obligatoire"
+    ],
+    "sources": [
+      "lisnard-entretien-fin-de-vie-2025",
+      "nouvelle-energie-lisnard-panier-soins"
+    ],
     "scope": "orientation",
-    "edition": "Entretien · janvier 2025",
+    "edition": "Entretiens et discours de David Lisnard",
     "note": "",
     "checked": "2026-11-26",
     "history": [
@@ -19169,6 +19263,11 @@
         "date": "2026-11-26",
         "event": "Relecture du document original",
         "summary": "Une fiche reliée."
+      },
+      {
+        "date": "2026-11-26",
+        "event": "Relecture des sources originales",
+        "summary": "Passages vérifiés, fiches et références complétées."
       }
     ]
   },

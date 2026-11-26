@@ -172,6 +172,13 @@ const examinedDocuments: Record<
       locator:
         'La fiche Vauban traite de la sécurité des hôpitaux et des hébergements sensibles, sans préciser une nouvelle règle pour les hébergeurs de données de santé.',
     },
+    {
+      candidate: 'philippe',
+      sourceId: 'philippe-sante-2026',
+      checked: '2026-11-26',
+      locator:
+        'Le programme prévoit un assistant médical hébergé en France. La réponse porte sur cet outil et ne détaille pas les règles pour les hébergeurs de données de santé.',
+    },
   ],
   'fiscalite-csg-salaires': [
     {
@@ -550,6 +557,7 @@ const additionalAnswers: Record<string, string[]> = {
     'tinland-revaloriser-smic-v1',
     'bonnal-smic-revalorisation-automatique-v1',
     'glucksmann-revaloriser-smic-1700-net-v1',
+    'philippe-travail-2-v3',
   ],
   'travail-duree-travail': [
     'tinland-reduire-duree-travail-v1',
@@ -568,6 +576,7 @@ const additionalAnswers: Record<string, string[]> = {
     'melenchon-fermer-les-centrales-nucleaires-et-arreter-les-epr2-v1',
     'lisnard-prolonger-reacteurs-nucleaires-60-ans-v1',
     'lisnard-nouveaux-epr-et-mini-reacteurs-v1',
+    'groupe-rn-accroitre-production-nucleaire-2025-v1',
   ],
   'climat-prix-energie': [
     'tinland-tva-energie-5-5-v1',
@@ -640,6 +649,7 @@ const additionalAnswers: Record<string, string[]> = {
   ],
   'sante-remboursement-soins': [
     'tinland-soins-gratuits-v1',
+    'lisnard-sante-1-v3',
     'philippe-adapter-remboursements-apport-traitements-v1',
     'philippe-plafonner-depassements-honoraires-v1',
     'legendre-remboursement-soins-v1',
@@ -670,6 +680,8 @@ const additionalAnswers: Record<string, string[]> = {
     'lepen-refuser-elargissement-ue-v1',
     'melenchon-rester-dans-union-et-euro-negocier-traites-v1',
     'lisnard-traite-pouvoirs-conseil-parlement-europeen-v1',
+    'lisnard-demander-derogation-europeenne-asile-immigration-v1',
+    'philippe-approfondir-cooperation-ue-domaines-strategiques-v1',
     'place-publique-traiter-elargissement-refondation-ue-2030-v1',
     'dlf-referendum-appartenance-ue-v1',
   ],
@@ -685,6 +697,8 @@ const additionalAnswers: Record<string, string[]> = {
     'dlf-prix-garantis-agricoles-v1',
   ],
   'agriculture-installation-fermes': [
+    'philippe-aider-installation-transmission-fermes-v1',
+    'philippe-creer-un-dispositif-fiscal-de-transmission-des-exploitations-v2',
     'lepen-agriculture-prix-installation-jeunes-v1',
     'tinland-fermes-circuits-courts-v1',
     'dlf-garantie-installation-agricole-v1',
@@ -741,6 +755,10 @@ const additionalAnswers: Record<string, string[]> = {
     'place-publique-abroger-parcoursup-etats-generaux-orientation-v1',
   ],
   'institutions-ecrire-constitution': [
+    'lisnard-reviser-constitution-directement-par-referendum-v1',
+    'place-publique-convention-preparer-constituante-v1',
+    'lepen-plafonner-deficit-au-seuil-de-stabilisation-de-la-dette-v1',
+    'philippe-fiscalite-2-v4',
     'mathieu-institutions-convention-500-v1',
     'mathieu-convention-controle-impartialite-v1',
     'mlekuz-garants-constituante-v1',
@@ -785,6 +803,7 @@ const additionalAnswers: Record<string, string[]> = {
   'social-garde-jeunes-enfants': [
     'tinland-conge-parental-et-garde-v1',
     'philippe-plan-garde-enfants-v1',
+    'place-publique-rendre-opposable-droit-a-la-garde-enfant-v1',
     'branco-rendre-opposable-le-droit-a-une-place-en-creche-v1',
     'villepin-planifier-les-places-daccueil-de-la-petite-enfance-par-territoire-v1',
     'dlf-places-creches-cinq-ans-v1',
@@ -795,6 +814,7 @@ const additionalAnswers: Record<string, string[]> = {
   'france-otan': [
     'tinland-otan-v1',
     'lepen-sortir-commandement-integre-otan-v1',
+    'lisnard-maintenir-cadre-atlantique-a-court-terme-v1',
     'lalanne-europe-otan-v1',
     'philippot-europe-organisations-v1',
     'legendre-maintenir-renforcer-alliances-dont-otan-v1',
@@ -810,6 +830,7 @@ const additionalAnswers: Record<string, string[]> = {
     'tinland-arreter-eolien-v1',
     'retailleau-interrompre-des-appels-doffres-solaires-et-eoliens-en-mer-v1',
     'melenchon-refuser-les-parcs-solaires-et-eoliens-qui-exigent-une-coupe-rase-v1',
+    'groupe-rn-moratoire-eolien-et-solaire-2025-v1',
   ],
   'regroupement-familial': [
     'herlin-regroupement-familial-v1',
@@ -824,6 +845,7 @@ const additionalAnswers: Record<string, string[]> = {
     'dlf-aesh-temps-plein-v1',
   ],
   'parents-isoles': [
+    'philippe-social-1-v4',
     'delmur-pension-alimentaire-salaire-v1',
     'becht-confier-une-mission-daide-aux-familles-monoparentales-aux-maisons-de-vie-v1',
     'melenchon-creer-statut-famille-monoparentale-v1',
@@ -838,8 +860,13 @@ const additionalAnswers: Record<string, string[]> = {
     'villepin-permettre-aux-territoires-ultramarins-de-choisir-une-evolution-vers-lautonomie-v1',
     'melenchon-statut-collectivite-unique-v1',
   ],
-  'mobilite-territoires': ['lisnard-investir-infrastructures-des-enclaves-v1'],
+  'mobilite-territoires': [
+    'lisnard-investir-infrastructures-des-enclaves-v1',
+    'place-publique-service-public-transports-ruraux-v1',
+    'place-publique-plan-rail-trains-legers-ruraux-v1',
+  ],
   'numerique-demarches-en-ligne': [
+    'lisnard-guichet-numerique-agriculteurs-v2',
     'dubuisson-eviter-redemande-documents-administratifs-v2',
     'pic-droits-services-hors-ligne-v1',
     'dlf-accessibilite-services-publics-numeriques-v1',
@@ -856,7 +883,18 @@ const additionalAnswers: Record<string, string[]> = {
   'education-eleves-par-classe': [
     'glucksmann-reduire-eleves-classes-du-primaire-v1',
   ],
-  'travail-demarches-entreprises': ['tinland-alleger-fiscalite-entreprises-v1'],
+  'numerique-hebergement-sante': [
+    'lisnard-cadre-souverain-hebergement-donnees-sante-v1',
+  ],
+  'agriculture-elevages': [
+    'philippe-stop-surtransposition-normes-agricoles-v1',
+    'place-publique-sortie-elevage-cage-union-europeenne-v1',
+    'place-publique-moderniser-abattoirs-et-experimenter-unites-mobiles-v1',
+  ],
+  'travail-demarches-entreprises': [
+    'tinland-alleger-fiscalite-entreprises-v1',
+    'lisnard-guichet-numerique-agriculteurs-v2',
+  ],
 };
 const scopedComplements: Record<string, Record<string, string>> = {
   'climat-production-nucleaire': {
@@ -868,8 +906,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
   'travail-salaire-minimum': {
     'lisnard-exoneration-emploi-domicile-smic-v1':
       'L’exonération concerne les charges de l’employeur à domicile lorsque le salarié est payé au SMIC.',
-    'philippe-travail-2-v2':
-      'La fiche concerne les prélèvements et les cotisations sur les heures supplémentaires.',
+    'lisnard-baisser-csg-revenus-activite-66-v1':
+      'La baisse de CSG viserait les revenus d’activité, dont les salaires au SMIC. La mesure ne modifie pas le salaire minimum.',
   },
   'numerique-acces-communications': {
     'melenchon-droit-constitutionnel-chiffrement-v1':
@@ -901,6 +939,24 @@ const scopedComplements: Record<string, Record<string, string>> = {
     'tinland-soutien-financier-familles-v1':
       'La mesure ciblée sur les parents isolés en difficulté concerne la protection maternelle et infantile à domicile.',
   },
+  'numerique-demarches-en-ligne': {
+    'philippe-deployer-un-plan-dutilisation-de-lia-dans-les-services-publics-v2':
+      'Le projet prévoit de traiter certaines démarches simples avec l’IA. Le passage ne précise pas le canal de dépôt pour les usagers.',
+    'place-publique-automatiser-acces-droits-dossier-social-unique-v1':
+      'Le dossier social vise à ouvrir automatiquement certains droits. Le passage prévoit aussi des guichets physiques et ne décrit pas de procédure de dépôt en ligne.',
+  },
+  'sante-remboursement-soins': {
+    'lisnard-libre-choix-assurance-panier-soins-v1':
+      'Le candidat décrit une obligation de prise en charge et le choix de l’assureur. La composition du panier et les taux remboursés restent à préciser.',
+  },
+  'logement-obligations-parc-social': {
+    'place-publique-rehausser-objectifs-logements-sociaux-v1':
+      'Le projet prévoit des objectifs nationaux et des contrats territoriaux. Le passage ne fixe pas de nouveau quota légal par commune.',
+  },
+  'places-prison': {
+    'melenchon-regulation-carcerale-contraignante-v1':
+      'Le programme prévoit un autre levier pour réduire la surpopulation, la régulation carcérale. Ce passage ne tranche pas la construction de nouveaux établissements.',
+  },
   'retraites-penibilite': {
     'lepen-preserver-carrieres-longues-plus-favorables-v1':
       'Le passage prévoit de conserver le dispositif des carrières longues quand il est plus favorable. Les critères d’un départ propre aux métiers pénibles ne sont pas détaillés.',
@@ -922,6 +978,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le candidat prévoit des contributions du public aux travaux. La composition de la convention est documentée dans une fiche distincte.',
   },
   'statuts-outre-mer': {
+    'place-publique-reprendre-dialogue-nouvelle-caledonie-v1':
+      'Le mouvement demande de reprendre le dialogue politique en Nouvelle-Calédonie. Le texte ne fixe pas la procédure de révision du statut.',
     'batho-etats-generaux-outre-mer-v1':
       'La candidate propose une concertation avec la société civile ultramarine. Le passage ne fixe pas de nouveau statut institutionnel.',
     'tinland-autonomie-outre-mer-v1':
@@ -934,6 +992,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
   'regroupement-familial': {
     'legendre-interroger-pays-regroupement-familial-v1':
       'Le manifeste questionne le pays de regroupement. Il ne formule pas de nouvelle condition.',
+    'lepen-contester-regroupement-familial-octobre-2026-v1':
+      'La candidate met en cause la charge du dispositif. Elle ne précise pas dans cet échange ce qu’elle changerait dans ses conditions.',
   },
   'sante-aide-a-mourir': {
     'lisnard-prioriser-soins-palliatifs-2025-v1':
