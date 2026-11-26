@@ -60,6 +60,13 @@ const internationalQuestions = questions.filter(
   (question) =>
     question.theme === 'europe' && question.candidateIds.includes(candidate.id),
 );
+const candidateQuestions = questions.filter(
+  (question) =>
+    question.candidateIds.includes(candidate.id) ||
+    question.complements.some(
+      ({ candidate: person }) => person.id === candidate.id,
+    ),
+);
 ---
 
 <Base
@@ -169,6 +176,22 @@ const internationalQuestions = questions.filter(
         </a>
       ))}
     </nav>
+  )}
+  {candidateQuestions.length > 0 && (
+    <details class="profile-topic-index profile-question-index">
+      <summary>
+        <Icon name="layers" />
+        Grandes questions ({candidateQuestions.length})
+        <Icon name="chevron" />
+      </summary>
+      <nav class="profile-jumps" aria-label="Grandes questions documentées">
+        {candidateQuestions.map((question) => (
+          <a href={question.href + '#candidat-' + candidate.id}>
+            {question.title}
+          </a>
+        ))}
+      </nav>
+    </details>
   )}
   <div class="profile-layout">
     <div>

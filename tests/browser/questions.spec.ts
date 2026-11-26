@@ -4,7 +4,7 @@ import comptes from '../../src/data/comptes-presidentielle-2022.json' with { typ
 import candidateRows from '../../src/data/candidates.json' with { type: 'json' };
 
 const candidates = candidateRows.filter((candidate) => !candidate.withdrawnOn);
-const csgDossiers = 7;
+const csgDossiers = 8;
 
 test('la recherche CSG, les documents examinés et les absences sont distincts', async ({
   page,
@@ -129,7 +129,7 @@ test('les comparatifs agricoles distinguent les auteurs et donnent accès aux ch
       await page.goto('/questions/' + example.question + '/');
       const bylines = page.locator('#candidat-glucksmann .q-byline');
       await expect(
-        bylines.filter({ hasText: 'Parti socialiste' }),
+        bylines.filter({ hasText: 'Parti socialiste' }).first(),
       ).toBeVisible();
       await expect(bylines.filter({ hasText: 'Place publique' })).toBeVisible();
       await page

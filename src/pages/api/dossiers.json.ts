@@ -1,5 +1,5 @@
 import { activeCandidates, sourceById } from '../../lib/data';
-import { questions } from '../../lib/questions';
+import { questionAnswerAliases, questions } from '../../lib/questions';
 import { voteCasePath } from '../../lib/legislative-votes.mjs';
 import {
   voteCases,
@@ -70,6 +70,9 @@ export function GET() {
       title: q.title,
       theme: q.theme,
       url: 'https://polradar.fr' + q.href,
+      ...(questionAnswerAliases[q.id]
+        ? { answerAliases: questionAnswerAliases[q.id] }
+        : {}),
       positions: activeCandidates.map((p) => ({
         candidate: p.id,
         status: q.coverage[p.id] ?? 'non-documente',

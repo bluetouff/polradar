@@ -7336,9 +7336,9 @@
     "parentId": "labib-travail",
     "candidate": "labib",
     "theme": "travail",
-    "revision": 1,
+    "revision": 2,
     "title": "Réduire le temps de travail sans perte de salaire",
-    "description": "Partager le travail jusqu’à la résorption du chômage ; le tract ne fixe pas de durée hebdomadaire chiffrée.",
+    "description": "Selma Labib veut réduire le temps de travail sans baisse de salaire jusqu’à résorption du chômage. Dans son discours à la Fête de l’Humanité, elle ajoute que la charge de travail ne doit pas augmenter et place cette réduction sous le contrôle des salariés. Elle ne fixe pas de durée hebdomadaire.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -7348,11 +7348,16 @@
       {
         "sourceId": "labib-campagne-2027",
         "locator": "PDF, page 2, licenciements et embauches"
+      },
+      {
+        "sourceId": "labib-discours-2026",
+        "locator": "Passage sur le partage du travail et les 32 heures.",
+        "fragment": ":~:text=sans%20augmentation%20de%20la%20charge%20de%20travail"
       }
     ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
-    "checked": "2026-11-17"
+    "checked": "2026-11-26"
   },
   {
     "id": "labib-travail-embauches",
@@ -13743,9 +13748,9 @@
     "parentId": "legendre-institutions",
     "candidate": "legendre",
     "theme": "institutions",
-    "revision": 1,
+    "revision": 2,
     "title": "Organiser un dialogue citoyen avec des référendums d’initiative citoyenne et gouvernementale",
-    "description": "S’appuyer sur le RIC et le RIG pour associer les citoyens à de nouvelles législations. Le texte donne aussi un rôle de relais aux maires.",
+    "description": "Le manifeste confie au président l’initiative du référendum gouvernemental. Pour l’initiative citoyenne, il demande des signatures et un contrôle de conformité aux exigences constitutionnelles. Il ne fixe pas le seuil de signatures. Le résultat serait inscrit dans la loi. Le texte donne aussi un rôle de relais aux maires.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -13755,11 +13760,16 @@
       {
         "sourceId": "legendre-projet-2027",
         "locator": "Les quatre piliers du projet, 1, Redonner la parole au peuple"
+      },
+      {
+        "sourceId": "legendre-manifeste-64",
+        "locator": "Démocratie citoyenne, passages sur le RIG et le RIC.",
+        "fragment": ":~:text=Il%20faut%20%C3%A9galement%20que%20le%20Peuple%20puisse%20lui%2Dm%C3%AAme%20proposer%20des%20textes%20de%20r%C3%A9f%C3%A9rendums"
       }
     ],
     "scope": "campagne",
     "edition": "À nous maintenant, les quatre piliers du projet",
-    "checked": "2026-11-19"
+    "checked": "2026-11-26"
   },
   {
     "id": "legendre-fiscalite-equilibre-budget",
@@ -59156,9 +59166,9 @@
     "parentId": "dubuisson-institutions-programme-2027",
     "candidate": "dubuisson",
     "theme": "institutions",
-    "revision": 1,
+    "revision": 2,
     "title": "Inscrire un référendum sur les décisions essentielles dans la Constitution",
-    "description": "Emmanuel Dubuisson souhaite inscrire dans la Constitution un dispositif référendaire pour certaines décisions essentielles. Il prévoit la mise à disposition avant le vote d’un dossier sur les effets, le coût et les limites de la décision proposée.",
+    "description": "Emmanuel Dubuisson propose d’inscrire dans la Constitution un référendum sur des décisions essentielles. En cas de blocage parlementaire sur un texte important, le président pourrait demander aux électeurs de trancher. Un dossier présenterait les effets, les coûts et les limites du choix avant le vote.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -59168,11 +59178,16 @@
       {
         "sourceId": "dubuisson-dossier-referendum",
         "locator": "« Ma vision du référendum et de la parole rendue aux Français », premiers paragraphes et passage sur le dossier à présenter avant le vote."
+      },
+      {
+        "sourceId": "dubuisson-dossier-referendum",
+        "locator": "Un outil qui ne remplace pas le Parlement, paragraphe sur le blocage de l’Assemblée.",
+        "fragment": ":~:text=le%20pr%C3%A9sident%20doit%20pouvoir%20demander%20au%20peuple%20de%20trancher"
       }
     ],
     "scope": "campagne",
     "edition": "Projet présidentiel d’Emmanuel Dubuisson, dossier 11",
-    "checked": "2026-11-24"
+    "checked": "2026-11-26"
   },
   {
     "id": "platret-retour-39-heures",
@@ -118337,6 +118352,221 @@
     ],
     "scope": "orientation",
     "edition": "Présidentielle 2027 · déclaration de candidature publiée en septembre 2025",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "legendre-maintenir-renforcer-alliances-dont-otan",
+    "parentId": "legendre-europe-fin-unanimite-ue",
+    "candidate": "legendre",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Maintenir et renforcer les alliances dont l’OTAN",
+    "description": "Le manifeste cite l’OTAN parmi les alliances et partenariats à maintenir et à renforcer. Il ne précise pas de réforme de l’OTAN ni de changement du statut français dans son commandement intégré.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "legendre-manifeste-64",
+        "locator": "Le rôle de la France dans le monde, paragraphe sur les alliances.",
+        "fragment": ":~:text=Organisation%20du%20trait%C3%A9%20de%20l%E2%80%99Atlantique%20nord"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "64 %, manifeste signé par Jean-François Legendre",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "legendre-questionner-ame-sans-reforme",
+    "parentId": "legendre-immigration-manifeste",
+    "candidate": "legendre",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Mettre en question le fonctionnement de l’aide médicale de l’État",
+    "description": "Le manifeste juge l’aide médicale de l’État humanitaire mais incohérente. Ce passage ne précise ni remplacement, ni restriction des soins couverts, ni suppression du dispositif.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "legendre-manifeste-64",
+        "locator": "L’immigration, paragraphe sur l’AME."
+      }
+    ],
+    "scope": "orientation",
+    "edition": "64 %, manifeste signé par Jean-François Legendre",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "legendre-interroger-pays-regroupement-familial",
+    "parentId": "legendre-immigration-manifeste",
+    "candidate": "legendre",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Interroger le choix du pays d’accueil pour le regroupement familial",
+    "description": "Le manifeste demande pourquoi le regroupement familial doit, selon son auteur, se faire systématiquement en France. Il ne détaille pas de règle nouvelle, de pays retenus ni d’obligation de rejoindre le pays d’origine.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "legendre-manifeste-64",
+        "locator": "L’immigration, paragraphe sur le rapprochement familial.",
+        "fragment": ":~:text=Le%20rapprochement%20familial"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "64 %, manifeste signé par Jean-François Legendre",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "labib-liberte-circulation-installation",
+    "parentId": "labib-campagne-2027-immigration",
+    "candidate": "labib",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "Défendre la liberté de circulation et d’installation",
+    "description": "Lors du lancement de sa campagne à la Fête de l’Humanité, Selma Labib revendique la liberté de circuler et de s’installer. Elle cite séparément la régularisation des personnes sans titre de séjour. Le discours ne propose pas de texte d’application.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "labib-discours-2026",
+        "locator": "Passage qui précède l’annonce du lancement de la campagne et évoque la régularisation.",
+        "fragment": ":~:text=libert%C3%A9%20de%20circulation%20et%20d%E2%80%99installation"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Intervention de campagne à la Fête de l’Humanité",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "labib-ia-emancipation-planification",
+    "parentId": "labib-travail",
+    "candidate": "labib",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Orienter l’intelligence artificielle vers l’émancipation et la planification",
+    "description": "Selma Labib présente cet usage dans le cadre d’une société où les travailleurs exerceraient le pouvoir. Elle oppose cet objectif à l’utilisation de l’IA pour licencier. Le discours ne fixe ni dispositif de régulation ni calendrier.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "labib-discours-2026",
+        "locator": "Fin du discours, passage sur les usages de l’IA dans une société dirigée par les travailleurs.",
+        "fragment": ":~:text=pour%20%C3%A9manciper%20et%20planifier"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Intervention de campagne à la Fête de l’Humanité",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "batho-reduire-dependance-voiture",
+    "parentId": "batho-climat-programme-2027",
+    "candidate": "batho",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Investir pour réduire la dépendance à la voiture",
+    "description": "Delphine Batho propose d’investir dans des solutions qui diminuent la dépendance à la voiture pour réduire la consommation d’énergie et les factures. Le volet ne choisit ni mode de transport ni dispositif de financement.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "batho-programme-securite-climatique",
+        "locator": "Premières propositions, troisième volet sur l’inflation et la vie chère.",
+        "fragment": ":~:text=r%C3%A9duisent%20la%20d%C3%A9pendance%20%C3%A0%20la%20voiture"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Priorités de Delphine Batho",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "batho-soutien-stable-vie-associative",
+    "parentId": "batho-institutions-chapitres-2027",
+    "candidate": "batho",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Donner un cadre stable au soutien à la vie associative",
+    "description": "La candidate prévoit un cadre de soutien pour la vie associative dans le volet consacré à la vie démocratique. Elle n’en précise ni les financements ni les règles d’accès.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "batho-programme-republique-terrestre",
+        "locator": "Premières propositions, volet sur la concentration des pouvoirs et les corps intermédiaires.",
+        "fragment": ":~:text=La%20vie%20associative%20sera%20enfin%20dot%C3%A9e"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Priorités de Delphine Batho",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "lalanne-rapprochement-franco-russe-brics",
+    "parentId": "lalanne-europe",
+    "candidate": "lalanne",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Rechercher un rapprochement franco-russe via les BRICS",
+    "description": "Le programme commun de Francis Lalanne et Dieudonné prévoit un rapprochement avec la Russie en passant par les BRICS. Le passage ne propose pas d’adhésion française au groupe ni de calendrier.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lalanne-projet-2027",
+        "locator": "Axe 9, International, premier point.",
+        "fragment": ":~:text=restauration%20de%20l%E2%80%99amiti%C3%A9%20franco%2Drusse"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Projet commun de Dieudonné et Francis Lalanne pour 2027",
+    "checked": "2026-11-26"
+  },
+  {
+    "id": "lalanne-reforme-agricole-petits-exploitants",
+    "parentId": "lalanne-climat",
+    "candidate": "lalanne",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Fonder la réforme agricole sur les demandes des petits exploitants",
+    "description": "Le programme commun de Francis Lalanne et Dieudonné veut partir des revendications des petits exploitants pour revoir la politique agricole. Il ne précise pas d’instance de consultation, de seuil pour définir une petite exploitation ni de nouvelle aide.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "lalanne-projet-2027",
+        "locator": "Axe 8, Terroir, premier point.",
+        "fragment": ":~:text=revendications%20des%20petits%20exploitants"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Projet commun de Dieudonné et Francis Lalanne pour 2027",
     "checked": "2026-11-26"
   }
 ]

@@ -20,6 +20,7 @@ type dossiers struct {
 		VersionID string `json:"versionId"`
 		Date      string
 	}
+	questionIndex map[string]record
 }
 type territories struct {
 	Names       map[string]string
@@ -57,6 +58,11 @@ func (c *snapshot) dossiers() (*dossiers, error) {
 		var d dossiers
 		if readData(filepath.Join(c.root, "api", "dossiers.json"), dossiersLimit, &d) != nil || d.Questions == nil || d.Votes == nil || d.Evolutions == nil {
 			return nil, invalidCorpus
+		}
+		var err error
+		d.questionIndex, err = indexAnswerQuestions(d.Questions)
+		if err != nil {
+			return nil, err
 		}
 		c.editorial = &d
 	}

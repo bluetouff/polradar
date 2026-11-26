@@ -72,15 +72,6 @@ const examinedDocuments: Record<
         'Ma vision pour la France, déclaration de campagne. Pas de dispositif de transport local identifié dans ce document.',
     },
   ],
-  'logement-offre-bati': [
-    {
-      candidate: 'polony',
-      sourceId: 'polony-vision',
-      checked: '2026-11-23',
-      locator:
-        'Ma vision pour la France, texte de la candidate. Aucun mécanisme de production ou de remise en usage de logements identifié.',
-    },
-  ],
   'numerique-signalement-cyber': [
     {
       candidate: 'retailleau',
@@ -361,7 +352,7 @@ const additions = [
       'attal-extension-batiments-elevage-v1',
       'lassalle-exploitations-taille-humaine-v1',
       'markovic-climat-elevage-intensif-v1',
-      'markovic-aider-reconversion-eleveurs-v1',
+      'markovic-aider-reconversion-eleveurs-v2',
       'melenchon-normes-elevage-v1',
     ],
   },
@@ -471,6 +462,59 @@ const additions = [
       'bonnal-quitter-otan-v1',
     ],
   },
+  {
+    id: 'immigration-aide-medicale-etat',
+    theme: 'immigration',
+    title: 'Que faire de l’aide médicale de l’État ?',
+    terms:
+      'AME maintien suppression aide urgence soins personnes sans titre de séjour',
+    versions: [
+      'melenchon-integrer-laide-medicale-detat-au-regime-general-v1',
+      'ps-maintenir-laide-medicale-detat-v1',
+      'groupe-rn-ame-aide-urgence-v1',
+      'retailleau-supprimer-ame-et-maintenir-certains-soins-v1',
+      'saforcada-ame-urgence-v1',
+      'zemmour-suppression-ame-v1',
+      'bonnal-ame-soins-urgents-v1',
+    ],
+  },
+  {
+    id: 'immigration-droit-sol',
+    theme: 'immigration',
+    title: 'Faut-il modifier l’accès à la nationalité par le droit du sol ?',
+    terms:
+      'nationalité française droit du sol naissance enfants nés en France dix-huit ans Mayotte',
+    versions: [
+      'retailleau-immigration-droit-sol-v2',
+      'ecologistes-accorder-le-droit-du-sol-aux-enfants-nes-en-france-quelle-que-soit-la-situat-v1',
+      'philippe-supprimer-lautomaticite-de-lacquisition-de-la-nationalite-v1',
+      'philippe-suspendre-le-droit-du-sol-a-mayotte-pendant-plusieurs-annees-v1',
+      'herlin-droit-sol-v1',
+      'marchal-reformer-droit-sol-v1',
+      'bonnal-supprimer-droit-du-sol-v1',
+    ],
+  },
+  {
+    id: 'education-eleves-par-classe',
+    theme: 'education',
+    title: 'Faut-il réduire le nombre d’élèves par classe ?',
+    terms:
+      'effectifs par classe primaire maternelle élémentaire zones éducation prioritaire écoliers',
+    versions: [
+      'melenchon-education-2-v3',
+      'ps-viser-un-maximum-de-19-eleves-par-classe-v2',
+      'ecologistes-viser-19-eleves-par-classe-dans-le-primaire-en-2032-v1',
+      'ecologistes-limiter-a-douze-eleves-les-classes-de-primaire-en-education-prioritaire-v2',
+      'philippe-diminuer-les-effectifs-par-classe-dans-le-premier-degre-v2',
+    ],
+  },
+  {
+    id: 'sante-aide-a-mourir',
+    theme: 'sante',
+    title: 'Les candidats veulent-ils modifier la loi sur l’aide à mourir ?',
+    terms: 'aide à mourir fin de vie loi août 2026 abrogation référendum',
+    versions: ['bonnal-abroger-loi-aide-a-mourir-v1'],
+  },
 ];
 const versionMap = new Map(versions.map((v) => [v.id, v]));
 function resolveEntry(id: string) {
@@ -503,44 +547,78 @@ interface Definition {
 }
 const additionalAnswers: Record<string, string[]> = {
   'retraites-conditions-depart': [
+    'revillon-apreval-retraite-socle-70-puis-85-ans-v2',
+    'lepen-cantonner-trimestres-chomage-v1',
     'lepen-abroger-reforme-retraites-2023-en-2028-v1',
     'lisnard-age-legal-retraite-65-ans-v1',
     'bonnal-taux-plein-retraite-41-annuites-v1',
   ],
-  'travail-salaire-minimum': ['glucksmann-revaloriser-smic-1700-net-v1'],
+  'travail-salaire-minimum': [
+    'bonnal-smic-revalorisation-automatique-v1',
+    'glucksmann-revaloriser-smic-1700-net-v1',
+  ],
   'travail-duree-travail': [
+    'platret-retour-39-heures-v1',
+    'villepin-reserver-aux-partenaires-sociaux-certains-choix-sur-les-salaires-et-le-temps-de-v1',
+    'ecologistes-passer-a-32-heures-sans-baisse-de-salaire-pour-les-metiers-penibles-ou-de-nu-v1',
     'lisnard-temps-de-travail-accords-v1',
     'ps-experimenter-la-semaine-de-quatre-jours-par-la-negociation-collective-v1',
   ],
   'climat-production-nucleaire': [
+    'marchal-construire-centrales-nucleaires-v1',
+    'bouamrane-nucleaire-geothermie-sortie-fossiles-v1',
+    'attal-plan-messmer-2-v1',
+    'villepin-poursuivre-le-programme-de-six-reacteurs-epr2-v1',
     'melenchon-fermer-les-centrales-nucleaires-et-arreter-les-epr2-v1',
     'lisnard-prolonger-reacteurs-nucleaires-60-ans-v1',
     'lisnard-nouveaux-epr-et-mini-reacteurs-v1',
   ],
   'climat-prix-energie': [
-    'lepen-climat-tva-energie-v2',
+    'arthaud-climat-carburant-coutant-v1',
+    'marchal-accord-operateurs-carburants-v1',
+    'delmur-tarif-social-energie-v1',
+    'attal-stabilite-prix-electricite-v1',
+    'retailleau-stabiliser-le-prix-de-lelectricite-par-un-contrat-a-double-sens-v1',
+    'philippe-baisser-prix-electricite-industriels-v1',
+    'villepin-encadrer-le-prix-des-carburants-par-la-fiscalite-v1',
+    'lalanne-fiscalite-taxes-carburants-v1',
     'lepen-renegocier-prix-electricite-europe-v3',
     'glucksmann-moratoire-hausses-taxes-electricite-v1',
   ],
   'fiscalite-csg-salaires': [
+    'saforcada-reduire-csg-salaires-deux-tranches-v1',
     'lisnard-baisser-csg-revenus-activite-66-v1',
     'melenchon-fusionner-les-cotisations-sociales-et-la-csg-v1',
   ],
   'fiscalite-transmission-patrimoine': [
+    'herlin-droits-succession-v1',
+    'collovati-relever-le-seuil-dimposition-des-successions-v1',
+    'philippot-petits-heritages-v1',
+    'mikolajczak-mettre-fin-a-leffacement-des-plus-values-latentes-lors-dune-succession-v1',
+    'groupe-rn-successions-immobilier-300000-v2',
+    'becht-exonerer-de-droits-de-succession-le-capital-maintenu-sept-ans-dans-le-fonds-ma-v1',
+    'billetdoux-heritage-bareme-v1',
     'glucksmann-grands-heritages-v2',
     'glucksmann-imposer-plus-values-latentes-transmises-v1',
     'lisnard-exonerer-transmission-entreprises-droits-succession-v1',
     'lisnard-ramener-taux-marginal-succession-20-v1',
   ],
   'regularisation-sejour': [
+    'labib-regulariser-tous-les-sans-papiers-v1',
     'philippe-soumettre-les-regularisations-massives-a-un-accord-entre-etats-schengen-v1',
     'lisnard-interdire-regularisation-apres-entree-clandestine-v1',
   ],
   'immigration-travail': [
+    'legendre-exiger-une-demande-prealable-a-lambassade-pour-limmigration-economique-v1',
+    'bonnal-regularisation-cas-par-cas-metiers-en-tension-v1',
+    'dupont-aignan-conditionner-limmigration-economique-au-niveau-du-chomage-v1',
     'philippe-introduire-des-quotas-dimmigration-selon-les-profils-recherches-v1',
     'groupe-rn-creer-une-taxe-a-lembauche-dun-salarie-extra-europeen-v2',
   ],
   'soins-de-proximite': [
+    'batho-installation-medecins-centres-sante-v1',
+    'ecologistes-ouvrir-2-000-centres-de-sante-supplementaires-dici-2030-v1',
+    'ps-sante-centres-salaries-v1',
     'equinoxe-tripler-structures-mobiles-soins-v1',
     'dlf-hopital-quarante-cinq-minutes-v1',
     'melenchon-vacations-deserts-medicaux-v1',
@@ -548,16 +626,29 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-communautes-soignantes-echelle-anciens-cantons-v1',
   ],
   'sante-installation-medecins': [
+    'batho-installation-medecins-centres-sante-v1',
     'dlf-bourse-medecins-zones-sous-dotees-v1',
     'branco-sante-implantation-medicale-v1',
     'melenchon-guichet-installation-soignants-v1',
   ],
   'sante-remboursement-soins': [
+    'legendre-remboursement-soins-v1',
+    'bonnal-augmenter-franchises-medicales-participations-v1',
+    'mikolajczak-revoir-le-remboursement-des-medicaments-selon-leur-service-medical-rendu-v1',
+    'roussel-remboursement-integral-securite-sociale-v2',
+    'dupont-aignan-reexaminer-le-remboursement-des-medicaments-selon-leur-benefice-v1',
     'branco-sante-assurance-unique-v1',
     'branco-remboursement-soins-dentaires-v1',
     'branco-remboursement-psychologues-examen-national-v1',
   ],
   'institutions-declenchement-referendum': [
+    'dubuisson-referendum-decisions-essentielles-v2',
+    'saforcada-ric-local-v1',
+    'pic-ric-toutes-matieres-v1',
+    'becht-referendum-initiative-citoyenne-v1',
+    'ecologistes-creer-un-referendum-dinitiative-citoyenne-pour-proposer-ou-abroger-une-loi-v1',
+    'mlekuz-institutions-referendum-ouverture-v1',
+    'lalanne-institutions-ric-v1',
     'dlf-ric-millions-inscrits-v1',
     'place-publique-droit-initiative-referendum-v1',
   ],
@@ -565,43 +656,73 @@ const additionalAnswers: Record<string, string[]> = {
   'institutions-logiciels-publics': [
     'dlf-logiciels-administrations-licences-gratuites-v1',
   ],
-  'agriculture-remuneration-contrats': ['dlf-prix-garantis-agricoles-v1'],
+  'agriculture-remuneration-contrats': [
+    'legendre-revenu-minimum-agriculteurs-v1',
+    'patriotes-garantir-des-prix-planchers-aux-agriculteurs-v1',
+    'dlf-prix-garantis-agricoles-v1',
+  ],
   'agriculture-installation-fermes': [
     'dlf-garantie-installation-agricole-v1',
     'dlf-reformer-safer-v1',
   ],
   'agriculture-cantines': [
+    'delmur-cantines-locales-bio-v1',
+    'pic-prix-plancher-agricole-v1',
+    'ps-adapter-le-prix-de-la-cantine-aux-revenus-des-familles-jusquau-lycee-v1',
     'dlf-achats-publics-agricoles-v1',
     'melenchon-cantines-bio-local-option-vegetarienne-v1',
   ],
   'logement-obligations-parc-social': [
+    'bonnal-maintenir-quotas-loi-sru-v1',
+    'roussel-sru-30-logements-sociaux-v1',
     'dlf-accession-sociale-quota-sru-v1',
     'dlf-seuil-logements-sociaux-communes-v1',
     'lisnard-supprimer-article-55-de-la-loi-sru-v1',
   ],
   'logement-offre-bati': [
+    'polony-logements-sociaux-intermediaires-foncier-public-outre-mer-v1',
+    'roussel-logement-construction-v1',
+    'lepen-logement-foncier-public-v2',
+    'becht-faciliter-la-reconversion-des-friches-et-des-bureaux-vacants-en-logements-v1',
+    'tondelier-logement-logements-vacants-v1',
     'dlf-conversion-bureaux-plu-v1',
     'melenchon-construction-logements-publics-et-jeunes-v1',
     'glucksmann-construction-sociale-v2',
     'philippe-construire-quatre-millions-de-logements-en-dix-ans-v1',
   ],
   'salaires-enseignants': [
+    'polony-hausse-remuneration-enseignants-vingt-trente-v1',
+    'mikolajczak-relever-le-salaire-des-professeurs-des-ecoles-de-200-euros-nets-par-mois-v1',
+    'retailleau-relever-le-salaire-des-enseignants-en-debut-et-milieu-de-carriere-v1',
+    'becht-formation-remuneration-enseignants-v2',
+    'ecologistes-augmenter-de-15-en-cinq-ans-le-salaire-des-enseignants-v1',
     'dlf-salaires-nets-professeurs-quinze-v1',
     'branco-salaires-enseignants-debut-carriere-v1',
   ],
   'education-acces-etudes': [
+    'roussel-remplacer-parcoursup-monmaster-v1',
+    'becht-remplacer-parcoursup-par-une-epreuve-dadmission-liee-a-la-specialite-v1',
     'place-publique-abroger-parcoursup-etats-generaux-orientation-v1',
   ],
   'institutions-ecrire-constitution': [
+    'mathieu-institutions-convention-500-v1',
     'mathieu-convention-controle-impartialite-v1',
     'mlekuz-garants-constituante-v1',
     'mlekuz-constituante-apres-refus-v1',
   ],
   'institutions-contributions-citoyennes': [
+    'mathieu-consultations-territoires-v1',
+    'mlekuz-institutions-contributions-ouvertes-v1',
+    'cheve-proposition-argumentee-v1',
+    'cheve-consulter-les-citoyens-a-la-demande-de-letat-v1',
     'cheve-question-reponse-publique-v1',
     'cheve-deposer-soutenir-avis-v1',
   ],
   'retraites-protection-revenus': [
+    'arthaud-travail-indexation-v1',
+    'roussel-garantir-un-montant-de-pension-au-moins-egal-au-smic-v1',
+    'labib-indexer-pensions-v1',
+    'arthaud-revenu-minimum-retraites-chomage-invalidite-v1',
     'attal-petites-retraites-inflation-v1',
     'dlf-regimes-retraite-agricole-v1',
     'lepen-retraites-indexation-cinq-ans-v1',
@@ -609,18 +730,72 @@ const additionalAnswers: Record<string, string[]> = {
     'ps-garantir-85-du-smic-apres-une-carriere-entiere-dans-lagriculture-v1',
   ],
   'retraites-financement-regimes': [
+    'pic-retraites-capitalisation-collective-v1',
     'attal-interessement-vers-epargne-retraite-v1',
     'philippe-plan-epargne-premier-emploi-v1',
   ],
   'logement-regulation-loyers': [
+    'delmur-encadrement-loyers-v1',
     'melenchon-blocage-loyers-urgence-sociale-v1',
     'philippe-donner-aux-maires-la-decision-sur-lencadrement-des-loyers-v1',
   ],
   'social-garde-jeunes-enfants': [
+    'branco-rendre-opposable-le-droit-a-une-place-en-creche-v1',
+    'villepin-planifier-les-places-daccueil-de-la-petite-enfance-par-territoire-v1',
     'dlf-places-creches-cinq-ans-v1',
     'attal-social-professionnels-enfance-v1',
     'glucksmann-soustraire-creches-ehpad-logique-marchande-v1',
     'place-publique-contrat-creches-privees-v1',
+  ],
+  'france-otan': [
+    'lalanne-europe-otan-v1',
+    'philippot-europe-organisations-v1',
+    'legendre-maintenir-renforcer-alliances-dont-otan-v1',
+  ],
+  'retraites-regimes-particuliers': [
+    'marchal-agir-regimes-speciaux-pensions-hautes-v1',
+  ],
+  'retraites-penibilite': [
+    'bouamrane-adapter-age-depart-a-penibilite-v1',
+    'roussel-ouvrir-des-departs-anticipes-pour-les-metiers-penibles-et-les-carrieres-longue-v1',
+  ],
+  'climat-avenir-eolien': [
+    'retailleau-interrompre-des-appels-doffres-solaires-et-eoliens-en-mer-v1',
+    'melenchon-refuser-les-parcs-solaires-et-eoliens-qui-exigent-une-coupe-rase-v1',
+  ],
+  'regroupement-familial': [
+    'herlin-regroupement-familial-v1',
+    'becht-limiter-le-regroupement-familial-pour-les-personnes-hors-union-europeenne-v1',
+    'dupont-aignan-restreindre-le-regroupement-familial-et-supprimer-le-regime-derogatoire-des-re-v1',
+  ],
+  'handicap-accompagnement-ecole': [
+    'attal-corps-professionnel-aesh-v1',
+    'roussel-aesh-des-la-rentree-v1',
+    'branco-aesh-concours-titularisation-v1',
+    'becht-revaloriser-les-accompagnants-deleves-en-situation-de-handicap-et-ouvrir-davan-v1',
+    'dlf-aesh-temps-plein-v1',
+  ],
+  'parents-isoles': [
+    'delmur-pension-alimentaire-salaire-v1',
+    'becht-confier-une-mission-daide-aux-familles-monoparentales-aux-maisons-de-vie-v1',
+    'melenchon-creer-statut-famille-monoparentale-v1',
+  ],
+  'places-prison': [
+    'zemmour-prisons-100000-places-v1',
+    'herlin-places-prison-v1',
+    'becht-places-prisons-haute-securite-v1',
+  ],
+  'agriculture-ogm': ['lisnard-autoriser-ntg-v2'],
+  'statuts-outre-mer': [
+    'villepin-permettre-aux-territoires-ultramarins-de-choisir-une-evolution-vers-lautonomie-v1',
+    'melenchon-statut-collectivite-unique-v1',
+  ],
+  'mobilite-territoires': ['lisnard-investir-infrastructures-des-enclaves-v1'],
+  'numerique-demarches-en-ligne': [
+    'dubuisson-eviter-redemande-documents-administratifs-v2',
+    'pic-droits-services-hors-ligne-v1',
+    'dlf-accessibilite-services-publics-numeriques-v1',
+    'ecologistes-garantir-un-accueil-physique-de-service-public-a-quinze-minutes-v1',
   ],
 };
 const scopedComplements: Record<string, Record<string, string>> = {
@@ -642,6 +817,52 @@ const scopedComplements: Record<string, Record<string, string>> = {
     'renaissance-guichet-signalement-cyber-v1':
       'Le guichet proposé par Renaissance vise les signalements des victimes de cyberattaques.',
   },
+  'aide-ukraine': {
+    'philippe-soutenir-ladhesion-de-lukraine-a-lotan-v1':
+      'L’adhésion à l’OTAN est un volet distinct du soutien envisagé. La proposition ne précise pas le contenu de l’aide française.',
+    'riner-interroger-consequences-aide-ukraine-v1':
+      'Teddy Riner dit que la France resterait aux côtés des pays opprimés. Dans cet échange, il renvoie à son futur programme pour les modalités de l’aide.',
+  },
+  'retraites-financement-regimes': {
+    'dubuisson-capitalisation-dans-modele-paie-v1':
+      'Le prélèvement de 10 % figure dans une simulation de paie. Le document ne fixe pas le régime applicable à l’ensemble des revenus.',
+  },
+  'travail-duree-travail': {
+    'groupe-rn-appliquer-35-heures-fonction-publique-territoriale-v1':
+      'Cette disposition du contre-budget vise la fonction publique territoriale. La durée légale pour les autres salariés n’est pas traitée dans ce passage.',
+  },
+  'climat-avenir-eolien': {
+    'herlin-demantelement-eolien-solaire-v1':
+      'La proposition porte sur les installations existantes. Elle aide à situer l’orientation du candidat sur ces équipements.',
+  },
+  'institutions-ecrire-constitution': {
+    'mathieu-consultations-territoires-v1':
+      'Le candidat prévoit des contributions du public aux travaux. La composition de la convention est documentée dans une fiche distincte.',
+  },
+  'statuts-outre-mer': {
+    'batho-etats-generaux-outre-mer-v1':
+      'La candidate propose une concertation avec la société civile ultramarine. Le passage ne fixe pas de nouveau statut institutionnel.',
+  },
+  'immigration-aide-medicale-etat': {
+    'legendre-questionner-ame-sans-reforme-v1':
+      'Le manifeste critique le dispositif. Il ne précise pas le sort de l’AME ni les soins qui resteraient couverts.',
+  },
+  'regroupement-familial': {
+    'legendre-interroger-pays-regroupement-familial-v1':
+      'Le manifeste questionne le pays de regroupement. Il ne formule pas de nouvelle condition.',
+  },
+  'sante-aide-a-mourir': {
+    'saforcada-referendum-fin-de-vie-v1':
+      'David Saforcada propose un débat et un référendum sur la fin de vie. La charte n’indique pas quelle modification apporter à la loi.',
+  },
+  'mobilite-territoires': {
+    'batho-reduire-dependance-voiture-v1':
+      'La candidate prévoit des investissements pour réduire la dépendance à la voiture. Le volet ne choisit pas de service local de transport à développer.',
+  },
+  'soins-de-proximite': {
+    'dubuisson-dossier-medical-pros-autorises-v1':
+      'La proposition concerne le partage des informations entre les professionnels qui interviennent dans les soins.',
+  },
 };
 const searchTerms: Record<string, string> = {
   'logement-obligations-parc-social': 'logement social communes loi SRU',
@@ -649,6 +870,128 @@ const searchTerms: Record<string, string> = {
     'suppression de la CSG contribution sociale généralisée fiche de paie salaires actifs salaire brut revenu brut',
   'regroupement-familial': 'regroupement familial immigration familiale',
   'regularisation-sejour': 'sans-papiers titre de séjour régularisation',
+};
+// These subject phrases identify a precise question. Search terms can be broader.
+export const questionAnswerAliases: Record<string, string[]> = {
+  'aide-ukraine': ['aide à l’Ukraine', 'aide française à l’Ukraine'],
+  'france-otan': ['OTAN', 'place de la France dans l’OTAN'],
+  'europe-participation-union': ['sortie de l’Union européenne', 'Frexit'],
+  'retraites-conditions-depart': [
+    'âge légal de la retraite',
+    'âge de départ à la retraite',
+    'conditions de départ à la retraite',
+    'taux plein à la retraite',
+  ],
+  'retraites-penibilite': [
+    'pénibilité des carrières',
+    'retraite pour les métiers pénibles',
+  ],
+  'retraites-regimes-particuliers': ['régimes spéciaux de retraite'],
+  'retraites-protection-revenus': [
+    'montant des pensions',
+    'niveau des pensions',
+  ],
+  'retraites-financement-regimes': [
+    'répartition et capitalisation',
+    'retraite par capitalisation',
+    'financement des retraites',
+  ],
+  'travail-salaire-minimum': ['SMIC', 'hausse du SMIC'],
+  'travail-duree-travail': [
+    'temps de travail',
+    'durée légale du travail',
+    '35 heures',
+  ],
+  'fiscalite-csg-salaires': [
+    'CSG des salaires',
+    'baisse de la CSG des salaires',
+    'CSG sur les revenus du travail',
+  ],
+  'fiscalite-transmission-patrimoine': [
+    'droits de succession',
+    'fiscalité des successions',
+  ],
+  'climat-production-nucleaire': [
+    'nucléaire',
+    'production d’électricité nucléaire',
+  ],
+  'climat-avenir-eolien': ['nouvelles éoliennes', 'développement de l’éolien'],
+  'climat-prix-energie': ['prix de l’énergie', 'prix de l’électricité'],
+  'sante-remboursement-soins': [
+    'remboursement des soins',
+    'reste à charge en santé',
+  ],
+  'sante-installation-medecins': [
+    'installation des médecins',
+    'installation des médecins dans les déserts médicaux',
+    'contre les déserts médicaux',
+  ],
+  'soins-de-proximite': ['accès aux soins de proximité', 'soins de proximité'],
+  'logement-regulation-loyers': ['encadrement des loyers'],
+  'logement-obligations-parc-social': [
+    'loi SRU',
+    'quotas de logements sociaux',
+  ],
+  'logement-offre-bati': ['construction de logements', 'offre de logements'],
+  'regroupement-familial': ['regroupement familial'],
+  'regularisation-sejour': ['régularisation des sans-papiers'],
+  'immigration-travail': [
+    'immigration de travail',
+    'immigration professionnelle',
+  ],
+  'institutions-declenchement-referendum': [
+    'référendum d’initiative citoyenne',
+    'RIC',
+    'déclenchement du référendum',
+  ],
+  'institutions-ecrire-constitution': [
+    'rédaction de la Constitution',
+    'Assemblée constituante',
+  ],
+  'institutions-contributions-citoyennes': [
+    'initiatives citoyennes',
+    'participation aux décisions publiques',
+  ],
+  'social-garde-jeunes-enfants': [
+    'places de crèche',
+    'garde des jeunes enfants',
+  ],
+  'parents-isoles': [
+    'aides aux parents isolés',
+    'soutien aux familles monoparentales',
+  ],
+  'education-acces-etudes': [
+    'Parcoursup',
+    'admission dans l’enseignement supérieur',
+  ],
+  'salaires-enseignants': [
+    'salaires des enseignants',
+    'rémunération des professeurs',
+  ],
+  'handicap-accompagnement-ecole': ['statut des AESH'],
+  'places-prison': ['places de prison', 'construction de prisons'],
+  'agriculture-cantines': ['cantines scolaires'],
+  'agriculture-remuneration-contrats': ['rémunération des agriculteurs'],
+  'immigration-aide-medicale-etat': [
+    'AME',
+    'aide médicale de l’État',
+    'aide médicale d’État',
+  ],
+  'immigration-droit-sol': ['droit du sol'],
+  'education-eleves-par-classe': [
+    'élèves par classe',
+    'nombre d’élèves par classe',
+    'effectifs par classe',
+  ],
+  'sante-aide-a-mourir': ['aide à mourir', 'loi sur l’aide à mourir'],
+  'agriculture-elevages': ['élevage intensif', 'avenir de l’élevage'],
+  'agriculture-ogm': ['OGM', 'nouvelles techniques génomiques'],
+  'statuts-outre-mer': ['statut des outre-mer', 'statuts ultramarins'],
+  'mobilite-territoires': ['transports de proximité'],
+  'numerique-demarches-en-ligne': [
+    'démarches administratives en ligne',
+    'démarches en ligne',
+  ],
 };
 const definitions: Definition[] = [
   ...positionDivergences.map((t) => ({

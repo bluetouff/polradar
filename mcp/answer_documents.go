@@ -169,6 +169,11 @@ func (c *snapshot) answerProposals(result *documentaryAnswer, question, topic st
 		result.describe("ambigu", "dossier_a_preciser", "Choisissez la candidature pour laquelle vous souhaitez retrouver le passage.")
 		return nil
 	}
+	if len(people) == 1 && people[0].WithdrawnOn == "" {
+		if found, err := c.answerCandidateQuestion(result, topic, people[0]); found || err != nil {
+			return err
+		}
+	}
 	if handled, err := c.answerProgrammeTopic(result, words, people); handled {
 		return err
 	}
@@ -321,7 +326,12 @@ func (c *snapshot) answerComparison(result *documentaryAnswer, topic string, peo
 	if err != nil {
 		return err
 	}
-	selected := answerChoose(d.Questions, topic)
+	var selected []record
+	if exact := d.questionIndex[answerQuestionKey(topic)]; exact != nil {
+		selected = []record{exact}
+	} else {
+		selected = answerChoose(d.Questions, topic)
+	}
 	if len(selected) != 1 {
 		result.describe("ambigu", "question_comparative_a_preciser", "Choisissez une question documentée dans le comparateur.")
 		for _, q := range selected[:min(len(selected), answerLimit)] {
@@ -522,7 +532,28 @@ func (c *snapshot) answerQuestionPosition(question, candidateID, name, qualifica
 	if !ok {
 		return answerItem{}, invalidCorpus
 	}
-	item := c.measureAnswer(c.versionMeasure(m, version))
+	versioned := c.versionMeasure(m, version)
+	// Use the passages curated for this question. The complete measure can
+	// include other references, for example a secondary report.
+	if raw := position["sources"]; raw != nil {
+		var cited []struct{ ID, URL, Locator string }
+		if json.Unmarshal(raw, &cited) != nil || len(cited) == 0 {
+			return answerItem{}, invalidCorpus
+		}
+		selected := make([]reference, 0, len(cited))
+		for _, evidence := range cited {
+			at := slices.IndexFunc(versioned.SourceRefs, func(ref reference) bool {
+				return ref.SourceID == evidence.ID && ref.Locator == evidence.Locator &&
+					c.cited(ref)["url"] == evidence.URL
+			})
+			if at < 0 {
+				return answerItem{}, invalidCorpus
+			}
+			selected = append(selected, versioned.SourceRefs[at])
+		}
+		versioned.SourceRefs = selected
+	}
+	item := c.measureAnswer(versioned)
 	item.Title = name + " · " + position.str("title")
 	item.Summary = answerText(position.str("description"), 720)
 	if raw := position["relation"]; raw != nil {

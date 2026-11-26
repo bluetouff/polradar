@@ -127,3 +127,32 @@ test('le lien du comparateur ouvre trois réponses documentées sur mobile', asy
     await page.evaluate(() => document.documentElement.scrollWidth),
   ).toBeLessThanOrEqual(360);
 });
+
+test('une position nouvellement reliée se retrouve depuis la candidature et le comparateur', async ({
+  page,
+}) => {
+  await page.goto('/candidats/batho/');
+  await page.locator('.profile-question-index > summary').click();
+  await page
+    .locator('a[href="/questions/sante-installation-medecins/#candidat-batho"]')
+    .click();
+  const position = page.locator('#candidat-batho');
+  await expect(position).toContainText('Réguler l’installation des médecins');
+  const sources = position.locator('details.q-citations').first();
+  await sources.locator('summary').click();
+  await expect(
+    sources.locator(
+      'a[href^="https://www.delphinebatho.fr/priorites/la-pleine-sante/"]',
+    ),
+  ).toHaveCount(1);
+
+  await page.goto(
+    '/comparer/?question=sante-installation-medecins&c=batho,branco',
+  );
+  await expect(page.locator('#comparaison-batho')).toContainText(
+    'Réguler l’installation des médecins',
+  );
+  await expect(page.locator('#comparaison-batho')).toContainText(
+    'centres de santé',
+  );
+});

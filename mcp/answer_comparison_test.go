@@ -104,7 +104,7 @@ func TestPublishedAnswerComparisonEvidence(t *testing.T) {
 	}
 	h := handler(data, openUsage(t.TempDir(), time.Now()))
 	t.Run("positions, absence et complément individuel", func(t *testing.T) {
-		r := answerThroughTransports(t, h, "Compare Raphaël Glucksmann, David Lisnard, Gabriel Attal, Marine Le Pen, Juan Branco et Jean-Luc Mélenchon sur la question climat-production-nucleaire.", c.commit)
+		r := answerThroughTransports(t, h, "Compare Raphaël Glucksmann, David Lisnard, Teddy Riner, Marine Le Pen, Juan Branco et Jean-Luc Mélenchon sur la question climat-production-nucleaire.", c.commit)
 		expectComparisonFields(t, r.Data, map[string]any{
 			"/etat":  "partiel",
 			"/motif": "positions_non_documentees",
@@ -121,7 +121,7 @@ func TestPublishedAnswerComparisonEvidence(t *testing.T) {
 			"/resultats/1/versionId":                                "lisnard-nucleaire-hydraulique-v1",
 			"/resultats/1/comparaison/nombrePositions":              float64(3),
 			"/resultats/1/comparaison/supplementaires/1/versionId":  "lisnard-prolonger-reacteurs-nucleaires-60-ans-v1",
-			"/resultats/2/candidatureAssociee":                      "attal",
+			"/resultats/2/candidatureAssociee":                      "riner",
 			"/resultats/2/comparaison/etat":                         "non-documente",
 			"/resultats/2/sources":                                  []any{},
 			"/resultats/3/candidatureAssociee":                      "lepen",

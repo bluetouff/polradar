@@ -1,5 +1,13 @@
 # État d’implémentation de Polradar
 
+## Grandes questions et réponses du 26 novembre 2026
+
+La comparaison avec l’édition `a0d2727` donne 66 grandes questions contre 62. Les réponses reliées passent de 418 à 537 et les compléments de 5 à 17. Une candidature dispose d’une réponse sur 478 couples candidature–question, contre 365 auparavant. Les questions ajoutées portent sur le droit du sol, l’aide médicale de l’État, le nombre d’élèves par classe et l’aide à mourir. La fiche candidat donne accès à toutes les grandes questions pour lesquelles un passage est relié. [Questions](https://polradar.fr/questions/)
+
+Le comparateur, Demander et le MCP lisent la même version citée pour les positions reliées. Une formulation qui désigne sans ambiguïté un dossier rend ses passages, le statut de la position et un accès au comparateur. Le parti, la campagne, l’orientation et la portée locale restent indiqués. Un document examiné sans réponse et un complément de contexte ont des libellés distincts. [Demander](https://polradar.fr/demander/) · [MCP](https://polradar.fr/mcp/)
+
+La relecture ajoute neuf fiches à partir de cinq documents d’origine et précise les fiches de référendum d’Emmanuel Dubuisson et de Jean-François Legendre ainsi que celle de Selma Labib sur le temps de travail. Les versions précédentes restent consultables. [Registre de relecture](https://polradar.fr/documents/couverture/)
+
 ## Reprise du contre-audit du 26 novembre 2026
 
 À 15 h 01, heure de Paris, le site et `main` servaient `abc3846fc6c17d7e894e6a0add20d0611c2328e6`. Le service installé annonçait MCP 1.5.0, révision `867cd0601aa35c3dd18b62ef554cf76b2624b433`, avec 11 outils. Les 14 empreintes du manifeste concordaient. Cette édition comptait 4 429 propositions de campagne ou de parti, 4 565 fiches au total et 907 références. [Manifeste](https://polradar.fr/build.json) · [Archive de référence](https://github.com/bluetouff/polradar/releases/tag/site-abc3846fc6c17d7e894e6a0add20d0611c2328e6)

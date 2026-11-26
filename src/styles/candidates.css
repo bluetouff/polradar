@@ -557,6 +557,18 @@ main > header.candidate-hero {
 .profile-topic-index[open] summary .icon:last-child {
   transform: rotate(180deg);
 }
+.profile-question-index {
+  margin-block-end: 1.25rem;
+}
+.profile-question-index summary .icon {
+  width: 1.08rem;
+  height: 1.08rem;
+  color: var(--accent);
+}
+.profile-question-index .profile-jumps {
+  margin: 0.65rem 0 0;
+  border-bottom: 0;
+}
 .programme-reading {
   display: grid;
   gap: 0.65rem;

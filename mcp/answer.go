@@ -332,14 +332,25 @@ func (c *snapshot) answer(a answerArgs) (any, bool, error) {
 		err = c.answerHistory(&result, a.Question, topic, people)
 	case "verification":
 		err = c.answerVerification(&result, a.Question)
-	case "territoire":
-		err = c.answerTerritory(&result, a.Question)
-	case "financement":
-		if m, ok := c.requestedMeasure(a.Question); ok {
-			c.answerMeasureFunding(&result, m)
-			break
+	case "territoire", "financement":
+		if intent == "financement" {
+			if m, ok := c.requestedMeasure(a.Question); ok {
+				c.answerMeasureFunding(&result, m)
+				break
+			}
 		}
-		result.describe("ambigu", "mesure_a_preciser", "Indiquez l’identifiant d’une proposition pour examiner ses montants et son financement documenté.")
+		if len(people) == 1 && people[0].WithdrawnOn == "" {
+			position := newDocumentaryAnswer("proposition")
+			if found, lookupErr := c.answerCandidateQuestion(&position, topic, people[0]); found || lookupErr != nil {
+				result, err = position, lookupErr
+				break
+			}
+		}
+		if intent == "territoire" {
+			err = c.answerTerritory(&result, a.Question)
+		} else {
+			result.describe("ambigu", "mesure_a_preciser", "Indiquez l’identifiant d’une proposition pour examiner ses montants et son financement documenté.")
+		}
 	case "simulation":
 		result.describe("partiel", "hypotheses_a_preciser", "Choisissez le dispositif à examiner. La rubrique donne les hypothèses et les sources documentées.")
 	case "inconnue":

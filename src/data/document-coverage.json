@@ -3621,7 +3621,7 @@
   {
     "sourceId": "lalanne-projet-2027",
     "unit": "passage",
-    "checked": "2026-11-25",
+    "checked": "2026-11-26",
     "perimeter": "Passages relus des pièces originales pour les fiches indiquées ci-dessous.",
     "units": [
       {
@@ -3648,6 +3648,16 @@
         "id": "passage-5",
         "title": "Démocratie",
         "measureIds": ["lalanne-limiter-influence-lobbies"]
+      },
+      {
+        "id": "complement-rapprochement-franco-russe-brics",
+        "title": "Relations internationales",
+        "measureIds": ["lalanne-rapprochement-franco-russe-brics"]
+      },
+      {
+        "id": "complement-reforme-agricole-petits-exploitants",
+        "title": "Agriculture et exploitations",
+        "measureIds": ["lalanne-reforme-agricole-petits-exploitants"]
       }
     ]
   },
@@ -3695,7 +3705,7 @@
   {
     "sourceId": "batho-programme-securite-climatique",
     "unit": "passage",
-    "checked": "2026-11-25",
+    "checked": "2026-11-26",
     "perimeter": "Passages relus des pièces originales pour les fiches indiquées ci-dessous.",
     "units": [
       {
@@ -3714,13 +3724,18 @@
         "measureIds": [
           "batho-investir-dans-la-renovation-des-logements-pour-reduire-la-consommation-denergi"
         ]
+      },
+      {
+        "id": "complement-reduire-dependance-voiture",
+        "title": "Énergie et déplacements",
+        "measureIds": ["batho-reduire-dependance-voiture"]
       }
     ]
   },
   {
     "sourceId": "batho-programme-republique-terrestre",
     "unit": "passage",
-    "checked": "2026-11-25",
+    "checked": "2026-11-26",
     "perimeter": "Passages relus des pièces originales pour les fiches indiquées ci-dessous.",
     "units": [
       {
@@ -3732,6 +3747,11 @@
         "id": "passage-2",
         "title": "Vie démocratique",
         "measureIds": ["batho-presidentialisme-parlement"]
+      },
+      {
+        "id": "complement-soutien-stable-vie-associative",
+        "title": "Vie démocratique et associations",
+        "measureIds": ["batho-soutien-stable-vie-associative"]
       }
     ]
   },
@@ -4145,13 +4165,16 @@
   {
     "sourceId": "legendre-manifeste-64",
     "unit": "passage",
-    "checked": "2026-11-25",
+    "checked": "2026-11-26",
     "perimeter": "Passages relus des pièces originales pour les fiches indiquées ci-dessous.",
     "units": [
       {
         "id": "passage-1",
         "title": "Système de référendums",
-        "measureIds": ["legendre-supprimer-article-49-alinea-3"]
+        "measureIds": [
+          "legendre-supprimer-article-49-alinea-3",
+          "legendre-institutions-referendums"
+        ]
       },
       {
         "id": "passage-2",
@@ -4201,6 +4224,19 @@
         "id": "passage-10",
         "title": "Une autre vision de la sécurité",
         "measureIds": ["legendre-simplifier-procedures-justice-penale"]
+      },
+      {
+        "id": "complement-maintenir-renforcer-alliances-dont-otan",
+        "title": "Alliances et place de la France",
+        "measureIds": ["legendre-maintenir-renforcer-alliances-dont-otan"]
+      },
+      {
+        "id": "complement-questionner-ame-sans-reforme",
+        "title": "Aide médicale et regroupement familial",
+        "measureIds": [
+          "legendre-questionner-ame-sans-reforme",
+          "legendre-interroger-pays-regroupement-familial"
+        ]
       }
     ]
   },
@@ -4978,7 +5014,7 @@
     "sourceId": "labib-discours-2026",
     "perimeter": "Passages du discours prononcé le 12 septembre 2026.",
     "unit": "passage",
-    "checked": "2026-11-25",
+    "checked": "2026-11-26",
     "units": [
       {
         "id": "passage-1",
@@ -4994,6 +5030,21 @@
         "id": "passage-3",
         "title": "Université · Frais d’inscription des étudiants étrangers",
         "measureIds": ["labib-abroger-mesure-frais-etudiants-etrangers"]
+      },
+      {
+        "id": "complement-liberte-circulation-installation",
+        "title": "Immigration",
+        "measureIds": ["labib-liberte-circulation-installation"]
+      },
+      {
+        "id": "complement-ia-emancipation-planification",
+        "title": "Usage de l’intelligence artificielle",
+        "measureIds": ["labib-ia-emancipation-planification"]
+      },
+      {
+        "id": "complement-travail-temps",
+        "title": "Durée du travail",
+        "measureIds": ["labib-travail-temps"]
       }
     ]
   },
@@ -10563,6 +10614,33 @@
         "title": "Réorientation des dépenses, sans poste ni objectif chiffré",
         "review": "sans-engagement-precis",
         "measureIds": ["riner-reorienter-depenses-publiques"]
+      }
+    ]
+  },
+  {
+    "sourceId": "dubuisson-dossier-referendum",
+    "perimeter": "Sections où figurent les positions documentées",
+    "unit": "section",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "complement-referendum-decisions-essentielles",
+        "title": "Initiative présidentielle et information avant le vote",
+        "measureIds": ["dubuisson-referendum-decisions-essentielles"]
+      }
+    ]
+  },
+  {
+    "sourceId": "polony-vision",
+    "perimeter": "Propositions de production et de remise en usage de logements",
+    "unit": "thème",
+    "checked": "2026-11-23",
+    "units": [
+      {
+        "id": "logement-offre",
+        "title": "Offre de logements dans la déclaration de campagne",
+        "review": "sans-engagement-precis",
+        "measureIds": []
       }
     ]
   }

@@ -25,6 +25,11 @@ const statusTitles: Record<string, string> = {
   ambigu: 'Question à préciser',
   'hors-perimetre': 'Question hors du corpus',
 };
+const detailTitles: Record<string, string> = {
+  document_examine: 'Position non relevée dans les documents examinés',
+  position_non_documentee: 'Position non documentée dans le dossier',
+  complements_seuls: 'Éléments de contexte',
+};
 const scopeNames: Record<string, string> = {
   campagne: 'Proposition de campagne',
   parti: 'Proposition de parti',
@@ -278,9 +283,10 @@ function render(value: unknown) {
   const envelope = record(value);
   const answer = record(envelope.donnees);
   const state = text(answer.etat);
-  const title = labelFor(statusTitles, state);
-  if (!title || !Array.isArray(answer.resultats))
+  const status = labelFor(statusTitles, state);
+  if (!status || !Array.isArray(answer.resultats))
     throw Error('Structure inconnue');
+  const title = labelFor(detailTitles, answer.motif) || status;
   const items = rows(answer.resultats).filter((entry) => text(entry.titre));
   results.replaceChildren(...items.map(renderResult));
   correction.hidden = !items.length;
