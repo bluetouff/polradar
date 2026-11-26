@@ -149,12 +149,12 @@ test('une mesure s’ouvre au premier clic après une recherche', async ({
   await expect(page.locator('#measure-results .measure-row')).toHaveCount(2);
   await page
     .getByRole('link', {
-      name: 'Capitalisation collective et départs anticipés',
+      name: 'Retraites : capitalisation collective et maintien de départs anticipés',
     })
     .click();
   await expect(page).toHaveURL(/\/mesures\/philippe-retraites-2\/$/);
   await expect(page.locator('h1')).toHaveText(
-    'Capitalisation collective et départs anticipés',
+    'Retraites : capitalisation collective et maintien de départs anticipés',
   );
 });
 
