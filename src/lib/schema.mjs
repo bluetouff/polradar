@@ -32,6 +32,7 @@ export const documentAuthorsSchema = z.record(
     author: partyAuthorSchema,
     locator: z.string().trim().min(1).max(500),
     checked: dateSchema,
+    campaignAttribution: z.literal(true).optional(),
   }),
 );
 export const sourceSchema = z.object({

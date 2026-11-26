@@ -23,15 +23,22 @@ test('la signature vérifiée prime sur le rattachement au dossier', () => {
     const name = candidates.find((c) => c.id === row.candidate).name;
     const label = attributionLabel(row, name);
     if (row.partyAuthor) assert.equal(label, row.partyAuthor);
-    else if (row.scope !== 'parti') assert.equal(label, name);
+    else if (row.scope !== 'parti' && row.scope !== 'campagne')
+      assert.equal(label, name);
     else {
       const ids = row.sourceRefs?.map((r) => r.sourceId) ?? row.sources;
-      const credits = ids.map((id) => authors[id]?.author);
+      const credits = ids.map((id) =>
+        row.scope === 'parti' || authors[id]?.campaignAttribution
+          ? authors[id]?.author
+          : null,
+      );
       assert.equal(
         label,
         credits[0] && credits.every((v) => v === credits[0])
           ? credits[0]
-          : unspecifiedCollective,
+          : row.scope === 'parti'
+            ? unspecifiedCollective
+            : name,
       );
     }
   }
@@ -51,6 +58,25 @@ test('la signature vérifiée prime sur le rattachement au dossier', () => {
     (m) => m.id === 'dupont-aignan-institutions-audit-ministeres',
   );
   assert.equal(collectiveLabel(signed), 'Maël Camerlynck (Debout la France)');
+});
+
+test('un livret cosigné garde ses deux auteurs dans les fiches de campagne', () => {
+  const measure = measures.find(
+    (row) => row.id === 'glucksmann-declarer-etat-urgence-ecologique',
+  );
+  assert.equal(measure.scope, 'campagne');
+  assert.equal(
+    attributionLabel(measure, 'Raphaël Glucksmann'),
+    'Raphaël Glucksmann et Yannick Jadot',
+  );
+  const mixed = {
+    ...measure,
+    sourceRefs: [...measure.sourceRefs, { sourceId: 'pp-project' }],
+  };
+  assert.equal(
+    attributionLabel(mixed, 'Raphaël Glucksmann'),
+    'Raphaël Glucksmann',
+  );
 });
 
 test('le premier éditeur, une référence inconnue ou le prototype ne peuvent attribuer une fiche', () => {

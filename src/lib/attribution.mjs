@@ -2,7 +2,7 @@ import authors from '../data/document-authors.json' with { type: 'json' };
 
 export const unspecifiedCollective = 'Document de parti';
 
-/** @param {string} id @returns {{author:string, locator:string, checked:string} | null} */
+/** @param {string} id @returns {{author:string, locator:string, checked:string, campaignAttribution?:true} | null} */
 export function documentCredit(id) {
   return Object.hasOwn(authors, id) ? authors[id] : null;
 }
@@ -10,13 +10,21 @@ export function documentCredit(id) {
 /** A dossier can contain a party programme, a signed contribution or an individual declaration. */
 export function collectiveLabel(record) {
   if (record.partyAuthor) return record.partyAuthor;
-  if (record.scope !== 'parti') return null;
+  const party = record.scope === 'parti';
+  if (!party && record.scope !== 'campagne') return null;
   const ids =
     record.sourceRefs?.map((ref) => ref.sourceId) ?? record.sources ?? [];
-  const author = ids.length ? documentCredit(ids[0])?.author : null;
-  return author && ids.every((id) => documentCredit(id)?.author === author)
-    ? author
-    : unspecifiedCollective;
+  const credits = ids.map(documentCredit);
+  const author = credits[0]?.author;
+  if (
+    author &&
+    credits.every(
+      (credit) =>
+        credit?.author === author && (party || credit.campaignAttribution),
+    )
+  )
+    return author;
+  return party ? unspecifiedCollective : null;
 }
 
 export function attributionLabel(record, candidateName) {
