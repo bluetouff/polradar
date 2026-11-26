@@ -224,6 +224,9 @@ const programmeReviews = documents.flatMap((document) =>
                       <small>Sans engagement précis</small>
                     )}
                     {unit.review === 'a-examiner' && <small>À examiner</small>}
+                    {unit.review === 'a-completer' && (
+                      <small>Relecture à compléter</small>
+                    )}
                     {unit.measureIds.length > 0 && (
                       <ul>
                         {unit.measureIds.map((id) => (

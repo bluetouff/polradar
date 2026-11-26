@@ -64,6 +64,18 @@ test('une étape documentaire encore à relier reste visible dans le registre', 
     section.units.filter((u) => u.measureIds.length > 0).length,
   );
 });
+test('un chapitre partiellement documenté reste à compléter malgré ses fiches', () => {
+  const section = structuredClone(audits[0]);
+  section.units[0].review = 'a-completer';
+  const { coverage, processing } = buildDocumentRegister(corpus, [
+    section,
+  ]).find((document) => document.id === section.sourceId);
+  assert.equal(coverage.linked, section.units.length);
+  assert.equal(coverage.reviewed, section.units.length - 1);
+  assert.equal(coverage.remaining, 1);
+  assert.equal(processing, 'relecture à compléter');
+  assert.deepEqual(coverage.units[0].measureIds, section.units[0].measureIds);
+});
 test('Les doubles comptes et les rapprochements sans citation du document échouent', () => {
   const section = audits[0],
     unit = section.units[0];

@@ -158,8 +158,8 @@ const names = new Map(
         {d.coverage && (
           <details class="doc-coverage">
             <summary>
-              {d.coverage.linked}/{d.coverage.total} {d.coverage.unit}s reliées
-              à une fiche
+              {d.coverage.linked}/{d.coverage.total} {d.coverage.unit}s avec au
+              moins une fiche
             </summary>
             <p>
               {d.coverage.perimeter}. Lecture du{' '}
@@ -183,6 +183,7 @@ const names = new Map(
                   {u.review === 'sans-engagement-precis' && (
                     <em>Relue, sans engagement précis</em>
                   )}
+                  {u.review === 'a-completer' && <em>Relecture à compléter</em>}
                 </li>
               ))}
             </ol>

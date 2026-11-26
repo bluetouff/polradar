@@ -13,7 +13,9 @@ const auditedSection = z.strictObject({
         id: idSchema,
         title: z.string().trim().min(1).max(180),
         sourceId: idSchema.optional(),
-        review: z.enum(['sans-engagement-precis', 'a-examiner']).optional(),
+        review: z
+          .enum(['sans-engagement-precis', 'a-examiner', 'a-completer'])
+          .optional(),
         measureIds: z.array(idSchema),
       }),
     )
@@ -79,6 +81,10 @@ export function buildDocumentRegister(
       units.add(unit.id);
       if (unit.review === 'a-examiner' && unit.measureIds.length)
         throw new Error('Section à examiner déjà reliée : ' + unit.id);
+      if (unit.review === 'a-completer' && !unit.measureIds.length)
+        throw new Error(
+          'Section partielle sans proposition reliée : ' + unit.id,
+        );
       for (const id of unit.measureIds) {
         const measure = records.get(id);
         if (
@@ -137,10 +143,16 @@ export function buildDocumentRegister(
       review: unit.review ?? (unit.measureIds.length ? 'relue' : 'a-examiner'),
       sourceUrl: sourcesById.get(sourceId ?? source.id)!.url,
     }));
+    const complete = units?.filter(
+      (unit) =>
+        unit.review === 'relue' || unit.review === 'sans-engagement-precis',
+    ).length;
     const watch = watches.get(source.id);
     const info = details[source.id];
-    const processing = review
-      ? 'périmètre relu'
+    const processing = units
+      ? complete === units.length
+        ? 'périmètre relu'
+        : 'relecture à compléter'
       : related.passages.length
         ? 'passages localisés'
         : 'référence identifiée';
@@ -182,7 +194,7 @@ export function buildDocumentRegister(
       measureCount: new Set(related.passages.map((p) => p.measureId)).size,
       passages: related.passages,
       coverage:
-        review && units
+        review && units && complete !== undefined
           ? {
               perimeter: review.perimeter,
               unit: review.unit,
@@ -190,8 +202,8 @@ export function buildDocumentRegister(
               linked: review.units.filter((u) => u.measureIds.length > 0)
                 .length,
               total: review.units.length,
-              reviewed: units.filter((u) => u.review !== 'a-examiner').length,
-              remaining: units.filter((u) => u.review === 'a-examiner').length,
+              reviewed: complete,
+              remaining: units.length - complete,
               units,
             }
           : null,

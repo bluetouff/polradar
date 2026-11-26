@@ -421,86 +421,87 @@
   },
   {
     "sourceId": "philippe-programme-5",
-    "perimeter": "Les six propositions phares de la page Énergie",
+    "perimeter": "Les 6 entrées de la liste officielle des propositions phares",
     "unit": "proposition phare",
-    "checked": "2026-11-24",
+    "checked": "2026-11-26",
     "units": [
       {
-        "id": "proposition-1",
-        "title": "Nucléaire et énergies renouvelables",
+        "id": "phare-1",
+        "title": "Proposition phare 1 · Relancer la filière nucléaire",
         "measureIds": ["philippe-climat-1"]
       },
       {
-        "id": "proposition-2",
-        "title": "Électrification des usages",
-        "measureIds": []
+        "id": "phare-2",
+        "title": "Proposition phare 2 · Remplacer des usages du pétrole et du gaz par l’électricité",
+        "measureIds": ["philippe-electrifier-usages-sortir-petrole-gaz"]
       },
       {
-        "id": "proposition-3",
-        "title": "Prix du carbone aux frontières européennes",
+        "id": "phare-3",
+        "title": "Proposition phare 3 · Renforcer le prix du carbone appliqué aux frontières européennes",
         "measureIds": [
           "philippe-renforcer-le-prix-du-carbone-applique-aux-frontieres-europeennes"
         ]
       },
       {
-        "id": "proposition-4",
-        "title": "Géothermie et biométhane",
+        "id": "phare-4",
+        "title": "Proposition phare 4 · Développer la géothermie et le biométhane",
         "measureIds": ["philippe-geothermie-biomethane"]
       },
       {
-        "id": "proposition-5",
-        "title": "Part du fret ferroviaire",
+        "id": "phare-5",
+        "title": "Proposition phare 5 · Porter à 20 % la part du rail dans le fret",
         "measureIds": ["philippe-fret-ferroviaire-20-pourcent"]
       },
       {
-        "id": "proposition-6",
-        "title": "Financement européen du nucléaire et des interconnexions",
+        "id": "phare-6",
+        "title": "Proposition phare 6 · Mobiliser la BEI pour le nucléaire et les interconnexions",
         "measureIds": ["philippe-bei-nucleaire-interconnexions"]
       }
     ]
   },
   {
     "sourceId": "philippe-programme-8",
-    "perimeter": "Les six propositions phares de la page Handicap",
+    "perimeter": "Les 6 entrées de la liste officielle des propositions phares",
     "unit": "proposition phare",
-    "checked": "2026-11-24",
+    "checked": "2026-11-26",
     "units": [
       {
-        "id": "proposition-1",
-        "title": "Accompagnement et école inclusive",
+        "id": "phare-1",
+        "title": "Proposition phare 1 · Adopter une loi pour coordonner l’école et le secteur médico-social",
         "measureIds": [
+          "philippe-loi-ecole-inclusive-coordonner-medico-social",
           "philippe-proposer-un-accompagnement-pendant-lattente-dune-place-en-institut-medico-educa"
         ]
       },
       {
-        "id": "proposition-2",
-        "title": "Répit des proches aidants",
+        "id": "phare-2",
+        "title": "Proposition phare 2 · Garantir quinze jours de répit par an aux aidants les plus sollicités",
         "measureIds": [
           "philippe-garantir-quinze-jours-de-repit-par-an-aux-aidants-les-plus-sollicites"
         ]
       },
       {
-        "id": "proposition-3",
-        "title": "Cumul de l’AAH et des revenus du travail",
+        "id": "phare-3",
+        "title": "Proposition phare 3 · Cumuler intégralement l’AAH et les revenus du travail pendant un an après la reprise d’un emploi",
         "measureIds": [
           "philippe-cumuler-integralement-aah-et-salaire-pendant-un-an-a-la-reprise-demploi"
         ]
       },
       {
-        "id": "proposition-4",
-        "title": "Délais de réponse des MDPH",
+        "id": "phare-4",
+        "title": "Proposition phare 4 · Fixer des délais de réponse aux maisons départementales du handicap",
         "measureIds": [
           "philippe-fixer-des-delais-de-reponse-aux-maisons-departementales-du-handicap"
         ]
       },
       {
-        "id": "proposition-5",
-        "title": "Accessibilité des centres-villes et centres-bourgs",
+        "id": "phare-5",
+        "title": "Proposition phare 5 · Établir des plans locaux d’accessibilité",
         "measureIds": ["philippe-accessibilite-centres-villes-bourgs"]
       },
       {
-        "id": "proposition-6",
-        "title": "Habitat adapté, partagé ou inclusif",
+        "id": "phare-6",
+        "title": "Proposition phare 6 · Créer 100 000 logements adaptés, partagés ou inclusifs d’ici 2035",
         "measureIds": [
           "philippe-creer-100-000-logements-adaptes-partages-ou-inclusifs-dici-2035"
         ]
@@ -2121,8 +2122,8 @@
   {
     "sourceId": "lepen-plan-redressement-budgetaire-2026",
     "unit": "section",
-    "checked": "2026-11-25",
-    "perimeter": "Passages dépouillés de la publication de campagne.",
+    "checked": "2026-11-26",
+    "perimeter": "Passages vérifiés du plan de redressement budgétaire de Marine Le Pen",
     "units": [
       {
         "id": "q1-regle-budgetaire",
@@ -2143,15 +2144,102 @@
           "lepen-augmenter-recherche-publique-03-point-pib",
           "lepen-renforcer-pacte-dutreil"
         ]
+      },
+      {
+        "id": "relecture-2026-11-26-1",
+        "title": "Objectifs chiffrés",
+        "measureIds": [
+          "lepen-equilibre-primaire-18-mois",
+          "lepen-140-milliards-economies-nettes-2032",
+          "lepen-baisser-impots-30-milliards-nets"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-2",
+        "title": "Réorganisation de l’État",
+        "measureIds": [
+          "lepen-recentraliser-recettes-tva",
+          "lepen-supprimer-plus-120-taxes",
+          "lepen-supprimer-majorite-agences"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-3",
+        "title": "Prévention des catastrophes",
+        "measureIds": ["lepen-transformer-fonds-vert-prevention-catastrophes"]
+      },
+      {
+        "id": "relecture-2026-11-26-4",
+        "title": "Contrôle de la fraude",
+        "measureIds": [
+          "lepen-paiement-tva-a-la-source",
+          "lepen-creer-allocation-sociale-unique",
+          "lepen-imposer-multinationales-chiffre-affaires-france",
+          "lepen-renforcer-douanes-dgccrf"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-5",
+        "title": "Compétitivité des entreprises",
+        "measureIds": [
+          "lepen-baisser-impots-production-20-milliards",
+          "lepen-suramortissement-150-robotisation",
+          "lepen-part-pleine-deuxieme-enfant",
+          "lepen-demi-part-veuves-veufs"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-6",
+        "title": "Fiscalité du patrimoine",
+        "measureIds": ["lepen-remplacer-ifi-fortune-financiere"]
+      },
+      {
+        "id": "relecture-2026-11-26-7",
+        "title": "Droits pour la jeunesse",
+        "measureIds": [
+          "lepen-supprimer-cvec",
+          "lepen-priorite-nationale-logement-etudiant",
+          "lepen-exonerer-ir-moins-de-30-ans-sous-plafond",
+          "lepen-permis-gratuit-jeunes-casier-vierge"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-8",
+        "title": "Règle d’or budgétaire",
+        "measureIds": [
+          "lepen-plafonner-deficit-au-seuil-de-stabilisation-de-la-dette"
+        ]
       }
     ]
   },
   {
     "sourceId": "philippe-programme-1",
-    "unit": "section",
-    "checked": "2026-11-25",
-    "perimeter": "Questions-réponses du programme de campagne.",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "perimeter": "Les 3 entrées de la liste officielle des propositions phares et passages complémentaires relus",
     "units": [
+      {
+        "id": "phare-1",
+        "title": "Proposition phare 1 · Créer un fonds annuel de deux milliards d’euros pour l’adaptation climatique",
+        "measureIds": [
+          "philippe-creer-un-fonds-annuel-de-deux-milliards-deuros-pour-ladaptation-climatique"
+        ]
+      },
+      {
+        "id": "phare-2",
+        "title": "Proposition phare 2 · Adapter les bâtiments publics aux fortes chaleurs et accroître le stockage de l’eau",
+        "measureIds": [
+          "philippe-climat-2",
+          "philippe-reutiliser-10-des-eaux-usees-traitees"
+        ]
+      },
+      {
+        "id": "phare-3",
+        "title": "Proposition phare 3 · Limiter les exigences agricoles françaises au niveau prévu par l’Union européenne",
+        "measureIds": [
+          "philippe-limiter-les-exigences-agricoles-francaises-au-niveau-prevu-par-lunion-europeenn"
+        ]
+      },
       {
         "id": "q1-comment-edouard-philippe-veut-il-adapter-la-france-au-rechauffement-climatique",
         "title": "Comment Édouard Philippe veut-il adapter la France au réchauffement climatique ?",
@@ -2259,10 +2347,52 @@
   },
   {
     "sourceId": "philippe-programme-11",
-    "unit": "section",
-    "checked": "2026-11-25",
-    "perimeter": "Questions-réponses du programme de campagne.",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "perimeter": "Les 7 entrées de la liste officielle des propositions phares et passages complémentaires relus",
     "units": [
+      {
+        "id": "phare-1",
+        "title": "Proposition phare 1 · Rétablir des peines minimales",
+        "measureIds": ["philippe-securite-1"]
+      },
+      {
+        "id": "phare-2",
+        "title": "Proposition phare 2 · Recourir aux courtes peines de prison dès le premier délit",
+        "measureIds": [
+          "philippe-recourir-aux-courtes-peines-de-prison-des-le-premier-delit"
+        ]
+      },
+      {
+        "id": "phare-3",
+        "title": "Proposition phare 3 · Supprimer le juge de l’application des peines",
+        "measureIds": ["philippe-supprimer-juge-application-peines"]
+      },
+      {
+        "id": "phare-4",
+        "title": "Proposition phare 4 · Accélérer la construction de places de prison",
+        "measureIds": ["philippe-securite-2"]
+      },
+      {
+        "id": "phare-5",
+        "title": "Proposition phare 5 · Rétablir des juges de paix pour les litiges civils",
+        "measureIds": ["philippe-retablir-juges-paix"]
+      },
+      {
+        "id": "phare-6",
+        "title": "Proposition phare 6 · Interdire aux magistrats d’adhérer à un syndicat",
+        "measureIds": [
+          "philippe-interdire-aux-magistrats-dadherer-a-un-syndicat"
+        ]
+      },
+      {
+        "id": "phare-7",
+        "title": "Proposition phare 7 · Confier la refonte du Code de procédure pénale à un comité",
+        "measureIds": [
+          "philippe-confier-la-refonte-du-code-de-procedure-penale-a-un-comite",
+          "philippe-deployer-ia-instruction-dossiers"
+        ]
+      },
       {
         "id": "q1-que-propose-edouard-philippe-pour-la-justice",
         "title": "Que propose Édouard Philippe pour la Justice ?",
@@ -2335,15 +2465,78 @@
         "title": "Comment Édouard Philippe veut-il simplifier la procédure pénale ?",
         "review": "a-examiner",
         "measureIds": []
+      },
+      {
+        "id": "relecture-2026-11-26-1",
+        "title": "Justice · exécution des peines",
+        "measureIds": ["philippe-supprimer-juge-application-peines"]
+      },
+      {
+        "id": "relecture-2026-11-26-2",
+        "title": "Justice · propositions phares",
+        "measureIds": ["philippe-retablir-juges-paix"]
+      },
+      {
+        "id": "relecture-2026-11-26-3",
+        "title": "Justice · procédure pénale",
+        "measureIds": ["philippe-deployer-ia-instruction-dossiers"]
       }
     ]
   },
   {
     "sourceId": "philippe-programme-14",
-    "unit": "section",
-    "checked": "2026-11-25",
-    "perimeter": "Questions-réponses du programme de campagne.",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "perimeter": "Les 7 entrées de la liste officielle des propositions phares et passages complémentaires relus",
     "units": [
+      {
+        "id": "phare-1",
+        "title": "Proposition phare 1 · Permettre aux parents de demander une vérification à la police",
+        "measureIds": [
+          "philippe-permettre-aux-parents-de-demander-une-verification-a-la-police"
+        ]
+      },
+      {
+        "id": "phare-2",
+        "title": "Proposition phare 2 · Rendre imprescriptibles les crimes commis sur des mineurs",
+        "measureIds": [
+          "philippe-rendre-imprescriptibles-les-crimes-commis-sur-des-mineurs"
+        ]
+      },
+      {
+        "id": "phare-3",
+        "title": "Proposition phare 3 · Éloigner l’adulte mis en cause dès le dépôt d’une plainte concernant un enfant",
+        "measureIds": [
+          "philippe-eloigner-ladulte-mis-en-cause-des-le-depot-dune-plainte-concernant-un-enfant"
+        ]
+      },
+      {
+        "id": "phare-4",
+        "title": "Proposition phare 4 · Inspecter au moins tous les trois ans les lieux accueillant des mineurs",
+        "measureIds": [
+          "philippe-inspecter-au-moins-tous-les-trois-ans-les-lieux-accueillant-des-mineurs"
+        ]
+      },
+      {
+        "id": "phare-5",
+        "title": "Proposition phare 5 · Généraliser les certificats d’honorabilité des encadrants d’enfants",
+        "measureIds": [
+          "philippe-generaliser-les-certificats-dhonorabilite-des-encadrants-denfants"
+        ]
+      },
+      {
+        "id": "phare-6",
+        "title": "Proposition phare 6 · Durcir la responsabilité pénale des plateformes pour les contenus pédopornographiques",
+        "measureIds": [
+          "philippe-responsabilite-plateformes-pedocriminalite",
+          "philippe-fermer-les-sites-en-ligne-qui-facilitent-le-proxenetisme-de-mineurs"
+        ]
+      },
+      {
+        "id": "phare-7",
+        "title": "Proposition phare 7 · Réécrire l’interdiction des réseaux sociaux pour les moins de 15 ans",
+        "measureIds": ["philippe-reecrire-loi-reseaux-sociaux-moins-quinze-ans"]
+      },
       {
         "id": "q1-edouard-philippe-veut-il-rendre-imprescriptibles-les-crimes-sur-les-enfants",
         "title": "Édouard Philippe veut-il rendre imprescriptibles les crimes sur les enfants ?",
@@ -2404,10 +2597,59 @@
   },
   {
     "sourceId": "philippe-programme-13",
-    "unit": "section",
-    "checked": "2026-11-25",
-    "perimeter": "Questions-réponses du programme de campagne.",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "perimeter": "Les 7 entrées de la liste officielle des propositions phares et passages complémentaires relus",
     "units": [
+      {
+        "id": "phare-1",
+        "title": "Proposition phare 1 · Moderniser l’octroi de mer pour lutter contre la vie chère",
+        "measureIds": [
+          "philippe-moderniser-octroi-de-mer",
+          "philippe-ouvrir-concurrence-mobilites-ultramarines"
+        ]
+      },
+      {
+        "id": "phare-2",
+        "title": "Proposition phare 2 · Construire la nouvelle piste de l’aéroport mahorais sur Grande-Terre",
+        "measureIds": [
+          "philippe-construire-la-nouvelle-piste-de-laeroport-mahorais-sur-grande-terre",
+          "philippe-construire-un-deuxieme-hopital-a-combani"
+        ]
+      },
+      {
+        "id": "phare-3",
+        "title": "Proposition phare 3 · Instaurer un moratoire total sur l’immigration à Mayotte pendant le quinquennat",
+        "measureIds": ["philippe-moratoire-total-immigration-mayotte"]
+      },
+      {
+        "id": "phare-4",
+        "title": "Proposition phare 4 · Suspendre les nouvelles demandes d’asile à Mayotte et en Guyane pendant le quinquennat",
+        "measureIds": [
+          "philippe-suspendre-nouvelles-demandes-asile-mayotte-guyane"
+        ]
+      },
+      {
+        "id": "phare-5",
+        "title": "Proposition phare 5 · Suspendre le droit du sol à Mayotte pendant plusieurs années",
+        "measureIds": [
+          "philippe-suspendre-le-droit-du-sol-a-mayotte-pendant-plusieurs-annees"
+        ]
+      },
+      {
+        "id": "phare-6",
+        "title": "Proposition phare 6 · Négocier un centre de retour en Afrique de l’Est pour Mayotte",
+        "measureIds": [
+          "philippe-negocier-un-centre-de-retour-en-afrique-de-lest-pour-mayotte"
+        ]
+      },
+      {
+        "id": "phare-7",
+        "title": "Proposition phare 7 · Doubler le nombre de navires militaires français aux Antilles",
+        "measureIds": [
+          "philippe-doubler-le-nombre-de-navires-militaires-francais-aux-antilles"
+        ]
+      },
       {
         "id": "q1-quel-est-le-programme-dedouard-philippe-pour-les-outre-mer",
         "title": "Quel est le programme d’Édouard Philippe pour les outre-mer ?",
@@ -2508,6 +2750,19 @@
           "philippe-accords-universitaires-economiques-outre-mer",
           "philippe-conference-sargasses-antilles",
           "philippe-proteger-mangroves-coraux-ultramarins"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-1",
+        "title": "Outre-mer · octroi de mer",
+        "measureIds": ["philippe-moderniser-octroi-de-mer"]
+      },
+      {
+        "id": "relecture-2026-11-26-2",
+        "title": "Outre-mer · propositions phares",
+        "measureIds": [
+          "philippe-moratoire-total-immigration-mayotte",
+          "philippe-suspendre-nouvelles-demandes-asile-mayotte-guyane"
         ]
       }
     ]
@@ -6625,5 +6880,1980 @@
         ]
       }
     ]
+  },
+  {
+    "sourceId": "glucksmann-100-jours-accessible",
+    "perimeter": "Passages vérifiés · Raphaël Glucksmann et Yannick Jadot : les 100 premiers jours, version accessible",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "relecture-2026-11-26-1",
+        "title": "État d’urgence et programmation écologique · p. 7 du PDF",
+        "measureIds": ["glucksmann-declarer-etat-urgence-ecologique"]
+      },
+      {
+        "id": "relecture-2026-11-26-2",
+        "title": "Fiscalité des usages polluants · p. 8 du PDF",
+        "measureIds": ["glucksmann-augmenter-taxe-billets-avion"]
+      },
+      {
+        "id": "relecture-2026-11-26-3",
+        "title": "Transports du quotidien · p. 11 du PDF",
+        "measureIds": ["glucksmann-soutenir-report-modal-voyageurs-fret"]
+      },
+      {
+        "id": "relecture-2026-11-26-4",
+        "title": "Contrats régionaux et autoconsommation · p. 12 du PDF",
+        "measureIds": ["glucksmann-soutenir-autoconsommation-energie"]
+      },
+      {
+        "id": "relecture-2026-11-26-5",
+        "title": "Sûreté nucléaire · p. 12 du PDF",
+        "measureIds": [
+          "glucksmann-rendre-independant-controle-surete-nucleaire"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-6",
+        "title": "Partenariats nucléaires avec Rosatom · p. 12 du PDF",
+        "measureIds": [
+          "glucksmann-retirer-entreprises-nucleaire-accords-rosatom"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-7",
+        "title": "Fiscalité de l’électricité · p. 12 du PDF",
+        "measureIds": ["glucksmann-moratoire-hausses-taxes-electricite"]
+      },
+      {
+        "id": "relecture-2026-11-26-8",
+        "title": "Heures creuses en journée · p. 13 du PDF",
+        "measureIds": ["glucksmann-multiplier-heures-creuses-en-journee"]
+      },
+      {
+        "id": "relecture-2026-11-26-9",
+        "title": "Industrie et commande publique · p. 13 du PDF",
+        "measureIds": ["glucksmann-soutenir-batteries-production-nationale"]
+      },
+      {
+        "id": "relecture-2026-11-26-10",
+        "title": "Commerce international · p. 13 du PDF",
+        "measureIds": ["glucksmann-renforcer-macf-et-mesures-miroirs"]
+      },
+      {
+        "id": "relecture-2026-11-26-11",
+        "title": "Flottes et déplacements de l’État · p. 16 du PDF",
+        "measureIds": [
+          "glucksmann-electrifier-flottes-administrations",
+          "glucksmann-privilegier-train-deplacements-ministres"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "glucks-salaires-2027",
+    "perimeter": "Passages vérifiés · Raphaël Glucksmann · propositions salariales et simulateur de campagne",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "relecture-2026-11-26-1",
+        "title": "Engagement salarial",
+        "measureIds": [
+          "glucksmann-revaloriser-smic-1700-net",
+          "glucksmann-conference-salariale-apres-hausse-smic",
+          "glucksmann-csg-salaires"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-2",
+        "title": "Financement du plan salarial",
+        "measureIds": [
+          "glucksmann-rendre-pacte-dutreil-degressif",
+          "glucksmann-imposer-plus-values-latentes-transmises",
+          "glucksmann-grands-heritages"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-3",
+        "title": "Prime d’activité et réforme des salaires",
+        "measureIds": ["glucksmann-recalibrer-prime-activite-cout-constant"]
+      }
+    ]
+  },
+  {
+    "sourceId": "lepen-orleans-2026",
+    "perimeter": "Passages vérifiés · Marine Le Pen · discours de campagne à Orléans",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "relecture-2026-11-26-1",
+        "title": "La puissance · entreprises et innovation",
+        "measureIds": ["lepen-fonds-souverain-entreprises-francaises"]
+      },
+      {
+        "id": "relecture-2026-11-26-2",
+        "title": "La puissance · ressources naturelles",
+        "measureIds": ["lepen-abroger-loi-hulot-hydrocarbures"]
+      },
+      {
+        "id": "relecture-2026-11-26-3",
+        "title": "La puissance · sécurité intérieure",
+        "measureIds": [
+          "lepen-mettre-reparation-degradations-charge-auteurs",
+          "lepen-traiter-cartels-comme-organisations-terroristes",
+          "lepen-expulsion-automatique-etrangers-delinquants"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-4",
+        "title": "La puissance · défense",
+        "measureIds": ["lepen-garder-controle-francais-dissuasion"]
+      },
+      {
+        "id": "relecture-2026-11-26-5",
+        "title": "La présidence · rémunération du travail",
+        "measureIds": ["lepen-elargir-interessement-participation"]
+      },
+      {
+        "id": "relecture-2026-11-26-6",
+        "title": "La présidence · collectivités",
+        "measureIds": ["lepen-clarifier-competences-locales-place-commune"]
+      },
+      {
+        "id": "relecture-2026-11-26-7",
+        "title": "La présidence · institutions",
+        "measureIds": ["lepen-reaffirmer-primaute-constitution"]
+      },
+      {
+        "id": "relecture-2026-11-26-8",
+        "title": "La présidence · contrôle du gouvernement",
+        "measureIds": [
+          "lepen-renforcer-controle-parlementaire-application-lois"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "lisnard-interview-cnews-octobre-2026",
+    "perimeter": "Passages vérifiés · Nouvelle Énergie · compte rendu de l’entretien de David Lisnard dans Objectif Élysée 2027",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "relecture-2026-11-26-1",
+        "title": "Pouvoir d’achat",
+        "measureIds": ["lisnard-baisser-csg-revenus-activite-66"]
+      },
+      {
+        "id": "relecture-2026-11-26-2",
+        "title": "Dépenses publiques",
+        "measureIds": [
+          "lisnard-etablir-budgets-a-partir-de-zero",
+          "lisnard-geler-normes-suspendre-surtranspositions",
+          "lisnard-reduire-prestations-non-contributives-etrangers"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-3",
+        "title": "Fonction publique",
+        "measureIds": [
+          "lisnard-supprimer-redeployer-postes-publics-octobre",
+          "lisnard-nommer-drh-etat"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-4",
+        "title": "Instruction",
+        "measureIds": [
+          "lisnard-revenir-sur-college-unique",
+          "lisnard-regrouper-instruction-culture-superieur-science",
+          "lisnard-recruter-nouveaux-enseignants-sous-contrat"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-5",
+        "title": "Justice des mineurs",
+        "measureIds": ["lisnard-creer-etablissements-disciplinaires-fermes"]
+      },
+      {
+        "id": "relecture-2026-11-26-6",
+        "title": "Protection de l’enfance",
+        "measureIds": [
+          "lisnard-preparer-plan-prevention-violences-sexuelles-enfants"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-7",
+        "title": "Réparation des dégradations",
+        "measureIds": [
+          "lisnard-faire-reparer-financierement-degradations-auteurs"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-8",
+        "title": "Contrôle de constitutionnalité",
+        "measureIds": ["lisnard-envisager-arbitrage-referendum-apres-censure"]
+      },
+      {
+        "id": "relecture-2026-11-26-9",
+        "title": "Immigration",
+        "measureIds": ["lisnard-fixer-objectif-80000-entrees-legales"]
+      },
+      {
+        "id": "relecture-2026-11-26-10",
+        "title": "Fiscalité locale",
+        "measureIds": [
+          "lisnard-retablir-impot-residentiel-universel",
+          "lisnard-envisager-valeur-venale-taxe-fonciere"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-11",
+        "title": "Intelligence artificielle",
+        "measureIds": [
+          "lisnard-reguler-ia-par-transparence-algorithmique",
+          "lisnard-financer-entreprises-francaises-ia-robotique"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-12",
+        "title": "Instruction et intelligence artificielle",
+        "measureIds": ["lisnard-preserver-apprentissages-sans-machine"]
+      },
+      {
+        "id": "relecture-2026-11-26-13",
+        "title": "Transparence des adhésions",
+        "measureIds": [
+          "lisnard-faire-constater-effectifs-partis-commissaire-justice"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "lfi-tax",
+    "perimeter": "Passages vérifiés · L’Avenir en commun : partager les richesses",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "relecture-2026-11-26-1",
+        "title": "Créer un état d’urgence sociale",
+        "measureIds": ["melenchon-renforcer-bouclier-qualite-prix-outre-mer"]
+      },
+      {
+        "id": "relecture-2026-11-26-2",
+        "title": "Faire la révolution fiscale",
+        "measureIds": [
+          "melenchon-reintroduire-exit-tax-renforcee",
+          "melenchon-transformer-reductions-fiscales-restantes-en-credits",
+          "melenchon-impot-universel-activite-france-et-revenus",
+          "melenchon-mettre-fin-quotient-conjugal",
+          "melenchon-creer-credit-impot-par-enfant",
+          "melenchon-renforcer-moyens-controle-fiscal",
+          "melenchon-mettre-fin-cjip-fraude-fiscale",
+          "melenchon-mettre-fin-arbitrages-dividendes-frauduleux"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-3",
+        "title": "Augmenter les salaires",
+        "measureIds": [
+          "melenchon-revaloriser-remuneration-apprentis-alternants",
+          "melenchon-duree-minimale-trois-heures-temps-partiel-subi",
+          "melenchon-limiter-ecart-salaires-entreprise-de-un-a-vingt",
+          "melenchon-majorer-remuneration-horaires-decales",
+          "melenchon-interdire-parachutes-dores-retraites-chapeaux",
+          "melenchon-supprimer-options-actions-gratuites-dirigeants"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "lfi-plan-esr-2027",
+    "perimeter": "Passages vérifiés · Campagne Mélenchon 2027 · Plan pour l’enseignement supérieur, la recherche et la formation continue",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "relecture-2026-11-26-1",
+        "title": "Accès à la formation",
+        "measureIds": [
+          "melenchon-creer-250000-places-superieur-public",
+          "melenchon-plateforme-candidatures-sectorisation-sans-selection",
+          "melenchon-retablir-service-public-national-orientation"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-2",
+        "title": "Conditions d’étude",
+        "measureIds": [
+          "melenchon-garantir-repas-un-euro-crous",
+          "melenchon-construire-30000-logements-jeunes-par-an"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-3",
+        "title": "Doctorat",
+        "measureIds": [
+          "melenchon-8000-contrats-doctoraux-supplementaires-par-an"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-4",
+        "title": "Personnels de l’enseignement supérieur",
+        "measureIds": [
+          "melenchon-recruter-40000-personnels-statutaires-superieur",
+          "melenchon-plafonner-non-titulaires-superieur-cinq-pourcent"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-5",
+        "title": "Obligations d’enseignement",
+        "measureIds": [
+          "melenchon-abaisser-obligations-enseignement-superieur",
+          "melenchon-assurer-conge-recherche-un-an-sept-ans"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-6",
+        "title": "Indépendance scientifique",
+        "measureIds": [
+          "melenchon-deployer-logiciels-libres-universites-recherche"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "lfi-plan-feminisme-2027",
+    "perimeter": "Passages vérifiés · Campagne Mélenchon 2027 · Plan thématique féministe",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "relecture-2026-11-26-1",
+        "title": "Parentalité et reconnaissance des familles",
+        "measureIds": [
+          "melenchon-conge-accueil-20-semaines-par-parent",
+          "melenchon-majoration-familiale-retour-14-ans",
+          "melenchon-deconjugaliser-revaloriser-asf",
+          "melenchon-defiscaliser-pensions-alimentaires",
+          "melenchon-rendre-effective-intermediation-pensions-alimentaires",
+          "melenchon-creer-statut-famille-monoparentale"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "lfi-plan-mer-2027",
+    "perimeter": "Passages vérifiés · Campagne Mélenchon 2027 · Plan thématique pour la mer",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "relecture-2026-11-26-1",
+        "title": "Tourisme maritime",
+        "measureIds": [
+          "melenchon-interdire-mouillage-yachts-plus-50-metres",
+          "melenchon-etendre-zones-controle-emissions-maritimes"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-2",
+        "title": "Sauvetage en mer",
+        "measureIds": ["melenchon-renforcer-moyens-publics-sauvetage-mer"]
+      },
+      {
+        "id": "relecture-2026-11-26-3",
+        "title": "Pêche durable",
+        "measureIds": [
+          "melenchon-aligner-definition-peche-artisanale",
+          "melenchon-reserver-fonds-europeens-peches-durables",
+          "melenchon-gerer-quotas-peche-pluriannuels-scientifiques",
+          "melenchon-interdire-commerce-ailerons-homards-vivants-particuliers"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-4",
+        "title": "Métiers de la pêche",
+        "measureIds": [
+          "melenchon-prevenir-accidents-travail-peche",
+          "melenchon-renouveler-flotte-peche-sans-augmenter-capacite"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-5",
+        "title": "Aquaculture",
+        "measureIds": ["melenchon-interdire-elevage-poulpes"]
+      }
+    ]
+  },
+  {
+    "sourceId": "philippe-programme-3",
+    "perimeter": "Les 5 entrées de la liste officielle des propositions phares et passages complémentaires relus",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "phare-1",
+        "title": "Proposition phare 1 · Présenter une loi de programmation pour augmenter les capacités des armées",
+        "measureIds": ["philippe-loi-programmation-massification-armees"]
+      },
+      {
+        "id": "phare-2",
+        "title": "Proposition phare 2 · Rendre le service national obligatoire avec un choix entre missions civiles et militaires",
+        "measureIds": [
+          "philippe-rendre-le-service-national-obligatoire-avec-un-choix-entre-missions-civiles-et",
+          "philippe-porter-la-reserve-a-250-000-personnes"
+        ]
+      },
+      {
+        "id": "phare-3",
+        "title": "Proposition phare 3 · Consacrer au moins 1 % de la richesse nationale à des équipements de défense européens",
+        "measureIds": [
+          "philippe-consacrer-1-pourcent-richesse-equipements-europeens"
+        ]
+      },
+      {
+        "id": "phare-4",
+        "title": "Proposition phare 4 · Soutenir l’adhésion de l’Ukraine à l’OTAN",
+        "measureIds": ["philippe-soutenir-ladhesion-de-lukraine-a-lotan"]
+      },
+      {
+        "id": "phare-5",
+        "title": "Proposition phare 5 · Moderniser la dissuasion nucléaire française",
+        "measureIds": ["philippe-moderniser-dissuasion-nucleaire"]
+      },
+      {
+        "id": "relecture-2026-11-26-1",
+        "title": "Défense · nouvelle loi de programmation",
+        "measureIds": ["philippe-loi-programmation-massification-armees"]
+      },
+      {
+        "id": "relecture-2026-11-26-2",
+        "title": "Défense · propositions phares",
+        "measureIds": [
+          "philippe-consacrer-1-pourcent-richesse-equipements-europeens",
+          "philippe-moderniser-dissuasion-nucleaire"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "philippe-famille",
+    "perimeter": "Les 5 entrées de la liste officielle des propositions phares",
+    "unit": "proposition phare",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "phare-1",
+        "title": "Proposition phare 1 · Allocation familiale jusqu’à 350 € par mois dès le premier enfant",
+        "measureIds": ["philippe-social-1"]
+      },
+      {
+        "id": "phare-2",
+        "title": "Proposition phare 2 · Alléger l’impôt des parents de jeunes enfants",
+        "measureIds": ["philippe-social-impot-jeunes-enfants"]
+      },
+      {
+        "id": "phare-3",
+        "title": "Proposition phare 3 · Lancer un plan de développement de la garde d’enfants",
+        "measureIds": ["philippe-plan-garde-enfants"]
+      },
+      {
+        "id": "phare-4",
+        "title": "Proposition phare 4 · Un prêt à taux zéro à chaque naissance",
+        "measureIds": ["philippe-social-pret-naissance"]
+      },
+      {
+        "id": "phare-5",
+        "title": "Proposition phare 5 · Reprise parentale à 80 %, payée à 100 %",
+        "measureIds": ["philippe-social-reprise-parentale"]
+      }
+    ]
+  },
+  {
+    "sourceId": "philippe-ecole",
+    "perimeter": "Les 6 entrées de la liste officielle des propositions phares et passages complémentaires relus",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "phare-1",
+        "title": "Proposition phare 1 · Augmenter de 20 % le salaire moyen des enseignants",
+        "measureIds": ["philippe-education-remuneration"]
+      },
+      {
+        "id": "phare-2",
+        "title": "Proposition phare 2 · Accroître l’autonomie des établissements",
+        "measureIds": [
+          "philippe-education-2",
+          "philippe-permettre-davancer-la-rentree-dune-a-deux-semaines"
+        ]
+      },
+      {
+        "id": "phare-3",
+        "title": "Proposition phare 3 · Créer un service public universel du soutien scolaire",
+        "measureIds": ["philippe-education-soutien"]
+      },
+      {
+        "id": "phare-4",
+        "title": "Proposition phare 4 · Réduire le nombre d’élèves par classe en maternelle et en élémentaire",
+        "measureIds": [
+          "philippe-diminuer-les-effectifs-par-classe-dans-le-premier-degre"
+        ]
+      },
+      {
+        "id": "phare-5",
+        "title": "Proposition phare 5 · Commencer l’apprentissage de la lecture en maternelle",
+        "measureIds": ["philippe-apprendre-lire-des-maternelle"]
+      },
+      {
+        "id": "phare-6",
+        "title": "Proposition phare 6 · Recréer des écoles normales",
+        "measureIds": ["philippe-education-ecoles-normales"]
+      },
+      {
+        "id": "relecture-2026-11-26-1",
+        "title": "École · apprentissages fondamentaux",
+        "measureIds": ["philippe-apprendre-lire-des-maternelle"]
+      }
+    ]
+  },
+  {
+    "sourceId": "philippe-travail",
+    "perimeter": "Les 5 entrées de la liste officielle des propositions phares et passages complémentaires relus",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "phare-1",
+        "title": "Proposition phare 1 · Utiliser une partie des économies sociales pour relever les salaires nets",
+        "measureIds": ["philippe-redistribuer-economies-sociales-salaires-nets"]
+      },
+      {
+        "id": "phare-2",
+        "title": "Proposition phare 2 · Permettre de fixer le temps de travail par accord d’entreprise",
+        "measureIds": ["philippe-travail-1"]
+      },
+      {
+        "id": "phare-3",
+        "title": "Proposition phare 3 · Limiter l’indemnisation chômage à 12 mois avant 50 ans",
+        "measureIds": ["philippe-travail-chomage-douze-mois"]
+      },
+      {
+        "id": "phare-4",
+        "title": "Proposition phare 4 · Trois jours de carence dans le public et le privé",
+        "measureIds": ["philippe-travail-carence"]
+      },
+      {
+        "id": "phare-5",
+        "title": "Proposition phare 5 · Développer l’apprentissage",
+        "measureIds": ["philippe-developper-apprentissage"]
+      },
+      {
+        "id": "relecture-2026-11-26-1",
+        "title": "Travail · financement de la hausse du net",
+        "measureIds": ["philippe-redistribuer-economies-sociales-salaires-nets"]
+      },
+      {
+        "id": "relecture-2026-11-26-2",
+        "title": "Travail · propositions phares",
+        "measureIds": ["philippe-developper-apprentissage"]
+      },
+      {
+        "id": "relecture-2026-11-26-3",
+        "title": "Travail · emploi après 50 ans",
+        "measureIds": ["philippe-developper-retraite-progressive-cumul"]
+      }
+    ]
+  },
+  {
+    "sourceId": "philippe-business",
+    "perimeter": "Les 7 entrées de la liste officielle des propositions phares et passages complémentaires relus",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "phare-1",
+        "title": "Proposition phare 1 · Baisser de 50 milliards d’euros les impôts de production",
+        "measureIds": [
+          "philippe-baisser-de-50-milliards-deuros-les-impots-de-production"
+        ]
+      },
+      {
+        "id": "phare-2",
+        "title": "Proposition phare 2 · Supprimer des normes et ne créer ni impôt ni norme pendant le quinquennat",
+        "measureIds": [
+          "philippe-fiscalite-2",
+          "philippe-moratoire-normes-entreprises"
+        ]
+      },
+      {
+        "id": "phare-3",
+        "title": "Proposition phare 3 · Créer un livret pour financer les entreprises technologiques françaises",
+        "measureIds": [
+          "philippe-creer-un-livret-pour-financer-les-entreprises-technologiques-francaises"
+        ]
+      },
+      {
+        "id": "phare-4",
+        "title": "Proposition phare 4 · Achever le marché unique européen",
+        "measureIds": ["philippe-lever-obstacles-marche-unique"]
+      },
+      {
+        "id": "phare-5",
+        "title": "Proposition phare 5 · Permettre de fixer le temps de travail par accord d’entreprise",
+        "measureIds": ["philippe-travail-1"]
+      },
+      {
+        "id": "phare-6",
+        "title": "Proposition phare 6 · Imposer des contreparties aux entreprises chinoises des secteurs stratégiques",
+        "measureIds": [
+          "philippe-imposer-des-contreparties-aux-entreprises-chinoises-des-secteurs-strategiques"
+        ]
+      },
+      {
+        "id": "phare-7",
+        "title": "Proposition phare 7 · Créer un dispositif fiscal de transmission des exploitations",
+        "measureIds": [
+          "philippe-creer-un-dispositif-fiscal-de-transmission-des-exploitations"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-1",
+        "title": "Entreprises · marché unique européen",
+        "measureIds": ["philippe-lever-obstacles-marche-unique"]
+      }
+    ]
+  },
+  {
+    "sourceId": "philippe-securite",
+    "perimeter": "Les 7 entrées de la liste officielle des propositions phares et passages complémentaires relus",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "phare-1",
+        "title": "Proposition phare 1 · Un régime d’urgence contre le narcotrafic",
+        "measureIds": ["philippe-securite-urgence-narco"]
+      },
+      {
+        "id": "phare-2",
+        "title": "Proposition phare 2 · Reconnaissance faciale ciblée",
+        "measureIds": ["philippe-securite-reconnaissance-faciale"]
+      },
+      {
+        "id": "phare-3",
+        "title": "Proposition phare 3 · Saisir les biens et les avoirs des trafiquants",
+        "measureIds": [
+          "philippe-saisir-biens-avoirs-trafiquants",
+          "philippe-augmenter-amendes-consommateurs-stupefiants"
+        ]
+      },
+      {
+        "id": "phare-4",
+        "title": "Proposition phare 4 · Donner aux maires un pouvoir de sanction",
+        "measureIds": ["philippe-securite-sanctions-maires"]
+      },
+      {
+        "id": "phare-5",
+        "title": "Proposition phare 5 · Recouvrer les amendes sur les prestations sociales",
+        "measureIds": ["philippe-securite-amendes-prestations"]
+      },
+      {
+        "id": "phare-6",
+        "title": "Proposition phare 6 · Suspendre le RSA des délinquants condamnés sauf décision contraire du maire",
+        "measureIds": [
+          "philippe-suspendre-le-rsa-des-delinquants-condamnes-sauf-decision-contraire-du-maire"
+        ]
+      },
+      {
+        "id": "phare-7",
+        "title": "Proposition phare 7 · Appliquer aux auteurs de violences lors de troubles les mesures de prévention antiterroristes",
+        "measureIds": ["philippe-appliquer-prevention-antiterroriste-casseurs"]
+      },
+      {
+        "id": "relecture-2026-11-26-1",
+        "title": "Sécurité · lutte contre les trafics",
+        "measureIds": ["philippe-saisir-biens-avoirs-trafiquants"]
+      },
+      {
+        "id": "relecture-2026-11-26-2",
+        "title": "Sécurité · consommateurs et agents publics",
+        "measureIds": ["philippe-signaler-usage-stupefiants-agents-employeur"]
+      },
+      {
+        "id": "relecture-2026-11-26-3",
+        "title": "Sécurité · prévention de la corruption",
+        "measureIds": ["philippe-cribler-fonctions-sensibles"]
+      },
+      {
+        "id": "relecture-2026-11-26-4",
+        "title": "Sécurité · propositions phares",
+        "measureIds": ["philippe-appliquer-prevention-antiterroriste-casseurs"]
+      },
+      {
+        "id": "relecture-2026-11-26-5",
+        "title": "Sécurité · sanctions contre les passeurs",
+        "measureIds": ["philippe-sanctions-europeennes-passeurs"]
+      },
+      {
+        "id": "relecture-2026-11-26-phare-1",
+        "title": "Sécurité · amendes aux consommateurs de stupéfiants",
+        "measureIds": ["philippe-augmenter-amendes-consommateurs-stupefiants"]
+      }
+    ]
+  },
+  {
+    "sourceId": "philippe-programme-12",
+    "perimeter": "Les 6 entrées de la liste officielle des propositions phares et passages complémentaires relus",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "phare-1",
+        "title": "Proposition phare 1 · Exonérer de droits de mutation le premier achat immobilier avant 35 ans",
+        "measureIds": [
+          "philippe-exonerer-de-droits-de-mutation-le-premier-achat-immobilier-avant-35-ans"
+        ]
+      },
+      {
+        "id": "phare-2",
+        "title": "Proposition phare 2 · Un prêt à taux zéro à chaque naissance",
+        "measureIds": ["philippe-social-pret-naissance"]
+      },
+      {
+        "id": "phare-3",
+        "title": "Proposition phare 3 · Instaurer un moratoire de cinq ans sur les normes de construction et d’habitation",
+        "measureIds": [
+          "philippe-moratoire-cinq-ans-normes-construction-habitation"
+        ]
+      },
+      {
+        "id": "phare-4",
+        "title": "Proposition phare 4 · Affecter aux communes la TVA sur les logements neufs qui y sont construits",
+        "measureIds": [
+          "philippe-affecter-aux-communes-la-tva-sur-les-logements-neufs-qui-y-sont-construits"
+        ]
+      },
+      {
+        "id": "phare-5",
+        "title": "Proposition phare 5 · Taxer au forfait les revenus de location de longue durée",
+        "measureIds": [
+          "philippe-taxer-au-forfait-les-revenus-de-location-de-longue-duree"
+        ]
+      },
+      {
+        "id": "phare-6",
+        "title": "Proposition phare 6 · Pérenniser la défiscalisation des donations pour financer un premier achat",
+        "measureIds": [
+          "philippe-perenniser-defiscalisation-donations-premier-achat"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-1",
+        "title": "Logement · règles de construction",
+        "measureIds": [
+          "philippe-moratoire-cinq-ans-normes-construction-habitation"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-phare-1",
+        "title": "Logement · financement d’un premier achat",
+        "measureIds": [
+          "philippe-perenniser-defiscalisation-donations-premier-achat"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "lfi-book",
+    "perimeter": "Sommaire de L’Avenir en commun 2027 · 23 chapitres. Les liens montrent des exemples de fiches vérifiées dans chaque chapitre",
+    "unit": "chapitre",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "lfi-climate",
+        "sourceId": "lfi-climate",
+        "title": "Chapitre 1 : Planification écologique",
+        "measureIds": [
+          "melenchon-adapter-outre-mer-risques-naturels",
+          "melenchon-bouclier-douanier-empreinte-locale",
+          "melenchon-conseil-planification-ecologique"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "melenchon-programme-16",
+        "sourceId": "melenchon-programme-16",
+        "title": "Chapitre 2 : Produire nous-mêmes pour répondre aux besoins",
+        "measureIds": [
+          "melenchon-accords-echange-evaluation-importations",
+          "melenchon-cnes-observation-climat",
+          "melenchon-comites-strategiques-filiere-planification"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "lfi-2027-conditions-elevage",
+        "sourceId": "lfi-2027-conditions-elevage",
+        "title": "Chapitre 3 : Les grands chantiers de la bifurcation écologique",
+        "measureIds": [
+          "melenchon-evaluer-et-consolider-les-ouvrages-dart",
+          "melenchon-ouvrir-gratuitement-des-lieux-rafraichis-lors-des-alertes-canicule",
+          "melenchon-preemption-installation-fermes"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "melenchon-programme-21",
+        "sourceId": "melenchon-programme-21",
+        "title": "Chapitre 1 : L’ère d’un nouveau collectivisme",
+        "measureIds": [
+          "melenchon-acces-sentiers-balises",
+          "melenchon-atteintes-patrimoine-industriel",
+          "melenchon-biens-communs-constitution"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "lfi-tax",
+        "sourceId": "lfi-tax",
+        "title": "Chapitre 2 : Partager les richesses",
+        "measureIds": [
+          "melenchon-creer-credit-impot-par-enfant",
+          "melenchon-duree-minimale-trois-heures-temps-partiel-subi",
+          "melenchon-impot-universel-activite-france-et-revenus"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "melenchon-programme-23",
+        "sourceId": "melenchon-programme-23",
+        "title": "Chapitre 3 : Un pacte productif pour répondre aux besoins",
+        "measureIds": [
+          "melenchon-cesser-les-emissions-de-dette-publique-indexee-sur-linflation",
+          "melenchon-creer-des-banques-chargees-de-cantonner-les-actifs-nocifs-pour-lenvironnement",
+          "melenchon-defendre-un-euro-numerique-entierement-public"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "lfi-social",
+        "sourceId": "lfi-social",
+        "title": "Chapitre 1 : À chacun selon ses besoins",
+        "measureIds": [
+          "melenchon-travail-2",
+          "melenchon-abroger-la-presomption-de-demission-en-cas-dabandon-de-poste"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "melenchon-programme-12",
+        "sourceId": "melenchon-programme-12",
+        "title": "Chapitre 2 : Une République de l’égalité réelle et des droits nouveaux",
+        "measureIds": [
+          "melenchon-proposer-un-bilan-de-sante-et-un-permis-gratuit-pendant-le-service-citoyen",
+          "melenchon-adapter-les-demarches-des-services-publics-aux-personnes-handicapees",
+          "melenchon-allonger-la-prescription-de-la-non-denonciation-des-violences-sexuelles-sur-mi"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "melenchon-programme-13",
+        "sourceId": "melenchon-programme-13",
+        "title": "Chapitre 3 : Entrer pleinement dans l’ère de l’émancipation des femmes",
+        "measureIds": [
+          "melenchon-augmenter-les-salaires-et-les-moyens-dans-les-metiers-de-la-petite-enfance",
+          "melenchon-combattre-le-jugement-des-viols-comme-des-delits",
+          "melenchon-developper-les-centres-de-pmi-et-les-lieux-ressources-pour-les-parents"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "melenchon-programme-14",
+        "sourceId": "melenchon-programme-14",
+        "title": "Chapitre 4 : Faire triompher l’égalité contre le racisme et les discriminations",
+        "measureIds": [
+          "melenchon-abroger-les-amendes-forfaitaires-delictuelles",
+          "melenchon-adopter-un-plan-contre-le-racisme-dans-la-police-et-la-gendarmerie",
+          "melenchon-creer-des-poles-specialises-contre-les-discriminations-dans-les-services-publi"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "lfi-2027-biodiversite",
+        "sourceId": "lfi-2027-biodiversite",
+        "title": "Chapitre 1 : Les nouveaux droits de l’espèce : protéger les biens communs",
+        "measureIds": [
+          "melenchon-creer-un-haut-commissariat-a-leau",
+          "melenchon-creer-une-autorite-independante-de-surete-des-sites-industriels",
+          "melenchon-donner-une-voix-deliberative-aux-habitants-dans-les-regies-de-leau"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "lfi-school",
+        "sourceId": "lfi-school",
+        "title": "Chapitre 2 : Élever le niveau d’éducation et de savoirs",
+        "measureIds": [
+          "melenchon-education-2",
+          "melenchon-education-alphabetisation",
+          "melenchon-instaurer-neuf-mois-de-conscription-citoyenne"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "melenchon-programme-6",
+        "sourceId": "melenchon-programme-6",
+        "title": "Chapitre 3 : Humaniser par la culture et le sport",
+        "measureIds": [
+          "melenchon-audiovisuel-financement-cinema",
+          "melenchon-conseillers-techniques-sportifs",
+          "melenchon-construction-renovation-equipements-sportifs"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "lfi-health",
+        "sourceId": "lfi-health",
+        "title": "Chapitre 4 : Faire de la santé un enjeu global",
+        "measureIds": [
+          "melenchon-additifs-alimentaires-bio",
+          "melenchon-alternatives-contention-isolement",
+          "melenchon-cantines-bio-local-option-vegetarienne"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "melenchon-programme-8",
+        "sourceId": "melenchon-programme-8",
+        "title": "Chapitre 5 : Entrer en mer sans saccage",
+        "measureIds": [
+          "melenchon-accords-peche-populations-riveraines",
+          "melenchon-alliance-sauvegarde-mediterranee",
+          "melenchon-application-traite-haute-mer"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "melenchon-programme-9",
+        "sourceId": "melenchon-programme-9",
+        "title": "Chapitre 6 : Mettre le spatial au service de l’intérêt général humain",
+        "measureIds": [
+          "melenchon-avion-spatial",
+          "melenchon-centre-spatial-guyanais",
+          "melenchon-centre-spatial-otan-toulouse"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "lfi-numerique",
+        "sourceId": "lfi-numerique",
+        "title": "Chapitre 7 : Démocratiser la révolution numérique",
+        "measureIds": [
+          "melenchon-institutions-ia-usages-sensibles",
+          "melenchon-associer-les-representants-des-metiers-a-la-conception-des-ia-au-travail",
+          "melenchon-creer-une-offre-publique-de-recherche-et-de-paiement-en-ligne"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "lfi-democracy",
+        "sourceId": "lfi-democracy",
+        "title": "Chapitre 1 : Le pouvoir au peuple",
+        "measureIds": [
+          "melenchon-associer-les-lecteurs-a-la-gouvernance-des-journaux",
+          "melenchon-ecarter-les-tribunaux-de-commerce-des-procedures-sur-la-liberte-de-la-presse",
+          "melenchon-faire-elire-les-dirigeants-de-france-televisions-et-de-radio-france-par-le-par"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "melenchon-programme-2",
+        "sourceId": "melenchon-programme-2",
+        "title": "Chapitre 2 : Libertés publiques et sûreté",
+        "measureIds": [
+          "melenchon-doubler-les-moyens-de-la-police-scientifique",
+          "melenchon-former-les-gardiens-de-la-paix-pendant-deux-ans",
+          "melenchon-instituer-une-commission-sur-les-violences-policieres-mortelles-ou-mutilantes"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "lfi-droit-logement-2027",
+        "sourceId": "lfi-droit-logement-2027",
+        "title": "Chapitre 3 : Une France sans déserts de droits",
+        "measureIds": [
+          "melenchon-acces-services-postaux-bancaires",
+          "melenchon-aides-hlm-loyer-relocation",
+          "melenchon-construction-logements-publics-et-jeunes"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "melenchon-programme-18",
+        "sourceId": "melenchon-programme-18",
+        "title": "Chapitre 1 : Se libérer du libéralisme en Europe",
+        "measureIds": [
+          "melenchon-confier-le-controle-ethique-des-dirigeants-europeens-a-une-autorite-independan",
+          "melenchon-defendre-un-dispositif-europeen-daccueil-des-demandeurs-dasile",
+          "melenchon-negocier-la-suspension-generale-de-la-limite-europeenne-de-deficit-a-3"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "melenchon-programme-19",
+        "sourceId": "melenchon-programme-19",
+        "title": "Chapitre 2 : Une France indépendante au service de la paix",
+        "measureIds": [
+          "melenchon-creer-une-juridiction-internationale-pour-les-crimes-financiers-transnationaux",
+          "melenchon-etendre-les-garanties-des-traites-europeens-aux-territoires-associes-a-lunion",
+          "melenchon-negocier-dans-le-cadre-de-lonu-un-nouvel-accord-sur-le-nucleaire-iranien"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "melenchon-programme-20",
+        "sourceId": "melenchon-programme-20",
+        "title": "Chapitre 3 : Les nouvelles coopérations de la diplomatie altermondialiste",
+        "measureIds": [
+          "melenchon-annuler-certaines-dettes-de-pays-africains-contractees-par-des-dictatures",
+          "melenchon-associer-les-societes-civiles-a-lattribution-de-laide-francaise-au-developpeme",
+          "melenchon-creer-un-dispositif-mediterraneen-commun-de-securite-civile"
+        ],
+        "review": "a-completer"
+      }
+    ]
+  },
+  {
+    "sourceId": "philippe-index",
+    "perimeter": "Sommaire du programme Croire en nous · 17 rubriques. Les liens montrent des exemples de propositions reliées à chaque page",
+    "unit": "rubrique",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "philippe-securite",
+        "sourceId": "philippe-securite",
+        "title": "Sécurité",
+        "measureIds": [
+          "philippe-appliquer-prevention-antiterroriste-casseurs",
+          "philippe-cribler-fonctions-sensibles",
+          "philippe-saisir-biens-avoirs-trafiquants"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "philippe-programme-11",
+        "sourceId": "philippe-programme-11",
+        "title": "Justice",
+        "measureIds": [
+          "philippe-deployer-ia-instruction-dossiers",
+          "philippe-retablir-juges-paix",
+          "philippe-supprimer-juge-application-peines"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "philippe-programme-9",
+        "sourceId": "philippe-programme-9",
+        "title": "Immigration",
+        "measureIds": [
+          "philippe-immigration-1",
+          "philippe-aligner-les-aides-sociales-accessibles-aux-etrangers-sur-la-moyenne-europeenne",
+          "philippe-controler-les-ressources-des-etudiants-etrangers"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "philippe-programme-3",
+        "sourceId": "philippe-programme-3",
+        "title": "Défense",
+        "measureIds": [
+          "philippe-consacrer-1-pourcent-richesse-equipements-europeens",
+          "philippe-loi-programmation-massification-armees",
+          "philippe-moderniser-dissuasion-nucleaire"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "philippe-travail",
+        "sourceId": "philippe-travail",
+        "title": "Travail et salaires",
+        "measureIds": [
+          "philippe-developper-apprentissage",
+          "philippe-developper-retraite-progressive-cumul",
+          "philippe-redistribuer-economies-sociales-salaires-nets"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "philippe-business",
+        "sourceId": "philippe-business",
+        "title": "Entreprises et industrie",
+        "measureIds": [
+          "philippe-lever-obstacles-marche-unique",
+          "philippe-achever-lunion-europeenne-des-marches-de-capitaux",
+          "philippe-baisser-de-50-milliards-deuros-les-impots-de-production"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "philippe-budget",
+        "sourceId": "philippe-budget",
+        "title": "Finances publiques",
+        "measureIds": [
+          "philippe-fiscalite-1",
+          "philippe-fiscalite-agences",
+          "philippe-fiscalite-effectifs-publics"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "philippe-pension",
+        "sourceId": "philippe-pension",
+        "title": "Retraites",
+        "measureIds": [
+          "philippe-confier-la-gestion-des-retraites-aux-partenaires-sociaux-apres-le-retour-a-lequ",
+          "philippe-developper-laccompagnement-professionnel-apres-50-ans",
+          "philippe-faire-negocier-les-criteres-de-penibilite-par-les-partenaires-sociaux"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "philippe-ecole",
+        "sourceId": "philippe-ecole",
+        "title": "École",
+        "measureIds": [
+          "philippe-apprendre-lire-des-maternelle",
+          "philippe-education-1",
+          "philippe-education-remuneration"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "philippe-famille",
+        "sourceId": "philippe-famille",
+        "title": "Famille",
+        "measureIds": [
+          "philippe-plan-garde-enfants",
+          "philippe-social-1",
+          "philippe-social-donations"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "philippe-programme-14",
+        "sourceId": "philippe-programme-14",
+        "title": "Protection de l’enfance",
+        "measureIds": [
+          "philippe-publier-parcours-educateurs-periscolaires",
+          "philippe-reecrire-loi-reseaux-sociaux-moins-quinze-ans",
+          "philippe-responsabilite-plateformes-pedocriminalite"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "philippe-programme-12",
+        "sourceId": "philippe-programme-12",
+        "title": "Logement",
+        "measureIds": [
+          "philippe-moratoire-cinq-ans-normes-construction-habitation",
+          "philippe-affecter-aux-communes-la-tva-sur-les-logements-neufs-qui-y-sont-construits",
+          "philippe-construire-quatre-millions-de-logements-en-dix-ans"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "philippe-programme-8",
+        "sourceId": "philippe-programme-8",
+        "title": "Handicap",
+        "measureIds": [
+          "philippe-loi-ecole-inclusive-coordonner-medico-social",
+          "philippe-cumuler-integralement-aah-et-salaire-pendant-un-an-a-la-reprise-demploi",
+          "philippe-accessibilite-centres-villes-bourgs"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "philippe-ia",
+        "sourceId": "philippe-ia",
+        "title": "Intelligence artificielle",
+        "measureIds": [
+          "philippe-deployer-un-plan-dutilisation-de-lia-dans-les-services-publics",
+          "philippe-soutenir-le-developpement-dune-infrastructure-dia-europeenne",
+          "philippe-electricite-decarbonee-ia"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "philippe-programme-5",
+        "sourceId": "philippe-programme-5",
+        "title": "Énergie",
+        "measureIds": [
+          "philippe-bei-nucleaire-interconnexions",
+          "philippe-captage-carbone-industrie",
+          "philippe-climat-1"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "philippe-programme-1",
+        "sourceId": "philippe-programme-1",
+        "title": "Adaptation climatique",
+        "measureIds": [
+          "philippe-cent-territoires-souverainete-alimentaire",
+          "philippe-charte-environnement-developpement-agricole",
+          "philippe-creer-reserves-civiles-communales"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "philippe-programme-13",
+        "sourceId": "philippe-programme-13",
+        "title": "Outre-mer",
+        "measureIds": [
+          "philippe-moderniser-octroi-de-mer",
+          "philippe-moratoire-total-immigration-mayotte",
+          "philippe-suspendre-nouvelles-demandes-asile-mayotte-guyane"
+        ],
+        "review": "a-completer"
+      }
+    ]
+  },
+  {
+    "sourceId": "lisnard-project",
+    "perimeter": "Programme en ligne de Nouvelle Énergie · trois axes et cinq dossiers thématiques repérés au sommaire",
+    "unit": "rubrique",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "lisnard-destin",
+        "sourceId": "lisnard-destin",
+        "title": "Être maître de notre destin",
+        "measureIds": [
+          "lisnard-agents-passer-des-bureaux-au-terrain",
+          "lisnard-codifier-droit-principes-fondamentaux",
+          "lisnard-conditionner-aide-cohesion-etat-droit"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "lisnard-ambition",
+        "sourceId": "lisnard-ambition",
+        "title": "Réussir une nouvelle ambition française",
+        "measureIds": [
+          "lisnard-age-legal-retraite-65-ans",
+          "lisnard-agence-centrale-publique-retraite",
+          "lisnard-charges-negatives-embauches-rsa"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "lisnard-civique",
+        "sourceId": "lisnard-civique",
+        "title": "Générer un renouveau civique",
+        "measureIds": [
+          "lisnard-creer-externats-excellence",
+          "lisnard-partager-recettes-fiscales-nationales-provinces",
+          "lisnard-pouvoir-reglementaire-local"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "lisnard-ecole",
+        "sourceId": "lisnard-ecole",
+        "title": "Éducation",
+        "measureIds": [
+          "lisnard-education-certificat",
+          "lisnard-education-cheque",
+          "lisnard-education-recrutement"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "lisnard-securite",
+        "sourceId": "lisnard-securite",
+        "title": "Sécurité",
+        "measureIds": [
+          "lisnard-securite-majorite-penale",
+          "lisnard-securite-peines-recidive",
+          "lisnard-securite-police-municipale"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "lisnard-health",
+        "sourceId": "lisnard-health",
+        "title": "Santé",
+        "measureIds": [
+          "lisnard-maires-conseils-hopitaux",
+          "lisnard-passerelles-emploi-public-prive",
+          "lisnard-recherche-biotechnologies-genomique"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "nouvelle-energie-agriculture-2027",
+        "sourceId": "nouvelle-energie-agriculture-2027",
+        "title": "Agriculture",
+        "measureIds": [
+          "lisnard-agriculture-capteurs-ia",
+          "lisnard-autoriser-ntg",
+          "lisnard-charges-agricoles-valeur-ajoutee"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "lisnard-borders",
+        "sourceId": "lisnard-borders",
+        "title": "Immigration",
+        "measureIds": [
+          "lisnard-accord-franco-algerien",
+          "lisnard-asile-consulats",
+          "lisnard-delit-sejour-irregulier"
+        ],
+        "review": "a-completer"
+      }
+    ]
+  },
+  {
+    "sourceId": "lepen-journal-campagne-2027",
+    "perimeter": "Cinq publications sur les propositions de Marine Le Pen retrouvées dans son journal de campagne",
+    "unit": "publication",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "lepen-retraites-document-24-novembre",
+        "sourceId": "lepen-retraites-document-24-novembre",
+        "title": "Réforme des retraites · 24 novembre",
+        "measureIds": [
+          "lepen-abroger-reforme-retraites-2023-en-2028",
+          "lepen-cantonner-trimestres-chomage",
+          "lepen-exonerer-cotisations-apres-tous-droits"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "lepen-orleans-2026",
+        "sourceId": "lepen-orleans-2026",
+        "title": "Discours d’Orléans · 25 octobre",
+        "measureIds": [
+          "lepen-abroger-loi-hulot-hydrocarbures",
+          "lepen-clarifier-competences-locales-place-commune",
+          "lepen-elargir-interessement-participation"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "lepen-europe-bruxelles-2026",
+        "sourceId": "lepen-europe-bruxelles-2026",
+        "title": "Propositions européennes à Bruxelles · 14 octobre",
+        "measureIds": [
+          "lepen-financement-bce-investissements-avenir",
+          "lepen-harmoniser-fiscalite-tabac-alcool-ue",
+          "lepen-moduler-contribution-europe-intensite-carbone"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "lepen-protection-enfance-moissac-2026",
+        "sourceId": "lepen-protection-enfance-moissac-2026",
+        "title": "Protection de l’enfance à Moissac · 12 octobre",
+        "measureIds": [
+          "lepen-accelerer-decisions-violences-enfants",
+          "lepen-aide-parents-et-accueil-proches",
+          "lepen-audit-protection-enfance-debut-mandat"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "lepen-plan-redressement-budgetaire-2026",
+        "sourceId": "lepen-plan-redressement-budgetaire-2026",
+        "title": "Plan de redressement budgétaire · 6 octobre",
+        "measureIds": [
+          "lepen-140-milliards-economies-nettes-2032",
+          "lepen-baisser-impots-30-milliards-nets",
+          "lepen-baisser-impots-production-20-milliards"
+        ],
+        "review": "a-completer"
+      }
+    ]
+  },
+  {
+    "sourceId": "glucks-climate",
+    "perimeter": "Documents des propositions de campagne de Raphaël Glucksmann et projets collectifs rattachés au dossier",
+    "unit": "publication",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "glucksmann-100-jours-accessible",
+        "sourceId": "glucksmann-100-jours-accessible",
+        "title": "Livret des cent premiers jours pour la sortie des énergies fossiles",
+        "measureIds": [
+          "glucksmann-augmenter-taxe-billets-avion",
+          "glucksmann-declarer-etat-urgence-ecologique",
+          "glucksmann-electrifier-flottes-administrations"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "glucks-salaires-2027",
+        "sourceId": "glucks-salaires-2027",
+        "title": "Plan sur les salaires et la CSG",
+        "measureIds": [
+          "glucksmann-conference-salariale-apres-hausse-smic",
+          "glucksmann-csg-salaires",
+          "glucksmann-grands-heritages",
+          "glucksmann-imposer-plus-values-latentes-transmises",
+          "glucksmann-recalibrer-prime-activite-cout-constant",
+          "glucksmann-rendre-pacte-dutreil-degressif",
+          "glucksmann-revaloriser-smic-1700-net"
+        ]
+      },
+      {
+        "id": "pp-project",
+        "sourceId": "pp-project",
+        "title": "Projet de Place publique · L’Acte I",
+        "measureIds": [
+          "glucksmann-europe-fonds-alternatives-numeriques",
+          "glucksmann-education-1",
+          "glucksmann-europe-1"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "ps-projet-2027-vivre-libres",
+        "sourceId": "ps-projet-2027-vivre-libres",
+        "title": "Projet du Parti socialiste · Vivre libres",
+        "measureIds": [
+          "ps-adapter-le-prix-de-la-cantine-aux-revenus-des-familles-jusquau-lycee",
+          "ps-aider-les-menages-a-sequiper-en-panneaux-solaires-avec-des-cheques-soleil",
+          "ps-cibler-les-aides-a-lapprentissage-sur-les-jeunes-les-moins-qualifies"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "ps-projet-refaire-societe",
+        "sourceId": "ps-projet-refaire-societe",
+        "title": "Projet du Parti socialiste · Refaire société",
+        "measureIds": [
+          "ps-accorder-des-trimestres-de-retraite-pour-dix-annees-de-benevolat",
+          "ps-adopter-une-loi-de-financement-de-la-vie-associative",
+          "ps-appliquer-une-tva-stable-de-5-5-a-un-panier-de-premiere-necessite"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "ps-projet-agriculture-nature",
+        "sourceId": "ps-projet-agriculture-nature",
+        "title": "Projet du Parti socialiste · Agriculture et nature",
+        "measureIds": [
+          "ps-aider-les-agriculteurs-a-exploiter-ensemble-terres-materiel-et-batiments",
+          "ps-assurances-agricoles-publiques",
+          "ps-autoriser-des-inspections-inopinees-des-elevages-et-abattoirs-par-une-autorite-indepe"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "ps-projet-2027-securites",
+        "sourceId": "ps-projet-2027-securites",
+        "title": "Projet du Parti socialiste · Les sécurités",
+        "measureIds": [
+          "ps-commencer-leducation-a-la-sante-des-lecole-primaire",
+          "ps-confier-la-direction-de-chaque-hopital-public-a-un-binome",
+          "ps-creer-un-plan-de-prise-en-charge-des-nouvelles-addictions-chez-les-jeunes"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "ps-projet-2027-egalite",
+        "sourceId": "ps-projet-2027-egalite",
+        "title": "Projet du Parti socialiste · Égalité",
+        "measureIds": [
+          "ps-viser-un-maximum-de-19-eleves-par-classe",
+          "ps-aligner-les-remunerations-enseignantes-sur-la-moyenne-des-pays-de-locde",
+          "ps-auditer-les-organismes-et-etablissements-qui-accueillent-les-enfants-places"
+        ],
+        "review": "a-completer"
+      }
+    ]
+  },
+  {
+    "sourceId": "pp-acte-i-integral",
+    "perimeter": "Les 42 chantiers de L’Acte I de Place publique · propositions reliées à leur page. Relecture des mesures détaillées à compléter",
+    "unit": "chantier",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "relecture-2026-11-26-1",
+        "title": "Chantier 1 · Défense française · p. 10 du PDF",
+        "measureIds": [
+          "place-publique-contrats-pluriannuels-industrie-defense"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-2",
+        "title": "Chantier 2 · Défense européenne · p. 11 du PDF",
+        "measureIds": [
+          "place-publique-fonds-europeen-defense-emprunt-commun",
+          "place-publique-proposer-extension-dissuasion-europe"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-3",
+        "title": "Chantier 3 · Construction européenne · p. 12 du PDF",
+        "measureIds": [
+          "place-publique-traiter-elargissement-refondation-ue-2030"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-4",
+        "title": "Chantier 4 · Souveraineté industrielle · p. 14 du PDF",
+        "measureIds": ["place-publique-preference-europeenne-marches-publics"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-5",
+        "title": "Chantier 5 · Économie circulaire · p. 16 du PDF",
+        "measureIds": ["place-publique-droit-reparabilite-biens-consommation"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-6",
+        "title": "Chantier 6 · Révolution énergétique · p. 17 du PDF",
+        "measureIds": [
+          "place-publique-renforcer-efficacite-energetique-menages-industrie"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-7",
+        "title": "Chantier 7 · Intelligence artificielle · p. 20 du PDF",
+        "measureIds": [
+          "place-publique-numerique-agence-ia",
+          "place-publique-accelerateur-projets-ia-utilite-sociale"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-8",
+        "title": "Chantier 8 · Souveraineté numérique · p. 21 du PDF",
+        "measureIds": [
+          "place-publique-fonds-europeen-alternatives-numeriques-libres"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-9",
+        "title": "Chantier 9 · Recherche · p. 24 du PDF",
+        "measureIds": [
+          "place-publique-revaloriser-recherche-financement-durable"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-10",
+        "title": "Chantier 10 · Université et orientation · p. 25 du PDF",
+        "measureIds": ["place-publique-repenser-parcoursup-concertation"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-11",
+        "title": "Chantier 11 · Démocratie et écologie · p. 28 du PDF",
+        "measureIds": ["place-publique-assemblee-citoyenne-futur"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-12",
+        "title": "Chantier 12 · Mobilités · p. 29 du PDF",
+        "measureIds": ["place-publique-lancer-plan-rail-national"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-13",
+        "title": "Chantier 13 · Condition animale · p. 30 du PDF",
+        "measureIds": ["place-publique-moratoire-chasse-especes-menacees"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-14",
+        "title": "Chantier 14 · Agriculture et alimentation · p. 34 du PDF",
+        "measureIds": ["place-publique-reorienter-aides-pac-petites-fermes"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-15",
+        "title": "Chantier 15 · Eau et forêts · p. 35 du PDF",
+        "measureIds": ["place-publique-reduire-coupes-rases-forets-melangees"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-16",
+        "title": "Chantier 16 · Salaires · p. 40 du PDF",
+        "measureIds": ["place-publique-conferences-salariales-metiers-utiles"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-17",
+        "title": "Chantier 17 · Économie sociale et solidaire · p. 41 du PDF",
+        "measureIds": [
+          "place-publique-agence-financement-economie-sociale-solidaire"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-18",
+        "title": "Chantier 18 · Emploi et insertion · p. 42 du PDF",
+        "measureIds": ["place-publique-generaliser-territoires-zero-chomeur"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-19",
+        "title": "Chantier 19 · Retraites · p. 43 du PDF",
+        "measureIds": ["place-publique-abroger-reforme-retraites-2023"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-20",
+        "title": "Chantier 20 · Institutions · p. 46 du PDF",
+        "measureIds": [
+          "place-publique-investiture-premier-ministre-censure-constructive"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-21",
+        "title": "Chantier 21 · Participation citoyenne · p. 47 du PDF",
+        "measureIds": [
+          "place-publique-droit-initiative-referendum",
+          "place-publique-bon-democratie-financement-public-partis"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-22",
+        "title": "Chantier 22 · Services publics · p. 48 du PDF",
+        "measureIds": [
+          "place-publique-revaloriser-agents-recruter-services-publics"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-23",
+        "title": "Chantier 23 · Organisation des soins · p. 50 du PDF",
+        "measureIds": ["place-publique-coordonner-soins-projets-territoriaux"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-24",
+        "title": "Chantier 24 · Prévention · p. 52 du PDF",
+        "measureIds": ["place-publique-fonds-territorial-prevention"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-25",
+        "title": "Chantier 25 · Sécurité sociale · p. 53 du PDF",
+        "measureIds": [
+          "place-publique-aller-vers-securite-sociale-unique",
+          "place-publique-automatiser-acces-droits-dossier-social-unique"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-26",
+        "title": "Chantier 26 · Aidants et autonomie · p. 56 du PDF",
+        "measureIds": ["place-publique-service-relais-repit-aidants"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-27",
+        "title": "Chantier 27 · Protection de l’enfance · p. 57 du PDF",
+        "measureIds": [
+          "place-publique-coordination-etat-departements-protection-enfance"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-28",
+        "title": "Chantier 28 · Handicap et droits · p. 58 du PDF",
+        "measureIds": ["place-publique-referent-social-unique-handicap"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-29",
+        "title": "Chantier 29 · Prévention de la délinquance · p. 60 du PDF",
+        "measureIds": ["place-publique-police-proximite-mediation"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-30",
+        "title": "Chantier 30 · Accès à la justice · p. 61 du PDF",
+        "measureIds": ["place-publique-doubler-maisons-droit-justice"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-31",
+        "title": "Chantier 31 · Logement abordable · p. 64 du PDF",
+        "measureIds": ["place-publique-fonds-foncier-logement-abordable"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-32",
+        "title": "Chantier 32 · Vie chère outre-mer · p. 65 du PDF",
+        "measureIds": ["place-publique-plafonner-prix-essentiels-outre-mer"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-33",
+        "title": "Chantier 33 · École et mixité · p. 68 du PDF",
+        "measureIds": [
+          "place-publique-integrer-prive-sous-contrat-carte-scolaire",
+          "place-publique-reduire-eleves-par-enseignant-primaire"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-34",
+        "title": "Chantier 34 · Éducation aux médias · p. 69 du PDF",
+        "measureIds": ["place-publique-education-medias-enseignement"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-35",
+        "title": "Chantier 35 · Culture · p. 72 du PDF",
+        "measureIds": ["place-publique-pacte-amenagement-culturel-territoire"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-36",
+        "title": "Chantier 36 · Laïcité et jeunesse · p. 73 du PDF",
+        "measureIds": ["place-publique-passeport-emancipation-sejours-enfants"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-37",
+        "title": "Chantier 37 · Sport et santé · p. 74 du PDF",
+        "measureIds": ["place-publique-generaliser-pass-sport-sante-tous-ages"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-38",
+        "title": "Chantier 38 · Violences sexistes et sexuelles · p. 78 du PDF",
+        "measureIds": ["place-publique-plan-violences-sexistes-milliard"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-39",
+        "title": "Chantier 39 · Égalité des droits · p. 79 du PDF",
+        "measureIds": ["place-publique-egaliser-droits-filiation-couples"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-40",
+        "title": "Chantier 40 · Lutte contre les discriminations · p. 80 du PDF",
+        "measureIds": ["place-publique-renforcer-pouvoirs-defenseur-droits"],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-41",
+        "title": "Chantier 41 · Asile et sauvetage · p. 82 du PDF",
+        "measureIds": [
+          "place-publique-creer-force-europeenne-sauvetage-mer",
+          "place-publique-harmoniser-procedures-asile-repartition-europe"
+        ],
+        "review": "a-completer"
+      },
+      {
+        "id": "relecture-2026-11-26-42",
+        "title": "Chantier 42 · Coopération internationale · p. 83 du PDF",
+        "measureIds": ["place-publique-programmer-aide-developpement-07-rnb"],
+        "review": "a-completer"
+      }
+    ]
+  },
+  {
+    "sourceId": "philippe-programme-9",
+    "perimeter": "Les 7 entrées de la liste officielle des propositions phares et passages complémentaires relus",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "phare-1",
+        "title": "Proposition phare 1 · Diviser par deux l’immigration légale",
+        "measureIds": ["philippe-immigration-1"]
+      },
+      {
+        "id": "phare-2",
+        "title": "Proposition phare 2 · Introduire des quotas d’immigration selon les profils recherchés",
+        "measureIds": [
+          "philippe-introduire-des-quotas-dimmigration-selon-les-profils-recherches"
+        ]
+      },
+      {
+        "id": "phare-3",
+        "title": "Proposition phare 3 · Suspendre le regroupement familial pendant le quinquennat",
+        "measureIds": [
+          "philippe-suspendre-le-regroupement-familial-pendant-le-quinquennat"
+        ]
+      },
+      {
+        "id": "phare-4",
+        "title": "Proposition phare 4 · Utiliser des centres de retour à l’étranger pour exécuter les décisions d’éloignement",
+        "measureIds": ["philippe-utiliser-centres-retour-etranger"]
+      },
+      {
+        "id": "phare-5",
+        "title": "Proposition phare 5 · Dénoncer l’accord franco-algérien de 1968",
+        "measureIds": ["philippe-immigration-2"]
+      },
+      {
+        "id": "phare-6",
+        "title": "Proposition phare 6 · Prévoir l’expulsion immédiate d’un étranger qui commet un délit",
+        "measureIds": [
+          "philippe-prevoir-lexpulsion-immediate-dun-etranger-qui-commet-un-delit"
+        ]
+      },
+      {
+        "id": "phare-7",
+        "title": "Proposition phare 7 · Supprimer l’automaticité de l’acquisition de la nationalité",
+        "measureIds": [
+          "philippe-supprimer-lautomaticite-de-lacquisition-de-la-nationalite"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-phare-1",
+        "title": "Immigration · exécution des décisions d’éloignement",
+        "measureIds": ["philippe-utiliser-centres-retour-etranger"]
+      }
+    ]
+  },
+  {
+    "sourceId": "philippe-ia",
+    "perimeter": "Les 7 entrées de la liste officielle des propositions phares et passages complémentaires relus",
+    "unit": "passage",
+    "checked": "2026-11-26",
+    "units": [
+      {
+        "id": "phare-1",
+        "title": "Proposition phare 1 · Donner une priorité européenne aux achats de technologies",
+        "measureIds": ["philippe-travail-achats-tech-europeens"]
+      },
+      {
+        "id": "phare-2",
+        "title": "Proposition phare 2 · Créer des zones d’accélération pour les centres de calcul",
+        "measureIds": ["philippe-travail-zones-calcul"]
+      },
+      {
+        "id": "phare-3",
+        "title": "Proposition phare 3 · Déployer un plan d’utilisation de l’IA dans les services publics",
+        "measureIds": [
+          "philippe-deployer-un-plan-dutilisation-de-lia-dans-les-services-publics"
+        ]
+      },
+      {
+        "id": "phare-4",
+        "title": "Proposition phare 4 · Un droit à la reconversion pour les métiers menacés par l’IA",
+        "measureIds": ["philippe-travail-reconversion-ia"]
+      },
+      {
+        "id": "phare-5",
+        "title": "Proposition phare 5 · Former 100 000 ingénieurs par an",
+        "measureIds": ["philippe-education-ingenieurs"]
+      },
+      {
+        "id": "phare-6",
+        "title": "Proposition phare 6 · Cofinancer les infrastructures de calcul dans le plan Horizon 2050",
+        "measureIds": ["philippe-travail-plan-horizon-2050"]
+      },
+      {
+        "id": "phare-7",
+        "title": "Proposition phare 7 · Investir dans des centres de protection cyber des administrations",
+        "measureIds": [
+          "philippe-securite-bouclier-cyber",
+          "philippe-lutter-desinformation-ingerences-etrangeres"
+        ]
+      },
+      {
+        "id": "relecture-2026-11-26-phare-1",
+        "title": "Débat démocratique · intelligence artificielle",
+        "measureIds": ["philippe-lutter-desinformation-ingerences-etrangeres"]
+      }
+    ]
+  },
+  {
+    "sourceId": "philippe-budget",
+    "unit": "proposition phare",
+    "units": [
+      {
+        "id": "phare-1",
+        "title": "Proposition phare 1 · Inscrire une règle d’or budgétaire dans la Constitution par référendum",
+        "measureIds": ["philippe-fiscalite-2"]
+      },
+      {
+        "id": "phare-2",
+        "title": "Proposition phare 2 · Déficit inférieur à 2,5 % en fin de quinquennat",
+        "measureIds": ["philippe-fiscalite-1"]
+      },
+      {
+        "id": "phare-3",
+        "title": "Proposition phare 3 · Ne créer aucun nouvel impôt pendant cinq ans",
+        "measureIds": ["philippe-fiscalite-2"]
+      },
+      {
+        "id": "phare-4",
+        "title": "Proposition phare 4 · Réorganiser une trentaine d’agences publiques",
+        "measureIds": ["philippe-fiscalite-agences"]
+      },
+      {
+        "id": "phare-5",
+        "title": "Proposition phare 5 · Réduire de 250 000 les postes de fonctionnaires",
+        "measureIds": ["philippe-fiscalite-effectifs-publics"]
+      }
+    ],
+    "perimeter": "Les 5 entrées de la liste officielle des propositions phares",
+    "checked": "2026-11-26"
+  },
+  {
+    "sourceId": "philippe-pension",
+    "unit": "proposition phare",
+    "units": [
+      {
+        "id": "phare-1",
+        "title": "Proposition phare 1 · Retraite à 65 ans et 45 annuités",
+        "measureIds": ["philippe-retraites-1"]
+      },
+      {
+        "id": "phare-2",
+        "title": "Proposition phare 2 · Maintenir des départs à la retraite avant 65 ans",
+        "measureIds": [
+          "philippe-retraites-2",
+          "philippe-faire-negocier-les-criteres-de-penibilite-par-les-partenaires-sociaux"
+        ]
+      },
+      {
+        "id": "phare-3",
+        "title": "Proposition phare 3 · Généraliser la capitalisation collective et ouvrir un plan d’épargne retraite à chaque Français",
+        "measureIds": [
+          "philippe-retraites-2",
+          "philippe-plan-epargne-premier-emploi"
+        ]
+      },
+      {
+        "id": "phare-4",
+        "title": "Proposition phare 4 · Confier la gestion des retraites aux partenaires sociaux après le retour à l’équilibre",
+        "measureIds": [
+          "philippe-confier-la-gestion-des-retraites-aux-partenaires-sociaux-apres-le-retour-a-lequ"
+        ]
+      }
+    ],
+    "perimeter": "Les 4 entrées de la liste officielle des propositions phares",
+    "checked": "2026-11-26"
   }
 ]
