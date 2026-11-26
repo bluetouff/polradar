@@ -59,10 +59,10 @@ func TestPublishedQuestionRelationAnswer(t *testing.T) {
 		name, question, cited, current, qualification, reason, sourceID string
 	}{
 		{
-			"coopération européenne et production en France",
+			"relance du nucléaire et auteur collectif",
 			"Compare Marine Le Pen et David Lisnard sur la question climat-production-nucleaire.",
-			"lepen-relancer-euratom-reacteurs-francais-v1", "lepen-relancer-euratom-reacteurs-francais-v1",
-			"complement", "positions_non_documentees", "lepen-europe-bruxelles-2026",
+			"groupe-rn-accroitre-production-nucleaire-2025-v1", "groupe-rn-accroitre-production-nucleaire-2025-v1",
+			"reponse", "autres_positions", "groupe-rn-communique-programmation-energie-2025",
 		},
 		{
 			"version historique",

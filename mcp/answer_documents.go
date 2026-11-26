@@ -455,8 +455,12 @@ func (c *snapshot) answerComparisonCandidate(question, href string, person candi
 	switch {
 	case len(positions) != 0:
 		item, detail.State = positions[0], "position"
-		extra = append(extra, positions[1:min(len(positions), answerComparisonSupplementLimit)]...)
-		extra = append(extra, complements[:min(len(complements), 1)]...)
+		positionLimit := answerComparisonSupplementLimit
+		if len(complements) != 0 {
+			positionLimit--
+		}
+		extra = append(extra, positions[1:min(len(positions), 1+positionLimit)]...)
+		extra = append(extra, complements[:min(len(complements), answerComparisonSupplementLimit-len(extra))]...)
 	case len(complements) != 0:
 		item, detail.State = complements[0], "complement-seul"
 		extra = complements[1:min(len(complements), 1+answerComparisonSupplementLimit)]
@@ -554,7 +558,11 @@ func (c *snapshot) answerQuestionPosition(question, candidateID, name, qualifica
 		versioned.SourceRefs = selected
 	}
 	item := c.measureAnswer(versioned)
-	item.Title = name + " · " + position.str("title")
+	titlePrefix := name
+	if item.Author != "" && item.Author != name {
+		titlePrefix = "Dossier de " + name + " · " + item.Author
+	}
+	item.Title = titlePrefix + " · " + position.str("title")
 	item.Summary = answerText(position.str("description"), 720)
 	if raw := position["relation"]; raw != nil {
 		var relation answerRelation

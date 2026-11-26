@@ -65,7 +65,7 @@ test('les cinq dossiers prioritaires renvoient Ã  une position originale sur lâ€
   for (const [questionId, candidates] of [
     ['aide-ukraine', priority],
     ['retraites-conditions-depart', priority],
-    ['climat-production-nucleaire', priority.filter((id) => id !== 'lepen')],
+    ['climat-production-nucleaire', priority],
     ['immigration-travail', priority],
     ['education-acces-etudes', priority],
     ['retraites-protection-revenus', priority],
@@ -91,7 +91,14 @@ test('les cinq dossiers prioritaires renvoient Ã  une position originale sur lâ€
   const lepen = questions
     .find(({ id }) => id === 'climat-production-nucleaire')
     ?.positions.find(({ candidate }) => candidate === 'lepen');
-  expect(lepen?.positions).toHaveLength(0);
+  expect(lepen?.positions).toContainEqual(
+    expect.objectContaining({
+      versionId: 'groupe-rn-accroitre-production-nucleaire-2025-v1',
+      author: 'Groupe Rassemblement national',
+      scope: 'parti',
+      relation: expect.objectContaining({ qualification: 'reponse' }),
+    }),
+  );
   expect(lepen?.complements).toContainEqual(
     expect.objectContaining({
       versionId: 'lepen-renegocier-prix-electricite-europe-v3',

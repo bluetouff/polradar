@@ -103,15 +103,15 @@ func TestPublishedAnswerComparisonEvidence(t *testing.T) {
 		t.Skip("édition antérieure aux relations qualifiées")
 	}
 	h := handler(data, openUsage(t.TempDir(), time.Now()))
-	t.Run("positions, absence et complément individuel", func(t *testing.T) {
+	t.Run("positions, absence et attribution collective", func(t *testing.T) {
 		r := answerThroughTransports(t, h, "Compare Raphaël Glucksmann, David Lisnard, Teddy Riner, Marine Le Pen, Juan Branco et Jean-Luc Mélenchon sur la question climat-production-nucleaire.", c.commit)
 		expectComparisonFields(t, r.Data, map[string]any{
 			"/etat":  "partiel",
 			"/motif": "positions_non_documentees",
 			"/couverture/comparaison/candidaturesTraitees":          float64(6),
-			"/couverture/comparaison/avecPosition":                  float64(4),
-			"/couverture/comparaison/sansPosition":                  float64(2),
-			"/couverture/comparaison/complementsSeuls":              float64(1),
+			"/couverture/comparaison/avecPosition":                  float64(5),
+			"/couverture/comparaison/sansPosition":                  float64(1),
+			"/couverture/comparaison/complementsSeuls":              float64(0),
 			"/resultats/0/auteur":                                   "Raphaël Glucksmann",
 			"/resultats/0/comparaison/nombrePositions":              float64(2),
 			"/resultats/0/comparaison/supplementaires/0/versionId":  "ps-climat-mix-v1",
@@ -125,13 +125,17 @@ func TestPublishedAnswerComparisonEvidence(t *testing.T) {
 			"/resultats/2/comparaison/etat":                         "non-documente",
 			"/resultats/2/sources":                                  []any{},
 			"/resultats/3/candidatureAssociee":                      "lepen",
-			"/resultats/3/comparaison/etat":                         "complement-seul",
-			"/resultats/3/comparaison/nombrePositions":              float64(0),
+			"/resultats/3/comparaison/etat":                         "position",
+			"/resultats/3/comparaison/nombrePositions":              float64(1),
 			"/resultats/3/comparaison/nombreComplements":            float64(2),
-			"/resultats/3/relation/qualification":                   "complement",
-			"/resultats/3/versionId":                                "lepen-relancer-euratom-reacteurs-francais-v1",
-			"/resultats/3/comparaison/supplementaires/0/versionId":  "lepen-renegocier-prix-electricite-europe-v3",
-			"/resultats/3/comparaison/supplementaires/0/source/url": "https://www.marinelepen.com/materiel-de-campagne/3/telecharger#page=2",
+			"/resultats/3/comparaison/resultatsTronques":            float64(0),
+			"/resultats/3/relation/qualification":                   "reponse",
+			"/resultats/3/versionId":                                "groupe-rn-accroitre-production-nucleaire-2025-v1",
+			"/resultats/3/auteur":                                   "Groupe Rassemblement national",
+			"/resultats/3/titre":                                    "Dossier de Marine Le Pen · Groupe Rassemblement national · Construire des réacteurs et accroître la puissance du parc nucléaire",
+			"/resultats/3/comparaison/supplementaires/0/versionId":  "lepen-relancer-euratom-reacteurs-francais-v1",
+			"/resultats/3/comparaison/supplementaires/1/versionId":  "lepen-renegocier-prix-electricite-europe-v3",
+			"/resultats/3/comparaison/supplementaires/1/source/url": "https://www.marinelepen.com/materiel-de-campagne/3/telecharger#page=2",
 			"/resultats/4/candidatureAssociee":                      "branco",
 			"/resultats/5/candidatureAssociee":                      "melenchon",
 		})
@@ -147,19 +151,19 @@ func TestPublishedAnswerComparisonEvidence(t *testing.T) {
 			"/resultats/1/url":                      "https://polradar.fr/mesures/glucksmann-csg-salaires/#version-2",
 		})
 	})
-	t.Run("quatrième proposition signalée", func(t *testing.T) {
+	t.Run("cinq propositions et limite de restitution", func(t *testing.T) {
 		r := answerThroughTransports(t, h, "Compare Raphaël Glucksmann et Gabriel Attal sur la question social-garde-jeunes-enfants.", c.commit)
 		expectComparisonFields(t, r.Data, map[string]any{
 			"/etat":  "partiel",
 			"/motif": "comparaison_tronquee",
 			"/couverture/comparaison/candidaturesTraitees": float64(2),
 			"/couverture/comparaison/resultatsTronques":    float64(1),
-			"/resultats/0/comparaison/nombrePositions":     float64(4),
+			"/resultats/0/comparaison/nombrePositions":     float64(5),
 			"/resultats/0/comparaison/resultatsTronques":   float64(1),
 			"/resultats/0/comparaison/url":                 "https://polradar.fr/questions/social-garde-jeunes-enfants/#candidat-glucksmann",
 		})
 		supplementary, _ := answerAt(r.Data, "/resultats/0/comparaison/supplementaires")
-		if rows, ok := supplementary.([]any); !ok || len(rows) != 2 {
+		if rows, ok := supplementary.([]any); !ok || len(rows) != answerComparisonSupplementLimit {
 			t.Fatal(supplementary)
 		}
 	})
