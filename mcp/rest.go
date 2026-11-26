@@ -48,7 +48,7 @@ func (c *snapshot) resource(path string, q url.Values) (any, bool, error) {
 			return nil, false, errFilter
 		}
 		return map[string]any{"version": "1", "documentation": site + "/api/", "openapi": site + "/api/openapi.json",
-			"ressources": []string{"corpus", "candidats", "mesures", "donnees/{collection}"}}, false, nil
+			"ressources": []string{"corpus", "candidats", "mesures", "donnees/{collection}", "reponse"}}, false, nil
 	case "corpus":
 		if len(q) != 0 {
 			return nil, false, errFilter

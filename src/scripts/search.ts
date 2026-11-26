@@ -1,4 +1,5 @@
 import { catalogue } from './catalogue';
+import { savedParameters, saveView } from './saved-views';
 import { el, anchor, icon, download, publicData } from './ui';
 import { filterEntries, exportCsv } from '../lib/features.mjs';
 import {
@@ -27,6 +28,37 @@ const discovery = document.querySelector<HTMLElement>('#search-discovery')!;
 const toolbar = document.querySelector<HTMLElement>('.search-toolbar')!;
 const typeNav = document.querySelector<HTMLElement>('#search-types')!;
 const typeSelect = form.querySelector<HTMLSelectElement>('[name=type]')!;
+const saveButton = document.querySelector<HTMLButtonElement>('#search-save')!;
+
+function searchView() {
+  const state = new URLSearchParams();
+  const names = [];
+  for (const input of form.querySelectorAll<
+    HTMLInputElement | HTMLSelectElement
+  >('input[name], select[name]')) {
+    if (
+      !input.value ||
+      (input instanceof HTMLInputElement &&
+        input.type === 'checkbox' &&
+        !input.checked)
+    )
+      continue;
+    state.set(input.name, input.value);
+    names.push(
+      input instanceof HTMLSelectElement
+        ? input.selectedOptions[0]?.text
+        : input.type === 'checkbox'
+          ? 'Archives 2022'
+          : input.value.trim(),
+    );
+  }
+  return { state, title: names.filter(Boolean).join(' · ') };
+}
+
+saveButton.addEventListener('click', async () => {
+  const { state, title } = searchView();
+  count.textContent = await saveView('search', state, title);
+});
 results.addEventListener('click', (event) => {
   if (
     !(event.target instanceof HTMLElement) ||
@@ -43,6 +75,7 @@ const selection = catalogue<SearchEntry>({
   discovery,
   onResults(rows) {
     toolbar.hidden = !discovery.hidden;
+    saveButton.hidden = !savedParameters('search', searchView().state);
     const totals = new Map<string, number>();
     for (const { type } of rows) totals.set(type, (totals.get(type) ?? 0) + 1);
     typeNav.replaceChildren();

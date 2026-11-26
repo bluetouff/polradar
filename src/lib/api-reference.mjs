@@ -33,6 +33,7 @@ const id = segment(
 );
 const collections = [
   'sondages',
+  'comparaisons-sondages',
   'economie',
   'agenda',
   'budgets',
@@ -89,7 +90,138 @@ const evidence = {
   sources: array(ref('Source')),
 };
 const nextOffset = { type: ['integer', 'null'], minimum: 0 };
+const answerLink = object({ libelle: str, url });
 const schemas = {
+  MethodeComparativeSondages: object({
+    fenetreJours: { ...count, minimum: 1, maximum: 366 },
+    ponderation: str,
+    export: url,
+  }),
+  QuestionDocumentaire: {
+    ...object(
+      {
+        question: {
+          ...str,
+          minLength: 1,
+          maxLength: 300,
+          description: 'Question documentaire en français.',
+        },
+        expectedRevision: revisionFilter.schema,
+      },
+      ['question'],
+    ),
+    additionalProperties: false,
+  },
+  PreuveDocumentaire: object(
+    {
+      id: str,
+      document: str,
+      url,
+      passage: str,
+      publication: date,
+      anneePublication: str,
+      justificatifPublication: str,
+      consultation: date,
+    },
+    ['id', 'document', 'url', 'passage'],
+  ),
+  ChiffreDocumentaire: object(
+    {
+      libelle: str,
+      valeur: str,
+      unite: str,
+      periode: str,
+      base: str,
+      sourceId: str,
+    },
+    ['libelle', 'valeur'],
+  ),
+  RelationQuestionDocumentaire: object({
+    id: str,
+    qualification: { ...str, enum: ['reponse', 'complement'] },
+    justification: str,
+    statut: { ...str, enum: ['version-courante', 'version-depassee'] },
+    versionCitee: str,
+    versionCourante: str,
+    regleVersion: { const: 'version-citee' },
+  }),
+  ReponseDocumentaire: object(
+    {
+      etat: {
+        ...str,
+        enum: [
+          'documente',
+          'partiel',
+          'sans-resultat',
+          'ambigu',
+          'hors-perimetre',
+        ],
+      },
+      intention: {
+        ...str,
+        enum: [
+          'comparaison',
+          'economie',
+          'financement',
+          'historique',
+          'inconnue',
+          'juridique',
+          'proposition',
+          'scrutin',
+          'simulation',
+          'sondage',
+          'source',
+          'territoire',
+          'verification',
+        ],
+      },
+      titre: str,
+      explication: str,
+      motif: str,
+      couverture: object({
+        perimetre: str,
+        total: nextOffset,
+        limite: count,
+        url,
+      }),
+      resultats: {
+        type: 'array',
+        maxItems: 3,
+        items: object(
+          {
+            id: str,
+            versionId: str,
+            candidatureAssociee: str,
+            titre: str,
+            resume: str,
+            auteur: str,
+            statut: str,
+            date,
+            typeDate: {
+              ...str,
+              enum: ['consultation', 'publication', 'scrutin', 'observation'],
+            },
+            url: { anyOf: [url, { const: '' }] },
+            sources: { ...array(ref('PreuveDocumentaire')), maxItems: 6 },
+            chiffres: { ...array(ref('ChiffreDocumentaire')), maxItems: 8 },
+            relation: ref('RelationQuestionDocumentaire'),
+          },
+          ['id', 'titre', 'url', 'sources', 'chiffres'],
+        ),
+      },
+      liens: array(answerLink),
+    },
+    [
+      'etat',
+      'intention',
+      'titre',
+      'explication',
+      'couverture',
+      'resultats',
+      'liens',
+    ],
+  ),
+  ErreurDocumentaire: object({ code: str, erreur: str }),
   Source: object({
     document: str,
     url,
@@ -174,6 +306,7 @@ const schemas = {
           compatible: { type: 'boolean' },
         }),
       },
+      versionTransportCorpus: count,
       url,
     },
     [
@@ -199,6 +332,7 @@ const schemas = {
           suivant: nextOffset,
           collection: collection.schema,
           rubrique: url,
+          methodeComparative: ref('MethodeComparativeSondages'),
           publications: array(
             object(
               {
@@ -234,6 +368,7 @@ const schemas = {
     {
       collection: collection.schema,
       rubrique: url,
+      methodeComparative: ref('MethodeComparativeSondages'),
       publication: {
         type: 'object',
         description:
@@ -253,6 +388,14 @@ export const apiRoutes = [
     key: 'index',
     title: 'Découvrir les ressources',
     returns: 'Index',
+    params: [],
+  },
+  {
+    path: '/reponse',
+    key: 'reponse',
+    method: 'post',
+    title: 'Question documentaire avec preuves et périmètre',
+    returns: 'ReponseDocumentaire',
     params: [],
   },
   {
@@ -350,7 +493,7 @@ export const apiRoutes = [
       filter(
         'query',
         { ...str, maxLength: 160 },
-        'Titre ou adresse pour sources, texte ou identifiant pour parlement. Avec le service 1.5, institut, commanditaire, scénario, identifiant ou date AAAA-MM-JJ pour sondages, titre, description ou code pour economie.',
+        'Titre ou adresse pour sources, texte ou identifiant pour parlement. Institut, commanditaire, scénario, identifiant ou date AAAA-MM-JJ pour sondages. Titre, description ou code pour economie. Intitulé ou identifiant pour comparaisons-sondages.',
       ),
       filter(
         'recherche',
@@ -418,11 +561,28 @@ const errors = {
   503: 'Service ou données temporairement indisponibles.',
 };
 const json = (schema) => ({ 'application/json': { schema } });
-function responses(data, head) {
+function responses(data, head, post = false) {
+  const errorsByMethod = post
+    ? {
+        400: errors[400],
+        403: 'Origine refusée.',
+        405: errors[405],
+        409: errors[409],
+        413: 'Taille maximale de la requête ou de la réponse dépassée.',
+        415: 'Le corps doit être en JSON UTF-8.',
+        429: errors[429],
+        503: errors[503],
+      }
+    : errors;
   const result = Object.fromEntries(
-    Object.entries(errors).map(([code, description]) => [
+    Object.entries(errorsByMethod).map(([code, description]) => [
       code,
-      head ? { description } : { description, content: json(ref('Erreur')) },
+      head
+        ? { description }
+        : {
+            description,
+            content: json(ref(post ? 'ErreurDocumentaire' : 'Erreur')),
+          },
     ]),
   );
   result['200'] = head
@@ -466,21 +626,35 @@ export const openapi = {
   },
   security: [],
   paths: Object.fromEntries(
-    apiRoutes.map(({ path, key, title, returns, params }) => [
+    apiRoutes.map(({ path, key, title, returns, params, method }) => [
       path,
-      {
-        parameters: [...params, revisionFilter],
-        get: {
-          operationId: key,
-          summary: title,
-          responses: responses(returns, false),
-        },
-        head: {
-          operationId: key + 'Head',
-          summary: 'Vérifier la disponibilité de cette ressource',
-          responses: responses(returns, true),
-        },
-      },
+      method === 'post'
+        ? {
+            post: {
+              operationId: key,
+              summary: title,
+              description:
+                'Lecture seule à partir du service 1.6. Transmettez la question dans le corps JSON. Pour une requête avec Origin, utilisez https://polradar.fr.',
+              requestBody: {
+                required: true,
+                content: json(ref('QuestionDocumentaire')),
+              },
+              responses: responses(returns, false, true),
+            },
+          }
+        : {
+            parameters: [...params, revisionFilter],
+            get: {
+              operationId: key,
+              summary: title,
+              responses: responses(returns, false),
+            },
+            head: {
+              operationId: key + 'Head',
+              summary: 'Vérifier la disponibilité de cette ressource',
+              responses: responses(returns, true),
+            },
+          },
     ]),
   ),
   components: { schemas },

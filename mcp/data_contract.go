@@ -12,7 +12,7 @@ const corpusLimit = 10 << 20
 const dossiersLimit = 8 << 20
 const territoriesLimit = 5 << 20
 
-var collectionNames = [...]string{"corpus", "dossiers", "territoires", "sondages", "economie", "agenda", "budgets", "marches", "parlement", "sources", "droit", "verifications", "breves", "financements", "arcom", "graphiques", "senat", "parlement-europeen"}
+var collectionNames = [...]string{"corpus", "dossiers", "territoires", "sondages", "comparaisons-sondages", "economie", "agenda", "budgets", "marches", "parlement", "sources", "droit", "verifications", "breves", "financements", "arcom", "graphiques", "senat", "parlement-europeen"}
 
 type dataContract struct {
 	Version     int            `json:"version"`

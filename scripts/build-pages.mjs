@@ -82,6 +82,7 @@ function sharedSignature() {
     'src',
     'public',
     'scripts',
+    'mcp/lexique-recherche.json',
     'package.json',
     'package-lock.json',
     'astro.config.mjs',

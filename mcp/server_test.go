@@ -54,6 +54,43 @@ func rpc(h http.Handler, method string, params any) *httptest.ResponseRecorder {
 func runTool(h http.Handler, name string, args any) *httptest.ResponseRecorder {
 	return rpc(h, "tools/call", map[string]any{"name": name, "arguments": args})
 }
+
+func TestMethodologyFreshnessEdition(t *testing.T) {
+	root := fixture(t)
+	c, err := (&store{root: root}).load()
+	if err != nil {
+		t.Fatal(err)
+	}
+	report := filepath.Join(root, "api", "qualite-documentaire.json")
+	for _, tc := range []struct {
+		label, revision string
+		want            bool
+	}{
+		{"edition courante", c.commit, true},
+		{"ancienne edition", strings.Repeat("b", 40), false},
+		{"releve sans revision", "", false},
+	} {
+		t.Run(tc.label, func(t *testing.T) {
+			raw := `{"sourceCommit":"` + tc.revision + `","collections":[{"id":"arcom","freshness":{"state":"succes-en-retard"}},{"id":"sondages"}]}`
+			if err := os.WriteFile(report, []byte(raw), 0600); err != nil {
+				t.Fatal(err)
+			}
+			doc, _, err := c.methodology(struct{}{})
+			if err != nil {
+				t.Fatal(err)
+			}
+			value := doc.(map[string]any)
+			rows, ok := value["fraicheurCollectes"].([]record)
+			if ok != tc.want || ok && (len(rows) != 1 || rows[0].str("id") != "arcom") {
+				t.Fatalf("fraîcheur incohérente pour %q : %v", tc.revision, value)
+			}
+			if value["releveFraicheur"] != site+"/api/qualite-documentaire.json" {
+				t.Fatal("lien du relevé absent")
+			}
+		})
+	}
+}
+
 func TestToolsAndPrivacy(t *testing.T) {
 	state := t.TempDir()
 	u := openUsage(state, time.Now())

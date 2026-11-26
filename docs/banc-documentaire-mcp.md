@@ -18,7 +18,7 @@ La recette de chaque archive parcourt aussi les identifiants annoncés par la pa
 
 ## Questions libres à un assistant
 
-Le client Codex découvre les outils du serveur public et choisit ses appels et leurs paramètres. Il reçoit la question en français et une consigne générale. Les outils attendus, faits de référence et adresses autorisées restent dans le banc. Les quatre questions portent sur un vote nominatif, l’attribution d’une proposition, un seuil de sondage et une date hors du registre parlementaire. [Cas du benchmark](../mcp/testdata/questions-assistant.json)
+Le client Codex découvre les outils du serveur testé et choisit ses appels et leurs paramètres. Il reçoit la question en français et une consigne générale. Les outils attendus, faits de référence et adresses autorisées restent dans le banc. Les seize questions portent notamment sur des attributions, des unités, des périodes, des votes et des dates hors couverture. [Cas du benchmark](../mcp/testdata/questions-assistant.json)
 
 Le score vérifie l’outil et les paramètres qui ont permis de récupérer le bon relevé, les révisions déclarées par celui-ci, les valeurs citées dans la réponse et la reconnaissance des données absentes. Une citation doit correspondre à une adresse de référence et être étayée par le relevé obtenu. Les pages ajoutées à un PDF sont contrôlées lorsqu’elles figurent dans les références. Les valeurs supplémentaires, les liens sans appui et une réponse affirmative sur une donnée manquante font échouer le cas. Le barème utilise des équivalences explicites pour les valeurs courtes. Les formulations qui dépassent le barème appellent une relecture sémantique.
 
@@ -60,3 +60,24 @@ Codex CLI 0.169.1 et `gpt-6.2-sol` ont reçu cinq questions sans nom d’outil n
 | Priorités pour la taille des classes |                      2/2 |          1 | 15,884 s |             55 259 (43 904) |
 
 Le barème valide **4 réponses sur 5**, avec **2 appels médians** et aucune adresse hors référence. Le client reconnaît la séance non couverte et cite le registre. Son libellé « Séance du 18 mars 2024 hors couverture » sort des valeurs attendues. Le seuil OpinionWay passe de 18 à 2 appels entre les deux passages observés. Un premier essai local avait donné deux tours indisponibles et une étiquette de révision absente dans le binaire de test. Le tableau utilise l’exécution après correction de cette étiquette. Il décrit cinq questions et un client. Le SDK Go a aussi exercé les deux versions du protocole. [Questions libres](../mcp/testdata/questions-assistant.json)
+
+### Contre-audit du 26 novembre 2026
+
+Les deux passages utilisent Codex CLI 0.169.1 et `gpt-6.2-sol`, sur le corpus `867cd06`. Le barème reconnaît les différentes formulations d’une séance hors du registre et contrôle toute date donnée dans le motif. Les chemins annotés permettent aussi d’exiger un poste précis d’un tableau.
+
+| Passage                               | Questions conformes | Faits corrects et cités | Appels médians | Résultats MCP médians, octets | Durée médiane |
+| ------------------------------------- | ------------------: | ----------------------: | -------------: | ----------------------------: | ------------: |
+| 1.5 publique, cinq questions communes |                 5/5 |                     9/9 |              2 |                        10 652 |      15,436 s |
+| 1.6 locale, mêmes questions           |                 5/5 |                     9/9 |              2 |                         8 673 |      15,149 s |
+| 1.6 locale, banc étendu               |               10/16 |                   17/25 |              2 |                       9 605,5 |      19,162 s |
+
+Le cas OpinionWay passe de deux appels à un. Les six échecs du banc étendu contiennent dix citations hors référence et deux faits supplémentaires. Les onze annotations ajoutées ont chacune été rapprochées du relevé attendu sur le service public 1.5 par appel structuré. Les durées incluent l’inférence, le lancement du client et des transports différents entre les deux passages. Le volume représente les résultats sérialisés MCP. Le banc structuré sur archive du lot atteint 208/208. [Cas annotés et références](../mcp/testdata/questions-documentaires.json)
+
+### Parité de la recherche
+
+Sur les mêmes données `867cd06`, seize cas communs vérifient les concepts, les auteurs et le premier résultat attendu. Le Web passe de 13/16 à 16/16 et le MCP de 12/16 à 16/16. Les quinze requêtes positives retrouvent le résultat attendu en tête des deux surfaces. Le jeu Web tenu à l’écart de ce réglage reste à 28/30. [Cas communs](../mcp/testdata/recherche-commune.json) · [Lexique partagé](../mcp/lexique-recherche.json)
+
+```sh
+node scripts/benchmark-recherche.mjs dist --commun
+(cd mcp && POLRADAR_TEST_SITE="$(cd ../dist && pwd)" go test -run '^TestPublishedRechercheCommune$' -count=1 -v .)
+```

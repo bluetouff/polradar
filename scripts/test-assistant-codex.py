@@ -1,6 +1,7 @@
 """Évaluer des questions libres avec Codex et le MCP public de Polradar."""
 
 import argparse
+from datetime import date
 import json
 import os
 from pathlib import Path
@@ -47,6 +48,38 @@ def normal(value):
     return " ".join(text.split()).strip(" .:;*\x60\"«»")
 
 
+FRENCH_MONTHS = (
+    "janvier", "fevrier", "mars", "avril", "mai", "juin",
+    "juillet", "aout", "septembre", "octobre", "novembre", "decembre",
+)
+MENTIONED_DATE = re.compile(
+    r"\b(?:(?P<iso>\d{4}-\d{2}-\d{2})|"
+    r"(?P<day>\d{1,2}) (?P<month>" + "|".join(FRENCH_MONTHS) + r") (?P<year>\d{4}))\b"
+)
+OUTSIDE_COVERAGE = {
+    "non couverte", "hors couverture", "hors de la couverture du registre",
+    "hors registre", "hors du registre", "hors perimetre",
+    "hors du perimetre du registre", "hors perimetre du registre",
+    "hors du perimetre couvert par le registre",
+}
+
+
+def coverage_reason(value, reason):
+    for match in MENTIONED_DATE.finditer(value):
+        try:
+            day = date.fromisoformat(match["iso"]) if match["iso"] else date(
+                int(match["year"]), FRENCH_MONTHS.index(match["month"]) + 1, int(match["day"])
+            )
+        except ValueError:
+            return False
+        if day.isoformat() != reason["date"]:
+            return False
+    label = MENTIONED_DATE.sub("jour", value)
+    label = re.sub(r"^(?:la )?(?:seance|date|periode)(?: (?:du|de|le) jour)? ", "", label)
+    label = re.sub(r"^(?:le )?jour ", "", label)
+    return label.removeprefix("est ") in OUTSIDE_COVERAGE
+
+
 def address(value):
     if not isinstance(value, str) or len(value) > 2048 or re.search(r"[\x00-\x20\x7f\\]", value):
         return None
@@ -78,6 +111,10 @@ def at_path(value, path):
     if current == "*" and isinstance(value, list):
         for child in value:
             yield from at_path(child, rest)
+    elif isinstance(value, list) and re.fullmatch(r"0|[1-9][0-9]{0,8}", current):
+        index = int(current)
+        if index < len(value):
+            yield from at_path(value[index], rest)
     elif isinstance(value, dict) and current in value:
         yield from at_path(value[current], rest)
 
@@ -106,6 +143,13 @@ def load_cases():
         ref, = references
         case["outil"] = ref["outil"]
         case["sources"] = [*ref["sources"], *case.get("adresses", [])]
+        reason = case.get("motif")
+        if reason is not None and (
+            case["etat"] != "indisponible" or len(case["faits"]) != 1
+            or reason["code"] != "hors-couverture"
+            or date.fromisoformat(reason["date"]).isoformat() != reason["date"]
+        ):
+            raise ValueError(f"Motif documentaire invalide pour {case['id']}.")
     return cases["questions"]
 
 
@@ -141,6 +185,8 @@ def score(case, answer, calls, revisions):
     for fact in answer["faits"]:
         value = normal(fact["valeur"])
         found = next((i for i, choices in enumerate(expected) if value in choices), None)
+        if found is None and expected and case.get("motif") and coverage_reason(value, case["motif"]):
+            found = 0
         citations = [address(link) for link in fact["citations"]]
         wrong = sum(source not in cited_sources for source in citations)
         bad_citations += wrong
@@ -196,6 +242,7 @@ def read_turn(path):
             "tool": item["tool"],
             "arguments": item["arguments"],
             "envelope": result.get("structured_content"),
+            "result_bytes": len(json.dumps(result, ensure_ascii=False, separators=(",", ":")).encode()),
         })
     if not isinstance(usage, dict):
         raise ValueError("Tour Codex incomplet.")
@@ -276,8 +323,11 @@ def main():
         try:
             answer, calls, usage, elapsed = turn(case["question"], args.modele, env)
             result = score(case, answer, calls, revisions)
-            result.update(appels_mcp=len(calls), outils=sorted({call["tool"] for call in calls}),
-                          duree_s=elapsed, jetons=usage)
+            result.update(
+                appels_mcp=len(calls), outils=sorted({call["tool"] for call in calls}),
+                octets_resultats_mcp=sum(call["result_bytes"] for call in calls),
+                duree_s=elapsed, jetons=usage,
+            )
             times.append(elapsed)
         except (subprocess.SubprocessError, OSError, ValueError, KeyError, TypeError):
             result = {"execution": "tour indisponible ou résultat illisible", "reussi": False}

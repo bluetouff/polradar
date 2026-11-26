@@ -10,6 +10,7 @@ import {
 } from '../lib/daily-updates.mjs';
 import {
   collectionClock,
+  dataCollectionCadence,
   formatCollectionTime,
 } from '../lib/collection-clock.mjs';
 import { formatDate, formatTimestamp, meta } from '../lib/data';
@@ -108,7 +109,7 @@ const workflow = meta.repository + '/actions/workflows/watch.yml';
       {latestByFamily.map(({ row, attempted, succeeded }) => {
         const key = row.id as keyof typeof families;
         const [name, link, icon] = families[key];
-        const cadence = key === 'sondages' ? 'sondages' : 'quotidienne';
+        const cadence = dataCollectionCadence(key);
         const timing = collectionClock(cadence, attempted, succeeded);
         return (
           <article
@@ -116,6 +117,8 @@ const workflow = meta.repository + '/actions/workflows/watch.yml';
             data-cadence={cadence}
             data-attempted={attempted}
             data-succeeded={succeeded}
+            data-collection-state={timing.state}
+            data-evaluated-at={timing.evaluatedAt}
           >
             <div class="fresh-family">
               <Icon name={icon} />
@@ -297,6 +300,8 @@ const workflow = meta.repository + '/actions/workflows/watch.yml';
       }
       missedAttempt.hidden = !timing.missedAttempt;
       missedSuccess.hidden = timing.missedAttempt || !timing.missedSuccess;
+      card.dataset.collectionState = timing.state;
+      card.dataset.evaluatedAt = timing.evaluatedAt;
     }
   }
   update();

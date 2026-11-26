@@ -24,6 +24,19 @@ const datasets = [
     fields: ['versionDocuments', 'questions', 'votes', 'evolutions'],
   },
   {
+    id: 'relations-documentaires',
+    title: 'Relations entre les pièces du corpus',
+    path: '/api/relations-documentaires.json',
+    description:
+      'Versions liées à un état précédent, un scrutin, une règle ou un montant',
+    unit: 'Une relation qualifiée entre une version et une pièce identifiée.',
+    provenance:
+      'Versions des fiches, scrutins nominatifs, comparatifs juridiques et chiffrages relus.',
+    limits:
+      'Chaque rapprochement conserve son périmètre. Une comparaison juridique ne vaut pas constat d’application. La date dépend de la relation.',
+    fields: ['sourceCommit', 'edition', 'relations'],
+  },
+  {
     id: 'territoires',
     title: 'Données communales',
     path: '/api/territoires.json',

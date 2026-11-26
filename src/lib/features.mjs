@@ -1,4 +1,5 @@
 import { attributionLabel, collectiveLabel } from './attribution.mjs';
+import lexicon from '../../mcp/lexique-recherche.json' with { type: 'json' };
 /** Shared, dependency-free rules for charts, history and local search. */
 export function normalize(value) {
   return String(value)
@@ -113,89 +114,61 @@ export function rankedPollResults(poll) {
     (a, b) => (b.percentage ?? -1) - (a.percentage ?? -1),
   );
 }
-const grammaticalWords = new Set(
-  'a au aux avec chez dans d de des du en et l la le les par pour sur un une'.split(
-    ' ',
-  ),
-);
+const grammaticalWords = new Set(lexicon.motsVides);
 const wordForms = new Map();
-for (const family of [
-  'supprimer suppression suppressions supprime supprimee suppriment supprimees supprimes',
-  'baisser baisse baisses baissent',
-  'reduire reduction reductions reduit reduite reduites reduits',
-  'augmenter augmentation augmentations augmente augmentent',
-  'retablir retablissement retablissements retablit restaurer restaure restauration reintroduire',
-  'abroger abrogation abrogations abroge abrogee',
-  'creer creation creations cree creee',
-  'indexer indexation indexations indexe indexee indexes indexees',
-  'exonerer exoneration exonerations exonere exoneres exoneree',
-  'salaire salaires',
-  'cotisation cotisations',
-  'retraite retraites',
-  'allocation allocations',
-  'pension pensions',
-  'revenu revenus',
-  'impot impots',
-  'logement logements',
-  'ponderer ponderation',
-  'entreprise entreprises',
-  'region regions',
-  'succession successions',
-  'vote votes voter',
-  'hopital hopitaux',
-  'privatiser privatisation privatisations privatise privatises privatisee',
-  'plafonner plafonnement plafonnements plafonne plafonnee plafonnes',
-  'tarif tarifs prix',
-  'annuler annulation annule annulee annulees',
-  'jeune jeunes',
-  'energie energies',
-  'expulser expulsion expulsions',
-  'calculer calcul calculs calcule calculee calcules',
-  'medical medicaux medicale medicales',
-  'soin soins',
-]) {
+for (const family of lexicon.formes) {
   const forms = family.split(' ');
   for (const form of forms) wordForms.set(form, forms[0]);
 }
-const officialTerms = [
-  [/\b(?:contribution sociale generalisee|c\.s\.g\.?)\b\.?/g, 'csg'],
-  [
-    /\bcontribution (?:au|pour le) remboursement de la dette sociale\b/g,
-    'crds',
-  ],
-  [/\brevenu de solidarite active\b/g, 'rsa'],
-  [/\bimpot de solidarite sur la fortune\b/g, 'isf'],
-  [/\btaxe sur la valeur ajoutee\b/g, 'tva'],
-  [/\ballocation aux adultes handicapes\b/g, 'aah'],
-  [/\breferendum d['’ ]initiative citoyenne\b/g, 'ric'],
-  [/\b(?:organisation des )?nations unies\b/g, 'onu'],
-  [
-    /\b(?:vaccination obligatoire|obligations? vaccinales?)\b/g,
-    'obligation vaccinale',
-  ],
-  [
-    /\b(?:salaire minimum(?: interprofessionnel de croissance)?|s\.m\.i\.c\.?)\b\.?/g,
-    'smic',
-  ],
-  [/\b(?:flat[- ]tax|prelevement forfaitaire unique)\b/g, 'pfu'],
-  [/\bimpot sur la fortune immobiliere\b/g, 'ifi'],
+const expressions = new Map();
+for (const [canonical, ...variants] of lexicon.expressions) {
+  const target = canonical.split(' ');
+  for (const variant of variants) {
+    const words = variant.split(' ');
+    if (!expressions.has(words[0])) expressions.set(words[0], []);
+    expressions.get(words[0]).push({ words, target });
+  }
+}
+for (const variants of expressions.values())
+  variants.sort((a, b) => b.words.length - a.words.length);
+
+function canonicalWords(words) {
+  const result = [];
+  for (let i = 0; i < words.length;) {
+    const phrase = expressions
+      .get(words[i])
+      ?.find(({ words: variant }) =>
+        variant.every((word, j) => words[i + j] === word),
+      );
+    if (phrase) {
+      result.push(...phrase.target);
+      i += phrase.words.length;
+    } else {
+      result.push(words[i]);
+      i += 1;
+    }
+  }
+  return result;
+}
+
+const editorialTerms = [
   [
     /\b(?:droits?(?: de mutation)?|fiscalite|imposition|impots?) (?:de |des |sur (?:les )?)successions?\b/g,
     'droit succession',
   ],
   [/\b(?:fiches?|feuilles?) de (?:paie|paye)\b/g, 'fiche paie'],
   [/\b(?:acceder|acces) aux soins\b/g, 'acces soin'],
-  [/\blogements? socia(?:l|ux)\b/g, 'logement social'],
-  [/\bagences? regionales? de sante\b/g, 'ars'],
-  [/\blutte ouvriere\b/g, 'lo'],
   [/\bremettre la retraite\b/g, 'retablir la retraite'],
   [/\b(pouvoir|cout) d['’]achat\b/g, '$1 achat'],
   [/\beuros?\b/g, '€'],
 ];
 function searchTokens(text, index = false) {
-  const original = normalize(text).replace(/(\d) (?=\d{3}(?:\D|$))/g, '$1');
+  const original = normalize(text)
+    .replaceAll('œ', 'oe')
+    .replaceAll('æ', 'ae')
+    .replace(/\b\d{1,3}(?: \d{3})+\b/g, (number) => number.replaceAll(' ', ''));
   let expanded = original;
-  for (const [phrase, acronym] of officialTerms)
+  for (const [phrase, acronym] of editorialTerms)
     expanded = expanded.replace(phrase, acronym);
   let searchable =
     index && original !== expanded ? `${original} ${expanded}` : expanded;
@@ -210,7 +183,9 @@ function searchTokens(text, index = false) {
     /\bcout de production\b/.test(original)
   )
     searchable += ' prix';
-  return (searchable.match(/[\p{L}\p{N}]+(?:[.,]\d+)?|[%€]/gu) || []).map(
+  const words = searchable.match(/[\p{L}\p{N}]+(?:[.,]\d+)?|[%€]/gu) || [];
+  const folded = canonicalWords(words);
+  return (index ? [...words, ...folded] : folded).map(
     (word) => wordForms.get(word) ?? word.replace(/(\d),(\d)/g, '$1.$2'),
   );
 }

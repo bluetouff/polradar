@@ -6,7 +6,10 @@
       "question": "Comment Gabriel Attal a-t-il voté au scrutin n°9916 du 17 novembre 2026 à l’Assemblée nationale sur la cybersécurité des infrastructures critiques ? Le relevé indique-t-il une délégation de vote ?",
       "reference": {
         "famille": "recherche-parlementaire",
-        "arguments": { "query": "VTANR5L17V9916", "candidat": "attal" }
+        "arguments": {
+          "query": "VTANR5L17V9916",
+          "candidat": "attal"
+        }
       },
       "etat": "documente",
       "faits": [
@@ -22,7 +25,9 @@
       ],
       "appels": [
         {
-          "arguments": { "collection": "parlement" },
+          "arguments": {
+            "collection": "parlement"
+          },
           "attendus": {
             "/publication/id": "VTANR5L17V9916",
             "/publication/positions/*": {
@@ -30,6 +35,26 @@
               "vote": "pour",
               "delegation": true
             }
+          }
+        },
+        {
+          "outil": "polradar_answer",
+          "arguments": {},
+          "attendus": {
+            "/etat": "documente",
+            "/resultats/0/id": "VTANR5L17V9916",
+            "/resultats/0/date": "2026-11-17",
+            "/resultats/0/chiffres/*": {
+              "libelle": "Gabriel Attal",
+              "valeur": "pour",
+              "sourceId": "VTANR5L17V9916"
+            },
+            "/resultats/0/chiffres/1": {
+              "libelle": "Délégation de vote · Gabriel Attal",
+              "valeur": "oui",
+              "sourceId": "VTANR5L17V9916"
+            },
+            "/resultats/0/sources/0/url": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9916"
           }
         }
       ]
@@ -39,7 +64,10 @@
       "question": "Dans la première version de la fiche « Reconstituer Fret SNCF », quel auteur est indiqué ? Quel type de proposition Polradar lui attribue-t-il ?",
       "reference": {
         "famille": "programmes",
-        "arguments": { "id": "ps-reconstituer-fret-sncf", "version": 1 }
+        "arguments": {
+          "id": "ps-reconstituer-fret-sncf",
+          "version": 1
+        }
       },
       "etat": "documente",
       "faits": [
@@ -57,11 +85,26 @@
       ],
       "appels": [
         {
-          "arguments": { "id": "ps-reconstituer-fret-sncf" },
+          "arguments": {
+            "id": "ps-reconstituer-fret-sncf"
+          },
           "attendus": {
             "/versionDemandee": "ps-reconstituer-fret-sncf-v1",
             "/auteur": "Parti socialiste",
             "/statut": "parti"
+          }
+        },
+        {
+          "outil": "polradar_answer",
+          "arguments": {},
+          "attendus": {
+            "/etat": "documente",
+            "/resultats/0": {
+              "id": "ps-reconstituer-fret-sncf",
+              "versionId": "ps-reconstituer-fret-sncf-v1",
+              "auteur": "Parti socialiste",
+              "statut": "parti"
+            }
           }
         }
       ]
@@ -71,7 +114,9 @@
       "question": "Dans le scénario de premier tour de l’enquête OpinionWay pour CNews des 21 et 22 octobre 2026, quel résultat est publié pour Nathalie Arthaud et combien de personnes expriment un vote dans le tableau ?",
       "reference": {
         "famille": "sondages-historiques",
-        "arguments": { "id": "opinionway-commission-10333-p12" }
+        "arguments": {
+          "id": "opinionway-commission-10333-p12"
+        }
       },
       "etat": "documente",
       "faits": [
@@ -95,7 +140,9 @@
       ],
       "appels": [
         {
-          "arguments": { "collection": "sondages" },
+          "arguments": {
+            "collection": "sondages"
+          },
           "attendus": {
             "/publication/id": "opinionway-commission-10333-p12",
             "/publication/usefulSample": 680,
@@ -105,6 +152,26 @@
               "below": 1
             }
           }
+        },
+        {
+          "outil": "polradar_answer",
+          "arguments": {},
+          "attendus": {
+            "/etat": "documente",
+            "/resultats/0/id": "opinionway-commission-10333-p12",
+            "/resultats/0/chiffres/0": {
+              "libelle": "Effectif utile de ce scénario",
+              "valeur": "680",
+              "unite": "personnes",
+              "periode": "2026-10-21 – 2026-10-22"
+            },
+            "/resultats/0/chiffres/*": {
+              "libelle": "Nathalie Arthaud",
+              "valeur": "< 1",
+              "unite": "%"
+            },
+            "/resultats/0/sources/0/url": "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2352#page=12"
+          }
         }
       ]
     },
@@ -113,9 +180,15 @@
       "question": "Quel vote individuel de Raphaël Glucksmann le registre Polradar indique-t-il pour le 18 mars 2024 au Parlement européen ?",
       "reference": {
         "famille": "archives-parlement-europeen",
-        "arguments": { "periode": "2024-03-18" }
+        "arguments": {
+          "periode": "2024-03-18"
+        }
       },
       "etat": "indisponible",
+      "motif": {
+        "code": "hors-couverture",
+        "date": "2024-03-18"
+      },
       "faits": [
         [
           "période non couverte",
@@ -160,6 +233,16 @@
             "/couverture": "periode-hors-registre",
             "/total": 0
           }
+        },
+        {
+          "outil": "polradar_answer",
+          "arguments": {},
+          "attendus": {
+            "/etat": "hors-perimetre",
+            "/motif": "periode_hors_registre",
+            "/resultats": [],
+            "/couverture/url": "https://polradar.fr/votes/archives/"
+          }
         }
       ]
     },
@@ -168,7 +251,10 @@
       "question": "Dans la fiche de Jean-Luc Mélenchon sur les effectifs par classe, quelles sont les deux priorités indiquées pour la réduction du nombre d’élèves par classe ? Donne une valeur pour chacune.",
       "reference": {
         "famille": "preuves-en-un-appel",
-        "arguments": { "mode": "preuves", "limit": 1 }
+        "arguments": {
+          "mode": "preuves",
+          "limit": 1
+        }
       },
       "etat": "documente",
       "faits": [
@@ -192,7 +278,9 @@
       ],
       "appels": [
         {
-          "arguments": { "mode": "preuves" },
+          "arguments": {
+            "mode": "preuves"
+          },
           "attendus": {
             "/resultats/*": {
               "id": "melenchon-education-2",
@@ -205,11 +293,340 @@
         },
         {
           "outil": "polradar_measure",
-          "arguments": { "id": "melenchon-education-2" },
+          "arguments": {
+            "id": "melenchon-education-2"
+          },
           "attendus": {
             "/id": "melenchon-education-2",
             "/auteur": "Jean-Luc Mélenchon",
             "/beneficiaires": "Les élèves, en priorité en maternelle et dans les réseaux d’éducation prioritaire."
+          }
+        }
+      ]
+    },
+    {
+      "id": "inflation-unite",
+      "question": "L’indicateur « Inflation harmonisée » de Polradar vient d’Eurostat. Quelle est son unité et à quel rythme la série est-elle publiée ?",
+      "reference": {
+        "famille": "économie",
+        "arguments": {
+          "collection": "economie",
+          "id": "inflation"
+        }
+      },
+      "etat": "documente",
+      "faits": [
+        ["%", "pourcentage", "pour cent"],
+        ["mensuel", "mensuelle", "M"]
+      ],
+      "appels": [
+        {
+          "arguments": {
+            "collection": "economie",
+            "id": "inflation"
+          },
+          "attendus": {
+            "/publication/unit": "%",
+            "/publication/frequency": "M",
+            "/publication/dataset": "prc_hicp_minr"
+          }
+        }
+      ]
+    },
+    {
+      "id": "paris-millesime",
+      "question": "Dans la fiche de Paris (75056), à quelle année se rapporte le relevé DREES d’accès aux généralistes ?",
+      "reference": {
+        "famille": "territoires",
+        "arguments": {
+          "code": "75056"
+        }
+      },
+      "etat": "documente",
+      "faits": [["2024", "année 2024"]],
+      "appels": [
+        {
+          "arguments": {
+            "code": "75056"
+          },
+          "attendus": {
+            "/commune": "Paris",
+            "/codeInsee": "75056",
+            "/definitions/apl/millesime": 2024
+          }
+        }
+      ]
+    },
+    {
+      "id": "elabe-terrain",
+      "question": "Le sondage Elabe diffusé le 29 août 2026 a-t-il été réalisé ce seul jour ? Donne séparément les dates de début et de fin du terrain.",
+      "reference": {
+        "famille": "sondages",
+        "arguments": {
+          "collection": "sondages",
+          "id": "elabe-2026-08-29-philippe"
+        }
+      },
+      "etat": "documente",
+      "faits": [
+        ["26 août 2026", "2026-08-26"],
+        ["28 août 2026", "2026-08-28"]
+      ],
+      "appels": [
+        {
+          "arguments": {
+            "collection": "sondages",
+            "id": "elabe-2026-08-29-philippe"
+          },
+          "attendus": {
+            "/publication/fieldworkStart": "2026-08-26",
+            "/publication/fieldworkEnd": "2026-08-28"
+          }
+        }
+      ]
+    },
+    {
+      "id": "reunion-lille-deux-dates",
+      "question": "La brève sur la réunion à Lille avec Selma Labib et Gaël Quirante a deux dates. Donne séparément celle de l’événement et celle de la publication sur Polradar.",
+      "reference": {
+        "famille": "actualité",
+        "arguments": {
+          "collection": "breves",
+          "id": "veille-ff5018354e92a975326f"
+        }
+      },
+      "etat": "documente",
+      "faits": [
+        ["23 novembre 2026", "2026-11-23"],
+        ["24 novembre 2026", "2026-11-24"]
+      ],
+      "appels": [
+        {
+          "arguments": {
+            "collection": "breves",
+            "id": "veille-ff5018354e92a975326f"
+          },
+          "attendus": {
+            "/publication/evenement": "2026-11-23",
+            "/publication/date": "2026-11-24"
+          }
+        }
+      ]
+    },
+    {
+      "id": "retraite-version-un",
+      "question": "Dans la première version de la fiche « melenchon-retraites-1 », à quel âge et avec combien d’annuités le départ à taux plein était-il proposé ?",
+      "reference": {
+        "famille": "historique",
+        "arguments": {
+          "id": "melenchon-retraites-1",
+          "version": 1
+        }
+      },
+      "etat": "documente",
+      "faits": [
+        ["60 ans", "60"],
+        ["40 annuités", "40"]
+      ],
+      "appels": [
+        {
+          "arguments": {
+            "id": "melenchon-retraites-1",
+            "version": 1
+          },
+          "attendus": {
+            "/versionDemandee": "melenchon-retraites-1-v1",
+            "/titre": "Abroger la réforme de 2023, puis rétablir un départ à taux plein à 60 ans avec 40 annuités"
+          }
+        },
+        {
+          "outil": "polradar_answer",
+          "arguments": {},
+          "attendus": {
+            "/etat": "documente",
+            "/resultats/*": {
+              "id": "melenchon-retraites-1",
+              "versionId": "melenchon-retraites-1-v1",
+              "url": "https://polradar.fr/mesures/melenchon-retraites-1/#version-1"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "chomage-declaration-observation",
+      "question": "Pour la déclaration de Jean-Pierre Farandou sur le chômage au troisième trimestre 2026, quel taux officiel Polradar affiche-t-il ?",
+      "reference": {
+        "famille": "vérifications",
+        "arguments": {
+          "collection": "verifications",
+          "id": "farandou-chomage-t3-2026"
+        }
+      },
+      "etat": "documente",
+      "faits": [["8,2 %", "8.2 %"]],
+      "appels": [
+        {
+          "arguments": {
+            "collection": "verifications",
+            "id": "farandou-chomage-t3-2026"
+          },
+          "attendus": {
+            "/publication/assessment": "comparable",
+            "/publication/observed": "8.2",
+            "/publication/unit": "%"
+          }
+        }
+      ]
+    },
+    {
+      "id": "droit-chiffrement-repere",
+      "question": "Quel article de la LCEN Polradar cite-t-il en premier dans la fiche du droit d’utiliser le chiffrement ?",
+      "reference": {
+        "famille": "droit",
+        "arguments": {
+          "collection": "droit",
+          "id": "outils-chiffres"
+        }
+      },
+      "etat": "documente",
+      "faits": [
+        [
+          "article 30 I",
+          "art. 30 I",
+          "30 I",
+          "article 30, I",
+          "LCEN, art. 30 I",
+          "article 30, paragraphe I"
+        ]
+      ],
+      "appels": [
+        {
+          "arguments": {
+            "collection": "droit",
+            "id": "outils-chiffres"
+          },
+          "attendus": {
+            "/publication/rules/0/refs/0/label": "LCEN, art. 30 I"
+          }
+        },
+        {
+          "outil": "polradar_answer",
+          "arguments": {},
+          "attendus": {
+            "/etat": "documente",
+            "/resultats/0/id": "outils-chiffres-1",
+            "/resultats/0/sources/0": {
+              "url": "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006421577/",
+              "passage": "LCEN, art. 30 I"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "affectation-lisnard-periodicite",
+      "question": "Quel horizon temporel Polradar rattache-t-il aux économies annoncées dans l’affectation du programme de David Lisnard ?",
+      "reference": {
+        "famille": "financements",
+        "arguments": {
+          "collection": "financements",
+          "id": "lisnard-affectations"
+        }
+      },
+      "etat": "documente",
+      "faits": [["annuel", "annuelle", "chaque année", "par an"]],
+      "appels": [
+        {
+          "arguments": {
+            "collection": "financements",
+            "id": "lisnard-affectations"
+          },
+          "attendus": {
+            "/publication/entry/period": "annuel",
+            "/publication/sources/0/id": "lisnard-repartition-2026"
+          }
+        }
+      ]
+    },
+    {
+      "id": "arcom-tf1-septembre",
+      "question": "Pour TF1 en septembre 2026, les durées du relevé Arcom sont-elles en secondes ou en minutes ?",
+      "reference": {
+        "famille": "médias",
+        "arguments": {
+          "collection": "arcom",
+          "id": "2026-09-television-tf1"
+        }
+      },
+      "etat": "documente",
+      "faits": [["secondes", "s", "seconde"]],
+      "appels": [
+        {
+          "arguments": {
+            "collection": "arcom",
+            "id": "2026-09-television-tf1"
+          },
+          "attendus": {
+            "/publication/unit": "secondes",
+            "/publication/date": "2026-09"
+          }
+        }
+      ]
+    },
+    {
+      "id": "retraite-senat-vote",
+      "question": "Quel vote Bruno Retailleau a-t-il exprimé lors du scrutin du Sénat sur l’article 7 du budget rectificatif de la Sécurité sociale, le 8 mars 2023 ?",
+      "reference": {
+        "famille": "archives-senat",
+        "arguments": {
+          "collection": "senat",
+          "id": "senat-2022-233"
+        }
+      },
+      "etat": "documente",
+      "faits": [["pour", "pour l’adoption", "a voté pour"]],
+      "appels": [
+        {
+          "arguments": {
+            "collection": "senat",
+            "id": "senat-2022-233"
+          },
+          "attendus": {
+            "/publication/date": "2023-03-08",
+            "/publication/positions/*": {
+              "personne": "04033B",
+              "vote": "pour"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "amendement-eu-total",
+      "question": "Combien de voix pour et de voix contre le registre du Parlement européen donne-t-il pour l’amendement 102 du rapport Vázquez Lázara du 13 mars 2024 ? Donne les deux nombres.",
+      "reference": {
+        "famille": "archives-parlement-europeen",
+        "arguments": {
+          "collection": "parlement-europeen",
+          "id": "MTG-PL-2024-03-13-DEC-166377"
+        }
+      },
+      "etat": "documente",
+      "faits": [
+        ["262", "262 voix", "262 voix pour"],
+        ["351", "351 voix", "351 voix contre"]
+      ],
+      "appels": [
+        {
+          "arguments": {
+            "collection": "parlement-europeen",
+            "id": "MTG-PL-2024-03-13-DEC-166377"
+          },
+          "attendus": {
+            "/publication/date": "2024-03-13",
+            "/publication/pour": 262,
+            "/publication/contre": 351
           }
         }
       ]

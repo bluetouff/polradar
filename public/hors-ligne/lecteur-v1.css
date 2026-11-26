@@ -1,0 +1,108 @@
+:root {
+  color-scheme: light;
+  color: #172c38;
+  background: linear-gradient(145deg, #ddebed, #edf1ed 63%, #d9e6e8);
+  font:
+    16px/1.55 system-ui,
+    sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+main {
+  max-width: 46rem;
+  margin: auto;
+  padding: clamp(1rem, 4vw, 3rem);
+  overflow-wrap: anywhere;
+}
+
+.brand {
+  display: inline-block;
+  margin-block-end: 1rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.03em;
+}
+
+header {
+  color: #f6fafb;
+  background: linear-gradient(130deg, #152b3b, #225254);
+  border-radius: 1rem;
+  padding: 1.25rem clamp(1rem, 3vw, 2rem);
+}
+
+h1,
+h2,
+header p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+header p {
+  color: #bfdee0;
+  margin-block-end: 0.3rem;
+}
+
+[data-record] {
+  margin-block-start: 1rem;
+  border: 1px solid #adbec2;
+  border-radius: 1rem;
+  padding: clamp(1rem, 3vw, 2rem);
+  background: #fafcfb;
+}
+
+dl {
+  border-block: 1px solid #bdcbcd;
+  padding-block: 0.75rem;
+}
+
+dt {
+  font-weight: 650;
+}
+
+dd {
+  margin: 0 0 0.5rem;
+}
+
+a {
+  color: #22565c;
+  text-underline-offset: 0.18em;
+}
+
+ul {
+  padding-inline-start: 1.25rem;
+}
+
+li {
+  margin-block: 0.6rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem;
+  padding-block-start: 0.9rem;
+}
+
+button {
+  border: 1px solid #8da7aa;
+  border-radius: 0.5rem;
+  background: #eef5f4;
+  color: inherit;
+  min-height: 44px;
+  padding: 0.45rem 0.8rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid #216577;
+  outline-offset: 0.22rem;
+}

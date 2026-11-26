@@ -1,27 +1,87 @@
 # Capacité de publication
 
-L’archive publiée pour la révision `33468582042c32b1130c99ad97d24d317ad07711`, servie le 24 novembre 2026, a été téléchargée avec son fichier SHA-256. Le déployeur l’a extraite dans un répertoire de recette et a retrouvé la révision attendue. Le rapport de compilation reprend désormais les quatre limites du déployeur.
+## Référence du 26 novembre 2026
 
-| Limite                        |     Utilisé |     Plafond |              Marge |
-| ----------------------------- | ----------: | ----------: | -----------------: |
-| Archive gzip                  |  18 492 163 |  25 165 824 | 6 673 661 (26,5 %) |
-| TAR complet                   | 127 098 880 | 134 217 728 |  7 118 848 (5,3 %) |
-| Nombre de fichiers            |       5 563 |       6 000 |        437 (7,3 %) |
-| Plus grand fichier individuel |   4 942 675 |  10 485 760 | 5 543 085 (52,9 %) |
+L’archive de `867cd0601aa35c3dd18b62ef554cf76b2624b433` a été téléchargée, contrôlée par SHA-256 et extraite localement. La révision a aussi été vérifiée sur le site public et auprès du MCP 1.5.0. [Archive de l’édition](https://github.com/bluetouff/polradar/releases/tag/site-867cd0601aa35c3dd18b62ef554cf76b2624b433) · [Manifeste public](https://polradar.fr/build.json)
 
-Les tailles sont en octets. Le TAR inclut les en-têtes et le remplissage. Le plus gros fichier est `api/corpus.json`. Les pages de mesures occupent 31 981 923 octets hors en-têtes, les exports `api/` 19 919 512, les pages de votes 8 879 188 et les pages de documents 8 401 395. [Archive GitHub de l’édition](https://github.com/bluetouff/polradar/releases/tag/site-33468582042c32b1130c99ad97d24d317ad07711)
+| Limite                       | Mesure publiée |     Plafond |      Marge |
+| ---------------------------- | -------------: | ----------: | ---------: |
+| Archive gzip, en octets      |     29 433 737 |  37 748 736 |  8 314 999 |
+| TAR complet, en octets       |    225 904 640 | 268 435 456 | 42 530 816 |
+| Nombre de fichiers           |          8 635 |      10 000 |      1 365 |
+| Plus grand membre, en octets |      9 883 291 |  10 485 760 |    602 469 |
+
+`api/corpus.json` occupe 94,3 % du plafond individuel. Ses propositions courantes représentent 3 570 893 octets et ses versions 4 248 775 octets, délimiteurs de champs compris. Les index de recherche publique et parlementaire occupent respectivement 4 033 292 et 4 146 988 octets.
+
+Hors en-têtes TAR, le HTML représente 154 376 273 octets, le JSON 41 975 413, le XML 9 898 949, les images 7 771 189 et les SVG 4 343 228. Les pages de mesures représentent 68 040 425 octets de HTML et autres ressources sous `mesures/`. La déduplication exacte ne concernerait que 127 237 octets. Les descriptions, passages et versions restent nécessaires aux exports qui les contiennent.
+
+## Transport partitionné
+
+Le paquet accepte des fragments d’au plus 2 Mio, jusqu’à 128, répartis par collection du corpus. Chaque fragment est une plage d’octets de l’export. Le manifeste `api/corpus-parts.json` donne la révision, la collection, la position, la taille et l’empreinte de chaque plage. Un fragment sert au transport. L’URL historique et le contrat JSON v1 restent identiques.
+
+Le déployeur contrôle l’inventaire et les empreintes pendant l’extraction. Il reconstitue le fichier dans le répertoire de préparation avec le SHA-256 annoncé par `build.json`. Le répertoire public contient le corpus reconstitué et son manifeste. Les fragments restent dans le TAR. Le fichier reconstitué a un plafond propre de 64 Mio. Sur l’archive actuelle, répartir les mêmes fichiers entre plusieurs TAR ajouterait des transferts et garderait un coût cumulé similaire.
+
+| Profil                         |   Gzip | TAR décompressé | Membres | Par membre |
+| ------------------------------ | -----: | --------------: | ------: | ---------: |
+| Historique                     | 36 Mio |         256 Mio |  10 000 |     10 Mio |
+| Partitionné, manifeste en tête | 64 Mio |         512 Mio |  20 000 |     10 Mio |
+
+Le profil historique reste celui du paquet par défaut. En mode partitionné, le paquet place son manifeste en tête pour que le déployeur puisse vérifier sa forme et sa révision avant de retenir les plafonds adaptés. Ce choix est ensuite confirmé par la vérification complète de l’inventaire et des SHA-256. Les anciens paquets partitionnés gardent la même structure de données et passent sous les plafonds historiques.
+
+Aux poids moyens mesurés sur les 9 094 membres du build `f3cbf49`, 20 000 membres représenteraient environ 495 Mio en TAR et 62 Mio en gzip. Cette projection motive l’enveloppe. Le déployeur borne le téléchargement, décompresse en blocs et réserve de l’espace sur le système de fichiers de publication. Le budget de préparation inclut le TAR temporaire et les blocs de la nouvelle édition. Les copies conservées pour restauration sont déjà comptées dans le disque occupé.
+
+Go lit le format reconstitué en flux et décode les listes utilisées par le service. Les anciennes éditions gardent leur chemin de lecture et le plafond de 10 Mio. Si un nouveau corpus dépasse ce seuil, le déployeur vérifie la capacité du service avant la bascule et sa révision après. La vérification HTTPS et le retour à l’édition précédente utilisent le mécanisme existant. [Procédure d’exploitation](../deploy/README.md#activer-le-transport-partitionné)
+
+Le rapport de construction signale 70 % en surveillance, 85 % en action préventive et 95 % en risque critique. La création du paquet bloque au plafond. Les vérifications d’extraction et d’intégrité restent présentes indépendamment de ces seuils.
+
+## Recette isolée
 
 ```sh
-python3 scripts/release_capacity.py site.tar.gz --checksum site.sha256 \
-  --revision 33468582042c32b1130c99ad97d24d317ad07711
+python3 scripts/test-corpus-growth.py site.tar.gz --checksum site.sha256 \
+  --revision 867cd0601aa35c3dd18b62ef554cf76b2624b433 --mcp
 ```
 
-## Plafonds du 25 novembre 2026
+La recette conserve les pages, les index de recherche et les autres collections de référence. Elle multiplie uniquement les fiches et leurs versions, avec des identifiants distincts dans une copie temporaire. Le script vérifie les octets restitués et les nombres de fiches réellement chargées. Ce scénario mesure le corpus et son coût d’installation à pages constantes. La croissance du HTML, des index et du nombre de pages nécessite une mesure dédiée.
 
-Le build local de `a7e5f86` produit 6 135 fichiers, un TAR de 145 500 160 octets et une archive gzip de 19 380 571 octets. Les plafonds de 8 000 fichiers, 192 Mio pour le TAR et 28 Mio pour le gzip donnent de la marge aux prochaines éditions. À poids moyen par fichier constant, une édition de 8 000 fichiers occuperait environ 181 Mio de TAR et 24 Mio de gzip.
+| Charge | Fiches | Versions | Corpus en octets | Gzip en octets | TAR en octets | Membres | Plages |
+| ------ | -----: | -------: | ---------------: | -------------: | ------------: | ------: | -----: |
+| 1×     |  4 370 |    4 628 |        9 883 291 |     29 750 308 |   225 925 120 |   8 652 |     17 |
+| 2×     |  8 740 |    9 256 |       17 961 827 |     30 896 346 |   234 004 480 |   8 656 |     21 |
+| 5×     | 21 850 |   23 140 |       42 197 435 |     34 333 945 |   258 242 560 |   8 667 |     32 |
 
-## Séparation des données et des pages
+Le plus grand membre de cette archive est l’index parlementaire, à 4 146 988 octets. Le TAR de la charge 5× atteint 96,2 % de l’enveloppe de 256 Mio utilisée lors de cette recette. Ses fichiers reconstitués occupent 251 587 979 octets de contenu, auxquels s’ajoutent le TAR temporaire et les éditions présentes sur le disque. Les clients de l’export complet continuent de recevoir le JSON complet.
 
-Deux TAR de recette ont été reconstitués à partir des mêmes fichiers, au même format USTAR. Le lot `api/` occupe 20 039 680 octets de TAR et 151 fichiers. Le lot des autres chemins occupe 107 069 440 octets et 5 412 fichiers. Les deux lots gzip totalisent 18 670 565 octets. Séparer ces lots libérerait environ 20,2 % de la limite TAR mesurée lors de cette recette pour le lot de pages. L’espace disque cumulé et le nombre total de fichiers resteraient du même ordre. Avec le plafond de 6 000 fichiers utilisé lors de cette recette, le lot de pages conserverait 588 fichiers de marge.
+Sur le poste macOS de recette, le packaging des trois charges a pris respectivement 8,83 s, 12,07 s et 13,27 s. L’extraction et les contrôles d’intégrité ont pris 4,33 s, 3,26 s et 4,26 s. Le chargement local de la charge 5× a pris 1,108 s et laissé 113 937 304 octets de tas vivant après une collecte Go. Cette mesure porte sur un instantané isolé avec `GOMEMLIMIT=136MiB`. Le RSS de Zen et la coexistence de deux éditions agrandies restent à mesurer.
 
-Le format étudié lie les deux empreintes et les deux inventaires à la même révision. Le déployeur téléchargerait les lots dans un répertoire temporaire, vérifierait leurs tailles, empreintes et chemins, puis refuserait tout chemin dupliqué. Le contrôle du site, du contrat de données et du corpus précéderait une seule bascule atomique. Les URL de lecture et l’ancienne édition resteraient disponibles durant la bascule. L’activation de ce format demanderait une recette du disque de Zen avec l’ancienne et la nouvelle édition simultanées, ainsi que des tests de lot manquant, d’empreinte erronée, de révision divergente et de retour arrière. La publication actuelle garde le format à une archive.
+Un second essai garde 4 370 fiches et porte l’historique à 23 140 versions. Le corpus reconstitué mesure 26 879 031 octets et son TAR 242 923 520 octets. Le service 1.6 le charge en 1,281 s dans la recette locale. Le service 1.5 signale le dépassement de son plafond individuel.
+
+## Archive finale du lot local
+
+L’archive a été construite avec les changements de l’espace de travail et le corpus de référence `867cd06`. Elle inclut le lecteur hors ligne et le relevé des relations documentaires. Le format partitionné restitue l’export de 9 883 291 octets, réparti en 17 fragments. Le plus grand membre du TAR reste l’index parlementaire.
+
+| Plafond de publication    |  Occupation |      Limite |      Marge |
+| ------------------------- | ----------: | ----------: | ---------: |
+| Gzip, octets              |  28 680 804 |  37 748 736 |  9 067 932 |
+| TAR, octets               | 227 276 800 | 268 435 456 | 41 158 656 |
+| Membres                   |       8 664 |      10 000 |      1 336 |
+| Plus grand membre, octets |   4 146 988 |  10 485 760 |  6 338 772 |
+
+Le format historique de la même construction compte 8 647 membres, 227 256 320 octets de TAR et 28 674 085 octets de gzip. La copie partitionnée ajoute 17 membres nets et 20 480 octets de TAR pour préparer la croissance de l’export. Le changement de format relève de l’activation du déployeur.
+
+## Recette du profil agrandi sur `f3cbf49`
+
+L’archive historique locale de `f3cbf49` a été contrôlée par SHA-256. Elle contient 9 094 membres, 236 144 640 octets de TAR et 29 701 646 octets de gzip. Son export de 10 473 558 octets laisse 12 202 octets sous le plafond historique.
+
+| Charge du corpus | Fiches | Versions | Corpus, octets | Gzip, octets | TAR, octets | Membres |
+| ---------------- | -----: | -------: | -------------: | -----------: | ----------: | ------: |
+| 1×               |  4 689 |    4 948 |     10 473 558 |   29 688 850 | 236 165 120 |   9 111 |
+| 2×               |  9 378 |    9 896 |     19 111 698 |   30 917 742 | 244 797 440 |   9 115 |
+| 5×               | 23 445 |   24 740 |     45 026 118 |   34 604 080 | 270 725 120 |   9 128 |
+
+Ces trois archives gardent les pages et index d’origine. Chaque corpus a été restitué à l’octet près puis lu par le service Go. À 5×, les fichiers installés représentent 263 707 743 octets logiques, auxquels s’ajoutent le TAR temporaire et l’allocation du système de fichiers. Le plus grand membre reste l’index de recherche à 4 299 524 octets.
+
+Un second paquet double également les 4 689 pages individuelles de fiches et les entrées de mesures dans l’index. Il contient 13 804 membres, 314 132 480 octets de TAR et 33 861 374 octets de gzip. L’index atteint 7 729 393 octets. Le packaging avec extraction de contrôle a pris 30,81 s et culminé à 182 370 304 octets de RSS sur le poste de recette macOS.
+
+Une projection à 5× des mêmes pages et entrées donne au moins 27 884 membres, un index de 18 019 000 octets et environ 548 Mo de TAR avec son bourrage. Ces quantités dépassent les plafonds agrandis du nombre de membres, de la taille individuelle et du TAR. La projection exclut la croissance des autres pages et des paginations. La recette à 5× du corpus mesure un autre périmètre, à pages et index constants.
+
+À 5×, un instantané a représenté 123 762 080 octets de tas Go vivant après collecte, avec `GOMEMLIMIT=136MiB`. Zen fixe aussi `MemoryMax=192M` pour le service. Deux instantanés de cette taille représenteraient environ 236 Mio de tas d’après la mesure d’un instantané. Le test de croissance porte sur le chargement local d’un seul instantané. Une rotation à cette échelle sous la limite systemd demande sa propre recette.

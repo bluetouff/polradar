@@ -36,7 +36,7 @@ jobs:
           if [ "$code" != 200 ] && [ "$code" != 404 ]; then echo "Registre indisponible ($code)."; exit 1; fi
           curl -fsS --proto '=https' --max-time 15 -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' \
             --data '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' https://polradar.fr/api/mcp \
-            | jq -e --argjson expected '["polradar_candidates","polradar_changements","polradar_comparer","polradar_corpus","polradar_donnees","polradar_measure","polradar_methodologie","polradar_question","polradar_search","polradar_territoires","polradar_votes"]' '.result.tools | (map(.name) | sort) == $expected and all(.[]; .annotations.readOnlyHint == true and .annotations.destructiveHint == false)' >/dev/null
+            | jq -e --argjson expected '["polradar_answer","polradar_candidates","polradar_changements","polradar_comparer","polradar_corpus","polradar_donnees","polradar_measure","polradar_methodologie","polradar_question","polradar_search","polradar_territoires","polradar_votes"]' '.result.tools | (map(.name) | sort) == $expected and all(.[]; .annotations.readOnlyHint == true and .annotations.destructiveHint == false)' >/dev/null
           curl -fsS --proto '=https' --max-time 15 -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' -H 'MCP-Protocol-Version: 2025-11-25' \
             --data '{"jsonrpc":"2.0","id":2,"method":"initialize","params":{"protocolVersion":"2025-11-25","clientInfo":{"name":"polradar-registry","version":"1"},"capabilities":{}}}' https://polradar.fr/api/mcp \
             | jq -e --arg version "$version" '.result.serverInfo.version == $version' >/dev/null

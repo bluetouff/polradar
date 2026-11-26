@@ -1,4 +1,4 @@
-import { activeCandidates } from '../../lib/data';
+import { activeCandidates, sourceById } from '../../lib/data';
 import { questions } from '../../lib/questions';
 import { voteCasePath } from '../../lib/legislative-votes.mjs';
 import {
@@ -21,6 +21,36 @@ function archiveFields(archive: ReturnType<typeof historicReceipt>) {
       }
     : {};
 }
+
+function questionPosition(
+  entry: (typeof questions)[number]['entries'][number],
+) {
+  const { measure, version, author } = entry;
+  const { sources: evidence, ...relation } = entry.relation;
+  return {
+    title: version.snapshot.title,
+    description: version.snapshot.description,
+    author,
+    scope: version.snapshot.scope,
+    edition: version.snapshot.edition,
+    versionId: version.id,
+    measureId: measure.id,
+    url: 'https://polradar.fr' + relation.target.url,
+    sources: evidence.map(({ id, url, passage }) => {
+      const source = sourceById(id);
+      return {
+        id,
+        title: source.title,
+        url,
+        locator: passage,
+        published: source.published,
+        publishedYear: source.publishedYear ?? null,
+      };
+    }),
+    relation,
+  };
+}
+
 export function GET() {
   return Response.json({
     version: 1,
@@ -36,30 +66,10 @@ export function GET() {
         alert: q.alerts[p.id] ?? null,
         positions: q.entries
           .filter((e) => e.candidate.id === p.id)
-          .map((e) => ({
-            title: e.version.snapshot.title,
-            description: e.version.snapshot.description,
-            author: e.author,
-            scope: e.version.snapshot.scope,
-            edition: e.version.snapshot.edition,
-            versionId: e.version.id,
-            measureId: e.measure.id,
-            url:
-              'https://polradar.fr/mesures/' +
-              e.measure.id +
-              '/#version-' +
-              e.version.number,
-            sources: e.refs.map(({ source, sourceId, locator, fragment }) => ({
-              id: sourceId,
-              title: source.title,
-              url: fragment
-                ? source.url.split('#')[0] + '#' + fragment
-                : source.url,
-              locator,
-              published: source.published,
-              publishedYear: source.publishedYear ?? null,
-            })),
-          })),
+          .map(questionPosition),
+        complements: q.complements
+          .filter((e) => e.candidate.id === p.id)
+          .map(questionPosition),
         reviews: q.reviews
           .filter((row) => row.candidate === p.id)
           .map((row) => ({

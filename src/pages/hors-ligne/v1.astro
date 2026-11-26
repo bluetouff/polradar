@@ -1,0 +1,55 @@
+---
+import { socialImageFor } from '../../lib/social-images.mjs';
+const social = socialImageFor(Astro.url.pathname);
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,follow" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Fiche hors ligne · Polradar</title>
+    <meta property="og:image" content={new URL(social.url, Astro.site)} />
+    <meta property="og:image:alt" content={social.alt} />
+    <meta name="twitter:image" content={new URL(social.url, Astro.site)} />
+    <meta name="twitter:image:alt" content={social.alt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/hors-ligne/lecteur-v1.css" />
+  </head>
+  <body>
+    <main data-offline-reader>
+      <a class="brand" href="/">
+        Polradar
+      </a>
+      <header>
+        <p data-network role="status">
+          Lecture locale
+        </p>
+        <h1>Fiche hors ligne</h1>
+      </header>
+      <p data-empty role="status">
+        Depuis une fiche de mesure, choisissez « Garder hors ligne ».
+      </p>
+      <section data-record hidden aria-labelledby="offline-title">
+        <h2 id="offline-title"></h2>
+        <p data-author></p>
+        <p data-description></p>
+        <dl data-metadata></dl>
+        <h3>Références</h3>
+        <ul data-sources></ul>
+        <a data-original>Ouvrir la fiche en ligne ↗</a>
+      </section>
+      <div class="actions">
+        <button type="button" data-erase hidden>
+          Effacer la copie et le cache
+        </button>
+      </div>
+      <noscript>
+        La lecture locale utilise le stockage de ce navigateur.
+      </noscript>
+    </main>
+    <script is:inline type="module" src="/hors-ligne/lecteur-v1.js"></script>
+  </body>
+</html>

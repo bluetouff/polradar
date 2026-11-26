@@ -71,6 +71,7 @@ func TestPublishedBancDocumentaire(t *testing.T) {
 		t.Fatal("banc incomplet")
 	}
 	h := protocol(data, openUsage(t.TempDir(), time.Now()))
+	answerAvailable := c.commit != answerLegacyCommit
 	unique := map[string]bool{}
 	calls := map[string]bool{}
 	families := map[string]int{}
@@ -84,6 +85,9 @@ func TestPublishedBancDocumentaire(t *testing.T) {
 			t.Fatal("annotation incomplète", q.Question)
 		}
 		unique[q.Question] = true
+		if q.Outil == answerTool && !answerAvailable {
+			continue
+		}
 		collection, _ := q.Arguments["collection"].(string)
 		if (collection == "senat" || collection == "parlement-europeen") && c.contract.major(collection) != dataMajor {
 			continue
@@ -161,6 +165,9 @@ func TestPublishedBancDocumentaire(t *testing.T) {
 		t.Errorf("couverture insuffisante de %d familles et %d appels distincts", len(families), len(calls))
 	}
 	for _, name := range toolNames {
+		if name == answerTool && !answerAvailable {
+			continue
+		}
 		if !tools[name] {
 			t.Error("outil sans question de référence", name)
 		}

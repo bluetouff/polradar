@@ -497,24 +497,21 @@ interface Definition {
   terms: string;
   versions: string[];
   related?: { label: string; href: string };
+  explanations?: Record<string, string>;
+  relatedByVersion?: Record<string, string>;
 }
-const complementaryVersions: Record<string, string[]> = {
+const additionalAnswers: Record<string, string[]> = {
   'retraites-conditions-depart': [
     'lepen-abroger-reforme-retraites-2023-en-2028-v1',
     'lisnard-age-legal-retraite-65-ans-v1',
   ],
-  'travail-salaire-minimum': [
-    'glucksmann-revaloriser-smic-1700-net-v1',
-    'lisnard-exoneration-emploi-domicile-smic-v1',
-    'philippe-travail-2-v2',
-  ],
+  'travail-salaire-minimum': ['glucksmann-revaloriser-smic-1700-net-v1'],
   'travail-duree-travail': [
     'lisnard-temps-de-travail-accords-v1',
     'ps-experimenter-la-semaine-de-quatre-jours-par-la-negociation-collective-v1',
   ],
   'climat-production-nucleaire': [
     'melenchon-fermer-les-centrales-nucleaires-et-arreter-les-epr2-v1',
-    'lepen-renegocier-prix-electricite-europe-v3',
     'lisnard-prolonger-reacteurs-nucleaires-60-ans-v1',
     'lisnard-nouveaux-epr-et-mini-reacteurs-v1',
   ],
@@ -624,6 +621,26 @@ const complementaryVersions: Record<string, string[]> = {
     'place-publique-contrat-creches-privees-v1',
   ],
 };
+const scopedComplements: Record<string, Record<string, string>> = {
+  'climat-production-nucleaire': {
+    'lepen-renegocier-prix-electricite-europe-v3':
+      'Le tract prend pour base la production nucléaire et hydraulique française pour fixer le prix intérieur de l’électricité.',
+  },
+  'travail-salaire-minimum': {
+    'lisnard-exoneration-emploi-domicile-smic-v1':
+      'L’exonération concerne les charges de l’employeur à domicile lorsque le salarié est payé au SMIC.',
+    'philippe-travail-2-v2':
+      'La fiche concerne les prélèvements et les cotisations sur les heures supplémentaires.',
+  },
+  'numerique-acces-communications': {
+    'melenchon-droit-constitutionnel-chiffrement-v1':
+      'La proposition inscrit la protection du chiffrement dans la Constitution. Les conditions d’accès aux communications sont traitées dans le dossier juridique.',
+  },
+  'numerique-signalement-cyber': {
+    'renaissance-guichet-signalement-cyber-v1':
+      'Le guichet proposé par Renaissance vise les signalements des victimes de cyberattaques.',
+  },
+};
 const searchTerms: Record<string, string> = {
   'logement-obligations-parc-social': 'logement social communes loi SRU',
   'fiscalite-csg-salaires':
@@ -638,6 +655,11 @@ const definitions: Definition[] = [
     theme: t.theme,
     terms: [t.label, searchTerms[t.id]].filter(Boolean).join(' '),
     versions: t.positions.flatMap((p) => p.entries.map((e) => e.version.id)),
+    explanations: Object.fromEntries(
+      t.positions.flatMap((p) =>
+        p.entries.map((e) => [e.version.id, p.label + '. ' + t.context]),
+      ),
+    ),
     related: { label: 'Carte des positions', href: '/divergences/#' + t.id },
   })),
   ...digitalLawSections.flatMap((section) =>
@@ -647,6 +669,15 @@ const definitions: Definition[] = [
       theme: 'numerique',
       terms: section.title + ' ' + item.label + ' ' + item.context,
       versions: item.changes.map((c) => c.versionId),
+      explanations: Object.fromEntries(
+        item.changes.map(({ versionId, body }) => [versionId, body]),
+      ),
+      relatedByVersion: Object.fromEntries(
+        (item.relatedMeasures ?? []).map((id) => [
+          id,
+          'Le dossier juridique cite ce passage en complément.',
+        ]),
+      ),
       related: { label: 'Droit en vigueur et propositions', href: item.href },
     })),
   ),
@@ -657,19 +688,84 @@ export const questionThemes = [
   { id: 'agriculture', label: 'Agriculture et alimentation', icon: 'climat' },
   { id: 'numerique', label: 'Numérique', icon: 'chiffrement' },
 ];
+
+export type QuestionProposalRelation = {
+  id: string;
+  type: 'question-proposition';
+  origin: { id: string; type: 'question'; url: string };
+  target: { id: string; type: 'version'; url: string };
+  qualification: 'reponse' | 'complement';
+  justification: string;
+  date: { type: 'observation-version'; value: string };
+  statut: 'version-courante' | 'version-depassee';
+  versionCitee: string;
+  versionCourante: string;
+  regleVersion: 'version-citee';
+  sources: { id: string; url: string; passage: string }[];
+};
+
 export const questions = definitions.map((q) => {
   if (!questionThemes.some((t) => t.id === q.theme))
     throw new Error('Thème inconnu : ' + q.theme);
-  const entries = [
-    ...new Set([...q.versions, ...(complementaryVersions[q.id] ?? [])]),
-  ]
-    .map(resolveEntry)
+  const href = '/questions/' + q.id + '/';
+  const answers = new Set([...q.versions, ...(additionalAnswers[q.id] ?? [])]);
+  const context = new Map(
+    Object.entries({ ...q.relatedByVersion, ...scopedComplements[q.id] }),
+  );
+  for (const versionId of context.keys()) {
+    if (answers.has(versionId))
+      throw new Error(
+        'Version déclarée comme réponse et complément : ' + versionId,
+      );
+  }
+  const relatedEntries = [...answers, ...context.keys()]
+    .map((id) => {
+      const entry = resolveEntry(id);
+      const { measure, version, refs } = entry;
+      const current = versionMap.get(measure.id + '-v' + measure.revision);
+      if (!current || current.measureId !== version.measureId)
+        throw new Error('Version courante introuvable : ' + measure.id);
+      const relation: QuestionProposalRelation = {
+        id: `question-proposition:${q.id}:${id}`,
+        type: 'question-proposition',
+        origin: { id: q.id, type: 'question', url: href },
+        target: {
+          id,
+          type: 'version',
+          url: `/mesures/${measure.id}/#version-${version.number}`,
+        },
+        qualification: context.has(id) ? 'complement' : 'reponse',
+        justification:
+          context.get(id) ??
+          q.explanations?.[id] ??
+          'Le dossier retient cette proposition comme réponse à la question. Le lien ouvre le passage cité.',
+        date: { type: 'observation-version', value: version.observedOn },
+        statut: id === current.id ? 'version-courante' : 'version-depassee',
+        versionCitee: id,
+        versionCourante: current.id,
+        regleVersion: 'version-citee',
+        sources: refs.map(({ source, locator, fragment }) => ({
+          id: source.id,
+          url: fragment
+            ? source.url.split('#')[0] + '#' + fragment
+            : source.url,
+          passage: locator,
+        })),
+      };
+      return { ...entry, relation };
+    })
     .filter((entry) => !entry.candidate.withdrawnOn)
     .sort(
       (a, b) =>
         candidates.indexOf(a.candidate) - candidates.indexOf(b.candidate) ||
         a.version.snapshot.title.localeCompare(b.version.snapshot.title, 'fr'),
     );
+  const entries = relatedEntries.filter(
+    ({ relation }) => relation.qualification === 'reponse',
+  );
+  const complements = relatedEntries.filter(
+    ({ relation }) => relation.qualification === 'complement',
+  );
   const candidateIds = [...new Set(entries.map((e) => e.candidate.id))];
   const reviews = (examinedDocuments[q.id] ?? [])
     .filter((r) =>
@@ -727,15 +823,19 @@ export const questions = definitions.map((q) => {
   return {
     ...q,
     entries,
+    complements,
+    relations: relatedEntries.map(({ relation }) => relation),
     candidateIds,
     reviews,
     coverage,
     alerts,
-    href: '/questions/' + q.id + '/',
+    href,
   };
 });
 if (new Set(questions.map((q) => q.id)).size !== questions.length)
   throw new Error('Identifiant de question dupliqué');
 export function questionsForMeasure(id: string) {
-  return questions.filter((q) => q.entries.some((e) => e.measure.id === id));
+  return questions.filter((q) =>
+    [...q.entries, ...q.complements].some((e) => e.measure.id === id),
+  );
 }

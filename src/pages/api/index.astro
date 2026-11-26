@@ -68,8 +68,10 @@ const exports = [
     <section aria-labelledby="routes">
       <h2 id="routes">Adresses disponibles</h2>
       <p>
-        Ajoutez le chemin à <code>{endpoint}</code>. Chaque adresse accepte{' '}
-        <code>GET</code> et <code>HEAD</code>.
+        Ajoutez le chemin à <code>{endpoint}</code>. Les collections se
+        consultent avec <code>GET</code> et <code>HEAD</code>. À partir du
+        service 1.6,
+        <code>POST /reponse</code> reçoit la question dans le corps JSON.
       </p>
       <dl class="dev-routes">
         {apiRoutes.map((route) => (
@@ -115,6 +117,11 @@ const exports = [
           Le détail conserve les dates et les unités du relevé. Une valeur{' '}
           <code>null</code> indique une donnée manquante.
         </p>
+        <p>
+          Le service 1.6 expose aussi <code>comparaisons-sondages</code>. Le
+          détail reprend les hypothèses relues, la fenêtre de comparaison, les
+          scores observés et les pages des notices utilisées par les graphiques.
+        </p>
       </section>
     </div>
     <section aria-labelledby="reading">
@@ -132,6 +139,13 @@ const exports = [
         <code>429</code>, attendez le délai en secondes de l’en-tête{' '}
         <code>Retry-After</code>. Pour un traitement en volume, utilisez les
         exports.
+      </p>
+      <p>
+        <code>/reponse</code> accepte <code>question</code> (300 caractères au
+        maximum) et <code>expectedRevision</code> en option. Le champ{' '}
+        <code>etat</code> indique si la réponse est documentée, partielle,
+        ambiguë, vide ou hors périmètre. Les sources et le périmètre
+        accompagnent les résultats.
       </p>
     </section>
     <section aria-labelledby="exports">

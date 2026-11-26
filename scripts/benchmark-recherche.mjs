@@ -6,7 +6,8 @@ import { filterEntries } from '../src/lib/features.mjs';
 
 const root = resolve(process.argv[2] ?? 'dist');
 const modes = ['', '--validation', '--confirmation', '--recette'];
-const mode = modes.indexOf(process.argv[3] ?? '');
+const common = process.argv[3] === '--commun';
+const mode = common ? 0 : modes.indexOf(process.argv[3] ?? '');
 if (mode < 0) throw Error('Jeu de recherche inconnu.');
 const loadQueries = (name) =>
   readFileSync(
@@ -14,21 +15,37 @@ const loadQueries = (name) =>
     'utf8',
   );
 const reference = modes.slice(0, mode).map(loadQueries);
-const queries = loadQueries(modes[mode])
-  .trim()
-  .split('\n')
-  .map((line) => {
-    const [family, query, expected, extra] = line.split('\t');
-    if (!family || !query || !expected || extra)
-      throw Error('Cas de recherche mal formé.');
-    return {
-      family,
-      query,
-      expected: expected === '-' ? [] : expected.split(' | '),
-    };
-  });
+const editorialQueries = () =>
+  loadQueries(modes[mode])
+    .trim()
+    .split('\n')
+    .map((line) => {
+      const [family, query, expected, extra] = line.split('\t');
+      if (!family || !query || !expected || extra)
+        throw Error('Cas de recherche mal formé.');
+      return {
+        family,
+        query,
+        expected: expected === '-' ? [] : expected.split(' | '),
+      };
+    });
+const measureURL = (id) => '/mesures/' + id + '/';
+const queries = common
+  ? JSON.parse(
+      readFileSync(
+        new URL('../mcp/testdata/recherche-commune.json', import.meta.url),
+        'utf8',
+      ),
+    ).cases.map((row) => ({
+      family: row.id,
+      query: row.query,
+      expected: row.expected.map(measureURL),
+      excluded: (row.excluded ?? []).map(measureURL),
+      filters: { candidate: row.candidate, theme: row.theme, type: 'mesure' },
+    }))
+  : editorialQueries();
 if (
-  (!mode && queries.length !== 100) ||
+  (!common && !mode && queries.length !== 100) ||
   (mode &&
     queries.some(({ query }) =>
       reference.some((set) => set.includes('\t' + query + '\t')),
@@ -51,11 +68,12 @@ if (missing.length)
   );
 
 function run() {
-  return queries.map(({ family, query, expected }) => {
+  return queries.map(({ family, query, expected, filters, excluded }) => {
     const then = performance.now();
-    const rows = filterEntries(index, { q: query });
+    const rows = filterEntries(index, { ...filters, q: query });
     const durationMs = performance.now() - then;
     const rank = rows.findIndex(({ url }) => expected.includes(url)) + 1;
+    const firstFive = rows.slice(0, 5).map(({ url }) => url);
     return {
       family,
       query,
@@ -63,14 +81,23 @@ function run() {
       durationMs,
       count: rows.length,
       rank: rank || null,
-      success: expected.length ? rank > 0 && rank <= 5 : rows.length === 0,
-      firstFive: rows.slice(0, 5).map(({ url }) => url),
+      success:
+        (expected.length ? rank > 0 && rank <= 5 : rows.length === 0) &&
+        !excluded?.some((url) => firstFive.includes(url)),
+      firstFive,
     };
   });
 }
 const cold = run();
 const results = run();
 const success = results.filter((row) => row.success).length;
+const positive = results.filter((row) => row.expected.length > 0);
+const first = positive.filter((row) => row.rank === 1).length;
+const mrr5 =
+  positive.reduce(
+    (sum, row) => sum + (row.rank > 0 && row.rank <= 5 ? 1 / row.rank : 0),
+    0,
+  ) / positive.length;
 const percentile = (rows, p) =>
   Number(
     rows
@@ -98,6 +125,9 @@ console.log(
       index: index.length,
       total: queries.length,
       success,
+      ...(common
+        ? { premiersRangs: first, questionsPositives: positive.length, mrr5 }
+        : {}),
       score,
       absentExpectedUrls: [...new Set(missing)],
       durationMs: {
@@ -111,5 +141,9 @@ console.log(
     2,
   ),
 );
-if (success < (mode ? Math.ceil(0.9 * queries.length) : 97) || missing.length)
-  process.exitCode = 1;
+const minimum = common
+  ? queries.length
+  : mode
+    ? Math.ceil(0.9 * queries.length)
+    : 97;
+if (success < minimum || missing.length) process.exitCode = 1;

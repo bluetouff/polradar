@@ -2,11 +2,15 @@ import { test, expect } from '@playwright/test';
 
 const priority = ['glucksmann', 'lepen', 'lisnard', 'melenchon', 'philippe'];
 const ukraine = '/questions/aide-ukraine/';
+type PublicReading = {
+  sources: { locator: string; url: string }[];
+};
 type PublicQuestion = {
   id: string;
   positions: {
     candidate: string;
-    positions: { sources: { locator: string; url: string }[] }[];
+    positions: PublicReading[];
+    complements: PublicReading[];
   }[];
 };
 
@@ -58,14 +62,14 @@ test('les cinq dossiers prioritaires renvoient à une position originale sur l�
   const response = await request.get('/api/dossiers.json');
   expect(response.ok()).toBeTruthy();
   const { questions }: { questions: PublicQuestion[] } = await response.json();
-  for (const questionId of [
-    'aide-ukraine',
-    'retraites-conditions-depart',
-    'climat-production-nucleaire',
-    'immigration-travail',
-  ]) {
+  for (const [questionId, candidates] of [
+    ['aide-ukraine', priority],
+    ['retraites-conditions-depart', priority],
+    ['climat-production-nucleaire', priority.filter((id) => id !== 'lepen')],
+    ['immigration-travail', priority],
+  ] as const) {
     const question = questions.find(({ id }) => id === questionId);
-    for (const candidate of priority) {
+    for (const candidate of candidates) {
       const column = question?.positions.find(
         (entry) => entry.candidate === candidate,
       );
@@ -82,6 +86,22 @@ test('les cinq dossiers prioritaires renvoient à une position originale sur l�
       ).toBeTruthy();
     }
   }
+  const lepen = questions
+    .find(({ id }) => id === 'climat-production-nucleaire')
+    ?.positions.find(({ candidate }) => candidate === 'lepen');
+  expect(lepen?.positions).toHaveLength(0);
+  expect(lepen?.complements).toContainEqual(
+    expect.objectContaining({
+      versionId: 'lepen-renegocier-prix-electricite-europe-v3',
+      relation: expect.objectContaining({ qualification: 'complement' }),
+      sources: expect.arrayContaining([
+        expect.objectContaining({
+          locator: 'Fixation du prix de l’électricité · p. 2 du PDF',
+          url: 'https://www.marinelepen.com/materiel-de-campagne/3/telecharger#page=2',
+        }),
+      ]),
+    }),
+  );
 });
 
 test('le lien du comparateur ouvre trois réponses documentées sur mobile', async ({

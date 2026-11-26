@@ -51,6 +51,9 @@ test('les appels MCP sont comptés une seule fois et consultables au clavier sur
   await expect(panel.locator('[data-tools] details')).toHaveCount(
     report.tools.length,
   );
+  await expect(
+    panel.getByText('Réponse avec preuves', { exact: true }),
+  ).toHaveCount(0);
   await expect(panel.getByText('Non renseigné', { exact: true })).toHaveCount(
     6,
   );
@@ -59,6 +62,32 @@ test('les appels MCP sont comptés une seule fois et consultables au clavier sur
       () => document.documentElement.scrollWidth <= window.innerWidth,
     ),
   ).toBe(true);
+});
+
+test('le nouvel outil apparaît quand le rapport du service le contient', async ({
+  page,
+}) => {
+  await page.route(api, (handler) =>
+    handler.fulfill({
+      json: {
+        ...report,
+        days: [{ ...report.days[0], success: 4 }, report.days[1]],
+        tools: [
+          ...report.tools,
+          { name: 'polradar_answer', ...zero, success: 1 },
+        ],
+      },
+    }),
+  );
+  await page.goto(route);
+  const panel = page.locator('[data-mcp-usage]');
+  await expect(panel.locator('[data-total]')).toHaveText('7');
+  await expect(
+    panel
+      .locator('summary')
+      .filter({ hasText: 'Réponse avec preuves' })
+      .locator('strong'),
+  ).toHaveText('1 appel');
 });
 
 test('zéro observé, absence de relevé et journée manquante ont des rendus distincts', async ({

@@ -146,7 +146,8 @@ func (s *store) load() (*snapshot, error) {
 		return nil, invalidCorpus
 	}
 	var marker struct {
-		Commit string `json:"sourceCommit"`
+		Commit string            `json:"sourceCommit"`
+		SHA256 map[string]string `json:"sha256"`
 	}
 	if err := readData(filepath.Join(root, "build.json"), 4096, &marker); err != nil || !commitID.MatchString(marker.Commit) {
 		return nil, invalidCorpus
@@ -162,7 +163,7 @@ func (s *store) load() (*snapshot, error) {
 	if err := c.contract.check("corpus"); err != nil {
 		return nil, err
 	}
-	if err := readData(filepath.Join(root, "api", "corpus.json"), corpusLimit, &c.catalog); err != nil {
+	if err := readCatalog(root, c.commit, marker.SHA256[corpusExport], &c.catalog); err != nil {
 		return nil, invalidCorpus
 	}
 	if _, err = time.Parse(time.DateOnly, c.Meta.Updated); err != nil || len(c.Measures) == 0 || len(c.Candidates) == 0 || len(c.Sources) == 0 {
@@ -316,7 +317,7 @@ func (c *snapshot) matchMeasures(a searchArgs) (any, bool, error) {
 	if a.Sort != "" && a.Sort != "pertinence" && a.Sort != "alphabetique" {
 		return nil, false, errFilter
 	}
-	normalized := normalize(a.Query)
+	normalized := strings.Join(lexicalTokens(a.Query), " ")
 	query := measureQuery(normalized)
 	terms := lexicalTerms(query)
 	if normalized != "" && len(terms) == 0 {
@@ -459,5 +460,5 @@ func (c *snapshot) counts(_ struct{}) (any, bool, error) {
 	for _, m := range c.Measures {
 		n[m.Scope]++
 	}
-	return map[string]any{"campagne": n["campagne"], "parti": n["parti"], "orientations": n["orientation"], "archives": n["archive"], "editionDocumentaire": c.Meta.Edition, "sources": len(c.Sources), "themes": c.Themes, "contratsCollections": c.contract.status(), "url": site + "/statistiques/"}, false, nil
+	return map[string]any{"campagne": n["campagne"], "parti": n["parti"], "orientations": n["orientation"], "archives": n["archive"], "editionDocumentaire": c.Meta.Edition, "sources": len(c.Sources), "themes": c.Themes, "contratsCollections": c.contract.status(), "versionTransportCorpus": corpusTransportVersion, "url": site + "/statistiques/"}, false, nil
 }

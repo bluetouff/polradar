@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"errors"
+	"net/url"
 	"sort"
 	"strconv"
 	"strings"
@@ -23,8 +24,8 @@ type dataArgs struct {
 	Nature           string `json:"nature,omitempty" jsonschema:"vote, depot, cosignature, rapport, intervention ou mise-au-point."`
 	Theme            string `json:"theme,omitempty" jsonschema:"Thème du registre parlementaire. Numérique inclut le classement par objet de l’acte."`
 	Periode          string `json:"periode,omitempty" jsonschema:"Sénat : année de début de session ; Parlement européen : date de la séance. Une liste sans période donne toutes les périodes couvertes."`
-	Query            string `json:"query,omitempty" jsonschema:"Sondages : institut, commanditaire, scénario, identifiant ou date AAAA-MM-JJ. Économie : titre, description ou code de série. Sources : titre ou URL. Parlement : texte ou identifiant."`
-	Collection       string `json:"collection" jsonschema:"Collection publique : sondages, economie, agenda, budgets, marches, parlement, sources, droit, financements, verifications, breves, arcom, graphiques, senat ou parlement-europeen."`
+	Query            string `json:"query,omitempty" jsonschema:"Sondages : institut, commanditaire, scénario, identifiant ou date AAAA-MM-JJ. Comparaisons de sondages : identifiant ou intitulé de l’hypothèse. Économie : titre, description ou code de série. Sources : titre ou URL. Parlement : texte ou identifiant."`
+	Collection       string `json:"collection" jsonschema:"Collection publique : sondages, comparaisons-sondages, economie, agenda, budgets, marches, parlement, sources, droit, financements, verifications, breves, arcom, graphiques, senat ou parlement-europeen."`
 	ID               string `json:"id,omitempty" jsonschema:"Identifiant exact retourné par la liste. Sans identifiant, retourne jusqu’à 15 entrées."`
 	Offset           int    `json:"offset,omitempty" jsonschema:"Position de départ pour la liste, à partir de zéro."`
 	ExpectedRevision string `json:"expectedRevision,omitempty" jsonschema:"Révision du site renvoyée par la première page."`
@@ -32,27 +33,35 @@ type dataArgs struct {
 type collection struct{ file, key, title, date, reference, page string }
 
 var collections = map[string]collection{
-	"sondages":           {"", "polls", "scenario", "published", "noticeSource", "/sondages/"},
-	"economie":           {"economie.json", "series", "title", "updatedAt", "", "/economie/"},
-	"agenda":             {"agenda.json", "events", "title", "date", "source", "/agenda/"},
-	"budgets":            {"budgets-programmes.json", "entries", "label", "reviewedOn", "source", "/budget-programmes/"},
-	"marches":            {"marches-predictifs.json", "providers", "title", "observedAt", "", "/marches-predictifs/"},
-	"senat":              {"parlement/archives/index.json", "scrutins", "objet", "date", "", "/votes/archives/"},
-	"parlement-europeen": {"parlement/archives/index.json", "scrutins", "objet", "date", "", "/votes/archives/"},
-	"parlement":          {"parlement/index.json", "scrutins", "objet", "date", "", "/votes/registre/"},
-	"sources":            {"documentation/sources.json", "items", "title", "checked", "", "/sources/"},
-	"droit":              {"documentation/droit.json", "items", "title", "checked", "", "/numerique/ce-qui-changerait/"},
-	"verifications":      {"documentation/verifications.json", "items", "title", "date", "", "/economie/declarations/"},
-	"breves":             {"documentation/breves.json", "items", "title", "date", "", "/breves/"},
-	"financements":       {"documentation/financements.json", "items", "title", "", "", "/financements/"},
-	"arcom":              {"documentation/arcom.json", "items", "title", "date", "", "/temps-de-parole/"},
-	"graphiques":         {"documentation/graphiques.json", "items", "title", "", "", "/mcp/documentation/"},
+	"sondages":              {"", "polls", "scenario", "published", "noticeSource", "/sondages/"},
+	"comparaisons-sondages": {"scenarios-sondages.json", "comparisons", "label", "through", "", "/sondages/comparer/"},
+	"economie":              {"economie.json", "series", "title", "updatedAt", "", "/economie/"},
+	"agenda":                {"agenda.json", "events", "title", "date", "source", "/agenda/"},
+	"budgets":               {"budgets-programmes.json", "entries", "label", "reviewedOn", "source", "/budget-programmes/"},
+	"marches":               {"marches-predictifs.json", "providers", "title", "observedAt", "", "/marches-predictifs/"},
+	"senat":                 {"parlement/archives/index.json", "scrutins", "objet", "date", "", "/votes/archives/"},
+	"parlement-europeen":    {"parlement/archives/index.json", "scrutins", "objet", "date", "", "/votes/archives/"},
+	"parlement":             {"parlement/index.json", "scrutins", "objet", "date", "", "/votes/registre/"},
+	"sources":               {"documentation/sources.json", "items", "title", "checked", "", "/sources/"},
+	"droit":                 {"documentation/droit.json", "items", "title", "checked", "", "/numerique/ce-qui-changerait/"},
+	"verifications":         {"documentation/verifications.json", "items", "title", "date", "", "/economie/declarations/"},
+	"breves":                {"documentation/breves.json", "items", "title", "date", "", "/breves/"},
+	"financements":          {"documentation/financements.json", "items", "title", "", "", "/financements/"},
+	"arcom":                 {"documentation/arcom.json", "items", "title", "date", "", "/temps-de-parole/"},
+	"graphiques":            {"documentation/graphiques.json", "items", "title", "", "", "/mcp/documentation/"},
 }
 
 var collectionSearchFields = map[string][]string{
-	"sondages": {"id", "scenario", "institute", "commissioner"},
-	"economie": {"id", "title", "description", "dataset", "group"},
-	"sources":  {"title", "url"},
+	"sondages":              {"id", "scenario", "institute", "commissioner"},
+	"comparaisons-sondages": {"id", "label"},
+	"economie":              {"id", "title", "description", "dataset", "group"},
+	"sources":               {"title", "url"},
+}
+
+type pollComparisonMethod struct {
+	WindowDays int    `json:"fenetreJours"`
+	Weighting  string `json:"ponderation"`
+	Export     string `json:"export"`
 }
 
 func pollDate(r record, date string) bool {
@@ -91,6 +100,7 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 		return c.parliamentaryData(a)
 	}
 	var collected, checked *string
+	var comparison *pollComparisonMethod
 	refs := c.bySource
 	if def.file == "" {
 		rows = c.Polls
@@ -98,6 +108,16 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 		var doc map[string]json.RawMessage
 		if readData(c.root+"/api/"+def.file, 10<<20, &doc) != nil || json.Unmarshal(doc[def.key], &rows) != nil || rows == nil {
 			return nil, false, invalidCorpus
+		}
+		if a.Collection == "comparaisons-sondages" {
+			var version, days int
+			weighting := record(doc).str("weighting")
+			if json.Unmarshal(doc["version"], &version) != nil || version != dataMajor ||
+				record(doc).str("sourceCommit") != c.commit ||
+				json.Unmarshal(doc["windowDays"], &days) != nil || days < 1 || days > 366 || weighting == "" {
+				return nil, false, invalidCorpus
+			}
+			comparison = &pollComparisonMethod{days, weighting, site + "/api/" + def.file}
 		}
 		collected = nullable(record(doc).str("collectedAt"))
 		checked = nullable(record(doc).str("checked"))
@@ -142,6 +162,10 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 				if a.Collection == "marches" {
 					result["collecteLe"] = nullable(r.str("observedAt"))
 					result["lecture"] = "Cours observés sur la plateforme à la date indiquée. Les disponibilités et les prix manquants sont fournis par le relevé."
+				}
+				if comparison != nil {
+					result["methodeComparative"] = comparison
+					result["rubrique"] = site + def.page + "#" + url.PathEscape(r.str("id"))
 				}
 				return result, false, nil
 			}
@@ -219,5 +243,9 @@ rowLoop:
 	if end < len(list) {
 		next = &end
 	}
-	return map[string]any{"collection": a.Collection, "total": len(list), "offset": start, "suivant": next, "publications": publications, "rubrique": site + def.page, "collecteLe": collected, "jeuVerifieLe": checked}, start == end, nil
+	result := map[string]any{"collection": a.Collection, "total": len(list), "offset": start, "suivant": next, "publications": publications, "rubrique": site + def.page, "collecteLe": collected, "jeuVerifieLe": checked}
+	if comparison != nil {
+		result["methodeComparative"] = comparison
+	}
+	return result, start == end, nil
 }

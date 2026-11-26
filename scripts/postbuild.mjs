@@ -37,6 +37,7 @@ const corpusPath = 'api/corpus.json';
 const corpusRoutes = new Set([
   'comparer',
   'evolution',
+  'historique',
   'mesures',
   'sources',
   'suivi',
@@ -58,6 +59,21 @@ for (const file of pages) {
     .replaceAll(path.sep, '/')
     .replace(/index\.html$/, '')}`;
   const [, section, subpage] = route.split('/');
+  if (section === 'mesures' && subpage && subpage !== 'page' && sourceCommit) {
+    const stamped = html
+      .replace(
+        /<meta name="polradar-copy-revision" content="[a-f0-9]{40}">/g,
+        '',
+      )
+      .replace(
+        '</head>',
+        `<meta name="polradar-copy-revision" content="${sourceCommit}"></head>`,
+      );
+    if (stamped !== html) {
+      html = stamped;
+      await writeFile(file, html);
+    }
+  }
   if (!subpage || subpage === 'page') {
     const resources = interactive
       .filter(([owner]) => section === owner)

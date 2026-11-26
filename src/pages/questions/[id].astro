@@ -17,7 +17,6 @@ import {
   questionThemes,
   latestSourceCheck,
 } from '../../lib/questions';
-import { digitalLawSections } from '../../lib/digital-law-data';
 import { sameSentence } from '../../lib/measure-text';
 import { voteCasePath } from '../../lib/legislative-votes.mjs';
 import { voteCases } from '../../lib/votes-data';
@@ -43,12 +42,20 @@ const payrollReadings: Record<string, string> = {
     'La fusion est proposée sans nouveau barème complet. Son effet sur la paie dépend des taux et de l’assiette retenus.',
 };
 const t = questionThemes.find((x) => x.id === q.theme)!;
-const digitalCase = digitalLawSections
-  .flatMap((section) => section.cases)
-  .find((item) => q.id === 'numerique-' + item.id);
+const readings = [...q.entries, ...q.complements];
+const relatedCandidates = new Set(
+  readings.map(({ candidate }) => candidate.id),
+);
 const covered = candidates.filter((c) => q.candidateIds.includes(c.id));
-const missing = candidates.filter((c) => !q.candidateIds.includes(c.id));
-const ids = new Set(q.entries.map((e) => e.measure.id));
+const displayed = candidates.filter((c) => relatedCandidates.has(c.id));
+const missing = candidates.filter((c) => !relatedCandidates.has(c.id));
+const complementOnly = displayed.length - covered.length;
+const ids = new Set(readings.map((e) => e.measure.id));
+const hasDossier = [
+  'fiscalite-csg-salaires',
+  'logement-obligations-parc-social',
+  'sante-installation-medecins',
+].includes(q.id);
 const votes = voteCases.filter((v) => ids.has(v.measureId));
 const tracks = proposalTracks.filter((v) =>
   v.measureIds.some((id) => ids.has(id)),
@@ -105,6 +112,7 @@ const checkLabels = {
         Effets sur les ménages et les finances publiques ↗
       </a>
     )}
+    {hasDossier && <a href="#reponses">Aller aux réponses ↓</a>}
     <a href="#couverture">Voir les dossiers examinés ↓</a>
   </nav>
   {q.id === 'fiscalite-csg-salaires' && <DossierPaie />}
@@ -113,8 +121,8 @@ const checkLabels = {
   )}
   {q.id === 'fiscalite-csg-salaires' && <CSGPaie />}
   {q.id === 'sante-installation-medecins' && <DossierTerritoire mode="apl" />}
-  <div class="q-answers">
-    {covered.map((c) => (
+  <div class="q-answers" id="reponses" tabindex="-1">
+    {displayed.map((c) => (
       <article class="q-answer" id={'candidat-' + c.id}>
         <header>
           <Icon name="people" />
@@ -122,10 +130,15 @@ const checkLabels = {
             <a href={'/candidats/' + c.id + '/'}>{c.name}</a>
           </h2>
         </header>
-        {q.entries
+        {readings
           .filter((e) => e.candidate.id === c.id)
-          .map(({ measure, version, author, refs }) => (
-            <section>
+          .map(({ measure, version, author, refs, relation }) => (
+            <section data-relation={relation.qualification}>
+              {relation.qualification === 'complement' && (
+                <p class="q-complement">
+                  <strong>Complément</strong> · {relation.justification}
+                </p>
+              )}
               <p class="q-byline">
                 {scopes[version.snapshot.scope]}
                 {version.snapshot.scope === 'parti' && ' · ' + author}
@@ -133,14 +146,21 @@ const checkLabels = {
                   ' · Déclaration publique'}
               </p>
               <h3>
-                <a
-                  href={
-                    '/mesures/' + measure.id + '/#version-' + version.number
-                  }
-                >
-                  {version.snapshot.title}
-                </a>
+                <a href={relation.target.url}>{version.snapshot.title}</a>
               </h3>
+              {relation.statut === 'version-depassee' && (
+                <p class="q-stale">
+                  <strong>Version à relire</strong> · Passage cité dans la
+                  version {version.number}.{' '}
+                  <a
+                    href={
+                      '/mesures/' + measure.id + '/#version-' + measure.revision
+                    }
+                  >
+                    Lire la version {measure.revision} ↗
+                  </a>
+                </p>
+              )}
               {!sameSentence(
                 version.snapshot.title,
                 version.snapshot.description,
@@ -195,30 +215,17 @@ const checkLabels = {
                     {version.snapshot.timing}
                   </p>
                 )}
-              {version.number !== measure.revision && (
-                <p class="q-stale">
-                  <a href={'/mesures/' + measure.id + '/'}>
-                    Une version plus récente de cette fiche est disponible ↗
-                  </a>
-                </p>
-              )}
               <details class="q-citations">
                 <summary>Sources et dates ({refs.length})</summary>
-                {refs.map((ref) => {
+                {refs.map((ref, index) => {
                   const check = latestSourceCheck(ref.sourceId);
+                  const reference = relation.sources[index];
                   return (
                     <div>
-                      <a
-                        href={
-                          ref.fragment
-                            ? ref.source.url.split('#')[0] + '#' + ref.fragment
-                            : ref.source.url
-                        }
-                        rel="noreferrer"
-                      >
+                      <a href={reference.url} rel="noreferrer">
                         {ref.source.title} ↗
                       </a>
-                      <p>{ref.locator}</p>
+                      <p>{reference.passage}</p>
                       <small>
                         {ref.source.published
                           ? 'Publié le ' + formatDate(ref.source.published)
@@ -245,31 +252,19 @@ const checkLabels = {
       </article>
     ))}
   </div>
-  {digitalCase?.contextMeasures.length ? (
-    <section class="q-coverage">
-      <h2>
-        {digitalCase.id === 'signalement-cyber'
-          ? 'Signaler un délit en tant que victime'
-          : 'Protection générale des communications'}
-      </h2>
-      {digitalCase.contextMeasures.map((item) => (
-        <p>
-          {item.author} · <a href={item.href}>{item.title}</a>
-        </p>
-      ))}
-      <p>
-        <a href={digitalCase.href}>
-          Consulter les règles en vigueur et les travaux parlementaires ↗
-        </a>
-      </p>
-    </section>
-  ) : null}
   <section class="q-coverage" id="couverture">
     <h2>Couverture documentaire</h2>
     <p>
       {covered.length} dossier{covered.length === 1 ? '' : 's'} avec une
-      proposition, une orientation ou un texte de parti relié à cette question.
+      proposition, une orientation ou un texte de parti qui répond à cette
+      question.
     </p>
+    {complementOnly > 0 && (
+      <p>
+        {complementOnly} autre dossier{complementOnly === 1 ? '' : 's'} avec
+        uniquement des compléments.
+      </p>
+    )}
     {q.reviews.length > 0 && (
       <div class="q-reviews">
         <h3>Documents examinés sans réponse sur cette question</h3>
@@ -359,3 +354,33 @@ const checkLabels = {
     if (to.size) link.hash = selectionFragment + to.toString();
   }
 </script>
+
+<style>
+  #reponses {
+    scroll-margin-block-start: 1.25rem;
+  }
+  .q-complement,
+  .q-stale {
+    margin-block: 0.5rem;
+    padding: 0.55rem 0.7rem;
+    border-inline-start: 2px solid var(--accent);
+    background: #e7eff1;
+  }
+  .q-stale {
+    border-color: #956b3e;
+    background: #f2ece1;
+  }
+  .q-stale a {
+    font-weight: 650;
+  }
+  @media (max-width: 42rem) {
+    .q-related a,
+    .q-citations summary {
+      align-content: center;
+      min-height: var(--target-size, 44px);
+    }
+    .q-related a {
+      display: grid;
+    }
+  }
+</style>

@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "capitalisation",
+      "query": "retraite par capitalisation",
+      "candidate": "herlin",
+      "theme": "retraites",
+      "expected": ["herlin-capitalisation"],
+      "source": "herlin-programme"
+    },
+    {
+      "id": "salaires",
+      "query": "hausse des salaires",
+      "candidate": "kazib",
+      "theme": "travail",
+      "expected": ["kazib-hausse-generale-salaires", "kazib-travail-smic"]
+    },
+    {
+      "id": "agios",
+      "query": "agios bancaires",
+      "candidate": "kazib",
+      "theme": "fiscalite",
+      "expected": ["kazib-credits-sans-agios"],
+      "source": "kazib-programme-campagne"
+    },
+    {
+      "id": "transport",
+      "query": "transport ferroviaire",
+      "candidate": "rohou",
+      "theme": "climat",
+      "expected": ["rohou-climat-ter", "rohou-climat-fret"],
+      "source": "mei-projet-2027"
+    },
+    {
+      "id": "vaccination",
+      "query": "vaccination obligatoire",
+      "candidate": "herlin",
+      "theme": "sante",
+      "expected": ["herlin-lever-obligations-vaccinales"],
+      "source": "herlin-programme"
+    },
+    {
+      "id": "snu",
+      "query": "service national universel",
+      "candidate": "kazib",
+      "theme": "education",
+      "expected": ["kazib-refus-snu"],
+      "source": "kazib-programme-campagne"
+    },
+    {
+      "id": "ponderation",
+      "query": "pondération des avis",
+      "candidate": "cheve",
+      "theme": "institutions",
+      "expected": ["cheve-ponderation-avis-competences"],
+      "source": "cheve-remontee-citoyenne"
+    },
+    {
+      "id": "onu",
+      "query": "veto aux Nations unies",
+      "candidate": "legendre",
+      "theme": "europe",
+      "expected": ["legendre-fin-veto-onu"],
+      "source": "legendre-manifeste-64"
+    },
+    {
+      "id": "hlm",
+      "query": "obligation de logements HLM",
+      "candidate": "herlin",
+      "theme": "logement",
+      "expected": ["herlin-abroger-obligation-logement-social"],
+      "source": "herlin-programme"
+    },
+    {
+      "id": "suppression-csg",
+      "query": "suppression C.S.G. sur les salaires",
+      "theme": "fiscalite",
+      "expected": ["attal-csg-salaires"],
+      "excluded": ["glucksmann-csg-salaires"],
+      "source": "lci-restos-debat-16-novembre"
+    },
+    {
+      "id": "baisse-csg",
+      "query": "baisse de la contribution sociale généralisée sur les salaires",
+      "candidate": "glucksmann",
+      "theme": "fiscalite",
+      "expected": ["glucksmann-csg-salaires"],
+      "source": "glucks-salaires-2027"
+    },
+    {
+      "id": "taille-classes",
+      "query": "Que propose Jean-Luc Mélenchon pour les élèves par classe ?",
+      "candidate": "melenchon",
+      "theme": "education",
+      "expected": ["melenchon-education-2"],
+      "source": "lfi-school"
+    },
+    {
+      "id": "tva-decimale",
+      "query": "taxe sur la valeur ajoutée à 5,5 %",
+      "candidate": "lepen",
+      "theme": "climat",
+      "expected": ["lepen-climat-tva-energie"],
+      "source": "lepen-livret-energie"
+    },
+    {
+      "id": "acronyme-ir",
+      "query": "IR à 14 tranches",
+      "candidate": "melenchon",
+      "theme": "fiscalite",
+      "expected": ["melenchon-fiscalite-1"],
+      "source": "lfi-tax"
+    },
+    {
+      "id": "tranches-ir",
+      "query": "réduction des taux des tranches supérieures d’IR",
+      "candidate": "herlin",
+      "theme": "fiscalite",
+      "expected": ["herlin-baisse-tranches-superieures-ir"],
+      "source": "herlin-programme"
+    },
+    {
+      "id": "hors-corpus",
+      "query": "vols habités vers Neptune",
+      "candidate": "lisnard",
+      "expected": []
+    }
+  ]
+}

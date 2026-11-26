@@ -31,6 +31,16 @@ def answer(status, *facts):
 
 
 class AssistantBenchmark(unittest.TestCase):
+    def test_supported_case_can_require_a_specific_array_entry(self):
+        data = {"publication": {"rules": [{"refs": [{"label": "LCEN, art. 30 I"}]},
+                                          {"refs": [{"label": "LCEN, art. 30 II"}]}]}}
+        args = {"collection": "droit", "id": "outils-chiffres"}
+        case = CASES["droit-chiffrement-repere"]
+        self.assertTrue(BENCH["supports"](case, call(args, data)))
+        data["publication"]["rules"].reverse()
+        self.assertFalse(BENCH["supports"](case, call(args, data)))
+        self.assertEqual(list(BENCH["at_path"]([0], ["2"])), [])
+
     def test_threshold_and_notice_are_scored_separately(self):
         source = call(
             {"collection": "sondages", "id": "opinionway-commission-10333-p12"},
@@ -63,6 +73,19 @@ class AssistantBenchmark(unittest.TestCase):
         report = BENCH["score"](CASES["seance-hors-registre"], text, [relevant], REVISIONS)
         self.assertTrue(report["reussi"])
         self.assertTrue(report["absence_reconnue"])
+        for wording in (
+            "Séance du 18 mars 2024 hors couverture",
+            "La date du 2024-03-18 est hors du périmètre du registre",
+        ):
+            revised = answer("indisponible", (wording, [ARCHIVES]))
+            self.assertTrue(BENCH["score"](CASES["seance-hors-registre"], revised, [relevant], REVISIONS)["reussi"])
+        for wording in (
+            "Séance du 19 mars 2024 hors couverture",
+            "Séance hors couverture, vote contre",
+            "Pas de vote nominatif à cette date",
+        ):
+            revised = answer("indisponible", (wording, [ARCHIVES]))
+            self.assertFalse(BENCH["score"](CASES["seance-hors-registre"], revised, [relevant], REVISIONS)["reussi"])
         report = BENCH["score"](CASES["seance-hors-registre"], text, [relevant], ("3" * 40, REVISIONS[1]))
         self.assertFalse(report["revisions_conformes"])
         self.assertFalse(report["outil_et_parametres"])

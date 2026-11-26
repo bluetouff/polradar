@@ -812,6 +812,22 @@ const defs = [
     bars(themeBars.slice(-6)),
   ],
   [
+    'demander',
+    '/demander/',
+    'Explorer le corpus',
+    'Demander\nà Polradar',
+    'Les propositions, les scrutins et les chiffres publics à la source.',
+    'navy',
+    {
+      kind: 'document',
+      rows: [
+        'Poser une question',
+        'Lire les résultats documentés',
+        'Consulter les passages sources',
+      ],
+    },
+  ],
+  [
     'mcp',
     '/mcp/',
     'Accès aux données',

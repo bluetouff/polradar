@@ -1,0 +1,248 @@
+---
+import Base from '../layouts/Base.astro';
+
+const examples = [
+  'Que proposent les candidats sur la CSG ?',
+  'Quel est l’objet du scrutin n° 9916 sur la cybersécurité ?',
+  'Quels scénarios OpinionWay CNEWS ont un terrain le 21 octobre 2026 ?',
+];
+---
+
+<Base
+  title="Demander à Polradar"
+  description="Interroger le corpus et lire les preuves qui étayent les propositions, les scrutins et les chiffres publics."
+>
+  <header class="page-title">
+    <h1>Demander à Polradar</h1>
+    <p>
+      Retrouvez les propositions, les scrutins et les chiffres publics avec
+      leurs sources.
+    </p>
+  </header>
+  <div class="answer-workbench">
+    <form id="answer-form" hidden>
+      <label for="answer-question">Votre question</label>
+      <p id="answer-privacy" class="answer-help">
+        Votre question est envoyée au serveur Polradar au moment de la demande.
+      </p>
+      <div class="answer-query">
+        <input
+          id="answer-question"
+          type="search"
+          maxlength={300}
+          placeholder="Ex. propositions sur les retraites"
+          autocomplete="off"
+          spellcheck="false"
+          aria-describedby="answer-privacy"
+          required
+        />
+        <button class="button primary" type="submit">
+          Obtenir la réponse
+        </button>
+      </div>
+      <ul class="answer-examples" aria-label="Exemples de questions">
+        {examples.map((question) => (
+          <li>
+            <button type="button" data-example={question}>
+              {question}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </form>
+    <p id="answer-progress" role="status" class="answer-help"></p>
+    <section id="answer-panel" aria-labelledby="answer-title" hidden>
+      <h2 id="answer-title" tabindex="-1"></h2>
+      <p id="answer-explanation"></p>
+      <ol id="answer-results"></ol>
+      <nav id="answer-paths" aria-label="Approfondir la réponse" hidden></nav>
+      <details id="answer-coverage" hidden>
+        <summary>Couverture et édition</summary>
+        <div id="answer-scope"></div>
+      </details>
+      <a id="answer-correction" href="/methode/#signaler-erreur" hidden>
+        Signaler une erreur
+      </a>
+    </section>
+    <p class="answer-local">
+      <a id="answer-search" href="/recherche/">
+        Rechercher dans ce navigateur
+      </a>
+    </p>
+    <noscript>
+      <nav class="answer-paths" aria-label="Parcourir les données">
+        <a href="/recherche/">Catalogue et filtres</a>
+        <a href="/questions/">Questions documentées</a>
+        <a href="/votes/recherche/">Scrutins</a>
+        <a href="/sondages/">Sondages</a>
+      </nav>
+    </noscript>
+  </div>
+  <script src="../scripts/answer.ts"></script>
+</Base>
+
+<style>
+  .answer-workbench {
+    max-width: 51rem;
+    overflow-wrap: anywhere;
+  }
+  .answer-workbench label {
+    display: block;
+    margin-block-end: 0.4rem;
+    font-weight: 650;
+  }
+  .answer-query,
+  #answer-paths,
+  .answer-paths {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.55rem 1rem;
+  }
+  .answer-query input {
+    flex: 1 1 18rem;
+    font-size: 1rem;
+  }
+  #answer-privacy {
+    margin: 0 0 0.5rem;
+  }
+  .answer-query > :is(input, button),
+  .answer-examples button,
+  .answer-local a,
+  #answer-correction,
+  #answer-paths :global(a),
+  .answer-paths a,
+  #answer-coverage summary {
+    min-height: max(44px, var(--target-size, 44px));
+  }
+  .answer-query button[aria-disabled='true'] {
+    opacity: 0.72;
+  }
+  .answer-help {
+    margin-top: 0.55rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .answer-help:empty {
+    margin: 0;
+  }
+  .answer-examples {
+    display: grid;
+    gap: 0.2rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+    margin-block-start: 0.85rem;
+    padding: 0;
+    list-style: none;
+  }
+  .answer-examples button {
+    width: 100%;
+    padding: 0.5rem 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: 0.4rem;
+    background: var(--light);
+    color: var(--ink);
+    font-size: 0.9rem;
+    text-align: start;
+  }
+  .answer-examples button:hover {
+    text-decoration: underline;
+  }
+  #answer-panel {
+    margin-block-start: 1.3rem;
+    padding-block-start: 1.1rem;
+    border-block-start: 1px solid var(--line);
+  }
+  #answer-title {
+    scroll-margin-block: 1.25rem;
+  }
+  #answer-explanation {
+    margin-block-start: 0.25rem;
+  }
+  #answer-results {
+    padding: 0;
+    list-style: none;
+  }
+  #answer-results :global(.answer-result) {
+    padding-block: 1.1rem;
+    border-block-end: 1px solid var(--line);
+  }
+  #answer-results :global(.answer-result p) {
+    margin-block-start: 0.3rem;
+  }
+  #answer-results :global(.answer-meta) {
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+  #answer-results :global(.answer-relation) {
+    font-size: 0.88rem;
+  }
+  #answer-results :global(.answer-numbers) {
+    margin-block: 0.65rem;
+    margin-inline: 0;
+  }
+  #answer-results :global(.answer-numbers dt) {
+    font-weight: 620;
+  }
+  #answer-results :global(.answer-numbers dd) {
+    margin: 0 0 0.45rem;
+    font-variant-numeric: tabular-nums;
+  }
+  #answer-results :global(.answer-source) {
+    margin-block: 0.65rem;
+    padding-inline-start: 0.8rem;
+    border-inline-start: 2px solid var(--line);
+  }
+  #answer-results :global(.answer-proof-action),
+  #answer-results :global(.answer-source > a),
+  #answer-results :global(.answer-proof-list summary),
+  .answer-local a,
+  #answer-correction,
+  #answer-paths :global(a),
+  .answer-paths a,
+  #answer-coverage summary {
+    display: inline-flex;
+    align-items: center;
+  }
+  #answer-results :global(.answer-proof-list summary),
+  #answer-coverage summary {
+    display: list-item;
+    padding-block: 0.55rem;
+    font-weight: 620;
+  }
+  #answer-results :global(.answer-proof-action),
+  #answer-results :global(.answer-source > a),
+  #answer-results :global(.answer-proof-list summary) {
+    min-height: var(--target-size, 44px);
+  }
+  #answer-results :global(.answer-proof-action) {
+    padding-inline: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    text-decoration: underline;
+    font-size: 0.9rem;
+  }
+  #answer-results :global(.answer-copy-status) {
+    margin-inline-start: 0.6rem;
+  }
+  #answer-paths {
+    margin-top: 0.55rem;
+  }
+  #answer-coverage {
+    margin-top: 0.55rem;
+  }
+  #answer-scope :global(p) {
+    margin-block-end: 0.4rem;
+  }
+  .answer-local {
+    margin-top: 0.5rem;
+  }
+  @media (max-width: 440px) {
+    .answer-query > :is(input, button) {
+      width: 100%;
+    }
+    .answer-examples {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

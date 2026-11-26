@@ -9,7 +9,7 @@ import subprocess
 import tarfile
 import tempfile
 
-DATA = ("corpus", "dossiers", "territoires", "economie", "budgets-programmes", "agenda",
+DATA = ("corpus", "dossiers", "relations-documentaires", "territoires", "economie", "budgets-programmes", "agenda",
         "marches-predictifs", "documents", "notices-sondages", "qualite-documentaire", "scenarios-sondages",
         "parlement/assemblee", "parlement/recherche",
         "parlement/archives/senat", "parlement/archives/parlement-europeen", "parlement/textes-senat",

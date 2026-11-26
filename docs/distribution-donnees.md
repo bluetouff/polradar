@@ -4,6 +4,12 @@ Le [catalogue des jeux](https://polradar.fr/donnees/) indique l’unité, le pro
 
 Le [catalogue JSON](https://polradar.fr/api/exports-v1.json) donne l’archive attachée à une révision Git, sa date d’édition et la liste des jeux. Une archive contient un manifeste avec la révision et l’empreinte SHA-256 de chaque fichier, les définitions exposées par chaque jeu, ainsi que les licences et la notice de réutilisation. Le fichier `corpus-v1.sha256` de la même release permet de vérifier le téléchargement avec `sha256sum -c corpus-v1.sha256`.
 
+## Lire une fiche hors connexion
+
+« Garder hors ligne » enregistre le titre, l’auteur affiché, le résumé et les références de la fiche choisie sur cet appareil. Une nouvelle sauvegarde remplace la précédente après réussite. La copie indique la date et la révision de l’édition, la version de la fiche et l’heure d’enregistrement. Le lecteur peut être rouvert depuis son adresse directe ou depuis le raccourci du manifeste dans les lanceurs qui le proposent. Le reste du site demande une connexion.
+
+La copie est limitée à une fiche et à 48 Kio. Sa lecture vérifie son empreinte SHA-256 enregistrée sur cet appareil. Le worker v1 sert uniquement la page, le script et le style du lecteur, dans un cache limité à 64 Kio. La première sauvegarde déclenche son installation. « Effacer la copie et le cache » retire le contenu, le cache du lecteur et l’enregistrement du worker. Les préférences de « Mon suivi » ont leurs propres commandes locales.
+
 ## Préparer la fiche data.gouv.fr
 
 L’index documentaire de Polradar est publié avec la licence ODbL 1.0. Les deux ressources de la fiche pointent vers le JSON actualisé et la documentation publique. [Fiche data.gouv.fr](https://www.data.gouv.fr/datasets/presidentielle-francaise-de-2027-index-documentaire-de-polradar)

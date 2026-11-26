@@ -306,7 +306,7 @@ def activate(directory, kind, key_id=None):
             if smoke('/api/mcp')[0]!=405: raise ValueError('Route MCP non activée')
             code,body=smoke('/api/mcp',{'jsonrpc':'2.0','id':1,'method':'tools/list','params':{}})
             tools = json.loads(body)['result']['tools'] if code == 200 else []
-            expected = ('polradar_candidates', 'polradar_changements', 'polradar_comparer', 'polradar_corpus', 'polradar_donnees', 'polradar_measure', 'polradar_methodologie', 'polradar_question', 'polradar_search', 'polradar_territoires', 'polradar_votes')
+            expected = ('polradar_answer', 'polradar_candidates', 'polradar_changements', 'polradar_comparer', 'polradar_corpus', 'polradar_donnees', 'polradar_measure', 'polradar_methodologie', 'polradar_question', 'polradar_search', 'polradar_territoires', 'polradar_votes')
             if (sorted(tool['name'] for tool in tools) != list(expected)
                     or any(tool.get('annotations', {}).get('readOnlyHint') is not True
                            or tool.get('annotations', {}).get('destructiveHint') is not False for tool in tools)):
@@ -320,6 +320,10 @@ def activate(directory, kind, key_id=None):
             rows=api.get('donnees',{}).get('resultats',[])
             if api.get('revisionDuService') != manifest['sourceCommit'] or len(rows)!=1 or not rows[0].get('source',{}).get('url') or not re.fullmatch(r'[a-f0-9]{40}',api.get('revisionDuSite','')):
                 raise ValueError('Accès aux propositions par l’API non confirmé')
+            code,body=smoke('/api/v1/reponse',{'question': 'Qui va gagner la présidentielle ?','expectedRevision':api['revisionDuSite']})
+            answer=json.loads(body) if code==200 else {}
+            if answer.get('revisionDuService') != manifest['sourceCommit'] or answer.get('donnees',{}).get('etat') != 'hors-perimetre':
+                raise ValueError('Moteur de réponse non confirmé')
             if STATS.exists(): require_private('/stats/')
     except BaseException as exc:
         if not keep_socket:

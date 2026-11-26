@@ -66,6 +66,34 @@ const steps = [
         ))}
       </ol>
     </section>
+    <section class="dev-note" aria-labelledby="reponse">
+      <h2 id="reponse">Poser une question en français</h2>
+      <p>
+        Avec le service 1.6, <code>polradar_answer</code> prend une
+        <code>question</code> de 300 caractères au maximum et un
+        <code>expectedRevision</code> facultatif. Consultez{' '}
+        <code>tools/list</code>
+        pour vérifier sa disponibilité. L’API HTTP expose la même réponse via
+        <code>POST /api/v1/reponse</code>.
+      </p>
+      <p>
+        Lisez <code>donnees.etat</code> et <code>donnees.couverture</code> avant
+        de citer les résultats. <code>partiel</code> indique une réponse
+        incomplète, <code>ambigu</code> invite à préciser la question et
+        <code>sans-resultat</code> décrit la recherche dans le périmètre
+        indiqué.
+        <code>hors-perimetre</code> indique que la question dépasse les données
+        consultables. Un changement d’édition demande de reprendre avec la
+        révision actualisée.
+      </p>
+      <p>
+        Associez l’auteur et l’adresse de la fiche Polradar à la source
+        d’origine indiquée dans <code>sources</code>. Conservez son repère
+        <code>passage</code>, ainsi que l’unité, la période et la base des
+        chiffres quand elles sont fournies. Le texte des documents sert à étayer
+        les faits cités.
+      </p>
+    </section>
     <section class="dev-note">
       <h2>Diagnostiquer un appel</h2>
       <p>

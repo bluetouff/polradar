@@ -27,7 +27,19 @@ Le corpus, ses passages et leurs attributions conditionnent la fiabilité des r�
 | Collecte de documents et suggestions GitHub | Sortie vers une adresse interne, réponse excessive ou référence hors périmètre            | Le collecteur de veille contrôle les domaines et chaque redirection, utilise une adresse publique validée avec vérification TLS, et borne les téléchargements. Le formulaire accepte des formats d’adresses institutionnelles connus. Les fichiers et passages restent soumis à la validation de contenu. `scripts/watch-sources.py`, `scripts/source-suggestions.py`, `scripts/validate-content.mjs`.                             |
 | Construction, exports et publication        | Altération d’une archive, substitution d’édition ou installation d’un service non vérifié | Artefacts liés à la révision, empreinte et validation du contenu sous quatre plafonds. Activation du service distincte avec vérification des attestations. Historique et parité de contrat testés sur l’archive. `deploy/pull-release.py`, `scripts/test-mcp-release.py`, `.github/workflows/site.yml`, `.github/workflows/services.yml`.                                                                                          |
 
-Une citation justifie un fait lorsque le passage l’étaye. Les clients MCP restent responsables de traiter les documents comme des entrées non fiables. Les contrôles décrits pour le service reflètent les fichiers d’installation du dépôt. La configuration active d’Apache, les droits des comptes mainteneurs et les journaux de l’hébergeur demandent une vérification d’exploitation. Une PWA avec stockage hors ligne devra conserver la révision et l’empreinte de ses données et permettre d’effacer les préférences.
+Une citation justifie un fait lorsque le passage l’étaye. Les clients MCP restent responsables de traiter les documents comme des entrées non fiables. Les contrôles décrits pour le service reflètent les fichiers d’installation du dépôt. La configuration active d’Apache, les droits des comptes mainteneurs et les journaux de l’hébergeur demandent une vérification d’exploitation.
+
+### Questions en langage naturel
+
+La page Demander transmet la question au service Polradar après action du lecteur. Le point d’entrée HTTP accepte un corps JSON borné et contrôle l’origine quand le navigateur la fournit. Les réponses portent `Cache-Control: no-store`. Le moteur consulte les index locaux de l’édition chargée. Les textes des questions et des sources restent des données. Le moteur n’exécute aucune instruction issue de ces textes et n’appelle aucun modèle ni service tiers. Les statistiques d’usage comptent les appels par outil. La configuration de production doit conserver la collecte des journaux sans corps de requête. [Gestionnaire HTTP](mcp/answer_http.go) · [Modèle de réponse](mcp/answer.go)
+
+### Transport partitionné du corpus
+
+Le format optionnel lie les pièces au commit, à leur ordre, à leur taille et à leur empreinte. Le fichier public est reconstruit dans le répertoire de préparation et son empreinte doit correspondre à celle de l’édition. Le déployeur vérifie la capacité du service à lire la nouvelle édition avant et après la bascule quand le corpus dépasse 10 Mio. Les limites de l’archive et des membres restent en vigueur. Une incompatibilité constatée après la bascule déclenche la restauration de l’édition précédente. [Procédure de publication](deploy/README.md#activer-le-transport-partitionné)
+
+### Lecture hors ligne
+
+Une action explicite enregistre une fiche de 48 Kio au maximum sur l’appareil. Le lecteur contrôle l’empreinte locale et affiche la révision et la date qui accompagnent la copie. Le worker est limité au lecteur `/hors-ligne/` et met en cache trois fichiers de même origine sous un plafond de 64 Kio. Il ne lit aucune préférence de suivi. L’effacement retire la fiche et le cache de ce lecteur. [Lecteur hors ligne](docs/distribution-donnees.md#lire-une-fiche-hors-connexion)
 
 ## Exploitation
 

@@ -4,13 +4,13 @@
 
 `push main` → contrôles GitHub Actions → version statique publique → récupération par le serveur toutes les cinq minutes → vérification → activation → test HTTPS local.
 
-Le [relevé de capacité](../docs/capacite-publication.md) donne les mesures d’une archive publiée et la simulation d’une séparation des exports.
+Le [relevé de capacité](../docs/capacite-publication.md) donne les mesures de l’archive publiée, le coût de la croissance documentaire et les contrôles du transport partitionné.
 
 Aucun secret de serveur n’est stocké dans GitHub. Aucun runner GitHub n’entre sur le serveur. Le compte système récupère les deux fichiers d’une version publique, contrôle l’empreinte, le commit de `main`, le workflow `Site` réussi et le manifeste `build.json`. Les téléchargements et redirections restent limités à des domaines GitHub précis.
 
 Le site ne reçoit ni dépôt Git, ni `node_modules`, ni outil de déploiement. Les archives n’acceptent que des fichiers statiques ordinaires, avec des limites de taille et de nombre. Le déploiement s’interrompt si un contrôle échoue.
 
-Le résumé du job de publication indique la marge sur la taille gzip, le TAR complet après décompression et le nombre de fichiers. Un avertissement apparaît sous 10 % de marge. Les plafonds sont ceux du déployeur installé.
+Le résumé du job de publication indique la marge sur le gzip, le TAR, le nombre de membres et le plus grand membre. Les alertes de capacité utilisent les seuils de 70 %, 85 % et 95 %. Le paquet est bloqué au plafond. Les limites globales sont celles du déployeur installé.
 
 ## Installation initiale
 
@@ -30,7 +30,7 @@ python3 install-user.py
 python3 "$HOME/.local/share/polradar/pull-release.py"
 ```
 
-L’installateur préserve les lignes existantes de la crontab. Le déployeur accepte un TAR de 256 Mio décompressés, en-têtes et bourrage compris. L’archive gzip est limitée à 36 Mio, le nombre de fichiers à 10 000 et chaque fichier à 10 Mio. La décompression se fait par blocs dans un fichier temporaire privé. Pour mettre à jour le déployeur, exécuter `python3 -I install-user.py --update-only` depuis la copie privée des deux scripts vérifiés. Cette opération est indépendante des publications du site et se vérifie avec les tests `tests/deploy/`.
+L’installateur préserve les lignes existantes de la crontab. Au format historique, le déployeur accepte un TAR de 256 Mio décompressés, en-têtes et bourrage compris. L’archive gzip est limitée à 36 Mio, le nombre de fichiers à 10 000 et chaque fichier à 10 Mio. La décompression se fait par blocs dans un fichier temporaire privé. Pour mettre à jour le déployeur, exécuter `python3 -I install-user.py --update-only` depuis la copie privée des deux scripts vérifiés. Cette opération est indépendante des publications du site et se vérifie avec les tests `tests/deploy/`.
 
 Au premier déploiement, le dossier d’origine est conservé dans le répertoire privé, puis remplacé par un lien vers la version validée. Aux suivants, le remplacement du lien est atomique. Le test local utilise HTTPS, le nom de domaine attendu et la vérification normale du certificat. Un échec restaure le dossier ou le lien précédent.
 
@@ -42,6 +42,16 @@ curl --fail --head https://polradar.fr/
 ```
 
 Comparer `sourceCommit` avec `main` et avec la version GitHub. Vérifier aussi une page de candidature, une fiche et le comparateur dans le navigateur. Une exécution Actions réussie peut précéder la récupération par cron.
+
+## Activer le transport partitionné
+
+Le paquet garde son format historique par défaut. La recette locale utilise `python3 scripts/package-release.py --format partitioned` après la construction. Le document public `/api/corpus.json` garde ses octets et sa structure. Le manifeste additionnel `/api/corpus-parts.json` décrit les plages de l’export.
+
+L’opérateur met à jour le déployeur avec `install-user.py --update-only` et suit la procédure de publication du service compatible. La réponse publique à `GET /api/v1/corpus` doit annoncer `donnees.versionTransportCorpus` à `1`. L’activation du format passe ensuite par la variable GitHub Actions `POLRADAR_SITE_TRANSPORT`, avec la valeur `partitioned`. Une nouvelle publication produit l’archive du format choisi à la révision validée.
+
+Le nouveau paquet partitionné ouvre une enveloppe de 64 Mio gzip, 512 Mio TAR et 20 000 membres. Le manifeste de transport en tête du TAR est contrôlé avant de retenir ce profil. Les anciens paquets, y compris les archives partitionnées sans manifeste en tête, passent avec leur enveloppe historique. Chaque membre reste limité à 10 Mio et le corpus reconstitué à 64 Mio. Dès que ce corpus dépasse 10 Mio, le déployeur exige un service compatible lisant l’édition courante avant la bascule. Il vérifie ensuite que le service lit la nouvelle révision. Un échec rétablit le lien précédent.
+
+Le TAR temporaire et la nouvelle édition sont préparés sur le système de fichiers de publication. La décompression utilise au maximum la moitié de l’espace disponible initialement. Puis l’inventaire permet d’estimer les blocs nécessaires à la nouvelle édition, dont le corpus reconstitué. L’espace disponible tient déjà compte des éditions conservées pour retour arrière. Une archive proche du plafond peut nécessiter environ 1 Gio encore libre pendant la préparation. [Mesures de capacité](../docs/capacite-publication.md)
 
 ## Retour arrière
 

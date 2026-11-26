@@ -19,19 +19,44 @@ spec.loader.exec_module(deployment)
 SHA = 'a' * 40
 
 
-def archive(extra=(), sha=SHA, hashes=None):
+def archive(extra=(), sha=SHA, hashes=None, corpus=b'{}', prefix=()):
     marker = {'sourceCommit': sha, 'repository': 'bluetouff/polradar'}
     if hashes is not None:
         marker['sha256'] = hashes
-    files = [('index.html', b'<!doctype html><title>Test</title>'), ('robots.txt', b'User-agent: *'), ('sitemap.xml', b'<urlset/>'), ('api/corpus.json', b'{}'), ('build.json', json.dumps(marker).encode())]
+    files = [('index.html', b'<!doctype html><title>Test</title>'), ('robots.txt', b'User-agent: *'), ('sitemap.xml', b'<urlset/>'), ('build.json', json.dumps(marker).encode())]
+    if corpus is not None:
+        files.append((deployment.CORPUS, corpus))
     raw = io.BytesIO()
     with tarfile.open(fileobj=raw, mode='w') as bundle:
-        for name, data in files + list(extra):
+        for name, data in [*prefix, *files, *extra]:
             member = tarfile.TarInfo(name)
             member.size = len(data)
             member.mode = 0o644
             bundle.addfile(member, io.BytesIO(data))
     return gzip.compress(raw.getvalue())
+
+
+def partitioned_release(payload, modify=lambda manifest, fragments: None, *, leading=False, additional=()):
+    sha256 = lambda data: hashlib.sha256(data).hexdigest()
+    base = {'index.html': b'<!doctype html><title>Test</title>',
+            'sitemap.xml': b'<urlset/>', deployment.CORPUS: payload}
+    extra = [(path, b'{}') for path in sorted(deployment.PUBLIC_SURFACES - base.keys())]
+    hashes = {path: sha256(body) for path, body in [*base.items(), *extra]}
+    manifest = {'bytes': len(payload), 'version': 1, 'sourceCommit': SHA,
+                'sha256': hashes[deployment.CORPUS], 'partitions': []}
+    fragments = {}
+    for offset in range(0, len(payload), 2048):
+        fragment = payload[offset:offset + 2048]
+        fragments[deployment.part_name(len(fragments))] = fragment
+        manifest['partitions'].append({
+            'collection': 'meta', 'offset': offset, 'bytes': len(fragment), 'sha256': sha256(fragment),
+        })
+    modify(manifest, fragments)
+    marker = (deployment.CORPUS_PARTS_MANIFEST, json.dumps(manifest).encode())
+    if not leading:
+        extra.append(marker)
+    return archive([*extra, *fragments.items(), *additional], hashes=hashes,
+                   corpus=None, prefix=(marker,) if leading else ())
 
 
 class DeploymentTests(unittest.TestCase):
@@ -74,6 +99,10 @@ class DeploymentTests(unittest.TestCase):
                         if value:
                             self.assertEqual(bundle.extractfile(name).read(), f'google-site-verification: {name}'.encode())
                             self.assertNotIn(name.encode(), bundle.extractfile('sitemap.xml').read())
+            stable = (root / 'artifacts/site.tar.gz').read_bytes()
+            result = package(name)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual((root / 'artifacts/site.tar.gz').read_bytes(), stable)
             self.assertNotEqual(package('../' + name).returncode, 0)
             (dist / name).write_text('existing file')
             self.assertNotEqual(package(name).returncode, 0)
@@ -83,6 +112,199 @@ class DeploymentTests(unittest.TestCase):
             root = Path(temporary)
             deployment.extract_static(archive(), root, SHA)
             self.assertTrue((root / 'index.html').is_file())
+
+    def test_partitioned_release_reconstructs_legacy_bytes(self):
+        corpus = ('{"meta":{"edition":"Essai"}, "versions":[{"texte":"'
+                  + 'é' * 2000 + '"}]}\n').encode()
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            deployment.extract_static(partitioned_release(corpus), root, SHA)
+            self.assertEqual((root / deployment.CORPUS).read_bytes(), corpus)
+            self.assertTrue((root / deployment.CORPUS_PARTS_MANIFEST).is_file())
+            self.assertFalse((root / deployment.CORPUS_PARTS_PREFIX).exists())
+
+    def test_partitioned_packaging_reports_the_selected_limits(self):
+        packager = Path(__file__).resolve().parents[2] / 'scripts/package-release.py'
+        corpus = b'{"meta":{"edition":"Essai"}}'
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            dist = root / 'dist'
+            dist.mkdir()
+            deployment.extract_static(partitioned_release(corpus), dist, SHA)
+            (dist / deployment.CORPUS_PARTS_MANIFEST).unlink()
+            for mode in ('legacy', 'partitioned'):
+                with self.subTest(mode=mode):
+                    env = {**os.environ, 'GITHUB_SHA': SHA, 'GSC_VERIFICATION_FILE': ''}
+                    result = subprocess.run([sys.executable, str(packager), '--format', mode],
+                                            cwd=root, env=env, capture_output=True)
+                    self.assertEqual(result.returncode, 0, result.stderr)
+                    report = json.loads((root / 'artifacts/site-capacity.json').read_bytes())
+                    budget = deployment.archive_budget(mode == 'partitioned')
+                    self.assertEqual(report['limits']['Archive gzip (octets)']['limit'], budget.compressed)
+                    self.assertEqual(report['limits']['TAR complet (octets)']['limit'], budget.expanded)
+                    self.assertEqual(report['limits']['Fichiers']['limit'], budget.members)
+                    self.assertEqual(report['limits']['Plus grand fichier (octets)']['limit'], deployment.MAX_FILE)
+                    with tarfile.open(root / 'artifacts/site.tar.gz') as bundle:
+                        self.assertEqual(bundle.next().name == deployment.CORPUS_PARTS_MANIFEST,
+                                         mode == 'partitioned')
+
+    def test_only_leading_manifest_uses_expanded_transport_budget(self):
+        corpus = b'{"meta":{"edition":"Essai"}}'
+        ordinary = archive()
+        previous = partitioned_release(corpus)
+        current = partitioned_release(corpus, leading=True)
+        tar_limit = len(gzip.decompress(current))
+        old_limit = min(len(gzip.decompress(ordinary)), len(gzip.decompress(previous))) - 1
+        with (
+            patch.object(deployment, 'MAX_EXPANDED', old_limit),
+            patch.object(deployment, 'PARTITIONED_MAX_EXPANDED', tar_limit),
+        ):
+            for packed in (ordinary, previous):
+                with tempfile.TemporaryDirectory() as temporary:
+                    with self.assertRaisesRegex(ValueError, 'Expanded archive too large'):
+                        deployment.extract_static(packed, Path(temporary), SHA)
+                    self.assertEqual(list(Path(temporary).iterdir()), [])
+            with tempfile.TemporaryDirectory() as temporary:
+                deployment.extract_static(current, Path(temporary), SHA)
+                self.assertEqual((Path(temporary) / deployment.CORPUS).read_bytes(), corpus)
+        with (
+            tempfile.TemporaryDirectory() as temporary,
+            patch.object(deployment, 'PARTITIONED_MAX_EXPANDED', tar_limit - 1),
+        ):
+            with self.assertRaisesRegex(ValueError, 'Expanded archive too large'):
+                deployment.extract_static(current, Path(temporary), SHA)
+
+    def test_partitioned_compressed_and_member_limits_are_independent(self):
+        corpus = b'{"meta":{}}'
+        old = partitioned_release(corpus)
+        current = partitioned_release(corpus, leading=True)
+        with tarfile.open(fileobj=io.BytesIO(current)) as bundle:
+            count = len(bundle.getmembers())
+        with (
+            patch.object(deployment, 'MAX_ARCHIVE', len(old) - 1),
+            patch.object(deployment, 'PARTITIONED_MAX_ARCHIVE', len(current)),
+            patch.object(deployment, 'PARTITIONED_MAX_FILES', count),
+        ):
+            with tempfile.TemporaryDirectory() as temporary:
+                with self.assertRaisesRegex(ValueError, 'Compressed archive too large'):
+                    deployment.extract_static(old, Path(temporary), SHA)
+                deployment.extract_static(current, Path(temporary), SHA)
+        with (
+            tempfile.TemporaryDirectory() as temporary,
+            patch.object(deployment, 'PARTITIONED_MAX_FILES', count - 1),
+        ):
+            with self.assertRaisesRegex(ValueError, 'too many files'):
+                deployment.extract_static(current, Path(temporary), SHA)
+        packed = partitioned_release(corpus, leading=True, additional=[('grand.txt', b' ' * 4097)])
+        with tempfile.TemporaryDirectory() as temporary, patch.object(deployment, 'MAX_FILE', 4096):
+            with self.assertRaisesRegex(ValueError, 'Static file too large'):
+                deployment.extract_static(packed, Path(temporary), SHA)
+
+    def test_other_revision_is_rejected_before_spooling_partitioned_tar(self):
+        packed = partitioned_release(b'{"meta":{}}', leading=True)
+        with tempfile.TemporaryDirectory() as temporary, patch.object(deployment.tempfile, 'TemporaryFile') as spool:
+            with self.assertRaisesRegex(ValueError, 'provenance mismatch'):
+                deployment.extract_static(packed, Path(temporary), 'b' * 40)
+            spool.assert_not_called()
+
+    def test_available_disk_includes_allocation_blocks_for_the_new_edition(self):
+        packed = partitioned_release(b'{"meta":{}}', leading=True)
+        with (
+            tempfile.TemporaryDirectory() as temporary,
+            patch.object(deployment.shutil, 'disk_usage',
+                         side_effect=[SimpleNamespace(free=2 * 1024 * 1024), SimpleNamespace(free=4096)]),
+        ):
+            with self.assertRaisesRegex(ValueError, 'Insufficient staging disk'):
+                deployment.extract_static(packed, Path(temporary), SHA)
+            self.assertEqual(list(Path(temporary).iterdir()), [])
+
+    def test_inconsistent_partition_metadata_rejected(self):
+        corpus = b'{"meta":{"edition":"Essai"}}'
+        mutations = {
+            'missing': (lambda _, parts: parts.pop(deployment.part_name(0)), 'inventory'),
+            'unexpected': (lambda _, parts: parts.update({deployment.part_name(1): b'{}'}), 'inventory'),
+            'revision': (lambda m, _: m.update(sourceCommit='b' * 40), 'provenance'),
+            'summary': (lambda m, _: m.update(sha256='0' * 64), 'provenance'),
+            'offset': (lambda m, _: m['partitions'][0].update(offset=1), 'Invalid corpus partition'),
+            'size': (lambda m, _: m['partitions'][0].update(bytes=1), 'Invalid corpus partition'),
+            'checksum': (lambda m, _: m['partitions'][0].update(sha256='0' * 64), 'partition checksum'),
+        }
+        for case, (mutate, error) in mutations.items():
+            with self.subTest(case=case), tempfile.TemporaryDirectory() as temporary:
+                with self.assertRaisesRegex(ValueError, error):
+                    deployment.extract_static(partitioned_release(corpus, mutate), Path(temporary), SHA)
+
+    def test_partitioned_release_needs_staging_disk_before_extraction(self):
+        with tempfile.TemporaryDirectory() as temporary, patch.object(
+            deployment.shutil, 'disk_usage', return_value=SimpleNamespace(free=0),
+        ):
+            root = Path(temporary)
+            with self.assertRaisesRegex(ValueError, 'Insufficient staging disk'):
+                deployment.extract_static(partitioned_release(b'{"meta":{}}'), root, SHA)
+            self.assertEqual(list(root.iterdir()), [])
+
+    def test_truncated_transport_stops_before_writing_files(self):
+        packed = partitioned_release(b'{"meta":{"edition":"Essai"}}')
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            with self.assertRaises(EOFError):
+                deployment.extract_static(packed[:-8], root, SHA)
+            self.assertEqual(list(root.iterdir()), [])
+
+    def test_larger_corpus_checks_capability_and_rolls_back(self):
+        old = 'b' * 40
+        corpus = b'{"meta":{},"versions":["' + b'a' * 8192 + b'"]}'
+        packed = partitioned_release(corpus)
+        checksum = (hashlib.sha256(packed).hexdigest() + '  site.tar.gz\n').encode()
+        release = {
+            'tag_name': 'site-' + SHA,
+            'assets': [
+                {'name': 'site.tar.gz', 'size': len(packed), 'browser_download_url': 'archive'},
+                {'name': 'site.sha256', 'size': len(checksum), 'browser_download_url': 'checksum'},
+            ],
+        }
+        runs = {'workflow_runs': [{'head_sha': SHA, 'event': 'push', 'conclusion': 'success'}]}
+
+        def reading(commit, supported):
+            return json.dumps({
+                'donnees': {'versionTransportCorpus': 1} if supported else {},
+                'revisionDuSite': commit, 'revisionDuService': 'c' * 40, 'sansResultat': False,
+            }).encode()
+
+        cases = {
+            'ancienne version': ([reading(old, False)], 'no partitioned corpus reader'),
+            'service encore sur l’ancienne édition': ([reading(old, True), reading(old, True)], 'different edition'),
+            'service sur la nouvelle édition': ([reading(old, True), reading(SHA, True)], None),
+        }
+        for case, (answers, error) in cases.items():
+            with self.subTest(case=case), tempfile.TemporaryDirectory() as temporary:
+                base = Path(temporary)
+                previous = base / 'previous'
+                previous.mkdir()
+                (previous / 'build.json').write_text(json.dumps({'sourceCommit': old}))
+                current = base / 'site'
+                current.symlink_to(previous)
+                args = SimpleNamespace(repository='bluetouff/polradar', document_root=current,
+                                       state_root=base / 'state', releases_root=base / 'releases')
+                with (
+                    patch.object(deployment, 'MAX_FILE', 4096),
+                    patch.object(deployment, 'api', side_effect=[release, {'sha': SHA}, runs, {'sha': SHA}]),
+                    patch.object(deployment, 'download', side_effect=[checksum, packed]),
+                    patch.object(deployment, 'check_live'),
+                    patch.object(deployment, 'local_request', side_effect=answers) as checks,
+                ):
+                    if error:
+                        with self.assertRaisesRegex(ValueError, error):
+                            deployment.synchronize(args)
+                        self.assertEqual(current.resolve(), previous.resolve())
+                        self.assertFalse((args.state_root / 'last-success.json').exists())
+                    else:
+                        deployment.synchronize(args)
+                        self.assertEqual(current.resolve(), (args.releases_root / SHA).resolve())
+                        self.assertEqual((current / deployment.CORPUS).read_bytes(), corpus)
+                    self.assertEqual(checks.call_count, len(answers))
+                    for call in checks.call_args_list:
+                        self.assertEqual(call.args[0], 'api/v1/corpus')
 
     def test_paths_and_server_code_rejected(self):
         for name in ['../escape.html', '/absolute.html', 'a/../../escape.html', 'a\\escape.html', '.git/config', '.htaccess', 'shell.php', 'script.cgi', 'a//b.html']:

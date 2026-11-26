@@ -263,8 +263,11 @@ const candidate = candidateById(measure.candidate),
       <section class="section-space">
         <div class="register-heading">
           <h2>Versions de la fiche</h2>
-          <a href={`/historique/?mesure=${measure.id}`} class="inline-action">
-            Comparer les versions ↗
+          <a
+            href={`/historique/?mesure=${measure.id}&mode=dates#comparaison-historique`}
+            class="inline-action"
+          >
+            Comparer à deux dates ↗
           </a>
         </div>
         <ol class="version-timeline">
@@ -299,6 +302,21 @@ const candidate = candidateById(measure.candidate),
       </section>
     </article>
     <aside class="measure-side">
+      <div
+        data-offline-measure={measure.id}
+        data-fiche-version={measure.revision}
+        hidden
+      >
+        <button class="button" type="button">
+          Garder hors ligne
+        </button>
+        <p class="small">Une seule fiche, sur cet appareil.</p>
+        <p class="small" role="status"></p>
+        <a href="/hors-ligne/v1/" hidden>
+          Ouvrir la copie enregistrée ↗
+        </a>
+      </div>
+      <script is:inline type="module" src="/hors-ligne/lecteur-v1.js"></script>
       <FollowButton kind="candidate" id={candidate.id} name={candidate.name} />
       <FollowButton kind="theme" id={theme.id} name={theme.label} />
       {questionsForMeasure(measure.id).map((q) => (

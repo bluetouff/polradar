@@ -42,7 +42,8 @@ const entries = [
       aria-current={
         path === item.url
           ? 'page'
-          : active?.url === item.url
+          : active?.url === item.url ||
+              (path === '/demander/' && item.url === '/recherche/')
             ? 'location'
             : undefined
       }

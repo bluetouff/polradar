@@ -55,12 +55,23 @@ test('le guide agent et la description de l’API restent lisibles sans JavaScri
       Object.keys(spec.paths),
     );
     for (const path of Object.keys(spec.paths)) {
-      expect(Object.keys(spec.paths[path]).sort()).toEqual([
-        'get',
-        'head',
-        'parameters',
-      ]);
+      expect(Object.keys(spec.paths[path]).sort()).toEqual(
+        path === '/reponse' ? ['post'] : ['get', 'head', 'parameters'],
+      );
     }
+    expect(spec.paths['/reponse'].post.requestBody).toMatchObject({
+      required: true,
+      content: {
+        'application/json': {
+          schema: { $ref: '#/components/schemas/QuestionDocumentaire' },
+        },
+      },
+    });
+    expect(spec.components.schemas.QuestionDocumentaire).toMatchObject({
+      additionalProperties: false,
+      required: ['question'],
+      properties: { question: { maxLength: 300 } },
+    });
     expect(
       await (
         await page.request.get(new URL('/llms.txt', page.url()).href)

@@ -14,18 +14,30 @@ import { activeCandidates as candidates, themes } from '../lib/data';
     <div>
       <h1>Mon suivi</h1>
       <p>
-        Choisissez les candidats et les thèmes à retrouver sur cette page. Votre
-        sélection reste dans ce navigateur.
+        Retrouvez les candidats et les thèmes que vous suivez, ainsi que vos
+        recherches et comparaisons enregistrées dans ce navigateur.
       </p>
     </div>
   </header>
   <div id="follow-app">
     <FollowChanges />
     <p id="follow-status" role="status" class="results-meta"></p>
+    <section
+      id="saved-views"
+      class="section-space"
+      aria-labelledby="saved-views-title"
+      hidden
+    >
+      <h2 id="saved-views-title" tabindex="-1">
+        Recherches et comparaisons
+      </h2>
+      <p id="saved-views-status" role="status" class="results-meta"></p>
+      <ul id="saved-views-list"></ul>
+    </section>
     <section class="section-space">
       <div class="register-heading">
         <h2 id="fiches-suivies">Fiches suivies</h2>
-        <button id="follow-clear" type="button" class="button small">
+        <button id="follow-clear" type="button" class="button small" disabled>
           Effacer mon suivi
         </button>
       </div>
@@ -105,3 +117,36 @@ import { activeCandidates as candidates, themes } from '../lib/data';
     </div>
   </details>
 </Base>
+
+<style>
+  #saved-views-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  #saved-views-list :global(li) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    padding-block: 0.65rem;
+    border-block-start: 1px solid var(--line);
+  }
+  #saved-views-list :global(a) {
+    flex: 1 1 18rem;
+    display: grid;
+    align-content: center;
+    min-height: var(--target-size, 44px);
+    overflow-wrap: anywhere;
+    font-weight: 600;
+  }
+  #saved-views-list :global(a > span) {
+    color: var(--muted);
+    font-size: 0.86rem;
+    font-weight: 400;
+  }
+  #saved-views-list :global(button) {
+    min-height: var(--target-size, 44px);
+  }
+</style>

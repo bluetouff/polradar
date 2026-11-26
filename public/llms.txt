@@ -14,5 +14,9 @@
 - [Corpus JSON téléchargeable](https://polradar.fr/api/corpus.json) : données et références pour une lecture en volume.
 - [Méthode](https://polradar.fr/methode/) : attribution, périmètre et traitement des archives.
 - [Journal des mises à jour](https://polradar.fr/mises-a-jour/) : détail des derniers contrôles.
+- [Qualité documentaire](https://polradar.fr/api/qualite-documentaire.json) : révision, couverture et échéance des collectes par famille.
+- [Relations documentaires](https://polradar.fr/api/relations-documentaires.json) : liens entre une version de proposition, son état précédent, un scrutin, une règle ou un montant.
 
 Pour citer une mesure, conserver son auteur et son statut. Citer la fiche Polradar avec urlVersion si renseignée, sinon url, et le passage dans le document d’origine. La date de consultation et la date de publication ont des significations distinctes. Une recherche sans résultat décrit les limites du corpus interrogé.
+
+Si tools/list annonce polradar_answer, transmettre question et, si connue, expectedRevision. Lire donnees.etat et donnees.couverture, puis citer les fiches et leurs passages sources. Une réponse partielle doit rester partielle dans la synthèse.

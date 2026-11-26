@@ -13,6 +13,34 @@ REVISION = 'a' * 40
 
 
 class PublicEditionTests(unittest.TestCase):
+    def test_tool_probe_follows_the_running_binary_version(self):
+        probes = public['service_probes']
+        legacy = probes('1.5.0')
+        current = probes('1.6.0')
+        self.assertNotIn('polradar_answer', legacy)
+        self.assertEqual(set(current) - set(legacy), {'polradar_answer'})
+        self.assertIn('CSG', current['polradar_answer']['question'])
+        with self.assertRaises(ValueError):
+            probes('version inconnue')
+
+    def test_documentary_answer_parity_checks_the_two_revisions(self):
+        endpoint = public['verify_answer_parity']
+        corpus = {'revisionDuSite': REVISION, 'revisionDuService': 'b' * 40,
+                  'versionContrat': 1}
+        value = {'etat': 'documente'}
+        reply = {**corpus, 'sansResultat': False, 'donnees': value}
+        with patch.dict(endpoint.__globals__, {
+            'fetch': lambda url, args: reply,
+            'verify_call': lambda name, args, edition: value,
+        }):
+            endpoint(corpus, {'question': 'Que propose ce programme ?'})
+            reply['revisionDuService'] = 'c' * 40
+            with self.assertRaisesRegex(ValueError, 'REST et MCP'):
+                endpoint(corpus, {'question': 'Que propose ce programme ?'})
+            reply.update(corpus, donnees={'etat': 'partiel'})
+            with self.assertRaisesRegex(ValueError, 'REST et MCP'):
+                endpoint(corpus, {'question': 'Que propose ce programme ?'})
+
     def test_poll_counts_require_one_edition_and_group_scenarios_by_survey(self):
         polls = [
             {'surveyId': 'terrain-1', 'round': 'premier'},

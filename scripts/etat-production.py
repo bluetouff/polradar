@@ -92,9 +92,17 @@ def rpc(method, params, version=LEGACY, notify=False):
     return result
 
 
-def advertised_tools(version):
+def service_probes(version):
+    if not re.fullmatch(r"\d{1,6}\.\d{1,6}\.\d{1,6}", version):
+        raise ValueError("Version de service inattendue")
+    if tuple(map(int, version.split("."))) >= (1, 6, 0):
+        return {**TOOLS, "polradar_answer": {"question": "Que propose Gabriel Attal sur la suppression de la CSG sur les salaires ?"}}
+    return TOOLS
+
+
+def advertised_tools(version, expected):
     tools = rpc("tools/list", {}, version)["tools"]
-    if (sorted(t["name"] for t in tools) != sorted(TOOLS)
+    if (sorted(t["name"] for t in tools) != sorted(expected)
             or not all(t.get("annotations", {}).get("readOnlyHint") is True
                        and t["annotations"].get("destructiveHint") is False for t in tools)):
         raise ValueError("Catalogue actif ou annotations de lecture seule différents du contrat")
@@ -111,16 +119,30 @@ def verify_call(name, arguments, corpus, version=LEGACY):
     return value["donnees"]
 
 
-def extended_probe(corpus):
+def verify_answer_parity(corpus, arguments):
+    args = {**arguments, "expectedRevision": corpus["revisionDuSite"]}
+    rest = fetch(SITE + "/api/v1/reponse", args)
+    if (rest.get("sansResultat") is not False
+            or any(rest.get(key) != corpus[key] for key in
+                   ("versionContrat", "revisionDuSite", "revisionDuService"))
+            or rest.get("donnees") != verify_call("polradar_answer", args, corpus)):
+        raise ValueError("La réponse documentaire REST et MCP diffère")
+
+
+def extended_probe(corpus, expected):
     results = {}
-    for name, args in TOOLS.items():
+    for name, args in expected.items():
         try:
             verify_call(name, args, corpus)
             results[name] = {"etat": "ok"}
         except (ValueError, KeyError, TypeError) as exc:
             results[name] = {"etat": "erreur", "detail": str(exc)}
     collections = {}
-    for name in COLLECTIONS:
+    names = COLLECTIONS
+    comparison = corpus["donnees"]["contratsCollections"].get("comparaisons-sondages", {})
+    if comparison.get("compatible") is True:
+        names = (*names, "comparaisons-sondages")
+    for name in names:
         try:
             rows = verify_call("polradar_donnees", {"collection": name}, corpus)
             if rows["collection"] != name or not rows["publications"] or rows["total"] < 1:
@@ -143,8 +165,9 @@ def verify_surfaces(marker, counts):
         with opener.open(Request(url, headers={"Cache-Control": "no-cache"}), timeout=15) as response:
             if response.status != 200 or response.geturl() != url:
                 raise ValueError(f"Surface publique indisponible : {path}")
-            raw = response.read(10 * 1024 * 1024 + 1)
-            if len(raw) > 10 * 1024 * 1024:
+            limit = (64 if path == "api/corpus.json" else 10) * 1024 * 1024
+            raw = response.read(limit + 1)
+            if len(raw) > limit:
                 raise ValueError(f"Surface trop volumineuse : {path}")
             digest = hashlib.sha256(raw).hexdigest()
             if expected is not None and digest != expected[path]:
@@ -219,24 +242,27 @@ def main(full=False, revision=None):
     if init["protocolVersion"] != LEGACY:
         raise ValueError("Négociation MCP inattendue")
     server = init["serverInfo"]
+    expected = service_probes(server["version"])
     rpc("notifications/initialized", {}, notify=True)
-    tools = advertised_tools(LEGACY)
+    tools = advertised_tools(LEGACY, expected)
     if verify_call("polradar_corpus", {}, status) != status["donnees"]:
         raise ValueError("Le corpus MCP et le corpus REST diffèrent")
     announced = rpc("server/discover", {}, CURRENT)
-    if CURRENT not in announced["supportedVersions"] or advertised_tools(CURRENT) != tools:
+    if CURRENT not in announced["supportedVersions"] or advertised_tools(CURRENT, expected) != tools:
         raise ValueError("Découverte MCP actuelle incohérente")
     verify_call("polradar_corpus", {}, status, CURRENT)
     registry_name = "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.bluetouff%2Fpolradar/versions/"
-    if not re.fullmatch(r"\d{1,6}\.\d{1,6}\.\d{1,6}", server["version"]):
-        raise ValueError("Version de service inattendue")
     listing = fetch(registry_name + server["version"])["server"]
     if (listing["name"] != "io.github.bluetouff/polradar"
             or listing["version"] != server["version"]
             or listing["remotes"] != [{"type": "streamable-http", "url": SITE + "/api/mcp"}]):
         raise ValueError("Fiche du registre différente du service public")
     exports = fetch(SITE + "/api/exports-v1.json")
-    probes = extended_probe(status) if full else None
+    probes = extended_probe(status, expected) if full else None
+    answer_parity = None
+    if full and "polradar_answer" in expected:
+        verify_answer_parity(status, expected["polradar_answer"])
+        answer_parity = True
     surfaces = verify_surfaces(marker, status["donnees"])
     private_stats_status = check_private_stats()
     end = fetch(SITE + "/build.json", extra={"Cache-Control": "no-cache"})["sourceCommit"]
@@ -254,7 +280,7 @@ def main(full=False, revision=None):
             "site":first, "service":service, "versionService":server["version"], "comptages":counts,
             "exports":[j["id"] for j in exports["jeux"]],
             "outils": tools, "protocoles": [LEGACY, CURRENT], "registreMCP": registry_name + server["version"],
-            "testsMCP": probes,
+            "testsMCP": probes, "pariteReponseRestMCP": answer_parity,
             "surfaces": surfaces, "empreintesValidees": "sha256" in marker,
             "statistiquesPriveesSansIdentifiants": private_stats_status,
             "contrats":c["contratsCollections"],"workflowsRecents":[{"nom":r["name"],"revision":r["head_sha"],
@@ -265,7 +291,7 @@ def main(full=False, revision=None):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--mcp-complet", action="store_true", help="Interroge les onze outils et les quinze collections une fois")
+    parser.add_argument("--mcp-complet", action="store_true", help="Interroge chaque outil et les collections de données de la version servie")
     parser.add_argument("--revision", help="Révision de main attendue en production.")
     args = parser.parse_args()
     if args.revision and not SHA.fullmatch(args.revision):

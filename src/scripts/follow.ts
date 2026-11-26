@@ -1,12 +1,100 @@
 import { corpus, publicData, el, anchor, icon, measureCard } from './ui';
 import { safePreferences } from '../lib/features.mjs';
+import {
+  clearSavedViews,
+  readSavedViews,
+  removeSavedView,
+  savedViewLink,
+  savedViewsKey,
+} from './saved-views';
+
 const key = 'polradar.follow.v1';
+
+function mountSavedViews(clearButton: HTMLButtonElement) {
+  const section = document.querySelector<HTMLElement>('#saved-views')!;
+  const title = document.querySelector<HTMLElement>('#saved-views-title')!;
+  const list = document.querySelector<HTMLUListElement>('#saved-views-list')!;
+  const status = document.querySelector<HTMLElement>('#saved-views-status')!;
+
+  function render() {
+    list.replaceChildren();
+    status.textContent = '';
+    try {
+      const views = readSavedViews();
+      section.hidden = !views.length;
+      for (const view of views) {
+        const item = el('li');
+        const link = anchor(view.title, savedViewLink(view));
+        link.prepend(
+          el('span', view.kind === 'search' ? 'Recherche' : 'Comparaison'),
+        );
+        const button = el('button', 'Retirer', 'button small');
+        button.type = 'button';
+        button.setAttribute('aria-label', 'Retirer ' + view.title);
+        button.addEventListener('click', async () => {
+          if (button.disabled) return;
+          button.disabled = true;
+          try {
+            await removeSavedView(view);
+            render();
+            if (section.hidden) clearButton.focus();
+            else {
+              title.focus();
+              status.textContent = 'Sélection retirée.';
+            }
+          } catch {
+            status.textContent =
+              'La sélection est toujours enregistrée. Réessayez.';
+            button.disabled = false;
+            button.focus();
+          }
+        });
+        item.append(link, button);
+        list.append(item);
+      }
+    } catch {
+      section.hidden = false;
+      status.textContent =
+        'Le stockage local des recherches et comparaisons est indisponible.';
+    }
+  }
+  window.addEventListener('storage', (event) => {
+    if (event.key === savedViewsKey || event.key === null) render();
+  });
+  render();
+  return render;
+}
 async function start() {
   const buttons = Array.from(
     document.querySelectorAll<HTMLButtonElement>('[data-follow-kind]'),
   );
   const app = document.querySelector('#follow-app');
   if (!buttons.length && !app) return;
+  const status = document.querySelector<HTMLElement>('#follow-status');
+  const clear = document.querySelector<HTMLButtonElement>('#follow-clear');
+  let resetFollow: ((failed: boolean) => void) | undefined;
+  if (app && clear) {
+    const renderSavedViews = mountSavedViews(clear);
+    clear.disabled = false;
+    clear.addEventListener('click', async () => {
+      let failed = false;
+      try {
+        localStorage.removeItem(key);
+      } catch {
+        failed = true;
+      }
+      try {
+        await clearSavedViews();
+      } catch {
+        failed = true;
+      }
+      resetFollow?.(failed);
+      renderSavedViews();
+      if (failed && status)
+        status.textContent =
+          'L’effacement du stockage a échoué. Effacez les données du site dans les réglages de votre navigateur.';
+    });
+  }
   const choices = await publicData<{ candidates: string[]; themes: string[] }>(
     '/data/choix-suivi.json',
   );
@@ -20,7 +108,6 @@ async function start() {
   let prefs = safePreferences(raw, choices.candidates, choices.themes);
   let previousVisit = prefs.lastVisit;
   let generation = 0;
-  const status = document.querySelector<HTMLElement>('#follow-status');
   let updateFeed:
     | ((preferences: { candidates: string[]; themes: string[] }) => void)
     | undefined;
@@ -151,21 +238,12 @@ async function start() {
       save();
       void render();
     });
-  document.querySelector('#follow-clear')?.addEventListener('click', () => {
+  resetFollow = (failed) => {
     prefs = { candidates: [], themes: [], lastVisit: null };
     previousVisit = null;
-    let failed = false;
-    try {
-      localStorage.removeItem(key);
-    } catch {
-      available = false;
-      failed = true;
-    }
+    if (failed) available = false;
     void render();
-    if (failed && status)
-      status.textContent =
-        'L’effacement du stockage a échoué. Effacez les données du site dans les réglages de votre navigateur.';
-  });
+  };
   void render();
   if (app && !location.hash.startsWith('#changement=')) {
     prefs.lastVisit = new Date().toISOString();

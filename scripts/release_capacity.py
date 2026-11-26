@@ -10,29 +10,37 @@ import tempfile
 DEPLOY = runpy.run_path(pathlib.Path(__file__).resolve().parents[1] / 'deploy/pull-release.py')
 
 
-def measure(raw):
+def measure(raw, expected_sha=None):
     groups = Counter()
     counts = Counter()
     digests = set()
     duplicate_bytes = 0
-    with DEPLOY['bounded_tar'](raw) as bundle:
-        members = bundle.getmembers()
-        expanded = bundle.fileobj.seek(0, 2)
-        for member in members:
+    largest = None
+    with DEPLOY['bounded_tar'](raw, expected_sha=expected_sha) as (bundle, budget):
+        for count, member in enumerate(bundle, 1):
+            if count > budget.members:
+                raise ValueError('Trop de membres pour le profil de publication')
+            if member.size < 0 or member.size > DEPLOY['MAX_FILE']:
+                raise ValueError('Membre au-delà du plafond')
+            if largest is None or member.size > largest.size:
+                largest = member
             key, _, rest = member.name.partition('/')
             group = key if rest else 'Racine'
             groups[group] += member.size
             counts[group] += 1
-            digest = hashlib.sha256(bundle.extractfile(member).read()).digest()
+            with bundle.extractfile(member) as contents:
+                digest = DEPLOY['digest_stream'](contents)
             if digest in digests:
                 duplicate_bytes += member.size
             digests.add(digest)
-        largest = max(members, key=lambda member: member.size)
+        expanded = bundle.fileobj.seek(0, 2)
+    if largest is None:
+        raise ValueError('Archive de publication vide')
     return (
         [
-            ('Archive gzip (octets)', len(raw), DEPLOY['MAX_ARCHIVE']),
-            ('TAR complet (octets)', expanded, DEPLOY['MAX_EXPANDED']),
-            ('Fichiers', len(members), DEPLOY['MAX_FILES']),
+            ('Archive gzip (octets)', len(raw), budget.compressed),
+            ('TAR complet (octets)', expanded, budget.expanded),
+            ('Fichiers', count, budget.members),
             ('Plus grand fichier (octets)', largest.size, DEPLOY['MAX_FILE']),
         ],
         largest.name,
@@ -99,7 +107,7 @@ def main():
     parser.add_argument('--checksum', required=True, type=pathlib.Path)
     parser.add_argument('--revision', required=True)
     args = parser.parse_args()
-    if args.archive.stat().st_size > DEPLOY['MAX_ARCHIVE'] or args.checksum.stat().st_size > 1024:
+    if args.archive.stat().st_size > DEPLOY['PARTITIONED_MAX_ARCHIVE'] or args.checksum.stat().st_size > 1024:
         raise ValueError('Fichier au-delà du plafond')
     raw = args.archive.read_bytes()
     wanted = args.checksum.read_text(encoding='ascii').split()
@@ -107,7 +115,7 @@ def main():
         raise ValueError('Empreinte de publication incohérente')
     with tempfile.TemporaryDirectory(prefix='polradar-capacite-') as checked:
         DEPLOY['extract_static'](raw, pathlib.Path(checked), args.revision)
-    print(report(measure(raw)), end='')
+    print(report(measure(raw, args.revision)), end='')
 
 
 if __name__ == '__main__':

@@ -1,6 +1,7 @@
 import { sourceCommit } from '../../scripts/release-revision.mjs';
 import history from '../data/daily-updates.json';
 import { corpusCounts, identicalProposals } from './corpus-counts.mjs';
+import { collectionClock, dataCollectionCadence } from './collection-clock.mjs';
 import { dailyHistorySchema, latestCollections } from './daily-updates.mjs';
 import { dataset, meta } from './data';
 import { documents } from './documents';
@@ -68,6 +69,8 @@ for (const act of searchIndex.actes) {
     summary.ballotsWithTrackedVote++;
 }
 
+const assessmentTime = Date.now();
+
 export const documentaryHealth = {
   version: 1,
   sourceCommit,
@@ -122,14 +125,24 @@ export const documentaryHealth = {
     ...parliamentaryCoverage,
   },
   collections: latestCollections(dailyHistorySchema.parse(history)).map(
-    ({ row, run, attempted, succeeded }) => ({
-      id: row.id,
-      scope: run.scope ?? 'complete',
-      attempted,
-      succeeded,
-      dataDate: row.dataDate,
-      status: row.status,
-      incidents: row.incidents.length,
-    }),
+    ({ row, run, attempted, succeeded }) => {
+      const cadence = dataCollectionCadence(row.id);
+      return {
+        id: row.id,
+        scope: run.scope ?? 'complete',
+        attempted,
+        succeeded,
+        dataDate: row.dataDate,
+        status: row.status,
+        incidents: row.incidents.length,
+        cadence,
+        freshness: collectionClock(
+          cadence,
+          attempted,
+          succeeded,
+          assessmentTime,
+        ),
+      };
+    },
   ),
 };

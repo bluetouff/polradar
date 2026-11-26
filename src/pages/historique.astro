@@ -3,6 +3,7 @@ import PagedResults from '../components/PagedResults.astro';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import { measures, versions, candidates, formatDate } from '../lib/data';
+import { sourceCommit } from '../../scripts/release-revision.mjs';
 const updated = versions
   .filter((version) => version.kind !== 'import')
   .sort((a, b) => b.observedOn.localeCompare(a.observedOn));
@@ -26,15 +27,25 @@ const updated = versions
       Comparer les propositions dans les documents officiels ↗
     </a>
   </p>
-  <section class="version-workbench">
+  <section
+    id="comparaison-historique"
+    class="version-workbench"
+    data-source-commit={sourceCommit ?? undefined}
+  >
     <div class="register-heading">
-      <h2>Comparer deux versions</h2>
-      <span class="small muted">Versions du contenu Polradar</span>
+      <h2 id="history-heading">Comparer deux états d’une fiche</h2>
     </div>
-    <form id="history-form" class="facet-filters">
-      <label>
+    <form
+      id="history-form"
+      class="facet-filters"
+      action="/historique/#comparaison-historique"
+      method="get"
+      aria-labelledby="history-heading"
+      hidden
+    >
+      <label for="history-measure">
         Fiche
-        <select id="history-measure" name="mesure">
+        <select id="history-measure" name="mesure" required>
           <option value="">Choisir une fiche</option>
           {measures.map((measure) => (
             <option value={measure.id}>
@@ -48,24 +59,58 @@ const updated = versions
           ))}
         </select>
       </label>
-      <label>
+      <label for="history-mode">
+        Comparer par
+        <select id="history-mode" name="mode">
+          <option value="versions">Numéros de version</option>
+          <option value="dates">Dates d’enregistrement</option>
+        </select>
+      </label>
+      <label for="history-before">
         Avant
         <select id="history-before" name="avant"></select>
       </label>
-      <label>
+      <label for="history-after">
         Après
         <select id="history-after" name="apres"></select>
+      </label>
+      <label for="history-date-before" hidden>
+        Première date
+        <input
+          type="date"
+          id="history-date-before"
+          name="dateAvant"
+          aria-describedby="history-date-help"
+          disabled
+        />
+      </label>
+      <label for="history-date-after" hidden>
+        Deuxième date
+        <input
+          type="date"
+          id="history-date-after"
+          name="dateApres"
+          aria-describedby="history-date-help"
+          disabled
+        />
       </label>
       <button class="button" type="submit">
         Comparer
       </button>
     </form>
+    <p id="history-date-help" class="small muted" hidden>
+      La comparaison retient la dernière version dont l’enregistrement est daté
+      à la fin de chaque journée, heure de Paris.
+    </p>
+    <noscript>
+      <p class="notice">
+        Les versions et leurs résumés restent consultables dans le journal
+        ci-dessous et sur chaque fiche.
+      </p>
+    </noscript>
     <p id="history-status" class="results-meta" role="status"></p>
     <div id="history-result">
-      <p class="notice">
-        Sélectionnez une fiche pour examiner ses versions. Les dates et
-        modifications récentes figurent ci-dessous.
-      </p>
+      <p class="notice">Sélectionnez une fiche pour examiner ses versions.</p>
     </div>
   </section>
   <section class="section-space">

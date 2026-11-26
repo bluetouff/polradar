@@ -15,6 +15,7 @@ import shutil
 import subprocess
 import tarfile
 import tempfile
+from typing import NamedTuple
 import urllib.parse
 import urllib.request
 
@@ -22,10 +23,21 @@ MAX_ARCHIVE = 36 * 1024 * 1024
 MAX_EXPANDED = 256 * 1024 * 1024
 MAX_FILE = 10 * 1024 * 1024
 MAX_FILES = 10000
+PARTITIONED_MAX_ARCHIVE = 64 * 1024 * 1024
+PARTITIONED_MAX_EXPANDED = 512 * 1024 * 1024
+PARTITIONED_MAX_FILES = 20000
+CORPUS = 'api/corpus.json'
+CORPUS_PARTS_MANIFEST = 'api/corpus-parts.json'
+CORPUS_PARTS_PREFIX = 'api/corpus-parts/'
+MAX_CORPUS = 64 * 1024 * 1024
+MAX_CORPUS_PART = 2 * 1024 * 1024
+MAX_CORPUS_PARTS = 128
+MAX_CORPUS_PARTS_MANIFEST = 32 * 1024
 EXTENSIONS = {'.html', '.css', '.js', '.json', '.xml', '.txt', '.svg', '.png', '.jpg', '.jpeg', '.webp', '.avif', '.ico', '.woff2'}
 HOSTS = {'api.github.com', 'github.com', 'release-assets.githubusercontent.com', 'objects.githubusercontent.com'}
 SHA = re.compile(r'[0-9a-f]{40}')
 FINGERPRINT = re.compile(r'[0-9a-f]{64}')
+COLLECTION = re.compile(r'[a-z][A-Za-z0-9]{0,59}')
 PUBLIC_SURFACES = {
     'index.html', 'statistiques/index.html', 'recherche/index.html',
     'comparer/index.html', 'sondages/index.html', 'api/corpus.json',
@@ -73,61 +85,222 @@ def api(repository, suffix):
     return json.loads(download(f'https://api.github.com/repos/{repository}/{suffix}', 2 * 1024 * 1024))
 
 
+class ArchiveBudget(NamedTuple):
+    compressed: int
+    expanded: int
+    members: int
+
+
+def archive_budget(partitioned=False):
+    if partitioned:
+        return ArchiveBudget(PARTITIONED_MAX_ARCHIVE, PARTITIONED_MAX_EXPANDED, PARTITIONED_MAX_FILES)
+    return ArchiveBudget(MAX_ARCHIVE, MAX_EXPANDED, MAX_FILES)
+
+
+def archive_prefix(compressed, expected_sha):
+    header = compressed.read(tarfile.BLOCKSIZE)
+    try:
+        first = tarfile.TarInfo.frombuf(header, 'utf-8', 'strict')
+    except (tarfile.HeaderError, UnicodeError):
+        # Let the full TAR reader handle older or invalid headers within legacy limits.
+        return header, False
+    if first.name != CORPUS_PARTS_MANIFEST:
+        return header, False
+    if first.type not in (tarfile.REGTYPE, tarfile.AREGTYPE) or first.mode & 0o111 or not 0 < first.size <= MAX_CORPUS_PARTS_MANIFEST:
+        raise ValueError('Invalid leading corpus manifest')
+    raw = compressed.read(first.size)
+    if len(raw) != first.size:
+        raise ValueError('Incomplete leading corpus manifest')
+    manifest = parse_corpus_manifest(raw)
+    if expected_sha is not None and manifest['sourceCommit'] != expected_sha:
+        raise ValueError('Corpus transport provenance mismatch')
+    return header + raw, True
+
+
 @contextmanager
-def bounded_tar(archive):
+def bounded_tar(archive, *, expected_sha=None, staging=None):
     """Check the complete gzip stream, including bytes after the TAR end markers."""
-    if len(archive) > MAX_ARCHIVE:
+    if len(archive) > PARTITIONED_MAX_ARCHIVE:
         raise ValueError('Compressed archive too large')
-    with tempfile.TemporaryFile() as expanded:
-        with gzip.GzipFile(fileobj=io.BytesIO(archive)) as compressed:
-            remaining = MAX_EXPANDED
+    with gzip.GzipFile(fileobj=io.BytesIO(archive)) as compressed:
+        prefix, partitioned = archive_prefix(compressed, expected_sha)
+        budget = archive_budget(partitioned)
+        if len(archive) > budget.compressed:
+            raise ValueError('Compressed archive too large')
+        ceiling, error = budget.expanded, 'Expanded archive too large'
+        if staging is not None:
+            # Keep space for the installed edition while the temporary TAR is still open.
+            space = shutil.disk_usage(staging).free // 2
+            if space < ceiling:
+                ceiling, error = space, 'Insufficient staging disk space'
+        remaining = ceiling - len(prefix)
+        if remaining < 0:
+            raise ValueError(error)
+        with tempfile.TemporaryFile(dir=staging) as expanded:
+            expanded.write(prefix)
             while True:
                 chunk = compressed.read(min(64 * 1024, remaining + 1))
                 if not chunk:
                     break
                 if len(chunk) > remaining:
-                    raise ValueError('Expanded archive too large')
+                    raise ValueError(error)
                 expanded.write(chunk)
                 remaining -= len(chunk)
-        expanded.seek(0)
-        with tarfile.open(fileobj=expanded, mode='r:') as bundle:
-            yield bundle
+            expanded.seek(0)
+            with tarfile.open(fileobj=expanded, mode='r:') as bundle:
+                yield bundle, budget
+
+
+def part_name(index):
+    return f'{CORPUS_PARTS_PREFIX}{index:03d}.txt'
+
+
+def unique_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError('Duplicate manifest key')
+        result[key] = value
+    return result
+
+
+def parse_corpus_manifest(raw):
+    manifest = json.loads(raw, object_pairs_hook=unique_object)
+    if (not isinstance(manifest, dict)
+            or set(manifest) != {'version', 'sourceCommit', 'sha256', 'bytes', 'partitions'}
+            or type(manifest['version']) is not int or manifest['version'] != 1
+            or not isinstance(manifest['sourceCommit'], str) or not SHA.fullmatch(manifest['sourceCommit'])
+            or not isinstance(manifest['sha256'], str) or not FINGERPRINT.fullmatch(manifest['sha256'])
+            or type(manifest['bytes']) is not int or not 0 < manifest['bytes'] <= MAX_CORPUS):
+        raise ValueError('Corpus transport provenance mismatch')
+    parts = manifest['partitions']
+    if not isinstance(parts, list) or not 1 <= len(parts) <= MAX_CORPUS_PARTS:
+        raise ValueError('Unexpected corpus partition inventory')
+    offset = 0
+    for part in parts:
+        if (not isinstance(part, dict) or set(part) != {'collection', 'offset', 'bytes', 'sha256'}
+                or not isinstance(part['collection'], str) or not COLLECTION.fullmatch(part['collection'])
+                or type(part['offset']) is not int or part['offset'] != offset
+                or type(part['bytes']) is not int or not 0 < part['bytes'] <= MAX_CORPUS_PART
+                or not isinstance(part['sha256'], str) or not FINGERPRINT.fullmatch(part['sha256'])):
+            raise ValueError('Invalid corpus partition')
+        offset += part['bytes']
+    if offset != manifest['bytes']:
+        raise ValueError('Invalid corpus partition total')
+    return manifest
+
+
+def corpus_parts(bundle, members, expected_sha, digest):
+    fragments = {name for name in members if name.startswith(CORPUS_PARTS_PREFIX)}
+    if CORPUS_PARTS_MANIFEST not in members:
+        if fragments or CORPUS not in members:
+            raise ValueError('Incomplete corpus transport')
+        return None
+    marker = members[CORPUS_PARTS_MANIFEST]
+    if CORPUS in members or not 0 < marker.size <= MAX_CORPUS_PARTS_MANIFEST:
+        raise ValueError('Invalid corpus transport')
+    with bundle.extractfile(marker) as raw:
+        manifest = parse_corpus_manifest(raw.read())
+    if manifest['sourceCommit'] != expected_sha or manifest['sha256'] != digest:
+        raise ValueError('Corpus transport provenance mismatch')
+    parts = manifest['partitions']
+    if fragments != {part_name(i) for i in range(len(parts))}:
+        raise ValueError('Unexpected corpus partition inventory')
+    if any(members[part_name(i)].size != part['bytes'] for i, part in enumerate(parts)):
+        raise ValueError('Invalid corpus partition size')
+    return manifest
+
+
+def assemble_corpus(bundle, members, target, manifest):
+    digest = hashlib.sha256()
+    with target.open('xb') as output:
+        for i, part in enumerate(manifest['partitions']):
+            with bundle.extractfile(members[part_name(i)]) as source:
+                data = source.read()
+            if len(data) != part['bytes'] or hashlib.sha256(data).hexdigest() != part['sha256']:
+                raise ValueError('Corpus partition checksum mismatch')
+            digest.update(data)
+            output.write(data)
+    if digest.hexdigest() != manifest['sha256']:
+        raise ValueError('Corpus checksum mismatch')
+    target.chmod(0o644)
+
+
+def digest_stream(stream):
+    checksum = hashlib.sha256()
+    for chunk in iter(lambda: stream.read(64 * 1024), b''):
+        checksum.update(chunk)
+    return checksum.hexdigest()
+
+
+def installed_space(members, parts, destination):
+    fs = os.statvfs(destination)
+    block = fs.f_frsize or fs.f_bsize
+    dirs = set()
+    sizes = []
+    for name, member in members.items():
+        if name.startswith(CORPUS_PARTS_PREFIX):
+            continue
+        sizes.append(member.size)
+        dirs.update(PurePosixPath(name).parents)
+    if parts is not None:
+        sizes.append(parts['bytes'])
+    dirs.discard(PurePosixPath('.'))
+    blocks = sum((size + block - 1) // block for size in sizes) + len(dirs)
+    return blocks * block
 
 
 def extract_static(archive, destination, expected_sha):
     """Never use extractall: reject traversal, links, executables and oversized data."""
     if not SHA.fullmatch(expected_sha):
         raise ValueError('Invalid source commit')
-    seen = set()
+    members = {}
     total = 0
-    with bounded_tar(archive) as bundle:
+    with bounded_tar(archive, expected_sha=expected_sha, staging=destination) as (bundle, budget):
         for member in bundle:
             name = member.name
             parts = PurePosixPath(name).parts
             if not parts or name.startswith('/') or '\\' in name or any(not re.fullmatch(r'[A-Za-z0-9_][A-Za-z0-9_.-]{0,180}', part) or part in ('.', '..') for part in name.split('/')):
                 raise ValueError('Unsafe archive path')
-            if name in seen or len(seen) >= MAX_FILES:
+            if name in members or len(members) >= budget.members:
                 raise ValueError('Duplicate path or too many files')
-            seen.add(name)
-            if not member.isfile() or member.mode & 0o111 or PurePosixPath(name).suffix.lower() not in EXTENSIONS:
+            if member.type not in (tarfile.REGTYPE, tarfile.AREGTYPE) or member.mode & 0o111 or PurePosixPath(name).suffix.lower() not in EXTENSIONS:
                 raise ValueError('Non-static archive member')
             total += member.size
-            if member.size < 0 or member.size > MAX_FILE or total > MAX_EXPANDED:
+            if member.size < 0 or member.size > MAX_FILE or total > budget.expanded:
                 raise ValueError('Static file too large')
-            target = destination.joinpath(*parts)
+            members[name] = member
+        required = {'index.html', 'build.json', 'robots.txt', 'sitemap.xml'}
+        if not required.issubset(members):
+            raise ValueError('Incomplete static release')
+        if members['build.json'].size > 8192:
+            raise ValueError('Build manifest too large')
+        with bundle.extractfile(members['build.json']) as raw:
+            manifest = json.load(raw, object_pairs_hook=unique_object)
+        if not isinstance(manifest, dict) or manifest.get('sourceCommit') != expected_sha or manifest.get('repository') != 'bluetouff/polradar':
+            raise ValueError('Build provenance mismatch')
+        hashes = surface_hashes(manifest)
+        parts = corpus_parts(bundle, members, expected_sha, hashes.get(CORPUS))
+        if shutil.disk_usage(destination).free < installed_space(members, parts, destination):
+            raise ValueError('Insufficient staging disk space')
+        for name, member in members.items():
+            if name.startswith(CORPUS_PARTS_PREFIX):
+                continue
+            target = destination / name
             target.parent.mkdir(parents=True, exist_ok=True, mode=0o755)
             with bundle.extractfile(member) as source, target.open('xb') as output:
                 shutil.copyfileobj(source, output, length=64 * 1024)
             target.chmod(0o644)
-    required = {'index.html', 'build.json', 'robots.txt', 'sitemap.xml', 'api/corpus.json'}
-    if not required.issubset(seen):
-        raise ValueError('Incomplete static release')
-    manifest = json.loads((destination / 'build.json').read_text(encoding='utf-8'))
-    if manifest.get('sourceCommit') != expected_sha or manifest.get('repository') != 'bluetouff/polradar':
-        raise ValueError('Build provenance mismatch')
-    for name, digest in surface_hashes(manifest).items():
-        if name not in seen or hashlib.sha256((destination / name).read_bytes()).hexdigest() != digest:
-            raise ValueError(f'Public surface checksum mismatch: {name}')
+        if parts is not None:
+            assemble_corpus(bundle, members, destination / CORPUS, parts)
+    for name, digest in hashes.items():
+        if name == CORPUS and parts is not None:
+            continue  # The reconstructed bytes already match this exact digest.
+        if name not in members:
+            raise ValueError(f'Public surface missing: {name}')
+        with (destination / name).open('rb') as stream:
+            if digest_stream(stream) != digest:
+                raise ValueError(f'Public surface checksum mismatch: {name}')
     for directory in destination.rglob('*'):
         if directory.is_dir():
             directory.chmod(0o755)
@@ -135,23 +308,47 @@ def extract_static(archive, destination, expected_sha):
 
 def check_live(sha):
     """Check the local Apache TLS vhost, without disabling certificate validation."""
-    def request(path, limit):
-        return subprocess.run([
-            '/usr/bin/curl', '--fail', '--silent', '--show-error',
-            '--proto', '=https', '--max-time', '10', '--max-filesize', str(limit),
-            '--resolve', 'polradar.fr:443:127.0.0.1', 'https://polradar.fr/' + path,
-        ], capture_output=True, check=True, timeout=12).stdout
-
-    marker = json.loads(request('build.json', 8192))
+    marker = json.loads(local_request('build.json', 8192))
     if marker.get('sourceCommit') != sha:
         raise ValueError('Live commit mismatch')
     hashes = surface_hashes(marker)
     if not hashes:
-        request('', MAX_FILE)
-    for name in ('index.html', 'api/recherche.json', 'api/corpus.json', 'rss.xml') if hashes else ():
+        local_request('', MAX_FILE)
+    for name in ('index.html', 'api/recherche.json', CORPUS, 'rss.xml') if hashes else ():
         path = name.removesuffix('index.html')
-        if hashlib.sha256(request(path, MAX_FILE)).hexdigest() != hashes[name]:
-            raise ValueError(f'Live public surface mismatch: {name}')
+        limit = MAX_CORPUS if name == CORPUS else MAX_FILE
+        with tempfile.TemporaryFile() as response:
+            local_request(path, limit, response)
+            response.seek(0)
+            if digest_stream(response) != hashes[name]:
+                raise ValueError(f'Live public surface mismatch: {name}')
+
+
+def local_request(path, limit, output=subprocess.PIPE):
+    return subprocess.run([
+        '/usr/bin/curl', '--fail', '--silent', '--show-error',
+        '--proto', '=https', '--max-time', '10', '--max-filesize', str(limit),
+        '--resolve', 'polradar.fr:443:127.0.0.1', 'https://polradar.fr/' + path,
+    ], stdout=output, stderr=subprocess.PIPE, check=True, timeout=12).stdout
+
+
+def partition_reader_revision():
+    response = json.loads(local_request('api/v1/corpus', 32768))
+    data = response.get('donnees')
+    revision = response.get('revisionDuSite')
+    service = response.get('revisionDuService')
+    if (not isinstance(data, dict) or type(data.get('versionTransportCorpus')) is not int
+            or data['versionTransportCorpus'] != 1 or response.get('sansResultat') is not False
+            or not isinstance(service, str) or not SHA.fullmatch(service)
+            or not isinstance(revision, str) or not SHA.fullmatch(revision)):
+        raise ValueError('Active service has no partitioned corpus reader')
+    return revision
+
+
+def check_live_partitioned(sha):
+    check_live(sha)
+    if partition_reader_revision() != sha:
+        raise ValueError('Live service reads a different edition')
 
 
 class PublicationPaused(ValueError):
@@ -257,12 +454,12 @@ def synchronize(args):
         assets = {item['name']: item for item in release['assets']}
         if not {'site.tar.gz', 'site.sha256'}.issubset(assets):
             raise ValueError('Release assets missing')
-        if assets['site.tar.gz']['size'] > MAX_ARCHIVE or assets['site.sha256']['size'] > 1024:
+        if assets['site.tar.gz']['size'] > PARTITIONED_MAX_ARCHIVE or assets['site.sha256']['size'] > 1024:
             raise ValueError('Release asset too large')
         checksum = download(assets['site.sha256']['browser_download_url'], 1024).decode('ascii').strip()
         if not re.fullmatch(r'[0-9a-f]{64}  site\.tar\.gz', checksum):
             raise ValueError('Invalid checksum format')
-        archive = download(assets['site.tar.gz']['browser_download_url'], MAX_ARCHIVE)
+        archive = download(assets['site.tar.gz']['browser_download_url'], PARTITIONED_MAX_ARCHIVE)
         if hashlib.sha256(archive).hexdigest() != checksum[:64]:
             raise ValueError('Release checksum mismatch')
         releases = Path(args.releases_root).absolute()
@@ -276,13 +473,17 @@ def synchronize(args):
         try:
             extract_static(archive, temporary, sha)
             temporary.chmod(0o755)
+            needs_reader = (temporary / CORPUS).stat().st_size > MAX_FILE
             check_activation_window(document_root, temporary, state)
             if api(args.repository, 'commits/main')['sha'] != sha:
                 print('Main changed during preparation. Waiting for the current release.')
                 return
+            if needs_reader:
+                if not current.is_file() or partition_reader_revision() != json.loads(current.read_text()).get('sourceCommit'):
+                    raise ValueError('Active service reads a different edition')
             os.rename(temporary, target)
             try:
-                activate(document_root, target, state, sha)
+                activate(document_root, target, state, sha, verify=check_live_partitioned if needs_reader else check_live)
             except PublicationPaused:
                 # The window began between the two checks, before the symlink switch.
                 os.rename(target, temporary)

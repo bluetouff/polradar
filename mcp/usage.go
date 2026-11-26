@@ -11,7 +11,10 @@ import (
 	"time"
 )
 
-var toolNames = []string{"polradar_search", "polradar_measure", "polradar_candidates", "polradar_corpus", "polradar_donnees", "polradar_question", "polradar_comparer", "polradar_votes", "polradar_changements", "polradar_territoires", "polradar_methodologie"}
+var legacyToolNames = []string{"polradar_search", "polradar_measure", "polradar_candidates", "polradar_corpus", "polradar_donnees", "polradar_question", "polradar_comparer", "polradar_votes", "polradar_changements", "polradar_territoires", "polradar_methodologie"}
+var toolNames = append([]string{answerTool}, legacyToolNames...)
+
+const answerUsageFilename = "usage-answer.json"
 
 type counts struct {
 	Success          int64 `json:"success"`
@@ -75,42 +78,72 @@ type usage struct {
 
 func dateKey(t time.Time) string { return t.UTC().Format(time.DateOnly) }
 func dayOK(s string) bool        { _, err := time.Parse(time.DateOnly, s); return err == nil }
+
+func validUsageFile(records usageFile, tools []string) bool {
+	if !dayOK(records.First) || records.Days == nil || len(records.Days) > 30 {
+		return false
+	}
+	for day, items := range records.Days {
+		if !dayOK(day) || day < records.First {
+			return false
+		}
+		for name, count := range items {
+			if !slices.Contains(tools, name) || !count.valid() {
+				return false
+			}
+		}
+	}
+	return true
+}
+
 func openUsage(dir string, now time.Time) *usage {
 	u := &usage{path: filepath.Join(dir, "usage.json")}
 	err := readData(u.path, 1<<18, &u.records)
 	if err != nil {
 		if _, statErr := os.Stat(u.path); os.IsNotExist(statErr) {
 			u.records = usageFile{First: dateKey(now), Days: map[string]map[string]counts{}}
-			u.unavailable = u.save() != nil
+			u.unavailable = writeUsageFile(u.path, u.records) != nil
 		} else {
 			u.unavailable = true
 		}
-		return u
 	}
-	if !dayOK(u.records.First) || u.records.Days == nil || len(u.records.Days) > 30 {
+	if u.unavailable || !validUsageFile(u.records, legacyToolNames) {
 		u.unavailable = true
 		return u
 	}
-	for day, items := range u.records.Days {
-		if !dayOK(day) || day < u.records.First {
+	// Keep the v1.5 checkpoint readable after a rollback. The extra
+	// per-tool counts stay in their own file during that older service run.
+	answerPath := filepath.Join(dir, answerUsageFilename)
+	var extra usageFile
+	if err := readData(answerPath, 1<<18, &extra); err != nil {
+		if _, statErr := os.Stat(answerPath); !os.IsNotExist(statErr) {
 			u.unavailable = true
-			break
 		}
-		for name, n := range items {
-			if !slices.Contains(toolNames, name) || !n.valid() {
-				u.unavailable = true
-				break
-			}
+		return u
+	}
+	if !validUsageFile(extra, []string{answerTool}) || extra.First < u.records.First {
+		u.unavailable = true
+		return u
+	}
+	earliest := dateKey(now.UTC().AddDate(0, 0, -29))
+	for day, items := range extra.Days {
+		if day < earliest {
+			continue
 		}
+		if u.records.Days[day] == nil {
+			u.records.Days[day] = map[string]counts{}
+		}
+		u.records.Days[day][answerTool] = items[answerTool]
 	}
 	return u
 }
-func (u *usage) save() error {
-	b, err := json.Marshal(u.records)
+
+func writeUsageFile(path string, records usageFile) error {
+	b, err := json.Marshal(records)
 	if err != nil {
 		return err
 	}
-	f, err := os.CreateTemp(filepath.Dir(u.path), ".usage-")
+	f, err := os.CreateTemp(filepath.Dir(path), ".usage-")
 	if err != nil {
 		return err
 	}
@@ -125,15 +158,39 @@ func (u *usage) save() error {
 	if closeErr != nil {
 		return closeErr
 	}
-	if err := os.Rename(f.Name(), u.path); err != nil {
+	if err := os.Rename(f.Name(), path); err != nil {
 		return err
 	}
-	dir, err := os.Open(filepath.Dir(u.path))
+	dir, err := os.Open(filepath.Dir(path))
 	if err != nil {
 		return err
 	}
 	defer dir.Close()
 	return dir.Sync()
+}
+
+func (u *usage) save() error {
+	legacy := usageFile{First: u.records.First, Days: map[string]map[string]counts{}}
+	extra := usageFile{First: u.records.First, Days: map[string]map[string]counts{}}
+	for day, items := range u.records.Days {
+		for name, count := range items {
+			selected := legacy.Days
+			if name == answerTool {
+				selected = extra.Days
+			}
+			if selected[day] == nil {
+				selected[day] = map[string]counts{}
+			}
+			selected[day][name] = count
+		}
+	}
+	if err := writeUsageFile(u.path, legacy); err != nil {
+		return err
+	}
+	if len(extra.Days) != 0 {
+		return writeUsageFile(filepath.Join(filepath.Dir(u.path), answerUsageFilename), extra)
+	}
+	return nil
 }
 func (u *usage) record(name string, outcome counts, now time.Time) {
 	if !slices.Contains(toolNames, name) {

@@ -6,6 +6,7 @@ export function GET() {
       dossiers: 1,
       territoires: 1,
       sondages: 1,
+      'comparaisons-sondages': 1,
       economie: 1,
       agenda: 1,
       budgets: 1,

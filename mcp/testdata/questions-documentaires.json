@@ -1,8 +1,99 @@
 {
   "version": 1,
-  "annotation": "2026-11-24",
+  "annotation": "2026-11-26",
   "conditions": "Révision du site identique, sources et identifiants documentés, tous les champs exigés présents et toutes les valeurs attendues exactes. Un résultat absent ou une erreur masquée fait échouer la question.",
   "questions": [
+    {
+      "famille": "reponse-documentaire",
+      "question": "Quel est le passage source de melenchon-education-2 ?",
+      "outil": "polradar_answer",
+      "arguments": {
+        "question": "Quel est le passage source de melenchon-education-2 ?"
+      },
+      "attendus": {
+        "/etat": "documente",
+        "/intention": "source",
+        "/resultats/0/id": "melenchon-education-2",
+        "/resultats/0/versionId": "melenchon-education-2-v3",
+        "/resultats/0/auteur": "Jean-Luc Mélenchon",
+        "/resultats/0/titre": "Réduire le nombre d’élèves par classe et abroger le « choc des savoirs »",
+        "/resultats/0/url": "https://polradar.fr/mesures/melenchon-education-2/#version-3",
+        "/resultats/0/sources/0/url": "https://melenchon2027.fr/programme/livre/le-gout-du-futur-aux-nouvelles-frontieres-de-l-humanite/chapitre2#:~:text=R%C3%A9duire%20partout%20les%20effectifs%20par%20classe"
+      },
+      "champs": ["/resultats/0/sources/0/passage", "/couverture/perimetre"],
+      "sources": [
+        "https://melenchon2027.fr/programme/livre/le-gout-du-futur-aux-nouvelles-frontieres-de-l-humanite/chapitre2#:~:text=R%C3%A9duire%20partout%20les%20effectifs%20par%20classe"
+      ],
+      "identifiants": ["melenchon-education-2", "melenchon-education-2-v3"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "reponse-documentaire",
+      "question": "Quel est l’objet du scrutin n° 9916 sur la cybersécurité ?",
+      "outil": "polradar_answer",
+      "arguments": {
+        "question": "Quel est l’objet du scrutin n° 9916 sur la cybersécurité ?"
+      },
+      "attendus": {
+        "/etat": "documente",
+        "/intention": "scrutin",
+        "/resultats/0/id": "VTANR5L17V9916",
+        "/resultats/0/date": "2026-11-17",
+        "/resultats/0/typeDate": "scrutin",
+        "/resultats/0/sources/0/url": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9916"
+      },
+      "champs": ["/resultats/0/titre", "/couverture/perimetre"],
+      "sources": ["https://www.assemblee-nationale.fr/dyn/17/scrutins/9916"],
+      "identifiants": ["VTANR5L17V9916"],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "reponse-documentaire",
+      "question": "Quels scénarios OpinionWay CNEWS ont un terrain le 21 octobre 2026 ?",
+      "outil": "polradar_answer",
+      "arguments": {
+        "question": "Quels scénarios OpinionWay CNEWS ont un terrain le 21 octobre 2026 ?"
+      },
+      "attendus": {
+        "/etat": "partiel",
+        "/motif": "liste_bornee",
+        "/intention": "sondage",
+        "/couverture/total": 4,
+        "/resultats/0/sources/0/url": "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2352#page=12",
+        "/resultats/0/chiffres/0/valeur": "680",
+        "/resultats/0/chiffres/0/periode": "2026-10-21 – 2026-10-22"
+      },
+      "champs": ["/resultats/0/titre", "/resultats/0/sources/0/passage"],
+      "sources": [
+        "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2352#page=12"
+      ],
+      "identifiants": [
+        "opinionway-commission-10333-p12",
+        "notice-commission-10333"
+      ],
+      "vide": false,
+      "erreur": false
+    },
+    {
+      "famille": "reponse-documentaire",
+      "question": "Qui va gagner la présidentielle ?",
+      "outil": "polradar_answer",
+      "arguments": { "question": "Qui va gagner la présidentielle ?" },
+      "attendus": {
+        "/etat": "hors-perimetre",
+        "/motif": "prediction_hors_perimetre",
+        "/couverture/total": null,
+        "/couverture/url": "https://polradar.fr/methode/",
+        "/resultats": []
+      },
+      "champs": ["/explication", "/couverture/perimetre"],
+      "sources": ["https://polradar.fr/methode/"],
+      "identifiants": ["prediction_hors_perimetre"],
+      "vide": true,
+      "erreur": false
+    },
     {
       "famille": "programmes",
       "question": "Dans sa première version, qui porte la fiche « Supprimer les régions » et quel passage la documente ?",

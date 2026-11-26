@@ -15,11 +15,12 @@ def main():
     args = parser.parse_args()
     deploy = runpy.run_path(str(ROOT / "deploy" / "pull-release.py"))
     sha = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
-    if args.archive.stat().st_size > deploy["MAX_ARCHIVE"]:
+    if args.archive.stat().st_size > deploy["PARTITIONED_MAX_ARCHIVE"]:
         raise ValueError("Archive trop volumineuse")
     with tempfile.TemporaryDirectory(prefix="polradar-contrat-") as directory:
         deploy["extract_static"](args.archive.read_bytes(), Path(directory), sha)
-        for name, limit in [('corpus',10<<20), ('dossiers',8<<20), ('territoires',5<<20)]:
+        corpus_limit = deploy['MAX_CORPUS'] if (Path(directory) / deploy['CORPUS_PARTS_MANIFEST']).is_file() else deploy['MAX_FILE']
+        for name, limit in [('corpus',corpus_limit), ('dossiers',8<<20), ('territoires',5<<20)]:
             used = (Path(directory)/'api'/(name+'.json')).stat().st_size
             print(f'{name}: {used} / {limit} octets ({used/limit:.1%})', flush=True)
             if used >= limit*0.8: print(f'::warning::{name} occupe au moins 80 % de son plafond')

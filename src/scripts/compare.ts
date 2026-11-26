@@ -8,6 +8,7 @@ import {
   download,
 } from './ui';
 import { metricGroups } from '../lib/features.mjs';
+import { saveView } from './saved-views';
 import { attributionLabel } from '../lib/attribution.mjs';
 import type { Corpus } from '../lib/data';
 
@@ -51,6 +52,7 @@ const form = document.querySelector<HTMLFormElement>('#compare-form')!,
   jumps = document.querySelector<HTMLElement>('.comparison-jumps')!,
   exportButton =
     document.querySelector<HTMLButtonElement>('#comparison-export')!,
+  saveButton = document.querySelector<HTMLButtonElement>('#comparison-save')!,
   selects = [0, 1, 2].map((index) =>
     document.querySelector<HTMLSelectElement>(`#compare-candidate-${index}`)!,
   );
@@ -65,7 +67,7 @@ function start() {
       const retained = new URLSearchParams(
         location.hash.slice(selectionFragment.length),
       );
-      for (const key of ['c', 'theme', 'archives', 'count']) {
+      for (const key of ['c', 'theme', 'question', 'archives', 'count']) {
         const value = retained.get(key);
         if (value) params.set(key, value);
       }
@@ -88,6 +90,7 @@ function start() {
   }
   let generation = 0;
   let exportData: string | undefined;
+  let savedView: { parameters: URLSearchParams; title: string } | undefined;
   async function render(focus = false, save?: 'push' | 'replace') {
     const count = third.checked ? 3 : 2;
     const ticket = ++generation;
@@ -137,6 +140,8 @@ function start() {
     comparison.hidden = active.length < 2;
     exportData = undefined;
     exportButton.disabled = true;
+    savedView = undefined;
+    saveButton.disabled = true;
     const query = new URLSearchParams();
     if (theme.value !== themeSelect.options[0].value)
       query.set('theme', theme.value);
@@ -157,10 +162,9 @@ function start() {
         : `${reading.candidates} dossier${reading.candidates > 1 ? 's' : ''} avec une réponse sourcée`
       : '';
     if (subject) query.set('question', subject.value);
-    const address =
-      location.pathname +
-      (query.size ? '?' + query : '') +
-      (save === 'replace' ? '' : location.hash);
+    const address = location.hash.startsWith(selectionFragment)
+      ? location.pathname + (query.size ? selectionFragment + query : '')
+      : location.pathname + (query.size ? '?' + query : '') + location.hash;
     if (save === 'replace') history.replaceState(null, '', address);
     if (
       save === 'push' &&
@@ -314,7 +318,15 @@ function start() {
       footer.append(anchor('Dossier du candidat ↗', `/candidats/${id}/`));
       card.append(header, body, footer);
       card.id = 'comparaison-' + id;
-      jumps.append(anchor(candidate.name, '#' + card.id));
+      const jump = anchor(candidate.name, '#' + card.id);
+      jump.addEventListener('click', (event) => {
+        if (!location.hash.startsWith(selectionFragment)) return;
+        event.preventDefault();
+        card.tabIndex = -1;
+        card.focus({ preventScroll: true });
+        card.scrollIntoView({ block: 'start' });
+      });
+      jumps.append(jump);
       container.append(card);
     }
     const metrics = document.querySelector<HTMLElement>('#comparison-metrics')!;
@@ -349,6 +361,16 @@ function start() {
       2,
     );
     exportButton.disabled = false;
+    savedView = {
+      parameters: query,
+      title: [
+        subject?.text ?? theme.text,
+        ...active.map(
+          (id) => selected.find((candidate) => candidate.id === id)!.name,
+        ),
+      ].join(' · '),
+    };
+    saveButton.disabled = false;
     if (focus) heading.focus();
     feedback.textContent = `${available} candidature${available > 1 ? 's' : ''} renseignée${available > 1 ? 's' : ''} sur ${active.length} · ${relevant.length} fiche${relevant.length > 1 ? 's' : ''} · corpus du ${date(data.meta.corpusUpdated)}`;
   }
@@ -358,6 +380,14 @@ function start() {
   });
   form.addEventListener('change', () => void render(false, 'push'));
   window.addEventListener('popstate', restore);
+  saveButton.addEventListener('click', async () => {
+    if (savedView)
+      feedback.textContent = await saveView(
+        'compare',
+        savedView.parameters,
+        savedView.title,
+      );
+  });
   exportButton.addEventListener('click', () => {
     if (exportData)
       download(

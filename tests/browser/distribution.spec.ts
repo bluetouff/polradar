@@ -22,6 +22,7 @@ test('le manifeste et les icônes sont servis localement', async ({
     name: 'Polradar',
     start_url: '/',
     display: 'standalone',
+    shortcuts: [{ name: 'Fiche hors ligne', url: '/hors-ligne/v1/' }],
   });
   for (const icon of manifest.icons) {
     const data = await request.get(icon.src);

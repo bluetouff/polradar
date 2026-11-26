@@ -356,5 +356,27 @@ func (c *snapshot) territory(a territoryArgs) (any, bool, error) {
 	return map[string]any{"commune": name, "codeInsee": code, "inventaireSRU": d.SRU[code], "accessibiliteGeneralistes": d.APL[code], "definitions": d.Definitions}, false, nil
 }
 func (c *snapshot) methodology(_ struct{}) (any, bool, error) {
-	return map[string]any{"url": site + "/methode/", "attribution": "Le statut campagne désigne une déclaration de campagne. Un texte de parti conserve son auteur collectif. Une orientation exprime une direction générale. Les archives gardent leur millésime.", "absence": "Une case vide indique qu’aucun passage correspondant n’a été documenté.", "votes": "Le scrutin porte sur le texte indiqué. Abstention, absence et vote enregistré conservent leur qualification officielle.", "dates": "La publication peut être datée au jour, à l’année ou inconnue. La consultation et la collecte ont leurs propres dates.", "fraicheur": site + "/mises-a-jour/", "couverture": site + "/statistiques/"}, false, nil
+	value := map[string]any{
+		"url": site + "/methode/", "attribution": "Le statut campagne désigne une déclaration de campagne. Un texte de parti conserve son auteur collectif. Une orientation exprime une direction générale. Les archives gardent leur millésime.",
+		"absence": "Une case vide indique qu’aucun passage correspondant n’a été documenté.", "votes": "Le scrutin porte sur le texte indiqué. Abstention, absence et vote enregistré conservent leur qualification officielle.",
+		"dates": "La publication peut être datée au jour, à l’année ou inconnue. La consultation et la collecte ont leurs propres dates.", "fraicheur": site + "/mises-a-jour/", "couverture": site + "/statistiques/",
+		"releveFraicheur": site + "/api/qualite-documentaire.json",
+	}
+	var report struct {
+		SourceCommit string   `json:"sourceCommit"`
+		Collections  []record `json:"collections"`
+	}
+	// Éditions antérieures : garder le lien de lecture sans déduire un état.
+	if readData(filepath.Join(c.root, "api", "qualite-documentaire.json"), 512<<10, &report) == nil && report.SourceCommit == c.commit {
+		timing := make([]record, 0, len(report.Collections))
+		for _, row := range report.Collections {
+			if row["freshness"] != nil {
+				timing = append(timing, row)
+			}
+		}
+		if len(timing) > 0 {
+			value["fraicheurCollectes"] = timing
+		}
+	}
+	return value, false, nil
 }

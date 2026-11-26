@@ -11,6 +11,10 @@ const label = new Intl.DateTimeFormat('fr-FR', {
 });
 const grace = 2 * 60 * 60 * 1000;
 
+export function dataCollectionCadence(id) {
+  return id === 'sondages' ? 'sondages' : 'quotidienne';
+}
+
 export function formatCollectionTime(instant) {
   return label.format(new Date(instant));
 }
@@ -37,11 +41,25 @@ export function collectionClock(
       );
     }),
   );
+  const previous = slots.findLast((time) => time <= now);
   const due = slots.findLast((time) => time + grace <= now);
   const next = slots.find((time) => time > now);
+  const missedAttempt = !attempted || Date.parse(attempted) < due;
+  const missedSuccess = !succeeded || Date.parse(succeeded) < due;
+  const inGrace = now < previous + grace && Date.parse(attempted) < previous;
   return {
+    evaluatedAt: new Date(now).toISOString(),
     next: new Date(next).toISOString(),
-    missedAttempt: !attempted || Date.parse(attempted) < due,
-    missedSuccess: !succeeded || Date.parse(succeeded) < due,
+    requiredSince: new Date(due).toISOString(),
+    graceEndsAt: inGrace ? new Date(previous + grace).toISOString() : null,
+    missedAttempt,
+    missedSuccess,
+    state: missedAttempt
+      ? 'tentative-en-retard'
+      : missedSuccess
+        ? 'succes-en-retard'
+        : inGrace
+          ? 'dans-la-tolerance'
+          : 'a-jour',
   };
 }

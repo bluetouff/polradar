@@ -62,7 +62,9 @@
     { key: 'empty', label: 'Sans résultat' },
     { key: 'error', label: 'Erreurs' },
   ] as const;
+  const answerTool = 'polradar_answer';
   const names = new Map([
+    [answerTool, 'Réponse avec preuves'],
     ['polradar_search', 'Recherche dans le corpus'],
     ['polradar_measure', 'Fiche d’une mesure'],
     ['polradar_candidates', 'Liste des candidats'],
@@ -180,11 +182,12 @@
     for (const day of days)
       for (const { key } of outcomes) totals[key] += day[key];
     if (!Number.isSafeInteger(total(totals))) return;
+    const expectedTools = names.size - (seen.has(answerTool) ? 0 : 1);
     for (const { key } of outcomes) {
       const byTool = tools.reduce((sum, row) => sum + row[key], 0);
       if (
         byTool > totals[key] ||
-        (tools.length === names.size && byTool !== totals[key])
+        (tools.length === expectedTools && byTool !== totals[key])
       )
         return;
     }
@@ -274,11 +277,13 @@
     const list = panel.querySelector<HTMLElement>('[data-tools]')!;
     const byName = new Map(tools.map((row) => [row.name, row]));
     const peak = Math.max(0, ...tools.map(total));
-    const entries = [...names].sort(
-      ([a], [b]) =>
-        (byName.has(b) ? total(byName.get(b)!) : -1) -
-        (byName.has(a) ? total(byName.get(a)!) : -1),
-    );
+    const entries = [...names]
+      .filter(([name]) => name !== answerTool || byName.has(name))
+      .sort(
+        ([a], [b]) =>
+          (byName.has(b) ? total(byName.get(b)!) : -1) -
+          (byName.has(a) ? total(byName.get(a)!) : -1),
+      );
     for (const [name, label] of entries) {
       const item = html('li'),
         row = byName.get(name);

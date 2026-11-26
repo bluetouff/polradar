@@ -274,6 +274,10 @@ test('le contrôle quotidien suit l’heure de Paris au changement d’heure et 
   );
   assert.equal(remaining.next, '2026-03-30T06:00:00.000Z');
   assert.equal(remaining.missedAttempt, false);
+  assert.equal(remaining.state, 'dans-la-tolerance');
+  assert.equal(remaining.evaluatedAt, '2026-03-29T07:59:00.000Z');
+  assert.equal(remaining.graceEndsAt, '2026-03-29T08:00:00.000Z');
+  assert.equal(remaining.requiredSince, '2026-03-28T07:00:00.000Z');
   const late = collectionClock(
     'quotidienne',
     yesterday,
@@ -281,6 +285,9 @@ test('le contrôle quotidien suit l’heure de Paris au changement d’heure et 
     Date.parse('2026-03-29T08:00:00Z'),
   );
   assert.equal(late.missedAttempt, true);
+  assert.equal(late.state, 'tentative-en-retard');
+  assert.equal(late.graceEndsAt, null);
+  assert.equal(late.requiredSince, '2026-03-29T06:00:00.000Z');
   assert.equal(
     collectionClock(
       'sondages',

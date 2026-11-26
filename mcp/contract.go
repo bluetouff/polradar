@@ -12,7 +12,7 @@ import (
 // Advertise the bounds the tools already enforce, so clients can build valid arguments.
 func toolInput[I any](name string) *jsonschema.Schema {
 	switch name {
-	case "polradar_search", "polradar_donnees", "polradar_comparer", "polradar_changements", "polradar_territoires":
+	case answerTool, "polradar_search", "polradar_donnees", "polradar_comparer", "polradar_changements", "polradar_territoires":
 	default:
 		return nil
 	}
@@ -27,6 +27,10 @@ func toolInput[I any](name string) *jsonschema.Schema {
 		}
 	}
 	switch name {
+	case answerTool:
+		props["question"].MinLength = jsonschema.Ptr(1)
+		props["question"].MaxLength = jsonschema.Ptr(answerMaxQuestion)
+		props["expectedRevision"].Pattern = commitID.String()
 	case "polradar_search":
 		schema.Description = "Renseignez au moins un filtre : query, candidate, theme, scope ou candidateStatus."
 		schema.MinProperties = jsonschema.Ptr(1)
@@ -71,10 +75,24 @@ func fields(spec map[string]string) map[string]any {
 
 func toolOutput(name string) map[string]any {
 	paged := map[string]string{"total": "integer", "offset": "integer", "resultats": "array", "suivant": "integer|null", "aucunResultat": "boolean", "finDeListe": "boolean"}
-	var data map[string]any
+	var data any
 	absent := func(key string) map[string]any { return fields(map[string]string{key: "null"}) }
 	alternatives := func(items ...map[string]any) map[string]any { return map[string]any{"type": "object", "oneOf": items} }
 	switch name {
+	case answerTool:
+		schema, err := jsonschema.For[documentaryAnswer](nil)
+		if err != nil {
+			panic(err)
+		}
+		props := schema.Properties
+		props["etat"].Enum = []any{"documente", "partiel", "sans-resultat", "ambigu", "hors-perimetre"}
+		for _, intent := range slices.Sorted(maps.Keys(answerRoutes)) {
+			props["intention"].Enum = append(props["intention"].Enum, intent)
+		}
+		props["resultats"].MaxItems = jsonschema.Ptr(answerLimit)
+		props["resultats"].Items.Properties["sources"].MaxItems = jsonschema.Ptr(answerSourceLimit)
+		props["resultats"].Items.Properties["chiffres"].MaxItems = jsonschema.Ptr(answerFactLimit)
+		data = schema
 	case "polradar_question", "polradar_comparer":
 		data = alternatives(fields(paged), absent("question"))
 	case "polradar_votes", "polradar_changements":
@@ -84,12 +102,12 @@ func toolOutput(name string) map[string]any {
 	case "polradar_methodologie":
 		data = fields(map[string]string{"url": "string", "dates": "string", "attribution": "string", "votes": "string"})
 	case "polradar_corpus":
-		data = fields(map[string]string{"campagne": "integer", "parti": "integer", "orientations": "integer", "archives": "integer", "sources": "integer", "themes": "array", "contratsCollections": "object"})
+		data = fields(map[string]string{"campagne": "integer", "parti": "integer", "orientations": "integer", "archives": "integer", "sources": "integer", "themes": "array", "contratsCollections": "object", "versionTransportCorpus": "integer"})
 	case "polradar_candidates":
 		data = fields(map[string]string{"candidatures": "array"})
 	case "polradar_search":
-		data = fields(map[string]string{"total": "integer", "offset": "integer", "suivant": "integer|null", "resultats": "array"})
-		results := data["properties"].(map[string]any)["resultats"].(map[string]any)
+		searchData := fields(map[string]string{"total": "integer", "offset": "integer", "suivant": "integer|null", "resultats": "array"})
+		results := searchData["properties"].(map[string]any)["resultats"].(map[string]any)
 		row := fields(map[string]string{
 			"id": "string", "titre": "string", "auteur": "string", "candidatureAssociee": "string",
 			"statut": "string", "edition": "string", "resume": "string", "url": "string", "urlVersion": "string|null", "source": "object",
@@ -106,6 +124,7 @@ func toolOutput(name string) map[string]any {
 		props["preuves"] = evidence
 		props["urlVersion"].(map[string]any)["description"] = "Lien Polradar vers la version citée. Utilisez url si la version manque."
 		results["items"] = row
+		data = searchData
 	case "polradar_measure":
 		data = alternatives(fields(map[string]string{"id": "string", "titre": "string", "description": "string", "auteur": "string", "statutCandidatureActuel": "string", "sources": "array", "versions": "array", "liensDossierCourant": "object", "versionDemandee": "string|null", "url": "string", "urlVersion": "string|null"}), absent("fiche"))
 	case "polradar_donnees":
