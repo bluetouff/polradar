@@ -317,6 +317,14 @@ func TestPublishedAnswer(t *testing.T) {
 				t.Fatal(r)
 			}
 		}},
+		{"Que propose Fabien Roussel sur le droit de préemption des salariés pour reprendre leur entreprise en coopérative ?", "proposition", "documente", "roussel-ess-preemption-salaries-cooperative", func(t *testing.T, a documentaryAnswer) {
+			r := a.Results[0]
+			if r.Author != "Parti communiste français" || r.Person != "roussel" || r.Status != "parti" || len(r.Sources) != 1 ||
+				r.Sources[0].ID != "pcf-economie-sociale-solidaire" || !strings.HasSuffix(r.Sources[0].URL, "#page=8") || r.Sources[0].Passage == "" {
+				t.Fatal(r)
+			}
+		}},
+		{"Que propose Fabien Roussel sur le droit de préemption des salariés pour reprendre leur entreprise en coopérative avec un seuil de 500 salariés ?", "proposition", "sans-resultat", "", nil},
 		{"Comment comparer les candidats ?", "comparaison", "ambigu", "", nil},
 		{"Quel vote de Raphaël Glucksmann au Parlement européen le 18 mars 2024 ?", "scrutin", "hors-perimetre", "", nil},
 		{"Qui va gagner la présidentielle ?", "inconnue", "hors-perimetre", "", nil},
