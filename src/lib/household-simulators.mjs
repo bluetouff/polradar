@@ -607,6 +607,13 @@ export const householdSimulators = [
         source: commutingSource,
       },
     ],
+    positions: [
+      {
+        measure: 'roussel-mobilites-renforcer-prise-en-charge-abonnements',
+        detail:
+          'Renforcer la prise en charge patronale des abonnements. Le cahier cite des cas à 75 % sans proposer un taux général.',
+      },
+    ],
     method:
       'Cas d’un salarié du privé qui travaille au moins à mi-temps et utilise un abonnement éligible pour ses trajets domicile–travail. Le montant affiché correspond au prix mensuel diminué de la prise en charge, arrondie au centime. En dessous d’un mi-temps, la prise en charge dépend de votre durée de travail.',
   },

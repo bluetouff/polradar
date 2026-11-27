@@ -505,6 +505,8 @@ const labels: Record<string, string> = {
   'institutions-contributions-citoyennes':
     'Comment les citoyens pourraient-ils proposer une décision ?',
   'climat-avenir-eolien': 'Faut-il construire de nouvelles éoliennes ?',
+  'climat-eau-potable':
+    'Comment garantir l’accès à l’eau potable et rénover les réseaux ?',
   'fiscalite-csg-salaires':
     'Faut-il baisser ou supprimer la CSG sur les revenus du travail ?',
 };
@@ -795,6 +797,7 @@ interface Definition {
 }
 const additionalAnswers: Record<string, string[]> = {
   'retraites-conditions-depart': [
+    'saforcada-remplacer-age-legal-par-40-a-43-annuites-v1',
     'tinland-taux-plein-55-60-v1',
     'lepen-fixer-un-plancher-de-160-trimestres-v1',
     'revillon-apreval-retraite-socle-70-puis-85-ans-v2',
@@ -804,6 +807,7 @@ const additionalAnswers: Record<string, string[]> = {
     'bonnal-taux-plein-retraite-41-annuites-v1',
   ],
   'travail-salaire-minimum': [
+    'saforcada-renegocier-grilles-branches-rattrapees-smic-v1',
     'lepen-geler-cotisations-hausses-volontaires-salaires-v1',
     'tinland-revaloriser-smic-v1',
     'bonnal-smic-revalorisation-automatique-v1',
@@ -831,6 +835,7 @@ const additionalAnswers: Record<string, string[]> = {
     'groupe-rn-accroitre-production-nucleaire-2025-v1',
   ],
   'climat-prix-energie': [
+    'saforcada-prix-electricite-fonde-couts-francais-v1',
     'tinland-tva-energie-5-5-v1',
     'polony-taxe-flottante-produits-petroliers-v1',
     'melenchon-retablir-tarifs-reglementes-energie-couts-production-v1',
@@ -866,11 +871,13 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-ramener-taux-marginal-succession-20-v1',
   ],
   'regularisation-sejour': [
+    'roussel-congres-regulariser-familles-enfants-scolarises-v1',
     'labib-regulariser-tous-les-sans-papiers-v1',
     'philippe-soumettre-les-regularisations-massives-a-un-accord-entre-etats-schengen-v1',
     'lisnard-interdire-regularisation-apres-entree-clandestine-v1',
   ],
   'immigration-travail': [
+    'saforcada-titre-probatoire-immigration-travail-3-6-mois-v1',
     'lepen-taxe-embauche-extracommunautaires-v1',
     'legendre-exiger-une-demande-prealable-a-lambassade-pour-limmigration-economique-v1',
     'bonnal-regularisation-cas-par-cas-metiers-en-tension-v1',
@@ -917,6 +924,8 @@ const additionalAnswers: Record<string, string[]> = {
     'branco-remboursement-psychologues-examen-national-v1',
   ],
   'institutions-declenchement-referendum': [
+    'saforcada-elargir-perimetre-referendum-presidentiel-article-11-v1',
+    'saforcada-remplacer-rip-petition-suivie-vote-parlementaire-v1',
     'rn-soutenir-referendum-initiative-citoyenne-v1',
     'philippe-referendum-cadre-articles-11-et-89-v1',
     'tinland-referendum-populaire-un-pour-cent-v1',
@@ -932,6 +941,7 @@ const additionalAnswers: Record<string, string[]> = {
     'place-publique-droit-initiative-referendum-v1',
   ],
   'europe-participation-union': [
+    'roussel-congres-cooperations-europeennes-choisies-v1',
     'tinland-referendum-union-europeenne-v1',
     'polony-maintenir-france-union-europeenne-v1',
     'lepen-commission-au-service-des-etats-v1',
@@ -947,6 +957,9 @@ const additionalAnswers: Record<string, string[]> = {
     'dlf-logiciels-administrations-licences-gratuites-v1',
   ],
   'agriculture-remuneration-contrats': [
+    'saforcada-rendre-couts-complets-production-agricole-opposables-v1',
+    'saforcada-prix-planchers-agricoles-sauvegarde-temporaire-v1',
+    'saforcada-renforcer-controle-marges-filieres-agricoles-v1',
     'lepen-agriculture-prix-installation-jeunes-v1',
     'lisnard-services-environnementaux-agriculteurs-v2',
     'lisnard-charges-agricoles-valeur-ajoutee-v2',
@@ -955,6 +968,7 @@ const additionalAnswers: Record<string, string[]> = {
     'dlf-prix-garantis-agricoles-v1',
   ],
   'agriculture-installation-fermes': [
+    'saforcada-diagnostic-guichet-installation-transmission-agricole-v1',
     'lisnard-credit-impot-transmission-fermes-v1',
     'philippe-aider-installation-transmission-fermes-v1',
     'philippe-creer-un-dispositif-fiscal-de-transmission-des-exploitations-v2',
@@ -964,6 +978,7 @@ const additionalAnswers: Record<string, string[]> = {
     'dlf-reformer-safer-v1',
   ],
   'agriculture-cantines': [
+    'saforcada-priorite-produits-francais-restauration-publique-v1',
     'groupe-rn-restauration-collective-criteres-locaux-v1',
     'polony-commande-production-v2',
     'tinland-restauration-collective-locale-v1',
@@ -983,6 +998,7 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-supprimer-article-55-de-la-loi-sru-v1',
   ],
   'logement-offre-bati': [
+    'saforcada-strategie-construction-rehabilitation-logements-vacants-v1',
     'tinland-construction-sociale-v1',
     'tinland-mobiliser-logements-vides-v1',
     'lepen-objectif-cent-mille-logements-sociaux-v1',
@@ -1018,6 +1034,7 @@ const additionalAnswers: Record<string, string[]> = {
     'place-publique-abroger-parcoursup-etats-generaux-orientation-v1',
   ],
   'institutions-ecrire-constitution': [
+    'saforcada-referendum-obligatoire-revision-souverainete-v1',
     'lisnard-reviser-constitution-directement-par-referendum-v1',
     'place-publique-convention-preparer-constituante-v1',
     'lepen-plafonner-deficit-au-seuil-de-stabilisation-de-la-dette-v1',
@@ -1028,6 +1045,7 @@ const additionalAnswers: Record<string, string[]> = {
     'mlekuz-constituante-apres-refus-v1',
   ],
   'institutions-contributions-citoyennes': [
+    'roussel-congres-convention-citoyenne-projet-loi-v1',
     'tinland-consultations-publiques-v1',
     'lisnard-referendum-initiative-populaire-v1',
     'rn-soutenir-referendum-initiative-citoyenne-v1',
@@ -1090,6 +1108,7 @@ const additionalAnswers: Record<string, string[]> = {
     'marchal-agir-regimes-speciaux-pensions-hautes-v1',
   ],
   'retraites-penibilite': [
+    'saforcada-reconnaitre-penibilite-physique-horaires-psychologique-retraite-v1',
     'lisnard-criteres-usure-retraite-v1',
     'bouamrane-adapter-age-depart-a-penibilite-v1',
     'glucksmann-avancer-departs-metiers-penibles-v1',
@@ -1104,6 +1123,7 @@ const additionalAnswers: Record<string, string[]> = {
     'groupe-rn-moratoire-eolien-et-solaire-2025-v1',
   ],
   'regroupement-familial': [
+    'saforcada-suspendre-puis-durcir-regroupement-familial-v1',
     'rn-supprimer-regroupement-familial-v1',
     'herlin-regroupement-familial-v1',
     'becht-limiter-le-regroupement-familial-pour-les-personnes-hors-union-europeenne-v1',
@@ -1125,6 +1145,7 @@ const additionalAnswers: Record<string, string[]> = {
     'melenchon-creer-statut-famille-monoparentale-v1',
   ],
   'places-prison': [
+    'saforcada-construire-capacites-detention-et-separer-profils-v1',
     'zemmour-prisons-100000-places-v1',
     'herlin-places-prison-v1',
     'becht-places-prisons-haute-securite-v1',
@@ -1136,10 +1157,15 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-autoriser-ntg-v2',
   ],
   'statuts-outre-mer': [
+    'roussel-congres-autodetermination-outre-mer-v1',
     'villepin-permettre-aux-territoires-ultramarins-de-choisir-une-evolution-vers-lautonomie-v1',
     'melenchon-statut-collectivite-unique-v1',
   ],
   'mobilite-territoires': [
+    'roussel-mobilites-autocars-peu-polluants-ruralite-v1',
+    'roussel-mobilites-permis-gratuit-moins-25-ans-v1',
+    'melenchon-rouvrir-lignes-ferroviaires-quotidien-v1',
+    'melenchon-transports-demande-zones-peu-desservies-v1',
     'groupe-rn-permis-jeunes-v2',
     'lisnard-investir-infrastructures-des-enclaves-v1',
     'place-publique-service-public-transports-ruraux-v1',
@@ -1154,6 +1180,8 @@ const additionalAnswers: Record<string, string[]> = {
     'ecologistes-garantir-un-accueil-physique-de-service-public-a-quinze-minutes-v1',
   ],
   'immigration-droit-sol': [
+    'saforcada-maintenir-droit-sol-avec-demarche-volontaire-v1',
+    'roussel-congres-maintenir-droit-sol-et-asile-v1',
     'lisnard-fin-automaticite-droit-du-sol-v1',
     'tinland-citoyennete-residence-nationalite-v1',
     'melenchon-garantir-droit-du-sol-integral-v1',
@@ -1172,6 +1200,9 @@ const additionalAnswers: Record<string, string[]> = {
     'polony-privilegier-acteurs-souverains-donnees-sante-v1',
   ],
   'agriculture-elevages': [
+    'saforcada-admettre-preuves-alternatives-paturages-aides-v1',
+    'saforcada-contrats-filiere-proteines-locales-autonomie-elevage-v1',
+    'saforcada-soutenir-abattoirs-ateliers-laiteries-territoriaux-v1',
     'groupe-rn-six-mois-reglementation-elevages-v1',
     'philippe-stop-surtransposition-normes-agricoles-v1',
     'delmur-interdire-elevage-sans-plein-air-v1',
@@ -1180,6 +1211,7 @@ const additionalAnswers: Record<string, string[]> = {
     'place-publique-moderniser-abattoirs-et-experimenter-unites-mobiles-v1',
   ],
   'travail-demarches-entreprises': [
+    'melenchon-outil-gratuit-facturation-electronique-pme-v1',
     'lepen-supprimer-normes-entreprises-par-ordonnances-v1',
     'lisnard-geler-normes-suspendre-surtranspositions-v1',
     'lisnard-etendre-procedures-simplifiees-grands-chantiers-v1',
@@ -1187,8 +1219,15 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-guichet-numerique-agriculteurs-v2',
   ],
   'numerique-enseignement-numerique': [
+    'roussel-congres-education-image-et-numerique-v1',
     'melenchon-developper-education-numerique-enfants-v1',
     'lisnard-former-eleves-usages-intelligence-artificielle-v1',
+  ],
+  'climat-eau-potable': [
+    'melenchon-gerer-eau-assainissement-en-regie-v1',
+    'melenchon-financer-canalisations-eau-guadeloupe-v1',
+    'melenchon-declencher-orsec-eau-plafonner-bouteilles-v1',
+    'melenchon-ne-pas-repercuter-dette-eau-investissements-v1',
   ],
 };
 const scopedComplements: Record<string, Record<string, string>> = {
@@ -1217,6 +1256,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La proposition porte sur l’offre de formations. Les règles de sélection des candidats sont traitées dans sa proposition sur Parcoursup.',
   },
   'agriculture-elevages': {
+    'saforcada-exiger-reciprocite-methodes-production-importations-agricoles-v1':
+      'Cette clause viserait les conditions de production des biens importés. Le passage ne modifie pas directement les règles des élevages en France.',
     'lisnard-mercosur-exclure-elevage-ou-clause-miroir-v1':
       'La proposition porte sur l’accord commercial avec le Mercosur et les conditions d’importation. Elle ne précise pas les règles d’exploitation des élevages français.',
   },
@@ -1289,6 +1330,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le projet prévoit des objectifs nationaux et des contrats territoriaux. Le passage ne fixe pas de nouveau quota légal par commune.',
   },
   'places-prison': {
+    'roussel-congres-amenager-peines-et-suivre-probation-v1':
+      'Le texte propose d’agir sur la surpopulation par l’aménagement des peines et le suivi en probation. Il ne se prononce pas ici sur la construction de places.',
     'melenchon-regulation-carcerale-contraignante-v1':
       'Le programme prévoit un autre levier pour réduire la surpopulation, la régulation carcérale. Ce passage ne tranche pas la construction de nouveaux établissements.',
   },
@@ -1305,6 +1348,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le chapitre annonce des aménagements pour les métiers les plus pénibles. Il ne donne pas l’âge ni les critères propres à ces départs.',
   },
   'climat-avenir-eolien': {
+    'rohou-distance-dix-hauteurs-eoliennes-terrestres-v1':
+      'La règle porte sur la distance d’implantation des éoliennes terrestres. Le document ne fixe pas de capacité à installer.',
     'zemmour-supprimer-subventions-eoliennes-v1':
       'Éric Zemmour veut retirer le soutien financier aux éoliennes. Il ne précise pas le sort des autorisations de nouveaux parcs dans ce passage.',
     'glucksmann-climat-doublement-renouvelables-v2':
@@ -1357,6 +1402,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La proposition concerne le partage des informations entre les professionnels qui interviennent dans les soins.',
   },
   'institutions-declenchement-referendum': {
+    'rohou-ric-local-environnemental-v1':
+      'Le projet porte sur les référendums locaux en matière environnementale. Le seuil de 5 % des inscrits est donné à titre d’exemple.',
     'philippe-fiscalite-2-v4':
       'Le candidat prévoit de soumettre la règle d’or budgétaire au vote au début du quinquennat. Ce volet ne propose pas de modifier les règles de déclenchement du référendum.',
     'lepen-recourir-au-referendum-expression-citoyens-v1':
@@ -1369,6 +1416,34 @@ const scopedComplements: Record<string, Record<string, string>> = {
   'numerique-hebergement-sante': {
     'philippe-assistant-medical-ia-gratuit-v1':
       'Le programme précise que son assistant médical serait hébergé en France. La proposition se limite à cet outil.',
+  },
+  'agriculture-installation-fermes': {
+    'saforcada-controler-prises-controle-indirectes-foncier-agricole-v1':
+      'Le contrôle vise les transactions foncières par prise de contrôle de société. Il complète les dispositifs d’installation des exploitants.',
+  },
+  'institutions-logiciels-publics': {
+    'saforcada-proteger-cloud-donnees-sensibles-extraterritorialite-v1':
+      'La charte privilégie les logiciels libres maintenus en France pour l’hébergement des données sensibles. Ce passage porte sur ce périmètre.',
+    'roussel-congres-pole-public-numerique-logiciel-libre-v1':
+      'Le logiciel libre est prévu comme base d’un pôle public du numérique. Le passage ne détaille pas les règles d’achat de logiciels pour les administrations.',
+  },
+  'fiscalite-transmission-patrimoine': {
+    'saforcada-faciliter-transmission-entreprises-productives-v1':
+      'Cette mesure facilite la transmission des entreprises productives. Le passage ne fixe pas de barème général de succession.',
+  },
+  'climat-prix-energie': {
+    'roussel-congres-pole-public-energie-edf-engie-total-v1':
+      'Le texte associe maîtrise des prix et contrôle public de l’énergie, avec un pôle réunissant les grands opérateurs. Il ne chiffre pas de nouveau tarif.',
+    'melenchon-reconstituer-pole-public-energie-engie-v1':
+      'Le programme veut reprendre le contrôle public d’opérateurs et revenir sur la libéralisation. Il ne fixe pas de tarif dans ce passage.',
+  },
+  'logement-offre-bati': {
+    'rohou-justifier-absence-alternative-fonciere-v1':
+      'Le MEI veut examiner la rénovation, la densification et le réemploi des friches avant de consommer du foncier. Le passage ne fixe aucun objectif de production de logements.',
+  },
+  'institutions-contributions-citoyennes': {
+    'legendre-voter-en-ligne-consultations-gouvernementales-v1':
+      'Le manifeste détaille une participation en ligne aux consultations. Il ne fixe pas de droit d’initiative ni de seuil de déclenchement.',
   },
 };
 const searchTerms: Record<string, string> = {
@@ -1507,6 +1582,11 @@ export const questionAnswerAliases: Record<string, string[]> = {
   'agriculture-ogm': ['OGM', 'nouvelles techniques génomiques'],
   'statuts-outre-mer': ['statut des outre-mer', 'statuts ultramarins'],
   'mobilite-territoires': ['transports de proximité'],
+  'climat-eau-potable': [
+    'eau potable',
+    'réseaux d’eau',
+    'fuites des réseaux d’eau',
+  ],
   'numerique-hebergement-sante': ['hébergement des données de santé'],
   'numerique-demarches-en-ligne': [
     'démarches administratives en ligne',

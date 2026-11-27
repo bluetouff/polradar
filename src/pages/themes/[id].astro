@@ -27,7 +27,11 @@ const range = pageRange(records.length, page);
 const retirementOverview = theme.id === 'retraites' && page === 1;
 const selectedQuestions: Record<string, string[]> = {
   europe: ['aide-ukraine', 'france-otan', 'europe-participation-union'],
-  climat: ['climat-production-nucleaire', 'climat-prix-energie'],
+  climat: [
+    'climat-production-nucleaire',
+    'climat-prix-energie',
+    'climat-eau-potable',
+  ],
   travail: ['travail-salaire-minimum', 'travail-duree-travail'],
   sante: ['sante-installation-medecins', 'sante-remboursement-soins'],
   immigration: [

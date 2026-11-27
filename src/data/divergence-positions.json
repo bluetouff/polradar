@@ -273,6 +273,11 @@
         "id": "priorite-mix",
         "label": "Donner la priorité au nucléaire et à l’hydraulique",
         "versions": ["lisnard-nucleaire-hydraulique-v1"]
+      },
+      {
+        "id": "maintien-mix",
+        "label": "Maintenir la production nucléaire dans le mix",
+        "versions": ["legendre-conserver-production-electrique-nucleaire-v1"]
       }
     ]
   },
@@ -636,10 +641,7 @@
       {
         "id": "capacites",
         "label": "Suspendre les capacités supplémentaires",
-        "versions": [
-          "rohou-capacites-intermittentes-v1",
-          "bonnal-accelerer-installation-eoliennes-v1"
-        ]
+        "versions": ["rohou-capacites-intermittentes-v1"]
       },
       {
         "id": "aides",
@@ -655,6 +657,11 @@
         "id": "zones-protegees",
         "label": "Restreindre les implantations dans les espaces protégés",
         "versions": ["ecologistes-eolien-reserves-parcs-v1"]
+      },
+      {
+        "id": "acceleration",
+        "label": "Accélérer les installations éoliennes",
+        "versions": ["bonnal-accelerer-installation-eoliennes-v1"]
       }
     ]
   },
@@ -930,6 +937,39 @@
         "id": "partage",
         "label": "Faciliter la colocation et l’habitat inclusif",
         "versions": ["equinoxe-habitat-partage-v1"]
+      }
+    ]
+  },
+  {
+    "id": "climat-eau-potable",
+    "theme": "climat",
+    "label": "Eau potable · accès, réseaux et gestion",
+    "context": "Les mesures portent sur l’accès à l’eau potable, la réparation des réseaux et l’organisation du service. Certains passages concernent spécifiquement les outre-mer.",
+    "positions": [
+      {
+        "id": "reseaux",
+        "label": "Rénover les réseaux et réduire les fuites",
+        "versions": [
+          "melenchon-renover-reseaux-eau-assainissement-v1",
+          "attal-depistage-pfas-captages-v1",
+          "saforcada-plan-fuites-reseaux-eau-v1"
+        ]
+      },
+      {
+        "id": "outre-mer",
+        "label": "Remettre en état les réseaux ultramarins",
+        "versions": [
+          "polony-contrats-performance-reseaux-eau-outre-mer-v1",
+          "dupont-aignan-rehabiliter-les-reseaux-deau-potable-et-dassainissement-en-outre-mer-v1"
+        ]
+      },
+      {
+        "id": "gestion-publique",
+        "label": "Renforcer la gestion publique de l’eau",
+        "versions": [
+          "tinland-eau-regulation-publique-v1",
+          "ecologistes-faire-gerer-leau-potable-par-des-regies-publiques-v1"
+        ]
       }
     ]
   }
