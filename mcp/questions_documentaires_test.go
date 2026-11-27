@@ -99,6 +99,13 @@ func TestPublishedBancDocumentaire(t *testing.T) {
 				q.Attendus[path] = "billetdoux-heritage-bareme-v1"
 			}
 		}
+		// The pinned edition predates the added recording of Arthaud's SMIC proposal.
+		if c.commit == answerLegacyCommit && q.Outil == "polradar_comparer" && q.Arguments["question"] == "travail-salaire-minimum" {
+			const path = "/resultats/0/reponse/positions/0/versionId"
+			if q.Attendus[path] == "arthaud-travail-smic-v2" {
+				q.Attendus[path] = "arthaud-travail-smic-v1"
+			}
+		}
 		// The pinned archive exported the documentary date in evenement, including for announcements.
 		if c.commit == answerLegacyCommit && q.Outil == "polradar_donnees" && q.Arguments["collection"] == "breves" {
 			if date, found := q.Attendus["/publication/dateDocumentaire"]; found {
