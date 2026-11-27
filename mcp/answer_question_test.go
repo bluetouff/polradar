@@ -74,14 +74,21 @@ func TestPublishedAnswerQuestionDossiers(t *testing.T) {
 				fields["/motif"] = tc.motif
 			}
 			if tc.version != "" {
-				fields["/resultats/0/candidatureAssociee"] = tc.candidate
-				fields["/resultats/0/versionId"] = tc.version
-				fields["/resultats/0/relation/qualification"] = tc.qualification
-				fields["/resultats/0/relation/versionCitee"] = tc.version
-				if tc.source != "" {
-					fields["/resultats/0/sources/0/id"] = tc.source
+				resultPath := "/resultats/0"
+				if _, ok := c.byID["riner-contester-envoi-militaires-francais-ukraine"]; tc.candidate == "riner" && ok {
+					fields[resultPath+"/versionId"] = "riner-contester-envoi-militaires-francais-ukraine-v1"
+					fields[resultPath+"/relation/qualification"] = "complement"
+					fields[resultPath+"/sources/0/id"] = "riner-larrouturou-salon-maires-2026-11-25"
+					resultPath = "/resultats/1"
 				}
-				if ref, ok := answerAt(got.Data, "/resultats/0/sources/0/passage"); !ok || ref == "" {
+				fields[resultPath+"/candidatureAssociee"] = tc.candidate
+				fields[resultPath+"/versionId"] = tc.version
+				fields[resultPath+"/relation/qualification"] = tc.qualification
+				fields[resultPath+"/relation/versionCitee"] = tc.version
+				if tc.source != "" {
+					fields[resultPath+"/sources/0/id"] = tc.source
+				}
+				if ref, ok := answerAt(got.Data, resultPath+"/sources/0/passage"); !ok || ref == "" {
 					t.Error("repère du passage absent")
 				}
 			} else {

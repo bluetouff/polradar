@@ -503,6 +503,50 @@ const labels: Record<string, string> = {
 };
 const additions = [
   {
+    id: 'travail-aides-cooperatives',
+    theme: 'travail',
+    title:
+      'Comment soutenir les coopératives et développer leur place dans l’économie ?',
+    terms: 'coopératives SCOP SCIC entreprises soutien aides sociales',
+    versions: [
+      'melenchon-cooperatives-gouvernance-partagee-v1',
+      'roussel-ess-cooperatives-activite-emploi-alternative-uberisation-v1',
+      'tinland-cooperatives-reparation-v1',
+    ],
+  },
+  {
+    id: 'sante-experimentation-animale',
+    theme: 'sante',
+    title: 'Quel avenir pour l’expérimentation animale dans la recherche ?',
+    terms:
+      'expérimentation animale méthodes alternatives recherche sans animaux laboratoires validation',
+    versions: [
+      'delmur-interdire-experimentation-animale-v1',
+      'melenchon-remplacer-experimentation-animale-v1',
+      'philippot-experimentation-animale-alternatives-v1',
+    ],
+  },
+  {
+    id: 'institutions-voile-espace-public',
+    theme: 'institutions',
+    title: 'Faut-il interdire le port du voile dans l’espace public ?',
+    terms: 'voile espace public libertés religieuses port interdiction',
+    versions: ['platret-interdiction-voile-espace-public-v1'],
+  },
+  {
+    id: 'travail-automatisation-intelligence-artificielle',
+    theme: 'travail',
+    title:
+      'Que faire quand l’IA ou des machines remplacent des tâches au travail ?',
+    terms:
+      'intelligence artificielle IA emploi automatisation remplacement du travail guichets machines',
+    versions: [
+      'arthaud-ia-planification-usages-v2',
+      'melenchon-associer-les-representants-des-metiers-a-la-conception-des-ia-au-travail-v1',
+      'revillon-apreval-repartir-temps-travail-apres-automatisation-v2',
+    ],
+  },
+  {
     id: 'europe-accord-mercosur',
     theme: 'europe',
     title:
@@ -616,7 +660,7 @@ const additions = [
       'attal-extension-batiments-elevage-v1',
       'lassalle-exploitations-taille-humaine-v1',
       'markovic-climat-elevage-intensif-v1',
-      'markovic-aider-reconversion-eleveurs-v2',
+      'markovic-aider-reconversion-eleveurs-v3',
       'melenchon-normes-elevage-v1',
     ],
   },
@@ -852,11 +896,12 @@ const additionalAnswers: Record<string, string[]> = {
     'groupe-rn-accroitre-production-nucleaire-2025-v1',
   ],
   'climat-prix-energie': [
+    'becht-envisager-baisse-ticpe-carburants-v1',
     'saforcada-prix-electricite-fonde-couts-francais-v1',
     'tinland-tva-energie-5-5-v1',
     'polony-taxe-flottante-produits-petroliers-v1',
     'melenchon-retablir-tarifs-reglementes-energie-couts-production-v1',
-    'arthaud-climat-carburant-coutant-v1',
+    'arthaud-climat-carburant-coutant-v2',
     'marchal-accord-operateurs-carburants-v1',
     'delmur-tarif-social-energie-v1',
     'attal-stabilite-prix-electricite-v1',
@@ -944,6 +989,7 @@ const additionalAnswers: Record<string, string[]> = {
     'branco-remboursement-psychologues-examen-national-v1',
   ],
   'institutions-declenchement-referendum': [
+    'mlekuz-envisager-article-11-si-absence-majorite-v1',
     'saforcada-elargir-perimetre-referendum-presidentiel-article-11-v1',
     'saforcada-remplacer-rip-petition-suivie-vote-parlementaire-v1',
     'rn-soutenir-referendum-initiative-citoyenne-v1',
@@ -1060,6 +1106,7 @@ const additionalAnswers: Record<string, string[]> = {
     'place-publique-abroger-parcoursup-etats-generaux-orientation-v1',
   ],
   'institutions-ecrire-constitution': [
+    'mlekuz-renouveler-constituants-apres-echec-referendum-v1',
     'saforcada-referendum-obligatoire-revision-souverainete-v1',
     'lisnard-reviser-constitution-directement-par-referendum-v1',
     'place-publique-convention-preparer-constituante-v1',
@@ -1120,6 +1167,7 @@ const additionalAnswers: Record<string, string[]> = {
     'place-publique-contrat-creches-privees-v1',
   ],
   'france-otan': [
+    'durif-sortir-de-lotan-sous-condition-v1',
     'tinland-otan-v1',
     'lepen-sortir-commandement-integre-otan-v1',
     'lisnard-maintenir-cadre-atlantique-a-court-terme-v1',
@@ -1260,6 +1308,19 @@ const additionalAnswers: Record<string, string[]> = {
     'melenchon-ne-pas-repercuter-dette-eau-investissements-v1',
   ],
   'institutions-revocation-elus': ['kazib-rendre-mandats-revocables-v1'],
+  'aide-ukraine': ['lalanne-cesser-envois-fonds-ukraine-v1'],
+  'europe-accord-mercosur': ['lassalle-demander-opposition-france-mercosur-v1'],
+  'sante-experimentation-animale': [
+    'markovic-investir-recherche-remplacement-experimentation-animale-v1',
+    'markovic-accelerer-validation-methodes-sans-animaux-v1',
+    'markovic-renforcer-controle-procedures-experimentation-animale-v1',
+  ],
+  'institutions-voile-espace-public': [
+    'arthaud-sopposer-interdiction-voile-espace-public-v1',
+  ],
+  'travail-automatisation-intelligence-artificielle': [
+    'lalanne-consulter-population-remplacement-travail-ia-v1',
+  ],
 };
 const scopedComplements: Record<string, Record<string, string>> = {
   'social-garde-jeunes-enfants': {
@@ -1289,6 +1350,10 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La proposition porte sur l’offre de formations. Les règles de sélection des candidats sont traitées dans sa proposition sur Parcoursup.',
   },
   'agriculture-elevages': {
+    'lassalle-evoquer-polyculture-diversifier-fermes-v1':
+      'Jean Lassalle cite la polyculture comme une piste de diversification des exploitations. Il ne propose aucune nouvelle règle pour les élevages.',
+    'markovic-reorienter-aides-publiques-cultures-vegetales-v1':
+      'Dans le cadre de la sortie de l’élevage intensif, Mira Markovic propose de réorienter les aides publiques vers les cultures végétales destinées directement à l’alimentation humaine. Le discours ne fixe pas de règles nouvelles pour les exploitations d’élevage.',
     'markovic-parti-refuser-traite-ue-mercosur-v1':
       'Le Parti animaliste prend position sur les importations et l’accord commercial. Les règles pour les élevages français sont exposées dans d’autres fiches.',
     'markovic-parti-encadrer-plus-strictement-transport-animaux-v1':
@@ -1331,6 +1396,10 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le guichet proposé par Renaissance vise les signalements des victimes de cyberattaques.',
   },
   'aide-ukraine': {
+    'riner-contester-envoi-militaires-francais-ukraine-v1':
+      'La déclaration concerne l’envoi de militaires français en Ukraine. Elle ne précise pas le sort de l’aide matérielle ou financière.',
+    'arthaud-contester-livraisons-armes-ukraine-v1':
+      'Nathalie Arthaud conteste la justification des livraisons d’armes françaises à l’Ukraine. Le discours ne détaille pas sa position sur les autres formes d’aide.',
     'melenchon-negocier-cessez-feu-retrait-russe-ukraine-v1':
       'Cette proposition expose les objectifs de négociation et les garanties de paix recherchées. Le passage ne définit aucun volume d’aide française.',
     'melenchon-reconvoquer-conference-paris-osce-apres-paix-ukraine-v1':
@@ -1341,6 +1410,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Teddy Riner dit que la France resterait aux côtés des pays opprimés. Dans cet échange, il renvoie à son futur programme pour les modalités de l’aide.',
   },
   'france-otan': {
+    'durif-inviter-brics-et-otan-gouvernance-paix-v1':
+      'L’invitation à discuter porte sur un cadre diplomatique mondial. Le retrait de l’alliance est décrit dans une autre fiche.',
     'melenchon-refuser-alliance-militaire-permanente-asie-pacifique-v1':
       'La proposition porte sur la politique d’alliances au-delà de l’OTAN. Le retrait français de l’Alliance est traité dans une autre fiche du programme.',
     'glucksmann-otan-garantie-securite-autonomie-europeenne-v1':
@@ -1413,6 +1484,10 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La proposition porte sur les installations existantes. Elle aide à situer l’orientation du candidat sur ces équipements.',
   },
   'institutions-ecrire-constitution': {
+    'markovic-inscrire-protection-animaux-constitution-v1':
+      'Mira Markovic propose d’inscrire la protection animale dans la Constitution. Le discours ne précise pas qui conduirait la révision ni selon quelle procédure.',
+    'mlekuz-autoriser-constituante-proposer-lois-reglements-v1':
+      'Le livre blanc définit aussi le pouvoir de l’assemblée de proposer les textes nécessaires au fonctionnement du nouveau régime.',
     'mathieu-demissionner-organiser-nouvelles-elections-apres-transition-v1':
       'La démission et les nouvelles élections sont prévues après la rédaction du texte et son approbation.',
     'asselineau-referendum-dispositions-constitutionnelles-sortie-ue-v1':
@@ -1517,6 +1592,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le MEI veut examiner la rénovation, la densification et le réemploi des friches avant de consommer du foncier. Le passage ne fixe aucun objectif de production de logements.',
   },
   'institutions-contributions-citoyennes': {
+    'durif-associer-citoyens-aux-priorites-budgetaires-v1':
+      'Sylvain Durif applique la participation citoyenne aux choix de crédits sans présenter de procédure pour formuler ces choix.',
     'cheve-estimer-cout-remontee-citoyenne-v1':
       'Le rapport du collectif éclaire les coûts déclarés de sa plateforme de participation et donne deux estimations différentes des économies attendues.',
     'legendre-voter-en-ligne-consultations-gouvernementales-v1':
@@ -1556,6 +1633,10 @@ const scopedComplements: Record<string, Record<string, string>> = {
     'arthaud-sopposer-aux-expulsions-sans-papiers-v1':
       'La brochure s’oppose aussi aux expulsions dans le passage qui appelle à régulariser les personnes sans papiers.',
   },
+  'travail-aides-cooperatives': {
+    'billetdoux-debattre-perimetre-aides-cooperatives-v1':
+      'Augustin Billetdoux pose la question d’un accès réservé aux coopératives ou ouvert aussi à des entreprises classiques. Il laisse le critère d’éligibilité à débattre.',
+  },
 };
 const searchTerms: Record<string, string> = {
   'logement-obligations-parc-social': 'logement social communes loi SRU',
@@ -1566,6 +1647,25 @@ const searchTerms: Record<string, string> = {
 };
 // These subject phrases identify a precise question. Search terms can be broader.
 export const questionAnswerAliases: Record<string, string[]> = {
+  'travail-aides-cooperatives': [
+    'soutien aux coopératives',
+    'aides aux coopératives',
+    'aides publiques aux coopératives',
+  ],
+  'sante-experimentation-animale': [
+    'expérimentation animale',
+    'recherche sans expérimentation animale',
+  ],
+  'institutions-voile-espace-public': [
+    'voile dans l’espace public',
+    'port du voile dans l’espace public',
+    'interdiction du voile dans l’espace public',
+  ],
+  'travail-automatisation-intelligence-artificielle': [
+    'ia et emploi',
+    'automatisation du travail',
+    'remplacement du travail par l’ia',
+  ],
   'europe-accord-mercosur': [
     'accord avec le Mercosur',
     'accord UE-Mercosur',

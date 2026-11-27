@@ -99,7 +99,7 @@ test('les positions agricoles gardent leur auteur et leur périmètre', async ({
     }),
   ).toBeVisible();
   await expect(
-    markovic.locator('.q-byline').filter({ hasText: 'Campagne 2027' }),
+    markovic.getByText('Campagne 2027 · Déclaration publique', { exact: true }),
   ).toBeVisible();
   await expect(
     markovic
