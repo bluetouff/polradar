@@ -34,6 +34,9 @@ const id = segment(
 const collections = [
   'sondages',
   'comparaisons-sondages',
+  'relations',
+  'debats',
+  'simulation-budgetaire',
   'economie',
   'agenda',
   'budgets',
@@ -536,7 +539,7 @@ export const apiRoutes = [
       filter(
         'query',
         { ...str, maxLength: 160 },
-        'Titre ou adresse pour sources, texte ou identifiant pour parlement. Institut, commanditaire, scénario, identifiant ou date AAAA-MM-JJ pour sondages. Titre, description ou code pour economie. Intitulé ou identifiant pour comparaisons-sondages.',
+        'Titre ou adresse pour sources, texte ou identifiant pour parlement. Institut, commanditaire, scénario, identifiant ou date AAAA-MM-JJ pour sondages. Titre, description ou code pour economie. Intitulé ou identifiant pour comparaisons-sondages. Identifiant exact de question, mesure ou version pour relations.',
       ),
       filter(
         'recherche',
@@ -592,7 +595,7 @@ export const apiRoutes = [
     key: 'publication',
     title: 'Lire un relevé et ses références',
     returns: 'Publication',
-    params: [collection, id],
+    params: [collection, { ...id, schema: { ...id.schema, maxLength: 300 } }],
   },
 ];
 const errors = {

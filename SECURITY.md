@@ -41,6 +41,10 @@ Le format optionnel lie les pièces au commit, à leur ordre, à leur taille et 
 
 Une action explicite enregistre une fiche de 48 Kio au maximum sur l’appareil. Le lecteur contrôle l’empreinte locale et affiche la révision et la date qui accompagnent la copie. Le worker est limité au lecteur `/hors-ligne/` et met en cache trois fichiers de même origine sous un plafond de 64 Kio. Il ne lit aucune préférence de suivi. L’effacement retire la fiche et le cache de ce lecteur. [Lecteur hors ligne](docs/distribution-donnees.md#lire-une-fiche-hors-connexion)
 
+### Recherche et dossiers d’enquête
+
+Les mots-clés sont filtrés dans le navigateur. La validation d’une question complète sans filtre déclenche un POST de même origine. La saisie et la navigation entre résultats restent locales. Un lien de partage ou un export est créé à la demande. Les dossiers et les notes sont enregistrés dans le stockage du navigateur. Joindre les notes à un export demande une action explicite. L’import borne la taille du fichier et vérifie la version, les champs et les liens. La consultation des adresses enregistrées exige un clic. Les exports traitent les titres et les notes comme du texte. [Recette des dossiers](tests/browser/documentary-workspace.spec.ts)
+
 ## Exploitation
 
 Le déploiement statique s’exécute sans root. Zen récupère des versions publiques par HTTPS. Les collectes qui publient des données ont une clé dédiée à ce seul dépôt, accessible à leur étape de publication sur `main`. Le script de récupération nécessite une revue et une installation distincte sur Zen.

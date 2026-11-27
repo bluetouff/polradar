@@ -166,6 +166,13 @@ const examinedDocuments: Record<
   ],
   'numerique-hebergement-sante': [
     {
+      candidate: 'melenchon',
+      sourceId: 'lfi-plan-sante-detail-2027',
+      checked: '2026-11-26',
+      locator:
+        'Plan santé, section 3.2.14. Le passage insiste sur la confidentialité et les risques de dépendance des services. Il ne donne pas de nouvelle exigence pour les hébergeurs.',
+    },
+    {
       candidate: 'retailleau',
       sourceId: 'retailleau-vauban-numerique',
       checked: '2026-11-22',
@@ -198,11 +205,127 @@ const examinedDocuments: Record<
   ],
   'logement-regulation-loyers': [
     {
+      candidate: 'lisnard',
+      sourceId: 'lisnard-entretien-logement-2025',
+      checked: '2026-11-26',
+      locator:
+        'Entretien sur le logement. Le passage préconise de revoir la loi Alur et la fiscalité locative, sans indiquer le sort des plafonds de loyers.',
+    },
+    {
       candidate: 'lepen',
       sourceId: 'rn-lettre-logement-2026',
       checked: '2026-11-20',
       locator:
         'Lettre ouverte du 21 septembre aux professionnels de l’immobilier. Elle traite notamment de la construction, du logement social, de la rénovation et de l’accès à la propriété.',
+    },
+  ],
+  'statuts-outre-mer': [
+    {
+      candidate: 'glucksmann',
+      sourceId: 'place-publique-acte-i-pdf-officiel',
+      checked: '2026-11-26',
+      locator:
+        'Acte I, chantier 33, passage sur la Nouvelle-Calédonie. Le mouvement prévoit une reprise du dialogue dans l’esprit de l’accord de Nouméa, sans procédure de choix du statut.',
+    },
+    {
+      candidate: 'philippe',
+      sourceId: 'philippe-programme-13',
+      checked: '2026-11-26',
+      locator:
+        'Volet outre-mer. Le chapitre détaille notamment les mesures pour Mayotte et les moyens maritimes. Il ne prévoit pas de procédure de choix du statut des territoires.',
+    },
+  ],
+  'retraites-regimes-particuliers': [
+    {
+      candidate: 'lepen',
+      sourceId: 'lepen-retraites-document-24-novembre',
+      checked: '2026-11-26',
+      locator:
+        'Présentation du 24 novembre, répartition et capitalisation. Le document précise le dispositif carrières longues et plusieurs règles de cotisation. Il ne détaille pas le sort des régimes spéciaux.',
+    },
+    {
+      candidate: 'philippe',
+      sourceId: 'philippe-pension',
+      checked: '2026-11-26',
+      locator:
+        'Volet retraites. Les conditions de départ selon les métiers et le pilier de capitalisation sont détaillés. Le document ne précise pas la transition des régimes spéciaux.',
+    },
+    {
+      candidate: 'glucksmann',
+      sourceId: 'place-publique-acte-i-pdf-officiel',
+      checked: '2026-11-26',
+      locator:
+        'Acte I, chantier 29 sur la protection sociale. Le texte prévoit une convergence des régimes de Sécurité sociale et la prise en compte des spécificités professionnelles. Il ne détaille pas les régimes spéciaux de retraite.',
+    },
+  ],
+  'logement-obligations-parc-social': [
+    {
+      candidate: 'philippe',
+      sourceId: 'philippe-programme-12',
+      checked: '2026-11-26',
+      locator:
+        'Volet logement, réponse sur les pouvoirs des maires. Il prévoit de leur confier les attributions de logements sociaux. Le passage ne fixe pas les obligations de construction des communes.',
+    },
+  ],
+  'regroupement-familial': [
+    {
+      candidate: 'glucksmann',
+      sourceId: 'place-publique-acte-i-pdf-officiel',
+      checked: '2026-11-26',
+      locator:
+        'Acte I, chantier sur la politique migratoire, accueil, voies légales et séjour. Le passage ne fixe pas de conditions propres au regroupement familial.',
+    },
+    {
+      candidate: 'melenchon',
+      sourceId: 'melenchon-programme-14',
+      checked: '2026-11-26',
+      locator:
+        'Chapitre sur les discriminations et l’immigration. Les conditions de séjour et de régularisation y figurent. Le texte ne précise pas de règle de regroupement familial.',
+    },
+  ],
+  'agriculture-remuneration-contrats': [
+    {
+      candidate: 'philippe',
+      sourceId: 'philippe-sommet-elevage-2026',
+      checked: '2026-11-26',
+      locator:
+        'Sommet de l’élevage, propositions sur les normes, l’installation, la transmission et le climat. Les modalités de fixation ou de négociation des prix ne sont pas précisées.',
+    },
+  ],
+  'education-eleves-par-classe': [
+    {
+      candidate: 'lisnard',
+      sourceId: 'lisnard-ecole',
+      checked: '2026-11-26',
+      locator:
+        'Volet éducation, passages sur l’autonomie des écoles et les classes d’excellence. Ce document ne fixe pas de nombre maximal d’élèves par classe.',
+    },
+  ],
+  'numerique-publicite': [
+    {
+      candidate: 'melenchon',
+      sourceId: 'lfi-numerique',
+      checked: '2026-11-26',
+      locator:
+        'Chapitre 7, lutte contre la collecte abusive et les fuites de données. Le traitement des données personnelles est abordé sans régime spécial pour le ciblage publicitaire.',
+    },
+  ],
+  'numerique-recommandations': [
+    {
+      candidate: 'melenchon',
+      sourceId: 'lfi-numerique',
+      checked: '2026-11-26',
+      locator:
+        'Chapitre 7, passages sur les grandes plateformes, la modération et l’intelligence artificielle. Les modalités de classement des fils de recommandation ne sont pas précisées.',
+    },
+  ],
+  'numerique-cloud-sensible': [
+    {
+      candidate: 'philippe',
+      sourceId: 'philippe-ia',
+      checked: '2026-11-26',
+      locator:
+        'Volet intelligence artificielle. Il propose des capacités européennes de calcul et d’infrastructure sans préciser de qualification pour le cloud sensible de l’État.',
     },
   ],
 };
@@ -554,6 +677,7 @@ const additionalAnswers: Record<string, string[]> = {
     'bonnal-taux-plein-retraite-41-annuites-v1',
   ],
   'travail-salaire-minimum': [
+    'lepen-geler-cotisations-hausses-volontaires-salaires-v1',
     'tinland-revaloriser-smic-v1',
     'bonnal-smic-revalorisation-automatique-v1',
     'glucksmann-revaloriser-smic-1700-net-v1',
@@ -662,6 +786,8 @@ const additionalAnswers: Record<string, string[]> = {
     'branco-remboursement-psychologues-examen-national-v1',
   ],
   'institutions-declenchement-referendum': [
+    'rn-soutenir-referendum-initiative-citoyenne-v1',
+    'philippe-referendum-cadre-articles-11-et-89-v1',
     'tinland-referendum-populaire-un-pour-cent-v1',
     'lisnard-referendum-initiative-populaire-v1',
     'dubuisson-referendum-decisions-essentielles-v2',
@@ -697,6 +823,7 @@ const additionalAnswers: Record<string, string[]> = {
     'dlf-prix-garantis-agricoles-v1',
   ],
   'agriculture-installation-fermes': [
+    'lisnard-credit-impot-transmission-fermes-v1',
     'philippe-aider-installation-transmission-fermes-v1',
     'philippe-creer-un-dispositif-fiscal-de-transmission-des-exploitations-v2',
     'lepen-agriculture-prix-installation-jeunes-v1',
@@ -705,6 +832,7 @@ const additionalAnswers: Record<string, string[]> = {
     'dlf-reformer-safer-v1',
   ],
   'agriculture-cantines': [
+    'groupe-rn-restauration-collective-criteres-locaux-v1',
     'tinland-restauration-collective-locale-v1',
     'delmur-cantines-locales-bio-v1',
     'pic-prix-plancher-agricole-v1',
@@ -713,6 +841,7 @@ const additionalAnswers: Record<string, string[]> = {
     'melenchon-cantines-bio-local-option-vegetarienne-v1',
   ],
   'logement-obligations-parc-social': [
+    'ps-reviser-loi-sru-sanctionner-villes-carencees-v1',
     'tinland-maires-permis-logements-sociaux-v1',
     'bonnal-maintenir-quotas-loi-sru-v1',
     'roussel-sru-30-logements-sociaux-v1',
@@ -820,24 +949,30 @@ const additionalAnswers: Record<string, string[]> = {
     'legendre-maintenir-renforcer-alliances-dont-otan-v1',
   ],
   'retraites-regimes-particuliers': [
+    'lisnard-mettre-fin-regimes-speciaux-v1',
     'marchal-agir-regimes-speciaux-pensions-hautes-v1',
   ],
   'retraites-penibilite': [
+    'lisnard-criteres-usure-retraite-v1',
     'bouamrane-adapter-age-depart-a-penibilite-v1',
     'roussel-ouvrir-des-departs-anticipes-pour-les-metiers-penibles-et-les-carrieres-longue-v1',
   ],
   'climat-avenir-eolien': [
+    'lisnard-eolien-certains-projets-et-reserve-en-mer-v1',
+    'place-publique-plans-regionaux-renouvelables-vent-v1',
     'tinland-arreter-eolien-v1',
     'retailleau-interrompre-des-appels-doffres-solaires-et-eoliens-en-mer-v1',
     'melenchon-refuser-les-parcs-solaires-et-eoliens-qui-exigent-une-coupe-rase-v1',
     'groupe-rn-moratoire-eolien-et-solaire-2025-v1',
   ],
   'regroupement-familial': [
+    'rn-supprimer-regroupement-familial-v1',
     'herlin-regroupement-familial-v1',
     'becht-limiter-le-regroupement-familial-pour-les-personnes-hors-union-europeenne-v1',
     'dupont-aignan-restreindre-le-regroupement-familial-et-supprimer-le-regime-derogatoire-des-re-v1',
   ],
   'handicap-accompagnement-ecole': [
+    'groupe-rn-cadre-emploi-aesh-v1',
     'attal-corps-professionnel-aesh-v1',
     'roussel-aesh-des-la-rentree-v1',
     'branco-aesh-concours-titularisation-v1',
@@ -855,12 +990,17 @@ const additionalAnswers: Record<string, string[]> = {
     'herlin-places-prison-v1',
     'becht-places-prisons-haute-securite-v1',
   ],
-  'agriculture-ogm': ['tinland-interdire-ogm-v1', 'lisnard-autoriser-ntg-v2'],
+  'agriculture-ogm': [
+    'rn-delegation-soutenir-cadre-europeen-ntg-v1',
+    'tinland-interdire-ogm-v1',
+    'lisnard-autoriser-ntg-v2',
+  ],
   'statuts-outre-mer': [
     'villepin-permettre-aux-territoires-ultramarins-de-choisir-une-evolution-vers-lautonomie-v1',
     'melenchon-statut-collectivite-unique-v1',
   ],
   'mobilite-territoires': [
+    'groupe-rn-permis-jeunes-v2',
     'lisnard-investir-infrastructures-des-enclaves-v1',
     'place-publique-service-public-transports-ruraux-v1',
     'place-publique-plan-rail-trains-legers-ruraux-v1',
@@ -873,11 +1013,13 @@ const additionalAnswers: Record<string, string[]> = {
     'ecologistes-garantir-un-accueil-physique-de-service-public-a-quinze-minutes-v1',
   ],
   'immigration-droit-sol': [
+    'lisnard-fin-automaticite-droit-du-sol-v1',
     'tinland-citoyennete-residence-nationalite-v1',
     'melenchon-garantir-droit-du-sol-integral-v1',
     'lepen-supprimer-droit-du-sol-parti-v1',
   ],
   'immigration-aide-medicale-etat': [
+    'philippe-maintenir-ame-avec-controles-v1',
     'lisnard-remplacer-ame-par-aide-medicale-urgence-v1',
   ],
   'education-eleves-par-classe': [
@@ -887,16 +1029,34 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-cadre-souverain-hebergement-donnees-sante-v1',
   ],
   'agriculture-elevages': [
+    'groupe-rn-six-mois-reglementation-elevages-v1',
     'philippe-stop-surtransposition-normes-agricoles-v1',
     'place-publique-sortie-elevage-cage-union-europeenne-v1',
     'place-publique-moderniser-abattoirs-et-experimenter-unites-mobiles-v1',
   ],
   'travail-demarches-entreprises': [
+    'lepen-supprimer-normes-entreprises-par-ordonnances-v1',
+    'lisnard-geler-normes-suspendre-surtranspositions-v1',
     'tinland-alleger-fiscalite-entreprises-v1',
     'lisnard-guichet-numerique-agriculteurs-v2',
   ],
+  'numerique-enseignement-numerique': [
+    'melenchon-developper-education-numerique-enfants-v1',
+  ],
 };
 const scopedComplements: Record<string, Record<string, string>> = {
+  'agriculture-elevages': {
+    'lisnard-mercosur-exclure-elevage-ou-clause-miroir-v1':
+      'La proposition porte sur l’accord commercial avec le Mercosur et les conditions d’importation. Elle ne précise pas les règles d’exploitation des élevages français.',
+  },
+  'handicap-accompagnement-ecole': {
+    'lisnard-developper-ulis-v1':
+      'Le développement des unités d’inclusion scolaire concerne l’organisation de l’enseignement. Le passage ne précise pas le statut des accompagnants.',
+  },
+  'education-eleves-par-classe': {
+    'lisnard-classes-rurales-plusieurs-niveaux-v1':
+      'Le texte propose de regrouper plusieurs niveaux dans les classes rurales. Il ne fixe pas de nombre maximal d’élèves.',
+  },
   'climat-production-nucleaire': {
     'lepen-renegocier-prix-electricite-europe-v3':
       'Le tract prend pour base la production nucléaire et hydraulique française pour fixer le prix intérieur de l’électricité.',
@@ -924,6 +1084,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Teddy Riner dit que la France resterait aux côtés des pays opprimés. Dans cet échange, il renvoie à son futur programme pour les modalités de l’aide.',
   },
   'france-otan': {
+    'glucksmann-otan-garantie-securite-autonomie-europeenne-v1':
+      'La lettre de février 2025 discute la crédibilité de la garantie américaine. Elle ne demande pas de changement du statut de la France dans l’Alliance.',
     'philippe-soutenir-ladhesion-de-lukraine-a-lotan-v1':
       'Le volet défense soutient l’adhésion de l’Ukraine à l’Alliance. Ce passage ne se prononce pas sur le commandement intégré français.',
   },
@@ -950,6 +1112,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le candidat décrit une obligation de prise en charge et le choix de l’assureur. La composition du panier et les taux remboursés restent à préciser.',
   },
   'logement-obligations-parc-social': {
+    'philippe-donner-aux-maires-la-decision-sur-lencadrement-des-loyers-v1':
+      'Le volet logement transfère l’attribution des logements sociaux aux maires. Il ne donne pas de seuil de construction obligatoire.',
     'place-publique-rehausser-objectifs-logements-sociaux-v1':
       'Le projet prévoit des objectifs nationaux et des contrats territoriaux. Le passage ne fixe pas de nouveau quota légal par commune.',
   },
@@ -958,6 +1122,10 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le programme prévoit un autre levier pour réduire la surpopulation, la régulation carcérale. Ce passage ne tranche pas la construction de nouveaux établissements.',
   },
   'retraites-penibilite': {
+    'melenchon-penibilite-travail-contraintes-retraite-v1':
+      'Le plan santé précise les contraintes à retenir pour calculer les droits à la retraite. Il ne définit pas les conditions d’âge d’un départ anticipé.',
+    'melenchon-reconnaitre-penibilite-metiers-feminises-v1':
+      'Le plan féministe énumère les facteurs à prendre en compte pour les métiers majoritairement exercés par des femmes. L’effet sur l’âge de départ n’est pas précisé.',
     'lepen-preserver-carrieres-longues-plus-favorables-v1':
       'Le passage prévoit de conserver le dispositif des carrières longues quand il est plus favorable. Les critères d’un départ propre aux métiers pénibles ne sont pas détaillés.',
     'tinland-taux-plein-55-60-v1':
@@ -996,6 +1164,10 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La candidate met en cause la charge du dispositif. Elle ne précise pas dans cet échange ce qu’elle changerait dans ses conditions.',
   },
   'sante-aide-a-mourir': {
+    'attal-soutenir-le-droit-a-l-aide-a-mourir-v1':
+      'Gabriel Attal soutient le texte lors de son adoption définitive et annonce sa mise en œuvre. La déclaration précède la promulgation de la loi.',
+    'melenchon-constitutionnaliser-droit-mourir-dignite-v1':
+      'Le programme propose une garantie constitutionnelle. Le passage ne détaille pas les articles de la loi en vigueur qu’il faudrait modifier.',
     'lisnard-prioriser-soins-palliatifs-2025-v1':
       'L’entretien date de janvier 2025 et précède l’adoption de la loi du 18 août 2026. Il documente une position dans le débat antérieur.',
     'saforcada-referendum-fin-de-vie-v1':
@@ -1008,6 +1180,20 @@ const scopedComplements: Record<string, Record<string, string>> = {
   'soins-de-proximite': {
     'dubuisson-dossier-medical-pros-autorises-v1':
       'La proposition concerne le partage des informations entre les professionnels qui interviennent dans les soins.',
+  },
+  'institutions-declenchement-referendum': {
+    'philippe-fiscalite-2-v4':
+      'Le candidat prévoit de soumettre la règle d’or budgétaire au vote au début du quinquennat. Ce volet ne propose pas de modifier les règles de déclenchement du référendum.',
+    'lepen-recourir-au-referendum-expression-citoyens-v1':
+      'Marine Le Pen défend le recours au référendum dans ce discours. Elle ne décrit pas de nouveau dispositif d’initiative citoyenne dans le passage cité.',
+  },
+  'numerique-enseignement-numerique': {
+    'melenchon-droit-deconnexion-eleves-personnels-v1':
+      'Le programme précise les conditions d’usage du numérique à l’école. Le passage ne donne pas de programme d’apprentissage des outils.',
+  },
+  'numerique-hebergement-sante': {
+    'philippe-assistant-medical-ia-gratuit-v1':
+      'Le programme précise que son assistant médical serait hébergé en France. La proposition se limite à cet outil.',
   },
 };
 const searchTerms: Record<string, string> = {

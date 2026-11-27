@@ -197,6 +197,22 @@ func withoutAnswerDates(question, text string) string {
 }
 
 var answerNoticePage = regexp.MustCompile(`\bpage ([1-9][0-9]{0,3})\b`)
+var answerPollPublication = regexp.MustCompile(`\b(?:publiee?|diffusee?) (?:le |du )?([0-9]{4} [0-9]{2} [0-9]{2}|[0-9]{1,2}(?:er)? [a-z]+ [0-9]{4})\b`)
+
+func pollPublicationDate(topic string) string {
+	match := answerPollPublication.FindStringSubmatch(topic)
+	if match == nil {
+		return ""
+	}
+	formatted := strings.ReplaceAll(match[1], " ", "-")
+	if dayOK(formatted) {
+		return formatted
+	}
+	if dates := answerDates(match[1]); len(dates) == 1 {
+		return dates[0]
+	}
+	return ""
+}
 
 func namedPollField(text, field string) bool {
 	value := normalize(field)
@@ -217,6 +233,8 @@ func (c *snapshot) answerPolls(result *documentaryAnswer, question, topic string
 		return err
 	}
 	dates := answerDates(question)
+	publication := pollPublicationDate(topic)
+	dates = slices.DeleteFunc(dates, func(date string) bool { return date == publication })
 	exact := ""
 	names := map[string]bool{}
 	for _, r := range c.Polls {
@@ -232,7 +250,7 @@ func (c *snapshot) answerPolls(result *documentaryAnswer, question, topic string
 	if match := answerNoticePage.FindStringSubmatch(topic); match != nil {
 		page = match[1]
 	}
-	if exact == "" && len(names) == 0 && len(dates) == 0 {
+	if exact == "" && len(names) == 0 && len(dates) == 0 && publication == "" {
 		result.describe("ambigu", "sondage_a_preciser", "Indiquez un institut, une date de terrain ou la référence du scénario.")
 		return nil
 	}
@@ -244,12 +262,13 @@ func (c *snapshot) answerPolls(result *documentaryAnswer, question, topic string
 	}
 	selected := []record{}
 	terrain := answerHas(topic, "terrain")
+	terrainDates := terrain && answerHas(topic, "date", "dates", "debut", "fin")
 	if len(dates) > 2 {
 		result.describe("ambigu", "terrain_a_preciser", "Précisez une date ou les deux dates du terrain à examiner.")
 		return nil
 	}
 	period := ""
-	if len(dates) == 0 {
+	if len(dates) == 0 && publication == "" {
 		period = economyPeriod(question)
 	}
 	commissioners := map[string]bool{}
@@ -261,7 +280,7 @@ func (c *snapshot) answerPolls(result *documentaryAnswer, question, topic string
 	for _, r := range c.Polls {
 		if exact != "" && r.str("id") != exact || exact == "" && len(names) != 0 && !names[r.str("institute")] ||
 			len(commissioners) != 0 && !commissioners[r.str("commissioner")] || round != "" && r.str("round") != round ||
-			page != "" && string(r["noticePage"]) != page {
+			page != "" && string(r["noticePage"]) != page || publication != "" && r.str("published") != publication {
 			continue
 		}
 		if period != "" {
@@ -308,7 +327,9 @@ func (c *snapshot) answerPolls(result *documentaryAnswer, question, topic string
 		id = r.str("noticeSource")
 		var n int
 		fragment, passage := "", ""
-		if json.Unmarshal(r["noticePage"], &n) == nil && n > 0 {
+		if terrainDates {
+			passage = "Dates de réalisation dans la notice de l’enquête"
+		} else if json.Unmarshal(r["noticePage"], &n) == nil && n > 0 {
 			fragment, passage = "page="+strconv.Itoa(n), "Page "+strconv.Itoa(n)+" de la notice"
 		}
 		item.addSource(c.answerCitation(reference{SourceID: id, Locator: passage, Fragment: fragment}))
@@ -350,6 +371,16 @@ func (c *snapshot) answerPolls(result *documentaryAnswer, question, topic string
 				}
 			}
 			namedResultMissing = namedResultMissing || len(people) > found
+			if terrainDates {
+				for _, field := range []struct{ key, label string }{
+					{"fieldworkStart", "Début du terrain"},
+					{"fieldworkEnd", "Fin du terrain"},
+				} {
+					if date := r.str(field.key); date != "" && len(item.Facts) < answerFactLimit {
+						item.Facts = append(item.Facts, answerFact{Label: field.label, Value: date, SourceID: id})
+					}
+				}
+			}
 		}
 		result.Results = append(result.Results, item)
 	}

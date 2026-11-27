@@ -12,6 +12,10 @@ interface Options<T> {
   empty?: () => Node;
   discovery?: HTMLElement;
   onResults?: (rows: T[]) => void;
+  onSubmit?: (filters: URLSearchParams) => boolean;
+  onRestore?: () => void;
+  localHistory?: boolean;
+  initialQuery?: string;
 }
 export function catalogue<T>({
   form,
@@ -24,6 +28,10 @@ export function catalogue<T>({
   empty,
   discovery,
   onResults,
+  onSubmit,
+  onRestore,
+  localHistory = false,
+  initialQuery,
 }: Options<T>) {
   const root = results.closest<HTMLElement>('[data-paged-results]')!;
   const base = root.dataset.base!;
@@ -60,7 +68,21 @@ export function catalogue<T>({
     return pagePath(base, page) + (anchor ? '#resultats' : '');
   };
   let selection = new URLSearchParams();
+  let sequence = 0;
+  const recent = new Map<number, { page: number; filters: URLSearchParams }>();
+  function remember(page: number, filters: URLSearchParams, replace = false) {
+    const key = ++sequence;
+    recent.set(key, { page, filters });
+    if (recent.size > 40) recent.delete(key - 40);
+    if (replace) history.replaceState({ searchStep: key }, '', base);
+    else history.pushState({ searchStep: key }, '', base);
+  }
   const draw = bindPager(root, (p) => {
+    if (localHistory && selection.size) {
+      remember(p, selection);
+      void show(p, true);
+      return;
+    }
     const url = href(p, selection, true);
     if (!selection.size) {
       location.assign(url);
@@ -103,8 +125,13 @@ export function catalogue<T>({
       }
       count.textContent = `${range.total} ${noun}${range.total > 1 ? 's' : ''}`;
       onResults?.(filtered ?? []);
-      draw(range, (n) => href(n, filters, true));
+      draw(range, (n) =>
+        localHistory && filters.size
+          ? base + '#resultats'
+          : href(n, filters, true),
+      );
       if (
+        !localHistory &&
         (filters.size ||
           new URLSearchParams(location.hash.slice(1)).has('page')) &&
         location.pathname + location.hash !== href(range.page, filters)
@@ -125,7 +152,12 @@ export function catalogue<T>({
     }
   }
   function restore() {
-    const params = new URLSearchParams(location.hash.slice(1));
+    onRestore?.();
+    const key = history.state?.searchStep;
+    const stored =
+      localHistory && Number.isSafeInteger(key) ? recent.get(key) : undefined;
+    const params =
+      stored?.filters ?? new URLSearchParams(location.hash.slice(1));
     for (const el of controls) {
       if (el instanceof HTMLInputElement && el.type === 'checkbox')
         el.checked = params.get(el.name) === el.value;
@@ -133,10 +165,15 @@ export function catalogue<T>({
     }
     const pathPage =
       location.pathname.slice(base.length).match(/^page\/(\d+)\/$/)?.[1] ?? '1';
-    void show(params.get('page') ?? pathPage);
+    void show(stored?.page ?? params.get('page') ?? pathPage);
   }
   function filter(push: boolean, focus = false) {
     const params = read();
+    if (localHistory) {
+      if (push) remember(1, params);
+      void show(1, focus);
+      return;
+    }
     const url = href(1, params);
     if (location.pathname + location.hash !== url) {
       const oldHash = new URLSearchParams(location.hash.slice(1));
@@ -153,7 +190,8 @@ export function catalogue<T>({
   }
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    filter(true, true);
+    const submitted = onSubmit?.(read()) ?? false;
+    filter(true, !submitted);
   });
   form.addEventListener('input', (e) => {
     if (e.target instanceof HTMLInputElement && e.target.type !== 'checkbox')
@@ -169,6 +207,9 @@ export function catalogue<T>({
   form.addEventListener('reset', () => setTimeout(() => filter(true), 0));
   window.addEventListener('popstate', restore);
   window.addEventListener('hashchange', restore);
+  if (localHistory && initialQuery) {
+    remember(1, new URLSearchParams({ q: initialQuery }), true);
+  }
   restore();
   form.hidden = false;
   return async () => select(await all(), read());

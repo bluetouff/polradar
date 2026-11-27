@@ -24,8 +24,8 @@ type dataArgs struct {
 	Nature           string `json:"nature,omitempty" jsonschema:"vote, depot, cosignature, rapport, intervention ou mise-au-point."`
 	Theme            string `json:"theme,omitempty" jsonschema:"Thème du registre parlementaire. Numérique inclut le classement par objet de l’acte."`
 	Periode          string `json:"periode,omitempty" jsonschema:"Sénat : année de début de session ; Parlement européen : date de la séance. Une liste sans période donne toutes les périodes couvertes."`
-	Query            string `json:"query,omitempty" jsonschema:"Sondages : institut, commanditaire, scénario, identifiant ou date AAAA-MM-JJ. Comparaisons de sondages : identifiant ou intitulé de l’hypothèse. Économie : titre, description ou code de série. Sources : titre ou URL. Parlement : texte ou identifiant."`
-	Collection       string `json:"collection" jsonschema:"Collection publique : sondages, comparaisons-sondages, economie, agenda, budgets, marches, parlement, sources, droit, financements, verifications, breves, arcom, graphiques, senat ou parlement-europeen."`
+	Query            string `json:"query,omitempty" jsonschema:"Sondages : institut, commanditaire, scénario, identifiant ou date AAAA-MM-JJ. Comparaisons de sondages : identifiant ou intitulé de l’hypothèse. Économie : titre, description ou code de série. Sources : titre ou URL. Parlement : texte ou identifiant. Relations : identifiant exact de question, mesure ou version."`
+	Collection       string `json:"collection" jsonschema:"Collection publique. debats renvoie les passages de prises de parole. simulation-budgetaire donne les comptes publics de référence, les unités et le contrat de calcul des scénarios."`
 	ID               string `json:"id,omitempty" jsonschema:"Identifiant exact retourné par la liste. Sans identifiant, retourne jusqu’à 15 entrées."`
 	Offset           int    `json:"offset,omitempty" jsonschema:"Position de départ pour la liste, à partir de zéro."`
 	ExpectedRevision string `json:"expectedRevision,omitempty" jsonschema:"Révision du site renvoyée par la première page."`
@@ -51,6 +51,9 @@ var collections = map[string]collection{
 	"financements":          {"documentation/financements.json", "items", "title", "", "", "/financements/"},
 	"arcom":                 {"documentation/arcom.json", "items", "title", "date", "", "/temps-de-parole/"},
 	"graphiques":            {"documentation/graphiques.json", "items", "title", "", "", "/mcp/documentation/"},
+	"relations":             {"relations-documentaires.json", "relations", "", "", "", "/questions/"},
+	"debats":                {"debats.json", "items", "title", "date", "", "/debats/"},
+	"simulation-budgetaire": {"simulation-budgetaire.json", "items", "title", "date", "", "/economie/simulateur-budgetaire/"},
 }
 
 var collectionSearchFields = map[string][]string{
@@ -58,6 +61,9 @@ var collectionSearchFields = map[string][]string{
 	"comparaisons-sondages": {"id", "label"},
 	"economie":              {"id", "title", "description", "dataset", "group"},
 	"sources":               {"title", "url"},
+	"breves":                {"id", "title", "description", "date", "evenement"},
+	"financements":          {"id", "title", "candidate"},
+	"debats":                {"id", "title", "description", "author", "theme", "date"},
 }
 
 type pollComparisonMethod struct {
@@ -75,7 +81,7 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 		return nil, false, err
 	}
 	def, ok := collections[a.Collection]
-	if !ok || len(a.ID) > 160 || a.Offset < 0 || a.Offset > maxPageOffset || (a.ID != "" && a.Offset != 0) {
+	if !ok || len(a.ID) > collectionIDLimit(a.Collection) || a.Offset < 0 || a.Offset > maxPageOffset || (a.ID != "" && a.Offset != 0) {
 		return nil, false, errors.New("Collection, identifiant ou pagination invalide.")
 	}
 	var rows []record
@@ -87,6 +93,9 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 			return nil, false, errFilter
 		}
 		return c.searchActs(a)
+	}
+	if a.Collection == "relations" {
+		return c.proofRelations(a, def)
 	}
 	searchFields := collectionSearchFields[a.Collection]
 	if len([]rune(a.Query)) > maxSearchQueryLength || (a.Query != "" && (len(searchFields) == 0 || a.ID != "" || normalize(a.Query) == "")) {
@@ -109,6 +118,9 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 	} else {
 		var doc map[string]json.RawMessage
 		if readData(c.root+"/api/"+def.file, 10<<20, &doc) != nil || json.Unmarshal(doc[def.key], &rows) != nil || rows == nil {
+			return nil, false, invalidCorpus
+		}
+		if (a.Collection == "debats" || a.Collection == "simulation-budgetaire") && record(doc).str("sourceCommit") != c.commit {
 			return nil, false, invalidCorpus
 		}
 		if a.Collection == "comparaisons-sondages" {
@@ -160,6 +172,19 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 				}
 				if a.Collection == "economie" {
 					result["lectureObservations"] = "Chaque observation conserve la période, la valeur publiée et le code de statut fourni par la source. Les unités et la fréquence figurent dans la série."
+					frequencies := map[string]string{"M": "Mensuelle", "Q": "Trimestrielle", "A": "Annuelle"}
+					if label := frequencies[r.str("frequency")]; label != "" {
+						result["frequence"] = label
+					}
+				}
+				if a.Collection == "breves" {
+					result["lectureDates"] = "date désigne la publication de la brève sur Polradar. evenement désigne la date de l’événement lorsqu’elle est établie."
+				}
+				if a.Collection == "sondages" {
+					result["lectureDates"] = "fieldworkStart et fieldworkEnd bornent le terrain. published indique la date de diffusion renseignée, si elle est connue."
+				}
+				if a.Collection == "financements" {
+					result["lectureHorizon"] = "entry.period et entry.horizon indiquent la période du montant présenté. Consultez les sources pour les hypothèses et le périmètre."
 				}
 				if a.Collection == "marches" {
 					result["collecteLe"] = nullable(r.str("observedAt"))

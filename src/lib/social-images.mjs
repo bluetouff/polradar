@@ -97,6 +97,7 @@ const digitalComparison = read('digital-comparison');
 const digitalLaw = read('digital-law');
 const economy = read('economy-series');
 const statements = read('economic-statements');
+const publicAccounts = read('budget');
 const generation1969 = retirement.cohorts.find(
   (row) => row.id === '1969-et-apres',
 );
@@ -519,6 +520,22 @@ const defs = [
     },
   ],
   [
+    'debats',
+    '/debats/',
+    'Présidentielle 2027',
+    'Débats et\nentretiens',
+    'Les interventions de campagne reliées aux passages d’origine.',
+    'navy',
+    {
+      kind: 'document',
+      rows: [
+        'Auteur et date',
+        'Proposition ou orientation',
+        'Passage dans la source',
+      ],
+    },
+  ],
+  [
     'campagne',
     '/campagne/',
     'La campagne présidentielle',
@@ -801,6 +818,21 @@ const defs = [
         'Contexte des propositions',
       ],
     },
+  ],
+  [
+    'simulateur-budgetaire',
+    '/economie/simulateur-budgetaire/',
+    'Finances publiques',
+    'Simulateur\nbudgétaire',
+    'Mesurer l’effet d’une variation des recettes et des dépenses.',
+    'sage',
+    bars(
+      [
+        { label: 'Dépenses', value: publicAccounts.values.spending },
+        { label: 'Recettes', value: publicAccounts.values.revenue },
+      ],
+      `Insee · ${publicAccounts.year} · % du PIB`,
+    ),
   ],
   [
     'recherche',

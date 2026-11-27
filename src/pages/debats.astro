@@ -1,0 +1,232 @@
+---
+import Base from '../layouts/Base.astro';
+import { debateEvidence } from '../lib/debate-evidence';
+import { formatDate, sourceById, themeById, themes } from '../lib/data';
+const authors = [...new Set(debateEvidence.map((row) => row.author))].sort(
+  (a, b) => a.localeCompare(b, 'fr'),
+);
+const topics = themes.filter(({ id }) =>
+  debateEvidence.some((row) => row.theme === id),
+);
+const evidenceGroups = Map.groupBy(
+  debateEvidence,
+  (row) => row.event?.id ?? row.source.id,
+);
+---
+
+<Base
+  title="Débats et entretiens de la présidentielle 2027"
+  section="/breves/"
+  description="Retrouvez les propositions relevées dans les prises de parole de campagne avec leur auteur, leur date et le passage original."
+>
+  <nav class="breadcrumbs" aria-label="Fil d’Ariane">
+    <a href="/breves/">La campagne</a>
+  </nav>
+  <header class="page-title">
+    <h1>Débats et entretiens</h1>
+    <p>
+      Les prises de parole documentées dans le corpus, avec la date, l’auteur et
+      le passage à retrouver dans la source.
+    </p>
+  </header>
+  <form id="debate-filter" class="debate-filter" role="search" hidden>
+    <label>
+      Mot-clé{' '}
+      <input
+        name="words"
+        type="search"
+        placeholder="Ex. retraites"
+        maxlength="120"
+        autocomplete="off"
+      />
+    </label>
+    <label>
+      Auteur{' '}
+      <select name="author">
+        <option value="">Tous</option>
+        {authors.map((author) => (
+          <option>{author}</option>
+        ))}
+      </select>
+    </label>
+    <label>
+      Thème{' '}
+      <select name="theme">
+        <option value="">Tous</option>
+        {topics.map(({ id, label }) => (
+          <option value={id}>{label}</option>
+        ))}
+      </select>
+    </label>
+    <button class="button small" type="reset">
+      Effacer les filtres
+    </button>
+  </form>
+  <div class="debate-register">
+    <div class="debate-count">
+      <p id="debate-count" role="status">
+        {debateEvidence.length} passages reliés
+      </p>
+      <a href="/api/debats.json" download="polradar-debats.json">
+        Exporter en JSON
+      </a>
+    </div>
+    {[...evidenceGroups.values()].map((rows) => {
+      const first = rows[0];
+      const document = sourceById(first.source.id);
+      return (
+        <section class="debate-group" data-debate-group>
+          <header>
+            <h2>{first.event?.title ?? document.title}</h2>
+            {first.date && (
+              <p>
+                {first.dateType === 'intervention'
+                  ? 'Intervention'
+                  : 'Publication'}{' '}
+                du <time datetime={first.date}>{formatDate(first.date)}</time>
+              </p>
+            )}
+          </header>
+          <ul>
+            {rows.map((row) => (
+              <li
+                class="debate-row"
+                data-author={row.author}
+                data-theme={row.theme}
+              >
+                <p class="muted">
+                  {row.author} · {themeById(row.theme).label} ·{' '}
+                  {row.nature === 'campagne'
+                    ? 'Proposition de campagne'
+                    : 'Orientation'}
+                </p>
+                <h3>
+                  <a href={row.url}>{row.title}</a>
+                </h3>
+                <p>{row.description}</p>
+                <p>
+                  <a href={row.source.url} rel="noreferrer">
+                    Ouvrir le passage dans la source ↗
+                  </a>{' '}
+                  · {row.source.passage}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      );
+    })}
+  </div>
+  <p>
+    <a href="/economie/declarations/">
+      Vérifications de déclarations chiffrées ↗
+    </a>
+  </p>
+</Base>
+<script>
+  import { normalize } from '../lib/features.mjs';
+  const form = document.querySelector<HTMLFormElement>('#debate-filter')!;
+  const count = document.querySelector('#debate-count')!;
+  const groups = [
+    ...document.querySelectorAll<HTMLElement>('[data-debate-group]'),
+  ].map((group) => ({
+    group,
+    rows: [...group.querySelectorAll<HTMLElement>('.debate-row')].map(
+      (row) => ({
+        row,
+        text: normalize(row.textContent),
+      }),
+    ),
+  }));
+  function filter() {
+    const data = new FormData(form);
+    const terms = normalize(data.get('words')).split(' ').filter(Boolean);
+    let passages = 0;
+    for (const { group, rows } of groups) {
+      let matched = 0;
+      for (const { row, text } of rows) {
+        row.hidden = Boolean(
+          (data.get('author') && data.get('author') !== row.dataset.author) ||
+          (data.get('theme') && data.get('theme') !== row.dataset.theme) ||
+          !terms.every((word) => text.includes(word)),
+        );
+        if (!row.hidden) matched++;
+      }
+      group.hidden = !matched;
+      passages += matched;
+    }
+    count.textContent = `${passages} passage${passages > 1 ? 's reliés' : ' relié'}`;
+  }
+  form.addEventListener('input', filter);
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    filter();
+  });
+  form.addEventListener('reset', () => setTimeout(filter, 0));
+  form.hidden = false;
+</script>
+<style>
+  .debate-filter,
+  .debate-count {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 0.65rem 1rem;
+  }
+  .debate-filter {
+    padding: 0.9rem;
+    border: 1px solid var(--line);
+    border-radius: 0.65rem;
+    background: var(--sheet);
+  }
+  .debate-filter label {
+    display: grid;
+    flex: 1 1 12rem;
+    min-inline-size: 0;
+    gap: 0.35rem;
+  }
+  .debate-filter :is(input, select, button) {
+    min-block-size: 44px;
+    inline-size: 100%;
+  }
+  .debate-filter button {
+    inline-size: auto;
+  }
+  .debate-count {
+    align-items: center;
+    justify-content: space-between;
+  }
+  .debate-group {
+    margin-block: 1.15rem;
+    border: 1px solid var(--line);
+    border-radius: 0.68rem;
+    background: var(--sheet);
+    overflow-wrap: anywhere;
+  }
+  .debate-group header {
+    padding: 0.85rem 1rem;
+    background: linear-gradient(130deg, #dfece9, #f4f7f6);
+    border-radius: 0.68rem 0.68rem 0 0;
+  }
+  .debate-group header > * {
+    margin: 0;
+  }
+  .debate-group header p {
+    margin-block-start: 0.35rem;
+  }
+  .debate-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .debate-row {
+    padding: 0.9rem 1rem;
+    border-block-start: 1px solid var(--line);
+  }
+  .debate-row :is(h3, p) {
+    margin-block: 0.25rem;
+  }
+  .debate-row .muted {
+    font-size: 0.87rem;
+  }
+</style>

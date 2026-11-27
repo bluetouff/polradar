@@ -14,6 +14,8 @@ import SiteNavigation from '../components/SiteNavigation.astro';
 import SiteDirectory from '../components/SiteDirectory.astro';
 import { menuStyle } from '../lib/menu-sprite';
 import ShareLinks from '../components/ShareLinks.astro';
+import InvestigationButton from '../components/InvestigationButton.astro';
+import { investigationPage } from '../scripts/investigations-store';
 import { socialImageFor } from '../lib/social-images.mjs';
 import archivoFont from '../assets/fonts/archivo-latin.woff2?url';
 import { meta, formatDate } from '../lib/data';
@@ -180,6 +182,11 @@ const socialImageUrl = new URL(social.url, Astro.site);
       <div class="page-column">
         <main id="contenu" class="container" tabindex="-1">
           <slot />
+          {!publicationTool &&
+            language === 'fr' &&
+            investigationPage(canonical.pathname) && (
+              <InvestigationButton title={title} path={canonical.pathname} />
+            )}
           {!publicationTool && language === 'fr' && (
             <ShareLinks title={title} canonical={canonical} />
           )}

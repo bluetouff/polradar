@@ -8,6 +8,7 @@ import { searchEntries } from '../lib/search';
 import PagedResults from '../components/PagedResults.astro';
 import Pager from '../components/Pager.astro';
 import SearchResultCards from '../components/SearchResultCards.astro';
+import AnswerResults from '../components/AnswerResults.astro';
 import { pageRange } from '../lib/pagination';
 interface Props {
   page?: number;
@@ -50,13 +51,17 @@ const recent = current
         maxlength="200"
         type="search"
         name="q"
-        placeholder="Ex. prix de l’électricité"
+        placeholder="Ex. prix de l’électricité ou que proposent les candidats ?"
         autocomplete="off"
+        aria-describedby="search-privacy"
       />
       <button class="button primary" type="submit">
         <Icon name="search" /> Rechercher
       </button>
     </div>
+    <p id="search-privacy" class="muted">
+      Une question complète est envoyée à Polradar quand vous la validez.
+    </p>
     <details class="reader-options" id="search-options">
       <summary>Filtrer par candidat, thème, type ou année</summary>
       <div class="facet-filters">
@@ -106,11 +111,7 @@ const recent = current
       </div>
     </details>
   </form>
-  {page === 1 && (
-    <a href="/demander/" class="search-answer-link" id="search-answer-link">
-      Demander à Polradar <Icon name="arrow" />
-    </a>
-  )}
+  <AnswerResults />
   <section
     id="search-discovery"
     class="search-discovery"
@@ -249,18 +250,6 @@ const recent = current
     </div>
   </PagedResults>
   <script src="../scripts/search.ts"></script>
-  <script>
-    const answer = document.querySelector<HTMLAnchorElement>(
-      '#search-answer-link',
-    );
-    answer?.addEventListener('click', () => {
-      const query = document
-        .querySelector<HTMLInputElement>('#search-query')
-        ?.value.trim();
-      if (query) answer.hash = new URLSearchParams({ q: query }).toString();
-      else answer.hash = '';
-    });
-  </script>
 </Base>
 
 <style>
@@ -288,17 +277,9 @@ const recent = current
     width: 1rem;
     height: 1rem;
   }
-  .search-answer-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    min-height: var(--target-size);
-    font-size: 0.93rem;
-    font-weight: 630;
-  }
-  .search-answer-link :global(.icon) {
-    width: 1rem;
-    height: 1rem;
+  #search-privacy {
+    margin-block: 0.45rem 0.8rem;
+    font-size: 0.85rem;
   }
   .search-toolbar button {
     min-height: var(--target-size);

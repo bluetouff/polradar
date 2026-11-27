@@ -261,6 +261,26 @@ const steps = [
           <code>graphiques</code> fournit les liens vers chaque version figée et
           actualisée avec les sources.
         </li>
+        <li>
+          Quand <code>relations</code> est compatible, utilisez{' '}
+          <code>query</code> avec l’identifiant exact d’une question, d’une
+          mesure ou d’une version. Chaque lien indique sa qualification, sa
+          justification et les passages cités.{' '}
+          <a href="/api/relations-documentaires.json">
+            Exporter les liens et leurs sources
+          </a>
+        </li>
+        <li>
+          <code>debats</code> donne un passage par référence, avec l’auteur, la
+          version de la fiche et, quand elle est établie, la date de
+          l’intervention.{' '}
+          <a href="/debats/">Parcourir les débats et les entretiens</a>
+        </li>
+        <li>
+          <code>simulation-budgetaire</code> donne le périmètre des comptes
+          publics, l’unité, le calcul et un scénario reproductible.{' '}
+          <a href="/economie/simulateur-budgetaire/">Ouvrir le simulateur</a>
+        </li>
       </ul>
       <p>
         Demandez la liste, puis transmettez son <code>id</code> pour lire une
@@ -317,6 +337,27 @@ const steps = [
         Sur les listes, vérifiez <code>total</code> pour distinguer une
         recherche vide d’une page située après le dernier résultat. Une erreur
         d’outil est signalée par <code>isError</code>.
+      </p>
+    </section>
+    <section class="dev-note" aria-labelledby="benchmark-mcp">
+      <h2 id="benchmark-mcp">Évaluation des outils et des réponses</h2>
+      <p>
+        Le banc structuré vérifie les faits et leurs sources avec des appels
+        connus. Le banc de recherche vérifie les premiers résultats. Le banc
+        libre donne une question en français à un client qui découvre les outils
+        et choisit ses appels.
+      </p>
+      <p>
+        Le 26 novembre 2026, Codex CLI 0.169.1 avec gpt-6.2-sol a donné 10
+        réponses entièrement conformes sur 16 sur le service public 1.6.2. Le
+        site et le service servaient la révision <code>85ffdf8</code>. Le score
+        exige des faits exacts et complets et des citations étayées. Ce relevé
+        porte sur un client et une série de questions.
+      </p>
+      <p>
+        <a href="https://github.com/bluetouff/polradar/blob/main/docs/banc-documentaire-mcp.md">
+          Lire le barème, les résultats et les commandes de reproduction ↗
+        </a>
       </p>
     </section>
     <nav class="dev-links dev-related" aria-label="Documentation associée">

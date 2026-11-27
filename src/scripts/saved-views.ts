@@ -1,3 +1,8 @@
+import {
+  comparisonSlots,
+  maxComparisonCandidates,
+} from '../lib/compare-selection';
+
 export const savedViewsKey = 'polradar.follow.saved.v1';
 const limit = 40;
 const maximumStoredLength = 128 * 1024;
@@ -35,7 +40,7 @@ export function savedParameters(kind: Kind, input: URLSearchParams) {
     const candidates = (input.get('c') ?? '').split(',');
     if (
       candidates.length < 2 ||
-      candidates.length > 3 ||
+      candidates.length > maxComparisonCandidates ||
       new Set(candidates).size !== candidates.length ||
       !candidates.every(slug)
     )
@@ -45,8 +50,8 @@ export function savedParameters(kind: Kind, input: URLSearchParams) {
       if (slug(value)) parameters.set(name, value);
     }
     parameters.set('c', candidates.join(','));
-    if (candidates.length === 2 && input.get('count') === '3')
-      parameters.set('count', '3');
+    const slots = comparisonSlots(input.get('count'), candidates.length);
+    if (slots > candidates.length) parameters.set('count', String(slots));
   }
   if (input.get('archives') === '1') parameters.set('archives', '1');
   return parameters.toString();

@@ -109,6 +109,7 @@ test('l’accueil et toutes les rubriques ont un PNG distinct et les sous-pages 
     '/economie/simulateurs/premier-achat-immobilier/',
     '/territoires/',
     '/economie/finances-publiques/',
+    '/economie/simulateur-budgetaire/',
     '/themes/',
   );
   assert.equal(socialImages.length, paths.length);

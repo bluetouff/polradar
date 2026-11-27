@@ -1,4 +1,4 @@
-"""Évaluer des questions libres avec Codex et le MCP public de Polradar."""
+"""Évaluer des questions libres avec Codex sur le MCP public ou de recette."""
 
 import argparse
 from datetime import date
@@ -269,7 +269,7 @@ def read_answer(path):
     return answer
 
 
-def turn(question, model, env):
+def turn(question, model, env, endpoint=PUBLIC):
     with tempfile.TemporaryDirectory(prefix="polradar-assistant-") as work:
         directory = Path(work)
         schema, output, events = (directory / name for name in ("format.json", "reponse.json", "evenements.jsonl"))
@@ -284,7 +284,7 @@ def turn(question, model, env):
             "-c", 'model_provider="openai"', "-c", 'model_reasoning_effort="low"',
             "-c", 'web_search="disabled"', "-c", "analytics.enabled=false",
             "-c", "hide_agent_reasoning=true",
-            "-c", f"mcp_servers={{ {SERVER}={{url={json.dumps(PUBLIC)}, required=true}} }}",
+            "-c", f"mcp_servers={{ {SERVER}={{url={json.dumps(endpoint)}, required=true}} }}",
             "--output-schema", str(schema), "--output-last-message", str(output), "-",
         ]
         start = time.monotonic()
@@ -301,12 +301,16 @@ def turn(question, model, env):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--url", default=PUBLIC, help="endpoint public ou /api/mcp sur 127.0.0.1")
     parser.add_argument("--revision", required=True, help="commit à 40 caractères servi par le site")
     parser.add_argument("--revision-service", required=True, help="commit à 40 caractères servi par le MCP")
     parser.add_argument("--modele", default="gpt-6.2-sol")
     cases = load_cases()
     parser.add_argument("--cas", choices=[case["id"] for case in cases], action="append")
     args = parser.parse_args()
+    loopback = re.fullmatch(r"http://127\.0\.0\.1:([0-9]{1,5})/api/mcp", args.url)
+    if args.url != PUBLIC and not (loopback and 1 <= int(loopback[1]) <= 65535):
+        parser.error("Adresse MCP de recette inattendue.")
     revisions = (args.revision, args.revision_service)
     if any(not re.fullmatch(r"[0-9a-f]{40}", rev) for rev in revisions):
         parser.error("Les deux révisions doivent être des commits complets.")
@@ -321,7 +325,7 @@ def main():
     results, times = [], []
     for case in selected:
         try:
-            answer, calls, usage, elapsed = turn(case["question"], args.modele, env)
+            answer, calls, usage, elapsed = turn(case["question"], args.modele, env, args.url)
             result = score(case, answer, calls, revisions)
             result.update(
                 appels_mcp=len(calls), outils=sorted({call["tool"] for call in calls}),

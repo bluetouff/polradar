@@ -37,6 +37,7 @@ export const groups = [
     icon: 'historique',
     links: [
       ['/breves/', 'Brèves de campagne', 'source'],
+      ['/debats/', 'Débats et entretiens', 'microphone'],
       ['/campagne/', 'Chronologie', 'historique'],
       ['/agenda/', 'Carte des rendez-vous', 'map-pin'],
       ['/argent-des-campagnes/', 'Argent des campagnes', 'euro'],
@@ -67,6 +68,11 @@ export const groups = [
       ['/marches-predictifs/', 'Marchés prédictifs', 'markets'],
       ['/temps-de-parole/', 'Temps de parole', 'microphone'],
       ['/budget-programmes/', 'Budgets des programmes', 'euro'],
+      [
+        '/economie/simulateur-budgetaire/',
+        'Simulateur des finances publiques',
+        'fiscalite',
+      ],
       ['/financements/', 'Carte des financements', 'exchange'],
     ],
   },

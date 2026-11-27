@@ -48,7 +48,7 @@ test('une proposition sur le prix de l’électricité reste un complément sur 
     .poll(() => page.evaluate(() => document.documentElement.scrollWidth))
     .toBeLessThanOrEqual(320);
   await expect(
-    page.getByRole('link', { name: /Comparer deux candidats/ }),
+    page.getByRole('link', { name: /Comparer les candidats/ }),
   ).toHaveAttribute('href', '/comparer/?question=climat-production-nucleaire');
 });
 

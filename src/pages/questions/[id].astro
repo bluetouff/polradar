@@ -4,6 +4,8 @@ import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import DossierPaie from '../../components/DossierPaie.astro';
 import DossierTerritoire from '../../components/DossierTerritoire.astro';
+import EvidenceLinks from '../../components/EvidenceLinks.astro';
+import { relationsFor } from '../../lib/documentary-relations';
 import { healthMeasures } from '../../lib/dossiers-territoriaux';
 import '../../styles/dossiers-terrain.css';
 import {
@@ -51,6 +53,11 @@ const displayed = candidates.filter((c) => relatedCandidates.has(c.id));
 const missing = candidates.filter((c) => !relatedCandidates.has(c.id));
 const complementOnly = displayed.length - covered.length;
 const ids = new Set(readings.map((e) => e.measure.id));
+const versionIds = readings.map(({ version }) => version.id);
+const proofNodes = [q.id, ...versionIds];
+const proofRelations = relationsFor(proofNodes).filter(
+  ({ type }) => type !== 'question-proposition',
+);
 const hasDossier = [
   'fiscalite-csg-salaires',
   'logement-obligations-parc-social',
@@ -94,7 +101,7 @@ const checkLabels = {
   </header>
   <nav class="q-related" aria-label="Explorer cette question">
     <a href={'/comparer/?question=' + q.id} data-compare-return>
-      Comparer deux candidats sur cette question ↗
+      Comparer les candidats sur cette question ↗
     </a>
     {q.related && <a href={q.related.href}>{q.related.label} ↗</a>}
     {q.id === 'retraites-conditions-depart' && (
@@ -114,6 +121,7 @@ const checkLabels = {
     )}
     {hasDossier && <a href="#reponses">Aller aux réponses ↓</a>}
     <a href="#couverture">Voir les dossiers examinés ↓</a>
+    {proofRelations.length > 0 && <a href="#preuves">Dossier de preuves ↓</a>}
   </nav>
   {q.id === 'fiscalite-csg-salaires' && <DossierPaie />}
   {q.id === 'logement-obligations-parc-social' && (
@@ -252,6 +260,7 @@ const checkLabels = {
       </article>
     ))}
   </div>
+  <EvidenceLinks relations={proofRelations} perspectives={proofNodes} />
   <section class="q-coverage" id="couverture">
     <h2>Couverture documentaire</h2>
     <p>
@@ -329,6 +338,7 @@ const checkLabels = {
 </Base>
 
 <script>
+  import { comparisonIds, comparisonSlots } from '../../lib/compare-selection';
   const link = document.querySelector<HTMLAnchorElement>(
     '[data-compare-return]',
   );
@@ -339,9 +349,7 @@ const checkLabels = {
     );
     const to = new URLSearchParams();
     const slug = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-    const ids = [...new Set((from.get('c') ?? '').slice(0, 302).split(','))]
-      .filter((id) => id.length <= 100 && slug.test(id))
-      .slice(0, 3);
+    const ids = comparisonIds(from.get('c'));
     const theme = from.get('theme');
     if (ids.length) {
       to.set('c', ids.join(','));
@@ -349,7 +357,8 @@ const checkLabels = {
     }
     if (theme && theme.length <= 100 && slug.test(theme))
       to.set('theme', theme);
-    if (from.get('count') === '3') to.set('count', '3');
+    const slots = comparisonSlots(from.get('count'), ids.length);
+    if (slots > Math.max(ids.length, 2)) to.set('count', String(slots));
     if (from.get('archives') === '1') to.set('archives', '1');
     if (to.size) link.hash = selectionFragment + to.toString();
   }

@@ -1,0 +1,168 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="Mes dossiers d’enquête" section="/suivi/" noindex>
+  <nav class="breadcrumbs" aria-label="Fil d’Ariane">
+    <a href="/suivi/">Mon suivi</a>
+  </nav>
+  <header class="page-title">
+    <h1>Mes dossiers d’enquête</h1>
+    <p>
+      Retrouvez vos références et vos notes dans ce navigateur. Vous pouvez
+      emporter un dossier en l’exportant.
+    </p>
+  </header>
+  <div class="investigations" id="investigations" hidden>
+    <form id="create-investigation" class="panel investigation-form">
+      <label for="new-investigation">Nom du nouveau dossier</label>
+      <input
+        id="new-investigation"
+        maxlength="120"
+        autocomplete="off"
+        required
+      />
+      <button type="submit" class="button primary">
+        Créer le dossier
+      </button>
+    </form>
+    <p id="investigations-status" role="status"></p>
+    <label for="investigations-choice">Dossier à ouvrir</label>
+    <select id="investigations-choice" disabled></select>
+    <section
+      class="panel investigation-folder"
+      id="investigation-folder"
+      hidden
+      aria-labelledby="investigation-name"
+    >
+      <h2 id="investigation-name"></h2>
+      <ul id="investigation-references"></ul>
+      <form id="investigation-notes">
+        <label for="rename-investigation">Nom du dossier</label>
+        <input
+          id="rename-investigation"
+          maxlength="120"
+          autocomplete="off"
+          required
+        />
+        <label for="investigation-notes-text">Notes personnelles</label>
+        <textarea
+          id="investigation-notes-text"
+          maxlength="4000"
+          rows="4"
+        ></textarea>
+        <button type="submit" class="button small">
+          Enregistrer le nom et les notes
+        </button>
+      </form>
+      <fieldset>
+        <legend>Exporter ce dossier</legend>
+        <p>
+          L’export contient le nom, les liens, leur ordre et les révisions
+          enregistrées.
+        </p>
+        <label>
+          <input id="export-investigation-notes" type="checkbox" /> Inclure les
+          notes personnelles
+        </label>
+        <div class="investigation-exports">
+          <button class="button small" type="button" data-format="json">
+            JSON
+          </button>
+          <button class="button small" type="button" data-format="md">
+            Markdown
+          </button>
+          <button class="button small" type="button" data-format="html">
+            HTML
+          </button>
+          <button class="button small" type="button" data-format="csv">
+            CSV
+          </button>
+        </div>
+      </fieldset>
+      <button type="button" id="delete-investigation" class="button small">
+        Supprimer le dossier
+      </button>
+    </section>
+    <form id="import-investigation" class="panel investigation-form">
+      <label for="investigation-file">
+        Importer un dossier Polradar en JSON
+      </label>
+      <input
+        type="file"
+        id="investigation-file"
+        accept=".json,application/json"
+        required
+      />
+      <button type="submit" class="button small">
+        Importer sur cet appareil
+      </button>
+    </form>
+  </div>
+  <noscript>
+    <p>Activez JavaScript pour ouvrir les dossiers de ce navigateur.</p>
+  </noscript>
+  <script src="../../scripts/investigations.ts"></script>
+</Base>
+<style>
+  .investigations {
+    max-inline-size: 60rem;
+    overflow-wrap: anywhere;
+  }
+  .investigation-form,
+  .investigation-folder {
+    display: grid;
+    gap: 0.65rem;
+    padding: 1rem;
+    margin-block: 1rem;
+  }
+  .investigations label {
+    display: block;
+    font-weight: 610;
+  }
+  .investigations :is(input, select, textarea) {
+    max-inline-size: 100%;
+  }
+  .investigations :is(input:not([type='checkbox']), select, textarea) {
+    padding: 0.55rem;
+    font: inherit;
+  }
+  .investigations button {
+    justify-self: start;
+    min-block-size: 44px;
+  }
+  #investigations-status:empty {
+    margin: 0;
+  }
+  #investigation-references {
+    padding: 0;
+    list-style: none;
+  }
+  #investigation-references :global(li) {
+    display: grid;
+    gap: 0.25rem;
+    padding: 0.75rem 0;
+    border-block-start: 1px solid var(--line);
+  }
+  #investigation-references :global(li small) {
+    color: var(--muted);
+  }
+  #investigation-references :global(li div),
+  .investigation-exports {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  #investigation-notes {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .investigation-folder fieldset {
+    min-inline-size: 0;
+    border: 1px solid var(--line);
+    border-radius: 0.45rem;
+  }
+  .investigation-exports {
+    margin-block: 0.5rem;
+  }
+</style>

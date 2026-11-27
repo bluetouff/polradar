@@ -98,17 +98,15 @@ test('la demande explicite conserve le lien versionné et le passage vérifiable
   });
   await homeQuery.fill(education);
   await homeQuery.press('Enter');
-  await expect(page).toHaveURL(/\/demander\/$/);
+  await expect(page).toHaveURL(/\/recherche\/$/);
   await expect(
-    page.getByRole('searchbox', { name: 'Votre question' }),
+    page.getByRole('searchbox', { name: 'Rechercher dans Polradar' }),
   ).toHaveValue(education);
-  expect(posted).toHaveLength(0);
   await expect(
     page.getByText(
-      'Votre question est envoyée au serveur Polradar au moment de la demande.',
+      'Une question complète est envoyée à Polradar quand vous la validez.',
     ),
   ).toBeVisible();
-  await page.getByRole('searchbox').press('Enter');
   await expect(
     page.getByRole('heading', { name: 'Propositions documentées' }),
   ).toBeFocused();
@@ -122,10 +120,9 @@ test('la demande explicite conserve le lien versionné et le passage vérifiable
     }),
   ).toBe(true);
   await expect(page.getByText(locator, { exact: true })).toBeVisible();
-  await expect(page.getByRole('link', { name: measureTitle })).toHaveAttribute(
-    'href',
-    '/mesures/melenchon-education-2/#version-3',
-  );
+  await expect(
+    page.locator('#answer-panel').getByRole('link', { name: measureTitle }),
+  ).toHaveAttribute('href', '/mesures/melenchon-education-2/#version-3');
   const firstSource = page
     .getByRole('link', { name: /L’Avenir en commun/ })
     .first();
@@ -287,6 +284,37 @@ test('la réponse documentaire indique la version citée et la version courante'
   await expect(page.getByText('Page 37 du PDF', { exact: true })).toBeVisible();
 });
 
+test('la recherche garde le catalogue et la saisie quand le service documentaire est indisponible', async ({
+  page,
+}) => {
+  let questions = 0;
+  await page.route('**/api/v1/reponse', async (route) => {
+    questions++;
+    await route.fulfill({ status: 503, json: {} });
+  });
+  await page.goto('/recherche/');
+  const input = page.getByRole('searchbox');
+  await input.fill('Philippe');
+  await input.press('Enter');
+  await expect(page.locator('#search-results')).toContainText(
+    'Édouard Philippe',
+  );
+  await input.fill('Que proposent les candidats sur les retraites ?');
+  expect(questions).toBe(0);
+  await input.press('Enter');
+  await expect(
+    page.getByRole('heading', { name: 'Réponse documentaire indisponible' }),
+  ).toBeFocused();
+  await expect(page.locator('#search-results')).toContainText(/retraites/i);
+  await expect(page).toHaveURL(/\/recherche\/$/);
+  await page.getByRole('button', { name: 'Réessayer' }).click();
+  await expect.poll(() => questions).toBe(2);
+  await page.goBack();
+  await expect(input).toHaveValue('Philippe');
+  await expect(page.locator('#answer-panel')).toBeHidden();
+  expect(questions).toBe(2);
+});
+
 test('les liens du catalogue gardent le parcours utilisable sans JavaScript', async ({
   browser,
   baseURL,
@@ -295,7 +323,10 @@ test('les liens du catalogue gardent le parcours utilisable sans JavaScript', as
   try {
     const page = await context.newPage();
     await page.goto(new URL('/recherche/', baseURL).href);
-    await page.getByRole('link', { name: 'Demander à Polradar' }).click();
+    await expect(
+      page.getByRole('heading', { name: 'Catalogue sans JavaScript' }),
+    ).toBeVisible();
+    await page.goto(new URL('/demander/', baseURL).href);
     await expect(
       page.getByRole('heading', { name: 'Demander à Polradar' }),
     ).toBeVisible();

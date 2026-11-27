@@ -81,3 +81,23 @@ Sur les mêmes données `867cd06`, seize cas communs vérifient les concepts, le
 node scripts/benchmark-recherche.mjs dist --commun
 (cd mcp && POLRADAR_TEST_SITE="$(cd ../dist && pwd)" go test -run '^TestPublishedRechercheCommune$' -count=1 -v .)
 ```
+
+### Comparaison du 26 au 27 novembre
+
+La même série de 16 questions et le même barème ont été utilisés avec Codex CLI 0.169.1 et `gpt-6.2-sol`. Le site et le service publics étaient à `85ffdf8`. La première recette du 27 utilise l’archive et le service de travail construits sur cette base avant l’ajout du dossier législatif sur l’aide à mourir. Le transport de recette passe par HTTP local et le même gestionnaire Go.
+
+| Exécution                    | Questions entièrement conformes | Durée médiane |
+| ---------------------------- | ------------------------------: | ------------: |
+| Production MCP 1.6.2         |                           10/16 |      14,249 s |
+| Version locale intermédiaire |                           11/16 |      14,454 s |
+| Second essai local           |                            9/16 |      14,184 s |
+
+Le premier essai local donne 23 faits exacts sur 25, dont 18 correctement cités. Le second en donne 22, dont 15 correctement cités. Les cinq écarts communs concernent le libellé de l’absence d’un vote le 18 mars 2024, les dates Élabé, la réunion de Lille, la citation d’une version de retraite et la périodicité d’un chiffrage Lisnard. Le second relevé ajoute le repère juridique sur le chiffrement et les citations d’un amendement européen. Le vote du Sénat sur les retraites est conforme sur les deux essais locaux. Il demande respectivement 20 et 29 appels.
+
+Le moteur traitait la date de diffusion d’un sondage comme une date de terrain quand la question mentionnait les deux. Le test ajouté exige que la question sur la diffusion du 29 août restitue le début et la fin du terrain, du 26 au 28 août, avec la notice. Les deux scores libres ci-dessus précèdent cette correction. [Notice de la Commission des sondages](https://www.commission-des-sondages.fr/notices/files/notices/2026/aout/10245-pres-iv-elabe-29-aout.pdf#page=1)
+
+Après correction, la réponse documentaire passe ce test. Lors du nouvel essai libre ciblé, le client a interrogé la collection des sondages. Il a donné les deux dates attendues. Le cas échoue encore sur le relevé choisi, les citations et un fait supplémentaire.
+
+Le banc structuré sur l’archive locale vérifie 208 cas sur 208. Le catalogue Web obtient 100 cas conformes sur 100 sur ses requêtes annotées. Les 16 cas de recherche communs au Web et au MCP passent également. Le jeu indépendant de 100 questions en langage libre et la mesure sur plusieurs clients restent à établir. [Annotations du banc libre](../mcp/testdata/questions-assistant.json)
+
+Pour réexécuter le banc public, fournir les deux révisions servies à `scripts/test-assistant-codex.py`. L’option `--url` accepte aussi un endpoint de recette `/api/mcp` sur `127.0.0.1`. Ce dernier doit être installé avec les paramètres de transport de l’environnement testé.

@@ -9,6 +9,8 @@ import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import FollowButton from '../../components/FollowButton.astro';
 import MeasureVotes from '../../components/MeasureVotes.astro';
+import EvidenceLinks from '../../components/EvidenceLinks.astro';
+import { relationsFor } from '../../lib/documentary-relations';
 import { budgetById, budgetIdsByMeasure } from '../../lib/visual-data';
 import { formatBudgetAmount } from '../../lib/campaign-visuals-view.mjs';
 import { questionsForMeasure } from '../../lib/questions';
@@ -56,6 +58,8 @@ const voteRecords = voteCases.filter(
 const candidate = candidateById(measure.candidate),
   theme = themeById(measure.theme),
   versions = measureVersions(measure.id);
+const versionIds = versions.map(({ id }) => id);
+const proofRelations = relationsFor(versionIds);
 ---
 
 <Base
@@ -108,6 +112,11 @@ const candidate = candidateById(measure.candidate),
   <div class="measure-detail-layout">
     <article>
       <p class="measure-lead">{measure.description}</p>
+      {proofRelations.length > 0 && (
+        <p>
+          <a href="#preuves">Explorer le dossier de preuves ↓</a>
+        </p>
+      )}
       {(measure.metrics.length > 0 || measure.amounts.length > 0) && (
         <div class="measure-number-grid">
           {measure.metrics.map((metric) => (
@@ -260,6 +269,7 @@ const candidate = candidateById(measure.candidate),
           })}
         </ul>
       </section>
+      <EvidenceLinks relations={proofRelations} perspectives={versionIds} />
       <section class="section-space">
         <div class="register-heading">
           <h2>Versions de la fiche</h2>

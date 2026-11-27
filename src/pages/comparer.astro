@@ -1,10 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import { activeCandidates as candidates, themes } from '../lib/data';
+import { candidates, themes } from '../lib/data';
 import { questions, questionThemes } from '../lib/questions';
 import { positionDivergences } from '../lib/divergence-data';
 import { digitalLawRoot } from '../lib/digital-law.mjs';
+import { maxComparisonCandidates } from '../lib/compare-selection';
+import { sourceCommit } from '../../scripts/release-revision.mjs';
 import '../styles/questions.css';
 
 const positionsByQuestion = new Map(
@@ -23,15 +25,15 @@ const positionsByQuestion = new Map(
 
 <Base
   title="Comparateur des programmes de la présidentielle 2027"
-  description="Comparez les propositions de deux ou trois candidats à la présidentielle 2027 par question ou par thème. Retrouvez les documents cités."
+  description="Comparez les propositions de deux à six candidats à la présidentielle 2027 par question ou par thème. Retrouvez les documents cités."
   section="/comparer/"
 >
   <header class="compare-hero">
     <div>
       <h1>Comparer les programmes</h1>
       <p>
-        Deux ou trois candidats sur le même sujet. Comparez leurs propositions,
-        les chiffres et les sources.
+        Deux à six candidats sur le même sujet. Comparez leurs propositions, les
+        chiffres et les sources.
       </p>
     </div>
     <a href="/divergences/" class="compare-hero-link">
@@ -40,7 +42,13 @@ const positionsByQuestion = new Map(
       <Icon name="arrow" />
     </a>
   </header>
-  <form id="compare-form" class="compare-builder" action="/comparer/" hidden>
+  <form
+    id="compare-form"
+    class="compare-builder"
+    action="/comparer/"
+    data-revision={sourceCommit}
+    hidden
+  >
     <section class="compare-subject" aria-labelledby="compare-subject-title">
       <h2 id="compare-subject-title">
         <span class="compare-panel-icon">
@@ -70,6 +78,13 @@ const positionsByQuestion = new Map(
                   data-reading={JSON.stringify({
                     candidates: question.candidateIds.length,
                     coverage: question.coverage,
+                    alerts: question.alerts,
+                    complements: question.complements.map(
+                      ({ version, relation }) => ({
+                        versionId: version.id,
+                        justification: relation.justification,
+                      }),
+                    ),
                     reviews: question.reviews.map(
                       ({ candidate, sourceId, locator, checked }) => ({
                         candidate,
@@ -110,16 +125,47 @@ const positionsByQuestion = new Map(
           Candidats à comparer
         </legend>
         <div class="compare-pick">
-          {[0, 1, 2].map((index) => (
-            <label class="compare-person" hidden={index === 2}>
-              <span>Candidature {index + 1}</span>
+          {Array.from({ length: maxComparisonCandidates }, (_, index) => (
+            <div class="compare-person" hidden={index >= 2}>
+              <label for={`compare-candidate-${index}`}>
+                Candidature {index + 1}
+              </label>
               <select id={`compare-candidate-${index}`}>
                 <option value="">Choisir un candidat</option>
                 {candidates.map((c) => (
-                  <option value={c.id}>{c.name}</option>
+                  <option value={c.id}>
+                    {c.name}
+                    {c.withdrawnOn ? ' · candidature retirée' : ''}
+                  </option>
                 ))}
               </select>
-            </label>
+              <div class="compare-order">
+                <button
+                  type="button"
+                  data-order="earlier"
+                  aria-label={`Remonter la candidature ${index + 1}`}
+                  disabled
+                >
+                  ↑
+                </button>
+                <button
+                  type="button"
+                  data-order="later"
+                  aria-label={`Descendre la candidature ${index + 1}`}
+                  disabled
+                >
+                  ↓
+                </button>
+                <button
+                  type="button"
+                  data-order="remove"
+                  aria-label={`Retirer la candidature ${index + 1}`}
+                  disabled
+                >
+                  Retirer
+                </button>
+              </div>
+            </div>
           ))}
         </div>
         <div class="compare-controls">
@@ -127,6 +173,9 @@ const positionsByQuestion = new Map(
             <input type="checkbox" id="compare-third" />
             Ajouter un troisième candidat
           </label>
+          <button type="button" id="compare-add" class="button small" hidden>
+            Ajouter une candidature
+          </button>
           <label>
             <input
               id="compare-archives"
@@ -143,6 +192,7 @@ const positionsByQuestion = new Map(
       </fieldset>
     </div>
   </form>
+  <p id="comparison-selection-note" class="muted" hidden></p>
   <p
     id="comparison-feedback"
     class="muted"
@@ -331,7 +381,7 @@ const positionsByQuestion = new Map(
     height: 1.16rem;
   }
   .compare-subject label,
-  .compare-person {
+  .compare-person label {
     font-size: 0.9rem;
     font-weight: 650;
   }
@@ -390,6 +440,24 @@ const positionsByQuestion = new Map(
   .compare-person:focus-within {
     border-color: #397a7c;
   }
+  .compare-order {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  .compare-order button {
+    min-width: var(--target-size);
+    min-height: var(--target-size);
+    border: 1px solid var(--line);
+    border-radius: 0.4rem;
+    background: var(--sheet);
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .compare-order button:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
   .compare-controls {
     display: flex;
     align-items: center;
@@ -411,7 +479,7 @@ const positionsByQuestion = new Map(
     block-size: 1rem;
     accent-color: #276569;
   }
-  .compare-controls .button {
+  .compare-controls .primary {
     display: inline-flex;
     gap: 0.5rem;
     justify-content: center;
@@ -421,7 +489,7 @@ const positionsByQuestion = new Map(
     color: #fff;
     border-color: #194c54;
   }
-  .compare-controls .button:hover {
+  .compare-controls .primary:hover {
     background: #16333e;
   }
   #comparison-feedback {
@@ -520,6 +588,16 @@ const positionsByQuestion = new Map(
   }
   .comparison-grid :global(.comparison-body > h4) {
     margin: 0 0 0.4rem;
+  }
+  .comparison-grid :global(.comparison-body > summary) {
+    cursor: pointer;
+    font-weight: 600;
+    padding-block: 0.65rem;
+  }
+  .comparison-grid :global(.compare-complement) {
+    margin-block: 1rem 0.45rem;
+    padding-inline-start: 0.65rem;
+    border-inline-start: 2px solid var(--accent);
   }
   .comparison-scope {
     color: var(--muted);

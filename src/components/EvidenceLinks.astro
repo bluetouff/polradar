@@ -1,0 +1,141 @@
+---
+import type { DocumentaryRelation } from '../lib/documentary-relations';
+import { documentaryLabel } from '../lib/documentary-relations';
+
+interface Props {
+  relations: DocumentaryRelation[];
+  perspectives: readonly string[];
+}
+const { relations, perspectives } = Astro.props;
+const selected = new Set(perspectives);
+const families = {
+  'question-proposition': 'Questions et propositions',
+  'rapprochement-scrutin': 'Scrutins et votes',
+  'comparaison-droit': 'Droit en vigueur',
+  'poste-budgetaire': 'Chiffrages et financements',
+  'version-precedente': 'Versions de la fiche',
+};
+const names: Record<string, string> = {
+  reponse: 'Réponse documentée',
+  complement: 'Complément de contexte',
+  correction: 'Correction',
+  enrichissement: 'Enrichissement',
+  programme: 'Nouvelle publication de programme',
+  'meme-objet': 'Même objet',
+  'texte-plus-large': 'Texte au périmètre plus large',
+  'mise-en-regard-editoriale': 'Comparaison avec les règles en vigueur',
+  reliee: 'Chiffrage relié',
+};
+const groups = Object.entries(families)
+  .map(([type, name]) => ({
+    name,
+    links: relations.filter((relation) => relation.type === type),
+  }))
+  .filter(({ links }) => links.length);
+---
+
+{groups.length > 0 && (
+  <section class="evidence-links" id="preuves" aria-labelledby="proof-title">
+    <h2 id="proof-title">Dossier de preuves</h2>
+    <ul class="evidence-summary">
+      {groups.map(({ name, links }) => (
+        <li>
+          <a href={`#preuve-${links[0].type}`}>
+            {name} · {links.length}
+          </a>
+        </li>
+      ))}
+    </ul>
+    {groups.map(({ name, links }) => (
+      <details id={`preuve-${links[0].type}`}>
+        <summary>
+          {name} ({links.length})
+        </summary>
+        <ul class="evidence-rows">
+          {links.map((relation) => {
+            const target =
+              selected.has(relation.target.id) &&
+              !selected.has(relation.origin.id)
+                ? relation.origin
+                : relation.target;
+            return (
+              <li>
+                <p class="muted">
+                  {names[relation.qualification] ?? relation.qualification}
+                </p>
+                <a href={target.url}>{documentaryLabel(target)}</a>
+                <p>{relation.justification}</p>
+                <ul>
+                  {relation.sources.map((source) => (
+                    <li>
+                      <a href={source.url} rel="noreferrer">
+                        {source.passage} ↗
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            );
+          })}
+        </ul>
+      </details>
+    ))}
+    <p>
+      <a href="/api/relations-documentaires.json">
+        Graphe documentaire en JSON
+      </a>
+    </p>
+  </section>
+)}
+<script>
+  document.querySelector('#preuves')?.addEventListener('click', (event) => {
+    const link =
+      event.target instanceof Element &&
+      event.target.closest<HTMLAnchorElement>('.evidence-summary a');
+    if (!link) return;
+    const target = document.getElementById(link.hash.slice(1));
+    if (target instanceof HTMLDetailsElement) target.open = true;
+  });
+</script>
+<style>
+  .evidence-links {
+    margin-block: 1.5rem;
+    padding: clamp(0.9rem, 2vw, 1.4rem);
+    border: 1px solid var(--line);
+    border-radius: 0.7rem;
+    background: var(--sheet);
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .evidence-links h2 {
+    margin-block: 0 0.65rem;
+  }
+  .evidence-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.5rem;
+    padding: 0;
+    list-style: none;
+  }
+  .evidence-summary a,
+  .evidence-links summary {
+    display: block;
+    padding: 0.65rem 0.5rem;
+    min-block-size: var(--target-size, 44px);
+  }
+  .evidence-links summary {
+    display: list-item;
+    cursor: pointer;
+    border-block-start: 1px solid var(--line);
+    font-weight: 650;
+  }
+  .evidence-rows {
+    padding-inline-start: 1.15rem;
+  }
+  .evidence-rows > li {
+    margin-block: 0.75rem;
+  }
+  .evidence-rows p {
+    margin-block: 0.2rem;
+  }
+</style>

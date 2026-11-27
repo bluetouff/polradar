@@ -94,7 +94,7 @@ func (c *snapshot) resource(path string, q url.Values) (any, bool, error) {
 		}
 		args := dataArgs{Collection: parts[1]}
 		if len(parts) == 3 {
-			if parts[2] == "" || len(parts[2]) > 160 {
+			if parts[2] == "" || len(parts[2]) > collectionIDLimit(parts[1]) {
 				return nil, false, errResource
 			}
 			if len(q) != 0 {

@@ -1,0 +1,77 @@
+---
+import { sourceCommit } from '../../scripts/release-revision.mjs';
+interface Props {
+  title: string;
+  path: string;
+}
+const { title, path } = Astro.props;
+---
+
+<div
+  class="investigation-action"
+  id="investigation-action"
+  data-title={title}
+  data-path={path}
+  data-revision={sourceCommit}
+  hidden
+>
+  <button class="button small" type="button" id="investigation-open">
+    Ajouter à un dossier
+  </button>
+  <dialog
+    id="investigation-dialog"
+    aria-labelledby="investigation-dialog-title"
+  >
+    <form id="investigation-add">
+      <h2 id="investigation-dialog-title">Ajouter à un dossier</h2>
+      <label for="investigation-choice">Dossier</label>
+      <select id="investigation-choice"></select>
+      <label for="investigation-new-name">Nom du nouveau dossier</label>
+      <input id="investigation-new-name" maxlength="120" autocomplete="off" />
+      <p id="investigation-feedback" role="status"></p>
+      <div class="investigation-controls">
+        <button type="submit" class="button primary">
+          Ajouter
+        </button>
+        <button type="button" class="button" id="investigation-cancel">
+          Fermer
+        </button>
+        <a href="/suivi/enquetes/">Mes dossiers</a>
+      </div>
+    </form>
+  </dialog>
+</div>
+<script src="../scripts/investigation-button.ts"></script>
+<style>
+  .investigation-action {
+    margin-block: 1rem;
+  }
+  dialog {
+    inline-size: min(28rem, calc(100% - 1.5rem));
+    max-block-size: calc(100% - 1.5rem);
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: 0.7rem;
+    background: var(--sheet);
+    color: var(--ink);
+  }
+  dialog::backdrop {
+    background: #1425309c;
+  }
+  dialog :is(label, input, select) {
+    display: block;
+    inline-size: 100%;
+  }
+  dialog label {
+    margin-block-start: 0.5rem;
+  }
+  dialog :is(input, select, button) {
+    min-block-size: 44px;
+  }
+  .investigation-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.7rem;
+  }
+</style>

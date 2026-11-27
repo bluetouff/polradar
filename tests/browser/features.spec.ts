@@ -186,6 +186,15 @@ test('la suppression de la CSG se retrouve dans les deux moteurs avec le bon pé
 test('la recherche combine les facettes et exporte la sélection', async ({
   page,
 }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, 'clipboard', {
+      value: {
+        async writeText(address: string) {
+          document.documentElement.dataset.sharedSearch = address;
+        },
+      },
+    });
+  });
   await page.goto('/recherche/');
   const form = page.locator('#search-form');
   await form.locator('#search-options summary').click();
@@ -196,8 +205,7 @@ test('la recherche combine les facettes et exporte la sélection', async ({
     retirementPageCount,
   );
   await page.getByRole('searchbox').fill('retraite');
-  await expect(page).toHaveURL(/#.*candidate=melenchon/);
-  expect(new URL(page.url()).search).toBe('');
+  await expect(page).toHaveURL(/\/recherche\/$/);
   const download = page.waitForEvent('download');
   await page.locator('#export-json').click();
   const file = await download,
@@ -214,7 +222,12 @@ test('la recherche combine les facettes et exporte la sélection', async ({
         row.candidate === 'melenchon' && row.theme === 'retraites',
     ),
   ).toBe(true);
-  await page.reload();
+  await page
+    .getByRole('button', { name: 'Copier le lien', exact: true })
+    .click();
+  const address = await page.locator('html').getAttribute('data-shared-search');
+  expect(address).toMatch(/#.*candidate=melenchon/);
+  await page.goto(address!);
   await expect(form.locator('[name=candidate]')).toHaveValue('melenchon');
   await expect(page.locator('#search-results .advanced-result')).toHaveCount(
     retirementPageCount,

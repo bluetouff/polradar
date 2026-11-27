@@ -20,12 +20,11 @@ test('la recherche mobile charge son index au premier usage et maintient le focu
     requests.filter(({ pathname }) => pathname === '/api/recherche.json');
   expect(indexRequests()).toHaveLength(0);
 
-  await search.fill('Comment accéder aux soins ?');
+  await search.fill('soins de proximité');
   await search.press('Enter');
-  await expect(page.locator('#search-results a').first()).toHaveAttribute(
-    'href',
-    '/questions/soins-de-proximite/',
-  );
+  await expect(
+    page.locator('#search-results a[href="/questions/soins-de-proximite/"]'),
+  ).toBeVisible();
   await expect(page.locator('#resultats')).toBeFocused();
 
   await search.fill('Calculer la contribution sociale généralisée');

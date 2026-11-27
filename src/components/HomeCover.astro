@@ -61,6 +61,12 @@ const date = new Intl.DateTimeFormat('fr-FR', {
         </button>
       </div>
     </form>
+    <p class="cover-noscript">
+      Une question complète est envoyée à Polradar quand vous la validez.
+    </p>
+    <p class="cover-noscript" id="cover-search-unavailable" hidden>
+      Gardez votre saisie et <a href="/recherche/">ouvrez la recherche</a>.
+    </p>
     <noscript>
       <p class="cover-noscript">
         Accédez aux sujets et aux votes via les liens ci-dessous.
@@ -96,6 +102,8 @@ const date = new Intl.DateTimeFormat('fr-FR', {
   </a>
 </header>
 <script>
+  import { handoffSearch } from '../scripts/search-handoff';
+
   const form = document.querySelector<HTMLFormElement>('[data-cover-search]');
   form?.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -105,13 +113,13 @@ const date = new Intl.DateTimeFormat('fr-FR', {
       input?.focus();
       return;
     }
-    const question =
-      query.endsWith('?') ||
-      /^(?:(?:que|quels?|quelles?|comment|combien|quand|pourquoi|comparez?|expliquez?)\s|qu['’]|c['’]est quoi\b)/iu.test(
-        query,
-      );
-    const destination = question ? '/demander/' : form.action;
-    location.assign(destination + '#' + new URLSearchParams({ q: query }));
+    if (handoffSearch(query)) {
+      location.assign(form.action);
+    } else {
+      document.querySelector<HTMLElement>('#cover-search-unavailable')!.hidden =
+        false;
+      input?.focus();
+    }
   });
 </script>
 <style>

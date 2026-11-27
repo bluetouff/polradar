@@ -71,6 +71,28 @@ const datasets = [
     fields: ['entries', 'sources'],
   },
   {
+    id: 'simulation-budgetaire',
+    title: 'Calcul des scénarios de finances publiques',
+    path: '/api/simulation-budgetaire.json',
+    description: 'Comptes de référence et exemples de calcul',
+    unit: 'Variations en points de PIB et résultats en pourcentage du PIB.',
+    provenance: 'Comptes nationaux annuels de l’Insee et calcul Polradar.',
+    limits:
+      'Les variations illustrent des hypothèses à PIB constant. Les montants de campagne sont documentés séparément.',
+    fields: ['version', 'sourceCommit', 'items'],
+  },
+  {
+    id: 'debats',
+    title: 'Débats et entretiens',
+    path: '/api/debats.json',
+    description: 'Interventions reliées à une fiche et à un passage source',
+    unit: 'Un passage de prise de parole lié à une version précise.',
+    provenance: 'Relectures de débats et entretiens catalogués dans le corpus.',
+    limits:
+      'Les entrées décrivent les passages relevés. La date indique l’intervention ou la publication selon le champ dateType.',
+    fields: ['version', 'sourceCommit', 'items'],
+  },
+  {
     id: 'agenda',
     title: 'Agenda de campagne',
     path: '/api/agenda.json',
@@ -342,6 +364,7 @@ const rightsByDataset = new Map([
   ],
   ['territoires', upstreamData],
   ['economie', upstreamData],
+  ['simulation-budgetaire', upstreamData],
   ['arcom', upstreamData],
   ['marches', upstreamData],
   ['breves', originalWorks],

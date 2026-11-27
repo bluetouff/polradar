@@ -10,11 +10,18 @@ import {
 import { metricGroups } from '../lib/features.mjs';
 import { saveView } from './saved-views';
 import { attributionLabel } from '../lib/attribution.mjs';
+import {
+  comparisonIds,
+  comparisonSlots,
+  maxComparisonCandidates,
+} from '../lib/compare-selection';
 import type { Corpus } from '../lib/data';
 
 interface QuestionReading {
   candidates: number;
   coverage: Record<string, string>;
+  alerts: Record<string, string>;
+  complements: { versionId: string; justification: string }[];
   reviews: {
     candidate: string;
     sourceId: string;
@@ -45,7 +52,11 @@ const form = document.querySelector<HTMLFormElement>('#compare-form')!,
   )!,
   archives = document.querySelector<HTMLInputElement>('#compare-archives')!,
   feedback = document.querySelector<HTMLElement>('#comparison-feedback')!,
+  selectionNote = document.querySelector<HTMLElement>(
+    '#comparison-selection-note',
+  )!,
   third = document.querySelector<HTMLInputElement>('#compare-third')!,
+  add = document.querySelector<HTMLButtonElement>('#compare-add')!,
   comparison = document.querySelector<HTMLElement>('#comparaison')!,
   heading = document.querySelector<HTMLElement>('#comparison-theme-title')!,
   positions = document.querySelector<HTMLElement>('#comparison-positions')!,
@@ -53,16 +64,32 @@ const form = document.querySelector<HTMLFormElement>('#compare-form')!,
   exportButton =
     document.querySelector<HTMLButtonElement>('#comparison-export')!,
   saveButton = document.querySelector<HTMLButtonElement>('#comparison-save')!,
-  selects = [0, 1, 2].map((index) =>
-    document.querySelector<HTMLSelectElement>(`#compare-candidate-${index}`)!,
+  selects = Array.from(
+    form.querySelectorAll<HTMLSelectElement>('.compare-person select'),
   );
 function start() {
   const valid = new Set(
     Array.from(selects[0].options, (option) => option.value).filter(Boolean),
   );
+  const slots = selects.map((select) => ({
+    wrapper: select.parentElement!,
+    earlier: select.parentElement!.querySelector<HTMLButtonElement>(
+      '[data-order=earlier]',
+    )!,
+    later:
+      select.parentElement!.querySelector<HTMLButtonElement>(
+        '[data-order=later]',
+      )!,
+    remove: select.parentElement!.querySelector<HTMLButtonElement>(
+      '[data-order=remove]',
+    )!,
+  }));
+  let count = 2;
+  let useFragment = true;
   function restore() {
     const params = new URLSearchParams(location.search);
     const carried = location.hash.startsWith(selectionFragment);
+    useFragment = carried || !params.has('c');
     if (carried) {
       const retained = new URLSearchParams(
         location.hash.slice(selectionFragment.length),
@@ -72,17 +99,19 @@ function start() {
         if (value) params.set(key, value);
       }
     }
-    const ids = [
-      ...new Set(
-        (params.get('c') || '').split(',').filter((id) => valid.has(id)),
-      ),
-    ].slice(0, 3);
+    const raw = params.get('c');
+    const ids = comparisonIds(raw, valid);
+    const rejected = raw !== null && raw !== '' && raw !== ids.join(',');
+    selectionNote.hidden = !rejected;
+    selectionNote.textContent = rejected
+      ? 'Le lien a été corrigé. Seuls les six premiers identifiants valides et distincts sont retenus.'
+      : '';
     themeSelect.value = params.get('theme') ?? '';
     if (!themeSelect.value) themeSelect.selectedIndex = 0;
     question.value = params.get('question') ?? '';
     if (question.selectedIndex === -1) question.selectedIndex = 0;
     archives.checked = params.get('archives') === '1';
-    third.checked = ids.length === 3 || params.get('count') === '3';
+    count = comparisonSlots(params.get('count'), ids.length);
     selects.forEach((select, index) => {
       select.value = ids[index] ?? '';
     });
@@ -92,7 +121,6 @@ function start() {
   let exportData: string | undefined;
   let savedView: { parameters: URLSearchParams; title: string } | undefined;
   async function render(focus = false, save?: 'push' | 'replace') {
-    const count = third.checked ? 3 : 2;
     const ticket = ++generation;
     const active = [
       ...new Set(
@@ -102,7 +130,17 @@ function start() {
           .filter(Boolean),
       ),
     ];
-    selects[2].parentElement!.hidden = count === 2;
+    third.checked = count >= 3;
+    third.parentElement!.hidden = count > 3;
+    add.hidden = count < 3 || count === maxComparisonCandidates;
+    slots.forEach(({ wrapper, earlier, later, remove }, index) => {
+      const chosen = Boolean(selects[index].value);
+      wrapper.hidden = index >= count;
+      earlier.disabled = !chosen || index === 0 || !selects[index - 1]?.value;
+      later.disabled =
+        !chosen || index + 1 >= count || !selects[index + 1]?.value;
+      remove.disabled = !chosen && count <= 2;
+    });
     selects.forEach((select, index) =>
       Array.from(select.options).forEach((option) => {
         option.disabled =
@@ -146,7 +184,7 @@ function start() {
     if (theme.value !== themeSelect.options[0].value)
       query.set('theme', theme.value);
     if (active.length) query.set('c', active.join(','));
-    if (count === 3 && active.length < 3) query.set('count', '3');
+    if (count > 2 && active.length < count) query.set('count', String(count));
     if (archives.checked) query.set('archives', '1');
     const detailQuery = query.toString();
     questionDetail.href =
@@ -162,7 +200,7 @@ function start() {
         : `${reading.candidates} dossier${reading.candidates > 1 ? 's' : ''} avec une réponse sourcée`
       : '';
     if (subject) query.set('question', subject.value);
-    const address = location.hash.startsWith(selectionFragment)
+    const address = useFragment
       ? location.pathname + (query.size ? selectionFragment + query : '')
       : location.pathname + (query.size ? '?' + query : '') + location.hash;
     if (save === 'replace') history.replaceState(null, '', address);
@@ -176,7 +214,11 @@ function start() {
       feedback.textContent = active.length
         ? 'Choisissez une deuxième candidature.'
         : 'Choisissez deux candidatures à comparer.';
-      if (focus) selects.find((select) => !select.value)?.focus();
+      if (focus)
+        selects
+          .slice(0, count)
+          .find((select) => !select.value)
+          ?.focus();
       return;
     }
     feedback.textContent = 'Chargement des propositions…';
@@ -193,8 +235,32 @@ function start() {
     if (ticket !== generation) return;
     const versionIds = new Set(subject?.dataset.versions?.split(' ') ?? []);
     const vByMeasure = new Map<string, Corpus['versions'][number]>();
+    const versionsById = new Map(
+      data.versions.map((version) => [version.id, version]),
+    );
     const selected = data.candidates.filter(({ id }) => active.includes(id));
     const measuresById = new Map(data.measures.map((m) => [m.id, m]));
+    const complements = (reading?.complements ?? []).flatMap((complement) => {
+      const version = versionsById.get(complement.versionId);
+      const original = version && measuresById.get(version.measureId);
+      if (!version || !original || !active.includes(original.candidate))
+        return [];
+      const { id, parentId, candidate, theme, revision } = original;
+      return [
+        {
+          justification: complement.justification,
+          version,
+          measure: {
+            ...version.snapshot,
+            id,
+            parentId,
+            candidate,
+            theme,
+            revision,
+          },
+        },
+      ];
+    });
     const relevant = subject
       ? data.versions
           .filter((version) => versionIds.has(version.id))
@@ -245,12 +311,21 @@ function start() {
     for (const id of active) {
       const candidate = selected.find((candidate) => candidate.id === id)!,
         items = relevant.filter((measure) => measure.candidate === id);
+      const extra = complements.filter(
+        ({ measure }) => measure.candidate === id,
+      );
       const card = el('article', undefined, 'comparison-card'),
         header = el('header');
       header.append(el('p', candidate.party), el('h3', candidate.name));
+      if (candidate.withdrawnOn)
+        header.append(
+          el('p', 'Candidature retirée le ' + date(candidate.withdrawnOn)),
+        );
       const state = reading?.coverage[id];
       if (state && Object.hasOwn(coverageLabels, state))
         header.append(el('p', coverageLabels[state], 'compare-coverage'));
+      const alert = reading?.alerts[id];
+      if (alert) header.append(el('p', alert, 'compare-coverage'));
       if (items.length)
         header.append(
           el(
@@ -259,7 +334,9 @@ function start() {
             'comparison-count',
           ),
         );
-      const body = el('div', undefined, 'comparison-body');
+      const body = el('details', undefined, 'comparison-body');
+      body.open = true;
+      body.append(el('summary', 'Propositions et sources'));
       if (items.length) {
         available++;
         for (const measure of items)
@@ -267,9 +344,8 @@ function start() {
             measureCard(measure, data, true, 'h4', vByMeasure.get(measure.id)),
           );
       } else {
-        const review = reading?.reviews.find(
-          ({ candidate }) => candidate === id,
-        );
+        const reviews =
+          reading?.reviews.filter(({ candidate }) => candidate === id) ?? [];
         const old = data.measures.some(
           (measure) =>
             measure.candidate === id &&
@@ -280,7 +356,11 @@ function start() {
           el(
             'h4',
             subject
-              ? 'Position non documentée'
+              ? candidate.withdrawnOn
+                ? 'Candidature retirée'
+                : extra.length
+                  ? 'Compléments documentaires'
+                  : 'Position non documentée'
               : old
                 ? 'Archive de 2022 disponible'
                 : 'Aucune fiche dans le corpus',
@@ -288,15 +368,17 @@ function start() {
           el(
             'p',
             subject
-              ? review
-                ? review.locator
-                : 'Aucune proposition reliée à cette question pour ce candidat.'
+              ? candidate.withdrawnOn
+                ? 'Le dossier du candidat conserve ses propositions et leurs dates.'
+                : reviews.length
+                  ? 'Les documents examinés figurent ci-dessous.'
+                  : 'Aucune proposition reliée à cette question pour ce candidat.'
               : old
                 ? 'Activez les archives pour consulter ce document avec son millésime.'
                 : 'Le thème reste à renseigner pour ce candidat.',
           ),
         );
-        if (review) {
+        for (const review of reviews) {
           const original = data.sources.find(
             ({ id }) => id === review.sourceId,
           );
@@ -310,9 +392,15 @@ function start() {
               ),
               link,
             );
-            body.append(details);
+            body.append(details, el('p', review.locator));
           }
         }
+      }
+      for (const { measure, version, justification } of extra) {
+        body.append(
+          el('p', 'Complément · ' + justification, 'compare-complement'),
+          measureCard(measure, data, true, 'h4', version),
+        );
       }
       const footer = el('footer');
       footer.append(anchor('Dossier du candidat ↗', `/candidats/${id}/`));
@@ -343,18 +431,37 @@ function start() {
       metrics.append(anchor('Voir toutes les réponses', questionDetail.href));
     jumps.hidden = false;
     const sourceIds = new Set(
-      relevant.flatMap((item) => item.sourceRefs.map((ref) => ref.sourceId)),
+      [...relevant, ...complements.map(({ measure }) => measure)].flatMap(
+        (item) => item.sourceRefs.map((ref) => ref.sourceId),
+      ),
     );
+    const reviews = (reading?.reviews ?? []).filter(({ candidate }) =>
+      active.includes(candidate),
+    );
+    for (const { sourceId } of reviews) sourceIds.add(sourceId);
     exportData = JSON.stringify(
       {
         corpusUpdated: data.meta.corpusUpdated,
+        sourceCommit: form.dataset.revision ?? null,
         theme: themeId,
         candidates: active,
         includeArchives,
         measures: relevant,
         sources: data.sources.filter((source) => sourceIds.has(source.id)),
         ...(subject
-          ? { question: subject.value, versions: [...vByMeasure.values()] }
+          ? {
+              question: subject.value,
+              versions: [...vByMeasure.values()],
+              complements,
+              reviews,
+              coverage: active.map((id) => ({
+                candidate: id,
+                withdrawnOn:
+                  selected.find((c) => c.id === id)?.withdrawnOn ?? null,
+                state: reading?.coverage[id] ?? null,
+                alert: reading?.alerts[id] ?? null,
+              })),
+            }
           : {}),
       },
       null,
@@ -378,7 +485,39 @@ function start() {
     event.preventDefault();
     void render(true, 'push');
   });
-  form.addEventListener('change', () => void render(false, 'push'));
+  form.addEventListener('change', (event) => {
+    selectionNote.hidden = true;
+    if (event.target === third) count = third.checked ? 3 : 2;
+    void render(false, 'push');
+  });
+  add.addEventListener('click', () => {
+    if (count >= maxComparisonCandidates) return;
+    count++;
+    void render(false, 'push');
+    selects[count - 1].focus();
+  });
+  slots.forEach(({ earlier, later, remove }, index) => {
+    const move = (destination: number) => {
+      [selects[index].value, selects[destination].value] = [
+        selects[destination].value,
+        selects[index].value,
+      ];
+      void render(false, 'push');
+      selects[destination].focus();
+    };
+    earlier.addEventListener('click', () => move(index - 1));
+    later.addEventListener('click', () => move(index + 1));
+    remove.addEventListener('click', () => {
+      const values = selects.slice(0, count).map((select) => select.value);
+      values.splice(index, 1);
+      count = Math.max(2, count - 1);
+      selects.forEach((select, slot) => {
+        select.value = values[slot] ?? '';
+      });
+      void render(false, 'push');
+      selects[Math.min(index, count - 1)].focus();
+    });
+  });
   window.addEventListener('popstate', restore);
   saveButton.addEventListener('click', async () => {
     if (savedView)
@@ -400,7 +539,10 @@ function start() {
     .querySelector('#comparison-share')!
     .addEventListener('click', async () => {
       try {
-        await navigator.clipboard.writeText(location.href);
+        const shared = new URL(location.pathname, location.origin);
+        if (!savedView) return;
+        shared.hash = selectionFragment + savedView.parameters;
+        await navigator.clipboard.writeText(shared.href);
         feedback.textContent = 'Lien de comparaison copié.';
       } catch {
         feedback.textContent =

@@ -33,4 +33,4 @@ Un changement peut être progressif ou concerner seulement certaines génératio
 
 Répartition, cotisations, fiscalité et capitalisation peuvent occuper des places différentes dans les projets. Le comparateur distingue les mesures décrites dans les documents des effets économiques attendus par leurs auteurs.
 
-Dans Polradar, les précisions sont conservées avec chaque engagement. Le comparateur permet d’examiner deux ou trois candidatures sur ce sujet, puis de revenir au document original.
+Dans Polradar, les précisions sont conservées avec chaque engagement. Le comparateur permet d’examiner jusqu’à six candidatures sur ce sujet, puis de revenir au document original.

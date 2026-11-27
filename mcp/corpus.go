@@ -99,6 +99,7 @@ type snapshot struct {
 	territorial *territories
 	parliament  parliamentCache
 	archives    archivesCache
+	proofs      *documentaryGraph
 	lexical     []lexicalRecord
 	catalog
 	commit   string

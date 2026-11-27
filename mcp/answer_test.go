@@ -233,6 +233,19 @@ func TestPublishedAnswer(t *testing.T) {
 			}
 		}},
 		{"Le terrain du sondage opinionway-commission-10333-p12 était-il le 21 septembre 2026 ?", "sondage", "sans-resultat", "", nil},
+		{"Sondage Élabé diffusé le 29 août 2026 : quelles sont les dates de début et de fin du terrain ?", "sondage", "partiel", "elabe-2026-08-29-attal", func(t *testing.T, a documentaryAnswer) {
+			r := a.Results[0]
+			if r.Date != "2026-08-29" || len(r.Sources) != 1 ||
+				r.Sources[0].URL != "https://www.commission-des-sondages.fr/notices/files/notices/2026/aout/10245-pres-iv-elabe-29-aout.pdf" {
+				t.Fatal(r)
+			}
+			if len(r.Facts) != 2 || r.Facts[0].Label != "Début du terrain" || r.Facts[0].Value != "2026-08-26" ||
+				r.Facts[1].Label != "Fin du terrain" || r.Facts[1].Value != "2026-08-28" ||
+				r.Facts[0].SourceID != r.Facts[1].SourceID || r.Facts[0].SourceID != r.Sources[0].ID {
+				t.Fatal(r.Facts)
+			}
+		}},
+		{"Le sondage Élabé publié le 2026-08-29 avait-il encore un terrain le 30 août 2026 ?", "sondage", "sans-resultat", "", nil},
 		{"Compare Gabriel Attal et Raphaël Glucksmann sur la CSG des salaires", "comparaison", "partiel", "attal-csg-salaires", func(t *testing.T, a documentaryAnswer) {
 			if len(a.Results) != 2 || !strings.HasSuffix(a.Results[0].URL, "#version-2") || a.Reason != "version_depassee" {
 				t.Fatal(a)

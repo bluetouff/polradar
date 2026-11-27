@@ -39,6 +39,11 @@ const editions = page === 1 ? (await briefEditions()).slice(0, 7) : [];
       <Icon name="rss" /> Flux RSS
     </a>
   </header>
+  {page === 1 && (
+    <p>
+      <a href="/debats/">Débats et entretiens documentés ↗</a>
+    </p>
+  )}
   {editions.length > 0 && (
     <nav class="brief-days" aria-label="Éditions quotidiennes">
       <h2>Par jour</h2>

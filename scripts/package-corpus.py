@@ -11,6 +11,7 @@ import tempfile
 
 DATA = ("corpus", "dossiers", "relations-documentaires", "territoires", "economie", "budgets-programmes", "agenda",
         "marches-predictifs", "documents", "notices-sondages", "qualite-documentaire", "scenarios-sondages",
+        "debats", "simulation-budgetaire",
         "parlement/assemblee", "parlement/recherche",
         "parlement/archives/senat", "parlement/archives/parlement-europeen", "parlement/textes-senat",
         "documentation/breves", "documentation/droit", "documentation/verifications",

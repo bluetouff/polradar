@@ -60,6 +60,18 @@ const readerEntries = [
     'Facture, consommation en kWh, TVA et accise selon les propositions.',
   ],
   [
+    'simulateur',
+    '/economie/simulateur-budgetaire/',
+    'Simulateur des finances publiques',
+    'Calculer l’effet de variations des recettes et dépenses sur le solde public. Comptes de l’Insee et montants des programmes.',
+  ],
+  [
+    'repere',
+    '/debats/',
+    'Débats et entretiens',
+    'Observatoire des déclarations publiques, débats de campagne, auteurs et passages dans les sources originales.',
+  ],
+  [
     'repere',
     '/reperes/#parrainages',
     'Parrainages officiels',

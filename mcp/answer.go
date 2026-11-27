@@ -352,7 +352,17 @@ func (c *snapshot) answer(a answerArgs) (any, bool, error) {
 			result.describe("ambigu", "mesure_a_preciser", "Indiquez l’identifiant d’une proposition pour examiner ses montants et son financement documenté.")
 		}
 	case "simulation":
-		result.describe("partiel", "hypotheses_a_preciser", "Choisissez le dispositif à examiner. La rubrique donne les hypothèses et les sources documentées.")
+		if c.contract.major("simulation-budgetaire") == dataMajor &&
+			answerHas(topic, "budget", "finances publiques", "deficit public", "solde public") {
+			result.Coverage.URL = site + "/economie/simulateur-budgetaire/"
+			result.Links = []answerLink{
+				{"Explorer les scénarios à partir des comptes publics", result.Coverage.URL},
+				{"Lire les unités et hypothèses du calcul", site + "/api/simulation-budgetaire.json"},
+			}
+			result.describe("partiel", "hypotheses_a_preciser", "Indiquez les variations de recettes et de dépenses en points de PIB. Le scénario est calculé à PIB constant sur les comptes annuels de référence.")
+		} else {
+			result.describe("partiel", "hypotheses_a_preciser", "Choisissez le dispositif à examiner. La rubrique donne les hypothèses et les sources documentées.")
+		}
 	case "inconnue":
 		result.describe("hors-perimetre", "prediction_hors_perimetre", "Le corpus documente la campagne, les enquêtes et leurs limites. Il ne permet pas d’établir le résultat d’un scrutin à venir.")
 	}

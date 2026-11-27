@@ -1,4 +1,10 @@
 import { catalogue } from './catalogue';
+import { documentaryAnswer } from './answer-results';
+import { takeSearchHandoff } from './search-handoff';
+import {
+  documentaryKeywords,
+  isDocumentaryQuestion,
+} from '../lib/search-intent';
 import { savedParameters, saveView } from './saved-views';
 import { el, anchor, icon, download, publicData } from './ui';
 import { filterEntries, exportCsv } from '../lib/features.mjs';
@@ -29,6 +35,16 @@ const toolbar = document.querySelector<HTMLElement>('.search-toolbar')!;
 const typeNav = document.querySelector<HTMLElement>('#search-types')!;
 const typeSelect = form.querySelector<HTMLSelectElement>('[name=type]')!;
 const saveButton = document.querySelector<HTMLButtonElement>('#search-save')!;
+const answer = documentaryAnswer();
+const initialQuery = takeSearchHandoff();
+function requestAnswer(filters: URLSearchParams) {
+  const query = filters.get('q')?.trim() ?? '';
+  if (filters.size !== 1 || !isDocumentaryQuestion(query)) return false;
+  void answer.lookup(query);
+  return true;
+}
+form.addEventListener('input', () => answer.clear());
+form.addEventListener('reset', () => answer.clear());
 
 function searchView() {
   const state = new URLSearchParams();
@@ -73,6 +89,10 @@ const selection = catalogue<SearchEntry>({
   results,
   count,
   discovery,
+  localHistory: true,
+  initialQuery,
+  onSubmit: requestAnswer,
+  onRestore: answer.clear,
   onResults(rows) {
     toolbar.hidden = !discovery.hidden;
     saveButton.hidden = !savedParameters('search', searchView().state);
@@ -91,7 +111,8 @@ const selection = catalogue<SearchEntry>({
         button.type = 'button';
         button.addEventListener('click', () => {
           typeSelect.value = id;
-          form.requestSubmit();
+          answer.clear();
+          typeSelect.dispatchEvent(new Event('change', { bubbles: true }));
         });
         typeNav.append(button);
       }
@@ -101,7 +122,10 @@ const selection = catalogue<SearchEntry>({
   empty: () => empty.content.cloneNode(true),
   load: () => publicData<SearchEntry[]>('/api/recherche.json'),
   select: (entries, params) =>
-    filterEntries(entries, Object.fromEntries(params)),
+    filterEntries(entries, {
+      ...Object.fromEntries(params),
+      q: documentaryKeywords(params.get('q') ?? ''),
+    }),
   card: (entry) => {
     const article = el('article', undefined, 'advanced-result');
     const symbol = el('span', undefined, 'result-symbol');
@@ -126,6 +150,7 @@ const selection = catalogue<SearchEntry>({
     return article;
   },
 });
+if (initialQuery) requestAnswer(new URLSearchParams({ q: initialQuery }));
 async function exportSelection(format: 'csv' | 'json') {
   try {
     const rows = await selection();
@@ -151,11 +176,12 @@ for (const format of ['csv', 'json'] as const)
     .querySelector('#export-' + format)!
     .addEventListener('click', () => void exportSelection(format));
 document.querySelector('#search-share')!.addEventListener('click', async () => {
+  const shared = new URL('/recherche/', location.origin);
+  shared.hash = searchView().state.toString();
   try {
-    await navigator.clipboard.writeText(location.href);
+    await navigator.clipboard.writeText(shared.href);
     count.textContent = 'Lien de recherche copié.';
   } catch {
-    count.textContent =
-      'Copiez l’adresse de la page pour partager ces filtres.';
+    count.textContent = 'Le lien n’a pas pu être copié.';
   }
 });

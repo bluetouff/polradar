@@ -1,0 +1,418 @@
+---
+import Base from '../../layouts/Base.astro';
+import { budget, candidates, formatDate, sourceById } from '../../lib/data';
+import { budgetAssessments } from '../../lib/visual-data';
+import { formatBudgetAmount } from '../../lib/campaign-visuals-view.mjs';
+import { nationalBudget } from '../../lib/national-budget-data';
+import { nationalBudgetModel } from '../../lib/national-budget.mjs';
+const publicSource = sourceById(budget.sourceId);
+const statusLabels: Record<string, string> = {
+  provisional: 'Données provisoires',
+  'semi-definitive': 'Données semi-définitives',
+  definitive: 'Données définitives',
+};
+const amounts = budgetAssessments;
+const people = candidates.filter(({ id }) =>
+  amounts.some((amount) => amount.dossier === id),
+);
+const periods = [...new Set(amounts.map(({ period }) => period))];
+const periodLabels = {
+  annuel: 'Annuel',
+  pluriannuel: 'Sur plusieurs années',
+  ponctuel: 'Ponctuel',
+  horizon: 'À l’échéance annoncée',
+  'non-precise': 'Période non précisée',
+};
+const families = {
+  economie: 'Économie annoncée',
+  recette: 'Recette supplémentaire',
+  'baisse-recette': 'Baisse de recettes',
+  depense: 'Dépense',
+  financement: 'Financement',
+  trajectoire: 'Trajectoire',
+};
+const measureFormat = new Intl.NumberFormat('fr-FR', {
+  maximumFractionDigits: 2,
+});
+---
+
+<Base
+  title="Simulateur des finances publiques"
+  section="/economie/finances-publiques/"
+  description="Simulez l’effet d’une variation hypothétique des recettes et dépenses publiques et consultez les chiffrages sourcés des programmes."
+>
+  <nav class="breadcrumbs" aria-label="Fil d’Ariane">
+    <a href="/economie/finances-publiques/">Finances publiques</a>
+  </nav>
+  <header class="page-title">
+    <h1>Simulateur des finances publiques</h1>
+    <p>
+      Faites varier les recettes et les dépenses en points de PIB à partir des
+      comptes de {budget.year}.
+    </p>
+  </header>
+  <div class="balance-layout">
+    <form
+      class="balance-controls"
+      id="national-budget"
+      data-baseline={JSON.stringify(budget.values)}
+      data-revision={nationalBudget.sourceCommit}
+      hidden
+    >
+      <h2>Votre scénario</h2>
+      <p id="budget-unit" class="muted">
+        Saisissez deux variations entre −10 et +10 points de PIB. Une valeur
+        négative correspond à une baisse.
+      </p>
+      <label for="delta-revenue">Variation des recettes</label>
+      <input
+        id="delta-revenue"
+        type="number"
+        min={-nationalBudgetModel.maxChange}
+        max={nationalBudgetModel.maxChange}
+        step="0.01"
+        value="0"
+        required
+        aria-describedby="budget-unit"
+      />
+      <label for="delta-spending">Variation des dépenses</label>
+      <input
+        id="delta-spending"
+        type="number"
+        min={-nationalBudgetModel.maxChange}
+        max={nationalBudgetModel.maxChange}
+        step="0.01"
+        value="0"
+        required
+        aria-describedby="budget-unit"
+      />
+      <button class="button primary" type="submit">
+        Calculer l’effet sur le solde
+      </button>
+      <p id="budget-result-status" role="status"></p>
+    </form>
+    <section class="balance-chart" aria-labelledby="balance-chart-title">
+      <h2 id="balance-chart-title">Comptes de référence · {budget.year}</h2>
+      <p>
+        France · Toutes administrations publiques ·{' '}
+        {statusLabels[budget.status]}
+      </p>
+      {(['revenue', 'spending'] as const).map((key) => (
+        <div class="balance-flow">
+          <h3>{key === 'revenue' ? 'Recettes' : 'Dépenses'}</h3>
+          <p>
+            <span>Référence</span>
+            <strong>{measureFormat.format(budget.values[key])} % du PIB</strong>
+          </p>
+          <progress
+            max="100"
+            value={budget.values[key]}
+            aria-label={`${key === 'revenue' ? 'Recettes' : 'Dépenses'} de référence en pourcentage du PIB`}
+          ></progress>
+          <div class="balance-scenario" hidden>
+            <p>
+              <span>Scénario</span>
+              <strong data-budget-value={key}></strong>
+            </p>
+            <progress
+              max="100"
+              data-budget-progress={key}
+              aria-label={`${key === 'revenue' ? 'Recettes' : 'Dépenses'} du scénario en pourcentage du PIB`}
+            ></progress>
+          </div>
+        </div>
+      ))}
+      <div class="balance-total">
+        <span>Solde de référence</span>
+        <strong>{measureFormat.format(-budget.values.deficit)} % du PIB</strong>
+        <span class="balance-scenario" hidden>
+          Solde du scénario
+        </span>
+        <strong
+          class="balance-scenario"
+          id="national-budget-result"
+          hidden
+        ></strong>
+      </div>
+      <p>{nationalBudgetModel.assumption}</p>
+      <a href={publicSource.url} rel="noreferrer">
+        Tableau de l’Insee, publié le {formatDate(budget.published)} ↗
+      </a>
+      <button class="button small" id="budget-download" type="button" hidden>
+        Exporter le scénario en JSON
+      </button>
+    </section>
+  </div>
+  <section class="section-space" aria-labelledby="programme-amounts-title">
+    <div class="register-heading">
+      <h2 id="programme-amounts-title">Montants des programmes</h2>
+      <a href="/budget-programmes/">Schémas des financements ↗</a>
+    </div>
+    <p>
+      Les annonces gardent leur période, leur périmètre et leur attribution.
+      Pour les relier aux comptes publics, il faut notamment connaître leur
+      effet net sur la même année.
+    </p>
+    <form id="programme-amounts" class="balance-filters" hidden>
+      <div>
+        <label for="budget-candidature">Candidature</label>
+        <select id="budget-candidature" name="candidate">
+          <option value="">Toutes</option>
+          {people.map((person) => (
+            <option value={person.id}>
+              {person.name}
+              {person.withdrawnOn ? ' · retrait' : ''}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div>
+        <label for="budget-periode">Période</label>
+        <select id="budget-periode" name="period">
+          <option value="">Toutes</option>
+          {periods.map((period) => (
+            <option value={period}>{periodLabels[period]}</option>
+          ))}
+        </select>
+      </div>
+    </form>
+    <p id="budget-amount-count" role="status">
+      {amounts.length} montants
+    </p>
+    <ul class="balance-amounts">
+      {amounts.map((entry) => (
+        <li
+          data-budget-amount
+          data-candidate={entry.dossier}
+          data-period={entry.period}
+        >
+          <p class="muted">
+            {families[entry.kind]} ·{' '}
+            {entry.estimator ?? 'Auteur du chiffrage à préciser'}
+          </p>
+          <h3>
+            <a href={`/budget-programmes/#${entry.id}`}>{entry.label}</a>
+          </h3>
+          <p>
+            <strong>{formatBudgetAmount(entry)}</strong> · {entry.horizon}
+          </p>
+          {entry.publicScope && <p>{entry.publicScope}</p>}
+          {entry.overlaps.length > 0 && (
+            <p>
+              Chevauchement documenté avec un autre poste. Voir le détail du
+              chiffrage.
+            </p>
+          )}
+          <p>
+            {entry.grossNet
+              ? 'Base ' + (entry.grossNet === 'brut' ? 'brute' : 'nette')
+              : 'Base brute ou nette à préciser'}{' '}
+            · {entry.funding ?? 'Financement à documenter'}
+          </p>
+          <a href={sourceById(entry.source).url} rel="noreferrer">
+            {entry.locator} ↗
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p>
+      <a href="/api/simulation-budgetaire.json">Contrat du calcul en JSON</a>
+    </p>
+  </section>
+  <noscript>
+    <p>
+      Les comptes de référence et les chiffrages sont consultables. Activez
+      JavaScript pour modifier le scénario.
+    </p>
+  </noscript>
+</Base>
+<script>
+  import {
+    nationalBudgetModel,
+    nationalBudgetScenario,
+  } from '../../lib/national-budget.mjs';
+  import { download } from '../../scripts/ui';
+  const form = document.querySelector<HTMLFormElement>('#national-budget')!;
+  const revenue = form.querySelector<HTMLInputElement>('#delta-revenue')!;
+  const spending = form.querySelector<HTMLInputElement>('#delta-spending')!;
+  const status = document.querySelector('#budget-result-status')!;
+  const exportButton =
+    document.querySelector<HTMLButtonElement>('#budget-download')!;
+  const estimate = document.querySelector('#national-budget-result')!;
+  const output = [
+    ...document.querySelectorAll<HTMLElement>('.balance-scenario'),
+  ];
+  const baseline = JSON.parse(form.dataset.baseline!);
+  const percent = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 2 });
+  let file = '';
+  form.addEventListener('input', () => {
+    status.textContent = '';
+    output.forEach((item) => {
+      item.hidden = true;
+    });
+    exportButton.hidden = true;
+    file = '';
+  });
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const changes = {
+      revenue: revenue.valueAsNumber,
+      spending: spending.valueAsNumber,
+    };
+    const values = nationalBudgetScenario(baseline, changes);
+    if (!values) {
+      status.textContent = 'Vérifiez les deux variations indiquées.';
+      return;
+    }
+    for (const kind of ['revenue', 'spending'] as const) {
+      document.querySelector(`[data-budget-value=${kind}]`)!.textContent =
+        percent.format(values[kind]) + ' % du PIB';
+      document.querySelector<HTMLProgressElement>(
+        `[data-budget-progress=${kind}]`,
+      )!.value = values[kind];
+    }
+    estimate.textContent = percent.format(values.balance) + ' % du PIB';
+    output.forEach((item) => {
+      item.hidden = false;
+    });
+    file = JSON.stringify(
+      {
+        version: nationalBudgetModel.version,
+        sourceCommit: form.dataset.revision ?? null,
+        changes,
+        values,
+        unit: nationalBudgetModel.unit,
+        resultUnit: nationalBudgetModel.resultUnit,
+        assumption: nationalBudgetModel.assumption,
+        baseline: '/api/simulation-budgetaire.json',
+      },
+      null,
+      2,
+    );
+    exportButton.hidden = false;
+    status.textContent = 'Solde du scénario : ' + estimate.textContent;
+  });
+  exportButton.addEventListener('click', () => {
+    if (file)
+      download(
+        file,
+        'application/json;charset=utf-8',
+        'polradar-scenario-budgetaire.json',
+      );
+  });
+  form.hidden = false;
+  const filters =
+    document.querySelector<HTMLFormElement>('#programme-amounts')!;
+  const entries = [
+    ...document.querySelectorAll<HTMLElement>('[data-budget-amount]'),
+  ];
+  const count = document.querySelector('#budget-amount-count')!;
+  filters.addEventListener('change', () => {
+    const data = new FormData(filters);
+    let found = 0;
+    for (const entry of entries) {
+      entry.hidden = Boolean(
+        (data.get('candidate') &&
+          data.get('candidate') !== entry.dataset.candidate) ||
+        (data.get('period') && data.get('period') !== entry.dataset.period),
+      );
+      if (!entry.hidden) found++;
+    }
+    count.textContent = `${found} montant${found > 1 ? 's' : ''}`;
+  });
+  filters.hidden = false;
+</script>
+<style>
+  .balance-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    align-items: start;
+    gap: 0.85rem;
+  }
+  .balance-controls,
+  .balance-chart {
+    padding: clamp(1rem, 2vw, 1.5rem);
+    border: 1px solid var(--line);
+    border-radius: 0.8rem;
+    min-width: 0;
+  }
+  .balance-controls {
+    display: grid;
+    gap: 0.6rem;
+    background: var(--sheet);
+  }
+  .balance-controls :is(h2, p),
+  .balance-chart h2 {
+    margin: 0;
+  }
+  .balance-controls :is(input, button),
+  #budget-download {
+    min-height: 44px;
+  }
+  .balance-controls button {
+    justify-self: start;
+  }
+  .balance-chart {
+    background: linear-gradient(135deg, #e0eeec, var(--sheet));
+  }
+  .balance-flow {
+    margin-block: 0.9rem;
+  }
+  .balance-flow h3,
+  .balance-flow p {
+    margin: 0.25rem 0;
+  }
+  .balance-flow p,
+  .balance-total {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.25rem 0.65rem;
+  }
+  .balance-flow progress {
+    width: 100%;
+    height: 0.75rem;
+    accent-color: #305861;
+  }
+  .balance-scenario progress {
+    accent-color: #206a55;
+  }
+  .balance-total {
+    padding: 0.65rem;
+    border-radius: 0.45rem;
+    background: #173b43;
+    color: #fff;
+  }
+  #budget-download {
+    margin-block-start: 0.6rem;
+  }
+  .balance-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem 1rem;
+  }
+  .balance-filters div {
+    display: grid;
+    min-width: 0;
+    flex: 1 1 13rem;
+  }
+  .balance-filters select {
+    min-height: 44px;
+  }
+  .balance-amounts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    align-items: start;
+    gap: 0.7rem;
+    list-style: none;
+    padding: 0;
+  }
+  .balance-amounts li {
+    padding: 0.9rem;
+    border-block-start: 2px solid var(--accent);
+    background: var(--sheet);
+    overflow-wrap: anywhere;
+  }
+  .balance-amounts :is(h3, p) {
+    margin: 0.35rem 0;
+  }
+</style>

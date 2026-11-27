@@ -1,5 +1,18 @@
 # Capacité de publication
 
+## Recette locale du 27 novembre 2026
+
+L’archive du lot local sur la base `85ffdf8` utilise le transport partitionné. Le déployeur de recette a vérifié le manifeste et reconstitué l’export complet de 11 395 327 octets à partir de 18 partitions. Le plus grand membre du TAR est `api/recherche.json`. L’archive de données de 3 740 351 octets a été relue et rapprochée de ses 25 jeux annoncés.
+
+| Plafond                   |  Occupation |      Limite |       Marge |
+| ------------------------- | ----------: | ----------: | ----------: |
+| Gzip, octets              |  33 999 131 |  67 108 864 |  33 109 733 |
+| TAR, octets               | 271 882 240 | 536 870 912 | 264 988 672 |
+| Membres                   |       9 715 |      20 000 |      10 285 |
+| Plus grand membre, octets |   4 653 437 |  10 485 760 |   5 832 323 |
+
+Le plus haut taux d’occupation est de 50,7 %. Les quatre plafonds laissent une réserve de croissance pour ce lot.
+
 ## Activation du 26 novembre 2026
 
 Le déployeur installé sur Zen correspond à la révision `ac39a2fcb2ae14fad6a11234ae4bde592a0c4005`. Le service MCP 1.6.0 annonce la version 1 du transport du corpus. Une question sur la CSG a donné la même réponse et les mêmes références sur REST et MCP. GitHub Actions sélectionne le profil `partitioned` via `POLRADAR_SITE_TRANSPORT`. [Contrat public](https://polradar.fr/api/v1/corpus) · [Paquet du service](https://github.com/bluetouff/polradar/releases/tag/services-ac39a2fcb2ae14fad6a11234ae4bde592a0c4005)

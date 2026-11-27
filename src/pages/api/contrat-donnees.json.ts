@@ -21,6 +21,9 @@ export function GET() {
       financements: 1,
       arcom: 1,
       graphiques: 1,
+      relations: 1,
+      debats: 1,
+      'simulation-budgetaire': 1,
     },
   });
 }

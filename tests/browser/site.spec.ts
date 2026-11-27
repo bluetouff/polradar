@@ -78,7 +78,7 @@ test('recherche locale et absence de requêtes vers des tiers', async ({
     page.locator('#search-results .advanced-result:visible').first(),
   ).toContainText('Philippe');
   await page.getByRole('searchbox').fill('aucunresultatpossible');
-  await expect(page.locator('[role=status]')).toHaveText('0 résultat');
+  await expect(page.locator('#search-count')).toHaveText('0 résultat');
   expect(external).toEqual([]);
 });
 
@@ -222,7 +222,7 @@ test('la comparaison initiale reste accessible sans JavaScript', async ({
   await context.close();
 });
 
-test('la recherche depuis l’accueil transmet la requête seulement dans le fragment', async ({
+test('la recherche depuis l’accueil conserve la saisie hors de l’adresse', async ({
   page,
 }) => {
   const requests: string[] = [];
@@ -233,7 +233,7 @@ test('la recherche depuis l’accueil transmet la requête seulement dans le fra
   });
   await input.fill('suppression de la CSG');
   await input.press('Enter');
-  await expect(page).toHaveURL(/\/recherche\/#q=suppression\+de\+la\+CSG$/);
+  await expect(page).toHaveURL(/\/recherche\/$/);
   await expect(page.locator('#search-results')).toContainText('CSG');
   expect(requests.every((url) => new URL(url).origin === testOrigin)).toBe(
     true,
