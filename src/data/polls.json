@@ -38536,5 +38536,321 @@
       }
     ],
     "historicalImport": true
+  },
+  {
+    "id": "opinionway-2026-11-26-10400-p12",
+    "institute": "OpinionWay",
+    "commissioner": "CNews",
+    "published": "2026-11-26",
+    "fieldworkStart": "2026-11-25",
+    "fieldworkEnd": "2026-11-26",
+    "sampleSize": 1020,
+    "registeredSample": 912,
+    "usefulSample": 596,
+    "round": "premier",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "population": "Inscrits certains d’aller voter et exprimant une intention de vote.",
+    "method": "Questionnaire en ligne, méthode des quotas. Les redressements sociodémographique et politique figurent en page 3 du PDF.",
+    "noticePage": 12,
+    "noIntention": 14,
+    "noIntentionNote": "Pourcentage publié, établi sur l’ensemble des répondants après redressement sociodémographique.",
+    "margin": {
+      "min": 1.7,
+      "max": 3.8,
+      "confidence": null
+    },
+    "scenario": "Premier tour · avec Dominique de Villepin et Teddy Riner",
+    "noticeSource": "notice-commission-10400",
+    "resultSource": "opinionway-cnews-rapport-2026-11-26",
+    "resultPage": 8,
+    "results": [
+      {
+        "id": "arthaud",
+        "name": "Nathalie Arthaud",
+        "percentage": 1
+      },
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 16
+      },
+      {
+        "id": "roussel",
+        "name": "Fabien Roussel",
+        "percentage": 2
+      },
+      {
+        "id": "tondelier",
+        "name": "Marine Tondelier",
+        "percentage": 1
+      },
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 10
+      },
+      {
+        "id": "bouamrane",
+        "name": "Karim Bouamrane",
+        "percentage": null,
+        "below": 1
+      },
+      {
+        "id": "villepin",
+        "name": "Dominique de Villepin",
+        "percentage": 2
+      },
+      {
+        "id": "attal",
+        "name": "Gabriel Attal",
+        "percentage": 4
+      },
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 8
+      },
+      {
+        "id": "riner",
+        "name": "Teddy Riner",
+        "percentage": 2
+      },
+      {
+        "id": "retailleau",
+        "name": "Bruno Retailleau",
+        "percentage": 4
+      },
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 12
+      },
+      {
+        "id": "dupont-aignan",
+        "name": "Nicolas Dupont-Aignan",
+        "percentage": 2
+      },
+      {
+        "id": "zemmour",
+        "name": "Éric Zemmour",
+        "percentage": 3
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 33
+      }
+    ],
+    "rounding": "unite",
+    "uncertainty": "Effectif exprimé et colonne « Publié » de la notice, p. 12. Le rapport indique une marge d’incertitude de 1,7 à 3,8 points (p. 8). La notice indique 632 inscrits certains d’aller voter (9 ou 10 sur 10).",
+    "surveyId": "opinionway-cnews-2026-11-25",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le premier tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "sourceId": "notice-commission-10400",
+      "page": 12,
+      "checked": "2026-11-27",
+      "base": "Inscrits ayant donné une note de 9 ou 10 à la certitude de voter et exprimé une intention."
+    }
+  },
+  {
+    "id": "opinionway-2026-11-26-10400-p13",
+    "institute": "OpinionWay",
+    "commissioner": "CNews",
+    "published": "2026-11-26",
+    "fieldworkStart": "2026-11-25",
+    "fieldworkEnd": "2026-11-26",
+    "sampleSize": 1020,
+    "registeredSample": 912,
+    "usefulSample": 482,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "population": "Inscrits certains d’aller voter et exprimant une intention de vote.",
+    "method": "Questionnaire en ligne, méthode des quotas. Les redressements sociodémographique et politique figurent en page 3 du PDF.",
+    "noticePage": 13,
+    "noIntention": 29,
+    "noIntentionNote": "Pourcentage publié, établi sur l’ensemble des répondants après redressement sociodémographique.",
+    "margin": {
+      "min": 4.4,
+      "max": 4.4,
+      "confidence": null
+    },
+    "scenario": "Second tour · Édouard Philippe contre Marine Le Pen",
+    "noticeSource": "notice-commission-10400",
+    "resultSource": "opinionway-cnews-rapport-2026-11-26",
+    "resultPage": 28,
+    "results": [
+      {
+        "id": "philippe",
+        "name": "Édouard Philippe",
+        "percentage": 41
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 59
+      }
+    ],
+    "rounding": "unite",
+    "uncertainty": "Effectif exprimé et colonne « Publié » de la notice, p. 13. Le rapport indique une marge d’incertitude de 4,4 points au plus (p. 28). La notice indique 632 inscrits certains d’aller voter (9 ou 10 sur 10).",
+    "surveyId": "opinionway-cnews-2026-11-25",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "sourceId": "notice-commission-10400",
+      "page": 13,
+      "checked": "2026-11-27",
+      "base": "Inscrits ayant donné une note de 9 ou 10 à la certitude de voter et exprimé une intention."
+    }
+  },
+  {
+    "id": "opinionway-2026-11-26-10400-p14",
+    "institute": "OpinionWay",
+    "commissioner": "CNews",
+    "published": "2026-11-26",
+    "fieldworkStart": "2026-11-25",
+    "fieldworkEnd": "2026-11-26",
+    "sampleSize": 1020,
+    "registeredSample": 912,
+    "usefulSample": 460,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "population": "Inscrits certains d’aller voter et exprimant une intention de vote.",
+    "method": "Questionnaire en ligne, méthode des quotas. Les redressements sociodémographique et politique figurent en page 3 du PDF.",
+    "noticePage": 14,
+    "noIntention": 33,
+    "noIntentionNote": "Pourcentage publié, établi sur l’ensemble des répondants après redressement sociodémographique.",
+    "margin": {
+      "min": 4.2,
+      "max": 4.2,
+      "confidence": null
+    },
+    "scenario": "Second tour · Jean-Luc Mélenchon contre Marine Le Pen",
+    "noticeSource": "notice-commission-10400",
+    "resultSource": "opinionway-cnews-rapport-2026-11-26",
+    "resultPage": 14,
+    "results": [
+      {
+        "id": "melenchon",
+        "name": "Jean-Luc Mélenchon",
+        "percentage": 31
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 69
+      }
+    ],
+    "rounding": "unite",
+    "uncertainty": "Effectif exprimé et colonne « Publié » de la notice, p. 14. Le rapport indique une marge d’incertitude de 4,2 points au plus (p. 14). La notice indique 632 inscrits certains d’aller voter (9 ou 10 sur 10).",
+    "surveyId": "opinionway-cnews-2026-11-25",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "sourceId": "notice-commission-10400",
+      "page": 14,
+      "checked": "2026-11-27",
+      "base": "Inscrits ayant donné une note de 9 ou 10 à la certitude de voter et exprimé une intention."
+    }
+  },
+  {
+    "id": "opinionway-2026-11-26-10400-p15",
+    "institute": "OpinionWay",
+    "commissioner": "CNews",
+    "published": "2026-11-26",
+    "fieldworkStart": "2026-11-25",
+    "fieldworkEnd": "2026-11-26",
+    "sampleSize": 1020,
+    "registeredSample": 912,
+    "usefulSample": 513,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "population": "Inscrits certains d’aller voter et exprimant une intention de vote.",
+    "method": "Questionnaire en ligne, méthode des quotas. Les redressements sociodémographique et politique figurent en page 3 du PDF.",
+    "noticePage": 15,
+    "noIntention": 25,
+    "noIntentionNote": "Pourcentage publié, établi sur l’ensemble des répondants après redressement sociodémographique.",
+    "margin": {
+      "min": 4.3,
+      "max": 4.3,
+      "confidence": null
+    },
+    "scenario": "Second tour · Raphaël Glucksmann contre Marine Le Pen",
+    "noticeSource": "notice-commission-10400",
+    "resultSource": "opinionway-cnews-rapport-2026-11-26",
+    "resultPage": 23,
+    "results": [
+      {
+        "id": "glucksmann",
+        "name": "Raphaël Glucksmann",
+        "percentage": 42
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 58
+      }
+    ],
+    "rounding": "unite",
+    "uncertainty": "Effectif exprimé et colonne « Publié » de la notice, p. 15. Le rapport indique une marge d’incertitude de 4,3 points au plus (p. 23). La notice indique 632 inscrits certains d’aller voter (9 ou 10 sur 10).",
+    "surveyId": "opinionway-cnews-2026-11-25",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "sourceId": "notice-commission-10400",
+      "page": 15,
+      "checked": "2026-11-27",
+      "base": "Inscrits ayant donné une note de 9 ou 10 à la certitude de voter et exprimé une intention."
+    }
+  },
+  {
+    "id": "opinionway-2026-11-26-10400-p16",
+    "institute": "OpinionWay",
+    "commissioner": "CNews",
+    "published": "2026-11-26",
+    "fieldworkStart": "2026-11-25",
+    "fieldworkEnd": "2026-11-26",
+    "sampleSize": 1020,
+    "registeredSample": 912,
+    "usefulSample": 451,
+    "round": "second",
+    "questionKey": "intention-vote-presidentielle-2027",
+    "population": "Inscrits certains d’aller voter et exprimant une intention de vote.",
+    "method": "Questionnaire en ligne, méthode des quotas. Les redressements sociodémographique et politique figurent en page 3 du PDF.",
+    "noticePage": 16,
+    "noIntention": 33,
+    "noIntentionNote": "Pourcentage publié, établi sur l’ensemble des répondants après redressement sociodémographique.",
+    "margin": {
+      "min": 4.6,
+      "max": 4.6,
+      "confidence": null
+    },
+    "scenario": "Second tour · David Lisnard contre Marine Le Pen",
+    "noticeSource": "notice-commission-10400",
+    "resultSource": "opinionway-cnews-rapport-2026-11-26",
+    "resultPage": 19,
+    "results": [
+      {
+        "id": "lisnard",
+        "name": "David Lisnard",
+        "percentage": 45
+      },
+      {
+        "id": "lepen",
+        "name": "Marine Le Pen",
+        "percentage": 55
+      }
+    ],
+    "rounding": "unite",
+    "uncertainty": "Effectif exprimé et colonne « Publié » de la notice, p. 16. Le rapport indique une marge d’incertitude de 4,6 points au plus (p. 19). La notice indique 632 inscrits certains d’aller voter (9 ou 10 sur 10).",
+    "surveyId": "opinionway-cnews-2026-11-25",
+    "question": {
+      "status": "verifiee",
+      "wording": "Si le second tour de l’élection présidentielle avait lieu dimanche prochain, pour lequel des candidats suivants y aurait-il le plus de chances que vous votiez ?",
+      "sourceId": "notice-commission-10400",
+      "page": 16,
+      "checked": "2026-11-27",
+      "base": "Inscrits ayant donné une note de 9 ou 10 à la certitude de voter et exprimé une intention."
+    }
   }
 ]

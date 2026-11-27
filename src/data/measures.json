@@ -7437,9 +7437,9 @@
     "parentId": "kazib-travail",
     "candidate": "kazib",
     "theme": "travail",
-    "revision": 1,
-    "title": "La semaine de 28 heures",
-    "description": "Répartir le temps de travail entre tous dans le cadre d’une interdiction des licenciements et suppressions de postes.",
+    "revision": 2,
+    "title": "Ramener la semaine de travail à 28 heures sans baisse de salaire",
+    "description": "Anasse Kazib propose une semaine de 28 heures, sans baisse de salaire ni accélération des cadences. Le candidat inscrit la mesure dans un partage du travail et une interdiction des licenciements.",
     "beneficiaries": null,
     "timing": null,
     "financing": null,
@@ -7457,11 +7457,15 @@
       {
         "sourceId": "kazib-premieres-mesures-2027",
         "locator": "Quel programme pour affronter le patronat : temps de travail"
+      },
+      {
+        "sourceId": "kazib-meeting-20261121-28-heures",
+        "locator": "1:56:04 · Anasse Kazib précise les conditions de la semaine de 28 heures."
       }
     ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
-    "checked": "2026-11-17"
+    "checked": "2026-11-27"
   },
   {
     "id": "kazib-retraites-age",
@@ -147603,6 +147607,651 @@
     ],
     "scope": "orientation",
     "edition": "Lettre aux syndicats agricoles",
+    "checked": "2026-11-27"
+  },
+  {
+    "id": "kazib-monopole-public-credit-controle-travailleurs",
+    "parentId": "kazib-fiscalite-credits-sans-agios",
+    "candidate": "kazib",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Créer un monopole public du crédit sous contrôle des travailleurs",
+    "description": "Au meeting du 21 novembre, Anasse Kazib propose d’exproprier les grandes banques et les assurances pour créer un monopole public du crédit sous contrôle des travailleurs.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "kazib-discours-lancement-20261121",
+        "locator": "Discours d’Anasse Kazib, passage sur les banques et les assurances.",
+        "fragment": ":~:text=pour%20cr%C3%A9er%20un%20monopole%20public%20du%20cr%C3%A9dit"
+      },
+      {
+        "sourceId": "kazib-meeting-20261121-credit",
+        "locator": "1:57:49 · Anasse Kazib présente le monopole public du crédit."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Discours d’Anasse Kazib au meeting du 21 novembre 2026",
+    "checked": "2026-11-27"
+  },
+  {
+    "id": "kazib-mobiliser-bureaux-inutilises-logement",
+    "parentId": "kazib-logement-premieres-mesures",
+    "candidate": "kazib",
+    "theme": "logement",
+    "revision": 1,
+    "title": "Mobiliser les bureaux inutilisés pour loger",
+    "description": "Anasse Kazib propose de mobiliser les bureaux inutilisés pour loger, en plus de récupérer les logements vacants. Son discours ne précise pas les modalités de conversion des bureaux.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "kazib-discours-lancement-20261121",
+        "locator": "Discours d’Anasse Kazib, passage sur les logements vides et les bureaux inutilisés.",
+        "fragment": ":~:text=les%20kilom%C3%A8tres%20carr%C3%A9s%20de%20bureau%20inutilis%C3%A9s"
+      },
+      {
+        "sourceId": "kazib-meeting-20261121-bureaux",
+        "locator": "1:58:01 · Anasse Kazib aborde les bureaux inutilisés."
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Discours d’Anasse Kazib au meeting du 21 novembre 2026",
+    "checked": "2026-11-27"
+  },
+  {
+    "id": "kazib-rendre-mandats-revocables",
+    "parentId": "kazib-propositions-parti-institutions",
+    "candidate": "kazib",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Rendre révocables les élus de l’assemblée unique",
+    "description": "Révolution Permanente défend le droit de révoquer à tout moment les représentants de l’assemblée unique qu’elle propose. Le document ne fixe ni seuil ni procédure.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "kazib-institutions-novembre-2026",
+        "locator": "Article de Gregorio Oneto, section sur le programme institutionnel.",
+        "fragment": ":~:text=r%C3%A9voquer%20leurs%20repr%C3%A9sentants%20%C3%A0%20tout%20moment"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Des élus révocables et rémunérés au salaire médian",
+    "checked": "2026-11-27",
+    "partyAuthor": "Révolution Permanente"
+  },
+  {
+    "id": "kazib-remunerer-elus-salaire-median",
+    "parentId": "kazib-propositions-parti-institutions",
+    "candidate": "kazib",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Aligner la rémunération des élus sur le salaire médian",
+    "description": "Révolution Permanente propose de rémunérer les membres de l’assemblée unique au salaire médian. Son texte cite les métiers d’infirmière et d’ouvrier pour illustrer la proposition.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "kazib-institutions-novembre-2026",
+        "locator": "Article de Gregorio Oneto, section sur le programme institutionnel.",
+        "fragment": ":~:text=pay%C3%A9s%20au%20salaire%20m%C3%A9dian"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Des élus révocables et rémunérés au salaire médian",
+    "checked": "2026-11-27",
+    "partyAuthor": "Révolution Permanente"
+  },
+  {
+    "id": "kazib-ouvrir-vote-assemblee-seize-ans-sans-condition-titre",
+    "parentId": "kazib-propositions-parti-institutions",
+    "candidate": "kazib",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Ouvrir le vote pour l’assemblée unique dès 16 ans et aux personnes sans papiers",
+    "description": "Révolution Permanente, par la voix d’Elsa Marcel, propose que l’assemblée unique soit élue par la population dès 16 ans, y compris les personnes sans titre de séjour.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "kazib-meeting-elsa-marcel-20261121",
+        "locator": "Discours d’Elsa Marcel, passage sur l’élection de l’assemblée unique.",
+        "fragment": ":~:text=avec%20ou%20sans%2Dpapiers%2C%20d%C3%A8s%20l%E2%80%99%C3%A2ge%20de%20seize%20ans"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Discours d’Elsa Marcel au meeting du 21 novembre 2026",
+    "checked": "2026-11-27",
+    "partyAuthor": "Révolution Permanente"
+  },
+  {
+    "id": "kazib-abroger-loi-securite-globale",
+    "parentId": "kazib-propositions-parti-securite",
+    "candidate": "kazib",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Abroger la loi dite « sécurité globale »",
+    "description": "Lors du meeting du 21 novembre, Elsa Marcel cite la loi dite « sécurité globale » parmi celles dont Révolution Permanente demande l’abrogation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "kazib-meeting-elsa-marcel-20261121",
+        "locator": "Discours d’Elsa Marcel, passage sur l’abrogation des lois sécuritaires.",
+        "fragment": ":~:text=loi%20%C2%AB%20s%C3%A9curit%C3%A9%20globale%20%C2%BB"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Discours d’Elsa Marcel au meeting du 21 novembre 2026",
+    "checked": "2026-11-27",
+    "partyAuthor": "Révolution Permanente"
+  },
+  {
+    "id": "kazib-depenaliser-consommation-stupefiants",
+    "parentId": "kazib-propositions-parti-securite",
+    "candidate": "kazib",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Supprimer les délits qui pénalisent la consommation de stupéfiants",
+    "description": "Lors du meeting du 21 novembre, Elsa Marcel demande, au nom de Révolution Permanente, la suppression des délits qui pénalisent la consommation de stupéfiants. Le discours ne précise pas de régime de vente ou de production.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "kazib-meeting-elsa-marcel-20261121",
+        "locator": "Discours d’Elsa Marcel, passage sur la suppression de délits.",
+        "fragment": ":~:text=la%20consommation%20de%20stup%C3%A9fiants%20et%20les%20mouvements%20sociaux"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Discours d’Elsa Marcel au meeting du 21 novembre 2026",
+    "checked": "2026-11-27",
+    "partyAuthor": "Révolution Permanente"
+  },
+  {
+    "id": "kazib-desarmer-police",
+    "parentId": "kazib-propositions-parti-securite",
+    "candidate": "kazib",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Désarmer la police immédiatement",
+    "description": "Dans son discours au meeting du 21 novembre, Elsa Marcel défend le désarmement complet de la police au nom de Révolution Permanente.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "kazib-meeting-elsa-marcel-20261121",
+        "locator": "Discours d’Elsa Marcel, passage sur le désarmement de la police.",
+        "fragment": ":~:text=d%C3%A9sarmer%20la%20police%20imm%C3%A9diatement%20et%20totalement"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Discours d’Elsa Marcel au meeting du 21 novembre 2026",
+    "checked": "2026-11-27",
+    "partyAuthor": "Révolution Permanente"
+  },
+  {
+    "id": "arthaud-indexer-allocations-hausse-prix",
+    "parentId": "lo-revenu-minimum-2026-11-18-social-parti",
+    "candidate": "arthaud",
+    "theme": "social",
+    "revision": 1,
+    "title": "Augmenter les allocations et les indexer sur les prix",
+    "description": "Lutte ouvrière revendique une hausse des allocations et leur indexation sur la hausse des prix. La brochure ne fixe ni barème ni règle de revalorisation.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "arthaud-brochure-juin",
+        "locator": "Brochure de campagne · Face à l’inflation, p. 9 imprimée.",
+        "fragment": "page=11"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Brochure de campagne présidentielle 2027",
+    "checked": "2026-11-27",
+    "partyAuthor": "Lutte ouvrière"
+  },
+  {
+    "id": "arthaud-faire-recenser-besoins-embauche-par-equipes",
+    "parentId": "arthaud-propositions-parti-travail",
+    "candidate": "arthaud",
+    "theme": "travail",
+    "revision": 1,
+    "title": "Recenser avec les équipes les besoins de recrutement dans les services publics",
+    "description": "Lutte ouvrière propose de recenser les besoins de recrutement avec les personnels des hôpitaux, des Ehpad, de l’éducation et des transports publics. La brochure ne donne aucun objectif chiffré par service.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "arthaud-brochure-juin",
+        "locator": "Brochure de campagne · Face au chômage et aux licenciements, p. 10 imprimée.",
+        "fragment": "page=12"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Brochure de campagne présidentielle 2027",
+    "checked": "2026-11-27",
+    "partyAuthor": "Lutte ouvrière"
+  },
+  {
+    "id": "arthaud-sopposer-aux-expulsions-sans-papiers",
+    "parentId": "arthaud-propositions-parti-immigration",
+    "candidate": "arthaud",
+    "theme": "immigration",
+    "revision": 1,
+    "title": "S’opposer aux expulsions de personnes sans papiers",
+    "description": "Dans sa brochure de campagne, Lutte ouvrière se prononce contre les expulsions de personnes sans papiers, dans un passage consacré à sa politique migratoire.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "arthaud-brochure-juin",
+        "locator": "Brochure de campagne · passage sur les migrants et les expulsions, p. 14 imprimée.",
+        "fragment": "page=16"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Brochure de campagne présidentielle 2027",
+    "checked": "2026-11-27",
+    "partyAuthor": "Lutte ouvrière"
+  },
+  {
+    "id": "asselineau-referendum-dispositions-constitutionnelles-sortie-ue",
+    "parentId": "asselineau-institutions-discours-2026",
+    "candidate": "asselineau",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Faire voter la révision des dispositions constitutionnelles sur l’Union européenne",
+    "description": "François Asselineau propose de retirer par référendum les dispositions constitutionnelles sur la participation de la France à l’Union européenne. Il veut ainsi adapter la Constitution à la sortie de l’Union au cours des négociations de retrait. Il maintient l’objectif de notifier la sortie dès la première semaine de son mandat.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "asselineau-direct-135-5467",
+        "locator": "1:31:07 à 1:49:30 · Révision de la Constitution et notification de la sortie de l’Union"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Direct n° 135, réponse sur la procédure de sortie de l’Union · 1:31:07–1:49:30",
+    "checked": "2026-11-27"
+  },
+  {
+    "id": "asselineau-limiter-usage-fonds-publics-ong-contournement-loi",
+    "parentId": "asselineau-institutions-discours-2026",
+    "candidate": "asselineau",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Interdire aux ONG d’utiliser des fonds publics pour contourner la loi",
+    "description": "François Asselineau veut interdire l’usage de fonds publics par les organisations non gouvernementales lorsqu’il juge que cet usage sert à contourner la loi française. Il évoque les conseils donnés à des personnes visées par une obligation de quitter le territoire, sans préciser les critères de l’interdiction.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "asselineau-direct-135-6587",
+        "locator": "1:49:47 à 2:16:39 · Réponse sur l’immigration, l’usage de fonds publics et les OQTF"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Direct n° 135, réponse sur l’immigration · 1:49:47–2:16:39",
+    "checked": "2026-11-27"
+  },
+  {
+    "id": "mathieu-demissionner-organiser-nouvelles-elections-apres-transition",
+    "parentId": "mathieu-institutions",
+    "candidate": "mathieu",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Démissionner à l’issue de la transition et organiser de nouvelles élections",
+    "description": "Benoît Mathieu annonce qu’il démissionnera après la transition constitutionnelle. De nouvelles élections seraient organisées selon les règles de la Constitution approuvée par référendum.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mathieu-page-candidat",
+        "locator": "Une conviction, pas un programme · étapes 4 et 5.",
+        "fragment": ":~:text=Organis%C3%A9es%20selon%20les%20nouvelles%20r%C3%A8gles"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Le candidat",
+    "checked": "2026-11-27"
+  },
+  {
+    "id": "bouamrane-proteger-personnes-lgbt-contre-agressions-discriminations",
+    "parentId": "bouamrane-sources-campagne-2027-securite",
+    "candidate": "bouamrane",
+    "theme": "securite",
+    "revision": 1,
+    "title": "Protéger les personnes LGBT+ contre les agressions et les discriminations",
+    "description": "Dans son manifeste, Karim Bouamrane fixe comme objectif de protéger les personnes LGBT+ contre les agressions et les discriminations. Il n’y précise aucune mesure d’application.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "bouamrane-manifeste-2027",
+        "locator": "Le manifeste · passage sur les protections.",
+        "fragment": ":~:text=prot%C3%A8ge%20les%20personnes%20LGBT%2B"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Le manifeste",
+    "checked": "2026-11-27"
+  },
+  {
+    "id": "cheve-estimer-cout-remontee-citoyenne",
+    "parentId": "cheve-propositions-parti-fiscalite",
+    "candidate": "cheve",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Estimer le coût de lancement et de fonctionnement de la Remontée citoyenne",
+    "description": "Dans son rapport préliminaire de janvier 2025, La France Adulte estime le lancement de son dispositif à 64,5 millions d’euros et son fonctionnement à 392 millions d’euros par an avant économies. Il avance un coût net de 92 millions d’euros en retenant 300 millions d’économies annuelles, mais son tableau chiffre séparément ces économies à 350 millions.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "cheve-rapport-faisabilite-2025",
+        "locator": "Coûts globaux · viabilité financière globale, p. 8 du rapport.",
+        "fragment": "page=9"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Rapport préliminaire de faisabilité de la Remontée citoyenne",
+    "checked": "2026-11-27",
+    "partyAuthor": "La France Adulte"
+  },
+  {
+    "id": "markovic-parti-refuser-traite-ue-mercosur",
+    "parentId": "markovic-propositions-parti-europe",
+    "candidate": "markovic",
+    "theme": "europe",
+    "revision": 1,
+    "title": "Demander au Parlement européen de rejeter le traité UE-Mercosur",
+    "description": "Le Parti animaliste demande aux eurodéputés de voter contre l’accord. Il invoque la concurrence de produits issus de pratiques interdites dans l’Union européenne et l’insuffisance du contrôle des clauses miroirs.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "animalistes-mercosur-janvier-2026",
+        "locator": "Une catastrophe annoncée · appel au Parlement européen.",
+        "fragment": ":~:text=voter%20contre%20ce%20trait%C3%A9"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Opposition au traité UE-Mercosur",
+    "checked": "2026-11-27",
+    "partyAuthor": "Parti animaliste"
+  },
+  {
+    "id": "markovic-parti-encadrer-plus-strictement-transport-animaux",
+    "parentId": "markovic-parti-esod",
+    "candidate": "markovic",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Renforcer l’encadrement du transport des animaux",
+    "description": "Le Parti animaliste cite des règles de transport plus strictes dans ses propositions de transition agricole. Il ne précise ni les conditions de transport à modifier ni les durées à retenir dans ce communiqué.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "animalistes-mercosur-janvier-2026",
+        "locator": "De nombreuses propositions pour l’agriculture de demain.",
+        "fragment": ":~:text=encadrer%20plus%20strictement%20les%20transports"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Opposition au traité UE-Mercosur",
+    "checked": "2026-11-27",
+    "partyAuthor": "Parti animaliste"
+  },
+  {
+    "id": "markovic-parti-prioriser-productions-vegetales-alimentation-humaine",
+    "parentId": "markovic-parti-esod",
+    "candidate": "markovic",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Donner la priorité au soutien des productions végétales destinées à l’alimentation humaine",
+    "description": "Le Parti animaliste demande de soutenir en priorité les productions végétales pour l’alimentation humaine dans sa réponse à la loi d’urgence agricole. Le texte ne fixe ni enveloppe ni critères d’attribution.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "animalistes-urgence-agricole-juillet-2026",
+        "locator": "L’urgence n’est pas de revenir sur les interdictions · dernière proposition.",
+        "fragment": ":~:text=un%20soutien%20prioritaire%20aux%20productions%20v%C3%A9g%C3%A9tales"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Communiqué sur la loi d’urgence agricole",
+    "checked": "2026-11-27",
+    "partyAuthor": "Parti animaliste"
+  },
+  {
+    "id": "markovic-parti-accompagner-agriculteurs-reduction-intrants",
+    "parentId": "markovic-parti-esod",
+    "candidate": "markovic",
+    "theme": "climat",
+    "revision": 1,
+    "title": "Accompagner les exploitations vers une moindre dépendance aux intrants chimiques",
+    "description": "Le Parti animaliste demande un accompagnement renforcé des agriculteurs vers des pratiques qui protègent les pollinisateurs, la faune sauvage et les ressources naturelles. Le communiqué ne précise ni la forme de l’accompagnement ni son financement.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "animalistes-urgence-agricole-juillet-2026",
+        "locator": "L’urgence n’est pas de revenir sur les interdictions · soutien aux agriculteurs.",
+        "fragment": ":~:text=un%20accompagnement%20renforc%C3%A9%20des%20agriculteurs"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Communiqué sur la loi d’urgence agricole",
+    "checked": "2026-11-27",
+    "partyAuthor": "Parti animaliste"
+  },
+  {
+    "id": "labib-parti-controler-marges-energie-grande-distribution",
+    "parentId": "labib-propositions-parti-fiscalite",
+    "candidate": "labib",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Contrôler les marges des entreprises de l’énergie et de la grande distribution",
+    "description": "Dans un éditorial qui expose les revendications portées en campagne par Selma Labib et Gaël Quirante, le NPA-Révolutionnaires demande un contrôle des marges et cite Total, Carrefour et Leclerc. Il ne fixe ni plafond ni procédure de contrôle.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "labib-npar-rentree-20260907",
+        "locator": "Notre plan d’urgence · passage sur les marges.",
+        "fragment": ":~:text=contr%C3%B4ler%20les%20marges%20de%20Total"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Leur rentrée et la nôtre",
+    "checked": "2026-11-27",
+    "partyAuthor": "NPA-Révolutionnaires"
+  },
+  {
+    "id": "labib-parti-plancher-revenus-2200-octobre",
+    "parentId": "labib-propositions-parti-social",
+    "candidate": "labib",
+    "theme": "social",
+    "revision": 1,
+    "title": "Revendiquer un revenu d’au moins 2 200 € dans le communiqué d’octobre",
+    "description": "Dans un communiqué du NPA-Révolutionnaires signé par Selma Labib et Gaël Quirante, le parti revendique que tout revenu atteigne au moins 2 200 €. Le communiqué ne précise ni période ni montant brut ou net. Dans son discours du 12 septembre, la candidate avait formulé une revendication de 2 000 € nets.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "labib-npar-revenu-octobre-2026",
+        "locator": "Communiqué signé · paragraphe sur l’urgence sociale.",
+        "fragment": ":~:text=aucun%20revenu%20ne%20soit%20inf%C3%A9rieur%20%C3%A0%202200%20euros"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Qui sème la misère récolte la colère !",
+    "checked": "2026-11-27",
+    "partyAuthor": "NPA-Révolutionnaires"
+  },
+  {
+    "id": "labib-parti-sopposer-au-protectionnisme",
+    "parentId": "labib-propositions-parti-europe",
+    "candidate": "labib",
+    "theme": "europe",
+    "revision": 1,
+    "title": "S’opposer au protectionnisme commercial",
+    "description": "Le comité politique national du NPA-Révolutionnaires inscrit l’opposition au protectionnisme et au nationalisme dans ses axes de campagne pour 2027. Il ne détaille pas de politique commerciale de remplacement dans ce texte.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "labib-npar-axes-20260503",
+        "locator": "Grandes lignes du programme · position du comité politique national.",
+        "fragment": ":~:text=Nous%20prendrons%20position%20contre%20le%20protectionnisme"
+      }
+    ],
+    "scope": "parti",
+    "edition": "Axes du NPA-Révolutionnaires pour la présidentielle de 2027",
+    "checked": "2026-11-27",
+    "partyAuthor": "NPA-Révolutionnaires"
+  },
+  {
+    "id": "mathieu-estimer-cout-convention-et-un-referendum",
+    "parentId": "mathieu-propositions-fiscalite",
+    "candidate": "mathieu",
+    "theme": "fiscalite",
+    "revision": 1,
+    "title": "Évaluer le coût de la convention citoyenne et d’un référendum national",
+    "description": "Le programme cite une estimation préparatoire de 17 à 33 millions d’euros pour la convention et de 150 à 220 millions pour un référendum national, soit 167 à 253 millions d’euros pour ces deux postes. La démarche prévoit deux votes. Le passage ne chiffre qu’un référendum.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "mathieu-projet-2027",
+        "locator": "Un programme financé et contrôlé · estimation préparatoire.",
+        "fragment": ":~:text=documents%20de%20chiffrage%20pr%C3%A9paratoires"
+      }
+    ],
+    "scope": "campagne",
+    "edition": "Programme de la présidence de transition",
+    "checked": "2026-11-27"
+  },
+  {
+    "id": "labib-decisions-travailleurs-assemblees-generales",
+    "parentId": "labib-propositions-institutions",
+    "candidate": "labib",
+    "theme": "institutions",
+    "revision": 1,
+    "title": "Organiser les décisions collectives des travailleurs en assemblées générales",
+    "description": "Dans l’entretien du 13 septembre 2026, Selma Labib défend l’assemblée générale comme lieu où les travailleurs débattent et arrêtent leurs revendications communes. Elle présente cette pratique comme une forme de démocratie ouvrière. Elle juge que le référendum d’initiative citoyenne constituant proposé par Clara Egger ne suffirait pas à donner le pouvoir aux travailleurs dans le système économique actuel.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "labib-egger-2411",
+        "locator": "40:11 à 44:53 · Selma Labib répond à Clara Egger sur la démocratie directe et les assemblées générales"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Grand test démocratique, entretien de Selma Labib et Gaël Quirante par Clara Egger · 40:11–44:53",
+    "checked": "2026-11-27"
+  },
+  {
+    "id": "labib-defendre-acces-effectif-ivg",
+    "parentId": "labib-propositions-sante",
+    "candidate": "labib",
+    "theme": "sante",
+    "revision": 1,
+    "title": "Défendre un accès effectif à l’interruption volontaire de grossesse",
+    "description": "Selma Labib souhaite que l’interruption volontaire de grossesse (IVG) soit effectivement accessible à toutes. Elle cite les fermetures de structures de planning familial, le manque de moyens de santé et le manque de médecins en zone rurale. Elle ne détaille aucun dispositif de financement dans cet entretien.",
+    "beneficiaries": null,
+    "timing": null,
+    "financing": null,
+    "metrics": [],
+    "amounts": [],
+    "sourceRefs": [
+      {
+        "sourceId": "labib-egger-3576",
+        "locator": "59:36 à 1:00:57 · Selma Labib prend l’exemple de l’accès effectif à l’avortement"
+      }
+    ],
+    "scope": "orientation",
+    "edition": "Grand test démocratique, entretien de Selma Labib et Gaël Quirante par Clara Egger · 59:36–1:00:57",
     "checked": "2026-11-27"
   }
 ]

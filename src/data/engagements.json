@@ -4823,7 +4823,11 @@
       "Interdire les licenciements",
       "Appliquer le même salaire pour un même travail"
     ],
-    "sources": ["kazib-premieres-mesures-2027", "kazib-programme-campagne"],
+    "sources": [
+      "kazib-premieres-mesures-2027",
+      "kazib-programme-campagne",
+      "kazib-meeting-20261121-28-heures"
+    ],
     "scope": "campagne",
     "edition": "Campagne présidentielle 2027",
     "note": "",
@@ -6692,7 +6696,8 @@
       "mathieu-projet-2027",
       "mathieu-sudradio-conventions-mai-2026",
       "mathieu-entretien-solution-democratique-20260427",
-      "mathieu-compte-rendu-entretien-20260427"
+      "mathieu-compte-rendu-entretien-20260427",
+      "mathieu-page-candidat"
     ],
     "scope": "campagne",
     "edition": "Benoît Mathieu, programme de présidence de transition",
@@ -9808,16 +9813,25 @@
       "Geler et plafonner les loyers",
       "Exproprier les logements vides"
     ],
-    "sources": ["kazib-programme-campagne"],
+    "sources": [
+      "kazib-programme-campagne",
+      "kazib-discours-lancement-20261121",
+      "kazib-meeting-20261121-bureaux"
+    ],
     "scope": "campagne",
     "edition": "Premières mesures de campagne 2027",
     "note": "",
-    "checked": "2026-11-23",
+    "checked": "2026-11-27",
     "history": [
       {
         "date": "2026-11-23",
         "event": "Lecture du document",
         "summary": "Intégration des propositions détaillées dans les fiches de ce dossier."
+      },
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de propositions documentées dans leurs publications d’origine."
       }
     ]
   },
@@ -11427,7 +11441,9 @@
     ],
     "sources": [
       "asselineau-discours-rentree-2026",
-      "asselineau-direct-136-6092"
+      "asselineau-direct-136-6092",
+      "asselineau-direct-135-5467",
+      "asselineau-direct-135-6587"
     ],
     "checked": "2026-11-27",
     "history": [
@@ -13337,16 +13353,25 @@
       "Accorder des prêts à taux zéro et supprimer les agios",
       "Supprimer les aides publiques aux grandes entreprises"
     ],
-    "sources": ["kazib-programme-campagne"],
+    "sources": [
+      "kazib-programme-campagne",
+      "kazib-discours-lancement-20261121",
+      "kazib-meeting-20261121-credit"
+    ],
     "scope": "campagne",
     "edition": "Premières mesures de campagne 2027",
     "note": "",
-    "checked": "2026-11-24",
+    "checked": "2026-11-27",
     "history": [
       {
         "date": "2026-11-24",
         "event": "Lecture du document",
         "summary": "Ajout des passages référencés dans les fiches."
+      },
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de propositions documentées dans leurs publications d’origine."
       }
     ]
   },
@@ -13651,7 +13676,8 @@
       "animalistes-chasse-climat-2026",
       "animalistes-cetaces-marineland-2026",
       "animalistes-urgence-agricole-juillet-2026",
-      "animalistes-urgence-agricole-juin-2026"
+      "animalistes-urgence-agricole-juin-2026",
+      "animalistes-mercosur-janvier-2026"
     ],
     "scope": "parti",
     "partyAuthor": "Parti animaliste",
@@ -16146,17 +16172,22 @@
     "bullets": [
       "Revendiquer un revenu d’au moins 2 200 € nets pour les retraités, chômeurs et personnes en invalidité"
     ],
-    "sources": ["lo-revenu-minimum-2026-11-18"],
+    "sources": ["lo-revenu-minimum-2026-11-18", "arthaud-brochure-juin"],
     "scope": "parti",
     "edition": "Lutte ouvrière · Campagne 2027",
     "partyAuthor": "Lutte ouvrière",
     "note": "",
-    "checked": "2026-11-25",
+    "checked": "2026-11-27",
     "history": [
       {
         "date": "2026-11-25",
         "event": "Lecture des sources",
         "summary": "Ajout de propositions repérées dans les publications d’origine."
+      },
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de propositions documentées dans leurs publications d’origine."
       }
     ]
   },
@@ -19689,16 +19720,24 @@
     "theme": "securite",
     "title": "Sécurité & justice",
     "bullets": ["Renforcer les moyens des magistrats et des greffiers"],
-    "sources": ["bouamrane-annonce-france-inter-video-2026-06-09"],
+    "sources": [
+      "bouamrane-annonce-france-inter-video-2026-06-09",
+      "bouamrane-manifeste-2027"
+    ],
     "scope": "orientation",
     "edition": "Présidentielle 2027 · sources de la candidature",
     "note": "",
-    "checked": "2026-11-26",
+    "checked": "2026-11-27",
     "history": [
       {
         "date": "2026-11-26",
         "event": "Relecture des sources",
         "summary": "1 fiche ajoutée."
+      },
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de propositions documentées dans leurs publications d’origine."
       }
     ]
   },
@@ -20646,7 +20685,10 @@
     "bullets": [
       "Interdire l’importation de produits agricoles cultivés avec des substances interdites en France"
     ],
-    "sources": ["animalistes-urgence-agricole-juillet-2026"],
+    "sources": [
+      "animalistes-urgence-agricole-juillet-2026",
+      "animalistes-mercosur-janvier-2026"
+    ],
     "scope": "parti",
     "edition": "Communiqué sur la loi d’urgence agricole et les pesticides",
     "note": "",
@@ -20772,7 +20814,8 @@
     "bullets": ["Ouvrir le droit de vote aux étrangers"],
     "sources": [
       "labib-matin-algerie-20260302",
-      "labib-intervention-rencontres-ete-20260907"
+      "labib-intervention-rencontres-ete-20260907",
+      "labib-egger-2411"
     ],
     "scope": "orientation",
     "edition": "Entretien de Selma Labib au Matin d’Algérie",
@@ -20915,7 +20958,10 @@
     "theme": "travail",
     "title": "Travail & salaires",
     "bullets": ["Revendiquer l’interdiction des licenciements"],
-    "sources": ["lo-orientation-presidentielle-2026-09-13"],
+    "sources": [
+      "lo-orientation-presidentielle-2026-09-13",
+      "arthaud-brochure-juin"
+    ],
     "scope": "parti",
     "edition": "Positions de campagne face au programme du Medef",
     "note": "",
@@ -21018,7 +21064,10 @@
     "bullets": [
       "Renforcer les moyens de la santé, de l’éducation et des transports"
     ],
-    "sources": ["labib-intervention-rencontres-ete-20260907"],
+    "sources": [
+      "labib-intervention-rencontres-ete-20260907",
+      "labib-egger-3576"
+    ],
     "scope": "orientation",
     "edition": "Intervention de Selma Labib aux rencontres d’été du 23 août 2026",
     "note": "",
@@ -21254,5 +21303,175 @@
       }
     ],
     "partyAuthor": "Génération Écologie"
+  },
+  {
+    "id": "kazib-propositions-parti-institutions",
+    "candidate": "kazib",
+    "theme": "institutions",
+    "title": "Institutions",
+    "bullets": ["Rendre révocables les élus de l’assemblée unique"],
+    "sources": [
+      "kazib-institutions-novembre-2026",
+      "kazib-meeting-elsa-marcel-20261121"
+    ],
+    "scope": "parti",
+    "edition": "Des élus révocables et rémunérés au salaire médian",
+    "note": "",
+    "checked": "2026-11-27",
+    "history": [
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de propositions documentées dans leurs publications d’origine."
+      }
+    ],
+    "partyAuthor": "Révolution Permanente"
+  },
+  {
+    "id": "kazib-propositions-parti-securite",
+    "candidate": "kazib",
+    "theme": "securite",
+    "title": "Sécurité & justice",
+    "bullets": ["Abroger la loi dite « sécurité globale »"],
+    "sources": ["kazib-meeting-elsa-marcel-20261121"],
+    "scope": "parti",
+    "edition": "Discours d’Elsa Marcel au meeting du 21 novembre 2026",
+    "note": "",
+    "checked": "2026-11-27",
+    "history": [
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de propositions documentées dans leurs publications d’origine."
+      }
+    ],
+    "partyAuthor": "Révolution Permanente"
+  },
+  {
+    "id": "arthaud-propositions-parti-immigration",
+    "candidate": "arthaud",
+    "theme": "immigration",
+    "title": "Immigration",
+    "bullets": ["S’opposer aux expulsions de personnes sans papiers"],
+    "sources": ["arthaud-brochure-juin"],
+    "scope": "parti",
+    "edition": "Brochure de campagne présidentielle 2027",
+    "note": "",
+    "checked": "2026-11-27",
+    "history": [
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de propositions documentées dans leurs publications d’origine."
+      }
+    ],
+    "partyAuthor": "Lutte ouvrière"
+  },
+  {
+    "id": "cheve-propositions-parti-fiscalite",
+    "candidate": "cheve",
+    "theme": "fiscalite",
+    "title": "Fiscalité & budget",
+    "bullets": [
+      "Estimer le coût de lancement et de fonctionnement de la Remontée citoyenne"
+    ],
+    "sources": ["cheve-rapport-faisabilite-2025"],
+    "scope": "parti",
+    "edition": "Rapport préliminaire de faisabilité de la Remontée citoyenne",
+    "note": "",
+    "checked": "2026-11-27",
+    "history": [
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de propositions documentées dans leurs publications d’origine."
+      }
+    ],
+    "partyAuthor": "La France Adulte"
+  },
+  {
+    "id": "labib-propositions-parti-fiscalite",
+    "candidate": "labib",
+    "theme": "fiscalite",
+    "title": "Fiscalité & budget",
+    "bullets": [
+      "Contrôler les marges des entreprises de l’énergie et de la grande distribution"
+    ],
+    "sources": ["labib-npar-rentree-20260907"],
+    "scope": "parti",
+    "edition": "Leur rentrée et la nôtre",
+    "note": "",
+    "checked": "2026-11-27",
+    "history": [
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de propositions documentées dans leurs publications d’origine."
+      }
+    ],
+    "partyAuthor": "NPA-Révolutionnaires"
+  },
+  {
+    "id": "labib-propositions-parti-social",
+    "candidate": "labib",
+    "theme": "social",
+    "title": "Protection sociale",
+    "bullets": [
+      "Revendiquer un revenu d’au moins 2 200 € dans le communiqué d’octobre"
+    ],
+    "sources": ["labib-npar-revenu-octobre-2026"],
+    "scope": "parti",
+    "edition": "Qui sème la misère récolte la colère !",
+    "note": "",
+    "checked": "2026-11-27",
+    "history": [
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de propositions documentées dans leurs publications d’origine."
+      }
+    ],
+    "partyAuthor": "NPA-Révolutionnaires"
+  },
+  {
+    "id": "labib-propositions-parti-europe",
+    "candidate": "labib",
+    "theme": "europe",
+    "title": "Europe & monde",
+    "bullets": ["S’opposer au protectionnisme commercial"],
+    "sources": ["labib-npar-axes-20260503"],
+    "scope": "parti",
+    "edition": "Axes du NPA-Révolutionnaires pour la présidentielle de 2027",
+    "note": "",
+    "checked": "2026-11-27",
+    "history": [
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de propositions documentées dans leurs publications d’origine."
+      }
+    ],
+    "partyAuthor": "NPA-Révolutionnaires"
+  },
+  {
+    "id": "mathieu-propositions-fiscalite",
+    "candidate": "mathieu",
+    "theme": "fiscalite",
+    "title": "Fiscalité & budget",
+    "bullets": [
+      "Évaluer le coût de la convention citoyenne et d’un référendum national"
+    ],
+    "sources": ["mathieu-projet-2027"],
+    "scope": "campagne",
+    "edition": "Programme de la présidence de transition",
+    "note": "",
+    "checked": "2026-11-27",
+    "history": [
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de propositions documentées dans leurs publications d’origine."
+      }
+    ]
   }
 ]

@@ -92,10 +92,36 @@ test('les positions agricoles gardent leur auteur et leur périmètre', async ({
   await expect(page.locator('#candidat-lassalle')).toContainText(
     'exploitations à taille humaine',
   );
-  await expect(page.locator('#candidat-markovic')).toContainText(
-    'Parti animaliste',
+  const markovic = page.locator('#candidat-markovic');
+  await expect(
+    markovic.getByRole('link', {
+      name: 'Financer la reconversion des éleveurs qui quittent l’élevage intensif',
+    }),
+  ).toBeVisible();
+  await expect(
+    markovic.locator('.q-byline').filter({ hasText: 'Campagne 2027' }),
+  ).toBeVisible();
+  await expect(
+    markovic
+      .locator('.q-byline')
+      .filter({ hasText: 'Projet de parti · Parti animaliste' })
+      .first(),
+  ).toBeVisible();
+  await expect(
+    markovic
+      .locator('.q-complement')
+      .filter({ hasText: 'du transport des animaux' }),
+  ).toBeVisible();
+  await page.goto('/questions/europe-accord-mercosur/');
+  const tradePosition = page.locator('#candidat-markovic');
+  await expect(
+    tradePosition.getByRole('link', {
+      name: 'Demander au Parlement européen de rejeter le traité UE-Mercosur',
+    }),
+  ).toBeVisible();
+  await expect(tradePosition.locator('.q-byline')).toHaveText(
+    'Projet de parti · Parti animaliste',
   );
-  await expect(page.locator('#candidat-markovic .q-byline')).toHaveCount(2);
   await page.goto('/questions/agriculture-ogm/');
   await expect(page.locator('#candidat-durif')).toContainText(
     'ne détaille pas les usages concernés',

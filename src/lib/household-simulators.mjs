@@ -71,7 +71,7 @@ export const householdSimulators = [
       },
       {
         measure: 'kazib-travail-temps',
-        detail: '28 heures par semaine',
+        detail: '28 heures par semaine sans baisse de salaire',
         value: 28,
       },
       {

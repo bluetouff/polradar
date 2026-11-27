@@ -3929,5 +3929,53 @@
     "reason": "Trois configurations de premier tour par parti ou coalition, sans noms de candidats. Questions aux pages 12 à 14, tableaux aux pages 24, 26 et 28. Les scores concordent avec le rapport de l’institut.",
     "evidencePages": [3, 12, 13, 14, 24, 26, 28],
     "outsideSeries": true
+  },
+  "2424": {
+    "number": "10400",
+    "checked": "2026-11-27",
+    "sha256": "0b74da87d845aa1320aacc32e455cf74b7a9e28b01b0c1401647ee29e370d943",
+    "pages": [12, 13, 14, 15, 16],
+    "scenarios": [
+      {
+        "id": "opinionway-2026-11-26-10400-p12",
+        "page": 12
+      },
+      {
+        "id": "opinionway-2026-11-26-10400-p13",
+        "page": 13
+      },
+      {
+        "id": "opinionway-2026-11-26-10400-p14",
+        "page": 14
+      },
+      {
+        "id": "opinionway-2026-11-26-10400-p15",
+        "page": 15
+      },
+      {
+        "id": "opinionway-2026-11-26-10400-p16",
+        "page": 16
+      }
+    ],
+    "reason": "La notice et le rapport concordent sur une configuration de premier tour et quatre duels de second tour. Les effectifs exprimés et les non-exprimés sont vérifiés par scénario."
+  },
+  "2425": {
+    "number": "10401",
+    "checked": "2026-11-27",
+    "sha256": "362d347beb79a014b0a736fb7ef5830ceeb2dffc1ba6ac15610635ad2586ea04",
+    "pages": [],
+    "scenarios": [],
+    "reason": "Le PDF identifie Odoxa pour Backbone et Le Figaro, malgré le libellé OpinionWay du catalogue. La question départage Philippe et Lisnard comme représentant de la droite et du centre. Elle ne mesure pas un vote présidentiel.",
+    "evidencePages": [1, 2, 3]
+  },
+  "2421": {
+    "number": "10398",
+    "checked": "2026-11-27",
+    "sha256": "f83cfc2baf5415d63396a5c6baf4e4ed76fea2d32bc71c60d9bd8be954063964",
+    "pages": [],
+    "scenarios": [],
+    "reason": "Questions sur la méthode de désignation de la droite et du centre, la participation à une éventuelle primaire, les engagements mutuels et le calendrier électoral.",
+    "evidencePages": [5, 6, 7, 8],
+    "outsideSeries": true
   }
 }

@@ -503,6 +503,31 @@ const labels: Record<string, string> = {
 };
 const additions = [
   {
+    id: 'europe-accord-mercosur',
+    theme: 'europe',
+    title:
+      'Quelles positions sur l’accord commercial entre l’Union européenne et le Mercosur ?',
+    terms: 'Union européenne Mercosur commerce clause miroir importations',
+    versions: [
+      'attal-refuser-mercosur-v1',
+      'collovati-suspendre-laccord-avec-le-mercosur-v1',
+      'lisnard-mercosur-exclure-elevage-ou-clause-miroir-v1',
+      'markovic-parti-refuser-traite-ue-mercosur-v1',
+    ],
+  },
+  {
+    id: 'institutions-revocation-elus',
+    theme: 'institutions',
+    title: 'Les élus pourraient-ils être révoqués en cours de mandat ?',
+    terms: 'révocation des élus mandats révocables référendum révocatoire',
+    versions: [
+      'branco-institutions-mandats-revocables-v1',
+      'dlf-septennat-referendum-revocatoire-v1',
+      'melenchon-institutions-2-v1',
+      'pic-mandat-imperatif-revocable-v1',
+    ],
+  },
+  {
     id: 'retraites-penibilite',
     theme: 'retraites',
     title: 'Quels départs anticipés pour les métiers pénibles ?',
@@ -894,6 +919,7 @@ const additionalAnswers: Record<string, string[]> = {
     'patriotes-centres-soins-non-vitaux-v2',
   ],
   'sante-installation-medecins': [
+    'marchal-inciter-specialistes-zones-sous-dotees-v1',
     'philippe-reguler-installation-medecins-si-echec-v1',
     'philippe-former-medecins-assistants-infirmiers-v1',
     'tinland-soins-proximite-medecins-v1',
@@ -903,6 +929,7 @@ const additionalAnswers: Record<string, string[]> = {
     'melenchon-guichet-installation-soignants-v1',
   ],
   'sante-remboursement-soins': [
+    'marchal-tarif-opposable-specialistes-v1',
     'tinland-soins-gratuits-v1',
     'lisnard-sante-1-v3',
     'philippe-adapter-remboursements-apport-traitements-v1',
@@ -994,6 +1021,7 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-supprimer-article-55-de-la-loi-sru-v1',
   ],
   'logement-offre-bati': [
+    'kazib-mobiliser-bureaux-inutilises-logement-v1',
     'philippe-regrouper-bailleurs-foncieres-interet-general-v1',
     'saforcada-mobiliser-foncier-public-logement-outre-mer-v1',
     'saforcada-strategie-construction-rehabilitation-logements-vacants-v1',
@@ -1106,6 +1134,7 @@ const additionalAnswers: Record<string, string[]> = {
     'marchal-agir-regimes-speciaux-pensions-hautes-v1',
   ],
   'retraites-penibilite': [
+    'marchal-depart-60-penibilite-v1',
     'saforcada-reconnaitre-penibilite-physique-horaires-psychologique-retraite-v1',
     'lisnard-criteres-usure-retraite-v1',
     'bouamrane-adapter-age-depart-a-penibilite-v1',
@@ -1230,6 +1259,7 @@ const additionalAnswers: Record<string, string[]> = {
     'melenchon-declencher-orsec-eau-plafonner-bouteilles-v1',
     'melenchon-ne-pas-repercuter-dette-eau-investissements-v1',
   ],
+  'institutions-revocation-elus': ['kazib-rendre-mandats-revocables-v1'],
 };
 const scopedComplements: Record<string, Record<string, string>> = {
   'social-garde-jeunes-enfants': {
@@ -1259,6 +1289,12 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La proposition porte sur l’offre de formations. Les règles de sélection des candidats sont traitées dans sa proposition sur Parcoursup.',
   },
   'agriculture-elevages': {
+    'markovic-parti-refuser-traite-ue-mercosur-v1':
+      'Le Parti animaliste prend position sur les importations et l’accord commercial. Les règles pour les élevages français sont exposées dans d’autres fiches.',
+    'markovic-parti-encadrer-plus-strictement-transport-animaux-v1':
+      'Le Parti animaliste entend durcir l’encadrement du transport des animaux. Les règles à changer restent à préciser.',
+    'markovic-parti-prioriser-productions-vegetales-alimentation-humaine-v1':
+      'Le communiqué propose de privilégier les productions végétales destinées à l’alimentation humaine. Il ne précise pas de nouvelles règles pour les exploitations d’élevage.',
     'saforcada-exiger-reciprocite-methodes-production-importations-agricoles-v1':
       'Cette clause viserait les conditions de production des biens importés. Le passage ne modifie pas directement les règles des élevages en France.',
     'lisnard-mercosur-exclure-elevage-ou-clause-miroir-v1':
@@ -1279,6 +1315,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La proposition porte sur la construction de réacteurs français dans les pays européens. Le passage ne fixe pas de capacité de production supplémentaire en France.',
   },
   'travail-salaire-minimum': {
+    'labib-parti-plancher-revenus-2200-octobre-v1':
+      'La revendication porte sur tout revenu. Le communiqué ne fixe ni salaire horaire ni référence au SMIC.',
     'lisnard-exoneration-emploi-domicile-smic-v1':
       'L’exonération concerne les charges de l’employeur à domicile lorsque le salarié est payé au SMIC.',
     'lisnard-baisser-csg-revenus-activite-66-v1':
@@ -1375,6 +1413,10 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La proposition porte sur les installations existantes. Elle aide à situer l’orientation du candidat sur ces équipements.',
   },
   'institutions-ecrire-constitution': {
+    'mathieu-demissionner-organiser-nouvelles-elections-apres-transition-v1':
+      'La démission et les nouvelles élections sont prévues après la rédaction du texte et son approbation.',
+    'asselineau-referendum-dispositions-constitutionnelles-sortie-ue-v1':
+      'Le candidat propose un vote sur des dispositions constitutionnelles concernant l’Union européenne, dans le cadre des négociations de retrait.',
     'mathieu-consultations-territoires-v1':
       'Le candidat prévoit des contributions du public aux travaux. La composition de la convention est documentée dans une fiche distincte.',
   },
@@ -1417,12 +1459,16 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La candidate prévoit des investissements pour réduire la dépendance à la voiture. Le volet ne choisit pas de service local de transport à développer.',
   },
   'soins-de-proximite': {
+    'labib-defendre-acces-effectif-ivg-v1':
+      'Selma Labib cite le manque de médecins en zone rurale parmi les obstacles à l’accès à l’IVG. L’entretien ne précise pas où seraient implantés de nouveaux services.',
     'saforcada-relier-maisons-sport-sante-soins-clubs-v1':
       'Le réseau orienterait vers une activité physique adaptée proche ou mobile, en lien avec les professionnels de santé.',
     'dubuisson-dossier-medical-pros-autorises-v1':
       'La proposition concerne le partage des informations entre les professionnels qui interviennent dans les soins.',
   },
   'institutions-declenchement-referendum': {
+    'labib-decisions-travailleurs-assemblees-generales-v1':
+      'Selma Labib défend les assemblées générales de travailleurs. Elle juge insuffisant le RIC constituant proposé par Clara Egger pour leur donner le pouvoir de décision dans le système économique actuel.',
     'rohou-ric-local-environnemental-v1':
       'Le projet porte sur les référendums locaux en matière environnementale. Le seuil de 5 % des inscrits est donné à titre d’exemple.',
     'philippe-fiscalite-2-v4':
@@ -1471,6 +1517,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le MEI veut examiner la rénovation, la densification et le réemploi des friches avant de consommer du foncier. Le passage ne fixe aucun objectif de production de logements.',
   },
   'institutions-contributions-citoyennes': {
+    'cheve-estimer-cout-remontee-citoyenne-v1':
+      'Le rapport du collectif éclaire les coûts déclarés de sa plateforme de participation et donne deux estimations différentes des économies attendues.',
     'legendre-voter-en-ligne-consultations-gouvernementales-v1':
       'Le manifeste détaille une participation en ligne aux consultations. Il ne fixe pas de droit d’initiative ni de seuil de déclenchement.',
   },
@@ -1489,6 +1537,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'L’audit concerne les recommandations qui orientent fortement l’accès aux œuvres culturelles.',
   },
   'europe-participation-union': {
+    'asselineau-referendum-dispositions-constitutionnelles-sortie-ue-v1':
+      'Cette révision adapte la Constitution à la sortie de l’Union. La notification prévue dès la première semaine est traitée dans une autre fiche.',
     'melenchon-restituer-souverainete-budgetaire-parlements-nationaux-v1':
       'Cette disposition est un objectif de négociation des traités. Le passage prévoit un référendum sur un éventuel accord.',
     'melenchon-refuser-application-pacte-europeen-migration-asile-v1':
@@ -1502,6 +1552,10 @@ const scopedComplements: Record<string, Record<string, string>> = {
     'melenchon-proposer-services-en-ligne-heberges-en-france-v1':
       'Le passage traite d’une offre hébergée en France et soumise au droit français pour les citoyens et les entreprises. Les données souveraines et sensibles de l’État relèvent de mesures distinctes.',
   },
+  'regularisation-sejour': {
+    'arthaud-sopposer-aux-expulsions-sans-papiers-v1':
+      'La brochure s’oppose aussi aux expulsions dans le passage qui appelle à régulariser les personnes sans papiers.',
+  },
 };
 const searchTerms: Record<string, string> = {
   'logement-obligations-parc-social': 'logement social communes loi SRU',
@@ -1512,6 +1566,17 @@ const searchTerms: Record<string, string> = {
 };
 // These subject phrases identify a precise question. Search terms can be broader.
 export const questionAnswerAliases: Record<string, string[]> = {
+  'europe-accord-mercosur': [
+    'accord avec le Mercosur',
+    'accord UE-Mercosur',
+    'traité UE-Mercosur',
+    'Mercosur',
+  ],
+  'institutions-revocation-elus': [
+    'révocation des élus',
+    'mandats révocables',
+    'référendum révocatoire',
+  ],
   'aide-ukraine': ['aide à l’Ukraine', 'aide française à l’Ukraine'],
   'france-otan': ['OTAN', 'place de la France dans l’OTAN'],
   'europe-participation-union': [
