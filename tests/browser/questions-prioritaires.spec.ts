@@ -69,6 +69,7 @@ test('les cinq dossiers prioritaires renvoient Ã  une position originale sur lâ€
     ['immigration-travail', priority],
     ['education-acces-etudes', priority],
     ['retraites-protection-revenus', priority],
+    ['france-otan', ['philippe']],
   ] as const) {
     const question = questions.find(({ id }) => id === questionId);
     for (const candidate of candidates) {

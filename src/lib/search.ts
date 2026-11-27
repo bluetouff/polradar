@@ -111,7 +111,7 @@ const readerEntries = [
     'droit',
     '/comparer/retraites/',
     'Retraites et droit en vigueur',
-    'Âge légal actuel, âge de départ à la retraite à 64 ans, durée de cotisation, annuités, ouverture des droits et annulation de la décote à l’âge du taux plein.',
+    'Âge légal de départ selon la génération, seuil de 64 ans pour les générations concernées, durée de cotisation, annuités, ouverture des droits et annulation de la décote à l’âge du taux plein.',
   ],
   [
     'droit',

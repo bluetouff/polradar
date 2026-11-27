@@ -20,6 +20,65 @@ const report = {
   ],
 };
 
+test('le HTML initial et le chargement ne publient aucun zéro provisoire', async ({
+  page,
+  request,
+}) => {
+  const html = await (await request.get(route)).text();
+  expect(html).not.toContain('Aucun appel enregistré');
+  let unblock!: () => void;
+  const gate = new Promise<void>((resolve) => {
+    unblock = resolve;
+  });
+  await page.route(api, async (handler) => {
+    await gate;
+    await handler.fulfill({ json: report });
+  });
+  try {
+    await page.goto(route);
+    await expect(page.getByRole('status')).toContainText('Chargement');
+    await expect(page.locator('[data-panels]')).toHaveCount(0);
+  } finally {
+    unblock();
+  }
+  await expect(page.locator('[data-total]')).toHaveText('6');
+});
+
+test('le détail facultatif conserve une catégorie pour les erreurs non qualifiées', async ({
+  page,
+}) => {
+  await page.route(api, (handler) =>
+    handler.fulfill({
+      json: {
+        ...report,
+        days: [
+          report.days[0],
+          {
+            ...report.days[1],
+            error: 3,
+            invalidArguments: 1,
+            dataUnavailable: 1,
+          },
+        ],
+      },
+    }),
+  );
+  await page.goto(route);
+  const detail = page.getByText('Détail des erreurs enregistrées', {
+    exact: true,
+  });
+  await detail.focus();
+  await page.keyboard.press('Enter');
+  const list = page.locator('[data-error-counts]');
+  await expect(list.locator('dt')).toHaveText([
+    'Arguments invalides',
+    'Données indisponibles',
+    'Sans catégorie publiée',
+  ]);
+  await expect(list.locator('dd')).toHaveText(['1', '1', '1']);
+  await expect(page.locator('[data-total]')).toHaveText('8');
+});
+
 test('les appels MCP sont comptés une seule fois et consultables au clavier sur mobile', async ({
   page,
 }) => {
@@ -109,6 +168,16 @@ test('zéro observé, absence de relevé et journée manquante ont des rendus di
   );
   for (const failure of [
     { status: 200, data: { ...report, days: report.days.slice(1) } },
+    {
+      status: 200,
+      data: {
+        ...report,
+        days: [
+          report.days[0],
+          { ...report.days[1], invalidArguments: 1, dataUnavailable: 1 },
+        ],
+      },
+    },
     {
       status: 200,
       data: {

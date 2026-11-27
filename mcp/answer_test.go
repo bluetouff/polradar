@@ -188,6 +188,44 @@ func TestAnswerMissingData(t *testing.T) {
 
 const answerLegacyCommit = "abc3846fc6c17d7e894e6a0add20d0611c2328e6"
 
+func TestPublishedRetirementLawAnswer(t *testing.T) {
+	c, err := (&store{root: publishedSite(t)}).load()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if c.contract.major("droit") != dataMajor {
+		t.Skip("édition antérieure à la collection de droit")
+	}
+	value, empty, err := c.answer(answerArgs{Question: "Quel âge légal pour ouvrir les droits à la retraite ?"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	answer := value.(documentaryAnswer)
+	if answer.Intent != "juridique" || answer.Coverage.URL != site+"/comparer/retraites/" {
+		t.Fatal(answer)
+	}
+	if answer.Reason == "regles_a_consulter" {
+		t.Skip("compatibilité avec un export sans synthèse sourcée")
+	}
+	if empty || answer.State != "documente" || len(answer.Results) != 1 {
+		t.Fatal(answer)
+	}
+	result := answer.Results[0]
+	if !strings.Contains(result.Summary, "64 ans pour la génération 1969 et après") ||
+		len(result.Sources) != 1 || result.Sources[0].ID != "assurance-retraite-age" {
+		t.Fatal(result)
+	}
+	for _, question := range []string{
+		"Quel âge légal pour la retraite en Belgique ?",
+		"Quel âge légal pour la retraite des personnes nées en 1965 ?",
+	} {
+		value, empty, err := c.answer(answerArgs{Question: question})
+		if err != nil || !empty || value.(documentaryAnswer).State != "ambigu" {
+			t.Fatalf("%s : %v (%v)", question, value, err)
+		}
+	}
+}
+
 func TestPublishedAnswer(t *testing.T) {
 	data := &store{root: publishedSite(t)}
 	c, err := data.load()

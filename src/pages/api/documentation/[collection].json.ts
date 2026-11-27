@@ -1,5 +1,11 @@
 import type { APIRoute, GetStaticPaths } from 'astro';
-import { dataset, polls, sourceById, sources } from '../../../lib/data';
+import {
+  dataset,
+  formatDate,
+  polls,
+  sourceById,
+  sources,
+} from '../../../lib/data';
 import { campaignBriefs } from '../../../lib/briefs';
 import {
   digitalLawAsOf,
@@ -9,6 +15,10 @@ import { economy, statements } from '../../../lib/economy-data';
 import { financing, financingMaps } from '../../../lib/proposal-data';
 import { airtime } from '../../../lib/visual-data';
 import comparison from '../../../data/retirement-comparison.json';
+import {
+  formatAge,
+  retirementPath,
+} from '../../../lib/retirement-comparison.mjs';
 import { editionId, type Graphic } from '../../../lib/chart-publication';
 import {
   studioDataPath,
@@ -29,6 +39,12 @@ import {
 
 const origin = 'https://polradar.fr';
 const url = (path: string) => new URL(path, origin).href;
+const latestRetirementCohort = comparison.cohorts.at(-1)!;
+const retirementAgeSource = sourceById('assurance-retraite-age');
+const retirementEffectiveDate = formatDate(comparison.effectiveFrom).replace(
+  /^1 /,
+  '1er ',
+);
 const standardGraphic = (id: string, graphic: Graphic, live: string) => ({
   id,
   title: graphic.title,
@@ -69,7 +85,22 @@ const collections = {
         automaticAgeMonths: comparison.automaticAgeMonths,
         cohorts: comparison.cohorts,
         sources: comparison.legalSources,
-        page: url('/comparer/retraites/'),
+        page: url(retirementPath),
+        rules: [
+          {
+            title: 'Âge légal de départ selon la génération',
+            body:
+              `Dans le cas général, l’âge légal dépend de la date de naissance. Pour les pensions prenant effet à partir du ${retirementEffectiveDate}, il est de ${formatAge(latestRetirementCohort.ageMonths)} pour la génération ${latestRetirementCohort.label.toLowerCase()}. ` +
+              'Le dossier donne l’âge et la durée d’assurance pour les autres générations ainsi que les exceptions.',
+            refs: [
+              {
+                sourceId: retirementAgeSource.id,
+                label: `Tableau de l’âge légal pour les retraites prenant effet à partir du ${retirementEffectiveDate}`,
+                url: retirementAgeSource.url,
+              },
+            ],
+          },
+        ],
       },
     ],
   }),

@@ -1079,6 +1079,7 @@ const additionalAnswers: Record<string, string[]> = {
     'tinland-otan-v1',
     'lepen-sortir-commandement-integre-otan-v1',
     'lisnard-maintenir-cadre-atlantique-a-court-terme-v1',
+    'philippe-participer-pleinement-otan-pilier-europeen-v2',
     'roussel-remplacer-otan-architecture-securite-europeenne-v1',
     'lalanne-europe-otan-v1',
     'philippot-europe-organisations-v1',

@@ -1,6 +1,28 @@
 import { expect, test } from '@playwright/test';
 import { testOrigin } from './origin';
 
+test('la recherche retrouve le relèvement du SMIC et l’ouverture des droits à la retraite', async ({
+  page,
+}) => {
+  await page.goto('/recherche/');
+  const query = page.getByRole('searchbox');
+  for (const [text, href] of [
+    [
+      'Revalorisation du salaire minimum 1 700 euros Mélenchon',
+      '/mesures/melenchon-travail-1/',
+    ],
+    [
+      'Quel âge légal pour ouvrir les droits à la retraite ?',
+      '/comparer/retraites/',
+    ],
+  ]) {
+    await query.fill(text);
+    await expect(
+      page.locator(`#search-results a[href="${href}"]`),
+    ).toBeVisible();
+  }
+});
+
 test('la recherche mobile charge son index au premier usage et maintient le focus', async ({
   page,
 }) => {

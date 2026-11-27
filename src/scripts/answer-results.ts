@@ -19,6 +19,7 @@ const scopeNames: Record<string, string> = {
   parti: 'Proposition de parti',
   orientation: 'Orientation',
   archive: 'Archive',
+  'droit-en-vigueur': 'Droit en vigueur',
 };
 const dateNames: Record<string, string> = {
   consultation: 'Consulté le',

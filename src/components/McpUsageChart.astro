@@ -3,57 +3,64 @@
     <div>
       <h2>Appels aux outils</h2>
       <p data-period role="status">
-        Les graphiques nécessitent JavaScript.
+        Le relevé est accessible au format JSON.
       </p>
     </div>
-    <a href="https://polradar.fr/api/mcp-stats.json">Données JSON</a>
+    <a href="/api/mcp-stats.json">Données JSON</a>
   </header>
-  <div class="mcp-usage-panels" data-panels hidden>
-    <section class="mcp-days" aria-label="Activité quotidienne">
-      <header class="mcp-days-head">
-        <h3>Appels par jour</h3>
-        <p>
-          <strong data-total></strong> <span data-total-label></span>
-        </p>
-      </header>
-      <div class="mcp-graph" data-graph aria-hidden="true">
-        <div class="mcp-y" data-axis></div>
-        <svg
-          class="mcp-plot"
-          viewBox="0 0 1000 160"
-          preserveAspectRatio="none"
-          focusable="false"
-          data-plot
-        ></svg>
-        <div class="mcp-x" data-dates></div>
-      </div>
-      <p class="mcp-zero" data-zero hidden>
-        Aucun appel enregistré sur cette période.
-      </p>
-      <ul class="mcp-legend" data-legend aria-label="Appels par résultat"></ul>
-      <details class="mcp-history">
-        <summary>Voir les chiffres par jour</summary>
-        <table>
-          <caption class="mcp-sr">
-            Nombre d’appels par jour UTC et par résultat
-          </caption>
-          <thead>
-            <tr>
-              <th scope="col">Date</th>
-              <th scope="col">Avec résultat</th>
-              <th scope="col">Sans résultat</th>
-              <th scope="col">Erreurs</th>
-            </tr>
-          </thead>
-          <tbody data-history></tbody>
-        </table>
-      </details>
-    </section>
-    <section class="mcp-tools" aria-label="Appels par outil">
-      <h3>Par outil</h3>
-      <ul data-tools></ul>
-    </section>
-  </div>
+  <template data-panels-template>
+    <div class="mcp-usage-panels" data-panels>
+      <section class="mcp-days" aria-label="Activité quotidienne">
+        <header class="mcp-days-head">
+          <h3>Appels par jour</h3>
+          <p>
+            <strong data-total></strong> <span data-total-label></span>
+          </p>
+        </header>
+        <div class="mcp-graph" data-graph aria-hidden="true">
+          <div class="mcp-y" data-axis></div>
+          <svg
+            class="mcp-plot"
+            viewBox="0 0 1000 160"
+            preserveAspectRatio="none"
+            focusable="false"
+            data-plot
+          ></svg>
+          <div class="mcp-x" data-dates></div>
+        </div>
+        <ul
+          class="mcp-legend"
+          data-legend
+          aria-label="Appels par résultat"
+        ></ul>
+        <details class="mcp-history" data-errors hidden>
+          <summary>Détail des erreurs enregistrées</summary>
+          <dl data-error-counts></dl>
+        </details>
+        <details class="mcp-history">
+          <summary>Voir les chiffres par jour</summary>
+          <table>
+            <caption class="mcp-sr">
+              Nombre d’appels par jour UTC et par résultat
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Avec résultat</th>
+                <th scope="col">Sans résultat</th>
+                <th scope="col">Erreurs</th>
+              </tr>
+            </thead>
+            <tbody data-history></tbody>
+          </table>
+        </details>
+      </section>
+      <section class="mcp-tools" aria-label="Appels par outil">
+        <h3>Par outil</h3>
+        <ul data-tools></ul>
+      </section>
+    </div>
+  </template>
 </section>
 
 <script>
@@ -61,6 +68,12 @@
     { key: 'success', label: 'Avec résultat' },
     { key: 'empty', label: 'Sans résultat' },
     { key: 'error', label: 'Erreurs' },
+  ] as const;
+  const errorOutcomes = [
+    ['invalidArguments', 'Arguments invalides'],
+    ['revisionChanged', 'Révision expirée'],
+    ['dataUnavailable', 'Données indisponibles'],
+    ['responseTooLarge', 'Réponse trop volumineuse'],
   ] as const;
   const answerTool = 'polradar_answer';
   const names = new Map([
@@ -78,7 +91,10 @@
     ['polradar_methodologie', 'Comprendre la méthode'],
   ]);
   type Counts = Record<(typeof outcomes)[number]['key'], number>;
-  type Day = Counts & { date: string };
+  type ErrorBreakdown = Partial<
+    Record<(typeof errorOutcomes)[number][0], number>
+  >;
+  type Day = Counts & ErrorBreakdown & { date: string };
   type Tool = Counts & { name: string };
   const dayMs = 86400000;
   const number = new Intl.NumberFormat('fr-FR');
@@ -124,6 +140,25 @@
       : NaN;
   }
 
+  function readErrorBreakdown(row: Counts & Record<string, unknown>) {
+    const breakdown: ErrorBreakdown = {};
+    let remaining = row.error;
+    for (const [key] of errorOutcomes) {
+      const count = row[key];
+      if (count === undefined) continue;
+      if (
+        typeof count !== 'number' ||
+        !Number.isSafeInteger(count) ||
+        count < 0 ||
+        count > remaining
+      )
+        return;
+      remaining -= count;
+      breakdown[key] = count;
+    }
+    return breakdown;
+  }
+
   function readReport(value: unknown) {
     if (
       !record(value) ||
@@ -152,11 +187,14 @@
         !Number.isFinite(utcTime(row.date))
       )
         return;
+      const breakdown = readErrorBreakdown(row);
+      if (!breakdown) return;
       days.push({
         date: row.date,
         success: row.success,
         empty: row.empty,
         error: row.error,
+        ...breakdown,
       });
     }
     days.sort((a, b) => a.date.localeCompare(b.date));
@@ -216,8 +254,10 @@
     const dates = panel.querySelector<HTMLElement>('[data-dates]')!;
     const peak = Math.max(...days.map(total));
     if (!peak) {
-      panel.querySelector<HTMLElement>('[data-graph]')!.hidden = true;
-      panel.querySelector<HTMLElement>('[data-zero]')!.hidden = false;
+      const message = html('p', 'Aucun appel enregistré sur cette période.');
+      message.className = 'mcp-zero';
+      message.dataset.zero = '';
+      panel.querySelector<HTMLElement>('[data-graph]')!.replaceWith(message);
       return;
     }
     const ceiling = peak === 1 ? 1 : Math.ceil(peak / 2) * 2;
@@ -344,21 +384,45 @@
       const report = readReport(await response.json());
       if (!report) throw new Error();
       const { since, through, days, tools, totals } = report;
+      const template = panel.querySelector<HTMLTemplateElement>(
+        '[data-panels-template]',
+      )!;
+      const view = template.content.firstElementChild!.cloneNode(
+        true,
+      ) as HTMLElement;
       const n = total(totals);
-      panel.querySelector<HTMLElement>('[data-total]')!.textContent =
+      view.querySelector<HTMLElement>('[data-total]')!.textContent =
         number.format(n);
-      panel.querySelector<HTMLElement>('[data-total-label]')!.textContent =
-        n > 1 ? 'appels sur la période' : 'appel sur la période';
-      const legend = panel.querySelector<HTMLElement>('[data-legend]')!;
+      view.querySelector<HTMLElement>('[data-total-label]')!.textContent =
+        n === 1 ? 'appel sur la période' : 'appels sur la période';
+      const legend = view.querySelector<HTMLElement>('[data-legend]')!;
       for (const { key, label } of outcomes) {
         const item = html('li');
         item.className = 'mcp-key-' + key;
         item.append(html('span', label), html('b', number.format(totals[key])));
         legend.append(item);
       }
-      drawDays(panel, days);
+      drawDays(view, days);
+      const errorCounts = view.querySelector<HTMLElement>(
+        '[data-error-counts]',
+      )!;
+      let classified = 0;
+      for (const [key, label] of errorOutcomes) {
+        const count = days.reduce((sum, day) => sum + (day[key] ?? 0), 0);
+        if (!count) continue;
+        classified += count;
+        errorCounts.append(html('dt', label), html('dd', number.format(count)));
+      }
+      if (classified) {
+        if (totals.error > classified)
+          errorCounts.append(
+            html('dt', 'Sans catégorie publiée'),
+            html('dd', number.format(totals.error - classified)),
+          );
+        view.querySelector<HTMLElement>('[data-errors]')!.hidden = false;
+      }
       const body =
-        panel.querySelector<HTMLTableSectionElement>('[data-history]')!;
+        view.querySelector<HTMLTableSectionElement>('[data-history]')!;
       for (const day of [...days].reverse()) {
         const row = body.insertRow(),
           head = html('th');
@@ -370,7 +434,7 @@
         for (const { key } of outcomes)
           row.insertCell().textContent = number.format(day[key]);
       }
-      drawTools(panel, tools);
+      drawTools(view, tools);
       status.textContent =
         longDate
           .formatRangeToParts(since, through)
@@ -378,7 +442,7 @@
             part.type === 'day' && part.value === '1' ? '1er' : part.value,
           )
           .join('') + ' · UTC';
-      panel.querySelector<HTMLElement>('[data-panels]')!.hidden = false;
+      template.replaceWith(view);
     } catch {
       status.textContent =
         'Les statistiques d’usage sont momentanément indisponibles.';

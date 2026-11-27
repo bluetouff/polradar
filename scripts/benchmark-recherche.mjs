@@ -72,7 +72,11 @@ function run() {
     const then = performance.now();
     const rows = filterEntries(index, { ...filters, q: query });
     const durationMs = performance.now() - then;
-    const rank = rows.findIndex(({ url }) => expected.includes(url)) + 1;
+    const pending = new Set(expected);
+    const ranks = rows.flatMap(({ url }, i) =>
+      pending.delete(url) ? [i + 1] : [],
+    );
+    const rank = ranks[0];
     const firstFive = rows.slice(0, 5).map(({ url }) => url);
     return {
       family,
@@ -81,6 +85,7 @@ function run() {
       durationMs,
       count: rows.length,
       rank: rank || null,
+      ranks,
       success:
         (expected.length ? rank > 0 && rank <= 5 : rows.length === 0) &&
         !excluded?.some((url) => firstFive.includes(url)),
@@ -98,6 +103,27 @@ const mrr5 =
     (sum, row) => sum + (row.rank > 0 && row.rank <= 5 ? 1 / row.rank : 0),
     0,
   ) / positive.length;
+const mean = (measure) =>
+  positive.length
+    ? positive.reduce((sum, row) => sum + measure(row), 0) / positive.length
+    : null;
+const hits = (row, k) => row.ranks.filter((rank) => rank <= k);
+const discount = (rank) => 1 / Math.log2(rank + 1);
+const metrics = {
+  positiveCases: positive.length,
+  recallAt5: mean((row) => hits(row, 5).length / new Set(row.expected).size),
+  recallAt10: mean((row) => hits(row, 10).length / new Set(row.expected).size),
+  precisionAt5: mean((row) => hits(row, 5).length / 5),
+  mrr: mean((row) => (row.rank ? 1 / row.rank : 0)),
+  ndcgAt10: mean((row) => {
+    const ideal = Math.min(new Set(row.expected).size, 10);
+    const idcg = Array.from({ length: ideal }, (_, i) =>
+      discount(i + 1),
+    ).reduce((sum, value) => sum + value, 0);
+    return hits(row, 10).reduce((sum, rank) => sum + discount(rank), 0) / idcg;
+  }),
+  unjustifiedEmpty: positive.filter((row) => !row.count).length,
+};
 const percentile = (rows, p) =>
   Number(
     rows
@@ -125,6 +151,7 @@ console.log(
       index: index.length,
       total: queries.length,
       success,
+      metrics,
       ...(common
         ? { premiersRangs: first, questionsPositives: positive.length, mrr5 }
         : {}),

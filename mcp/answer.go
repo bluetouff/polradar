@@ -285,6 +285,8 @@ func answerIntent(text string, people []candidate, ballot string) string {
 	case answerHas(text, "compare", "comparer", "comparaison", "comparatif") || len(people) > 1:
 		return "comparaison"
 	case answerHas(text, "droit en vigueur", "regles en vigueur", "est il legal", "est elle legale", "autorise par la loi", "qui peut utiliser le chiffrement") ||
+		len(people) == 0 && answerHas(text, "retraite", "retraites") && answerHas(text, "age legal") &&
+			!answerHas(text, "propose", "proposent", "proposition", "propositions", "programme", "programmes") ||
 		answerHas(text, "lcen") && answerHas(text, "article", "droit", "loi"):
 		return "juridique"
 	case answerHas(text, "financement", "financements", "chiffrage", "chiffrages", "cout de la mesure", "cout de cette mesure"):

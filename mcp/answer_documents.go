@@ -740,6 +740,12 @@ func (c *snapshot) answerLaw(result *documentaryAnswer, topic string) error {
 		result.describe("hors-perimetre", "droit_non_documente", "Aucun dossier de droit en vigueur ne correspond à cette question dans le corpus.")
 		return nil
 	}
+	if len(selected) == 1 && selected[0].str("id") == "retraite-regime-general" {
+		if href := answerPageURL(selected[0].str("page")); href != "" {
+			result.Coverage.URL = href
+			result.Links = nil
+		}
+	}
 	if len(selected) > 1 || !answerLegalTopicMatches(topic, selected[0]) {
 		result.describe("ambigu", "contexte_juridique_a_preciser", "Précisez le dispositif juridique à examiner.")
 		for _, row := range selected[:min(len(selected), answerLimit)] {
@@ -791,6 +797,11 @@ func (c *snapshot) answerLaw(result *documentaryAnswer, topic string) error {
 
 func answerLegalTopicMatches(topic string, row record) bool {
 	terms := indexedTerms(row.str("id") + " " + row.str("title"))
+	if row.str("id") == "retraite-regime-general" {
+		return !slices.ContainsFunc(answerTerms(topic), func(term string) bool {
+			return !terms[term] && !answerHas("depart droit droits ouverture france francais", term)
+		})
+	}
 	return !slices.ContainsFunc(answerTerms(topic), func(term string) bool {
 		return !terms[term] && !answerHas("qui article lcen premier regle regles legal legale loi legislation applicable autorise autorisation usage utilisation utiliser a t il possible", term)
 	})

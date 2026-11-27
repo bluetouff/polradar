@@ -2,6 +2,8 @@
 
 ## Contre-audit du 27 novembre 2026
 
+La reprise de l’après-midi établit une nouvelle référence publique et mesure les corrections du lot local. [Corrections et recette](contre-audit-2026-11-27-corrections.md)
+
 À 0 h 13, heure de Paris, `main`, le site et le service MCP 1.6.2 servaient tous les trois `85ffdf81f910ed71fc5ea626a18fd73fa63a5e80`. Les 14 empreintes de l’édition concordaient. Le service exposait 12 outils en lecture seule. Le registre MCP donne la même version et la même adresse. [Édition publique](https://polradar.fr/build.json) · [Corpus REST](https://polradar.fr/api/v1/corpus) · [Registre MCP](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.bluetouff%2Fpolradar/versions/1.6.2)
 
 Le lot local construit sur cette base ajoute 29 fiches et 19 références. Il totalise 5 063 fiches, dont 4 881 propositions de campagne ou de parti, et 1 189 liens de preuve. Les 127 réponses prioritaires encore manquantes se répartissent entre le numérique (75), les institutions (8), les retraites et l’agriculture (6 chacune), puis les autres thèmes (32).

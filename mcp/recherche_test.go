@@ -76,6 +76,7 @@ func TestPublishedRechercheQuestionsLibres(t *testing.T) {
 	}
 	for _, tc := range []struct{ question, id, documentedSince string }{
 		{"Que propose Jean-Luc Mélenchon pour les élèves par classe ?", "melenchon-education-2", "2026-11-25"},
+		{"Revalorisation du salaire minimum 1 700 euros Mélenchon", "melenchon-travail-1", "2026-11-17"},
 		{"Que propose Raphaël Glucksmann sur la CSG des salaires ?", "glucksmann-csg-salaires", ""},
 		{"Quelles sont les propositions d’Édouard Philippe pour les départs anticipés à la retraite ?", "philippe-retraites-2", ""},
 		{"Que propose David Lisnard pour le temps de travail ?", "lisnard-temps-de-travail-accords", "2026-11-25"},
