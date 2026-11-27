@@ -8,10 +8,10 @@ import (
 
 // Ignore the question framing while preserving words that define the subject,
 // such as "droit" in "droit du sol" and a territory in a local question.
-var questionFraming = wordSet("c ces ce cela compare comparez comparer comparaison comparatif " +
+var questionFraming = wordSet("c ces ce cela comment compare comparez comparer comparaison comparatif " +
 	"concernant contient dire dis donne est il leur lui me mesure mesures moi nous " +
-	"peut peux position positions programme programmes propose proposent proposee proposition propositions " +
-	"qu que quel quelle quelles quels question quoi s sa sont son source sources sujet t te tu veut veulent volet vous")
+	"peut peux position positions prevoit prevoient programme programmes propose proposent proposee proposition propositions " +
+	"qu que quel quelle quelles quels question quoi s sa selon sont son source sources sujet t te tu veut veulent volet vous")
 
 func answerQuestionKey(topic string) string {
 	words := lexicalTerms(normalize(topic))

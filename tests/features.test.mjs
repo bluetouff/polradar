@@ -636,3 +636,43 @@ test('la correction locale refuse un sens ambigu et ne corrige pas les valeurs c
   assert.deepEqual(filterEntries(variants, { q: 'signal' }), [variants[0]]);
   assert.deepEqual(filterEntries(variants, { q: 'signel' }), []);
 });
+
+test('la recherche retrouve les formulations ordinaires avec leur source dans le corpus', () => {
+  const cases = [
+    [
+      'riner-construire-places-prison',
+      'Teddy Riner',
+      'Que dit Teddy Riner sur les nouveaux établissements pénitentiaires ?',
+    ],
+    [
+      'riner-construire-places-prison',
+      'Teddy Riner',
+      'Je voudrais une source pour les peines de prison de Teddy Riner',
+    ],
+    [
+      'riner-contester-envoi-militaires-francais-ukraine',
+      'Teddy Riner',
+      'Envoyer des soldats français en Ukraine selon Riner',
+    ],
+    [
+      'billetdoux-capitalisme-service-public',
+      'Augustin Billetdoux',
+      'En quoi consiste le capitalisme de service public de Billetdoux ?',
+    ],
+    [
+      'billetdoux-debattre-perimetre-aides-cooperatives',
+      'Augustin Billetdoux',
+      'Comment Billetdoux prévoit-il de conditionner les aides aux sociétés coopératives ?',
+    ],
+  ];
+  for (const [id, name, q] of cases) {
+    const measure = original.measures.find((row) => row.id === id);
+    const entry = {
+      title: measure.title,
+      text: measureSearchText(measure, name, ''),
+      scope: measure.scope,
+    };
+    assert.ok(measure.sourceRefs[0].locator);
+    assert.deepEqual(filterEntries([entry], { q }), [entry], q);
+  }
+});

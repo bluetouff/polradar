@@ -423,3 +423,51 @@ func TestPublishedAnswer(t *testing.T) {
 		})
 	}
 }
+
+func TestAnswerRecognizesDocumentaryPhrasing(t *testing.T) {
+	for _, tc := range []struct{ question, want string }{
+		{"En quoi consiste le capitalisme de service public ?", "capitalisme service public"},
+		{"Je voudrais une source pour les peines de prison", "peine prison"},
+		{"Que dit sur les nouveaux établissements pénitentiaires ?", "prison"},
+		{"Envoyer des soldats français en Ukraine selon", "envoyer militaire francais ukraine"},
+	} {
+		if got := programmeWords(normalize(tc.question)); got != tc.want {
+			t.Errorf("%q : %q, attendu %q", tc.question, got, tc.want)
+		}
+	}
+	for _, tc := range []struct{ question, want string }{
+		{"Quel vote avant d’augmenter les impôts communaux ?", "proposition"},
+		{"Comment a voté sur le nucléaire ?", "scrutin"},
+		{"Quel est l’objet du scrutin sur les établissements pénitentiaires ?", "scrutin"},
+	} {
+		if got := answerIntent(normalize(tc.question), nil, ""); got != tc.want {
+			t.Errorf("%q : %s, attendu %s", tc.question, got, tc.want)
+		}
+	}
+}
+
+func TestAnswerMeasureIdentifierDoesNotSetIntent(t *testing.T) {
+	root := fixture(t)
+	file := filepath.Join(root, "api", "corpus.json")
+	raw, err := os.ReadFile(file)
+	if err != nil {
+		t.Fatal(err)
+	}
+	const id = "mesure-scrutin"
+	raw = []byte(strings.Replace(string(raw), `"id":"mesure"`, `"id":"`+id+`"`, 1))
+	if err = os.WriteFile(file, raw, 0600); err != nil {
+		t.Fatal(err)
+	}
+	c, err := (&store{root: root}).load()
+	if err != nil {
+		t.Fatal(err)
+	}
+	result, empty, err := c.answer(answerArgs{Question: "Quel est le passage source de " + id + " ?"})
+	if err != nil || empty {
+		t.Fatalf("La fiche exacte n’est pas remontée : %v", err)
+	}
+	answer := result.(documentaryAnswer)
+	if answer.Intent != "source" || len(answer.Results) != 1 || answer.Results[0].ID != id {
+		t.Fatalf("Source exacte attendue : %+v", answer)
+	}
+}

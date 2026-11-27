@@ -293,6 +293,8 @@ export function filterEntries(entries, filters) {
   // Operator-like input and punctuation-only queries remain literal text.
   const literal = /[+*|[\]{}^$@\\]|[?!]\(/.test(input);
   const query = input
+    .replace(/^en quoi consiste(?:nt)?\s+/u, '')
+    .replace(/^je voudrais (?:une source|le passage) (?:pour|sur)\s+/u, '')
     .replace(
       /^(?:ou (?:sont|trouver|consulter)|comment (?:trouver|consulter)|quels? (?:outils|chiffres|documents) pour (?:lire|comprendre|consulter))\s+/u,
       '',

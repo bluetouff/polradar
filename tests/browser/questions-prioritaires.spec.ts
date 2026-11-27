@@ -185,7 +185,9 @@ test('la fiche Tinland relie le portrait, le programme et le référendum à leu
     page.locator('a[href="/credits-photos/#tinland"]'),
   ).toBeVisible();
 
-  const programme = page.locator('.programme-reading');
+  const programme = page.locator('.programme-reading details').filter({
+    has: page.locator('summary').filter({ hasText: '26 sections identifiées' }),
+  });
   await programme.locator('summary').click();
   await expect(programme).toContainText('26 sections identifiées');
   await expect(

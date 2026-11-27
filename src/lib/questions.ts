@@ -503,6 +503,865 @@ const labels: Record<string, string> = {
 };
 const additions = [
   {
+    id: 'climat-mobilite-collective',
+    theme: 'climat',
+    title: 'Comment développer les transports collectifs ?',
+    terms: 'mobilité transports en commun train bus réseau déplacements',
+    versions: [
+      'delmur-transports-zones-mal-desservies-v1',
+      'markovic-transport-public-gratuit-chiens-chats-v1',
+      'rohou-stationnements-peripherie-gratuits-v1',
+      'dubuisson-ferroutage-hubs-multimodaux-v1',
+    ],
+  },
+  {
+    id: 'climat-agriculture-ecologie',
+    theme: 'climat',
+    title: 'Quelles règles environnementales pour l’agriculture ?',
+    terms: 'pesticides eau cultures irrigation phytosanitaires',
+    versions: [
+      'markovic-pesticides-perimetre-zones-habitees-v1',
+      'markovic-aides-agricoles-sans-pesticides-v1',
+      'rohou-interdire-pesticides-doute-serieux-v1',
+      'collovati-dessalement-irrigation-v1',
+      'dubuisson-developper-haies-adapter-cultures-v1',
+    ],
+  },
+  {
+    id: 'climat-pilotage-transition',
+    theme: 'climat',
+    title: 'Comment financer et organiser la transition écologique ?',
+    terms: 'transition climatique financement moyens industriels planification',
+    versions: [
+      'kazib-planifier-democratiquement-production-besoins-environnement-v1',
+      'collovati-suppression-ademe-v1',
+      'herlin-subventions-decarbonation-industrie-v1',
+      'herlin-voiture-thermique-europe-2035-v1',
+    ],
+  },
+  {
+    id: 'climat-risques-naturels',
+    theme: 'climat',
+    title: 'Comment prévenir les risques naturels et protéger les ressources ?',
+    terms: 'incendies feux sécheresse prévention eau gaspillage risques',
+    versions: [
+      'collovati-reducteurs-debit-batiments-v1',
+      'collovati-canadair-production-v1',
+      'dubuisson-urbanisme-bioclimatique-v1',
+    ],
+  },
+  {
+    id: 'climat-protection-biodiversite',
+    theme: 'climat',
+    title: 'Comment protéger la biodiversité et encadrer la chasse ?',
+    terms: 'chasse faune faune sauvage biodiversité habitats espèces',
+    versions: [
+      'delmur-permis-chasse-controles-v1',
+      'markovic-gibier-elevage-importation-exportation-v1',
+      'markovic-centre-soins-faune-departement-v1',
+      'markovic-libre-evolution-terres-2030-v1',
+      'markovic-foret-obligation-reelle-compensation-v1',
+      'markovic-libre-evolution-mer-2030-v1',
+      'markovic-clotures-passage-petits-animaux-v1',
+      'markovic-prevenir-collisions-vehicules-animaux-v1',
+      'markovic-autorite-fonds-degats-cultures-v1',
+      'markovic-cartographier-degats-ongules-v1',
+      'markovic-indemnisation-degats-prevention-v1',
+      'markovic-berges-urbaines-reservees-faune-v1',
+      'markovic-limiter-nuisances-activites-mer-v1',
+      'markovic-trophees-chasse-exotique-v1',
+      'tinland-sanctuaire-biodiversite-tiers-territoire-v1',
+    ],
+  },
+  {
+    id: 'climat-condition-animale',
+    theme: 'climat',
+    title: 'Comment protéger les animaux dans les activités humaines ?',
+    terms:
+      'animaux protection animale captivité pêche loisirs animaux de compagnie',
+    versions: [
+      'delmur-maltraitance-animale-amende-extreme-v1',
+      'delmur-abandon-animal-nouvelle-adoption-v1',
+      'delmur-refuges-adoption-v1',
+      'delmur-controle-elevages-compagnie-v1',
+      'delmur-animaux-compagnie-especes-interdites-v1',
+      'delmur-oiseaux-cage-v1',
+      'delmur-adoption-visite-domicile-v1',
+      'delmur-volume-aquarium-v1',
+      'delmur-poissons-fetes-foraines-v1',
+      'markovic-statut-resident-animaux-compagnie-periurbains-v1',
+      'markovic-fourrure-production-importation-vente-v1',
+      'markovic-hebergement-animaux-saisis-v1',
+      'markovic-interdiction-abattage-chevaux-v1',
+      'markovic-tarif-identification-compagnie-v1',
+      'markovic-controle-identification-animaux-v1',
+      'markovic-tracabilite-elevages-chats-chiens-v1',
+      'markovic-liste-dressage-compagnie-interdits-v1',
+      'markovic-plan-trafic-animaux-compagnie-v1',
+      'markovic-volume-minimum-aquariums-v1',
+      'markovic-chiens-travail-protection-v1',
+      'markovic-chiens-travail-fonds-retraite-v1',
+      'markovic-hypertypes-compagnie-encadrement-v1',
+      'markovic-observatoire-morsures-chien-v1',
+      'markovic-permis-detention-tous-chiens-v1',
+      'markovic-mutuelle-animaux-appel-offres-v1',
+      'markovic-prise-en-charge-soins-animaux-menages-modestes-v1',
+      'markovic-pigeonniers-contraceptifs-v1',
+      'markovic-reconversion-zoos-aquariums-sanctuaires-v1',
+      'markovic-interdire-courses-hippiques-v1',
+      'markovic-fonds-retraite-chevaux-v1',
+      'collovati-animaux-maltraitance-reparation-v1',
+    ],
+  },
+  {
+    id: 'climat-politique-agricole',
+    theme: 'climat',
+    title: 'Comment orienter la politique agricole ?',
+    terms:
+      'production terres alimentation agriculteurs politique agricole commune',
+    versions: [
+      'delmur-consultation-agriculteurs-v1',
+      'markovic-pret-taux-zero-agriculture-vegetale-v1',
+      'markovic-subventions-publicite-produits-animaux-v1',
+      'markovic-denominations-produits-vegetaux-v1',
+      'markovic-semences-libre-choix-v1',
+      'markovic-dja-conventions-bien-etre-environnement-v1',
+      'tinland-aider-agriculture-vivriere-domestique-v1',
+      'rohou-interdire-cultures-ogm-v1',
+      'legendre-circuits-courts-v1',
+      'dubuisson-transformer-produits-agricoles-localement-v1',
+    ],
+  },
+  {
+    id: 'education-enseignements',
+    theme: 'education',
+    title: 'Quels enseignements et quel accompagnement proposer à l’école ?',
+    terms:
+      'programmes scolaires apprentissage soutien élèves disciplines examens',
+    versions: [
+      'delmur-accompagnement-eleves-difficulte-v1',
+      'markovic-ethologie-programmes-scolaires-v1',
+      'markovic-neutralite-interets-prives-chasse-ecole-v1',
+      'markovic-dissections-ecole-v1',
+      'markovic-cuisine-vegetale-formation-v1',
+      'markovic-enseignement-institutions-examens-v1',
+      'rohou-internats-finances-etat-jeunes-difficulte-v1',
+      'rohou-initiation-philosophes-ecole-v1',
+      'polony-soutenir-une-dictee-quotidienne-avec-enseignants-formes-v1',
+      'collovati-ecole-personnalites-hommage-v1',
+      'herlin-enseignement-fondamentaux-autorite-v1',
+      'legendre-associer-enseignants-reforme-v1',
+      'dubuisson-formation-enseignants-filieres-v1',
+    ],
+  },
+  {
+    id: 'education-vie-scolaire',
+    theme: 'education',
+    title:
+      'Quelles règles de vie et quels moyens dans les établissements scolaires ?',
+    terms: 'discipline sanctions absentéisme harcèlement moyens école classes',
+    versions: [
+      'polony-se-dire-plutot-favorable-a-uniforme-scolaire-v1',
+      'asselineau-organiser-echanges-eleves-outremer-hexagone-v1',
+      'bouamrane-augmenter-effectifs-enseignants-v1',
+      'collovati-retenues-samedi-v1',
+      'herlin-autonomie-etablissements-publics-v1',
+    ],
+  },
+  {
+    id: 'education-sport',
+    theme: 'education',
+    title: 'Quelle place donner au sport chez les jeunes ?',
+    terms: 'sport pratiques sportives éducation physique fédérations jeunes',
+    versions: [
+      'delmur-equipements-sportifs-proximite-v1',
+      'collovati-sport-secondaire-v1',
+    ],
+  },
+  {
+    id: 'education-arts-et-culture',
+    theme: 'education',
+    title: 'Comment soutenir la culture et l’accès aux œuvres ?',
+    terms: 'culture spectacles artistes culture patrimoine création',
+    versions: [
+      'delmur-patrimoine-savoir-faire-v1',
+      'delmur-production-cinema-francais-v1',
+      'delmur-culture-territoires-ruraux-populaires-v1',
+      'rohou-acces-jardins-familiaux-maisons-nature-v1',
+    ],
+  },
+  {
+    id: 'europe-defense-moyens',
+    theme: 'europe',
+    title: 'Quelles capacités pour la défense française ?',
+    terms:
+      'forces armées défense militaire armement équipements dissuasion nucléaire',
+    versions: [
+      'delmur-modernisation-flotte-aerienne-militaire-v1',
+      'delmur-modernisation-flotte-navale-v1',
+      'rohou-defense-europeenne-autonome-v1',
+      'collovati-programmes-drones-defense-v1',
+      'herlin-adapter-dissuasion-missiles-hypersoniques-v1',
+      'herlin-annuler-dissuasion-avancee-v1',
+      'dubuisson-developper-capacites-defense-v1',
+      'marchal-donner-priorite-nucleaire-militaire-v1',
+    ],
+  },
+  {
+    id: 'europe-solidarite-internationale',
+    theme: 'europe',
+    title: 'Quels engagements internationaux et quelle aide au développement ?',
+    terms:
+      'coopération internationale aide publique développement aide extérieure diplomatie',
+    versions: [
+      'markovic-diplomatie-chasse-cetaces-v1',
+      'tinland-mediation-diplomatique-conflits-v1',
+      'rohou-onu-siege-oslo-revoir-veto-v1',
+      'rohou-competence-internationale-delits-ecologiques-v1',
+      'kazib-soutenir-autodetermination-peuples-palestine-kanaky-v1',
+      'asselineau-reexaminer-aide-publique-developpement-v1',
+      'collovati-remettre-en-cause-afd-v1',
+    ],
+  },
+  {
+    id: 'europe-negociation-ukraine',
+    theme: 'europe',
+    title: 'Quelle action diplomatique en réponse à la guerre en Ukraine ?',
+    terms: 'Ukraine Russie négociations cessez-le-feu paix diplomatie',
+    versions: [
+      'riner-discuter-ukraine-russie-fin-guerre-v1',
+      'herlin-ukraine-russie-relations-v1',
+    ],
+  },
+  {
+    id: 'fiscalite-commerce',
+    theme: 'fiscalite',
+    title: 'Quelles taxes ou règles appliquer aux produits importés ?',
+    terms:
+      'douane droits de douane taxe importations achats étrangers protectionnisme',
+    versions: [
+      'delmur-prix-produits-etrangers-v1',
+      'markovic-clauses-miroirs-bien-etre-animal-v1',
+      'rohou-egalite-qualite-chimique-importations-v1',
+      'pic-adherer-accord-omc-marches-publics-v1',
+      'pic-publier-doctrine-contre-mesures-commerciales-v1',
+      'arthaud-sopposer-protectionnisme-commercial-pour-emploi-v1',
+      'collovati-taxer-commandes-exterieures-v1',
+      'dubuisson-plateforme-marches-publics-export-v1',
+    ],
+  },
+  {
+    id: 'fiscalite-entreprises',
+    theme: 'fiscalite',
+    title: 'Comment taxer les entreprises et leurs bénéfices ?',
+    terms:
+      'impôts entreprises fiscalité société production bénéfices impôt sur les sociétés',
+    versions: [
+      'markovic-legs-dons-associations-protection-animale-v1',
+      'markovic-credit-impot-benevolat-v1',
+      'markovic-exonerations-entreprises-alternatives-vegetales-v1',
+    ],
+  },
+  {
+    id: 'fiscalite-controle-impot',
+    theme: 'fiscalite',
+    title: 'Comment lutter contre la fraude et l’évasion fiscales ?',
+    terms: 'fraude fiscale évasion paradis fiscaux contrôle impôt',
+    versions: [
+      'roussel-recruter-agents-fraude-evasion-fiscales-v1',
+      'delmur-fraude-fiscale-v1',
+      'dubuisson-departement-conformite-bancaire-v1',
+      'dubuisson-registre-beneficiaires-effectifs-v1',
+    ],
+  },
+  {
+    id: 'fiscalite-patrimoine-et-revenus',
+    theme: 'fiscalite',
+    title: 'Comment imposer les revenus et le patrimoine ?',
+    terms: 'impôts revenus fortune patrimoine barème imposition capital ISF',
+    versions: [
+      'billetdoux-isf-climatique-v2',
+      'markovic-quotient-familial-animaux-v1',
+      'tinland-bareme-impot-revenu-universel-v1',
+      'collovati-sans-retour-isf-v1',
+    ],
+  },
+  {
+    id: 'fiscalite-biens-et-credits-publics',
+    theme: 'fiscalite',
+    title: 'Quelles règles pour le patrimoine et les crédits publics ?',
+    terms:
+      'patrimoine public finances publiques budget cessions dépenses biens de l’État',
+    versions: [
+      'delmur-cession-batiments-penitentiaires-v1',
+      'asselineau-negocier-reechelonnement-dette-apres-euro-v1',
+      'asselineau-vendre-mobilier-elysee-mobilier-national-v1',
+      'asselineau-reduire-flotte-aerienne-presidentielle-v1',
+      'dubuisson-fonds-souverain-financement-v1',
+      'dubuisson-regle-constitutionnelle-equilibre-v1',
+    ],
+  },
+  {
+    id: 'immigration-entree-sejour',
+    theme: 'immigration',
+    title: 'Quelles conditions pour entrer en France et y séjourner ?',
+    terms: 'visas immigration titres de séjour admission asile frontières',
+    versions: [
+      'delmur-maintien-emploi-sejour-v1',
+      'pic-loi-migratoire-triennale-et-plafonds-v1',
+      'asselineau-negocier-aide-comores-surveillance-departs-mayotte-v1',
+      'collovati-visas-hors-ue-v1',
+      'herlin-frontieres-nationales-schengen-v1',
+      'legendre-visas-etudiants-reciprocite-v1',
+    ],
+  },
+  {
+    id: 'immigration-eloignement',
+    theme: 'immigration',
+    title:
+      'Comment organiser l’éloignement des personnes en situation irrégulière ?',
+    terms: 'OQTF expulsion éloignement rétention séjour irrégulier',
+    versions: [
+      'delmur-prisonniers-etrangers-retour-v1',
+      'polony-envisager-pays-tiers-pour-eloignement-sous-controle-v1',
+      'collovati-expulsion-oqtf-v1',
+      'collovati-hebergement-irregulier-v1',
+      'herlin-remigration-casier-ressources-v1',
+    ],
+  },
+  {
+    id: 'immigration-nationalite',
+    theme: 'immigration',
+    title: 'Quelles règles pour acquérir, conserver ou perdre la nationalité ?',
+    terms:
+      'nationalité citoyenneté double nationalité déchéance naturalisation',
+    versions: ['collovati-nationalite-double-decheance-v1'],
+  },
+  {
+    id: 'institutions-mandat-et-remuneration',
+    theme: 'institutions',
+    title: 'Quels droits, obligations et rémunérations pour les élus ?',
+    terms:
+      'rémunération élus mandat indemnités président ministres parlementaires',
+    versions: [
+      'rohou-revenus-imposables-consultables-internet-v1',
+      'revillon-apreval-saisie-patrimoine-apres-jugement-populaire-v1',
+      'collovati-remuneration-president-v1',
+      'collovati-indemnites-parlementaires-v1',
+      'collovati-remuneration-gouvernement-v1',
+    ],
+  },
+  {
+    id: 'institutions-representation-publique',
+    theme: 'institutions',
+    title: 'Comment organiser la représentation politique et les assemblées ?',
+    terms:
+      'assemblée sénat députés représentation législatives scrutin conseil parlement',
+    versions: [
+      'pic-chambre-citoyenne-senat-v1',
+      'markovic-vote-blanc-suffrage-exprime-v1',
+      'markovic-proportionnelle-legislatives-v1',
+      'tinland-scrutin-parlementaire-prime-majorite-v1',
+      'rohou-equilibre-amendements-budgetaires-v1',
+      'asselineau-ramener-senat-100-membres-v1',
+      'asselineau-reduire-nombre-deputes-referendum-v1',
+      'asselineau-diviser-par-deux-conseillers-departementaux-v1',
+      'collovati-suppression-cese-ceser-v1',
+      'collovati-deputes-etranger-v1',
+    ],
+  },
+  {
+    id: 'institutions-associations-et-libertes',
+    theme: 'institutions',
+    title: 'Quelles règles pour les associations et l’exercice des libertés ?',
+    terms: 'libertés droits civils vie associative subventions associations',
+    versions: [
+      'delmur-simplification-associations-v1',
+      'markovic-lanceurs-alerte-protection-reconversion-v1',
+      'tinland-impot-destination-cultes-associations-v1',
+      'pic-financer-parcours-formation-citoyenne-v1',
+      'bouamrane-defendre-liberte-de-croire-laicite-v1',
+      'collovati-prenoms-enfants-v1',
+    ],
+  },
+  {
+    id: 'logement-performance-energetique',
+    theme: 'logement',
+    title: 'Comment aider ou encadrer la rénovation des logements ?',
+    terms:
+      'rénovation thermique énergétique MaPrimeRénov DPE logement diagnostic',
+    versions: [
+      'philippe-maires-distribution-aides-renovation-pierre-v1',
+      'rohou-bannir-grandes-structures-metal-verre-batiments-publics-v1',
+      'rohou-incitations-travaux-isolation-ancien-v1',
+      'collovati-suppression-anah-v1',
+      'herlin-supprimer-dpe-v1',
+    ],
+  },
+  {
+    id: 'logement-foncier-et-quartiers',
+    theme: 'logement',
+    title: 'Comment agir sur le foncier et la vie dans les quartiers ?',
+    terms:
+      'foncier terrains quartiers rénovation urbaine aménagement quartiers prioritaires impôt',
+    versions: [
+      'markovic-urbanisme-r-plus-deux-faune-v1',
+      'tinland-taxe-fonciere-superficie-affectee-commune-v1',
+      'rohou-tours-nouvelles-constructions-interdiction-v1',
+      'collovati-suppression-politique-ville-v1',
+      'herlin-assouplir-droit-foncier-v1',
+    ],
+  },
+  {
+    id: 'logement-hebergement-precaire',
+    theme: 'logement',
+    title: 'Quel hébergement pour les personnes sans logement ?',
+    terms: 'sans-abri hébergement urgence mal-logement habitat précaire',
+    versions: [
+      'delmur-hebergement-familles-vulnerables-v1',
+      'markovic-structures-hebergement-animaux-v1',
+    ],
+  },
+  {
+    id: 'sante-organisation-hospitaliere',
+    theme: 'sante',
+    title: 'Comment organiser et financer les soins et l’hôpital ?',
+    terms:
+      'hôpital public ARS soignants organisation système de santé financement',
+    versions: [
+      'delmur-primes-soignants-bienveillance-v1',
+
+      'asselineau-ecarter-suppressions-massives-postes-agents-front-v1',
+      'collovati-suppression-ars-v1',
+      'herlin-reduire-administratif-hopitaux-v1',
+    ],
+  },
+  {
+    id: 'sante-prevention',
+    theme: 'sante',
+    title: 'Quelles actions de prévention en santé ?',
+    terms: 'prévention santé soins prévention dépistage addictions',
+    versions: [
+      'delmur-bien-etre-ecole-travail-v1',
+      'markovic-nutrition-formation-soignants-v1',
+      'markovic-semaine-nationale-alimentation-vegetale-v1',
+
+      'asselineau-dedommagement-chlordecone-antilles-v1',
+    ],
+  },
+  {
+    id: 'securite-police-et-controle',
+    theme: 'securite',
+    title: 'Quels moyens et quels contrôles pour les forces de l’ordre ?',
+    terms:
+      'police forces de l’ordre gendarmerie sécurité privée armement protection',
+    versions: [
+      'delmur-equipes-police-zones-delinquance-v1',
+      'delmur-militaires-transports-v1',
+      'markovic-detention-armes-particuliers-v1',
+      'markovic-fichier-deces-armes-a-feu-v1',
+      'asselineau-renforcer-effectifs-police-et-crs-v1',
+      'bouamrane-augmenter-effectifs-police-v1',
+      'collovati-proteger-sites-sensibles-v1',
+      'herlin-armer-securite-privee-v1',
+    ],
+  },
+  {
+    id: 'securite-detention-et-peines',
+    theme: 'securite',
+    title: 'Quelles règles en prison et pour l’exécution des peines ?',
+    terms:
+      'prison détention peine perpétuité transfèrement peine capitale aménagement',
+    versions: [
+      'delmur-tags-graffitis-sanctions-v1',
+      'delmur-vandalisme-profanations-v1',
+      'delmur-prisons-camps-travail-v1',
+      'delmur-communications-prison-v1',
+      'asselineau-instaurer-peines-planchers-progressives-recidive-v1',
+      'collovati-detenus-transfert-pays-origine-v1',
+      'collovati-regime-prison-v1',
+      'collovati-peine-mort-referendum-v1',
+      'collovati-manifestations-reparation-degats-v1',
+      'herlin-perpetuite-retroactive-v1',
+      'herlin-suppression-proportionnalite-legitime-defense-v1',
+    ],
+  },
+  {
+    id: 'securite-organisation-justice',
+    theme: 'securite',
+    title: 'Comment organiser la justice et garantir son indépendance ?',
+    terms: 'justice tribunaux parquet magistrature procédures juridiques juges',
+    versions: [
+      'pic-secret-defense-acces-juge-v1',
+      'pic-juge-administratif-delais-libertes-v1',
+      'herlin-recrutement-controle-magistrats-v1',
+      'dubuisson-tribunal-universel-appel-cour-supreme-v1',
+      'dubuisson-administration-judiciaire-dediee-v1',
+    ],
+  },
+  {
+    id: 'securite-enquetes-et-trafics',
+    theme: 'securite',
+    title: 'Quelles mesures contre les trafics et la criminalité organisée ?',
+    terms: 'trafic drogues réseaux criminels prévention enquête criminalité',
+    versions: [
+      'delmur-militaires-points-deal-v1',
+      'delmur-collaboration-demantelement-reseaux-v1',
+      'bouamrane-appliquer-methode-saint-ouen-narcotrafic-v1',
+      'collovati-detention-avant-jugement-trafic-v1',
+      'herlin-enquetes-police-sous-couverture-v1',
+    ],
+  },
+  {
+    id: 'securite-surveillance-et-urgence',
+    theme: 'securite',
+    title: 'Comment encadrer les pouvoirs de surveillance et d’urgence ?',
+    terms:
+      'état d’urgence couvre-feu surveillance caméras reconnaissance faciale ordre public',
+    versions: [
+      'pic-classification-secret-defense-delais-et-renouvellement-v1',
+      'pic-prohiber-classification-pour-masquer-faute-v1',
+      'collovati-couvre-feu-etat-urgence-v1',
+      'collovati-reconnaissance-faciale-v1',
+    ],
+  },
+  {
+    id: 'social-droits-familles-enfants',
+    theme: 'social',
+    title: 'Quelles protections pour les enfants et leurs familles ?',
+    terms: 'protection enfance placement aide sociale famille ASE parentalité',
+    versions: [
+      'melenchon-creer-un-controleur-independant-des-lieux-de-placement-des-enfants-v1',
+      'delmur-divorce-faute-biens-garde-v1',
+      'delmur-non-separation-fratrie-placement-v1',
+      'delmur-suivi-enfants-places-v1',
+      'markovic-mandat-animal-deces-incapacite-v1',
+      'markovic-juge-garde-animaux-couples-separes-v1',
+      'markovic-cellules-enfance-protection-animale-v1',
+      'rohou-supprimer-incitations-financieres-natalite-v1',
+      'collovati-revoir-aide-sociale-enfance-v1',
+    ],
+  },
+  {
+    id: 'social-revenus-et-prestations',
+    theme: 'social',
+    title: 'Qui devrait avoir accès aux aides et aux prestations sociales ?',
+    terms:
+      'prestations sociales droits pouvoir achat minima sociaux RSA pauvreté',
+    versions: [
+      'delmur-insertion-grande-precarite-v1',
+      'delmur-drom-vie-chere-v1',
+      'kazib-augmenter-minima-sociaux-500-euros-v1',
+      'labib-controler-prix-alimentaires-comites-quartiers-v1',
+      'bouamrane-maintenir-protection-sociale-hors-privatisation-v1',
+    ],
+  },
+  {
+    id: 'social-handicap-et-autonomie',
+    theme: 'social',
+    title: 'Quelles aides pour le handicap et la perte d’autonomie ?',
+    terms:
+      'handicap autonomie dépendance EHPAD vieillissement droits AAH accessibilité',
+    versions: [
+      'delmur-handicap-accessibilite-lieux-publics-v1',
+      'delmur-aide-maintien-domicile-grand-age-v1',
+      'markovic-assistant-animalier-diplome-credit-v1',
+      'tinland-taxer-entreprises-non-emploi-handicap-v1',
+    ],
+  },
+  {
+    id: 'travail-cotisations-salaires',
+    theme: 'travail',
+    title: 'Comment modifier les cotisations et la rémunération du travail ?',
+    terms:
+      'salaires cotisations prélèvements brut net rémunération charges sociales',
+    versions: [
+      'riner-salaire-net-brut-v1',
+      'tinland-remuneration-professionnelle-maximale-v1',
+      'herlin-baisser-charges-salariales-v1',
+    ],
+  },
+  {
+    id: 'travail-representation',
+    theme: 'travail',
+    title:
+      'Quelle place pour les syndicats et les salariés dans les entreprises ?',
+    terms:
+      'syndicats représentation dialogue social entreprises actionnariat salarié',
+    versions: [
+      'kazib-reprendre-total-travailleurs-v1',
+      'labib-contester-declaration-prealable-greve-transports-v1',
+      'labib-recourir-expropriation-refus-interdire-licenciements-v1',
+      'collovati-subventions-syndicats-v1',
+      'dubuisson-pool-benefices-33-v1',
+    ],
+  },
+  {
+    id: 'travail-industrie-et-innovation',
+    theme: 'travail',
+    title: 'Comment soutenir la production et l’innovation en France ?',
+    terms: 'industrie production relocalisation innovation recherche usines',
+    versions: [
+      'delmur-origine-francaise-etiquetage-v1',
+      'delmur-exportation-soutien-pme-v1',
+      'delmur-creation-startup-france-v1',
+      'markovic-coproduits-vegetaux-recherche-v1',
+      'markovic-brevets-organismes-vivants-v1',
+      'rohou-tpe-pme-aide-perennite-v1',
+      'collovati-acheter-produire-france-v1',
+
+      'dubuisson-pole-excellence-investisseurs-v1',
+    ],
+  },
+  {
+    id: 'travail-acces-emploi',
+    theme: 'travail',
+    title: 'Comment faciliter l’accès et le retour à l’emploi ?',
+    terms:
+      'accompagnement France Travail demandeurs emploi formation insertion chômage',
+    versions: [
+      'markovic-droit-animal-professions-justice-v1',
+      'rohou-credit-formation-un-an-non-qualifies-v1',
+      'collovati-france-travail-agences-v1',
+      'dubuisson-formations-besoins-industrie-v1',
+    ],
+  },
+  {
+    id: 'travail-agents-publics',
+    theme: 'travail',
+    title:
+      'Quelles règles pour le recrutement et le statut des agents publics ?',
+    terms: 'agents publics fonction publique statut recrutement contractuels',
+    versions: [
+      'herlin-statut-prive-nouveaux-agents-v1',
+      'dubuisson-preparer-changement-mission-agents-publics-v1',
+    ],
+  },
+  {
+    id: 'travail-egalite-professionnelle',
+    theme: 'travail',
+    title: 'Comment garantir l’égalité professionnelle ?',
+    terms: 'femmes hommes égalité salariale salaires discrimination entreprise',
+    versions: [
+      'roussel-travail-egalite-salariale-v1',
+      'delmur-egalite-salariale-v1',
+      'dubuisson-egalite-salariale-constitution-v1',
+    ],
+  },
+  {
+    id: 'institutions-demarches-et-recours',
+    theme: 'institutions',
+    title: 'Comment simplifier les démarches et garantir les recours ?',
+    terms: 'administration démarches service public recours citoyen délais',
+    versions: [
+      'markovic-experimentations-transparence-documents-v1',
+      'markovic-cada-sanction-astreinte-v1',
+      'rohou-evaluation-climatique-fermeture-services-publics-v1',
+
+      'dubuisson-assistance-continue-relais-outre-mer-v1',
+      'dubuisson-architecture-registres-publics-v1',
+    ],
+  },
+  {
+    id: 'institutions-controle-constitutionnel',
+    theme: 'institutions',
+    title: 'Qui contrôlerait le respect de la Constitution ?',
+    terms:
+      'contrôle constitutionnel juridiction conseil constitutionnel droits fondamentaux',
+    versions: [],
+  },
+  {
+    id: 'numerique-contenu-synthetique',
+    theme: 'numerique',
+    title:
+      'Quelles règles pour les contenus synthétiques et les hypertrucages ?',
+    terms:
+      'intelligence artificielle deepfake hypertrucage contenu synthétique faux médias',
+    versions: [
+      'pic-interdire-hypertrucages-de-candidats-par-autorites-publiques-v1',
+    ],
+  },
+  {
+    id: 'climat-sources-electricite',
+    theme: 'climat',
+    title: 'Comment organiser et développer la production d’électricité ?',
+    terms:
+      'électricité concessions barrages hydroélectricité politique énergétique capacité production',
+    versions: [
+      'polony-refuser-privatisation-barrages-hydroelectriques-v1',
+      'markovic-referendum-nucleaire-renouvelables-vehicules-v1',
+      'rohou-autonomie-energetique-menages-communautes-v1',
+      'herlin-barrages-edf-v1',
+      'legendre-barrages-hydroelectriques-v1',
+      'dubuisson-plan-production-electrique-v1',
+    ],
+  },
+  {
+    id: 'climat-transports-marchandises',
+    theme: 'climat',
+    title:
+      'Comment encadrer la circulation des véhicules et les transports de marchandises ?',
+    terms:
+      'automobile véhicules assurance immatriculation fret procédures transport marchandises logistique',
+    versions: [
+      'dubuisson-registre-national-assurance-immatriculation-v1',
+      'dubuisson-billetterie-logistique-controle-v1',
+    ],
+  },
+  {
+    id: 'climat-economie-circulaire',
+    theme: 'climat',
+    title: 'Comment agir sur les déchets, la réparation et le gaspillage ?',
+    terms:
+      'déchets réemploi recyclage gaspillage alimentaire économie circulaire produits',
+    versions: [
+      'markovic-convention-don-cantines-v1',
+      'markovic-prix-courtes-dates-supermarches-v1',
+      'tinland-reparation-recyclage-pieces-detachees-v1',
+      'legendre-developper-reparation-reemploi-v1',
+    ],
+  },
+  {
+    id: 'climat-peche-aquaculture',
+    theme: 'climat',
+    title: 'Quelles règles pour la pêche et l’aquaculture ?',
+    terms: 'pêche aquaculture poissons écosystèmes filière maritime',
+    versions: [
+      'markovic-etourdissement-aquatique-v1',
+      'markovic-interdire-concentration-poissons-appats-v1',
+      'markovic-capture-transport-animaux-aquatiques-v1',
+      'markovic-moratoire-pisciculture-v1',
+      'markovic-peche-loisir-interdiction-v1',
+      'markovic-observation-cetaces-regles-communes-v1',
+    ],
+  },
+  {
+    id: 'institutions-services-outre-mer',
+    theme: 'institutions',
+    title:
+      'Comment améliorer les services, les infrastructures et la vie quotidienne outre-mer ?',
+    terms:
+      'services publics outre-mer Antilles Guyane sargasses Réunion archipels océan Indien',
+    versions: [
+      'tinland-favoriser-importations-provenance-locale-v1',
+      'asselineau-renforcer-equipements-publics-guyane-v1',
+      'asselineau-lutter-sargasses-antilles-v1',
+      'asselineau-reexaminer-octroi-mer-vie-chere-v1',
+      'asselineau-actualite-outremer-journaux-televises-meteos-v1',
+      'dubuisson-subsidiarite-adaptee-outre-mer-v1',
+      'dubuisson-continuite-antilles-v1',
+      'dubuisson-plateforme-ocean-indien-reunion-v1',
+      'dubuisson-continuite-archipel-polynesie-v1',
+    ],
+  },
+  {
+    id: 'institutions-competences-territoires',
+    theme: 'institutions',
+    title:
+      'Quelles compétences confier aux collectivités et comment les organiser ?',
+    terms:
+      'collectivités pouvoirs territoires compétences échelons subsidiarité départements',
+    versions: [
+      'tinland-duree-mandats-conseils-municipaux-v1',
+      'tinland-evaluation-citoyenne-elus-locaux-v1',
+      'rohou-executifs-territoriaux-suffrage-direct-v1',
+    ],
+  },
+  {
+    id: 'travail-commande-publique',
+    theme: 'travail',
+    title: 'Quels critères privilégier dans la commande publique ?',
+    terms: 'marchés publics commande publique achat local emploi fabrication',
+    versions: [
+      'markovic-commande-publique-bien-etre-animal-v1',
+      'markovic-contrats-debouches-filieres-vegetales-v1',
+    ],
+  },
+  {
+    id: 'securite-condition-animale',
+    theme: 'securite',
+    title: 'Comment contrôler et sanctionner les atteintes aux animaux ?',
+    terms:
+      'justice pénale protection animale inspecteurs tribunaux contrôle mauvais traitements maltraitance',
+    versions: [
+      'markovic-unites-departementales-protection-animale-v1',
+      'markovic-parquets-animaux-tribunaux-judiciaires-v1',
+      'markovic-fichier-auteurs-infractions-animaux-v1',
+      'markovic-observatoire-protection-animale-v1',
+      'markovic-associations-parties-civiles-infractions-animaux-v1',
+      'markovic-infractions-etendre-animaux-sauvages-v1',
+      'markovic-correctionnaliser-infractions-animaux-v1',
+      'markovic-sanctions-mauvais-traitements-professionnels-v1',
+      'markovic-dossier-penal-plaintes-animaux-v1',
+    ],
+  },
+  {
+    id: 'securite-service-militaire',
+    theme: 'securite',
+    title: 'Faut-il rendre obligatoire un service national ou militaire ?',
+    terms: 'service national militaire obligatoire jeunesse civil conscription',
+    versions: [
+      'rohou-service-civil-de-proximite-six-mois-v1',
+      'polony-se-dire-favorable-service-militaire-obligatoire-v1',
+      'dubuisson-service-militaire-civil-obligatoire-v1',
+    ],
+  },
+  {
+    id: 'securite-cannabis',
+    theme: 'securite',
+    title: 'Faut-il revoir le cadre légal du cannabis ?',
+    terms: 'cannabis légalisation dépénalisation consommation stupéfiants',
+    versions: ['polony-preparer-legalisation-du-cannabis-v1'],
+  },
+  {
+    id: 'fiscalite-epargne-monnaie',
+    theme: 'fiscalite',
+    title: 'Quelles garanties pour l’épargne en cas de changement de monnaie ?',
+    terms:
+      'épargne montants dépôts monnaie euro france comptes mouvements capitaux',
+    versions: ['pic-publier-epargne-et-mouvements-capitaux-trimestriels-v1'],
+  },
+  {
+    id: 'fiscalite-ecologique',
+    theme: 'fiscalite',
+    title: 'Quelle fiscalité pour orienter la transition écologique ?',
+    terms: 'impôts taxes fiscalité écologique carbone transition',
+    versions: [
+      'markovic-tva-arbres-arbustes-varietes-locales-v1',
+      'markovic-taxer-importations-elevage-intensif-v1',
+      'markovic-tva-zero-produits-recycles-france-v1',
+      'markovic-tva-produits-animaux-vegetaux-v1',
+      'tinland-taxer-fret-distance-parcourue-v1',
+      'rohou-tva-phytosanitaires-sans-avantage-v1',
+    ],
+  },
+  {
+    id: 'institutions-age-droit-vote',
+    theme: 'institutions',
+    title: 'À quel âge devrait-on acquérir le droit de vote ?',
+    terms: 'droit vote âge seize 16 ans majorité élections',
+    versions: ['polony-ne-pas-abaisser-age-vote-16-ans-en-2027-v1'],
+  },
+  {
+    id: 'immigration-accueil-integration',
+    theme: 'immigration',
+    title:
+      'Comment organiser l’accueil et l’intégration des personnes immigrées ?',
+    terms: 'accueil intégration immigration réfugiés insertion territoire',
+    versions: [
+      'polony-repartir-territorialement-personnes-appelees-a-rester-v1',
+    ],
+  },
+  {
+    id: 'numerique-reseaux-sociaux-identification',
+    theme: 'numerique',
+    title:
+      'Quelles règles d’âge et d’identification pour accéder aux réseaux sociaux ?',
+    terms:
+      'réseaux sociaux accès âge majorité numérique utilisateurs pseudonymat',
+    versions: ['herlin-controle-age-pseudonymat-v1'],
+  },
+  {
     id: 'climat-restrictions-publicite',
     theme: 'climat',
     title:
@@ -1072,6 +1931,8 @@ interface Definition {
 }
 const additionalAnswers: Record<string, string[]> = {
   'retraites-conditions-depart': [
+    'collovati-retraite-bon-comportement-v1',
+    'herlin-retraite-choix-age-v1',
     'asselineau-faire-dependre-depart-retraite-duree-cotisation-v1',
     'saforcada-remplacer-age-legal-par-40-a-43-annuites-v1',
     'tinland-taux-plein-55-60-v1',
@@ -1092,6 +1953,7 @@ const additionalAnswers: Record<string, string[]> = {
     'philippe-privilegier-heures-supplementaires-hausse-smic-novembre-v1',
   ],
   'travail-duree-travail': [
+    'markovic-conge-perte-animal-identifie-v1',
     'tinland-reduire-duree-travail-v1',
     'platret-retour-39-heures-v1',
     'villepin-reserver-aux-partenaires-sociaux-certains-choix-sur-les-salaires-et-le-temps-de-v1',
@@ -1112,6 +1974,12 @@ const additionalAnswers: Record<string, string[]> = {
     'groupe-rn-accroitre-production-nucleaire-2025-v1',
   ],
   'climat-prix-energie': [
+    'collovati-marche-europeen-electricite-v1',
+    'herlin-marche-europeen-electricite-v1',
+    'legendre-prix-energie-cheques-v1',
+    'dubuisson-tva-achat-fioul-v1',
+    'dubuisson-fiscalite-carburants-v1',
+    'dubuisson-electricite-accises-cta-tva-v1',
     'becht-envisager-baisse-ticpe-carburants-v1',
     'saforcada-prix-electricite-fonde-couts-francais-v1',
     'tinland-tva-energie-5-5-v1',
@@ -1155,6 +2023,7 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-interdire-regularisation-apres-entree-clandestine-v1',
   ],
   'immigration-travail': [
+    'dubuisson-immigration-choisie-filieres-v1',
     'saforcada-titre-probatoire-immigration-travail-3-6-mois-v1',
     'lepen-taxe-embauche-extracommunautaires-v1',
     'legendre-exiger-une-demande-prealable-a-lambassade-pour-limmigration-economique-v1',
@@ -1164,6 +2033,10 @@ const additionalAnswers: Record<string, string[]> = {
     'groupe-rn-creer-une-taxe-a-lembauche-dun-salarie-extra-europeen-v2',
   ],
   'soins-de-proximite': [
+    'delmur-soins-sans-domicile-v1',
+    'delmur-urgences-soins-vitaux-v1',
+    'dubuisson-equipes-mobiles-soins-v1',
+    'dubuisson-reinvestir-economies-soins-v1',
     'batho-renforcer-radiologie-mammographies-territoires-v1',
     'tinland-soins-proximite-medecins-v1',
     'philippe-obligation-solidarite-medecins-v1',
@@ -1190,6 +2063,12 @@ const additionalAnswers: Record<string, string[]> = {
     'melenchon-guichet-installation-soignants-v1',
   ],
   'sante-remboursement-soins': [
+    'delmur-medecine-complementaire-v1',
+    'markovic-nutritionniste-rendez-vous-rembourse-v1',
+
+    'labib-cesser-imposer-trois-jours-carence-maladie-v1',
+    'dubuisson-paiement-direct-medecins-v1',
+    'dubuisson-caisse-nationale-unique-sante-v1',
     'marchal-tarif-opposable-specialistes-v1',
     'tinland-soins-gratuits-v1',
     'lisnard-sante-1-v3',
@@ -1205,6 +2084,11 @@ const additionalAnswers: Record<string, string[]> = {
     'branco-remboursement-psychologues-examen-national-v1',
   ],
   'institutions-declenchement-referendum': [
+    'markovic-ric-seuil-million-v1',
+    'rohou-vote-local-centres-donnees-majorite-qualifiee-v1',
+    'pic-referendum-question-principe-contentieux-administratif-v1',
+    'asselineau-referendum-sanctions-et-securite-v1',
+    'herlin-referendums-presidentiels-v1',
     'mathieu-envisager-ric-legislatif-et-conventions-v1',
     'mlekuz-envisager-article-11-si-absence-majorite-v1',
     'saforcada-elargir-perimetre-referendum-presidentiel-article-11-v1',
@@ -1224,6 +2108,12 @@ const additionalAnswers: Record<string, string[]> = {
     'place-publique-droit-initiative-referendum-v1',
   ],
   'europe-participation-union': [
+    'delmur-nouveaux-accords-apres-frexit-v1',
+    'markovic-modifier-article-13-tfue-animaux-v1',
+    'mlekuz-confier-articulation-droits-constituante-v1',
+    'asselineau-reporter-versements-ue-delai-negociations-v1',
+    'herlin-sortie-conditionnelle-euro-v1',
+    'legendre-renegocier-regles-europeennes-v1',
     'melenchon-non-regression-sociale-ecologique-transposition-ue-v1',
     'melenchon-vote-parlement-moratoire-regles-europeennes-v1',
     'roussel-congres-cooperations-europeennes-choisies-v1',
@@ -1284,6 +2174,7 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-supprimer-article-55-de-la-loi-sru-v1',
   ],
   'logement-offre-bati': [
+    'rohou-fiscalite-materiaux-construction-economes-v1',
     'kazib-mobiliser-bureaux-inutilises-logement-v1',
     'philippe-regrouper-bailleurs-foncieres-interet-general-v1',
     'saforcada-mobiliser-foncier-public-logement-outre-mer-v1',
@@ -1314,6 +2205,10 @@ const additionalAnswers: Record<string, string[]> = {
     'branco-salaires-enseignants-debut-carriere-v1',
   ],
   'education-acces-etudes': [
+    'labib-creer-places-universite-recrutements-batiments-v1',
+    'labib-garantir-place-master-apres-licence-v1',
+    'legendre-moyens-universites-recherche-v1',
+    'dubuisson-formation-remuneree-etudiants-v1',
     'lepen-publier-criteres-admission-superieur-v1',
     'polony-reformer-parcoursup-transparence-v1',
     'lisnard-remplacer-parcoursup-orientation-v1',
@@ -1323,6 +2218,9 @@ const additionalAnswers: Record<string, string[]> = {
     'place-publique-abroger-parcoursup-etats-generaux-orientation-v1',
   ],
   'institutions-ecrire-constitution': [
+    'tinland-changer-devise-republique-citoyenne-v1',
+    'tinland-tirage-conseil-constitutionnel-cinq-courants-v1',
+    'rohou-retablir-septennat-v1',
     'mlekuz-renouveler-constituants-apres-echec-referendum-v1',
     'saforcada-referendum-obligatoire-revision-souverainete-v1',
     'lisnard-reviser-constitution-directement-par-referendum-v1',
@@ -1335,6 +2233,8 @@ const additionalAnswers: Record<string, string[]> = {
     'mlekuz-constituante-apres-refus-v1',
   ],
   'institutions-contributions-citoyennes': [
+    'delmur-contact-ministeres-citoyens-v1',
+    'asselineau-questions-francais-president-direct-mensuel-v1',
     'cheve-faire-presidence-intermediaire-citoyens-v1',
     'cheve-reexaminer-reglements-apres-remontee-v1',
     'mathieu-faire-valider-conclusions-conventions-par-referendum-v1',
@@ -1366,12 +2266,15 @@ const additionalAnswers: Record<string, string[]> = {
     'ps-garantir-85-du-smic-apres-une-carriere-entiere-dans-lagriculture-v1',
   ],
   'retraites-financement-regimes': [
+    'herlin-retraite-capitalisation-choix-placements-v1',
+    'dubuisson-maintien-pensions-transition-v1',
     'asselineau-maintenir-retraites-par-repartition-v1',
     'pic-retraites-capitalisation-collective-v1',
     'attal-interessement-vers-epargne-retraite-v1',
     'philippe-plan-epargne-premier-emploi-v1',
   ],
   'logement-regulation-loyers': [
+    'legendre-encadrement-loyers-aides-v1',
     'tinland-loyers-15-pour-cent-v1',
     'delmur-encadrement-loyers-v1',
     'melenchon-blocage-loyers-urgence-sociale-v1',
@@ -1412,6 +2315,8 @@ const additionalAnswers: Record<string, string[]> = {
     'roussel-ouvrir-des-departs-anticipes-pour-les-metiers-penibles-et-les-carrieres-longue-v1',
   ],
   'climat-avenir-eolien': [
+    'markovic-implantation-antennes-eoliennes-vote-local-v1',
+    'collovati-subventions-eoliennes-v1',
     'rohou-ecarter-renouvellement-eoliennes-problematiques-v1',
     'lisnard-eolien-certains-projets-et-reserve-en-mer-v1',
     'place-publique-plans-regionaux-renouvelables-vent-v1',
@@ -1447,7 +2352,7 @@ const additionalAnswers: Record<string, string[]> = {
     'zemmour-prisons-100000-places-v1',
     'herlin-places-prison-v1',
     'becht-places-prisons-haute-securite-v1',
-    'riner-construire-places-prison-v2',
+    'riner-construire-places-prison-v3',
   ],
   'agriculture-ogm': [
     'rn-delegation-soutenir-cadre-europeen-ntg-v1',
@@ -1478,6 +2383,7 @@ const additionalAnswers: Record<string, string[]> = {
     'ecologistes-garantir-un-accueil-physique-de-service-public-a-quinze-minutes-v1',
   ],
   'immigration-droit-sol': [
+    'collovati-nationalite-enfants-parents-etrangers-v1',
     'saforcada-maintenir-droit-sol-avec-demarche-volontaire-v1',
     'roussel-congres-maintenir-droit-sol-et-asile-v1',
     'lisnard-fin-automaticite-droit-du-sol-v1',
@@ -1487,6 +2393,7 @@ const additionalAnswers: Record<string, string[]> = {
     'zemmour-supprimer-droit-du-sol-v1',
   ],
   'immigration-aide-medicale-etat': [
+    'collovati-aide-medicale-etat-v1',
     'melenchon-maintenir-acces-ame-soutien-psychosocial-asile-v1',
     'philippe-maintenir-ame-avec-controles-v1',
     'lisnard-remplacer-ame-par-aide-medicale-urgence-v1',
@@ -1499,6 +2406,16 @@ const additionalAnswers: Record<string, string[]> = {
     'polony-privilegier-acteurs-souverains-donnees-sante-v1',
   ],
   'agriculture-elevages': [
+    'markovic-autorite-inspection-elevages-abattoirs-v1',
+    'markovic-visites-parlementaires-lieux-animaux-v1',
+    'markovic-abaisser-seuils-declaration-elevages-v1',
+    'markovic-abattage-etourdissement-prealable-v1',
+    'markovic-interdire-gavage-et-produits-importes-v1',
+    'markovic-transport-duree-mammiferes-oiseaux-v1',
+    'markovic-transport-maritime-commercial-animaux-v1',
+    'markovic-transport-abattage-gestation-v1',
+    'markovic-mutilations-elevage-v1',
+    'markovic-interdire-races-elevage-hypertypes-v1',
     'saforcada-admettre-preuves-alternatives-paturages-aides-v1',
     'saforcada-contrats-filiere-proteines-locales-autonomie-elevage-v1',
     'saforcada-soutenir-abattoirs-ateliers-laiteries-territoriaux-v1',
@@ -1510,6 +2427,9 @@ const additionalAnswers: Record<string, string[]> = {
     'place-publique-moderniser-abattoirs-et-experimenter-unites-mobiles-v1',
   ],
   'travail-demarches-entreprises': [
+    'herlin-facturation-electronique-obligatoire-v1',
+    'dubuisson-droit-entreprises-sa-sas-v1',
+    'dubuisson-guichet-entreprises-formalites-v1',
     'melenchon-outil-gratuit-facturation-electronique-pme-v1',
     'lepen-supprimer-normes-entreprises-par-ordonnances-v1',
     'lisnard-geler-normes-suspendre-surtranspositions-v1',
@@ -1518,11 +2438,14 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-guichet-numerique-agriculteurs-v2',
   ],
   'numerique-enseignement-numerique': [
+    'polony-privilegier-education-face-a-tiktok-v1',
+    'bouamrane-preserver-pensee-critique-usage-ia-ecole-v1',
     'roussel-congres-education-image-et-numerique-v1',
     'melenchon-developper-education-numerique-enfants-v1',
     'lisnard-former-eleves-usages-intelligence-artificielle-v1',
   ],
   'climat-eau-potable': [
+    'asselineau-soutenir-acces-eau-guadeloupe-v1',
     'melenchon-installer-fontaines-douches-sanitaires-gratuits-v1',
     'melenchon-analyser-systematiquement-contaminants-eau-v1',
     'melenchon-gerer-eau-assainissement-en-regie-v1',
@@ -1534,18 +2457,67 @@ const additionalAnswers: Record<string, string[]> = {
     'asselineau-envisager-referendum-revocatoire-president-v1',
     'kazib-rendre-mandats-revocables-v1',
   ],
-  'aide-ukraine': ['lalanne-cesser-envois-fonds-ukraine-v1'],
-  'europe-accord-mercosur': ['lassalle-demander-opposition-france-mercosur-v1'],
+  'aide-ukraine': [
+    'asselineau-consulter-francais-referendum-soutien-ukraine-v1',
+    'lalanne-cesser-envois-fonds-ukraine-v1',
+  ],
+  'europe-accord-mercosur': [
+    'legendre-critiquer-accord-mercosur-v1',
+    'lassalle-demander-opposition-france-mercosur-v1',
+  ],
   'sante-experimentation-animale': [
+    'delmur-produits-testes-sur-animaux-v1',
+    'markovic-independance-comites-ethique-experimentation-v1',
+    'markovic-experimentations-inspections-inopinees-v1',
+    'markovic-experimentations-objection-conscience-v1',
+    'markovic-experimentations-productivite-interdiction-v1',
     'markovic-investir-recherche-remplacement-experimentation-animale-v1',
     'markovic-accelerer-validation-methodes-sans-animaux-v1',
     'markovic-renforcer-controle-procedures-experimentation-animale-v1',
   ],
   'institutions-voile-espace-public': [
+    'collovati-signes-religieux-espace-public-v1',
     'arthaud-sopposer-interdiction-voile-espace-public-v1',
   ],
   'travail-automatisation-intelligence-artificielle': [
     'lalanne-consulter-population-remplacement-travail-ia-v1',
+  ],
+  'numerique-centres-de-calcul': [
+    'rohou-planifier-grands-centres-donnees-parlement-v1',
+    'rohou-suspendre-statut-projets-centres-donnees-rantigny-v1',
+    'rohou-priorite-acteurs-francais-centres-donnees-v1',
+    'rohou-raccordement-reseau-chaleur-centres-donnees-v1',
+    'rohou-friches-pour-centres-donnees-v1',
+    'rohou-technologies-ia-efficaces-energie-foncier-v1',
+  ],
+  'institutions-controle-depense-publique': [
+    'pic-publier-evaluation-et-donnees-jalons-transition-v1',
+    'dubuisson-suivi-open-data-contrats-publics-v1',
+    'dubuisson-comites-suivi-reformes-v1',
+    'collovati-train-de-vie-elysee-v1',
+  ],
+  'institutions-liberte-medias': [
+    'asselineau-envisager-delit-dissimulation-information-v1',
+    'asselineau-refuser-suspension-reseaux-sociaux-troubles-v1',
+    'bouamrane-refuser-exclusion-journalistes-presse-v1',
+  ],
+  'sante-aide-a-mourir': [
+    'asselineau-consulter-francais-referendum-euthanasie-v1',
+    'herlin-referendum-loi-euthanasie-v1',
+  ],
+  'travail-conditions-aides-entreprises': [
+    'labib-exiger-restitution-aides-publiques-grandes-entreprises-v1',
+    'collovati-supprimer-subventions-entreprises-v1',
+  ],
+  'institutions-dissolution-assemblee': [
+    'collovati-dissolution-assemblee-2027-v1',
+  ],
+  'logement-attribution-nationalite': ['collovati-prestations-francais-v1'],
+  'europe-cooperations-industrielles': ['herlin-scaf-cooperation-alliance-v1'],
+  'numerique-cloud-sensible': ['dubuisson-datacenters-souverains-outre-mer-v1'],
+  'institutions-finances-communes': [
+    'pic-impot-communal-unique-v1',
+    'dubuisson-ressources-competences-transferees-v1',
   ],
 };
 const scopedComplements: Record<string, Record<string, string>> = {
@@ -1866,7 +2838,7 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La brochure s’oppose aussi aux expulsions dans le passage qui appelle à régulariser les personnes sans papiers.',
   },
   'travail-aides-cooperatives': {
-    'billetdoux-debattre-perimetre-aides-cooperatives-v1':
+    'billetdoux-debattre-perimetre-aides-cooperatives-v2':
       'Augustin Billetdoux pose la question d’un accès réservé aux coopératives ou ouvert aussi à des entreprises classiques. Il laisse le critère d’éligibilité à débattre.',
   },
   'securite-lutte-racisme': {
@@ -1880,6 +2852,10 @@ const scopedComplements: Record<string, Record<string, string>> = {
   'retraites-conditions-depart': {
     'mathieu-confier-debat-retraites-citoyens-tires-au-sort-v1':
       'Benoît Mathieu propose de faire délibérer des citoyens tirés au sort. Il ne décide ni de l’âge de départ ni du montant des pensions.',
+  },
+  'europe-cooperations-industrielles': {
+    'polony-nouer-alliances-avec-espagne-et-italie-v1':
+      'L’entretien évoque des rapprochements entre gouvernements. Il ne désigne pas de coopération industrielle précise.',
   },
 };
 const searchTerms: Record<string, string> = {
@@ -1907,7 +2883,10 @@ export const questionAnswerAliases: Record<string, string[]> = {
   'institutions-dissolution-assemblee': [
     'dissolution de l’Assemblée nationale',
   ],
+  'climat-condition-animale': ['protection animale'],
+  'securite-service-militaire': ['service militaire obligatoire'],
   'institutions-conseil-prive-etat': [
+    'cabinets qui conseillent gratuitement l’État',
     'cabinets de conseil privés',
     'recours de l’État aux cabinets',
   ],
@@ -1948,6 +2927,7 @@ export const questionAnswerAliases: Record<string, string[]> = {
     'financement des communes',
     'moyens financiers des communes',
     'visibilité budgétaire des communes',
+    'vote avant d’augmenter les impôts communaux',
   ],
   'travail-conditions-aides-entreprises': [
     'conditions des aides aux entreprises',
@@ -1960,6 +2940,8 @@ export const questionAnswerAliases: Record<string, string[]> = {
     'médias pendant une campagne référendaire',
   ],
   'travail-aides-cooperatives': [
+    'conditionner les aides aux coopératives',
+    'comment prévoit-il de conditionner les aides aux sociétés coopératives',
     'soutien aux coopératives',
     'aides aux coopératives',
     'aides publiques aux coopératives',

@@ -249,12 +249,12 @@ func answerNamePosition(text string, person candidate) int {
 	return position
 }
 
-var answerNoise = wordSet("actuellement an annees aujourd hui autres candidature candidatures candidat candidats cas ces cet ceux chaque cite citer " +
-	"combien comme comment comparer concernant connaitre contexte date demande depuis dit document donne donnees droit elle entre est eux explique expliquez faire faut fiche " +
-	"figures france francaise historique ici il info information informations jusqu justifie leur leurs lui moi montre montrez maintenant nouveaux nous on ont original ou " +
-	"pages passage passe peut peux piece politique polradar pourquoi precedent preuve preuves propose proposent proposait proposee " +
-	"proposition propositions publie publiees qu quand que quel quelle quelles quels retrouve retrouver resume s sa savoir selon sont son source sources " +
-	"sujet t te toutes tous trouve trouver veut veulent voter votent vote votes votez vous")
+var answerNoise = wordSet("actuellement an annees aujourd hui autres candidature candidatures candidat candidats cas ces cet ceux chaque cite citer defend defendent " +
+	"combien comme comment comparer concernant concerne concernent connaitre consiste consistent contexte date demande depuis dit document dossier donne donnees droit elle entre est eux explique expliquez faire faut fiche " +
+	"figures france francaise historique ici il info information informations je jusqu justifie leur leurs lui moi montre montrez maintenant nouveaux nous on ont original ou " +
+	"pages passage passe peut peux piece politique polradar pourquoi precedent prevoit prevoient preuve preuves propose proposent proposait proposee " +
+	"proposition propositions publie publiees qu quand que quel quelle quelles quels qui retrouve retrouver resume s sa savoir selon sont son souhaite souhaitent source sources " +
+	"sujet t te toutes tous trouve trouver veut veulent voter votent vote votes votez voudrais voudrait vous")
 
 func answerTerms(text string) []string {
 	terms := []string{}
@@ -299,7 +299,7 @@ func answerIntent(text string, people []candidate, ballot string) string {
 		return "financement"
 	case answerHas(text, "propose", "proposent", "proposition", "propositions", "programme", "programmes"):
 		return "proposition"
-	case answerHas(text, "vote", "votes", "votent"):
+	case answerHas(text, "vote", "votes", "votent") && !answerHas(text, "quel vote avant", "quel vote faudrait"):
 		return "scrutin"
 	case answerHas(text, "commune", "territoire", "code insee", "sru", "mon territoire"):
 		return "territoire"
@@ -320,7 +320,14 @@ func (c *snapshot) answer(a answerArgs) (any, bool, error) {
 	text := normalize(a.Question)
 	people, topic := c.answerCandidates(text)
 	ballot := strings.ToUpper(answerBallot.FindString(a.Question))
-	intent := answerIntent(text, people, ballot)
+	intentText := text
+	for _, id := range answerID.FindAllString(strings.ToLower(a.Question), -1) {
+		if _, known := c.byID[id]; known {
+			// A fiche identifier locates its source. Its words do not describe the requested action.
+			intentText = strings.ReplaceAll(" "+intentText+" ", " "+normalize(id)+" ", " ")
+		}
+	}
+	intent := answerIntent(intentText, people, ballot)
 	result := newDocumentaryAnswer(intent)
 	var err error
 	switch intent {

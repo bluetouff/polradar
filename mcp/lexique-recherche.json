@@ -14,6 +14,17 @@
     "cotisation cotisations",
     "retraite retraites",
     "allocation allocations",
+    "aide aides",
+    "communal communaux communale communales",
+    "cooperative cooperatives",
+    "envoyer envoi envois",
+    "militaire militaires soldat soldats",
+    "peine peines",
+    "prison prisons",
+    "parquet parquets",
+    "remunerer remuneration remunere remuneree remuneres remunerees",
+    "renouveler renouvellement renouvellements renouvele renouvelee",
+    "examen examens",
     "pension pensions",
     "revenu revenus",
     "impot impots",
@@ -79,6 +90,13 @@
       "habitations a loyer modere",
       "hlm"
     ],
+    [
+      "parquet infraction",
+      "parquet charge des infractions",
+      "parquets charges des infractions"
+    ],
+    ["prison", "etablissement penitentiaire", "etablissements penitentiaires"],
+    ["cooperative", "societe cooperative", "societes cooperatives"],
     ["ars", "agences regionales de sante", "agence regionale de sante"],
     ["lo", "lutte ouvriere"],
     ["cybersecurite", "securite informatique", "securite numerique"],
@@ -95,7 +113,7 @@
   ],
   "questions": {
     "debuts": "c comment est qu que quel quelle quels quelles",
-    "mots": "c comment elle elles est evoluer faire il ils prevoit prevoient programme programmes propose proposent proposition propositions qu que quel quelle quels quelles quoi sont t veut veulent"
+    "mots": "c comment elle elles est evoluer faire il ils nouveaux prevoit prevoient programme programmes propose proposent proposition propositions qu que quel quelle quels quelles quoi sont t veut veulent"
   },
   "motsVides": [
     "a",
@@ -111,6 +129,7 @@
     "des",
     "du",
     "en",
+    "envers",
     "et",
     "l",
     "la",
@@ -118,6 +137,7 @@
     "les",
     "par",
     "pour",
+    "selon",
     "sur",
     "un",
     "une"
