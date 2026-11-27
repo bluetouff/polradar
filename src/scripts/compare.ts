@@ -9,6 +9,7 @@ import {
 } from './ui';
 import { metricGroups } from '../lib/features.mjs';
 import { saveView } from './saved-views';
+import { initializeCandidateSearch } from './compare-candidate-search';
 import { attributionLabel } from '../lib/attribution.mjs';
 import {
   comparisonIds,
@@ -68,6 +69,7 @@ const form = document.querySelector<HTMLFormElement>('#compare-form')!,
     form.querySelectorAll<HTMLSelectElement>('.compare-person select'),
   );
 function start() {
+  initializeCandidateSearch(selects);
   const valid = new Set(
     Array.from(selects[0].options, (option) => option.value).filter(Boolean),
   );

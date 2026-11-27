@@ -127,13 +127,25 @@ const positionsByQuestion = new Map(
         <div class="compare-pick">
           {Array.from({ length: maxComparisonCandidates }, (_, index) => (
             <div class="compare-person" hidden={index >= 2}>
-              <label for={`compare-candidate-${index}`}>
-                Candidature {index + 1}
-              </label>
+              <div class="compare-person-label">
+                <label for={`compare-candidate-${index}`}>
+                  Candidature {index + 1}
+                </label>
+                <button
+                  class="compare-person-search"
+                  type="button"
+                  aria-label={`Chercher la candidature ${index + 1}`}
+                  aria-haspopup="dialog"
+                  aria-controls="compare-candidate-dialog"
+                  hidden
+                >
+                  <Icon name="search" /> Chercher
+                </button>
+              </div>
               <select id={`compare-candidate-${index}`}>
                 <option value="">Choisir un candidat</option>
                 {candidates.map((c) => (
-                  <option value={c.id}>
+                  <option value={c.id} data-name={c.name}>
                     {c.name}
                     {c.withdrawnOn ? ' · candidature retirée' : ''}
                   </option>
@@ -192,6 +204,30 @@ const positionsByQuestion = new Map(
       </fieldset>
     </div>
   </form>
+  <dialog
+    id="compare-candidate-dialog"
+    aria-labelledby="compare-candidate-dialog-title"
+  >
+    <div class="compare-candidate-dialog-header">
+      <h2 id="compare-candidate-dialog-title">Chercher un candidat</h2>
+      <form method="dialog">
+        <button class="button small" type="submit">
+          Fermer
+        </button>
+      </form>
+    </div>
+    <label for="compare-candidate-search">Prénom ou nom</label>
+    <input
+      id="compare-candidate-search"
+      type="search"
+      maxlength="80"
+      autocomplete="off"
+      spellcheck="false"
+      autofocus
+    />
+    <p id="compare-candidate-count" role="status"></p>
+    <ul id="compare-candidate-results"></ul>
+  </dialog>
   <p id="comparison-selection-note" class="muted" hidden></p>
   <p
     id="comparison-feedback"
@@ -439,6 +475,88 @@ const positionsByQuestion = new Map(
   }
   .compare-person:focus-within {
     border-color: #397a7c;
+  }
+  .compare-person-label,
+  .compare-candidate-dialog-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .compare-person-search {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-block-size: var(--target-size);
+    padding: 0.2rem 0.5rem;
+    border: 1px solid var(--line);
+    border-radius: 0.45rem;
+    background: var(--sheet);
+    color: var(--ink);
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+  .compare-person-search :global(svg) {
+    inline-size: 0.95rem;
+    block-size: 0.95rem;
+    flex: none;
+  }
+  #compare-candidate-dialog {
+    inline-size: min(30rem, calc(100% - 1.5rem));
+    max-block-size: calc(100% - 1.5rem);
+    padding: clamp(0.9rem, 3vw, 1.4rem);
+    border: 1px solid var(--line);
+    border-radius: 0.9rem;
+    background: var(--sheet);
+    color: var(--ink);
+  }
+  #compare-candidate-dialog::backdrop {
+    background: #1425309c;
+  }
+  .compare-candidate-dialog-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+  .compare-candidate-dialog-header button {
+    min-block-size: var(--target-size);
+  }
+  #compare-candidate-dialog label {
+    display: block;
+    margin-block: 0.75rem 0.25rem;
+    font-weight: 650;
+  }
+  #compare-candidate-search {
+    inline-size: 100%;
+    min-block-size: var(--target-size);
+  }
+  #compare-candidate-count {
+    margin-block: 0.65rem 0.2rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  #compare-candidate-results {
+    max-block-size: min(22rem, 40dvh);
+    margin: 0;
+    padding: 0.5rem;
+    overflow-y: auto;
+    list-style: none;
+  }
+  #compare-candidate-results :global(button) {
+    inline-size: 100%;
+    min-block-size: var(--target-size);
+    margin-block: 0.15rem;
+    padding: 0.35rem 0.65rem;
+    border: 1px solid var(--line);
+    border-radius: 0.4rem;
+    background: var(--sheet);
+    color: var(--ink);
+    text-align: start;
+    cursor: pointer;
+  }
+  .compare-person-search:hover,
+  #compare-candidate-results :global(button:hover) {
+    background: #dcecea;
   }
   .compare-order {
     display: flex;
