@@ -320,15 +320,6 @@ const examinedDocuments: Record<
         'Chapitre sur les discriminations et l’immigration. Les conditions de séjour et de régularisation y figurent. Le texte ne précise pas de règle de regroupement familial.',
     },
   ],
-  'agriculture-remuneration-contrats': [
-    {
-      candidate: 'philippe',
-      sourceId: 'philippe-sommet-elevage-2026',
-      checked: '2026-11-26',
-      locator:
-        'Sommet de l’élevage, propositions sur les normes, l’installation, la transmission et le climat. Les modalités de fixation ou de négociation des prix ne sont pas précisées.',
-    },
-  ],
   'education-eleves-par-classe': [
     {
       candidate: 'lisnard',
@@ -824,6 +815,7 @@ const additionalAnswers: Record<string, string[]> = {
     'ps-experimenter-la-semaine-de-quatre-jours-par-la-negociation-collective-v1',
   ],
   'climat-production-nucleaire': [
+    'polony-soutenir-investissement-epr2-v1',
     'tinland-sortie-nucleaire-solaire-v1',
     'marchal-construire-centrales-nucleaires-v1',
     'bouamrane-nucleaire-geothermie-sortie-fossiles-v1',
@@ -886,6 +878,7 @@ const additionalAnswers: Record<string, string[]> = {
     'groupe-rn-creer-une-taxe-a-lembauche-dun-salarie-extra-europeen-v2',
   ],
   'soins-de-proximite': [
+    'batho-renforcer-radiologie-mammographies-territoires-v1',
     'tinland-soins-proximite-medecins-v1',
     'philippe-obligation-solidarite-medecins-v1',
     'philippe-equipes-soins-traitantes-v1',
@@ -941,6 +934,8 @@ const additionalAnswers: Record<string, string[]> = {
     'place-publique-droit-initiative-referendum-v1',
   ],
   'europe-participation-union': [
+    'melenchon-non-regression-sociale-ecologique-transposition-ue-v1',
+    'melenchon-vote-parlement-moratoire-regles-europeennes-v1',
     'roussel-congres-cooperations-europeennes-choisies-v1',
     'tinland-referendum-union-europeenne-v1',
     'polony-maintenir-france-union-europeenne-v1',
@@ -957,6 +952,7 @@ const additionalAnswers: Record<string, string[]> = {
     'dlf-logiciels-administrations-licences-gratuites-v1',
   ],
   'agriculture-remuneration-contrats': [
+    'philippe-accords-pluriannuels-partage-valeur-agricole-v1',
     'saforcada-rendre-couts-complets-production-agricole-opposables-v1',
     'saforcada-prix-planchers-agricoles-sauvegarde-temporaire-v1',
     'saforcada-renforcer-controle-marges-filieres-agricoles-v1',
@@ -998,6 +994,8 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-supprimer-article-55-de-la-loi-sru-v1',
   ],
   'logement-offre-bati': [
+    'philippe-regrouper-bailleurs-foncieres-interet-general-v1',
+    'saforcada-mobiliser-foncier-public-logement-outre-mer-v1',
     'saforcada-strategie-construction-rehabilitation-logements-vacants-v1',
     'tinland-construction-sociale-v1',
     'tinland-mobiliser-logements-vides-v1',
@@ -1189,6 +1187,7 @@ const additionalAnswers: Record<string, string[]> = {
     'zemmour-supprimer-droit-du-sol-v1',
   ],
   'immigration-aide-medicale-etat': [
+    'melenchon-maintenir-acces-ame-soutien-psychosocial-asile-v1',
     'philippe-maintenir-ame-avec-controles-v1',
     'lisnard-remplacer-ame-par-aide-medicale-urgence-v1',
   ],
@@ -1224,6 +1223,8 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-former-eleves-usages-intelligence-artificielle-v1',
   ],
   'climat-eau-potable': [
+    'melenchon-installer-fontaines-douches-sanitaires-gratuits-v1',
+    'melenchon-analyser-systematiquement-contaminants-eau-v1',
     'melenchon-gerer-eau-assainissement-en-regie-v1',
     'melenchon-financer-canalisations-eau-guadeloupe-v1',
     'melenchon-declencher-orsec-eau-plafonner-bouteilles-v1',
@@ -1248,6 +1249,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La priorité dans les achats publics vise à garantir des débouchés aux producteurs. Le prix payé aux exploitations reste à préciser.',
   },
   'education-acces-etudes': {
+    'melenchon-rendre-gratuites-etudes-superieures-licence-doctorat-v1':
+      'La mesure change les conditions financières d’accès aux études. Elle ne prévoit pas de règle d’admission.',
     'labib-sopposer-selection-parcoursup-v1':
       'Selma Labib s’oppose à la sélection dans Parcoursup. Elle ne précise pas quelles règles d’admission lui succéderaient.',
     'polony-evaluations-nationales-certifications-anonymes-v1':
@@ -1290,12 +1293,18 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le guichet proposé par Renaissance vise les signalements des victimes de cyberattaques.',
   },
   'aide-ukraine': {
+    'melenchon-negocier-cessez-feu-retrait-russe-ukraine-v1':
+      'Cette proposition expose les objectifs de négociation et les garanties de paix recherchées. Le passage ne définit aucun volume d’aide française.',
+    'melenchon-reconvoquer-conference-paris-osce-apres-paix-ukraine-v1':
+      'Le projet concerne l’architecture de sécurité européenne une fois la paix revenue en Ukraine.',
     'philippe-soutenir-ladhesion-de-lukraine-a-lotan-v1':
       'L’adhésion à l’OTAN est un volet distinct du soutien envisagé. La proposition ne précise pas le contenu de l’aide française.',
     'riner-interroger-consequences-aide-ukraine-v1':
       'Teddy Riner dit que la France resterait aux côtés des pays opprimés. Dans cet échange, il renvoie à son futur programme pour les modalités de l’aide.',
   },
   'france-otan': {
+    'melenchon-refuser-alliance-militaire-permanente-asie-pacifique-v1':
+      'La proposition porte sur la politique d’alliances au-delà de l’OTAN. Le retrait français de l’Alliance est traité dans une autre fiche du programme.',
     'glucksmann-otan-garantie-securite-autonomie-europeenne-v1':
       'La lettre de février 2025 discute la crédibilité de la garantie américaine. Elle ne demande pas de changement du statut de la France dans l’Alliance.',
     'philippe-soutenir-ladhesion-de-lukraine-a-lotan-v1':
@@ -1306,6 +1315,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le prélèvement de 10 % figure dans une simulation de paie. Le document ne fixe pas le régime applicable à l’ensemble des revenus.',
   },
   'travail-duree-travail': {
+    'arthaud-reduire-journees-cadences-canicule-v1':
+      'Cette demande porte sur la journée pendant les périodes de fortes chaleurs, sans fixer une nouvelle durée hebdomadaire.',
     'groupe-rn-appliquer-35-heures-fonction-publique-territoriale-v1':
       'Cette disposition du contre-budget vise la fonction publique territoriale. La durée légale pour les autres salariés n’est pas traitée dans ce passage.',
   },
@@ -1348,6 +1359,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le chapitre annonce des aménagements pour les métiers les plus pénibles. Il ne donne pas l’âge ni les critères propres à ces départs.',
   },
   'climat-avenir-eolien': {
+    'saforcada-plan-autonomie-energetique-par-territoire-outre-mer-v1':
+      'L’éolien flottant figure parmi les moyens envisagés selon la situation de chaque territoire.',
     'rohou-distance-dix-hauteurs-eoliennes-terrestres-v1':
       'La règle porte sur la distance d’implantation des éoliennes terrestres. Le document ne fixe pas de capacité à installer.',
     'zemmour-supprimer-subventions-eoliennes-v1':
@@ -1394,10 +1407,18 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'David Saforcada propose un débat et un référendum sur la fin de vie. La charte n’indique pas quelle modification apporter à la loi.',
   },
   'mobilite-territoires': {
+    'philippe-developper-ferroviaire-reunion-guyane-v1':
+      'Cette position vise deux territoires ultramarins. Le passage ne fixe ni dessertes ni modalités de financement.',
+    'saforcada-plafonner-tarifs-continuite-territoriale-outre-mer-v1':
+      'Les liaisons entre îles et communes isolées sont visées dans le cadre ultramarin.',
+    'polony-soutenir-fret-ferroviaire-dessertes-territoires-v1':
+      'Cette prise de parole souligne la dégradation des liaisons ferroviaires avec Paris et du fret. Aucun nouveau service local n’est annoncé.',
     'batho-reduire-dependance-voiture-v1':
       'La candidate prévoit des investissements pour réduire la dépendance à la voiture. Le volet ne choisit pas de service local de transport à développer.',
   },
   'soins-de-proximite': {
+    'saforcada-relier-maisons-sport-sante-soins-clubs-v1':
+      'Le réseau orienterait vers une activité physique adaptée proche ou mobile, en lien avec les professionnels de santé.',
     'dubuisson-dossier-medical-pros-autorises-v1':
       'La proposition concerne le partage des informations entre les professionnels qui interviennent dans les soins.',
   },
@@ -1422,6 +1443,10 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le contrôle vise les transactions foncières par prise de contrôle de société. Il complète les dispositifs d’installation des exploitants.',
   },
   'institutions-logiciels-publics': {
+    'saforcada-exiger-interface-francaise-marches-logiciels-publics-v1':
+      'Le critère de sélection porte sur la langue de l’interface et de la documentation.',
+    'saforcada-financer-outils-libres-langue-francaise-v1':
+      'Le financement de logiciels libres inclut certains outils linguistiques destinés aux services publics.',
     'saforcada-proteger-cloud-donnees-sensibles-extraterritorialite-v1':
       'La charte privilégie les logiciels libres maintenus en France pour l’hébergement des données sensibles. Ce passage porte sur ce périmètre.',
     'roussel-congres-pole-public-numerique-logiciel-libre-v1':
@@ -1432,18 +1457,50 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Cette mesure facilite la transmission des entreprises productives. Le passage ne fixe pas de barème général de succession.',
   },
   'climat-prix-energie': {
+    'polony-refuser-cession-production-nucleaire-fournisseurs-tiers-v1':
+      'Le communiqué porte sur les obligations d’EDF vis-à-vis de fournisseurs concurrents dans le projet EPR2. Il ne définit pas de tarif pour les ménages.',
     'roussel-congres-pole-public-energie-edf-engie-total-v1':
       'Le texte associe maîtrise des prix et contrôle public de l’énergie, avec un pôle réunissant les grands opérateurs. Il ne chiffre pas de nouveau tarif.',
     'melenchon-reconstituer-pole-public-energie-engie-v1':
       'Le programme veut reprendre le contrôle public d’opérateurs et revenir sur la libéralisation. Il ne fixe pas de tarif dans ce passage.',
   },
   'logement-offre-bati': {
+    'philippe-maires-distribution-aides-renovation-pierre-v1':
+      'Le candidat précise qui distribuerait les aides à la rénovation énergétique et les aides à la pierre. Le passage ne fixe pas les montants ni les critères d’accès.',
     'rohou-justifier-absence-alternative-fonciere-v1':
       'Le MEI veut examiner la rénovation, la densification et le réemploi des friches avant de consommer du foncier. Le passage ne fixe aucun objectif de production de logements.',
   },
   'institutions-contributions-citoyennes': {
     'legendre-voter-en-ligne-consultations-gouvernementales-v1':
       'Le manifeste détaille une participation en ligne aux consultations. Il ne fixe pas de droit d’initiative ni de seuil de déclenchement.',
+  },
+  'travail-demarches-entreprises': {
+    'saforcada-proposer-un-accord-type-participation-aux-pme-v1':
+      'Le modèle et la déclaration en ligne simplifieraient un dispositif volontaire de participation pour les PME.',
+  },
+  'climat-eau-potable': {
+    'saforcada-rattraper-acces-services-de-base-outre-mer-v1':
+      'L’accès à l’eau et à l’assainissement est un volet d’un rattrapage de plusieurs services essentiels en outre-mer.',
+    'melenchon-reconnaitre-crise-sanitaire-eau-guadeloupe-martinique-v1':
+      'La reconnaissance de la crise vise la Guadeloupe et la Martinique, notamment la contamination de l’eau et l’assainissement. Les travaux sur les réseaux sont abordés dans une autre fiche.',
+  },
+  'numerique-recommandations': {
+    'saforcada-auditer-recommandations-culturelles-et-mesurer-exposition-v1':
+      'L’audit concerne les recommandations qui orientent fortement l’accès aux œuvres culturelles.',
+  },
+  'europe-participation-union': {
+    'melenchon-restituer-souverainete-budgetaire-parlements-nationaux-v1':
+      'Cette disposition est un objectif de négociation des traités. Le passage prévoit un référendum sur un éventuel accord.',
+    'melenchon-refuser-application-pacte-europeen-migration-asile-v1':
+      'Le programme traite ici de l’application d’une législation européenne précise relative à l’asile et à la migration.',
+    'polony-envisager-suspension-contribution-budget-ue-v1':
+      'Lors de l’entretien, la suspension est citée comme un levier de négociation. La candidate dit par ailleurs vouloir rester dans l’Union.',
+    'asselineau-organiser-debats-audiovisuels-sortie-ue-v1':
+      'Il s’agit d’un débat public sur la sortie européenne déjà défendue séparément par le candidat.',
+  },
+  'numerique-cloud-sensible': {
+    'melenchon-proposer-services-en-ligne-heberges-en-france-v1':
+      'Le passage traite d’une offre hébergée en France et soumise au droit français pour les citoyens et les entreprises. Les données souveraines et sensibles de l’État relèvent de mesures distinctes.',
   },
 };
 const searchTerms: Record<string, string> = {

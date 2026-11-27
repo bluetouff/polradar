@@ -88,6 +88,11 @@ export const householdSimulators = [
       },
       { measure: 'attal-travail-plafond-heures-supplementaires' },
       { measure: 'arthaud-reduire-temps-charge-travail' },
+      {
+        measure: 'arthaud-reduire-journees-cadences-canicule',
+        detail:
+          'Réduire la journée de travail et les cadences en période de fortes chaleurs. La proposition ne fixe pas de durée hebdomadaire.',
+      },
       { measure: 'lisnard-temps-de-travail-accords' },
       { measure: 'tinland-reduire-duree-travail' },
       {
