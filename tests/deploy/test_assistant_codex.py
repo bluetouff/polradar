@@ -31,6 +31,35 @@ def answer(status, *facts):
 
 
 class AssistantBenchmark(unittest.TestCase):
+    def test_independent_bank_requires_each_facts_own_observed_document(self):
+        candidates = BENCH["load_independent_cases"](
+            ROOT / "mcp/testdata/questions-assistant-independant.json"
+        )
+        self.assertEqual(len(candidates), 100)
+        self.assertGreaterEqual(len({row["famille"] for row in candidates}), 10)
+        case = next(row for row in candidates if row["id"] == "budget-deux-objectifs")
+        budget, opponent = (links[0] for links in case["sources_par_fait"])
+        passage = budget + "#:~:text=PIB"
+        observed = call({}, {"sources": [passage, opponent]})
+        text = answer("documente", ("<2,5 % du PIB", [passage]), ("solde primaire", [opponent]))
+        report = BENCH["score"](case, text, [observed], REVISIONS)
+        self.assertTrue(report["reussi"])
+        self.assertTrue(report["piece_attendue_observee"])
+
+        swapped = answer("documente", ("<2,5 % du PIB", [opponent]), ("solde primaire", [passage]))
+        report = BENCH["score"](case, swapped, [observed], REVISIONS)
+        self.assertFalse(report["reussi"])
+        self.assertEqual(report["citations_sans_reference"], 2)
+
+        invented = answer("documente", ("<2,5 % du PIB", [budget + "#autre"]), ("solde primaire", [opponent]))
+        self.assertFalse(BENCH["score"](case, invented, [observed], REVISIONS)["reussi"])
+
+    def test_independent_bank_does_not_substitute_a_different_pdf_page(self):
+        url = BENCH["address"](NOTICE)
+        expected = {url, (*url[:3], "page=12")}
+        observed = {(*url[:3], "page=13")}
+        self.assertEqual(BENCH["cited_by_tool"](expected, observed, document_scope=True), set())
+
     def test_supported_case_can_require_a_specific_array_entry(self):
         data = {"publication": {"rules": [{"refs": [{"label": "LCEN, art. 30 I"}]},
                                           {"refs": [{"label": "LCEN, art. 30 II"}]}]}}

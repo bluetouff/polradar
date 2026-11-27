@@ -189,6 +189,20 @@ const examinedDocuments: Record<
   ],
   'fiscalite-csg-salaires': [
     {
+      candidate: 'lepen',
+      sourceId: 'lepen-plan-redressement-budgetaire-2026',
+      checked: '2026-11-27',
+      locator:
+        'Présentation de la trajectoire du 6 octobre, passages sur les baisses de prélèvements. Aucun taux de CSG sur les revenus du travail n’y est donné.',
+    },
+    {
+      candidate: 'philippe',
+      sourceId: 'philippe-travail',
+      checked: '2026-11-27',
+      locator:
+        'Volet travail et salaires. Les passages sur le salaire net et les heures travaillées décrivent notamment des exonérations de cotisations. Le taux de CSG sur les revenus du travail n’est pas précisé.',
+    },
+    {
       candidate: 'cheve',
       sourceId: 'cheve-remontee-citoyenne',
       checked: '2026-11-20',
@@ -220,6 +234,13 @@ const examinedDocuments: Record<
     },
   ],
   'statuts-outre-mer': [
+    {
+      candidate: 'lepen',
+      sourceId: 'rn-rouge-forum-outre-mer-2026',
+      checked: '2026-11-27',
+      locator:
+        'Réponse au MEDEF de Nouvelle-Calédonie. André Rougé, mandaté par Marine Le Pen, donne la priorité aux mesures économiques et sociales. Aucun processus de choix du statut n’est détaillé dans ce passage.',
+    },
     {
       candidate: 'glucksmann',
       sourceId: 'place-publique-acte-i-pdf-officiel',
@@ -255,7 +276,23 @@ const examinedDocuments: Record<
       sourceId: 'place-publique-acte-i-pdf-officiel',
       checked: '2026-11-26',
       locator:
-        'Acte I, chantier 29 sur la protection sociale. Le texte prévoit une convergence des régimes de Sécurité sociale et la prise en compte des spécificités professionnelles. Il ne détaille pas les régimes spéciaux de retraite.',
+        'Acte I, chantier 25 sur la protection sociale, page 53 du PDF. Le texte prévoit une convergence des régimes de Sécurité sociale et la prise en compte des spécificités professionnelles. Il ne détaille pas les régimes spéciaux de retraite.',
+    },
+  ],
+  'retraites-penibilite': [
+    {
+      candidate: 'lepen',
+      sourceId: 'lepen-retraites-document-24-novembre',
+      checked: '2026-11-27',
+      locator:
+        'Présentation du régime par répartition. Le passage critique la complexité des critères de pénibilité et maintient les carrières longues lorsqu’elles sont plus favorables. Il ne définit pas de nouvel âge de départ selon la pénibilité.',
+    },
+    {
+      candidate: 'melenchon',
+      sourceId: 'lfi-plan-sante-detail-2027',
+      checked: '2026-11-27',
+      locator:
+        'Section 2.6 sur la santé au travail. Elle énumère des expositions et contraintes dont les droits à la retraite tiendraient compte. Aucun âge réduit ni barème de départ anticipé n’est fixé dans cette section.',
     },
   ],
   'logement-obligations-parc-social': [
@@ -326,6 +363,94 @@ const examinedDocuments: Record<
       checked: '2026-11-26',
       locator:
         'Volet intelligence artificielle. Il propose des capacités européennes de calcul et d’infrastructure sans préciser de qualification pour le cloud sensible de l’État.',
+    },
+  ],
+  'climat-prix-energie': [
+    {
+      candidate: 'lisnard',
+      sourceId: 'lisnard-entretien-ecologie-2026',
+      checked: '2026-11-27',
+      locator:
+        'Section sur le nucléaire et l’hydroélectricité. Elle vise une production compétitive et une évaluation du coût des investissements. Aucun tarif ni dispositif sur la facture n’est précisé.',
+    },
+  ],
+  'climat-avenir-eolien': [
+    {
+      candidate: 'philippe',
+      sourceId: 'philippe-programme-5',
+      checked: '2026-11-27',
+      locator:
+        'Volet énergie, réponse sur les renouvelables. Le candidat prévoit leur développement aux côtés du nucléaire. Aucun projet de parc éolien ni objectif propre à cette filière n’y figure.',
+    },
+  ],
+  'handicap-accompagnement-ecole': [
+    {
+      candidate: 'lisnard',
+      sourceId: 'lisnard-entretien-destinee-education',
+      checked: '2026-11-27',
+      locator:
+        'Section sur l’inclusion scolaire. Le compte rendu propose de développer les ULIS. Il ne détaille ni les contrats ni le statut des accompagnants.',
+    },
+  ],
+  'travail-demarches-entreprises': [
+    {
+      candidate: 'glucksmann',
+      sourceId: 'place-publique-acte-i-pdf-officiel',
+      checked: '2026-11-27',
+      locator:
+        'Acte I, chantier 17, page 41 du PDF. Place publique prévoit des accompagnements ciblés pour certaines TPE et PME. Le passage ne désigne pas de formalité administrative à simplifier.',
+    },
+  ],
+  'institutions-contributions-citoyennes': [
+    {
+      candidate: 'philippe',
+      sourceId: 'philippe-programme-5',
+      checked: '2026-11-27',
+      locator:
+        'Formulaire de contribution en fin de volet énergie. La campagne sollicite des avis et prévoit une synthèse. Ce formulaire ne décrit pas un droit d’initiative ouvert aux citoyens après l’élection.',
+    },
+  ],
+  'numerique-compagnons-ia': [
+    {
+      candidate: 'philippe',
+      sourceId: 'philippe-ia',
+      checked: '2026-11-27',
+      locator:
+        'Réponse sur la protection des enfants. Elle porte sur les contenus illicites générés par IA et la responsabilité des plateformes. Les agents conversationnels destinés aux mineurs n’y sont pas traités.',
+    },
+  ],
+  'numerique-decisions-automatisees': [
+    {
+      candidate: 'philippe',
+      sourceId: 'philippe-ia',
+      checked: '2026-11-27',
+      locator:
+        'Réponse sur l’utilisation de l’IA par l’État. Le volet porte sur le traitement de démarches simples. Les garanties de recours à l’encontre des décisions individuelles automatisées ne sont pas précisées.',
+    },
+  ],
+  'numerique-demarches-en-ligne': [
+    {
+      candidate: 'glucksmann',
+      sourceId: 'place-publique-acte-i-pdf-officiel',
+      checked: '2026-11-27',
+      locator:
+        'Acte I, chantier 25, page 53 du PDF. Le dossier social unique est destiné à ouvrir automatiquement des droits. Les guichets décrits sont physiques. Le passage ne définit pas de service de dépôt en ligne.',
+    },
+    {
+      candidate: 'philippe',
+      sourceId: 'philippe-ia',
+      checked: '2026-11-27',
+      locator:
+        'Le volet prévoit le traitement de démarches simples à l’aide de l’IA. Il ne précise pas le guichet numérique par lequel les usagers déposeraient leurs demandes.',
+    },
+  ],
+  'numerique-reversibilite-cloud': [
+    {
+      candidate: 'philippe',
+      sourceId: 'philippe-ia',
+      checked: '2026-11-27',
+      locator:
+        'Pacte européen de puissance numérique, infrastructures et zones d’accélération. Le traitement des contrats de sortie et de la migration entre hébergeurs reste à préciser.',
     },
   ],
 };
@@ -566,6 +691,7 @@ const additions = [
       'dupont-aignan-europe-ukraine-v1',
       'philippot-livraisons-ukraine-v1',
       'asselineau-arret-aides-ukraine-v1',
+      'polony-aider-ukraine-negociations-v1',
     ],
   },
   {
@@ -581,6 +707,7 @@ const additions = [
       'marchal-sortie-progressive-otan-v1',
       'villepin-constituer-un-pilier-europeen-de-defense-dans-lotan-v1',
       'bonnal-quitter-otan-v1',
+      'polony-maintenir-commandement-integre-otan-v1',
     ],
   },
   {
@@ -673,7 +800,7 @@ const additionalAnswers: Record<string, string[]> = {
     'revillon-apreval-retraite-socle-70-puis-85-ans-v2',
     'lepen-cantonner-trimestres-chomage-v1',
     'lepen-abroger-reforme-retraites-2023-en-2028-v1',
-    'lisnard-age-legal-retraite-65-ans-v1',
+    'lisnard-age-legal-65-ans-43-ans-et-demi-cotisation-v2',
     'bonnal-taux-plein-retraite-41-annuites-v1',
   ],
   'travail-salaire-minimum': [
@@ -681,7 +808,8 @@ const additionalAnswers: Record<string, string[]> = {
     'tinland-revaloriser-smic-v1',
     'bonnal-smic-revalorisation-automatique-v1',
     'glucksmann-revaloriser-smic-1700-net-v1',
-    'philippe-travail-2-v3',
+    'philippe-travail-2-v4',
+    'philippe-privilegier-heures-supplementaires-hausse-smic-novembre-v1',
   ],
   'travail-duree-travail': [
     'tinland-reduire-duree-travail-v1',
@@ -704,6 +832,7 @@ const additionalAnswers: Record<string, string[]> = {
   ],
   'climat-prix-energie': [
     'tinland-tva-energie-5-5-v1',
+    'polony-taxe-flottante-produits-petroliers-v1',
     'melenchon-retablir-tarifs-reglementes-energie-couts-production-v1',
     'arthaud-climat-carburant-coutant-v1',
     'marchal-accord-operateurs-carburants-v1',
@@ -715,6 +844,7 @@ const additionalAnswers: Record<string, string[]> = {
     'lalanne-fiscalite-taxes-carburants-v1',
     'lepen-renegocier-prix-electricite-europe-v3',
     'glucksmann-moratoire-hausses-taxes-electricite-v1',
+    'patriotes-quitter-le-marche-europeen-de-lelectricite-v2',
   ],
   'fiscalite-csg-salaires': [
     'saforcada-reduire-csg-salaires-deux-tranches-v1',
@@ -761,6 +891,7 @@ const additionalAnswers: Record<string, string[]> = {
     'melenchon-vacations-deserts-medicaux-v1',
     'groupe-rn-supprimer-communautes-professionnelles-sante-v1',
     'lisnard-communautes-soignantes-echelle-anciens-cantons-v1',
+    'patriotes-centres-soins-non-vitaux-v2',
   ],
   'sante-installation-medecins': [
     'philippe-reguler-installation-medecins-si-echec-v1',
@@ -802,6 +933,7 @@ const additionalAnswers: Record<string, string[]> = {
   ],
   'europe-participation-union': [
     'tinland-referendum-union-europeenne-v1',
+    'polony-maintenir-france-union-europeenne-v1',
     'lepen-commission-au-service-des-etats-v1',
     'lepen-refuser-elargissement-ue-v1',
     'melenchon-rester-dans-union-et-euro-negocier-traites-v1',
@@ -833,6 +965,7 @@ const additionalAnswers: Record<string, string[]> = {
   ],
   'agriculture-cantines': [
     'groupe-rn-restauration-collective-criteres-locaux-v1',
+    'polony-commande-production-v2',
     'tinland-restauration-collective-locale-v1',
     'delmur-cantines-locales-bio-v1',
     'pic-prix-plancher-agricole-v1',
@@ -867,7 +1000,7 @@ const additionalAnswers: Record<string, string[]> = {
   'salaires-enseignants': [
     'melenchon-negocier-grilles-enseignants-rattraper-indice-v1',
     'glucksmann-revaloriser-salaire-enseignants-10-25-v1',
-    'polony-hausse-remuneration-enseignants-vingt-trente-v1',
+    'polony-hausse-remuneration-enseignants-vingt-trente-v2',
     'mikolajczak-relever-le-salaire-des-professeurs-des-ecoles-de-200-euros-nets-par-mois-v1',
     'retailleau-relever-le-salaire-des-enseignants-en-debut-et-milieu-de-carriere-v1',
     'becht-formation-remuneration-enseignants-v2',
@@ -877,6 +1010,7 @@ const additionalAnswers: Record<string, string[]> = {
   ],
   'education-acces-etudes': [
     'lepen-publier-criteres-admission-superieur-v1',
+    'polony-reformer-parcoursup-transparence-v1',
     'lisnard-remplacer-parcoursup-orientation-v1',
     'philippe-conserver-ameliorer-parcoursup-orientation-v1',
     'roussel-remplacer-parcoursup-monmaster-v1',
@@ -896,6 +1030,7 @@ const additionalAnswers: Record<string, string[]> = {
   'institutions-contributions-citoyennes': [
     'tinland-consultations-publiques-v1',
     'lisnard-referendum-initiative-populaire-v1',
+    'rn-soutenir-referendum-initiative-citoyenne-v1',
     'place-publique-droit-initiative-referendum-v1',
     'mathieu-consultations-territoires-v1',
     'mlekuz-institutions-contributions-ouvertes-v1',
@@ -915,7 +1050,7 @@ const additionalAnswers: Record<string, string[]> = {
     'attal-petites-retraites-inflation-v1',
     'dlf-regimes-retraite-agricole-v1',
     'lepen-retraites-indexation-cinq-ans-v2',
-    'lisnard-envisager-sous-indexation-certaines-pensions-si-deficit-persiste-v1',
+    'lisnard-envisager-sous-indexation-certaines-pensions-si-deficit-persiste-v2',
     'ps-garantir-85-du-smic-apres-une-carriere-entiere-dans-lagriculture-v1',
   ],
   'retraites-financement-regimes': [
@@ -944,6 +1079,7 @@ const additionalAnswers: Record<string, string[]> = {
     'tinland-otan-v1',
     'lepen-sortir-commandement-integre-otan-v1',
     'lisnard-maintenir-cadre-atlantique-a-court-terme-v1',
+    'roussel-remplacer-otan-architecture-securite-europeenne-v1',
     'lalanne-europe-otan-v1',
     'philippot-europe-organisations-v1',
     'legendre-maintenir-renforcer-alliances-dont-otan-v1',
@@ -955,6 +1091,7 @@ const additionalAnswers: Record<string, string[]> = {
   'retraites-penibilite': [
     'lisnard-criteres-usure-retraite-v1',
     'bouamrane-adapter-age-depart-a-penibilite-v1',
+    'glucksmann-avancer-departs-metiers-penibles-v1',
     'roussel-ouvrir-des-departs-anticipes-pour-les-metiers-penibles-et-les-carrieres-longue-v1',
   ],
   'climat-avenir-eolien': [
@@ -1007,6 +1144,7 @@ const additionalAnswers: Record<string, string[]> = {
   ],
   'numerique-demarches-en-ligne': [
     'lisnard-guichet-numerique-agriculteurs-v2',
+    'polony-guichet-numerique-services-publics-v1',
     'dubuisson-eviter-redemande-documents-administratifs-v2',
     'pic-droits-services-hors-ligne-v1',
     'dlf-accessibilite-services-publics-numeriques-v1',
@@ -1027,6 +1165,7 @@ const additionalAnswers: Record<string, string[]> = {
   ],
   'numerique-hebergement-sante': [
     'lisnard-cadre-souverain-hebergement-donnees-sante-v1',
+    'polony-privilegier-acteurs-souverains-donnees-sante-v1',
   ],
   'agriculture-elevages': [
     'groupe-rn-six-mois-reglementation-elevages-v1',
@@ -1037,14 +1176,38 @@ const additionalAnswers: Record<string, string[]> = {
   'travail-demarches-entreprises': [
     'lepen-supprimer-normes-entreprises-par-ordonnances-v1',
     'lisnard-geler-normes-suspendre-surtranspositions-v1',
+    'lisnard-etendre-procedures-simplifiees-grands-chantiers-v1',
     'tinland-alleger-fiscalite-entreprises-v1',
     'lisnard-guichet-numerique-agriculteurs-v2',
   ],
   'numerique-enseignement-numerique': [
     'melenchon-developper-education-numerique-enfants-v1',
+    'lisnard-former-eleves-usages-intelligence-artificielle-v1',
   ],
 };
 const scopedComplements: Record<string, Record<string, string>> = {
+  'social-garde-jeunes-enfants': {
+    'melenchon-revaloriser-salaires-personnels-creches-v1':
+      'Jean-Luc Mélenchon propose de mieux rémunérer le personnel pour pouvoir recruter et ouvrir des places.',
+  },
+  'numerique-identite-numerique': {
+    'philippot-exclure-donnees-sante-identite-numerique-v1':
+      'Le passage vise les catégories de données qu’un système d’identité numérique pourrait contenir.',
+  },
+  'agriculture-cantines': {
+    'polony-education-gout-cantines-v1':
+      'Le passage porte sur les activités d’éducation au goût. Le financement des repas et les règles d’achat restent à préciser.',
+  },
+  'agriculture-remuneration-contrats': {
+    'polony-commande-production-v2':
+      'La priorité dans les achats publics vise à garantir des débouchés aux producteurs. Le prix payé aux exploitations reste à préciser.',
+  },
+  'education-acces-etudes': {
+    'polony-evaluations-nationales-certifications-anonymes-v1':
+      'Les évaluations visent à aider les élèves à situer leur niveau. Le rôle de ces résultats dans les admissions reste à préciser.',
+    'polony-reorganiser-filieres-insertion-v1':
+      'La proposition porte sur l’offre de formations. Les règles de sélection des candidats sont traitées dans sa proposition sur Parcoursup.',
+  },
   'agriculture-elevages': {
     'lisnard-mercosur-exclure-elevage-ou-clause-miroir-v1':
       'La proposition porte sur l’accord commercial avec le Mercosur et les conditions d’importation. Elle ne précise pas les règles d’exploitation des élevages français.',

@@ -1,7 +1,9 @@
 """Évaluer des questions libres avec Codex sur le MCP public ou de recette."""
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -153,10 +155,52 @@ def load_cases():
     return cases["questions"]
 
 
+def load_independent_cases(path):
+    bank = json.loads(path.read_bytes())
+    if bank["version"] != 1:
+        raise ValueError("Version du jeu indépendant inconnue.")
+    cases = bank["questions"]
+    if len({case["id"] for case in cases}) != len(cases) or len({
+        normal(case["question"]) for case in cases
+    }) != len(cases):
+        raise ValueError("Doublon dans le jeu indépendant.")
+    for case in cases:
+        proofs = case.pop("preuves")
+        if (case["etat"] not in ("documente", "indisponible") or not 1 <= len(proofs) <= 8
+                or not case["famille"].strip() or not case["difficulte"].strip()
+                or not case["justification"].strip() or not case["edition"].strip()
+                or any(not proof["passage"].strip() or not proof["valeurs"] or not proof["sources"]
+                       or any(not normal(value) for value in proof["valeurs"])
+                       or any(not address(source) for source in proof["sources"])
+                       for proof in proofs)):
+            raise ValueError(f"Annotation incomplète pour {case['id']}.")
+        case["faits"] = [proof["valeurs"] for proof in proofs]
+        case["sources_par_fait"] = [proof["sources"] for proof in proofs]
+        case["sources"] = sorted({source for proof in proofs for source in proof["sources"]})
+    return cases
+
+
+def cited_by_tool(expected, observed, document_scope=False):
+    citations = (expected & observed) | {
+        link for link in expected if link and link[3] and (*link[:3], "") in observed
+    }
+    if document_scope:
+        documents = {link[:3] for link in expected if not link[3]}
+        documents -= {link[:3] for link in expected if link[3]}
+        for link in observed:
+            if link[:3] in documents:
+                citations.update((link, (*link[:3], "")))
+    return citations
+
+
 def supports(case, call):
     if not call["envelope"]:
         return False
     data = call["envelope"]["donnees"]
+    if "sources_par_fait" in case:
+        observed = set(result_addresses(data))
+        return any(cited_by_tool({address(source) for source in links}, observed, document_scope=True)
+                   for links in case["sources_par_fait"])
     return any(
         call["tool"] == route.get("outil", case["outil"])
         and matches(call["arguments"], route["arguments"]) and all(
@@ -177,9 +221,11 @@ def score(case, answer, calls, revisions):
     observed_sources = set().union(*(
         set(result_addresses(call["envelope"]["donnees"])) for call in evidence
     ))
-    cited_sources = (observed_sources & expected_sources) | {
-        link for link in expected_sources if link and link[3] and (*link[:3], "") in observed_sources
-    }
+    cited_sources = cited_by_tool(expected_sources, observed_sources)
+    per_fact = [cited_by_tool({address(source) for source in links}, observed_sources, document_scope=True)
+                for links in case.get("sources_par_fait", [])]
+    if per_fact:
+        cited_sources = set().union(*per_fact)
     expected = [{normal(value) for value in group} for group in case["faits"]]
     facts_ok = citations_ok = extra_facts = bad_citations = 0
     for fact in answer["faits"]:
@@ -188,19 +234,22 @@ def score(case, answer, calls, revisions):
         if found is None and expected and case.get("motif") and coverage_reason(value, case["motif"]):
             found = 0
         citations = [address(link) for link in fact["citations"]]
-        wrong = sum(source not in cited_sources for source in citations)
+        allowed = per_fact[found] if per_fact and found is not None else cited_sources
+        wrong = sum(source not in allowed for source in citations)
         bad_citations += wrong
         if found is None:
             extra_facts += 1
             continue
         expected.pop(found)
+        if per_fact:
+            per_fact.pop(found)
         facts_ok += 1
         citations_ok += bool(citations) and not wrong
     status_ok = answer["statut"] == case["etat"]
     absent_as_known = case["etat"] == "indisponible" and answer["statut"] == "documente"
     revisions_ok = bool(usable) and len(usable) == sum(bool(call["envelope"]) for call in calls)
     return {
-        "outil_et_parametres": bool(evidence),
+        ("piece_attendue_observee" if "sources_par_fait" in case else "outil_et_parametres"): bool(evidence),
         "revisions_conformes": revisions_ok,
         "statut_conforme": status_ok,
         "absence_reconnue": status_ok if case["etat"] == "indisponible" else None,
@@ -305,15 +354,24 @@ def main():
     parser.add_argument("--revision", required=True, help="commit à 40 caractères servi par le site")
     parser.add_argument("--revision-service", required=True, help="commit à 40 caractères servi par le MCP")
     parser.add_argument("--modele", default="gpt-6.2-sol")
-    cases = load_cases()
-    parser.add_argument("--cas", choices=[case["id"] for case in cases], action="append")
+    parser.add_argument("--jeu", choices=("regression", "independant"), default="regression")
+    parser.add_argument("--cas", action="append")
+    parser.add_argument("--parallele", type=int, choices=(1, 2), default=1,
+                        help="nombre de tours simultanés, sur le serveur local seulement")
     args = parser.parse_args()
     loopback = re.fullmatch(r"http://127\.0\.0\.1:([0-9]{1,5})/api/mcp", args.url)
     if args.url != PUBLIC and not (loopback and 1 <= int(loopback[1]) <= 65535):
         parser.error("Adresse MCP de recette inattendue.")
+    if args.parallele > 1 and not loopback:
+        parser.error("Sur le service public, les questions sont posées une à une.")
     revisions = (args.revision, args.revision_service)
     if any(not re.fullmatch(r"[0-9a-f]{40}", rev) for rev in revisions):
         parser.error("Les deux révisions doivent être des commits complets.")
+    path = FIXTURES / ("questions-assistant-independant.json" if args.jeu == "independant"
+                       else "questions-assistant.json")
+    cases = load_independent_cases(path) if args.jeu == "independant" else load_cases()
+    if set(args.cas or ()) - {case["id"] for case in cases}:
+        parser.error("Identifiant absent du jeu sélectionné.")
     selected = [case for case in cases if not args.cas or case["id"] in args.cas]
     env = cli_environment()
     auth = subprocess.run(["codex", "login", "status"], env=env, capture_output=True, text=True, timeout=12)
@@ -321,9 +379,10 @@ def main():
         parser.error("Aucune session ChatGPT existante n’a été reconnue.")
     cli = subprocess.check_output(["codex", "--version"], env=env, text=True,
                                   stderr=subprocess.DEVNULL, timeout=12).strip()
-    print(json.dumps({"cli": cli, "modele": args.modele, "site": revisions[0], "service": revisions[1]}), flush=True)
-    results, times = [], []
-    for case in selected:
+    print(json.dumps({"cli": cli, "modele": args.modele, "site": revisions[0], "service": revisions[1],
+                      "jeu": args.jeu, "jeu_sha256": hashlib.sha256(path.read_bytes()).hexdigest()}), flush=True)
+
+    def evaluate(case):
         try:
             answer, calls, usage, elapsed = turn(case["question"], args.modele, env, args.url)
             result = score(case, answer, calls, revisions)
@@ -332,12 +391,19 @@ def main():
                 octets_resultats_mcp=sum(call["result_bytes"] for call in calls),
                 duree_s=elapsed, jetons=usage,
             )
-            times.append(elapsed)
         except (subprocess.SubprocessError, OSError, ValueError, KeyError, TypeError):
             result = {"execution": "tour indisponible ou résultat illisible", "reussi": False}
         result["cas"] = case["id"]
-        results.append(result)
-        print(json.dumps(result, ensure_ascii=False), flush=True)
+        if "famille" in case:
+            result["famille"] = case["famille"]
+        return result
+
+    results = []
+    with ThreadPoolExecutor(max_workers=args.parallele) as workers:
+        for result in workers.map(evaluate, selected):
+            results.append(result)
+            print(json.dumps(result, ensure_ascii=False), flush=True)
+    times = [result["duree_s"] for result in results if "duree_s" in result]
     passed = sum(result["reussi"] for result in results)
     print(json.dumps({"reussis": passed, "cas": len(results), "latence_mediane_s": statistics.median(times) if times else None}))
     return 0 if passed == len(results) else 1

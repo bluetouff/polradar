@@ -220,6 +220,13 @@ func TestPublishedAnswer(t *testing.T) {
 				t.Fatal(r)
 			}
 		}},
+		{"Au scrutin n°9916 du 17 novembre 2026 à l’Assemblée nationale, combien de voix pour et d’abstentions ? Le texte a-t-il été adopté ?", "scrutin", "documente", "VTANR5L17V9916", func(t *testing.T, a documentaryAnswer) {
+			r := a.Results[0]
+			if len(r.Facts) != 3 || r.Facts[0].Value != "464" || r.Facts[1].Value != "16" ||
+				r.Facts[2].Value != "adopté" || r.Facts[2].SourceID != r.Sources[0].ID {
+				t.Fatal(r)
+			}
+		}},
 		{"Quels scénarios OpinionWay CNEWS ont un terrain le 21 octobre 2026 ?", "sondage", "partiel", "opinionway-commission-10333-p12", func(t *testing.T, a documentaryAnswer) {
 			r := a.Results[0]
 			if *a.Coverage.Total != 4 || r.Sources[0].URL != "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2352#page=12" ||
@@ -233,9 +240,9 @@ func TestPublishedAnswer(t *testing.T) {
 			}
 		}},
 		{"Le terrain du sondage opinionway-commission-10333-p12 était-il le 21 septembre 2026 ?", "sondage", "sans-resultat", "", nil},
-		{"Sondage Élabé diffusé le 29 août 2026 : quelles sont les dates de début et de fin du terrain ?", "sondage", "partiel", "elabe-2026-08-29-attal", func(t *testing.T, a documentaryAnswer) {
+		{"Sondage Élabé diffusé le 29 août 2026 : quelles sont les dates de début et de fin du terrain ?", "sondage", "documente", "elabe-2026-08-29-attal", func(t *testing.T, a documentaryAnswer) {
 			r := a.Results[0]
-			if r.Date != "2026-08-29" || len(r.Sources) != 1 ||
+			if len(a.Results) != 1 || *a.Coverage.Total != 1 || r.Status != "terrain" || r.Date != "2026-08-29" || len(r.Sources) != 1 ||
 				r.Sources[0].URL != "https://www.commission-des-sondages.fr/notices/files/notices/2026/aout/10245-pres-iv-elabe-29-aout.pdf" {
 				t.Fatal(r)
 			}

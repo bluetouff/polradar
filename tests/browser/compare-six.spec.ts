@@ -80,37 +80,60 @@ test('un lien conserve deux candidatures valides et signale les identifiants rej
   await expect(page.locator('#comparison-selection-note')).toBeVisible();
 });
 
-test('la recherche par nom tolère une faute et permet de choisir au clavier sur mobile', async ({
+test('la recherche de candidatures accepte les accents et une faute puis applique un choix explicite', async ({
   page,
 }) => {
-  await page.setViewportSize({ width: 320, height: 820 });
+  await page.setViewportSize({ width: 320, height: 700 });
   await page.goto('/comparer/');
-  const firstSearch = page.getByRole('button', {
-    name: 'Chercher la candidature 1',
-  });
-  await firstSearch.press('Enter');
-  const dialog = page.getByRole('dialog');
-  const query = dialog.getByRole('searchbox', { name: 'Prénom ou nom' });
-  await expect(query).toBeFocused();
-  await query.fill('melenchn');
-  const result = dialog.getByRole('button', { name: 'Jean-Luc Mélenchon' });
-  await expect(result).toBeVisible();
-  await query.press('ArrowDown');
-  await expect(result).toBeFocused();
-  await result.press('Enter');
-  await expect(dialog).not.toBeVisible();
-  const firstSelect = page.getByLabel('Candidature 1', { exact: true });
-  await expect(firstSelect).toHaveValue('melenchon');
-  await expect(firstSelect).toBeFocused();
-
-  const secondSearch = page.getByRole('button', {
+  const first = page.getByRole('button', { name: 'Chercher la candidature 1' });
+  const second = page.getByRole('button', {
     name: 'Chercher la candidature 2',
   });
-  await secondSearch.click();
-  await query.fill('Mélenchon');
+  const dialog = page.getByRole('dialog');
+  const input = dialog.getByRole('searchbox', { name: 'Prénom ou nom' });
+  const choices = dialog.getByRole('list').getByRole('button');
+  const people = page.locator('.compare-person select');
+  const requests: string[] = [];
+  page.on('request', (request) => requests.push(request.url()));
+
+  await first.focus();
+  await page.keyboard.press('Enter');
+  await expect(input).toBeFocused();
+  await input.fill('melenchn');
+  await expect(choices.first()).toHaveText('Jean-Luc Mélenchon');
+  await input.fill('melenchon jean');
+  await expect(choices.first()).toHaveText('Jean-Luc Mélenchon');
+  await input.fill('Raphael');
+  await expect(choices.first()).toHaveText('Raphaël Glucksmann');
+  await input.fill('glucskmann');
+  await expect(choices.first()).toHaveText('Raphaël Glucksmann');
+  await expect(people.first()).toHaveValue('');
+  expect(requests).toEqual([]);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(
+    320,
+  );
+  await input.press('ArrowDown');
+  await expect(choices.first()).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(dialog).toBeHidden();
+  await expect(people.first()).toBeFocused();
+  await expect(people.first()).toHaveValue('glucksmann');
+
+  await second.click();
+  await input.fill('Glucksmann');
   await expect(dialog.getByRole('status')).toHaveText(
     'Aucune candidature trouvée',
   );
-  await query.press('Escape');
-  await expect(secondSearch).toBeFocused();
+  await input.press('Escape');
+  await expect(dialog).toBeHidden();
+  await expect(second).toBeFocused();
+  await expect(people.nth(1)).toHaveValue('');
+
+  await second.click();
+  await input.fill('le pen');
+  await dialog
+    .getByRole('button', { name: 'Marine Le Pen', exact: true })
+    .click();
+  await expect(people.nth(1)).toHaveValue('lepen');
+  await expect(page.locator('.comparison-card')).toHaveCount(2);
 });

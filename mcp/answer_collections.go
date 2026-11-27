@@ -50,9 +50,20 @@ func (c *snapshot) answerScrutinies(result *documentaryAnswer, question, topic s
 		num = match[1]
 		topic = answerBallotNumber.ReplaceAllString(topic, " ")
 	}
+	// Use the official summary for aggregate questions even when no person is named.
+	var totals []voteAnswerField
+	wantsDecision := false
+	if len(people) == 0 {
+		for _, field := range voteAnswerFields {
+			if answerHas(topic, field.terms...) {
+				totals = append(totals, field)
+			}
+		}
+		wantsDecision = answerHas(topic, "adopte", "adoptee", "rejete", "rejetee", "issue du vote", "issue du scrutin")
+	}
 	terms := []string{}
 	for _, term := range answerTerms(topic) {
-		if !answerHas("scrutin scrutins objet issue adopte adoptee adoption position positionne seance enregistre nominatifs nominatif assemblee contre abstention abstenu releve indique delegation", term) {
+		if !answerHas("scrutin scrutins objet issue adopte adoptee adoption rejete rejetee position positionne seance enregistre nominatifs nominatif assemblee contre abstention abstentions abstenu abstenus abstenues releve indique delegation nombre votants exprimes suffrages voix majorite absolue favorables defavorables ete", term) {
 			terms = append(terms, term)
 		}
 	}
@@ -80,12 +91,13 @@ func (c *snapshot) answerScrutinies(result *documentaryAnswer, question, topic s
 		}
 		a.Candidat = people[0].ID
 	}
-	if ballot != "" {
+	if ballot != "" || num != "" && a.Debut != "" && a.Debut == a.Fin && (len(totals) > 0 || wantsDecision) {
 		terms = nil
 	}
 	total := 0
 	namedVoteMissing := false
 	delegationMissing := false
+	summaryMissing := false
 	for i := range index.Actes {
 		r := &index.Actes[i]
 		if ballot != "" && r.ID != ballot || num != "" && !strings.HasSuffix(r.ID, "V"+num) ||
@@ -100,6 +112,30 @@ func (c *snapshot) answerScrutinies(result *documentaryAnswer, question, topic s
 		labels := map[string]string{"assemblee": "Assemblée nationale", "senat": "Sénat", "parlement-europeen": "Parlement européen"}
 		item.Author, item.Date, item.Status, item.Kind = labels[r.Institution], r.Date, "scrutin", "scrutin"
 		item.addSource(answerSource{ID: r.ID, Document: item.Author, URL: answerDocumentURL(r.Source), Passage: r.Titre})
+		if len(totals) > 0 || wantsDecision {
+			summary, err := c.answerRollRecord(r)
+			if err != nil {
+				return err
+			}
+			var counts map[string]*int
+			if raw := summary["totaux"]; len(raw) > 0 && json.Unmarshal(raw, &counts) != nil {
+				return invalidCorpus
+			}
+			for _, field := range totals {
+				if count := counts[field.key]; count != nil && *count >= 0 {
+					item.Facts = append(item.Facts, answerFact{Label: field.label, Value: strconv.Itoa(*count), Period: r.Date, SourceID: r.ID})
+				} else {
+					summaryMissing = true
+				}
+			}
+			if wantsDecision {
+				if decision := summary.str("decision"); decision != "" && len(item.Facts) < answerFactLimit {
+					item.Facts = append(item.Facts, answerFact{Label: "Issue du scrutin", Value: decision, Period: r.Date, SourceID: r.ID})
+				} else {
+					summaryMissing = true
+				}
+			}
+		}
 		var positions map[string]answerVote
 		if asksDelegation {
 			var err error
@@ -147,11 +183,27 @@ func (c *snapshot) answerScrutinies(result *documentaryAnswer, question, topic s
 		result.describe("partiel", "votes_nominatifs_non_documentes", "Les scrutins sont documentés. Seuls les votes nominatifs présents dans le registre sont indiqués.")
 	case delegationMissing:
 		result.describe("partiel", "delegation_non_documentee", "Le vote est documenté. Le relevé disponible ne précise pas la délégation demandée.")
+	case summaryMissing:
+		result.describe("partiel", "total_non_documente", "Le scrutin est identifié. Une partie des totaux ou de l’issue demandés reste à vérifier dans le relevé officiel.")
 	}
 	return nil
 }
 
-func (c *snapshot) answerRollPositions(act *actRow) (map[string]answerVote, error) {
+type voteAnswerField struct {
+	key, label string
+	terms      []string
+}
+
+var voteAnswerFields = []voteAnswerField{
+	{"votants", "Nombre de votants", []string{"nombre de votants", "combien de votants"}},
+	{"exprimes", "Suffrages exprimés", []string{"suffrages exprimes"}},
+	{"majorite", "Majorité absolue", []string{"majorite absolue"}},
+	{"pour", "Voix pour", []string{"voix pour", "votes pour", "voix favorables", "ont vote pour"}},
+	{"contre", "Voix contre", []string{"voix contre", "votes contre", "voix defavorables", "ont vote contre"}},
+	{"abstention", "Abstentions", []string{"abstentions", "se sont abstenus", "se sont abstenues"}},
+}
+
+func (c *snapshot) answerRollRecord(act *actRow) (record, error) {
 	if !ballotPattern.MatchString(act.ID) {
 		return nil, nil
 	}
@@ -159,21 +211,32 @@ func (c *snapshot) answerRollPositions(act *actRow) (map[string]answerVote, erro
 	if err != nil || empty {
 		return nil, err
 	}
-	var raw json.RawMessage
 	switch row := value.(map[string]any)["publication"].(type) {
 	case record:
 		if row.str("id") != act.ID || row.str("date") != act.Date || row.str("source") != act.Source {
 			return nil, invalidCorpus
 		}
-		raw = row["positions"]
+		return row, nil
 	case map[string]any:
 		if row["id"] != act.ID || row["date"] != act.Date || row["source"] != act.Source {
 			return nil, invalidCorpus
 		}
-		raw, _ = row["positions"].(json.RawMessage)
+		result := record{}
+		for _, field := range []string{"positions", "decision", "totaux"} {
+			result[field], _ = row[field].(json.RawMessage)
+		}
+		return result, nil
+	}
+	return nil, invalidCorpus
+}
+
+func (c *snapshot) answerRollPositions(act *actRow) (map[string]answerVote, error) {
+	row, err := c.answerRollRecord(act)
+	if row == nil || err != nil {
+		return nil, err
 	}
 	var positions []answerVote
-	if json.Unmarshal(raw, &positions) != nil {
+	if json.Unmarshal(row["positions"], &positions) != nil {
 		return nil, invalidCorpus
 	}
 	byPerson := make(map[string]answerVote, len(positions))
@@ -263,6 +326,8 @@ func (c *snapshot) answerPolls(result *documentaryAnswer, question, topic string
 	selected := []record{}
 	terrain := answerHas(topic, "terrain")
 	terrainDates := terrain && answerHas(topic, "date", "dates", "debut", "fin")
+	terrainOnly := terrainDates && exact == "" && round == "" && page == "" && len(people) == 0 &&
+		!answerHas(topic, "scenario", "scenarios", "effectif", "echantillon", "score", "resultat", "resultats")
 	if len(dates) > 2 {
 		result.describe("ambigu", "terrain_a_preciser", "Précisez une date ou les deux dates du terrain à examiner.")
 		return nil
@@ -317,6 +382,21 @@ func (c *snapshot) answerPolls(result *documentaryAnswer, question, topic string
 		}
 		return x.str("id") < y.str("id")
 	})
+	if terrainOnly {
+		seen := map[[5]string]bool{}
+		selected = slices.DeleteFunc(selected, func(row record) bool {
+			id := row.str("surveyId")
+			if id == "" {
+				return false
+			}
+			key := [5]string{id, row.str("noticeSource"), row.str("fieldworkStart"), row.str("fieldworkEnd"), row.str("published")}
+			if seen[key] {
+				return true
+			}
+			seen[key] = true
+			return false
+		})
+	}
 	namedResultMissing := false
 	for _, r := range selected[:min(answerLimit, len(selected))] {
 		id := r.str("id")
@@ -324,6 +404,12 @@ func (c *snapshot) answerPolls(result *documentaryAnswer, question, topic string
 		item.Author, item.Status = r.str("institute"), "scenario"
 		item.Date, item.Kind = r.str("published"), "publication"
 		item.Summary = answerText(r.str("population"), 720)
+		if terrainOnly {
+			item.Title, item.Status, item.Summary = "Terrain de l’enquête "+item.Author, "terrain", ""
+			if commissioner := r.str("commissioner"); commissioner != "" {
+				item.Title += " pour " + commissioner
+			}
+		}
 		id = r.str("noticeSource")
 		var n int
 		fragment, passage := "", ""
@@ -336,7 +422,7 @@ func (c *snapshot) answerPolls(result *documentaryAnswer, question, topic string
 		period := pollPeriod(r)
 		if len(item.Sources) > 0 {
 			var sample json.Number
-			if json.Unmarshal(r["usefulSample"], &sample) == nil && sample != "" {
+			if !terrainOnly && json.Unmarshal(r["usefulSample"], &sample) == nil && sample != "" {
 				item.Facts = append(item.Facts, answerFact{Label: "Effectif utile de ce scénario", Value: sample.String(), Unit: "personnes", Period: period, SourceID: id})
 			}
 			var shares []struct {
@@ -384,7 +470,11 @@ func (c *snapshot) answerPolls(result *documentaryAnswer, question, topic string
 		}
 		result.Results = append(result.Results, item)
 	}
-	result.finish(len(selected), "Les valeurs se lisent avec le scénario, le terrain et la base d’enquête indiqués par la notice.")
+	explanation := "Les valeurs se lisent avec le scénario, le terrain et la base d’enquête indiqués par la notice."
+	if terrainOnly {
+		explanation = "Les dates de terrain sont données pour chaque enquête, avec la notice qui les documente."
+	}
+	result.finish(len(selected), explanation)
 	if namedResultMissing {
 		result.describe("partiel", "resultat_non_documente", "Une candidature demandée n’a pas de valeur documentée dans au moins un scénario affiché.")
 	} else if len(people) != 0 && len(selected) > 1 {

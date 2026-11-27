@@ -3475,7 +3475,7 @@
   {
     "sourceId": "polony-zinfos-reunion-2026",
     "unit": "passage",
-    "checked": "2026-11-25",
+    "checked": "2026-11-27",
     "perimeter": "Propositions formulées le 14 novembre 2026 en réponse aux journalistes, dans les passages indiqués.",
     "units": [
       {
@@ -3519,6 +3519,21 @@
           "polony-logements-sociaux-intermediaires-foncier-public-outre-mer",
           "polony-encadrer-locations-touristiques-outre-mer"
         ]
+      },
+      {
+        "id": "presence-navale",
+        "title": "Programmation maritime de 2027 à 2037",
+        "measureIds": ["polony-loi-programmation-maritime"]
+      },
+      {
+        "id": "rattrapage-services",
+        "title": "Loi de rattrapage pour les services publics",
+        "measureIds": ["polony-loi-rattrapage-outre-mer"]
+      },
+      {
+        "id": "achats-cantines",
+        "title": "Produits réunionnais dans les cantines publiques",
+        "measureIds": ["polony-commande-production"]
       }
     ]
   },
@@ -11350,6 +11365,568 @@
         "id": "lepen-contester-regroupement-familial-octobre-2026",
         "title": "Extrait rediffusé par CNEWS dans 100 % Politique. Échange sur le regroupement familial à 12 min 46 s.",
         "measureIds": ["lepen-contester-regroupement-familial-octobre-2026"]
+      }
+    ]
+  },
+  {
+    "sourceId": "polony-sqool-2026-11-20-admissions",
+    "perimeter": "2027 secondes avec Natacha Polony. Passages reliés à des propositions ou orientations.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "polony-sqool-2026-11-20-admissions",
+        "title": "20:49–22:00 · Parcoursup et programmation scolaire",
+        "sourceId": "polony-sqool-2026-11-20-admissions",
+        "measureIds": ["polony-reformer-parcoursup-transparence"]
+      },
+      {
+        "id": "polony-sqool-2026-11-20-programmation",
+        "title": "21:45–22:00 · Loi de programmation pour l’école",
+        "sourceId": "polony-sqool-2026-11-20-programmation",
+        "measureIds": ["polony-loi-programmation-ecole"]
+      },
+      {
+        "id": "polony-sqool-2026-11-20-medias",
+        "title": "23:44–26:41 · Pluralisme des médias",
+        "sourceId": "polony-sqool-2026-11-20-medias",
+        "measureIds": ["polony-pluralisme-medias-debat-public"],
+        "review": "sans-engagement-precis"
+      }
+    ]
+  },
+  {
+    "sourceId": "polony-bfmtv-2026-11-24-evaluations",
+    "perimeter": "Le Face-à-Face avec Natacha Polony. Passages reliés à des propositions ou orientations.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "polony-bfmtv-2026-11-24-evaluations",
+        "title": "19:32–19:43 · Évaluations et certifications anonymes",
+        "sourceId": "polony-bfmtv-2026-11-24-evaluations",
+        "measureIds": ["polony-evaluations-nationales-certifications-anonymes"]
+      },
+      {
+        "id": "polony-bfmtv-2026-11-24-filieres",
+        "title": "19:00–19:47 · Orientation et débouchés des filières",
+        "sourceId": "polony-bfmtv-2026-11-24-filieres",
+        "measureIds": ["polony-reorganiser-filieres-insertion"]
+      },
+      {
+        "id": "polony-bfmtv-2026-11-24-formation",
+        "title": "18:26–18:59 · Formation des enseignants",
+        "sourceId": "polony-bfmtv-2026-11-24-formation",
+        "measureIds": ["polony-ecoles-normales-formation-enseignants"]
+      },
+      {
+        "id": "polony-bfmtv-2026-11-24-ukraine",
+        "title": "12:09–12:29 · Aide à l’Ukraine et négociations",
+        "sourceId": "polony-bfmtv-2026-11-24-ukraine",
+        "measureIds": ["polony-aider-ukraine-negociations"]
+      },
+      {
+        "id": "polony-bfmtv-2026-11-24-otan",
+        "title": "12:46–13:28 · Commandement intégré de l’OTAN",
+        "sourceId": "polony-bfmtv-2026-11-24-otan",
+        "measureIds": ["polony-maintenir-commandement-integre-otan"]
+      },
+      {
+        "id": "polony-bfmtv-2026-11-24-entree",
+        "title": "15:05–15:16 · Délit d’entrée irrégulière",
+        "sourceId": "polony-bfmtv-2026-11-24-entree",
+        "measureIds": ["polony-retablir-delit-entree-irreguliere"]
+      },
+      {
+        "id": "polony-bfmtv-2026-11-24-visas",
+        "title": "15:56–16:21 · Visas, asile et laissez-passer consulaires",
+        "sourceId": "polony-bfmtv-2026-11-24-visas",
+        "measureIds": [
+          "polony-deposer-demandes-asile-visa-hors-ue",
+          "polony-conditionner-visas-laissez-passer"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "polony-food-2026-11-19-importations",
+    "perimeter": "L’agriculture dans la campagne présidentielle. Passages reliés à des propositions ou orientations.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "polony-food-2026-11-19-importations",
+        "title": "39:08–41:32 · Normes agricoles et contrôle des importations",
+        "sourceId": "polony-food-2026-11-19-importations",
+        "measureIds": ["polony-normes-produits-agricoles-importes"]
+      },
+      {
+        "id": "polony-food-2026-11-19-eau",
+        "title": "52:20–52:52 · Réseaux, eaux grises et stockage",
+        "sourceId": "polony-food-2026-11-19-eau",
+        "measureIds": ["polony-reutiliser-stocker-eau-renover-reseaux"]
+      },
+      {
+        "id": "polony-food-2026-11-19-cantines",
+        "title": "1:06:37–1:08:09 · Éducation au goût en milieu scolaire",
+        "sourceId": "polony-food-2026-11-19-cantines",
+        "measureIds": ["polony-education-gout-cantines"]
+      },
+      {
+        "id": "polony-food-2026-11-19-tracabilite",
+        "title": "1:22:00–1:22:14 · Traçabilité de la viande et du lait",
+        "sourceId": "polony-food-2026-11-19-tracabilite",
+        "measureIds": ["polony-tracabilite-viande-lait-produits-transformes"]
+      },
+      {
+        "id": "polony-food-2026-11-19-carburant",
+        "title": "36:26–36:44 · Taxe flottante sur les produits pétroliers",
+        "sourceId": "polony-food-2026-11-19-carburant",
+        "measureIds": ["polony-taxe-flottante-produits-petroliers"]
+      },
+      {
+        "id": "polony-food-2026-11-19-guyane",
+        "title": "42:55–43:36 · Forages d’hydrocarbures en Guyane",
+        "sourceId": "polony-food-2026-11-19-guyane",
+        "measureIds": ["polony-forages-hydrocarbures-guyane"]
+      },
+      {
+        "id": "polony-food-2026-11-19-publicite",
+        "title": "1:10:17–1:10:56 · Publicité alimentaire et enfants",
+        "sourceId": "polony-food-2026-11-19-publicite",
+        "measureIds": ["polony-reguler-publicite-alimentaire-enfants"]
+      },
+      {
+        "id": "polony-food-2026-11-19-achats",
+        "title": "28:43–29:15 · Achats publics de produits agricoles",
+        "sourceId": "polony-food-2026-11-19-achats",
+        "measureIds": ["polony-commande-production"],
+        "review": "sans-engagement-precis"
+      }
+    ]
+  },
+  {
+    "sourceId": "polony-radioj-2026-11-15-ue",
+    "perimeter": "Le Forum Radio J avec Natacha Polony. Passages reliés à des propositions ou orientations.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "polony-radioj-2026-11-15-ue",
+        "title": "34:33–34:54 · Place de la France dans l’Union européenne",
+        "sourceId": "polony-radioj-2026-11-15-ue",
+        "measureIds": ["polony-maintenir-france-union-europeenne"]
+      }
+    ]
+  },
+  {
+    "sourceId": "polony-bfm-business-2026-11-09",
+    "perimeter": "Good Morning Business · Entretien avec Natacha Polony. Passages reliés à des propositions ou orientations.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "polony-guichet-numerique-services-publics",
+        "title": "07:19–07:31 · Rationalisation des services publics et guichet numérique",
+        "sourceId": "polony-bfm-business-2026-11-09",
+        "measureIds": ["polony-guichet-numerique-services-publics"]
+      },
+      {
+        "id": "polony-supprimer-impots-production",
+        "title": "05:54–06:06 · Réponse sur la suppression des impôts de production",
+        "sourceId": "polony-bfm-business-2026-11-09",
+        "measureIds": ["polony-supprimer-impots-production"]
+      },
+      {
+        "id": "polony-orienter-epargne-fonds-souverain",
+        "title": "05:30–05:52 · Épargne des ménages, filières industrielles et fonds souverain",
+        "sourceId": "polony-bfm-business-2026-11-09",
+        "measureIds": ["polony-orienter-epargne-fonds-souverain"]
+      }
+    ]
+  },
+  {
+    "sourceId": "polony-contact-2026-11-26-donnees-sante",
+    "perimeter": "Contact #154 avec Natacha Polony. Passages reliés à des propositions ou orientations.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "polony-contact-2026-11-26-donnees-sante",
+        "title": "39:19–40:06 · Cloud et données de santé",
+        "sourceId": "polony-contact-2026-11-26-donnees-sante",
+        "measureIds": ["polony-privilegier-acteurs-souverains-donnees-sante"],
+        "review": "sans-engagement-precis"
+      }
+    ]
+  },
+  {
+    "sourceId": "polony-fesp-2026-11-12-plafond",
+    "perimeter": "Grand Oral de Natacha Polony sur les services à la personne. Passages reliés à des propositions ou orientations.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "polony-fesp-2026-11-12-plafond",
+        "title": "23:34–23:43 · Plafonnement du crédit d’impôt",
+        "sourceId": "polony-fesp-2026-11-12-plafond",
+        "measureIds": ["polony-credit-impot-domicile-taux-modules"]
+      }
+    ]
+  },
+  {
+    "sourceId": "polony-ecole-2026-11-05-formation",
+    "perimeter": "Vidéo officielle du 5 novembre sur l’école. Passages où Natacha Polony présente ses propositions.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "formation",
+        "title": "0:59–1:05 · Écoles normales",
+        "sourceId": "polony-ecole-2026-11-05-formation",
+        "measureIds": ["polony-ecoles-normales-formation-enseignants"]
+      },
+      {
+        "id": "college",
+        "title": "1:21–1:29 · Groupes de compétences",
+        "sourceId": "polony-ecole-2026-11-05-college",
+        "measureIds": ["polony-groupes-competences-college"]
+      },
+      {
+        "id": "enseignants",
+        "title": "2:18–2:24 · Rémunération",
+        "sourceId": "polony-ecole-2026-11-05-enseignants",
+        "measureIds": ["polony-hausse-remuneration-enseignants-vingt-trente"]
+      }
+    ]
+  },
+  {
+    "sourceId": "lepen-u2p-reims-2026-college-modulaire",
+    "perimeter": "Passages consultés dans la vidéo « Marine Le Pen · Échange avec les dirigeants de TPE à Reims »",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "college-modulaire",
+        "title": "35:52 à 36:19 · Voies professionnelle et technologique au collège",
+        "sourceId": "lepen-u2p-reims-2026-college-modulaire",
+        "measureIds": [
+          "lepen-ouvrir-voies-professionnelle-technologique-des-la-quatrieme"
+        ]
+      },
+      {
+        "id": "aide-apprentis",
+        "title": "37:13 à 38:05 · Répartition de l’aide entre l’apprenti et l’employeur",
+        "sourceId": "lepen-u2p-reims-2026-aide-apprentis",
+        "measureIds": ["lepen-apprentissage-remuneration"]
+      },
+      {
+        "id": "aide-alternance-bac-plus-trois",
+        "title": "38:43 à 39:30 · Plafond de niveau pour les aides à l’alternance",
+        "sourceId": "lepen-u2p-reims-2026-aide-alternance-bac-plus-trois",
+        "measureIds": ["lepen-limiter-aides-alternance-bac-plus-trois"]
+      },
+      {
+        "id": "cfe-impots-production",
+        "title": "48:51 à 50:06 · Cotisation foncière et baisse annoncée des impôts de production",
+        "sourceId": "lepen-u2p-reims-2026-cfe-impots-production",
+        "measureIds": [
+          "groupe-rn-supprimer-la-cotisation-fonciere-des-entreprises",
+          "lepen-baisser-impots-production-20-milliards"
+        ]
+      },
+      {
+        "id": "impot-societes-progressif",
+        "title": "1:09:57 à 1:10:40 · Cinq tranches d’impôt sur les sociétés",
+        "sourceId": "lepen-u2p-reims-2026-impot-societes-progressif",
+        "measureIds": ["lepen-instaurer-cinq-tranches-impot-sur-les-societes"]
+      },
+      {
+        "id": "contribution-exceptionnelle-is",
+        "title": "1:12:44 à 1:13:22 · Tranche supérieure et contribution exceptionnelle",
+        "sourceId": "lepen-u2p-reims-2026-contribution-exceptionnelle-is",
+        "measureIds": ["lepen-instaurer-cinq-tranches-impot-sur-les-societes"]
+      }
+    ]
+  },
+  {
+    "sourceId": "melenchon-franceinfo-2026-salaires-creches",
+    "perimeter": "Passages consultés dans la vidéo « Grand oral de franceinfo sur les services publics avec Jean-Luc Mélenchon »",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "salaires-creches",
+        "title": "28:44 à 29:23 · Rémunération des personnels des crèches",
+        "sourceId": "melenchon-franceinfo-2026-salaires-creches",
+        "measureIds": ["melenchon-revaloriser-salaires-personnels-creches"]
+      },
+      {
+        "id": "mandat-pole-public-financier",
+        "title": "39:23 à 40:44 · Orientation des financements du pôle public",
+        "sourceId": "melenchon-franceinfo-2026-mandat-pole-public-financier",
+        "measureIds": [
+          "melenchon-orienter-pole-financier-public-nouvelles-productions"
+        ]
+      },
+      {
+        "id": "livret-epargne-production",
+        "title": "41:19 à 41:30 · Livret d’épargne destiné à la production",
+        "sourceId": "melenchon-franceinfo-2026-livret-epargne-production",
+        "measureIds": ["melenchon-creer-livret-epargne-production"]
+      }
+    ]
+  },
+  {
+    "sourceId": "lisnard-grand-oral-2026-contrat-unique",
+    "perimeter": "Passages consultés dans la vidéo « Le Grand Oral 2027 avec David Lisnard »",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "contrat-unique",
+        "title": "29:45 à 30:25 · Contrat de travail à droits progressifs",
+        "sourceId": "lisnard-grand-oral-2026-contrat-unique",
+        "measureIds": [
+          "lisnard-remplacer-cdi-cdd-par-contrat-unique-a-droits-progressifs"
+        ]
+      },
+      {
+        "id": "procedures-grands-chantiers",
+        "title": "38:13 à 39:17 · Simplification des procédures de projet",
+        "sourceId": "lisnard-grand-oral-2026-procedures-grands-chantiers",
+        "measureIds": [
+          "lisnard-etendre-procedures-simplifiees-grands-chantiers"
+        ]
+      },
+      {
+        "id": "retraite-age-cotisation",
+        "title": "47:50 à 48:05 · Âge légal de départ et durée de cotisation",
+        "sourceId": "lisnard-grand-oral-2026-retraite-age-cotisation",
+        "measureIds": ["lisnard-age-legal-65-ans-43-ans-et-demi-cotisation"]
+      },
+      {
+        "id": "cotisations-capitalisation",
+        "title": "51:52 à 52:29 · Cotisations et financement de la transition",
+        "sourceId": "lisnard-grand-oral-2026-cotisations-capitalisation",
+        "measureIds": ["lisnard-etage-capitalisation"]
+      },
+      {
+        "id": "sous-indexation-conditionnelle",
+        "title": "53:02 à 54:34 · Hypothèse de revalorisation partielle des pensions",
+        "sourceId": "lisnard-grand-oral-2026-sous-indexation-conditionnelle",
+        "measureIds": [
+          "lisnard-envisager-sous-indexation-certaines-pensions-si-deficit-persiste"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "glucksmann-grand-oral-2026-retraites-penibilite",
+    "perimeter": "Passages consultés dans la vidéo « Le Grand Oral 2027 avec Raphaël Glucksmann »",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "retraites-penibilite",
+        "title": "23:52 à 24:21 · Départs plus précoces pour les métiers pénibles",
+        "sourceId": "glucksmann-grand-oral-2026-retraites-penibilite",
+        "measureIds": ["glucksmann-avancer-departs-metiers-penibles"]
+      },
+      {
+        "id": "application-regles-plateformes",
+        "title": "38:47 à 39:19 · Application des règles aux grandes plateformes",
+        "sourceId": "glucksmann-grand-oral-2026-application-regles-plateformes",
+        "measureIds": [
+          "glucksmann-faire-appliquer-regles-aux-grandes-plateformes"
+        ]
+      },
+      {
+        "id": "remuneration-stages",
+        "title": "50:49 à 50:58 · Confirmation de la proposition sur les stages",
+        "sourceId": "glucksmann-grand-oral-2026-remuneration-stages",
+        "measureIds": ["place-publique-remunerer-stages-1000-euros-mois"]
+      }
+    ]
+  },
+  {
+    "sourceId": "philippe-vingt-heures-tf1-2026-smic-pouvoir-achat",
+    "perimeter": "Passages consultés dans la vidéo « Édouard Philippe au 20 heures de TF1 »",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "smic-pouvoir-achat",
+        "title": "5:08 à 5:46 · Hausse du SMIC et pouvoir d’achat",
+        "sourceId": "philippe-vingt-heures-tf1-2026-smic-pouvoir-achat",
+        "measureIds": [
+          "philippe-privilegier-heures-supplementaires-hausse-smic-novembre",
+          "philippe-travail-2"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "philippe-programme-video-2026-lecture-ecriture-cp",
+    "perimeter": "Passages consultés dans la vidéo « Présentation du premier volet du programme d’Édouard Philippe »",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "lecture-ecriture-cp",
+        "title": "20:35 à 21:07 · Lecture, écriture et évaluations individuelles au CP",
+        "sourceId": "philippe-programme-video-2026-lecture-ecriture-cp",
+        "measureIds": ["philippe-evaluer-lecture-ecriture-cp-individuellement"]
+      }
+    ]
+  },
+  {
+    "sourceId": "roussel-objectif-2027-lci-2026-droits-vote-salaries",
+    "perimeter": "Passages consultés dans la vidéo « Objectif 2027 avec Fabien Roussel »",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "droits-vote-salaries",
+        "title": "44:07 à 44:41 · Droits de vote des salariés dans les grandes entreprises",
+        "sourceId": "roussel-objectif-2027-lci-2026-droits-vote-salaries",
+        "measureIds": ["roussel-parite-salaries-actionnaires-conseils"]
+      },
+      {
+        "id": "plan-relance-emprunt",
+        "title": "47:29 à 48:43 · Plan annuel d’investissement et financement par emprunt",
+        "sourceId": "roussel-objectif-2027-lci-2026-plan-relance-emprunt",
+        "measureIds": [
+          "roussel-investir-cent-milliards-par-an-pendant-cinq-ans"
+        ]
+      },
+      {
+        "id": "commande-publique",
+        "title": "51:26 à 51:57 · Marchés publics réservés aux entreprises françaises",
+        "sourceId": "roussel-objectif-2027-lci-2026-commande-publique",
+        "measureIds": [
+          "roussel-reserver-commande-publique-entreprises-francaises"
+        ]
+      },
+      {
+        "id": "architecture-securite-europe",
+        "title": "19:56 à 21:04 · Architecture européenne de sécurité et OTAN",
+        "sourceId": "roussel-objectif-2027-lci-2026-architecture-securite-europe",
+        "measureIds": [
+          "roussel-remplacer-otan-architecture-securite-europeenne"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "philippot-projet-sante-video-2026-suppression-ars",
+    "perimeter": "Passages consultés dans la vidéo « Florian Philippot présente son projet sur la santé »",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "suppression-ars",
+        "title": "1:29 à 1:57 · Suppression des agences régionales de santé",
+        "sourceId": "philippot-projet-sante-video-2026-suppression-ars",
+        "measureIds": ["patriotes-supprimer-ars"]
+      },
+      {
+        "id": "centres-soins-locaux",
+        "title": "1:59 à 2:21 · Centres de santé locaux",
+        "sourceId": "philippot-projet-sante-video-2026-centres-soins-locaux",
+        "measureIds": ["patriotes-centres-soins-non-vitaux"]
+      },
+      {
+        "id": "organisation-hopital",
+        "title": "2:21 à 2:46 · Répartition des soins entre l’hôpital et la médecine de ville",
+        "sourceId": "philippot-projet-sante-video-2026-organisation-hopital",
+        "measureIds": ["philippot-recentrer-hopital-soins-complexes"]
+      },
+      {
+        "id": "donnees-sante-identite",
+        "title": "2:48 à 3:15 · Stockage des données de santé et identité numérique",
+        "sourceId": "philippot-projet-sante-video-2026-donnees-sante-identite",
+        "measureIds": [
+          "philippot-institutions-confidentialite-donnees-sante",
+          "philippot-exclure-donnees-sante-identite-numerique"
+        ]
+      },
+      {
+        "id": "ordre-medecins-essais",
+        "title": "3:16 à 3:35 · Ordre des médecins et essais cliniques",
+        "sourceId": "philippot-projet-sante-video-2026-ordre-medecins-essais",
+        "measureIds": [
+          "philippot-supprimer-conseil-ordre",
+          "les-patriotes-soutenir-des-essais-cliniques-sur-de-nouveaux-usages-de-medicaments-exista"
+        ]
+      },
+      {
+        "id": "vaccination-soignants",
+        "title": "3:45 à 4:17 · Opposition à de nouvelles obligations vaccinales",
+        "sourceId": "philippot-projet-sante-video-2026-vaccination-soignants",
+        "measureIds": [
+          "philippot-s-opposer-obligation-vaccinale-grippe-soignants"
+        ]
+      },
+      {
+        "id": "oms-accord-pandemies",
+        "title": "4:26 à 4:40 · OMS et accord sur les pandémies",
+        "sourceId": "philippot-projet-sante-video-2026-oms-accord-pandemies",
+        "measureIds": ["philippot-denoncer-accord-oms-pandemies"]
+      }
+    ]
+  },
+  {
+    "sourceId": "philippot-projet-energie-video-2026-marche-electricite",
+    "perimeter": "Passages consultés dans la vidéo « Florian Philippot présente son projet sur l’énergie »",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "marche-electricite",
+        "title": "1:22 à 1:52 · Marché de l’électricité et fixation des prix",
+        "sourceId": "philippot-projet-energie-video-2026-marche-electricite",
+        "measureIds": ["patriotes-quitter-le-marche-europeen-de-lelectricite"]
+      },
+      {
+        "id": "monopole-electricite",
+        "title": "1:52 à 2:41 · Monopole public de l’électricité",
+        "sourceId": "philippot-projet-energie-video-2026-monopole-electricite",
+        "measureIds": ["philippot-climat-electricite"]
+      },
+      {
+        "id": "eolien",
+        "title": "3:35 à 4:26 · Arrêt et démantèlement des éoliennes",
+        "sourceId": "philippot-projet-energie-video-2026-eolien",
+        "measureIds": ["philippot-eolien-demantelement"]
+      },
+      {
+        "id": "barrages-hydroelectriques",
+        "title": "4:26 à 5:33 · Concessions hydroélectriques et accord avec la Commission",
+        "sourceId": "philippot-projet-energie-video-2026-barrages-hydroelectriques",
+        "measureIds": ["philippot-concessions-barrages"]
+      },
+      {
+        "id": "voitures-thermiques",
+        "title": "5:34 à 6:16 · Vente de voitures thermiques après 2035",
+        "sourceId": "philippot-projet-energie-video-2026-voitures-thermiques",
+        "measureIds": ["philippot-climat-thermique"]
+      }
+    ]
+  },
+  {
+    "sourceId": "riner-salon-maires-2026-moyens-maires",
+    "perimeter": "Passages consultés dans la vidéo « Teddy Riner au Salon des maires »",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "moyens-maires",
+        "title": "4:16 à 4:29 · Moyens d’action des maires",
+        "sourceId": "riner-salon-maires-2026-moyens-maires",
+        "measureIds": [
+          "riner-donner-aux-maires-moyens-de-leurs-responsabilites"
+        ]
       }
     ]
   }

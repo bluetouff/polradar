@@ -1,0 +1,2309 @@
+{
+  "version": 1,
+  "annotation": "2026-11-27",
+  "questions": [
+    {
+      "id": "ep-semaine-medecins",
+      "question": "Édouard Philippe veut faire intervenir des médecins dans les zones sous-dotées. Quelle durée minimale prévoit-il chaque année ?",
+      "famille": "programmes",
+      "difficulte": "repérage",
+      "edition": "Avec Édouard 2027, programme consulté le 27 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": ["https://www.edouardphilippe.fr/programme/sante"],
+          "passage": "Obligation de solidarité des médecins",
+          "valeurs": [
+            "au moins une semaine par an",
+            "1 semaine minimum par an",
+            "au moins 1 semaine par an",
+            "une semaine par an",
+            "1 semaine par an"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ep-regulation-medecins",
+      "question": "Dans le programme santé d’Édouard Philippe, combien de temps laisse-t-il à la négociation avant d’envisager une restriction d’installation des médecins ?",
+      "famille": "programmes",
+      "difficulte": "repérage",
+      "edition": "Avec Édouard 2027, programme consulté le 27 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": ["https://www.edouardphilippe.fr/programme/sante"],
+          "passage": "Régulation de l’installation des médecins",
+          "valeurs": ["un an", "1 an", "douze mois", "12 mois"]
+        }
+      ]
+    },
+    {
+      "id": "ep-formation-soins",
+      "question": "Retrouve le volet santé d’Édouard Philippe. Combien de médecins prévoit-il de former par an, et combien d’assistants médicaux veut-il recruter ?",
+      "famille": "programmes",
+      "difficulte": "deux faits",
+      "edition": "Avec Édouard 2027, programme consulté le 27 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": ["https://www.edouardphilippe.fr/programme/sante"],
+          "passage": "Formation des médecins et autres recrutements",
+          "valeurs": [
+            "14 000",
+            "14000",
+            "14 000 par an",
+            "14 000 médecins par an"
+          ]
+        },
+        {
+          "sources": ["https://www.edouardphilippe.fr/programme/sante"],
+          "passage": "Recrutement d’assistants médicaux",
+          "valeurs": ["20 000", "20000", "20 000 assistants médicaux"]
+        }
+      ]
+    },
+    {
+      "id": "ep-age-bilan-mental",
+      "question": "À quels deux âges Édouard Philippe prévoit-il un bilan de santé mentale pour les enfants scolarisés ?",
+      "famille": "programmes",
+      "difficulte": "deux faits",
+      "edition": "Avec Édouard 2027, programme consulté le 27 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": ["https://www.edouardphilippe.fr/programme/sante"],
+          "passage": "Propositions phares et réponse sur la santé mentale des enfants",
+          "valeurs": ["6 ans", "six ans"]
+        },
+        {
+          "sources": ["https://www.edouardphilippe.fr/programme/sante"],
+          "passage": "Propositions phares et réponse sur la santé mentale des enfants",
+          "valeurs": ["12 ans", "douze ans"]
+        }
+      ]
+    },
+    {
+      "id": "ep-assistant-medical-ia",
+      "question": "L’assistant médical par IA proposé par Édouard Philippe serait-il payant ? Dans quel pays devrait-il être hébergé ?",
+      "famille": "programmes",
+      "difficulte": "deux faits",
+      "edition": "Avec Édouard 2027, programme consulté le 27 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": ["https://www.edouardphilippe.fr/programme/sante"],
+          "passage": "Intelligence artificielle et patients, conditions d’accès",
+          "valeurs": ["gratuit", "gratuité"]
+        },
+        {
+          "sources": ["https://www.edouardphilippe.fr/programme/sante"],
+          "passage": "Intelligence artificielle et patients, hébergement",
+          "valeurs": ["France", "en France"]
+        }
+      ]
+    },
+    {
+      "id": "ep-mdph-delais",
+      "question": "Pour une demande à la MDPH, quels sont les délais proposés par Édouard Philippe pour la première réponse et pour la décision définitive ?",
+      "famille": "programmes",
+      "difficulte": "deux délais",
+      "edition": "Avec Édouard 2027, programme consulté le 27 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": ["https://www.edouardphilippe.fr/programme/handicap"],
+          "passage": "Délai de la première réponse de la MDPH",
+          "valeurs": ["2 mois", "deux mois", "sous deux mois", "sous 2 mois"]
+        },
+        {
+          "sources": ["https://www.edouardphilippe.fr/programme/handicap"],
+          "passage": "Délai de décision définitive",
+          "valeurs": ["3 mois", "trois mois", "sous trois mois", "sous 3 mois"]
+        }
+      ]
+    },
+    {
+      "id": "ep-repit-proches",
+      "question": "Dans le volet handicap de Philippe, combien de jours de répit seraient garantis par an aux proches aidants les plus sollicités ?",
+      "famille": "programmes",
+      "difficulte": "repérage",
+      "edition": "Avec Édouard 2027, programme consulté le 27 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": ["https://www.edouardphilippe.fr/programme/handicap"],
+          "passage": "Garantie de répit pour les proches aidants",
+          "valeurs": [
+            "15 jours par an",
+            "quinze jours par an",
+            "15 jours",
+            "quinze jours"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ep-aah-reprise",
+      "question": "Si une personne qui touche l’AAH reprend un emploi, combien de temps Philippe permettrait-il de garder intégralement cette allocation avec son salaire ?",
+      "famille": "programmes",
+      "difficulte": "repérage",
+      "edition": "Avec Édouard 2027, programme consulté le 27 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": ["https://www.edouardphilippe.fr/programme/handicap"],
+          "passage": "Cumul avec les revenus lors d’une reprise d’emploi",
+          "valeurs": ["un an", "1 an", "12 mois", "douze mois"]
+        }
+      ]
+    },
+    {
+      "id": "ep-epr-additionnels",
+      "question": "Le volet énergie de Philippe annonce à la fois des EPR prévus et des EPR supplémentaires. Combien veut-il ajouter aux six déjà prévus ?",
+      "famille": "programmes",
+      "difficulte": "distinction total et ajout",
+      "edition": "Avec Édouard 2027, programme consulté le 27 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": ["https://www.edouardphilippe.fr/programme/energie"],
+          "passage": "Nombre de réacteurs lancé en plus du programme existant",
+          "valeurs": ["8", "huit", "8 réacteurs", "8 EPR", "huit EPR"]
+        }
+      ]
+    },
+    {
+      "id": "ep-occasion-electrique",
+      "question": "Philippe prévoit-il une aide inférieure pour une voiture électrique d’occasion ? Donne le niveau qu’il propose par rapport au neuf.",
+      "famille": "programmes",
+      "difficulte": "prémisse",
+      "edition": "Avec Édouard 2027, programme consulté le 27 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": ["https://www.edouardphilippe.fr/programme/energie"],
+          "passage": "Aide à l’achat d’une voiture électrique d’occasion",
+          "valeurs": [
+            "la même aide",
+            "même aide",
+            "aide identique",
+            "montant identique",
+            "même montant",
+            "identique au neuf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ep-horizon-financement",
+      "question": "Dans le plan Horizon 2050 d’Édouard Philippe, combien d’euros privés prévoit-il pour un euro public ?",
+      "famille": "programmes",
+      "difficulte": "repérage",
+      "edition": "Avec Édouard 2027, programme consulté le 27 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.edouardphilippe.fr/programme/intelligence-artificielle"
+          ],
+          "passage": "Plan Horizon 2050 et financement",
+          "valeurs": [
+            "un euro privé",
+            "1 euro privé",
+            "1 € privé",
+            "un euro",
+            "1 euro",
+            "1 €",
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ep-ia-premier-niveau",
+      "question": "Dans la proposition d’Édouard Philippe sur l’IA à l’école, à partir de quel niveau les élèves seraient-ils sensibilisés à son utilisation ?",
+      "famille": "programmes",
+      "difficulte": "condition de portée",
+      "edition": "Avec Édouard 2027, programme consulté le 27 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.edouardphilippe.fr/programme/intelligence-artificielle"
+          ],
+          "passage": "IA à l’école, distinction primaire, collège et lycée",
+          "valeurs": ["au collège", "collège", "dès le collège"]
+        }
+      ]
+    },
+    {
+      "id": "ml-liquidation",
+      "question": "Quel minimum de trimestres Marine Le Pen indique-t-elle pour liquider sa retraite dans le projet présenté en novembre 2026 ?",
+      "famille": "programmes",
+      "difficulte": "seuil",
+      "edition": "Marine Le Pen, présentation écrite du 24 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.marinelepen.com/actualites/marine-le-pen-presente-sa-reforme-pour-reparer-le-systeme-de-retraites"
+          ],
+          "passage": "Après l’entrée dans la vie active, point sur la liquidation",
+          "valeurs": ["160", "160 trimestres"]
+        }
+      ]
+    },
+    {
+      "id": "ml-decote",
+      "question": "Quelle décote par trimestre de retraite manquant Marine Le Pen propose-t-elle, et quel plafond annonce-t-elle pour la décote totale ?",
+      "famille": "programmes",
+      "difficulte": "unité et plafond",
+      "edition": "Marine Le Pen, présentation écrite du 24 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.marinelepen.com/actualites/marine-le-pen-presente-sa-reforme-pour-reparer-le-systeme-de-retraites"
+          ],
+          "passage": "Règles de liquidation et taux de la décote",
+          "valeurs": ["2,5 % par trimestre manquant", "2,5%", "2.5%"]
+        },
+        {
+          "sources": [
+            "https://www.marinelepen.com/actualites/marine-le-pen-presente-sa-reforme-pour-reparer-le-systeme-de-retraites"
+          ],
+          "passage": "Plafond de la décote totale",
+          "valeurs": ["50 %", "50%"]
+        }
+      ]
+    },
+    {
+      "id": "ml-carriere-longue",
+      "question": "Le dispositif des carrières longues disparaîtrait-il dans le projet de retraite de Marine Le Pen ? Indique dans quel cas il resterait.",
+      "famille": "programmes",
+      "difficulte": "condition de portée",
+      "edition": "Marine Le Pen, présentation écrite du 24 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.marinelepen.com/actualites/marine-le-pen-presente-sa-reforme-pour-reparer-le-systeme-de-retraites"
+          ],
+          "passage": "Passage sur les carrières longues",
+          "valeurs": [
+            "lorsqu’il est plus favorable",
+            "s’il est plus favorable",
+            "si plus favorable",
+            "quand il est plus favorable",
+            "maintenu lorsqu’il est plus favorable",
+            "plus favorable"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ml-suppression-obligation-adherer",
+      "question": "La lettre de Marine Le Pen aux maires annonce-t-elle que toutes les intercommunalités seront supprimées ? Quelle liberté son premier point prévoit-il ?",
+      "famille": "programmes",
+      "difficulte": "prémisse",
+      "edition": "Marine Le Pen, lettre de novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://marinelepen.com/materiel-de-campagne/01a21885-662a-79be-ade6-1a02188a90c7/telecharger"
+          ],
+          "passage": "Page 1, premier point, libre adhésion des communes",
+          "valeurs": [
+            "choix d’adhérer ou non à une intercommunalité",
+            "adhésion facultative des communes",
+            "adhésion facultative",
+            "libre adhésion des communes",
+            "liberté de choisir d’adhérer ou non"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ml-trajectoire-budgetaire",
+      "question": "Quelle somme d’économies Marine Le Pen dit-elle viser dans sa trajectoire budgétaire du 6 octobre, et à quel horizon ?",
+      "famille": "budgets",
+      "difficulte": "montant et horizon",
+      "edition": "Conférence du 6 octobre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.marinelepen.com/actualites/marine-le-pen-presente-un-plan-de-redressement-budgetaire-pour-la-france"
+          ],
+          "passage": "Grand objectif d’économies",
+          "valeurs": ["140 milliards d’euros", "140 Md€", "140 milliards"]
+        },
+        {
+          "sources": [
+            "https://www.marinelepen.com/actualites/marine-le-pen-presente-un-plan-de-redressement-budgetaire-pour-la-france"
+          ],
+          "passage": "Horizon annoncé",
+          "valeurs": ["2032", "d’ici 2032", "en 2032"]
+        }
+      ]
+    },
+    {
+      "id": "ml-equilibre",
+      "question": "Dans le plan publié le 6 octobre par Marine Le Pen, sous quel délai le retour à l’équilibre primaire est-il annoncé ?",
+      "famille": "budgets",
+      "difficulte": "périmètre",
+      "edition": "Conférence du 6 octobre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.marinelepen.com/actualites/marine-le-pen-presente-un-plan-de-redressement-budgetaire-pour-la-france"
+          ],
+          "passage": "Objectif de solde primaire et échéance",
+          "valeurs": ["18 mois", "dix-huit mois", "en 18 mois", "sous 18 mois"]
+        }
+      ]
+    },
+    {
+      "id": "rn-octroi-auteur",
+      "question": "Qui a présenté le projet sur l’octroi de mer au Forum des Outremers en août 2026, à la demande de Marine Le Pen ?",
+      "famille": "attributions",
+      "difficulte": "attribution",
+      "edition": "Communiqué du 31 août 2026, Forum des Outremers",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://rassemblementnational.fr/communiques/rencontre-des-entrepreneurs-de-france-du-medef-andre-rouge-met-en-valeur-le-programme-de-marine-le-pen-pour-les-outremers"
+          ],
+          "passage": "Introduction, représentant mandaté",
+          "valeurs": ["André Rougé", "le député européen André Rougé"]
+        }
+      ]
+    },
+    {
+      "id": "rn-compensation-octroi",
+      "question": "Par quelle dotation André Rougé propose-t-il de compenser les pertes de recettes dues au recentrage de l’octroi de mer ?",
+      "famille": "programmes",
+      "difficulte": "condition de financement",
+      "edition": "Communiqué du 31 août 2026, Forum des Outremers",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://rassemblementnational.fr/communiques/rencontre-des-entrepreneurs-de-france-du-medef-andre-rouge-met-en-valeur-le-programme-de-marine-le-pen-pour-les-outremers"
+          ],
+          "passage": "Compensation des collectivités locales",
+          "valeurs": [
+            "dotation globale de fonctionnement",
+            "la dotation globale de fonctionnement",
+            "DGF",
+            "dotation globale de fonctionnement (DGF)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lfi-stages",
+      "question": "Mélenchon propose de supprimer les stages obligatoires sans suivi pédagogique. Quelles sont les deux classes visées par cette formule ?",
+      "famille": "programmes",
+      "difficulte": "condition de portée",
+      "edition": "L’Avenir en commun, présidentielle 2027",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://melenchon2027.fr/programme/livre/le-gout-du-futur-aux-nouvelles-frontieres-de-l-humanite/chapitre2",
+            "https://melenchon2027.fr/programme/livre/le-gout-du-futur-aux-nouvelles-frontieres-de-l-humanite/chapitre2/"
+          ],
+          "passage": "Chapitre 2, stages obligatoires sans suivi",
+          "valeurs": ["troisième", "classe de troisième", "3e", "3ème"]
+        },
+        {
+          "sources": [
+            "https://melenchon2027.fr/programme/livre/le-gout-du-futur-aux-nouvelles-frontieres-de-l-humanite/chapitre2",
+            "https://melenchon2027.fr/programme/livre/le-gout-du-futur-aux-nouvelles-frontieres-de-l-humanite/chapitre2/"
+          ],
+          "passage": "Chapitre 2, stages obligatoires sans suivi",
+          "valeurs": ["seconde", "classe de seconde", "2de", "2nde"]
+        }
+      ]
+    },
+    {
+      "id": "lfi-evars",
+      "question": "Combien de séances par an le programme de Mélenchon entend-il faire effectivement assurer en éducation à la vie affective, relationnelle et à la sexualité au collège et au lycée ?",
+      "famille": "programmes",
+      "difficulte": "repérage",
+      "edition": "L’Avenir en commun, présidentielle 2027",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://melenchon2027.fr/programme/livre/le-gout-du-futur-aux-nouvelles-frontieres-de-l-humanite/chapitre2",
+            "https://melenchon2027.fr/programme/livre/le-gout-du-futur-aux-nouvelles-frontieres-de-l-humanite/chapitre2/"
+          ],
+          "passage": "Chapitre 2, mise en œuvre des séances EVARS prévues par la loi",
+          "valeurs": [
+            "3",
+            "trois",
+            "trois séances annuelles",
+            "3 séances par an",
+            "trois séances par an"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lfi-quotas-precaires",
+      "question": "Dans L’Avenir en commun, quelles limites de contrats précaires sont proposées pour les PME et les grandes entreprises ?",
+      "famille": "programmes",
+      "difficulte": "deux seuils distincts",
+      "edition": "L’Avenir en commun, présidentielle 2027",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://melenchon2027.fr/programme/livre/mettre-en-securite-sociale/chapitre1"
+          ],
+          "passage": "Chapitre 1, plafond dans les PME",
+          "valeurs": ["10%"]
+        },
+        {
+          "sources": [
+            "https://melenchon2027.fr/programme/livre/mettre-en-securite-sociale/chapitre1"
+          ],
+          "passage": "Chapitre 1, plafond dans les grandes entreprises",
+          "valeurs": ["5%"]
+        }
+      ]
+    },
+    {
+      "id": "lfi-conge-violences",
+      "question": "Dans le plan féministe de la campagne de Mélenchon, combien de jours de congé au minimum sont prévus pour les démarches permettant de sortir d’une situation de violence ?",
+      "famille": "programmes",
+      "difficulte": "durée minimale",
+      "edition": "Plan féministe de Mélenchon, novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://melenchon2027.fr/programme/plans-thematiques/feminisme/"
+          ],
+          "passage": "Congé dédié aux démarches des victimes",
+          "valeurs": [
+            "10 jours",
+            "dix jours",
+            "au moins 10 jours",
+            "au moins dix jours",
+            "10 jours minimum"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lfi-exposition-professionnelle",
+      "question": "À quel organisme se réfère L’Avenir en commun pour identifier les produits cancérogènes à inscrire parmi les facteurs de maladies professionnelles ?",
+      "famille": "programmes",
+      "difficulte": "source de classement",
+      "edition": "L’Avenir en commun, présidentielle 2027",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://melenchon2027.fr/programme/livre/mettre-en-securite-sociale/chapitre1"
+          ],
+          "passage": "Chapitre 1, reconnaissance des maladies professionnelles",
+          "valeurs": [
+            "CIRC",
+            "Centre international de recherche sur le cancer",
+            "Centre international de recherche sur le cancer (CIRC)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dl-csg",
+      "question": "David Lisnard veut réduire la CSG des revenus d’activité. De quel taux part-il, et quel taux propose-t-il ?",
+      "famille": "programmes",
+      "difficulte": "origine et cible",
+      "edition": "DLive de Nouvelle Énergie, novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.unenouvelleenergie.fr/dlive-david-lisnard-lance-son-nouveau-rendez-vous-mensuel-avec-les-francais/"
+          ],
+          "passage": "Proposition de baisse de CSG, taux de départ",
+          "valeurs": ["9,2%", "9.2%"]
+        },
+        {
+          "sources": [
+            "https://www.unenouvelleenergie.fr/dlive-david-lisnard-lance-son-nouveau-rendez-vous-mensuel-avec-les-francais/"
+          ],
+          "passage": "Proposition de baisse de CSG, taux cible",
+          "valeurs": ["6,6%", "6.6%"]
+        }
+      ]
+    },
+    {
+      "id": "dl-prolongation-reacteurs",
+      "question": "Jusqu’à quel âge David Lisnard propose-t-il de prolonger les centrales en service, avec contrôle de l’autorité de sûreté ?",
+      "famille": "programmes",
+      "difficulte": "condition de portée",
+      "edition": "Entretien sur l’écologie de Nouvelle Énergie, 27 octobre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.unenouvelleenergie.fr/lenergie-doit-reconcilier-lindustrie-et-lecologie/"
+          ],
+          "passage": "Section sur le nucléaire et l’hydroélectricité",
+          "valeurs": ["60 ans", "soixante ans", "jusqu’à 60 ans"]
+        }
+      ]
+    },
+    {
+      "id": "dl-inclusion-scolaire",
+      "question": "Quel dispositif d’inclusion scolaire David Lisnard dit-il vouloir développer dans son entretien avec Anne Coffinier ?",
+      "famille": "programmes",
+      "difficulte": "repérage",
+      "edition": "Compte rendu de Destinée, 13 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.unenouvelleenergie.fr/david-lisnard-dans-le-podcast-destinee-faire-de-la-france-une-superpuissance-educative/"
+          ],
+          "passage": "Section sur l’école accessible et de proximité",
+          "valeurs": [
+            "ULIS",
+            "dispositifs ULIS",
+            "unités localisées pour l’inclusion scolaire",
+            "unités localisées pour l’inclusion scolaire (ULIS)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dl-evaluations-ecole",
+      "question": "Dans l’entretien de David Lisnard avec Anne Coffinier, à quels niveaux du collège veut-il prévoir des évaluations ?",
+      "famille": "programmes",
+      "difficulte": "deux faits",
+      "edition": "Compte rendu de Destinée, 13 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.unenouvelleenergie.fr/david-lisnard-dans-le-podcast-destinee-faire-de-la-france-une-superpuissance-educative/"
+          ],
+          "passage": "Section sur les notes, évaluations et savoirs fondamentaux",
+          "valeurs": ["sixième", "6e", "6ème"]
+        },
+        {
+          "sources": [
+            "https://www.unenouvelleenergie.fr/david-lisnard-dans-le-podcast-destinee-faire-de-la-france-une-superpuissance-educative/"
+          ],
+          "passage": "Section sur les notes, évaluations et savoirs fondamentaux",
+          "valeurs": ["troisième", "3e", "3ème"]
+        }
+      ]
+    },
+    {
+      "id": "pp-dossier-social",
+      "question": "Quel mouvement propose le dossier social unique pour automatiser l’ouverture des droits dans son Acte I ?",
+      "famille": "attributions",
+      "difficulte": "attribution collective",
+      "edition": "Place publique, Acte I",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://place-publique.eu/document/6J8wjk3EW8dBCLwKxa7J96/projet-placepublique-acte1.pdf",
+            "https://place-publique.eu/document/6J8wjk3EW8dBCLwKxa7J96/projet-placepublique-acte1.pdf#page=53"
+          ],
+          "passage": "Chantier 25 sur la protection sociale, page 53 du fichier",
+          "valeurs": ["Place publique"]
+        }
+      ]
+    },
+    {
+      "id": "pp-cir-recentrage",
+      "question": "Pour quelle catégorie d’entreprises l’Acte I de Place publique prévoit-il un plafonnement du crédit d’impôt recherche ?",
+      "famille": "attributions",
+      "difficulte": "périmètre",
+      "edition": "Place publique, Acte I",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://place-publique.eu/document/6J8wjk3EW8dBCLwKxa7J96/projet-placepublique-acte1.pdf",
+            "https://place-publique.eu/document/6J8wjk3EW8dBCLwKxa7J96/projet-placepublique-acte1.pdf#page=24"
+          ],
+          "passage": "Page 24 du fichier, chantier sur la science et la recherche",
+          "valeurs": ["grands groupes", "les grands groupes"]
+        }
+      ]
+    },
+    {
+      "id": "pp-horizon-europe",
+      "question": "Par quel facteur Place publique prévoit-il de modifier le budget d’Horizon Europe dans l’Acte I ?",
+      "famille": "programmes",
+      "difficulte": "montant relatif",
+      "edition": "Place publique, Acte I",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://place-publique.eu/document/6J8wjk3EW8dBCLwKxa7J96/projet-placepublique-acte1.pdf",
+            "https://place-publique.eu/document/6J8wjk3EW8dBCLwKxa7J96/projet-placepublique-acte1.pdf#page=24"
+          ],
+          "passage": "Point sur le programme européen de recherche",
+          "valeurs": ["2", "×2", "x2", "doublement", "doubler", "par deux"]
+        }
+      ]
+    },
+    {
+      "id": "pp-representation-salaries",
+      "question": "À partir de quel nombre de salariés l’Acte I de Place publique prévoit-il de renforcer leur représentation dans les conseils d’administration des entreprises ?",
+      "famille": "programmes",
+      "difficulte": "seuil d’effectif",
+      "edition": "Place publique, Acte I",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://place-publique.eu/document/6J8wjk3EW8dBCLwKxa7J96/projet-placepublique-acte1.pdf",
+            "https://place-publique.eu/document/6J8wjk3EW8dBCLwKxa7J96/projet-placepublique-acte1.pdf#page=41"
+          ],
+          "passage": "Chantier 17, page 41 du fichier, représentation des salariés",
+          "valeurs": ["100", "100 salariés", "dès 100 salariés"]
+        }
+      ]
+    },
+    {
+      "id": "pp-guichet-emploi",
+      "question": "Quel opérateur Place publique désigne-t-il pour piloter son guichet territorial unique de l’emploi et de l’insertion ?",
+      "famille": "programmes",
+      "difficulte": "institution",
+      "edition": "Place publique, Acte I",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://place-publique.eu/document/6J8wjk3EW8dBCLwKxa7J96/projet-placepublique-acte1.pdf",
+            "https://place-publique.eu/document/6J8wjk3EW8dBCLwKxa7J96/projet-placepublique-acte1.pdf#page=42"
+          ],
+          "passage": "Page 42 du fichier, guichet de l’emploi et de l’insertion",
+          "valeurs": ["France Travail"]
+        }
+      ]
+    },
+    {
+      "id": "an-9895",
+      "question": "Le projet de loi de finances de fin de gestion pour 2026 a-t-il été adopté le 12 novembre à l’Assemblée nationale ? Donne aussi le nombre de voix pour.",
+      "famille": "votes",
+      "difficulte": "relevé du scrutin",
+      "edition": "XVIIe législature, deuxième séance du jeudi 12 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/9895"
+          ],
+          "passage": "Issue du vote après la synthèse des suffrages",
+          "valeurs": [
+            "rejeté",
+            "rejetée",
+            "non adopté",
+            "non adoptée",
+            "rejet",
+            "n’a pas adopté",
+            "non"
+          ]
+        },
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/9895"
+          ],
+          "passage": "Synthèse du vote, ligne Pour l’adoption",
+          "valeurs": ["49", "49 voix", "49 députés", "49 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-9759",
+      "question": "Au scrutin 9759 sur le budget pour 2027, à combien s’élève la majorité absolue des suffrages exprimés ?",
+      "famille": "votes",
+      "difficulte": "relevé du scrutin",
+      "edition": "XVIIe législature, deuxième séance du mercredi 4 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/9759"
+          ],
+          "passage": "Synthèse du vote, ligne Majorité absolue des suffrages exprimés",
+          "valeurs": ["230", "230 voix", "230 députés", "230 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-9203",
+      "question": "Pour la proposition de créer un corps de catégorie B pour les AESH le 29 octobre, combien de députés se sont abstenus lors du vote sur l’ensemble du texte ?",
+      "famille": "votes",
+      "difficulte": "différencier les objets de vote",
+      "edition": "XVIIe législature, première séance du jeudi 29 octobre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/9203"
+          ],
+          "passage": "Synthèse du vote, ligne Abstention",
+          "valeurs": ["123", "123 voix", "123 députés", "123 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-9202",
+      "question": "Au vote sur l’article premier du texte AESH, scrutin 9202, combien y a-t-il eu de votes contre ?",
+      "famille": "votes",
+      "difficulte": "différencier les objets de vote",
+      "edition": "XVIIe législature, première séance du jeudi 29 octobre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/9202"
+          ],
+          "passage": "Synthèse du vote, ligne Contre",
+          "valeurs": ["119", "119 voix", "119 députés", "119 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-8707",
+      "question": "La motion de rejet préalable déposée par Boris Vallaud sur le budget 2027 a-t-elle passé le vote du 13 octobre ? Quel était le nombre de suffrages exprimés ?",
+      "famille": "votes",
+      "difficulte": "différencier les objets de vote",
+      "edition": "XVIIe législature, deuxième séance du mardi 13 octobre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8707"
+          ],
+          "passage": "Issue du vote après la synthèse des suffrages",
+          "valeurs": [
+            "rejeté",
+            "rejetée",
+            "non adopté",
+            "non adoptée",
+            "rejet",
+            "n’a pas adopté",
+            "non"
+          ]
+        },
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8707"
+          ],
+          "passage": "Synthèse du vote, ligne Nombre de suffrages exprimés",
+          "valeurs": ["385", "385 voix", "385 députés", "385 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-8706",
+      "question": "Quel résultat a obtenu la proposition de loi organique sur la réponse judiciaire aux violences sexuelles au scrutin 8706 ? Donne aussi le nombre de votants.",
+      "famille": "votes",
+      "difficulte": "relevé du scrutin",
+      "edition": "XVIIe législature, première séance du mardi 13 octobre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8706"
+          ],
+          "passage": "Issue du vote après la synthèse des suffrages",
+          "valeurs": ["adopté", "adoptée", "adoption", "oui"]
+        },
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8706"
+          ],
+          "passage": "Synthèse du vote, ligne Nombre de votants",
+          "valeurs": ["570", "570 voix", "570 députés", "570 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-8705",
+      "question": "Combien de voix pour et d’abstentions la proposition contre les violences sexuelles et sexistes a-t-elle réunies le 13 octobre au scrutin 8705 ?",
+      "famille": "votes",
+      "difficulte": "relevé du scrutin",
+      "edition": "XVIIe législature, première séance du mardi 13 octobre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8705"
+          ],
+          "passage": "Synthèse du vote, ligne Pour l’adoption",
+          "valeurs": ["503", "503 voix", "503 députés", "503 suffrages"]
+        },
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8705"
+          ],
+          "passage": "Synthèse du vote, ligne Abstention",
+          "valeurs": ["67", "67 voix", "67 députés", "67 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-8611",
+      "question": "Le 8 octobre 2026, la résolution sur la double frontière nationale et européenne de Schengen a-t-elle été adoptée par les députés ? Combien de députés ont voté contre ?",
+      "famille": "votes",
+      "difficulte": "relevé du scrutin",
+      "edition": "XVIIe législature, deuxième séance du jeudi 8 octobre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8611"
+          ],
+          "passage": "Issue du vote après la synthèse des suffrages",
+          "valeurs": [
+            "rejeté",
+            "rejetée",
+            "non adopté",
+            "non adoptée",
+            "rejet",
+            "n’a pas adopté",
+            "non"
+          ]
+        },
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8611"
+          ],
+          "passage": "Synthèse du vote, ligne Contre",
+          "valeurs": ["199", "199 voix", "199 députés", "199 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-8610",
+      "question": "Pour la résolution sur la commande publique au scrutin 8610, combien y a-t-il eu de voix favorables et de voix défavorables ?",
+      "famille": "votes",
+      "difficulte": "relevé du scrutin",
+      "edition": "XVIIe législature, première séance du jeudi 8 octobre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8610"
+          ],
+          "passage": "Synthèse du vote, ligne Pour l’adoption",
+          "valeurs": ["151", "151 voix", "151 députés", "151 suffrages"]
+        },
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8610"
+          ],
+          "passage": "Synthèse du vote, ligne Contre",
+          "valeurs": ["187", "187 voix", "187 députés", "187 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-8609",
+      "question": "Sur la résolution relative à l’accès à l’eau potable dans les territoires ultramarins, combien de suffrages ont été exprimés au scrutin 8609 ?",
+      "famille": "votes",
+      "difficulte": "relevé du scrutin",
+      "edition": "XVIIe législature, première séance du jeudi 8 octobre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8609"
+          ],
+          "passage": "Synthèse du vote, ligne Nombre de suffrages exprimés",
+          "valeurs": ["316", "316 voix", "316 députés", "316 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-8434",
+      "question": "Le texte visant à moderniser la gestion du patrimoine immobilier de l’État a-t-il été adopté lors du scrutin 8434 ? Combien de voix favorables ?",
+      "famille": "votes",
+      "difficulte": "relevé du scrutin",
+      "edition": "XVIIe législature, deuxième séance du mardi 21 juillet 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8434"
+          ],
+          "passage": "Issue du vote après la synthèse des suffrages",
+          "valeurs": ["adopté", "adoptée", "adoption", "oui"]
+        },
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8434"
+          ],
+          "passage": "Synthèse du vote, ligne Pour l’adoption",
+          "valeurs": ["276", "276 voix", "276 députés", "276 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-8433",
+      "question": "Combien de députés ont voté contre l’ensemble du projet de loi sur les phénomènes troublant l’ordre public au scrutin 8433 ?",
+      "famille": "votes",
+      "difficulte": "relevé du scrutin",
+      "edition": "XVIIe législature, deuxième séance du mardi 21 juillet 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8433"
+          ],
+          "passage": "Synthèse du vote, ligne Contre",
+          "valeurs": ["179", "179 voix", "179 députés", "179 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-8431",
+      "question": "Le 21 juillet 2026, combien de députés ont voté pour le texte de commission mixte paritaire sur la protection des mineurs face aux réseaux sociaux ?",
+      "famille": "votes",
+      "difficulte": "différencier les objets de vote",
+      "edition": "XVIIe législature, première séance du mardi 21 juillet 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8431"
+          ],
+          "passage": "Synthèse du vote, ligne Pour l’adoption",
+          "valeurs": ["279", "279 voix", "279 députés", "279 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-8430",
+      "question": "Lors du scrutin 8430 sur l’ensemble du projet de loi relatif à la protection des enfants, combien y a-t-il eu d’abstentions ?",
+      "famille": "votes",
+      "difficulte": "relevé du scrutin",
+      "edition": "XVIIe législature, première séance du mardi 21 juillet 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8430"
+          ],
+          "passage": "Synthèse du vote, ligne Abstention",
+          "valeurs": ["173", "173 voix", "173 députés", "173 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-8427",
+      "question": "Au scrutin 8427 sur la souveraineté agricole, combien de suffrages ont été exprimés ? Je cherche le total des voix pour et contre.",
+      "famille": "votes",
+      "difficulte": "différencier les objets de vote",
+      "edition": "XVIIe législature, deuxième séance du lundi 20 juillet 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8427"
+          ],
+          "passage": "Synthèse du vote, ligne Nombre de suffrages exprimés",
+          "valeurs": ["520", "520 voix", "520 députés", "520 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-8421",
+      "question": "La proposition de loi pour une montagne vivante et souveraine issue de la CMP a-t-elle été adoptée le 20 juillet par l’Assemblée nationale ? Combien de voix pour ?",
+      "famille": "votes",
+      "difficulte": "relevé du scrutin",
+      "edition": "XVIIe législature, première séance du lundi 20 juillet 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8421"
+          ],
+          "passage": "Issue du vote après la synthèse des suffrages",
+          "valeurs": ["adopté", "adoptée", "adoption", "oui"]
+        },
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8421"
+          ],
+          "passage": "Synthèse du vote, ligne Pour l’adoption",
+          "valeurs": ["376", "376 voix", "376 députés", "376 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-8419",
+      "question": "Combien de voix contre au scrutin 8419 sur la stratégie nationale de lutte contre l’antisémitisme ?",
+      "famille": "votes",
+      "difficulte": "relevé du scrutin",
+      "edition": "XVIIe législature, première séance du lundi 20 juillet 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/8419"
+          ],
+          "passage": "Synthèse du vote, ligne Contre",
+          "valeurs": ["0", "0 voix", "0 députés", "0 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-6753",
+      "question": "Combien de voix se sont portées pour la proposition de loi organique sur le corps électoral calédonien lors du vote sur l’ensemble du 20 mai 2026 ?",
+      "famille": "votes",
+      "difficulte": "relevé du scrutin",
+      "edition": "XVIIe législature, première séance du mercredi 20 mai 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/6753"
+          ],
+          "passage": "Synthèse du vote, ligne Pour l’adoption",
+          "valeurs": ["386", "386 voix", "386 députés", "386 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-6736",
+      "question": "Combien de députés se sont abstenus le 19 mai lors du vote sur l’actualisation de la programmation militaire 2024 à 2030 ?",
+      "famille": "votes",
+      "difficulte": "relevé du scrutin",
+      "edition": "XVIIe législature, première séance du mardi 19 mai 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/6736"
+          ],
+          "passage": "Synthèse du vote, ligne Abstention",
+          "valeurs": ["4", "4 voix", "4 députés", "4 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-6512",
+      "question": "Lors du vote sur l’ensemble du texte sur le parcours inclusif des enfants à besoins éducatifs particuliers, scrutin 6512, combien y a-t-il eu de votants ?",
+      "famille": "votes",
+      "difficulte": "relevé du scrutin",
+      "edition": "XVIIe législature, première séance du lundi 11 mai 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/6512"
+          ],
+          "passage": "Synthèse du vote, ligne Nombre de votants",
+          "valeurs": ["125", "125 voix", "125 députés", "125 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "an-6319",
+      "question": "L’Assemblée a-t-elle adopté le texte de la CMP sur les fraudes sociales et fiscales au scrutin 6319 ? Donne aussi les voix contre.",
+      "famille": "votes",
+      "difficulte": "relevé du scrutin",
+      "edition": "XVIIe législature, première séance du mardi 5 mai 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/6319"
+          ],
+          "passage": "Issue du vote après la synthèse des suffrages",
+          "valeurs": ["adopté", "adoptée", "adoption", "oui"]
+        },
+        {
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/6319"
+          ],
+          "passage": "Synthèse du vote, ligne Contre",
+          "valeurs": ["182", "182 voix", "182 députés", "182 suffrages"]
+        }
+      ]
+    },
+    {
+      "id": "poll-elabe-premiere-publication",
+      "question": "Quel jour Elabe indique-t-il comme date de première publication de la notice 10375 ? Quand se sont terminées les interviews ?",
+      "famille": "sondages",
+      "difficulte": "terrain et diffusion",
+      "edition": "Notice Elabe 10375, novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10375-pres-iv-elabe-14-novembre.pdf",
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10375-pres-iv-elabe-14-novembre.pdf#page=1"
+          ],
+          "passage": "Page 1, première publication",
+          "valeurs": [
+            "14 novembre 2026",
+            "2026-11-14",
+            "14/11/2026",
+            "14 novembre"
+          ]
+        },
+        {
+          "sources": [
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10375-pres-iv-elabe-14-novembre.pdf",
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10375-pres-iv-elabe-14-novembre.pdf#page=1"
+          ],
+          "passage": "Page 1, dates du terrain",
+          "valeurs": [
+            "13 novembre 2026",
+            "2026-11-13",
+            "13/11/2026",
+            "13 novembre"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poll-elabe-inscrits",
+      "question": "Les 1 500 participants de l’enquête Elabe pour BFMTV et La Tribune Dimanche du 12 au 13 novembre 2026 étaient-ils inscrits sur les listes électorales ?",
+      "famille": "sondages",
+      "difficulte": "définition de l’effectif",
+      "edition": "Notice Elabe 10375, novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10375-pres-iv-elabe-14-novembre.pdf",
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10375-pres-iv-elabe-14-novembre.pdf#page=1"
+          ],
+          "passage": "Page 1, population de référence",
+          "valeurs": [
+            "oui",
+            "inscrits sur les listes électorales",
+            "oui, inscrits sur les listes électorales"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poll-ifop-lci-inscription",
+      "question": "Combien de personnes inscrites sur les listes électorales comptait l’enquête Ifop pour LCI menée du 27 au 29 octobre ?",
+      "famille": "sondages",
+      "difficulte": "distinction inscrits et ensemble",
+      "edition": "Notice Ifop 10351, octobre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10351-pres-iv-ifop-lci-3-novembre.pdf",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2376",
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10351-pres-iv-ifop-lci-3-novembre.pdf#page=2",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2376#page=2"
+          ],
+          "passage": "Page 2, échantillon des inscrits",
+          "valeurs": [
+            "1501",
+            "1 501",
+            "1 501 personnes",
+            "1 501 répondants",
+            "1501 personnes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poll-cluster-utile-scenario-trois",
+      "question": "Pour l’étude Cluster17 destinée à Politico des 9 et 10 novembre 2026, quel effectif utile la notice indique-t-elle pour le troisième scénario du premier tour ?",
+      "famille": "sondages",
+      "difficulte": "effectif utile d’un scénario",
+      "edition": "Notice Cluster17 10368, novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10368-pres-iv-cluster17-politico-11-novembre.pdf",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2387",
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10368-pres-iv-cluster17-politico-11-novembre.pdf#page=2",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2387#page=2"
+          ],
+          "passage": "Page 2, effectif utile du scénario 3 du premier tour",
+          "valeurs": [
+            "883",
+            "883",
+            "883 personnes",
+            "883 répondants",
+            "883 personnes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poll-cluster-deux-bases",
+      "question": "Dans le Cluster17 pour Politico des 9 et 10 novembre, quels sont l’effectif total interrogé et le nombre d’inscrits sur les listes ?",
+      "famille": "sondages",
+      "difficulte": "deux définitions",
+      "edition": "Notice Cluster17 10368, novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10368-pres-iv-cluster17-politico-11-novembre.pdf",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2387",
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10368-pres-iv-cluster17-politico-11-novembre.pdf#page=2",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2387#page=2"
+          ],
+          "passage": "Page 2, échantillon initial",
+          "valeurs": [
+            "1242",
+            "1 242",
+            "1 242 personnes",
+            "1 242 répondants",
+            "1242 personnes"
+          ]
+        },
+        {
+          "sources": [
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10368-pres-iv-cluster17-politico-11-novembre.pdf",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2387",
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10368-pres-iv-cluster17-politico-11-novembre.pdf#page=2",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2387#page=2"
+          ],
+          "passage": "Page 2, personnes inscrites",
+          "valeurs": [
+            "1164",
+            "1 164",
+            "1 164 personnes",
+            "1 164 répondants",
+            "1164 personnes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poll-ipsos-effectif",
+      "question": "Combien d’inscrits ont été interrogés dans l’enquête Ipsos BVA pour Le Parisien des 21 et 22 octobre 2026 ?",
+      "famille": "sondages",
+      "difficulte": "repérage de l’effectif",
+      "edition": "Notice Ipsos BVA 10338, octobre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/octobre/10338-pres-iv-ipsos-bva-le-parisien-24-octobre.pdf",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2357",
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/octobre/10338-pres-iv-ipsos-bva-le-parisien-24-octobre.pdf#page=4",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2357#page=4"
+          ],
+          "passage": "Page 4, présentation de l’échantillon",
+          "valeurs": [
+            "1500",
+            "1 500",
+            "1 500 personnes",
+            "1 500 répondants",
+            "1500 personnes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poll-harris-commanditaires",
+      "question": "Quels médias ont commandé la vague Toluna Harris Interactive sur la présidentielle datée du 9 novembre 2026 par la notice ?",
+      "famille": "sondages",
+      "difficulte": "attribution de commande",
+      "edition": "Notice Toluna Harris Interactive 10362, novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10362-pres-iv-toluna-harris-interactive-9-novembre.pdf",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2381",
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10362-pres-iv-toluna-harris-interactive-9-novembre.pdf#page=1",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2381#page=1"
+          ],
+          "passage": "Page 1, étude réalisée pour les deux médias",
+          "valeurs": ["M6"]
+        },
+        {
+          "sources": [
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10362-pres-iv-toluna-harris-interactive-9-novembre.pdf",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2381",
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10362-pres-iv-toluna-harris-interactive-9-novembre.pdf#page=1",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2381#page=1"
+          ],
+          "passage": "Page 1, étude réalisée pour les deux médias",
+          "valeurs": ["RTL"]
+        }
+      ]
+    },
+    {
+      "id": "poll-opinionway-inscrits-novembre",
+      "question": "OpinionWay a interrogé un échantillon de 1 017 personnes pour Présitrack les 9 et 10 novembre. Combien étaient inscrites sur les listes ?",
+      "famille": "sondages",
+      "difficulte": "bases distinctes",
+      "edition": "Notice OpinionWay 10372, novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10372-pres-presitrack-opinionway-13-novembre.pdf",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2396",
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10372-pres-presitrack-opinionway-13-novembre.pdf#page=3",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2396#page=3"
+          ],
+          "passage": "Page 3, échantillon des inscrits",
+          "valeurs": [
+            "982",
+            "982",
+            "982 personnes",
+            "982 répondants",
+            "982 personnes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poll-ifop-sudradio-delai",
+      "question": "Quel jour se termine le terrain de l’enquête Ifop pour Sud Radio dont la notice porte sur les indices de popularité en novembre 2026 ?",
+      "famille": "sondages",
+      "difficulte": "terrain et diffusion",
+      "edition": "Notice Ifop 10392, novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10392-pres-iv-ifop-sud-radio-20-novembre.pdf",
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10392-pres-iv-ifop-sud-radio-20-novembre.pdf#page=3"
+          ],
+          "passage": "Page 3, mode de recueil et dates",
+          "valeurs": [
+            "4 novembre 2026",
+            "2026-11-04",
+            "4 novembre",
+            "04/11/2026"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poll-harris-vague-10-effectif",
+      "question": "Combien de personnes comporte l’échantillon total de la vague 10 Toluna Harris Interactive, dans la notice datée du 23 novembre 2026 ?",
+      "famille": "sondages",
+      "difficulte": "repérage",
+      "edition": "Notice Toluna Harris Interactive 10393, novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10393-pres-iv-vague-10-toluna-harris-interactive-23-novembre.pdf",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2417",
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10393-pres-iv-vague-10-toluna-harris-interactive-23-novembre.pdf#page=3",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2417#page=3"
+          ],
+          "passage": "Page 3, échantillon initial",
+          "valeurs": [
+            "2378",
+            "2 378",
+            "2 378 personnes",
+            "2 378 répondants",
+            "2378 personnes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poll-yougov-inscrits",
+      "question": "YouGov annonce 1 030 personnes au total pour Le HuffPost entre le 12 et le 17 novembre. Combien sont inscrites sur les listes ?",
+      "famille": "sondages",
+      "difficulte": "périmètre",
+      "edition": "Notice YouGov 10382, novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10382-pres-iv-yougov-le-huffpost-19-novembre.pdf",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2410",
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/novembre/10382-pres-iv-yougov-le-huffpost-19-novembre.pdf#page=4",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2410#page=4"
+          ],
+          "passage": "Page 4, échantillon des inscrits",
+          "valeurs": [
+            "952",
+            "952",
+            "952 personnes",
+            "952 répondants",
+            "952 personnes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poll-opinionway-cnews-collecte-septembre",
+      "question": "Quel jour les entretiens se sont-ils terminés dans la notice OpinionWay pour CNews publiée en septembre 2026 sous le numéro 10260 ?",
+      "famille": "sondages",
+      "difficulte": "diffusion et terrain",
+      "edition": "Notice OpinionWay 10260, septembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/septembre/10260-pres-iv-opinionway-cnews-11-septembre.pdf",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2273",
+            "https://www.commission-des-sondages.fr/notices/files/notices/2026/septembre/10260-pres-iv-opinionway-cnews-11-septembre.pdf#page=3",
+            "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2273#page=3"
+          ],
+          "passage": "Page 3, dates des entretiens",
+          "valeurs": [
+            "10 septembre 2026",
+            "10 septembre",
+            "2026-09-10",
+            "10/09/2026"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lfi-chiffrement-portee",
+      "question": "Mélenchon veut protéger les communications chiffrées. À quel niveau du droit son programme propose-t-il d’inscrire ce droit ?",
+      "famille": "programmes",
+      "difficulte": "statut de la norme",
+      "edition": "L’Avenir en commun, présidentielle 2027",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://melenchon2027.fr/programme/livre/le-gout-du-futur-aux-nouvelles-frontieres-de-l-humanite/chapitre7"
+          ],
+          "passage": "Chapitre 7, droit au chiffrement et à la sécurité des communications",
+          "valeurs": [
+            "Constitution",
+            "dans la Constitution",
+            "constitutionnel",
+            "niveau constitutionnel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pp-accords-branche",
+      "question": "Place publique veut-il donner la priorité à l’accord d’entreprise ? Quel niveau d’accord son Acte I ferait primer ?",
+      "famille": "programmes",
+      "difficulte": "prémisse",
+      "edition": "Place publique, Acte I",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://place-publique.eu/document/6J8wjk3EW8dBCLwKxa7J96/projet-placepublique-acte1.pdf",
+            "https://place-publique.eu/document/6J8wjk3EW8dBCLwKxa7J96/projet-placepublique-acte1.pdf#page=41"
+          ],
+          "passage": "Chantier 17, conventions du travail",
+          "valeurs": [
+            "accords de branche",
+            "accords de branches professionnelles",
+            "les accords de branche",
+            "accord de branche"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ruffin-statut",
+      "question": "François Ruffin maintient-il sa candidature présidentielle après sa déclaration de novembre 2026 ?",
+      "famille": "candidatures",
+      "difficulte": "prémisse",
+      "edition": "Déclaration personnelle relayée sur le site de François Ruffin le 22 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://francoisruffin.fr/presidentielle-2027-face-au-risque-du-pire-je-retire-ma-candidature/",
+            "https://fr.linkedin.com/posts/francois-ruffin_face-au-risque-du-pire-je-retire-ma-candidature-activity-7529952041381593088-fS9_"
+          ],
+          "passage": "Déclaration personnelle de retrait",
+          "valeurs": [
+            "retirée",
+            "candidature retirée",
+            "retrait",
+            "non",
+            "il a retiré sa candidature"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dsa-recommandation-parametres",
+      "question": "Dans le règlement européen sur les services numériques, quel article oblige une plateforme à expliquer les principaux paramètres de son système de recommandation ?",
+      "famille": "droit",
+      "difficulte": "repère juridique",
+      "edition": "Règlement (UE) 2022/2065",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://eur-lex.europa.eu/eli/reg/2022/2065/oj?locale=fr",
+            "https://eur-lex.europa.eu/eli/reg/2022/2065/2022-10-27"
+          ],
+          "passage": "Article 27, paragraphe 1",
+          "valeurs": ["article 27", "27", "article 27 du DSA"]
+        }
+      ]
+    },
+    {
+      "id": "dsa-recommandation-non-profilee",
+      "question": "Une très grande plateforme utilise des systèmes de recommandation. Quel type d’option doit-elle proposer pour chacun d’eux selon l’article 38 du DSA ?",
+      "famille": "droit",
+      "difficulte": "repère juridique",
+      "edition": "Règlement (UE) 2022/2065",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://eur-lex.europa.eu/eli/reg/2022/2065/oj?locale=fr",
+            "https://eur-lex.europa.eu/eli/reg/2022/2065/2022-10-27"
+          ],
+          "passage": "Article 38, option sans profilage",
+          "valeurs": [
+            "une option sans profilage",
+            "sans profilage",
+            "une option non fondée sur le profilage",
+            "une option ne reposant pas sur le profilage"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dsa-publicite-mineurs",
+      "question": "Quel paragraphe de l’article 28 du DSA interdit la publicité ciblée par profilage quand la plateforme sait avec une certitude raisonnable que son destinataire est mineur ?",
+      "famille": "droit",
+      "difficulte": "repère juridique",
+      "edition": "Règlement (UE) 2022/2065",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://eur-lex.europa.eu/eli/reg/2022/2065/oj?locale=fr",
+            "https://eur-lex.europa.eu/eli/reg/2022/2065/2022-10-27"
+          ],
+          "passage": "Article 28, paragraphe sur la publicité reposant sur le profilage",
+          "valeurs": [
+            "paragraphe 2",
+            "article 28, paragraphe 2",
+            "28(2)",
+            "28.2",
+            "2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dsa-donnees-particulieres",
+      "question": "Quel article du DSA contient au troisième paragraphe l’interdiction de profiler une publicité à partir de catégories particulières de données personnelles ?",
+      "famille": "droit",
+      "difficulte": "repère juridique",
+      "edition": "Règlement (UE) 2022/2065",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://eur-lex.europa.eu/eli/reg/2022/2065/oj?locale=fr",
+            "https://eur-lex.europa.eu/eli/reg/2022/2065/2022-10-27"
+          ],
+          "passage": "Article 26, paragraphe 3",
+          "valeurs": ["article 26", "26", "article 26 du DSA"]
+        }
+      ]
+    },
+    {
+      "id": "rgpd-portabilite",
+      "question": "Comment s’appelle le droit prévu à l’article 20 du RGPD de récupérer les données qu’on a fournies dans un format structuré exploitable par machine ?",
+      "famille": "droit",
+      "difficulte": "repère juridique",
+      "edition": "Règlement (UE) 2016/679",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://eur-lex.europa.eu/eli/reg/2016/679/oj/fra",
+            "https://www.cnil.fr/fr/reglement-europeen-protection-donnees/chapitre3"
+          ],
+          "passage": "Article 20, intitulé et premier paragraphe",
+          "valeurs": [
+            "droit à la portabilité des données",
+            "droit à la portabilité",
+            "portabilité des données",
+            "portabilité"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rgpd-decision-sans-humain",
+      "question": "À quel article du RGPD trouve-t-on le droit de ne pas faire l’objet d’une décision fondée exclusivement sur un traitement automatisé produisant des effets juridiques ?",
+      "famille": "droit",
+      "difficulte": "repère juridique",
+      "edition": "Règlement (UE) 2016/679",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://eur-lex.europa.eu/eli/reg/2016/679/oj/fra",
+            "https://www.cnil.fr/fr/reglement-europeen-protection-donnees/chapitre3"
+          ],
+          "passage": "Article 22, paragraphe 1",
+          "valeurs": ["article 22", "article 22 du RGPD", "22"]
+        }
+      ]
+    },
+    {
+      "id": "rgpd-violation-delai",
+      "question": "Lorsque la notification d’une violation de données à l’autorité est requise, quel délai l’article 33 du RGPD indique-t-il si possible après en avoir pris connaissance ?",
+      "famille": "droit",
+      "difficulte": "repère juridique",
+      "edition": "Règlement (UE) 2016/679",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://eur-lex.europa.eu/eli/reg/2016/679/oj/fra",
+            "https://www.cnil.fr/fr/reglement-europeen-protection-donnees/chapitre4"
+          ],
+          "passage": "Article 33, paragraphe 1",
+          "valeurs": [
+            "72 heures",
+            "72 h",
+            "dans les 72 heures",
+            "soixante-douze heures"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aide-mourir-date-jorf",
+      "question": "La loi relative au droit à l’aide à mourir est du 18 août 2026. Quel jour le Journal officiel l’a-t-il publiée ?",
+      "famille": "droit",
+      "difficulte": "promulgation et publication",
+      "edition": "Loi n° 2026-794 et Journal officiel du 19 août 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.legifrance.gouv.fr/eli/loi/2026/8/18/2026-794/jo/texte",
+            "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054706877",
+            "https://www.legifrance.gouv.fr/UnTexteDeJorf.do?numjo=SFHX2515569L"
+          ],
+          "passage": "En-tête du numéro 0192 du Journal officiel",
+          "valeurs": ["19 août 2026", "2026-08-19", "19/08/2026", "19 août"]
+        }
+      ]
+    },
+    {
+      "id": "aide-mourir-csp-repere",
+      "question": "Quel article du code de la santé publique créé par la loi du 18 août 2026 donne la définition du droit à l’aide à mourir ?",
+      "famille": "droit",
+      "difficulte": "repère juridique",
+      "edition": "Loi n° 2026-794 du 18 août 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.legifrance.gouv.fr/eli/loi/2026/8/18/2026-794/jo/texte",
+            "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054706877",
+            "https://www.legifrance.gouv.fr/UnTexteDeJorf.do?numjo=SFHX2515569L"
+          ],
+          "passage": "Article 1 de la loi, création de l’article L. 1111-12-1",
+          "valeurs": [
+            "L. 1111-12-1",
+            "L1111-12-1",
+            "L.1111-12-1",
+            "article L. 1111-12-1",
+            "1111-12-1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arcom-equite-debut",
+      "question": "Quel est le premier jour de la période d’équité du temps de parole pour la présidentielle de 2027 ?",
+      "famille": "droit",
+      "difficulte": "repère juridique",
+      "edition": "Recommandation Arcom du 4 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.arcom.fr/se-documenter/espace-juridique/decisions/recommandation-du-4-novembre-2026-de-larcom-aux-services-de-communication-audiovisuelle-en-vue-de-lelection-du-president-de-la-republique",
+            "https://www.arcom.fr/nous-connaitre-nos-missions/garantir-le-pluralisme-et-la-cohesion-sociale/proteger-le-pluralisme-politique",
+            "https://www.arcom.fr/sites/default/files/2026-11/Arcom-Dossier-de-presse-Presidentielle-2027-regles-et-preconisations-de-Arcom.pdf"
+          ],
+          "passage": "Première période, section 1.1",
+          "valeurs": ["4 janvier 2027", "2027-01-04", "04/01/2027", "4 janvier"]
+        }
+      ]
+    },
+    {
+      "id": "arcom-antenne-date",
+      "question": "À partir de quelle date l’équité du temps d’antenne s’ajoute-t-elle à l’équité du temps de parole en 2027 ?",
+      "famille": "droit",
+      "difficulte": "temps d’antenne et de parole",
+      "edition": "Recommandation Arcom du 4 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.arcom.fr/se-documenter/espace-juridique/decisions/recommandation-du-4-novembre-2026-de-larcom-aux-services-de-communication-audiovisuelle-en-vue-de-lelection-du-president-de-la-republique",
+            "https://www.arcom.fr/nous-connaitre-nos-missions/garantir-le-pluralisme-et-la-cohesion-sociale/proteger-le-pluralisme-politique",
+            "https://www.arcom.fr/sites/default/files/2026-11/Arcom-Dossier-de-presse-Presidentielle-2027-regles-et-preconisations-de-Arcom.pdf"
+          ],
+          "passage": "Seconde période et équité renforcée",
+          "valeurs": ["16 mars 2027", "2027-03-16", "16/03/2027", "16 mars"]
+        }
+      ]
+    },
+    {
+      "id": "arcom-egalite",
+      "question": "À partir du 5 avril 2027, quel principe s’applique aux temps de parole et d’antenne des candidats et de leurs soutiens ?",
+      "famille": "droit",
+      "difficulte": "équité et égalité",
+      "edition": "Recommandation Arcom du 4 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.arcom.fr/se-documenter/espace-juridique/decisions/recommandation-du-4-novembre-2026-de-larcom-aux-services-de-communication-audiovisuelle-en-vue-de-lelection-du-president-de-la-republique",
+            "https://www.arcom.fr/nous-connaitre-nos-missions/garantir-le-pluralisme-et-la-cohesion-sociale/proteger-le-pluralisme-politique",
+            "https://www.arcom.fr/sites/default/files/2026-11/Arcom-Dossier-de-presse-Presidentielle-2027-regles-et-preconisations-de-Arcom.pdf"
+          ],
+          "passage": "Régime applicable à partir du 5 avril",
+          "valeurs": [
+            "égalité stricte",
+            "égalité",
+            "principe d’égalité",
+            "le principe d’égalité"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "insee-depenses-pib",
+      "question": "Selon les comptes annuels de l’Insee parus en août 2026, quelle part du PIB représentaient les dépenses de toutes les administrations publiques en 2025 ?",
+      "famille": "economie",
+      "difficulte": "unité et année",
+      "edition": "Insee, comptes annuels 2025, base 2020, tableau paru le 28 août 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.insee.fr/fr/statistiques/2381414",
+            "https://www.insee.fr/fr/statistiques/8997691?sommaire=8071406"
+          ],
+          "passage": "Dépenses publiques, dernière colonne 2025",
+          "valeurs": ["57,3% du PIB", "57.3% du PIB", "57,3%", "57.3%"]
+        }
+      ]
+    },
+    {
+      "id": "insee-recettes-pib",
+      "question": "Quel est le ratio de recettes publiques sur PIB retenu pour 2025 dans les comptes de l’Insee et repris par le simulateur budgétaire ?",
+      "famille": "economie",
+      "difficulte": "série et simulateur",
+      "edition": "Insee, comptes annuels 2025, base 2020, tableau paru le 28 août 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.insee.fr/fr/statistiques/2381414",
+            "https://www.insee.fr/fr/statistiques/8997691?sommaire=8071406"
+          ],
+          "passage": "Recettes publiques, dernière colonne 2025",
+          "valeurs": ["52,2% du PIB", "52.2% du PIB", "52,2%", "52.2%"]
+        }
+      ]
+    },
+    {
+      "id": "insee-solde-signe",
+      "question": "En points de PIB, quel est le solde signé des administrations publiques en 2025, tel qu’il figure dans les comptes parus en août 2026 ?",
+      "famille": "economie",
+      "difficulte": "signe explicite",
+      "edition": "Insee, comptes annuels 2025, base 2020, tableau paru le 28 août 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.insee.fr/fr/statistiques/2381414",
+            "https://www.insee.fr/fr/statistiques/8997691?sommaire=8071406"
+          ],
+          "passage": "Capacité ou besoin de financement, dépenses et recettes en points de PIB",
+          "valeurs": [
+            "−5,1%",
+            "-5,1%",
+            "−5.1%",
+            "-5.1%",
+            "-5,1 points de PIB",
+            "−5,1 points de PIB",
+            "-5,1% du PIB",
+            "−5,1% du PIB"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "insee-ratio-dette",
+      "question": "Quel ratio d’endettement public brut pour la fin de 2025 l’Insee publie-t-il dans les comptes annuels du 28 août 2026 ?",
+      "famille": "economie",
+      "difficulte": "révision de statistique",
+      "edition": "Insee, comptes annuels 2025, base 2020, tableau paru le 28 août 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.insee.fr/fr/statistiques/2381414",
+            "https://www.insee.fr/fr/statistiques/8997691?sommaire=8071406"
+          ],
+          "passage": "Dette brute des administrations publiques, colonne 2025",
+          "valeurs": ["115,7% du PIB", "115.7% du PIB", "115,7%", "115.7%"]
+        }
+      ]
+    },
+    {
+      "id": "insee-deficit-etat",
+      "question": "Quel besoin de financement de l’État seul l’Insee donne-t-il pour 2025, en milliards d’euros ?",
+      "famille": "economie",
+      "difficulte": "niveau d’administration",
+      "edition": "Insee, comptes annuels 2025, base 2020, tableau paru le 28 août 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.insee.fr/fr/statistiques/8997691?sommaire=8071406"
+          ],
+          "passage": "Figure 3, État, colonne 2025",
+          "valeurs": [
+            "128,1 milliards d’euros",
+            "128,1 Md€",
+            "−128,1 Md€",
+            "-128,1 Md€",
+            "-128,1 milliards d’euros"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "insee-hausse-recettes",
+      "question": "En pourcentage et en euros courants, de combien les recettes publiques ont-elles augmenté entre 2024 et 2025 selon l’Insee ?",
+      "famille": "economie",
+      "difficulte": "variation nominale",
+      "edition": "Insee, comptes annuels 2025, base 2020, tableau paru le 28 août 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.insee.fr/fr/statistiques/8997691?sommaire=8071406"
+          ],
+          "passage": "Recettes, section sur la croissance en valeur",
+          "valeurs": ["3,9%", "+3,9%", "3.9%", "+3.9%"]
+        }
+      ]
+    },
+    {
+      "id": "agenda-premier-tour",
+      "question": "Quelle date le gouvernement a-t-il annoncée pour le premier tour de la présidentielle de 2027 lors du Conseil des ministres du 1er juillet ?",
+      "famille": "agenda",
+      "difficulte": "date annoncée",
+      "edition": "Conseil des ministres du 1er juillet 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.elysee.fr/emmanuel-macron/2026/07/01/compte-rendu-du-conseil-des-ministres-du-mercredi-1er-juillet-2026"
+          ],
+          "passage": "Calendrier électoral, premier tour",
+          "valeurs": ["18 avril 2027", "18 avril", "2027-04-18", "18/04/2027"]
+        }
+      ]
+    },
+    {
+      "id": "agenda-second-tour",
+      "question": "Lors du Conseil des ministres du 1er juillet 2026, quel jour a été annoncé pour un éventuel second tour de la présidentielle ?",
+      "famille": "agenda",
+      "difficulte": "deuxième tour",
+      "edition": "Conseil des ministres du 1er juillet 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.elysee.fr/emmanuel-macron/2026/07/01/compte-rendu-du-conseil-des-ministres-du-mercredi-1er-juillet-2026"
+          ],
+          "passage": "Calendrier électoral, second tour",
+          "valeurs": ["2 mai 2027", "2 mai", "2027-05-02", "02/05/2027"]
+        }
+      ]
+    },
+    {
+      "id": "tourisme-oral-annonce",
+      "question": "Quand le Grand Oral Tourisme est-il prévu et combien de participations de candidats les organisateurs annoncent-ils dans leur communiqué du 25 novembre ?",
+      "famille": "debats",
+      "difficulte": "annonce et événement",
+      "edition": "Communiqué des organisateurs du 25 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.acteursdutourisme.fr/app/uploads/2026/11/CP_GOT_2_vdef-1.pdf",
+            "https://www.acteursdutourisme.fr/app/uploads/2026/11/CP_GOT_2_vdef-1.pdf#page=1"
+          ],
+          "passage": "Première page, date du rendez-vous",
+          "valeurs": [
+            "1er décembre 2026",
+            "1 décembre 2026",
+            "2026-12-01",
+            "01/12/2026",
+            "1er décembre"
+          ]
+        },
+        {
+          "sources": [
+            "https://www.acteursdutourisme.fr/app/uploads/2026/11/CP_GOT_2_vdef-1.pdf",
+            "https://www.acteursdutourisme.fr/app/uploads/2026/11/CP_GOT_2_vdef-1.pdf#page=1"
+          ],
+          "passage": "Première page, participations confirmées",
+          "valeurs": [
+            "7",
+            "sept",
+            "7 candidats",
+            "sept candidats",
+            "7 participations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tourisme-lieu",
+      "question": "Dans quel hôtel parisien les organisateurs prévoient-ils de réunir les candidats pour le Grand Oral Tourisme du 1er décembre 2026 ?",
+      "famille": "debats",
+      "difficulte": "lieu annoncé",
+      "edition": "Communiqué des organisateurs du 25 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.acteursdutourisme.fr/app/uploads/2026/11/CP_GOT_2_vdef-1.pdf",
+            "https://www.acteursdutourisme.fr/app/uploads/2026/11/CP_GOT_2_vdef-1.pdf#page=1"
+          ],
+          "passage": "Première page, hôtel indiqué",
+          "valeurs": [
+            "InterContinental Paris Le Grand",
+            "l’InterContinental Paris Le Grand",
+            "InterContinental Paris–Le Grand"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "territoire-sru-denominateur",
+      "question": "Le taux de logements sociaux dans l’inventaire des communes SRU est rapporté à quel ensemble de logements ?",
+      "famille": "territoires",
+      "difficulte": "unité statistique",
+      "edition": "Inventaire SRU au 1er janvier 2025",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.data.gouv.fr/datasets/communes-et-inventaire-sru"
+          ],
+          "passage": "Loi SRU et inventaire du parc rapporté aux résidences principales",
+          "valeurs": [
+            "résidences principales",
+            "les résidences principales",
+            "ensemble des résidences principales",
+            "% des résidences principales"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "territoire-apl-unite",
+      "question": "Quelle unité la Drees utilise-t-elle pour l’accessibilité aux médecins généralistes, après standardisation de la population ?",
+      "famille": "territoires",
+      "difficulte": "unité statistique",
+      "edition": "Drees, accessibilité aux soins de premier recours 2024",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/260722-accessibilite-aux-soins-de-premier-recours-en-2024"
+          ],
+          "passage": "Définition de l’accessibilité potentielle localisée des généralistes",
+          "valeurs": [
+            "consultations accessibles par an et par habitant standardisé",
+            "consultations par an et par habitant standardisé",
+            "consultations accessibles par habitant standardisé et par an",
+            "consultations accessibles par an par habitant standardisé"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "budget-deux-objectifs",
+      "question": "Quel seuil de déficit public Édouard Philippe annonce-t-il en fin de quinquennat, et quel type de solde Marine Le Pen veut-elle ramener à l’équilibre en 18 mois ?",
+      "famille": "comparaisons",
+      "difficulte": "croisement et nature du solde",
+      "edition": "Plan de Marine Le Pen du 6 octobre et programme finances publiques de Philippe du 18 novembre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.edouardphilippe.fr/programme/comptes-publics"
+          ],
+          "passage": "Objectif de déficit en fin de quinquennat",
+          "valeurs": [
+            "moins de 2,5% du PIB",
+            "<2,5% du PIB",
+            "moins de 2,5%",
+            "<2,5%",
+            "sous 2,5% du PIB"
+          ]
+        },
+        {
+          "sources": [
+            "https://www.marinelepen.com/actualites/marine-le-pen-presente-un-plan-de-redressement-budgetaire-pour-la-france"
+          ],
+          "passage": "Trajectoire budgétaire, nature du premier objectif de solde",
+          "valeurs": [
+            "solde primaire",
+            "équilibre primaire",
+            "solde primaire des comptes publics"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ml-budget-deux-montants",
+      "question": "Marine Le Pen annonce 140 milliards d’euros d’économies à l’horizon 2032. Quel minimum indique-t-elle séparément pour ses baisses nettes d’impôts ?",
+      "famille": "financements",
+      "difficulte": "montant net annoncé",
+      "edition": "Trajectoire budgétaire de Marine Le Pen, 6 octobre 2026",
+      "etat": "documente",
+      "justification": "Lecture du passage indiqué dans la pièce originale.",
+      "preuves": [
+        {
+          "sources": [
+            "https://www.marinelepen.com/actualites/marine-le-pen-presente-un-plan-de-redressement-budgetaire-pour-la-france"
+          ],
+          "passage": "Présentation des objectifs, plancher sur les baisses nettes d’impôts",
+          "valeurs": [
+            "au moins 30 milliards d’euros",
+            "30 milliards d’euros",
+            "30 Md€",
+            "au moins 30 Md€",
+            "30 milliards"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lacune-seuil-ric",
+      "question": "Quel nombre de signatures la pétition du Rassemblement national pour le référendum d’initiative citoyenne indique-t-elle comme seuil de déclenchement ?",
+      "famille": "donnees-manquantes",
+      "difficulte": "seuil absent dans la pièce",
+      "edition": "Pétition du RN sur le RIC, lecture du 26 novembre 2026",
+      "etat": "indisponible",
+      "justification": "La pétition soutient le RIC et laisse le seuil de déclenchement indéterminé.",
+      "preuves": [
+        {
+          "sources": ["https://rassemblementnational.fr/"],
+          "passage": "Pétition pour le RIC, nombre de signatures requis non précisé dans cette pièce",
+          "valeurs": [
+            "nombre de signatures non précisé",
+            "seuil non précisé",
+            "aucun seuil précisé",
+            "aucun seuil indiqué",
+            "seuil non documenté",
+            "nombre de signatures non indiqué",
+            "seuil de signatures non précisé"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lacune-eolien-philippe",
+      "question": "Combien de nouveaux parcs éoliens le volet énergie d’Édouard Philippe prévoit-il exactement ?",
+      "famille": "donnees-manquantes",
+      "difficulte": "absence de chiffrage",
+      "edition": "Avec Édouard 2027, programme consulté le 27 novembre 2026",
+      "etat": "indisponible",
+      "justification": "Le passage annonce le développement des renouvelables en général.",
+      "preuves": [
+        {
+          "sources": ["https://www.edouardphilippe.fr/programme/energie"],
+          "passage": "Réponse sur les renouvelables, objectifs chiffrés propres à l’éolien absents",
+          "valeurs": [
+            "nombre non précisé",
+            "nombre de parcs non indiqué",
+            "pas d’objectif chiffré pour l’éolien",
+            "aucun nombre de parcs éoliens indiqué",
+            "aucun objectif éolien chiffré",
+            "nombre de parcs éoliens non précisé"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lacune-autorisation-fin-de-vie",
+      "question": "Quel article de la loi sur l’aide à mourir Édouard Philippe s’engage-t-il à réécrire dans son volet santé publié le 26 novembre 2026 ?",
+      "famille": "donnees-manquantes",
+      "difficulte": "texte déterminé",
+      "edition": "Avec Édouard 2027, programme consulté le 27 novembre 2026",
+      "etat": "indisponible",
+      "justification": "La question concerne le seul volet santé, dont les réponses ne désignent aucun article de cette loi.",
+      "preuves": [
+        {
+          "sources": ["https://www.edouardphilippe.fr/programme/sante"],
+          "passage": "Questions-réponses du volet santé, sans proposition de modification d’article",
+          "valeurs": [
+            "aucun article précisé",
+            "aucune modification d’article documentée",
+            "aucun article indiqué",
+            "aucune modification de la loi mentionnée",
+            "aucun engagement de réécriture documenté"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lacune-date-archives-senat",
+      "question": "Dans les archives de Polradar, quelle position le relevé du Sénat donne-t-il pour le 4 octobre 2021 ?",
+      "famille": "donnees-manquantes",
+      "difficulte": "période non couverte",
+      "edition": "Archives du Sénat reconstituées le 24 novembre 2026",
+      "etat": "indisponible",
+      "justification": "L’index délimite les sessions 2006, 2022 et 2023. Aucun vote ne peut être déduit de l’édition hors période.",
+      "preuves": [
+        {
+          "sources": ["https://polradar.fr/api/parlement/archives/index.json"],
+          "passage": "Couverture du Sénat limitée aux trois sessions listées",
+          "valeurs": [
+            "date hors couverture",
+            "date non couverte",
+            "hors couverture",
+            "période non couverte",
+            "période hors couverture",
+            "4 octobre 2021 hors couverture",
+            "hors périmètre du registre"
+          ]
+        }
+      ]
+    }
+  ]
+}

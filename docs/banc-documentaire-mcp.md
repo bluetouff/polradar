@@ -98,6 +98,38 @@ Le moteur traitait la date de diffusion d’un sondage comme une date de terrain
 
 Après correction, la réponse documentaire passe ce test. Lors du nouvel essai libre ciblé, le client a interrogé la collection des sondages. Il a donné les deux dates attendues. Le cas échoue encore sur le relevé choisi, les citations et un fait supplémentaire.
 
-Le banc structuré sur l’archive locale vérifie 208 cas sur 208. Le catalogue Web obtient 100 cas conformes sur 100 sur ses requêtes annotées. Les 16 cas de recherche communs au Web et au MCP passent également. Le jeu indépendant de 100 questions en langage libre et la mesure sur plusieurs clients restent à établir. [Annotations du banc libre](../mcp/testdata/questions-assistant.json)
+Le banc structuré sur l’archive locale vérifie 208 cas sur 208. Le catalogue Web obtient 100 cas conformes sur 100 sur ses requêtes annotées. Les 16 cas de recherche communs au Web et au MCP passent également. [Annotations du banc libre de régression](../mcp/testdata/questions-assistant.json)
 
 Pour réexécuter le banc public, fournir les deux révisions servies à `scripts/test-assistant-codex.py`. L’option `--url` accepte aussi un endpoint de recette `/api/mcp` sur `127.0.0.1`. Ce dernier doit être installé avec les paramètres de transport de l’environnement testé.
+
+### Jeu indépendant du 27 novembre 2026
+
+Les 100 questions demandent 124 faits dans quatorze familles. Les annotations indiquent la pièce, le passage, l’édition, la difficulté et les formulations acceptées. Les faits sont rapprochés des programmes, des notices, des textes réglementaires, des comptes publics et des relevés de l’Assemblée nationale. Une question qui porte sur les limites du registre se vérifie dans son index de couverture. [Questions et annotations](../mcp/testdata/questions-assistant-independant.json)
+
+Le client reçoit la question et le format de réponse. Il choisit ses outils et leurs paramètres. Le contrôle rapproche chaque fait de ses propres pièces et des adresses effectivement fournies au cours du tour. Lorsqu’une référence vise un document entier, un passage de ce document transmis par l’outil est accepté. Une page PDF explicitement annotée reste un repère distinct. Les tours interrompus et les réponses exploitables ont des compteurs distincts.
+
+L’option `--jeu independant` sélectionne ce corpus de questions. La sortie enregistre son empreinte SHA-256, le client, le modèle et les deux révisions. `--parallele 2` permet deux tours simultanés sur le serveur de recette local. La recette publique procède une question à la fois.
+
+Le 27 novembre, Codex CLI 0.169.1 et `gpt-6.2-sol` ont interrogé le MCP de recette sur l’archive et le service `51a2ffd`. Empreinte du jeu `9a983d0aa81a691806dc68e33e5fb6496a39f997c037afe53f323b06c50b52f7`. Une première passe a laissé 48 tours sans réponse exploitable. La reprise de ces 48 tours à deux de front a fourni une réponse pour chacun. Les résultats ci-dessous conservent les premières réponses exploitables des 100 cas.
+
+| Famille            | Questions | Conformes | Faits corrects et cités |
+| ------------------ | --------: | --------: | ----------------------: |
+| Programmes         |        31 |         6 |                   10/40 |
+| Budgets            |         2 |         1 |                     1/3 |
+| Attributions       |         3 |         0 |                     0/3 |
+| Votes              |        21 |        13 |                   21/30 |
+| Sondages           |        12 |         8 |                   11/15 |
+| Candidatures       |         1 |         0 |                     0/1 |
+| Droit              |        12 |         2 |                    2/12 |
+| Économie           |         6 |         3 |                     3/6 |
+| Agenda             |         2 |         0 |                     0/2 |
+| Débats             |         2 |         1 |                     1/3 |
+| Territoires        |         2 |         0 |                     0/2 |
+| Comparaisons       |         1 |         0 |                     1/2 |
+| Financements       |         1 |         1 |                     1/1 |
+| Données manquantes |         4 |         0 |                     0/4 |
+| **Total**          |   **100** |    **35** |              **51/124** |
+
+Le client a vu une pièce attendue dans 67 cas, a donné 58 valeurs conformes et a produit 45 citations hors des références autorisées. Il a reconnu les quatre absences attendues. Les formulations ou citations de ces quatre abstentions restent en échec. La durée médiane est de 16,004 secondes pour quatre appels MCP médians. Les durées incluent le lancement du client et le traitement par le modèle. Le barème rapproche les valeurs de leurs pièces et les compare comme un ensemble. La mesure couvre ce client, ce modèle et cette édition.
+
+La recette de régression de la même édition donne 11 réponses entièrement conformes sur 16. Dans le lot local suivant, la réponse sur les dates de terrain regroupe les scénarios d’une même enquête. La réponse sur un scrutin de l’Assemblée ajoute les totaux demandés et l’issue d’après le relevé officiel. Le test de transport vérifie la compatibilité et les tests documentaires sur archive contrôlent ces deux parcours. Le score du jeu indépendant correspond à la version antérieure à ces changements.
