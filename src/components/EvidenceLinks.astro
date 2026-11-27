@@ -1,6 +1,7 @@
 ---
 import type { DocumentaryRelation } from '../lib/documentary-relations';
 import { documentaryLabel } from '../lib/documentary-relations';
+import Icon from './Icon.astro';
 
 interface Props {
   relations: DocumentaryRelation[];
@@ -36,20 +37,20 @@ const groups = Object.entries(families)
 
 {groups.length > 0 && (
   <section class="evidence-links" id="preuves" aria-labelledby="proof-title">
-    <h2 id="proof-title">Dossier de preuves</h2>
-    <ul class="evidence-summary">
-      {groups.map(({ name, links }) => (
-        <li>
-          <a href={`#preuve-${links[0].type}`}>
-            {name} · {links.length}
-          </a>
-        </li>
-      ))}
-    </ul>
+    <header class="proof-heading">
+      <span class="proof-icon" aria-hidden="true">
+        <Icon name="layers" />
+      </span>
+      <h2 id="proof-title">Dossier de preuves</h2>
+      <a href="/api/relations-documentaires.json">
+        Graphe documentaire en JSON
+      </a>
+    </header>
     {groups.map(({ name, links }) => (
-      <details id={`preuve-${links[0].type}`}>
+      <details class="reader-options" id={`preuve-${links[0].type}`}>
         <summary>
-          {name} ({links.length})
+          <span>{name}</span>
+          <span class="proof-count">({links.length})</span>
         </summary>
         <ul class="evidence-rows">
           {links.map((relation) => {
@@ -60,7 +61,7 @@ const groups = Object.entries(families)
                 : relation.target;
             return (
               <li>
-                <p class="muted">
+                <p class="proof-qualification">
                   {names[relation.qualification] ?? relation.qualification}
                 </p>
                 <a href={target.url}>{documentaryLabel(target)}</a>
@@ -80,22 +81,19 @@ const groups = Object.entries(families)
         </ul>
       </details>
     ))}
-    <p>
-      <a href="/api/relations-documentaires.json">
-        Graphe documentaire en JSON
-      </a>
-    </p>
   </section>
 )}
 <script>
-  document.querySelector('#preuves')?.addEventListener('click', (event) => {
-    const link =
-      event.target instanceof Element &&
-      event.target.closest<HTMLAnchorElement>('.evidence-summary a');
-    if (!link) return;
-    const target = document.getElementById(link.hash.slice(1));
-    if (target instanceof HTMLDetailsElement) target.open = true;
-  });
+  const section = document.querySelector('#preuves');
+  if (section) {
+    const openFragment = () => {
+      const target = document.getElementById(location.hash.slice(1));
+      if (target instanceof HTMLDetailsElement && section.contains(target))
+        target.open = true;
+    };
+    openFragment();
+    window.addEventListener('hashchange', openFragment);
+  }
 </script>
 <style>
   .evidence-links {
@@ -107,35 +105,73 @@ const groups = Object.entries(families)
     min-width: 0;
     overflow-wrap: anywhere;
   }
-  .evidence-links h2 {
-    margin-block: 0 0.65rem;
-  }
-  .evidence-summary {
+  .proof-heading {
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 0.25rem 0.5rem;
-    padding: 0;
-    list-style: none;
+    gap: 0.4rem 0.65rem;
+    margin-block-end: 0.55rem;
+    color: var(--ink);
   }
-  .evidence-summary a,
-  .evidence-links summary {
-    display: block;
-    padding: 0.65rem 0.5rem;
-    min-block-size: var(--target-size, 44px);
+  .proof-heading h2 {
+    flex: 1 1 13ch;
+    margin: 0;
+    font: 400 1.3rem/1.25 var(--serif);
   }
-  .evidence-links summary {
-    display: list-item;
-    cursor: pointer;
-    border-block-start: 1px solid var(--line);
-    font-weight: 650;
+  .proof-icon {
+    display: grid;
+    place-items: center;
+    inline-size: 2rem;
+    block-size: 2rem;
+    border-radius: 0.4rem 0.15rem 0.4rem 0.4rem;
+    background: var(--light);
+    color: var(--accent);
+  }
+  .proof-icon :global(.icon) {
+    inline-size: 1rem;
+    block-size: 1rem;
+  }
+  .proof-heading a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--target-size);
+    color: var(--accent);
+    font-size: 0.83rem;
+  }
+  .evidence-links .reader-options {
+    background: var(--paper);
+  }
+  .evidence-links .reader-options:last-child {
+    margin-block-end: 0;
+  }
+  .proof-count {
+    font-size: 0.86em;
+    font-variant-numeric: tabular-nums;
+    color: var(--muted);
   }
   .evidence-rows {
-    padding-inline-start: 1.15rem;
+    display: grid;
+    gap: 0.48rem;
+    margin: 0 0 0.65rem;
+    padding-inline: 0.65rem;
+    list-style: none;
   }
   .evidence-rows > li {
-    margin-block: 0.75rem;
+    padding: 0.72rem 0.85rem;
+    border-inline-start: 2px solid var(--accent);
+    border-radius: 0.3rem;
+    background: var(--sheet);
+    font-size: 0.9rem;
   }
   .evidence-rows p {
     margin-block: 0.2rem;
+  }
+  .proof-qualification {
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 620;
+  }
+  .evidence-rows ul {
+    padding-inline-start: 1rem;
   }
 </style>

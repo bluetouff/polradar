@@ -93,7 +93,12 @@ test('un dossier de preuves met en regard une question, une version et un passag
   await expect(
     proof.getByRole('heading', { name: 'Dossier de preuves' }),
   ).toBeVisible();
-  await proof.getByRole('link', { name: /Questions et propositions/ }).click();
+  await proof.locator('#preuve-question-proposition > summary').focus();
+  await page.keyboard.press('Enter');
+  await expect(proof.locator('#preuve-question-proposition')).toHaveAttribute(
+    'open',
+    '',
+  );
   await expect(
     proof.getByText('Réponse documentée', { exact: true }).first(),
   ).toBeVisible();
@@ -171,7 +176,7 @@ test('le droit sur l’aide à mourir et le vote nominatif sont accessibles dans
 }) => {
   await page.goto('/questions/sante-aide-a-mourir/');
   const proof = page.locator('#preuves');
-  await proof.getByRole('link', { name: /Scrutins et votes/ }).click();
+  await proof.locator('#preuve-rapprochement-scrutin > summary').click();
   await expect(proof).toContainText(
     'Marine Le Pen contre et Gabriel Attal pour',
   );
@@ -181,7 +186,7 @@ test('le droit sur l’aide à mourir et le vote nominatif sont accessibles dans
     'href',
     'https://www.assemblee-nationale.fr/dyn/17/scrutins/8280',
   );
-  await proof.getByRole('link', { name: /Droit en vigueur/ }).click();
+  await proof.locator('#preuve-comparaison-droit > summary').click();
   await expect(
     proof.getByRole('link', { name: /Loi du 18 août 2026/ }),
   ).toBeVisible();

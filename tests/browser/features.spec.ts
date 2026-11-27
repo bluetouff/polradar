@@ -136,7 +136,7 @@ test('plusieurs mesures restent consultables pour un candidat et un thème', asy
   await expect(page.locator('.measure-number-grid')).toContainText('40');
   await expect(page.locator('.precise-sources')).toContainText('Garantir');
   await expect(page.locator('.measure-fields')).toContainText('Bénéficiaires');
-  await expect(page.locator('.measure-fields + .source-note')).toHaveText(
+  await expect(page.locator('.measure-missing')).toHaveText(
     'Informations non renseignées dans cette fiche · financement annoncé.',
   );
 });

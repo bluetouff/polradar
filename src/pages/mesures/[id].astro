@@ -6,6 +6,7 @@ import {
   documentCredit,
 } from '../../lib/attribution.mjs';
 import Base from '../../layouts/Base.astro';
+import ArticleAside from '../../components/ArticleAside.astro';
 import Icon from '../../components/Icon.astro';
 import FollowButton from '../../components/FollowButton.astro';
 import MeasureVotes from '../../components/MeasureVotes.astro';
@@ -16,6 +17,7 @@ import { formatBudgetAmount } from '../../lib/campaign-visuals-view.mjs';
 import { questionsForMeasure } from '../../lib/questions';
 import { proposalTracks } from '../../lib/proposal-data';
 import { voteCases } from '../../lib/votes-data';
+import '../../styles/measure-page.css';
 import {
   measures,
   measureVersions,
@@ -60,6 +62,28 @@ const candidate = candidateById(measure.candidate),
   versions = measureVersions(measure.id);
 const versionIds = versions.map(({ id }) => id);
 const proofRelations = relationsFor(versionIds);
+const related = [
+  ...questionsForMeasure(measure.id).map((question) => ({
+    href: question.href,
+    label: question.title,
+    icon: 'exchange',
+  })),
+  {
+    href: `/comparer/?theme=${theme.id}&c=${candidate.id}`,
+    label: 'Comparer sur ce thème',
+    icon: 'layers',
+  },
+  {
+    href: `/engagements/${measure.parentId}/`,
+    label: 'Fiche thématique d’origine',
+    icon: 'source',
+  },
+  {
+    href: `/rss/candidats/${candidate.id}.xml`,
+    label: 'Flux du candidat',
+    icon: 'rss',
+  },
+];
 ---
 
 <Base
@@ -79,11 +103,11 @@ const proofRelations = relationsFor(versionIds);
     <span>/</span>
     <a href={`/themes/${theme.id}/`}>{theme.label}</a>
   </div>
-  <header class="page-title feature-title">
-    <span class="feature-emblem">
+  <header class="page-title measure-hero editorial-corner">
+    <span class="measure-emblem" aria-hidden="true">
       <Icon name={theme.id} />
     </span>
-    <div>
+    <div class="measure-hero-text">
       <p class="measure-meta">
         {collective ?? candidate.name}{' '}
         <span class:list={['tag', { archive: measure.scope === 'archive' }]}>
@@ -110,13 +134,32 @@ const proofRelations = relationsFor(versionIds);
     </div>
   </header>
   <div class="measure-detail-layout">
-    <article>
-      <p class="measure-lead">{measure.description}</p>
-      {proofRelations.length > 0 && (
-        <p>
-          <a href="#preuves">Explorer le dossier de preuves ↓</a>
-        </p>
-      )}
+    <article class="measure-record">
+      <div class="measure-intro">
+        <p class="measure-lead">{measure.description}</p>
+        <nav class="measure-jumps" aria-label="Accès dans cette fiche">
+          <a href="#sources">
+            <Icon name="source" /> Références
+          </a>
+          {proofRelations.length > 0 && (
+            <a href="#preuves">
+              <Icon name="layers" /> Explorer le dossier de preuves
+            </a>
+          )}
+          <a href="#actions-fiche" class="measure-jump-actions">
+            <Icon name="suivi" /> Suivi et hors ligne
+          </a>
+        </nav>
+        {unspecified.length > 0 && (
+          <p class="measure-missing">
+            Informations non renseignées dans cette fiche ·{' '}
+            {unspecified.join(', ')}.
+          </p>
+        )}
+        {measure.scope === 'archive' && (
+          <p class="archive-warning">Archive du programme de 2022.</p>
+        )}
+      </div>
       {(measure.metrics.length > 0 || measure.amounts.length > 0) && (
         <div class="measure-number-grid">
           {measure.metrics.map((metric) => (
@@ -157,7 +200,7 @@ const proofRelations = relationsFor(versionIds);
           </p>
         ))}
       {linkedBudgets.length > 0 && (
-        <section class="section-space">
+        <section class="measure-panel measure-budget">
           <div class="register-heading">
             <h2>Chiffrage documenté</h2>
             <Icon name="euro" />
@@ -203,16 +246,10 @@ const proofRelations = relationsFor(versionIds);
             ))}
         </dl>
       )}
-      {unspecified.length > 0 && (
-        <p class="source-note">
-          Informations non renseignées dans cette fiche ·{' '}
-          {unspecified.join(', ')}.
-        </p>
-      )}
-      {measure.scope === 'archive' && (
-        <p class="archive-warning">Archive du programme de 2022.</p>
-      )}
-      <section class="section-space">
+      <section
+        class="measure-panel measure-references"
+        aria-labelledby="sources"
+      >
         <div class="register-heading">
           <h2 id="sources">Références</h2>
           <Icon name="source" />
@@ -241,36 +278,50 @@ const proofRelations = relationsFor(versionIds);
                     Auteur du document · {credit.author}. {credit.locator}
                   </p>
                 )}
-                {(source.published || source.publishedYear) && (
+                <div class="measure-source-meta">
+                  {(source.published || source.publishedYear) && (
+                    <span>
+                      Publication du document ·{' '}
+                      {source.published ? (
+                        <time datetime={source.published}>
+                          {formatDate(source.published)}
+                        </time>
+                      ) : (
+                        source.publishedYear
+                      )}
+                      {source.publicationReference && (
+                        <>
+                          {' '}
+                          ·{' '}
+                          <a href={source.publicationReference}>
+                            Notice de l’éditeur
+                          </a>
+                        </>
+                      )}
+                    </span>
+                  )}
+                  {source.updated && (
+                    <span>
+                      Mise à jour du document :{' '}
+                      <time datetime={source.updated}>
+                        {formatDate(source.updated)}
+                      </time>
+                    </span>
+                  )}
                   <span>
-                    Publication du document ·{' '}
-                    {source.published
-                      ? formatDate(source.published)
-                      : source.publishedYear}
-                    {source.publicationReference && (
-                      <>
-                        {' '}
-                        ·{' '}
-                        <a href={source.publicationReference}>
-                          Notice de l’éditeur
-                        </a>
-                      </>
-                    )}
+                    Source consultée le{' '}
+                    <time datetime={source.checked}>
+                      {formatDate(source.checked)}
+                    </time>
                   </span>
-                )}
-                {source.updated && (
-                  <span>
-                    Mise à jour du document : {formatDate(source.updated)}
-                  </span>
-                )}
-                <span>Source consultée le {formatDate(source.checked)}</span>
+                </div>
               </li>
             );
           })}
         </ul>
       </section>
       <EvidenceLinks relations={proofRelations} perspectives={versionIds} />
-      <section class="section-space">
+      <section class="measure-panel measure-versions">
         <div class="register-heading">
           <h2>Versions de la fiche</h2>
           <a
@@ -311,42 +362,37 @@ const proofRelations = relationsFor(versionIds);
         </ol>
       </section>
     </article>
-    <aside class="measure-side">
-      <div
-        data-offline-measure={measure.id}
-        data-fiche-version={measure.revision}
-        hidden
+    <ArticleAside class="measure-side" links={related}>
+      <section
+        slot="actions"
+        id="actions-fiche"
+        class="measure-tools"
+        aria-labelledby="measure-tools-title"
       >
-        <button class="button" type="button">
-          Garder hors ligne
-        </button>
-        <p class="small">Une seule fiche, sur cet appareil.</p>
-        <p class="small" role="status"></p>
-        <a href="/hors-ligne/v1/" hidden>
-          Ouvrir la copie enregistrée ↗
-        </a>
-      </div>
-      <script is:inline type="module" src="/hors-ligne/lecteur-v1.js"></script>
-      <FollowButton kind="candidate" id={candidate.id} name={candidate.name} />
-      <FollowButton kind="theme" id={theme.id} name={theme.label} />
-      {questionsForMeasure(measure.id).map((q) => (
-        <a href={q.href}>
-          <Icon name="exchange" />
-          {q.title}
-        </a>
-      ))}
-      <a href={`/comparer/?theme=${theme.id}&c=${candidate.id}`}>
-        <Icon name="layers" />
-        Comparer sur ce thème
-      </a>
-      <a href={`/engagements/${measure.parentId}/`}>
-        <Icon name="source" />
-        Fiche thématique d’origine
-      </a>
-      <a href={`/rss/candidats/${candidate.id}.xml`}>
-        <Icon name="rss" />
-        Flux du candidat
-      </a>
-    </aside>
+        <h2 id="measure-tools-title">Suivre et conserver</h2>
+        <FollowButton
+          kind="candidate"
+          id={candidate.id}
+          name={candidate.name}
+        />
+        <FollowButton kind="theme" id={theme.id} name={theme.label} />
+        <div
+          class="measure-offline"
+          data-offline-measure={measure.id}
+          data-fiche-version={measure.revision}
+          hidden
+        >
+          <button class="button" type="button">
+            <Icon name="download" /> Garder hors ligne
+          </button>
+          <p class="small">Une seule fiche, sur cet appareil.</p>
+          <p class="small" role="status"></p>
+          <a href="/hors-ligne/v1/" hidden>
+            Ouvrir la copie enregistrée ↗
+          </a>
+        </div>
+      </section>
+    </ArticleAside>
+    <script is:inline type="module" src="/hors-ligne/lecteur-v1.js"></script>
   </div>
 </Base>

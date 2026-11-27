@@ -4,12 +4,14 @@ import Icon from './Icon.astro';
 interface Props {
   links: { href: string; label: string; icon: string }[];
   correctionHref?: string;
+  class?: string;
 }
 
-const { links, correctionHref } = Astro.props;
+const { links, correctionHref, class: className } = Astro.props;
 ---
 
-<aside class="article-aside">
+<aside class:list={['article-aside', className]}>
+  <slot name="actions" />
   <nav aria-labelledby="article-related-heading">
     <h2 id="article-related-heading" class="editorial-corner">
       Pages associées
