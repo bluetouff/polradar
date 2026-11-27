@@ -1107,6 +1107,7 @@ const additionalAnswers: Record<string, string[]> = {
     'herlin-regroupement-familial-v1',
     'becht-limiter-le-regroupement-familial-pour-les-personnes-hors-union-europeenne-v1',
     'dupont-aignan-restreindre-le-regroupement-familial-et-supprimer-le-regime-derogatoire-des-re-v1',
+    'zemmour-supprimer-regroupement-familial-v1',
   ],
   'handicap-accompagnement-ecole': [
     'groupe-rn-cadre-emploi-aesh-v1',
@@ -1155,6 +1156,7 @@ const additionalAnswers: Record<string, string[]> = {
     'tinland-citoyennete-residence-nationalite-v1',
     'melenchon-garantir-droit-du-sol-integral-v1',
     'lepen-supprimer-droit-du-sol-parti-v1',
+    'zemmour-supprimer-droit-du-sol-v1',
   ],
   'immigration-aide-medicale-etat': [
     'philippe-maintenir-ame-avec-controles-v1',
@@ -1170,6 +1172,8 @@ const additionalAnswers: Record<string, string[]> = {
   'agriculture-elevages': [
     'groupe-rn-six-mois-reglementation-elevages-v1',
     'philippe-stop-surtransposition-normes-agricoles-v1',
+    'delmur-interdire-elevage-sans-plein-air-v1',
+    'delmur-reduire-production-elevage-deux-tiers-v1',
     'place-publique-sortie-elevage-cage-union-europeenne-v1',
     'place-publique-moderniser-abattoirs-et-experimenter-unites-mobiles-v1',
   ],
@@ -1203,6 +1207,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La priorité dans les achats publics vise à garantir des débouchés aux producteurs. Le prix payé aux exploitations reste à préciser.',
   },
   'education-acces-etudes': {
+    'labib-sopposer-selection-parcoursup-v1':
+      'Selma Labib s’oppose à la sélection dans Parcoursup. Elle ne précise pas quelles règles d’admission lui succéderaient.',
     'polony-evaluations-nationales-certifications-anonymes-v1':
       'Les évaluations visent à aider les élèves à situer leur niveau. Le rôle de ces résultats dans les admissions reste à préciser.',
     'polony-reorganiser-filieres-insertion-v1':
@@ -1285,6 +1291,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le programme prévoit un autre levier pour réduire la surpopulation, la régulation carcérale. Ce passage ne tranche pas la construction de nouveaux établissements.',
   },
   'retraites-penibilite': {
+    'riner-penibilite-reforme-retraites-v1':
+      'Teddy Riner veut tenir compte de la pénibilité. Son entretien ne fixe ni critères ni âge de départ.',
     'melenchon-penibilite-travail-contraintes-retraite-v1':
       'Le plan santé précise les contraintes à retenir pour calculer les droits à la retraite. Il ne définit pas les conditions d’âge d’un départ anticipé.',
     'melenchon-reconnaitre-penibilite-metiers-feminises-v1':
@@ -1295,6 +1303,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le chapitre annonce des aménagements pour les métiers les plus pénibles. Il ne donne pas l’âge ni les critères propres à ces départs.',
   },
   'climat-avenir-eolien': {
+    'zemmour-supprimer-subventions-eoliennes-v1':
+      'Éric Zemmour veut retirer le soutien financier aux éoliennes. Il ne précise pas le sort des autorisations de nouveaux parcs dans ce passage.',
     'glucksmann-climat-doublement-renouvelables-v2':
       'Le livret fixe un objectif pour l’ensemble des énergies renouvelables. La capacité propre à l’éolien reste à préciser.',
     'groupe-rn-fiscalite-eolien-foncier-mer-v1':
