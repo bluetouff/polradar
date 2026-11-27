@@ -778,20 +778,44 @@
     padding-top: clamp(0.65rem, 1.3vw, 1.25rem);
   }
   .reader-options {
+    --reader-inset: clamp(0.65rem, 1.6vw, 1rem);
     margin: 0.6rem 0;
-    border-block: 1px solid var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--surface-radius);
+    background: var(--sheet);
     color: var(--ink);
   }
   .reader-options > summary {
-    min-height: 2.75rem;
-    align-content: center;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: var(--target-size);
     cursor: pointer;
     font-weight: 620;
-    padding: 0.55rem 0.3rem;
-    color: var(--blue);
+    padding: 0.4rem var(--reader-inset);
+    color: var(--accent);
+    list-style: none;
+    overflow-wrap: anywhere;
+  }
+  .reader-options > summary::-webkit-details-marker {
+    display: none;
+  }
+  .reader-options > summary::before {
+    content: '';
+    flex: 0 0 0.42rem;
+    block-size: 0.42rem;
+    border: solid currentColor;
+    border-width: 0 1.5px 1.5px 0;
+    transform: rotate(-45deg);
+  }
+  .reader-options[open] > summary::before {
+    transform: rotate(45deg);
+  }
+  .reader-options > summary:hover {
+    text-decoration: underline;
   }
   .reader-options > :is(p, form) {
-    margin: 0.4rem 0.3rem 0.8rem;
+    margin: 0.4rem var(--reader-inset) 0.8rem;
   }
   .reader-options summary:focus-visible {
     outline-offset: -2px;

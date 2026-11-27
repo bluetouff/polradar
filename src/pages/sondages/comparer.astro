@@ -53,7 +53,7 @@ const history = report.backtest;
         id={comparison.id}
         aria-labelledby={comparison.id + '-title'}
       >
-        <header>
+        <header class="editorial-corner">
           <div class="small">
             {comparison.round === 'premier' ? 'Premier tour' : 'Second tour'} ·{' '}
             {comparison.inputs.length} instituts
@@ -107,7 +107,7 @@ const history = report.backtest;
         ) : (
           <p>Deux instituts sont nécessaires pour calculer une moyenne.</p>
         )}
-        <details>
+        <details class="reader-options">
           <summary>Terrains, effectifs et notices</summary>
           <p>{comparison.base}</p>
           <ul class="comparison-sources">
@@ -222,8 +222,8 @@ const history = report.backtest;
     background: var(--panel-gradient);
   }
   .scenario-comparison header {
-    padding: 1rem;
-    background: linear-gradient(125deg, #142f40, #215862);
+    padding: 1rem 1.8rem 1rem 1rem;
+    background: linear-gradient(125deg, #192d38, #29494f);
     color: #f6fbfb;
   }
   .scenario-comparison h2 {
@@ -262,13 +262,11 @@ const history = report.backtest;
     stroke-width: 1.5px;
   }
   .scenario-comparison details {
-    padding: 0.5rem 1rem 1rem;
-  }
-  .scenario-comparison summary {
-    cursor: pointer;
+    margin: 0.7rem 1rem 1rem;
+    background: var(--paper);
   }
   .comparison-sources {
-    padding: 0;
+    padding-inline: var(--reader-inset);
   }
   .comparison-sources li + li {
     margin-top: 0.65rem;

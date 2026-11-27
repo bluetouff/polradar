@@ -1,0 +1,117 @@
+---
+import Icon from './Icon.astro';
+import PollPublicationDocuments from './PollPublicationDocuments.astro';
+import { type DocumentedPoll, formatDate, sourceById } from '../lib/data';
+import { pollNoticeLabel } from '../lib/features.mjs';
+import { pollMethodFacts, pollUncertainty } from '../lib/poll-method';
+
+interface Props {
+  poll: DocumentedPoll;
+}
+const { poll } = Astro.props;
+const question = poll.question?.status === 'verifiee' ? poll.question : null;
+const documents = poll.publicationDocuments;
+---
+
+<section
+  id="poll-method"
+  class="poll-method poll-file section-space"
+  aria-labelledby="poll-method-title"
+>
+  <header class="poll-file-heading editorial-corner">
+    <span class="poll-file-icon" aria-hidden="true">
+      <Icon name="source" />
+    </span>
+    <h2 id="poll-method-title">Enquête et méthode</h2>
+    <a
+      class="poll-file-notice"
+      data-poll-notice
+      href={sourceById(poll.noticeSource).url + '#page=' + poll.noticePage}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span>
+        {pollNoticeLabel(poll)}, page {poll.noticePage} ↗
+      </span>
+    </a>
+  </header>
+  <div class="poll-file-body">
+    <div class="poll-file-main">
+      <div class="poll-file-question">
+        <h3>Question posée</h3>
+        <div data-poll-question hidden={!question}>
+          <blockquote>{question?.wording}</blockquote>
+          <p data-poll-base>{question?.base}</p>
+          <p class="poll-file-reference">
+            <a
+              data-poll-question-link
+              href={
+                question
+                  ? sourceById(question.sourceId).url + '#page=' + question.page
+                  : undefined
+              }
+            >
+              {question && `Questionnaire, p. ${question.page}`}
+            </a>
+            <span data-poll-checked>
+              {question && `Vérifié le ${formatDate(question.checked)}.`}
+            </span>
+          </p>
+          <p data-poll-equivalence hidden={!question?.equivalence}>
+            {question?.equivalence?.reason}
+          </p>
+        </div>
+        <p data-poll-unverified hidden={Boolean(question)}>
+          Libellé original à vérifier. Cette observation reste affichée seule.
+        </p>
+      </div>
+      <dl class="poll-method-grid">
+        {pollMethodFacts(poll, formatDate).map(
+          ({ label, value, link, wide }) => (
+            <div class:list={{ 'poll-fact-wide': wide }}>
+              <dt>{label}</dt>
+              <dd>
+                {value}
+                {link && (
+                  <>
+                    {' '}
+                    <a href={link.href} rel="noreferrer">
+                      {link.label}
+                    </a>
+                  </>
+                )}
+              </dd>
+            </div>
+          ),
+        )}
+      </dl>
+      <p class="poll-file-uncertainty" data-poll-uncertainty>
+        {pollUncertainty(poll)}
+      </p>
+    </div>
+    <div
+      class="poll-file-sources"
+      hidden={!documents.length && !poll.resultSource}
+    >
+      <div data-poll-documents hidden={!documents.length}>
+        <h3>Publications retrouvées</h3>
+        <PollPublicationDocuments documents={documents} />
+      </div>
+      <a
+        class="poll-file-report"
+        data-poll-report
+        hidden={!poll.resultSource}
+        href={
+          poll.resultSource
+            ? sourceById(poll.resultSource).url + '#page=' + poll.resultPage
+            : undefined
+        }
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {poll.resultSource &&
+          `Résultats de l’institut, page ${poll.resultPage} ↗`}
+      </a>
+    </div>
+  </div>
+</section>

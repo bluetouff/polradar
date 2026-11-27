@@ -6,7 +6,7 @@ interface Props {
 const { documents } = Astro.props;
 ---
 
-<ul class="poll-document-links">
+<ul class="poll-document-links" role="list">
   {documents.map((doc) => (
     <li>
       <a href={doc.url} rel="noreferrer">

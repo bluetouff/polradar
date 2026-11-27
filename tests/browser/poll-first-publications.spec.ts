@@ -172,9 +172,19 @@ test('l’article de Sud Radio et son horodatage figurent dans le scénario, le 
   const withoutJs = await browser.newContext({ javaScriptEnabled: false });
   try {
     const staticPage = await withoutJs.newPage();
+    await staticPage.setViewportSize({ width: 320, height: 850 });
     await staticPage.goto(new URL('/sondages/', page.url()).href);
     const registry = staticPage.locator('#publications-enquetes');
-    await registry.locator('summary').click();
+    const summary = registry.locator('summary');
+    await summary.focus();
+    await staticPage.keyboard.press('Enter');
+    await expect(registry).toHaveAttribute('open', '');
+    await expect(
+      registry.getByRole('heading', { name: 'novembre 2026' }),
+    ).toBeVisible();
+    expect(
+      await staticPage.evaluate(() => document.documentElement.scrollWidth),
+    ).toBeLessThanOrEqual(320);
     const row = registry.locator('[data-survey="ifop-sud-radio-2026-11-02"]');
     await expect(
       row.getByRole('link', { name: 'Article · Sud Radio' }),

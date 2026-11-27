@@ -102,7 +102,7 @@ const current = catalogue.rows.filter(
           </p>
         )}
         {r.scenarios.length > 0 && (
-          <details>
+          <details class="reader-options">
             <summary>{r.scenarios.length} scénarios publiés</summary>
             <ul>
               {r.scenarios.map((s: { id: string; page: number }) => (
@@ -163,6 +163,7 @@ const current = catalogue.rows.filter(
     min-width: 0;
     padding: 1.1rem;
     border: 1px solid var(--panel-edge, #aec4cb);
+    border-inline-start: 2px solid var(--accent);
     background: var(--panel-gradient, #f6fafb);
     border-radius: 0.65rem;
     overflow-wrap: anywhere;
@@ -179,7 +180,10 @@ const current = catalogue.rows.filter(
     font-weight: 650;
     color: #205565;
   }
-  .notices summary {
-    cursor: pointer;
+  .notices details {
+    background: var(--paper);
+  }
+  .notices details ul {
+    padding-inline-end: 0.7rem;
   }
 </style>

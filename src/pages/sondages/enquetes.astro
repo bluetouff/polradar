@@ -49,7 +49,7 @@ const categories = [
         .filter((s) => s.category === category.id)
         .map((study) => (
           <article class="study" id={'notice-' + study.downloadId}>
-            <header>
+            <header class="editorial-corner">
               <p>
                 {study.institute} pour {study.commissioner}
               </p>
@@ -63,6 +63,7 @@ const categories = [
             <div class="study-grid">
               {study.tables.map((table, index) => (
                 <details
+                  class="reader-options"
                   open={
                     category.id === 'choix-de-vote' &&
                     (study.tables.length <= 3 || index === 0)
@@ -157,9 +158,10 @@ const categories = [
   }
   .study header {
     padding: clamp(0.8rem, 2vw, 1.25rem);
+    padding-inline-end: 1.9rem;
     border-radius: 0.55rem;
     color: #f3fafb;
-    background: linear-gradient(130deg, #142f40, #235961);
+    background: linear-gradient(130deg, #192d38, #29494f);
   }
   .study header p {
     margin: 0;
@@ -175,14 +177,8 @@ const categories = [
   }
   .study-grid details {
     min-width: 0;
-    border: 1px solid var(--line);
-    border-radius: 0.55rem;
-    background: #f9fbfb;
-  }
-  .study-grid summary {
-    cursor: pointer;
-    padding: 0.75rem;
-    font-weight: 650;
+    margin: 0;
+    background: var(--paper);
   }
   .study-table {
     padding: 0 0.75rem 0.85rem;

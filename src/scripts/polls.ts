@@ -1,4 +1,4 @@
-import { publicData, el, anchor, svg, number, date, download } from './ui';
+import { publicData, el, svg, number, date, download } from './ui';
 import {
   pollSeries,
   pollColor,
@@ -9,6 +9,7 @@ import {
   csvValue,
 } from '../lib/features.mjs';
 import type { DocumentedPoll } from '../lib/data';
+import { renderPollMethod } from './poll-method';
 const round = document.querySelector<HTMLSelectElement>('#poll-round')!,
   institute = document.querySelector<HTMLSelectElement>('#poll-institute')!,
   scenario = document.querySelector<HTMLSelectElement>('#poll-scenario')!,
@@ -212,7 +213,7 @@ async function start() {
     workspace.dataset.mode = hasHistory ? 'history' : 'snapshot';
     renderPlot();
     bars.replaceChildren();
-    method.replaceChildren();
+    method.hidden = !rows.length;
     embedLink.hidden = !rows.length;
     const quickSource =
       document.querySelector<HTMLAnchorElement>('#poll-quick-source')!;
@@ -285,136 +286,8 @@ async function start() {
       poll.noIntention === null
         ? 'Part sans intention exprimée : non renseignée.'
         : `Sans intention exprimée : ${number(poll.noIntention)} % ${poll.noIntentionNote || '(donnée distincte des pourcentages de candidats).'}`;
-    const heading = el('div', undefined, 'register-heading'),
-      source = data.sources.find((source) => source.id === poll.noticeSource)!,
-      link = anchor(
-        `${pollNoticeLabel(poll)}, page ${poll.noticePage} ↗`,
-        `${source.url}#page=${poll.noticePage}`,
-      );
-    quickSource.href = link.href;
+    quickSource.href = renderPollMethod(method, poll, data.sources);
     quickSource.textContent = pollNoticeLabel(poll) + ' ↗';
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    heading.append(el('h2', 'Enquête et méthode'), link);
-    const question = poll.question;
-    const questionBlock = el('p');
-    if (question?.status === 'verifiee') {
-      const document = data.sources.find((s) => s.id === question.sourceId)!;
-      questionBlock.append(
-        el('strong', 'Question posée'),
-        ' · « ' + question.wording + ' »',
-        el('br'),
-        question.base + ' ',
-        anchor(
-          'Questionnaire, p. ' + question.page,
-          document.url + '#page=' + question.page,
-        ),
-        ' · Vérifié le ' + date(question.checked) + '.',
-      );
-      if (question.equivalence)
-        questionBlock.append(' ' + question.equivalence.reason);
-    } else {
-      questionBlock.textContent =
-        'Libellé original à vérifier. Cette observation reste affichée seule.';
-    }
-    method.append(questionBlock);
-    const dl = el('dl', undefined, 'poll-method-grid');
-    const publication = poll.firstPublication ?? {
-      status: 'inconnue' as const,
-    };
-    const publicationLabel = 'Première diffusion';
-    const values = [
-      ['Institut / commanditaire', `${poll.institute} / ${poll.commissioner}`],
-      [
-        'Terrain',
-        `Du ${date(poll.fieldworkStart)} au ${date(poll.fieldworkEnd)}`,
-      ],
-      [
-        'Date de référence de l’enquête',
-        poll.published ? date(poll.published) : 'Publication non datée',
-      ],
-      [
-        publicationLabel,
-        publication.status === 'verifiee'
-          ? publication.media +
-            ' · ' +
-            date(publication.date) +
-            (publication.localTime ? ' à ' + publication.localTime : '')
-          : 'Média et date non établis.',
-      ],
-      [
-        'Échantillon global',
-        `${number(poll.sampleSize)} personnes, dont ${number(poll.registeredSample)} inscrits`,
-      ],
-      [
-        'Effectif utile exprimé',
-        poll.usefulSample === null
-          ? 'Non précisé pour cette question'
-          : number(poll.usefulSample),
-      ],
-      ['Collecte et population', `${poll.method} ${poll.population}`],
-    ];
-    for (const [label, value] of values) {
-      const row = el('div');
-      const detail = el('dd', value);
-      if (label === publicationLabel && publication.status === 'verifiee')
-        detail.append(
-          ' ',
-          anchor('Notice, p. ' + publication.page, publication.sourceUrl),
-        );
-      row.append(el('dt', label), detail);
-      dl.append(row);
-    }
-    if (poll.publicationDocuments?.length) {
-      const row = el('div');
-      const detail = el('dd');
-      const list = el('ul', undefined, 'poll-document-links');
-      for (const doc of poll.publicationDocuments) {
-        const item = el('li');
-        const reference = anchor(doc.label + ' · ' + doc.publisher, doc.url);
-        reference.rel = 'noreferrer';
-        const stamp = [
-          doc.date
-            ? date(doc.date) + (doc.localTime ? ' à ' + doc.localTime : '')
-            : '',
-          doc.page ? 'p. ' + doc.page : '',
-        ]
-          .filter(Boolean)
-          .join(' · ');
-        item.append(reference, el('span', stamp));
-        list.append(item);
-      }
-      detail.append(list);
-      row.append(el('dt', 'Publications retrouvées'), detail);
-      dl.append(row);
-    }
-    method.append(
-      heading,
-      dl,
-      el(
-        'p',
-        [
-          poll.uncertainty,
-          poll.margin.confidence === null
-            ? 'Niveau de confiance non précisé.'
-            : `Niveau de confiance indiqué : ${poll.margin.confidence} %.`,
-        ].join(' '),
-      ),
-    );
-    if (poll.resultSource) {
-      const resultSource = data.sources.find(
-        (source) => source.id === poll.resultSource,
-      )!;
-      const resultLink = anchor(
-        `Résultats de l’institut, page ${poll.resultPage} ↗`,
-        `${resultSource.url}#page=${poll.resultPage}`,
-      );
-      resultLink.target = '_blank';
-      resultLink.rel = 'noopener noreferrer';
-      const paragraph = el('p');
-      paragraph.append(resultLink);
-      method.append(paragraph);
-    }
     status.textContent = `${poll.institute} · ${poll.scenario} · ${date(poll.fieldworkEnd)}`;
     history.replaceState(null, '', `/sondages/#enquete=${poll.id}`);
   }
