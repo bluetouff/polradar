@@ -1,4 +1,49 @@
 import { expect, test } from '@playwright/test';
+
+test.describe('index des brèves sur mobile', () => {
+  test.use({ javaScriptEnabled: false, viewport: { width: 320, height: 800 } });
+
+  test('les dates et la pagination restent accessibles au clavier avec le texte agrandi', async ({
+    page,
+  }) => {
+    await page.goto('/breves/');
+    const editions = page.getByRole('navigation', {
+      name: 'Éditions par date',
+    });
+    const recent = editions.getByRole('link').first();
+    const date = await recent.locator('time').getAttribute('datetime');
+    expect(date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    await expect(recent).toHaveAttribute('href', `/breves/edition/${date}/`);
+    expect((await recent.boundingBox())?.height).toBeGreaterThanOrEqual(44);
+
+    await page.evaluate(async () => {
+      document.documentElement.style.setProperty(
+        'font-size',
+        '200%',
+        'important',
+      );
+      await document.fonts.ready;
+    });
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth),
+    ).toBeLessThanOrEqual(320);
+    await recent.focus();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('h1 time')).toHaveAttribute('datetime', date!);
+
+    await page.goBack();
+    const first = await page.locator('.brief-list strong').first().innerText();
+    await page.getByRole('link', { name: 'Page suivante' }).click();
+    await expect(page).toHaveURL(/\/breves\/page\/2\/#resultats$/);
+    await expect(page.locator('.brief-list strong').first()).not.toHaveText(
+      first,
+    );
+    await page.getByRole('link', { name: 'Éditions par date' }).click();
+    await expect(page).toHaveURL(/\/breves\/#editions$/);
+    await expect(recent).toBeVisible();
+  });
+});
+
 test('une reprise du 24 conserve sa date de publication et la date de sa source', async ({
   page,
 }) => {

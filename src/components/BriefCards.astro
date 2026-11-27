@@ -5,8 +5,9 @@ import Icon from './Icon.astro';
 interface Props {
   items: CampaignBrief[];
   lead?: boolean;
+  list?: boolean;
 }
-const { items, lead = false } = Astro.props;
+const { items, lead = false, list = false } = Astro.props;
 const labels: Record<string, string> = {
   candidature: 'Candidatures',
   programme: 'Programmes',
@@ -26,7 +27,10 @@ const icons: Record<string, string> = {
 ---
 
 <ul
-  class:list={['brief-cards', { 'brief-led': lead && items.length === 3 }]}
+  class:list={[
+    'brief-cards',
+    { 'brief-led': !list && lead && items.length === 3, 'brief-list': list },
+  ]}
   role="list"
 >
   {items.map(({ article, event, href }) => (
@@ -122,7 +126,8 @@ const icons: Record<string, string> = {
     text-decoration: underline;
     text-underline-offset: 0.18em;
   }
-  .brief-led {
+  .brief-led,
+  .brief-list {
     grid-template-columns: minmax(0, 1fr);
     gap: 0;
     overflow: hidden;
@@ -130,18 +135,60 @@ const icons: Record<string, string> = {
     border-radius: var(--surface-radius);
     background: var(--sheet);
   }
-  .brief-led li + li {
+  :is(.brief-led, .brief-list) li + li {
     border-block-start: 1px solid var(--line);
   }
-  .brief-led li > a {
+  :is(.brief-led, .brief-list) li > a {
     border: 0;
     border-radius: 0;
     background: none;
     box-shadow: none;
     overflow-wrap: anywhere;
   }
-  .brief-led a:focus-visible {
+  :is(.brief-led, .brief-list) a:focus-visible {
     outline-offset: -3px;
+  }
+  .brief-list {
+    container-type: inline-size;
+  }
+  .brief-list li > a {
+    gap: 0.45rem clamp(0.65rem, 2vw, 1.15rem);
+  }
+  .brief-list a:is(:hover, :focus-visible) {
+    background: var(--light);
+  }
+  .brief-list strong {
+    font-family: var(--serif);
+    font-size: clamp(1.18rem, 1.08rem + 0.45vw, 1.5rem);
+    font-weight: 400;
+    line-height: 1.18;
+    text-wrap: pretty;
+  }
+  .brief-list .brief-meta :global(.icon) {
+    flex: none;
+  }
+  @container (min-width: 37rem) {
+    .brief-list li > a {
+      grid-template-columns: 9rem minmax(0, 1fr) auto;
+    }
+    .brief-list .brief-meta {
+      grid-area: 1 / 1 / 3;
+      flex-direction: column;
+      align-items: start;
+      justify-content: start;
+      border-inline-end: 1px solid var(--line);
+      padding-inline-end: 0.6rem;
+    }
+    .brief-list strong {
+      grid-area: 1 / 2;
+    }
+    .brief-list .brief-summary {
+      grid-area: 2 / 2;
+      max-inline-size: 72ch;
+    }
+    .brief-list :global(.brief-arrow) {
+      grid-area: 1 / 3;
+    }
   }
   .brief-led li:first-child a {
     align-content: center;

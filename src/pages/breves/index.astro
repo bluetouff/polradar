@@ -14,7 +14,9 @@ interface Props {
 const { page = 1 } = Astro.props;
 const briefs = await campaignBriefs();
 const range = pageRange(briefs.length, page);
-const editions = page === 1 ? (await briefEditions()).slice(0, 7) : [];
+const editions = page === 1 ? await briefEditions() : [];
+const recentEditions = editions.slice(0, 7);
+const olderEditions = editions.slice(recentEditions.length);
 ---
 
 <Base
@@ -24,10 +26,7 @@ const editions = page === 1 ? (await briefEditions()).slice(0, 7) : [];
   section="/breves/"
   description="Les annonces de candidature, les programmes et les décisions des partis pour la présidentielle de 2027."
 >
-  <header class="page-title feature-title">
-    <span class="feature-emblem">
-      <Icon name="source" />
-    </span>
+  <header class="brief-index-header editorial-heading editorial-corner">
     <div>
       <h1>Brèves de campagne</h1>
       <p>
@@ -35,52 +34,227 @@ const editions = page === 1 ? (await briefEditions()).slice(0, 7) : [];
         déclarations d’origine.
       </p>
     </div>
-    <a class="inline-action" href="/breves/rss.xml">
-      <Icon name="rss" /> Flux RSS
-    </a>
-  </header>
-  {page === 1 && (
-    <p>
-      <a href="/debats/">Débats et entretiens documentés ↗</a>
-    </p>
-  )}
-  {editions.length > 0 && (
-    <nav class="brief-days" aria-label="Éditions quotidiennes">
-      <h2>Par jour</h2>
-      {editions.map((e) => (
-        <a href={'/breves/edition/' + e.day + '/'}>
-          <time datetime={e.day}>{formatDate(e.day)}</time>
+    <div class="brief-index-links">
+      {page === 1 ? (
+        <a href="/debats/">
+          <Icon name="arrow" /> Débats et entretiens documentés
         </a>
-      ))}
-    </nav>
-  )}
-  <div id="resultats" tabindex="-1">
-    <BriefCards items={briefs.slice(range.start, range.end)} />
-    {range.pages > 1 && <Pager range={range} base="/breves/" />}
+      ) : (
+        <a href="/breves/#editions">
+          <Icon name="clock" /> Éditions par date
+        </a>
+      )}
+      <a href="/breves/rss.xml">
+        <Icon name="rss" /> Flux RSS
+      </a>
+    </div>
+  </header>
+  <div
+    class:list={['brief-index-layout', { 'has-editions': editions.length > 0 }]}
+  >
+    {recentEditions.length > 0 && (
+      <nav class="brief-days" id="editions" aria-labelledby="brief-days-title">
+        <h2 id="brief-days-title" class="reading-meta">
+          Éditions par date
+        </h2>
+        <ul class="brief-day-grid" role="list">
+          {recentEditions.map(({ day }) => {
+            const [date, ...monthAndYear] = formatDate(day).split(' ');
+            return (
+              <li>
+                <a href={'/breves/edition/' + day + '/'}>
+                  <time datetime={day}>
+                    <strong>{date}</strong>{' '}
+                    <span>{monthAndYear.join(' ')}</span>
+                  </time>
+                  <Icon name="arrow" />
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+        {olderEditions.length > 0 && (
+          <details class="brief-earlier-days">
+            <summary>Éditions précédentes</summary>
+            <ul class="brief-day-grid" role="list">
+              {olderEditions.map(({ day }) => (
+                <li>
+                  <a href={'/breves/edition/' + day + '/'}>
+                    <time datetime={day}>{formatDate(day)}</time>
+                    <Icon name="arrow" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </details>
+        )}
+      </nav>
+    )}
+    <div id="resultats" tabindex="-1">
+      <BriefCards items={briefs.slice(range.start, range.end)} list />
+      {range.pages > 1 && <Pager range={range} base="/breves/" />}
+    </div>
   </div>
 </Base>
 <style>
-  .brief-days {
+  .brief-index-header {
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
-    gap: 0.45rem 0.7rem;
-    padding-block: 1rem;
-    margin-bottom: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.55rem 1.5rem;
+    margin-block-end: clamp(1rem, 2.5vw, 1.6rem);
+    padding: clamp(0.95rem, 2.5vw, 1.8rem);
+    border: 1px solid #315c68;
+    border-radius: var(--surface-radius);
+    background: linear-gradient(113deg, #112936, #16444d);
+    color: #f0fafb;
+    overflow-wrap: anywhere;
   }
-  .brief-days h2 {
-    font-size: 1rem;
-    margin: 0 0.3rem 0 0;
+  .brief-index-header > div {
+    min-inline-size: 0;
   }
-  .brief-days a {
+  .brief-index-header h1 {
+    font-size: clamp(1.5rem, 2.2vw, 1.75rem);
+  }
+  .brief-index-header p {
+    max-inline-size: 63ch;
+    margin-block-start: 0.4rem;
+    color: #d5e8ec;
+    font-size: 0.95rem;
+  }
+  .brief-index-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 1rem;
+  }
+  .brief-index-links a {
     display: inline-flex;
     align-items: center;
-    min-height: 2.6rem;
-    padding: 0.45rem 0.7rem;
+    gap: 0.4rem;
+    min-block-size: var(--target-size);
+    max-inline-size: 100%;
+    color: #f0fafb;
+    font-size: 0.86rem;
+  }
+  .brief-index-links :global(.icon) {
+    color: #addfd9;
+  }
+  .brief-index-links a:hover {
+    color: #addfd9;
+  }
+  .brief-index-links a:focus-visible {
+    outline-color: #addfd9;
+  }
+  .brief-index-layout {
+    display: grid;
+    gap: clamp(1rem, 2.5vw, 1.6rem);
+    align-items: start;
+  }
+  .brief-index-layout > * {
+    min-inline-size: 0;
+  }
+  #resultats > :global(.catalog-pager .pager-links) {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.3rem;
+  }
+  .brief-days {
+    padding: clamp(0.75rem, 2vw, 1rem);
     border: 1px solid var(--line);
-    border-radius: 0.5rem;
-    background: var(--panel-gradient);
+    border-radius: var(--surface-radius);
+    background: var(--light);
+    overflow-wrap: anywhere;
+  }
+  .brief-days h2 {
+    font-size: 1.12rem;
+    margin-block-end: 0.65rem;
+  }
+  .brief-day-grid {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, max(7.25rem, 30%)), 1fr)
+    );
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: 1px solid var(--line);
+    border-radius: var(--surface-radius);
+    background: var(--line);
+    overflow: hidden;
+  }
+  .brief-days a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.4rem;
+    block-size: 100%;
+    min-block-size: var(--target-size);
+    padding: 0.45rem 0.6rem;
+    background: var(--sheet);
     color: var(--ink);
+    text-decoration: none;
     text-underline-offset: 0.18em;
+  }
+  .brief-days a:is(:hover, :focus-visible) {
+    background: #daebe6;
+    text-decoration: underline;
+  }
+  .brief-days a:focus-visible {
+    outline-offset: -3px;
+  }
+  .brief-days time {
+    display: block;
+    font-size: 0.79rem;
+    line-height: 1.25;
+  }
+  .brief-days time strong {
+    display: block;
+    color: var(--accent);
+    font-size: 1.15rem;
+    font-weight: 620;
+    font-variant-numeric: tabular-nums;
+  }
+  .brief-index-links :global(.icon),
+  .brief-days :global(.icon) {
+    inline-size: 0.95rem;
+    block-size: 0.95rem;
+    flex: none;
+  }
+  .brief-days :global(.icon) {
+    color: var(--accent);
+  }
+  .brief-earlier-days summary {
+    align-content: center;
+    min-block-size: var(--target-size);
+    font-weight: 600;
+    font-size: 0.86rem;
+  }
+  @media (min-width: 60em) {
+    .has-editions {
+      grid-template-columns: minmax(12.5rem, 15rem) minmax(0, 1fr);
+    }
+    .brief-day-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .brief-days time strong {
+      display: inline;
+      margin-inline-end: 0.2rem;
+    }
+  }
+  @media print {
+    .brief-index-header {
+      background: white;
+      color: black;
+    }
+    .brief-index-header p {
+      color: inherit;
+    }
+    .brief-index-links {
+      display: none;
+    }
   }
 </style>
