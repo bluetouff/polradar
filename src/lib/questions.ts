@@ -503,6 +503,19 @@ const labels: Record<string, string> = {
 };
 const additions = [
   {
+    id: 'climat-restrictions-publicite',
+    theme: 'climat',
+    title:
+      'Quelles restrictions imposer à la publicité pour des raisons écologiques ?',
+    terms:
+      'publicité restrictions interdictions produits polluants climat environnement',
+    versions: [
+      'batho-interdire-publicite-produits-nocifs-v1',
+      'melenchon-interdire-publicite-produits-forts-emetteurs-v1',
+      'mikolajczak-taxer-a-5-la-publicite-pour-certains-produits-polluants-v1',
+    ],
+  },
+  {
     id: 'institutions-duree-mandat-presidentiel',
     theme: 'institutions',
     title: 'Combien de temps devrait durer le mandat présidentiel ?',
@@ -1536,6 +1549,10 @@ const additionalAnswers: Record<string, string[]> = {
   ],
 };
 const scopedComplements: Record<string, Record<string, string>> = {
+  'climat-restrictions-publicite': {
+    'billetdoux-interdire-taxer-certaines-pratiques-publicites-v2':
+      'Augustin Billetdoux évoque l’interdiction de certaines publicités. Il ne précise pas celles qui seraient visées.',
+  },
   'social-garde-jeunes-enfants': {
     'melenchon-revaloriser-salaires-personnels-creches-v1':
       'Jean-Luc Mélenchon propose de mieux rémunérer le personnel pour pouvoir recruter et ouvrir des places.',
@@ -1874,6 +1891,11 @@ const searchTerms: Record<string, string> = {
 };
 // These subject phrases identify a precise question. Search terms can be broader.
 export const questionAnswerAliases: Record<string, string[]> = {
+  'climat-restrictions-publicite': [
+    'publicité et écologie',
+    'interdiction de certaines publicités',
+    'interdire certaines publicités',
+  ],
   'institutions-duree-mandat-presidentiel': [
     'septennat',
     'durée du mandat présidentiel',
