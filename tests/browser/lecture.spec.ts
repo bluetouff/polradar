@@ -43,6 +43,37 @@ test('le menu laisse la place aux libellés agrandis', async ({ page }) => {
   }
 });
 
+test('les en-têtes éditoriaux et le comparateur se replient avec le texte agrandi', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 800 });
+  const views = [
+    ['/comparer/', '.compare-hero, .compare-builder, .compare-person'],
+    ['/candidats/philippe/', '.candidate-hero, .profile-figures'],
+    ['/breves/edition/2026-11-26/', '.edition-header, .day-facts'],
+  ];
+  for (const [path, sections] of views) {
+    await page.goto(path);
+    if (path === '/comparer/') {
+      await expect(page.locator('.compare-builder')).toBeVisible();
+    }
+    await page.evaluate(async () => {
+      document.documentElement.style.setProperty(
+        'font-size',
+        '200%',
+        'important',
+      );
+      await document.fonts.ready;
+    });
+    const overflow = await page
+      .locator(sections)
+      .evaluateAll((items) =>
+        items.some((item) => item.scrollWidth > item.clientWidth + 1),
+      );
+    expect(overflow, path).toBe(false);
+  }
+});
+
 test('les nouveaux décryptages relient le graphique aux données et aux textes', async ({
   page,
 }) => {

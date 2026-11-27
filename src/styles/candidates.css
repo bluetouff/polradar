@@ -352,7 +352,10 @@
   color: #395867;
   margin: 0 var(--inset);
 }
-main > header.candidate-hero {
+.candidate-cover {
+  container: candidate-cover / inline-size;
+}
+.candidate-cover > .candidate-hero {
   display: grid;
   grid-template-columns: clamp(7.5rem, 15vw, 12rem) minmax(0, 1fr) minmax(
       10rem,
@@ -361,18 +364,23 @@ main > header.candidate-hero {
   grid-template-areas: 'photo identity figures' 'photo intro figures';
   align-items: center;
   gap: 0.9rem clamp(1rem, 2.5vw, 2.35rem);
+  margin-block: 0 clamp(1rem, 2vw, 1.7rem);
   padding: clamp(1rem, 2.25vw, 2rem);
   background: var(--sheet);
   color: var(--ink);
-  border-color: var(--line);
+  border: 1px solid var(--line);
   box-shadow: none;
-  border-top: 3px solid var(--accent);
+  border-radius: var(--surface-radius);
+  border-block-start-color: var(--accent);
+  overflow-wrap: anywhere;
 }
 .candidate-hero figure {
   grid-area: photo;
   min-width: 0;
 }
 .profile-portrait {
+  --corner-inset: 0.35rem;
+  --corner-size: 0.8rem;
   aspect-ratio: 4/4.6;
   border-radius: 0.55rem;
   border: 1px solid #7c9aa5;
@@ -475,13 +483,26 @@ main > header.candidate-hero {
   margin: 0;
   padding: 0 0 0 clamp(0.85rem, 1.9vw, 1.5rem);
   border-inline-start: 1px solid var(--line);
-  gap: 0.75rem;
+  gap: 0.6rem;
 }
 .profile-figures > div {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(3.2rem, auto) 1fr;
+  grid-template-columns: minmax(3.2rem, auto) minmax(0, 1fr);
   align-items: baseline;
   gap: 0.7rem;
+  border-block-start: 1px solid var(--line);
+  padding-block-start: 0.45rem;
+}
+.profile-figures > div::before {
+  content: '';
+  position: absolute;
+  inset-block-start: -0.18rem;
+  inset-inline-start: 0.09rem;
+  inline-size: 0.3rem;
+  block-size: 0.3rem;
+  background: var(--accent);
+  transform: rotate(45deg);
 }
 .profile-figures dt {
   grid-column: 2;
@@ -710,26 +731,20 @@ main > header.candidate-hero {
   }
 }
 @media (max-width: 900px) {
-  main > header.candidate-hero {
+  .candidate-cover > .candidate-hero {
     grid-template-columns: clamp(7.5rem, 22vw, 11rem) minmax(0, 1fr);
     grid-template-areas: 'photo identity' 'photo intro' 'figures figures';
   }
   .profile-figures {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 4.75rem), 1fr));
     border: 0;
-    border-top: 1px solid var(--line);
-    padding: 0.75rem 0 0;
+    padding: 0.3rem 0 0;
   }
   .profile-figures > div {
     display: flex;
     flex-direction: column-reverse;
     gap: 0.25rem;
     justify-content: flex-end;
-  }
-  .profile-figures > div + div {
-    border-left: 1px solid var(--line);
-    padding-left: 0.7rem;
   }
   .profile-layout {
     grid-template-columns: minmax(0, 1fr);
@@ -792,7 +807,7 @@ main > header.candidate-hero {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.65rem;
   }
-  main > header.candidate-hero {
+  .candidate-cover > .candidate-hero {
     grid-template-columns: clamp(5.25rem, 23vw, 8rem) minmax(0, 1fr);
     grid-template-areas: 'photo identity' 'intro intro' 'figures figures';
     gap: 0.8rem;
@@ -821,8 +836,17 @@ main > header.candidate-hero {
     height: 65px;
   }
 }
+@container candidate-cover (max-width: 17rem) {
+  .candidate-cover > .candidate-hero {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'photo' 'identity' 'intro' 'figures';
+  }
+  .candidate-hero figure {
+    max-inline-size: min(6rem, 50%);
+  }
+}
 @media print {
-  main > header.candidate-hero {
+  .candidate-cover > .candidate-hero {
     display: block;
     background: white;
     color: black;

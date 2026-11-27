@@ -79,78 +79,80 @@ const candidateQuestions = questions.filter(
     <span>/</span>
     <span>{candidate.name}</span>
   </div>
-  <header class="candidate-hero">
-    <figure>
-      <div class="profile-portrait">
-        <CandidatePortrait candidate={candidate} eager />
-      </div>
-      {portrait ? (
-        <figcaption>
-          <a href={`/credits-photos/#${candidate.id}`}>
-            Photo {portrait.credit.year} · crédits ↗
-          </a>
-        </figcaption>
-      ) : (
-        externalPortrait && (
+  <div class="candidate-cover">
+    <header class="candidate-hero editorial-heading">
+      <figure>
+        <div class="profile-portrait editorial-corner">
+          <CandidatePortrait candidate={candidate} eager />
+        </div>
+        {portrait ? (
           <figcaption>
-            <a href={externalPortrait.url} rel="noreferrer">
-              {externalPortrait.label} ↗
+            <a href={`/credits-photos/#${candidate.id}`}>
+              Photo {portrait.credit.year} · crédits ↗
             </a>
           </figcaption>
-        )
-      )}
-    </figure>
-    <div class="profile-identity">
-      <p class="profile-party">{candidate.party}</p>
-      <h1>{candidate.name}</h1>
-      <p class="profile-status">{candidate.status}</p>
-      <p class="profile-checked">
-        <a href="#source-du-statut">
-          Statut vérifié le{' '}
-          <time datetime={statusSource.checked}>
-            {formatDate(statusSource.checked)}
-          </time>
-        </a>
-      </p>
-    </div>
-    <div class="profile-intro">
-      <p class="candidate-summary">{candidate.note}</p>
-      <div class="feature-actions">
-        <a
-          class="button primary"
-          aria-label={`Comparer les propositions de ${candidate.name}`}
-          href={`/comparer/?c=${candidate.id}&theme=retraites`}
-        >
-          <Icon name="exchange" />
-          <span>Comparer</span>
-        </a>
-        <FollowButton
-          kind="candidate"
-          id={candidate.id}
-          name={candidate.name}
-        />
+        ) : (
+          externalPortrait && (
+            <figcaption>
+              <a href={externalPortrait.url} rel="noreferrer">
+                {externalPortrait.label} ↗
+              </a>
+            </figcaption>
+          )
+        )}
+      </figure>
+      <div class="profile-identity">
+        <p class="profile-party reading-meta">{candidate.party}</p>
+        <h1>{candidate.name}</h1>
+        <p class="profile-status">{candidate.status}</p>
+        <p class="profile-checked">
+          <a href="#source-du-statut">
+            Statut vérifié le{' '}
+            <time datetime={statusSource.checked}>
+              {formatDate(statusSource.checked)}
+            </time>
+          </a>
+        </p>
       </div>
-    </div>
-    <dl class="profile-figures" aria-label="Contenu du dossier">
-      <div>
-        <dt>
-          <a href="#mesures-du-candidat">Fiches hors archives</a>
-        </dt>
-        <dd>{current.length}</dd>
+      <div class="profile-intro">
+        <p class="candidate-summary">{candidate.note}</p>
+        <div class="feature-actions">
+          <a
+            class="button primary"
+            aria-label={`Comparer les propositions de ${candidate.name}`}
+            href={`/comparer/?c=${candidate.id}&theme=retraites`}
+          >
+            <Icon name="exchange" />
+            <span>Comparer</span>
+          </a>
+          <FollowButton
+            kind="candidate"
+            id={candidate.id}
+            name={candidate.name}
+          />
+        </div>
       </div>
-      <div>
-        <dt>Thèmes renseignés</dt>
-        <dd>
-          {documented.length}
-          <small> / {themes.length}</small>
-        </dd>
-      </div>
-      <div>
-        <dt>Archives de 2022</dt>
-        <dd>{archives.length}</dd>
-      </div>
-    </dl>
-  </header>
+      <dl class="profile-figures" aria-label="Contenu du dossier">
+        <div>
+          <dt>
+            <a href="#mesures-du-candidat">Fiches hors archives</a>
+          </dt>
+          <dd>{current.length}</dd>
+        </div>
+        <div>
+          <dt>Thèmes renseignés</dt>
+          <dd>
+            {documented.length}
+            <small> / {themes.length}</small>
+          </dd>
+        </div>
+        <div>
+          <dt>Archives de 2022</dt>
+          <dd>{archives.length}</dd>
+        </div>
+      </dl>
+    </header>
+  </div>
   <nav class="profile-jumps" aria-label="Dans ce dossier">
     <a href="#mesures-du-candidat">Mesures et orientations</a>
     {programmeReviews.length > 0 && (

@@ -171,13 +171,7 @@
   .publication-footer :focus-visible {
     outline-color: var(--ice);
   }
-  main
-    > :is(
-      .page-title,
-      .registry-heading,
-      .divergence-heading,
-      .candidate-hero
-    ) {
+  main > :is(.page-title, .registry-heading, .divergence-heading) {
     margin-block: 0 clamp(1rem, 2vw, 1.7rem);
     padding: clamp(1rem, 2vw, 1.7rem);
     border: 1px solid #a9bfc7;

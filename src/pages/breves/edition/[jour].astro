@@ -1,6 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import BriefCards from '../../../components/BriefCards.astro';
+import Icon from '../../../components/Icon.astro';
 import { briefEditions } from '../../../lib/brief-editions';
 import {
   editorialIssueLabels,
@@ -47,21 +48,34 @@ const collections = [
   <nav class="breadcrumbs" aria-label="Fil d’Ariane">
     <a href="/breves/">Toutes les brèves</a>
   </nav>
-  <header class="page-title">
-    <h1>{title}</h1>
-    <p>Informations publiées ou ajoutées le {formatDate(edition.day)}.</p>
-    <a href="/breves/rss.xml">Suivre les brèves par RSS</a> ·{' '}
-    <a href="/suivi/">Mon suivi</a>
+  <header class="edition-header editorial-heading editorial-corner">
+    <h1>
+      Le point de campagne du{' '}
+      <time datetime={edition.day}>{formatDate(edition.day)}</time>
+    </h1>
+    <nav class="edition-actions" aria-label="Suivre les brèves">
+      <a href="/breves/rss.xml">
+        <Icon name="rss" /> Suivre les brèves par RSS
+      </a>
+      <a href="/suivi/">
+        <Icon name="suivi" /> Mon suivi
+      </a>
+    </nav>
   </header>
-  {edition.briefs.length > 0 ? (
-    <BriefCards items={edition.briefs} lead />
-  ) : (
-    <p>Aucune nouvelle brève confirmée dans cette édition.</p>
-  )}
+  <section class="edition-briefs" aria-labelledby="edition-briefs-title">
+    <h2 id="edition-briefs-title" class="reading-meta">
+      Brèves de campagne
+    </h2>
+    {edition.briefs.length > 0 ? (
+      <BriefCards items={edition.briefs} lead />
+    ) : (
+      <p>Aucune nouvelle brève confirmée dans cette édition.</p>
+    )}
+  </section>
   {edition.documents.length > 0 && (
     <section class="day-facts" id="programmes">
-      <h2>Documents de programme publiés</h2>
-      <ul>
+      <h2 class="reading-meta">Documents de programme publiés</h2>
+      <ul role="list">
         {edition.documents.map((doc) => (
           <li>
             <a href={doc.url} rel="noreferrer">
@@ -76,8 +90,8 @@ const collections = [
     .filter(({ rows }) => rows.length)
     .map(({ id, title, rows }) => (
       <section class="day-facts" id={id}>
-        <h2>{title}</h2>
-        <ul>
+        <h2 class="reading-meta">{title}</h2>
+        <ul role="list">
           {rows.slice(0, 5).map((measure) => (
             <li>
               <a href={measure.href}>{measure.title}</a>{' '}
@@ -99,8 +113,8 @@ const collections = [
     ))}
   {(edition.surveys.length > 0 || edition.meetings.length > 0) && (
     <section class="day-facts" id="sondages-agenda">
-      <h2>Sondages et agenda du jour</h2>
-      <ul>
+      <h2 class="reading-meta">Sondages et agenda du jour</h2>
+      <ul role="list">
         {edition.surveys.map((p) => (
           <li>
             <strong>Enquête publiée · {p.institute}</strong>{' '}
@@ -122,8 +136,8 @@ const collections = [
   )}
   {edition.deadlines.length > 0 && (
     <section class="day-facts" id="echeances">
-      <h2>Prochaines dates du scrutin</h2>
-      <ul>
+      <h2 class="reading-meta">Prochaines dates du scrutin</h2>
+      <ul role="list">
         {edition.deadlines.map((event) => (
           <li>
             <time datetime={event.date}>{formatDate(event.date)}</time> ·{' '}
@@ -138,7 +152,9 @@ const collections = [
   )}
   {edition.passages.length > 0 && (
     <section class="day-facts" aria-labelledby="edition-checks">
-      <h2 id="edition-checks">Vérification des sources</h2>
+      <h2 id="edition-checks" class="reading-meta">
+        Vérification des sources
+      </h2>
       {edition.passages.length > 1 && edition.access.checked > 0 && (
         <p>
           {edition.access.checked} sources distinctes contrôlées, dont{' '}
@@ -259,15 +275,102 @@ const collections = [
   )}
 </Base>
 <style>
+  .edition-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.65rem 1.5rem;
+    margin-block-end: clamp(1.15rem, 2.5vw, 1.9rem);
+    padding: clamp(0.95rem, 2.5vw, 1.8rem);
+    border: 1px solid #315c68;
+    border-radius: var(--surface-radius);
+    background: linear-gradient(113deg, #112936, #16444d);
+    color: #f0fafb;
+    overflow-wrap: anywhere;
+  }
+  .edition-header h1 {
+    min-width: 0;
+    padding-inline-end: 0.45rem;
+    font-size: clamp(1.5rem, 2.2vw, 1.75rem);
+    text-wrap: pretty;
+  }
+  .edition-header time {
+    color: #addfd9;
+  }
+  .edition-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1.15rem;
+    min-width: 0;
+  }
+  .edition-actions a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    min-height: var(--target-size);
+    color: #f0fafb;
+    font-size: 0.86rem;
+  }
+  .edition-actions a :global(.icon) {
+    flex: none;
+    width: 1rem;
+    height: 1rem;
+    color: #addfd9;
+  }
+  .edition-actions a:focus-visible {
+    outline-color: #addfd9;
+  }
+  .edition-briefs h2 {
+    margin-block-end: 0.65rem;
+    font-size: 1.3rem;
+  }
+  .edition-briefs > p,
   .day-facts {
     margin-block: 1.4rem;
-    border-top: 1px solid var(--line);
-    padding-block: 1rem;
+    padding: clamp(0.85rem, 2vw, 1.35rem);
+    border: 1px solid var(--line);
+    border-radius: var(--surface-radius);
+    background: var(--light);
+    overflow-wrap: anywhere;
+  }
+  .edition-briefs > p {
+    margin-block-start: 0;
+  }
+  .edition-briefs :global(.brief-cards:not(.brief-led)) {
+    gap: 1px;
+    border: 1px solid var(--line);
+    border-radius: var(--surface-radius);
+    background: var(--line);
+    overflow: hidden;
+  }
+  .edition-briefs :global(.brief-cards:not(.brief-led) li > a) {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: var(--sheet);
+    overflow-wrap: anywhere;
+  }
+  .edition-briefs :global(.brief-cards:not(.brief-led) a:focus-visible) {
+    outline-offset: -3px;
   }
   .day-facts h2 {
-    font-size: 1.14rem;
+    font-size: 1.16rem;
   }
-  .day-facts li {
+  .day-facts > ul {
+    margin-block: 0.65rem;
+    padding: 0;
+    list-style: none;
+  }
+  .day-facts > ul > li {
+    margin: 0;
+    padding-block: 0.55rem;
+    border-block-start: 1px solid var(--line);
+  }
+  .day-facts h2 + p {
+    margin-block-start: 0.65rem;
+  }
+  .edition-pass li {
     margin: 0.65rem 0;
   }
   .day-facts p,
@@ -288,7 +391,7 @@ const collections = [
     padding: 1rem;
     border: 1px solid var(--line);
     border-radius: 0.55rem;
-    background: var(--panel-gradient);
+    background: var(--sheet);
     overflow-wrap: anywhere;
   }
   .edition-pass h3 {
@@ -305,9 +408,23 @@ const collections = [
   .edition-pass summary {
     cursor: pointer;
     padding-block: 0.4rem;
+    min-block-size: var(--target-size);
   }
   .edition-pass > a {
     display: inline-block;
     margin-top: 0.55rem;
+  }
+  @media print {
+    .edition-header {
+      background: white;
+      color: black;
+      border-color: var(--line);
+    }
+    .edition-header time {
+      color: inherit;
+    }
+    .edition-actions {
+      display: none;
+    }
   }
 </style>

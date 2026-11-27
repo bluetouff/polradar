@@ -28,7 +28,7 @@ const positionsByQuestion = new Map(
   description="Comparez les propositions de deux à six candidats à la présidentielle 2027 par question ou par thème. Retrouvez les documents cités."
   section="/comparer/"
 >
-  <header class="compare-hero">
+  <header class="compare-hero editorial-heading editorial-corner">
     <div>
       <h1>Comparer les programmes</h1>
       <p>
@@ -331,7 +331,7 @@ const positionsByQuestion = new Map(
     align-items: center;
     justify-content: space-between;
     gap: 1rem 2rem;
-    padding: clamp(1.25rem, 3.6vw, 2.7rem);
+    padding: clamp(1rem, 2.5vw, 1.9rem);
     margin-bottom: 1.2rem;
     border: 1px solid #315c68;
     border-radius: 1.1rem;
@@ -339,10 +339,14 @@ const positionsByQuestion = new Map(
       radial-gradient(ellipse at 90% 120%, #408784a6, transparent 67%),
       linear-gradient(113deg, #112936 15%, #16444d);
     color: #f0fafb;
+    overflow-wrap: anywhere;
+  }
+  .compare-hero > div {
+    min-inline-size: 0;
   }
   .compare-hero h1 {
     margin: 0;
-    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    font-size: clamp(1.5rem, 2.2vw, 1.75rem);
   }
   .compare-hero p {
     max-width: 56ch;
@@ -354,6 +358,7 @@ const positionsByQuestion = new Map(
     gap: 0.65rem;
     align-items: center;
     min-height: var(--target-size);
+    max-inline-size: 100%;
     padding: 0.55rem 0.85rem;
     border: 1px solid #84a7ab;
     border-radius: 0.64rem;
@@ -369,13 +374,24 @@ const positionsByQuestion = new Map(
     text-underline-offset: 0.2em;
     outline-color: #f0fafb;
   }
-  .compare-hero-link :global(svg) {
+  .compare-hero-link :global(.icon) {
     flex: none;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .compare-hero-link :global(.icon:last-child) {
+      transition: transform 160ms ease-out;
+    }
+    .compare-hero-link:is(:hover, :focus-visible) :global(.icon:last-child) {
+      transform: translateX(0.2rem);
+    }
   }
   .compare-builder {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.78fr);
-    gap: 0.85rem;
+    border: 1px solid var(--line);
+    border-radius: var(--surface-radius);
+    background: var(--sheet);
+    overflow-wrap: anywhere;
   }
   .compare-builder[hidden] {
     display: none;
@@ -383,23 +399,27 @@ const positionsByQuestion = new Map(
   .compare-subject,
   .compare-people {
     min-width: 0;
-    border: 1px solid var(--line);
-    border-radius: 1rem;
     padding: clamp(0.95rem, 2vw, 1.35rem);
-    background: var(--sheet);
-    box-shadow: 0 2px 8px #16343d0e;
   }
   .compare-subject {
+    border-start-start-radius: inherit;
+    border-end-start-radius: inherit;
     background: linear-gradient(135deg, #edf6f3, #fdfdf9 80%);
+  }
+  .compare-people {
+    border-inline-start: 1px solid var(--line);
   }
   .compare-subject h2,
   .compare-candidates legend {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 0.55rem;
+    max-inline-size: 100%;
     margin: 0 0 1rem;
     padding: 0;
     font: 650 clamp(1rem, 2vw, 1.2rem) / 1.28 var(--sans);
+    overflow-wrap: anywhere;
   }
   .compare-panel-icon {
     display: grid;
@@ -408,11 +428,11 @@ const positionsByQuestion = new Map(
     height: 2.3rem;
     flex: none;
     border: 1px solid #a3c5c0;
-    border-radius: 0.65rem;
+    border-radius: 50%;
     background: #dbefea;
     color: #205457;
   }
-  .compare-panel-icon :global(svg) {
+  .compare-panel-icon :global(.icon) {
     width: 1.16rem;
     height: 1.16rem;
   }
@@ -470,11 +490,12 @@ const positionsByQuestion = new Map(
     min-width: 0;
     padding: 0.75rem;
     border: 1px solid #b6cac9;
-    border-radius: 0.72rem;
-    background: linear-gradient(145deg, #eaf3f1, #f7faf8);
+    border-radius: var(--surface-radius);
+    background: #edf6f3;
   }
   .compare-person:focus-within {
     border-color: #397a7c;
+    box-shadow: inset 0.16rem 0 #397a7c;
   }
   .compare-person-label,
   .compare-candidate-dialog-header {
@@ -626,7 +647,9 @@ const positionsByQuestion = new Map(
     background: linear-gradient(120deg, #dceeea, #f6f8f6);
   }
   .comparison-title h2 {
+    font-family: var(--serif);
     font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 400;
   }
   .comparison-title p:empty {
     display: none;
@@ -686,8 +709,14 @@ const positionsByQuestion = new Map(
     padding: 0.95rem 1rem;
     min-height: auto;
     border-radius: 0.86rem 0.86rem 0 0;
-    border-top: 3px solid #427c80;
+    border-top: 1px solid #427c80;
+    border-bottom: 1px solid var(--line);
     background: linear-gradient(130deg, #dcecea, #f0f5f3);
+  }
+  .comparison-grid :global(.comparison-card header h3) {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 400;
   }
   .comparison-grid :global(.comparison-card header p) {
     margin: 0 0 0.25rem;
@@ -778,6 +807,14 @@ const positionsByQuestion = new Map(
   @media (max-width: 860px) {
     .compare-builder {
       grid-template-columns: minmax(0, 1fr);
+    }
+    .compare-subject {
+      border-start-end-radius: inherit;
+      border-end-start-radius: 0;
+    }
+    .compare-people {
+      border-inline-start: 0;
+      border-block-start: 1px solid var(--line);
     }
   }
   @media (max-width: 560px) {

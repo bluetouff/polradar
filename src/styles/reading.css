@@ -89,11 +89,26 @@
     line-height: 1.5;
   }
   main > .article-title h1,
-  .brief-reading > header h1 {
+  .brief-reading > header h1,
+  .editorial-heading h1 {
     font-family: var(--serif);
     font-weight: 400;
     letter-spacing: -0.025em;
     line-height: 1.2;
+  }
+  .editorial-corner {
+    position: relative;
+  }
+  .editorial-corner::after {
+    content: '';
+    position: absolute;
+    inset-block-start: var(--corner-inset, 0.55rem);
+    inset-inline-end: var(--corner-inset, 0.55rem);
+    inline-size: var(--corner-size, 1rem);
+    block-size: var(--corner-size, 1rem);
+    border-block-start: 1px solid #addfd9;
+    border-inline-end: 1px solid #addfd9;
+    pointer-events: none;
   }
   .reading-meta {
     position: relative;
