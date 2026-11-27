@@ -5,6 +5,41 @@ import votes from '../../src/data/legislative-votes.json' with { type: 'json' };
 import evolution from '../../src/data/proposal-evolution.json' with { type: 'json' };
 import agenda from '../../src/data/campaign-agenda.json' with { type: 'json' };
 
+test('la brève et son export distinguent les dates de l’annonce, du rendez-vous et de publication', async ({
+  request,
+  page,
+}) => {
+  const id = 'veille-ff5018354e92a975326f';
+  const response = await request.get('/api/documentation/breves.json');
+  expect(response.ok()).toBeTruthy();
+  const { items } = await response.json();
+  expect(items.find((row: { id: string }) => row.id === id)).toMatchObject({
+    date: '2026-11-24',
+    dateDocumentaire: '2026-11-23',
+    typeDateDocumentaire: 'publication',
+    evenement: '2026-12-11',
+  });
+  expect(
+    items.find(
+      (row: { id: string }) =>
+        row.id === 'dupont-aignan-plan-agricole-novembre',
+    ),
+  ).toMatchObject({ dateDocumentaire: '2026-11-19', evenement: null });
+
+  await page.setViewportSize({ width: 320, height: 800 });
+  await page.goto(`/breves/${id}/`);
+  await expect(page.locator('article header time')).toHaveAttribute(
+    'datetime',
+    '2026-11-24',
+  );
+  await expect(
+    page.getByText(/Date annoncée de l’événement/).locator('time'),
+  ).toHaveAttribute('datetime', '2026-12-11');
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth),
+  ).toBeLessThanOrEqual(320);
+});
+
 test('le retrait quitte les candidatures en cours et conserve le dossier et la brève sans JavaScript', async ({
   browser,
 }) => {

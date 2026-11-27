@@ -258,7 +258,7 @@ const datasets = [
     unit: 'Une brève datée, reliée au fait d’origine.',
     provenance: 'Rédaction Polradar et publications citées pour chaque fait.',
     limits:
-      'La date de publication de la brève peut être postérieure à celle du fait.',
+      'La publication sur Polradar, la date documentaire et la date de l’événement sont distinctes. evenement vaut null si la date du fait n’est pas établie.',
     fields: ['items'],
   },
   {

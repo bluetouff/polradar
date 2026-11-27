@@ -59,7 +59,7 @@ MENTIONED_DATE = re.compile(
     r"(?P<day>\d{1,2}) (?P<month>" + "|".join(FRENCH_MONTHS) + r") (?P<year>\d{4}))\b"
 )
 OUTSIDE_COVERAGE = {
-    "non couverte", "hors couverture", "hors de la couverture du registre",
+    "non couverte", "hors couverture", "hors couverture du registre", "hors de la couverture du registre",
     "hors registre", "hors du registre", "hors perimetre",
     "hors du perimetre du registre", "hors perimetre du registre",
     "hors du perimetre couvert par le registre",
@@ -145,6 +145,13 @@ def load_cases():
         ref, = references
         case["outil"] = ref["outil"]
         case["sources"] = [*ref["sources"], *case.get("adresses", [])]
+        if (proofs := case.get("sources_par_fait")) is not None and (
+            len(proofs) != len(case["faits"]) or any(
+                not links or any(not address(link) or link not in case["sources"] for link in links)
+                for links in proofs
+            )
+        ):
+            raise ValueError(f"Sources par fait invalides pour {case['id']}.")
         reason = case.get("motif")
         if reason is not None and (
             case["etat"] != "indisponible" or len(case["faits"]) != 1
@@ -197,7 +204,7 @@ def supports(case, call):
     if not call["envelope"]:
         return False
     data = call["envelope"]["donnees"]
-    if "sources_par_fait" in case:
+    if "appels" not in case:
         observed = set(result_addresses(data))
         return any(cited_by_tool({address(source) for source in links}, observed, document_scope=True)
                    for links in case["sources_par_fait"])
@@ -212,6 +219,7 @@ def supports(case, call):
 
 
 def score(case, answer, calls, revisions):
+    independent = "appels" not in case
     usable = [
         call for call in calls if call["envelope"] and
         (call["envelope"]["revisionDuSite"], call["envelope"]["revisionDuService"]) == revisions
@@ -222,7 +230,7 @@ def score(case, answer, calls, revisions):
         set(result_addresses(call["envelope"]["donnees"])) for call in evidence
     ))
     cited_sources = cited_by_tool(expected_sources, observed_sources)
-    per_fact = [cited_by_tool({address(source) for source in links}, observed_sources, document_scope=True)
+    per_fact = [cited_by_tool({address(source) for source in links}, observed_sources, document_scope=independent)
                 for links in case.get("sources_par_fait", [])]
     if per_fact:
         cited_sources = set().union(*per_fact)
@@ -249,7 +257,7 @@ def score(case, answer, calls, revisions):
     absent_as_known = case["etat"] == "indisponible" and answer["statut"] == "documente"
     revisions_ok = bool(usable) and len(usable) == sum(bool(call["envelope"]) for call in calls)
     return {
-        ("piece_attendue_observee" if "sources_par_fait" in case else "outil_et_parametres"): bool(evidence),
+        ("piece_attendue_observee" if independent else "outil_et_parametres"): bool(evidence),
         "revisions_conformes": revisions_ok,
         "statut_conforme": status_ok,
         "absence_reconnue": status_ok if case["etat"] == "indisponible" else None,

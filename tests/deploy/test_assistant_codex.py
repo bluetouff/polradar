@@ -104,12 +104,14 @@ class AssistantBenchmark(unittest.TestCase):
         self.assertTrue(report["absence_reconnue"])
         for wording in (
             "Séance du 18 mars 2024 hors couverture",
+            "18 mars 2024 hors couverture du registre",
             "La date du 2024-03-18 est hors du périmètre du registre",
         ):
             revised = answer("indisponible", (wording, [ARCHIVES]))
             self.assertTrue(BENCH["score"](CASES["seance-hors-registre"], revised, [relevant], REVISIONS)["reussi"])
         for wording in (
             "Séance du 19 mars 2024 hors couverture",
+            "19 mars 2024 hors couverture du registre",
             "Séance hors couverture, vote contre",
             "Pas de vote nominatif à cette date",
         ):
@@ -132,6 +134,38 @@ class AssistantBenchmark(unittest.TestCase):
                                               {"candidat": "autre", "vote": "pour", "delegation": True}]}}
         observed = call({"collection": "parlement"}, data)
         self.assertFalse(BENCH["supports"](CASES["vote-cyber"], observed))
+
+    def test_lille_requires_the_correct_dates_and_each_dates_own_source(self):
+        case = CASES["reunion-lille-deux-dates"]
+        (event,), (page,) = case["sources_par_fait"]
+        row = {
+            "evenement": "2026-12-11", "date": "2026-11-24", "page": page,
+            "sources": [{"url": event}],
+        }
+        args = {"collection": "breves", "id": "veille-ff5018354e92a975326f"}
+        said = answer("documente", ("11 décembre 2026", [event]), ("24 novembre 2026", [page]))
+        report = BENCH["score"](case, said, [call(args, {"publication": row})], REVISIONS)
+        self.assertTrue(report["outil_et_parametres"])
+        self.assertTrue(report["reussi"])
+        swapped = answer("documente", ("11 décembre 2026", [page]), ("24 novembre 2026", [event]))
+        self.assertFalse(BENCH["score"](case, swapped, [call(args, {"publication": row})], REVISIONS)["reussi"])
+        self.assertFalse(BENCH["supports"](case, call({**args, "id": "autre-breve"}, {"publication": row})))
+        row["evenement"] = "2026-11-23"
+        self.assertFalse(BENCH["supports"](case, call(args, {"publication": row})))
+
+    def test_elabe_allows_any_exact_scenario_of_the_confirmed_survey(self):
+        case = CASES["elabe-terrain"]
+        notice, = case["sources"]
+        row = {
+            "surveyId": "elabe-2026-08-26", "noticeSource": "notice-elabe-2026-08-29",
+            "published": "2026-08-29", "fieldworkStart": "2026-08-26", "fieldworkEnd": "2026-08-28",
+        }
+        args = {"collection": "sondages", "id": "elabe-2026-08-29-attal"}
+        seen = call(args, {"publication": row, "source": {"url": notice}})
+        said = answer("documente", ("Non", [notice]), ("26 août 2026", [notice]), ("28 août 2026", [notice]))
+        self.assertTrue(BENCH["score"](case, said, [seen], REVISIONS)["reussi"])
+        row["surveyId"] = "autre-enquete"
+        self.assertFalse(BENCH["supports"](case, seen))
 
     def test_turn_rejects_wrong_server_and_malformed_answers(self):
         with tempfile.TemporaryDirectory() as directory:

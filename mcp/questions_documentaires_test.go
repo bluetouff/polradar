@@ -99,6 +99,14 @@ func TestPublishedBancDocumentaire(t *testing.T) {
 				q.Attendus[path] = "billetdoux-heritage-bareme-v1"
 			}
 		}
+		// The pinned archive exported the documentary date in evenement, including for announcements.
+		if c.commit == answerLegacyCommit && q.Outil == "polradar_donnees" && q.Arguments["collection"] == "breves" {
+			if date, found := q.Attendus["/publication/dateDocumentaire"]; found {
+				q.Attendus["/publication/evenement"] = date
+				delete(q.Attendus, "/publication/dateDocumentaire")
+				delete(q.Attendus, "/publication/typeDateDocumentaire")
+			}
+		}
 		collection, _ := q.Arguments["collection"].(string)
 		if (collection == "senat" || collection == "parlement-europeen") && c.contract.major(collection) != dataMajor {
 			continue

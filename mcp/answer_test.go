@@ -265,6 +265,15 @@ func TestPublishedAnswer(t *testing.T) {
 				t.Fatal(r)
 			}
 		}},
+		{"Quel vote Bruno Retailleau a-t-il exprimé lors du scrutin du Sénat sur l’article 7 du budget rectificatif de la Sécurité sociale, le 8 mars 2023 ?", "scrutin", "documente", "senat-2022-233", func(t *testing.T, a documentaryAnswer) {
+			r := a.Results[0]
+			if len(a.Results) != 1 || *a.Coverage.Total != 1 || len(r.Facts) != 1 ||
+				r.Facts[0] != (answerFact{Label: "Bruno Retailleau", Value: "pour", Period: "2023-03-08", SourceID: r.ID}) ||
+				len(r.Sources) != 1 || r.Sources[0].URL != "https://www.senat.fr/scrutin-public/2022/scr2022-233.html" {
+				t.Fatal(a)
+			}
+		}},
+		{"Quel vote Bruno Retailleau a-t-il exprimé au Sénat sur l’article 999 du budget rectificatif de la Sécurité sociale le 8 mars 2023 ?", "scrutin", "sans-resultat", "", nil},
 		{"Quels scénarios OpinionWay CNEWS ont un terrain le 21 octobre 2026 ?", "sondage", "partiel", "opinionway-commission-10333-p12", func(t *testing.T, a documentaryAnswer) {
 			r := a.Results[0]
 			if *a.Coverage.Total != 4 || r.Sources[0].URL != "https://www.commission-des-sondages.fr/notices/medias/fichiers/add/2352#page=12" ||
@@ -291,6 +300,21 @@ func TestPublishedAnswer(t *testing.T) {
 			}
 		}},
 		{"Le sondage Élabé publié le 2026-08-29 avait-il encore un terrain le 30 août 2026 ?", "sondage", "sans-resultat", "", nil},
+		{"Quel horizon temporel Polradar rattache-t-il aux économies annoncées dans l’affectation du programme de David Lisnard ?", "financement", "documente", "lisnard-affectations", func(t *testing.T, a documentaryAnswer) {
+			r := a.Results[0]
+			want := answerFact{Label: "Périodicité des économies annoncées", Value: "annuel", Period: "Par an à terme ; montée en charge progressive", SourceID: "lisnard-repartition-2026"}
+			if len(r.Facts) != 1 || r.Facts[0] != want || r.Person != "lisnard" || r.URL != site+"/financements/#carte=lisnard-affectations" || a.Coverage.URL != r.URL ||
+				len(r.Sources) != 3 || r.Sources[0].ID != want.SourceID || r.Sources[1].ID != "lisnard-crayon-2026" || r.Sources[2].ID != "lisnard-economies-annuelles-2026" {
+				t.Fatal(a)
+			}
+		}},
+		{"Quel est l’horizon des économies dans l’affectation du programme de Bruno Retailleau ?", "financement", "documente", "retailleau-affectations", func(t *testing.T, a documentaryAnswer) {
+			r := a.Results[0]
+			if len(r.Facts) != 1 || r.Facts[0].Value != "horizon" || r.Facts[0].Period != "En 2032 ; montant non présenté comme un cumul" {
+				t.Fatal(r)
+			}
+		}},
+		{"Quel est l’horizon des économies dans l’affectation du programme de Gabriel Attal ?", "financement", "ambigu", "", nil},
 		{"Compare Gabriel Attal et Raphaël Glucksmann sur la CSG des salaires", "comparaison", "partiel", "attal-csg-salaires", func(t *testing.T, a documentaryAnswer) {
 			if len(a.Results) != 2 || !strings.HasSuffix(a.Results[0].URL, "#version-2") || a.Reason != "version_depassee" {
 				t.Fatal(a)

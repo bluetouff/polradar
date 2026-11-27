@@ -113,7 +113,11 @@ const collections = {
       title: b.article.data.title,
       description: b.article.data.description,
       date: b.article.data.published,
-      evenement: b.event.date,
+      evenement:
+        b.event.eventDate ??
+        (b.event.dateKind === 'evenement' ? b.event.date : null),
+      dateDocumentaire: b.event.date,
+      typeDateDocumentaire: b.event.dateKind,
       category: b.event.category,
       candidats: b.event.candidates,
       sources: b.event.sources.map(sourceById),

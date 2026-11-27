@@ -87,6 +87,12 @@ const Content = entry ? (await render(entry)).Content : null;
         <time datetime={event.date}>{formatDate(event.date)}</time>.
       </p>
     )}
+    {event.eventDate && (
+      <p>
+        Date annoncée de l’événement{' '}
+        <time datetime={event.eventDate}>{formatDate(event.eventDate)}</time>.
+      </p>
+    )}
     {entry && (
       <p class="brief-byline">
         <a rel="license" href="/licences/#editions">

@@ -11,6 +11,7 @@ import (
 )
 
 var answerBallotNumber = regexp.MustCompile(`\bscrutin (?:n |numero )?([1-9][0-9]{0,5})\b`)
+var answerSenateBudgetArticle = regexp.MustCompile(`\b(?:sur|de) l article ([1-9][0-9]{0,2}(?: bis| ter| quater)?) (?:du|de la) (?:budget rectificatif|(?:projet de )?loi de financement rectificative) de la securite sociale\b`)
 
 type answerVote struct {
 	Candidat   string
@@ -49,6 +50,13 @@ func (c *snapshot) answerScrutinies(result *documentaryAnswer, question, topic s
 	if match := answerBallotNumber.FindStringSubmatch(topic); match != nil {
 		num = match[1]
 		topic = answerBallotNumber.ReplaceAllString(topic, " ")
+	}
+	articleTitle := ""
+	if a.Institution == "senat" && len(dates) == 1 && ballot == "" && num == "" &&
+		!answerHas(topic, "motion", "amendement", "amendements", "alinea", "suppression", "rejet") {
+		if match := answerSenateBudgetArticle.FindStringSubmatch(topic); match != nil {
+			articleTitle = "sur l article " + match[1] + " du projet de loi de financement rectificative de la securite sociale "
+		}
 	}
 	// Use the official summary for aggregate questions even when no person is named.
 	var totals []voteAnswerField
@@ -91,7 +99,7 @@ func (c *snapshot) answerScrutinies(result *documentaryAnswer, question, topic s
 		}
 		a.Candidat = people[0].ID
 	}
-	if ballot != "" || num != "" && a.Debut != "" && a.Debut == a.Fin && (len(totals) > 0 || wantsDecision) {
+	if articleTitle != "" || ballot != "" || num != "" && a.Debut != "" && a.Debut == a.Fin && (len(totals) > 0 || wantsDecision) {
 		terms = nil
 	}
 	total := 0
@@ -102,6 +110,10 @@ func (c *snapshot) answerScrutinies(result *documentaryAnswer, question, topic s
 		r := &index.Actes[i]
 		if ballot != "" && r.ID != ballot || num != "" && !strings.HasSuffix(r.ID, "V"+num) ||
 			!matchAct(r, a, terms) {
+			continue
+		}
+		// A vote on the article itself is distinct from a motion or amendment that mentions it.
+		if articleTitle != "" && !strings.HasPrefix(normalize(r.Titre)+" ", articleTitle) {
 			continue
 		}
 		total++
@@ -179,6 +191,8 @@ func (c *snapshot) answerScrutinies(result *documentaryAnswer, question, topic s
 	switch {
 	case num != "" && total > 1:
 		result.describe("ambigu", "numero_reutilise", "Plusieurs scrutins portent ce numéro. Indiquez la législature avec la date ou la référence officielle.")
+	case articleTitle != "" && total > 1:
+		result.describe("ambigu", "scrutin_a_preciser", "Plusieurs scrutins portent sur cet article à cette date. Indiquez la référence officielle.")
 	case namedVoteMissing:
 		result.describe("partiel", "votes_nominatifs_non_documentes", "Les scrutins sont documentés. Seuls les votes nominatifs présents dans le registre sont indiqués.")
 	case delegationMissing:

@@ -266,6 +266,12 @@ func answerTerms(text string) []string {
 	return terms
 }
 
+func asksSavingsHorizon(text string) bool {
+	return answerHas(text, "affectation", "affectations", "repartition") &&
+		answerHas(text, "economies", "economie") &&
+		answerHas(text, "horizon", "periodicite", "est ce annuel", "sont elles annuelles")
+}
+
 func answerIntent(text string, people []candidate, ballot string) string {
 	switch {
 	case answerHas(text, "qui va gagner", "qui gagnera", "qui sera elu", "prevoir le vainqueur", "predire le vainqueur"):
@@ -289,7 +295,7 @@ func answerIntent(text string, people []candidate, ballot string) string {
 			!answerHas(text, "propose", "proposent", "proposition", "propositions", "programme", "programmes") ||
 		answerHas(text, "lcen") && answerHas(text, "article", "droit", "loi"):
 		return "juridique"
-	case answerHas(text, "financement", "financements", "chiffrage", "chiffrages", "cout de la mesure", "cout de cette mesure"):
+	case asksSavingsHorizon(text) || answerHas(text, "financement", "financements", "chiffrage", "chiffrages", "cout de la mesure", "cout de cette mesure"):
 		return "financement"
 	case answerHas(text, "propose", "proposent", "proposition", "propositions", "programme", "programmes"):
 		return "proposition"
@@ -339,6 +345,12 @@ func (c *snapshot) answer(a answerArgs) (any, bool, error) {
 			if m, ok := c.requestedMeasure(a.Question); ok {
 				c.answerMeasureFunding(&result, m)
 				break
+			}
+			if len(people) == 1 && asksSavingsHorizon(topic) && c.contract.major("financements") == dataMajor {
+				if found, lookupErr := c.answerSavingsHorizon(&result, people[0]); found || lookupErr != nil {
+					err = lookupErr
+					break
+				}
 			}
 		}
 		if len(people) == 1 && people[0].WithdrawnOn == "" {

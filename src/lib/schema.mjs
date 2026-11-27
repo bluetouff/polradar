@@ -112,6 +112,7 @@ export const eventSchema = z.object({
     'justice',
   ]),
   dateKind: z.enum(['evenement', 'publication', 'mise-a-jour']),
+  eventDate: dateSchema.optional(),
   publicationBrief: dateSchema.optional(),
   candidates: z.array(idSchema).max(40),
   sources: z.array(idSchema).min(1),

@@ -61,7 +61,7 @@ var collectionSearchFields = map[string][]string{
 	"comparaisons-sondages": {"id", "label"},
 	"economie":              {"id", "title", "description", "dataset", "group"},
 	"sources":               {"title", "url"},
-	"breves":                {"id", "title", "description", "date", "evenement"},
+	"breves":                {"id", "title", "description", "date", "evenement", "dateDocumentaire"},
 	"financements":          {"id", "title", "candidate"},
 	"debats":                {"id", "title", "description", "author", "theme", "date"},
 }
@@ -178,7 +178,10 @@ func (c *snapshot) publicData(a dataArgs) (any, bool, error) {
 					}
 				}
 				if a.Collection == "breves" {
-					result["lectureDates"] = "date désigne la publication de la brève sur Polradar. evenement désigne la date de l’événement lorsqu’elle est établie."
+					result["lectureDates"] = "date désigne la publication de la brève sur Polradar (preuve : page). evenement désigne la date de l’événement lorsqu’elle est établie (preuves : sources). dateDocumentaire se lit avec typeDateDocumentaire."
+					if r.str("typeDateDocumentaire") == "" {
+						result["lectureDates"] = "date désigne la publication de la brève sur Polradar. Dans cette édition, evenement peut reprendre la date du document d’origine. Vérifiez la source pour dater l’événement."
+					}
 				}
 				if a.Collection == "sondages" {
 					result["lectureDates"] = "fieldworkStart et fieldworkEnd bornent le terrain. published indique la date de diffusion renseignée, si elle est connue."

@@ -114,6 +114,60 @@ func (c *snapshot) answerMeasureFunding(result *documentaryAnswer, m measure) {
 	result.describe("partiel", "financement_non_documente", "La fiche et ses sources sont disponibles. Aucun financement précis n’y est renseigné.")
 }
 
+func (c *snapshot) answerSavingsHorizon(result *documentaryAnswer, person candidate) (bool, error) {
+	rows, err := c.answerRecords("financements")
+	if err != nil {
+		return false, err
+	}
+	var selected, entry record
+	for _, row := range rows {
+		if row.str("candidate") != person.ID || row.str("relation") != "affectation" {
+			continue
+		}
+		var budget record
+		if json.Unmarshal(row["entry"], &budget) != nil {
+			return false, invalidCorpus
+		}
+		if budget.str("kind") != "economie" {
+			continue
+		}
+		if selected != nil {
+			return false, nil
+		}
+		selected, entry = row, budget
+	}
+	period, horizon := entry.str("period"), entry.str("horizon")
+	if selected == nil || period == "" || horizon == "" {
+		return false, nil
+	}
+	href := answerPageURL(selected.str("page"))
+	if href == "" {
+		return false, invalidCorpus
+	}
+	item := newAnswerItem(selected.str("id"), selected.str("title"), href)
+	item.Person = person.ID
+	source := entry.str("source")
+	item.addSource(c.answerCitation(reference{SourceID: source, Locator: entry.str("locator")}))
+	if len(item.Sources) == 0 {
+		return false, nil
+	}
+	var additional []string
+	if raw := entry["additionalSources"]; raw != nil && json.Unmarshal(raw, &additional) != nil {
+		return false, invalidCorpus
+	}
+	for _, id := range additional {
+		if id != source {
+			item.addSource(c.answerCitation(reference{SourceID: id}))
+		}
+	}
+	item.Facts = append(item.Facts, answerFact{Label: "Périodicité des économies annoncées", Value: period, Period: horizon, SourceID: source})
+	result.Coverage.URL = href
+	result.Links = []answerLink{{"Consulter la fiche d’affectation", href}}
+	result.Results = append(result.Results, item)
+	result.finish(1, "La fiche d’affectation indique la périodicité et l’horizon des économies annoncées.")
+	return true, nil
+}
+
 func (c *snapshot) versionMeasure(m measure, version edition) measure {
 	s := version.Snapshot
 	s.ID, s.Candidate, s.Theme, s.DisplayAuthor, s.Revision = m.ID, m.Candidate, m.Theme, version.Author, version.Number
