@@ -88,6 +88,10 @@ func TestPublishedBancDocumentaire(t *testing.T) {
 		if q.Outil == answerTool && !answerAvailable {
 			continue
 		}
+		// The compatibility archive predates the restored credit for the joint programme.
+		if c.commit == answerLegacyCommit && q.Outil == "polradar_measure" && q.Arguments["id"] == "lalanne-fiscalite-taxes-carburants" {
+			q.Attendus["/auteur"] = "Francis Lalanne"
+		}
 		collection, _ := q.Arguments["collection"].(string)
 		if (collection == "senat" || collection == "parlement-europeen") && c.contract.major(collection) != dataMajor {
 			continue
