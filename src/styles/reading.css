@@ -3,6 +3,7 @@
   --content-width: 90rem;
   --target-size: 2.75rem;
   --surface-radius: 0.55rem;
+  --serif: Georgia, 'Times New Roman', serif;
 }
 
 @media screen {
@@ -86,6 +87,27 @@
     max-width: 74ch;
     font-size: 0.98rem;
     line-height: 1.5;
+  }
+  main > .article-title h1,
+  .brief-reading > header h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+  .reading-meta {
+    position: relative;
+    padding-inline-start: 1rem;
+  }
+  .reading-meta::before {
+    content: '';
+    position: absolute;
+    inset-block-start: 0.58em;
+    inset-inline-start: 0.1rem;
+    inline-size: 0.32rem;
+    block-size: 0.32rem;
+    border: 1px solid var(--accent);
+    transform: rotate(45deg);
   }
   .reading-links {
     display: flex;

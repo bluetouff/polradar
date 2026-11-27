@@ -41,6 +41,22 @@
   outline-offset: -4px;
   outline-color: #ccefe8;
 }
+@media screen and (min-width: 761px) {
+  .site-navigation a[aria-current] {
+    position: relative;
+  }
+  .site-navigation a[aria-current]::after {
+    content: '';
+    position: absolute;
+    inset-block-end: -0.25rem;
+    inset-inline-start: calc(50% - 0.2rem);
+    inline-size: 0.4rem;
+    block-size: 0.4rem;
+    border: 1px solid #aaddd3;
+    background: #2a474c;
+    transform: rotate(45deg);
+  }
+}
 .site-directory summary {
   display: flex;
   align-items: center;

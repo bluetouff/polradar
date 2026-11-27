@@ -51,6 +51,32 @@ test('le nucléaire et la vérification des chiffres s’ouvrent depuis l’accu
   await expect(page.locator('main h1')).toBeVisible();
 });
 
+test('le calendrier reste lisible avec des caractères agrandis sur mobile', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 800 });
+  await page.goto('/');
+  await page.evaluate(async () => {
+    document.documentElement.style.setProperty(
+      'font-size',
+      '200%',
+      'important',
+    );
+    await document.fonts.ready;
+  });
+  const calendar = page.locator('.cover-calendar');
+  const overflow = await calendar
+    .locator('a, dt, dd')
+    .evaluateAll((items) =>
+      items.some((item) => item.scrollWidth > item.clientWidth + 1),
+    );
+  expect(overflow).toBe(false);
+  await expect(calendar.locator('time[datetime]')).toHaveCount(2);
+  await expect(
+    calendar.getByRole('link', { name: 'Calendrier électoral' }),
+  ).toHaveAttribute('href', '/reperes/');
+});
+
 test('les sujets et les outils professionnels restent accessibles sans JavaScript', async ({
   browser,
   baseURL,

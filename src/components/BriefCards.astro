@@ -63,42 +63,6 @@ const icons: Record<string, string> = {
   .brief-cards li {
     min-width: 0;
   }
-  .brief-led li:first-child a {
-    position: relative;
-    align-content: center;
-    border-color: #afc6c2;
-    background:
-      radial-gradient(ellipse at top right, #e9f1db, transparent 64%),
-      linear-gradient(125deg, #f4faf7, #daebe6);
-    box-shadow: 0 12px 32px -25px #1e5a61b0;
-  }
-  .brief-led li:not(:first-child) a {
-    background: linear-gradient(120deg, #fff, #f2f2ee);
-  }
-  .brief-led a:hover {
-    border-color: #688c8d;
-  }
-  @media (min-width: 760px) {
-    .brief-led {
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-      gap: 0.65rem;
-    }
-    .brief-led li:first-child {
-      grid-row: span 2;
-    }
-    .brief-led li:first-child a {
-      padding: clamp(1.25rem, 3vw, 2.3rem);
-    }
-    .brief-led li:first-child strong {
-      font-size: clamp(1.25rem, 2.2vw, 1.72rem);
-    }
-  }
-  @media (max-width: 759px) {
-    .brief-led {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 0.6rem;
-    }
-  }
   .brief-cards a {
     display: grid;
     height: 100%;
@@ -157,5 +121,55 @@ const icons: Record<string, string> = {
   .brief-cards a:focus-visible strong {
     text-decoration: underline;
     text-underline-offset: 0.18em;
+  }
+  .brief-led {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--surface-radius);
+    background: var(--sheet);
+  }
+  .brief-led li + li {
+    border-block-start: 1px solid var(--line);
+  }
+  .brief-led li > a {
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    overflow-wrap: anywhere;
+  }
+  .brief-led a:focus-visible {
+    outline-offset: -3px;
+  }
+  .brief-led li:first-child a {
+    align-content: center;
+    padding: clamp(1rem, 2.55vw, 2.3rem);
+    background: linear-gradient(125deg, #f4faf7, #daebe6);
+  }
+  .brief-led li:first-child .brief-meta {
+    border-block-end: 1px solid #afc6c2;
+    padding-block-end: 0.55rem;
+  }
+  .brief-led li:first-child strong {
+    font-family: var(--serif);
+    font-size: clamp(1.38rem, 1.1rem + 1vw, 1.85rem);
+    font-weight: 400;
+    line-height: 1.14;
+    letter-spacing: -0.027em;
+    text-wrap: pretty;
+  }
+  @media (min-width: 48em) {
+    .brief-led {
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    }
+    .brief-led li:first-child {
+      grid-row: span 2;
+      border-inline-end: 1px solid var(--line);
+    }
+    .brief-led li:nth-child(2) {
+      border-block-start: 0;
+    }
   }
 </style>

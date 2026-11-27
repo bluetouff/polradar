@@ -266,8 +266,12 @@ const register = [
   .home-choices {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.55rem clamp(0.55rem, 1.2vw, 0.9rem);
+    gap: 1px;
     margin-block: 0.85rem clamp(1.4rem, 3vw, 2.45rem);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--surface-radius);
+    background: var(--line);
   }
   .home-choices a {
     display: grid;
@@ -276,23 +280,25 @@ const register = [
     gap: 0.65rem;
     padding: 0.65rem clamp(0.65rem, 1.2vw, 0.95rem);
     min-height: 4.15rem;
-    border: 1px solid #b8c7c7;
-    border-radius: 0.65rem;
     background: var(--sheet);
     color: var(--ink);
     text-decoration: none;
     line-height: 1.25;
+    overflow-wrap: anywhere;
   }
   .home-choices a:first-child {
-    border-color: #a0bdb9;
     background: #e8f0eb;
   }
   .home-choices a:is(:hover, :focus-visible) {
-    border-color: #5d8689;
+    background: #d6e9e6;
   }
-  .home-choices a:hover strong,
+  .home-choices a:focus-visible {
+    outline-offset: -3px;
+  }
+  .home-choices a:is(:hover, :focus-visible) strong,
   .home-dossier-grid a:hover strong {
     text-decoration: underline;
+    text-underline-offset: 0.2em;
   }
   .home-choices :global(.icon) {
     color: var(--accent);
@@ -305,6 +311,12 @@ const register = [
     width: 2.5rem;
     height: 2.5rem;
     place-items: center;
+  }
+  .choice-icon {
+    border: 1px solid #b8ceca;
+    border-radius: 50%;
+  }
+  .dossier-icon {
     border-radius: 0.7rem;
     background: #d6e9e6;
   }
@@ -312,36 +324,52 @@ const register = [
     width: 0.82rem;
     height: 0.82rem;
   }
+  @media (prefers-reduced-motion: no-preference) {
+    .home-choices :global(.choice-arrow) {
+      transition: transform 160ms ease-out;
+    }
+    .home-choices a:is(:hover, :focus-visible) :global(.choice-arrow) {
+      transform: translateX(0.2rem);
+    }
+  }
   .home-choices small {
     display: block;
     margin-top: 0.25rem;
     color: var(--muted);
     font-size: 0.78rem;
   }
-  .home-briefs .register-heading {
-    border: 0;
+  :is(.home-briefs, .home-dossiers, .home-corpus) .register-heading {
+    align-items: center;
+    gap: 0.45rem clamp(0.45rem, 1.5vw, 1.2rem);
+    border-bottom: 0;
     padding-bottom: 0.65rem;
   }
-  .home-briefs .register-heading h2,
-  .home-dossiers .register-heading h2,
-  .home-corpus .register-heading h2 {
+  :is(.home-briefs, .home-dossiers, .home-corpus) .register-heading h2 {
     font-size: clamp(1.18rem, 2vw, 1.6rem);
     letter-spacing: -0.028em;
+  }
+  :is(.home-briefs, .home-dossiers, .home-corpus) .register-heading::after {
+    content: '';
+    flex: 1 0 0.5rem;
+    border-block-start: 1px solid var(--line);
+  }
+  :is(.home-briefs, .home-dossiers, .home-corpus) .inline-action {
+    order: 1;
   }
   .home-changes {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.6rem 0.8rem;
-    margin-block: 0.85rem clamp(1.75rem, 3.8vw, 3.15rem);
+    margin-block: 0.8rem clamp(1.75rem, 3.8vw, 3.15rem);
+    border-block-end: 1px solid var(--line);
   }
   .home-changes > div {
     display: flex;
     align-items: start;
     padding: 0.75rem 0.9rem;
-    border: 1px solid #c5d1ce;
-    border-radius: 0.7rem;
-    background: #eaf0ec;
     gap: 0.65rem;
+  }
+  .home-changes > div + div {
+    border-inline-start: 1px solid var(--line);
   }
   .home-changes :global(.icon) {
     flex: none;
@@ -355,9 +383,6 @@ const register = [
   }
   .home-corpus {
     margin-block: clamp(1.4rem, 3vw, 2.3rem);
-  }
-  .home-corpus .register-heading {
-    border-bottom: 0;
   }
   .home-corpus > p {
     margin-top: 0.65rem;
@@ -439,8 +464,7 @@ const register = [
   .home-dossiers {
     margin-bottom: clamp(1.65rem, 3.5vw, 2.85rem);
   }
-  .programme-index .register-heading,
-  .home-dossiers .register-heading {
+  .programme-index .register-heading {
     border: 0;
     align-items: baseline;
   }
@@ -523,6 +547,10 @@ const register = [
   @media (max-width: 580px) {
     .home-changes {
       grid-template-columns: minmax(0, 1fr);
+    }
+    .home-changes > div + div {
+      border-inline-start: 0;
+      border-block-start: 1px solid var(--line);
     }
     .cover-register {
       grid-template-columns: repeat(2, minmax(0, 1fr));

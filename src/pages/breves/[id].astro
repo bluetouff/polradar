@@ -42,7 +42,7 @@ const Content = entry ? (await render(entry)).Content : null;
       <meta itemprop="name" content="Polradar" />
     </span>
     <header>
-      <p class="brief-byline">
+      <p class="brief-byline reading-meta">
         <span
           itemprop="author"
           itemscope
@@ -126,7 +126,6 @@ const Content = entry ? (await render(entry)).Content : null;
   .brief-reading h1 {
     margin: 0;
     font-size: clamp(1.5rem, 3vw, 1.75rem);
-    line-height: 1.18;
   }
   .brief-deck {
     margin: 0.85rem 0 1.25rem;

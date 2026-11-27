@@ -27,8 +27,11 @@ const interactive = article.id === 'retraites-ages-et-conditions';
     <span>{article.data.category}</span>
   </div>
   <header class="page-title article-title">
-    <p class="eyebrow">
-      {article.data.category} · {formatDate(article.data.published)}
+    <p class="eyebrow reading-meta">
+      {article.data.category} ·{' '}
+      <time datetime={article.data.published}>
+        {formatDate(article.data.published)}
+      </time>
     </p>
     <h1>{article.data.title}</h1>
     <p>{article.data.description}</p>
