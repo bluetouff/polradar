@@ -4,67 +4,81 @@ import type { MarketContract } from '../lib/market-data';
 import { formatTimestamp } from '../lib/data';
 interface Props {
   row: MarketContract;
-  rank: number;
   volumeUnit: string;
 }
-const { row, rank, volumeUnit } = Astro.props;
+const { row, volumeUnit } = Astro.props;
 const value = marketMidpoint(row);
-const x = (number: number) => 6 + number * 288;
+const x = (number: number) => 6 + number * 588;
 ---
 
 <li class="market-row" data-market-name={row.label}>
-  <div class="market-identity">
-    <span class="market-rank">{String(rank).padStart(2, '0')}</span>
+  <div class="market-row-quote">
     <strong>{row.label}</strong>
-    <small class="quote-date">
-      {row.updatedAt ? (
-        <>
-          Fiche du contrat ·{' '}
-          <time datetime={row.updatedAt}>{formatTimestamp(row.updatedAt)}</time>
-        </>
-      ) : (
-        'Date du contrat inconnue'
-      )}
-    </small>
-  </div>
-  <div class="market-price">
-    <strong>{marketPercent(value)}</strong>
-    <span>
-      {row.bid !== null && row.ask !== null
-        ? `${marketPercent(row.bid)} / ${marketPercent(row.ask)}`
-        : 'Carnet incomplet'}
+    <span
+      class:list={['market-price', { 'market-price-missing': value === null }]}
+    >
+      {marketPercent(value)}
     </span>
   </div>
-  <svg
-    class="market-range"
-    viewBox="0 0 300 16"
-    role="img"
-    aria-label={
-      value === null
-        ? 'Cotation à deux côtés indisponible'
-        : `Milieu du carnet : ${marketPercent(value)} ; achat ${marketPercent(row.bid)}, vente ${marketPercent(row.ask)}`
-    }
-  >
-    <line class="market-track" x1="6" x2="294" y1="8" y2="8" />
-    {[0.25, 0.5, 0.75].map((tick) => (
-      <line class="market-tick" x1={x(tick)} x2={x(tick)} y1="4" y2="12" />
-    ))}
-    {value !== null && row.bid !== null && row.ask !== null && (
-      <>
-        <line
-          class="market-spread"
-          x1={x(row.bid)}
-          x2={x(row.ask)}
-          y1="8"
-          y2="8"
-        />
-        <circle cx={x(value)} cy="8" r="4.5" class="market-point" />
-      </>
-    )}
-  </svg>
   <details class="market-contract">
-    <summary>Contrat et règles</summary>
-    <p>{row.question}</p>
+    <summary>
+      <span>Détail du contrat</span>
+      {value !== null && (
+        <span class="market-book">
+          Achat {marketPercent(row.bid)} · Vente {marketPercent(row.ask)}
+        </span>
+      )}
+    </summary>
+    <p class="market-question" lang="en">
+      {row.question}
+    </p>
+    {value !== null && row.bid !== null && row.ask !== null && (
+      <div class="market-contract-graph">
+        <svg
+          class="market-range"
+          viewBox="0 0 600 24"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <line class="market-track" x1="6" x2="594" y1="12" y2="12" />
+          {[0.25, 0.5, 0.75].map((tick) => (
+            <line
+              class="market-tick"
+              x1={x(tick)}
+              x2={x(tick)}
+              y1="5"
+              y2="19"
+            />
+          ))}
+          <line
+            class="market-range-fill"
+            x1="6"
+            x2={x(value)}
+            y1="12"
+            y2="12"
+          />
+          <line
+            class="market-spread"
+            x1={x(row.bid)}
+            x2={x(row.ask)}
+            y1="12"
+            y2="12"
+          />
+          <line
+            class="market-point"
+            x1={x(value)}
+            x2={x(value)}
+            y1="4"
+            y2="20"
+          />
+        </svg>
+        <div class="market-range-labels" aria-hidden="true">
+          <span>0 %</span>
+          <span>50 %</span>
+          <span>100 %</span>
+        </div>
+      </div>
+    )}
     <dl>
       <div>
         <dt>Écart achat / vente</dt>
@@ -89,6 +103,18 @@ const x = (number: number) => 6 + number * 288;
           par ce flux
         </dd>
       </div>
+      <div>
+        <dt>Fiche du contrat</dt>
+        <dd>
+          {row.updatedAt ? (
+            <time datetime={row.updatedAt}>
+              {formatTimestamp(row.updatedAt)} (Paris)
+            </time>
+          ) : (
+            'Date inconnue'
+          )}
+        </dd>
+      </div>
     </dl>
     {row.rules && (
       <p class="market-rules" lang="en">
@@ -100,15 +126,3 @@ const x = (number: number) => 6 + number * 288;
     </p>
   </details>
 </li>
-
-<style>
-  .market-identity .quote-date {
-    display: block;
-    grid-column: 2/-1;
-    font-size: 0.73rem;
-    font-weight: 400;
-    line-height: 1.45;
-    color: var(--muted);
-    overflow-wrap: anywhere;
-  }
-</style>

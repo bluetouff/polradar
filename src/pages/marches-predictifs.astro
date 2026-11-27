@@ -3,8 +3,21 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import MarketRow from '../components/MarketRow.astro';
 import { predictionMarkets } from '../lib/market-data';
-import { rankedContracts } from '../lib/markets.mjs';
+import {
+  leadingMarketQuotes,
+  marketPercent,
+  rankedContracts,
+} from '../lib/markets.mjs';
 import { formatTimestamp } from '../lib/data';
+import '../styles/markets.css';
+
+const providers = predictionMarkets.providers;
+const leading = leadingMarketQuotes(providers);
+const venueNames: Record<string, string> = {
+  polymarket: 'Polymarket',
+  kalshi: 'Kalshi',
+};
+const ticks = [0, 25, 50, 75, 100];
 ---
 
 <Base
@@ -19,9 +32,8 @@ import { formatTimestamp } from '../lib/data';
     <div>
       <h1>Marchés prédictifs</h1>
       <p>
-        Prix des contrats sur le vainqueur de la prochaine présidentielle
-        française. Probabilités implicites de marché, distinctes des intentions
-        de vote.
+        Suivez les prix des contrats « Oui » sur la victoire à la présidentielle
+        2027. Ces prix reflètent les échanges sur chaque marché.
       </p>
     </div>
   </header>
@@ -31,6 +43,107 @@ import { formatTimestamp } from '../lib/data';
       Marchés prédictifs
     </a>
   </nav>
+  {leading.length > 0 && (
+    <figure class="market-overview" aria-labelledby="market-overview-title">
+      <figcaption class="market-overview-heading">
+        <div>
+          <h2 id="market-overview-title">Les prix les plus élevés</h2>
+          <p>
+            Prix des contrats « Oui », en % du dollar versé si le contrat gagne.
+          </p>
+        </div>
+        <a href="#market-method">Lire les prix</a>
+      </figcaption>
+      <ul class="market-overview-legend">
+        {providers.map((platform) => (
+          <li class={`market-series market-series-${platform.id}`}>
+            <span class="market-series-code" aria-hidden="true">
+              {venueNames[platform.id][0]}
+            </span>
+            <strong>{venueNames[platform.id]}</strong>
+            {platform.status === 'available' ? (
+              <time datetime={platform.observedAt}>
+                {formatTimestamp(platform.observedAt)} (Paris)
+              </time>
+            ) : (
+              <span>Flux indisponible</span>
+            )}
+          </li>
+        ))}
+      </ul>
+      <div class="market-overview-axis" aria-hidden="true">
+        <div class="market-axis-numbers">
+          {ticks.map((tick) => (
+            <span>{tick} %</span>
+          ))}
+        </div>
+      </div>
+      <ol class="market-overview-rows">
+        {leading.map(({ label, quotes }) => (
+          <li class="market-overview-row">
+            <strong class="market-overview-name">{label}</strong>
+            <div class="market-overview-quotes">
+              {quotes.map(({ provider, price }) => (
+                <div
+                  class={`market-overview-quote market-series-${provider}`}
+                  role="group"
+                  aria-label={venueNames[provider]}
+                >
+                  <span class="market-series-code" aria-hidden="true">
+                    {venueNames[provider][0]}
+                  </span>
+                  {price === null ? (
+                    <span class="market-overview-unavailable">
+                      Cotation indisponible
+                    </span>
+                  ) : (
+                    <>
+                      <svg
+                        class="market-overview-bar"
+                        viewBox="0 0 100 8"
+                        preserveAspectRatio="none"
+                        aria-hidden="true"
+                      >
+                        <rect
+                          class="market-overview-track"
+                          width="100"
+                          height="8"
+                        />
+                        {ticks.slice(1, -1).map((tick) => (
+                          <line
+                            class="market-overview-tick"
+                            x1={tick}
+                            x2={tick}
+                            y1="0"
+                            y2="8"
+                            vector-effect="non-scaling-stroke"
+                          />
+                        ))}
+                        <rect
+                          class="market-overview-fill"
+                          width={price * 100}
+                          height="8"
+                        />
+                      </svg>
+                      <strong class="market-overview-value">
+                        {marketPercent(price)}
+                      </strong>
+                    </>
+                  )}
+                </div>
+              ))}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </figure>
+  )}
+  <div class="market-section-heading">
+    <h2 id="market-contracts">Tous les contrats</h2>
+    <a href="/api/marches-predictifs.json" download>
+      Relevé JSON ↓
+    </a>
+  </div>
   <form id="market-filters" class="facet-filters" hidden>
     <label class="wide-field">
       Chercher un contrat
@@ -57,7 +170,7 @@ import { formatTimestamp } from '../lib/data';
     class="results-meta"
   ></p>
   <div class="market-boards">
-    {predictionMarkets.providers.map((provider) => {
+    {providers.map((provider) => {
       const rows = rankedContracts(provider.contracts);
       const available = rows.filter(
         (row) => row.bid !== null && row.ask !== null,
@@ -76,19 +189,15 @@ import { formatTimestamp } from '../lib/data';
               />
             </span>
             <div>
-              <h2 id={`venue-${provider.id}`}>
-                {provider.id === 'polymarket' ? 'Polymarket' : 'Kalshi'}
-              </h2>
-              <p>{provider.title}</p>
+              <h2 id={`venue-${provider.id}`}>{venueNames[provider.id]}</h2>
+              <p class="market-observed">
+                Relevé du{' '}
+                <time datetime={provider.observedAt}>
+                  {formatTimestamp(provider.observedAt)} (Paris)
+                </time>
+              </p>
             </div>
-            <span class="market-snapshot-label">Relevé</span>
           </header>
-          <p class="market-observed">
-            Observé le{' '}
-            <time datetime={provider.observedAt}>
-              {formatTimestamp(provider.observedAt)} (Paris)
-            </time>
-          </p>
           <p class="market-freshness small" hidden></p>
           {provider.status === 'unavailable' ? (
             <p class="notice">
@@ -122,29 +231,20 @@ import { formatTimestamp } from '../lib/data';
                   </dd>
                 </div>
               </dl>
-              <div class="market-list-heading">
-                <span>Contrat</span>
-                <span>Milieu · achat / vente</span>
-              </div>
-              <ol class="market-list">
-                {rows.slice(0, 10).map((row, index) => (
-                  <MarketRow
-                    row={row}
-                    rank={index + 1}
-                    volumeUnit={provider.volumeUnit}
-                  />
+              <ol
+                class="market-list"
+                aria-label="Contrats des plus cotés aux cotations indisponibles"
+              >
+                {rows.slice(0, 10).map((row) => (
+                  <MarketRow row={row} volumeUnit={provider.volumeUnit} />
                 ))}
               </ol>
               {rows.length > 10 && (
                 <details class="market-more">
                   <summary>Les {rows.length - 10} autres contrats</summary>
                   <ol class="market-list" start="11">
-                    {rows.slice(10).map((row, index) => (
-                      <MarketRow
-                        row={row}
-                        rank={index + 11}
-                        volumeUnit={provider.volumeUnit}
-                      />
+                    {rows.slice(10).map((row) => (
+                      <MarketRow row={row} volumeUnit={provider.volumeUnit} />
                     ))}
                   </ol>
                 </details>
@@ -160,6 +260,9 @@ import { formatTimestamp } from '../lib/data';
                 Règlement commun
                 {provider.id === 'polymarket' ? ' (texte original)' : ''}
               </summary>
+              <p class="market-rules" lang="en">
+                <strong>{provider.title}</strong>
+              </p>
               <p
                 class="market-rules"
                 lang={provider.id === 'polymarket' ? 'en' : 'fr'}
@@ -183,17 +286,18 @@ import { formatTimestamp } from '../lib/data';
       );
     })}
   </div>
-  <section class="poll-method section-space">
+  <section class="poll-method section-space" id="market-method">
     <div class="register-heading">
       <h2>Lecture des prix</h2>
       <Icon name="source" />
     </div>
     <p>
-      Le point indique le milieu entre le meilleur prix acheteur et le meilleur
-      prix vendeur du contrat « Oui ». L’échelle va de 0 à 100 % du
-      remboursement nominal de 1 $. Le segment représente l’écart achat / vente.
-      Un carnet incomplet reste indisponible. Les valeurs sont celles du relevé
-      horodaté, sans actualisation en direct dans votre navigateur.
+      Le graphique présente au plus cinq intitulés, classés selon le prix le
+      plus élevé observé sur l’une des deux plateformes. Chaque prix indique le
+      milieu entre le meilleur prix acheteur et le meilleur prix vendeur du
+      contrat « Oui ». L’échelle va de 0 à 100 % du remboursement nominal de 1
+      $. Dans la liste, le segment autour du point représente l’écart achat /
+      vente. Chaque plateforme a son propre relevé horodaté.
     </p>
     <p>
       Le prix d’un contrat ne mesure pas la part des électeurs soutenant une
@@ -219,10 +323,6 @@ import { formatTimestamp } from '../lib/data';
       </p>
     </details>
     <p class="small">
-      <a href="/api/marches-predictifs.json" download>
-        Relevé JSON ↓
-      </a>{' '}
-      ·{' '}
       <a
         href="https://docs.polymarket.com/concepts/prices-orderbook"
         target="_blank"

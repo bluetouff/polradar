@@ -14873,16 +14873,21 @@
     "theme": "sante",
     "title": "Relier consultation et ordonnance dans un dossier partagé",
     "bullets": ["Relier consultation et ordonnance dans un dossier partagé"],
-    "sources": ["dubuisson-ce-qui-change"],
+    "sources": ["dubuisson-ce-qui-change", "dubuisson-dossier-sante"],
     "scope": "campagne",
     "edition": "Le projet d’Emmanuel Dubuisson",
     "note": "",
-    "checked": "2026-11-25",
+    "checked": "2026-11-27",
     "history": [
       {
         "date": "2026-11-25",
         "event": "Lecture des sources",
         "summary": "Propositions relevées dans les documents de campagne."
+      },
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de références vers des propositions et orientations documentées."
       }
     ]
   },
@@ -14895,16 +14900,21 @@
       "Réaffecter une part des cotisations cumulées au salaire",
       "Contrôler et corriger les écarts de salaire pour des situations équivalentes"
     ],
-    "sources": ["dubuisson-ce-qui-change"],
+    "sources": ["dubuisson-ce-qui-change", "dubuisson-dossier-richesse"],
     "scope": "campagne",
     "edition": "Le projet d’Emmanuel Dubuisson",
     "note": "",
-    "checked": "2026-11-25",
+    "checked": "2026-11-27",
     "history": [
       {
         "date": "2026-11-25",
         "event": "Lecture des sources",
         "summary": "Propositions relevées dans les documents de campagne."
+      },
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de références vers des propositions et orientations documentées."
       }
     ]
   },
@@ -15553,13 +15563,16 @@
       "pcf-loos-projet-2027",
       "pcf-handicap",
       "pcf-securite-sociale",
-      "pcf-logement"
+      "pcf-logement",
+      "pcf-economie-sociale-solidaire",
+      "pcf-pacte-avenir-france",
+      "pcf-paix-defense"
     ],
     "scope": "parti",
     "edition": "Priorités du PCF de Loos pour 2027",
     "partyAuthor": "Parti communiste français",
     "note": "",
-    "checked": "2026-11-25",
+    "checked": "2026-11-27",
     "history": [
       {
         "date": "2026-11-25",
@@ -15575,6 +15588,11 @@
         "date": "2026-11-25",
         "event": "Relecture des sources d’origine",
         "summary": "3 nouvelles fiches référencées."
+      },
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de références vers des propositions et orientations documentées."
       }
     ]
   },
@@ -16842,11 +16860,11 @@
       "Revaloriser le livret A et revoir le calcul de son taux",
       "Porter la participation des employeurs au logement à 2 % de la masse salariale"
     ],
-    "sources": ["pcf-logement", "pcf-handicap"],
+    "sources": ["pcf-logement", "pcf-handicap", "pcf-pacte-avenir-france"],
     "scope": "parti",
     "edition": "Les cahiers des Jours heureux · Logement",
     "note": "",
-    "checked": "2026-11-25",
+    "checked": "2026-11-27",
     "history": [
       {
         "date": "2026-11-25",
@@ -16862,6 +16880,11 @@
         "date": "2026-11-25",
         "event": "Relecture des sources d’origine",
         "summary": "16 nouvelles fiches référencées."
+      },
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de références vers des propositions et orientations documentées."
       }
     ],
     "partyAuthor": "Parti communiste français"
@@ -16874,16 +16897,21 @@
     "bullets": [
       "Créer un fonds européen de financement des services publics pour le logement social"
     ],
-    "sources": ["pcf-logement"],
+    "sources": ["pcf-logement", "pcf-pacte-avenir-france", "pcf-paix-defense"],
     "scope": "parti",
     "edition": "Les cahiers des Jours heureux · Logement",
     "note": "",
-    "checked": "2026-11-25",
+    "checked": "2026-11-27",
     "history": [
       {
         "date": "2026-11-25",
         "event": "Relecture des sources d’origine",
         "summary": "Une nouvelle fiche référencée."
+      },
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de références vers des propositions et orientations documentées."
       }
     ],
     "partyAuthor": "Parti communiste français"
@@ -16902,11 +16930,17 @@
       "Compenser les dépenses départementales d’autonomie selon leur montant réel",
       "Aller vers la gratuité des TER et des transports en commun"
     ],
-    "sources": ["pcf-handicap", "pcf-securite-sociale", "pcf-mobilites"],
+    "sources": [
+      "pcf-handicap",
+      "pcf-securite-sociale",
+      "pcf-mobilites",
+      "pcf-economie-sociale-solidaire",
+      "pcf-pacte-avenir-france"
+    ],
     "scope": "parti",
     "edition": "Les cahiers des Jours heureux · Handicap",
     "note": "",
-    "checked": "2026-11-25",
+    "checked": "2026-11-27",
     "history": [
       {
         "date": "2026-11-25",
@@ -16922,6 +16956,11 @@
         "date": "2026-11-25",
         "event": "Relecture des sources d’origine",
         "summary": "3 nouvelles fiches référencées."
+      },
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de références vers des propositions et orientations documentées."
       }
     ],
     "partyAuthor": "Parti communiste français"
@@ -16936,16 +16975,26 @@
       "Supprimer les reports des obligations de mise en accessibilité",
       "Charger les préfets de contrôler les obligations d’accessibilité"
     ],
-    "sources": ["pcf-handicap"],
+    "sources": [
+      "pcf-handicap",
+      "pcf-economie-sociale-solidaire",
+      "pcf-pacte-avenir-france",
+      "pcf-paix-defense"
+    ],
     "scope": "parti",
     "edition": "Les cahiers des Jours heureux · Handicap",
     "note": "",
-    "checked": "2026-11-25",
+    "checked": "2026-11-27",
     "history": [
       {
         "date": "2026-11-25",
         "event": "Relecture des sources d’origine",
         "summary": "3 nouvelles fiches référencées."
+      },
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de références vers des propositions et orientations documentées."
       }
     ],
     "partyAuthor": "Parti communiste français"
@@ -16960,11 +17009,16 @@
       "Moduler les cotisations patronales selon l’emploi et les salaires",
       "Réduire progressivement les exonérations de cotisations patronales"
     ],
-    "sources": ["pcf-handicap", "pcf-securite-sociale"],
+    "sources": [
+      "pcf-handicap",
+      "pcf-securite-sociale",
+      "pcf-pacte-avenir-france",
+      "pcf-paix-defense"
+    ],
     "scope": "parti",
     "edition": "Les cahiers des Jours heureux · Handicap",
     "note": "",
-    "checked": "2026-11-25",
+    "checked": "2026-11-27",
     "history": [
       {
         "date": "2026-11-25",
@@ -16980,6 +17034,11 @@
         "date": "2026-11-25",
         "event": "Relecture des sources d’origine",
         "summary": "Une nouvelle fiche référencée."
+      },
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de références vers des propositions et orientations documentées."
       }
     ],
     "partyAuthor": "Parti communiste français"
@@ -16994,16 +17053,21 @@
       "Organiser des assises sur la conception universelle de l’apprentissage",
       "Financer l’accompagnement des étudiants handicapés"
     ],
-    "sources": ["pcf-handicap"],
+    "sources": ["pcf-handicap", "pcf-pacte-avenir-france"],
     "scope": "parti",
     "edition": "Les cahiers des Jours heureux · Handicap",
     "note": "",
-    "checked": "2026-11-25",
+    "checked": "2026-11-27",
     "history": [
       {
         "date": "2026-11-25",
         "event": "Relecture des sources d’origine",
         "summary": "3 nouvelles fiches référencées."
+      },
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de références vers des propositions et orientations documentées."
       }
     ],
     "partyAuthor": "Parti communiste français"
@@ -17259,11 +17323,11 @@
       "Investir 10 milliards d’euros supplémentaires par an dans les infrastructures de mobilité",
       "Créer un réseau de 100 000 kilomètres de pistes cyclables"
     ],
-    "sources": ["pcf-mobilites"],
+    "sources": ["pcf-mobilites", "pcf-pacte-avenir-france"],
     "scope": "parti",
     "edition": "Les cahiers des Jours heureux · Mobilités",
     "note": "",
-    "checked": "2026-11-25",
+    "checked": "2026-11-27",
     "history": [
       {
         "date": "2026-11-25",
@@ -17274,6 +17338,11 @@
         "date": "2026-11-25",
         "event": "Relecture des sources d’origine",
         "summary": "3 nouvelles fiches référencées."
+      },
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de références vers des propositions et orientations documentées."
       }
     ],
     "partyAuthor": "Parti communiste français"
@@ -17289,11 +17358,11 @@
       "Confier à la Sécurité sociale le remboursement à 100 % des soins prescrits",
       "Mettre fin au plafonnement préalable des dépenses de l’Assurance maladie par l’Ondam"
     ],
-    "sources": ["pcf-securite-sociale"],
+    "sources": ["pcf-securite-sociale", "pcf-economie-sociale-solidaire"],
     "scope": "parti",
     "edition": "Les cahiers des Jours heureux · Sécurité sociale",
     "note": "",
-    "checked": "2026-11-25",
+    "checked": "2026-11-27",
     "history": [
       {
         "date": "2026-11-25",
@@ -17314,6 +17383,11 @@
         "date": "2026-11-25",
         "event": "Correction éditoriale",
         "summary": "Les résumés du dossier reprennent les périmètres et conditions vérifiés sur les pièces originales."
+      },
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de références vers des propositions et orientations documentées."
       }
     ],
     "partyAuthor": "Parti communiste français"
@@ -17563,16 +17637,21 @@
     "bullets": [
       "Ouvrir l’accès à un titre de séjour aux personnes étrangères en hébergement précaire"
     ],
-    "sources": ["pcf-logement"],
+    "sources": ["pcf-logement", "pcf-pacte-avenir-france"],
     "scope": "parti",
     "edition": "Cahiers thématiques du Parti communiste français",
     "note": "",
-    "checked": "2026-11-25",
+    "checked": "2026-11-27",
     "history": [
       {
         "date": "2026-11-25",
         "event": "Relecture des sources d’origine",
         "summary": "Une nouvelle fiche référencée."
+      },
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de références vers des propositions et orientations documentées."
       }
     ],
     "partyAuthor": "Parti communiste français"
@@ -19718,6 +19797,114 @@
         "date": "2026-11-27",
         "event": "Ajout du passage vidéo",
         "summary": "Première fiche issue de la prise de parole."
+      }
+    ]
+  },
+  {
+    "id": "batho-parti-documents-climat",
+    "candidate": "batho",
+    "theme": "climat",
+    "title": "Climat & énergie · Génération Écologie",
+    "bullets": [
+      "Inscrire une référence mondiale de réchauffement de +3 °C dans la loi"
+    ],
+    "sources": ["ge-etat-resilience"],
+    "scope": "parti",
+    "partyAuthor": "Génération Écologie",
+    "edition": "Pour un État-résilience",
+    "note": "",
+    "checked": "2026-11-27",
+    "history": [
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de positions documentées dans les publications d’origine."
+      }
+    ]
+  },
+  {
+    "id": "batho-parti-documents-institutions",
+    "candidate": "batho",
+    "theme": "institutions",
+    "title": "Institutions · Génération Écologie",
+    "bullets": [
+      "Construire la politique d’adaptation à l’échelle des bassins de vie et des biorégions"
+    ],
+    "sources": ["ge-etat-resilience"],
+    "scope": "parti",
+    "partyAuthor": "Génération Écologie",
+    "edition": "Pour un État-résilience",
+    "note": "",
+    "checked": "2026-11-27",
+    "history": [
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de positions documentées dans les publications d’origine."
+      }
+    ]
+  },
+  {
+    "id": "batho-parti-documents-fiscalite",
+    "candidate": "batho",
+    "theme": "fiscalite",
+    "title": "Fiscalité & budget · Génération Écologie",
+    "bullets": [
+      "Mettre les superprofits des énergies fossiles à contribution pour les risques climatiques"
+    ],
+    "sources": ["ge-etat-resilience"],
+    "scope": "parti",
+    "partyAuthor": "Génération Écologie",
+    "edition": "Pour un État-résilience",
+    "note": "",
+    "checked": "2026-11-27",
+    "history": [
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de positions documentées dans les publications d’origine."
+      }
+    ]
+  },
+  {
+    "id": "batho-parti-documents-securite",
+    "candidate": "batho",
+    "theme": "securite",
+    "title": "Sécurité & justice · Génération Écologie",
+    "bullets": ["Renforcer le volontariat des sapeurs-pompiers"],
+    "sources": ["ge-etat-resilience"],
+    "scope": "parti",
+    "partyAuthor": "Génération Écologie",
+    "edition": "Pour un État-résilience",
+    "note": "",
+    "checked": "2026-11-27",
+    "history": [
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de positions documentées dans les publications d’origine."
+      }
+    ]
+  },
+  {
+    "id": "batho-parti-documents-education",
+    "candidate": "batho",
+    "theme": "education",
+    "title": "Éducation · Génération Écologie",
+    "bullets": [
+      "Soutenir l’éducation populaire à l’entraide en situation de crise"
+    ],
+    "sources": ["ge-etat-resilience"],
+    "scope": "parti",
+    "partyAuthor": "Génération Écologie",
+    "edition": "Pour un État-résilience",
+    "note": "",
+    "checked": "2026-11-27",
+    "history": [
+      {
+        "date": "2026-11-27",
+        "event": "Lecture des sources",
+        "summary": "Ajout de positions documentées dans les publications d’origine."
       }
     ]
   }

@@ -6,6 +6,7 @@ import {
   marketMidpoint,
   marketPercent,
   rankedContracts,
+  leadingMarketQuotes,
 } from '../src/lib/markets.mjs';
 const snapshot = JSON.parse(
   readFileSync(
@@ -87,4 +88,53 @@ test('les flux, les unités, les dates et les bornes sont contrôlés', () => {
   p.contracts = [];
   p.volume = null;
   assert.equal(marketSnapshotSchema.safeParse(data).success, true);
+});
+
+test('le graphique rapproche les intitulés exacts sans moyenner ni créer de prix', () => {
+  const providers = [
+    {
+      id: 'polymarket',
+      status: 'available',
+      contracts: [
+        { label: 'A', bid: 0.4, ask: 0.42 },
+        { label: 'B', bid: 0.36, ask: 0.36 },
+        { label: 'C', bid: 0.7, ask: 0.8 },
+        { label: 'C', bid: 0.8, ask: 0.9 },
+      ],
+    },
+    {
+      id: 'kalshi',
+      status: 'available',
+      contracts: [
+        { label: 'A', bid: null, ask: 0.35 },
+        { label: 'B', bid: 0.36, ask: 0.38 },
+        { label: 'D', bid: 0.01, ask: 0.01 },
+      ],
+    },
+  ];
+  const quotes = leadingMarketQuotes(providers);
+  assert.deepEqual(
+    quotes.map((row) => row.label),
+    ['A', 'B', 'D'],
+  );
+  assert.deepEqual(quotes[0].quotes, [
+    {
+      provider: 'polymarket',
+      price: marketMidpoint(providers[0].contracts[0]),
+    },
+    { provider: 'kalshi', price: null },
+  ]);
+  assert.deepEqual(quotes[2].quotes, [
+    { provider: 'polymarket', price: null },
+    { provider: 'kalshi', price: 0.01 },
+  ]);
+  assert.deepEqual(
+    leadingMarketQuotes(
+      providers.map((provider) => ({
+        ...provider,
+        status: 'unavailable',
+      })),
+    ),
+    [],
+  );
 });

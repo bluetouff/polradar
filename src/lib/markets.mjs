@@ -115,3 +115,38 @@ export function rankedContracts(rows) {
     return right - left || a.label.localeCompare(b.label, 'fr');
   });
 }
+
+/** @param {z.infer<typeof providerSchema>[]} providers */
+export function leadingMarketQuotes(providers) {
+  /** @type {Map<string, Map<z.infer<typeof providerSchema>['id'], number | null>>} */
+  const contracts = new Map();
+  for (const provider of providers) {
+    if (provider.status !== 'available') continue;
+    for (const row of provider.contracts) {
+      const label = row.label.trim();
+      const prices = contracts.get(label) ?? new Map();
+      // Pair identical labels only. A duplicate label has no unique quote.
+      prices.set(
+        provider.id,
+        prices.has(provider.id) ? null : marketMidpoint(row),
+      );
+      contracts.set(label, prices);
+    }
+  }
+  return Array.from(contracts, ([label, prices]) => ({
+    label,
+    highest: Math.max(
+      -1,
+      ...Array.from(prices.values()).filter((price) => price !== null),
+    ),
+    quotes: providers.map(({ id }) => ({
+      provider: id,
+      price: prices.get(id) ?? null,
+    })),
+  }))
+    .filter(({ highest }) => highest >= 0)
+    .sort(
+      (a, b) => b.highest - a.highest || a.label.localeCompare(b.label, 'fr'),
+    )
+    .slice(0, 5);
+}

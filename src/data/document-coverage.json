@@ -512,7 +512,7 @@
     "sourceId": "dubuisson-projet-presidentiel",
     "perimeter": "Les treize dossiers du programme",
     "unit": "section",
-    "checked": "2026-11-25",
+    "checked": "2026-11-27",
     "units": [
       {
         "id": "dossier-1",
@@ -526,14 +526,14 @@
         "title": "La richesse pour les Français",
         "sourceId": "dubuisson-dossier-richesse",
         "review": "sans-engagement-precis",
-        "measureIds": []
+        "measureIds": ["dubuisson-partage-valeur-participation"]
       },
       {
         "id": "dossier-3",
         "title": "Santé publique et médecine",
         "sourceId": "dubuisson-dossier-sante",
         "review": "sans-engagement-precis",
-        "measureIds": []
+        "measureIds": ["dubuisson-soins-proches-communes-outre-mer"]
       },
       {
         "id": "dossier-4",
@@ -551,7 +551,8 @@
         "measureIds": [
           "dubuisson-renforcer-protection-temoins",
           "dubuisson-enquetes-financieres-blanchiment",
-          "dubuisson-surveillance-ports"
+          "dubuisson-surveillance-ports",
+          "dubuisson-prevenir-recrutement-jeunes-reseaux"
         ]
       },
       {
@@ -617,7 +618,8 @@
           "dubuisson-reduire-delegations-president",
           "dubuisson-transports-president-vols-commerciaux",
           "dubuisson-travail-mensuel-outre-mer",
-          "dubuisson-diplomatie-depuis-outre-mer"
+          "dubuisson-diplomatie-depuis-outre-mer",
+          "dubuisson-suivre-decisions-apres-deplacements"
         ]
       }
     ]
@@ -3541,7 +3543,7 @@
     "sourceId": "cheve-remontee-citoyenne",
     "perimeter": "Les 22 pages de l’ébauche de Remontée citoyenne, y compris les illustrations et la proposition de scrutin donnée en exemple.",
     "unit": "section",
-    "checked": "2026-11-26",
+    "checked": "2026-11-27",
     "units": [
       {
         "id": "aiguillage",
@@ -3559,7 +3561,8 @@
           "cheve-institutions-remontee-citoyenne",
           "cheve-saisir-administration-droit",
           "cheve-question-reponse-publique",
-          "cheve-proposition-argumentee"
+          "cheve-proposition-argumentee",
+          "cheve-guide-propositions-citoyennes"
         ]
       },
       {
@@ -3591,7 +3594,10 @@
       {
         "id": "questions",
         "title": "Questions argumentées et examen de leur recevabilité · p. 14",
-        "measureIds": ["cheve-question-reponse-publique"]
+        "measureIds": [
+          "cheve-question-reponse-publique",
+          "cheve-confier-verification-presse-locale"
+        ]
       },
       {
         "id": "propositions",
@@ -11926,6 +11932,325 @@
         "sourceId": "riner-salon-maires-2026-moyens-maires",
         "measureIds": [
           "riner-donner-aux-maires-moyens-de-leurs-responsabilites"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "pcf-paix-defense",
+    "perimeter": "Pages 38 à 58 qui documentent les propositions retenues sur la diplomatie, le désarmement, la coopération et la défense.",
+    "unit": "page",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "PDF, p. 38",
+        "measureIds": [
+          "roussel-paix-ukraine-integrite-territoriale",
+          "roussel-paix-ukraine-neutralite-garanties",
+          "roussel-paix-ukraine-pays-tiers-pourparlers",
+          "roussel-paix-ukraine-consultations-populations"
+        ]
+      },
+      {
+        "id": "passage-2",
+        "title": "PDF, p. 39",
+        "measureIds": [
+          "roussel-paix-chypre-reunification-federale",
+          "roussel-paix-chypre-fin-traites-bases",
+          "roussel-paix-irlande-referendum-unite",
+          "roussel-paix-artsakh-sanctions",
+          "roussel-paix-artsakh-retour-protection",
+          "roussel-paix-armeniens-detenus-bakou"
+        ]
+      },
+      {
+        "id": "passage-3",
+        "title": "PDF, p. 40",
+        "measureIds": [
+          "roussel-paix-etat-palestinien-frontieres-capitale",
+          "roussel-paix-israel-embargo-armes",
+          "roussel-paix-israel-suspension-accord-association",
+          "roussel-paix-israel-gel-avoirs-dirigeants",
+          "roussel-paix-israel-rupture-echanges",
+          "roussel-paix-palestine-capacite-juridique",
+          "roussel-paix-liban-mandat-finul"
+        ]
+      },
+      {
+        "id": "passage-4",
+        "title": "PDF, p. 41",
+        "measureIds": [
+          "roussel-paix-turquie-prisonniers-politiques",
+          "roussel-paix-relancer-traite-non-proliferation",
+          "roussel-paix-signer-traite-interdiction-armes-nucleaires"
+        ]
+      },
+      {
+        "id": "passage-5",
+        "title": "PDF, p. 42",
+        "measureIds": [
+          "roussel-paix-zones-sans-armes-nucleaires",
+          "roussel-paix-universaliser-conventions-desarmement",
+          "roussel-paix-appliquer-traite-commerce-armes"
+        ]
+      },
+      {
+        "id": "passage-6",
+        "title": "PDF, p. 43",
+        "measureIds": ["roussel-paix-sortie-commandement-integre-otan"]
+      },
+      {
+        "id": "passage-7",
+        "title": "PDF, p. 44",
+        "measureIds": [
+          "roussel-paix-traite-paix-asie-orientale",
+          "roussel-paix-coree-pourparlers-six-parties"
+        ]
+      },
+      {
+        "id": "passage-8",
+        "title": "PDF, p. 45",
+        "measureIds": [
+          "roussel-paix-taiwan-issue-negociee",
+          "roussel-paix-cuba-cooperation-antilles",
+          "roussel-paix-cuba-capitaux-accord-cooperation",
+          "roussel-paix-cuba-extraterritorialite"
+        ]
+      },
+      {
+        "id": "passage-9",
+        "title": "PDF, p. 46",
+        "measureIds": ["roussel-paix-outre-mer-cooperation-regionale"]
+      },
+      {
+        "id": "passage-10",
+        "title": "PDF, p. 48",
+        "measureIds": ["roussel-paix-reforme-representation-onu"]
+      },
+      {
+        "id": "passage-11",
+        "title": "PDF, p. 49",
+        "measureIds": ["roussel-paix-commerce-emploi-biens-communs"]
+      },
+      {
+        "id": "passage-12",
+        "title": "PDF, p. 50",
+        "measureIds": [
+          "roussel-paix-monnaie-mondiale-dts",
+          "roussel-paix-fonds-europeen-services-publics",
+          "roussel-paix-credit-bce-criteres-sociaux-ecologiques",
+          "roussel-paix-fonds-europeen-codeveloppement-sud",
+          "roussel-paix-suppression-franc-cfa"
+        ]
+      },
+      {
+        "id": "passage-13",
+        "title": "PDF, p. 51",
+        "measureIds": [
+          "roussel-paix-aide-developpement-07-pib",
+          "roussel-paix-reprise-cooperation-sahel",
+          "roussel-paix-aide-developpement-priorites"
+        ]
+      },
+      {
+        "id": "passage-14",
+        "title": "PDF, p. 52",
+        "measureIds": ["roussel-paix-interventions-exterieures-mandats-onu"]
+      },
+      {
+        "id": "passage-15",
+        "title": "PDF, p. 54",
+        "measureIds": [
+          "roussel-paix-proteger-absences-reservistes",
+          "roussel-paix-conseil-reserve-premier-ministre",
+          "roussel-paix-droits-syndicaux-personnels-militaires"
+        ]
+      },
+      {
+        "id": "passage-16",
+        "title": "PDF, p. 56",
+        "measureIds": ["roussel-paix-accelerer-iris2"]
+      },
+      {
+        "id": "passage-17",
+        "title": "PDF, p. 57",
+        "measureIds": ["roussel-paix-conditionner-credits-recherche-defense"]
+      },
+      {
+        "id": "passage-18",
+        "title": "PDF, p. 58",
+        "measureIds": [
+          "roussel-paix-pole-industriel-defense-public",
+          "roussel-paix-instrument-financier-industries-strategiques"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "pcf-economie-sociale-solidaire",
+    "perimeter": "Passages relatifs aux subventions associatives, à la reprise en coopérative et au statut des centres de santé.",
+    "unit": "page",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "Alerte sur les ressources associatives · page 2 du PDF",
+        "measureIds": ["roussel-ess-subventions-associations"]
+      },
+      {
+        "id": "passage-2",
+        "title": "Un droit de préemption pour les salariés · page 8 du PDF",
+        "measureIds": [
+          "roussel-ess-preemption-salaries-cooperative",
+          "roussel-ess-fonds-territoriaux-reprises",
+          "roussel-ess-epargne-salariale-reprises",
+          "roussel-ess-tribunaux-commerce-territoires-salaries"
+        ]
+      },
+      {
+        "id": "passage-3",
+        "title": "L’ESS, un projet transversal · page 9 du PDF",
+        "measureIds": ["roussel-ess-centres-de-sante-cooperatifs"]
+      }
+    ]
+  },
+  {
+    "sourceId": "pcf-pacte-avenir-france",
+    "perimeter": "Objectifs du Pacte national reliés aux nouvelles fiches.",
+    "unit": "section",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "Objectif 1 · Emploi, retraite et Sécurité sociale",
+        "measureIds": ["roussel-securite-emploi-formation-remuneree"]
+      },
+      {
+        "id": "passage-2",
+        "title": "Objectif 2 · Industrie et services publics",
+        "measureIds": [
+          "roussel-prerecruter-personnels-services-publics",
+          "roussel-budget-culture-un-pour-cent-pib"
+        ]
+      },
+      {
+        "id": "passage-3",
+        "title": "Objectif 3 · Énergie, climat et alimentation",
+        "measureIds": [
+          "roussel-doubler-production-energie-decarbonee",
+          "roussel-etudier-reacteur-neutrons-rapides",
+          "roussel-renover-700000-logements-par-an"
+        ]
+      },
+      {
+        "id": "passage-4",
+        "title": "Objectif 4 · Avenir de la jeunesse",
+        "measureIds": [
+          "roussel-ministere-enfance",
+          "roussel-devoir-constitutionnel-protection-enfants",
+          "roussel-revenu-autonomie-etudiants",
+          "roussel-construire-universites-ecoles-ingenieurs",
+          "roussel-reserver-10-pour-cent-embauches-moins-25"
+        ]
+      },
+      {
+        "id": "passage-5",
+        "title": "Objectif 5 · Production et planification",
+        "measureIds": [
+          "roussel-veto-contre-propositions-salaries",
+          "roussel-regulariser-travailleurs-sans-papiers"
+        ]
+      },
+      {
+        "id": "passage-6",
+        "title": "Objectifs 5 et 8 · Emploi et transformation productive",
+        "measureIds": ["roussel-conferences-permanentes-emploi-production"]
+      },
+      {
+        "id": "passage-7",
+        "title": "Objectif 6 · Crédit, fiscalité et cotisations",
+        "measureIds": [
+          "roussel-conditionner-aides-criteres-sociaux-ecologiques",
+          "roussel-recruter-agents-fraude-evasion-fiscales"
+        ]
+      },
+      {
+        "id": "passage-8",
+        "title": "Objectif 7 · Droits et lutte contre les discriminations",
+        "measureIds": [
+          "roussel-plan-contre-racisme-discriminations",
+          "roussel-ineligibilite-incitation-haine-raciale",
+          "roussel-plan-egalite-droits-lgbtqi"
+        ]
+      },
+      {
+        "id": "passage-9",
+        "title": "Objectif 8 · Démocratie",
+        "measureIds": [
+          "roussel-referendum-initiative-populaire",
+          "roussel-coelaborer-lois-cadres-conferences-citoyennes",
+          "roussel-vote-residents-etrangers-locales-europeennes",
+          "roussel-renforcer-dialogue-cese-ceser",
+          "roussel-loi-protection-audiovisuel-public-medias"
+        ]
+      },
+      {
+        "id": "passage-10",
+        "title": "Objectif 10 · Union européenne",
+        "measureIds": [
+          "roussel-rompre-contraintes-pacte-stabilite",
+          "roussel-sortir-marche-europeen-electricite"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "ge-etat-resilience",
+    "perimeter": "Choix et propositions reliés aux nouvelles fiches sur l’adaptation au changement climatique.",
+    "unit": "section",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "passage-1",
+        "title": "Choix n°1 · Trajectoire mondiale de référence",
+        "measureIds": [
+          "batho-trajectoire-mondiale-3-degres-loi",
+          "batho-tests-resistance-rechauffement"
+        ]
+      },
+      {
+        "id": "passage-2",
+        "title": "Choix n°4 · Bassins de vie et biorégions",
+        "measureIds": ["batho-resilience-bassins-vie-bioregions"]
+      },
+      {
+        "id": "passage-3",
+        "title": "Proposition n°1 · Loi de programmation",
+        "measureIds": [
+          "batho-loi-programmation-resilience-nationale",
+          "batho-cofinancer-chefs-projet-resilience-locaux"
+        ]
+      },
+      {
+        "id": "passage-4",
+        "title": "Proposition n°2 · Sécurité sociale climatique",
+        "measureIds": ["batho-contribution-profits-fossiles-risques-climat"]
+      },
+      {
+        "id": "passage-5",
+        "title": "Proposition n°3 · Plan d’urgence pour l’eau",
+        "measureIds": [
+          "batho-proteger-perimetres-captage-eau",
+          "batho-restaurer-rivieres-zones-humides-haies"
+        ]
+      },
+      {
+        "id": "passage-6",
+        "title": "Proposition n°5 · Protection civile",
+        "measureIds": [
+          "batho-renforcer-pompiers-volontaires",
+          "batho-soutenir-education-populaire-entraide"
         ]
       }
     ]
