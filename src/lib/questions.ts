@@ -503,6 +503,208 @@ const labels: Record<string, string> = {
 };
 const additions = [
   {
+    id: 'institutions-duree-mandat-presidentiel',
+    theme: 'institutions',
+    title: 'Combien de temps devrait durer le mandat présidentiel ?',
+    terms: 'quinquennat septennat durée du mandat présidentiel',
+    versions: [
+      'branco-retablir-un-mandat-presidentiel-de-sept-ans-v1',
+      'herlin-septennat-v1',
+      'dlf-septennat-referendum-revocatoire-v1',
+      'asselineau-soumettre-retour-septennat-au-referendum-v1',
+    ],
+  },
+  {
+    id: 'institutions-haute-administration',
+    theme: 'institutions',
+    title: 'Comment organiser la haute fonction publique ?',
+    terms: 'hauts fonctionnaires corps de l’État préfets inspection diplomatie',
+    versions: [
+      'dupont-aignan-reconstituer-un-corps-diplomatique-professionnel-v1',
+      'lalanne-supprimer-postes-haute-fonction-publique-v1',
+      'asselineau-envisager-rotation-hauts-responsables-administration-v1',
+      'asselineau-retablir-grands-corps-etat-v1',
+    ],
+  },
+  {
+    id: 'institutions-dissolution-assemblee',
+    theme: 'institutions',
+    title: 'Quand dissoudre l’Assemblée nationale ?',
+    terms: 'dissolution Assemblée nationale nouvelles élections législatives',
+    versions: [
+      'egger-institutions-dissolution-v1',
+      'becht-limiter-le-droit-de-dissolution-aux-crises-graves-et-a-lapres-presidentielle-v1',
+      'tinland-dissoudre-assemblee-v1',
+      'asselineau-dissoudre-assemblee-apres-election-v1',
+    ],
+  },
+  {
+    id: 'institutions-conseil-prive-etat',
+    theme: 'institutions',
+    title: 'Quel recours aux cabinets de conseil privés par l’État ?',
+    terms:
+      'cabinets privés audit sous-traitance missions conseil administrations',
+    versions: [
+      'melenchon-interdire-sous-traitance-politiques-publiques-cabinets-v1',
+      'pic-cabinets-conseil-dernier-recours-v1',
+      'ps-reduire-les-missions-confiees-aux-cabinets-de-conseil-prives-v1',
+      'asselineau-restreindre-conseil-prive-administration-v1',
+    ],
+  },
+  {
+    id: 'institutions-controle-depense-publique',
+    theme: 'institutions',
+    title: 'Comment contrôler la gestion et les dépenses publiques ?',
+    terms: 'Cour des comptes dépenses gestion publique audit contrôle',
+    versions: [
+      'becht-creer-une-commission-de-controle-de-la-gestion-publique-avec-cinquante-citoyen-v1',
+      'asselineau-renforcer-pouvoir-cour-comptes-v1',
+    ],
+  },
+  {
+    id: 'institutions-age-eligibilite-president',
+    theme: 'institutions',
+    title: 'Quel âge minimum pour exercer la présidence ?',
+    terms: 'âge minimum président présidence éligibilité âge requis candidat',
+    versions: ['asselineau-fixer-age-minimum-president-50-ans-v1'],
+  },
+  {
+    id: 'institutions-liberte-medias',
+    theme: 'institutions',
+    title: 'Comment protéger la liberté des médias ?',
+    terms:
+      'médias presse liberté d’expression journalistes fermeture sanctions',
+    versions: [
+      'arthaud-critiquer-fermeture-cnews-lutte-racisme-v1',
+      'melenchon-proteger-journalistes-manifestations-v1',
+      'melenchon-ecarter-les-tribunaux-de-commerce-des-procedures-sur-la-liberte-de-la-presse-v1',
+      'asselineau-privilegier-justice-a-fermeture-medias-v1',
+    ],
+  },
+  {
+    id: 'europe-cooperations-industrielles',
+    theme: 'europe',
+    title: 'Quelles coopérations industrielles avec d’autres pays ?',
+    terms: 'coopération internationale industrie Chine technologie recherche',
+    versions: [
+      'roussel-institutions-cooperation-recherche-ia-v1',
+      'asselineau-developper-cooperation-industrielle-avec-chine-v1',
+    ],
+  },
+  {
+    id: 'institutions-protection-patrimoine',
+    theme: 'institutions',
+    title: 'Comment protéger le patrimoine culturel ?',
+    terms: 'monuments protection patrimoine musées conservation collections',
+    versions: [
+      'dlf-patrimoine-plan-urbanisme-v1',
+      'melenchon-fonds-sauvegarde-petit-patrimoine-rural-v1',
+      'saforcada-plans-sauvegarde-patrimoine-crises-v1',
+      'asselineau-confier-representation-patrimoine-comte-paris-v1',
+    ],
+  },
+  {
+    id: 'education-acces-culture',
+    theme: 'education',
+    title: 'Comment faciliter l’accès des jeunes à la culture ?',
+    terms: 'visites scolaires accès culture patrimoine musées élèves jeunes',
+    versions: [
+      'dlf-ticket-decouverte-culture-v1',
+      'becht-creer-des-visites-de-musees-a-distance-en-trois-dimensions-v1',
+      'asselineau-organiser-visites-scolaires-patrimoine-v1',
+    ],
+  },
+  {
+    id: 'sante-protection-ivg',
+    theme: 'sante',
+    title: 'Comment protéger l’accès à l’IVG ?',
+    terms:
+      'avortement interruption volontaire grossesse constitution accès ivg',
+    versions: [
+      'labib-defendre-acces-effectif-ivg-v1',
+      'kazib-ivg-pma-transitions-v1',
+      'rohou-maintenir-protection-constitutionnelle-ivg-v1',
+    ],
+  },
+  {
+    id: 'securite-lutte-racisme',
+    theme: 'securite',
+    title: 'Comment lutter contre le racisme et les discriminations racistes ?',
+    terms: 'racisme discriminations plainte prévention recours victimes',
+    versions: [
+      'roussel-plan-contre-racisme-discriminations-v1',
+      'villepin-reunir-une-commission-sur-le-racisme-lantisemitisme-et-lislamophobie-v1',
+      'melenchon-former-les-agents-publics-au-contact-du-public-a-la-lutte-contre-les-racismes-v1',
+    ],
+  },
+  {
+    id: 'logement-attribution-nationalite',
+    theme: 'logement',
+    title:
+      'La nationalité doit-elle compter dans l’attribution d’un logement social ?',
+    terms:
+      'HLM priorité préférence nationale nationalité attribution logements sociaux',
+    versions: [
+      'lepen-logement-priorite-nationale-v2',
+      'arthaud-immigration-logement-v1',
+      'bouamrane-refuser-preference-nationale-logement-social-v1',
+    ],
+  },
+  {
+    id: 'institutions-finances-communes',
+    theme: 'institutions',
+    title: 'Quels moyens financiers pour les communes ?',
+    terms:
+      'communes financement collectivités maires budget visibilité moyens fiscalité locale',
+    versions: [
+      'riner-visibilite-budgetaire-communes-six-ans-v2',
+      'riner-donner-aux-maires-moyens-de-leurs-responsabilites-v2',
+    ],
+  },
+  {
+    id: 'travail-conditions-aides-entreprises',
+    theme: 'travail',
+    title: 'Quelles conditions pour les aides publiques aux entreprises ?',
+    terms:
+      'critères conditionner subventions exonérations entreprises emploi responsabilité sociale environnementale',
+    versions: [
+      'bouamrane-conditionner-aides-entreprises-investissement-emploi-v1',
+      'melenchon-conditionner-aides-entreprises-territoires-fragiles-v1',
+      'groupe-rn-reprendre-aides-entreprises-delocalisent-v1',
+      'dubuisson-remplacer-aides-publiques-entreprises-allegement-charges-v1',
+      'billetdoux-aides-entreprises-v4',
+    ],
+  },
+  {
+    id: 'institutions-service-civique-obligatoire',
+    theme: 'institutions',
+    title: 'Faut-il rendre le service civique obligatoire ?',
+    terms: 'service civique obligatoire volontaire jeunes engagement',
+    versions: [
+      'dupont-aignan-service-civique-trois-mois-v1',
+      'ecologistes-accroitre-le-nombre-de-missions-de-service-civique-volontaire-v1',
+      'mathieu-soumettre-service-civique-obligatoire-au-referendum-v1',
+    ],
+  },
+  {
+    id: 'education-rythmes-scolaires',
+    theme: 'education',
+    title: 'Comment organiser les rythmes scolaires ?',
+    terms: 'temps de l’enfant horaires rythmes scolaires semaine école',
+    versions: ['lisnard-autonomie-locale-rythmes-scolaires-v1'],
+  },
+  {
+    id: 'institutions-information-referendaire',
+    theme: 'institutions',
+    title: 'Comment informer le public avant un référendum ?',
+    terms:
+      'référendum campagnes référendaires information médias débats contradictoires',
+    versions: [
+      'mathieu-publier-avis-contradictoires-avant-referendum-v1',
+      'mathieu-encadrer-information-pendant-campagnes-referendaires-v1',
+    ],
+  },
+  {
     id: 'travail-aides-cooperatives',
     theme: 'travail',
     title:
@@ -857,6 +1059,7 @@ interface Definition {
 }
 const additionalAnswers: Record<string, string[]> = {
   'retraites-conditions-depart': [
+    'asselineau-faire-dependre-depart-retraite-duree-cotisation-v1',
     'saforcada-remplacer-age-legal-par-40-a-43-annuites-v1',
     'tinland-taux-plein-55-60-v1',
     'lepen-fixer-un-plancher-de-160-trimestres-v1',
@@ -989,6 +1192,7 @@ const additionalAnswers: Record<string, string[]> = {
     'branco-remboursement-psychologues-examen-national-v1',
   ],
   'institutions-declenchement-referendum': [
+    'mathieu-envisager-ric-legislatif-et-conventions-v1',
     'mlekuz-envisager-article-11-si-absence-majorite-v1',
     'saforcada-elargir-perimetre-referendum-presidentiel-article-11-v1',
     'saforcada-remplacer-rip-petition-suivie-vote-parlementaire-v1',
@@ -1118,6 +1322,10 @@ const additionalAnswers: Record<string, string[]> = {
     'mlekuz-constituante-apres-refus-v1',
   ],
   'institutions-contributions-citoyennes': [
+    'cheve-faire-presidence-intermediaire-citoyens-v1',
+    'cheve-reexaminer-reglements-apres-remontee-v1',
+    'mathieu-faire-valider-conclusions-conventions-par-referendum-v1',
+    'mathieu-convention-citoyenne-education-150-v1',
     'roussel-congres-convention-citoyenne-projet-loi-v1',
     'tinland-consultations-publiques-v1',
     'lisnard-referendum-initiative-populaire-v1',
@@ -1145,6 +1353,7 @@ const additionalAnswers: Record<string, string[]> = {
     'ps-garantir-85-du-smic-apres-une-carriere-entiere-dans-lagriculture-v1',
   ],
   'retraites-financement-regimes': [
+    'asselineau-maintenir-retraites-par-repartition-v1',
     'pic-retraites-capitalisation-collective-v1',
     'attal-interessement-vers-epargne-retraite-v1',
     'philippe-plan-epargne-premier-emploi-v1',
@@ -1190,6 +1399,7 @@ const additionalAnswers: Record<string, string[]> = {
     'roussel-ouvrir-des-departs-anticipes-pour-les-metiers-penibles-et-les-carrieres-longue-v1',
   ],
   'climat-avenir-eolien': [
+    'rohou-ecarter-renouvellement-eoliennes-problematiques-v1',
     'lisnard-eolien-certains-projets-et-reserve-en-mer-v1',
     'place-publique-plans-regionaux-renouvelables-vent-v1',
     'tinland-arreter-eolien-v1',
@@ -1224,7 +1434,7 @@ const additionalAnswers: Record<string, string[]> = {
     'zemmour-prisons-100000-places-v1',
     'herlin-places-prison-v1',
     'becht-places-prisons-haute-securite-v1',
-    'riner-construire-places-prison-v1',
+    'riner-construire-places-prison-v2',
   ],
   'agriculture-ogm': [
     'rn-delegation-soutenir-cadre-europeen-ntg-v1',
@@ -1307,7 +1517,10 @@ const additionalAnswers: Record<string, string[]> = {
     'melenchon-declencher-orsec-eau-plafonner-bouteilles-v1',
     'melenchon-ne-pas-repercuter-dette-eau-investissements-v1',
   ],
-  'institutions-revocation-elus': ['kazib-rendre-mandats-revocables-v1'],
+  'institutions-revocation-elus': [
+    'asselineau-envisager-referendum-revocatoire-president-v1',
+    'kazib-rendre-mandats-revocables-v1',
+  ],
   'aide-ukraine': ['lalanne-cesser-envois-fonds-ukraine-v1'],
   'europe-accord-mercosur': ['lassalle-demander-opposition-france-mercosur-v1'],
   'sante-experimentation-animale': [
@@ -1340,6 +1553,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La priorité dans les achats publics vise à garantir des débouchés aux producteurs. Le prix payé aux exploitations reste à préciser.',
   },
   'education-acces-etudes': {
+    'bouamrane-renforcer-orientation-reorientation-lycee-v1':
+      'Karim Bouamrane demande de revoir l’accompagnement des lycéens. Son intervention ne fixe pas de procédure d’admission.',
     'melenchon-rendre-gratuites-etudes-superieures-licence-doctorat-v1':
       'La mesure change les conditions financières d’accès aux études. Elle ne prévoit pas de règle d’admission.',
     'labib-sopposer-selection-parcoursup-v1':
@@ -1406,7 +1621,7 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le projet concerne l’architecture de sécurité européenne une fois la paix revenue en Ukraine.',
     'philippe-soutenir-ladhesion-de-lukraine-a-lotan-v1':
       'L’adhésion à l’OTAN est un volet distinct du soutien envisagé. La proposition ne précise pas le contenu de l’aide française.',
-    'riner-interroger-consequences-aide-ukraine-v1':
+    'riner-interroger-consequences-aide-ukraine-v2':
       'Teddy Riner dit que la France resterait aux côtés des pays opprimés. Dans cet échange, il renvoie à son futur programme pour les modalités de l’aide.',
   },
   'france-otan': {
@@ -1637,6 +1852,18 @@ const scopedComplements: Record<string, Record<string, string>> = {
     'billetdoux-debattre-perimetre-aides-cooperatives-v1':
       'Augustin Billetdoux pose la question d’un accès réservé aux coopératives ou ouvert aussi à des entreprises classiques. Il laisse le critère d’éligibilité à débattre.',
   },
+  'securite-lutte-racisme': {
+    'riner-encourager-plaintes-victimes-racisme-v1':
+      'Teddy Riner appelle les victimes à porter plainte. Il ne présente aucune modification de la procédure.',
+  },
+  'education-rythmes-scolaires': {
+    'mathieu-appliquer-propositions-convention-temps-scolaires-v1':
+      'Benoît Mathieu demande de suivre les recommandations de la convention. Le passage ne choisit aucun horaire.',
+  },
+  'retraites-conditions-depart': {
+    'mathieu-confier-debat-retraites-citoyens-tires-au-sort-v1':
+      'Benoît Mathieu propose de faire délibérer des citoyens tirés au sort. Il ne décide ni de l’âge de départ ni du montant des pensions.',
+  },
 };
 const searchTerms: Record<string, string> = {
   'logement-obligations-parc-social': 'logement social communes loi SRU',
@@ -1647,6 +1874,69 @@ const searchTerms: Record<string, string> = {
 };
 // These subject phrases identify a precise question. Search terms can be broader.
 export const questionAnswerAliases: Record<string, string[]> = {
+  'institutions-duree-mandat-presidentiel': [
+    'septennat',
+    'durée du mandat présidentiel',
+  ],
+  'institutions-haute-administration': [
+    'haute fonction publique',
+    'grands corps de l’État',
+  ],
+  'institutions-dissolution-assemblee': [
+    'dissolution de l’Assemblée nationale',
+  ],
+  'institutions-conseil-prive-etat': [
+    'cabinets de conseil privés',
+    'recours de l’État aux cabinets',
+  ],
+  'institutions-controle-depense-publique': [
+    'pouvoirs de la Cour des comptes',
+    'contrôle de la gestion publique',
+  ],
+  'institutions-age-eligibilite-president': [
+    'âge minimum pour être président',
+    'âge requis pour la présidence',
+  ],
+  'institutions-liberte-medias': ['liberté des médias', 'fermeture des médias'],
+  'europe-cooperations-industrielles': [
+    'coopération industrielle avec la Chine',
+    'coopération industrielle internationale',
+  ],
+  'institutions-protection-patrimoine': ['protection du patrimoine culturel'],
+  'education-acces-culture': [
+    'visites scolaires du patrimoine',
+    'accès des jeunes à la culture',
+  ],
+  'sante-protection-ivg': [
+    'accès à l’IVG',
+    'protection constitutionnelle de l’IVG',
+    'soutient la protection constitutionnelle de l’IVG',
+  ],
+  'securite-lutte-racisme': [
+    'lutte contre le racisme',
+    'plaintes pour des faits racistes',
+    'dit au sujet des plaintes pour des faits racistes',
+  ],
+  'logement-attribution-nationalite': [
+    'préférence nationale pour le logement social',
+    'nationalité et attribution des HLM',
+    'soutient la préférence nationale pour le logement social',
+  ],
+  'institutions-finances-communes': [
+    'financement des communes',
+    'moyens financiers des communes',
+    'visibilité budgétaire des communes',
+  ],
+  'travail-conditions-aides-entreprises': [
+    'conditions des aides aux entreprises',
+    'conditionner les aides publiques aux entreprises',
+  ],
+  'institutions-service-civique-obligatoire': ['service civique obligatoire'],
+  'education-rythmes-scolaires': ['rythmes scolaires', 'temps de l’enfant'],
+  'institutions-information-referendaire': [
+    'information avant un référendum',
+    'médias pendant une campagne référendaire',
+  ],
   'travail-aides-cooperatives': [
     'soutien aux coopératives',
     'aides aux coopératives',
@@ -1677,7 +1967,12 @@ export const questionAnswerAliases: Record<string, string[]> = {
     'mandats révocables',
     'référendum révocatoire',
   ],
-  'aide-ukraine': ['aide à l’Ukraine', 'aide française à l’Ukraine'],
+  'aide-ukraine': [
+    'aide à l’Ukraine',
+    'aide française à l’Ukraine',
+    'l’aide à l’Ukraine et les moyens des communes',
+    'dit sur l’aide à l’Ukraine et les moyens des communes',
+  ],
   'france-otan': ['OTAN', 'place de la France dans l’OTAN'],
   'europe-participation-union': [
     'sortie de l’Union européenne',
@@ -1767,6 +2062,7 @@ export const questionAnswerAliases: Record<string, string[]> = {
   'institutions-contributions-citoyennes': [
     'initiatives citoyennes',
     'participation aux décisions publiques',
+    'transmission des contributions citoyennes à la présidence',
   ],
   'social-garde-jeunes-enfants': [
     'places de crèche',
@@ -1785,7 +2081,11 @@ export const questionAnswerAliases: Record<string, string[]> = {
     'rémunération des professeurs',
   ],
   'handicap-accompagnement-ecole': ['statut des AESH'],
-  'places-prison': ['places de prison', 'construction de prisons'],
+  'places-prison': [
+    'places de prison',
+    'construction de prisons',
+    'construire de nouvelles places de prison',
+  ],
   'agriculture-cantines': ['cantines scolaires'],
   'agriculture-remuneration-contrats': ['rémunération des agriculteurs'],
   'immigration-aide-medicale-etat': [

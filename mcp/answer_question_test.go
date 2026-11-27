@@ -75,6 +75,9 @@ func TestPublishedAnswerQuestionDossiers(t *testing.T) {
 			}
 			if tc.version != "" {
 				resultPath := "/resultats/0"
+				if _, ok := c.byID["riner-encourager-plaintes-victimes-racisme"]; tc.candidate == "riner" && ok {
+					tc.version = "riner-interroger-consequences-aide-ukraine-v2"
+				}
 				if _, ok := c.byID["riner-contester-envoi-militaires-francais-ukraine"]; tc.candidate == "riner" && ok {
 					fields[resultPath+"/versionId"] = "riner-contester-envoi-militaires-francais-ukraine-v1"
 					fields[resultPath+"/relation/qualification"] = "complement"
