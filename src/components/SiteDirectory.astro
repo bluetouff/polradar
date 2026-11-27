@@ -10,11 +10,21 @@ const path = Astro.url.pathname;
 const mobileSections = primaryNavigation.filter(
   ({ url }) => !mobilePrimaryIcons.has(url),
 );
+const categories = [
+  { id: 'pro', shortLabel: 'Outils pro' },
+  ...directorySections,
+];
 ---
 
 <details class="site-directory">
   <summary>
-    Explorer <Icon name="chevron" />
+    <span class="directory-trigger-icon" aria-hidden="true">
+      <Icon name="layers" />
+    </span>
+    <span>Explorer</span>
+    <span class="directory-trigger-chevron" aria-hidden="true">
+      <Icon name="chevron" />
+    </span>
   </summary>
   <nav aria-label="Rubriques et outils">
     <ul class="directory-mobile" role="list" aria-label="Rubriques principales">
@@ -26,7 +36,26 @@ const mobileSections = primaryNavigation.filter(
         </li>
       ))}
     </ul>
-    <div class="directory-tools">
+    <fieldset class="directory-picker" aria-label="Familles de rubriques">
+      {categories.map(({ id, shortLabel }) => (
+        <label>
+          <input
+            type="radio"
+            id={'explorer-' + id}
+            name="explorer-section"
+            value={id}
+            checked={id === 'pro'}
+            aria-controls={'explorer-panel-' + id}
+          />
+          <span>{shortLabel}</span>
+        </label>
+      ))}
+    </fieldset>
+    <div
+      class="directory-tools"
+      data-directory-group="pro"
+      id="explorer-panel-pro"
+    >
       <a class="directory-professional" href="/rubriques/#professionnels">
         Données et outils professionnels <Icon name="arrow" />
       </a>
@@ -41,15 +70,15 @@ const mobileSections = primaryNavigation.filter(
       </ul>
     </div>
     <div class="directory-destinations">
-      {directorySections.map(({ label, icon, links }, index) => (
-        <div>
-          <p id={'navigation-directory-' + index}>
+      {directorySections.map(({ id, label, icon, links }) => (
+        <div data-directory-group={id} id={'explorer-panel-' + id}>
+          <p id={'navigation-directory-' + id}>
             <span aria-hidden="true">
               <Icon name={icon} />
             </span>{' '}
             {label}
           </p>
-          <ul role="list" aria-labelledby={'navigation-directory-' + index}>
+          <ul role="list" aria-labelledby={'navigation-directory-' + id}>
             {links.map(({ url, label }) => (
               <li>
                 <a href={url} aria-current={path === url ? 'page' : undefined}>

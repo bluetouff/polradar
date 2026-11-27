@@ -96,6 +96,17 @@ test('les sujets et les outils professionnels restent accessibles sans JavaScrip
     await page.keyboard.press('Enter');
     const panel = page.getByRole('navigation', { name: 'Rubriques et outils' });
     await panel
+      .locator('.directory-picker label')
+      .filter({ hasText: 'Programmes' })
+      .click();
+    await expect(
+      panel.getByRole('link', { name: 'Propositions', exact: true }),
+    ).toBeVisible();
+    await panel
+      .locator('.directory-picker label')
+      .filter({ hasText: 'Outils pro' })
+      .click();
+    await panel
       .getByRole('link', { name: 'Données et outils professionnels' })
       .click();
     await expect(page).toHaveURL(/\/rubriques\/#professionnels$/);
@@ -112,8 +123,14 @@ test('les sujets et les outils professionnels restent accessibles sans JavaScrip
 test('le menu Explorer donne accès aux liens du pied de page sans répéter la barre principale', async ({
   page,
 }) => {
-  for (const width of [320, 820, 1440]) {
-    await page.setViewportSize({ width, height: 900 });
+  for (const [width, height] of [
+    [320, 740],
+    [390, 844],
+    [820, 720],
+    [1280, 720],
+    [1440, 900],
+  ]) {
+    await page.setViewportSize({ width, height });
     await page.goto('/');
     const summary = page.locator('.site-directory summary');
     await summary.focus();
@@ -124,12 +141,32 @@ test('le menu Explorer donne accès aux liens du pied de page sans répéter la 
         .locator(selector)
         .evaluateAll((links) => links.map((link) => link.getAttribute('href')));
     const primary = await hrefs('.site-navigation a:visible');
-    const explorer = await hrefs('.site-directory nav a:visible');
+    const exploreLinks = () => hrefs('.site-directory nav a:visible');
+    const checkPanelHeight = async () => {
+      const overflows = await panel.evaluate(
+        (el) => el.scrollHeight > el.clientHeight + 1,
+      );
+      expect(overflows, `Menu à ${width} × ${height}`).toBe(false);
+    };
+    const explorer = new Set(await exploreLinks());
+    await checkPanelHeight();
+    if (await panel.locator('.directory-picker').isVisible()) {
+      for (const category of await panel
+        .locator('.directory-picker label')
+        .all()) {
+        await category.click();
+        await checkPanelHeight();
+        const links = await exploreLinks();
+        expect(new Set(links).size).toBe(links.length);
+        links.forEach((link) => explorer.add(link));
+      }
+    } else {
+      expect(explorer.size).toBe((await exploreLinks()).length);
+    }
     const footer = await hrefs('.footer-columns a');
-    expect(new Set(explorer).size).toBe(explorer.length);
-    expect(explorer.filter((link) => primary.includes(link))).toEqual([]);
+    expect([...explorer].filter((link) => primary.includes(link))).toEqual([]);
     expect(
-      footer.filter((link) => ![...primary, ...explorer].includes(link)),
+      footer.filter((link) => !primary.includes(link) && !explorer.has(link)),
     ).toEqual([]);
     for (const path of [
       '/studio/',
@@ -138,7 +175,7 @@ test('le menu Explorer donne accès aux liens du pied de page sans répéter la 
       '/financements/',
       '/sondages/notices/',
     ])
-      expect(explorer).toContain(path);
+      expect(explorer.has(path)).toBe(true);
     const bounds = await panel.boundingBox();
     expect(bounds!.x).toBeGreaterThanOrEqual(0);
     expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(width);

@@ -19,6 +19,8 @@ const labels = new Map<string, string>([
 
 const families = [
   {
+    id: 'programmes',
+    shortLabel: 'Programmes',
     label: 'Programmes et votes',
     icon: 'mesures',
     urls: [
@@ -38,6 +40,8 @@ const families = [
     ],
   },
   {
+    id: 'campagne',
+    shortLabel: 'Campagne',
     label: 'Campagne et élections',
     icon: 'vote',
     urls: [
@@ -56,6 +60,8 @@ const families = [
     ],
   },
   {
+    id: 'economie',
+    shortLabel: 'Économie',
     label: 'Économie et territoires',
     icon: 'markets',
     urls: [
@@ -69,6 +75,8 @@ const families = [
     ],
   },
   {
+    id: 'projet',
+    shortLabel: 'Le projet',
     label: 'Le projet et ses sources',
     icon: 'source',
     urls: [
@@ -105,18 +113,15 @@ const represented = new Set([
 ]);
 const toLink = (url: string) => ({ url, label: labels.get(url)! });
 
-export const directorySections = families.map(
-  ({ label, icon, urls }, index) => ({
-    label,
-    icon,
-    links: [
-      ...urls,
-      ...(index === families.length - 1
-        ? [...labels.keys()].filter((url) => !represented.has(url))
-        : []),
-    ]
-      .filter((url) => !primaryUrls.has(url))
-      .map(toLink),
-  }),
-);
+export const directorySections = families.map(({ urls, ...family }, index) => ({
+  ...family,
+  links: [
+    ...urls,
+    ...(index === families.length - 1
+      ? [...labels.keys()].filter((url) => !represented.has(url))
+      : []),
+  ]
+    .filter((url) => !primaryUrls.has(url))
+    .map(toLink),
+}));
 export const directoryProfessionals = professionalUrls.map(toLink);

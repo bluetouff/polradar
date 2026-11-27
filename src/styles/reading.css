@@ -153,11 +153,6 @@
       width: clamp(6.2rem, 28vw, 9.5rem);
     }
   }
-  @media (max-width: 380px) {
-    .site-directory summary .icon {
-      display: none;
-    }
-  }
   @media (max-width: 540px) {
     .masthead {
       gap: 0.5rem;
