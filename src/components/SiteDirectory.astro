@@ -1,30 +1,15 @@
 ---
 import Icon from './Icon.astro';
-const path = Astro.url.pathname;
+import {
+  directoryProfessionals,
+  directorySections,
+} from '../lib/directory-navigation';
+import { mobilePrimaryIcons, primaryNavigation } from '../lib/navigation';
 
-const sections = [
-  {
-    id: 'preuves',
-    label: 'Comprendre et vérifier',
-    links: [
-      ['/mesures/', 'Propositions'],
-      ['/dossiers/', 'Décryptages'],
-      ['/votes/recherche/', 'Votes au Parlement'],
-      ['/economie/declarations/', 'Déclarations et chiffres publics'],
-    ],
-  },
-  {
-    id: 'campagne',
-    label: 'Suivre et explorer',
-    links: [
-      ['/candidats/', 'Candidats'],
-      ['/breves/', 'Brèves de campagne'],
-      ['/sondages/', 'Sondages'],
-      ['/economie/simulateurs/', 'Mon quotidien'],
-      ['/territoires/', 'Ma commune'],
-    ],
-  },
-] as const;
+const path = Astro.url.pathname;
+const mobileSections = primaryNavigation.filter(
+  ({ url }) => !mobilePrimaryIcons.has(url),
+);
 ---
 
 <details class="site-directory">
@@ -32,15 +17,43 @@ const sections = [
     Explorer <Icon name="chevron" />
   </summary>
   <nav aria-label="Rubriques et outils">
+    <ul class="directory-mobile" role="list" aria-label="Rubriques principales">
+      {mobileSections.map(({ url, label }) => (
+        <li>
+          <a href={url} aria-current={path === url ? 'page' : undefined}>
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class="directory-tools">
+      <a class="directory-professional" href="/rubriques/#professionnels">
+        Données et outils professionnels <Icon name="arrow" />
+      </a>
+      <ul role="list" aria-label="Accès professionnels">
+        {directoryProfessionals.map(({ url, label }) => (
+          <li>
+            <a href={url} aria-current={path === url ? 'page' : undefined}>
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
     <div class="directory-destinations">
-      {sections.map(({ id, label, links }) => (
+      {directorySections.map(({ label, icon, links }, index) => (
         <div>
-          <p id={'navigation-' + id}>{label}</p>
-          <ul aria-labelledby={'navigation-' + id}>
-            {links.map(([url, text]) => (
+          <p id={'navigation-directory-' + index}>
+            <span aria-hidden="true">
+              <Icon name={icon} />
+            </span>{' '}
+            {label}
+          </p>
+          <ul role="list" aria-labelledby={'navigation-directory-' + index}>
+            {links.map(({ url, label }) => (
               <li>
                 <a href={url} aria-current={path === url ? 'page' : undefined}>
-                  {text}
+                  {label}
                 </a>
               </li>
             ))}
@@ -50,12 +63,6 @@ const sections = [
     </div>
     <a class="directory-index" href="/rubriques/">
       Toutes les rubriques <Icon name="arrow" />
-    </a>
-    <a
-      class="directory-index directory-professional"
-      href="/rubriques/#professionnels"
-    >
-      Données et outils professionnels <Icon name="arrow" />
     </a>
   </nav>
 </details>

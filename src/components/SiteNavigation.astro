@@ -1,5 +1,5 @@
 ---
-import { primaryNavigation } from '../lib/navigation';
+import { mobilePrimaryIcons, primaryNavigation } from '../lib/navigation';
 import Icon from './Icon.astro';
 import '../styles/site-navigation.css';
 
@@ -11,10 +11,6 @@ const path = Astro.url.pathname;
 const active = primaryNavigation.find(({ sections }) =>
   sections.some((section) => current === section || path.startsWith(section)),
 );
-const shortcuts = new Map([
-  ['/comparer/', 'exchange'],
-  ['/suivi/', 'suivi'],
-]);
 const entries = [
   { url: '/', label: 'Accueil', icon: 'institutions', mobileOnly: true },
   {
@@ -26,7 +22,7 @@ const entries = [
   ...primaryNavigation.map((item) => ({
     url: item.url,
     label: item.label,
-    icon: shortcuts.get(item.url),
+    icon: mobilePrimaryIcons.get(item.url),
     mobileOnly: false,
   })),
 ];

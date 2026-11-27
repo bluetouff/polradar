@@ -157,3 +157,8 @@ export const primaryNavigation = [
   },
   { url: '/suivi/', label: 'Mon suivi', sections: ['/suivi/'] },
 ];
+
+export const mobilePrimaryIcons = new Map([
+  ['/comparer/', 'exchange'],
+  ['/suivi/', 'suivi'],
+]);

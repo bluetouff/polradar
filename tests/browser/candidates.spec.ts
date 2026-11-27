@@ -219,7 +219,9 @@ test('le menu mobile ouvre les rubriques au clavier et rend le focus à la ferme
     'page',
   );
   await page.keyboard.press('Tab');
-  await expect(tools.getByRole('link', { name: 'Propositions' })).toBeFocused();
+  await expect(
+    tools.getByRole('link', { name: 'Candidats', exact: true }),
+  ).toBeFocused();
   await page.keyboard.press('Escape');
   await expect(tools).toBeHidden();
   await expect(summary).toBeFocused();

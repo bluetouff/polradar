@@ -108,3 +108,42 @@ test('les sujets et les outils professionnels restent accessibles sans JavaScrip
     await context.close();
   }
 });
+
+test('le menu Explorer donne accès aux liens du pied de page sans répéter la barre principale', async ({
+  page,
+}) => {
+  for (const width of [320, 820, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/');
+    const summary = page.locator('.site-directory summary');
+    await summary.focus();
+    await page.keyboard.press('Enter');
+    const panel = page.getByRole('navigation', { name: 'Rubriques et outils' });
+    const hrefs = (selector: string) =>
+      page
+        .locator(selector)
+        .evaluateAll((links) => links.map((link) => link.getAttribute('href')));
+    const primary = await hrefs('.site-navigation a:visible');
+    const explorer = await hrefs('.site-directory nav a:visible');
+    const footer = await hrefs('.footer-columns a');
+    expect(new Set(explorer).size).toBe(explorer.length);
+    expect(explorer.filter((link) => primary.includes(link))).toEqual([]);
+    expect(
+      footer.filter((link) => ![...primary, ...explorer].includes(link)),
+    ).toEqual([]);
+    for (const path of [
+      '/studio/',
+      '/api/',
+      '/mcp/',
+      '/financements/',
+      '/sondages/notices/',
+    ])
+      expect(explorer).toContain(path);
+    const bounds = await panel.boundingBox();
+    expect(bounds!.x).toBeGreaterThanOrEqual(0);
+    expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(width);
+    await page.keyboard.press('Escape');
+    await expect(summary).toBeFocused();
+    await expect(panel).toBeHidden();
+  }
+});
