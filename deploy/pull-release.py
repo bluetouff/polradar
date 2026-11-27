@@ -6,12 +6,14 @@ from datetime import datetime, timezone
 import fcntl
 import gzip
 import hashlib
+from http.client import HTTPException
 import io
 import json
 import os
 from pathlib import Path, PurePosixPath
 import re
 import shutil
+import stat
 import subprocess
 import tarfile
 import tempfile
@@ -37,6 +39,7 @@ EXTENSIONS = {'.html', '.css', '.js', '.json', '.xml', '.txt', '.svg', '.png', '
 HOSTS = {'api.github.com', 'github.com', 'release-assets.githubusercontent.com', 'objects.githubusercontent.com'}
 SHA = re.compile(r'[0-9a-f]{40}')
 FINGERPRINT = re.compile(r'[0-9a-f]{64}')
+DEPLOYED = re.compile(rb'^Deployed ([0-9a-f]{40}); local HTTPS checks passed\.$', re.MULTILINE)
 COLLECTION = re.compile(r'[a-z][A-Za-z0-9]{0,59}')
 PUBLIC_SURFACES = {
     'index.html', 'statistiques/index.html', 'recherche/index.html',
@@ -422,6 +425,140 @@ def activate(document_root, release, state_root, sha, verify=check_live):
             temporary_link.unlink()
 
 
+def local_release(releases, sha):
+    path = releases / sha
+    try:
+        info = path.lstat()
+        if (not stat.S_ISDIR(info.st_mode) or info.st_dev != releases.stat().st_dev
+                or info.st_uid != os.geteuid()):
+            return None
+        with os.fdopen(os.open(path / 'build.json', os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK), 'rb') as stream:
+            marker = os.fstat(stream.fileno())
+            if not stat.S_ISREG(marker.st_mode) or marker.st_size > 65536:
+                return None
+            data = json.loads(stream.read(65537))
+        if isinstance(data, dict) and data.get('sourceCommit') == sha:
+            return info
+    except (OSError, ValueError):
+        return None
+    return None
+
+
+def record_success(state, releases, sha):
+    checkpoint = state / 'last-success.json'
+    previous = []
+    try:
+        saved = json.loads(checkpoint.read_text())
+        if isinstance(saved, dict):
+            previous.append(saved.get('sourceCommit'))
+            if isinstance(saved.get('rollback'), list):
+                previous.extend(saved['rollback'])
+    except (FileNotFoundError, ValueError):
+        pass
+    # Bootstrap from the previous deployer's success records.
+    try:
+        with (state / 'deploy.log').open('rb') as log:
+            log.seek(max(0, os.fstat(log.fileno()).st_size - 256 * 1024))
+            previous.extend(item.decode('ascii') for item in reversed(DEPLOYED.findall(log.read(256 * 1024))))
+    except FileNotFoundError:
+        pass
+    rollback = []
+    for old in previous:
+        if (isinstance(old, str) and SHA.fullmatch(old) and old != sha
+                and old not in rollback and local_release(releases, old) is not None):
+            rollback.append(old)
+            if len(rollback) == 2:
+                break
+    fd, temporary = tempfile.mkstemp(prefix='.last-success-', dir=state)
+    try:
+        with os.fdopen(fd, 'w') as stream:
+            stream.write(json.dumps({'sourceCommit': sha, 'rollback': rollback}) + '\n')
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, checkpoint)
+    finally:
+        Path(temporary).unlink(missing_ok=True)
+    return rollback
+
+
+def verified_archive(repository, sha):
+    tag = f'site-{sha}'
+    release = api(repository, f'releases/tags/{tag}')
+    if (release.get('tag_name') != tag or release.get('target_commitish') != sha
+            or release.get('draft') is not False or release.get('prerelease') is not False):
+        return False
+    digests = {}
+    url = f'https://github.com/{repository}/releases/download/{tag}'
+    for name, ceiling in (('site.tar.gz', PARTITIONED_MAX_ARCHIVE), ('site.sha256', 1024)):
+        matches = [asset for asset in release['assets'] if asset.get('name') == name]
+        if len(matches) != 1:
+            return False
+        asset = matches[0]
+        digest = asset.get('digest')
+        size = asset.get('size')
+        if (asset.get('state') != 'uploaded' or type(size) is not int or not 0 < size <= ceiling
+                or asset.get('browser_download_url') != f'{url}/{name}'
+                or not isinstance(digest, str) or not re.fullmatch(r'sha256:[0-9a-f]{64}', digest)):
+            return False
+        digests[name] = digest.removeprefix('sha256:')
+    checksum = download(f'{url}/site.sha256', 1024)
+    if (hashlib.sha256(checksum).hexdigest() != digests['site.sha256']
+            or checksum.strip() != f"{digests['site.tar.gz']}  site.tar.gz".encode('ascii')):
+        return False
+    reference = api(repository, f'git/ref/tags/{tag}')
+    target = reference['object']
+    return (reference['ref'] == f'refs/tags/{tag}'
+            and target['type'] == 'commit' and target['sha'] == sha)
+
+
+def mount_locations():
+    # Linux exposes bind mounts as well as mounts on different devices here.
+    for line in Path('/proc/self/mountinfo').read_text().splitlines():
+        mountpoint = line.split(' ', 5)[4]
+        yield Path(re.sub(r'\\([0-7]{3})', lambda match: chr(int(match[1], 8)), mountpoint))
+
+
+def prune_releases(repository, document_root, releases, sha, rollback):
+    if len(rollback) != 2:
+        print('Retention: skipped; fewer than two local rollback releases.', flush=True)
+        return
+    if not shutil.rmtree.avoids_symlink_attacks or releases.resolve(strict=True) != releases:
+        return
+    active = releases / sha
+    if not document_root.is_symlink() or document_root.resolve(strict=True) != active:
+        return
+    keep = {sha, *rollback}
+    protected = [local_release(releases, item) for item in keep]
+    if any(info is None for info in protected):
+        return
+    cutoff = min(info.st_mtime_ns for info in protected)
+    for path in sorted(releases.iterdir()):
+        if path.name in keep or not SHA.fullmatch(path.name):
+            continue
+        info = local_release(releases, path.name)
+        if info is None or info.st_mtime_ns >= cutoff:
+            continue
+        try:
+            archived = verified_archive(repository, path.name)
+        except (OSError, HTTPException, ValueError, AttributeError, KeyError, TypeError):
+            archived = False
+        if not archived:
+            print(f'Retention: kept {path.name}; GitHub archive could not be verified.', flush=True)
+            continue
+        # Recheck live references after the network calls, immediately before removing a directory.
+        if not document_root.is_symlink() or document_root.resolve(strict=True) != active:
+            return
+        aliases = (link.resolve() for folder in (document_root.parent, releases)
+                   for link in folder.iterdir() if link.is_symlink())
+        if any(location == path or path in location.parents for location in (*mount_locations(), *aliases)):
+            continue
+        latest = local_release(releases, path.name)
+        if latest is not None and os.path.samestat(info, latest) and info.st_ctime_ns == latest.st_ctime_ns:
+            shutil.rmtree(path)
+            print(f'Retention: removed {path.name}; GitHub archive verified.', flush=True)
+    print(f'Retention: completed for {sha}.', flush=True)
+
+
 def synchronize(args):
     if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', args.repository):
         raise ValueError('Invalid repository')
@@ -492,8 +629,13 @@ def synchronize(args):
             if temporary.exists():
                 shutil.rmtree(temporary)
             # Preserve rejected completed releases for investigation; do not serve them.
-        (state / 'last-success.json').write_text(json.dumps({'sourceCommit': sha}) + '\n')
-        print(f'Deployed {sha}; local HTTPS checks passed.')
+        print(f'Deployed {sha}; local HTTPS checks passed.', flush=True)
+        try:
+            rollback = record_success(state, releases, sha)
+            prune_releases(args.repository, document_root, releases, sha, rollback)
+        except Exception as error:
+            # A retention error cannot undo a publication already verified over HTTPS.
+            print(f'Retention interrupted ({type(error).__name__}).', flush=True)
 
 
 def main():

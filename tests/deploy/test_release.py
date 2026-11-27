@@ -292,16 +292,19 @@ class DeploymentTests(unittest.TestCase):
                     patch.object(deployment, 'download', side_effect=[checksum, packed]),
                     patch.object(deployment, 'check_live'),
                     patch.object(deployment, 'local_request', side_effect=answers) as checks,
+                    patch.object(deployment, 'prune_releases', side_effect=OSError) as prune,
                 ):
                     if error:
                         with self.assertRaisesRegex(ValueError, error):
                             deployment.synchronize(args)
                         self.assertEqual(current.resolve(), previous.resolve())
                         self.assertFalse((args.state_root / 'last-success.json').exists())
+                        prune.assert_not_called()
                     else:
                         deployment.synchronize(args)
                         self.assertEqual(current.resolve(), (args.releases_root / SHA).resolve())
                         self.assertEqual((current / deployment.CORPUS).read_bytes(), corpus)
+                        prune.assert_called_once_with(args.repository, current, args.releases_root, SHA, [])
                     self.assertEqual(checks.call_count, len(answers))
                     for call in checks.call_args_list:
                         self.assertEqual(call.args[0], 'api/v1/corpus')
@@ -454,6 +457,109 @@ class DeploymentTests(unittest.TestCase):
         for url in ['http://github.com/file', 'https://github.com.evil.example/file', 'https://127.0.0.1/file', 'https://secret@github.com/file']:
             with self.assertRaises(ValueError):
                 deployment.public_url(url)
+
+
+class RetentionTests(unittest.TestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.releases = Path(temporary.name).resolve()
+        self.document_root = self.releases / 'live'
+        self.repository = 'bluetouff/polradar'
+        self.oldest, self.unverified, self.previous, self.recent = (letter * 40 for letter in 'bcde')
+        for age, sha in enumerate((self.oldest, self.unverified, self.previous, self.recent, SHA), 1):
+            self.add_release(sha, age)
+        self.document_root.symlink_to(self.releases / SHA)
+
+    def add_release(self, sha, timestamp):
+        path = self.releases / sha
+        path.mkdir()
+        (path / 'build.json').write_text(json.dumps({'sourceCommit': sha}))
+        os.utime(path, (timestamp, timestamp))
+
+    def test_archive_requires_matching_tag_and_checksums(self):
+        sha = self.oldest
+        tag = f'site-{sha}'
+        url = f'https://github.com/{self.repository}/releases/download/{tag}'
+        archive_digest = 'f' * 64
+        checksum = f'{archive_digest}  site.tar.gz\n'.encode('ascii')
+        reference = {'ref': f'refs/tags/{tag}', 'object': {'type': 'commit', 'sha': sha}}
+        release = {'tag_name': tag, 'target_commitish': sha, 'draft': False, 'prerelease': False, 'assets': [
+            {'name': name, 'size': size, 'state': 'uploaded', 'digest': f'sha256:{digest}',
+             'browser_download_url': f'{url}/{name}'}
+            for name, size, digest in (
+                ('site.tar.gz', 1234, archive_digest),
+                ('site.sha256', len(checksum), hashlib.sha256(checksum).hexdigest()),
+            )
+        ]}
+        with (
+            patch.object(deployment, 'api', side_effect=[release, reference]) as api,
+            patch.object(deployment, 'download', return_value=checksum) as download,
+        ):
+            self.assertTrue(deployment.verified_archive(self.repository, sha))
+            download.assert_called_once_with(f'{url}/site.sha256', 1024)
+            self.assertEqual(api.call_args.args, (self.repository, f'git/ref/tags/{tag}'))
+        with (
+            patch.object(deployment, 'api', side_effect=[release, {**reference, 'object': {'type': 'commit', 'sha': SHA}}]),
+            patch.object(deployment, 'download', return_value=checksum),
+        ):
+            self.assertFalse(deployment.verified_archive(self.repository, sha))
+        with (
+            patch.object(deployment, 'api', return_value=release),
+            patch.object(deployment, 'download', return_value=checksum.replace(b'f', b'0', 1)),
+        ):
+            self.assertFalse(deployment.verified_archive(self.repository, sha))
+        release['assets'][0]['digest'] = f'sha256:{"0" * 64}'
+        with (
+            patch.object(deployment, 'api', return_value=release),
+            patch.object(deployment, 'download', return_value=checksum),
+        ):
+            self.assertFalse(deployment.verified_archive(self.repository, sha))
+
+    def test_retention_uses_legacy_and_persisted_successes(self):
+        state = self.releases / 'state'
+        state.mkdir()
+        (state / 'last-success.json').write_text(json.dumps({'sourceCommit': self.recent}))
+        log = state / 'deploy.log'
+        log.write_text(
+            f'Deployed {self.oldest}; local HTTPS checks passed.\n'
+            f'Deployed {self.previous}; local HTTPS checks passed.\n'
+            f'Deployed {"f" * 40}; local HTTPS checks passed.\n'
+        )
+        self.assertEqual(deployment.record_success(state, self.releases, SHA), [self.recent, self.previous])
+        log.unlink()
+        new_sha = '9' * 40
+        self.add_release(new_sha, 8)
+        self.assertEqual(deployment.record_success(state, self.releases, new_sha), [SHA, self.recent])
+
+    def test_unchanged_cron_poll_does_not_prune(self):
+        args = SimpleNamespace(repository=self.repository, document_root=self.document_root,
+                               state_root=self.releases / 'state', releases_root=self.releases)
+        with (
+            patch.object(deployment, 'api', return_value={'tag_name': f'site-{SHA}'}),
+            patch.object(deployment, 'prune_releases') as prune,
+        ):
+            deployment.synchronize(args)
+        prune.assert_not_called()
+
+    def test_retention_only_removes_unreferenced_older_verified_copies(self):
+        linked, mounted, staged = '1' * 40, '2' * 40, '3' * 40
+        self.add_release(linked, 1)
+        self.add_release(mounted, 1)
+        self.add_release(staged, 9)
+        (self.releases / 'alias').symlink_to(self.releases / linked / 'build.json')
+        (self.releases / ('4' * 40)).symlink_to(self.releases / SHA)
+        with (
+            patch.object(deployment, 'verified_archive',
+                         side_effect=lambda _, sha: sha != self.unverified) as verify,
+            patch.object(deployment, 'mount_locations', return_value=[self.releases / mounted / 'nested']),
+        ):
+            deployment.prune_releases(self.repository, self.document_root, self.releases, SHA, [self.recent])
+            verify.assert_not_called()
+            deployment.prune_releases(self.repository, self.document_root, self.releases, SHA, [self.recent, self.previous])
+        self.assertFalse((self.releases / self.oldest).exists())
+        for sha in (SHA, self.recent, self.previous, self.unverified, linked, mounted, staged, '4' * 40):
+            self.assertTrue((self.releases / sha).exists(), sha)
 
 
 if __name__ == '__main__':

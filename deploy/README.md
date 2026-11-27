@@ -57,11 +57,11 @@ Le TAR temporaire et la nouvelle édition sont préparés sur le système de fic
 
 Pour une correction ordinaire, restaurer le contenu souhaité dans Git puis publier un nouveau commit de `main`. Cette méthode conserve l’historique et utilise les contrôles habituels.
 
-En incident, désactiver la seule ligne `# polradar-public-deploy` dans `crontab -e` avant une restauration manuelle. Les versions précédentes et le dossier initial sont conservés. L’opérateur peut rétablir un lien vers une version déjà validée par un remplacement atomique. Ne pas copier aveuglément une archive dans la racine active.
+En incident, désactiver la seule ligne `# polradar-public-deploy` dans `crontab -e` avant une restauration manuelle. L’opérateur peut rétablir par remplacement atomique le lien vers l’une des versions conservées pour retour arrière. Le dossier initial reste disponible dans la sauvegarde privée. Ne pas copier aveuglément une archive dans la racine active.
 
 ## Exploitation et réglages Apache
 
-Les versions sont conservées pour restauration ; surveiller l’espace disque et supprimer, après revue, les anciennes versions qui ne sont plus servies ni nécessaires. Ne jamais supprimer la cible du lien actif. Les journaux techniques ne doivent contenir ni jeton ni URL signée de téléchargement.
+Après une bascule validée par les contrôles HTTPS, le déployeur conserve la version active et les deux dernières versions locales déployées avec succès. Sous le même verrou, il examine les copies plus anciennes. Il supprime une copie seulement si le tag GitHub pointe sur son commit et si les empreintes SHA-256 publiées par GitHub concordent avec le fichier `site.sha256` de cette version. Les copies non vérifiables sont conservées. Si deux versions de retour arrière sont indisponibles, la purge est reportée au prochain déploiement réussi. Les décisions figurent dans `deploy.log`.
 
 La configuration actuelle utilise `AllowOverride None`. Le site n’essaie pas de contourner ce réglage avec un `.htaccess`. La CSP est construite dans chaque document HTML. Les en-têtes Apache existants (HSTS, `nosniff`, protection de l’intégration en frame et restrictions de permissions) doivent être préservés.
 
