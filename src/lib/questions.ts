@@ -544,7 +544,7 @@ const additions = [
     },
     versions: [
       'attal-prix-planchers-agricoles-v1',
-      'billetdoux-remuneration-agriculteurs-v1',
+      'billetdoux-remuneration-agriculteurs-v2',
       'dupont-aignan-double-prix-fruits-legumes-v1',
       'lr-contrats-volumes-prix-agricoles-v1',
       'mei-contrats-eau-sols-agriculteurs-v1',
@@ -859,7 +859,7 @@ const additionalAnswers: Record<string, string[]> = {
     'mikolajczak-mettre-fin-a-leffacement-des-plus-values-latentes-lors-dune-succession-v1',
     'groupe-rn-successions-immobilier-300000-v2',
     'becht-exonerer-de-droits-de-succession-le-capital-maintenu-sept-ans-dans-le-fonds-ma-v1',
-    'billetdoux-heritage-bareme-v1',
+    'billetdoux-heritage-bareme-v2',
     'glucksmann-grands-heritages-v2',
     'glucksmann-imposer-plus-values-latentes-transmises-v1',
     'lisnard-exonerer-transmission-entreprises-droits-succession-v1',
@@ -1127,6 +1127,7 @@ const additionalAnswers: Record<string, string[]> = {
     'zemmour-prisons-100000-places-v1',
     'herlin-places-prison-v1',
     'becht-places-prisons-haute-securite-v1',
+    'riner-construire-places-prison-v1',
   ],
   'agriculture-ogm': [
     'rn-delegation-soutenir-cadre-europeen-ntg-v1',

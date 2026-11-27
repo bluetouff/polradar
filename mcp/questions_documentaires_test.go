@@ -92,6 +92,13 @@ func TestPublishedBancDocumentaire(t *testing.T) {
 		if c.commit == answerLegacyCommit && q.Outil == "polradar_measure" && q.Arguments["id"] == "lalanne-fiscalite-taxes-carburants" {
 			q.Attendus["/auteur"] = "Francis Lalanne"
 		}
+		// The pinned edition predates Billetdoux’s timestamped campaign citations.
+		if c.commit == answerLegacyCommit && q.Outil == "polradar_comparer" && q.Arguments["question"] == "fiscalite-transmission-patrimoine" {
+			const path = "/resultats/0/reponse/positions/0/versionId"
+			if q.Attendus[path] == "billetdoux-heritage-bareme-v2" {
+				q.Attendus[path] = "billetdoux-heritage-bareme-v1"
+			}
+		}
 		collection, _ := q.Arguments["collection"].(string)
 		if (collection == "senat" || collection == "parlement-europeen") && c.contract.major(collection) != dataMajor {
 			continue

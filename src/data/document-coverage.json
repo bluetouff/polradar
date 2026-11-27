@@ -3,7 +3,7 @@
     "sourceId": "mathieu-projet-2027",
     "perimeter": "Les cinq étapes du projet constituant",
     "unit": "étape",
-    "checked": "2026-11-25",
+    "checked": "2026-11-27",
     "units": [
       {
         "id": "etape-1",
@@ -18,7 +18,8 @@
           "mathieu-convention-controle-impartialite",
           "mathieu-constituante-dix-commissions",
           "mathieu-neuf-mois-convention-constituante",
-          "mathieu-reglement-public-convention-constituante"
+          "mathieu-reglement-public-convention-constituante",
+          "mathieu-equipe-juridique-appui-convention"
         ]
       },
       {
@@ -5172,7 +5173,7 @@
     "sourceId": "labib-discours-2026",
     "perimeter": "Passages du discours prononcé le 12 septembre 2026.",
     "unit": "passage",
-    "checked": "2026-11-26",
+    "checked": "2026-11-27",
     "units": [
       {
         "id": "passage-1",
@@ -5203,6 +5204,16 @@
         "id": "complement-travail-temps",
         "title": "Durée du travail",
         "measureIds": ["labib-travail-temps"]
+      },
+      {
+        "id": "labib-sopposer-financement-guerres-imperialistes",
+        "title": "S’opposer au financement et à la participation aux guerres qu’elle qualifie d’impérialistes",
+        "measureIds": ["labib-sopposer-financement-guerres-imperialistes"]
+      },
+      {
+        "id": "labib-renforcer-isolation-thermique-ecoles",
+        "title": "Renforcer l’isolation thermique des écoles face aux canicules",
+        "measureIds": ["labib-renforcer-isolation-thermique-ecoles"]
       }
     ]
   },
@@ -12990,6 +13001,13 @@
         "id": "cheve-envisager-subventions-presse-locale-remontee",
         "title": "Envisager une aide à la presse locale pour l’examen des questions citoyennes",
         "measureIds": ["cheve-envisager-subventions-presse-locale-remontee"]
+      },
+      {
+        "id": "cheve-prevoir-securisation-plateforme-remontee-citoyenne",
+        "title": "Prévoir un budget de sécurité et de conformité RGPD pour la Remontée citoyenne",
+        "measureIds": [
+          "cheve-prevoir-securisation-plateforme-remontee-citoyenne"
+        ]
       }
     ]
   },
@@ -13386,6 +13404,16 @@
         "id": "platret-interdire-associations-salafistes",
         "title": "Mettre fin à la présence des associations salafistes en France",
         "measureIds": ["platret-interdire-associations-salafistes"]
+      },
+      {
+        "id": "platret-depart-65-ans-retour-39-heures",
+        "title": "Évoquer un départ à 65 ans avec le retour aux 39 heures",
+        "measureIds": ["platret-depart-65-ans-retour-39-heures"]
+      },
+      {
+        "id": "platret-renvoyer-ambassadeur-iran",
+        "title": "Renvoyer l’ambassadeur d’Iran en France",
+        "measureIds": ["platret-renvoyer-ambassadeur-iran"]
       }
     ]
   },
@@ -13589,6 +13617,233 @@
         "id": "labib-sopposer-selection-parcoursup",
         "title": "S’opposer à la sélection dans Parcoursup",
         "measureIds": ["labib-sopposer-selection-parcoursup"]
+      }
+    ]
+  },
+  {
+    "sourceId": "billetdoux-video-declaration-228",
+    "perimeter": "Passages correspondant aux positions et propositions ajoutées.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "billetdoux-capitalisme-service-public",
+        "title": "Faire jouer un rôle de service public aux entreprises privées",
+        "measureIds": ["billetdoux-capitalisme-service-public"]
+      }
+    ]
+  },
+  {
+    "sourceId": "billetdoux-video-declaration-211",
+    "perimeter": "Passages correspondant aux positions et propositions ajoutées.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "billetdoux-interdire-taxer-certaines-pratiques-publicites",
+        "title": "Interdire et taxer certaines pratiques et publicités",
+        "measureIds": [
+          "billetdoux-interdire-taxer-certaines-pratiques-publicites"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "riner-bfmtv-coutances-2026-11-26",
+    "perimeter": "Passages correspondant aux positions et propositions ajoutées.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "riner-decouvrir-metiers-des-le-college",
+        "title": "Faire découvrir les métiers dès le collège",
+        "measureIds": ["riner-decouvrir-metiers-des-le-college"]
+      }
+    ]
+  },
+  {
+    "sourceId": "riner-afp-tf1-2026-11-25",
+    "perimeter": "Passages correspondant aux positions et propositions ajoutées.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "riner-discuter-ukraine-russie-fin-guerre",
+        "title": "Discuter avec l’Ukraine et la Russie pour chercher une issue à la guerre",
+        "measureIds": ["riner-discuter-ukraine-russie-fin-guerre"]
+      }
+    ]
+  },
+  {
+    "sourceId": "riner-bfmtv-beziers-2026-11-27",
+    "perimeter": "Passages correspondant aux positions et propositions ajoutées.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "riner-construire-places-prison",
+        "title": "Construire des places de prison et améliorer les conditions de détention",
+        "measureIds": ["riner-construire-places-prison"]
+      }
+    ]
+  },
+  {
+    "sourceId": "billetdoux-video-declaration-199",
+    "perimeter": "Passage horodaté de la déclaration de candidature.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "billetdoux-protectionnisme-ecologique",
+        "title": "Défendre un protectionnisme écologique",
+        "measureIds": ["billetdoux-protectionnisme-ecologique"]
+      }
+    ]
+  },
+  {
+    "sourceId": "billetdoux-video-declaration-202",
+    "perimeter": "Passage horodaté de la déclaration de candidature.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "billetdoux-planification-ecologique",
+        "title": "Confier la planification écologique à l’État",
+        "measureIds": ["billetdoux-planification-ecologique"]
+      }
+    ]
+  },
+  {
+    "sourceId": "billetdoux-video-declaration-206",
+    "perimeter": "Passage horodaté de la déclaration de candidature.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "billetdoux-heritage-bareme",
+        "title": "Revoir la fiscalité des héritages et les tranches d’impôt",
+        "measureIds": ["billetdoux-heritage-bareme"]
+      }
+    ]
+  },
+  {
+    "sourceId": "billetdoux-video-declaration-209",
+    "perimeter": "Passage horodaté de la déclaration de candidature.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "billetdoux-isf-climatique",
+        "title": "Instaurer un ISF climatique",
+        "measureIds": ["billetdoux-isf-climatique"]
+      }
+    ]
+  },
+  {
+    "sourceId": "billetdoux-video-declaration-214",
+    "perimeter": "Passage horodaté de la déclaration de candidature.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "billetdoux-conge-paternite",
+        "title": "Aligner la durée du congé de paternité sur celle du congé de maternité",
+        "measureIds": ["billetdoux-conge-paternite"]
+      }
+    ]
+  },
+  {
+    "sourceId": "billetdoux-video-declaration-322",
+    "perimeter": "Passage horodaté de la déclaration de candidature.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "billetdoux-reexaminer-aides-et-fiscalite-au-debut-du-mandat",
+        "title": "Réexaminer la fiscalité et les aides aux entreprises dès le début du mandat",
+        "measureIds": [
+          "billetdoux-reexaminer-aides-et-fiscalite-au-debut-du-mandat"
+        ]
+      }
+    ]
+  },
+  {
+    "sourceId": "billetdoux-video-declaration-334",
+    "perimeter": "Passage horodaté de la déclaration de candidature.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "billetdoux-aides-entreprises",
+        "title": "Conditionner les aides publiques aux pratiques des entreprises",
+        "measureIds": ["billetdoux-aides-entreprises"]
+      }
+    ]
+  },
+  {
+    "sourceId": "billetdoux-video-declaration-372",
+    "perimeter": "Passage horodaté de la déclaration de candidature.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "billetdoux-aides-entreprises",
+        "title": "Conditionner les aides publiques aux pratiques des entreprises",
+        "measureIds": ["billetdoux-aides-entreprises"]
+      },
+      {
+        "id": "billetdoux-remuneration-agriculteurs",
+        "title": "Mettre en débat la rémunération agricole comme critère d’aide aux entreprises",
+        "measureIds": ["billetdoux-remuneration-agriculteurs"]
+      }
+    ]
+  },
+  {
+    "sourceId": "billetdoux-video-declaration-391",
+    "perimeter": "Passage horodaté de la déclaration de candidature.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "billetdoux-remuneration-agriculteurs",
+        "title": "Mettre en débat la rémunération agricole comme critère d’aide aux entreprises",
+        "measureIds": ["billetdoux-remuneration-agriculteurs"]
+      }
+    ]
+  },
+  {
+    "sourceId": "labib-intervention-rencontres-ete-20260907",
+    "perimeter": "Passages correspondant aux positions et propositions ajoutées.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "labib-renforcer-moyens-services-utiles",
+        "title": "Renforcer les moyens de la santé, de l’éducation et des transports",
+        "measureIds": ["labib-renforcer-moyens-services-utiles"]
+      },
+      {
+        "id": "labib-pouvoir-decision-travailleurs-etat",
+        "title": "Donner aux travailleurs un pouvoir de décision sur l’État et l’économie",
+        "measureIds": ["labib-pouvoir-decision-travailleurs-etat"]
+      }
+    ]
+  },
+  {
+    "sourceId": "labib-entretien-solution-democratique-20260914",
+    "perimeter": "Passages correspondant aux positions et propositions ajoutées.",
+    "unit": "passage",
+    "checked": "2026-11-27",
+    "units": [
+      {
+        "id": "labib-requisition-logements-vacants",
+        "title": "Réquisitionner des logements vacants",
+        "measureIds": ["labib-requisition-logements-vacants"]
+      },
+      {
+        "id": "labib-renover-thermiquement-logements",
+        "title": "Soutenir la rénovation thermique des logements",
+        "measureIds": ["labib-renover-thermiquement-logements"]
       }
     ]
   }
