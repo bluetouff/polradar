@@ -79,6 +79,25 @@ test('un livret cosigné garde ses deux auteurs dans les fiches de campagne', ()
   );
 });
 
+test('un programme commun ou un livre blanc repris garde son crédit', () => {
+  for (const [id, person, author] of [
+    [
+      'mlekuz-anonymat-constituants-volontaires',
+      'Manolo Mlekuz',
+      'Démocratie Ouverte (ouvrage collectif coordonné par Armel Le Coz)',
+    ],
+    [
+      'lalanne-instruction-etat-education-familles',
+      'Francis Lalanne',
+      'Francis Lalanne et Dieudonné',
+    ],
+  ]) {
+    const measure = measures.find((row) => row.id === id);
+    assert.equal(measure.scope, 'campagne');
+    assert.equal(attributionLabel(measure, person), author);
+  }
+});
+
 test('le premier éditeur, une référence inconnue ou le prototype ne peuvent attribuer une fiche', () => {
   assert.equal(documentCredit('__proto__'), null);
   for (const ids of [
