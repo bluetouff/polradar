@@ -145,6 +145,20 @@
     display: block;
   }
 
+  @media (781px <= width <= 1024px) {
+    .publication-header .rail-brand {
+      column-gap: 0.9rem;
+    }
+    .masthead .wordmark .brand-signature {
+      width: clamp(7.6rem, 15vw, 10.4rem);
+    }
+    .masthead .rail-brand > p {
+      padding-inline-start: 0.75rem;
+    }
+    .masthead-actions {
+      column-gap: 0.55rem;
+    }
+  }
   @media (max-width: 780px) {
     .masthead .rail-brand > p {
       display: none;
