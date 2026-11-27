@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import ArticleAside from '../../components/ArticleAside.astro';
 import SourceLinks from '../../components/SourceLinks.astro';
 import RetirementDossier from '../../components/RetirementDossier.astro';
 import { formatDate, themeById } from '../../lib/data';
@@ -54,16 +55,17 @@ const interactive = article.id === 'retraites-ages-et-conditions';
       </p>
     </article>
     {!interactive && (
-      <aside class="article-aside">
-        <p class="eyebrow">Pages associées</p>
-        {article.data.themes.map((id) => (
-          <a href={`/themes/${id}/`}>
-            {themeById(id).label} : les propositions ↗
-          </a>
-        ))}
-        <a href="/comparer/">Le comparateur ↗</a>
-        <a href="/methode/">Notre méthode ↗</a>
-      </aside>
+      <ArticleAside
+        links={[
+          ...article.data.themes.map((id) => ({
+            href: `/themes/${id}/`,
+            label: `${themeById(id).label} : les propositions`,
+            icon: id,
+          })),
+          { href: '/comparer/', label: 'Le comparateur', icon: 'exchange' },
+          { href: '/methode/', label: 'Notre méthode', icon: 'source' },
+        ]}
+      />
     )}
   </div>
 </Base>

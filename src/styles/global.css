@@ -1100,8 +1100,8 @@
   }
   .article-layout {
     display: grid;
-    grid-template-columns: minmax(0, 760px) minmax(160px, 1fr);
-    gap: 40px;
+    grid-template-columns: minmax(0, 48rem) minmax(0, clamp(15rem, 27vw, 22rem));
+    gap: clamp(1.25rem, 3.5vw, 3.5rem);
     align-items: start;
   }
   .prose {
@@ -1207,20 +1207,6 @@
     border-left: 2px solid var(--line);
     margin: 20px 0;
     padding-left: 18px;
-  }
-  .article-aside {
-    border-top: 2px solid var(--ink);
-    padding-top: 12px;
-    font-size: 12px;
-  }
-  .article-aside > a {
-    display: block;
-    padding-block: 12px;
-    border-bottom: 1px solid var(--line);
-  }
-  .article-aside > p:not(.eyebrow) {
-    color: var(--muted);
-    margin-top: 12px;
   }
   .article-sources {
     border-top: 1px solid var(--line);
@@ -1624,16 +1610,16 @@
     .candidate-identity {
       grid-row: 1/3;
     }
-    .article-layout {
-      grid-template-columns: minmax(0, 1fr) 160px;
-      gap: 28px;
-    }
     .source-card {
       grid-template-columns: 80px minmax(0, 1fr) 120px;
       gap: 8px 16px;
     }
   }
   @media (max-width: 900px) {
+    .article-layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.75rem;
+    }
     .page-column {
       border-left: 0;
     }
@@ -1758,13 +1744,6 @@
     .three-col {
       grid-template-columns: 1fr;
       gap: 20px;
-    }
-    .article-layout {
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
-    .article-aside {
-      max-width: 100%;
     }
     .candidate-card {
       grid-template-columns: 20px minmax(0, 1fr) 16px;

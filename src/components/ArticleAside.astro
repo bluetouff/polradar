@@ -1,0 +1,161 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  links: { href: string; label: string; icon: string }[];
+  correctionHref?: string;
+}
+
+const { links, correctionHref } = Astro.props;
+---
+
+<aside class="article-aside">
+  <nav aria-labelledby="article-related-heading">
+    <h2 id="article-related-heading" class="editorial-corner">
+      Pages associées
+    </h2>
+    <ul role="list">
+      {links.map(({ href, label, icon }) => (
+        <li>
+          <a href={href} class="article-aside-link">
+            <span class="article-aside-symbol" aria-hidden="true">
+              <Icon name={icon} />
+            </span>
+            <span>{label}</span>
+            <span class="article-aside-arrow" aria-hidden="true">
+              <Icon name="arrow" />
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+  {correctionHref && (
+    <div class="article-correction">
+      <span class="article-aside-symbol" aria-hidden="true">
+        <Icon name="mail" />
+      </span>
+      <div>
+        <a href={correctionHref} aria-describedby="article-correction-help">
+          Signaler une correction
+        </a>
+        <p id="article-correction-help">
+          Indiquez la fiche et le document qui permet de la corriger.
+        </p>
+      </div>
+    </div>
+  )}
+</aside>
+
+<style>
+  .article-aside {
+    min-inline-size: 0;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+  .article-aside nav {
+    border: 1px solid var(--line);
+    border-radius: var(--surface-radius);
+    background: var(--sheet, var(--white));
+    box-shadow: 0 0.45rem 1.1rem -0.85rem #192d3852;
+  }
+  .article-aside h2 {
+    --corner-inset: 0.65rem;
+    margin: 0;
+    padding: 0.85rem 2.5rem 0.85rem 1rem;
+    border-start-start-radius: calc(var(--surface-radius) - 1px);
+    border-start-end-radius: calc(var(--surface-radius) - 1px);
+    color: #edf4f2;
+    background:
+      repeating-radial-gradient(
+        circle at 100% 0,
+        #addfd915 0 1px,
+        transparent 1px 0.7rem
+      ),
+      linear-gradient(110deg, #192d38 45%, #29494f);
+    font: 400 1.25rem/1.25 var(--serif);
+    text-wrap: wrap;
+  }
+  .article-aside ul {
+    display: grid;
+    gap: 0.2rem;
+    margin: 0;
+    padding: 0.45rem;
+    list-style: none;
+  }
+  .article-aside-link,
+  .article-correction {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 0.6rem;
+    border-radius: 0.4rem;
+  }
+  .article-aside-link {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    min-block-size: var(--target-size);
+    padding: 0.45rem;
+    color: var(--ink);
+    font-weight: 620;
+    text-decoration: none;
+  }
+  .article-aside-link:is(:hover, :focus-visible) {
+    background: var(--light);
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .article-aside-link:focus-visible {
+    outline-offset: 0;
+  }
+  .article-aside-symbol {
+    display: grid;
+    inline-size: 2rem;
+    block-size: 2rem;
+    place-items: center;
+    border-radius: 0.4rem 0.15rem 0.4rem 0.4rem;
+    color: var(--accent);
+    background: var(--light);
+  }
+  .article-aside-symbol :global(.icon),
+  .article-aside-arrow :global(.icon) {
+    inline-size: 1rem;
+    block-size: 1rem;
+    vertical-align: middle;
+  }
+  .article-aside-arrow {
+    color: var(--accent);
+  }
+  .article-correction {
+    align-items: start;
+    margin-block-start: 0.65rem;
+    padding: 0.7rem 0.8rem;
+    border-inline-start: 2px solid var(--accent);
+    color: var(--muted);
+    background: var(--light);
+  }
+  .article-correction .article-aside-symbol {
+    background: var(--sheet, var(--white));
+  }
+  .article-correction a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--target-size);
+    margin-block: -0.35rem;
+    color: var(--accent);
+    font-weight: 650;
+  }
+  .article-correction p {
+    margin-block: 0.1rem 0;
+    font-size: 0.875rem;
+  }
+  @media print {
+    .article-aside nav,
+    .article-aside h2,
+    .article-correction {
+      color: inherit;
+      background: none;
+      box-shadow: none;
+    }
+  }
+</style>
