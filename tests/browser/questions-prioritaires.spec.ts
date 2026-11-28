@@ -30,7 +30,9 @@ test('les cinq dossiers prioritaires renvoient à une position originale sur l�
     await expect(answer).toBeVisible();
     await expect(
       answer
-        .getByRole('link', { name: /Soutenir|Poursuivre|Accélérer|Mettre fin/ })
+        .getByRole('link', {
+          name: /Soutenir|Poursuivre|Accélérer|Refuser de nouveaux engagements/,
+        })
         .first(),
     ).toHaveAttribute('href', /^\/mesures\//);
   }
@@ -42,7 +44,12 @@ test('les cinq dossiers prioritaires renvoient à une position originale sur l�
   );
 
   await page.goto('/candidats/glucksmann/');
+  const international = page
+    .locator('main details > summary')
+    .filter({ hasText: 'Europe et monde' });
+  await international.press('Enter');
   await page
+    .getByRole('navigation', { name: 'Europe et monde' })
     .getByRole('link', {
       name: 'La France devrait-elle poursuivre son aide à l’Ukraine ?',
     })

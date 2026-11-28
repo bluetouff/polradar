@@ -75,6 +75,10 @@ func TestPublishedAnswerQuestionDossiers(t *testing.T) {
 			}
 			if tc.version != "" {
 				resultPath := "/resultats/0"
+				if index, ok := c.byID["lepen-europe-1"]; tc.version == "lepen-europe-1-v2" && ok && c.Measures[index].Revision == 3 {
+					tc.version = "lepen-europe-1-v3"
+					tc.source = "lepen-conference-outremer-20261127-3528"
+				}
 				if _, ok := c.byID["riner-encourager-plaintes-victimes-racisme"]; tc.candidate == "riner" && ok {
 					tc.version = "riner-interroger-consequences-aide-ukraine-v2"
 				}

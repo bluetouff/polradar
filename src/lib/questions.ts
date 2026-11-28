@@ -2211,7 +2211,7 @@ const additions = [
     terms:
       'aide financière humanitaire livraisons soutien militaire diplomatie Ukraine',
     versions: [
-      'lepen-europe-1-v2',
+      'lepen-europe-1-v3',
       'glucksmann-renforcer-aide-ukraine-v1',
       'philippe-poursuivre-soutien-financier-operationnel-ukraine-v1',
       'lisnard-soutenir-ukraine-livraisons-materiel-v1',
@@ -2917,7 +2917,6 @@ const additionalAnswers: Record<string, string[]> = {
   ],
   'aide-ukraine': [
     'attal-nov28-saisir-avoirs-russes-geles-v1',
-    'lepen-europe-1-v3',
     'lalanne-cesser-envois-fonds-ukraine-v1',
   ],
   'europe-accord-mercosur': [
