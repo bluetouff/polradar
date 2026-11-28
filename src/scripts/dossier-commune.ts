@@ -7,10 +7,11 @@ import {
   communeLink,
 } from '../lib/communes.mjs';
 import {
-  localFacts,
-  type Indicator,
+  aplTerritoryLabel,
+  sruFacts,
   type Sru,
 } from '../lib/dossiers-territoriaux';
+import { renderAplResult } from './apl-result';
 import { sruPicture, sruImageUrl, sruEmbedCode } from '../lib/sru-graph';
 type Commune = { code: string; name: string; key: string };
 async function loadFile(url: string) {
@@ -19,14 +20,18 @@ async function loadFile(url: string) {
   return response.json();
 }
 function start(root: HTMLElement) {
-  const mode = root.dataset.territory as Indicator;
   const form = root.querySelector<HTMLFormElement>('[data-form]')!,
     input = form.querySelector('input')!;
   const matches = root.querySelector<HTMLUListElement>('#territory-matches')!,
     feedback = root.querySelector<HTMLElement>('[data-feedback]')!;
   const place = root.querySelector<HTMLElement>('[data-place]')!,
-    facts = root.querySelector<HTMLElement>('[data-facts]')!,
+    facts = root.querySelector<HTMLElement>('[data-facts]'),
     result = root.querySelector<HTMLElement>('.terrain-result')!;
+  const aplCard = root.querySelector<HTMLElement>('[data-apl-result]');
+  const aplTerritory = root.querySelector<HTMLElement>('[data-apl-territory]');
+  const aplUnavailable = root.querySelector<HTMLElement>(
+    '[data-apl-unavailable]',
+  );
   const copy = root.querySelector<HTMLButtonElement>('[data-copy]');
   const contextArea = root.querySelector<HTMLElement>('[data-local-context]');
   const extra =
@@ -87,20 +92,33 @@ function start(root: HTMLElement) {
         await update(code, () => seq === sequence);
         if (seq !== sequence) return;
       }
-      const fragment = document.createDocumentFragment();
-      for (const [label, val] of localFacts(mode, code, record)) {
-        const div = document.createElement('div'),
-          dt = document.createElement('dt'),
-          dd = document.createElement('dd');
-        dt.textContent = label;
-        dd.textContent = val;
-        div.append(dt, dd);
-        fragment.append(div);
-      }
       const small = document.createElement('small');
       small.textContent = code;
       place.replaceChildren(document.createTextNode(entry.name + ' '), small);
-      facts.replaceChildren(fragment);
+      const housing = record && typeof record === 'object' ? record : undefined;
+      if (facts) {
+        const fragment = document.createDocumentFragment();
+        for (const [label, val] of sruFacts(housing)) {
+          const div = document.createElement('div'),
+            dt = document.createElement('dt'),
+            dd = document.createElement('dd');
+          dt.textContent = label;
+          dd.textContent = val;
+          div.append(dt, dd);
+          fragment.append(div);
+        }
+        facts.replaceChildren(fragment);
+      }
+      if (aplCard && aplTerritory && aplUnavailable) {
+        const value =
+          typeof record === 'number' && Number.isFinite(record)
+            ? record
+            : undefined;
+        renderAplResult(aplCard, value);
+        aplTerritory.textContent = aplTerritoryLabel(code);
+        aplTerritory.hidden = value === undefined;
+        aplUnavailable.hidden = value !== undefined;
+      }
       const figure = root.querySelector<HTMLElement>('[data-local-figure]');
       if (figure) {
         figure.hidden = typeof record !== 'object' || record === null;
@@ -119,8 +137,9 @@ function start(root: HTMLElement) {
       }
       result.hidden = false;
       input.value = entry.name;
-      feedback.textContent =
-        'Résultats affichés pour ' + entry.name + ' (' + code + ').';
+      feedback.textContent = aplCard
+        ? ''
+        : 'Résultats affichés pour ' + entry.name + ' (' + code + ').';
     } catch {
       if (seq === sequence) {
         result.hidden = true;

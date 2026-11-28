@@ -295,6 +295,9 @@
 .terrain-result {
   margin: 1rem 0;
 }
+.territory-lookup[data-territory='apl'] {
+  max-inline-size: 38rem;
+}
 .terrain-result details {
   margin: 0.65rem 0;
 }

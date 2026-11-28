@@ -54,14 +54,11 @@ test('les valeurs des indicateurs communaux conservent leur unité et leur libel
   );
   expect(Math.max(...heights)).toBeLessThanOrEqual(1.05);
 });
-test('la carte, les valeurs absentes et les zéros restent lisibles sur mobile', async ({
+test('la carte départementale affiche la valeur, le palier et les données hors champ sur mobile', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 320, height: 568 });
-  await page.goto(health + '#commune=97611');
-  await expect(page.locator('[data-facts]')).toContainText(
-    'Aucune observation',
-  );
+  await page.goto(health);
   const selector = page.getByRole('combobox', {
     name: 'Consulter un département',
   });
@@ -94,12 +91,55 @@ test('la carte, les valeurs absentes et les zéros restent lisibles sur mobile',
   await selector.selectOption('');
   await expect(page.locator('.terrain-map .selected-area')).toHaveCount(0);
   await expect(result.locator('.terrain-map-value:visible')).toHaveCount(0);
+});
+test('la recherche communale actualise le chiffre et son palier sans débordement à 320 × 568', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 568 });
+  await page.goto(health);
+  const lookup = page.locator('[data-territory="apl"]');
+  const result = lookup.locator('[data-apl-result]');
+  const score = result.locator('[data-apl-number]');
+  const category = result.locator('[data-apl-class]');
+  await expect(score).toHaveText('5,50');
+  await expect(category).toHaveText('Accès élevé · 5 ou plus');
+  await expect(lookup.locator('[data-apl-territory]')).toContainText(
+    'Moyenne des arrondissements',
+  );
   const input = page.getByRole('searchbox', {
     name: 'Nom de commune ou code Insee',
   });
-  await input.fill('01019');
-  await input.press('Enter');
-  await expect(page.locator('[data-facts]')).toContainText('0,00');
+  const find = async (code: string) => {
+    await input.fill(code);
+    await input.press('Enter');
+    await expect(page).toHaveURL(new RegExp('#commune=' + code + '$'));
+  };
+  await find('28085');
+  await expect(lookup.locator('[data-place]')).toContainText('Chartres');
+  await expect(score).toHaveText('2,53');
+  await expect(category).toHaveText('Accès faible · moins de 3');
+  await expect(result.locator('.terrain-map-reference')).toHaveText(
+    'Moyenne nationale en 2024 3,3',
+  );
+  await lookup.evaluate((element) =>
+    element.scrollIntoView({ block: 'start' }),
+  );
+  expect(
+    (await result.boundingBox())!.y + (await result.boundingBox())!.height,
+  ).toBeLessThanOrEqual(
+    (await page
+      .getByRole('navigation', { name: 'Navigation principale' })
+      .boundingBox())!.y,
+  );
+  await find('10255');
+  await expect(score).toHaveText('2,995');
+  await expect(category).toHaveText('Accès faible · moins de 3');
+  await find('01019');
+  await expect(score).toHaveText('0,00');
+  await expect(category).toHaveText('Accès faible · moins de 3');
+  await find('97611');
+  await expect(lookup.locator('[data-apl-unavailable]')).toBeVisible();
+  await expect(result).toBeHidden();
   await expect(page.locator('.q-answers')).toContainText(
     'agence régionale de santé',
   );
@@ -125,6 +165,9 @@ test('les exemples, la carte et les liens vers les fichiers restent disponibles 
     await page.goto(health);
     await expect(page.locator('.terrain-map figure > svg')).toBeVisible();
     await expect(page.locator('table tbody tr')).toHaveCount(101);
+    await expect(
+      page.locator('[data-territory="apl"] [data-apl-number]'),
+    ).toHaveText('5,50');
     await page.goto('/questions/fiscalite-csg-salaires/');
     await expect(
       page.getByText('180,78', { exact: false }).first(),

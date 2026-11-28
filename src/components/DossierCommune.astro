@@ -1,4 +1,5 @@
 ---
+import AplResult from './AplResult.astro';
 import TerritoryContext from './TerritoryContext.astro';
 import annuaireUrl from '../data/territoires/annuaire.json?url';
 import sruUrl from '../data/territoires/sru.json?url';
@@ -6,7 +7,8 @@ import aplUrl from '../data/territoires/apl.json?url';
 import sruRows from '../data/territoires/sru.json';
 import aplRows from '../data/territoires/apl.json';
 import {
-  localFacts,
+  aplTerritoryLabel,
+  sruFacts,
   sruFile,
   aplFile,
   type Indicator,
@@ -19,7 +21,7 @@ interface Props {
 const { mode, crosswalk = false } = Astro.props;
 const housing = mode === 'sru';
 const initial = sruRows['75056'];
-const facts = localFacts(mode, '75056', housing ? initial : aplRows['75056']);
+const initialApl = aplRows['75056'];
 const sample = sruPicture('Paris', '75056', initial);
 const sampleUrl = sruImageUrl(sample.svg);
 ---
@@ -55,18 +57,41 @@ const sampleUrl = sruImageUrl(sample.svg);
   </form>
   <p class="terrain-note" role="status" data-feedback></p>
   <div class:list={['terrain-result', housing && 'has-figure']}>
-    <div>
+    <div
+      role={housing ? undefined : 'status'}
+      aria-atomic={housing ? undefined : 'true'}
+    >
       <h3 data-place>
         Paris <small>75056</small>
       </h3>
-      <dl class="terrain-details" data-facts>
-        {facts.map(([name, val]) => (
-          <div>
-            <dt>{name}</dt>
-            <dd>{val}</dd>
-          </div>
-        ))}
-      </dl>
+      {housing ? (
+        <dl class="terrain-details" data-facts>
+          {sruFacts(initial).map(([name, val]) => (
+            <div>
+              <dt>{name}</dt>
+              <dd>{val}</dd>
+            </div>
+          ))}
+        </dl>
+      ) : (
+        <>
+          <AplResult value={initialApl} />
+          <p
+            class="terrain-note"
+            data-apl-territory
+            hidden={initialApl === undefined}
+          >
+            {aplTerritoryLabel('75056')}
+          </p>
+          <p
+            class="terrain-map-value terrain-map-outside"
+            data-apl-unavailable
+            hidden={initialApl !== undefined}
+          >
+            Aucune observation DREES pour ce code.
+          </p>
+        </>
+      )}
     </div>
     {housing && (
       <figure data-local-figure>

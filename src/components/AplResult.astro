@@ -1,0 +1,36 @@
+---
+import { aplBins, aplReading } from '../lib/dossiers-territoriaux';
+interface Props {
+  value?: number;
+}
+const { value } = Astro.props;
+const reading = value === undefined ? undefined : aplReading(value);
+---
+
+<span class="terrain-map-value" data-apl-result hidden={!reading}>
+  <span class="terrain-map-value-main">
+    <strong data-apl-number>{reading?.number}</strong>
+    <span>consultations accessibles par an et par habitant standardisé</span>
+  </span>
+  <span class="terrain-map-class" data-apl-class>
+    {reading?.category}
+  </span>
+  <span class="terrain-map-scale" aria-hidden="true">
+    {aplBins.map(({ short, fill }, index) => (
+      <span class:list={{ 'is-active': reading?.index === index }}>
+        <svg
+          viewBox="0 0 60 8"
+          width="60"
+          height="8"
+          preserveAspectRatio="none"
+        >
+          <rect width="60" height="8" rx="2" fill={fill} />
+        </svg>
+        {short}
+      </span>
+    ))}
+  </span>
+  <span class="terrain-map-reference">
+    Moyenne nationale en 2024 <strong>3,3</strong>
+  </span>
+</span>

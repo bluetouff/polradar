@@ -20,40 +20,53 @@ export type Sru = {
   exempt: boolean | null;
 };
 export type Indicator = 'sru' | 'apl';
-export const aplNumber = (n: number) =>
+export const aplNumber = (n: number, digits = 2) =>
   n.toLocaleString('fr-FR', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits,
   });
-export function localFacts(
-  mode: Indicator,
-  code: string,
-  data: Sru | number | undefined,
-): [string, string][] {
+
+export const aplBins = [
+  { label: 'Moins de 3', short: '< 3', level: 'Accès faible', fill: '#c1dfe1' },
+  {
+    label: '3 à moins de 4',
+    short: '3 à < 4',
+    level: 'Accès intermédiaire bas',
+    fill: '#73b2b8',
+  },
+  {
+    label: '4 à moins de 5',
+    short: '4 à < 5',
+    level: 'Accès intermédiaire haut',
+    fill: '#287b88',
+  },
+  { label: '5 ou plus', short: '≥ 5', level: 'Accès élevé', fill: '#123e52' },
+];
+
+export function aplBand(value: number) {
+  return value < 3 ? 0 : value < 4 ? 1 : value < 5 ? 2 : 3;
+}
+
+export function aplReading(value: number) {
+  const index = aplBand(value);
+  const { label, level } = aplBins[index];
+  // Garder le millième lorsqu’un arrondi au centième franchit un seuil.
+  const digits = index < 3 && value >= 3 + index - 0.005 ? 3 : 2;
+  return {
+    index,
+    number: aplNumber(value, digits),
+    category: level + ' · ' + label.toLowerCase(),
+  };
+}
+
+export const aplTerritoryLabel = (code: string) =>
+  ['75056', '13055', '69123'].includes(code)
+    ? 'Moyenne des arrondissements, pondérée par la population standardisée.'
+    : 'Valeur communale ou d’arrondissement publiée par la DREES.';
+
+export function sruFacts(data: Sru | undefined): [string, string][] {
   if (data === undefined)
-    return [
-      [
-        mode === 'sru' ? 'Inventaire SRU' : 'Accessibilité 2024',
-        mode === 'sru'
-          ? 'Commune absente du fichier ministériel.'
-          : 'Aucune observation DREES pour ce code.',
-      ],
-    ];
-  if (typeof data === 'number') {
-    const largeCity = ['75056', '13055', '69123'].includes(code);
-    return [
-      [
-        'Consultations accessibles par an et par habitant standardisé',
-        aplNumber(data),
-      ],
-      [
-        'Territoire',
-        largeCity
-          ? 'Moyenne des arrondissements, pondérée par la population standardisée.'
-          : 'Valeur communale ou d’arrondissement publiée par la DREES.',
-      ],
-    ];
-  }
+    return [['Inventaire SRU', 'Commune absente du fichier ministériel.']];
   const bool = (v: boolean | null) =>
     v === null ? 'Non renseigné' : v ? 'Oui' : 'Non';
   const rate =
