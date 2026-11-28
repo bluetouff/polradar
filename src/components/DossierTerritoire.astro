@@ -16,16 +16,24 @@ interface Props {
 const { mode } = Astro.props;
 const health = mode === 'apl';
 const bins = [
-  { label: 'Moins de 3', fill: '#c1dfe1' },
-  { label: '3 à moins de 4', fill: '#73b2b8' },
-  { label: '4 à moins de 5', fill: '#287b88' },
-  { label: '5 ou plus', fill: '#123e52' },
-  { label: 'Hors champ', fill: '#dadcda' },
+  { label: 'Moins de 3', short: '< 3', level: 'Accès faible', fill: '#c1dfe1' },
+  {
+    label: '3 à moins de 4',
+    short: '3 à < 4',
+    level: 'Accès intermédiaire bas',
+    fill: '#73b2b8',
+  },
+  {
+    label: '4 à moins de 5',
+    short: '4 à < 5',
+    level: 'Accès intermédiaire haut',
+    fill: '#287b88',
+  },
+  { label: '5 ou plus', short: '≥ 5', level: 'Accès élevé', fill: '#123e52' },
 ];
-function color(value: number | null) {
-  return bins[
-    value === null ? 4 : value < 3 ? 0 : value < 4 ? 1 : value < 5 ? 2 : 3
-  ].fill;
+const outside = { label: 'Hors champ', fill: '#dadcda' };
+function band(value: number) {
+  return value < 3 ? 0 : value < 4 ? 1 : value < 5 ? 2 : 3;
 }
 const islands = ['Guadeloupe', 'Martinique', 'Guyane', 'La Réunion', 'Mayotte'];
 ---
@@ -45,7 +53,89 @@ const islands = ['Guadeloupe', 'Martinique', 'Guyane', 'La Réunion', 'Mayotte']
   </header>
   {health ? (
     <>
-      <div class="terrain-duo terrain-map">
+      <div class="terrain-map">
+        <div class="terrain-map-reading">
+          <div class="terrain-map-lookup" hidden>
+            <label for="territory-department">Consulter un département</label>
+            <select id="territory-department">
+              <option value="">Choisir un département</option>
+              {areas.map((d) => {
+                const index = d.value === null ? null : band(d.value);
+                const category = index === null ? null : bins[index];
+                return (
+                  <option
+                    value={d.code}
+                    data-number={
+                      d.value === null ? undefined : aplNumber(d.value)
+                    }
+                    data-band={index ?? undefined}
+                    data-class={
+                      category
+                        ? category.level + ' · ' + category.label.toLowerCase()
+                        : undefined
+                    }
+                  >
+                    {d.code} · {d.name}
+                  </option>
+                );
+              })}
+            </select>
+            <output
+              id="department-value"
+              for="territory-department"
+              aria-atomic="true"
+            >
+              <span class="terrain-map-value" hidden>
+                <span class="terrain-map-value-main">
+                  <strong data-apl-number></strong>
+                  <span>
+                    consultations accessibles par an et par habitant standardisé
+                  </span>
+                </span>
+                <span class="terrain-map-class" data-apl-class></span>
+                <span class="terrain-map-scale" aria-hidden="true">
+                  {bins.map(({ short, fill }) => (
+                    <span>
+                      <svg
+                        viewBox="0 0 60 8"
+                        width="60"
+                        height="8"
+                        preserveAspectRatio="none"
+                      >
+                        <rect width="60" height="8" rx="2" fill={fill} />
+                      </svg>
+                      {short}
+                    </span>
+                  ))}
+                </span>
+                <span class="terrain-map-reference">
+                  Moyenne nationale en 2024 <strong>3,3</strong>
+                </span>
+              </span>
+              <span class="terrain-map-value terrain-map-outside" hidden>
+                <strong>Hors du champ de la DREES</strong>
+                <span>
+                  Aucune valeur pour ce département dans le millésime 2024.
+                </span>
+              </span>
+            </output>
+          </div>
+          <details class="terrain-map-method">
+            <summary>Comment lire l’indicateur ?</summary>
+            <p>
+              La DREES rapproche l’activité des généralistes de la population,
+              de son âge et des distances à parcourir. L’indicateur estime les
+              consultations, visites et téléconsultations accessibles par an et
+              par habitant standardisé.
+            </p>
+            <p>
+              La moyenne départementale pondère chaque commune par sa population
+              standardisée. L’indicateur ne mesure ni le délai de rendez-vous ni
+              le nombre de consultations réellement effectuées.{' '}
+              <a href={aplSource}>Méthode et moyenne nationale de la DREES ↗</a>
+            </p>
+          </details>
+        </div>
         <figure>
           <svg
             viewBox="0 0 520 410"
@@ -67,7 +157,13 @@ const islands = ['Guadeloupe', 'Martinique', 'Guyane', 'La Réunion', 'Mayotte']
               fill-rule="evenodd"
             >
               {areas.map((d) => (
-                <path id={'apl-dep-' + d.code} fill={color(d.value)} d={d.path}>
+                <path
+                  id={'apl-dep-' + d.code}
+                  fill={
+                    d.value === null ? outside.fill : bins[band(d.value)].fill
+                  }
+                  d={d.path}
+                >
                   <title>{d.name} · {d.value===null?'hors champ':aplNumber(d.value)}</title>
                 </path>
               ))}
@@ -85,60 +181,25 @@ const islands = ['Guadeloupe', 'Martinique', 'Guyane', 'La Réunion', 'Mayotte']
             ))}
           </svg>
           <figcaption>
+            <ul class="terrain-legend" aria-label="Classes de la carte">
+              {[...bins, outside].map(({ label, fill }) => (
+                <li>
+                  <svg
+                    width="18"
+                    height="13"
+                    viewBox="0 0 18 13"
+                    aria-hidden="true"
+                  >
+                    <rect width="18" height="13" rx="2" fill={fill} />
+                  </svg>
+                  {label}
+                </li>
+              ))}
+            </ul>
             Les départements d’outre-mer figurent en médaillons à des échelles
             distinctes.
           </figcaption>
         </figure>
-        <div>
-          <h3>Combien de consultations accessibles ?</h3>
-          <p>
-            La DREES rapproche l’activité des généralistes de la population, de
-            son âge et des distances à parcourir. L’indicateur estime les
-            consultations, visites et téléconsultations accessibles par an et
-            par habitant standardisé.
-          </p>
-          <ul class="terrain-legend" aria-label="Classes de la carte">
-            {bins.map((b) => (
-              <li>
-                <svg
-                  width="18"
-                  height="13"
-                  viewBox="0 0 18 13"
-                  aria-hidden="true"
-                >
-                  <rect width="18" height="13" rx="2" fill={b.fill} />
-                </svg>
-                {b.label}
-              </li>
-            ))}
-          </ul>
-          <label hidden data-dept-label for="territory-department">
-            Consulter un département
-          </label>
-          <select id="territory-department" hidden>
-            <option value="">Choisir un département</option>
-            {areas.map((d) => (
-              <option
-                value={d.code}
-                data-label={
-                  d.value === null
-                    ? 'Hors du champ de la DREES.'
-                    : aplNumber(d.value) +
-                      ' consultations accessibles par an et par habitant standardisé.'
-                }
-              >
-                {d.code} · {d.name}
-              </option>
-            ))}
-          </select>
-          <p role="status" id="department-value"></p>
-          <p class="terrain-note">
-            La moyenne départementale pondère chaque commune par sa population
-            standardisée. L’indicateur ne mesure ni le délai de rendez-vous ni
-            le nombre de consultations réellement effectuées.{' '}
-            <a href={aplSource}>Méthode de la DREES ↗</a>
-          </p>
-        </div>
       </div>
       <details class="terrain-table">
         <summary>Valeurs des {areas.length} départements</summary>
@@ -224,22 +285,38 @@ const islands = ['Guadeloupe', 'Martinique', 'Guyane', 'La Réunion', 'Mayotte']
   </p>
 )}
 <script>
-  const selector = document.querySelector<HTMLSelectElement>(
-    '#territory-department',
-  );
-  if (selector) {
-    selector.hidden = false;
-    document.querySelector<HTMLElement>('[data-dept-label]')!.hidden = false;
-    selector.addEventListener('change', () => {
+  const lookup = document.querySelector<HTMLElement>('.terrain-map-lookup');
+  if (lookup) {
+    const selector = lookup.querySelector('select')!;
+    const result = lookup.querySelector<HTMLElement>('.terrain-map-value')!;
+    const outside = lookup.querySelector<HTMLElement>('.terrain-map-outside')!;
+    const number = result.querySelector('[data-apl-number]')!;
+    const category = result.querySelector('[data-apl-class]')!;
+    const segments = result.querySelectorAll('.terrain-map-scale > span');
+    const update = () => {
+      const option = selector.selectedOptions[0];
+      const hasValue = option.dataset.band !== undefined;
+      result.hidden = !hasValue;
+      outside.hidden = !option.value || hasValue;
+      number.textContent = option.dataset.number ?? '';
+      category.textContent = option.dataset.class ?? '';
+      segments.forEach((segment, index) => {
+        segment.classList.toggle(
+          'is-active',
+          index === Number(option.dataset.band),
+        );
+      });
       document
         .querySelector('.terrain-map .selected-area')
         ?.classList.remove('selected-area');
-      if (selector.value)
+      if (option.value)
         document
-          .getElementById('apl-dep-' + selector.value)
+          .getElementById('apl-dep-' + option.value)
           ?.classList.add('selected-area');
-      document.getElementById('department-value')!.textContent =
-        selector.selectedOptions[0]?.dataset.label ?? '';
-    });
+    };
+    selector.addEventListener('change', update);
+    window.addEventListener('pageshow', update);
+    lookup.hidden = false;
+    update();
   }
 </script>

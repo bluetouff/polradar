@@ -60,6 +60,20 @@
 .terrain-duo > * {
   min-width: 0;
 }
+.terrain-map {
+  display: grid;
+  grid-template-areas: 'lecture' 'carte';
+  align-items: start;
+  gap: clamp(1.1rem, 3vw, 2.6rem);
+}
+.terrain-map-reading {
+  grid-area: lecture;
+  min-width: 0;
+}
+.terrain-map figure {
+  grid-area: carte;
+  min-width: 0;
+}
 .terrain-panel h3,
 .terrain-links strong {
   color: #173c49;
@@ -109,12 +123,113 @@
   stroke-width: 3;
   paint-order: stroke fill;
 }
+.terrain-map-lookup select {
+  display: block;
+  margin-block: 0.28rem 0;
+}
+.terrain-map-value {
+  display: grid;
+  gap: 0.82rem;
+  margin-block: 0.55rem 0;
+  padding: clamp(0.78rem, 2vw, 1.25rem);
+  border: 1px solid #a8c7c8;
+  border-inline-start: 3px solid #287b88;
+  border-radius: 0.55rem 0.85rem 0.85rem 0.55rem;
+  background: linear-gradient(130deg, #e8f4f2, #f6f9f6 78%);
+  color: #163e4c;
+}
+.terrain-map-value-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.7rem;
+}
+.terrain-map-value-main strong {
+  font: 650 clamp(2.45rem, 4.5vw, 3.55rem) / 1 var(--serif);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.terrain-map-value-main > span {
+  flex: 1 1 12rem;
+  color: #335764;
+  font-size: 0.88rem;
+  line-height: 1.3;
+}
+.terrain-map-class {
+  justify-self: start;
+  padding: 0.3rem 0.52rem;
+  border-radius: 0.32rem;
+  background: #164756;
+  color: #f1fcfa;
+  font-size: 0.8rem;
+  font-weight: 670;
+  line-height: 1.3;
+}
+.terrain-map-scale {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.terrain-map-scale > span {
+  display: grid;
+  gap: 0.25rem;
+  color: #385968;
+  font: 0.72rem/1.22 var(--mono);
+  text-align: center;
+}
+.terrain-map-scale svg {
+  display: block;
+  width: 100%;
+}
+.terrain-map-scale > .is-active {
+  color: #153e4c;
+  font-weight: 750;
+}
+.terrain-map-scale > .is-active svg {
+  outline: 2px solid #153e4c;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.terrain-map-reference {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.2rem 0.5rem;
+  padding-block-start: 0.52rem;
+  border-block-start: 1px solid #c2d6d6;
+  color: #335764;
+  font-size: 0.82rem;
+}
+.terrain-map-reference strong {
+  color: #153e4c;
+  font-variant-numeric: tabular-nums;
+}
+.terrain-map-outside {
+  gap: 0.18rem;
+  border-color: #bec8c7;
+  background: #f2f4f2;
+}
+.terrain-map-outside > span,
+.terrain-map-method {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.terrain-map-method {
+  margin-block-start: 0.7rem;
+  padding: 0.5rem 0.68rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  color: #315561;
+}
+.terrain-map-method p {
+  margin-block: 0.6rem 0.15rem;
+}
 .terrain-legend {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem 1rem;
   list-style: none;
-  padding: 0 0 1rem;
+  padding: 0 0 0.5rem;
 }
 .terrain-legend li {
   display: flex;
@@ -160,8 +275,7 @@
 .terrain-map select {
   max-width: 100%;
 }
-.territory-lookup [data-feedback]:empty,
-#department-value:empty {
+.territory-lookup [data-feedback]:empty {
   display: none;
 }
 .territory-lookup ul {
@@ -225,6 +339,12 @@
 }
 .terrain-panel [hidden] {
   display: none !important;
+}
+@media (min-width: 56rem) {
+  .terrain-map {
+    grid-template-areas: 'carte lecture';
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  }
 }
 @media (max-width: 36rem) {
   .terrain-panel .terrain-details > div {
