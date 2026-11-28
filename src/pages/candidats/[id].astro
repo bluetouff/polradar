@@ -171,13 +171,20 @@ const candidateQuestions = questions.filter(
     {archives.length > 0 && <a href="#archives-2022">Archives 2022</a>}
   </nav>
   {internationalQuestions.length > 0 && (
-    <nav class="profile-jumps" aria-label="Europe et monde">
-      {internationalQuestions.map((question) => (
-        <a href={question.href + '#candidat-' + candidate.id}>
-          {question.title}
-        </a>
-      ))}
-    </nav>
+    <details class="profile-topic-index">
+      <summary>
+        <Icon name="layers" />
+        Europe et monde ({internationalQuestions.length})
+        <Icon name="chevron" />
+      </summary>
+      <nav class="profile-jumps" aria-label="Europe et monde">
+        {internationalQuestions.map((question) => (
+          <a href={question.href + '#candidat-' + candidate.id}>
+            {question.title}
+          </a>
+        ))}
+      </nav>
+    </details>
   )}
   {candidateQuestions.length > 0 && (
     <details class="profile-topic-index profile-question-index">

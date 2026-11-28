@@ -503,6 +503,360 @@ const labels: Record<string, string> = {
 };
 const additions = [
   {
+    id: 'fiscalite-epargne',
+    theme: 'fiscalite',
+    title: 'Quelle fiscalité et quelles garanties pour l’épargne des ménages ?',
+    terms: 'fiscalité de l’épargne ponction sur l’épargne assurance vie',
+    versions: [
+      'attal-nov28-fiscalite-assurance-vie-stable-v1',
+      'attal-nov28-preserver-epargne-des-francais-v1',
+    ],
+  },
+  {
+    id: 'fiscalite-depenses-publiques',
+    theme: 'fiscalite',
+    title: 'Comment répartir l’effort de réduction des dépenses publiques ?',
+    terms:
+      'économies budgétaires baisse des dépenses publiques budgets ministériels dépenses des collectivités',
+    versions: [
+      'attal-nov28-sanctuariser-budgets-regaliens-v1',
+      'philippe-nov28-exiger-de-letat-et-des-collectivites-un-quart-de-leffort-de-redressement-an-v1',
+    ],
+  },
+  {
+    id: 'education-orientation-metiers',
+    theme: 'education',
+    title:
+      'Comment préparer l’orientation des élèves et leur entrée dans la vie active ?',
+    terms:
+      'orientation scolaire découverte des métiers lycée professionnel insertion des jeunes',
+    versions: [
+      'attal-nov28-entrer-plus-tot-vie-active-v1',
+      'attal-nov28-contrat-entreprise-lyceen-professionnel-v1',
+      'attal-nov28-parcours-orientation-eleves-v1',
+    ],
+  },
+  {
+    id: 'securite-justice-mineurs',
+    theme: 'securite',
+    title:
+      'Quelles règles appliquer aux mineurs et aux parents dans la justice pénale ?',
+    terms: 'justice des mineurs excuse de minorité responsabilité des parents',
+    versions: [
+      'attal-nov28-excuse-de-minorite-attenuee-v1',
+      'attal-nov28-responsabilite-deux-parents-mineurs-v1',
+      'lisnard-excuse-minorite-attenuation-20-v1',
+      'lisnard-etablissements-disciplinaires-jeunes-delinquants-v1',
+      'retailleau-courtes-peines-premier-delit-grave-mineurs-v1',
+    ],
+  },
+  {
+    id: 'securite-occupation-sans-droit',
+    theme: 'securite',
+    title: 'Comment traiter les occupations illégales de terrains ?',
+    terms:
+      'occupation de terrain évacuation de terrain gens du voyage convoi de caravanes',
+    versions: [
+      'attal-nov28-juge-statue-sous-quarante-huit-heures-v1',
+      'attal-nov28-registre-national-grands-convois-v1',
+      'attal-nov28-renforts-zones-grand-passage-v1',
+    ],
+  },
+  {
+    id: 'climat-matieres-premieres-recyclage',
+    theme: 'climat',
+    title: 'Comment réduire la dépendance aux matières premières critiques ?',
+    terms:
+      'matières premières critiques lithium recyclage des métaux raffinage des terres rares',
+    versions: [
+      'attal-nov28-premiere-economie-circulaire-v1',
+      'attal-nov28-lithium-massif-central-alsace-v1',
+      'lepen-diversifier-approvisionnements-metaux-critiques-v1',
+    ],
+  },
+  {
+    id: 'climat-ressource-en-eau',
+    theme: 'climat',
+    title: 'Comment gérer la ressource en eau face à la sécheresse ?',
+    terms:
+      'restriction d’eau sécheresse stockage de l’eau réserve d’eau agricole',
+    versions: [
+      'attal-nov28-sanctions-alertes-secheresse-v1',
+      'lisnard-entretien-ouvrages-seuils-vannes-v1',
+      'lisnard-accelerer-autorisations-retenues-agricoles-v1',
+    ],
+  },
+  {
+    id: 'education-evaluation-diplomes',
+    theme: 'education',
+    title: 'Comment organiser l’évaluation et les examens nationaux ?',
+    terms: 'baccalauréat épreuves terminales contrôle continu examen national',
+    versions: ['attal-nov28-epreuves-terminales-bac-v1'],
+  },
+  {
+    id: 'travail-sante-securite',
+    theme: 'travail',
+    title: 'Comment prévenir les accidents du travail ?',
+    terms: 'accident du travail sécurité des salariés risques professionnels',
+    versions: ['attal-nov28-diviser-par-deux-accidents-du-travail-v1'],
+  },
+  {
+    id: 'sante-infertilite',
+    theme: 'sante',
+    title: 'Que proposent les candidats au sujet de l’infertilité ?',
+    terms: 'infertilité fertilité santé reproductive',
+    versions: ['attal-nov28-infertilite-au-coeur-du-debat-v1'],
+  },
+  {
+    id: 'logement-premier-achat',
+    theme: 'logement',
+    title: 'Comment faciliter l’achat d’un premier logement ?',
+    terms:
+      'accès à la propriété premier achat crédit immobilier primo-accédant',
+    versions: [
+      'attal-lci-revoir-la-maniere-dont-les-banques-evaluent-la-capacite-demprunt-immobilier-v1',
+      'retailleau-etendre-ptz-primo-accedants-sans-zonage-v1',
+    ],
+  },
+  {
+    id: 'sante-sante-mentale',
+    theme: 'sante',
+    title: 'Comment garantir l’accès des jeunes aux soins de santé mentale ?',
+    terms:
+      'santé mentale des jeunes entretien psychologique consultation psychologique bilan psychologique',
+    versions: [
+      'renaissance-pouvoir-consulter-un-professionnel-de-sante-mentale-deux-fois-avant-ses-18-v1',
+    ],
+  },
+  {
+    id: 'securite-violences-sexistes',
+    theme: 'securite',
+    title:
+      'Comment combattre les violences sexistes et sexuelles et accompagner les victimes ?',
+    terms:
+      'violences sexistes violences sexuelles victimes de violences dépôt de plainte',
+    versions: [
+      'renaissance-preparer-une-loi-cadre-contre-les-violences-sexistes-et-sexuelles-v1',
+      'renaissance-creer-des-centres-daccueil-permanent-pour-les-victimes-de-violences-sexuell-v1',
+      'renaissance-donner-acces-a-un-avocat-de-permanence-des-le-depot-de-plainte-pour-certain-v1',
+      'renaissance-informer-systematiquement-les-victimes-avant-la-liberation-de-lauteur-de-vi-v1',
+    ],
+  },
+  {
+    id: 'securite-reinsertion-prison',
+    theme: 'securite',
+    title: 'Comment préparer la réinsertion et prévenir la récidive ?',
+    terms:
+      'réinsertion récidive formation des détenus sortie de prison justice restaurative',
+    versions: [
+      'renaissance-developper-les-centres-de-formation-dapprentis-adosses-aux-prisons-v1',
+      'renaissance-accompagner-les-detenus-trois-a-six-mois-avant-leur-liberation-v1',
+      'renaissance-developper-la-justice-restaurative-v1',
+    ],
+  },
+  {
+    id: 'securite-cybercriminalite',
+    theme: 'numerique',
+    title: 'Comment organiser la lutte judiciaire contre la cybercriminalité ?',
+    terms:
+      'cybercriminalité parquet cyber justice numérique poursuivre les cyberdélits',
+    versions: [
+      'renaissance-transformer-la-section-judiciaire-specialisee-j3-en-parquet-national-cyber-v1',
+    ],
+  },
+  {
+    id: 'education-universites',
+    theme: 'education',
+    title:
+      'Quelles règles pour la gouvernance et le contrôle des établissements du supérieur ?',
+    terms:
+      'autonomie universitaire enseignement supérieur privé contrat des universités accréditation de formations',
+    versions: [
+      'renaissance-renforcer-le-controle-des-formations-privees-lucratives-de-lenseignement-su-v1',
+      'renaissance-renforcer-lautonomie-universitaire-avec-des-contrats-de-financement-de-cinq-v1',
+    ],
+  },
+  {
+    id: 'education-recherche',
+    theme: 'education',
+    title: 'Comment organiser et financer la recherche publique ?',
+    terms:
+      'recherche publique laboratoire universitaire agence nationale de la recherche financement de la recherche',
+    versions: [
+      'renaissance-confier-la-gestion-des-laboratoires-universitaires-aux-universites-dimplant-v1',
+      'renaissance-financer-les-petits-projets-de-recherche-directement-par-les-universites-ou-v1',
+      'renaissance-autoriser-les-chercheurs-a-utiliser-les-ressources-universitaires-en-echang-v1',
+    ],
+  },
+  {
+    id: 'numerique-regulation-ia',
+    theme: 'numerique',
+    title:
+      'Comment réglementer l’intelligence artificielle en Europe et dans le monde ?',
+    terms:
+      'régulation de l’IA réglementation de l’intelligence artificielle cadre européen de l’IA règles internationales de l’IA',
+    versions: [
+      'philippe-nov28-simplifier-le-cadre-juridique-europeen-de-lia-v1',
+      'philippe-nov28-negocier-une-regulation-internationale-de-lintelligence-artificielle-v1',
+    ],
+  },
+  {
+    id: 'fiscalite-credit-emploi-a-domicile',
+    theme: 'fiscalite',
+    title:
+      'Quel crédit d’impôt pour l’emploi à domicile et les services à la personne ?',
+    terms:
+      'crédit d’impôt à domicile services à la personne salarié à domicile avance immédiate',
+    versions: [
+      'retailleau-maintenir-credit-impot-domicile-cinq-ans-v1',
+      'polony-credit-impot-domicile-taux-modules-v2',
+      'philippe-nov28-maintenir-a-50-le-credit-dimpot-pour-lemploi-dun-salarie-a-domicile-v1',
+    ],
+  },
+  {
+    id: 'climat-renovation-batiments-publics',
+    theme: 'climat',
+    title: 'Comment rénover et adapter les bâtiments publics et tertiaires ?',
+    terms:
+      'rénovation thermique des bâtiments publics performance énergétique du tertiaire',
+    versions: [
+      'melenchon-soutien-renovation-tertiaire-tpe-pme-v1',
+      'melenchon-renovation-canicule-ecoles-ehpad-hopitaux-v1',
+    ],
+  },
+  {
+    id: 'travail-formation-professionnelle',
+    theme: 'travail',
+    title:
+      'Comment former aux nouveaux métiers et soutenir les reconversions ?',
+    terms:
+      'formation professionnelle reconversion professionnelle formation des salariés',
+    versions: [
+      'melenchon-former-250-mille-renovation-bas-carbone-v1',
+      'melenchon-10-millions-constructeurs-formation-automobile-v1',
+      'melenchon-diplomes-filiere-polytechnique-automobile-v1',
+      'melenchon-plan-formation-bts-metiers-textile-v1',
+      'place-publique-former-techniciens-reparation-objets-v1',
+      'lisnard-reformer-acces-financements-formation-v1',
+      'retailleau-apprentissage-des-quatorze-ans-v1',
+      'retailleau-adapter-contenu-local-formation-branches-v1',
+      'retailleau-suramortir-equipements-lycees-professionnels-v1',
+    ],
+  },
+  {
+    id: 'climat-mobilite-electrique',
+    theme: 'climat',
+    title: 'Comment développer la mobilité électrique ?',
+    terms: 'voitures électriques véhicules électriques mobilité électrique',
+    versions: [
+      'melenchon-conversion-vehicules-electriques-2-millions-v1',
+      'melenchon-categorie-europeenne-petits-vehicules-36m-v1',
+      'melenchon-flottes-entreprises-achats-electriques-90-v1',
+      'melenchon-service-public-location-vehicules-14-million-v1',
+      'melenchon-bonus-voitures-electriques-moins-30-mille-v1',
+      'melenchon-bornes-de-recharge-logements-collectifs-v1',
+      'place-publique-flottes-entreprises-collectivites-electriques-v1',
+    ],
+  },
+  {
+    id: 'travail-conges-payes-calendrier',
+    theme: 'travail',
+    title: 'Qui fixerait le calendrier des congés payés ?',
+    terms: 'calendrier des congés payés congé principal',
+    versions: ['lisnard-liberer-calendrier-conge-principal-v1'],
+  },
+  {
+    id: 'sante-industrie-produits-medicaux',
+    theme: 'sante',
+    title: 'Quelles règles pour les dispositifs médicaux et les laboratoires ?',
+    terms:
+      'homologation des dispositifs médicaux accréditation des laboratoires',
+    versions: [
+      'lisnard-allegements-homologation-dispositifs-v1',
+      'lisnard-encadrer-accreditation-laboratoires-v1',
+    ],
+  },
+  {
+    id: 'sante-urgences',
+    theme: 'sante',
+    title: 'Comment organiser les secours et les urgences ?',
+    terms: 'SAMU secours d’urgence services d’incendie et de secours',
+    versions: ['lisnard-clarifier-repartition-samu-sdis-v1'],
+  },
+  {
+    id: 'retraites-pension-de-reversion',
+    theme: 'retraites',
+    title: 'Quelles règles pour la pension de réversion ?',
+    terms: 'pension de réversion pensions de réversion',
+    versions: ['lisnard-supprimer-certificat-annuel-non-remariage-v1'],
+  },
+  {
+    id: 'institutions-normes-evaluation',
+    theme: 'institutions',
+    title: 'Comment réviser et évaluer les normes ?',
+    terms:
+      'simplification des normes évaluation des normes règles contradictoires',
+    versions: [
+      'lisnard-rescrit-normes-contradictoires-v1',
+      'lisnard-controle-pme-veto-contradictions-normes-v1',
+      'lisnard-rapport-annuel-regles-contradictoires-v1',
+      'lisnard-recours-juger-utilite-norme-v1',
+      'lisnard-mesurer-effet-nouvelles-normes-croissance-v1',
+    ],
+  },
+  {
+    id: 'retraites-cumul-emploi',
+    theme: 'retraites',
+    title: 'Comment cumuler un emploi et une pension de retraite ?',
+    terms: 'cumul emploi retraite retraités qui travaillent',
+    versions: ['retailleau-unifier-cumul-et-surcharge-apres-age-legal-v1'],
+  },
+  {
+    id: 'sante-expositions-environnementales',
+    theme: 'sante',
+    title: 'Comment prendre en charge les personnes exposées à des polluants ?',
+    terms:
+      'chlordécone exposition à des polluants indemnisation environnementale',
+    versions: ['lepen-outremer-indemniser-chlordecone-v1'],
+  },
+  {
+    id: 'travail-indemnisation-chomage',
+    theme: 'travail',
+    title:
+      'Qui devrait être indemnisé au chômage, à quel niveau et pendant combien de temps ?',
+    terms:
+      'assurance-chômage durée d’indemnisation allocation chômage rupture conventionnelle dégressivité',
+    versions: [
+      'zemmour-chomage-indemnisation-un-an-v1',
+      'zemmour-chomage-trois-mois-travail-un-mois-indemnisation-v1',
+      'zemmour-chomage-exclure-ruptures-conventionnelles-v1',
+    ],
+  },
+  {
+    id: 'fiscalite-accises-tabac',
+    theme: 'fiscalite',
+    title: 'Comment taxer le tabac et encadrer l’évolution des prix ?',
+    terms:
+      'prix du tabac accise sur le tabac taxe sur le tabac indexation du tabac',
+    versions: ['lepen-geler-prix-tabac-desindexer-v1'],
+  },
+  {
+    id: 'logement-protection-contre-squats',
+    theme: 'logement',
+    title: 'Comment traiter les occupations sans droit d’un logement ?',
+    terms:
+      'squat occupation de logement droit de propriété expulsion de squatteurs',
+    versions: ['zemmour-renforcer-reponse-squats-v1'],
+  },
+  {
+    id: 'europe-politique-monetaire',
+    theme: 'europe',
+    title: 'Quel rôle pour la BCE dans le financement de l’économie ?',
+    terms:
+      'Banque centrale européenne BCE taux favorable investissements d’avenir',
+    versions: ['lepen-bce-investissements-taux-favorables-v1'],
+  },
+  {
     id: 'education-financement-des-etudes',
     theme: 'education',
     title: 'Comment financer les études supérieures et la formation ?',
@@ -1972,6 +2326,7 @@ interface Definition {
 }
 const additionalAnswers: Record<string, string[]> = {
   'retraites-conditions-depart': [
+    'zemmour-retraites-age-65-2032-v1',
     'herlin-retraite-choix-age-v1',
     'asselineau-faire-dependre-depart-retraite-duree-cotisation-v1',
     'saforcada-remplacer-age-legal-par-40-a-43-annuites-v1',
@@ -1993,6 +2348,7 @@ const additionalAnswers: Record<string, string[]> = {
     'philippe-privilegier-heures-supplementaires-hausse-smic-novembre-v1',
   ],
   'travail-duree-travail': [
+    'lisnard-majoration-heures-supplementaires-10-v1',
     'tinland-reduire-duree-travail-v1',
     'platret-retour-39-heures-v1',
     'villepin-reserver-aux-partenaires-sociaux-certains-choix-sur-les-salaires-et-le-temps-de-v1',
@@ -2001,6 +2357,8 @@ const additionalAnswers: Record<string, string[]> = {
     'ps-experimenter-la-semaine-de-quatre-jours-par-la-negociation-collective-v1',
   ],
   'climat-production-nucleaire': [
+    'renaissance-lancer-un-plan-pour-produire-industriellement-des-petits-reacteurs-nucleair-v1',
+    'retailleau-conditionner-commande-huit-epr2-avancement-v1',
     'polony-soutenir-investissement-epr2-v1',
     'tinland-sortie-nucleaire-solaire-v1',
     'marchal-construire-centrales-nucleaires-v1',
@@ -2013,6 +2371,9 @@ const additionalAnswers: Record<string, string[]> = {
     'groupe-rn-accroitre-production-nucleaire-2025-v1',
   ],
   'climat-prix-energie': [
+    'place-publique-tarif-electricite-couts-production-francais-v1',
+    'philippe-nov28-doubler-laide-aux-carburants-pour-les-menages-les-plus-exposes-v1',
+    'zemmour-supprimer-certificats-economies-energie-carburants-v1',
     'collovati-marche-europeen-electricite-v1',
     'herlin-marche-europeen-electricite-v1',
     'legendre-prix-energie-cheques-v1',
@@ -2042,6 +2403,8 @@ const additionalAnswers: Record<string, string[]> = {
     'melenchon-fusionner-les-cotisations-sociales-et-la-csg-v1',
   ],
   'fiscalite-transmission-patrimoine': [
+    'attal-nov28-faciliter-donations-v1',
+    'lepen-contre-budget-reformer-donations-grands-parents-v1',
     'philippe-perenniser-defiscalisation-donations-premier-achat-v1',
     'herlin-droits-succession-v1',
     'collovati-relever-le-seuil-dimposition-des-successions-v1',
@@ -2056,12 +2419,16 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-ramener-taux-marginal-succession-20-v1',
   ],
   'regularisation-sejour': [
+    'attal-nov28-schengen-aucune-regularisation-massive-seul-v1',
     'roussel-congres-regulariser-familles-enfants-scolarises-v1',
     'labib-regulariser-tous-les-sans-papiers-v1',
     'philippe-soumettre-les-regularisations-massives-a-un-accord-entre-etats-schengen-v1',
     'lisnard-interdire-regularisation-apres-entree-clandestine-v1',
   ],
   'immigration-travail': [
+    'attal-nov28-preference-travail-constitution-v1',
+    'retailleau-saisonniers-titres-sans-installation-v1',
+    'lisnard-instaurer-carte-verte-a-la-francaise-v1',
     'dubuisson-immigration-choisie-filieres-v1',
     'saforcada-titre-probatoire-immigration-travail-3-6-mois-v1',
     'lepen-taxe-embauche-extracommunautaires-v1',
@@ -2072,6 +2439,9 @@ const additionalAnswers: Record<string, string[]> = {
     'groupe-rn-creer-une-taxe-a-lembauche-dun-salarie-extra-europeen-v2',
   ],
   'soins-de-proximite': [
+    'place-publique-former-soignants-hopitaux-non-universitaires-v1',
+    'lisnard-statut-cabinet-telemedecine-exclusive-v1',
+    'lepen-outremer-moderniser-infrastructures-hopital-v1',
     'delmur-soins-sans-domicile-v1',
     'delmur-urgences-soins-vitaux-v1',
     'dubuisson-equipes-mobiles-soins-v1',
@@ -2102,6 +2472,11 @@ const additionalAnswers: Record<string, string[]> = {
     'melenchon-guichet-installation-soignants-v1',
   ],
   'sante-remboursement-soins': [
+    'place-publique-mutualiser-systemes-information-remboursements-sante-v1',
+    'lepen-contre-budget-rendre-carte-vitale-biometrique-v1',
+    'lepen-contre-budget-detecter-fraude-factures-sante-v1',
+    'lepen-contre-budget-radiographies-membres-inferieurs-v1',
+    'lepen-contre-budget-lunettes-fabriquees-france-cent-pour-cent-sante-v1',
     'markovic-nutritionniste-rendez-vous-rembourse-v1',
 
     'marchal-tarif-opposable-specialistes-v1',
@@ -2143,6 +2518,14 @@ const additionalAnswers: Record<string, string[]> = {
     'place-publique-droit-initiative-referendum-v1',
   ],
   'europe-participation-union': [
+    'place-publique-accroitre-budget-ue-ressources-propres-v1',
+    'place-publique-reconnaissance-transfrontaliere-filiations-unions-v1',
+    'attal-nov28-etats-unis-d-europe-v1',
+    'retailleau-ecarter-regles-europe-incompetence-v1',
+    'zemmour-reduire-budget-et-role-commission-europeenne-v1',
+    'zemmour-knafo-budget-europe-avant-covid-v1',
+    'lepen-mettre-fin-soutien-ue-turquie-v1',
+    'lepen-conserver-calendrier-negociation-budget-ue-v1',
     'delmur-nouveaux-accords-apres-frexit-v1',
     'markovic-modifier-article-13-tfue-animaux-v1',
     'mlekuz-confier-articulation-droits-constituante-v1',
@@ -2167,6 +2550,9 @@ const additionalAnswers: Record<string, string[]> = {
     'dlf-logiciels-administrations-licences-gratuites-v1',
   ],
   'agriculture-remuneration-contrats': [
+    'place-publique-autorite-europeenne-prix-alimentaires-v1',
+    'retailleau-negociations-commerciales-date-butoir-decembre-v1',
+    'lepen-outremer-augmenter-credits-posei-v1',
     'philippe-accords-pluriannuels-partage-valeur-agricole-v1',
     'saforcada-rendre-couts-complets-production-agricole-opposables-v1',
     'saforcada-prix-planchers-agricoles-sauvegarde-temporaire-v1',
@@ -2179,6 +2565,7 @@ const additionalAnswers: Record<string, string[]> = {
     'dlf-prix-garantis-agricoles-v1',
   ],
   'agriculture-installation-fermes': [
+    'lepen-outremer-installation-agriculteurs-transformation-v1',
     'saforcada-diagnostic-guichet-installation-transmission-agricole-v1',
     'lisnard-credit-impot-transmission-fermes-v1',
     'philippe-aider-installation-transmission-fermes-v1',
@@ -2189,6 +2576,7 @@ const additionalAnswers: Record<string, string[]> = {
     'dlf-reformer-safer-v1',
   ],
   'agriculture-cantines': [
+    'lepen-outremer-cantines-hopitaux-produits-locaux-v1',
     'saforcada-priorite-produits-francais-restauration-publique-v1',
     'groupe-rn-restauration-collective-criteres-locaux-v1',
     'polony-commande-production-v2',
@@ -2200,6 +2588,9 @@ const additionalAnswers: Record<string, string[]> = {
     'melenchon-cantines-bio-local-option-vegetarienne-v1',
   ],
   'logement-obligations-parc-social': [
+    'glucksmann-maintenir-obligations-logement-social-sru-v1',
+    'lisnard-negocier-quotas-sru-territoires-v1',
+    'zemmour-abroger-loi-sru-v1',
     'ps-reviser-loi-sru-sanctionner-villes-carencees-v1',
     'tinland-maires-permis-logements-sociaux-v1',
     'bonnal-maintenir-quotas-loi-sru-v1',
@@ -2209,6 +2600,17 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-supprimer-article-55-de-la-loi-sru-v1',
   ],
   'logement-offre-bati': [
+    'melenchon-convertir-locaux-vacants-en-logements-v1',
+    'melenchon-logements-tres-sociaux-plai-v1',
+    'melenchon-40-mille-logements-seniors-v1',
+    'melenchon-soutenir-communes-construction-accessible-v1',
+    'melenchon-renforcer-etablissements-publics-fonciers-v1',
+    'place-publique-preemption-vacance-longue-bareme-progressif-v1',
+    'melenchon-mobiliser-encours-livret-a-financer-logements-v1',
+    'lisnard-exonerer-taxe-vacance-en-travaux-v1',
+    'retailleau-viser-million-logements-supplementaires-quinquennat-v1',
+    'lepen-outremer-pret-taux-zero-construction-v1',
+    'zemmour-knafo-supprimer-anah-v1',
     'kazib-mobiliser-bureaux-inutilises-logement-v1',
     'philippe-regrouper-bailleurs-foncieres-interet-general-v1',
     'saforcada-mobiliser-foncier-public-logement-outre-mer-v1',
@@ -2239,6 +2641,9 @@ const additionalAnswers: Record<string, string[]> = {
     'branco-salaires-enseignants-debut-carriere-v1',
   ],
   'education-acces-etudes': [
+    'place-publique-controle-enseignement-superieur-prive-lucratif-v1',
+    'place-publique-renover-campus-energie-biodiversite-v1',
+    'philippe-nov28-laisser-chaque-universite-definir-ses-propres-regles-de-selection-v1',
     'labib-garantir-place-master-apres-licence-v1',
 
     'lepen-publier-criteres-admission-superieur-v1',
@@ -2293,6 +2698,10 @@ const additionalAnswers: Record<string, string[]> = {
     'ps-garantir-85-du-smic-apres-une-carriere-entiere-dans-lagriculture-v1',
   ],
   'retraites-financement-regimes': [
+    'place-publique-haut-conseil-pilotage-retraites-paritarisme-v1',
+    'retailleau-credit-impot-per-non-imposables-v1',
+    'retailleau-affecter-participation-interessement-retraite-v1',
+    'zemmour-retraites-transition-capitalisation-v1',
     'herlin-retraite-capitalisation-choix-placements-v1',
     'dubuisson-maintien-pensions-transition-v1',
     'asselineau-maintenir-retraites-par-repartition-v1',
@@ -2301,6 +2710,8 @@ const additionalAnswers: Record<string, string[]> = {
     'philippe-plan-epargne-premier-emploi-v1',
   ],
   'logement-regulation-loyers': [
+    'place-publique-extension-visale-public-duree-v1',
+    'glucksmann-encadrer-loyers-zones-tendues-declaration-lci-v1',
     'legendre-encadrement-loyers-aides-v1',
     'tinland-loyers-15-pour-cent-v1',
     'delmur-encadrement-loyers-v1',
@@ -2308,6 +2719,7 @@ const additionalAnswers: Record<string, string[]> = {
     'philippe-donner-aux-maires-la-decision-sur-lencadrement-des-loyers-v1',
   ],
   'social-garde-jeunes-enfants': [
+    'renaissance-instaurer-un-droit-opposable-a-la-garde-denfants-v1',
     'tinland-conge-parental-et-garde-v1',
     'philippe-plan-garde-enfants-v1',
     'place-publique-rendre-opposable-droit-a-la-garde-enfant-v1',
@@ -2330,6 +2742,7 @@ const additionalAnswers: Record<string, string[]> = {
     'legendre-maintenir-renforcer-alliances-dont-otan-v1',
   ],
   'retraites-regimes-particuliers': [
+    'attal-lci-remplacer-les-regimes-distincts-de-retraite-par-des-regles-communes-v1',
     'lisnard-mettre-fin-regimes-speciaux-v1',
     'marchal-agir-regimes-speciaux-pensions-hautes-v1',
   ],
@@ -2353,6 +2766,7 @@ const additionalAnswers: Record<string, string[]> = {
     'groupe-rn-moratoire-eolien-et-solaire-2025-v1',
   ],
   'regroupement-familial': [
+    'retailleau-verifier-etat-civil-regroupement-pays-liste-v1',
     'saforcada-suspendre-puis-durcir-regroupement-familial-v1',
     'rn-supprimer-regroupement-familial-v1',
     'herlin-regroupement-familial-v1',
@@ -2369,12 +2783,17 @@ const additionalAnswers: Record<string, string[]> = {
     'dlf-aesh-temps-plein-v1',
   ],
   'parents-isoles': [
+    'attal-nov28-versement-automatique-pensions-v1',
     'philippe-social-1-v4',
     'delmur-pension-alimentaire-salaire-v1',
     'becht-confier-une-mission-daide-aux-familles-monoparentales-aux-maisons-de-vie-v1',
     'melenchon-creer-statut-famille-monoparentale-v1',
   ],
   'places-prison': [
+    'attal-nov28-prisons-operation-interet-national-v1',
+    'lisnard-tester-detention-transitoire-pays-partenaires-v1',
+    'retailleau-faire-construire-places-prison-par-differents-acteurs-v1',
+    'zemmour-prisons-100000-places-v2',
     'saforcada-construire-capacites-detention-et-separer-profils-v1',
     'zemmour-prisons-100000-places-v1',
     'herlin-places-prison-v1',
@@ -2402,6 +2821,8 @@ const additionalAnswers: Record<string, string[]> = {
     'place-publique-plan-rail-trains-legers-ruraux-v1',
   ],
   'numerique-demarches-en-ligne': [
+    'lisnard-dossier-conforme-format-delai-correction-v1',
+    'lisnard-rendre-opposable-donnees-une-fois-v1',
     'lisnard-guichet-numerique-agriculteurs-v2',
     'polony-guichet-numerique-services-publics-v1',
     'dubuisson-eviter-redemande-documents-administratifs-v2',
@@ -2454,6 +2875,14 @@ const additionalAnswers: Record<string, string[]> = {
     'place-publique-moderniser-abattoirs-et-experimenter-unites-mobiles-v1',
   ],
   'travail-demarches-entreprises': [
+    'renaissance-creer-cent-territoires-dinnovation-beneficiant-de-regles-administratives-ac-v1',
+    'renaissance-creer-un-interlocuteur-unique-pour-acceder-aux-aides-aux-entreprises-v1',
+    'lisnard-caces-validite-et-pratique-v1',
+    'lisnard-limiter-obligations-reporting-csrd-v1',
+    'lisnard-reception-travaux-remplacement-capteurs-incendie-v1',
+    'lisnard-visite-embauche-courts-contrats-sans-risque-v1',
+    'retailleau-relever-seuil-50-a-100-salaries-v1',
+    'retailleau-droit-erreur-entreprises-rectifier-v1',
     'herlin-facturation-electronique-obligatoire-v1',
     'dubuisson-droit-entreprises-sa-sas-v1',
     'dubuisson-guichet-entreprises-formalites-v1',
@@ -2472,6 +2901,8 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-former-eleves-usages-intelligence-artificielle-v1',
   ],
   'climat-eau-potable': [
+    'place-publique-tarification-eau-aide-3-pourcent-v1',
+    'lepen-outremer-plan-eau-infrastructures-v1',
     'asselineau-soutenir-acces-eau-guadeloupe-v1',
     'melenchon-installer-fontaines-douches-sanitaires-gratuits-v1',
     'melenchon-analyser-systematiquement-contaminants-eau-v1',
@@ -2484,12 +2915,17 @@ const additionalAnswers: Record<string, string[]> = {
     'asselineau-envisager-referendum-revocatoire-president-v1',
     'kazib-rendre-mandats-revocables-v1',
   ],
-  'aide-ukraine': ['lalanne-cesser-envois-fonds-ukraine-v1'],
+  'aide-ukraine': [
+    'attal-nov28-saisir-avoirs-russes-geles-v1',
+    'lepen-europe-1-v3',
+    'lalanne-cesser-envois-fonds-ukraine-v1',
+  ],
   'europe-accord-mercosur': [
     'legendre-critiquer-accord-mercosur-v1',
     'lassalle-demander-opposition-france-mercosur-v1',
   ],
   'sante-experimentation-animale': [
+    'place-publique-encadrer-utilisation-animaux-recherche-v1',
     'delmur-produits-testes-sur-animaux-v1',
     'markovic-independance-comites-ethique-experimentation-v1',
     'markovic-experimentations-inspections-inopinees-v1',
@@ -2515,41 +2951,439 @@ const additionalAnswers: Record<string, string[]> = {
     'rohou-technologies-ia-efficaces-energie-foncier-v1',
   ],
   'institutions-controle-depense-publique': [
+    'place-publique-observatoire-integrite-publique-v1',
+    'attal-nov28-responsabilite-budgetaire-gouvernement-v1',
+    'retailleau-lois-cadres-plafonds-depenses-budget-v1',
+    'retailleau-eteindre-programmes-grands-mal-evalues-v1',
+    'retailleau-transfert-prive-activites-cinq-milliards-v1',
+    'lepen-contre-budget-gestion-bons-tresor-v1',
     'pic-publier-evaluation-et-donnees-jalons-transition-v1',
     'dubuisson-suivi-open-data-contrats-publics-v1',
     'dubuisson-comites-suivi-reformes-v1',
   ],
   'institutions-liberte-medias': [
+    'place-publique-creer-delit-desinformation-organisee-v1',
+    'place-publique-taxer-geants-numeriques-financement-presse-v1',
+    'zemmour-abroger-lois-pleven-gayssot-v1',
+    'zemmour-retirer-droit-action-associations-liberte-expression-v1',
+    'zemmour-reformer-loi-audiovisuel-pluralisme-v1',
+    'zemmour-knafo-fin-subventions-presse-v1',
+    'zemmour-privatiser-audiovisuel-public-v1',
     'asselineau-envisager-delit-dissimulation-information-v1',
 
     'bouamrane-refuser-exclusion-journalistes-presse-v1',
   ],
   'sante-aide-a-mourir': ['herlin-referendum-loi-euthanasie-v1'],
   'travail-conditions-aides-entreprises': [
+    'melenchon-contreparties-aides-automobile-v1',
+    'melenchon-aides-auto-85-pourcent-contenu-europeen-v1',
+    'melenchon-contrats-cellules-batteries-aides-constructeurs-v1',
+    'melenchon-subordonner-aides-batteries-transferts-technologie-v1',
+    'place-publique-plafonner-credit-impot-recherche-grands-groupes-v1',
+    'renaissance-privilegier-les-prises-de-participation-publiques-et-la-couverture-des-prem-v1',
+    'renaissance-financer-des-projets-de-pme-et-deti-industrielles-par-un-fonds-territorial-v1',
+    'lepen-outremer-soutenir-jeunes-entrepreneurs-v1',
     'labib-exiger-restitution-aides-publiques-grandes-entreprises-v1',
     'collovati-supprimer-subventions-entreprises-v1',
   ],
   'institutions-dissolution-assemblee': [
     'collovati-dissolution-assemblee-2027-v1',
   ],
-  'europe-cooperations-industrielles': ['herlin-scaf-cooperation-alliance-v1'],
+  'europe-cooperations-industrielles': [
+    'place-publique-label-epargne-entreprises-projets-europe-v1',
+    'attal-nov28-relocaliser-productions-critiques-v1',
+    'renaissance-creer-un-regime-juridique-europeen-utilisable-par-les-entreprises-dans-les-v1',
+    'herlin-scaf-cooperation-alliance-v1',
+  ],
   'institutions-finances-communes': [
+    'retailleau-attribuer-tva-logements-neufs-communes-v1',
+    'lepen-contre-budget-revoir-remboursement-fctva-v1',
+    'lepen-contre-budget-rebudgetiser-tva-des-regions-et-epci-v1',
     'pic-impot-communal-unique-v1',
     'dubuisson-ressources-competences-transferees-v1',
   ],
   'institutions-controle-constitutionnel': [
+    'retailleau-clause-sauvegarde-traites-v1',
     'tinland-tirage-conseil-constitutionnel-cinq-courants-v1',
   ],
   'institutions-duree-mandat-presidentiel': ['rohou-retablir-septennat-v1'],
   'social-revenus-et-prestations': [
+    'place-publique-logistique-invendus-aide-alimentaire-v1',
+    'place-publique-conference-minimum-social-unique-moins-25-ans-v1',
+    'glucksmann-fonds-social-europeen-aide-alimentaire-5-pourcent-v1',
+    'lisnard-verser-automatiquement-prestations-verifiables-v1',
+    'retailleau-condition-constitutionnelle-cinq-ans-travail-v1',
+    'lepen-maintenir-soutiens-restos-coeur-v1',
+    'zemmour-knafo-retirer-aides-auteurs-delits-crimes-v1',
     'collovati-prestations-francais-v1',
     'labib-cesser-imposer-trois-jours-carence-maladie-v1',
   ],
   'sante-organisation-hospitaliere': [
+    'place-publique-financement-global-pluriannuel-hopitaux-v1',
     'dubuisson-paiement-direct-medecins-v1',
     'delmur-medecine-complementaire-v1',
   ],
-  'fiscalite-biens-et-credits-publics': ['collovati-train-de-vie-elysee-v1'],
+  'fiscalite-biens-et-credits-publics': [
+    'zemmour-augmenter-budgets-justice-defense-v1',
+    'lepen-contre-budget-affecter-tsca-services-incendie-v1',
+    'collovati-train-de-vie-elysee-v1',
+  ],
+  'logement-hebergement-precaire': [
+    'melenchon-10-mille-logements-hebergement-urgence-v1',
+    'glucksmann-generaliser-logement-abord-sans-abri-v1',
+    'zemmour-knafo-exclure-hebergement-urgence-etrangers-irreguliers-v1',
+  ],
+  'logement-foncier-et-quartiers': [
+    'melenchon-prets-bonifies-bail-reel-solidaire-v1',
+    'melenchon-credit-acquisition-clauses-antispeculatives-v1',
+    'lisnard-confier-zan-intercommunalites-v1',
+    'lisnard-rescrit-urbanisme-littoral-v1',
+    'lisnard-relever-seuil-recours-architecte-250-v1',
+    'lisnard-limiter-bornage-proximite-projet-v1',
+    'lisnard-declarer-modifications-mineures-permis-v1',
+    'lisnard-plafonner-contentieux-urbanisme-deux-ans-v1',
+  ],
+  'logement-performance-energetique': [
+    'melenchon-renover-150-mille-logements-publics-v1',
+    'melenchon-aide-renovation-100-pourcent-degressive-v1',
+    'melenchon-canicules-volets-brasseurs-logements-publics-v1',
+    'melenchon-remplacement-chaudieres-fioul-gaz-cadence-v1',
+    'attal-nov28-simplifier-label-rge-artisans-v1',
+    'lisnard-dpe-bonus-malus-location-v1',
+    'lisnard-abf-faciliter-isolation-bati-ancien-v1',
+  ],
+  'climat-economie-circulaire': [
+    'melenchon-reemploi-dechets-btp-commande-publique-v1',
+    'melenchon-demontabilite-pieces-donnees-reparation-voitures-v1',
+    'melenchon-droit-diagnostic-batteries-vehicules-v1',
+    'melenchon-un-milliard-recyclage-batteries-v1',
+    'melenchon-recyclage-pneus-rechapage-pyrolyse-v1',
+    'melenchon-exigences-achat-vetements-entreprises-v1',
+    'melenchon-bonus-malus-textile-au-dela-fast-fashion-v1',
+    'melenchon-gestion-publique-filiere-dechets-textiles-v1',
+    'melenchon-affichage-score-environnemental-vetements-plateformes-v1',
+    'melenchon-doubler-duree-vie-vetements-v1',
+    'melenchon-25-pourcent-textiles-reemployes-achats-publics-v1',
+    'melenchon-tripler-ressources-eco-organismes-fonds-reemploi-v1',
+    'melenchon-200-mille-tonnes-recyclage-habillement-boucle-fermee-v1',
+    'melenchon-collecte-tri-textile-soutien-par-tonne-v1',
+    'retailleau-differencier-contributions-recyclage-batiment-v1',
+  ],
+  'institutions-protection-patrimoine': [
+    'melenchon-doubler-budget-entretien-monuments-v1',
+  ],
+  'travail-industrie-et-innovation': [
+    'melenchon-reconvertir-usines-moteurs-electrique-v1',
+    'melenchon-appels-projets-lignes-automobiles-v1',
+    'melenchon-moratoire-fermetures-sites-auto-v1',
+    'melenchon-4-milliards-fonds-sous-traitants-auto-v1',
+    'melenchon-capacite-batteries-100-gwh-v1',
+    'melenchon-60-millions-filiere-lin-chanvre-france-2030-v1',
+    'melenchon-contrats-pluriannuels-cultivateurs-transformateurs-textile-v1',
+    'melenchon-prets-bancaires-sites-confection-textile-v1',
+    'melenchon-plateforme-en-ligne-vetement-francais-v1',
+    'melenchon-locaux-a-loyer-modere-reparateurs-textiles-v1',
+    'melenchon-relancer-linge-hospitalier-textiles-collectifs-v1',
+    'melenchon-10-millions-recherche-textiles-techniques-v1',
+    'melenchon-guichet-innovation-rejets-eau-textile-v1',
+    'place-publique-creer-fonds-regionaux-capital-entreprises-v1',
+    'place-publique-indice-achat-local-commande-publique-v1',
+    'place-publique-investir-equipements-sobres-reparables-v1',
+    'place-publique-mines-raffineries-metaux-critiques-v1',
+    'lepen-outremer-attirer-concurrents-monopoles-v1',
+  ],
+  'climat-mobilite-collective': [
+    'melenchon-minibus-autonomes-recherche-deploiement-v1',
+    'place-publique-moratoire-projets-routiers-affecter-peages-v1',
+    'place-publique-doubler-trajets-velo-dix-ans-v1',
+    'lepen-trajets-train-gratuits-jeunes-heures-creuses-v1',
+  ],
+  'climat-agriculture-ecologie': [
+    'melenchon-lin-40-mille-hectares-additionnels-bio-v1',
+    'melenchon-65-mille-hectares-chanvre-2032-v1',
+    'place-publique-revenu-transition-agriculteurs-pecheurs-v1',
+    'place-publique-zones-sans-pesticides-captages-ecoles-v1',
+    'lisnard-fusion-declarations-viticoles-pac-v1',
+    'lisnard-derogation-pac-secheresse-v1',
+    'lisnard-aligner-zones-non-traitement-et-vente-conseil-v1',
+  ],
+  'travail-commande-publique': [
+    'melenchon-ecocriteres-commande-publique-habillement-v1',
+    'attal-nov28-commande-publique-plutot-que-subventions-v1',
+    'retailleau-verser-automatiquement-interets-moratoires-public-v1',
+    'lepen-outremer-commande-publique-locale-v1',
+  ],
+  'sante-prevention': [
+    'melenchon-interdire-vetements-substances-dangereuses-v1',
+    'place-publique-financement-prevention-sante-hors-ondam-annuel-v1',
+    'lisnard-supprimer-certificat-sport-loisir-v1',
+    'lepen-associer-buralistes-regles-vape-v1',
+  ],
+  'securite-enquetes-et-trafics': [
+    'place-publique-brigades-cyber-sentinelle-v1',
+    'philippe-nov28-ecarter-lenvoi-de-larmee-dans-les-quartiers-pour-lutter-contre-le-narcotraf-v1',
+    'lisnard-creer-delit-de-pillage-v1',
+    'lepen-outremer-lutter-narcotrafic-v1',
+    'lepen-fermetures-administratives-vente-tabac-contrebande-v1',
+    'lepen-sanctions-trafic-tabac-v1',
+  ],
+  'europe-defense-moyens': [
+    'place-publique-renforcer-reserve-operationnelle-v1',
+    'place-publique-pilotage-europeen-production-exportations-defense-v1',
+    'attal-nov28-bouclier-antimissile-parapluie-nucleaire-v1',
+    'philippe-nov28-fixer-un-objectif-dau-moins-18-fregates-pour-la-marine-v1',
+    'lepen-outremer-base-interarmees-noumea-v1',
+    'lepen-proteger-infrastructures-face-actions-hybrides-v1',
+    'lepen-reponse-proportionnee-operations-hostiles-v1',
+  ],
+  'climat-sources-electricite': [
+    'place-publique-investir-reseau-stockage-electrique-v1',
+  ],
+  'europe-negociation-ukraine': [
+    'place-publique-interdire-importations-gaz-russe-v1',
+    'zemmour-france-mediateur-russie-ukraine-v1',
+  ],
+  'institutions-demarches-et-recours': [
+    'place-publique-investissements-ia-services-publics-v1',
+    'lisnard-attestation-nationalite-cni-passeport-v1',
+    'lisnard-silence-vaut-accord-delais-opposables-v1',
+    'lisnard-interets-retards-remboursements-etat-v1',
+    'lisnard-droit-erreur-avertir-premier-manquement-v1',
+    'lisnard-limiter-huissier-petits-retards-v1',
+    'lisnard-indemniser-erreurs-administration-v1',
+    'lisnard-mediateur-dossiers-bloques-cinq-ans-v1',
+  ],
+  'education-financement-des-etudes': [
+    'place-publique-visas-bourses-chercheurs-menaces-v1',
+    'place-publique-aide-eloignement-etudes-formations-delocalisees-v1',
+    'place-publique-capital-formation-universel-v1',
+    'renaissance-donner-aux-jeunes-un-capital-de-reprise-detudes-via-le-cpf-v1',
+    'renaissance-fusionner-la-bourse-etudiante-et-laide-au-logement-dans-un-versement-unique-v1',
+    'retailleau-developper-internats-prepas-v1',
+    'zemmour-knafo-frais-etudes-etudiants-etrangers-v1',
+  ],
+  'climat-pilotage-transition': [
+    'place-publique-conventions-climat-locales-v1',
+    'place-publique-repertoire-aides-produits-ecologiques-v1',
+    'zemmour-knafo-supprimer-ademe-v1',
+  ],
+  'climat-risques-naturels': [
+    'place-publique-interdire-nouvelles-grandes-surfaces-v1',
+    'place-publique-garantie-universelle-assurance-climatique-v1',
+    'lisnard-reviser-plans-inondation-adaptes-v1',
+    'lepen-mayotte-reconstruction-indemnisation-chido-v1',
+  ],
+  'climat-transports-marchandises': [
+    'place-publique-connecter-ports-autoroutes-ferroviaires-v1',
+  ],
+  'climat-condition-animale': [
+    'place-publique-plan-animaux-compagnie-tracabilite-v1',
+    'place-publique-interdire-elevage-fourrure-europe-v1',
+    'lisnard-harmoniser-ovosexage-europe-v1',
+  ],
+  'climat-peche-aquaculture': [
+    'place-publique-repartir-quotas-peche-artisanale-v1',
+  ],
+  'climat-protection-biodiversite': [
+    'place-publique-encadrer-achats-forets-financiers-v1',
+  ],
+  'travail-cotisations-salaires': [
+    'place-publique-indexer-point-indice-fonction-publique-inflation-v1',
+    'retailleau-refondre-forfait-social-v1',
+  ],
+  'travail-representation': [
+    'place-publique-administrateurs-salaries-des-100-v1',
+    'place-publique-cheque-syndical-v1',
+    'place-publique-priorite-accords-branche-v1',
+    'retailleau-ouvrir-conclusion-accords-cse-referendum-v1',
+    'zemmour-knafo-fin-subventions-syndicats-v1',
+  ],
+  'travail-acces-emploi': [
+    'place-publique-cdi-insertion-harmonise-v1',
+    'place-publique-guichet-territorial-france-travail-v1',
+    'zemmour-knafo-retirer-mission-placement-france-travail-v1',
+  ],
+  'institutions-competences-territoires': [
+    'place-publique-elire-conseils-communautaires-suffrage-direct-v1',
+    'zemmour-fusionner-departements-regions-provinces-v1',
+    'zemmour-knafo-supprimer-cese-ceser-v1',
+  ],
+  'institutions-conseil-prive-etat': [
+    'place-publique-encadrer-externalisation-etat-cabinets-conseil-v1',
+  ],
+  'social-handicap-et-autonomie': [
+    'place-publique-indemnisation-aidants-familiaux-activite-reduite-v1',
+    'renaissance-inclure-une-garantie-dependance-dans-les-contrats-de-complementaire-sante-r-v1',
+    'lisnard-mdph-droit-permanent-handicap-definitif-v1',
+    'lisnard-demarches-mairie-handicap-a-domicile-v1',
+    'retailleau-avancer-credit-impot-adapter-logement-vieillissement-v1',
+  ],
+  'social-droits-familles-enfants': [
+    'place-publique-controle-independant-departements-protection-enfance-v1',
+    'place-publique-fonds-publics-protection-enfance-sans-lucrativite-v1',
+    'renaissance-elargir-les-ordonnances-de-protection-aux-enfants-victimes-de-violences-fam-v1',
+    'lepen-renforcer-contradictoire-placement-enfants-v1',
+    'lepen-reduire-changements-enfants-places-v1',
+  ],
+  'securite-police-et-controle': [
+    'place-publique-equipes-mobiles-prevention-delinquance-v1',
+    'renaissance-employer-en-priorite-les-reservistes-de-police-et-de-gendarmerie-pour-les-p-v1',
+    'renaissance-elargir-les-competences-judiciaires-des-polices-municipales-v1',
+    'renaissance-faire-de-la-police-municipale-la-regle-au-dela-de-10-000-habitants-v1',
+    'renaissance-fixer-un-equipement-minimal-pour-les-polices-municipales-selon-la-taille-de-v1',
+    'renaissance-creer-une-ecole-nationale-des-policiers-municipaux-avec-des-antennes-region-v1',
+    'renaissance-encourager-les-polices-municipales-et-les-centres-de-surveillance-intercomm-v1',
+    'renaissance-etendre-les-permanences-et-brigades-mobiles-de-gendarmerie-dans-les-village-v1',
+    'lisnard-revaloriser-financierement-enqueteurs-v1',
+    'lisnard-confier-taches-administratives-police-civils-v1',
+    'lepen-police-municipale-trafic-tabac-v1',
+  ],
+  'securite-cannabis': [
+    'place-publique-convention-citoyenne-politique-drogues-v1',
+  ],
+  'securite-detention-et-peines': [
+    'place-publique-developper-justice-restaurative-tig-v1',
+    'attal-nov28-supprimer-juge-application-peines-v1',
+    'attal-nov28-suppression-juge-application-peines-v1',
+    'renaissance-executer-les-travaux-dinteret-general-dans-un-delai-maximal-de-trois-mois-v1',
+    'renaissance-privilegier-la-detention-a-domicile-pour-certaines-premieres-condamnations-v1',
+    'retailleau-supprimer-fonction-juge-application-peines-v1',
+    'retailleau-supprimer-amenagements-automatiques-prison-v1',
+  ],
+  'institutions-services-outre-mer': [
+    'place-publique-flecher-octroi-mer-investissement-local-v1',
+    'lepen-outremer-aller-retour-hexagone-v1',
+    'lepen-outremer-conseil-interministeriel-v1',
+    'lepen-outremer-ministere-domaine-maritime-v1',
+    'lepen-outremer-majorer-effort-etat-v1',
+  ],
+  'education-vie-scolaire': [
+    'place-publique-allocation-temps-formation-continue-educateurs-v1',
+    'retailleau-fin-repartition-postes-public-prive-80-20-v1',
+    'retailleau-liberte-instruction-famille-six-ans-v1',
+    'lisnard-accueillir-eleves-perturbateurs-etablissements-disciplinaires-v1',
+    'zemmour-renforcer-pouvoir-disciplinaire-etablissements-v1',
+    'zemmour-financer-public-et-prive-selon-eleves-v1',
+  ],
+  'education-sport': [
+    'place-publique-exonerer-premier-contrat-pro-sportives-parasport-v1',
+  ],
+  'securite-lutte-racisme': [
+    'place-publique-discriminations-formation-professions-service-public-v1',
+  ],
+  'immigration-accueil-integration': [
+    'place-publique-guichets-uniques-primo-arrivants-v1',
+    'philippe-nov28-organiser-lintegration-autour-de-la-langue-francaise-du-travail-et-des-prin-v1',
+  ],
+  'immigration-entree-sejour': [
+    'place-publique-faire-carte-sejour-pluriannuelle-titre-reference-v1',
+    'philippe-nov28-suspendre-les-nouvelles-demandes-dasile-en-cas-de-pression-dun-etat-etrange-v1',
+    'philippe-nov28-renegocier-les-accords-du-touquet-et-les-denoncer-en-cas-dechec-v1',
+    'retailleau-mariage-subordonner-sejour-regulier-v1',
+    'retailleau-frontiere-scanners-ia-fichiers-v1',
+    'retailleau-supprimer-jour-franc-frontiere-v1',
+    'zemmour-ne-pas-renouveler-titres-sejour-apres-condamnation-v1',
+    'zemmour-knafo-augmenter-cout-visas-v1',
+  ],
+  'europe-solidarite-internationale': [
+    'place-publique-fonds-europeen-organisations-feministes-v1',
+  ],
+  'institutions-associations-et-libertes': [
+    'glucksmann-guichet-unique-demarches-associations-v1',
+    'lepen-subventions-associations-apolitiques-v1',
+    'zemmour-knafo-fin-subventions-associations-politisees-v1',
+  ],
+  'education-enseignements': [
+    'attal-nov28-amenager-cours-college-v1',
+    'retailleau-niveaux-mathematiques-lycee-v1',
+    'retailleau-economie-enseignement-des-seconde-v1',
+    'retailleau-quinze-minutes-lecture-par-jour-v1',
+    'retailleau-reaffecter-heures-educations-transversales-v1',
+    'zemmour-lecture-methode-syllabique-v1',
+  ],
+  'travail-agents-publics': [
+    'attal-nov28-recruter-professeurs-secteur-prive-v1',
+    'retailleau-non-remplacement-400000-departs-v1',
+  ],
+  'securite-organisation-justice': [
+    'attal-nov28-reecrire-code-procedure-penale-v1',
+    'attal-nov28-reformer-conseil-superieur-magistrature-v1',
+    'renaissance-creer-une-procedure-de-reconnaissance-de-culpabilite-en-matiere-criminelle-v1',
+    'zemmour-reformer-ecole-nationale-magistrature-v1',
+    'zemmour-knafo-aide-juridictionnelle-nationalite-v1',
+    'lepen-contre-budget-augmenter-ticket-moderateur-justice-v1',
+    'lepen-aggraver-peines-recel-secret-enquete-v1',
+  ],
+  'securite-condition-animale': [
+    'attal-nov28-sanctions-animaleries-appliquees-v1',
+    'attal-nov28-supprimer-salons-du-chiot-v1',
+  ],
+  'education-rythmes-scolaires': ['attal-nov28-revoir-journees-scolaires-v1'],
+  'institutions-haute-administration': [
+    'attal-nov28-moins-d-echelons-chefs-de-terrain-v1',
+    'lisnard-responsable-performance-premier-ministre-v1',
+    'lisnard-revue-ministerielle-quarante-cinq-jours-v1',
+    'lisnard-drh-et-fonctions-transformation-ministeres-v1',
+    'zemmour-gouvernement-dix-ministeres-v1',
+    'zemmour-knafo-ia-fonctions-administratives-v1',
+  ],
+  'institutions-representation-publique': [
+    'attal-nov28-trois-cent-cinquante-deputes-v1',
+    'renaissance-consacrer-10-du-temps-parlementaire-a-la-simplification-legislative-v1',
+  ],
+  'institutions-service-civique-obligatoire': [
+    'attal-nov28-mois-engagement-civique-jeunes-v1',
+  ],
+  'numerique-reseaux-sociaux-identification': [
+    'attal-nov28-reseaux-sociaux-moins-de-quinze-ans-v1',
+    'zemmour-preserver-anonymat-internet-v1',
+  ],
+  'logement-attribution-nationalite': [
+    'attal-lci-privilegier-le-travail-dans-les-services-essentiels-pour-lattribution-de-no-v1',
+  ],
+  'securite-surveillance-et-urgence': [
+    'renaissance-etendre-lexperimentation-de-videoprotection-algorithmique-des-jeux-olympiqu-v1',
+    'lisnard-maintenir-accompagnement-parents-vigipirate-v1',
+    'lisnard-drones-identifier-auteurs-violences-v1',
+  ],
+  'education-acces-culture': [
+    'renaissance-prevoir-deux-visites-de-lieux-de-memoire-pendant-la-scolarite-v1',
+  ],
+  'travail-conges-evenements-familiaux': [
+    'renaissance-instaurer-un-conge-de-naissance-de-six-mois-mieux-remunere-v1',
+  ],
+  'travail-egalite-professionnelle': [
+    'renaissance-imposer-la-transparence-des-salaires-dans-les-offres-demploi-v1',
+  ],
+  'fiscalite-entreprises': [
+    'lisnard-creation-entreprise-cfe-cotisations-an-v1',
+    'retailleau-supprimer-c3s-v1',
+    'retailleau-supprimer-cvae-definitivement-v1',
+    'retailleau-exonerer-cfe-part-industrielle-v1',
+  ],
+  'fiscalite-patrimoine-et-revenus': [
+    'lisnard-ifi-imposition-valeur-usufruit-v1',
+    'lisnard-interets-faibles-seuil-declaration-v1',
+    'lepen-controle-transmission-baisse-tva-v1',
+  ],
+  'immigration-eloignement': [
+    'retailleau-expulsion-obligatoire-condamnes-menace-v1',
+    'lisnard-conditionner-cooperation-readmission-algerie-v1',
+    'lepen-outremer-aide-comores-readmission-v1',
+    'zemmour-executer-cent-pour-cent-oqtf-v1',
+    'zemmour-objectif-deux-millions-etrangers-en-moins-v1',
+  ],
+  'fiscalite-commerce': [
+    'retailleau-opposer-ukraine-marche-agricole-v1',
+    'lepen-outremer-exception-agricole-accords-commerciaux-v1',
+    'lepen-outremer-clauses-miroirs-agricoles-v1',
+    'zemmour-droits-douane-automobiles-chinoises-50-v1',
+    'zemmour-maintenir-libre-echange-loyal-etats-unis-v1',
+  ],
+  'immigration-nationalite': [
+    'zemmour-decheance-nationalite-binationaux-crimes-v1',
+    'lepen-renoncer-interdiction-binationalite-v1',
+  ],
 };
 const scopedComplements: Record<string, Record<string, string>> = {
   'climat-restrictions-publicite': {
@@ -2573,6 +3407,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La priorité dans les achats publics vise à garantir des débouchés aux producteurs. Le prix payé aux exploitations reste à préciser.',
   },
   'education-acces-etudes': {
+    'attal-nov28-parcoursup-outil-accompagnement-v1':
+      'Le candidat maintient Parcoursup et propose d’améliorer l’accompagnement en amont des candidatures.',
     'labib-creer-places-universite-recrutements-batiments-v1':
       'Augmenter les capacités d’accueil agit sur le nombre de places disponibles.',
     'bouamrane-renforcer-orientation-reorientation-lycee-v1':
@@ -2617,6 +3453,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La proposition porte sur la construction de réacteurs français dans les pays européens. Le passage ne fixe pas de capacité de production supplémentaire en France.',
   },
   'travail-salaire-minimum': {
+    'philippe-nov28-accelerer-lalignement-du-smic-de-mayotte-sur-celui-de-lhexagone-v1':
+      'La réforme du minimum salarial concerne spécifiquement Mayotte.',
     'labib-parti-plancher-revenus-2200-octobre-v1':
       'La revendication porte sur tout revenu. Le communiqué ne fixe ni salaire horaire ni référence au SMIC.',
     'lisnard-exoneration-emploi-domicile-smic-v1':
@@ -2659,6 +3497,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le volet défense soutient l’adhésion de l’Ukraine à l’Alliance. Ce passage ne se prononce pas sur le commandement intégré français.',
   },
   'retraites-financement-regimes': {
+    'philippe-nov28-ecarter-une-hausse-des-cotisations-dans-la-reforme-des-retraites-v1':
+      'L’engagement concerne le taux des cotisations de retraite et complète la position sur les modalités de financement.',
     'dubuisson-capitalisation-dans-modele-paie-v1':
       'Le prélèvement de 10 % figure dans une simulation de paie. Le document ne fixe pas le régime applicable à l’ensemble des revenus.',
   },
@@ -2673,12 +3513,18 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La mesure ciblée sur les parents isolés en difficulté concerne la protection maternelle et infantile à domicile.',
   },
   'numerique-demarches-en-ligne': {
+    'renaissance-permettre-aux-victimes-de-suivre-leur-plainte-en-ligne-jusquau-jugement-v1':
+      'Le suivi en ligne intervient une fois la plainte déposée, jusqu’au jugement.',
+    'lisnard-guichet-ia-dossiers-urgents-v1':
+      'Le dispositif proposé concerne le tri des dossiers urgents.',
     'philippe-deployer-un-plan-dutilisation-de-lia-dans-les-services-publics-v2':
       'Le projet prévoit de traiter certaines démarches simples avec l’IA. Le passage ne précise pas le canal de dépôt pour les usagers.',
     'place-publique-automatiser-acces-droits-dossier-social-unique-v1':
       'Le dossier social vise à ouvrir automatiquement certains droits. Le passage prévoit aussi des guichets physiques et ne décrit pas de procédure de dépôt en ligne.',
   },
   'sante-remboursement-soins': {
+    'renaissance-rendre-obligatoire-la-complementaire-sante-des-salaries-de-particuliers-emp-v1':
+      'La couverture complémentaire deviendrait obligatoire pour les salariés de particuliers employeurs.',
     'dubuisson-caisse-nationale-unique-sante-v1':
       'La proposition réorganise le circuit de remboursement, de la prescription au paiement.',
     'lisnard-libre-choix-assurance-panier-soins-v1':
@@ -2697,6 +3543,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le programme prévoit un autre levier pour réduire la surpopulation, la régulation carcérale. Ce passage ne tranche pas la construction de nouveaux établissements.',
   },
   'retraites-penibilite': {
+    'attal-lci-tenir-compte-de-la-penibilite-et-de-leducation-des-enfants-dans-la-duree-de-v1':
+      'La pénibilité entrerait dans le calcul de la durée cotisée dans un système sans âge légal. Le nombre de trimestres reste à préciser.',
     'riner-penibilite-reforme-retraites-v1':
       'Teddy Riner veut tenir compte de la pénibilité. Son entretien ne fixe ni critères ni âge de départ.',
     'melenchon-penibilite-travail-contraintes-retraite-v1':
@@ -2737,6 +3585,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le candidat prévoit des contributions du public aux travaux. La composition de la convention est documentée dans une fiche distincte.',
   },
   'statuts-outre-mer': {
+    'lepen-outremer-priorite-economie-avant-statuts-v1':
+      'Le passage fixe une priorité économique et sociale. Il ne donne pas la procédure permettant de choisir un statut.',
     'place-publique-reprendre-dialogue-nouvelle-caledonie-v1':
       'Le mouvement demande de reprendre le dialogue politique en Nouvelle-Calédonie. Le texte ne fixe pas la procédure de révision du statut.',
     'batho-etats-generaux-outre-mer-v1':
@@ -2767,6 +3617,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'David Saforcada propose un débat et un référendum sur la fin de vie. La charte n’indique pas quelle modification apporter à la loi.',
   },
   'mobilite-territoires': {
+    'attal-nov28-leasing-electrique-premiere-ligne-v1':
+      'Le leasing viserait les travailleurs de première ligne, dont les besoins de déplacement dépassent les seules zones rurales.',
     'philippe-developper-ferroviaire-reunion-guyane-v1':
       'Cette position vise deux territoires ultramarins. Le passage ne fixe ni dessertes ni modalités de financement.',
     'saforcada-plafonner-tarifs-continuite-territoriale-outre-mer-v1':
@@ -2785,6 +3637,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La proposition concerne le partage des informations entre les professionnels qui interviennent dans les soins.',
   },
   'institutions-declenchement-referendum': {
+    'attal-nov28-reforme-institutionnelle-referendum-v1':
+      'La proposition prévoit de soumettre au vote une réforme institutionnelle portée par l’exécutif.',
     'asselineau-referendum-sanctions-et-securite-v1':
       'Le référendum envisagé porterait sur la justice et la sécurité. Le passage décrit le sujet de la consultation.',
     'labib-decisions-travailleurs-assemblees-generales-v1':
@@ -2823,6 +3677,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Cette mesure facilite la transmission des entreprises productives. Le passage ne fixe pas de barème général de succession.',
   },
   'climat-prix-energie': {
+    'renaissance-garantir-dix-ans-de-prix-industriels-de-lelectricite-autour-de-50-euros-par-v1':
+      'Le prix annoncé concerne les industriels qui respectent des objectifs de décarbonation et d’électrification.',
     'polony-refuser-cession-production-nucleaire-fournisseurs-tiers-v1':
       'Le communiqué porte sur les obligations d’EDF vis-à-vis de fournisseurs concurrents dans le projet EPR2. Il ne définit pas de tarif pour les ménages.',
     'roussel-congres-pole-public-energie-edf-engie-total-v1':
@@ -2831,6 +3687,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le programme veut reprendre le contrôle public d’opérateurs et revenir sur la libéralisation. Il ne fixe pas de tarif dans ce passage.',
   },
   'logement-offre-bati': {
+    'attal-lci-creer-un-statut-fiscal-du-bailleur-prive-qui-favorise-linvestissement-locat-v1':
+      'La fiscalité proposée vise à encourager les propriétaires privés à mettre des logements en location.',
     'rohou-fiscalite-materiaux-construction-economes-v1':
       'Le texte privilégie certains matériaux dans le bâti neuf.',
     'philippe-maires-distribution-aides-renovation-pierre-v1':
@@ -2851,6 +3709,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le modèle et la déclaration en ligne simplifieraient un dispositif volontaire de participation pour les PME.',
   },
   'climat-eau-potable': {
+    'lepen-outremer-suppleance-etat-eau-potable-v1':
+      'Marine Le Pen a soutenu la proposition dans son communiqué du 8 octobre 2026. Elle n’a pas été adoptée.',
     'saforcada-rattraper-acces-services-de-base-outre-mer-v1':
       'L’accès à l’eau et à l’assainissement est un volet d’un rattrapage de plusieurs services essentiels en outre-mer.',
     'melenchon-reconnaitre-crise-sanitaire-eau-guadeloupe-martinique-v1':
@@ -2861,6 +3721,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'L’audit concerne les recommandations qui orientent fortement l’accès aux œuvres culturelles.',
   },
   'europe-participation-union': {
+    'attal-nov28-retour-royaume-uni-union-europeenne-v1':
+      'La proposition concerne les relations avec le Royaume-Uni et la création de coopérations entre États volontaires.',
     'asselineau-referendum-dispositions-constitutionnelles-sortie-ue-v1':
       'Cette révision adapte la Constitution à la sortie de l’Union. La notification prévue dès la première semaine est traitée dans une autre fiche.',
     'melenchon-restituer-souverainete-budgetaire-parlements-nationaux-v1':
@@ -2881,10 +3743,16 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La brochure s’oppose aussi aux expulsions dans le passage qui appelle à régulariser les personnes sans papiers.',
   },
   'travail-aides-cooperatives': {
+    'lisnard-remplacer-information-cession-incitation-v1':
+      'La mesure concerne spécifiquement la reprise d’une entreprise par ses salariés.',
     'billetdoux-debattre-perimetre-aides-cooperatives-v2':
       'Augustin Billetdoux pose la question d’un accès réservé aux coopératives ou ouvert aussi à des entreprises classiques. Il laisse le critère d’éligibilité à débattre.',
   },
   'securite-lutte-racisme': {
+    'renaissance-publier-les-resultats-de-tests-de-discrimination-a-lembauche-v1':
+      'La convention propose des tests de discriminations à l’embauche dans son chapitre consacré à la lutte contre le racisme, l’antisémitisme et les discriminations.',
+    'renaissance-permettre-des-tests-individuels-pour-apporter-la-preuve-dune-discrimination-v1':
+      'Le test individuel serait un moyen d’établir une discrimination. Le document le présente dans son chapitre consacré aussi au racisme et à l’antisémitisme.',
     'riner-encourager-plaintes-victimes-racisme-v1':
       'Teddy Riner appelle les victimes à porter plainte. Il ne présente aucune modification de la procédure.',
   },
@@ -2897,10 +3765,16 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Benoît Mathieu propose de faire délibérer des citoyens tirés au sort. Il ne décide ni de l’âge de départ ni du montant des pensions.',
   },
   'europe-cooperations-industrielles': {
+    'renaissance-tripler-la-taille-du-conseil-europeen-de-linnovation-v1':
+      'Il s’agit d’un soutien commun à l’innovation au niveau européen. La convention ne précise pas de projet industriel bilatéral.',
     'polony-nouer-alliances-avec-espagne-et-italie-v1':
       'L’entretien évoque des rapprochements entre gouvernements. Il ne désigne pas de coopération industrielle précise.',
   },
   'education-financement-des-etudes': {
+    'renaissance-creer-un-contrat-de-travail-etudiant-plafonne-a-15-heures-par-semaine-v1':
+      'Le financement des études est ici abordé à travers un emploi salarié encadré, avec une limite hebdomadaire de quinze heures.',
+    'retailleau-relever-droits-inscription-etudiants-etrangers-v1':
+      'Le passage concerne les droits d’inscription des étudiants étrangers visés par son volet migratoire.',
     'legendre-moyens-universites-recherche-v1':
       'Le passage propose d’examiner les difficultés financières des universités et de la recherche avant de fixer les moyens.',
   },
@@ -2915,6 +3789,36 @@ const scopedComplements: Record<string, Record<string, string>> = {
   'retraites-protection-revenus': {
     'collovati-retraite-bon-comportement-v1':
       'La proposition porte sur les droits supplémentaires acquis selon un critère de comportement.',
+  },
+  'numerique-decisions-automatisees': {
+    'renaissance-autoriser-certaines-transcriptions-policieres-avec-une-ia-souveraine-contro-v1':
+      'Le dispositif porte sur la transcription de certains actes policiers et exige une validation humaine.',
+  },
+  'numerique-contenu-synthetique': {
+    'renaissance-accompagner-les-victimes-de-diffusion-dimages-sexuelles-sans-consentement-v1':
+      'L’accompagnement vise les personnes victimes de publications sexuelles sans consentement, dont les hypertrucages.',
+  },
+  'immigration-entree-sejour': {
+    'philippe-nov28-mettre-fin-a-ce-que-le-programme-appelle-lasile-a-vie-v1':
+      'Le programme souhaite revoir la durée de protection. Les échéances et critères de réexamen restent à préciser.',
+  },
+  'securite-enquetes-et-trafics': {
+    'lisnard-proportionner-obligations-antiblanchiment-v1':
+      'Le passage traite de la prévention du blanchiment et des obligations de mise en conformité pour les petites structures.',
+  },
+  'climat-risques-naturels': {
+    'lisnard-adapter-ventilation-microstations-v1':
+      'Le passage concerne les normes d’assainissement non collectif.',
+  },
+  'immigration-eloignement': {
+    'lisnard-tester-centres-retention-administrative-etranger-v1':
+      'Le candidat propose de tester des centres de rétention hors du territoire.',
+    'zemmour-gouvernement-dix-ministeres-v1':
+      'Le passage précise le ministère auquel Éric Zemmour confierait cette politique.',
+  },
+  'logement-performance-energetique': {
+    'retailleau-reporter-paliers-re2020-2028-2031-v1':
+      'Le passage concerne la réglementation environnementale des bâtiments neufs.',
   },
 };
 const searchTerms: Record<string, string> = {

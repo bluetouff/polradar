@@ -157,7 +157,9 @@ test('les comparatifs agricoles distinguent les auteurs et donnent accès aux ch
       await expect(
         bylines.filter({ hasText: 'Parti socialiste' }).first(),
       ).toBeVisible();
-      await expect(bylines.filter({ hasText: 'Place publique' })).toBeVisible();
+      await expect(
+        bylines.filter({ hasText: 'Place publique' }).first(),
+      ).toBeVisible();
       await page
         .locator('.q-related a[href="/dossiers/' + example.dossier + '/"]')
         .click();
