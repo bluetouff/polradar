@@ -503,6 +503,47 @@ const labels: Record<string, string> = {
 };
 const additions = [
   {
+    id: 'education-financement-des-etudes',
+    theme: 'education',
+    title: 'Comment financer les études supérieures et la formation ?',
+    terms:
+      'études étudiants rémunération étudiants bourses universités recherche formation',
+    versions: ['dubuisson-formation-remuneree-etudiants-v1'],
+  },
+  {
+    id: 'travail-conges-evenements-familiaux',
+    theme: 'travail',
+    title: 'Quels congés accorder aux salariés lors d’un événement familial ?',
+    terms:
+      'congés salariés événements famille congé paternité décès bien-être animal',
+    versions: [
+      'billetdoux-conge-paternite-v2',
+      'markovic-conge-perte-animal-identifie-v1',
+    ],
+  },
+  {
+    id: 'institutions-symboles-republique',
+    theme: 'institutions',
+    title: 'Quels symboles et quelle devise pour le régime politique ?',
+    terms: 'symboles république dénomination devise régime républicain',
+    versions: [
+      'pic-democratie-francaise-v1',
+      'tinland-changer-devise-republique-citoyenne-v1',
+    ],
+  },
+  {
+    id: 'institutions-dialogue-executif-citoyens',
+    theme: 'institutions',
+    title: 'Comment les citoyens pourraient-ils dialoguer avec l’exécutif ?',
+    terms:
+      'questions citoyens accessibilité dialogue exécutif ministères président',
+    versions: [
+      'delmur-contact-ministeres-citoyens-v1',
+      'asselineau-questions-francais-president-direct-mensuel-v1',
+    ],
+  },
+
+  {
     id: 'climat-mobilite-collective',
     theme: 'climat',
     title: 'Comment développer les transports collectifs ?',
@@ -1931,7 +1972,6 @@ interface Definition {
 }
 const additionalAnswers: Record<string, string[]> = {
   'retraites-conditions-depart': [
-    'collovati-retraite-bon-comportement-v1',
     'herlin-retraite-choix-age-v1',
     'asselineau-faire-dependre-depart-retraite-duree-cotisation-v1',
     'saforcada-remplacer-age-legal-par-40-a-43-annuites-v1',
@@ -1953,7 +1993,6 @@ const additionalAnswers: Record<string, string[]> = {
     'philippe-privilegier-heures-supplementaires-hausse-smic-novembre-v1',
   ],
   'travail-duree-travail': [
-    'markovic-conge-perte-animal-identifie-v1',
     'tinland-reduire-duree-travail-v1',
     'platret-retour-39-heures-v1',
     'villepin-reserver-aux-partenaires-sociaux-certains-choix-sur-les-salaires-et-le-temps-de-v1',
@@ -2063,12 +2102,8 @@ const additionalAnswers: Record<string, string[]> = {
     'melenchon-guichet-installation-soignants-v1',
   ],
   'sante-remboursement-soins': [
-    'delmur-medecine-complementaire-v1',
     'markovic-nutritionniste-rendez-vous-rembourse-v1',
 
-    'labib-cesser-imposer-trois-jours-carence-maladie-v1',
-    'dubuisson-paiement-direct-medecins-v1',
-    'dubuisson-caisse-nationale-unique-sante-v1',
     'marchal-tarif-opposable-specialistes-v1',
     'tinland-soins-gratuits-v1',
     'lisnard-sante-1-v3',
@@ -2087,7 +2122,7 @@ const additionalAnswers: Record<string, string[]> = {
     'markovic-ric-seuil-million-v1',
     'rohou-vote-local-centres-donnees-majorite-qualifiee-v1',
     'pic-referendum-question-principe-contentieux-administratif-v1',
-    'asselineau-referendum-sanctions-et-securite-v1',
+
     'herlin-referendums-presidentiels-v1',
     'mathieu-envisager-ric-legislatif-et-conventions-v1',
     'mlekuz-envisager-article-11-si-absence-majorite-v1',
@@ -2174,7 +2209,6 @@ const additionalAnswers: Record<string, string[]> = {
     'lisnard-supprimer-article-55-de-la-loi-sru-v1',
   ],
   'logement-offre-bati': [
-    'rohou-fiscalite-materiaux-construction-economes-v1',
     'kazib-mobiliser-bureaux-inutilises-logement-v1',
     'philippe-regrouper-bailleurs-foncieres-interet-general-v1',
     'saforcada-mobiliser-foncier-public-logement-outre-mer-v1',
@@ -2205,10 +2239,8 @@ const additionalAnswers: Record<string, string[]> = {
     'branco-salaires-enseignants-debut-carriere-v1',
   ],
   'education-acces-etudes': [
-    'labib-creer-places-universite-recrutements-batiments-v1',
     'labib-garantir-place-master-apres-licence-v1',
-    'legendre-moyens-universites-recherche-v1',
-    'dubuisson-formation-remuneree-etudiants-v1',
+
     'lepen-publier-criteres-admission-superieur-v1',
     'polony-reformer-parcoursup-transparence-v1',
     'lisnard-remplacer-parcoursup-orientation-v1',
@@ -2218,9 +2250,6 @@ const additionalAnswers: Record<string, string[]> = {
     'place-publique-abroger-parcoursup-etats-generaux-orientation-v1',
   ],
   'institutions-ecrire-constitution': [
-    'tinland-changer-devise-republique-citoyenne-v1',
-    'tinland-tirage-conseil-constitutionnel-cinq-courants-v1',
-    'rohou-retablir-septennat-v1',
     'mlekuz-renouveler-constituants-apres-echec-referendum-v1',
     'saforcada-referendum-obligatoire-revision-souverainete-v1',
     'lisnard-reviser-constitution-directement-par-referendum-v1',
@@ -2233,8 +2262,6 @@ const additionalAnswers: Record<string, string[]> = {
     'mlekuz-constituante-apres-refus-v1',
   ],
   'institutions-contributions-citoyennes': [
-    'delmur-contact-ministeres-citoyens-v1',
-    'asselineau-questions-francais-president-direct-mensuel-v1',
     'cheve-faire-presidence-intermediaire-citoyens-v1',
     'cheve-reexaminer-reglements-apres-remontee-v1',
     'mathieu-faire-valider-conclusions-conventions-par-referendum-v1',
@@ -2457,10 +2484,7 @@ const additionalAnswers: Record<string, string[]> = {
     'asselineau-envisager-referendum-revocatoire-president-v1',
     'kazib-rendre-mandats-revocables-v1',
   ],
-  'aide-ukraine': [
-    'asselineau-consulter-francais-referendum-soutien-ukraine-v1',
-    'lalanne-cesser-envois-fonds-ukraine-v1',
-  ],
+  'aide-ukraine': ['lalanne-cesser-envois-fonds-ukraine-v1'],
   'europe-accord-mercosur': [
     'legendre-critiquer-accord-mercosur-v1',
     'lassalle-demander-opposition-france-mercosur-v1',
@@ -2494,17 +2518,13 @@ const additionalAnswers: Record<string, string[]> = {
     'pic-publier-evaluation-et-donnees-jalons-transition-v1',
     'dubuisson-suivi-open-data-contrats-publics-v1',
     'dubuisson-comites-suivi-reformes-v1',
-    'collovati-train-de-vie-elysee-v1',
   ],
   'institutions-liberte-medias': [
     'asselineau-envisager-delit-dissimulation-information-v1',
-    'asselineau-refuser-suspension-reseaux-sociaux-troubles-v1',
+
     'bouamrane-refuser-exclusion-journalistes-presse-v1',
   ],
-  'sante-aide-a-mourir': [
-    'asselineau-consulter-francais-referendum-euthanasie-v1',
-    'herlin-referendum-loi-euthanasie-v1',
-  ],
+  'sante-aide-a-mourir': ['herlin-referendum-loi-euthanasie-v1'],
   'travail-conditions-aides-entreprises': [
     'labib-exiger-restitution-aides-publiques-grandes-entreprises-v1',
     'collovati-supprimer-subventions-entreprises-v1',
@@ -2512,13 +2532,24 @@ const additionalAnswers: Record<string, string[]> = {
   'institutions-dissolution-assemblee': [
     'collovati-dissolution-assemblee-2027-v1',
   ],
-  'logement-attribution-nationalite': ['collovati-prestations-francais-v1'],
   'europe-cooperations-industrielles': ['herlin-scaf-cooperation-alliance-v1'],
-  'numerique-cloud-sensible': ['dubuisson-datacenters-souverains-outre-mer-v1'],
   'institutions-finances-communes': [
     'pic-impot-communal-unique-v1',
     'dubuisson-ressources-competences-transferees-v1',
   ],
+  'institutions-controle-constitutionnel': [
+    'tinland-tirage-conseil-constitutionnel-cinq-courants-v1',
+  ],
+  'institutions-duree-mandat-presidentiel': ['rohou-retablir-septennat-v1'],
+  'social-revenus-et-prestations': [
+    'collovati-prestations-francais-v1',
+    'labib-cesser-imposer-trois-jours-carence-maladie-v1',
+  ],
+  'sante-organisation-hospitaliere': [
+    'dubuisson-paiement-direct-medecins-v1',
+    'delmur-medecine-complementaire-v1',
+  ],
+  'fiscalite-biens-et-credits-publics': ['collovati-train-de-vie-elysee-v1'],
 };
 const scopedComplements: Record<string, Record<string, string>> = {
   'climat-restrictions-publicite': {
@@ -2542,6 +2573,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La priorité dans les achats publics vise à garantir des débouchés aux producteurs. Le prix payé aux exploitations reste à préciser.',
   },
   'education-acces-etudes': {
+    'labib-creer-places-universite-recrutements-batiments-v1':
+      'Augmenter les capacités d’accueil agit sur le nombre de places disponibles.',
     'bouamrane-renforcer-orientation-reorientation-lycee-v1':
       'Karim Bouamrane demande de revoir l’accompagnement des lycéens. Son intervention ne fixe pas de procédure d’admission.',
     'melenchon-rendre-gratuites-etudes-superieures-licence-doctorat-v1':
@@ -2600,6 +2633,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le guichet proposé par Renaissance vise les signalements des victimes de cyberattaques.',
   },
   'aide-ukraine': {
+    'asselineau-consulter-francais-referendum-soutien-ukraine-v1':
+      'François Asselineau envisage de faire décider les électeurs par référendum. Le passage documente le mode de décision proposé.',
     'riner-contester-envoi-militaires-francais-ukraine-v1':
       'La déclaration concerne l’envoi de militaires français en Ukraine. Elle ne précise pas le sort de l’aide matérielle ou financière.',
     'arthaud-contester-livraisons-armes-ukraine-v1':
@@ -2644,6 +2679,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le dossier social vise à ouvrir automatiquement certains droits. Le passage prévoit aussi des guichets physiques et ne décrit pas de procédure de dépôt en ligne.',
   },
   'sante-remboursement-soins': {
+    'dubuisson-caisse-nationale-unique-sante-v1':
+      'La proposition réorganise le circuit de remboursement, de la prescription au paiement.',
     'lisnard-libre-choix-assurance-panier-soins-v1':
       'Le candidat décrit une obligation de prise en charge et le choix de l’assureur. La composition du panier et les taux remboursés restent à préciser.',
   },
@@ -2718,6 +2755,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La candidate met en cause la charge du dispositif. Elle ne précise pas dans cet échange ce qu’elle changerait dans ses conditions.',
   },
   'sante-aide-a-mourir': {
+    'asselineau-consulter-francais-referendum-euthanasie-v1':
+      'François Asselineau évoque un référendum. Le passage documente une consultation des électeurs.',
     'attal-soutenir-le-droit-a-l-aide-a-mourir-v1':
       'Gabriel Attal soutient le texte lors de son adoption définitive et annonce sa mise en œuvre. La déclaration précède la promulgation de la loi.',
     'melenchon-constitutionnaliser-droit-mourir-dignite-v1':
@@ -2746,6 +2785,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'La proposition concerne le partage des informations entre les professionnels qui interviennent dans les soins.',
   },
   'institutions-declenchement-referendum': {
+    'asselineau-referendum-sanctions-et-securite-v1':
+      'Le référendum envisagé porterait sur la justice et la sécurité. Le passage décrit le sujet de la consultation.',
     'labib-decisions-travailleurs-assemblees-generales-v1':
       'Selma Labib défend les assemblées générales de travailleurs. Elle juge insuffisant le RIC constituant proposé par Clara Egger pour leur donner le pouvoir de décision dans le système économique actuel.',
     'rohou-ric-local-environnemental-v1':
@@ -2790,6 +2831,8 @@ const scopedComplements: Record<string, Record<string, string>> = {
       'Le programme veut reprendre le contrôle public d’opérateurs et revenir sur la libéralisation. Il ne fixe pas de tarif dans ce passage.',
   },
   'logement-offre-bati': {
+    'rohou-fiscalite-materiaux-construction-economes-v1':
+      'Le texte privilégie certains matériaux dans le bâti neuf.',
     'philippe-maires-distribution-aides-renovation-pierre-v1':
       'Le candidat précise qui distribuerait les aides à la rénovation énergétique et les aides à la pierre. Le passage ne fixe pas les montants ni les critères d’accès.',
     'rohou-justifier-absence-alternative-fonciere-v1':
@@ -2856,6 +2899,22 @@ const scopedComplements: Record<string, Record<string, string>> = {
   'europe-cooperations-industrielles': {
     'polony-nouer-alliances-avec-espagne-et-italie-v1':
       'L’entretien évoque des rapprochements entre gouvernements. Il ne désigne pas de coopération industrielle précise.',
+  },
+  'education-financement-des-etudes': {
+    'legendre-moyens-universites-recherche-v1':
+      'Le passage propose d’examiner les difficultés financières des universités et de la recherche avant de fixer les moyens.',
+  },
+  'numerique-centres-de-calcul': {
+    'dubuisson-datacenters-souverains-outre-mer-v1':
+      'Le texte traite de souveraineté et d’implantation des centres de données, notamment outre-mer.',
+  },
+  'institutions-liberte-medias': {
+    'asselineau-refuser-suspension-reseaux-sociaux-troubles-v1':
+      'Le passage porte sur l’accès aux réseaux sociaux pendant des troubles graves.',
+  },
+  'retraites-protection-revenus': {
+    'collovati-retraite-bon-comportement-v1':
+      'La proposition porte sur les droits supplémentaires acquis selon un critère de comportement.',
   },
 };
 const searchTerms: Record<string, string> = {
