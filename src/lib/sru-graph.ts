@@ -1,15 +1,17 @@
 import { escapeHtml } from './escape-html.mjs';
-import { type Sru, sruSource, sruPage } from './dossiers-territoriaux';
+import {
+  type Sru,
+  sruSource,
+  sruPage,
+  sruRateLabel,
+  sruRateValue,
+} from './dossiers-territoriaux';
 import { communeCode } from './communes.mjs';
 
 export function sruPicture(name: string, code: string, row: Sru) {
   if (!communeCode.test(code)) throw Error('Code communal invalide');
-  const rate = row.rate?.match(/^(\d+(?:,\d+)?)%$/);
-  const value = rate ? Number(rate[1].replace(',', '.')) : null;
-  const printed =
-    row.rate === '>25%'
-      ? 'Plus de 25 %'
-      : (row.rate?.replace('%', ' %') ?? 'Non renseigné');
+  const value = sruRateValue(row.rate);
+  const printed = sruRateLabel(row.rate);
   const title = 'Logement social · ' + name;
   const alt =
     title +

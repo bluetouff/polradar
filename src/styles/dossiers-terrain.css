@@ -204,6 +204,52 @@
   color: #153e4c;
   font-variant-numeric: tabular-nums;
 }
+.terrain-sru-result {
+  --sru-fill: #287b88;
+}
+.terrain-sru-result[data-below] {
+  --sru-fill: #a46233;
+}
+.terrain-sru-result[data-below] .terrain-map-class {
+  background-color: #754321;
+}
+.terrain-sru-result:not([data-exact]) [data-sru-rate] {
+  font-size: clamp(1.55rem, 3vw, 2rem);
+}
+.terrain-sru-scale {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.15rem 0.5rem;
+  color: #335764;
+  font: 0.72rem/1.25 var(--mono);
+}
+.terrain-sru-scale svg {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+.terrain-sru-scale [data-sru-end] {
+  text-align: end;
+}
+.terrain-sru-track {
+  fill: #c7dedb;
+}
+.terrain-sru-scale [data-sru-fill] {
+  fill: var(--sru-fill);
+}
+.terrain-sru-scale [data-sru-marker] {
+  stroke: #173847;
+  stroke-width: 2;
+}
+.terrain-sru-scale:not([hidden])
+  + .terrain-map-reference
+  [data-sru-target-label]::before {
+  display: inline-block;
+  inline-size: 2px;
+  block-size: 0.8em;
+  margin-inline-end: 0.4em;
+  background: #173847;
+  content: '';
+}
 .terrain-map-outside {
   gap: 0.18rem;
   border-color: #bec8c7;
@@ -295,7 +341,7 @@
 .terrain-result {
   margin: 1rem 0;
 }
-.territory-lookup[data-territory='apl'] {
+.territory-lookup:is([data-territory='apl'], [data-sru-summary]) {
   max-inline-size: 38rem;
 }
 .terrain-result details {

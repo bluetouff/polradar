@@ -1,5 +1,6 @@
 ---
 import AplResult from './AplResult.astro';
+import SruResult from './SruResult.astro';
 import TerritoryContext from './TerritoryContext.astro';
 import annuaireUrl from '../data/territoires/annuaire.json?url';
 import sruUrl from '../data/territoires/sru.json?url';
@@ -17,9 +18,12 @@ import { sruPicture, sruImageUrl, sruEmbedCode } from '../lib/sru-graph';
 interface Props {
   mode: Indicator;
   crosswalk?: boolean;
+  sruSummary?: boolean;
 }
-const { mode, crosswalk = false } = Astro.props;
+const { mode, crosswalk = false, sruSummary = false } = Astro.props;
 const housing = mode === 'sru';
+const ExportPanel = sruSummary ? 'details' : 'figure';
+const ExportCaption = sruSummary ? 'p' : 'figcaption';
 const initial = sruRows['75056'];
 const initialApl = aplRows['75056'];
 const sample = sruPicture('Paris', '75056', initial);
@@ -32,6 +36,7 @@ const sampleUrl = sruImageUrl(sample.svg);
   data-names={annuaireUrl}
   data-values={housing ? sruUrl : aplUrl}
   data-cross-apl={crosswalk ? aplUrl : undefined}
+  data-sru-summary={sruSummary ? '' : undefined}
   aria-label="Données communales"
 >
   <form role="search" hidden data-form>
@@ -56,17 +61,18 @@ const sampleUrl = sruImageUrl(sample.svg);
     ></ul>
   </form>
   <p class="terrain-note" role="status" data-feedback></p>
-  <div class:list={['terrain-result', housing && 'has-figure']}>
+  <div class:list={['terrain-result', housing && !sruSummary && 'has-figure']}>
     <div
-      role={housing ? undefined : 'status'}
-      aria-atomic={housing ? undefined : 'true'}
+      role={!housing || sruSummary ? 'status' : undefined}
+      aria-atomic={!housing || sruSummary ? 'true' : undefined}
     >
       <h3 data-place>
         Paris <small>75056</small>
       </h3>
+      {sruSummary && <SruResult row={initial} />}
       {housing ? (
         <dl class="terrain-details" data-facts>
-          {sruFacts(initial).map(([name, val]) => (
+          {sruFacts(initial, !sruSummary).map(([name, val]) => (
             <div>
               <dt>{name}</dt>
               <dd>{val}</dd>
@@ -94,7 +100,8 @@ const sampleUrl = sruImageUrl(sample.svg);
       )}
     </div>
     {housing && (
-      <figure data-local-figure>
+      <ExportPanel data-local-figure>
+        {sruSummary && <summary>Exporter le graphique</summary>}
         <img
           data-chart
           width="600"
@@ -102,11 +109,11 @@ const sampleUrl = sruImageUrl(sample.svg);
           alt={sample.alt}
           src={sampleUrl}
         />
-        <figcaption>
+        <ExportCaption>
           <a href={sampleUrl} data-download download="polradar-sru-75056.svg">
             Télécharger le SVG
           </a>
-        </figcaption>
+        </ExportCaption>
         <details>
           <summary>Intégrer ce graphique</summary>
           <p class="terrain-note">
@@ -124,7 +131,7 @@ const sampleUrl = sruImageUrl(sample.svg);
             Copier le code
           </button>
         </details>
-      </figure>
+      </ExportPanel>
     )}
     {crosswalk && <TerritoryContext />}
   </div>

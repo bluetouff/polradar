@@ -1,0 +1,73 @@
+---
+import { type Sru } from '../lib/dossiers-territoriaux';
+import { sruReading } from '../lib/sru-result';
+interface Props {
+  row: Sru;
+}
+const reading = sruReading(Astro.props.row);
+---
+
+<div
+  class="terrain-map-value terrain-sru-result"
+  data-sru-result
+  data-below={reading.below ? '' : undefined}
+  data-exact={reading.exact ? '' : undefined}
+>
+  <div class="terrain-map-value-main">
+    <strong data-sru-rate>{reading.rate}</strong>
+    <span>
+      Part des logements sociaux dans les résidences principales · 1ᵉʳ janvier
+      2025
+    </span>
+  </div>
+  <span class="terrain-map-class" data-sru-status>
+    {reading.status}
+  </span>
+  <div
+    class="terrain-sru-scale"
+    data-sru-scale
+    hidden={!reading.scale}
+    aria-hidden="true"
+  >
+    <svg
+      viewBox="0 0 100 16"
+      width="100"
+      height="16"
+      preserveAspectRatio="none"
+    >
+      <rect
+        x="0"
+        y="4"
+        width="100"
+        height="8"
+        rx="1"
+        class="terrain-sru-track"
+      />
+      <rect
+        x="0"
+        y="4"
+        width={reading.scale?.width ?? 0}
+        height="8"
+        rx="1"
+        data-sru-fill
+      />
+      <line
+        x1={reading.scale?.marker ?? 0}
+        x2={reading.scale?.marker ?? 0}
+        y1="1"
+        y2="15"
+        data-sru-marker
+        vector-effect="non-scaling-stroke"
+      />
+    </svg>
+    <span>0 %</span>
+    <span data-sru-end>{reading.scale?.end}</span>
+  </div>
+  <div class="terrain-map-reference">
+    <span data-sru-target-label>{reading.targetLabel}</span>
+    <strong data-sru-target>{reading.target}</strong>
+  </div>
+  <span class="terrain-note" data-sru-exemption hidden={!reading.exempt}>
+    Exemption signalée pour 2026–2028
+  </span>
+</div>

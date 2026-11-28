@@ -12,6 +12,7 @@ import {
   type Sru,
 } from '../lib/dossiers-territoriaux';
 import { renderAplResult } from './apl-result';
+import { renderSruResult } from './sru-result';
 import { sruPicture, sruImageUrl, sruEmbedCode } from '../lib/sru-graph';
 type Commune = { code: string; name: string; key: string };
 async function loadFile(url: string) {
@@ -28,6 +29,7 @@ function start(root: HTMLElement) {
     facts = root.querySelector<HTMLElement>('[data-facts]'),
     result = root.querySelector<HTMLElement>('.terrain-result')!;
   const aplCard = root.querySelector<HTMLElement>('[data-apl-result]');
+  const sruCard = root.querySelector<HTMLElement>('[data-sru-result]');
   const aplTerritory = root.querySelector<HTMLElement>('[data-apl-territory]');
   const aplUnavailable = root.querySelector<HTMLElement>(
     '[data-apl-unavailable]',
@@ -98,7 +100,7 @@ function start(root: HTMLElement) {
       const housing = record && typeof record === 'object' ? record : undefined;
       if (facts) {
         const fragment = document.createDocumentFragment();
-        for (const [label, val] of sruFacts(housing)) {
+        for (const [label, val] of sruFacts(housing, !sruCard)) {
           const div = document.createElement('div'),
             dt = document.createElement('dt'),
             dd = document.createElement('dd');
@@ -109,6 +111,7 @@ function start(root: HTMLElement) {
         }
         facts.replaceChildren(fragment);
       }
+      if (sruCard) renderSruResult(sruCard, housing);
       if (aplCard && aplTerritory && aplUnavailable) {
         const value =
           typeof record === 'number' && Number.isFinite(record)
@@ -137,9 +140,10 @@ function start(root: HTMLElement) {
       }
       result.hidden = false;
       input.value = entry.name;
-      feedback.textContent = aplCard
-        ? ''
-        : 'Résultats affichés pour ' + entry.name + ' (' + code + ').';
+      feedback.textContent =
+        aplCard || sruCard
+          ? ''
+          : 'Résultats affichés pour ' + entry.name + ' (' + code + ').';
     } catch {
       if (seq === sequence) {
         result.hidden = true;

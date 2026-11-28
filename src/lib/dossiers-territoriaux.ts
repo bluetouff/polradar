@@ -64,18 +64,26 @@ export const aplTerritoryLabel = (code: string) =>
     ? 'Moyenne des arrondissements, pondérée par la population standardisée.'
     : 'Valeur communale ou d’arrondissement publiée par la DREES.';
 
-export function sruFacts(data: Sru | undefined): [string, string][] {
+export function sruRateValue(rate: Sru['rate']) {
+  const numeric = rate?.match(/^(\d+(?:,\d+)?)%$/);
+  const value = numeric ? Number(numeric[1].replace(',', '.')) : NaN;
+  return Number.isFinite(value) ? value : null;
+}
+
+export const sruRateLabel = (rate: Sru['rate']) =>
+  rate === '>25%'
+    ? 'Plus de 25 %'
+    : (rate?.replace('%', ' %') ?? 'Non renseigné');
+
+export function sruFacts(
+  data: Sru | undefined,
+  withComparison = true,
+): [string, string][] {
   if (data === undefined)
     return [['Inventaire SRU', 'Commune absente du fichier ministériel.']];
   const bool = (v: boolean | null) =>
     v === null ? 'Non renseigné' : v ? 'Oui' : 'Non';
-  const rate =
-    data.rate === '>25%'
-      ? 'Plus de 25\u00a0%'
-      : (data.rate?.replace('%', '\u00a0%') ?? 'Non renseigné');
-  return [
-    ['Part de logements sociaux · 1ᵉʳ janvier 2025', rate],
-    ['Objectif indiqué dans le fichier', data.target + '\u00a0%'],
+  const details: [string, string][] = [
     [
       'Logements sociaux inventoriés',
       data.inventory === null
@@ -87,6 +95,15 @@ export function sruFacts(data: Sru | undefined): [string, string][] {
     ['Carence · 2023 à 2025', bool(data.carence)],
     ['Exemption · 2026 à 2028', bool(data.exempt)],
   ];
+  if (withComparison)
+    details.unshift(
+      [
+        'Part de logements sociaux · 1ᵉʳ janvier 2025',
+        sruRateLabel(data.rate).replace(' %', '\u00a0%'),
+      ],
+      ['Objectif indiqué dans le fichier', data.target + '\u00a0%'],
+    );
+  return details;
 }
 export const healthMeasures: Record<string, [string, string]> = {
   'melenchon-sante-2': [

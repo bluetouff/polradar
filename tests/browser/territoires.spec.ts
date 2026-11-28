@@ -4,15 +4,46 @@ const health = '/questions/sante-installation-medecins/';
 test('la recherche SRU affiche le statut et exporte la commune effectivement sélectionnée', async ({
   page,
 }) => {
+  await page.setViewportSize({ width: 320, height: 568 });
   await page.goto(housing);
-  await expect(page.locator('[data-facts]')).toContainText('23,21 %');
+  const lookup = page.locator('[data-sru-summary]');
+  const result = lookup.locator('[data-sru-result]');
+  const rate = result.locator('[data-sru-rate]');
+  const status = result.locator('[data-sru-status]');
+  const target = result.locator('[data-sru-target]');
+  const scale = result.locator('[data-sru-scale]');
+  const fill = scale.locator('[data-sru-fill]');
+  const marker = scale.locator('[data-sru-marker]');
+  await expect(rate).toHaveText('23,21 %');
+  await expect(status).toHaveText('Sous l’objectif');
+  await expect(target).toHaveText('25 %');
+  expect(Number(await fill.getAttribute('width'))).toBeLessThan(
+    Number(await marker.getAttribute('x1')),
+  );
+  await lookup.evaluate((element) =>
+    element.scrollIntoView({ block: 'start' }),
+  );
+  const bounds = (await result.boundingBox())!;
+  const nav = (await page
+    .getByRole('navigation', { name: 'Navigation principale' })
+    .boundingBox())!;
+  expect(bounds.y + bounds.height).toBeLessThanOrEqual(nav.y);
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth),
+  ).toBeLessThanOrEqual(320);
   const input = page.getByRole('searchbox', {
     name: 'Nom de commune ou code Insee',
   });
   await input.fill('97120');
   await input.press('Enter');
   await expect(page).toHaveURL(/#commune=97120$/);
-  await expect(page.locator('[data-facts]')).toContainText('121,87 %');
+  await expect(rate).toHaveText('121,87 %');
+  await expect(status).toHaveText('Au-dessus de l’objectif');
+  await expect(scale.locator('[data-sru-end]')).toHaveText('125 %');
+  expect(Number(await fill.getAttribute('width'))).toBeGreaterThan(
+    Number(await marker.getAttribute('x1')),
+  );
+  await page.getByText('Exporter le graphique', { exact: true }).click();
   const code = await page.locator('#territory-embed').inputValue();
   const image = Buffer.from(
     code.match(/base64,([^"]+)/)![1],
@@ -31,11 +62,34 @@ test('la recherche SRU affiche le statut et exporte la commune effectivement sé
     'absente du fichier',
   );
   await expect(page.locator('[data-local-figure]')).toBeHidden();
+  await expect(result).toBeHidden();
   await page.goto(housing + '#commune=59002');
-  await expect(page.locator('[data-facts]')).toContainText('Plus de 25 %');
+  await expect(rate).toHaveText('Plus de 25 %');
+  await expect(target).toHaveText('20 %');
+  await expect(status).toHaveText('Au-dessus de l’objectif');
+  await expect(scale).toBeHidden();
   await expect(page.locator('[data-facts]')).toContainText(
     'Inventaire non disponible',
   );
+});
+test('la comparaison SRU distingue une exemption, une entrée au dispositif et un inventaire manquant', async ({
+  page,
+}) => {
+  const card = page.locator('[data-sru-result]');
+  const status = card.locator('[data-sru-status]');
+  const rate = card.locator('[data-sru-rate]');
+  await page.goto(housing + '#commune=13039');
+  await expect(rate).toHaveText('20,18 %');
+  await expect(status).toHaveText('Sous le seuil indiqué');
+  await expect(card.locator('[data-sru-exemption]')).toBeVisible();
+  await page.goto(housing + '#commune=40046');
+  await expect(rate).toHaveText('Entrée au dispositif');
+  await expect(status).toContainText('Hors du périmètre SRU');
+  await expect(card.locator('[data-sru-scale]')).toBeHidden();
+  await page.goto(housing + '#commune=92051');
+  await expect(rate).toHaveText('Non renseigné');
+  await expect(status).toHaveText('Comparaison indisponible');
+  await expect(card.locator('[data-sru-scale]')).toBeHidden();
 });
 test('les valeurs des indicateurs communaux conservent leur unité et leur libellé sur une ligne', async ({
   page,
@@ -159,6 +213,7 @@ test('les exemples, la carte et les liens vers les fichiers restent disponibles 
     const page = await context.newPage();
     await page.goto(housing);
     await expect(page.locator('[data-facts]')).toContainText('276');
+    await expect(page.locator('[data-sru-rate]')).toHaveText('23,21 %');
     await expect(
       page.getByRole('link', { name: /Consulter toutes les communes/ }),
     ).toBeVisible();
