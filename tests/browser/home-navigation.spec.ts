@@ -84,7 +84,7 @@ test('les sujets et les outils professionnels restent accessibles sans JavaScrip
   const context = await browser.newContext({ javaScriptEnabled: false });
   try {
     const page = await context.newPage();
-    await page.setViewportSize({ width: 360, height: 820 });
+    await page.setViewportSize({ width: 320, height: 568 });
     await page.goto(new URL('/', baseURL).href);
     const topics = page.getByRole('navigation', {
       name: 'Recherches suggérées',
@@ -124,6 +124,7 @@ test('le menu Explorer donne accès aux liens du pied de page sans répéter la 
   page,
 }) => {
   for (const [width, height] of [
+    [320, 568],
     [320, 740],
     [390, 844],
     [820, 720],
@@ -143,16 +144,30 @@ test('le menu Explorer donne accès aux liens du pied de page sans répéter la 
     const primary = await hrefs('.site-navigation a:visible');
     const exploreLinks = () => hrefs('.site-directory nav a:visible');
     const checkPanelHeight = async () => {
+      const category = await panel
+        .locator('input:checked')
+        .getAttribute('value');
+      const message = `Menu à ${width} × ${height} (${category})`;
       const overflows = await panel.evaluate(
         (el) => el.scrollHeight > el.clientHeight + 1,
       );
-      expect(overflows, `Menu à ${width} × ${height}`).toBe(false);
+      expect(overflows, message).toBe(false);
+      const bounds = (await panel.boundingBox())!;
+      const bottomBar =
+        width <= 760
+          ? await page
+              .getByRole('navigation', { name: 'Navigation principale' })
+              .boundingBox()
+          : null;
+      expect(bounds.y + bounds.height, message).toBeLessThanOrEqual(
+        bottomBar?.y ?? height,
+      );
     };
     const explorer = new Set(await exploreLinks());
     await checkPanelHeight();
     if (await panel.locator('.directory-picker').isVisible()) {
       for (const category of await panel
-        .locator('.directory-picker label')
+        .locator('.directory-picker label:visible')
         .all()) {
         await category.click();
         await checkPanelHeight();

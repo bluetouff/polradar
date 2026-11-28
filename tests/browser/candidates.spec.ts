@@ -205,7 +205,7 @@ test('les nouveaux parcours restent lisibles à 320 pixels et ne chargent aucun 
 test('le menu mobile ouvre les rubriques au clavier et rend le focus à la fermeture', async ({
   page,
 }) => {
-  await page.setViewportSize({ width: 320, height: 900 });
+  await page.setViewportSize({ width: 320, height: 568 });
   await page.goto('/candidats/');
   const menu = page.getByRole('navigation', { name: 'Navigation principale' });
   await expect(menu.getByRole('link')).toHaveCount(4);
@@ -213,6 +213,12 @@ test('le menu mobile ouvre les rubriques au clavier et rend le focus à la ferme
   await summary.focus();
   await page.keyboard.press('Enter');
   const tools = page.getByRole('navigation', { name: 'Rubriques et outils' });
+  await page.keyboard.press('Tab');
+  await expect(tools.getByRole('radio', { name: 'Outils pro' })).toBeFocused();
+  await page.keyboard.press('ArrowLeft');
+  await expect(
+    tools.getByRole('radio', { name: 'Accès directs' }),
+  ).toBeChecked();
   await expect(tools.getByRole('link', { name: 'Sondages' })).toBeVisible();
   await expect(tools.getByRole('link', { name: 'Candidats' })).toHaveAttribute(
     'aria-current',

@@ -13,6 +13,7 @@ const mobileSections = primaryNavigation.filter(
 const categories = [
   { id: 'pro', shortLabel: 'Outils pro' },
   ...directorySections,
+  { id: 'acces', shortLabel: 'Accès directs' },
 ];
 ---
 
@@ -27,18 +28,9 @@ const categories = [
     </span>
   </summary>
   <nav aria-label="Rubriques et outils">
-    <ul class="directory-mobile" role="list" aria-label="Rubriques principales">
-      {mobileSections.map(({ url, label }) => (
-        <li>
-          <a href={url} aria-current={path === url ? 'page' : undefined}>
-            {label}
-          </a>
-        </li>
-      ))}
-    </ul>
     <fieldset class="directory-picker" aria-label="Familles de rubriques">
       {categories.map(({ id, shortLabel }) => (
-        <label>
+        <label class:list={{ 'directory-direct-choice': id === 'acces' }}>
           <input
             type="radio"
             id={'explorer-' + id}
@@ -51,6 +43,21 @@ const categories = [
         </label>
       ))}
     </fieldset>
+    <ul
+      class="directory-mobile"
+      data-directory-group="acces"
+      id="explorer-panel-acces"
+      role="list"
+      aria-label="Rubriques principales"
+    >
+      {mobileSections.map(({ url, label }) => (
+        <li>
+          <a href={url} aria-current={path === url ? 'page' : undefined}>
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
     <div
       class="directory-tools"
       data-directory-group="pro"
